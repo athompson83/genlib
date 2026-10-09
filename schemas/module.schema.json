@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/athompson83/genlib/main/schemas/module.schema.json",
+  "title": "Genlib authored module manifest",
+  "description": "The authoring form for modules/<id>/module.json. Generated registry integrity records do not belong in this file.",
+  "$comment": "Keep this authoring schema aligned with lib/catalog.mjs and docs/module-format.md. The CLI additionally checks source.path against id, the containing module directory, case-insensitive target uniqueness, export-to-file references, exact dependency availability and cycles, path conflicts, file sizes, filesystem types, and content integrity. JSON Schema validation cannot replace registry:check or an installation plan.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "id", "version", "title", "description", "kind", "tags", "license",
+    "source", "compatibility", "dependencies", "files", "exports", "configuration",
+    "capabilities", "limitations", "verification", "contract"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional editor reference to this authoring schema."
+    },
+    "schemaVersion": { "const": 1 },
+    "id": { "$ref": "#/$defs/moduleId" },
+    "version": { "$ref": "#/$defs/moduleVersion" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "description": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "kind": { "enum": ["style", "theme", "component", "feature", "utility"] },
+    "tags": { "$ref": "#/$defs/textList", "maxItems": 20 },
+    "license": { "const": "Apache-2.0" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "repository", "path"],
+      "properties": {
+        "type": { "const": "original" },
+        "repository": { "const": "https://github.com/athompson83/genlib" },
+        "path": {
+          "type": "string",
+          "pattern": "^modules/[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+          "description": "Must be modules/ followed by this module's exact id; the registry builder checks that relationship."
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frameworks", "languages", "platform", "notes"],
+      "properties": {
+        "frameworks": {
+          "$ref": "#/$defs/textList",
+          "minItems": 1,
+          "maxItems": 8,
+          "description": "Initial modules use react or any for framework-neutral code. Declaring a framework is not evidence of compatibility with a consuming application."
+        },
+        "languages": { "$ref": "#/$defs/textList", "maxItems": 8 },
+        "platform": { "type": "string", "description": "The initial modules target web applications." },
+        "reactMajors": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "integer", "enum": [18, 19] },
+          "description": "Required when frameworks contains react. Framework-neutral modules omit this property."
+        },
+        "notes": { "$ref": "#/$defs/textList" }
+      },
+      "if": {
+        "properties": { "frameworks": { "contains": { "const": "react" } } },
+        "required": ["frameworks"]
+      },
+      "then": { "required": ["reactMajors"] }
+    },
+    "dependencies": {
+      "type": "array",
+      "maxItems": 20,
+      "description": "Exact local registry module dependencies; these are not npm package declarations.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "version"],
+        "properties": {
+          "id": { "$ref": "#/$defs/moduleId" },
+          "version": { "$ref": "#/$defs/moduleVersion" }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "description": "Nonempty regular source files. The builder calculates hashes and byte counts; authors do not provide generated path, sha256, or bytes fields.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "target"],
+        "properties": {
+          "source": {
+            "$ref": "#/$defs/relativePath",
+            "pattern": "^files/",
+            "description": "Path beneath this module's files directory."
+          },
+          "target": {
+            "$ref": "#/$defs/sourceTarget",
+            "description": "File path relative to the installation output directory, normally src/genlib."
+          }
+        }
+      }
+    },
+    "exports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "from"],
+        "properties": {
+          "name": { "type": "string" },
+          "from": {
+            "$ref": "#/$defs/sourceTarget",
+            "description": "Must reference a files[].target path. The registry builder checks this relationship."
+          }
+        }
+      }
+    },
+    "configuration": { "$ref": "#/$defs/textList" },
+    "capabilities": { "$ref": "#/$defs/textList" },
+    "limitations": { "$ref": "#/$defs/textList" },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "testFiles"],
+      "properties": {
+        "level": {
+          "enum": ["experimental", "tested"],
+          "description": "Use tested only after meaningful repository behavior tests pass; consumers still verify their integrated application."
+        },
+        "testFiles": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": { "$ref": "#/$defs/relativePath", "pattern": "^tests/" },
+          "description": "Existing test files relative to the repository root."
+        }
+      }
+    },
+    "contract": { "const": "CONTRACT.md" }
+  },
+  "$defs": {
+    "moduleId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "moduleVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "An exact numeric major.minor.patch version; no ranges, tags, or prerelease labels."
+    },
+    "textList": {
+      "type": "array",
+      "maxItems": 40,
+      "items": { "type": "string", "minLength": 1, "maxLength": 3000 }
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[A-Za-z0-9_.@-]+(?:/[A-Za-z0-9_.@-]+)*$",
+      "allOf": [
+        { "not": { "pattern": "(^|/)(\\.{1,2}|\\.[gG][iI][tT])(/|$)" } },
+        { "not": { "pattern": "\\.(/|$)" } },
+        { "not": { "pattern": "(^|/)([cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(\\.|/|$)" } }
+      ],
+      "description": "A portable forward-slash relative path. The CLI separately verifies filesystem safety, including symlinks, hard links, existing files, and containment."
+    },
+    "sourceTarget": {
+      "$ref": "#/$defs/relativePath",
+      "allOf": [
+        { "not": { "pattern": "(^|/)\\." } },
+        { "not": { "pattern": "(^|/)([nN][oO][dD][eE]_[mM][oO][dD][uU][lL][eE][sS]|[vV][eE][nN][dD][oO][rR])(/|$)" } }
+      ]
+    }
+  }
+}

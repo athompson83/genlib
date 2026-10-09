@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "id": "data-table",
+  "version": "0.1.0",
+  "title": "Searchable sortable data table",
+  "description": "Typed React table with client-side search, stable sorting, pagination, empty states, and accessible table controls.",
+  "kind": "component",
+  "tags": [
+    "react",
+    "table",
+    "search",
+    "sorting",
+    "pagination",
+    "records"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/data-table"
+  },
+  "compatibility": {
+    "frameworks": [
+      "react"
+    ],
+    "languages": [
+      "typescript",
+      "css"
+    ],
+    "platform": "web",
+    "reactMajors": [
+      18,
+      19
+    ],
+    "notes": [
+      "Uses the consuming application's React and TSX pipeline. Contains a use client boundary. Receives data and accessor functions from its caller."
+    ]
+  },
+  "dependencies": [
+    {
+      "id": "theme-tokens",
+      "version": "0.1.0"
+    }
+  ],
+  "files": [
+    {
+      "source": "files/DataTable.tsx",
+      "target": "data-table/DataTable.tsx",
+      "path": "modules/data-table/files/DataTable.tsx",
+      "sha256": "c46c84e4873dca6427bb9df74d1afe2774ec5f726439dcb0da52c78adb3cac32",
+      "bytes": 6934
+    },
+    {
+      "source": "files/data-table.css",
+      "target": "data-table/data-table.css",
+      "path": "modules/data-table/files/data-table.css",
+      "sha256": "3ae973e343523340c884e7fd7ae1bca130038b0a72092bc64fd0d8fbb3ac95ed",
+      "bytes": 2448
+    }
+  ],
+  "exports": [
+    {
+      "name": "DataTable",
+      "from": "data-table/DataTable.tsx"
+    },
+    {
+      "name": "DataTableProps",
+      "from": "data-table/DataTable.tsx"
+    },
+    {
+      "name": "DataTableColumn",
+      "from": "data-table/DataTable.tsx"
+    },
+    {
+      "name": "DataTableSort",
+      "from": "data-table/DataTable.tsx"
+    },
+    {
+      "name": "DataTableValue",
+      "from": "data-table/DataTable.tsx"
+    },
+    {
+      "name": "selectTableRows",
+      "from": "data-table/DataTable.tsx"
+    }
+  ],
+  "configuration": [
+    "rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className.",
+    "Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering."
+  ],
+  "capabilities": [
+    "client-filtering",
+    "stable-sorting",
+    "client-pagination",
+    "empty-states",
+    "table-accessibility"
+  ],
+  "limitations": [
+    "All supplied rows are available to the browser. Fetch and authorize data on the server before supplying it.",
+    "No server pagination, virtualization, row selection, persistence, database connection, or permission enforcement.",
+    "Default search is a case-insensitive substring match on searchable accessor values, not rendered cells.",
+    "Supply unique stable row and column IDs; use immutable data updates."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/web-modules.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/data-table/module.json",
+    "sha256": "32173e30cc8d4b939cc53bbc5d7d3e189be170174b35481c67cd033c290605c7"
+  },
+  "contractFile": {
+    "path": "modules/data-table/CONTRACT.md",
+    "sha256": "074ce7fa1f2f04d3aa73444a33f19ca998b42c5f4cdd78c891c31d69a0c6385b",
+    "bytes": 3414
+  }
+}

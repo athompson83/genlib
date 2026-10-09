@@ -1,0 +1,10 @@
+node_modules/
+.build/
+coverage/
+*.tgz
+.DS_Store
+.env
+.env.*
+!.env.example
+.genlib/install.lock
+.genlib/lock.next.*

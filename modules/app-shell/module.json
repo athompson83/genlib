@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "app-shell",
+  "version": "0.1.0",
+  "title": "Responsive application shell",
+  "description": "React application header, primary navigation, responsive menu disclosure, skip link, and main-content layout.",
+  "kind": "component",
+  "tags": ["react", "layout", "navigation", "responsive", "accessibility"],
+  "license": "Apache-2.0",
+  "source": { "type": "original", "repository": "https://github.com/athompson83/genlib", "path": "modules/app-shell" },
+  "compatibility": { "frameworks": ["react"], "languages": ["typescript", "css"], "platform": "web", "reactMajors": [18, 19], "notes": ["Requires the consuming application's React and TSX pipeline. Contains a use client boundary and uses native anchor navigation."] },
+  "dependencies": [{ "id": "theme-tokens", "version": "0.1.0" }],
+  "files": [{ "source": "files/AppShell.tsx", "target": "app-shell/AppShell.tsx" }, { "source": "files/app-shell.css", "target": "app-shell/app-shell.css" }],
+  "exports": [{ "name": "AppShell", "from": "app-shell/AppShell.tsx" }, { "name": "AppShellProps", "from": "app-shell/AppShell.tsx" }, { "name": "AppShellNavItem", "from": "app-shell/AppShell.tsx" }],
+  "configuration": ["brand, items, activeItemId, navigationLabel, headerActions, sidebarFooter, children, className, onNavigate.", "Import theme and shell CSS once at the application root; map semantic tokens to the project's design system."],
+  "capabilities": ["responsive-layout", "primary-navigation", "mobile-disclosure", "skip-link"],
+  "limitations": ["Does not enforce authorization or hide unauthorized content. Filter navigation and protect routes on the server.", "Does not install or configure a router. href values must come from trusted application route definitions.", "Mobile navigation is an inline disclosure, not a modal or focus-trapped drawer."],
+  "verification": { "level": "tested", "testFiles": ["tests/web-modules.test.mjs"] },
+  "contract": "CONTRACT.md"
+}

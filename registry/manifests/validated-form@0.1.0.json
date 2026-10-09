@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "validated-form",
+  "version": "0.1.0",
+  "title": "Validated form with submission handling",
+  "description": "Typed React form wrapper with injected validation and submission, accessible error summaries, busy state, and duplicate-submit protection.",
+  "kind": "component",
+  "tags": [
+    "react",
+    "form",
+    "validation",
+    "submission",
+    "accessibility"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/validated-form"
+  },
+  "compatibility": {
+    "frameworks": [
+      "react"
+    ],
+    "languages": [
+      "typescript",
+      "css"
+    ],
+    "platform": "web",
+    "reactMajors": [
+      18,
+      19
+    ],
+    "notes": [
+      "Uses the consuming application's React and TSX pipeline. Contains a use client boundary. Inject client validation and an authenticated submission adapter."
+    ]
+  },
+  "dependencies": [
+    {
+      "id": "theme-tokens",
+      "version": "0.1.0"
+    }
+  ],
+  "files": [
+    {
+      "source": "files/ValidatedForm.tsx",
+      "target": "validated-form/ValidatedForm.tsx",
+      "path": "modules/validated-form/files/ValidatedForm.tsx",
+      "sha256": "a5c683e9686084fe2f31c9223e10057aeff0820736ca41074651692d5ec55fb0",
+      "bytes": 7326
+    },
+    {
+      "source": "files/validated-form.css",
+      "target": "validated-form/validated-form.css",
+      "path": "modules/validated-form/files/validated-form.css",
+      "sha256": "74f64636697c37a3737f0346dcc20408ab792346e1d880ebf079bb9801bc87f5",
+      "bytes": 2425
+    }
+  ],
+  "exports": [
+    {
+      "name": "ValidatedForm",
+      "from": "validated-form/ValidatedForm.tsx"
+    },
+    {
+      "name": "ValidatedFormProps",
+      "from": "validated-form/ValidatedForm.tsx"
+    },
+    {
+      "name": "ValidatedFormContext",
+      "from": "validated-form/ValidatedForm.tsx"
+    },
+    {
+      "name": "FieldBinding",
+      "from": "validated-form/ValidatedForm.tsx"
+    },
+    {
+      "name": "FieldName",
+      "from": "validated-form/ValidatedForm.tsx"
+    },
+    {
+      "name": "ValidationErrors",
+      "from": "validated-form/ValidatedForm.tsx"
+    },
+    {
+      "name": "SubmissionResult",
+      "from": "validated-form/ValidatedForm.tsx"
+    }
+  ],
+  "configuration": [
+    "Required initialValues, formLabel, validate(values), onSubmit(values), and render-prop children.",
+    "field(name, hintId) supplies IDs and accessibility attributes; setValue(name, value) keeps type conversion explicit.",
+    "Optional fieldLabels, submitLabel, submittingLabel, successMessage, submissionErrorMessage, and className."
+  ],
+  "capabilities": [
+    "typed-form-state",
+    "async-validation",
+    "async-submit",
+    "field-errors",
+    "form-errors",
+    "error-summary-focus",
+    "duplicate-submit-guard"
+  ],
+  "limitations": [
+    "Client validation is not server authorization or validation. The submission adapter must authenticate, authorize, validate, and persist independently.",
+    "Top-level fields only; no field arrays, nested path parser, schema library, automatic field rendering, or external service setup.",
+    "Values initialize once. Remount with a new React key when switching records. Reset returns to the original values.",
+    "Unexpected exception details are hidden; only explicitly returned field and form messages are shown. Pending network requests are not automatically canceled."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/web-modules.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/validated-form/module.json",
+    "sha256": "af4d3140c84834326970c094ddcccfba73b4bb4e355c96705ddd4d3a9f66d80e"
+  },
+  "contractFile": {
+    "path": "modules/validated-form/CONTRACT.md",
+    "sha256": "f7ed929f04f640d1aa8eb80101eb36ea37bc047609e561da0b4ecedb2dfda479",
+    "bytes": 5390
+  }
+}

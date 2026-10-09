@@ -1,0 +1,68 @@
+name: CI
+
+"on":
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Node ${{ matrix.node }} / React ${{ matrix.react }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["22", "24"]
+        react: ["18.3.1", "19.3.0"]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked development dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Select React 18 and its type declarations
+        if: matrix.react == '18.3.1'
+        run: npm install --no-save --package-lock=false --ignore-scripts --no-audit --no-fund react@18.3.1 react-dom@18.3.1 @types/react@18.3.0 @types/react-dom@18.3.0
+
+      - name: Confirm the compatibility lane
+        env:
+          EXPECTED_NODE_MAJOR: ${{ matrix.node }}
+          EXPECTED_REACT_VERSION: ${{ matrix.react }}
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const react = require('react').version;
+          const reactDom = require('react-dom').version;
+          const reactTypes = require('@types/react/package.json').version;
+          const reactDomTypes = require('@types/react-dom/package.json').version;
+          const expectedMajor = process.env.EXPECTED_REACT_VERSION.split('.')[0];
+          assert.equal(process.versions.node.split('.')[0], process.env.EXPECTED_NODE_MAJOR);
+          assert.equal(react, process.env.EXPECTED_REACT_VERSION);
+          assert.equal(reactDom, process.env.EXPECTED_REACT_VERSION);
+          assert.equal(reactTypes.split('.')[0], expectedMajor);
+          assert.equal(reactDomTypes.split('.')[0], expectedMajor);
+          console.log(JSON.stringify({ node: process.versions.node, react, reactDom, reactTypes, reactDomTypes }));
+          NODE
+
+      - name: Check generated files, compile modules, and run behavior tests
+        run: npm run check
+
+      - name: Confirm dependency manifests were preserved
+        run: git diff --exit-code -- package.json package-lock.json

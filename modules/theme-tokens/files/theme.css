@@ -1,0 +1,40 @@
+/* Genlib original source, Apache-2.0. Override these tokens in the project's theme. */
+:root,
+[data-genlib-theme="light"] {
+  --gl-background: #f7f8fa;
+  --gl-surface: #ffffff;
+  --gl-surface-muted: #edf0f5;
+  --gl-foreground: #17202d;
+  --gl-muted: #526072;
+  --gl-border: #c8d0dc;
+  --gl-accent: #254cba;
+  --gl-accent-foreground: #ffffff;
+  --gl-danger: #b21b2d;
+  --gl-danger-surface: #fff0f1;
+  --gl-focus: #254cba;
+  --gl-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --gl-font-size: 1rem;
+  --gl-line-height: 1.5;
+  --gl-radius: 0.5rem;
+  --gl-space-1: 0.25rem;
+  --gl-space-2: 0.5rem;
+  --gl-space-3: 0.75rem;
+  --gl-space-4: 1rem;
+  --gl-space-6: 1.5rem;
+  --gl-space-8: 2rem;
+  --gl-sidebar-width: 16rem;
+}
+
+[data-genlib-theme="dark"] {
+  --gl-background: #101722;
+  --gl-surface: #17202d;
+  --gl-surface-muted: #253244;
+  --gl-foreground: #f4f6fa;
+  --gl-muted: #b6c2d2;
+  --gl-border: #526072;
+  --gl-accent: #a6c0ff;
+  --gl-accent-foreground: #11254f;
+  --gl-danger: #ffafb7;
+  --gl-danger-surface: #3b2028;
+  --gl-focus: #a6c0ff;
+}

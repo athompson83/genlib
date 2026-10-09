@@ -1,0 +1,38 @@
+/* SPDX-License-Identifier: Apache-2.0 */
+.genlib-notification-preferences {
+  color: var(--genlib-notification-text, #172033);
+  font-family: var(--genlib-notification-font, system-ui, sans-serif);
+  display: grid;
+  gap: 1rem;
+  max-width: 42rem;
+}
+.genlib-notification-preferences h2 { margin: 0; font-size: 1.35rem; }
+.genlib-notification-preferences fieldset {
+  border: 1px solid var(--genlib-notification-border, #cbd5e1);
+  border-radius: var(--genlib-notification-radius, 0.5rem);
+  margin: 0;
+  min-width: 0;
+  padding: 1rem;
+}
+.genlib-notification-preferences legend { font-weight: 600; padding: 0 0.25rem; }
+.genlib-notification-preferences fieldset p { margin: 0 0 0.75rem; }
+.genlib-notification-preferences__channels { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+.genlib-notification-preferences label { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; cursor: pointer; }
+.genlib-notification-preferences input { width: 1.125rem; height: 1.125rem; accent-color: var(--genlib-notification-accent, #244fa4); }
+.genlib-notification-preferences button {
+  justify-self: start;
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--genlib-notification-radius, 0.5rem);
+  background: var(--genlib-notification-accent, #244fa4);
+  color: var(--genlib-notification-on-accent, #fff);
+  font: inherit;
+  cursor: pointer;
+}
+.genlib-notification-preferences button:disabled { opacity: 0.65; cursor: default; }
+.genlib-notification-preferences :focus-visible { outline: 3px solid var(--genlib-notification-focus, #3577d4); outline-offset: 3px; }
+.genlib-notification-preferences__error { color: var(--genlib-notification-error, #a51b2c); margin: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .genlib-notification-preferences button { transition: opacity 120ms ease; }
+}

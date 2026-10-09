@@ -1,0 +1,41 @@
+/* Genlib original source, Apache-2.0. Load theme-tokens/theme.css first. */
+.gl-table {
+  color: var(--gl-foreground);
+  font: var(--gl-font-size) / var(--gl-line-height) var(--gl-font-family);
+}
+.gl-table *, .gl-table *::before, .gl-table *::after { box-sizing: border-box; }
+.gl-table__search { display: grid; gap: var(--gl-space-2); max-width: 24rem; margin-block-end: var(--gl-space-4); }
+.gl-table__search label { font-weight: 600; }
+.gl-table__search input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--gl-space-2) var(--gl-space-3);
+  border: 1px solid var(--gl-border);
+  border-radius: var(--gl-radius);
+  color: var(--gl-foreground);
+  background: var(--gl-surface);
+  font: inherit;
+}
+.gl-table__scroll { overflow-x: auto; border: 1px solid var(--gl-border); border-radius: var(--gl-radius); }
+.gl-table table { width: 100%; border-collapse: collapse; background: var(--gl-surface); }
+.gl-table caption { text-align: start; font-weight: 700; padding: var(--gl-space-4); }
+.gl-table th, .gl-table td { padding: var(--gl-space-3) var(--gl-space-4); border-block-start: 1px solid var(--gl-border); text-align: start; vertical-align: top; }
+.gl-table th { background: var(--gl-surface-muted); font-weight: 600; }
+.gl-table th[data-align="end"], .gl-table td[data-align="end"] { text-align: end; }
+.gl-table th button { background: transparent; border: 0; color: inherit; padding: var(--gl-space-1) 0; text-align: inherit; font: inherit; font-weight: inherit; cursor: pointer; min-height: 2rem; }
+.gl-table td.gl-table__empty { text-align: center; padding: var(--gl-space-8); color: var(--gl-muted); }
+.gl-table__footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gl-space-3); margin-block-start: var(--gl-space-4); }
+.gl-table__status { margin: 0; color: var(--gl-muted); }
+.gl-table__pagination { display: flex; flex-wrap: wrap; gap: var(--gl-space-3); align-items: center; }
+.gl-table__pagination button {
+  min-height: 2.75rem;
+  padding: var(--gl-space-2) var(--gl-space-3);
+  border: 1px solid var(--gl-border);
+  border-radius: var(--gl-radius);
+  color: var(--gl-foreground);
+  background: var(--gl-surface);
+  font: inherit;
+  cursor: pointer;
+}
+.gl-table button:disabled { opacity: 0.5; cursor: not-allowed; }
+.gl-table button:focus-visible, .gl-table input:focus-visible, .gl-table__scroll:focus-visible { outline: 3px solid var(--gl-focus); outline-offset: 3px; }

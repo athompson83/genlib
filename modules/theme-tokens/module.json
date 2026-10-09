@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "theme-tokens",
+  "version": "0.1.0",
+  "title": "Semantic theme tokens",
+  "description": "Framework-neutral light and dark CSS variables for consistent project branding without changing feature behavior.",
+  "kind": "theme",
+  "tags": ["css", "theme", "branding", "dark-mode"],
+  "license": "Apache-2.0",
+  "source": { "type": "original", "repository": "https://github.com/athompson83/genlib", "path": "modules/theme-tokens" },
+  "compatibility": { "frameworks": ["any"], "languages": ["css"], "platform": "web", "notes": ["Requires CSS custom properties. Does not apply a global reset or automatically select a color scheme."] },
+  "dependencies": [],
+  "files": [{ "source": "files/theme.css", "target": "theme-tokens/theme.css" }],
+  "exports": [],
+  "configuration": ["Override --gl-* variables after this stylesheet or within a scoped theme container.", "Set data-genlib-theme to light or dark on a container or the document root."],
+  "capabilities": ["semantic-colors", "spacing", "typography-tokens", "explicit-dark-theme"],
+  "limitations": ["No theme persistence, theme-toggle JavaScript, font downloads, or automatic OS-theme detection.", "Validate contrast again after project-specific token overrides."],
+  "verification": { "level": "tested", "testFiles": ["tests/web-modules.test.mjs"] },
+  "contract": "CONTRACT.md"
+}

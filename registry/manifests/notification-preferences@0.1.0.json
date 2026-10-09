@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "id": "notification-preferences",
+  "version": "0.1.0",
+  "title": "Notification preferences",
+  "description": "A configurable preference form, validated TypeScript domain model, Fetch API client, and authenticated Request/Response adapter with injected atomic persistence.",
+  "kind": "feature",
+  "tags": [
+    "notifications",
+    "preferences",
+    "settings",
+    "forms",
+    "persistence"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/notification-preferences"
+  },
+  "compatibility": {
+    "frameworks": [
+      "react"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "web",
+    "reactMajors": [
+      18,
+      19
+    ],
+    "notes": [
+      "UI requires React 18 or 19, React types, and a TypeScript/TSX pipeline.",
+      "Core is framework-neutral. Server adapter uses the Fetch Request/Response APIs available in Node.js 22+.",
+      "Import the included stylesheet explicitly; no CSS loader or persistence provider is assumed."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "notification-preferences/core.ts",
+      "path": "modules/notification-preferences/files/core.ts",
+      "sha256": "c5c23f7a5ee5317b211280d06ff0242095b6d38f811c53ddd80d9a5e9f77fa6b",
+      "bytes": 6063
+    },
+    {
+      "source": "files/server.ts",
+      "target": "notification-preferences/server.ts",
+      "path": "modules/notification-preferences/files/server.ts",
+      "sha256": "eb72890f692ee244295a95be87a648a82daffd418f34cc5aa031c4da0c8c0002",
+      "bytes": 7625
+    },
+    {
+      "source": "files/client.ts",
+      "target": "notification-preferences/client.ts",
+      "path": "modules/notification-preferences/files/client.ts",
+      "sha256": "7f66dc5499a3bb0e6b1bab14400f03426caab2d4c01386773f919b9dfa54fe8b",
+      "bytes": 1680
+    },
+    {
+      "source": "files/NotificationPreferencesForm.tsx",
+      "target": "notification-preferences/NotificationPreferencesForm.tsx",
+      "path": "modules/notification-preferences/files/NotificationPreferencesForm.tsx",
+      "sha256": "8f42d52de3961f6603ef033ad19d35951b8970353a65135330d456e4acfe7924",
+      "bytes": 4411
+    },
+    {
+      "source": "files/notification-preferences.css",
+      "target": "notification-preferences/notification-preferences.css",
+      "path": "modules/notification-preferences/files/notification-preferences.css",
+      "sha256": "eb71865ce7eb966a8796aa0a03de929470a871822c39f1605e9f9ac165e60efa",
+      "bytes": 1872
+    }
+  ],
+  "exports": [
+    {
+      "name": "NotificationPreferencesForm",
+      "from": "notification-preferences/NotificationPreferencesForm.tsx"
+    },
+    {
+      "name": "createPreferenceSchema",
+      "from": "notification-preferences/core.ts"
+    },
+    {
+      "name": "defaultPreferences",
+      "from": "notification-preferences/core.ts"
+    },
+    {
+      "name": "validatePreferences",
+      "from": "notification-preferences/core.ts"
+    },
+    {
+      "name": "validateSnapshot",
+      "from": "notification-preferences/core.ts"
+    },
+    {
+      "name": "preferencesEqual",
+      "from": "notification-preferences/core.ts"
+    },
+    {
+      "name": "PreferencesConflictError",
+      "from": "notification-preferences/core.ts"
+    },
+    {
+      "name": "createPreferencesClient",
+      "from": "notification-preferences/client.ts"
+    },
+    {
+      "name": "createPreferencesHandler",
+      "from": "notification-preferences/server.ts"
+    }
+  ],
+  "configuration": [
+    "Declare 1–32 stable preference keys, labels, allowed email/push/inApp channels, and explicit defaults; omitted defaults are false.",
+    "Inject a persistent store implementing atomic compareAndSet and read, scoped to authenticated subject and tenant.",
+    "Inject application authentication/authorization and configure exact allowedOrigins; PUT fails closed without an allowed Origin.",
+    "Mount the form with schema, initialSnapshot, and save callback; remount when authenticated identity or schema changes.",
+    "Import notification-preferences.css explicitly and map its documented CSS variables to the project Brand Kit."
+  ],
+  "capabilities": [
+    "notification-preference-editing",
+    "validated-preference-storage-adapter",
+    "optimistic-concurrency",
+    "idempotent-update-contract"
+  ],
+  "limitations": [
+    "Does not send notifications, enroll push devices, provision services, or imply a marketing consent system.",
+    "Requires real authorization and persistent transaction adapters; the module has no default storage.",
+    "Origin checks supplement the receiving application's session/CSRF policy and are not authentication.",
+    "Schema changes require a project-owned data migration; existing records are validated against the exact current schema.",
+    "Production database correctness, session security, delivery integration, and consuming application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/notification-preferences.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/notification-preferences/module.json",
+    "sha256": "03868c36329afe3a3d10e6a76686a7407bfa266544928e09438e0e010eac13e9"
+  },
+  "contractFile": {
+    "path": "modules/notification-preferences/CONTRACT.md",
+    "sha256": "290f61d1f5f3a656fbad04ccf5838f23537df4020983125bc060d61d4c19132e",
+    "bytes": 8640
+  }
+}

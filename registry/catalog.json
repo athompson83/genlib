@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "name": "genlib",
+  "version": "0.1.0",
+  "repository": "https://github.com/athompson83/genlib",
+  "license": {
+    "id": "Apache-2.0",
+    "path": "LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "bytes": 11357
+  },
+  "notice": {
+    "path": "NOTICE",
+    "sha256": "b2b22ddb08aa389cb5d016ee0c3a43fd593c4d29eeadc05073f560be2a256ad7",
+    "bytes": 394
+  },
+  "items": [
+    {
+      "id": "app-shell",
+      "version": "0.1.0",
+      "title": "Responsive application shell",
+      "description": "React application header, primary navigation, responsive menu disclosure, skip link, and main-content layout.",
+      "kind": "component",
+      "tags": [
+        "react",
+        "layout",
+        "navigation",
+        "responsive",
+        "accessibility"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "verification": "tested",
+      "manifest": "registry/manifests/app-shell@0.1.0.json",
+      "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
+    },
+    {
+      "id": "data-table",
+      "version": "0.1.0",
+      "title": "Searchable sortable data table",
+      "description": "Typed React table with client-side search, stable sorting, pagination, empty states, and accessible table controls.",
+      "kind": "component",
+      "tags": [
+        "react",
+        "table",
+        "search",
+        "sorting",
+        "pagination",
+        "records"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "verification": "tested",
+      "manifest": "registry/manifests/data-table@0.1.0.json",
+      "sha256": "1c4f9f90ce5a74a51e060dd2e9981ff5ac1582824daae75bde73f06b2187097f"
+    },
+    {
+      "id": "notification-preferences",
+      "version": "0.1.0",
+      "title": "Notification preferences",
+      "description": "A configurable preference form, validated TypeScript domain model, Fetch API client, and authenticated Request/Response adapter with injected atomic persistence.",
+      "kind": "feature",
+      "tags": [
+        "notifications",
+        "preferences",
+        "settings",
+        "forms",
+        "persistence"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "verification": "tested",
+      "manifest": "registry/manifests/notification-preferences@0.1.0.json",
+      "sha256": "45112a7d81ad45ba65fdf89868cf1f74b8fbc1e45f73f0f82134200dc5c8d8d1"
+    },
+    {
+      "id": "theme-tokens",
+      "version": "0.1.0",
+      "title": "Semantic theme tokens",
+      "description": "Framework-neutral light and dark CSS variables for consistent project branding without changing feature behavior.",
+      "kind": "theme",
+      "tags": [
+        "css",
+        "theme",
+        "branding",
+        "dark-mode"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "verification": "tested",
+      "manifest": "registry/manifests/theme-tokens@0.1.0.json",
+      "sha256": "4cbe80aa9d584d8ebc55fabefba7d98d9ca32dd59a14d5c98d20ccaf4eb3633c"
+    },
+    {
+      "id": "validated-form",
+      "version": "0.1.0",
+      "title": "Validated form with submission handling",
+      "description": "Typed React form wrapper with injected validation and submission, accessible error summaries, busy state, and duplicate-submit protection.",
+      "kind": "component",
+      "tags": [
+        "react",
+        "form",
+        "validation",
+        "submission",
+        "accessibility"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "verification": "tested",
+      "manifest": "registry/manifests/validated-form@0.1.0.json",
+      "sha256": "b2815d38c3fc74ad4635c31f54222809e52432662f14522e44ae92eb807153b7"
+    }
+  ]
+}

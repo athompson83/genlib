@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "data-table",
+  "version": "0.1.0",
+  "title": "Searchable sortable data table",
+  "description": "Typed React table with client-side search, stable sorting, pagination, empty states, and accessible table controls.",
+  "kind": "component",
+  "tags": ["react", "table", "search", "sorting", "pagination", "records"],
+  "license": "Apache-2.0",
+  "source": { "type": "original", "repository": "https://github.com/athompson83/genlib", "path": "modules/data-table" },
+  "compatibility": { "frameworks": ["react"], "languages": ["typescript", "css"], "platform": "web", "reactMajors": [18, 19], "notes": ["Uses the consuming application's React and TSX pipeline. Contains a use client boundary. Receives data and accessor functions from its caller."] },
+  "dependencies": [{ "id": "theme-tokens", "version": "0.1.0" }],
+  "files": [{ "source": "files/DataTable.tsx", "target": "data-table/DataTable.tsx" }, { "source": "files/data-table.css", "target": "data-table/data-table.css" }],
+  "exports": [{ "name": "DataTable", "from": "data-table/DataTable.tsx" }, { "name": "DataTableProps", "from": "data-table/DataTable.tsx" }, { "name": "DataTableColumn", "from": "data-table/DataTable.tsx" }, { "name": "DataTableSort", "from": "data-table/DataTable.tsx" }, { "name": "DataTableValue", "from": "data-table/DataTable.tsx" }, { "name": "selectTableRows", "from": "data-table/DataTable.tsx" }],
+  "configuration": ["rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className.", "Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering."],
+  "capabilities": ["client-filtering", "stable-sorting", "client-pagination", "empty-states", "table-accessibility"],
+  "limitations": ["All supplied rows are available to the browser. Fetch and authorize data on the server before supplying it.", "No server pagination, virtualization, row selection, persistence, database connection, or permission enforcement.", "Default search is a case-insensitive substring match on searchable accessor values, not rendered cells.", "Supply unique stable row and column IDs; use immutable data updates."],
+  "verification": { "level": "tested", "testFiles": ["tests/web-modules.test.mjs"] },
+  "contract": "CONTRACT.md"
+}
