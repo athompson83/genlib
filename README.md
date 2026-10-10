@@ -120,7 +120,7 @@ flowchart LR
 
 </details>
 
-- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets.
+- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib and with Jev selecting the code: when Genlib has the code, agents wrote 83–89% fewer tokens and finished 46–65% faster; when its code did not match the requirement there was no saving.
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.

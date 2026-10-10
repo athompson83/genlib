@@ -37,6 +37,8 @@ State and questions together stay under 20,000 characters, so a packet fits Geni
 
 After selection, run the candidate's `next` commands in order, under the task's existing authorization. Then inspect what was copied or installed and run the receiving project's checks.
 
+Put the task's constraints in the task text (for example "standard library only"): Jev answers only what the packet says, and a measured run selected a dependency the task forbade because the packet's task words left the rule out. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
+
 ## What the shortlist searches
 
 `jev` and `find` rank the same entries. There are 14 source types, and every one can be filtered with `--type`:
