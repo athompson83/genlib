@@ -71,7 +71,7 @@ flowchart LR
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
   Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
-  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education)"]
+  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning)"]
   Find --> D["Doc sections<br/>(exact line ranges)"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
   Index["registry/search-index.jsonl"] -.-> Jev
@@ -258,7 +258,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 
 ## Install indexes: skills, MCP servers, CLIs and APIs
 
-Four ranked indexes of 500 entries each give agents the shortest install path for widely used tools, ranked by real usage data:
+Four ranked indexes (1,066 agent skills, 3,642 MCP servers, 1,500 CLIs and 2,526 APIs) give agents the shortest install path for widely used tools, ranked by real usage data:
 
 | Index | Ranked by | Example |
 | --- | --- | --- |

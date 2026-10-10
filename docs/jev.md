@@ -59,7 +59,7 @@ Ranking is lexical, but it is not naive:
 - **Matching:** whole-token matches on names and tags count more than substring matches in descriptions, and rarer words count more than common ones ("passkey" outweighs "api").
 - **Filler and synonyms:** stopwords are ignored, and a small reviewed synonym table widens recall.
 - **Language:** a language named in the task ("go", "python", "c#", "flutter") acts like a detected project. It selects that language's capability code and hides packages for other languages, unless you filter by `--type`.
-- **Whole names:** a multi-word task that spells an entry's whole ID or title ranks that entry first, before stemming, so "canvas lms" finds Canvas LMS rather than Canva and "firefly iii" finds Firefly III.
+- **Whole names:** a task that spells an entry's whole ID or title (ignoring parenthetical notes such as "(Python)") ranks that entry first, before stemming, so "canvas lms" finds Canvas LMS rather than Canva and "firefly iii" finds Firefly III.
 - **Coverage:** results that match more of the task's words rank above ones that match a single word strongly, so "verify stripe webhook" finds the webhook verifier before a Stripe SDK.
 - **Less repetition:** a matched capability absorbs its per-language examples, and no more than two sections come from any one document.
 

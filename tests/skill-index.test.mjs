@@ -7,10 +7,12 @@ import { installCommand, loadSkills, searchSkills, validateSkill } from '../lib/
 const cli = fileURLToPath(new URL('../bin/genlib.mjs', import.meta.url));
 const run = (...args) => spawnSync(process.execPath, [cli, ...args], { encoding: 'utf8' });
 
-test('the skill index holds 500 unique, commit-pinned skills', async () => {
+test('the skill index holds at least 1,000 unique, commit-pinned skills', async () => {
   const index = await loadSkills();
-  assert.equal(index.skills.length, 500);
-  assert.equal(new Set(index.skills.map(skill => skill.id)).size, 500);
+  assert.ok(index.skills.length >= 1000, String(index.skills.length));
+  assert.equal(new Set(index.skills.map(skill => skill.id)).size, index.skills.length);
+  // YAML block descriptions are read in full, never as a bare '>' or '|'.
+  assert.ok(index.skills.every(skill => !/^[>|]-?$/.test(skill.description.trim()) && skill.description.trim().length > 0));
   for (const skill of index.skills) {
     assert.match(skill.url, /^https:\/\/github\.com\/[^/]+\/[^/]+\/tree\/[a-f0-9]{40}\//, skill.id);
     assert.equal(skill.redistributable, ['MIT', 'Apache-2.0', 'BSD-2-Clause', 'BSD-3-Clause', 'ISC', 'CC0-1.0', 'Unlicense', 'CC-BY-4.0'].includes(skill.license), skill.id);
