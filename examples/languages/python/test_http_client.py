@@ -21,5 +21,5 @@ class HttpClientTests(unittest.TestCase):
         for url in ("http://example.org", "https://user:pass@example.org", "file:///etc/passwd"):
             with self.assertRaises(ValueError): get_json(url, opener=FakeOpener())
     def test_rejects_oversized(self):
-        with self.assertRaises(ApiError): get_json("https://example.org/data", max_bytes=2, opener=FakeOpener())
+        with self.assertRaises(ApiError): get_json("https://example.org/data", timeout=2, max_bytes=2, opener=FakeOpener())
 if __name__ == "__main__": unittest.main()
