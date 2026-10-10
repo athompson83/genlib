@@ -20,7 +20,7 @@ One command searches everything below and returns each result's exact next step.
 | [Capabilities](#capabilities-one-task-every-language) | 13 | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in 9 languages |
 | [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
 | [Task recipes](#recipes-language-examples-and-templates) | 41 | Single-file TypeScript sources copied with one command |
-| [Language examples](#recipes-language-examples-and-templates) | 105 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [Language examples](#recipes-language-examples-and-templates) | 121 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
 | [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
@@ -127,8 +127,8 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `recovery-codes` MFA recovery (backup) codes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `calculator` Safe calculator and loan / interest math | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `form-schema` Form schema validation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
-| `oidc-token-verification` OIDC ID token / JWT verification | library | - | - | - | - | - | - | - | - | - | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
-| `saml-sso` SAML 2.0 SSO (service provider) | library | - | - | - | - | - | - | - | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
+| `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
+| `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
 | `password-hashing` Password hashing (Argon2id / bcrypt / scrypt) | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [password-hashing.md](docs/cookbook/password-hashing.md) |
 | `pdf-form-filling` PDF form filling | library | yes | yes | yes | yes | yes | yes | yes | - | untested | [pdf-form-filling.md](docs/cookbook/pdf-form-filling.md) |

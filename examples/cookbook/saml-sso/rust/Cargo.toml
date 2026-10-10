@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+[package]
+name = "saml-sso"
+version = "0.1.0"
+license = "Apache-2.0"
+publish = false
+edition = "2024"
+
+[dependencies]
+samael = { version = "=0.0.22", features = ["xmlsec"] }
+url = "2"
+
+[dev-dependencies]
+base64 = "0.22"
+chrono = "0.4"
+flate2 = "1"

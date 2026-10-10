@@ -351,40 +351,64 @@
       "guide": "docs/cookbook/oidc-token-verification.md",
       "implementations": {
         "typescript": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed typescript library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "typescript-oidc-token-verification",
+          "tested": true,
+          "library": "jose 6.2.12 (MIT)",
+          "dependencies": [
+            "npm ci"
+          ]
         },
         "python": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed python library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "python-oidc-token-verification",
+          "tested": true,
+          "library": "PyJWT[crypto] 2.15.1 (+ cryptography 50.0.2) (MIT (cryptography: Apache-2.0 OR BSD-3-Clause))",
+          "dependencies": [
+            "pip install -r requirements.txt"
+          ]
         },
         "go": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed go library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "go-oidc-token-verification",
+          "tested": true,
+          "library": "github.com/coreos/go-oidc/v3 v3.21.0, github.com/go-jose/go-jose/v4 v4.1.5 (Apache-2.0)"
         },
         "rust": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed rust library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "rust-oidc-token-verification",
+          "tested": true,
+          "library": "jsonwebtoken 11.1.0 (feature rust_crypto), ureq 3.4.2 for the JWKS fetch (MIT; MIT OR Apache-2.0)"
         },
         "java": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed java library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "java-oidc-token-verification",
+          "tested": true,
+          "library": "com.nimbusds:nimbus-jose-jwt 10.10 (Apache-2.0)"
         },
         "kotlin": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed kotlin library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "kotlin-oidc-token-verification",
+          "tested": true,
+          "library": "com.nimbusds:nimbus-jose-jwt 10.10 (Apache-2.0)"
         },
         "csharp": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed csharp library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "csharp-oidc-token-verification",
+          "tested": true,
+          "library": "Microsoft.IdentityModel.JsonWebTokens 8.23.0, Microsoft.IdentityModel.Protocols.OpenIdConnect 8.23.0 (MIT)"
         },
         "dart": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed dart library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "dart-oidc-token-verification",
+          "tested": true,
+          "library": "jose 0.3.5+2, http 1.6.0 (BSD-3-Clause)"
         },
         "swift": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed swift library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "swift-oidc-token-verification",
+          "tested": true,
+          "library": "vapor/jwt-kit (JWTKit) 5.7.1 (MIT)"
         }
       }
     },
@@ -409,40 +433,60 @@
       "guide": "docs/cookbook/saml-sso.md",
       "implementations": {
         "typescript": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed typescript library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "typescript-saml-sso",
+          "tested": true,
+          "library": "@node-saml/node-saml 5.1.0 (+ @xmldom/xmldom 0.8.15) (MIT)",
+          "dependencies": [
+            "npm ci"
+          ]
         },
         "python": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed python library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "python-saml-sso",
+          "tested": true,
+          "library": "python3-saml 1.16.0 (+ xmlsec 1.3.17, lxml 6.1.3) (MIT)",
+          "dependencies": [
+            "pip install -r requirements.txt (xmlsec wheel bundles libxmlsec1)"
+          ]
         },
         "go": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed go library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "go-saml-sso",
+          "tested": true,
+          "library": "github.com/crewjam/saml v0.5.1 (goxmldsig v1.4.0) (BSD-2-Clause (goxmldsig: Apache-2.0))"
         },
         "rust": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed rust library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "rust-saml-sso",
+          "tested": true,
+          "library": "samael 0.0.22, feature xmlsec (MIT)"
         },
         "java": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed java library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "java-saml-sso",
+          "tested": true,
+          "library": "spring-security-saml2-service-provider 7.1.1 (OpenSAML 5.2.3) (Apache-2.0)"
         },
         "kotlin": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed kotlin library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "kotlin-saml-sso",
+          "tested": true,
+          "library": "spring-security-saml2-service-provider 7.1.1 (OpenSAML 5.2.3) (Apache-2.0)"
         },
         "csharp": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed csharp library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "csharp-saml-sso",
+          "tested": true,
+          "library": "ITfoxtec.Identity.Saml2 4.21.0 (BSD-3-Clause)"
         },
         "dart": {
           "kind": "unavailable",
-          "note": "No maintained, permissively licensed dart library verified here; see the guide for alternatives."
+          "note": "No maintained, permissively licensed Dart SAML library verifies XML signatures. Put an identity broker (Keycloak, Authentik or ZITADEL) in front of the SAML IdP and use the oidc-pkce and oidc-token-verification capabilities in Dart, or terminate SAML on a server with another language's implementation (for example go-saml-sso)."
         },
         "swift": {
           "kind": "unavailable",
-          "note": "No maintained, permissively licensed swift library verified here; see the guide for alternatives."
+          "note": "No maintained, permissively licensed Swift SAML library verifies XML signatures. Put an identity broker (Keycloak, Authentik or ZITADEL) in front of the SAML IdP and use the oidc-pkce and oidc-token-verification capabilities in Swift, or terminate SAML on a server with another language's implementation (for example go-saml-sso)."
         }
       }
     },

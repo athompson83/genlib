@@ -1711,6 +1711,300 @@
       "status": "example",
       "library": "Argon2 reference C library (P-H-C/phc-winner-argon2, pinned to commit f57e61e) (CC0-1.0 OR Apache-2.0)",
       "tested": true
+    },
+    {
+      "id": "typescript-oidc-token-verification",
+      "base": "cookbook",
+      "language": "typescript",
+      "runtime": "TypeScript (Node 22)",
+      "files": [
+        "oidc-token-verification/typescript/oidc.ts",
+        "oidc-token-verification/typescript/package-lock.json",
+        "oidc-token-verification/typescript/package.json",
+        "oidc-token-verification/typescript/tsconfig.json"
+      ],
+      "tests": [
+        "oidc-token-verification/typescript/oidc.test.ts"
+      ],
+      "verification": "cookbook: yes: npm test (1 pass, served JWKS from 127.0.0.1), npm run typecheck clean",
+      "status": "example",
+      "library": "jose 6.2.12 (MIT)",
+      "tested": true,
+      "dependencies": [
+        "npm ci"
+      ]
+    },
+    {
+      "id": "python-oidc-token-verification",
+      "base": "cookbook",
+      "language": "python",
+      "runtime": "Python 3.13",
+      "files": [
+        "oidc-token-verification/python/oidc_verify.py",
+        "oidc-token-verification/python/requirements.txt"
+      ],
+      "tests": [
+        "oidc-token-verification/python/test_oidc_verify.py"
+      ],
+      "verification": "cookbook: yes: python -m unittest -v test_oidc_verify (4 pass)",
+      "status": "example",
+      "library": "PyJWT[crypto] 2.15.1 (+ cryptography 50.0.2) (MIT (cryptography: Apache-2.0 OR BSD-3-Clause))",
+      "tested": true,
+      "dependencies": [
+        "pip install -r requirements.txt"
+      ]
+    },
+    {
+      "id": "go-oidc-token-verification",
+      "base": "cookbook",
+      "language": "go",
+      "runtime": "Go",
+      "files": [
+        "oidc-token-verification/go/go.mod",
+        "oidc-token-verification/go/go.sum",
+        "oidc-token-verification/go/oidc.go"
+      ],
+      "tests": [
+        "oidc-token-verification/go/oidc_test.go"
+      ],
+      "verification": "cookbook: yes: go vet ./... && go test ./...",
+      "status": "example",
+      "library": "github.com/coreos/go-oidc/v3 v3.21.0, github.com/go-jose/go-jose/v4 v4.1.5 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "rust-oidc-token-verification",
+      "base": "cookbook",
+      "language": "rust",
+      "runtime": "Rust",
+      "files": [
+        "oidc-token-verification/rust/Cargo.lock",
+        "oidc-token-verification/rust/Cargo.toml",
+        "oidc-token-verification/rust/src/lib.rs"
+      ],
+      "tests": [
+        "oidc-token-verification/rust/tests/verify.rs"
+      ],
+      "verification": "cookbook: yes: cargo test (stub HTTP server on 127.0.0.1), cargo clippy --all-targets clean",
+      "status": "example",
+      "library": "jsonwebtoken 11.1.0 (feature rust_crypto), ureq 3.4.2 for the JWKS fetch (MIT; MIT OR Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "java-oidc-token-verification",
+      "base": "cookbook",
+      "language": "java",
+      "runtime": "Java 21",
+      "files": [
+        "oidc-token-verification/java/pom.xml",
+        "oidc-token-verification/java/src/main/java/example/oidc/OidcVerifier.java"
+      ],
+      "tests": [
+        "oidc-token-verification/java/src/test/java/example/oidc/OidcVerifierTest.java"
+      ],
+      "verification": "cookbook: yes: mvn test (1 pass, JDK HttpServer JWKS)",
+      "status": "example",
+      "library": "com.nimbusds:nimbus-jose-jwt 10.10 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "kotlin-oidc-token-verification",
+      "base": "cookbook",
+      "language": "kotlin",
+      "runtime": "Kotlin (JVM 21)",
+      "files": [
+        "oidc-token-verification/kotlin/build.gradle.kts",
+        "oidc-token-verification/kotlin/settings.gradle.kts",
+        "oidc-token-verification/kotlin/src/main/kotlin/OidcVerifier.kt"
+      ],
+      "tests": [
+        "oidc-token-verification/kotlin/src/test/kotlin/OidcVerifierTest.kt"
+      ],
+      "verification": "cookbook: yes: gradle test (1 pass)",
+      "status": "example",
+      "library": "com.nimbusds:nimbus-jose-jwt 10.10 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "csharp-oidc-token-verification",
+      "base": "cookbook",
+      "language": "csharp",
+      "runtime": "C# (.NET 8)",
+      "files": [
+        "oidc-token-verification/csharp/OidcTokenVerification.csproj",
+        "oidc-token-verification/csharp/OidcVerifier.cs",
+        "oidc-token-verification/csharp/Program.cs"
+      ],
+      "tests": [],
+      "verification": "cookbook: yes: dotnet run exits 0 (12 checks, discovery + JWKS served by HttpListener)",
+      "status": "example",
+      "library": "Microsoft.IdentityModel.JsonWebTokens 8.23.0, Microsoft.IdentityModel.Protocols.OpenIdConnect 8.23.0 (MIT)",
+      "tested": true
+    },
+    {
+      "id": "dart-oidc-token-verification",
+      "base": "cookbook",
+      "language": "dart",
+      "runtime": "Dart 3",
+      "files": [
+        "oidc-token-verification/dart/lib/oidc_verifier.dart",
+        "oidc-token-verification/dart/pubspec.lock",
+        "oidc-token-verification/dart/pubspec.yaml"
+      ],
+      "tests": [
+        "oidc-token-verification/dart/test/oidc_verifier_test.dart"
+      ],
+      "verification": "cookbook: yes: dart test (1 pass), dart analyze clean",
+      "status": "example",
+      "library": "jose 0.3.5+2, http 1.6.0 (BSD-3-Clause)",
+      "tested": true
+    },
+    {
+      "id": "swift-oidc-token-verification",
+      "base": "cookbook",
+      "language": "swift",
+      "runtime": "Swift 6.2",
+      "files": [
+        "oidc-token-verification/swift/Package.resolved",
+        "oidc-token-verification/swift/Package.swift",
+        "oidc-token-verification/swift/Sources/OidcVerify/OidcVerifier.swift"
+      ],
+      "tests": [
+        "oidc-token-verification/swift/Tests/OidcVerifyTests/OidcVerifierTests.swift"
+      ],
+      "verification": "cookbook: yes: swift test on Linux (JWKS from the injected in-memory fetch closure; the default URLSession fetch was not exercised)",
+      "status": "example",
+      "library": "vapor/jwt-kit (JWTKit) 5.7.1 (MIT)",
+      "tested": true
+    },
+    {
+      "id": "typescript-saml-sso",
+      "base": "cookbook",
+      "language": "typescript",
+      "runtime": "TypeScript (Node 22)",
+      "files": [
+        "saml-sso/typescript/package-lock.json",
+        "saml-sso/typescript/package.json",
+        "saml-sso/typescript/saml.ts",
+        "saml-sso/typescript/tsconfig.json"
+      ],
+      "tests": [
+        "saml-sso/typescript/saml.test.ts"
+      ],
+      "verification": "cookbook: yes: npm test (1 pass), npm run typecheck clean, npm audit --omit=dev 0 vulnerabilities",
+      "status": "example",
+      "library": "@node-saml/node-saml 5.1.0 (+ @xmldom/xmldom 0.8.15) (MIT)",
+      "tested": true,
+      "dependencies": [
+        "npm ci"
+      ]
+    },
+    {
+      "id": "python-saml-sso",
+      "base": "cookbook",
+      "language": "python",
+      "runtime": "Python 3.13",
+      "files": [
+        "saml-sso/python/requirements.txt",
+        "saml-sso/python/saml_sp.py"
+      ],
+      "tests": [
+        "saml-sso/python/test_saml_sp.py"
+      ],
+      "verification": "cookbook: yes: python -m unittest -v test_saml_sp (2 tests, 7 subtests)",
+      "status": "example",
+      "library": "python3-saml 1.16.0 (+ xmlsec 1.3.17, lxml 6.1.3) (MIT)",
+      "tested": true,
+      "dependencies": [
+        "pip install -r requirements.txt (xmlsec wheel bundles libxmlsec1)"
+      ]
+    },
+    {
+      "id": "go-saml-sso",
+      "base": "cookbook",
+      "language": "go",
+      "runtime": "Go",
+      "files": [
+        "saml-sso/go/go.mod",
+        "saml-sso/go/go.sum",
+        "saml-sso/go/saml.go"
+      ],
+      "tests": [
+        "saml-sso/go/saml_test.go"
+      ],
+      "verification": "cookbook: yes: go vet ./... && go test ./...",
+      "status": "example",
+      "library": "github.com/crewjam/saml v0.5.1 (goxmldsig v1.4.0) (BSD-2-Clause (goxmldsig: Apache-2.0))",
+      "tested": true
+    },
+    {
+      "id": "rust-saml-sso",
+      "base": "cookbook",
+      "language": "rust",
+      "runtime": "Rust",
+      "files": [
+        "saml-sso/rust/Cargo.lock",
+        "saml-sso/rust/Cargo.toml",
+        "saml-sso/rust/src/lib.rs"
+      ],
+      "tests": [
+        "saml-sso/rust/tests/sso.rs"
+      ],
+      "verification": "cookbook: yes: cargo test, after apt-get install libxmlsec1-dev libxml2-dev libclang-dev in this container",
+      "status": "example",
+      "library": "samael 0.0.22, feature xmlsec (MIT)",
+      "tested": true
+    },
+    {
+      "id": "java-saml-sso",
+      "base": "cookbook",
+      "language": "java",
+      "runtime": "Java 21",
+      "files": [
+        "saml-sso/java/pom.xml",
+        "saml-sso/java/src/main/java/example/saml/SamlSp.java"
+      ],
+      "tests": [
+        "saml-sso/java/src/test/java/example/saml/SamlSpTest.java"
+      ],
+      "verification": "cookbook: yes: mvn test (1 pass)",
+      "status": "example",
+      "library": "spring-security-saml2-service-provider 7.1.1 (OpenSAML 5.2.3) (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "kotlin-saml-sso",
+      "base": "cookbook",
+      "language": "kotlin",
+      "runtime": "Kotlin (JVM 21)",
+      "files": [
+        "saml-sso/kotlin/build.gradle.kts",
+        "saml-sso/kotlin/settings.gradle.kts",
+        "saml-sso/kotlin/src/main/kotlin/SamlSp.kt"
+      ],
+      "tests": [
+        "saml-sso/kotlin/src/test/kotlin/SamlSpTest.kt"
+      ],
+      "verification": "cookbook: yes: gradle test (1 pass). Run with a local init script that tried ~/.m2 first because Maven Central returned HTTP 429; the committed build file is unchanged",
+      "status": "example",
+      "library": "spring-security-saml2-service-provider 7.1.1 (OpenSAML 5.2.3) (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "csharp-saml-sso",
+      "base": "cookbook",
+      "language": "csharp",
+      "runtime": "C# (.NET 8)",
+      "files": [
+        "saml-sso/csharp/Program.cs",
+        "saml-sso/csharp/SamlSp.cs",
+        "saml-sso/csharp/SamlSso.csproj"
+      ],
+      "tests": [],
+      "verification": "cookbook: yes: dotnet run exits 0 (10 checks)",
+      "status": "example",
+      "library": "ITfoxtec.Identity.Saml2 4.21.0 (BSD-3-Clause)",
+      "tested": true
     }
   ]
 }

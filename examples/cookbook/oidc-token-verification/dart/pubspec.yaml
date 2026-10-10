@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: Apache-2.0
+name: oidc_token_verification
+description: Verify OIDC ID tokens / JWT access tokens against a JWKS (genlib cookbook).
+publish_to: none
+environment:
+  sdk: ^3.5.0
+dependencies:
+  jose: 0.3.5+2
+  http: 1.6.0
+dev_dependencies:
+  test: ^1.25.0

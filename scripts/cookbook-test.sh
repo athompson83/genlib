@@ -26,7 +26,7 @@ for topic in "${topics[@]}"; do
       python) python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt && { [ ! -f requirements-dev.txt ] || .venv/bin/pip install -q -r requirements-dev.txt; } && .venv/bin/python -m unittest discover -v ;;
       go) go vet ./... && go test ./... ;;
       rust) cargo test --locked ;;
-      java|kotlin) mvn -q -B test ;;
+      java|kotlin) if [ -f pom.xml ]; then mvn -q -B test; else gradle test --no-daemon; fi ;;
       csharp) if grep -q Microsoft.NET.Test.Sdk ./*.csproj; then dotnet test; else dotnet run; fi ;;
       dart) dart pub get && dart test ;;
       swift) if [ -d Tests ]; then swift test; else swift build; fi ;;
