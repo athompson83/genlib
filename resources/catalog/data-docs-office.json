@@ -1,0 +1,5021 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "pandas",
+      "name": "pandas",
+      "category": "dataframes",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/pandas-dev/pandas/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://pandas.pydata.org",
+      "repository": "https://github.com/pandas-dev/pandas",
+      "docs": "https://pandas.pydata.org/docs/",
+      "summary": "Python DataFrame library for loading, cleaning, joining and aggregating tabular data.",
+      "useWhen": "Use instead of hand-writing CSV/Excel parsing loops, group-by aggregation and join logic in Python.",
+      "cautions": [
+        "Large datasets can exhaust memory; consider Polars or DuckDB for out-of-core work.",
+        "Pin the major version; pandas 3 changed copy and string dtype semantics."
+      ],
+      "tags": [
+        "python",
+        "dataframe",
+        "csv",
+        "etl",
+        "analysis"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pandas"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pandas-dev/pandas",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "polars",
+      "name": "Polars",
+      "category": "dataframes",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pola-rs/polars/blob/main/LICENSE",
+        "scope": "MIT for the Rust core and Python/Node bindings."
+      },
+      "homepage": "https://pola.rs",
+      "repository": "https://github.com/pola-rs/polars",
+      "docs": "https://docs.pola.rs",
+      "summary": "Fast multi-threaded DataFrame engine with lazy query optimization, for Python and Rust.",
+      "useWhen": "Use instead of hand-writing parallel CSV/Parquet processing or slow row-by-row Python transforms on medium-to-large data.",
+      "cautions": [
+        "API differs from pandas; do not translate pandas idioms one to one.",
+        "Pin versions; the expression API still evolves between minor releases."
+      ],
+      "tags": [
+        "python",
+        "rust",
+        "dataframe",
+        "parquet",
+        "lazy"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "polars"
+        },
+        {
+          "ecosystem": "crates",
+          "name": "polars"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pola-rs/polars",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "duckdb",
+      "name": "DuckDB",
+      "category": "sql-engines",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/duckdb/duckdb/blob/main/LICENSE",
+        "scope": "MIT for the engine and official clients."
+      },
+      "homepage": "https://duckdb.org",
+      "repository": "https://github.com/duckdb/duckdb",
+      "docs": "https://duckdb.org/docs/",
+      "summary": "In-process analytical SQL database that queries CSV, Parquet and JSON files directly.",
+      "useWhen": "Use instead of hand-writing aggregation code over files or standing up a database server for local analytics. Embeds in Python, Node, Go, Rust, Java and the browser (WASM).",
+      "cautions": [
+        "Single-writer per database file; not a concurrent OLTP server.",
+        "Community extensions are separate code; review each before loading."
+      ],
+      "tags": [
+        "sql",
+        "olap",
+        "parquet",
+        "embedded",
+        "wasm"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "duckdb"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@duckdb/node-api"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/duckdb/duckdb",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "apache-arrow",
+      "name": "Apache Arrow",
+      "category": "data-formats",
+      "platforms": [
+        "server",
+        "web",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/apache/arrow/blob/main/LICENSE",
+        "scope": "Apache-2.0 for all language implementations."
+      },
+      "homepage": "https://arrow.apache.org",
+      "repository": "https://github.com/apache/arrow",
+      "docs": "https://arrow.apache.org/docs/",
+      "summary": "Columnar in-memory format and libraries (C++, Python, JS, Go, Java) for zero-copy data interchange and Parquet IO.",
+      "useWhen": "Use instead of hand-writing binary serialization or Parquet readers to move tables between services, languages or the browser.",
+      "cautions": [
+        "Language libraries ship on different versions; check feature parity per binding."
+      ],
+      "tags": [
+        "columnar",
+        "parquet",
+        "interchange",
+        "python",
+        "javascript"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pyarrow"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "apache-arrow"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apache/arrow",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "numpy",
+      "name": "NumPy",
+      "category": "scientific-computing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/numpy/numpy/blob/main/LICENSE.txt",
+        "scope": "BSD-3-Clause for NumPy; bundled components carry 0BSD/MIT/Zlib/CC0 notices."
+      },
+      "homepage": "https://numpy.org",
+      "repository": "https://github.com/numpy/numpy",
+      "docs": "https://numpy.org/doc/stable/",
+      "summary": "N-dimensional arrays and vectorized math, the foundation of the Python scientific stack.",
+      "useWhen": "Use instead of hand-writing numeric loops, matrix operations or random sampling in Python.",
+      "cautions": [
+        "NumPy 2 changed the C ABI and some dtype rules; check dependent packages support it."
+      ],
+      "tags": [
+        "python",
+        "arrays",
+        "linear-algebra",
+        "numeric"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "numpy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/numpy/numpy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "scipy",
+      "name": "SciPy",
+      "category": "scientific-computing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/scipy/scipy/blob/main/LICENSE.txt",
+        "scope": "BSD-3-Clause for SciPy."
+      },
+      "homepage": "https://scipy.org",
+      "repository": "https://github.com/scipy/scipy",
+      "docs": "https://docs.scipy.org/doc/scipy/",
+      "summary": "Python algorithms for optimization, statistics, signal processing, interpolation and sparse matrices.",
+      "useWhen": "Use instead of hand-writing statistical tests, optimizers, integration or interpolation routines.",
+      "cautions": [
+        "Verify statistical test assumptions; a p-value is not a business finding."
+      ],
+      "tags": [
+        "python",
+        "statistics",
+        "optimization",
+        "signal"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "scipy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/scipy/scipy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "scikit-learn",
+      "name": "scikit-learn",
+      "category": "machine-learning",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/scikit-learn/scikit-learn/blob/main/COPYING",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://scikit-learn.org",
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "docs": "https://scikit-learn.org/stable/",
+      "summary": "Classical machine learning in Python: classification, regression, clustering, pipelines and model evaluation.",
+      "useWhen": "Use instead of hand-writing model training loops, cross-validation, feature scaling or evaluation metrics.",
+      "cautions": [
+        "Pickled models are executable; never load untrusted model files.",
+        "Fit preprocessing inside pipelines to avoid train/test leakage."
+      ],
+      "tags": [
+        "python",
+        "ml",
+        "classification",
+        "regression",
+        "pipelines"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "scikit-learn"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/scikit-learn/scikit-learn",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "jupyterlab",
+      "name": "JupyterLab",
+      "category": "notebooks",
+      "platforms": [
+        "web",
+        "desktop",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/jupyterlab/jupyterlab/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for JupyterLab."
+      },
+      "homepage": "https://jupyter.org",
+      "repository": "https://github.com/jupyterlab/jupyterlab",
+      "docs": "https://jupyterlab.readthedocs.io",
+      "summary": "Browser-based notebook IDE for interactive Python, R and Julia analysis.",
+      "useWhen": "Use instead of building a custom interactive analysis UI for exploratory work and shareable notebooks.",
+      "cautions": [
+        "A Jupyter server executes arbitrary code; never expose it without authentication.",
+        "Notebook outputs can contain data; strip outputs before committing."
+      ],
+      "tags": [
+        "notebooks",
+        "python",
+        "interactive",
+        "exploration"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "jupyterlab"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jupyterlab/jupyterlab",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "marimo",
+      "name": "marimo",
+      "category": "notebooks",
+      "platforms": [
+        "web",
+        "desktop",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/marimo-team/marimo/blob/main/LICENSE",
+        "scope": "Apache-2.0 for marimo."
+      },
+      "homepage": "https://marimo.io",
+      "repository": "https://github.com/marimo-team/marimo",
+      "docs": "https://docs.marimo.io",
+      "summary": "Reactive Python notebook stored as plain .py files that can run as scripts or deploy as apps.",
+      "useWhen": "Use instead of hand-wiring notebook cell re-execution or converting notebooks into small data apps.",
+      "cautions": [
+        "Running a notebook as an app executes its code server-side; apply normal auth."
+      ],
+      "tags": [
+        "notebooks",
+        "python",
+        "reactive",
+        "data-apps"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "marimo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/marimo-team/marimo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "streamlit",
+      "name": "Streamlit",
+      "category": "data-apps",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/streamlit/streamlit/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the open-source library; Streamlit Community Cloud is a separate service."
+      },
+      "homepage": "https://streamlit.io",
+      "repository": "https://github.com/streamlit/streamlit",
+      "docs": "https://docs.streamlit.io",
+      "summary": "Python framework that turns scripts into interactive data apps and dashboards.",
+      "useWhen": "Use instead of hand-building a web frontend, routing and widget state for an internal Python data tool.",
+      "cautions": [
+        "Script reruns on every interaction; cache expensive queries.",
+        "No built-in per-user authorization for data; add it before exposing sensitive data."
+      ],
+      "tags": [
+        "python",
+        "dashboards",
+        "data-apps",
+        "internal-tools"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "streamlit"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/streamlit/streamlit",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "gradio",
+      "name": "Gradio",
+      "category": "data-apps",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/gradio-app/gradio/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the library."
+      },
+      "homepage": "https://www.gradio.app",
+      "repository": "https://github.com/gradio-app/gradio",
+      "docs": "https://www.gradio.app/docs",
+      "summary": "Python library for quick web UIs and APIs around models and data functions.",
+      "useWhen": "Use instead of hand-writing upload forms, result viewers and a REST wrapper for a model or data function demo.",
+      "cautions": [
+        "Public share links expose your machine's function; disable them for private data."
+      ],
+      "tags": [
+        "python",
+        "ml-demo",
+        "ui",
+        "api"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "gradio"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gradio-app/gradio",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "plotly-dash",
+      "name": "Dash",
+      "category": "data-apps",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/plotly/dash/blob/main/LICENSE",
+        "scope": "MIT for open-source Dash; Dash Enterprise is a separate commercial product."
+      },
+      "homepage": "https://dash.plotly.com",
+      "repository": "https://github.com/plotly/dash",
+      "docs": "https://dash.plotly.com",
+      "summary": "Python framework for analytical web apps built on Plotly charts and React components.",
+      "useWhen": "Use instead of hand-writing a Flask/React dashboard with chart callbacks for Python analytics.",
+      "cautions": [
+        "Callbacks run server-side; validate inputs and enforce authorization per request."
+      ],
+      "tags": [
+        "python",
+        "dashboards",
+        "plotly",
+        "data-apps"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "dash"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/plotly/dash",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "evidence",
+      "name": "Evidence",
+      "category": "bi-dashboards",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/evidence-dev/evidence/blob/main/LICENSE.md",
+        "scope": "MIT for the open-source framework; Evidence Cloud is a separate service."
+      },
+      "homepage": "https://evidence.dev",
+      "repository": "https://github.com/evidence-dev/evidence",
+      "docs": "https://docs.evidence.dev",
+      "summary": "Code-based BI: build reports from SQL and Markdown into a static site.",
+      "useWhen": "Use instead of hand-building a static reporting site with charts from SQL query results.",
+      "cautions": [
+        "Data is baked into the built site; do not publish builds containing restricted data."
+      ],
+      "tags": [
+        "bi",
+        "sql",
+        "markdown",
+        "reports",
+        "static-site"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@evidence-dev/evidence"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/evidence-dev/evidence",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dbt-core",
+      "name": "dbt Core",
+      "category": "data-pipelines",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/dbt-labs/dbt-core/blob/main/License.md",
+        "scope": "Apache-2.0 for dbt Core; dbt Cloud and the dbt Fusion engine have separate terms."
+      },
+      "homepage": "https://www.getdbt.com",
+      "repository": "https://github.com/dbt-labs/dbt-core",
+      "docs": "https://docs.getdbt.com",
+      "summary": "SQL-first transformation framework with tests, lineage and docs for data warehouses.",
+      "useWhen": "Use instead of hand-maintaining ordered SQL scripts, ad-hoc data tests and lineage docs for warehouse transforms.",
+      "cautions": [
+        "Install the adapter package for your warehouse at a compatible version.",
+        "Check license terms before adopting dbt Fusion or Cloud-only features."
+      ],
+      "tags": [
+        "sql",
+        "elt",
+        "warehouse",
+        "transformations",
+        "testing"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "dbt-core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dbt-labs/dbt-core",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "great-expectations",
+      "name": "Great Expectations (GX Core)",
+      "category": "data-quality",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/great-expectations/great_expectations/blob/develop/LICENSE",
+        "scope": "Apache-2.0 for GX Core; GX Cloud is a separate service."
+      },
+      "homepage": "https://greatexpectations.io",
+      "repository": "https://github.com/great-expectations/great_expectations",
+      "docs": "https://docs.greatexpectations.io",
+      "summary": "Python framework for declaring and validating data quality expectations on batches of data.",
+      "useWhen": "Use instead of hand-writing null, range, uniqueness and schema checks for pipeline data.",
+      "cautions": [
+        "Major 1.x API differs from 0.x tutorials; use current docs."
+      ],
+      "tags": [
+        "data-quality",
+        "validation",
+        "python",
+        "pipelines"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "great_expectations"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/great-expectations/great_expectations",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "apache-superset",
+      "name": "Apache Superset",
+      "category": "bi-dashboards",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/apache/superset/blob/master/LICENSE.txt",
+        "scope": "Apache-2.0 for Superset."
+      },
+      "homepage": "https://superset.apache.org",
+      "repository": "https://github.com/apache/superset",
+      "docs": "https://superset.apache.org/docs/intro",
+      "summary": "Self-hosted BI platform with SQL editor, chart builder and dashboards over many databases.",
+      "useWhen": "Use instead of building a custom dashboard and SQL exploration UI for internal analytics.",
+      "cautions": [
+        "Change the default SECRET_KEY and admin credentials before any deployment.",
+        "Database connections grant broad query access; use read-only credentials."
+      ],
+      "tags": [
+        "bi",
+        "dashboards",
+        "sql",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "apache/superset"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apache/superset",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Deploy with the official Docker images or Helm chart at a pinned version; keep metadata DB backups."
+      ]
+    },
+    {
+      "id": "metabase",
+      "name": "Metabase",
+      "category": "bi-dashboards",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/metabase/metabase/blob/master/LICENSE.txt",
+        "scope": "AGPL-3.0 for the open-source edition; Pro/Enterprise features are under a commercial license. Review AGPL obligations before modifying or embedding."
+      },
+      "homepage": "https://www.metabase.com",
+      "repository": "https://github.com/metabase/metabase",
+      "docs": "https://www.metabase.com/docs/latest/",
+      "summary": "Self-hosted BI tool for questions, dashboards and embedded analytics without writing SQL.",
+      "useWhen": "Use instead of building an internal question builder and dashboard tool for non-technical users.",
+      "cautions": [
+        "Embedding and white-labelling features may require a paid license.",
+        "Run it as a separate service; do not link its code into a proprietary app without license review."
+      ],
+      "tags": [
+        "bi",
+        "dashboards",
+        "self-hosted",
+        "embedded-analytics"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "metabase/metabase"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/metabase/metabase",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Run the official Docker image at a pinned version with a production application database (not H2)."
+      ]
+    },
+    {
+      "id": "apache-airflow",
+      "name": "Apache Airflow",
+      "category": "orchestration",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/apache/airflow/blob/main/LICENSE",
+        "scope": "Apache-2.0 for Airflow."
+      },
+      "homepage": "https://airflow.apache.org",
+      "repository": "https://github.com/apache/airflow",
+      "docs": "https://airflow.apache.org/docs/",
+      "summary": "Workflow orchestrator for scheduling and monitoring Python-defined data pipelines (DAGs).",
+      "useWhen": "Use instead of hand-writing cron chains, retry logic and pipeline dependency tracking for batch data jobs.",
+      "cautions": [
+        "Install with the official constraints file; unpinned providers break easily.",
+        "Airflow 3 changed APIs and the UI; check provider compatibility."
+      ],
+      "tags": [
+        "orchestration",
+        "scheduling",
+        "etl",
+        "python",
+        "dags"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "apache-airflow"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apache/airflow",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "dagster",
+      "name": "Dagster",
+      "category": "orchestration",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/dagster-io/dagster/blob/master/LICENSE",
+        "scope": "Apache-2.0 for open-source Dagster; Dagster+ is a separate service."
+      },
+      "homepage": "https://dagster.io",
+      "repository": "https://github.com/dagster-io/dagster",
+      "docs": "https://docs.dagster.io",
+      "summary": "Asset-oriented data orchestrator with lineage, typed IO and local development tooling.",
+      "useWhen": "Use instead of hand-writing pipeline scheduling, asset lineage tracking and backfill logic.",
+      "cautions": [
+        "Keep dagster and integration library versions in lockstep."
+      ],
+      "tags": [
+        "orchestration",
+        "data-assets",
+        "python",
+        "lineage"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "dagster"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dagster-io/dagster",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "prefect",
+      "name": "Prefect",
+      "category": "orchestration",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/PrefectHQ/prefect/blob/main/LICENSE",
+        "scope": "Apache-2.0 for open-source Prefect; Prefect Cloud is a separate service."
+      },
+      "homepage": "https://www.prefect.io",
+      "repository": "https://github.com/PrefectHQ/prefect",
+      "docs": "https://docs.prefect.io",
+      "summary": "Python workflow orchestration that turns functions into observable, retryable flows.",
+      "useWhen": "Use instead of hand-writing retries, scheduling, caching and run tracking around Python jobs.",
+      "cautions": [
+        "Prefect 2 and 3 differ; follow docs for your major version."
+      ],
+      "tags": [
+        "orchestration",
+        "workflows",
+        "python",
+        "retries"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "prefect"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/PrefectHQ/prefect",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "papaparse",
+      "name": "Papa Parse",
+      "category": "data-formats",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mholt/PapaParse/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://www.papaparse.com",
+      "repository": "https://github.com/mholt/PapaParse",
+      "docs": "https://www.papaparse.com/docs",
+      "summary": "Fast in-browser and Node CSV parser with streaming, workers and header detection.",
+      "useWhen": "Use instead of hand-writing CSV splitting that breaks on quotes, newlines in fields or large files.",
+      "cautions": [
+        "Guard against CSV formula injection when exporting user data to spreadsheets."
+      ],
+      "tags": [
+        "csv",
+        "parser",
+        "javascript",
+        "streaming"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "papaparse"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mholt/PapaParse",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "arquero",
+      "name": "Arquero",
+      "category": "dataframes",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/uwdata/arquero/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://idl.uw.edu/arquero/",
+      "repository": "https://github.com/uwdata/arquero",
+      "docs": "https://idl.uw.edu/arquero/api/",
+      "summary": "JavaScript table transformation library with dplyr-style verbs and Arrow support.",
+      "useWhen": "Use instead of hand-writing group-by, pivot, join and rollup logic over JavaScript arrays.",
+      "cautions": [
+        "In-memory only; push large aggregations to DuckDB or the database."
+      ],
+      "tags": [
+        "javascript",
+        "dataframe",
+        "transform",
+        "arrow"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "arquero"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/uwdata/arquero",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sqlglot",
+      "name": "SQLGlot",
+      "category": "sql-engines",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tobymao/sqlglot/blob/main/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://sqlglot.com",
+      "repository": "https://github.com/tobymao/sqlglot",
+      "docs": "https://sqlglot.com/sqlglot.html",
+      "summary": "Pure-Python SQL parser, transpiler and optimizer across 20+ dialects.",
+      "useWhen": "Use instead of regex-editing SQL strings or hand-translating queries between warehouse dialects.",
+      "cautions": [
+        "Transpilation is best-effort; test translated queries against the target engine.",
+        "Parsing does not make SQL safe; still use parameterized queries."
+      ],
+      "tags": [
+        "sql",
+        "parser",
+        "transpiler",
+        "python"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sqlglot"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tobymao/sqlglot",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "clickhouse",
+      "name": "ClickHouse",
+      "category": "sql-engines",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/ClickHouse/ClickHouse/blob/master/LICENSE",
+        "scope": "Apache-2.0 for the open-source server and official clients; ClickHouse Cloud is a separate service."
+      },
+      "homepage": "https://clickhouse.com",
+      "repository": "https://github.com/ClickHouse/ClickHouse",
+      "docs": "https://clickhouse.com/docs",
+      "summary": "Column-oriented OLAP database for real-time analytics over billions of rows.",
+      "useWhen": "Use instead of hand-building rollup tables or pre-aggregation jobs for event and log analytics.",
+      "cautions": [
+        "Not designed for frequent single-row updates or transactions.",
+        "Default user has no password in some images; configure auth before exposing."
+      ],
+      "tags": [
+        "olap",
+        "database",
+        "analytics",
+        "events",
+        "sql"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "clickhouse/clickhouse-server"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@clickhouse/client"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ClickHouse/ClickHouse",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Run the official Docker image at a pinned version or use the managed service; pin the client library."
+      ]
+    },
+    {
+      "id": "chartjs",
+      "name": "Chart.js",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/chartjs/Chart.js/blob/master/LICENSE.md",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://www.chartjs.org",
+      "repository": "https://github.com/chartjs/Chart.js",
+      "docs": "https://www.chartjs.org/docs/latest/",
+      "summary": "Canvas-based JavaScript charts with common chart types, animation and responsive sizing.",
+      "useWhen": "Use instead of hand-drawing bar, line, pie and scatter charts on canvas or SVG.",
+      "cautions": [
+        "Canvas output needs an accessible text/table alternative."
+      ],
+      "tags": [
+        "charts",
+        "canvas",
+        "javascript",
+        "dashboards"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "chart.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chartjs/Chart.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "apache-echarts",
+      "name": "Apache ECharts",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/apache/echarts/blob/master/LICENSE",
+        "scope": "Apache-2.0 for the library."
+      },
+      "homepage": "https://echarts.apache.org",
+      "repository": "https://github.com/apache/echarts",
+      "docs": "https://echarts.apache.org/en/option.html",
+      "summary": "Feature-rich charting library with large-data rendering, maps, and interactive dashboards.",
+      "useWhen": "Use instead of hand-building complex interactive charts (heatmaps, candlesticks, Sankey, large time series).",
+      "cautions": [
+        "Import only needed components to control bundle size."
+      ],
+      "tags": [
+        "charts",
+        "dashboards",
+        "canvas",
+        "svg",
+        "javascript"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "echarts"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apache/echarts",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "recharts",
+      "name": "Recharts",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/recharts/recharts/blob/main/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://recharts.org",
+      "repository": "https://github.com/recharts/recharts",
+      "docs": "https://recharts.github.io/en-US/api/",
+      "summary": "Composable React chart components built on SVG and D3 utilities.",
+      "useWhen": "Use instead of hand-writing SVG chart components in a React app.",
+      "cautions": [
+        "SVG rendering slows with many thousands of points; aggregate first."
+      ],
+      "tags": [
+        "charts",
+        "react",
+        "svg",
+        "dashboards"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "recharts"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/recharts/recharts",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nivo",
+      "name": "nivo",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/plouc/nivo/blob/master/LICENSE.md",
+        "scope": "MIT for all @nivo packages."
+      },
+      "homepage": "https://nivo.rocks",
+      "repository": "https://github.com/plouc/nivo",
+      "docs": "https://nivo.rocks/components/",
+      "summary": "React data-visualization components (SVG, canvas, HTML) built on D3 with theming and motion.",
+      "useWhen": "Use instead of hand-building React heatmaps, chord, treemap, calendar or Sankey charts.",
+      "cautions": [
+        "Install only the @nivo chart packages you use."
+      ],
+      "tags": [
+        "charts",
+        "react",
+        "d3",
+        "dataviz"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@nivo/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/plouc/nivo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "visx",
+      "name": "visx",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/airbnb/visx/blob/master/LICENSE",
+        "scope": "MIT for all @visx packages."
+      },
+      "homepage": "https://airbnb.io/visx/",
+      "repository": "https://github.com/airbnb/visx",
+      "docs": "https://airbnb.io/visx/docs",
+      "summary": "Low-level React visualization primitives (scales, shapes, axes) from Airbnb.",
+      "useWhen": "Use instead of wiring raw D3 into React when you need custom, bespoke chart designs.",
+      "cautions": [
+        "Primitives, not ready charts; expect to compose axes, tooltips and legends yourself."
+      ],
+      "tags": [
+        "dataviz",
+        "react",
+        "d3",
+        "svg"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@visx/visx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/airbnb/visx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "D3",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/d3/d3/blob/main/LICENSE",
+        "scope": "ISC for the library."
+      },
+      "homepage": "https://d3js.org",
+      "repository": "https://github.com/d3/d3",
+      "docs": "https://d3js.org/getting-started",
+      "summary": "Low-level JavaScript toolkit for data-driven SVG/canvas visualization, scales, layouts and geo projections.",
+      "useWhen": "Use instead of hand-writing scale math, axis ticks, force layouts or geographic projections.",
+      "cautions": [
+        "High learning curve; prefer a chart library for standard charts."
+      ],
+      "tags": [
+        "dataviz",
+        "svg",
+        "javascript",
+        "scales",
+        "geo"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "d3"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/d3/d3",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "observable-plot",
+      "name": "Observable Plot",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/observablehq/plot/blob/main/LICENSE",
+        "scope": "ISC for the library."
+      },
+      "homepage": "https://observablehq.com/plot/",
+      "repository": "https://github.com/observablehq/plot",
+      "docs": "https://observablehq.com/plot/getting-started",
+      "summary": "Concise grammar-of-graphics JavaScript library for exploratory charts on top of D3.",
+      "useWhen": "Use instead of hand-writing D3 code for exploratory or report charts.",
+      "cautions": [
+        "Pre-1.0 versioning; pin and review release notes."
+      ],
+      "tags": [
+        "charts",
+        "grammar-of-graphics",
+        "javascript",
+        "exploration"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@observablehq/plot"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/observablehq/plot",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vega-lite",
+      "name": "Vega-Lite",
+      "category": "charts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/vega/vega-lite/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for Vega-Lite (and Vega)."
+      },
+      "homepage": "https://vega.github.io/vega-lite/",
+      "repository": "https://github.com/vega/vega-lite",
+      "docs": "https://vega.github.io/vega-lite/docs/",
+      "summary": "Declarative JSON grammar for interactive charts, rendered with Vega in the browser.",
+      "useWhen": "Use instead of hand-writing chart rendering when charts are generated as data (e.g. by an agent or a backend).",
+      "cautions": [
+        "Render untrusted specs with care; disable loaders/expressions you do not need."
+      ],
+      "tags": [
+        "charts",
+        "declarative",
+        "json",
+        "grammar-of-graphics"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "web-app",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vega-lite"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vega/vega-lite",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install vega, vega-lite and vega-embed at compatible pinned versions."
+      ]
+    },
+    {
+      "id": "plotly",
+      "name": "Plotly (plotly.js and plotly.py)",
+      "category": "charts",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/plotly/plotly.js/blob/master/LICENSE",
+        "scope": "MIT for plotly.js and plotly.py."
+      },
+      "homepage": "https://plotly.com/graphing-libraries/",
+      "repository": "https://github.com/plotly/plotly.js",
+      "docs": "https://plotly.com/javascript/",
+      "summary": "Interactive scientific and financial charts for JavaScript, Python and R, including 3D and maps.",
+      "useWhen": "Use instead of hand-building interactive zoomable charts, 3D plots or financial candlesticks.",
+      "cautions": [
+        "Full plotly.js bundle is large; use partial bundles in web apps."
+      ],
+      "tags": [
+        "charts",
+        "interactive",
+        "python",
+        "javascript",
+        "3d"
+      ],
+      "projectTypes": [
+        "data-analytics",
+        "finance-accounting",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "plotly.js"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "plotly"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/plotly/plotly.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "matplotlib",
+      "name": "Matplotlib",
+      "category": "charts",
+      "platforms": [
+        "desktop",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "PSF-2.0 (Matplotlib License, Python Software Foundation based)",
+        "url": "https://github.com/matplotlib/matplotlib/blob/main/LICENSE/LICENSE",
+        "scope": "Matplotlib's own permissive license, modeled on the Python Software Foundation license."
+      },
+      "homepage": "https://matplotlib.org",
+      "repository": "https://github.com/matplotlib/matplotlib",
+      "docs": "https://matplotlib.org/stable/",
+      "summary": "Python plotting library for publication-quality static charts and image export.",
+      "useWhen": "Use instead of hand-generating chart images in Python reports, notebooks or PDFs.",
+      "cautions": [
+        "Use a non-interactive backend (Agg) on servers."
+      ],
+      "tags": [
+        "python",
+        "charts",
+        "static",
+        "plots"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "matplotlib"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/matplotlib/matplotlib",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "seaborn",
+      "name": "seaborn",
+      "category": "charts",
+      "platforms": [
+        "desktop",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/mwaskom/seaborn/blob/master/LICENSE.md",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://seaborn.pydata.org",
+      "repository": "https://github.com/mwaskom/seaborn",
+      "docs": "https://seaborn.pydata.org/api.html",
+      "summary": "Statistical plotting on top of Matplotlib with DataFrame-aware APIs.",
+      "useWhen": "Use instead of hand-composing Matplotlib code for distribution, regression and categorical plots.",
+      "cautions": [
+        "Release cadence is slow; verify compatibility with your pandas/Matplotlib versions."
+      ],
+      "tags": [
+        "python",
+        "charts",
+        "statistics",
+        "pandas"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "seaborn"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mwaskom/seaborn",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "altair",
+      "name": "Vega-Altair",
+      "category": "charts",
+      "platforms": [
+        "desktop",
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/vega/altair/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://altair-viz.github.io",
+      "repository": "https://github.com/vega/altair",
+      "docs": "https://altair-viz.github.io/user_guide/data.html",
+      "summary": "Declarative Python charting that emits Vega-Lite specifications.",
+      "useWhen": "Use instead of hand-writing Vega-Lite JSON or interactive chart code from Python.",
+      "cautions": [
+        "Embeds data in the spec by default; large data needs a data server or VegaFusion."
+      ],
+      "tags": [
+        "python",
+        "charts",
+        "vega-lite",
+        "declarative"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "altair"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vega/altair",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "bokeh",
+      "name": "Bokeh",
+      "category": "charts",
+      "platforms": [
+        "web",
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/bokeh/bokeh/blob/branch-3.8/LICENSE.txt",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://bokeh.org",
+      "repository": "https://github.com/bokeh/bokeh",
+      "docs": "https://docs.bokeh.org/en/latest/",
+      "summary": "Python library for interactive browser charts and server-backed data apps.",
+      "useWhen": "Use instead of hand-writing JavaScript for interactive charts driven from Python.",
+      "cautions": [
+        "Bokeh server apps execute Python per session; secure before exposing."
+      ],
+      "tags": [
+        "python",
+        "charts",
+        "interactive",
+        "dashboards"
+      ],
+      "projectTypes": [
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "bokeh"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bokeh/bokeh",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "leaflet",
+      "name": "Leaflet",
+      "category": "maps",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/Leaflet/Leaflet/blob/main/LICENSE",
+        "scope": "BSD-2-Clause for the library; map tiles have their own provider terms."
+      },
+      "homepage": "https://leafletjs.com",
+      "repository": "https://github.com/Leaflet/Leaflet",
+      "docs": "https://leafletjs.com/reference.html",
+      "summary": "Lightweight JavaScript library for mobile-friendly interactive raster maps.",
+      "useWhen": "Use instead of hand-writing map panning, zooming, tile loading and marker layers.",
+      "cautions": [
+        "Tile servers (e.g. OpenStreetMap) have usage policies; use a proper provider for production traffic."
+      ],
+      "tags": [
+        "maps",
+        "gis",
+        "javascript",
+        "tiles"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "leaflet"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Leaflet/Leaflet",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "maplibre-gl-js",
+      "name": "MapLibre GL JS",
+      "category": "maps",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt",
+        "scope": "BSD-3-Clause for the library; tiles and styles carry provider terms."
+      },
+      "homepage": "https://maplibre.org",
+      "repository": "https://github.com/maplibre/maplibre-gl-js",
+      "docs": "https://maplibre.org/maplibre-gl-js/docs/",
+      "summary": "Open-source WebGL vector-tile map renderer (community fork of Mapbox GL JS v1).",
+      "useWhen": "Use instead of hand-building vector map rendering or paying for a proprietary map SDK.",
+      "cautions": [
+        "Requires a vector tile source and style; self-host or choose a provider."
+      ],
+      "tags": [
+        "maps",
+        "webgl",
+        "vector-tiles",
+        "gis"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "maplibre-gl"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/maplibre/maplibre-gl-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "deck-gl",
+      "name": "deck.gl",
+      "category": "maps",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/visgl/deck.gl/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://deck.gl",
+      "repository": "https://github.com/visgl/deck.gl",
+      "docs": "https://deck.gl/docs",
+      "summary": "GPU-powered framework for large-scale geospatial and data visualization layers.",
+      "useWhen": "Use instead of hand-writing WebGL layers for millions of points, arcs, hexbins or trips on a map.",
+      "cautions": [
+        "Requires WebGL2/WebGPU; provide a fallback for unsupported devices."
+      ],
+      "tags": [
+        "maps",
+        "webgl",
+        "geospatial",
+        "big-data"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "deck.gl"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/visgl/deck.gl",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openlayers",
+      "name": "OpenLayers",
+      "category": "maps",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/openlayers/openlayers/blob/main/LICENSE.md",
+        "scope": "BSD-2-Clause for the library."
+      },
+      "homepage": "https://openlayers.org",
+      "repository": "https://github.com/openlayers/openlayers",
+      "docs": "https://openlayers.org/doc/",
+      "summary": "Full-featured web mapping library supporting many projections, OGC services and vector formats.",
+      "useWhen": "Use instead of hand-writing WMS/WFS clients, projection transforms or GIS vector editing.",
+      "cautions": [
+        "Larger API surface than Leaflet; import modules selectively."
+      ],
+      "tags": [
+        "maps",
+        "gis",
+        "ogc",
+        "projections"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ol"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openlayers/openlayers",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "turf",
+      "name": "Turf.js",
+      "category": "geospatial",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Turfjs/turf/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://turfjs.org",
+      "repository": "https://github.com/Turfjs/turf",
+      "docs": "https://turfjs.org/docs/getting-started",
+      "summary": "Modular geospatial analysis for GeoJSON in JavaScript (distance, buffers, intersections).",
+      "useWhen": "Use instead of hand-writing haversine distance, point-in-polygon, buffer or area calculations.",
+      "cautions": [
+        "Planar/spherical approximations; not survey-grade accuracy."
+      ],
+      "tags": [
+        "geospatial",
+        "geojson",
+        "javascript",
+        "gis"
+      ],
+      "projectTypes": [
+        "web-app",
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@turf/turf"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Turfjs/turf",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "docusaurus",
+      "name": "Docusaurus",
+      "category": "docs-sites",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/facebook/docusaurus/blob/main/LICENSE",
+        "scope": "MIT for the framework."
+      },
+      "homepage": "https://docusaurus.io",
+      "repository": "https://github.com/facebook/docusaurus",
+      "docs": "https://docusaurus.io/docs",
+      "summary": "React-based static documentation site generator with versioning, i18n and blog.",
+      "useWhen": "Use instead of hand-building a docs site with navigation, versioned docs and search integration.",
+      "cautions": [
+        "Plugins and themes are code dependencies; review and pin them."
+      ],
+      "tags": [
+        "docs",
+        "static-site",
+        "react",
+        "mdx",
+        "versioning"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@docusaurus/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/facebook/docusaurus",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vitepress",
+      "name": "VitePress",
+      "category": "docs-sites",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vuejs/vitepress/blob/main/LICENSE",
+        "scope": "MIT for the framework."
+      },
+      "homepage": "https://vitepress.dev",
+      "repository": "https://github.com/vuejs/vitepress",
+      "docs": "https://vitepress.dev/guide/what-is-vitepress",
+      "summary": "Vite and Vue powered static site generator for fast Markdown documentation.",
+      "useWhen": "Use instead of hand-building a Markdown docs site with sidebar, search and theming.",
+      "cautions": [
+        "Major version 2 is in development; pin and check migration notes."
+      ],
+      "tags": [
+        "docs",
+        "static-site",
+        "vue",
+        "vite",
+        "markdown"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vitepress"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vuejs/vitepress",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "starlight",
+      "name": "Starlight",
+      "category": "docs-sites",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/withastro/starlight/blob/main/LICENSE",
+        "scope": "MIT for the Astro integration."
+      },
+      "homepage": "https://starlight.astro.build",
+      "repository": "https://github.com/withastro/starlight",
+      "docs": "https://starlight.astro.build/getting-started/",
+      "summary": "Astro-based documentation theme with built-in search, i18n and accessible navigation.",
+      "useWhen": "Use instead of hand-building an accessible docs site layout, sidebar and search on Astro.",
+      "cautions": [
+        "Pre-1.0; pin and read release notes for breaking changes."
+      ],
+      "tags": [
+        "docs",
+        "astro",
+        "static-site",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@astrojs/starlight"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/withastro/starlight",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mkdocs-material",
+      "name": "Material for MkDocs",
+      "category": "docs-sites",
+      "platforms": [
+        "web",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/squidfunk/mkdocs-material/blob/master/LICENSE",
+        "scope": "MIT for the theme; MkDocs itself is BSD-2-Clause."
+      },
+      "homepage": "https://squidfunk.github.io/mkdocs-material/",
+      "repository": "https://github.com/squidfunk/mkdocs-material",
+      "docs": "https://squidfunk.github.io/mkdocs-material/getting-started/",
+      "summary": "Python MkDocs theme turning Markdown into a searchable, polished documentation site.",
+      "useWhen": "Use instead of hand-building a Markdown docs site for Python projects.",
+      "cautions": [
+        "The project is in maintenance mode while its team develops Zensical; check status before new adoption.",
+        "MkDocs 1.x upstream is slow-moving; pin both packages."
+      ],
+      "tags": [
+        "docs",
+        "python",
+        "mkdocs",
+        "markdown",
+        "static-site"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mkdocs-material"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/squidfunk/mkdocs-material",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "sphinx",
+      "name": "Sphinx",
+      "category": "docs-sites",
+      "platforms": [
+        "cli",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/sphinx-doc/sphinx/blob/master/LICENSE.rst",
+        "scope": "BSD-2-Clause for Sphinx."
+      },
+      "homepage": "https://www.sphinx-doc.org",
+      "repository": "https://github.com/sphinx-doc/sphinx",
+      "docs": "https://www.sphinx-doc.org/en/master/",
+      "summary": "Documentation generator (reStructuredText/MyST Markdown) with API autodoc, cross-references and PDF output.",
+      "useWhen": "Use instead of hand-writing Python API reference docs or cross-referenced technical manuals.",
+      "cautions": [
+        "Extensions execute during builds; pin and review them.",
+        "autodoc imports your code; avoid side effects at import time."
+      ],
+      "tags": [
+        "docs",
+        "python",
+        "api-reference",
+        "restructuredtext"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sphinx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sphinx-doc/sphinx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "nextra",
+      "name": "Nextra",
+      "category": "docs-sites",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/shuding/nextra/blob/main/LICENSE",
+        "scope": "MIT for the framework."
+      },
+      "homepage": "https://nextra.site",
+      "repository": "https://github.com/shuding/nextra",
+      "docs": "https://nextra.site/docs",
+      "summary": "Next.js-based framework for MDX documentation sites and blogs.",
+      "useWhen": "Use instead of hand-building docs pages, sidebars and search inside a Next.js app.",
+      "cautions": [
+        "Major versions track Next.js App Router changes; pin and follow migration guides."
+      ],
+      "tags": [
+        "docs",
+        "nextjs",
+        "mdx",
+        "react"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nextra"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/shuding/nextra",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mintlify",
+      "name": "Mintlify",
+      "category": "docs-sites",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted documentation service with paid plans; content is yours but the platform is closed source. Review terms and data handling before use."
+      },
+      "homepage": "https://www.mintlify.com",
+      "repository": null,
+      "docs": "https://www.mintlify.com/docs",
+      "summary": "Hosted docs platform that builds API and product docs from MDX in your Git repo.",
+      "useWhen": "Use instead of self-hosting a docs site when a managed service with API playground and analytics is acceptable.",
+      "cautions": [
+        "Vendor lock-in for components and hosting; keep content in portable MDX.",
+        "Paid plans for many features; confirm budget before adoption."
+      ],
+      "tags": [
+        "docs",
+        "hosted",
+        "mdx",
+        "api-docs"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.mintlify.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Sign up for the service, connect the docs repository, and keep docs content in version control."
+      ]
+    },
+    {
+      "id": "typedoc",
+      "name": "TypeDoc",
+      "category": "api-docs",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/TypeStrong/typedoc/blob/master/LICENSE",
+        "scope": "Apache-2.0 for TypeDoc."
+      },
+      "homepage": "https://typedoc.org",
+      "repository": "https://github.com/TypeStrong/typedoc",
+      "docs": "https://typedoc.org/documents/Overview.html",
+      "summary": "Generates API reference documentation from TypeScript source and TSDoc comments.",
+      "useWhen": "Use instead of hand-maintaining API reference pages for TypeScript libraries.",
+      "cautions": [
+        "Supported TypeScript versions are tied to TypeDoc versions; pin both."
+      ],
+      "tags": [
+        "docs",
+        "typescript",
+        "api-reference",
+        "tsdoc"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "typedoc"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TypeStrong/typedoc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "storybook",
+      "name": "Storybook (Docs)",
+      "category": "component-docs",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/storybookjs/storybook/blob/next/LICENSE",
+        "scope": "MIT for Storybook."
+      },
+      "homepage": "https://storybook.js.org",
+      "repository": "https://github.com/storybookjs/storybook",
+      "docs": "https://storybook.js.org/docs/writing-docs",
+      "summary": "UI component workshop with auto-generated component docs, MDX pages and interaction tests.",
+      "useWhen": "Use instead of hand-writing component catalog pages and prop tables for a design system.",
+      "cautions": [
+        "Addons are code dependencies; keep versions aligned with core."
+      ],
+      "tags": [
+        "docs",
+        "components",
+        "design-system",
+        "mdx"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "web-app",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "storybook"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/storybookjs/storybook",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mermaid",
+      "name": "Mermaid",
+      "category": "diagrams",
+      "platforms": [
+        "web",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mermaid-js/mermaid/blob/develop/LICENSE",
+        "scope": "MIT for the library and CLI."
+      },
+      "homepage": "https://mermaid.js.org",
+      "repository": "https://github.com/mermaid-js/mermaid",
+      "docs": "https://mermaid.js.org/intro/",
+      "summary": "Text-to-diagram renderer for flowcharts, sequence, ER, state and Gantt diagrams.",
+      "useWhen": "Use instead of hand-drawing diagrams or writing SVG; diagrams live as text in Markdown.",
+      "cautions": [
+        "Use securityLevel 'strict' when rendering untrusted diagram text."
+      ],
+      "tags": [
+        "diagrams",
+        "markdown",
+        "flowchart",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "mermaid"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@mermaid-js/mermaid-cli"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mermaid-js/mermaid",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "plantuml",
+      "name": "PlantUML",
+      "category": "diagrams",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/plantuml/plantuml/blob/master/LICENSE",
+        "scope": "GPL-3.0 for the main distribution; upstream also publishes LGPL, Apache, EPL and MIT-licensed builds with reduced features. Review which build you ship."
+      },
+      "homepage": "https://plantuml.com",
+      "repository": "https://github.com/plantuml/plantuml",
+      "docs": "https://plantuml.com/guide",
+      "summary": "Java tool rendering UML and architecture diagrams from text.",
+      "useWhen": "Use instead of hand-drawing UML sequence, class or component diagrams.",
+      "cautions": [
+        "Run as a separate tool or server; choose the build whose license fits distribution.",
+        "Some diagram types need Graphviz installed."
+      ],
+      "tags": [
+        "diagrams",
+        "uml",
+        "java",
+        "text-to-diagram"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "plantuml/plantuml-server"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/plantuml/plantuml",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Run the official plantuml-server Docker image or the pinned JAR as a separate process."
+      ]
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "category": "diagrams",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/excalidraw/excalidraw/blob/master/LICENSE",
+        "scope": "MIT for the editor component; excalidraw.com and Excalidraw+ are separate services."
+      },
+      "homepage": "https://excalidraw.com",
+      "repository": "https://github.com/excalidraw/excalidraw",
+      "docs": "https://docs.excalidraw.com",
+      "summary": "Embeddable hand-drawn style whiteboard and diagram editor as a React component.",
+      "useWhen": "Use instead of building a sketching/whiteboard canvas from scratch.",
+      "cautions": [
+        "Collaboration backend is not included; bring your own sync and storage."
+      ],
+      "tags": [
+        "whiteboard",
+        "diagrams",
+        "react",
+        "canvas"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "realtime-collab",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@excalidraw/excalidraw"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/excalidraw/excalidraw",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tldraw",
+      "name": "tldraw SDK",
+      "category": "diagrams",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "LicenseRef-tldraw",
+        "url": "https://github.com/tldraw/tldraw/blob/main/LICENSE.md",
+        "scope": "Source-available tldraw license: free for development; production use requires a license key from tldraw. Not OSI open source."
+      },
+      "homepage": "https://tldraw.dev",
+      "repository": "https://github.com/tldraw/tldraw",
+      "docs": "https://tldraw.dev/quick-start",
+      "summary": "Infinite-canvas whiteboard SDK for React with shapes, tools and multiplayer support.",
+      "useWhen": "Use instead of building an infinite canvas editor; obtain a license before production.",
+      "cautions": [
+        "Production deployment needs a paid or approved license key.",
+        "npm package declares 'SEE LICENSE IN LICENSE.md'; review the current terms."
+      ],
+      "tags": [
+        "whiteboard",
+        "canvas",
+        "react",
+        "collaboration"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "realtime-collab"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tldraw/tldraw",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install the 'tldraw' npm package only after license review; pin the version and store the license key as a secret."
+      ]
+    },
+    {
+      "id": "pagefind",
+      "name": "Pagefind",
+      "category": "docs-search",
+      "platforms": [
+        "web",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Pagefind/pagefind/blob/main/LICENSE",
+        "scope": "MIT for Pagefind."
+      },
+      "homepage": "https://pagefind.app",
+      "repository": "https://github.com/Pagefind/pagefind",
+      "docs": "https://pagefind.app/docs/",
+      "summary": "Static full-text search that indexes a built site and serves results with no backend.",
+      "useWhen": "Use instead of hand-building a search index or paying for hosted search on a static docs site.",
+      "cautions": [
+        "Indexes whatever is in the build output; exclude private pages."
+      ],
+      "tags": [
+        "search",
+        "static-site",
+        "docs",
+        "wasm"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pagefind"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Pagefind/pagefind",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "algolia-docsearch",
+      "name": "Algolia DocSearch",
+      "category": "docs-search",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/algolia/docsearch/blob/main/LICENSE",
+        "scope": "MIT for the DocSearch UI; the crawler and search index are an Algolia hosted service with eligibility terms."
+      },
+      "homepage": "https://docsearch.algolia.com",
+      "repository": "https://github.com/algolia/docsearch",
+      "docs": "https://docsearch.algolia.com/docs/what-is-docsearch",
+      "summary": "Free hosted search for public technical documentation, with an open-source search UI.",
+      "useWhen": "Use instead of building docs search when the docs are public and qualify for the program.",
+      "cautions": [
+        "Requires program approval or a paid Algolia plan; index content leaves your infrastructure."
+      ],
+      "tags": [
+        "search",
+        "docs",
+        "hosted",
+        "algolia"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@docsearch/js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/algolia/docsearch",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "markdown-it",
+      "name": "markdown-it",
+      "category": "markdown",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/markdown-it/markdown-it/blob/master/LICENSE",
+        "scope": "MIT for the parser."
+      },
+      "homepage": "https://markdown-it.github.io",
+      "repository": "https://github.com/markdown-it/markdown-it",
+      "docs": "https://markdown-it.github.io/markdown-it/",
+      "summary": "Fast CommonMark-compliant Markdown parser with a plugin system.",
+      "useWhen": "Use instead of hand-writing Markdown-to-HTML conversion with regex.",
+      "cautions": [
+        "Keep html: false or sanitize output for user-supplied Markdown."
+      ],
+      "tags": [
+        "markdown",
+        "parser",
+        "commonmark",
+        "javascript"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "markdown-it"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/markdown-it/markdown-it",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "unified-remark",
+      "name": "unified / remark",
+      "category": "markdown",
+      "platforms": [
+        "web",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/remarkjs/remark/blob/main/license",
+        "scope": "MIT for unified, remark and rehype packages."
+      },
+      "homepage": "https://unifiedjs.com",
+      "repository": "https://github.com/remarkjs/remark",
+      "docs": "https://unifiedjs.com/learn/",
+      "summary": "AST-based content pipeline: parse, transform and serialize Markdown and HTML with plugins.",
+      "useWhen": "Use instead of hand-writing Markdown transforms, linting or MDAST/HTML conversions.",
+      "cautions": [
+        "ESM-only packages; requires a modern module setup.",
+        "Use rehype-sanitize when rendering untrusted content."
+      ],
+      "tags": [
+        "markdown",
+        "ast",
+        "unified",
+        "rehype",
+        "javascript"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "unified"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "remark"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/remarkjs/remark",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mdx",
+      "name": "MDX",
+      "category": "markdown",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mdx-js/mdx/blob/main/license",
+        "scope": "MIT for the compiler."
+      },
+      "homepage": "https://mdxjs.com",
+      "repository": "https://github.com/mdx-js/mdx",
+      "docs": "https://mdxjs.com/docs/",
+      "summary": "Markdown with embedded JSX components, compiled to JavaScript.",
+      "useWhen": "Use instead of hand-building a Markdown renderer that supports interactive components.",
+      "cautions": [
+        "MDX compiles to executable code; never compile untrusted MDX on a server."
+      ],
+      "tags": [
+        "markdown",
+        "jsx",
+        "react",
+        "docs"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mdx-js/mdx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mdx-js/mdx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "shiki",
+      "name": "Shiki",
+      "category": "markdown",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/shikijs/shiki/blob/main/LICENSE",
+        "scope": "MIT for Shiki; grammars and themes carry their own notices."
+      },
+      "homepage": "https://shiki.style",
+      "repository": "https://github.com/shikijs/shiki",
+      "docs": "https://shiki.style/guide/",
+      "summary": "Syntax highlighter using TextMate grammars and VS Code themes, rendering at build or server time.",
+      "useWhen": "Use instead of hand-writing code block tokenization and highlighting.",
+      "cautions": [
+        "Load only needed languages/themes to keep bundles small."
+      ],
+      "tags": [
+        "syntax-highlighting",
+        "code-blocks",
+        "markdown",
+        "docs"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "shiki"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/shikijs/shiki",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vale",
+      "name": "Vale",
+      "category": "docs-quality",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/errata-ai/vale/blob/v3/LICENSE.md",
+        "scope": "MIT for Vale; third-party style packages carry their own licenses."
+      },
+      "homepage": "https://vale.sh",
+      "repository": "https://github.com/errata-ai/vale",
+      "docs": "https://vale.sh/docs/",
+      "summary": "Prose linter enforcing editorial style guides (e.g. Microsoft, Google) on docs.",
+      "useWhen": "Use instead of manual style-guide review of terminology, tone and wording in documentation.",
+      "cautions": [
+        "Style rules produce false positives; tune vocabularies before failing CI."
+      ],
+      "tags": [
+        "prose-lint",
+        "style-guide",
+        "docs",
+        "go",
+        "ci"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/errata-ai/vale/v3"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/errata-ai/vale",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install the pinned release binary (or Go module) in CI and commit .vale.ini with the chosen styles."
+      ]
+    },
+    {
+      "id": "markdownlint",
+      "name": "markdownlint",
+      "category": "docs-quality",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/DavidAnson/markdownlint/blob/main/LICENSE",
+        "scope": "MIT for markdownlint and markdownlint-cli2."
+      },
+      "homepage": "https://github.com/DavidAnson/markdownlint",
+      "repository": "https://github.com/DavidAnson/markdownlint",
+      "docs": "https://github.com/DavidAnson/markdownlint/blob/main/README.md",
+      "summary": "Markdown style and syntax linter with a CLI (markdownlint-cli2) and editor integrations.",
+      "useWhen": "Use instead of hand-reviewing heading structure, list style and broken Markdown syntax.",
+      "cautions": [
+        "Agree on a config before enabling in CI to avoid churn."
+      ],
+      "tags": [
+        "markdown",
+        "linting",
+        "ci",
+        "docs"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "markdownlint-cli2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/DavidAnson/markdownlint",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lychee",
+      "name": "lychee",
+      "category": "docs-quality",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0 OR MIT",
+        "url": "https://github.com/lycheeverse/lychee/blob/master/LICENSE-MIT",
+        "scope": "Dual Apache-2.0 or MIT."
+      },
+      "homepage": "https://lychee.cli.rs",
+      "repository": "https://github.com/lycheeverse/lychee",
+      "docs": "https://lychee.cli.rs",
+      "summary": "Fast async link checker for Markdown, HTML and websites, written in Rust.",
+      "useWhen": "Use instead of hand-writing a broken-link crawler for docs in CI.",
+      "cautions": [
+        "Rate-limit and cache to avoid hammering external sites; some sites block bots."
+      ],
+      "tags": [
+        "links",
+        "ci",
+        "rust",
+        "docs"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "lychee"
+        },
+        {
+          "ecosystem": "github-action",
+          "name": "lycheeverse/lychee-action"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lycheeverse/lychee",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Use the pinned GitHub Action or release binary in CI; commit a .lycheeignore for known exceptions."
+      ]
+    },
+    {
+      "id": "pdfjs",
+      "name": "PDF.js",
+      "category": "pdf",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/mozilla/pdf.js/blob/master/LICENSE",
+        "scope": "Apache-2.0 for PDF.js."
+      },
+      "homepage": "https://mozilla.github.io/pdf.js/",
+      "repository": "https://github.com/mozilla/pdf.js",
+      "docs": "https://mozilla.github.io/pdf.js/getting_started/",
+      "summary": "Mozilla's JavaScript PDF renderer and parser for displaying and extracting text in the browser.",
+      "useWhen": "Use instead of hand-writing a PDF viewer or text extraction in JavaScript.",
+      "cautions": [
+        "Keep updated; older versions had script-execution vulnerabilities (set isEvalSupported false)."
+      ],
+      "tags": [
+        "pdf",
+        "viewer",
+        "javascript",
+        "text-extraction"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pdfjs-dist"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mozilla/pdf.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pdfmake",
+      "name": "pdfmake",
+      "category": "pdf",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/bpampuch/pdfmake/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://pdfmake.github.io/docs/",
+      "repository": "https://github.com/bpampuch/pdfmake",
+      "docs": "https://pdfmake.github.io/docs/",
+      "summary": "Declarative JSON document definitions to PDF in the browser or Node, with tables and styles.",
+      "useWhen": "Use instead of hand-positioning text and tables to generate invoices or reports as PDF.",
+      "cautions": [
+        "Custom fonts must be embedded via the virtual file system.",
+        "Large tables can be slow client-side; generate on the server."
+      ],
+      "tags": [
+        "pdf",
+        "generation",
+        "javascript",
+        "invoices",
+        "reports"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pdfmake"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bpampuch/pdfmake",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "jspdf",
+      "name": "jsPDF",
+      "category": "pdf",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/parallax/jsPDF/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://parall.ax/products/jspdf",
+      "repository": "https://github.com/parallax/jsPDF",
+      "docs": "https://artskydj.github.io/jsPDF/docs/",
+      "summary": "Client-side PDF generation API in JavaScript with text, images and vector drawing.",
+      "useWhen": "Use instead of hand-writing PDF byte streams for simple client-side PDF exports.",
+      "cautions": [
+        "html() conversion is approximate; use a headless browser or Gotenberg for faithful HTML to PDF."
+      ],
+      "tags": [
+        "pdf",
+        "generation",
+        "javascript",
+        "browser"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "jspdf"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/parallax/jsPDF",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-pdf",
+      "name": "React-pdf (@react-pdf/renderer)",
+      "category": "pdf",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/diegomura/react-pdf/blob/main/LICENSE",
+        "scope": "MIT for the renderer."
+      },
+      "homepage": "https://react-pdf.org",
+      "repository": "https://github.com/diegomura/react-pdf",
+      "docs": "https://react-pdf.org/components",
+      "summary": "Render PDFs from React components with a flexbox layout engine, in browser or Node.",
+      "useWhen": "Use instead of hand-positioning PDF content when the team already composes UI in React.",
+      "cautions": [
+        "Only its own primitives render; regular DOM elements and CSS are not supported."
+      ],
+      "tags": [
+        "pdf",
+        "react",
+        "generation",
+        "reports"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@react-pdf/renderer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/diegomura/react-pdf",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pymupdf",
+      "name": "PyMuPDF",
+      "category": "pdf",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only OR LicenseRef-Artifex-Commercial",
+        "url": "https://github.com/pymupdf/PyMuPDF/blob/main/COPYING",
+        "scope": "Dual licensed: GNU AGPL-3.0 or Artifex commercial license. Closed-source or network-served use usually needs a commercial license."
+      },
+      "homepage": "https://pymupdf.readthedocs.io",
+      "repository": "https://github.com/pymupdf/PyMuPDF",
+      "docs": "https://pymupdf.readthedocs.io/en/latest/",
+      "summary": "Fast Python bindings for MuPDF: render, extract text/images, annotate and edit PDFs and other documents.",
+      "useWhen": "Use instead of hand-writing PDF text extraction, page rendering or redaction when AGPL or a commercial license is acceptable.",
+      "cautions": [
+        "AGPL obligations apply to SaaS use; obtain a commercial license otherwise.",
+        "Use pypdf or pdfplumber when a permissive license is required."
+      ],
+      "tags": [
+        "pdf",
+        "python",
+        "rendering",
+        "extraction",
+        "redaction"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pymupdf"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pymupdf/PyMuPDF",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "pypdf",
+      "name": "pypdf",
+      "category": "pdf",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/py-pdf/pypdf/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://pypdf.readthedocs.io",
+      "repository": "https://github.com/py-pdf/pypdf",
+      "docs": "https://pypdf.readthedocs.io/en/stable/",
+      "summary": "Pure-Python PDF library to split, merge, crop, encrypt and read text and metadata.",
+      "useWhen": "Use instead of hand-writing PDF merge/split, form filling or metadata edits in Python.",
+      "cautions": [
+        "Text extraction quality varies; use pdfplumber for layout-aware extraction.",
+        "Malformed PDFs can be slow; set limits for untrusted input."
+      ],
+      "tags": [
+        "pdf",
+        "python",
+        "merge",
+        "split",
+        "forms"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pypdf"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/py-pdf/pypdf",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "pdfplumber",
+      "name": "pdfplumber",
+      "category": "pdf",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://github.com/jsvine/pdfplumber",
+      "repository": "https://github.com/jsvine/pdfplumber",
+      "docs": "https://github.com/jsvine/pdfplumber/blob/stable/README.md",
+      "summary": "Python tool for layout-aware PDF text, character and table extraction.",
+      "useWhen": "Use instead of hand-writing coordinate-based table extraction from digital PDFs like statements and invoices.",
+      "cautions": [
+        "Works on digital PDFs only; scanned pages need OCR (OCRmyPDF/Tesseract) first."
+      ],
+      "tags": [
+        "pdf",
+        "python",
+        "tables",
+        "extraction"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pdfplumber"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jsvine/pdfplumber",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "reportlab",
+      "name": "ReportLab",
+      "category": "pdf",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://docs.reportlab.com/license/",
+        "scope": "BSD license for the open-source ReportLab Toolkit; ReportLab PLUS/RML products are commercial."
+      },
+      "homepage": "https://www.reportlab.com/opensource/",
+      "repository": null,
+      "docs": "https://docs.reportlab.com",
+      "summary": "Python library for programmatic PDF generation with flowable layouts, tables and charts.",
+      "useWhen": "Use instead of hand-writing PDF drawing code for Python-generated reports, invoices and statements.",
+      "cautions": [
+        "Source is hosted on ReportLab's own Mercurial server, not GitHub.",
+        "RML templating needs the commercial product."
+      ],
+      "tags": [
+        "pdf",
+        "python",
+        "generation",
+        "reports"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "reportlab"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.reportlab.com/opensource/",
+          "title": "Official open-source toolkit page"
+        },
+        {
+          "url": "https://pypi.org/project/reportlab/",
+          "title": "PyPI package"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "weasyprint",
+      "name": "WeasyPrint",
+      "category": "pdf",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/Kozea/WeasyPrint/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://weasyprint.org",
+      "repository": "https://github.com/Kozea/WeasyPrint",
+      "docs": "https://doc.courtbouillon.org/weasyprint/stable/",
+      "summary": "Converts HTML and CSS (including paged media) to PDF in Python without a browser.",
+      "useWhen": "Use instead of hand-laying out PDFs when templates are easier to write in HTML/CSS.",
+      "cautions": [
+        "No JavaScript execution; render dynamic content server-side first.",
+        "Needs Pango system libraries; check container images."
+      ],
+      "tags": [
+        "pdf",
+        "html-to-pdf",
+        "python",
+        "css"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "weasyprint"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Kozea/WeasyPrint",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "gotenberg",
+      "name": "Gotenberg",
+      "category": "conversion",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gotenberg/gotenberg/blob/main/LICENSE",
+        "scope": "MIT for Gotenberg; bundles Chromium and LibreOffice under their own licenses."
+      },
+      "homepage": "https://gotenberg.dev",
+      "repository": "https://github.com/gotenberg/gotenberg",
+      "docs": "https://gotenberg.dev/docs/getting-started/introduction",
+      "summary": "Docker-based API for converting HTML, Markdown and Office documents to PDF via Chromium and LibreOffice.",
+      "useWhen": "Use instead of hand-managing headless Chromium/LibreOffice processes for document-to-PDF conversion.",
+      "cautions": [
+        "Keep it on a private network; rendering arbitrary URLs can enable SSRF.",
+        "Resource-heavy; set timeouts and concurrency limits."
+      ],
+      "tags": [
+        "pdf",
+        "conversion",
+        "docker",
+        "api",
+        "html-to-pdf"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "gotenberg/gotenberg"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gotenberg/gotenberg",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Run the official gotenberg/gotenberg image at a pinned tag as an internal service."
+      ]
+    },
+    {
+      "id": "pandoc",
+      "name": "Pandoc",
+      "category": "conversion",
+      "platforms": [
+        "cli",
+        "server",
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-or-later",
+        "url": "https://github.com/jgm/pandoc/blob/main/COPYRIGHT",
+        "scope": "GPL-2.0-or-later. Invoking the CLI as a separate process is common; linking the Haskell library or redistributing binaries needs license review."
+      },
+      "homepage": "https://pandoc.org",
+      "repository": "https://github.com/jgm/pandoc",
+      "docs": "https://pandoc.org/MANUAL.html",
+      "summary": "Universal document converter between Markdown, DOCX, HTML, LaTeX, EPUB, ODT and more.",
+      "useWhen": "Use instead of hand-writing format converters between Markdown, Word, HTML and LaTeX.",
+      "cautions": [
+        "Lua filters and some input formats can read files; sandbox untrusted documents (--sandbox).",
+        "PDF output needs a LaTeX engine or other PDF engine installed."
+      ],
+      "tags": [
+        "conversion",
+        "markdown",
+        "docx",
+        "latex",
+        "cli"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "pandoc/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jgm/pandoc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install a pinned release binary or the pandoc/core Docker image and invoke it as a subprocess."
+      ]
+    },
+    {
+      "id": "docx-js",
+      "name": "docx (npm)",
+      "category": "word",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dolanmiu/docx/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://docx.js.org",
+      "repository": "https://github.com/dolanmiu/docx",
+      "docs": "https://docx.js.org",
+      "summary": "Declarative TypeScript API to generate .docx Word documents in Node or the browser.",
+      "useWhen": "Use instead of hand-writing OOXML to generate Word reports, letters or contracts.",
+      "cautions": [
+        "Generation only; it does not edit existing documents in place."
+      ],
+      "tags": [
+        "docx",
+        "word",
+        "typescript",
+        "generation"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "docx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dolanmiu/docx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mammoth",
+      "name": "Mammoth",
+      "category": "word",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/mwilliamson/mammoth.js/blob/master/LICENSE",
+        "scope": "BSD-2-Clause for the JS and Python implementations."
+      },
+      "homepage": "https://github.com/mwilliamson/mammoth.js",
+      "repository": "https://github.com/mwilliamson/mammoth.js",
+      "docs": "https://github.com/mwilliamson/mammoth.js/blob/master/README.md",
+      "summary": "Converts .docx to clean semantic HTML or Markdown using style mappings (JS and Python).",
+      "useWhen": "Use instead of hand-parsing DOCX XML to import Word content into a CMS or knowledge base.",
+      "cautions": [
+        "Intentionally drops visual formatting; not a fidelity-preserving converter.",
+        "Sanitize output HTML before rendering."
+      ],
+      "tags": [
+        "docx",
+        "html",
+        "conversion",
+        "import"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "mammoth"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "mammoth"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mwilliamson/mammoth.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "python-docx",
+      "name": "python-docx",
+      "category": "word",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/python-openxml/python-docx/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://python-docx.readthedocs.io",
+      "repository": "https://github.com/python-openxml/python-docx",
+      "docs": "https://python-docx.readthedocs.io/en/latest/",
+      "summary": "Python library to create and edit .docx files: paragraphs, tables, styles and images.",
+      "useWhen": "Use instead of hand-editing OOXML to generate or modify Word documents in Python.",
+      "cautions": [
+        "Limited support for complex features (tracked changes, some field types); verify output in Word."
+      ],
+      "tags": [
+        "docx",
+        "word",
+        "python",
+        "generation"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "python-docx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/python-openxml/python-docx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "docxtemplater",
+      "name": "docxtemplater",
+      "category": "word",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/open-xml-templating/docxtemplater/blob/master/LICENSE.md",
+        "scope": "MIT for the open-source core; many modules (images, HTML, charts) are paid commercial add-ons."
+      },
+      "homepage": "https://docxtemplater.com",
+      "repository": "https://github.com/open-xml-templating/docxtemplater",
+      "docs": "https://docxtemplater.com/docs/",
+      "summary": "Template engine that fills {placeholders}, loops and conditions in DOCX/PPTX/XLSX templates.",
+      "useWhen": "Use instead of hand-replacing text in OOXML to produce contracts, letters or invoices from Word templates.",
+      "cautions": [
+        "Check whether needed features are in paid modules before committing to it.",
+        "Template authors can break tags with Word formatting; validate templates."
+      ],
+      "tags": [
+        "docx",
+        "templates",
+        "mail-merge",
+        "javascript"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting",
+        "legal-compliance"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "docxtemplater"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-xml-templating/docxtemplater",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "exceljs",
+      "name": "ExcelJS",
+      "category": "spreadsheets",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/exceljs/exceljs/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://github.com/exceljs/exceljs",
+      "repository": "https://github.com/exceljs/exceljs",
+      "docs": "https://github.com/exceljs/exceljs/blob/master/README.md",
+      "summary": "Read, write and style .xlsx workbooks in Node and the browser, including streaming writes.",
+      "useWhen": "Use instead of hand-writing XLSX XML to export styled spreadsheets with formulas.",
+      "cautions": [
+        "Release cadence has slowed (last npm release 4.4.0); review open issues before adoption.",
+        "Formulas are written, not calculated; Excel recalculates on open."
+      ],
+      "tags": [
+        "xlsx",
+        "excel",
+        "javascript",
+        "export"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "exceljs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/exceljs/exceljs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sheetjs",
+      "name": "SheetJS Community Edition",
+      "category": "spreadsheets",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://git.sheetjs.com/sheetjs/sheetjs/src/branch/master/LICENSE",
+        "scope": "Apache-2.0 for Community Edition; SheetJS Pro is commercial. The npm 'xlsx' package is stale (0.18.5) with known advisories; current builds are distributed from cdn.sheetjs.com."
+      },
+      "homepage": "https://sheetjs.com",
+      "repository": null,
+      "docs": "https://docs.sheetjs.com",
+      "summary": "Spreadsheet parser and writer supporting XLSX, XLS, CSV, ODS and many legacy formats.",
+      "useWhen": "Use instead of hand-writing parsers for many spreadsheet formats; install from the official CDN tarball, not npm 'xlsx'.",
+      "cautions": [
+        "Do not install the outdated npm 'xlsx' release; pin the CDN tarball URL and integrity.",
+        "Styling and some features are Pro-only."
+      ],
+      "tags": [
+        "xlsx",
+        "spreadsheets",
+        "parser",
+        "javascript"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting",
+        "data-analytics"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.sheetjs.com/docs/getting-started/installation/nodejs",
+          "title": "Official installation instructions"
+        },
+        {
+          "url": "https://git.sheetjs.com/sheetjs/sheetjs",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install from the version-pinned tarball documented at docs.sheetjs.com (e.g. https://cdn.sheetjs.com/xlsx-<version>/xlsx-<version>.tgz) and commit the lockfile."
+      ]
+    },
+    {
+      "id": "openpyxl",
+      "name": "openpyxl",
+      "category": "spreadsheets",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://foss.heptapod.net/openpyxl/openpyxl/-/blob/branch/default/LICENCE.rst",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://openpyxl.readthedocs.io",
+      "repository": "https://foss.heptapod.net/openpyxl/openpyxl",
+      "docs": "https://openpyxl.readthedocs.io/en/stable/",
+      "summary": "Python library to read and write Excel .xlsx files, styles, charts and formulas.",
+      "useWhen": "Use instead of hand-writing XLSX XML to read or edit existing workbooks in Python.",
+      "cautions": [
+        "Does not evaluate formulas; cached values may be stale.",
+        "Macros and some objects are lost on save; preserve originals."
+      ],
+      "tags": [
+        "xlsx",
+        "excel",
+        "python",
+        "read-write"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "openpyxl"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://openpyxl.readthedocs.io/en/stable/",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://pypi.org/project/openpyxl/",
+          "title": "PyPI package"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "xlsxwriter",
+      "name": "XlsxWriter",
+      "category": "spreadsheets",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/jmcnamara/XlsxWriter/blob/main/LICENSE.txt",
+        "scope": "BSD-2-Clause for the library."
+      },
+      "homepage": "https://xlsxwriter.readthedocs.io",
+      "repository": "https://github.com/jmcnamara/XlsxWriter",
+      "docs": "https://xlsxwriter.readthedocs.io",
+      "summary": "Python module for writing richly formatted .xlsx files with charts, formulas and conditional formats.",
+      "useWhen": "Use instead of hand-writing styled Excel exports and native charts from Python.",
+      "cautions": [
+        "Write-only; cannot read or modify existing files."
+      ],
+      "tags": [
+        "xlsx",
+        "excel",
+        "python",
+        "charts",
+        "export"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "xlsxwriter"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jmcnamara/XlsxWriter",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "rust-xlsxwriter",
+      "name": "rust_xlsxwriter",
+      "category": "spreadsheets",
+      "platforms": [
+        "server",
+        "cli",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/jmcnamara/rust_xlsxwriter/blob/main/LICENSE-MIT",
+        "scope": "Dual MIT or Apache-2.0."
+      },
+      "homepage": "https://docs.rs/rust_xlsxwriter",
+      "repository": "https://github.com/jmcnamara/rust_xlsxwriter",
+      "docs": "https://docs.rs/rust_xlsxwriter",
+      "summary": "Rust port of XlsxWriter for writing formatted .xlsx files with charts and tables.",
+      "useWhen": "Use instead of hand-writing XLSX XML from Rust services or CLIs.",
+      "cautions": [
+        "Write-only; use calamine to read spreadsheets in Rust."
+      ],
+      "tags": [
+        "xlsx",
+        "excel",
+        "rust",
+        "export"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "rust_xlsxwriter"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jmcnamara/rust_xlsxwriter",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add with cargo add rust_xlsxwriter and commit Cargo.lock."
+      ]
+    },
+    {
+      "id": "excelize",
+      "name": "Excelize",
+      "category": "spreadsheets",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/qax-os/excelize/blob/master/LICENSE",
+        "scope": "BSD-3-Clause for the library."
+      },
+      "homepage": "https://xuri.me/excelize/",
+      "repository": "https://github.com/qax-os/excelize",
+      "docs": "https://xuri.me/excelize/en/",
+      "summary": "Go library to read, write and style XLSX/XLSM files including charts, pivot tables and streaming.",
+      "useWhen": "Use instead of hand-writing OOXML spreadsheet handling in Go services.",
+      "cautions": [
+        "Formula calculation support is partial; verify computed values."
+      ],
+      "tags": [
+        "xlsx",
+        "excel",
+        "go",
+        "read-write"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/xuri/excelize/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/qax-os/excelize",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add with go get github.com/xuri/excelize/v2@<version> and commit go.sum."
+      ]
+    },
+    {
+      "id": "python-pptx",
+      "name": "python-pptx",
+      "category": "presentations",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/scanny/python-pptx/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://python-pptx.readthedocs.io",
+      "repository": "https://github.com/scanny/python-pptx",
+      "docs": "https://python-pptx.readthedocs.io/en/latest/",
+      "summary": "Python library to create and modify PowerPoint .pptx files: slides, text, tables, charts and images.",
+      "useWhen": "Use instead of hand-writing PresentationML to generate editable slide decks from data.",
+      "cautions": [
+        "Releases are infrequent; complex features (animations, SmartArt) are unsupported."
+      ],
+      "tags": [
+        "pptx",
+        "powerpoint",
+        "python",
+        "slides"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "python-pptx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/scanny/python-pptx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    },
+    {
+      "id": "pptxgenjs",
+      "name": "PptxGenJS",
+      "category": "presentations",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gitbrent/PptxGenJS/blob/master/LICENSE",
+        "scope": "MIT for the library."
+      },
+      "homepage": "https://gitbrent.github.io/PptxGenJS/",
+      "repository": "https://github.com/gitbrent/PptxGenJS",
+      "docs": "https://gitbrent.github.io/PptxGenJS/docs/introduction/",
+      "summary": "JavaScript library to generate PowerPoint presentations with native charts, tables and images.",
+      "useWhen": "Use instead of hand-writing PresentationML to export editable decks from a web app or Node.",
+      "cautions": [
+        "Generation only; cannot open and edit existing decks."
+      ],
+      "tags": [
+        "pptx",
+        "powerpoint",
+        "javascript",
+        "slides"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pptxgenjs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gitbrent/PptxGenJS",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "libreoffice",
+      "name": "LibreOffice (headless)",
+      "category": "conversion",
+      "platforms": [
+        "desktop",
+        "server",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://www.libreoffice.org/about-us/licenses/",
+        "scope": "MPL-2.0 for most code, with some components under other licenses; review when redistributing."
+      },
+      "homepage": "https://www.libreoffice.org",
+      "repository": "https://github.com/LibreOffice/core",
+      "docs": "https://help.libreoffice.org",
+      "summary": "Open-source office suite whose headless mode converts DOCX/XLSX/PPTX/ODF to PDF and other formats.",
+      "useWhen": "Use instead of writing your own Office-format renderer when you need faithful document-to-PDF conversion.",
+      "cautions": [
+        "Headless conversions are single-threaded per profile; isolate and time-limit processes.",
+        "Never enable macros on untrusted documents."
+      ],
+      "tags": [
+        "office",
+        "conversion",
+        "pdf",
+        "headless",
+        "odf"
+      ],
+      "projectTypes": [
+        "office-documents"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.libreoffice.org/about-us/licenses/",
+          "title": "Official license page"
+        },
+        {
+          "url": "https://github.com/LibreOffice/core",
+          "title": "Source mirror"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install the distribution package or official build at a pinned version in the container; run soffice --headless --convert-to as a sandboxed subprocess."
+      ]
+    },
+    {
+      "id": "tesseract-ocr",
+      "name": "Tesseract OCR",
+      "category": "ocr",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/tesseract-ocr/tesseract/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the engine; trained data files are separately distributed."
+      },
+      "homepage": "https://tesseract-ocr.github.io",
+      "repository": "https://github.com/tesseract-ocr/tesseract",
+      "docs": "https://tesseract-ocr.github.io/tessdoc/",
+      "summary": "Open-source OCR engine with LSTM models for 100+ languages; also available in the browser via tesseract.js.",
+      "useWhen": "Use instead of building text recognition for scanned images and documents.",
+      "cautions": [
+        "Accuracy depends on preprocessing (deskew, binarize, DPI); validate on real samples.",
+        "OCR output is not ground truth; keep confidence and human review for critical data."
+      ],
+      "tags": [
+        "ocr",
+        "text-recognition",
+        "images",
+        "c++",
+        "wasm"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tesseract.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tesseract-ocr/tesseract",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Install the engine from the OS package manager at a pinned version with required language data; for JS use the pinned tesseract.js package."
+      ]
+    },
+    {
+      "id": "ocrmypdf",
+      "name": "OCRmyPDF",
+      "category": "ocr",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/ocrmypdf/OCRmyPDF/blob/main/LICENSE",
+        "scope": "MPL-2.0 for OCRmyPDF; depends on Tesseract and Ghostscript (AGPL) installed separately."
+      },
+      "homepage": "https://ocrmypdf.readthedocs.io",
+      "repository": "https://github.com/ocrmypdf/OCRmyPDF",
+      "docs": "https://ocrmypdf.readthedocs.io/en/latest/",
+      "summary": "Adds a searchable text layer to scanned PDFs using Tesseract, producing PDF/A output.",
+      "useWhen": "Use instead of hand-wiring Tesseract, image cleanup and PDF assembly for scanned documents.",
+      "cautions": [
+        "Ghostscript is AGPL; review distribution if you bundle it.",
+        "Processing is CPU-heavy; queue jobs and set timeouts."
+      ],
+      "tags": [
+        "ocr",
+        "pdf",
+        "pdfa",
+        "python",
+        "scanning"
+      ],
+      "projectTypes": [
+        "office-documents",
+        "finance-accounting"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "ocrmypdf"
+        },
+        {
+          "ecosystem": "docker",
+          "name": "jbarlow83/ocrmypdf"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ocrmypdf/OCRmyPDF",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/data-docs-office.md"
+      },
+      "install": [
+        "Add to the project's Python dependency file (pyproject/requirements) with a pinned, reviewed version and lock it."
+      ]
+    }
+  ]
+}
