@@ -2771,6 +2771,859 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "python-ids",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/ids.py"
+      ],
+      "tests": [
+        "python/test_ids.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-ids",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/ids/ids.go"
+      ],
+      "tests": [
+        "go/ids/ids_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-ids",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Ids.java"
+      ],
+      "tests": [
+        "java/IdsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-ids",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Ids.kt"
+      ],
+      "tests": [
+        "kotlin/IdsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-ids",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Ids.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-ids",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/ids.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-retry-backoff",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/retry_backoff.py"
+      ],
+      "tests": [
+        "python/test_retry_backoff.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-retry-backoff",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/backoff/backoff.go"
+      ],
+      "tests": [
+        "go/backoff/backoff_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-retry-backoff",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/RetryBackoff.java"
+      ],
+      "tests": [
+        "java/RetryBackoffTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-retry-backoff",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/RetryBackoff.kt"
+      ],
+      "tests": [
+        "kotlin/RetryBackoffTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-retry-backoff",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/RetryBackoff.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-retry-backoff",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/retry_backoff.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-token-bucket",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/token_bucket.py"
+      ],
+      "tests": [
+        "python/test_token_bucket.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-token-bucket",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/tokenbucket/tokenbucket.go"
+      ],
+      "tests": [
+        "go/tokenbucket/tokenbucket_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-token-bucket",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TokenBucket.java"
+      ],
+      "tests": [
+        "java/TokenBucketTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-token-bucket",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TokenBucket.kt"
+      ],
+      "tests": [
+        "kotlin/TokenBucketTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-token-bucket",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TokenBucket.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-token-bucket",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/token_bucket.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-semver",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/semver.py"
+      ],
+      "tests": [
+        "python/test_semver.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-semver",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/semver/semver.go"
+      ],
+      "tests": [
+        "go/semver/semver_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-semver",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Semver.java"
+      ],
+      "tests": [
+        "java/SemverTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-semver",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Semver.kt"
+      ],
+      "tests": [
+        "kotlin/SemverTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-semver",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Semver.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-semver",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/semver.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-cron-next",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/cron_next.py"
+      ],
+      "tests": [
+        "python/test_cron_next.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-cron-next",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/cronnext/cronnext.go"
+      ],
+      "tests": [
+        "go/cronnext/cronnext_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-cron-next",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/CronNext.java"
+      ],
+      "tests": [
+        "java/CronNextTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-cron-next",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/CronNext.kt"
+      ],
+      "tests": [
+        "kotlin/CronNextTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-cron-next",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/CronNext.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-cron-next",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/cron_next.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-wcag-contrast",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/wcag_contrast.py"
+      ],
+      "tests": [
+        "python/test_wcag_contrast.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-wcag-contrast",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/contrast/contrast.go"
+      ],
+      "tests": [
+        "go/contrast/contrast_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-wcag-contrast",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/WcagContrast.java"
+      ],
+      "tests": [
+        "java/WcagContrastTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-wcag-contrast",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/WcagContrast.kt"
+      ],
+      "tests": [
+        "kotlin/WcagContrastTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-wcag-contrast",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/WcagContrast.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-wcag-contrast",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/wcag_contrast.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-geo",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/geo.py"
+      ],
+      "tests": [
+        "python/test_geo.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-geo",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/geo/geo.go"
+      ],
+      "tests": [
+        "go/geo/geo_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-geo",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Geo.java"
+      ],
+      "tests": [
+        "java/GeoTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-geo",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Geo.kt"
+      ],
+      "tests": [
+        "kotlin/GeoTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-geo",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Geo.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-geo",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/geo.dart"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "python-webhook-signature",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/webhook_signature.py"
+      ],
+      "tests": [
+        "python/test_webhook_signature.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-webhook-signature",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/webhooksig/webhooksig.go"
+      ],
+      "tests": [
+        "go/webhooksig/webhooksig_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "java-webhook-signature",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/WebhookSignature.java"
+      ],
+      "tests": [
+        "java/WebhookSignatureTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-webhook-signature",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/WebhookSignature.kt"
+      ],
+      "tests": [
+        "kotlin/WebhookSignatureTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-webhook-signature",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/WebhookSignature.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-webhook-signature",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/webhook_signature.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/wave4_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "rust-ids",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/ids.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-retry-backoff",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/retry_backoff.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-token-bucket",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/token_bucket.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-semver",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/semver.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-cron-next",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/cron_next.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-wcag-contrast",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/wcag_contrast.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-geo",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/geo.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-webhook-signature",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/webhook_signature.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "swift-ids",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Ids.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-retry-backoff",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/RetryBackoff.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-token-bucket",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TokenBucket.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-semver",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Semver.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-cron-next",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/CronNext.swift",
+        "swift/Sources/GenlibSwift/RetryBackoff.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-wcag-contrast",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/WcagContrast.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-geo",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Geo.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-webhook-signature",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/WebhookSignature.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }

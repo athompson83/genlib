@@ -78,3 +78,14 @@ export function readableTextColor(background: Rgb | string, candidates: readonly
 }
 
 export const formatRatio = (ratio: number): string => `${(Math.floor(ratio * 100) / 100).toFixed(2)}:1`;
+
+/** Contrast ratio rounded to 2 decimals, half away from zero (for display; compare the unrounded ratio). */
+export const contrastRatio2 = (a: Rgb | string, b: Rgb | string): number => Math.round(contrastRatio(a, b) * 100) / 100;
+
+/** Text thresholds on the unrounded ratio: AA 4.5 (large 3), AAA 7 (large 4.5). */
+export function passes(ratio: number, level: "AA" | "AAA", largeText = false): boolean {
+  if (!Number.isFinite(ratio) || ratio < 1 || ratio > 21 + 1e-9) throw new RangeError("ratio must be between 1 and 21");
+  if (level !== "AA" && level !== "AAA") throw new RangeError(`unknown WCAG level: ${String(level)}`);
+  const threshold = level === "AA" ? (largeText ? 3 : 4.5) : largeText ? 4.5 : 7;
+  return ratio >= threshold;
+}

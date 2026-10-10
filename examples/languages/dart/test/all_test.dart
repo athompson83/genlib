@@ -9,6 +9,8 @@ import 'oidc_pkce_test.dart' show runOidcPkceTests;
 import 'recovery_codes_test.dart' show runRecoveryCodesTests;
 import 'src/checks.dart';
 import 'totp_test.dart' show runTotpTests;
+import 'wave4_test.dart'
+    show runCronNextTests, runGeoTests, runIdsTests, runRetryBackoffTests, runSemverTests, runTokenBucketTests, runWcagContrastTests, runWebhookSignatureTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -25,5 +27,13 @@ void main() {
   runMoneyTests(c);
   runSignedCursorsTests(c);
   runIcsEventsTests(c);
+  runIdsTests(c);
+  runRetryBackoffTests(c);
+  runTokenBucketTests(c);
+  runSemverTests(c);
+  runCronNextTests(c);
+  runWcagContrastTests(c);
+  runGeoTests(c);
+  runWebhookSignatureTests(c);
   c.finish();
 }

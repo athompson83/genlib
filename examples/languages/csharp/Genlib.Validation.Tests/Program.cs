@@ -301,5 +301,186 @@ Throws<ArgumentException>("ics ftp url", () => IcsEvents.IcsCalendar(new[] { bas
 Throws<ArgumentException>("ics date dtstamp", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Dtstamp = "2026-10-10" } }, "p"));
 Throws<ArgumentException>("ics invalid month", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Start = "2026-13-20T15:00:00Z" } }, "p"));
 
+// 13. IDs (UUIDv7 and ULID)
+byte[] idRandom = Enumerable.Range(1, 10).Select(i => (byte)i).ToArray();
+Eq("uuid7 vector", "01a0c450-6c7b-7102-8304-05060708090a", Ids.UuidV7(1790000000123, idRandom));
+Eq("ulid vector", "01M3250V3V041061050R3GG28A", Ids.Ulid(1790000000123, idRandom));
+Eq("uuid7 zero", "00000000-0000-7000-8000-000000000000", Ids.UuidV7(0, new byte[10]));
+Eq("ulid max time", "7ZZZZZZZZZZZZZZZZZZZZZZZZZ", Ids.Ulid((1L << 48) - 1, Enumerable.Repeat((byte)0xff, 10).ToArray()));
+Eq("uuid7 time", 1790000000123L, Ids.UuidV7Time("01a0c450-6c7b-7102-8304-05060708090a"));
+Eq("uuid7 time upper", 1790000000123L, Ids.UuidV7Time("01A0C450-6C7B-7102-8304-05060708090A"));
+Eq("uuid7 zero time", 0L, Ids.UuidV7Time("00000000-0000-7000-8000-000000000000"));
+Eq("ulid time", 1790000000123L, Ids.UlidTime("01M3250V3V041061050R3GG28A"));
+Eq("ulid time lower", 1790000000123L, Ids.UlidTime("01m3250v3v041061050r3gg28a"));
+Eq("ulid max time parse", (1L << 48) - 1, Ids.UlidTime("7ZZZZZZZZZZZZZZZZZZZZZZZZZ"));
+Throws<FormatException>("uuid7 version 4", () => Ids.UuidV7Time("01a0c450-6c7b-4102-8304-05060708090a"));
+Throws<FormatException>("uuid7 bad variant", () => Ids.UuidV7Time("01a0c450-6c7b-7102-c304-05060708090a"));
+Throws<FormatException>("uuid7 short", () => Ids.UuidV7Time("01a0c450-6c7b-7102-8304-05060708090"));
+Throws<FormatException>("uuid7 bad char", () => Ids.UuidV7Time("01a0c450-6c7b-7102-8304-05060708090g"));
+Throws<FormatException>("ulid first char 8", () => Ids.UlidTime("80000000000000000000000000"));
+Throws<FormatException>("ulid bad char U", () => Ids.UlidTime("01M3250V3V041061050R3GG28U"));
+Throws<FormatException>("ulid short", () => Ids.UlidTime("01M3250V3V041061050R3GG28"));
+Throws<ArgumentOutOfRangeException>("uuid7 negative time", () => Ids.UuidV7(-1, idRandom));
+Throws<ArgumentOutOfRangeException>("ulid time 2^48", () => Ids.Ulid(1L << 48, idRandom));
+Throws<ArgumentException>("uuid7 9 random bytes", () => Ids.UuidV7(0, new byte[9]));
+string u1 = Ids.NewUuidV7(), u2 = Ids.NewUuidV7();
+Check("newUuidV7 format", Regex.IsMatch(u1, "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$") && u1 != u2);
+string l1 = Ids.NewUlid(), l2 = Ids.NewUlid();
+Check("newUlid format", Regex.IsMatch(l1, "^[0-7][0-9A-HJKMNP-TV-Z]{25}$") && l1 != l2);
+
+// 14. Retry backoff
+Eq("backoff a0", 50L, RetryBackoff.BackoffDelay(0, 100, 10000, 0.5));
+Eq("backoff a3", 799L, RetryBackoff.BackoffDelay(3, 100, 10000, 0.999));
+Eq("backoff a10", 2500L, RetryBackoff.BackoffDelay(10, 100, 10000, 0.25));
+Eq("backoff a3zero", 0L, RetryBackoff.BackoffDelay(3, 100, 10000, 0.0));
+Eq("backoff huge attempt capped", 5000L, RetryBackoff.BackoffDelay(10_000, 100, 10000, 0.5));
+Eq("backoff attempt 62 large base capped", 3000L, RetryBackoff.BackoffDelay(62, 3000, 6000, 0.5));
+Eq("backoff base above shifted cap", 3001L, RetryBackoff.BackoffDelay(1, 3001, 6001, 0.5) + 1);
+Throws<ArgumentOutOfRangeException>("backoff fraction 1", () => RetryBackoff.BackoffDelay(0, 100, 1000, 1.0));
+Throws<ArgumentOutOfRangeException>("backoff fraction NaN", () => RetryBackoff.BackoffDelay(0, 100, 1000, double.NaN));
+Throws<ArgumentOutOfRangeException>("backoff negative attempt", () => RetryBackoff.BackoffDelay(-1, 100, 1000, 0.5));
+Throws<ArgumentOutOfRangeException>("backoff base 0", () => RetryBackoff.BackoffDelay(0, 0, 1000, 0.5));
+Throws<ArgumentOutOfRangeException>("backoff cap < base", () => RetryBackoff.BackoffDelay(0, 100, 99, 0.5));
+Eq("retry-after secs", (long?)120000, RetryBackoff.RetryAfterMs("120", 0));
+Eq("retry-after date", (long?)30000, RetryBackoff.RetryAfterMs("Wed, 21 Oct 2026 07:28:00 GMT", 1792567650000));
+Eq("retry-after past", (long?)0, RetryBackoff.RetryAfterMs("Wed, 21 Oct 2015 07:28:00 GMT", 1792567650000));
+foreach (var bad in new[] { "", "-5", "1.5", "soon", "21 Oct 2026 07:28:00 GMT", "Wed, 21 Oct 2026 07:28:00 UTC" })
+    Eq($"retry-after invalid '{bad}'", (long?)null, RetryBackoff.RetryAfterMs(bad, 0));
+Throws<OverflowException>("retry-after overflow", () => RetryBackoff.RetryAfterMs("99999999999999999", 0));
+
+// 15. Token bucket
+var tbSteps = new (long Now, long Cost, bool Allowed, long TokensMilli, long RetryAfterMs)[] {
+    (0, 1, true, 4000, 0), (0, 1, true, 3000, 0), (0, 1, true, 2000, 0), (0, 1, true, 1000, 0), (0, 1, true, 0, 0),
+    (0, 1, false, 0, 500), (250, 1, false, 500, 250), (500, 1, true, 0, 0), (500, 2, false, 0, 1000), (3000, 5, true, 0, 0),
+};
+var bucket = TokenBucket.NewBucket(5, 0);
+Eq("bucket starts full", 5000L, bucket.TokensMilli);
+for (int i = 0; i < tbSteps.Length; i++) {
+    var s = tbSteps[i];
+    var r = TokenBucket.Take(bucket, s.Now, s.Cost, 5, 2);
+    Check($"bucket step {i}", r.Allowed == s.Allowed && r.State.TokensMilli == s.TokensMilli && r.RetryAfterMs == s.RetryAfterMs);
+    bucket = r.State;
+}
+var back = TokenBucket.Take(new BucketState(1000, 5000), 1000, 1, 5, 2);
+Check("bucket clock backwards adds nothing", back.Allowed && back.State.TokensMilli == 0 && back.State.LastMs == 5000);
+Eq("bucket huge gap refills to capacity without overflow", 4000L, TokenBucket.Take(new BucketState(0, 0), long.MaxValue, 1, 5, long.MaxValue / 1000).State.TokensMilli);
+Throws<ArgumentOutOfRangeException>("bucket cost > capacity", () => TokenBucket.Take(TokenBucket.NewBucket(5, 0), 0, 6, 5, 2));
+Throws<ArgumentOutOfRangeException>("bucket rate 0", () => TokenBucket.Take(TokenBucket.NewBucket(5, 0), 0, 1, 5, 0));
+Throws<OverflowException>("bucket capacity overflow", () => TokenBucket.NewBucket(long.MaxValue, 0));
+
+// 16. Semver
+var semverSorted = new[] { "0.9.9", "1.0.0-alpha", "1.0.0-alpha.1", "1.0.0-alpha.beta", "1.0.0-beta", "1.0.0-beta.2", "1.0.0-beta.11", "1.0.0-rc.1", "1.0.0", "1.0.0+build.5", "2.0.0" };
+var semverInput = new[] { "1.0.0-rc.1", "2.0.0", "1.0.0-beta.11", "1.0.0", "1.0.0-alpha.beta", "0.9.9", "1.0.0-beta", "1.0.0+build.5", "1.0.0-alpha.1", "1.0.0-beta.2", "1.0.0-alpha" };
+Eq("semver sort", string.Join(" ", semverSorted),
+    string.Join(" ", semverInput.OrderBy(Semver.Parse, Comparer<SemVersion>.Create(Semver.Compare))));
+Eq("semver build ignored", 0, Semver.Compare("1.0.0", "1.0.0+build.5"));
+Eq("semver parse round trip", "1.2.3-rc.1+b.7", Semver.Parse("1.2.3-rc.1+b.7").ToString());
+foreach (var bad in new[] { "1.2", "01.2.3", "1.2.3-01", "1.2.3-", "1.2.3+", "v1.2.3", "1.2.3.4", " 1.2.3", "1.2.3-a..b", "١.2.3" })
+    Throws<FormatException>($"semver invalid '{bad}'", () => Semver.Parse(bad));
+var satisfiesVectors = new (string V, string R, bool E)[] {
+    ("1.2.3", "^1.0.0", true), ("2.0.0", "^1.0.0", false), ("0.2.5", "^0.2.3", true), ("0.3.0", "^0.2.3", false),
+    ("0.0.4", "^0.0.3", false), ("1.2.9", "~1.2.3", true), ("1.3.0", "~1.2.3", false), ("1.5.0", "1.x", true),
+    ("1.5.0", ">=1.2.0 <1.5.0", false), ("1.4.9", ">=1.2.0 <1.5.0", true), ("3.1.0", "^1.0.0 || ^3.0.0", true),
+    ("1.2.3-beta.2", "^1.2.3-beta.1", true), ("1.2.4-beta.1", "^1.2.3-beta.1", false), ("1.3.0-rc.1", "^1.2.0", false),
+    ("1.2.0", "1.0.0 - 1.2.0", true), ("1.2.1", "1.0.0 - 1.2.0", false), ("0.0.1", "*", true), ("2.0.0", "<=1.x", false),
+};
+foreach (var (v, r, e) in satisfiesVectors) Eq($"satisfies {v} '{r}'", e, Semver.Satisfies(v, r));
+Check("satisfies >= with space", Semver.Satisfies("1.2.3", ">= 1.2.3"));
+Check("satisfies 1.2.x", Semver.Satisfies("1.2.7", "1.2.x") && !Semver.Satisfies("1.3.0", "1.2.x"));
+Check("satisfies >1.x", Semver.Satisfies("2.0.0", ">1.x") && !Semver.Satisfies("1.9.9", ">1.x"));
+Check("satisfies <1.2.x", Semver.Satisfies("1.1.9", "<1.2.x") && !Semver.Satisfies("1.2.0", "<1.2.x"));
+Check("satisfies prerelease excluded by *", !Semver.Satisfies("1.0.0-beta", "*"));
+Throws<FormatException>("satisfies bad range", () => Semver.Satisfies("1.0.0", "^1.0.0.0"));
+Throws<FormatException>("satisfies bad version", () => Semver.Satisfies("1.0", "*"));
+
+// 17. Cron next
+var cronVectors = new (string Expr, string After, string Expected)[] {
+    ("*/15 * * * *", "2026-10-10T12:07:30Z", "2026-10-10T12:15:00Z"),
+    ("0 9 * * 1-5", "2026-10-10T12:00:00Z", "2026-10-12T09:00:00Z"),
+    ("30 2 1 * *", "2026-10-10T00:00:00Z", "2026-11-01T02:30:00Z"),
+    ("0 0 29 2 *", "2026-03-01T00:00:00Z", "2028-02-29T00:00:00Z"),
+    ("0 12 13 * 5", "2026-10-10T00:00:00Z", "2026-10-13T12:00:00Z"),
+    ("59 23 31 12 *", "2026-12-31T23:59:00Z", "2027-12-31T23:59:00Z"),
+    ("0 0 * * 0", "2026-10-10T00:00:00Z", "2026-10-11T00:00:00Z"),
+    ("5,10 8-9 * * *", "2026-10-10T09:10:00Z", "2026-10-11T08:05:00Z"),
+};
+foreach (var (expr, after, expected) in cronVectors) Eq($"cron '{expr}' after {after}", expected, CronNext.NextRun(expr, after));
+Eq("cron dow 7 is Sunday", "2026-10-11T00:00:00Z", CronNext.NextRun("0 0 * * 7", "2026-10-10T00:00:00Z"));
+Eq("cron N/step", "2026-10-10T00:50:00Z", CronNext.NextRun("50/5 * * * *", "2026-10-10T00:00:00Z"));
+Eq("cron dom star step with dow uses AND", "2026-10-13T00:00:00Z", CronNext.NextRun("0 0 */2 * 2", "2026-10-10T00:00:00Z"));
+foreach (var bad in new[] { "* * * *", "60 * * * *", "* 24 * * *", "* * 0 * *", "* * * 13 *", "* * * * 8", "*/0 * * * *", "5-1 * * * *", "MON * * * *", "? * * * *", "L * * * *" })
+    Throws<ArgumentException>($"cron invalid '{bad}'", () => CronNext.NextRun(bad, "2026-10-10T00:00:00Z"));
+Throws<ArgumentException>("cron bad after", () => CronNext.NextRun("* * * * *", "2026-10-10 00:00:00"));
+Throws<InvalidOperationException>("cron Feb 31 gives up", () => CronNext.NextRun("0 0 31 2 *", "2026-10-10T00:00:00Z"));
+
+// 18. WCAG contrast
+Eq("wcag bw", 21.0, WcagContrast.ContrastRatio2("#000", "#fff"));
+Eq("wcag grey", 4.54, WcagContrast.ContrastRatio2("#767676", "#ffffff"));
+Eq("wcag blue", 4.51, WcagContrast.ContrastRatio2("#1a73e8", "#ffffff"));
+Eq("wcag same", 1.0, WcagContrast.ContrastRatio2("#abc", "#aabbcc"));
+Eq("wcag yellow", 1.07, WcagContrast.ContrastRatio2("#ffff00", "#ffffff"));
+Check("wcag grey passes AA", WcagContrast.Passes(WcagContrast.ContrastRatio("#767676", "#ffffff"), "AA", false));
+Check("wcag grey fails AAA", !WcagContrast.Passes(WcagContrast.ContrastRatio("#767676", "#ffffff"), "AAA", false));
+Check("wcag yellow fails AA large", !WcagContrast.Passes(WcagContrast.ContrastRatio("#ffff00", "#ffffff"), "AA", true));
+Check("wcag bw passes AAA", WcagContrast.Passes(WcagContrast.ContrastRatio("#000", "#FFF"), "AAA", false));
+Check("wcag symmetric", WcagContrast.ContrastRatio("#1a73e8", "#fff") == WcagContrast.ContrastRatio("#fff", "#1a73e8"));
+foreach (var bad in new[] { "000", "#00", "#0000", "#gggggg", "#1234567", "" }) Throws<FormatException>($"wcag invalid '{bad}'", () => WcagContrast.RelativeLuminance(bad));
+Throws<ArgumentException>("wcag bad level", () => WcagContrast.Passes(5, "A", false));
+
+// 19. Geo
+Eq("geo london-paris", 343557.0, Math.Round(Geo.HaversineMeters(51.5074, -0.1278, 48.8566, 2.3522)));
+Eq("geo same point", 0.0, Math.Round(Geo.HaversineMeters(10, 10, 10, 10)));
+Eq("geo antipode", 20015114.0, Math.Round(Geo.HaversineMeters(0, 0, 0, 180)));
+var ghVectors = new (double Lat, double Lon, int P, string Hash)[] { (37.7749, -122.4194, 9, "9q8yyk8yt"), (0, 0, 5, "s0000"), (-33.8688, 151.2093, 7, "r3gx2f7") };
+foreach (var g in ghVectors) {
+    Eq($"geohash {g.Hash}", g.Hash, Geo.GeohashEncode(g.Lat, g.Lon, g.P));
+    var cell = Geo.GeohashDecode(g.Hash);
+    Check($"geohash decode {g.Hash}", Math.Abs(cell.Lat - g.Lat) <= cell.LatError && Math.Abs(cell.Lon - g.Lon) <= cell.LonError);
+    Check($"geohash decode upper {g.Hash}", Geo.GeohashDecode(g.Hash.ToUpperInvariant()) == cell);
+}
+Throws<FormatException>("geohash invalid char a", () => Geo.GeohashDecode("9q8a"));
+Throws<FormatException>("geohash empty", () => Geo.GeohashDecode(""));
+Throws<ArgumentOutOfRangeException>("geohash precision 13", () => Geo.GeohashEncode(0, 0, 13));
+Throws<ArgumentOutOfRangeException>("geo lat 91", () => Geo.HaversineMeters(91, 0, 0, 0));
+Throws<ArgumentOutOfRangeException>("geo lon -181", () => Geo.HaversineMeters(0, -181, 0, 0));
+var box = Geo.BoundingBox(51.5, -0.12, 10000);
+Check("bbox north", Geo.HaversineMeters(51.5, -0.12, box.MaxLat, -0.12) >= 9999);
+Check("bbox south", Geo.HaversineMeters(51.5, -0.12, box.MinLat, -0.12) >= 9999);
+Check("bbox east", Geo.HaversineMeters(51.5, -0.12, 51.5, box.MaxLon) >= 9999);
+Check("bbox west", Geo.HaversineMeters(51.5, -0.12, 51.5, box.MinLon) >= 9999);
+Check("bbox not huge", box.MaxLat - box.MinLat < 0.2 && box.MaxLon - box.MinLon < 0.4);
+var polar = Geo.BoundingBox(89.99, 0, 10000);
+Check("bbox near pole spans all longitudes", polar.MaxLat == 90 && polar.MinLon == -180 && polar.MaxLon == 180);
+Throws<ArgumentOutOfRangeException>("bbox negative radius", () => Geo.BoundingBox(0, 0, -1));
+
+// 20. Webhook signature
+const string whSecret = "whsec_test_secret_0123456789abcd";
+const string whBody = "{\"id\":\"evt_1\",\"amount\":1999}";
+const long whT = 1790000000;
+const string whHeader = "t=1790000000,v1=ad4e559e93bea390aff65b8c1eaec615bbdf3df1ef1d1c908b03299c20cf44a6";
+Eq("webhook sign vector", whHeader, WebhookSignature.SignWebhook(whSecret, whT, whBody));
+bool Verifies(string header, string body, string secret, long now) {
+    try { WebhookSignature.VerifyWebhook(header, body, secret, now); return true; } catch (WebhookException) { return false; }
+}
+Check("webhook verifies at t", Verifies(whHeader, whBody, whSecret, whT));
+Check("webhook verifies at t+300", Verifies(whHeader, whBody, whSecret, whT + 300));
+Check("webhook verifies at t-300", Verifies(whHeader, whBody, whSecret, whT - 300));
+void WhFails(string name, WebhookErrorKind kind, string header, string body, string secret, long now, string prefix) =>
+    Throws<WebhookException>(name, () => WebhookSignature.VerifyWebhook(header, body, secret, now), e => e.Kind == kind && e.Message.StartsWith(prefix));
+WhFails("webhook expired t+301", WebhookErrorKind.Expired, whHeader, whBody, whSecret, whT + 301, "expired");
+WhFails("webhook expired t-301", WebhookErrorKind.Expired, whHeader, whBody, whSecret, whT - 301, "expired");
+WhFails("webhook body byte changed", WebhookErrorKind.BadSignature, whHeader, whBody.Replace("1999", "1998"), whSecret, whT, "bad signature");
+WhFails("webhook other secret", WebhookErrorKind.BadSignature, whHeader, whBody, whSecret + "x", whT, "bad signature");
+WhFails("webhook hex digit changed", WebhookErrorKind.BadSignature, whHeader[..^1] + "7", whBody, whSecret, whT, "bad signature");
+Check("webhook extra zero v1 first", Verifies("t=1790000000, v1=" + new string('0', 64) + " , v1=" + whHeader[16..], whBody, whSecret, whT));
+Check("webhook ignores v0", Verifies(whHeader + ",v0=abc", whBody, whSecret, whT));
+WhFails("webhook missing t", WebhookErrorKind.Malformed, whHeader[13..], whBody, whSecret, whT, "malformed");
+WhFails("webhook two t", WebhookErrorKind.Malformed, "t=1790000000," + whHeader, whBody, whSecret, whT, "malformed");
+WhFails("webhook non-hex v1", WebhookErrorKind.Malformed, "t=1790000000,v1=" + new string('g', 64), whBody, whSecret, whT, "malformed");
+WhFails("webhook uppercase v1", WebhookErrorKind.Malformed, "t=1790000000,v1=" + whHeader[16..].ToUpperInvariant(), whBody, whSecret, whT, "malformed");
+WhFails("webhook missing v1", WebhookErrorKind.Malformed, "t=1790000000", whBody, whSecret, whT, "malformed");
+Throws<ArgumentException>("webhook empty secret sign", () => WebhookSignature.SignWebhook("", whT, whBody));
+Throws<ArgumentException>("webhook empty secret verify", () => WebhookSignature.VerifyWebhook(whHeader, whBody, "", whT));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;
