@@ -40,10 +40,11 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/mobile-desktop-cli-game.json`](../../resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](../../docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
 | [`catalog/readme-tools.json`](../../resources/catalog/readme-tools.json) | 55 | [readme-tools.md](../../docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](../../resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](../../docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
+| [`catalog/scheduling-calendar.json`](../../resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](../../docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
 | [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 796 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **5602** | | |
+| **Total** | **5791** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -55,18 +56,18 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 <!-- genlib:types:start -->
 | Project type | Records | Covers |
 | --- | ---: | --- |
-| `web-app` | 4292 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
+| `web-app` | 4403 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
 | `marketing-site` | 3855 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
-| `mobile-app` | 375 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
-| `desktop-app` | 28 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
-| `api-backend` | 313 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
+| `mobile-app` | 485 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
+| `desktop-app` | 43 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
+| `api-backend` | 364 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
 | `cli-tool` | 121 | Argument parsing, prompts, output formatting, config files and distribution. |
 | `ai-agent` | 115 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
 | `data-analytics` | 1007 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 554 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
-| `saas` | 4673 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
+| `saas` | 4847 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
 | `realtime-collab` | 19 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
-| `devops-infra` | 364 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
+| `devops-infra` | 376 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
 | `testing-qa` | 49 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
 | `docs-knowledge` | 102 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 24 | Headless browsers, scraping within terms, workflow automation and RPA. |

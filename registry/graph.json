@@ -341,6 +341,13 @@
    "query": "billing"
   },
   {
+   "id": "category:booking-scheduling",
+   "kind": "category",
+   "label": "booking-scheduling",
+   "count": 16,
+   "query": "booking-scheduling"
+  },
+  {
    "id": "category:browser-automation",
    "kind": "category",
    "label": "browser-automation",
@@ -367,6 +374,34 @@
    "label": "caching",
    "count": 3,
    "query": "caching"
+  },
+  {
+   "id": "category:caldav-server",
+   "kind": "category",
+   "label": "caldav-server",
+   "count": 12,
+   "query": "caldav-server"
+  },
+  {
+   "id": "category:calendar-api-sdk",
+   "kind": "category",
+   "label": "calendar-api-sdk",
+   "count": 42,
+   "query": "calendar-api-sdk"
+  },
+  {
+   "id": "category:calendar-app",
+   "kind": "category",
+   "label": "calendar-app",
+   "count": 15,
+   "query": "calendar-app"
+  },
+  {
+   "id": "category:calendar-library",
+   "kind": "category",
+   "label": "calendar-library",
+   "count": 95,
+   "query": "calendar-library"
   },
   {
    "id": "category:canvas",
@@ -1489,6 +1524,13 @@
    "query": "rpc"
   },
   {
+   "id": "category:scheduling-infra",
+   "kind": "category",
+   "label": "scheduling-infra",
+   "count": 9,
+   "query": "scheduling-infra"
+  },
+  {
    "id": "category:scientific-computing",
    "kind": "category",
    "label": "scientific-computing",
@@ -1821,7 +1863,7 @@
    "id": "doc:docs/architecture.md",
    "kind": "doc",
    "label": "docs/architecture.md",
-   "count": 8,
+   "count": 9,
    "file": "docs/architecture.md"
   },
   {
@@ -2140,6 +2182,13 @@
    "file": "docs/resources/saas-commerce-finance.md"
   },
   {
+   "id": "doc:docs/resources/scheduling-calendar.md",
+   "kind": "doc",
+   "label": "docs/resources/scheduling-calendar.md",
+   "count": 9,
+   "file": "docs/resources/scheduling-calendar.md"
+  },
+  {
    "id": "doc:docs/resources/social-media.md",
    "kind": "doc",
    "label": "docs/resources/social-media.md",
@@ -2300,6 +2349,13 @@
    "file": "docs/resources/saas-commerce-finance.md"
   },
   {
+   "id": "guide:docs/resources/scheduling-calendar.md",
+   "kind": "guide",
+   "label": "scheduling-calendar",
+   "count": 189,
+   "file": "docs/resources/scheduling-calendar.md"
+  },
+  {
    "id": "guide:docs/resources/social-media.md",
    "kind": "guide",
    "label": "social-media",
@@ -2317,84 +2373,84 @@
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 289,
+   "count": 296,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 154,
+   "count": 165,
    "query": "dart"
   },
   {
    "id": "language:elixir",
    "kind": "language",
    "label": "elixir",
-   "count": 139,
+   "count": 142,
    "query": "elixir"
   },
   {
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 335,
+   "count": 344,
    "query": "go"
   },
   {
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 180,
+   "count": 191,
    "query": "java"
   },
   {
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 62,
+   "count": 68,
    "query": "kotlin"
   },
   {
    "id": "language:php",
    "kind": "language",
    "label": "php",
-   "count": 507,
+   "count": 528,
    "query": "php"
   },
   {
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 714,
+   "count": 743,
    "query": "python"
   },
   {
    "id": "language:ruby",
    "kind": "language",
    "label": "ruby",
-   "count": 290,
+   "count": 298,
    "query": "ruby"
   },
   {
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 278,
+   "count": 289,
    "query": "rust"
   },
   {
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 118,
+   "count": 124,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 2322,
+   "count": 2382,
    "query": "typescript"
   },
   {
@@ -2422,7 +2478,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 429,
+   "count": 439,
    "query": "--type doc"
   },
   {
@@ -2457,7 +2513,7 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 5602,
+   "count": 5791,
    "query": "--type resource"
   },
   {
@@ -3948,6 +4004,36 @@
    "weight": 1
   },
   {
+   "source": "category:booking-scheduling",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:booking-scheduling",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:booking-scheduling",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:booking-scheduling",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:booking-scheduling",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
    "source": "category:browser-automation",
    "target": "language:csharp",
    "relation": "in-language",
@@ -4000,6 +4086,186 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:caldav-server",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:caldav-server",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:caldav-server",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-api-sdk",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
+   "source": "category:calendar-app",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:calendar-app",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-app",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:calendar-app",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:calendar-library",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 37
   },
   {
    "source": "category:canvas",
@@ -6006,6 +6272,30 @@
    "weight": 2
   },
   {
+   "source": "category:scheduling-infra",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:scheduling-infra",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:scheduling-infra",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:scheduling-infra",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
    "source": "category:scientific-computing",
    "target": "language:python",
    "relation": "in-language",
@@ -6573,7 +6863,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 429
+   "weight": 439
   },
   {
    "source": "genlib",
@@ -6603,7 +6893,7 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 5602
+   "weight": 5791
   },
   {
    "source": "genlib",
@@ -8040,6 +8330,42 @@
    "weight": 10
   },
   {
+   "source": "guide:docs/resources/scheduling-calendar.md",
+   "target": "category:booking-scheduling",
+   "relation": "has-category",
+   "weight": 16
+  },
+  {
+   "source": "guide:docs/resources/scheduling-calendar.md",
+   "target": "category:caldav-server",
+   "relation": "has-category",
+   "weight": 12
+  },
+  {
+   "source": "guide:docs/resources/scheduling-calendar.md",
+   "target": "category:calendar-api-sdk",
+   "relation": "has-category",
+   "weight": 42
+  },
+  {
+   "source": "guide:docs/resources/scheduling-calendar.md",
+   "target": "category:calendar-app",
+   "relation": "has-category",
+   "weight": 15
+  },
+  {
+   "source": "guide:docs/resources/scheduling-calendar.md",
+   "target": "category:calendar-library",
+   "relation": "has-category",
+   "weight": 95
+  },
+  {
+   "source": "guide:docs/resources/scheduling-calendar.md",
+   "target": "category:scheduling-infra",
+   "relation": "has-category",
+   "weight": 9
+  },
+  {
    "source": "guide:docs/resources/social-media.md",
    "target": "category:advertising",
    "relation": "has-category",
@@ -8373,7 +8699,7 @@
    "source": "type:doc",
    "target": "doc:docs/architecture.md",
    "relation": "section-of",
-   "weight": 8
+   "weight": 9
   },
   {
    "source": "type:doc",
@@ -8647,6 +8973,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/resources/scheduling-calendar.md",
+   "relation": "section-of",
+   "weight": 9
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/resources/social-media.md",
    "relation": "section-of",
    "weight": 11
@@ -8845,6 +9177,12 @@
   },
   {
    "source": "type:resource",
+   "target": "guide:docs/resources/scheduling-calendar.md",
+   "relation": "grouped-by",
+   "weight": 189
+  },
+  {
+   "source": "type:resource",
    "target": "guide:docs/resources/social-media.md",
    "relation": "grouped-by",
    "weight": 796
@@ -8859,73 +9197,73 @@
    "source": "type:resource",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 256
+   "weight": 263
   },
   {
    "source": "type:resource",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 127
+   "weight": 138
   },
   {
    "source": "type:resource",
    "target": "language:elixir",
    "relation": "serves",
-   "weight": 139
+   "weight": 142
   },
   {
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 299
+   "weight": 308
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 147
+   "weight": 158
   },
   {
    "source": "type:resource",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 29
+   "weight": 35
   },
   {
    "source": "type:resource",
    "target": "language:php",
    "relation": "serves",
-   "weight": 507
+   "weight": 528
   },
   {
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 678
+   "weight": 707
   },
   {
    "source": "type:resource",
    "target": "language:ruby",
    "relation": "serves",
-   "weight": 290
+   "weight": 298
   },
   {
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 245
+   "weight": 256
   },
   {
    "source": "type:resource",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 89
+   "weight": 95
   },
   {
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 2245
+   "weight": 2305
   }
  ]
 }
