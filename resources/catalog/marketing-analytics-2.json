@@ -3,281 +3,7 @@
   "reviewedAt": "2026-10-10",
   "items": [
     {
-      "id": "innocraft-php-experiments",
-      "name": "innocraft/php-experiments",
-      "category": "experimentation",
-      "platforms": [
-        "server",
-        "php"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "partial",
-      "license": {
-        "id": "LGPL-3.0",
-        "url": null,
-        "scope": "LGPL-3.0: dynamic linking as a dependency is usually fine; modifications to the library must be shared."
-      },
-      "homepage": null,
-      "repository": "https://github.com/innocraft/php-experiments",
-      "docs": null,
-      "summary": "PHP Experiments is a library that lets you run A/B and split tests",
-      "useWhen": "Use for A/B tests and feature experiments (ab testing) in PHP instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "ab-testing",
-        "php",
-        "packagist"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://packagist.org/packages/innocraft/php-experiments",
-          "title": "packagist registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/innocraft/php-experiments",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "packagist",
-          "name": "innocraft/php-experiments"
-        }
-      ],
-      "languages": [
-        "php"
-      ],
-      "popularity": {
-        "metric": "packagist-downloads-total",
-        "value": 270076
-      }
-    },
-    {
-      "id": "launchdarkly-mcp-server",
-      "name": "@launchdarkly/mcp-server",
-      "category": "experimentation",
-      "platforms": [
-        "node",
-        "web"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/launchdarkly/mcp-server",
-      "docs": "https://www.npmjs.com/package/@launchdarkly/mcp-server",
-      "summary": "The local Model Context Protocol (MCP) server for LaunchDarkly federal and European Union (EU) environments.",
-      "useWhen": "Use for A/B tests and feature experiments (feature flags) in TypeScript/JavaScript instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "feature-flags",
-        "typescript",
-        "npm",
-        "mcp"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.npmjs.com/package/@launchdarkly/mcp-server",
-          "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/launchdarkly/mcp-server",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "npm",
-          "name": "@launchdarkly/mcp-server"
-        }
-      ],
-      "languages": [
-        "typescript"
-      ],
-      "popularity": {
-        "metric": "npm-downloads-month",
-        "value": 244402
-      }
-    },
-    {
-      "id": "configcat-hex",
-      "name": "configcat",
-      "category": "experimentation",
-      "platforms": [
-        "server",
-        "elixir"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/configcat/elixir-sdk",
-      "docs": "https://hexdocs.pm/configcat",
-      "summary": "ConfigCat SDK for Elixir. Feature Flags created by developers for developers with . ConfigCat lets you manage feature flags across frontend, backend, mobile, and desktop apps without (re)deploying...",
-      "useWhen": "Use for A/B tests and feature experiments (feature flags) in Elixir instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "feature-flags",
-        "elixir",
-        "hex"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://hex.pm/packages/configcat",
-          "title": "hex registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/configcat/elixir-sdk",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "hex",
-          "name": "configcat"
-        }
-      ],
-      "languages": [
-        "elixir"
-      ],
-      "popularity": {
-        "metric": "hex-downloads-total",
-        "value": 224164
-      }
-    },
-    {
-      "id": "statsig-next",
-      "name": "@statsig/next",
-      "category": "experimentation",
-      "platforms": [
-        "node",
-        "web"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "ISC",
-        "url": null,
-        "scope": "ISC (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": "https://github.com/statsig-io/js-client-monorepo",
-      "repository": "https://github.com/statsig-io/js-client-monorepo/tree/HEAD/packages/next",
-      "docs": "https://www.npmjs.com/package/@statsig/next",
-      "summary": "Statsig helps you move faster with feature gates (feature flags), and/or dynamic configs. It also allows you to run A/B/n tests to validate your new features and understand their impact on your...",
-      "useWhen": "Use for A/B tests and feature experiments (feature flags) in TypeScript/JavaScript instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "feature-flags",
-        "typescript",
-        "npm",
-        "nextjs"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.npmjs.com/package/@statsig/next",
-          "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/statsig-io/js-client-monorepo/tree/HEAD/packages/next",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "npm",
-          "name": "@statsig/next"
-        }
-      ],
-      "languages": [
-        "typescript"
-      ],
-      "popularity": {
-        "metric": "npm-downloads-month",
-        "value": 220659
-      }
-    },
-    {
-      "id": "launchdarkly-server-sdk-dynamodb",
+      "id": "launchdarkly-server-sdk-dynamodb-packagist",
       "name": "launchdarkly/server-sdk-dynamodb",
       "category": "experimentation",
       "platforms": [
@@ -345,7 +71,7 @@
       }
     },
     {
-      "id": "vwo-smartcode-nextjs",
+      "id": "vwo-smartcode-nextjs-npm",
       "name": "vwo-smartcode-nextjs",
       "category": "experimentation",
       "platforms": [
@@ -414,7 +140,7 @@
       }
     },
     {
-      "id": "openfeature-flipt-provider",
+      "id": "openfeature-flipt-provider-npm",
       "name": "@openfeature/flipt-provider",
       "category": "experimentation",
       "platforms": [
@@ -478,7 +204,7 @@
       }
     },
     {
-      "id": "growthbook-npm",
+      "id": "growthbook-npm-2",
       "name": "growthbook",
       "category": "experimentation",
       "platforms": [
@@ -547,7 +273,7 @@
       }
     },
     {
-      "id": "devcycle-ruby-server-sdk",
+      "id": "devcycle-ruby-server-sdk-gem",
       "name": "devcycle-ruby-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -611,7 +337,7 @@
       }
     },
     {
-      "id": "django-flags",
+      "id": "django-flags-pypi",
       "name": "django-flags",
       "category": "experimentation",
       "platforms": [
@@ -680,7 +406,7 @@
       }
     },
     {
-      "id": "devcycle-js-client-sdk",
+      "id": "devcycle-js-client-sdk-npm",
       "name": "@devcycle/js-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -748,7 +474,7 @@
       }
     },
     {
-      "id": "statsig-react-native-bindings",
+      "id": "statsig-react-native-bindings-npm",
       "name": "@statsig/react-native-bindings",
       "category": "experimentation",
       "platforms": [
@@ -817,7 +543,7 @@
       }
     },
     {
-      "id": "growthbook-hex",
+      "id": "growthbook-hex-2",
       "name": "growthbook",
       "category": "experimentation",
       "platforms": [
@@ -885,7 +611,7 @@
       }
     },
     {
-      "id": "launchdarkly-cloudflare-server-sdk",
+      "id": "launchdarkly-cloudflare-server-sdk-npm",
       "name": "@launchdarkly/cloudflare-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -954,7 +680,7 @@
       }
     },
     {
-      "id": "govuk-ab-testing",
+      "id": "govuk-ab-testing-gem",
       "name": "govuk_ab_testing",
       "category": "experimentation",
       "platforms": [
@@ -1022,7 +748,7 @@
       }
     },
     {
-      "id": "launchdarkly-openfeature-server",
+      "id": "launchdarkly-openfeature-server-pypi",
       "name": "launchdarkly-openfeature-server",
       "category": "experimentation",
       "platforms": [
@@ -1092,7 +818,7 @@
       }
     },
     {
-      "id": "flagged",
+      "id": "flagged-npm",
       "name": "flagged",
       "category": "experimentation",
       "platforms": [
@@ -1161,7 +887,7 @@
       }
     },
     {
-      "id": "launchdarkly-vercel-server-sdk",
+      "id": "launchdarkly-vercel-server-sdk-npm",
       "name": "@launchdarkly/vercel-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -1229,7 +955,7 @@
       }
     },
     {
-      "id": "openfeature-config-cat-provider",
+      "id": "openfeature-config-cat-provider-npm",
       "name": "@openfeature/config-cat-provider",
       "category": "experimentation",
       "platforms": [
@@ -1293,7 +1019,7 @@
       }
     },
     {
-      "id": "devcycle-nodejs-server-sdk",
+      "id": "devcycle-nodejs-server-sdk-npm",
       "name": "@devcycle/nodejs-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -1361,7 +1087,7 @@
       }
     },
     {
-      "id": "openfeature-flagsmith-client-provider",
+      "id": "openfeature-flagsmith-client-provider-npm",
       "name": "@openfeature/flagsmith-client-provider",
       "category": "experimentation",
       "platforms": [
@@ -1429,7 +1155,7 @@
       }
     },
     {
-      "id": "devcycle-python-server-sdk",
+      "id": "devcycle-python-server-sdk-pypi",
       "name": "devcycle-python-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -1499,7 +1225,7 @@
       }
     },
     {
-      "id": "launchdarkly-vue-client-sdk",
+      "id": "launchdarkly-vue-client-sdk-npm",
       "name": "launchdarkly-vue-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -1568,7 +1294,7 @@
       }
     },
     {
-      "id": "devcycle-js-cloud-server-sdk",
+      "id": "devcycle-js-cloud-server-sdk-npm",
       "name": "@devcycle/js-cloud-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -1636,7 +1362,7 @@
       }
     },
     {
-      "id": "flags-sdk-growthbook",
+      "id": "flags-sdk-growthbook-npm",
       "name": "@flags-sdk/growthbook",
       "category": "experimentation",
       "platforms": [
@@ -1704,7 +1430,7 @@
       }
     },
     {
-      "id": "ab-test",
+      "id": "ab-test-hex",
       "name": "ab_test",
       "category": "experimentation",
       "platforms": [
@@ -1772,7 +1498,7 @@
       }
     },
     {
-      "id": "flags-sdk-openfeature",
+      "id": "flags-sdk-openfeature-npm",
       "name": "@flags-sdk/openfeature",
       "category": "experimentation",
       "platforms": [
@@ -1840,7 +1566,7 @@
       }
     },
     {
-      "id": "unleash-proxy-client-vue",
+      "id": "unleash-proxy-client-vue-npm",
       "name": "@unleash/proxy-client-vue",
       "category": "experimentation",
       "platforms": [
@@ -1909,7 +1635,7 @@
       }
     },
     {
-      "id": "sanity-personalization-plugin",
+      "id": "sanity-personalization-plugin-npm",
       "name": "@sanity/personalization-plugin",
       "category": "experimentation",
       "platforms": [
@@ -1978,7 +1704,7 @@
       }
     },
     {
-      "id": "harnessio-ff-javascript-client-sdk",
+      "id": "harnessio-ff-javascript-client-sdk-npm",
       "name": "@harnessio/ff-javascript-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -2046,7 +1772,7 @@
       }
     },
     {
-      "id": "flopflip-react",
+      "id": "flopflip-react-npm",
       "name": "@flopflip/react",
       "category": "experimentation",
       "platforms": [
@@ -2115,7 +1841,7 @@
       }
     },
     {
-      "id": "flags-sdk-launchdarkly",
+      "id": "flags-sdk-launchdarkly-npm",
       "name": "@flags-sdk/launchdarkly",
       "category": "experimentation",
       "platforms": [
@@ -2183,7 +1909,7 @@
       }
     },
     {
-      "id": "harnessio-ff-react-client-sdk",
+      "id": "harnessio-ff-react-client-sdk-npm",
       "name": "@harnessio/ff-react-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -2252,7 +1978,7 @@
       }
     },
     {
-      "id": "statsig-elixir",
+      "id": "statsig-elixir-hex",
       "name": "statsig_elixir",
       "category": "experimentation",
       "platforms": [
@@ -2320,7 +2046,7 @@
       }
     },
     {
-      "id": "featurevisor-sdk",
+      "id": "featurevisor-sdk-npm",
       "name": "@featurevisor/sdk",
       "category": "experimentation",
       "platforms": [
@@ -2388,7 +2114,7 @@
       }
     },
     {
-      "id": "microsoft-feature-management",
+      "id": "microsoft-feature-management-npm",
       "name": "@microsoft/feature-management",
       "category": "experimentation",
       "platforms": [
@@ -2456,7 +2182,7 @@
       }
     },
     {
-      "id": "harness-ff-erlang-server-sdk",
+      "id": "harness-ff-erlang-server-sdk-hex",
       "name": "harness_ff_erlang_server_sdk",
       "category": "experimentation",
       "platforms": [
@@ -2520,7 +2246,7 @@
       }
     },
     {
-      "id": "openfeature-angular-sdk",
+      "id": "openfeature-angular-sdk-npm",
       "name": "@openfeature/angular-sdk",
       "category": "experimentation",
       "platforms": [
@@ -2589,7 +2315,7 @@
       }
     },
     {
-      "id": "unleash-server",
+      "id": "unleash-server-npm",
       "name": "unleash-server",
       "category": "experimentation",
       "platforms": [
@@ -2658,7 +2384,7 @@
       }
     },
     {
-      "id": "rox-node",
+      "id": "rox-node-npm",
       "name": "rox-node",
       "category": "experimentation",
       "platforms": [
@@ -2727,7 +2453,7 @@
       }
     },
     {
-      "id": "posthog-openfeature-node-provider",
+      "id": "posthog-openfeature-node-provider-npm",
       "name": "@posthog/openfeature-node-provider",
       "category": "experimentation",
       "platforms": [
@@ -2795,7 +2521,7 @@
       }
     },
     {
-      "id": "rox-browser",
+      "id": "rox-browser-npm",
       "name": "rox-browser",
       "category": "experimentation",
       "platforms": [
@@ -2864,7 +2590,7 @@
       }
     },
     {
-      "id": "harnessio-ff-nodejs-server-sdk",
+      "id": "harnessio-ff-nodejs-server-sdk-npm",
       "name": "@harnessio/ff-nodejs-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -2932,7 +2658,7 @@
       }
     },
     {
-      "id": "flipt-io-flipt-client-react",
+      "id": "flipt-io-flipt-client-react-npm",
       "name": "@flipt-io/flipt-client-react",
       "category": "experimentation",
       "platforms": [
@@ -3001,7 +2727,7 @@
       }
     },
     {
-      "id": "featbit-js-client-sdk",
+      "id": "featbit-js-client-sdk-npm",
       "name": "@featbit/js-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -3069,7 +2795,7 @@
       }
     },
     {
-      "id": "splitsoftware-splitio-react-native",
+      "id": "splitsoftware-splitio-react-native-npm",
       "name": "@splitsoftware/splitio-react-native",
       "category": "experimentation",
       "platforms": [
@@ -3138,7 +2864,7 @@
       }
     },
     {
-      "id": "capacitor-firebase-remote-config",
+      "id": "capacitor-firebase-remote-config-npm",
       "name": "@capacitor-firebase/remote-config",
       "category": "experimentation",
       "platforms": [
@@ -3207,7 +2933,7 @@
       }
     },
     {
-      "id": "lemonde-phalcon-abtest",
+      "id": "lemonde-phalcon-abtest-packagist",
       "name": "lemonde/phalcon-abtest",
       "category": "experimentation",
       "platforms": [
@@ -3275,7 +3001,7 @@
       }
     },
     {
-      "id": "mordilion-split-test",
+      "id": "mordilion-split-test-packagist",
       "name": "mordilion/split-test",
       "category": "experimentation",
       "platforms": [
@@ -3343,7 +3069,7 @@
       }
     },
     {
-      "id": "flagsmith-nodejs",
+      "id": "flagsmith-nodejs-npm",
       "name": "@flagsmith/nodejs",
       "category": "experimentation",
       "platforms": [
@@ -3411,7 +3137,7 @@
       }
     },
     {
-      "id": "growthbook-openfeature-provider",
+      "id": "growthbook-openfeature-provider-pypi",
       "name": "growthbook-openfeature-provider",
       "category": "experimentation",
       "platforms": [
@@ -3481,7 +3207,7 @@
       }
     },
     {
-      "id": "openfeature-growthbook-client-provider",
+      "id": "openfeature-growthbook-client-provider-npm",
       "name": "@openfeature/growthbook-client-provider",
       "category": "experimentation",
       "platforms": [
@@ -3546,7 +3272,7 @@
       }
     },
     {
-      "id": "growthbook-mcp",
+      "id": "growthbook-mcp-npm",
       "name": "@growthbook/mcp",
       "category": "experimentation",
       "platforms": [
@@ -3615,7 +3341,7 @@
       }
     },
     {
-      "id": "react-native-nami-sdk",
+      "id": "react-native-nami-sdk-npm",
       "name": "react-native-nami-sdk",
       "category": "experimentation",
       "platforms": [
@@ -3685,7 +3411,7 @@
       }
     },
     {
-      "id": "absmartly-javascript-sdk",
+      "id": "absmartly-javascript-sdk-npm",
       "name": "@absmartly/javascript-sdk",
       "category": "experimentation",
       "platforms": [
@@ -3749,7 +3475,7 @@
       }
     },
     {
-      "id": "featbit-node-server-sdk",
+      "id": "featbit-node-server-sdk-npm",
       "name": "@featbit/node-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -3817,7 +3543,7 @@
       }
     },
     {
-      "id": "featurehub-javascript-node-sdk",
+      "id": "featurehub-javascript-node-sdk-npm",
       "name": "featurehub-javascript-node-sdk",
       "category": "experimentation",
       "platforms": [
@@ -3886,7 +3612,7 @@
       }
     },
     {
-      "id": "featurevisor-core",
+      "id": "featurevisor-core-npm",
       "name": "@featurevisor/core",
       "category": "experimentation",
       "platforms": [
@@ -3954,7 +3680,7 @@
       }
     },
     {
-      "id": "featurehub-javascript-client-sdk",
+      "id": "featurehub-javascript-client-sdk-npm",
       "name": "featurehub-javascript-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -4023,7 +3749,7 @@
       }
     },
     {
-      "id": "bayestest",
+      "id": "bayestest-crates",
       "name": "bayestest",
       "category": "experimentation",
       "platforms": [
@@ -4091,7 +3817,7 @@
       }
     },
     {
-      "id": "featurevisor-cli",
+      "id": "featurevisor-cli-npm",
       "name": "@featurevisor/cli",
       "category": "experimentation",
       "platforms": [
@@ -4160,7 +3886,7 @@
       }
     },
     {
-      "id": "getsidekicker-flagr-client",
+      "id": "getsidekicker-flagr-client-packagist",
       "name": "getsidekicker/flagr-client",
       "category": "experimentation",
       "platforms": [
@@ -4228,7 +3954,7 @@
       }
     },
     {
-      "id": "abrouter-abrouter-php-client",
+      "id": "abrouter-abrouter-php-client-packagist",
       "name": "abrouter/abrouter-php-client",
       "category": "experimentation",
       "platforms": [
@@ -4296,7 +4022,7 @@
       }
     },
     {
-      "id": "openfeature-provider-posthog",
+      "id": "openfeature-provider-posthog-pypi",
       "name": "openfeature-provider-posthog",
       "category": "experimentation",
       "platforms": [
@@ -4366,7 +4092,7 @@
       }
     },
     {
-      "id": "ninetailed-experience-js-plugin-privacy",
+      "id": "ninetailed-experience-js-plugin-privacy-npm",
       "name": "@ninetailed/experience.js-plugin-privacy",
       "category": "experimentation",
       "platforms": [
@@ -4434,7 +4160,7 @@
       }
     },
     {
-      "id": "s-ui-pde",
+      "id": "s-ui-pde-npm",
       "name": "@s-ui/pde",
       "category": "experimentation",
       "platforms": [
@@ -4498,7 +4224,7 @@
       }
     },
     {
-      "id": "growthbook-edge-utils",
+      "id": "growthbook-edge-utils-npm",
       "name": "@growthbook/edge-utils",
       "category": "experimentation",
       "platforms": [
@@ -4566,7 +4292,7 @@
       }
     },
     {
-      "id": "growthbook-edge-cloudflare",
+      "id": "growthbook-edge-cloudflare-npm",
       "name": "@growthbook/edge-cloudflare",
       "category": "experimentation",
       "platforms": [
@@ -4635,7 +4361,7 @@
       }
     },
     {
-      "id": "featurevisor-react",
+      "id": "featurevisor-react-npm",
       "name": "@featurevisor/react",
       "category": "experimentation",
       "platforms": [
@@ -4704,7 +4430,7 @@
       }
     },
     {
-      "id": "openfeature-growthbook-provider",
+      "id": "openfeature-growthbook-provider-npm",
       "name": "@openfeature/growthbook-provider",
       "category": "experimentation",
       "platforms": [
@@ -4768,69 +4494,7 @@
       }
     },
     {
-      "id": "flipt",
-      "name": "flipt",
-      "category": "experimentation",
-      "platforms": [
-        "server",
-        "go"
-      ],
-      "kind": "application",
-      "integrationMode": "selective-copy",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": "https://flipt.io",
-      "repository": "https://github.com/flipt-io/flipt",
-      "docs": null,
-      "summary": "Enterprise-ready, Git native feature management solution",
-      "useWhen": "Use for A/B tests and feature experiments (feature flags) in Go instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "feature-flags",
-        "go",
-        "github"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://github.com/flipt-io/flipt",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
-      ],
-      "quickstart": [
-        "git clone --depth 1 https://github.com/flipt-io/flipt && cd flipt && docker compose -f docker-compose.yml up -d",
-        "Docs: https://flipt.io"
-      ],
-      "languages": [
-        "go"
-      ],
-      "popularity": {
-        "metric": "github-stars",
-        "value": 4916
-      }
-    },
-    {
-      "id": "flask-unleash",
+      "id": "flask-unleash-pypi",
       "name": "flask-unleash",
       "category": "experimentation",
       "platforms": [
@@ -4900,7 +4564,7 @@
       }
     },
     {
-      "id": "tea-tasting",
+      "id": "tea-tasting-pypi",
       "name": "tea-tasting",
       "category": "experimentation",
       "platforms": [
@@ -4969,7 +4633,7 @@
       }
     },
     {
-      "id": "walkeros-web-destination-optimizely",
+      "id": "walkeros-web-destination-optimizely-npm",
       "name": "@walkeros/web-destination-optimizely",
       "category": "experimentation",
       "platforms": [
@@ -5039,7 +4703,7 @@
       }
     },
     {
-      "id": "wagtail-ab-testing",
+      "id": "wagtail-ab-testing-pypi",
       "name": "wagtail-ab-testing",
       "category": "experimentation",
       "platforms": [
@@ -5108,7 +4772,7 @@
       }
     },
     {
-      "id": "spotify-confidence",
+      "id": "spotify-confidence-pypi",
       "name": "spotify-confidence",
       "category": "experimentation",
       "platforms": [
@@ -5178,65 +4842,7 @@
       }
     },
     {
-      "id": "wasabi",
-      "name": "wasabi",
-      "category": "experimentation",
-      "platforms": [
-        "server",
-        "jvm"
-      ],
-      "kind": "application",
-      "integrationMode": "selective-copy",
-      "verification": "verified",
-      "license": {
-        "id": "Apache-2.0",
-        "url": null,
-        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/intuit/wasabi",
-      "docs": null,
-      "summary": "Wasabi A/B Testing service is an open source project that is no longer under active development or being supported",
-      "useWhen": "Use for A/B tests and feature experiments (ab testing) in Java instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "ab-testing",
-        "java",
-        "github"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://github.com/intuit/wasabi",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
-      ],
-      "languages": [
-        "java"
-      ],
-      "popularity": {
-        "metric": "github-stars",
-        "value": 1139
-      }
-    },
-    {
-      "id": "featureflags",
+      "id": "featureflags-swift",
       "name": "FeatureFlags",
       "category": "experimentation",
       "platforms": [
@@ -5303,7 +4909,7 @@
       }
     },
     {
-      "id": "ambrosia",
+      "id": "ambrosia-pypi",
       "name": "Ambrosia",
       "category": "experimentation",
       "platforms": [
@@ -5373,7 +4979,7 @@
       }
     },
     {
-      "id": "abtestools",
+      "id": "abtestools-pypi",
       "name": "abtestools",
       "category": "experimentation",
       "platforms": [
@@ -5442,7 +5048,7 @@
       }
     },
     {
-      "id": "realflags",
+      "id": "realflags-swift",
       "name": "RealFlags",
       "category": "experimentation",
       "platforms": [
@@ -5509,7 +5115,7 @@
       }
     },
     {
-      "id": "io-getunleash-unleash-client-java",
+      "id": "io-getunleash-unleash-client-java-maven",
       "name": "io.getunleash:unleash-client-java",
       "category": "experimentation",
       "platforms": [
@@ -5578,7 +5184,7 @@
       }
     },
     {
-      "id": "dev-openfeature-sdk",
+      "id": "dev-openfeature-sdk-maven",
       "name": "dev.openfeature:sdk",
       "category": "experimentation",
       "platforms": [
@@ -5647,7 +5253,7 @@
       }
     },
     {
-      "id": "go-sdk",
+      "id": "go-sdk-go-3",
       "name": "github.com/open-feature/go-sdk",
       "category": "experimentation",
       "platforms": [
@@ -5715,7 +5321,7 @@
       }
     },
     {
-      "id": "ios-client-sdk",
+      "id": "ios-client-sdk-swift",
       "name": "ios-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -5782,7 +5388,7 @@
       }
     },
     {
-      "id": "com-launchdarkly-launchdarkly-android-client-sdk",
+      "id": "com-launchdarkly-launchdarkly-android-client-sdk-maven",
       "name": "com.launchdarkly:launchdarkly-android-client-sdk",
       "category": "experimentation",
       "platforms": [
@@ -5852,7 +5458,7 @@
       }
     },
     {
-      "id": "com-optimizely-ab-core-api",
+      "id": "com-optimizely-ab-core-api-maven",
       "name": "com.optimizely.ab:core-api",
       "category": "experimentation",
       "platforms": [
@@ -5921,7 +5527,7 @@
       }
     },
     {
-      "id": "statsig-kit",
+      "id": "statsig-kit-swift",
       "name": "statsig-kit",
       "category": "experimentation",
       "platforms": [
@@ -5988,7 +5594,7 @@
       }
     },
     {
-      "id": "go-feature-flag",
+      "id": "go-feature-flag-go",
       "name": "github.com/thomaspoignant/go-feature-flag",
       "category": "experimentation",
       "platforms": [
@@ -6056,7 +5662,7 @@
       }
     },
     {
-      "id": "io-split-client-java-client",
+      "id": "io-split-client-java-client-maven",
       "name": "io.split.client:java-client",
       "category": "experimentation",
       "platforms": [
@@ -6125,7 +5731,7 @@
       }
     },
     {
-      "id": "v9",
+      "id": "v9-go",
       "name": "github.com/configcat/go-sdk/v9",
       "category": "experimentation",
       "platforms": [
@@ -6193,7 +5799,7 @@
       }
     },
     {
-      "id": "com-flagsmith-flagsmith-java-client",
+      "id": "com-flagsmith-flagsmith-java-client-maven",
       "name": "com.flagsmith:flagsmith-java-client",
       "category": "experimentation",
       "platforms": [
@@ -6262,7 +5868,7 @@
       }
     },
     {
-      "id": "flagsmith-pub",
+      "id": "flagsmith-pub-2",
       "name": "flagsmith",
       "category": "experimentation",
       "platforms": [
@@ -6330,7 +5936,7 @@
       }
     },
     {
-      "id": "swift-sdk",
+      "id": "swift-sdk-swift",
       "name": "swift-sdk",
       "category": "experimentation",
       "platforms": [
@@ -6397,7 +6003,7 @@
       }
     },
     {
-      "id": "growthbook-swift",
+      "id": "growthbook-swift-swift",
       "name": "growthbook-swift",
       "category": "experimentation",
       "platforms": [
@@ -6464,7 +6070,7 @@
       }
     },
     {
-      "id": "com-configcat-configcat-java-client",
+      "id": "com-configcat-configcat-java-client-maven",
       "name": "com.configcat:configcat-java-client",
       "category": "experimentation",
       "platforms": [
@@ -6533,7 +6139,7 @@
       }
     },
     {
-      "id": "v4-go-6",
+      "id": "v4-go-8",
       "name": "github.com/Unleash/unleash-client-go/v4",
       "category": "experimentation",
       "platforms": [
@@ -6601,7 +6207,7 @@
       }
     },
     {
-      "id": "growthbook-sdk-flutter",
+      "id": "growthbook-sdk-flutter-pub",
       "name": "growthbook_sdk_flutter",
       "category": "experimentation",
       "platforms": [
@@ -6669,7 +6275,7 @@
       }
     },
     {
-      "id": "launchdarkly-flutter-client-sdk",
+      "id": "launchdarkly-flutter-client-sdk-pub",
       "name": "launchdarkly_flutter_client_sdk",
       "category": "experimentation",
       "platforms": [
@@ -6737,7 +6343,7 @@
       }
     },
     {
-      "id": "core",
+      "id": "core-go",
       "name": "github.com/open-feature/flagd/core",
       "category": "experimentation",
       "platforms": [
@@ -6806,7 +6412,7 @@
       }
     },
     {
-      "id": "v6",
+      "id": "v6-go-2",
       "name": "github.com/splitio/go-client/v6",
       "category": "experimentation",
       "platforms": [
@@ -6875,7 +6481,7 @@
       }
     },
     {
-      "id": "com-statsig-serversdk",
+      "id": "com-statsig-serversdk-maven",
       "name": "com.statsig:serversdk",
       "category": "experimentation",
       "platforms": [
@@ -6945,7 +6551,7 @@
       }
     },
     {
-      "id": "v7",
+      "id": "v7-go",
       "name": "github.com/launchdarkly/go-server-sdk/v7",
       "category": "experimentation",
       "platforms": [
@@ -7014,7 +6620,7 @@
       }
     },
     {
-      "id": "unleash-proxy-client-flutter",
+      "id": "unleash-proxy-client-flutter-pub",
       "name": "unleash_proxy_client_flutter",
       "category": "experimentation",
       "platforms": [
@@ -7082,7 +6688,7 @@
       }
     },
     {
-      "id": "splitio",
+      "id": "splitio-pub",
       "name": "splitio",
       "category": "experimentation",
       "platforms": [
@@ -7150,7 +6756,7 @@
       }
     },
     {
-      "id": "com-launchdarkly-launchdarkly-java-server-sdk",
+      "id": "com-launchdarkly-launchdarkly-java-server-sdk-maven",
       "name": "com.launchdarkly:launchdarkly-java-server-sdk",
       "category": "experimentation",
       "platforms": [
@@ -7219,7 +6825,7 @@
       }
     },
     {
-      "id": "growthbook-golang",
+      "id": "growthbook-golang-go",
       "name": "github.com/growthbook/growthbook-golang",
       "category": "experimentation",
       "platforms": [
@@ -7288,7 +6894,7 @@
       }
     },
     {
-      "id": "go-sdk-go",
+      "id": "go-sdk-go-4",
       "name": "github.com/optimizely/go-sdk",
       "category": "experimentation",
       "platforms": [
@@ -7356,7 +6962,7 @@
       }
     },
     {
-      "id": "go-sdk-go-2",
+      "id": "go-sdk-go-5",
       "name": "github.com/statsig-io/go-sdk",
       "category": "experimentation",
       "platforms": [
@@ -7425,7 +7031,7 @@
       }
     },
     {
-      "id": "v4-go-7",
+      "id": "v4-go-9",
       "name": "github.com/Flagsmith/flagsmith-go-client/v4",
       "category": "experimentation",
       "platforms": [
@@ -7493,7 +7099,7 @@
       }
     },
     {
-      "id": "v6-go",
+      "id": "v6-go-3",
       "name": "github.com/Unleash/unleash-go-sdk/v6",
       "category": "experimentation",
       "platforms": [
@@ -7561,7 +7167,7 @@
       }
     },
     {
-      "id": "flipt-client",
+      "id": "flipt-client-go",
       "name": "go.flipt.io/flipt-client",
       "category": "experimentation",
       "platforms": [
@@ -7629,61 +7235,7 @@
       }
     },
     {
-      "id": "google-optimize",
-      "name": "Google Optimize",
-      "category": "experimentation",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://optimize.google.com",
-      "repository": null,
-      "docs": null,
-      "summary": "Free A/B testing and personalization tool by Google that integrates with Google Analytics.",
-      "useWhen": "Use for A/B tests and feature experiments (conversion rate optimization cro) in any instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "conversion-rate-optimization-cro",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://optimize.google.com",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
-    },
-    {
-      "id": "io-growthbook-sdk-growthbook",
+      "id": "io-growthbook-sdk-growthbook-maven",
       "name": "io.growthbook.sdk:GrowthBook",
       "category": "experimentation",
       "platforms": [
@@ -7751,222 +7303,6 @@
         "metric": "sonatype-app-count",
         "value": 0
       }
-    },
-    {
-      "id": "optimal-ux",
-      "name": "Optimal UX",
-      "category": "experimentation",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://optimalux.com",
-      "repository": null,
-      "docs": null,
-      "summary": "Seamless SEO patching and A/B testing tool powered by Cloudflare for effortless integration.",
-      "useWhen": "Use for A/B tests and feature experiments (conversion rate optimization cro) in any instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "conversion-rate-optimization-cro",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://optimalux.com",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
-    },
-    {
-      "id": "optimizely",
-      "name": "Optimizely",
-      "category": "experimentation",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://www.optimizely.com",
-      "repository": null,
-      "docs": null,
-      "summary": "A/B testing and experimentation platform for optimizing digital experiences across websites and apps.",
-      "useWhen": "Use for A/B tests and feature experiments (conversion rate optimization cro) in any instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "conversion-rate-optimization-cro",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.optimizely.com",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
-    },
-    {
-      "id": "unbounce",
-      "name": "Unbounce",
-      "category": "experimentation",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://unbounce.com",
-      "repository": null,
-      "docs": null,
-      "summary": "Landing page builder with A/B testing features to help improve conversion rates.",
-      "useWhen": "Use for A/B tests and feature experiments (conversion rate optimization cro) in any instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "conversion-rate-optimization-cro",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://unbounce.com",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
-    },
-    {
-      "id": "vwo",
-      "name": "VWO",
-      "category": "experimentation",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://vwo.com",
-      "repository": null,
-      "docs": null,
-      "summary": "Conversion optimization platform that provides A/B testing, split URL testing, and multivariate testing.",
-      "useWhen": "Use for A/B tests and feature experiments (conversion rate optimization cro) in any instead of a home-grown bucketing system.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "experimentation",
-        "conversion-rate-optimization-cro",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "saas",
-        "web-app",
-        "marketing-site"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://vwo.com",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
     }
   ]
 }

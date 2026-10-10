@@ -81,12 +81,12 @@
         "python"
       ],
       "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
+      "integrationMode": "license-review",
+      "verification": "partial",
       "license": {
         "id": "Apache-2.0",
         "url": null,
-        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/googleads/google-ads-python",
@@ -94,6 +94,7 @@
       "summary": "Client library for the Google Ads API",
       "useWhen": "Use to call ad platform APIs (google ads) from Python instead of hand-written HTTP clients.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -159,7 +160,7 @@
       },
       "homepage": "https://github.com/googleads/google-api-ads-ruby",
       "repository": "https://github.com/googleads/google-api-ads-ruby",
-      "docs": "https://www.rubydoc.info/gems/google-ads-common/3.0.0",
+      "docs": null,
       "summary": "Essential utilities shared by all Ads Ruby client libraries",
       "useWhen": "Use to call ad platform APIs (ads api) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -297,7 +298,7 @@
       },
       "homepage": "https://github.com/googleads/google-ads-ruby",
       "repository": "https://github.com/googleads/google-ads-ruby",
-      "docs": "https://www.rubydoc.info/gems/google-ads-googleads/45.1.0",
+      "docs": null,
       "summary": "google-ads-googleads is a Google Ads API client library for Ruby",
       "useWhen": "Use to call ad platform APIs (ads api) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -499,7 +500,7 @@
       },
       "homepage": "https://github.com/facebook/facebook-ruby-business-sdk",
       "repository": "https://github.com/facebook/facebook-ruby-business-sdk",
-      "docs": "https://www.rubydoc.info/gems/facebookbusiness/26.0.2",
+      "docs": null,
       "summary": "The official Facebook Business API SDK for Ruby. https://developers.facebook.com/docs/marketing-api/sdks'",
       "useWhen": "Use to call ad platform APIs (ads api) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -850,7 +851,7 @@
       },
       "homepage": "https://github.com/googleads/google-api-ads-ruby",
       "repository": "https://github.com/googleads/google-api-ads-ruby",
-      "docs": "https://www.rubydoc.info/gems/google-dfp-api/4.6.0",
+      "docs": null,
       "summary": "google-dfp-api is a Google Ad Manager API client library for Ruby",
       "useWhen": "Use to call ad platform APIs (ad server) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -1055,7 +1056,7 @@
       },
       "homepage": "https://github.com/Effilab/bing_ads_ruby_sdk",
       "repository": "https://github.com/Effilab/bing_ads_ruby_sdk",
-      "docs": "https://www.rubydoc.info/gems/bing_ads_ruby_sdk/1.7",
+      "docs": null,
       "summary": "Bing Ads Api Wrapper",
       "useWhen": "Use to call ad platform APIs (ads api) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -1397,7 +1398,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://docs.trygravity.ai/sdks/javascript",
-      "repository": "https://github.com/Try-Gravity/gravity-js",
+      "repository": null,
       "docs": "https://docs.trygravity.ai/sdks/javascript",
       "summary": "Gravity JS SDK for retrieving targeted advertisements",
       "useWhen": "Use to call ad platform APIs (advertising) from TypeScript/JavaScript instead of hand-written HTTP clients.",
@@ -1420,10 +1421,6 @@
         {
           "url": "https://www.npmjs.com/package/@gravity-ai/api",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/Try-Gravity/gravity-js",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -1603,7 +1600,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://docs.trygravity.ai/sdks/javascript",
-      "repository": "https://github.com/Try-Gravity/gravity-js",
+      "repository": null,
       "docs": "https://docs.trygravity.ai/sdks/javascript",
       "summary": "React components for rendering Gravity AI advertisements",
       "useWhen": "Use to call ad platform APIs (advertising) from TypeScript/JavaScript instead of hand-written HTTP clients.",
@@ -1627,10 +1624,6 @@
         {
           "url": "https://www.npmjs.com/package/@gravity-ai/react",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/Try-Gravity/gravity-js",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -2067,71 +2060,6 @@
       }
     },
     {
-      "id": "capi-param-builder-ruby",
-      "name": "capi_param_builder_ruby",
-      "category": "advertising",
-      "platforms": [
-        "server",
-        "ruby"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "Nonstandard",
-        "url": null,
-        "scope": "Nonstandard (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": null,
-      "docs": "https://www.rubydoc.info/gems/capi_param_builder_ruby/1.3.0",
-      "summary": "Parameter builder SDK for Conversion API events",
-      "useWhen": "Use to call ad platform APIs (conversion tracking) from Ruby instead of hand-written HTTP clients.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "advertising",
-        "conversion-tracking",
-        "ruby",
-        "gem",
-        "conversion-api"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "ecommerce",
-        "saas"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://rubygems.org/gems/capi_param_builder_ruby",
-          "title": "gem registry record (license, versions, downloads)"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "gem",
-          "name": "capi_param_builder_ruby"
-        }
-      ],
-      "languages": [
-        "ruby"
-      ],
-      "popularity": {
-        "metric": "gem-downloads-total",
-        "value": 153954
-      }
-    },
-    {
       "id": "setono-meta-conversions-api-php-sdk",
       "name": "setono/meta-conversions-api-php-sdk",
       "category": "advertising",
@@ -2218,7 +2146,7 @@
       },
       "homepage": "https://github.com/googleapis/google-cloud-ruby",
       "repository": "https://github.com/googleapis/google-cloud-ruby",
-      "docs": "https://www.rubydoc.info/gems/google-ads-data_manager/0.4.2",
+      "docs": null,
       "summary": "A unified ingestion API for data partners, agencies and advertisers to connect first-party data across Google advertising products.",
       "useWhen": "Use to call ad platform APIs (ads api) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -2425,7 +2353,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-dfareporting_v4/v0.28.0",
+      "docs": null,
       "summary": "This is the simple REST client for Campaign Manager 360 API V4. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These...",
       "useWhen": "Use to call ad platform APIs (ad server) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -3604,7 +3532,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-admob_v1/v0.26.0",
+      "docs": null,
       "summary": "This is the simple REST client for AdMob API V1. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These libraries are...",
       "useWhen": "Use to call ad platform APIs (mobile ads) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -4154,7 +4082,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-admob_v1beta/v0.34.0",
+      "docs": null,
       "summary": "This is the simple REST client for AdMob API V1beta. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These libraries are...",
       "useWhen": "Use to call ad platform APIs (mobile ads) from Ruby instead of hand-written HTTP clients.",
       "cautions": [
@@ -5049,7 +4977,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/Hatch1fy/google_ads",
+      "repository": null,
       "docs": "https://hexdocs.pm/google_ads",
       "summary": "Provides a client for the Google Ads API.",
       "useWhen": "Use to call ad platform APIs (ads api) from Elixir instead of hand-written HTTP clients.",
@@ -5074,10 +5002,6 @@
         {
           "url": "https://hex.pm/packages/google_ads",
           "title": "hex registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/Hatch1fy/google_ads",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -6289,6 +6213,7 @@
       "summary": "Source implementation for Facebook Marketing.",
       "useWhen": "Use to call ad platform APIs (connector) from Python instead of hand-written HTTP clients.",
       "cautions": [
+        "The registry declares the license as \"ELv2\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -7106,7 +7031,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/lucas-mass-dyn/google-ads-api-types",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/google-ads-api-types",
       "summary": "TypeScript types and gRPC bindings for Google Ads API v21, generated from protobufs",
       "useWhen": "Use to call ad platform APIs (google ads) from TypeScript/JavaScript instead of hand-written HTTP clients.",
@@ -7130,10 +7055,6 @@
         {
           "url": "https://www.npmjs.com/package/google-ads-api-types",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/lucas-mass-dyn/google-ads-api-types",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -7310,7 +7231,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/blotoutio/edgetag-sdk",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/@blotoutio/providers-google-ads-clicks-sdk",
       "summary": "Google Ads Browser SDK for EdgeTag",
       "useWhen": "Use to call ad platform APIs (ad pixels) from TypeScript/JavaScript instead of hand-written HTTP clients.",
@@ -7335,10 +7256,6 @@
         {
           "url": "https://www.npmjs.com/package/@blotoutio/providers-google-ads-clicks-sdk",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/blotoutio/edgetag-sdk",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -7590,6 +7507,7 @@
       "summary": "Source implementation for Google Ads.",
       "useWhen": "Use to call ad platform APIs (connector) from Python instead of hand-written HTTP clients.",
       "cautions": [
+        "The registry declares the license as \"Elv2\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -10400,60 +10318,6 @@
       ]
     },
     {
-      "id": "facebook-ads-retargeting",
-      "name": "Facebook Ads Retargeting",
-      "category": "advertising",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://www.facebook.com/business/learn/facebook-ads-retargeting",
-      "repository": null,
-      "docs": null,
-      "summary": "Retargeting ads on Facebook and Instagram, targeting users who have engaged with your content.",
-      "useWhen": "Use to call ad platform APIs (retargeting) from any instead of hand-written HTTP clients.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "advertising",
-        "retargeting",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "ecommerce",
-        "saas"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.facebook.com/business/learn/facebook-ads-retargeting",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
-    },
-    {
       "id": "facebook-marketing-api-golang-sdk",
       "name": "github.com/justwatchcom/facebook-marketing-api-golang-sdk",
       "category": "advertising",
@@ -11349,7 +11213,7 @@
       },
       "homepage": null,
       "repository": "https://github.com/snowplow/snowplow-ruby-tracker",
-      "docs": "https://www.rubydoc.info/gems/snowplow-tracker/0.8.0",
+      "docs": null,
       "summary": "With this tracker you can collect event data from your Ruby applications, Ruby on Rails web applications and Ruby gems.",
       "useWhen": "Use to send or query analytics (event tracking) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -11489,7 +11353,7 @@
       },
       "homepage": "https://github.com/segmentio/analytics-ruby",
       "repository": "https://github.com/segmentio/analytics-ruby",
-      "docs": "https://www.rubydoc.info/gems/analytics-ruby/2.6.0",
+      "docs": null,
       "summary": "The Segment.io ruby analytics library",
       "useWhen": "Use to send or query analytics (cdp) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -11911,9 +11775,9 @@
         "url": null,
         "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://mixpanel.com/help/reference/ruby",
+      "homepage": null,
       "repository": "https://github.com/mixpanel/mixpanel-ruby",
-      "docs": "https://mixpanel.com/help/reference/ruby",
+      "docs": null,
       "summary": "The official Mixpanel tracking library for ruby",
       "useWhen": "Use to send or query analytics (product analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -12191,7 +12055,7 @@
         "url": null,
         "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://mixpanel.com/help/reference/php",
+      "homepage": null,
       "repository": "https://github.com/mixpanel/mixpanel-php",
       "docs": null,
       "summary": "The Official PHP library for Mixpanel",
@@ -13242,7 +13106,7 @@
         "scope": "ISC (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/segmentio/analytics.js-video-plugins",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/@segment/analytics.js-video-plugins",
       "summary": "Add automatic Segment event tracking to popular video players.",
       "useWhen": "Use to send or query analytics (segment) from JavaScript instead of writing a tracking client.",
@@ -13269,10 +13133,6 @@
         {
           "url": "https://www.npmjs.com/package/@segment/analytics.js-video-plugins",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/segmentio/analytics.js-video-plugins",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -13808,7 +13668,7 @@
       },
       "homepage": "https://github.com/tpitale/staccato",
       "repository": "https://github.com/tpitale/staccato",
-      "docs": "https://www.rubydoc.info/gems/staccato/0.5.3",
+      "docs": null,
       "summary": "Ruby Google Analytics Measurement",
       "useWhen": "Use to send or query analytics (web analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -14866,7 +14726,7 @@
       },
       "homepage": null,
       "repository": "https://github.com/keolo/mixpanel_client",
-      "docs": "https://www.rubydoc.info/gems/mixpanel_client/5.1.0",
+      "docs": null,
       "summary": "Simple ruby client interface to the Mixpanel Data API.",
       "useWhen": "Use to send or query analytics (product analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -14936,7 +14796,7 @@
       },
       "homepage": "https://github.com/PostHog/posthog-ruby",
       "repository": "https://github.com/PostHog/posthog-ruby",
-      "docs": "https://www.rubydoc.info/gems/posthog-ruby/3.27.0",
+      "docs": null,
       "summary": "The PostHog ruby library",
       "useWhen": "Use to send or query analytics (product analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -15704,9 +15564,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rrweb-io/rrweb/tree/main/packages/@rrweb/record#readme",
+      "homepage": null,
       "repository": "https://github.com/rrweb-io/rrweb/tree/HEAD/packages/record",
-      "docs": "https://github.com/rrweb-io/rrweb/tree/main/packages/@rrweb/record#readme",
+      "docs": null,
       "summary": "This package contains all the record related code in rrweb and is designed to be published in a frontend app/webpage. See Getting Started in the rrweb guide for more information including the...",
       "useWhen": "Use to send or query analytics (session replay) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -16195,9 +16055,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-js/README.md",
+      "homepage": null,
       "repository": "https://github.com/rudderlabs/rudder-sdk-js/tree/HEAD/packages/analytics-js",
-      "docs": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-js/README.md",
+      "docs": null,
       "summary": "RudderStack JavaScript SDK",
       "useWhen": "Use to send or query analytics (rudderstack) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -16962,9 +16822,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rrweb-io/rrweb/tree/main/packages/@rrweb/replay#readme",
+      "homepage": null,
       "repository": "https://github.com/rrweb-io/rrweb/tree/HEAD/packages/replay",
-      "docs": "https://github.com/rrweb-io/rrweb/tree/main/packages/@rrweb/replay#readme",
+      "docs": null,
       "summary": "This package contains all the necessary code to replay recorded events. See the replay section of the guide for more info.",
       "useWhen": "Use to send or query analytics (session replay) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -17452,7 +17312,7 @@
       },
       "homepage": "https://github.com/googleapis/google-cloud-ruby",
       "repository": "https://github.com/googleapis/google-cloud-ruby",
-      "docs": "https://www.rubydoc.info/gems/google-analytics-data-v1beta/0.23.0",
+      "docs": null,
       "summary": "Accesses report data in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project...",
       "useWhen": "Use to send or query analytics (web analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -18913,7 +18773,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": "https://github.com/customerio/cdp-analytics-js#readme",
       "repository": "https://github.com/customerio/cdp-analytics-js/tree/HEAD/packages/node",
@@ -18921,6 +18781,7 @@
       "summary": "Customer.io Data Pipelines analytics client for Node.js.",
       "useWhen": "Use to send or query analytics (segment) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -19059,7 +18920,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-analytics_v3/v0.17.0",
+      "docs": null,
       "summary": "This is the simple REST client for Google Analytics API V3. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These libraries...",
       "useWhen": "Use to send or query analytics (web analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -19199,7 +19060,7 @@
       },
       "homepage": "https://github.com/simplybusiness/snowplow_ruby_duid",
       "repository": "https://github.com/simplybusiness/snowplow_ruby_duid",
-      "docs": "https://www.rubydoc.info/gems/snowplow_ruby_duid/1.2.2",
+      "docs": null,
       "summary": "A gem that exposes the Snowplow domain userid in Rack applications. Also allows you to set your own domain userid that will be shared with the Snowplow Javascript tracker.",
       "useWhen": "Use to send or query analytics (event tracking) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -20031,7 +19892,7 @@
       },
       "homepage": "https://github.com/yandexmobile/metrica-plugin-fastlane",
       "repository": "https://github.com/yandexmobile/metrica-plugin-fastlane",
-      "docs": "https://www.rubydoc.info/gems/fastlane-plugin-appmetrica/0.3.0",
+      "docs": null,
       "summary": "Upload dSYM symbolication files to AppMetrica",
       "useWhen": "Use to send or query analytics (mobile analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -20872,7 +20733,7 @@
       },
       "homepage": "https://github.com/PostHog/posthog-ruby",
       "repository": "https://github.com/PostHog/posthog-ruby",
-      "docs": "https://www.rubydoc.info/gems/posthog-rails/3.18.9",
+      "docs": null,
       "summary": "Automatic exception tracking and instrumentation for Ruby on Rails applications using PostHog",
       "useWhen": "Use to send or query analytics (product analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -21992,7 +21853,7 @@
         "scope": "ISC (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://docs.humanbehavior.co",
-      "repository": "https://github.com/humanbehavior-gh/humanbehavior-js",
+      "repository": null,
       "docs": "https://docs.humanbehavior.co",
       "summary": "SDK for HumanBehavior session and event recording",
       "useWhen": "Use to send or query analytics (session replay) from TypeScript/JavaScript instead of writing a tracking client.",
@@ -22018,10 +21879,6 @@
         {
           "url": "https://www.npmjs.com/package/humanbehavior-js",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/humanbehavior-gh/humanbehavior-js",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -22339,7 +22196,7 @@
       },
       "homepage": "https://github.com/googleapis/google-cloud-ruby",
       "repository": "https://github.com/googleapis/google-cloud-ruby",
-      "docs": "https://www.rubydoc.info/gems/google-analytics-admin/0.8.1",
+      "docs": null,
       "summary": "The Analytics Admin API allows for programmatic access to the Google Analytics App+Web configuration data. You can use the Google Analytics Admin API to manage accounts and App+Web properties.",
       "useWhen": "Use to send or query analytics (web analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -23107,8 +22964,8 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://github.com/ZIGExN/gtm_on_rails",
-      "repository": "https://github.com/ZIGExN/gtm_on_rails",
-      "docs": "https://www.rubydoc.info/gems/gtm_on_rails/0.2.2",
+      "repository": null,
+      "docs": null,
       "summary": "An plugin that integrate Google Tag Manager easy with Rails",
       "useWhen": "Use to send or query analytics (tag manager) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -23133,10 +22990,6 @@
         {
           "url": "https://rubygems.org/gems/gtm_on_rails",
           "title": "gem registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/ZIGExN/gtm_on_rails",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -23387,9 +23240,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-v1.1/README.md",
+      "homepage": null,
       "repository": "https://github.com/rudderlabs/rudder-sdk-js/tree/HEAD/packages/analytics-v1.1",
-      "docs": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-v1.1/README.md",
+      "docs": null,
       "summary": "RudderStack JavaScript SDK",
       "useWhen": "Use to send or query analytics (rudderstack) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -23458,8 +23311,8 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://github.com/iterativelyhq/itly-sdk-ruby",
-      "repository": "https://github.com/iterativelyhq/itly-sdk-ruby",
-      "docs": "https://rubydoc.info/gems/itly-sdk",
+      "repository": null,
+      "docs": null,
       "summary": "Track and validate analytics with a unified, extensible interface that works with all your 3rd party analytics providers.",
       "useWhen": "Use to send or query analytics (general) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -23483,10 +23336,6 @@
         {
           "url": "https://rubygems.org/gems/itly-sdk",
           "title": "gem registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/iterativelyhq/itly-sdk-ruby",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -25773,7 +25622,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-tagmanager_v2/v0.40.0",
+      "docs": null,
       "summary": "This is the simple REST client for Tag Manager API V2. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These libraries are...",
       "useWhen": "Use to send or query analytics (tag manager) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -26342,6 +26191,7 @@
       "summary": "Google Analytics 4 Measurement Protocol Python Module",
       "useWhen": "Use to send or query analytics (ga4) from Python instead of writing a tracking client.",
       "cautions": [
+        "The registry declares the license as \"BSD\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
         "Last release Sep 2022; GA4 Measurement Protocol itself is stable."
@@ -26766,7 +26616,7 @@
       },
       "homepage": "https://github.com/joshmn/ahoy_captain",
       "repository": "https://github.com/joshmn/ahoy_captain",
-      "docs": "https://rubydoc.info/gems/ahoy_captain",
+      "docs": null,
       "summary": "A full-featured, mountable analytics dashboard for your Rails app, powered by Ahoy.",
       "useWhen": "Use to send or query analytics (first party tracking) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -27173,7 +27023,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/mixpanel/mixpanel-utils",
@@ -27181,6 +27031,7 @@
       "summary": "Utilities-only module for exporting and importing data into Mixpanel. NOT for server-side app tracking.",
       "useWhen": "Use to send or query analytics (product analytics) from Python instead of writing a tracking client.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -27457,7 +27308,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -27465,6 +27316,7 @@
       "summary": "Adobe Analytics SDK",
       "useWhen": "Use to send or query analytics (web analytics) from JavaScript instead of writing a tracking client.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -27528,7 +27380,7 @@
       },
       "homepage": "https://github.com/patbenatar/mixpal",
       "repository": "https://github.com/patbenatar/mixpal",
-      "docs": "https://www.rubydoc.info/gems/mixpal/0.5.0",
+      "docs": null,
       "summary": "Use Mixpanel's JavaScript library from your backend with ease",
       "useWhen": "Use to send or query analytics (product analytics) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -27596,9 +27448,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/vuejs/vuepress/blob/master/packages/@vuepress/plugin-google-analytics#readme",
+      "homepage": null,
       "repository": "https://github.com/vuejs/vuepress/tree/HEAD/packages/@vuepress/plugin-google-analytics",
-      "docs": "https://github.com/vuejs/vuepress/blob/master/packages/@vuepress/plugin-google-analytics#readme",
+      "docs": null,
       "summary": "google-analytics plugin for vuepress",
       "useWhen": "Use to send or query analytics (google analytics) from JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -27877,9 +27729,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-js-cookies/README.md",
+      "homepage": null,
       "repository": "https://github.com/rudderlabs/rudder-sdk-js/tree/HEAD/packages/analytics-js-cookies",
-      "docs": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-js-cookies/README.md",
+      "docs": null,
       "summary": "RudderStack JavaScript SDK Cookies Utilities",
       "useWhen": "Use to send or query analytics (rudderstack) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -28018,7 +27870,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/vexotech/vexo-analytics",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/vexo-analytics",
       "summary": "The analytics tool for React Native.",
       "useWhen": "Use to send or query analytics (product analytics) from TypeScript/JavaScript instead of writing a tracking client.",
@@ -28044,10 +27896,6 @@
         {
           "url": "https://www.npmjs.com/package/vexo-analytics",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/vexotech/vexo-analytics",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -28156,7 +28004,7 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-js-service-worker/README.md",
+      "homepage": null,
       "repository": "https://github.com/rudderlabs/rudder-sdk-js/tree/HEAD/packages/analytics-js-service-worker",
       "docs": "https://github.com/rudderlabs/rudder-sdk-js/blob/main/packages/analytics-js-service-worker/README.md",
       "summary": "RudderStack JavaScript Service Worker SDK",
@@ -28411,73 +28259,6 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 33980
-      }
-    },
-    {
-      "id": "card-mod-google-analytics",
-      "name": "card-mod-google_analytics",
-      "category": "analytics",
-      "platforms": [
-        "server",
-        "ruby"
-      ],
-      "kind": "package",
-      "integrationMode": "license-review",
-      "verification": "partial",
-      "license": {
-        "id": "GPL-3.0",
-        "url": null,
-        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
-      },
-      "homepage": null,
-      "repository": null,
-      "docs": "https://www.rubydoc.info/gems/card-mod-google_analytics/0.16",
-      "summary": "Google Analytics support for decko",
-      "useWhen": "Use to send or query analytics (web analytics) from Ruby instead of writing a tracking client.",
-      "cautions": [
-        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "analytics",
-        "web-analytics",
-        "ruby",
-        "gem",
-        "google-analytics"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "data-analytics",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://rubygems.org/gems/card-mod-google_analytics",
-          "title": "gem registry record (license, versions, downloads)"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "gem",
-          "name": "card-mod-google_analytics"
-        }
-      ],
-      "languages": [
-        "ruby"
-      ],
-      "popularity": {
-        "metric": "gem-downloads-total",
-        "value": 33275
       }
     },
     {
@@ -29252,8 +29033,8 @@
         "rust"
       ],
       "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
+      "integrationMode": "license-review",
+      "verification": "partial",
       "license": {
         "id": "MIT",
         "url": null,
@@ -29265,6 +29046,7 @@
       "summary": "A simple Rust library for interacting with the Posthog API.",
       "useWhen": "Use to send or query analytics (product analytics) from Rust instead of writing a tracking client.",
       "cautions": [
+        "The registry declares the license as \"non-standard\"; confirm it matches MIT before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -29951,7 +29733,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-tagmanager_v1/v0.21.0",
+      "docs": null,
       "summary": "This is the simple REST client for Tag Manager API V1. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These libraries are...",
       "useWhen": "Use to send or query analytics (tag manager) from Ruby instead of writing a tracking client.",
       "cautions": [
@@ -30086,7 +29868,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/umami-software/umami-node",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/@umami/node",
       "summary": "Node client for Umami",
       "useWhen": "Use to send or query analytics (umami) from TypeScript/JavaScript instead of writing a tracking client.",
@@ -30112,10 +29894,6 @@
         {
           "url": "https://www.npmjs.com/package/@umami/node",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/umami-software/umami-node",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -32786,9 +32564,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://awesome-cordova-plugins.com",
+      "homepage": null,
       "repository": "https://github.com/danielsogl/awesome-cordova-plugins/tree/HEAD/src/@awesome-cordova-plugins/plugins/mixpanel",
-      "docs": "https://awesome-cordova-plugins.com",
+      "docs": null,
       "summary": "Mixpanel plugin for Cordova and Ionic. Cordova Plugin that wraps Mixpanel SDK for Android and iOS",
       "useWhen": "Use to send or query analytics (mixpanel) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -35119,8 +34897,8 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/sanity-io/event-tracking#readme",
-      "repository": "https://github.com/sanity-io/event-tracking/tree/HEAD/browser-javascript",
+      "homepage": null,
+      "repository": null,
       "docs": "https://www.npmjs.com/package/@sanity/frontend-analytics",
       "summary": "Internal Sanity package - Rudderstack SDK wrapper for Sanity frontend applications",
       "useWhen": "Use to send or query analytics (rudderstack) from TypeScript/JavaScript instead of writing a tracking client.",
@@ -35147,10 +34925,6 @@
         {
           "url": "https://www.npmjs.com/package/@sanity/frontend-analytics",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/sanity-io/event-tracking/tree/HEAD/browser-javascript",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -35823,7 +35597,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -35831,6 +35605,7 @@
       "summary": "The Freshpaint react native integration.",
       "useWhen": "Use to send or query analytics (cdp) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -37879,7 +37654,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/spraakbanken/matomo-core",
@@ -37887,6 +37662,7 @@
       "summary": "Sans-IO core for tracking with Matomo.",
       "useWhen": "Use to send or query analytics (web analytics) from Python instead of writing a tracking client.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -38848,9 +38624,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://ecosystem.vuejs.press/plugins/umami-analytics.html",
+      "homepage": null,
       "repository": "https://github.com/vuepress/ecosystem/tree/HEAD/plugins/plugin-umami-analytics",
-      "docs": "https://ecosystem.vuejs.press/plugins/umami-analytics.html",
+      "docs": null,
       "summary": "VuePress plugin - umami-analytics",
       "useWhen": "Use to send or query analytics (umami) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
@@ -39272,7 +39048,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/kdcokenny/next-umami",
@@ -39280,6 +39056,7 @@
       "summary": "Next.js Umami Analytics Integration",
       "useWhen": "Use to send or query analytics (umami) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -40101,6 +39878,7 @@
       "summary": "Source implementation for Mixpanel.",
       "useWhen": "Use to send or query analytics (connector) from Python instead of writing a tracking client.",
       "cautions": [
+        "The registry declares the license as \"ELv2\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -43393,7 +43171,7 @@
         "scope": "Heap Android Software License Agreement (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/heap/heap",
+      "repository": null,
       "docs": "https://javadoc.io/doc/com.heapanalytics.android/heap-android-client",
       "summary": "Heap SDK for Android",
       "useWhen": "Use to send or query analytics (product analytics) from Java instead of writing a tracking client.",
@@ -43420,10 +43198,6 @@
         {
           "url": "https://central.sonatype.com/artifact/com.heapanalytics.android/heap-android-client",
           "title": "Maven Central record"
-        },
-        {
-          "url": "https://github.com/heap/heap",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -44486,7 +44260,7 @@
       },
       "homepage": null,
       "repository": "https://github.com/snowplow/referer-parser",
-      "docs": "https://www.rubydoc.info/gems/referer-parser/0.3.0",
+      "docs": null,
       "summary": "Library for extracting marketing attribution data from referer URLs",
       "useWhen": "Use for campaign attribution and UTM handling (marketing attribution) in Ruby instead of custom parsing.",
       "cautions": [
@@ -44626,7 +44400,7 @@
       },
       "homepage": "https://github.com/saiqulhaq/firebase_dynamic_link",
       "repository": "https://github.com/saiqulhaq/firebase_dynamic_link",
-      "docs": "https://www.rubydoc.info/gems/firebase_dynamic_link/3.0.0",
+      "docs": null,
       "summary": "Create deep link for web and mobile app using Firebase Dynamic Links service",
       "useWhen": "Use for campaign attribution and UTM handling (deep linking) in Ruby instead of custom parsing.",
       "cautions": [
@@ -45084,72 +44858,6 @@
       "popularity": {
         "metric": "packagist-downloads-total",
         "value": 406163
-      }
-    },
-    {
-      "id": "config-plugins-react-native-branch",
-      "name": "@config-plugins/react-native-branch",
-      "category": "attribution",
-      "platforms": [
-        "node",
-        "web"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": "https://docs.expo.dev/versions/latest/sdk/branch/",
-      "repository": null,
-      "docs": "https://docs.expo.dev/versions/latest/sdk/branch/",
-      "summary": "Config plugin to auto configure react-native-branch on prebuild",
-      "useWhen": "Use for campaign attribution and UTM handling (mobile attribution) in TypeScript/JavaScript instead of custom parsing.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "attribution",
-        "mobile-attribution",
-        "typescript",
-        "npm",
-        "mobile",
-        "react-native"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "data-analytics"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.npmjs.com/package/@config-plugins/react-native-branch",
-          "title": "npm registry record (license, versions, downloads)"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "npm",
-          "name": "@config-plugins/react-native-branch"
-        }
-      ],
-      "languages": [
-        "typescript"
-      ],
-      "popularity": {
-        "metric": "npm-downloads-month",
-        "value": 399340
       }
     },
     {
@@ -46137,7 +45845,7 @@
       },
       "homepage": "https://github.com/holli/referer_tracking/",
       "repository": "https://github.com/holli/referer_tracking",
-      "docs": "https://www.rubydoc.info/gems/referer_tracking/5.0.1",
+      "docs": null,
       "summary": "Referer tracking automates better tracking in your Rails app. It tells you who creates activerecord objects / models, where did they originally come from, what url did they use etc. It does it by...",
       "useWhen": "Use for campaign attribution and UTM handling (marketing attribution) in Ruby instead of custom parsing.",
       "cautions": [
@@ -46201,7 +45909,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/maks-sh/scikit-uplift",
@@ -46209,6 +45917,7 @@
       "summary": "Classic approaches of Uplift modelling in scikit-learn style in python",
       "useWhen": "Use for campaign attribution and UTM handling (uplift) in Python instead of custom parsing.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
         "Last release Aug 2022; still a common uplift toolkit."
@@ -46273,7 +45982,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/google/meridian",
@@ -46281,6 +45990,7 @@
       "summary": "Google's open source mixed marketing model library, helps you understand your return on investment and direct your ad spend with confidence.",
       "useWhen": "Use for campaign attribution and UTM handling (marketing mix modeling) in Python instead of custom parsing.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -46419,7 +46129,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-firebasedynamiclinks_v1/v0.22.0",
+      "docs": null,
       "summary": "This is the simple REST client for Firebase Dynamic Links API V1. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These...",
       "useWhen": "Use for campaign attribution and UTM handling (deep linking) in Ruby instead of custom parsing.",
       "cautions": [
@@ -46626,7 +46336,7 @@
       },
       "homepage": "https://github.com/alexlev1/utm_tracker",
       "repository": "https://github.com/alexlev1/utm_tracker",
-      "docs": "https://rubydoc.info/gems/utm_tracker",
+      "docs": null,
       "summary": "Allow save UTM tags into database",
       "useWhen": "Use for campaign attribution and UTM handling (utm) in Ruby instead of custom parsing.",
       "cautions": [
@@ -47661,6 +47371,7 @@
       "summary": "Buy Till You Die and Customer Lifetime Value statistical models in Python.",
       "useWhen": "Use for campaign attribution and UTM handling (clv) in Python instead of custom parsing.",
       "cautions": [
+        "The registry declares the license as \"Apache 2.0\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -48888,7 +48599,7 @@
         "scope": "Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       },
       "homepage": null,
-      "repository": "https://bitbucket.org/appsflyer/appsflyer-android-sdk",
+      "repository": null,
       "docs": "https://javadoc.io/doc/com.appsflyer/af-android-sdk",
       "summary": "AppsFlyer's official Android SDK for Mobile Advertising Attribution & Analytics.",
       "useWhen": "Use for campaign attribution and UTM handling (mobile attribution) in Java instead of custom parsing.",
@@ -48915,10 +48626,6 @@
         {
           "url": "https://central.sonatype.com/artifact/com.appsflyer/af-android-sdk",
           "title": "Maven Central record"
-        },
-        {
-          "url": "https://bitbucket.org/appsflyer/appsflyer-android-sdk",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -49026,7 +48733,7 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/spatie/cookie-consent",
+      "homepage": null,
       "repository": "https://github.com/spatie/laravel-cookie-consent",
       "docs": null,
       "summary": "Make your Laravel app comply with the crazy EU cookie law",
@@ -49717,7 +49424,7 @@
         "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://github.com/cloudscribe/cloudscribe",
-      "repository": "https://github.com/cloudscribe/cloudscribe",
+      "repository": null,
       "docs": "https://github.com/cloudscribe/cloudscribe",
       "summary": "Attributes and helpers that can be used as tools to help meet GDPR requirements",
       "useWhen": "Use for cookie/consent management (consent management) instead of building a GDPR banner and consent store.",
@@ -49742,10 +49449,6 @@
         {
           "url": "https://www.nuget.org/packages/cloudscribe.Common.Gdpr",
           "title": "nuget registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/cloudscribe/cloudscribe",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -50405,7 +50108,7 @@
         "url": null,
         "scope": "OSL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       },
-      "homepage": "https://github.com/laboro/OroCookieConsentBundle.git",
+      "homepage": null,
       "repository": "https://github.com/oroinc/cookie-consent",
       "docs": null,
       "summary": "Oro Commerce Cookie Consent",
@@ -50953,7 +50656,7 @@
         "scope": "SEE LICENSE IN LICENSE.md: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       },
       "homepage": "https://docs.usercentrics.com/cmp_browser_sdk/4.65.0/index.html",
-      "repository": "https://bitbucket.org/usercentricscode/cmp-browser-sdk",
+      "repository": null,
       "docs": "https://docs.usercentrics.com/cmp_browser_sdk/4.65.0/index.html",
       "summary": "Usercentrics CMP Browser SDK",
       "useWhen": "Use for cookie/consent management (consent) instead of building a GDPR banner and consent store.",
@@ -50978,10 +50681,6 @@
         {
           "url": "https://www.npmjs.com/package/@usercentrics/cmp-browser-sdk",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://bitbucket.org/usercentricscode/cmp-browser-sdk",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -51630,7 +51329,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -51638,6 +51337,7 @@
       "summary": "Angular wrapper for the Osano cookieconsent library to show GDPR cookie consent banners.",
       "useWhen": "Use for cookie/consent management (consent) instead of building a GDPR banner and consent store.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -51907,7 +51607,7 @@
       },
       "homepage": "https://github.com/al-org-dev/al-cookie",
       "repository": "https://github.com/al-org-dev/al-cookie",
-      "docs": "https://rubydoc.info/gems/al_cookie",
+      "docs": null,
       "summary": "Provides cookie consent runtime assets and Liquid tags for al-folio sites.",
       "useWhen": "Use for cookie/consent management (cookie banner) instead of building a GDPR banner and consent store.",
       "cautions": [
@@ -52795,7 +52495,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -52803,6 +52503,7 @@
       "summary": "Consent strings store user consent status as binary data, encoded in base64. Encoding user consent status into a binary string, or decoding it from an existing one, requires an encoder/decoder...",
       "useWhen": "Use for cookie/consent management (consent) instead of building a GDPR banner and consent store.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -53061,7 +52762,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": "https://cookie-consent.finsweet.com/",
       "repository": null,
@@ -53069,6 +52770,7 @@
       "summary": "GDPR and CCPA compliant Cookie Consent solution for Webflow.",
       "useWhen": "Use for cookie/consent management (consent) instead of building a GDPR banner and consent store.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -53128,9 +52830,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://vue-nuxt-cookiebot.netlify.app",
+      "homepage": null,
       "repository": "https://github.com/ambitiondev/cookiebot",
-      "docs": "https://vue-nuxt-cookiebot.netlify.app",
+      "docs": null,
       "summary": "Composable for Cookiebot in Vue applications",
       "useWhen": "Use for cookie/consent management (consent) instead of building a GDPR banner and consent store.",
       "cautions": [
@@ -54727,7 +54429,7 @@
       },
       "homepage": "https://github.com/unleash/unleash-ruby-sdk",
       "repository": "https://github.com/unleash/unleash-client-ruby",
-      "docs": "https://www.rubydoc.info/gems/unleash/6.7.1",
+      "docs": null,
       "summary": "This is the ruby client for Unleash, a powerful feature toggle system that gives you a great overview over all feature toggles across all your applications and services.",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -54795,7 +54497,7 @@
       },
       "homepage": "https://github.com/launchdarkly/ruby-server-sdk",
       "repository": "https://github.com/launchdarkly/ruby-server-sdk",
-      "docs": "https://rubydoc.info/gems/launchdarkly-server-sdk",
+      "docs": null,
       "summary": "Official LaunchDarkly SDK for Ruby",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -55544,7 +55246,7 @@
       },
       "homepage": "https://github.com/splitrb/split",
       "repository": "https://github.com/splitrb/split",
-      "docs": "https://rubydoc.info/gems/split",
+      "docs": null,
       "summary": "Rack based split testing framework",
       "useWhen": "Use for A/B tests and feature experiments (ab testing) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -56152,7 +55854,7 @@
       },
       "homepage": "https://github.com/optimizely/ruby-sdk",
       "repository": "https://github.com/optimizely/ruby-sdk",
-      "docs": "https://rubydoc.info/gems/optimizely-sdk",
+      "docs": null,
       "summary": "A Ruby SDK for use with Optimizely Feature Experimentation, Optimizely Full Stack (legacy), and Optimizely Rollouts",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -56288,7 +55990,7 @@
       },
       "homepage": "https://openapi-generator.tech",
       "repository": null,
-      "docs": "https://www.rubydoc.info/gems/launchdarkly_api/24.0.0",
+      "docs": null,
       "summary": "This documentation describes LaunchDarkly's REST API. To access the complete OpenAPI spec directly, use Get OpenAPI spec. To learn how to use LaunchDarkly using the user interface (UI) instead...",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -58401,7 +58103,7 @@
       },
       "homepage": "https://github.com/growthbook/growthbook-ruby",
       "repository": "https://github.com/growthbook/growthbook-ruby",
-      "docs": "https://www.rubydoc.info/gems/growthbook/1.3.0",
+      "docs": null,
       "summary": "Official GrowthBook SDK for Ruby",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -58955,6 +58657,7 @@
       "summary": "Flagsmith Python SDK",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Python instead of a home-grown bucketing system.",
       "cautions": [
+        "The registry declares the license as \"BSD3\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       ],
       "tags": [
@@ -59431,7 +59134,7 @@
       },
       "homepage": "https://philiprehberger.com/open-source-packages/ruby/philiprehberger-feature_flag",
       "repository": "https://github.com/philiprehberger/rb-feature-flag",
-      "docs": "https://rubydoc.info/gems/philiprehberger-feature_flag",
+      "docs": null,
       "summary": "A lightweight feature flag library supporting in-memory, ENV, and YAML backends with percentage rollout and A/B variant support.",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -60460,7 +60163,7 @@
       },
       "homepage": "https://flagsmith.com",
       "repository": null,
-      "docs": "https://www.rubydoc.info/gems/flagsmith/4.3.0",
+      "docs": null,
       "summary": "Ruby Client for Flagsmith. Ship features with confidence using feature flags and remote config. Host yourself or use our hosted version at https://flagsmith.com",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -60593,7 +60296,7 @@
       },
       "homepage": "https://configcat.com",
       "repository": null,
-      "docs": "https://www.rubydoc.info/gems/configcat/10.0.0",
+      "docs": null,
       "summary": "Feature Flags created by developers for developers with . ConfigCat lets you manage feature flags across frontend, backend, mobile, and desktop apps without (re)deploying code. % rollouts, user...",
       "useWhen": "Use for A/B tests and feature experiments (feature flags) in Ruby instead of a home-grown bucketing system.",
       "cautions": [
@@ -61671,6 +61374,280 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 272255
+      }
+    },
+    {
+      "id": "innocraft-php-experiments-packagist",
+      "name": "innocraft/php-experiments",
+      "category": "experimentation",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0",
+        "url": null,
+        "scope": "LGPL-3.0: dynamic linking as a dependency is usually fine; modifications to the library must be shared."
+      },
+      "homepage": null,
+      "repository": "https://github.com/innocraft/php-experiments",
+      "docs": null,
+      "summary": "PHP Experiments is a library that lets you run A/B and split tests",
+      "useWhen": "Use for A/B tests and feature experiments (ab testing) in PHP instead of a home-grown bucketing system.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "experimentation",
+        "ab-testing",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/innocraft/php-experiments",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/innocraft/php-experiments",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "innocraft/php-experiments"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 270076
+      }
+    },
+    {
+      "id": "launchdarkly-mcp-server-npm",
+      "name": "@launchdarkly/mcp-server",
+      "category": "experimentation",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/launchdarkly/mcp-server",
+      "docs": "https://www.npmjs.com/package/@launchdarkly/mcp-server",
+      "summary": "The local Model Context Protocol (MCP) server for LaunchDarkly federal and European Union (EU) environments.",
+      "useWhen": "Use for A/B tests and feature experiments (feature flags) in TypeScript/JavaScript instead of a home-grown bucketing system.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "experimentation",
+        "feature-flags",
+        "typescript",
+        "npm",
+        "mcp"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@launchdarkly/mcp-server",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/launchdarkly/mcp-server",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@launchdarkly/mcp-server"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 244402
+      }
+    },
+    {
+      "id": "configcat-hex-2",
+      "name": "configcat",
+      "category": "experimentation",
+      "platforms": [
+        "server",
+        "elixir"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/configcat/elixir-sdk",
+      "docs": "https://hexdocs.pm/configcat",
+      "summary": "ConfigCat SDK for Elixir. Feature Flags created by developers for developers with . ConfigCat lets you manage feature flags across frontend, backend, mobile, and desktop apps without (re)deploying...",
+      "useWhen": "Use for A/B tests and feature experiments (feature flags) in Elixir instead of a home-grown bucketing system.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "experimentation",
+        "feature-flags",
+        "elixir",
+        "hex"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://hex.pm/packages/configcat",
+          "title": "hex registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/configcat/elixir-sdk",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "hex",
+          "name": "configcat"
+        }
+      ],
+      "languages": [
+        "elixir"
+      ],
+      "popularity": {
+        "metric": "hex-downloads-total",
+        "value": 224164
+      }
+    },
+    {
+      "id": "statsig-next-npm",
+      "name": "@statsig/next",
+      "category": "experimentation",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "ISC",
+        "url": null,
+        "scope": "ISC (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/statsig-io/js-client-monorepo",
+      "repository": "https://github.com/statsig-io/js-client-monorepo/tree/HEAD/packages/next",
+      "docs": "https://www.npmjs.com/package/@statsig/next",
+      "summary": "Statsig helps you move faster with feature gates (feature flags), and/or dynamic configs. It also allows you to run A/B/n tests to validate your new features and understand their impact on your...",
+      "useWhen": "Use for A/B tests and feature experiments (feature flags) in TypeScript/JavaScript instead of a home-grown bucketing system.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "experimentation",
+        "feature-flags",
+        "typescript",
+        "npm",
+        "nextjs"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@statsig/next",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/statsig-io/js-client-monorepo/tree/HEAD/packages/next",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@statsig/next"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 220659
       }
     }
   ]

@@ -27,7 +27,7 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 600 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 4814 | Link- and license-checked records for open-source libraries, services and references across 21 [project types](resources/project-types.json) |
+| [External resources](#resource-catalog) | 4736 | Link- and license-checked records for open-source libraries, services and references across 21 [project types](resources/project-types.json) |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -196,20 +196,20 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/data-docs-office.json`](resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
 | [`catalog/devops-testing-security.json`](resources/catalog/devops-testing-security.json) | 116 | [devops-testing-security.md](docs/resources/devops-testing-security.md) | testing, security, code-quality, observability, logging |
 | [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
-| [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 118 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
+| [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 107 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
-| [`catalog/marketing-engagement-2.json`](resources/catalog/marketing-engagement-2.json) | 75 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | push, reviews |
+| [`catalog/marketing-engagement-2.json`](resources/catalog/marketing-engagement-2.json) | 60 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | push, reviews |
 | [`catalog/marketing-engagement.json`](resources/catalog/marketing-engagement.json) | 900 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | email-marketing, crm, push, marketing-automation, forms-landing |
-| [`catalog/marketing-seo-2.json`](resources/catalog/marketing-seo-2.json) | 133 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo |
+| [`catalog/marketing-seo-2.json`](resources/catalog/marketing-seo-2.json) | 84 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo |
 | [`catalog/marketing-seo.json`](resources/catalog/marketing-seo.json) | 900 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo, content, links-qr, ai-optimization |
 | [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
 | [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
-| [`catalog/social-media.json`](resources/catalog/social-media.json) | 799 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
+| [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **4814** | | |
+| **Total** | **4736** | | |
 <!-- genlib:catalog:end -->
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).

@@ -17,12 +17,12 @@ node "$GENLIB_ROOT/tools/resources.mjs" inspect <id> --json   # license, caution
 | Language | Records |
 | --- | ---: |
 | typescript | 330 |
-| python | 94 |
+| python | 92 |
 | go | 54 |
 | rust | 44 |
 | java | 19 |
 | kotlin | 4 |
-| csharp | 33 |
+| csharp | 32 |
 | ruby | 35 |
 | php | 87 |
 | dart | 14 |
@@ -30,7 +30,7 @@ node "$GENLIB_ROOT/tools/resources.mjs" inspect <id> --json   # license, caution
 | elixir | 21 |
 | any | 43 |
 
-Total: 799 records in `resources/catalog/social-media*.json`.
+Total: 796 records in `resources/catalog/social-media*.json`.
 
 ## Advertising
 

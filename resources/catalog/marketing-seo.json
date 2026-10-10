@@ -361,12 +361,12 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
+      "integrationMode": "license-review",
+      "verification": "partial",
       "license": {
         "id": "MIT",
         "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/michaeldelorenzo/keyword-extractor",
@@ -374,6 +374,7 @@
       "summary": "Module for creating a keyword array from a string and excluding stop words.",
       "useWhen": "Use for AI answer-engine optimization (keyword extraction): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in TypeScript/JavaScript.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "Pin the version and review the changelog before upgrading."
       ],
       "tags": [
@@ -3455,7 +3456,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/din0s/docusaurus-plugin-generate-llms-txt",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/docusaurus-plugin-generate-llms-txt",
       "summary": "A docusaurus plugin that generates a concatenated markdown file from your documentation.",
       "useWhen": "Use for AI answer-engine optimization (llms txt): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in JavaScript.",
@@ -3480,10 +3481,6 @@
         {
           "url": "https://www.npmjs.com/package/docusaurus-plugin-generate-llms-txt",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/din0s/docusaurus-plugin-generate-llms-txt",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -4337,77 +4334,6 @@
       }
     },
     {
-      "id": "fast-llms-txt",
-      "name": "fast-llms-txt",
-      "category": "ai-optimization",
-      "platforms": [
-        "server",
-        "python"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/samaltman/fast-llms-txt",
-      "docs": null,
-      "summary": "Generate llms.txt markdown from FastAPI OpenAPI schema for AI agents",
-      "useWhen": "Use for AI answer-engine optimization (llms txt): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in Python.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "ai-optimization",
-        "llms-txt",
-        "python",
-        "pypi",
-        "llms.txt",
-        "fastapi",
-        "openapi"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pypi.org/project/fast-llms-txt/",
-          "title": "pypi registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/samaltman/fast-llms-txt",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "pypi",
-          "name": "fast-llms-txt"
-        }
-      ],
-      "languages": [
-        "python"
-      ],
-      "popularity": {
-        "metric": "pypi-downloads-month",
-        "value": 10405
-      }
-    },
-    {
       "id": "flesch-kincaid",
       "name": "flesch-kincaid",
       "category": "ai-optimization",
@@ -4829,7 +4755,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/canonical/canonicalwebteam.markdown-response",
@@ -4837,6 +4763,7 @@
       "summary": "Flask extension to serve HTML pages as Markdown via ?format=md query parameter.",
       "useWhen": "Use for AI answer-engine optimization (markdown): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in Python.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -6148,7 +6075,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://rankcli.dev",
-      "repository": "https://github.com/integrallis/rankcli.dev/tree/HEAD/packages/mcp-server",
+      "repository": null,
       "docs": "https://rankcli.dev",
       "summary": "Free, local SEO + GEO (AI-search-citation) analysis for AI assistants - audits GEO/AI-crawler access, Core Web Vitals, structured data, security headers, mobile, and images with no signup or API key.",
       "useWhen": "Use for AI answer-engine optimization (ai crawlers): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in TypeScript/JavaScript.",
@@ -6174,10 +6101,6 @@
         {
           "url": "https://www.npmjs.com/package/@rankcli/mcp-server",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/integrallis/rankcli.dev/tree/HEAD/packages/mcp-server",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -7110,8 +7033,8 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/Beacon-AI-Journey-Management/BeaconMVP#readme",
-      "repository": "https://github.com/Beacon-AI-Journey-Management/BeaconMVP/tree/HEAD/packages/vercel-logger",
+      "homepage": null,
+      "repository": null,
       "docs": "https://www.npmjs.com/package/@beacon-ai/vercel",
       "summary": "Track AI crawler activity on your Vercel-hosted site. Drop-in Next.js middleware from Beacon.",
       "useWhen": "Use for AI answer-engine optimization (ai crawlers): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in TypeScript/JavaScript.",
@@ -7137,10 +7060,6 @@
         {
           "url": "https://www.npmjs.com/package/@beacon-ai/vercel",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/Beacon-AI-Journey-Management/BeaconMVP/tree/HEAD/packages/vercel-logger",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -7461,7 +7380,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://frase.io",
-      "repository": "https://github.com/frase-io/newfrase",
+      "repository": null,
       "docs": "https://frase.io",
       "summary": "Frase MCP Server — The complete content platform for AI agents. Research, write, optimize, and host SEO & GEO-optimized content with built-in AI search visibility monitoring. Includes Frase CMS...",
       "useWhen": "Use for AI answer-engine optimization (geo aeo): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in TypeScript/JavaScript.",
@@ -7488,10 +7407,6 @@
         {
           "url": "https://www.npmjs.com/package/@frase/mcp-server",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/frase-io/newfrase",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -7770,77 +7685,6 @@
       "popularity": {
         "metric": "pypi-downloads-month",
         "value": 1202
-      }
-    },
-    {
-      "id": "canonicalwebteam-store-llm",
-      "name": "canonicalwebteam.store-llm",
-      "category": "ai-optimization",
-      "platforms": [
-        "server",
-        "python"
-      ],
-      "kind": "package",
-      "integrationMode": "license-review",
-      "verification": "partial",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
-      },
-      "homepage": null,
-      "repository": "https://github.com/canonical/canonicalwebteam.store-llm",
-      "docs": null,
-      "summary": "Flask extension serving a store's pages as Markdown at /page.md and listing them in llms.txt and llms-full.txt.",
-      "useWhen": "Use for AI answer-engine optimization (llms txt): llms.txt, AI-crawler rules, keyword/NLP extraction or AI copy, instead of building it in Python.",
-      "cautions": [
-        "No license declared in registry metadata; check the repository before use."
-      ],
-      "tags": [
-        "marketing",
-        "ai-optimization",
-        "llms-txt",
-        "python",
-        "pypi",
-        "llms.txt",
-        "flask",
-        "markdown"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pypi.org/project/canonicalwebteam.store-llm/",
-          "title": "pypi registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/canonical/canonicalwebteam.store-llm",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "pypi",
-          "name": "canonicalwebteam.store-llm"
-        }
-      ],
-      "languages": [
-        "python"
-      ],
-      "popularity": {
-        "metric": "pypi-downloads-month",
-        "value": 1158
       }
     },
     {
@@ -9732,7 +9576,7 @@
         "scope": "MPL-2.0 (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/vercel/og",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/@vercel/og",
       "summary": "Generate Open Graph Images dynamically from HTML/CSS without a browser",
       "useWhen": "Use for marketing content work (og image) such as feeds, readability, previews or rich media, instead of hand-rolling it in TypeScript/JavaScript.",
@@ -9756,10 +9600,6 @@
         {
           "url": "https://www.npmjs.com/package/@vercel/og",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/vercel/og",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -11197,9 +11037,9 @@
         "url": null,
         "scope": "GPL-2.0-or-later: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       },
-      "homepage": "https://github.com/WordPress/gutenberg/tree/HEAD/packages/api-fetch/README.md",
+      "homepage": null,
       "repository": "https://github.com/WordPress/gutenberg/tree/HEAD/packages/api-fetch",
-      "docs": "https://github.com/WordPress/gutenberg/tree/HEAD/packages/api-fetch/README.md",
+      "docs": null,
       "summary": "Utility to make WordPress REST API requests.",
       "useWhen": "Use for marketing content work (publishing) such as feeds, readability, previews or rich media, instead of hand-rolling it in TypeScript/JavaScript.",
       "cautions": [
@@ -11614,7 +11454,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -11622,6 +11462,7 @@
       "summary": "Using Vercel's Satori engine, and many credits to @vercel/og for the inspiration.",
       "useWhen": "Use for marketing content work (og image) such as feeds, readability, previews or rich media, instead of hand-rolling it in TypeScript/JavaScript.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -13132,7 +12973,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/coleifer/micawber",
@@ -13140,6 +12981,7 @@
       "summary": "a small library for extracting rich content from urls",
       "useWhen": "Use for marketing content work (oembed) such as feeds, readability, previews or rich media, instead of hand-rolling it in Python.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -17661,60 +17503,6 @@
       }
     },
     {
-      "id": "adobe-experience-manager",
-      "name": "Adobe Experience Manager",
-      "category": "content",
-      "platforms": [
-        "web"
-      ],
-      "kind": "service",
-      "integrationMode": "service",
-      "verification": "verified",
-      "license": {
-        "id": null,
-        "url": null,
-        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
-      },
-      "homepage": "https://business.adobe.com/products/experience-manager/assets/digital-asset-management.html",
-      "repository": null,
-      "docs": null,
-      "summary": "Enterprise-level DAM solution that integrates with Adobe's Creative Cloud for seamless asset management and content creation.",
-      "useWhen": "Use for marketing content work (digital asset management dam) such as feeds, readability, previews or rich media, instead of hand-rolling it in any.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "content",
-        "digital-asset-management-dam",
-        "service",
-        "awesome-marketing"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://business.adobe.com/products/experience-manager/assets/digital-asset-management.html",
-          "title": "Official site"
-        },
-        {
-          "url": "https://github.com/marketingtoolslist/awesome-marketing",
-          "title": "Listed in marketingtoolslist/awesome-marketing"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Sign up, create a server-side API key and follow the official setup guide."
-      ]
-    },
-    {
       "id": "adobe-spark",
       "name": "Adobe Spark",
       "category": "content",
@@ -19583,12 +19371,12 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
+      "integrationMode": "license-review",
+      "verification": "partial",
       "license": {
         "id": "Apache-2.0",
         "url": null,
-        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/gtanner/qrcode-terminal",
@@ -19596,6 +19384,7 @@
       "summary": "QRCodes, in the terminal",
       "useWhen": "Use for qr code: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in JavaScript.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "Pin the version and review the changelog before upgrading."
       ],
       "tags": [
@@ -20278,7 +20067,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/shtylman/qr.js",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/qr.js",
       "summary": "qrcode encoding in javascript",
       "useWhen": "Use for qr code: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in JavaScript.",
@@ -20303,10 +20092,6 @@
         {
           "url": "https://www.npmjs.com/package/qr.js",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/shtylman/qr.js",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -21625,134 +21410,6 @@
       }
     },
     {
-      "id": "barcodelib-ssrs",
-      "name": "BarcodeLib.SSRS",
-      "category": "links-qr",
-      "platforms": [
-        "server",
-        "dotnet"
-      ],
-      "kind": "package",
-      "integrationMode": "license-review",
-      "verification": "partial",
-      "license": {
-        "id": "NOASSERTION",
-        "url": null,
-        "scope": "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
-      },
-      "homepage": "https://www.barcodelib.com/net_barcode/main.html",
-      "repository": null,
-      "docs": "https://www.barcodelib.com/net_barcode/main.html",
-      "summary": "BarcodeLib.SSRS - A barcode library to quickly create barcodes in C#.NET SSRS reporting service reports Supports QR Code, Data Matrix, Code 128/39, EAN/UPC, GS1-128, includes comprehensive options...",
-      "useWhen": "Use for qr code: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in C#/.NET.",
-      "cautions": [
-        "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
-      ],
-      "tags": [
-        "marketing",
-        "links-qr",
-        "qr-code",
-        "csharp",
-        "nuget"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.nuget.org/packages/BarcodeLib.SSRS",
-          "title": "nuget registry record (license, versions, downloads)"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "nuget",
-          "name": "BarcodeLib.SSRS"
-        }
-      ],
-      "languages": [
-        "csharp"
-      ],
-      "popularity": {
-        "metric": "nuget-total-downloads",
-        "value": 2449261
-      }
-    },
-    {
-      "id": "barcodelib-rdlc",
-      "name": "BarcodeLib.RDLC",
-      "category": "links-qr",
-      "platforms": [
-        "server",
-        "dotnet"
-      ],
-      "kind": "package",
-      "integrationMode": "license-review",
-      "verification": "partial",
-      "license": {
-        "id": "NOASSERTION",
-        "url": null,
-        "scope": "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
-      },
-      "homepage": "https://www.barcodelib.com/net_barcode/main.html",
-      "repository": null,
-      "docs": "https://www.barcodelib.com/net_barcode/main.html",
-      "summary": "BarcodeLib.RDLC - A barcode library to quickly create barcodes in C#.NET RDLC reports. Supports QR Code, Data Matrix, Code 128/39, EAN/UPC, GS1-128, includes comprehensive options to customize the...",
-      "useWhen": "Use for qr code: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in C#/.NET.",
-      "cautions": [
-        "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
-      ],
-      "tags": [
-        "marketing",
-        "links-qr",
-        "qr-code",
-        "csharp",
-        "nuget"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.nuget.org/packages/BarcodeLib.RDLC",
-          "title": "nuget registry record (license, versions, downloads)"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "nuget",
-          "name": "BarcodeLib.RDLC"
-        }
-      ],
-      "languages": [
-        "csharp"
-      ],
-      "popularity": {
-        "metric": "nuget-total-downloads",
-        "value": 2443993
-      }
-    },
-    {
       "id": "qr-scanner",
       "name": "qr-scanner",
       "category": "links-qr",
@@ -21904,7 +21561,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/dubinc/dub-ts",
@@ -21912,6 +21569,7 @@
       "summary": "Dub.co TypeScript SDK <img src=\"https",
       "useWhen": "Use for link shortener: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in TypeScript/JavaScript.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -23976,7 +23634,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": "https://github.com/dubinc/dub-python.git",
       "repository": "https://github.com/dubinc/dub-python",
@@ -23984,6 +23642,7 @@
       "summary": "Official Python SDK for Dub, the link management platform: short links, analytics and conversion tracking.",
       "useWhen": "Use for shortener: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in Python.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -24254,9 +23913,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/rx-ts/vue/blob/master/packages/vue-qrcode",
+      "homepage": null,
       "repository": "https://github.com/rx-ts/vue",
-      "docs": "https://github.com/rx-ts/vue/blob/master/packages/vue-qrcode",
+      "docs": null,
       "summary": "🤳 A Vue component for QR code generation with qrcode",
       "useWhen": "Use for qr code: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in TypeScript/JavaScript.",
       "cautions": [
@@ -25011,7 +24670,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -25019,6 +24678,7 @@
       "summary": "Dub Better Auth Plugin",
       "useWhen": "Use for link shortener: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in TypeScript/JavaScript.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -25150,7 +24810,7 @@
       },
       "homepage": "https://www.github.com/a-chacon/rails-url-shortener",
       "repository": "https://github.com/a-chacon/rails-url-shortener",
-      "docs": "https://github.com/a-chacon/rails-url-shortener/blob/main/README.md",
+      "docs": null,
       "summary": "RailsUrlShortener is a lightweight Rails engine that enables easy creation and management of short URLs within your project. Similar to bitly.com, it condenses long links into short, user-friendly...",
       "useWhen": "Use for url shortener: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in Ruby.",
       "cautions": [
@@ -25283,7 +24943,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/Rich-Harris/headless-qr",
@@ -25291,6 +24951,7 @@
       "summary": "A simple, modern QR code generator. Adapted from https://github.com/kazuhikoarase/qrcode-generator but without all the junk that was necessary 10 years ago.",
       "useWhen": "Use for qr code: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in TypeScript/JavaScript.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -26909,7 +26570,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://chottulink.com/",
-      "repository": "https://github.com/github_account/react-native-chottulink-sdk",
+      "repository": null,
       "docs": "https://chottulink.com/",
       "summary": "ChottuLink - Best DeepLink provider and drop-in replacement for Firebase Dynamic Links. Comprehensive DeepLink solution for Native Android, iOS, Flutter, and React Native. One link for both Apple...",
       "useWhen": "Use for deep links: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in TypeScript/JavaScript.",
@@ -26935,10 +26596,6 @@
         {
           "url": "https://www.npmjs.com/package/react-native-chottulink-sdk",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/github_account/react-native-chottulink-sdk",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -27381,7 +27038,7 @@
         "url": null,
         "scope": "BSD-2-Clause (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://juliuscanute.com",
+      "homepage": null,
       "repository": "https://github.com/juliuscanute/qr_code_scanner",
       "docs": "https://pub.dev/documentation/qr_code_scanner/latest/",
       "summary": "QR code scanner that can be embedded inside flutter. It uses zxing in Android and MTBBarcode scanner in iOS.",
@@ -27792,7 +27449,7 @@
         "url": null,
         "scope": "No license declared in registry metadata; check the repository before use."
       },
-      "homepage": "https://qrgpt.io/",
+      "homepage": null,
       "repository": "https://github.com/Nutlope/qrGPT",
       "docs": null,
       "summary": "An AI QR Code Generator",
@@ -28190,7 +27847,7 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://cifrazia.com",
+      "homepage": null,
       "repository": "https://github.com/AdamBrianBright/qrcode_styled",
       "docs": null,
       "summary": "Python port for kozakdenys/qr-code-styling",
@@ -30037,9 +29694,9 @@
         "url": null,
         "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://pid.github.io/speakingurl/",
+      "homepage": null,
       "repository": "https://github.com/pid/speakingurl",
-      "docs": "https://pid.github.io/speakingurl/",
+      "docs": null,
       "summary": "Generate a slug – transliteration with a lot of options",
       "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
       "cautions": [
@@ -30245,7 +29902,7 @@
       },
       "homepage": "https://github.com/kpumuk/meta-tags/",
       "repository": "https://github.com/kpumuk/meta-tags",
-      "docs": "https://rubydoc.info/github/kpumuk/meta-tags/",
+      "docs": null,
       "summary": "Rails helpers for HTML metadata such as titles, descriptions, canonical links, robots directives, and social tags.",
       "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in Ruby projects.",
       "cautions": [
@@ -39662,7 +39319,7 @@
         "scope": "non-standard: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       },
       "homepage": "https://andrew.gubskiy.com/open-source",
-      "repository": "https://github.com/a.gubskiy/X.Web.Sitemap",
+      "repository": null,
       "docs": "https://andrew.gubskiy.com/open-source",
       "summary": "This library allows you quickly and easily generate sitemap files.",
       "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in C#/.NET projects.",
@@ -39686,10 +39343,6 @@
         {
           "url": "https://www.nuget.org/packages/X.Web.Sitemap",
           "title": "nuget registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/a.gubskiy/X.Web.Sitemap",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -40006,7 +39659,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-searchconsole_v1/v0.23.0",
+      "docs": null,
       "summary": "This is the simple REST client for Google Search Console API V1. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These...",
       "useWhen": "Use instead of hand-writing serp keywords (meta tags, sitemaps, structured data, crawling or audits) in Ruby projects.",
       "cautions": [
@@ -40901,7 +40554,7 @@
         "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://github.com/cloudscribe/cloudscribe.Syndication",
-      "repository": "https://github.com/cloudscribe/cloudscribe.Syndication",
+      "repository": null,
       "docs": "https://github.com/cloudscribe/cloudscribe.Syndication",
       "summary": "asp.netcore mvc controller for rss feeds",
       "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in C#/.NET projects.",
@@ -40926,10 +40579,6 @@
         {
           "url": "https://www.nuget.org/packages/cloudscribe.Syndication.Web",
           "title": "nuget registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/cloudscribe/cloudscribe.Syndication",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -41036,7 +40685,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -41044,6 +40693,7 @@
       "summary": "Sitemap generator plugin for Vite",
       "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -41371,12 +41021,12 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
+      "integrationMode": "license-review",
+      "verification": "partial",
       "license": {
         "id": "MIT",
         "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/jeremys/uslug",
@@ -41384,6 +41034,7 @@
       "summary": "A permissive slug generator that works with unicode.",
       "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "Pin the version and review the changelog before upgrading."
       ],
       "tags": [
@@ -42551,7 +42202,7 @@
       },
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
-      "docs": "https://googleapis.dev/ruby/google-apis-pagespeedonline_v5/v0.23.0",
+      "docs": null,
       "summary": "This is the simple REST client for PageSpeed Insights API V5. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These...",
       "useWhen": "Use instead of hand-writing performance audit (meta tags, sitemaps, structured data, crawling or audits) in Ruby projects.",
       "cautions": [
@@ -43308,9 +42959,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.comlobehub/lobe-cli-toolbox/tree/master/packages/lobe-seo",
+      "homepage": null,
       "repository": "https://github.com/lobehub/lobe-cli-toolbox",
-      "docs": "https://github.comlobehub/lobe-cli-toolbox/tree/master/packages/lobe-seo",
+      "docs": null,
       "summary": "Lobe seo is a CLI tool that automate generation seo content for mdx",
       "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
       "cautions": [
@@ -44066,7 +43717,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/dataforseo/PythonClient",
@@ -44074,6 +43725,7 @@
       "summary": "Official DataForSEO API client: SERP, keywords, backlinks and on-page SEO data.",
       "useWhen": "Use instead of hand-writing serp (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -44626,8 +44278,8 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://phcdevworks.com/",
-      "repository": "https://github.com/phcdevworks/phcdevworks_notifications",
+      "homepage": null,
+      "repository": null,
       "docs": "https://rubydoc.info/gems/phcdevworks_titleseo",
       "summary": "Standardize your website's look and feel with PHCDevworks' Rails view helpers. Our helpers simplify the coding process for managing page headings, taglines, SEO, and title tags, ensuring that your...",
       "useWhen": "Use instead of hand-writing seo toolkit (meta tags, sitemaps, structured data, crawling or audits) in Ruby projects.",
@@ -44651,10 +44303,6 @@
         {
           "url": "https://rubygems.org/gems/phcdevworks_titleseo",
           "title": "gem registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/phcdevworks/phcdevworks_notifications",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -46002,7 +45650,7 @@
         "scope": "LGPL-3.0: dynamic linking as a dependency is usually fine; modifications to the library must be shared."
       },
       "homepage": "https://www.scrivito.com",
-      "repository": "https://github.com/infopark/scrivito_seo_page_extender",
+      "repository": null,
       "docs": "https://www.scrivito.com/rails/documentation",
       "summary": "A Scrivito Widget to extend your Page with some useful SEO Features, Metadata or Open Graph.",
       "useWhen": "Use instead of hand-writing seo toolkit (meta tags, sitemaps, structured data, crawling or audits) in Ruby projects.",
@@ -46026,10 +45674,6 @@
         {
           "url": "https://rubygems.org/gems/scrivito_seo_page_extender",
           "title": "gem registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/infopark/scrivito_seo_page_extender",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -49111,7 +48755,7 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/spire-rs/kit/exclusion",
+      "homepage": null,
       "repository": "https://github.com/spire-rs/kit",
       "docs": "https://docs.rs/robotxt",
       "summary": "The implementation of the Robots.txt (or URL exclusion) protocol with the support of crawl-delay, sitemap and universal match extensions.",
@@ -49659,7 +49303,7 @@
         "scope": "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       },
       "homepage": "https://github.com/fescobar/LighthouseDotnet",
-      "repository": "https://github.com/fescobar/LighthouseDotnet",
+      "repository": null,
       "docs": "https://github.com/fescobar/LighthouseDotnet",
       "summary": "Auditing, performance metrics, and best practices for Progressive Web Apps in .NET tests.",
       "useWhen": "Use instead of hand-writing performance audit (meta tags, sitemaps, structured data, crawling or audits) in C#/.NET projects.",
@@ -49685,10 +49329,6 @@
         {
           "url": "https://www.nuget.org/packages/LighthouseDotnet",
           "title": "nuget registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/fescobar/LighthouseDotnet",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -51034,7 +50674,7 @@
       },
       "homepage": "https://github.com/imagekit-developer/imagekit-rails",
       "repository": "https://github.com/imagekit-developer/imagekit-rails",
-      "docs": "https://rubydoc.info/gems/imagekitio-rails",
+      "docs": null,
       "summary": "Comprehensive Rails integration for ImageKit.io with view helpers (ik_image_tag, ik_video_tag) and Active Storage service adapter. Provides easy image optimization, transformation, and responsive...",
       "useWhen": "Use instead of hand-writing image optimization (meta tags, sitemaps, structured data, crawling or audits) in Ruby projects.",
       "cautions": [
@@ -51777,7 +51417,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/prerender/prerender",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/prerender",
       "summary": "Service to prerender Javascript rendered pages for SEO",
       "useWhen": "Use instead of hand-writing prerender (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
@@ -51802,10 +51442,6 @@
         {
           "url": "https://www.npmjs.com/package/prerender",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/prerender/prerender",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -53491,9 +53127,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://velohost.co.uk/astro-indexnow",
+      "homepage": null,
       "repository": "https://github.com/velohost/astro-indexnow",
-      "docs": "https://velohost.co.uk/astro-indexnow",
+      "docs": null,
       "summary": "Astro integration to submit pages to IndexNow automatically after build",
       "useWhen": "Use instead of hand-writing indexing (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
       "cautions": [
@@ -54175,7 +53811,7 @@
         "url": null,
         "scope": "MIT OR Apache-2.0 (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://sitemap-gen.co/",
+      "homepage": null,
       "repository": "https://github.com/sebastienrousseau/sitemap-gen",
       "docs": "https://doc.sitemap-gen.co/sitemap_gen/",
       "summary": "A robust Rust library designed for efficient generation and optimization of sitemaps, supporting various formats and customizations.",
@@ -56098,7 +55734,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": "https://github.com/monperrus/crawler-user-agents",
@@ -56106,6 +55742,7 @@
       "summary": "Syntactic patterns of HTTP user-agents used by bots / robots / crawlers / scrapers / spiders.",
       "useWhen": "Use instead of hand-writing bot detection (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -56239,7 +55876,7 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
       "homepage": null,
       "repository": null,
@@ -56247,6 +55884,7 @@
       "summary": "Astro integration for complete SEO infrastructure on Cloudflare. Handles JSON-LD structured data, meta tags, sitemaps, RSS/podcast/Apple News feeds, AEO (Answer Engine Optimization) with...",
       "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -57330,9 +56968,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://github.com/apostrophecms/apostrophe/blob/main/packages/seo",
+      "homepage": null,
       "repository": "https://github.com/apostrophecms/apostrophe/tree/HEAD/packages/seo",
-      "docs": "https://github.com/apostrophecms/apostrophe/blob/main/packages/seo",
+      "docs": null,
       "summary": "SEO Tools for ApostropheCMS",
       "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
       "cautions": [
@@ -61239,7 +60877,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": null,
-      "repository": "https://github.com/aashish/gsc-mcp-server",
+      "repository": null,
       "docs": "https://www.npmjs.com/package/google-searchconsole-mcp",
       "summary": "MCP server for Google Search Console - query search analytics, inspect URLs, analyze keywords, and more",
       "useWhen": "Use instead of hand-writing indexing (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
@@ -61264,10 +60902,6 @@
         {
           "url": "https://www.npmjs.com/package/google-searchconsole-mcp",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/aashish/gsc-mcp-server",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -61289,6 +60923,352 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 2052
+      }
+    },
+    {
+      "id": "daffodil-seo-npm",
+      "name": "@daffodil/seo",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/graycoreio/daffodil",
+      "docs": "https://www.npmjs.com/package/@daffodil/seo",
+      "summary": "Manages canonical URLs, meta tags, and other SEO features for Angular applications. Part of the Daffodil ecommerce framework.",
+      "useWhen": "Use instead of hand-writing canonical (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "canonical",
+        "typescript",
+        "npm",
+        "angular"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@daffodil/seo",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/graycoreio/daffodil",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@daffodil/seo"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 2051
+      }
+    },
+    {
+      "id": "datasette-block-robots-pypi",
+      "name": "datasette-block-robots",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/simonw/datasette-block-robots",
+      "docs": null,
+      "summary": "Datasette plugin that blocks all robots using robots.txt",
+      "useWhen": "Use instead of hand-writing robots (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots",
+        "python",
+        "pypi",
+        "robots.txt",
+        "datasette"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/datasette-block-robots/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/simonw/datasette-block-robots",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "datasette-block-robots"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 2039
+      }
+    },
+    {
+      "id": "plot-swift",
+      "name": "Plot",
+      "category": "seo",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/JohnSundell/Plot",
+      "docs": "https://swiftpackageindex.com/JohnSundell/Plot",
+      "summary": "A DSL for writing type-safe HTML, XML and RSS in Swift.",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Swift projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "swift",
+        "rss"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/JohnSundell/Plot",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/JohnSundell/Plot"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/JohnSundell/Plot.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/JohnSundell/Plot"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 2028
+      }
+    },
+    {
+      "id": "payload-bites-broken-link-checker-npm",
+      "name": "@payload-bites/broken-link-checker",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license declared in registry metadata; check the repository before use."
+      },
+      "homepage": "https://github.com/rilrom/payload-bites/blob/main/packages/broken-link-checker#readme",
+      "repository": "https://github.com/rilrom/payload-bites",
+      "docs": "https://github.com/rilrom/payload-bites/blob/main/packages/broken-link-checker#readme",
+      "summary": "broken links are a thing of the past",
+      "useWhen": "Use instead of hand-writing link checking (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "No license declared in registry metadata; check the repository before use."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checking",
+        "typescript",
+        "npm",
+        "link-checker",
+        "payload",
+        "license-unknown"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@payload-bites/broken-link-checker",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/rilrom/payload-bites",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@payload-bites/broken-link-checker"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 2011
+      }
+    },
+    {
+      "id": "slug-go-2",
+      "name": "github.com/gosimple/slug",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MPL-2.0",
+        "url": null,
+        "scope": "MPL-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/gosimple/slug",
+      "docs": "https://pkg.go.dev/github.com/gosimple/slug",
+      "summary": "Generate URL-friendly slugs from Unicode strings with language-specific rules.",
+      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "slug",
+        "go",
+        "url"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/gosimple/slug",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/gosimple/slug",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/gosimple/slug"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 1920
       }
     }
   ]
