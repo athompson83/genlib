@@ -1,0 +1,5213 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "sharp",
+      "name": "sharp",
+      "category": "image-processing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/lovell/sharp/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for sharp; bundled prebuilt libvips binaries are LGPL-3.0-or-later."
+      },
+      "homepage": "https://sharp.pixelplumbing.com",
+      "repository": "https://github.com/lovell/sharp",
+      "docs": "https://sharp.pixelplumbing.com/api-constructor",
+      "summary": "High-performance Node.js image resizing and conversion built on libvips.",
+      "useWhen": "Use instead of hand-writing resize, crop, format conversion (JPEG/PNG/WebP/AVIF) and thumbnail pipelines in Node.js.",
+      "cautions": [
+        "Native binaries are platform-specific; install on the deployment OS/arch or use the documented cross-platform flags.",
+        "Limit input pixels and file size for untrusted uploads."
+      ],
+      "tags": [
+        "image",
+        "resize",
+        "thumbnail",
+        "avif",
+        "webp",
+        "nodejs"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sharp"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lovell/sharp",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://sharp.pixelplumbing.com/api-constructor",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pillow",
+      "name": "Pillow",
+      "category": "image-processing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT-CMU",
+        "url": "https://github.com/python-pillow/Pillow/blob/HEAD/LICENSE",
+        "scope": "MIT-CMU (HPND-style) permissive license."
+      },
+      "homepage": "https://python-pillow.github.io",
+      "repository": "https://github.com/python-pillow/Pillow",
+      "docs": "https://pillow.readthedocs.io",
+      "summary": "The standard Python imaging library for opening, editing and saving raster images.",
+      "useWhen": "Use instead of hand-writing image decoding, resizing, drawing and format conversion in Python.",
+      "cautions": [
+        "Set Image.MAX_IMAGE_PIXELS and validate formats for untrusted files (decompression bombs).",
+        "Keep up to date; image parsers receive regular security fixes."
+      ],
+      "tags": [
+        "image",
+        "python",
+        "resize",
+        "thumbnail",
+        "drawing"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "api-backend",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "Pillow"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/python-pillow/Pillow",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pillow.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "imagemagick",
+      "name": "ImageMagick",
+      "category": "image-processing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ImageMagick",
+        "url": "https://imagemagick.org/script/license.php",
+        "scope": "ImageMagick License (Apache-2.0-style permissive)."
+      },
+      "homepage": "https://imagemagick.org",
+      "repository": "https://github.com/ImageMagick/ImageMagick",
+      "docs": "https://imagemagick.org/script/command-line-processing.php",
+      "summary": "Command-line suite and library for converting, compositing and transforming 200+ image formats.",
+      "useWhen": "Use instead of hand-writing batch image conversion, montage, annotation and format support scripts.",
+      "cautions": [
+        "Apply a restrictive policy.xml (disable MSL/URL/PS coders) before processing untrusted input.",
+        "Shelling out: pass arguments as arrays, never interpolated strings."
+      ],
+      "tags": [
+        "image",
+        "cli",
+        "conversion",
+        "batch",
+        "compositing"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "api-backend",
+        "cli-tool"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ImageMagick/ImageMagick",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://imagemagick.org/script/command-line-processing.php",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "libvips",
+      "name": "libvips",
+      "category": "image-processing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-2.1-or-later",
+        "url": "https://github.com/libvips/libvips/blob/HEAD/LICENSE",
+        "scope": "LGPL-2.1-or-later; dynamic linking keeps application code separate."
+      },
+      "homepage": "https://www.libvips.org",
+      "repository": "https://github.com/libvips/libvips",
+      "docs": "https://www.libvips.org/API/current/",
+      "summary": "Demand-driven, low-memory image processing library with C, Python, Ruby, Go and other bindings.",
+      "useWhen": "Use instead of hand-writing streaming image pipelines for very large images or high-throughput thumbnailing.",
+      "cautions": [
+        "Bindings (pyvips, ruby-vips, govips) are separate projects with their own licenses.",
+        "Use operation blocklists for untrusted input in recent versions."
+      ],
+      "tags": [
+        "image",
+        "libvips",
+        "performance",
+        "thumbnail",
+        "c"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/libvips/libvips",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.libvips.org/API/current/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install via the OS package manager or a language binding; record the libvips version."
+      ]
+    },
+    {
+      "id": "jimp",
+      "name": "Jimp",
+      "category": "image-processing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jimp-dev/jimp/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://jimp-dev.github.io/jimp/",
+      "repository": "https://github.com/jimp-dev/jimp",
+      "docs": "https://jimp-dev.github.io/jimp/",
+      "summary": "Pure-JavaScript image manipulation with no native dependencies.",
+      "useWhen": "Use instead of hand-writing simple resize/crop/blit/text operations where native modules (sharp) cannot be installed.",
+      "cautions": [
+        "Much slower and more memory-hungry than sharp/libvips for large images.",
+        "Limited format support (no AVIF/HEIC)."
+      ],
+      "tags": [
+        "image",
+        "javascript",
+        "resize",
+        "pure-js"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "jimp"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jimp-dev/jimp",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://jimp-dev.github.io/jimp/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "opencv",
+      "name": "OpenCV",
+      "category": "computer-vision",
+      "platforms": [
+        "server",
+        "desktop",
+        "mobile",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/opencv/opencv/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 since OpenCV 4.5.0; contrib modules may differ."
+      },
+      "homepage": "https://opencv.org",
+      "repository": "https://github.com/opencv/opencv",
+      "docs": "https://docs.opencv.org",
+      "summary": "Computer vision library for image/video analysis, feature detection, calibration and DNN inference.",
+      "useWhen": "Use instead of hand-writing edge detection, contour finding, perspective transforms, camera calibration or video frame analysis.",
+      "cautions": [
+        "Pick one pip wheel (opencv-python vs -headless vs -contrib); mixing them breaks imports.",
+        "Bundled codecs (e.g. FFmpeg) carry their own licenses."
+      ],
+      "tags": [
+        "computer-vision",
+        "image",
+        "video",
+        "python",
+        "cpp"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "data-analytics",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "opencv-python"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/opencv/opencv",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.opencv.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "scikit-image",
+      "name": "scikit-image",
+      "category": "image-processing",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/scikit-image/scikit-image/blob/HEAD/LICENSE.txt",
+        "scope": "BSD-3-Clause."
+      },
+      "homepage": "https://scikit-image.org",
+      "repository": "https://github.com/scikit-image/scikit-image",
+      "docs": "https://scikit-image.org/docs/stable/",
+      "summary": "NumPy-based collection of image processing algorithms for scientific Python.",
+      "useWhen": "Use instead of hand-writing segmentation, filtering, morphology, registration or feature extraction on NumPy arrays.",
+      "cautions": [
+        "Operates on arrays; use Pillow/imageio for file I/O and check dtype/range conventions."
+      ],
+      "tags": [
+        "image",
+        "python",
+        "scientific",
+        "segmentation",
+        "numpy"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "scikit-image"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/scikit-image/scikit-image",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://scikit-image.org/docs/stable/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "imgproxy",
+      "name": "imgproxy",
+      "category": "image-service",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/imgproxy/imgproxy/blob/HEAD/LICENSE",
+        "scope": "MIT for the open-source edition; imgproxy Pro is commercial."
+      },
+      "homepage": "https://imgproxy.net",
+      "repository": "https://github.com/imgproxy/imgproxy",
+      "docs": "https://docs.imgproxy.net",
+      "summary": "Self-hosted, libvips-based server that resizes and converts images on the fly via signed URLs.",
+      "useWhen": "Use instead of building your own on-demand image resizing/CDN-origin service.",
+      "cautions": [
+        "Always enable URL signing (key/salt) so third parties cannot abuse the resizer.",
+        "Some features are Pro-only; check the docs before relying on them."
+      ],
+      "tags": [
+        "image",
+        "cdn",
+        "resize",
+        "self-hosted",
+        "docker",
+        "go"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "ghcr.io/imgproxy/imgproxy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/imgproxy/imgproxy",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.imgproxy.net",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Run the official container image pinned to a version tag; set IMGPROXY_KEY/SALT from secrets."
+      ]
+    },
+    {
+      "id": "thumbor",
+      "name": "Thumbor",
+      "category": "image-service",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/thumbor/thumbor/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://www.thumbor.org",
+      "repository": "https://github.com/thumbor/thumbor",
+      "docs": "https://thumbor.readthedocs.io",
+      "summary": "Python image service for on-demand cropping, resizing, filters and smart (face/feature) cropping.",
+      "useWhen": "Use instead of hand-writing an image resizing service when you need smart cropping and a Python stack.",
+      "cautions": [
+        "Use HMAC-signed URLs (disable unsafe URLs) in production."
+      ],
+      "tags": [
+        "image",
+        "cdn",
+        "smart-crop",
+        "python",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "thumbor"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/thumbor/thumbor",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://thumbor.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "squoosh",
+      "name": "Squoosh",
+      "category": "image-optimization",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/GoogleChromeLabs/squoosh/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0; bundled codecs keep their own licenses."
+      },
+      "homepage": "https://squoosh.app",
+      "repository": "https://github.com/GoogleChromeLabs/squoosh",
+      "docs": null,
+      "summary": "Browser-based image compression app for comparing codecs (MozJPEG, WebP, AVIF, OxiPNG) side by side.",
+      "useWhen": "Use instead of guessing codec settings: compare quality/size visually, then encode the chosen settings with sharp or libvips.",
+      "cautions": [
+        "The @squoosh/lib and CLI packages are no longer maintained; do not depend on them in pipelines."
+      ],
+      "tags": [
+        "image",
+        "compression",
+        "avif",
+        "webp",
+        "reference"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/GoogleChromeLabs/squoosh",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "No install: open squoosh.app; use sharp/libvips for automated encoding."
+      ]
+    },
+    {
+      "id": "svgo",
+      "name": "SVGO",
+      "category": "image-optimization",
+      "platforms": [
+        "web",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/svg/svgo/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://svgo.dev",
+      "repository": "https://github.com/svg/svgo",
+      "docs": "https://svgo.dev/docs/introduction/",
+      "summary": "Node.js tool and library that optimizes SVG files by removing redundant markup.",
+      "useWhen": "Use instead of hand-cleaning exported SVG markup or writing regex-based SVG minifiers.",
+      "cautions": [
+        "Some plugins (e.g. removeViewBox, cleanupIds) can break responsive or referenced SVGs; review the preset.",
+        "Optimizing does not sanitize; sanitize untrusted SVG separately (e.g. DOMPurify)."
+      ],
+      "tags": [
+        "svg",
+        "optimization",
+        "minify",
+        "icons",
+        "cli"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "svgo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/svg/svgo",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://svgo.dev/docs/introduction/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "potrace",
+      "name": "Potrace",
+      "category": "image-vectorization",
+      "platforms": [
+        "desktop",
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-or-later",
+        "url": "https://potrace.sourceforge.net/#license",
+        "scope": "GPL-2.0-or-later; commercial licenses are offered separately by the author."
+      },
+      "homepage": "https://potrace.sourceforge.net",
+      "repository": null,
+      "docs": "https://potrace.sourceforge.net/potrace.1.html",
+      "summary": "Bitmap-to-vector tracing tool that converts black-and-white images into smooth SVG/EPS/PDF paths.",
+      "useWhen": "Use instead of hand-writing bitmap tracing to turn logos, scans or masks into scalable vectors.",
+      "cautions": [
+        "GPL: invoking the CLI as a separate process is simpler to comply with than linking the library.",
+        "Traces bitmaps only; color images need thresholding or layered tracing first."
+      ],
+      "tags": [
+        "svg",
+        "vectorize",
+        "tracing",
+        "cli"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://potrace.sourceforge.net",
+          "title": "Official site and license terms"
+        },
+        {
+          "url": "https://potrace.sourceforge.net/potrace.1.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "blurhash",
+      "name": "BlurHash",
+      "category": "image-placeholders",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/woltapp/blurhash/blob/HEAD/License.txt",
+        "scope": "MIT; implementations exist for many languages."
+      },
+      "homepage": "https://blurha.sh",
+      "repository": "https://github.com/woltapp/blurhash",
+      "docs": "https://github.com/woltapp/blurhash#readme",
+      "summary": "Compact string encoding of a blurred image placeholder with encoders/decoders in many languages.",
+      "useWhen": "Use instead of hand-writing low-quality image placeholders (LQIP) or base64 thumbnails for lazy-loaded images.",
+      "cautions": [
+        "Encode server-side on a downscaled image; encoding full-size images is slow."
+      ],
+      "tags": [
+        "image",
+        "placeholder",
+        "lazy-loading",
+        "performance"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "mobile-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "blurhash"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/woltapp/blurhash",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/woltapp/blurhash#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "thumbhash",
+      "name": "ThumbHash",
+      "category": "image-placeholders",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/evanw/thumbhash/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://evanw.github.io/thumbhash/",
+      "repository": "https://github.com/evanw/thumbhash",
+      "docs": "https://github.com/evanw/thumbhash#readme",
+      "summary": "Very compact image placeholder hash that preserves aspect ratio and alpha, with JS, Rust, Swift and Java code.",
+      "useWhen": "Use instead of hand-writing image placeholder encodings when you need alpha support and aspect ratio.",
+      "cautions": [
+        "Input must be downscaled to at most 100x100 before encoding."
+      ],
+      "tags": [
+        "image",
+        "placeholder",
+        "lazy-loading",
+        "rust",
+        "swift"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "thumbhash"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/evanw/thumbhash",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/evanw/thumbhash#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "exiftool",
+      "name": "ExifTool",
+      "category": "image-metadata",
+      "platforms": [
+        "desktop",
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Artistic-1.0-Perl OR GPL-1.0-or-later",
+        "url": "https://exiftool.org/#license",
+        "scope": "Same terms as Perl (Artistic or GPL)."
+      },
+      "homepage": "https://exiftool.org",
+      "repository": "https://github.com/exiftool/exiftool",
+      "docs": "https://exiftool.org/exiftool_pod.html",
+      "summary": "Perl library and CLI for reading, writing and stripping metadata (EXIF, IPTC, XMP, GPS) in images, video and documents.",
+      "useWhen": "Use instead of hand-writing metadata parsers or GPS/EXIF stripping for user uploads.",
+      "cautions": [
+        "Strip location metadata from user uploads before publishing (privacy).",
+        "Writing metadata rewrites files; keep originals."
+      ],
+      "tags": [
+        "metadata",
+        "exif",
+        "xmp",
+        "privacy",
+        "cli",
+        "perl"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/exiftool/exiftool",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://exiftool.org/exiftool_pod.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "rembg",
+      "name": "rembg",
+      "category": "image-ai",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/danielgatis/rembg/blob/HEAD/LICENSE",
+        "scope": "MIT for the tool; each downloadable segmentation model has its own license."
+      },
+      "homepage": null,
+      "repository": "https://github.com/danielgatis/rembg",
+      "docs": "https://github.com/danielgatis/rembg#readme",
+      "summary": "Python CLI/library/HTTP server for local AI background removal using ONNX segmentation models.",
+      "useWhen": "Use instead of hand-writing background removal or paying per-image APIs for cutouts.",
+      "cautions": [
+        "Check each model's license before commercial use; models download on first run.",
+        "Results need human review for product imagery."
+      ],
+      "tags": [
+        "image",
+        "background-removal",
+        "ai",
+        "onnx",
+        "python"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "rembg"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/danielgatis/rembg",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/danielgatis/rembg#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gimp",
+      "name": "GIMP",
+      "category": "image-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://www.gimp.org/about/",
+        "scope": "GPL-3.0-or-later application; libraries (GEGL/babl) are LGPL."
+      },
+      "homepage": "https://www.gimp.org",
+      "repository": "https://gitlab.gnome.org/GNOME/gimp",
+      "docs": "https://docs.gimp.org",
+      "summary": "Free cross-platform raster image editor with layers, masks, plug-ins and scripting.",
+      "useWhen": "Use instead of paid editors for manual retouching and layered compositing; script batch work via its Python/Script-Fu APIs.",
+      "cautions": [
+        "Not a server library; use sharp/libvips/ImageMagick for automated pipelines."
+      ],
+      "tags": [
+        "image-editor",
+        "raster",
+        "retouching",
+        "desktop"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://gitlab.gnome.org/GNOME/gimp",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.gimp.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "krita",
+      "name": "Krita",
+      "category": "image-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://krita.org/en/about/license/",
+        "scope": "GPL application; artwork you create is yours."
+      },
+      "homepage": "https://krita.org",
+      "repository": "https://invent.kde.org/graphics/krita",
+      "docs": "https://docs.krita.org",
+      "summary": "Free digital painting and illustration application with brush engines, animation and Python scripting.",
+      "useWhen": "Use for hand-painted illustrations, concept art and frame-by-frame animation instead of paid painting apps.",
+      "cautions": [
+        "Desktop application; not suitable as a headless processing dependency."
+      ],
+      "tags": [
+        "painting",
+        "illustration",
+        "animation",
+        "desktop"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://invent.kde.org/graphics/krita",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.krita.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "inkscape",
+      "name": "Inkscape",
+      "category": "image-applications",
+      "platforms": [
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-or-later",
+        "url": "https://inkscape.org/about/license/",
+        "scope": "GPL-2.0-or-later application."
+      },
+      "homepage": null,
+      "repository": "https://gitlab.com/inkscape/inkscape",
+      "docs": "https://inkscape-manuals.readthedocs.io",
+      "summary": "Free vector graphics editor using SVG natively, with a command line for batch export.",
+      "useWhen": "Use instead of paid vector editors for SVG illustration, and its CLI for batch SVG-to-PNG/PDF export.",
+      "cautions": [
+        "Run CLI exports with untrusted SVG in a sandbox; SVG can reference external resources.",
+        "Official downloads are at https://inkscape.org (site was intermittently unreachable during automated checks)."
+      ],
+      "tags": [
+        "svg",
+        "vector",
+        "illustration",
+        "desktop",
+        "cli"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://gitlab.com/inkscape/inkscape",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://inkscape-manuals.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "darktable",
+      "name": "darktable",
+      "category": "image-applications",
+      "platforms": [
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/darktable-org/darktable/blob/HEAD/LICENSE",
+        "scope": "GPL-3.0-or-later."
+      },
+      "homepage": "https://www.darktable.org",
+      "repository": "https://github.com/darktable-org/darktable",
+      "docs": "https://docs.darktable.org",
+      "summary": "Non-destructive RAW photo developer and photo manager with a darktable-cli for batch export.",
+      "useWhen": "Use instead of paid RAW developers for photo editing; use darktable-cli to apply saved styles in batch.",
+      "cautions": [
+        "Keep RAW originals and XMP sidecars; edits are stored separately."
+      ],
+      "tags": [
+        "raw",
+        "photo",
+        "non-destructive",
+        "desktop"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/darktable-org/darktable",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.darktable.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "rawtherapee",
+      "name": "RawTherapee",
+      "category": "image-applications",
+      "platforms": [
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/Beep6581/RawTherapee/blob/HEAD/LICENSE",
+        "scope": "GPL-3.0."
+      },
+      "homepage": "https://www.rawtherapee.com",
+      "repository": "https://github.com/Beep6581/RawTherapee",
+      "docs": "https://rawpedia.rawtherapee.com",
+      "summary": "Cross-platform RAW image processing application with a CLI for applying processing profiles.",
+      "useWhen": "Use for RAW development with processing profiles (.pp3) instead of hand-writing demosaicing or tone mapping.",
+      "cautions": [
+        "Processing profiles are version-sensitive; record the version used for reproducible output."
+      ],
+      "tags": [
+        "raw",
+        "photo",
+        "desktop",
+        "cli"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Beep6581/RawTherapee",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://rawpedia.rawtherapee.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "fabricjs",
+      "name": "Fabric.js",
+      "category": "canvas",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fabricjs/fabric.js/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://fabricjs.com",
+      "repository": "https://github.com/fabricjs/fabric.js",
+      "docs": "https://fabricjs.com/docs/",
+      "summary": "Interactive HTML5 canvas object model with selection, transforms, text, SVG import/export and serialization.",
+      "useWhen": "Use instead of hand-writing an in-browser design editor (drag, resize, rotate, layers, export).",
+      "cautions": [
+        "Major versions changed APIs (v6 ES modules/TypeScript); follow the matching docs.",
+        "Sanitize user-supplied SVG/JSON before loading."
+      ],
+      "tags": [
+        "canvas",
+        "editor",
+        "svg",
+        "design-tool",
+        "typescript"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "fabric"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fabricjs/fabric.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://fabricjs.com/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "konva",
+      "name": "Konva",
+      "category": "canvas",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/konvajs/konva/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://konvajs.org",
+      "repository": "https://github.com/konvajs/konva",
+      "docs": "https://konvajs.org/docs/",
+      "summary": "2D canvas framework with shapes, layers, events, drag-and-drop and React/Vue bindings.",
+      "useWhen": "Use instead of hand-writing canvas hit detection, layering and drag-and-drop for diagram or image editors.",
+      "cautions": [
+        "react-konva and vue-konva are separate packages; match versions."
+      ],
+      "tags": [
+        "canvas",
+        "2d",
+        "react",
+        "vue",
+        "drag-and-drop"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "konva"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/konvajs/konva",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://konvajs.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ffmpeg",
+      "name": "FFmpeg",
+      "category": "video-processing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-2.1-or-later",
+        "url": "https://ffmpeg.org/legal.html",
+        "scope": "LGPL-2.1-or-later by default; builds with GPL/nonfree options (e.g. x264) become GPL or non-redistributable."
+      },
+      "homepage": "https://ffmpeg.org",
+      "repository": "https://github.com/FFmpeg/FFmpeg",
+      "docs": "https://ffmpeg.org/documentation.html",
+      "summary": "The standard CLI and libraries for decoding, encoding, transcoding, muxing, filtering and streaming audio/video.",
+      "useWhen": "Use instead of hand-writing transcoding, thumbnail extraction, HLS packaging, trimming or audio extraction.",
+      "cautions": [
+        "Check the build configuration for GPL/nonfree codecs and patent obligations before distributing.",
+        "Pass arguments as arrays and cap duration/resolution for untrusted media."
+      ],
+      "tags": [
+        "video",
+        "audio",
+        "transcoding",
+        "hls",
+        "cli",
+        "c"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/FFmpeg/FFmpeg",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://ffmpeg.org/documentation.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "ffmpeg-wasm",
+      "name": "ffmpeg.wasm",
+      "category": "video-processing",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ffmpegwasm/ffmpeg.wasm/blob/HEAD/LICENSE",
+        "scope": "MIT wrapper; the @ffmpeg/core WebAssembly build is GPL-2.0-or-later."
+      },
+      "homepage": "https://ffmpegwasm.netlify.app",
+      "repository": "https://github.com/ffmpegwasm/ffmpeg.wasm",
+      "docs": "https://ffmpegwasm.netlify.app/docs/overview",
+      "summary": "FFmpeg compiled to WebAssembly for in-browser video and audio processing.",
+      "useWhen": "Use instead of uploading media to a server for simple client-side trims, conversions or thumbnails.",
+      "cautions": [
+        "The core is GPL-2.0-or-later and large (~30 MB); review license and load cost.",
+        "Multithreaded core needs cross-origin isolation headers (COOP/COEP)."
+      ],
+      "tags": [
+        "video",
+        "wasm",
+        "browser",
+        "ffmpeg"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@ffmpeg/ffmpeg"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ffmpegwasm/ffmpeg.wasm",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://ffmpegwasm.netlify.app/docs/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mediabunny",
+      "name": "Mediabunny",
+      "category": "video-processing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/Vanilagy/mediabunny/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 (file-level copyleft)."
+      },
+      "homepage": "https://mediabunny.dev",
+      "repository": "https://github.com/Vanilagy/mediabunny",
+      "docs": "https://mediabunny.dev/guide/introduction",
+      "summary": "TypeScript library for reading, writing and converting media files using WebCodecs, without FFmpeg.",
+      "useWhen": "Use instead of shelling out to FFmpeg or hand-writing MP4/WebM muxing for browser-side recording, trimming and conversion.",
+      "cautions": [
+        "Depends on WebCodecs codec support in the target browser/runtime.",
+        "MPL-2.0: modifications to its files must be shared."
+      ],
+      "tags": [
+        "video",
+        "webcodecs",
+        "mp4",
+        "muxing",
+        "typescript"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "mediabunny"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Vanilagy/mediabunny",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://mediabunny.dev/guide/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "remotion",
+      "name": "Remotion",
+      "category": "video-generation",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "LicenseRef-Remotion",
+        "url": "https://github.com/remotion-dev/remotion/blob/HEAD/LICENSE.md",
+        "scope": "Source-available Remotion License: free for individuals and small companies; larger companies need a paid company license."
+      },
+      "homepage": "https://www.remotion.dev",
+      "repository": "https://github.com/remotion-dev/remotion",
+      "docs": "https://www.remotion.dev/docs/",
+      "summary": "Framework for creating videos programmatically with React components and rendering them to MP4.",
+      "useWhen": "Use instead of hand-writing frame-by-frame canvas rendering and FFmpeg stitching for data-driven or templated videos.",
+      "cautions": [
+        "Confirm company-license eligibility (team size) before commercial use.",
+        "Server/Lambda rendering costs compute; set limits."
+      ],
+      "tags": [
+        "video",
+        "react",
+        "rendering",
+        "templated-video"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "marketing-site",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/remotion-dev/remotion",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.remotion.dev/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Review the Remotion License, then install the remotion packages with npm and commit the lockfile."
+      ]
+    },
+    {
+      "id": "moviepy",
+      "name": "MoviePy",
+      "category": "video-processing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Zulko/moviepy/blob/HEAD/LICENCE.txt",
+        "scope": "MIT; uses an external FFmpeg binary."
+      },
+      "homepage": "https://zulko.github.io/moviepy/",
+      "repository": "https://github.com/Zulko/moviepy",
+      "docs": "https://zulko.github.io/moviepy/",
+      "summary": "Python library for scripted video editing: cuts, concatenation, titles, compositing and effects.",
+      "useWhen": "Use instead of hand-writing FFmpeg filter graphs for programmatic edits in Python.",
+      "cautions": [
+        "v2 changed many APIs from v1; check examples against the installed version.",
+        "Slower than direct FFmpeg for simple transcodes."
+      ],
+      "tags": [
+        "video",
+        "editing",
+        "python",
+        "compositing"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "moviepy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Zulko/moviepy",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://zulko.github.io/moviepy/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pyav",
+      "name": "PyAV",
+      "category": "video-processing",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/PyAV-Org/PyAV/blob/HEAD/LICENSE.txt",
+        "scope": "BSD-3-Clause; wheels bundle FFmpeg libraries under their own licenses."
+      },
+      "homepage": "https://pyav.basswood-io.com",
+      "repository": "https://github.com/PyAV-Org/PyAV",
+      "docs": "https://pyav.basswood-io.com/docs/stable/",
+      "summary": "Pythonic bindings to FFmpeg libraries for frame-level decoding, encoding and muxing.",
+      "useWhen": "Use instead of parsing FFmpeg CLI output when you need per-frame access to video/audio in Python.",
+      "cautions": [
+        "Lower-level than MoviePy; manage codec contexts and time bases carefully."
+      ],
+      "tags": [
+        "video",
+        "audio",
+        "ffmpeg",
+        "python",
+        "frames"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "av"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/PyAV-Org/PyAV",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pyav.basswood-io.com/docs/stable/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "shotcut",
+      "name": "Shotcut",
+      "category": "video-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/mltframework/shotcut/blob/HEAD/COPYING",
+        "scope": "GPL-3.0 application built on the MLT framework."
+      },
+      "homepage": "https://www.shotcut.org",
+      "repository": "https://github.com/mltframework/shotcut",
+      "docs": "https://www.shotcut.org/tutorials/",
+      "summary": "Free cross-platform video editor built on MLT and FFmpeg.",
+      "useWhen": "Use for manual timeline editing instead of paid editors; MLT XML projects can be rendered headless with melt.",
+      "cautions": [
+        "Desktop editor; automate with MLT/FFmpeg rather than UI scripting."
+      ],
+      "tags": [
+        "video-editor",
+        "desktop",
+        "mlt",
+        "timeline"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mltframework/shotcut",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.shotcut.org/tutorials/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "kdenlive",
+      "name": "Kdenlive",
+      "category": "video-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL",
+        "url": "https://kdenlive.org/en/about/",
+        "scope": "GPL (KDE-accepted versions) application."
+      },
+      "homepage": "https://kdenlive.org",
+      "repository": "https://invent.kde.org/multimedia/kdenlive",
+      "docs": "https://docs.kdenlive.org",
+      "summary": "Free multi-track video editor from KDE, built on MLT.",
+      "useWhen": "Use for multi-track editing, titles and proxies instead of paid editors.",
+      "cautions": [
+        "Desktop editor; record the version and keep project files with source media."
+      ],
+      "tags": [
+        "video-editor",
+        "desktop",
+        "kde",
+        "mlt"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://invent.kde.org/multimedia/kdenlive",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.kdenlive.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "openshot",
+      "name": "OpenShot",
+      "category": "video-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/OpenShot/openshot-qt/blob/HEAD/COPYING",
+        "scope": "GPL-3.0; libopenshot is LGPL-3.0."
+      },
+      "homepage": "https://www.openshot.org",
+      "repository": "https://github.com/OpenShot/openshot-qt",
+      "docs": "https://www.openshot.org/user-guide/",
+      "summary": "Beginner-friendly free video editor with a Python-scriptable libopenshot engine.",
+      "useWhen": "Use for simple manual edits, or libopenshot when you need a scriptable timeline engine.",
+      "cautions": [
+        "Less suitable for heavy professional workloads; test performance on target footage."
+      ],
+      "tags": [
+        "video-editor",
+        "desktop",
+        "beginner"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/OpenShot/openshot-qt",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.openshot.org/user-guide/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "obs-studio",
+      "name": "OBS Studio",
+      "category": "video-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-or-later",
+        "url": "https://github.com/obsproject/obs-studio/blob/HEAD/COPYING",
+        "scope": "GPL-2.0-or-later."
+      },
+      "homepage": "https://obsproject.com",
+      "repository": "https://github.com/obsproject/obs-studio",
+      "docs": "https://obsproject.com/kb",
+      "summary": "Free software for screen recording and live streaming with scenes, sources and a WebSocket control API.",
+      "useWhen": "Use instead of building screen capture/streaming tooling; drive scenes via obs-websocket for automation.",
+      "cautions": [
+        "Protect the obs-websocket password; it grants full control of recording/streaming.",
+        "Capture only content you have rights and consent to record."
+      ],
+      "tags": [
+        "streaming",
+        "screen-recording",
+        "desktop",
+        "websocket"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/obsproject/obs-studio",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://obsproject.com/kb",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "videojs",
+      "name": "Video.js",
+      "category": "video-players",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/videojs/video.js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://videojs.org",
+      "repository": "https://github.com/videojs/video.js",
+      "docs": "https://videojs.org/docs/",
+      "summary": "Widely used open-source HTML5 video player with HLS/DASH support, plugins and skins.",
+      "useWhen": "Use instead of hand-writing custom video controls, captions, adaptive streaming and player accessibility.",
+      "cautions": [
+        "Version 10 is a major rewrite; check plugin compatibility and the migration guide."
+      ],
+      "tags": [
+        "video",
+        "player",
+        "hls",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "video.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/videojs/video.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://videojs.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hlsjs",
+      "name": "hls.js",
+      "category": "video-players",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/video-dev/hls.js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://hlsjs.video-dev.org",
+      "repository": "https://github.com/video-dev/hls.js",
+      "docs": "https://github.com/video-dev/hls.js/blob/master/docs/API.md",
+      "summary": "JavaScript HLS client that plays HTTP Live Streaming in browsers via Media Source Extensions.",
+      "useWhen": "Use instead of hand-writing HLS playlist parsing and adaptive bitrate switching.",
+      "cautions": [
+        "Safari/iOS play HLS natively; feature-detect before attaching hls.js."
+      ],
+      "tags": [
+        "video",
+        "hls",
+        "streaming",
+        "mse"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "hls.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/video-dev/hls.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/video-dev/hls.js/blob/master/docs/API.md",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "shaka-player",
+      "name": "Shaka Player",
+      "category": "video-players",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/shaka-project/shaka-player/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://shaka-player-demo.appspot.com",
+      "repository": "https://github.com/shaka-project/shaka-player",
+      "docs": "https://shaka-player-demo.appspot.com/docs/api/index.html",
+      "summary": "JavaScript player for adaptive DASH and HLS with DRM (EME) and offline storage.",
+      "useWhen": "Use instead of hand-writing DASH/HLS playback with Widevine/PlayReady/FairPlay DRM.",
+      "cautions": [
+        "DRM requires license server contracts and per-platform testing."
+      ],
+      "tags": [
+        "video",
+        "dash",
+        "hls",
+        "drm",
+        "streaming"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "shaka-player"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/shaka-project/shaka-player",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://shaka-player-demo.appspot.com/docs/api/index.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "plyr",
+      "name": "Plyr",
+      "category": "video-players",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sampotts/plyr/blob/HEAD/LICENSE.md",
+        "scope": "MIT."
+      },
+      "homepage": "https://plyr.io",
+      "repository": "https://github.com/sampotts/plyr",
+      "docs": "https://github.com/sampotts/plyr#readme",
+      "summary": "Lightweight, accessible HTML5/YouTube/Vimeo media player with customizable controls.",
+      "useWhen": "Use instead of hand-writing styled, accessible media controls for simple video or audio embeds.",
+      "cautions": [
+        "Release cadence is slow; pair with hls.js for HLS and test on target browsers.",
+        "YouTube/Vimeo embeds are subject to those platforms' terms and tracking."
+      ],
+      "tags": [
+        "video",
+        "audio",
+        "player",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "plyr"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sampotts/plyr",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/sampotts/plyr#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mediamtx",
+      "name": "MediaMTX",
+      "category": "streaming-server",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/bluenviron/mediamtx/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/bluenviron/mediamtx",
+      "docs": "https://github.com/bluenviron/mediamtx#readme",
+      "summary": "Ready-to-use real-time media server and proxy for RTSP, RTMP, WebRTC, SRT and HLS.",
+      "useWhen": "Use instead of building your own ingest/relay server for cameras, OBS streams or WebRTC playback.",
+      "cautions": [
+        "Configure authentication; the default config accepts unauthenticated publishing.",
+        "Expose only required ports and use TLS for public endpoints."
+      ],
+      "tags": [
+        "streaming",
+        "rtsp",
+        "webrtc",
+        "hls",
+        "go",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "bluenviron/mediamtx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bluenviron/mediamtx",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/bluenviron/mediamtx#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Run the official container or release binary pinned to a version; commit the reviewed mediamtx.yml."
+      ]
+    },
+    {
+      "id": "tonejs",
+      "name": "Tone.js",
+      "category": "audio",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Tonejs/Tone.js/blob/HEAD/LICENSE.md",
+        "scope": "MIT."
+      },
+      "homepage": "https://tonejs.github.io",
+      "repository": "https://github.com/Tonejs/Tone.js",
+      "docs": "https://tonejs.github.io/docs/",
+      "summary": "Web Audio framework for interactive music: synths, effects, sequencing and transport timing.",
+      "useWhen": "Use instead of hand-writing Web Audio scheduling, synthesizers and musical timing in the browser.",
+      "cautions": [
+        "Audio contexts must start from a user gesture (Tone.start())."
+      ],
+      "tags": [
+        "audio",
+        "web-audio",
+        "music",
+        "synth"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tone"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Tonejs/Tone.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tonejs.github.io/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "howler",
+      "name": "howler.js",
+      "category": "audio",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/goldfire/howler.js/blob/HEAD/LICENSE.md",
+        "scope": "MIT."
+      },
+      "homepage": "https://howlerjs.com",
+      "repository": "https://github.com/goldfire/howler.js",
+      "docs": "https://github.com/goldfire/howler.js#documentation",
+      "summary": "Cross-browser audio playback library with sprites, spatial audio and Web Audio/HTML5 fallback.",
+      "useWhen": "Use instead of hand-writing cross-browser sound effects, audio sprites and mobile unlock handling.",
+      "cautions": [
+        "Releases are infrequent; test on current mobile browsers."
+      ],
+      "tags": [
+        "audio",
+        "sound",
+        "games",
+        "web-audio"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "howler"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/goldfire/howler.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/goldfire/howler.js#documentation",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "wavesurfer",
+      "name": "wavesurfer.js",
+      "category": "audio",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/katspaugh/wavesurfer.js/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause."
+      },
+      "homepage": "https://wavesurfer.xyz",
+      "repository": "https://github.com/katspaugh/wavesurfer.js",
+      "docs": "https://wavesurfer.xyz/docs/",
+      "summary": "Audio waveform visualization and playback with regions, timeline and spectrogram plugins.",
+      "useWhen": "Use instead of hand-writing waveform rendering, seeking and region selection for audio editors or podcast players.",
+      "cautions": [
+        "Pre-compute peaks server-side for long files to avoid decoding in the browser."
+      ],
+      "tags": [
+        "audio",
+        "waveform",
+        "visualization",
+        "player"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "wavesurfer.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/katspaugh/wavesurfer.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://wavesurfer.xyz/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pydub",
+      "name": "pydub",
+      "category": "audio",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jiaaro/pydub/blob/HEAD/LICENSE",
+        "scope": "MIT; uses external FFmpeg."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jiaaro/pydub",
+      "docs": "https://github.com/jiaaro/pydub/blob/master/API.markdown",
+      "summary": "Simple Python API for slicing, concatenating, applying gain and exporting audio via FFmpeg.",
+      "useWhen": "Use instead of hand-writing FFmpeg commands for basic audio edits in Python scripts.",
+      "cautions": [
+        "Maintenance is slow and Python 3.13 removed audioop (needs audioop-lts); prefer PyAV or FFmpeg for new pipelines."
+      ],
+      "tags": [
+        "audio",
+        "python",
+        "editing",
+        "ffmpeg"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pydub"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jiaaro/pydub",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/jiaaro/pydub/blob/master/API.markdown",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "librosa",
+      "name": "librosa",
+      "category": "audio-analysis",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/librosa/librosa/blob/HEAD/LICENSE.md",
+        "scope": "ISC."
+      },
+      "homepage": "https://librosa.org",
+      "repository": "https://github.com/librosa/librosa",
+      "docs": "https://librosa.org/doc/latest/",
+      "summary": "Python library for music and audio analysis: spectrograms, onset/beat detection, pitch and features.",
+      "useWhen": "Use instead of hand-writing STFT, MFCC, tempo/beat tracking or audio feature extraction.",
+      "cautions": [
+        "Loading resamples to 22,050 Hz by default; pass sr=None to keep the native rate."
+      ],
+      "tags": [
+        "audio",
+        "analysis",
+        "music",
+        "python",
+        "features"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "librosa"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/librosa/librosa",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://librosa.org/doc/latest/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openai-whisper",
+      "name": "Whisper",
+      "category": "speech-to-text",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/openai/whisper/blob/HEAD/LICENSE",
+        "scope": "MIT for code and model weights."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/whisper",
+      "docs": "https://github.com/openai/whisper#readme",
+      "summary": "Open-source multilingual speech recognition and translation models with a Python CLI.",
+      "useWhen": "Use instead of hand-writing or paying for transcription of local audio when an offline model is acceptable.",
+      "cautions": [
+        "Reference implementation is slow on CPU; consider faster-whisper or whisper.cpp for production.",
+        "Transcripts can hallucinate; keep timestamps and allow human correction."
+      ],
+      "tags": [
+        "speech-to-text",
+        "transcription",
+        "ai",
+        "python",
+        "offline"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "openai-whisper"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/whisper",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/openai/whisper#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "whisper-cpp",
+      "name": "whisper.cpp",
+      "category": "speech-to-text",
+      "platforms": [
+        "server",
+        "desktop",
+        "mobile",
+        "cli"
+      ],
+      "kind": "source-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ggml-org/whisper.cpp/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ggml-org/whisper.cpp",
+      "docs": "https://github.com/ggml-org/whisper.cpp#readme",
+      "summary": "Dependency-free C/C++ port of Whisper for fast local transcription on CPU, GPU and mobile.",
+      "useWhen": "Use instead of running Python Whisper when you need on-device or embedded transcription.",
+      "cautions": [
+        "Download models from the documented sources and verify checksums."
+      ],
+      "tags": [
+        "speech-to-text",
+        "transcription",
+        "cpp",
+        "on-device",
+        "offline"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ai-agent",
+        "mobile-app",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ggml-org/whisper.cpp",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/ggml-org/whisper.cpp#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Build from a pinned release tag with CMake, or use a maintained binding; record the model file used."
+      ]
+    },
+    {
+      "id": "faster-whisper",
+      "name": "faster-whisper",
+      "category": "speech-to-text",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/SYSTRAN/faster-whisper/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/SYSTRAN/faster-whisper",
+      "docs": "https://github.com/SYSTRAN/faster-whisper#readme",
+      "summary": "Whisper reimplementation on CTranslate2 that is several times faster with lower memory use.",
+      "useWhen": "Use instead of the reference Whisper package for production Python transcription with VAD and word timestamps.",
+      "cautions": [
+        "GPU use requires matching CUDA/cuDNN versions."
+      ],
+      "tags": [
+        "speech-to-text",
+        "transcription",
+        "python",
+        "ctranslate2"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "faster-whisper"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SYSTRAN/faster-whisper",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/SYSTRAN/faster-whisper#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "piper-tts",
+      "name": "Piper",
+      "category": "text-to-speech",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/OHF-Voice/piper1-gpl/blob/HEAD/COPYING",
+        "scope": "GPL-3.0-or-later (piper1-gpl); individual voice models carry their own licenses."
+      },
+      "homepage": null,
+      "repository": "https://github.com/OHF-Voice/piper1-gpl",
+      "docs": "https://github.com/OHF-Voice/piper1-gpl#readme",
+      "summary": "Fast local neural text-to-speech that runs on CPU, including Raspberry Pi.",
+      "useWhen": "Use instead of paid TTS APIs for offline voice prompts and narration.",
+      "cautions": [
+        "The original rhasspy/piper repository is archived; use the OHF-Voice continuation.",
+        "Check each voice model's license and dataset terms before commercial use."
+      ],
+      "tags": [
+        "text-to-speech",
+        "tts",
+        "offline",
+        "python"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "piper-tts"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/OHF-Voice/piper1-gpl",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/OHF-Voice/piper1-gpl#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "coqui-tts",
+      "name": "Coqui TTS (Idiap fork)",
+      "category": "text-to-speech",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/idiap/coqui-ai-TTS/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 for code; XTTS and some models use the non-commercial Coqui Public Model License."
+      },
+      "homepage": null,
+      "repository": "https://github.com/idiap/coqui-ai-TTS",
+      "docs": "https://coqui-tts.readthedocs.io",
+      "summary": "Maintained fork of Coqui TTS: deep-learning text-to-speech and voice cloning toolkit.",
+      "useWhen": "Use instead of hand-assembling TTS model training/inference code when Piper voices are not enough.",
+      "cautions": [
+        "Coqui the company shut down; the Idiap fork is the maintained package (coqui-tts).",
+        "XTTS weights are non-commercial (CPML); voice cloning requires consent."
+      ],
+      "tags": [
+        "text-to-speech",
+        "tts",
+        "voice",
+        "python",
+        "ai"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "coqui-tts"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/idiap/coqui-ai-TTS",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://coqui-tts.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "audacity",
+      "name": "Audacity",
+      "category": "audio-applications",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-only",
+        "url": "https://github.com/audacity/audacity/blob/HEAD/LICENSE.txt",
+        "scope": "GPL (v2-or-later code, distributed as GPLv3)."
+      },
+      "homepage": "https://www.audacityteam.org",
+      "repository": "https://github.com/audacity/audacity",
+      "docs": "https://support.audacityteam.org",
+      "summary": "Free multi-track audio editor and recorder.",
+      "useWhen": "Use for manual audio recording, cleanup and editing instead of paid editors; automate via mod-script-pipe or macros.",
+      "cautions": [
+        "Desktop app; use FFmpeg/PyAV for server pipelines."
+      ],
+      "tags": [
+        "audio-editor",
+        "recording",
+        "desktop",
+        "podcast"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/audacity/audacity",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://support.audacityteam.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "threejs",
+      "name": "three.js",
+      "category": "3d-graphics",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mrdoob/three.js/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://threejs.org",
+      "repository": "https://github.com/mrdoob/three.js",
+      "docs": "https://threejs.org/docs/",
+      "summary": "The most widely used JavaScript 3D library for WebGL/WebGPU scenes, loaders and materials.",
+      "useWhen": "Use instead of hand-writing WebGL shaders, scene graphs, cameras and glTF loading.",
+      "cautions": [
+        "Releases are frequent and occasionally break APIs; pin the version and import addons from the same release."
+      ],
+      "tags": [
+        "3d",
+        "webgl",
+        "webgpu",
+        "gltf",
+        "javascript"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "three"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mrdoob/three.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://threejs.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-three-fiber",
+      "name": "React Three Fiber",
+      "category": "3d-graphics",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pmndrs/react-three-fiber/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://r3f.docs.pmnd.rs",
+      "repository": "https://github.com/pmndrs/react-three-fiber",
+      "docs": "https://r3f.docs.pmnd.rs/getting-started/introduction",
+      "summary": "React renderer for three.js that expresses scenes as declarative components.",
+      "useWhen": "Use instead of hand-wiring three.js lifecycle, resizing and render loops inside React apps.",
+      "cautions": [
+        "Match @react-three/fiber major version to the React major version."
+      ],
+      "tags": [
+        "3d",
+        "react",
+        "threejs",
+        "webgl"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@react-three/fiber"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pmndrs/react-three-fiber",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://r3f.docs.pmnd.rs/getting-started/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "drei",
+      "name": "drei",
+      "category": "3d-graphics",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pmndrs/drei/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://drei.docs.pmnd.rs",
+      "repository": "https://github.com/pmndrs/drei",
+      "docs": "https://drei.docs.pmnd.rs",
+      "summary": "Collection of ready-made helpers for React Three Fiber: controls, loaders, text, environments and staging.",
+      "useWhen": "Use instead of hand-writing orbit controls, glTF loading hooks, HTML overlays and environment lighting in R3F.",
+      "cautions": [
+        "Some helpers fetch remote assets (e.g. environment presets); self-host for privacy/offline use."
+      ],
+      "tags": [
+        "3d",
+        "react",
+        "threejs",
+        "helpers"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@react-three/drei"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pmndrs/drei",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://drei.docs.pmnd.rs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "model-viewer",
+      "name": "<model-viewer>",
+      "category": "3d-graphics",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/google/model-viewer/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://modelviewer.dev",
+      "repository": "https://github.com/google/model-viewer",
+      "docs": "https://modelviewer.dev/docs/",
+      "summary": "Web component for displaying interactive glTF/GLB 3D models with AR support.",
+      "useWhen": "Use instead of building a three.js viewer just to show a product model with orbit, poster and AR.",
+      "cautions": [
+        "Optimize GLB files (Draco/meshopt, texture size) for mobile load times."
+      ],
+      "tags": [
+        "3d",
+        "gltf",
+        "ar",
+        "web-component",
+        "product"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "ecommerce",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@google/model-viewer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/google/model-viewer",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://modelviewer.dev/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "blender",
+      "name": "Blender",
+      "category": "3d-applications",
+      "platforms": [
+        "desktop",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-or-later",
+        "url": "https://www.blender.org/about/license/",
+        "scope": "GPL-2.0-or-later source; official binaries are GPL-3.0-or-later. Your artwork is yours."
+      },
+      "homepage": "https://www.blender.org",
+      "repository": "https://projects.blender.org/blender/blender",
+      "docs": "https://docs.blender.org",
+      "summary": "Free 3D creation suite for modeling, animation, rendering, compositing and video editing, with Python scripting.",
+      "useWhen": "Use instead of paid 3D tools for asset creation; run headless (blender -b) with Python scripts for batch renders and conversions.",
+      "cautions": [
+        "Python scripts in .blend files can execute code; disable auto-run for untrusted files."
+      ],
+      "tags": [
+        "3d",
+        "modeling",
+        "rendering",
+        "animation",
+        "python",
+        "desktop"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://projects.blender.org/blender/blender",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.blender.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download from the official site or OS package manager; verify checksums/signatures and record the version."
+      ]
+    },
+    {
+      "id": "gltf-transform",
+      "name": "glTF Transform",
+      "category": "3d-tooling",
+      "platforms": [
+        "web",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/donmccurdy/glTF-Transform/blob/HEAD/LICENSE.md",
+        "scope": "MIT."
+      },
+      "homepage": "https://gltf-transform.dev",
+      "repository": "https://github.com/donmccurdy/glTF-Transform",
+      "docs": "https://gltf-transform.dev/cli",
+      "summary": "SDK and CLI for reading, editing, optimizing and compressing glTF 2.0 models.",
+      "useWhen": "Use instead of hand-writing glTF parsing, Draco/meshopt compression, texture resizing and model optimization scripts.",
+      "cautions": [
+        "Compression extensions require matching decoders in the viewer."
+      ],
+      "tags": [
+        "3d",
+        "gltf",
+        "optimization",
+        "cli",
+        "typescript"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@gltf-transform/core"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@gltf-transform/cli"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/donmccurdy/glTF-Transform",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://gltf-transform.dev/cli",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "p5js",
+      "name": "p5.js",
+      "category": "creative-coding",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-2.1",
+        "url": "https://github.com/processing/p5.js/blob/HEAD/license.txt",
+        "scope": "LGPL-2.1."
+      },
+      "homepage": "https://p5js.org",
+      "repository": "https://github.com/processing/p5.js",
+      "docs": "https://p5js.org/reference/",
+      "summary": "Beginner-friendly creative coding library for drawing, animation and interaction on canvas.",
+      "useWhen": "Use instead of hand-writing canvas drawing loops and input handling for sketches, generative art and teaching.",
+      "cautions": [
+        "p5.js 2.x changed some APIs from 1.x; match examples to the installed version."
+      ],
+      "tags": [
+        "creative-coding",
+        "canvas",
+        "generative-art",
+        "education"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "p5"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/processing/p5.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://p5js.org/reference/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "paperjs",
+      "name": "Paper.js",
+      "category": "creative-coding",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/paperjs/paper.js/blob/HEAD/LICENSE.txt",
+        "scope": "MIT."
+      },
+      "homepage": "https://paperjs.org",
+      "repository": "https://github.com/paperjs/paper.js",
+      "docs": "https://paperjs.org/reference/",
+      "summary": "Vector graphics scripting framework on canvas with paths, boolean operations and SVG import/export.",
+      "useWhen": "Use instead of hand-writing Bezier path math, boolean path operations and hit testing for vector tools.",
+      "cautions": [
+        "Development is slow; verify behavior on current browsers before depending on it."
+      ],
+      "tags": [
+        "vector",
+        "canvas",
+        "bezier",
+        "svg"
+      ],
+      "projectTypes": [
+        "media-creative"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "paper"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/paperjs/paper.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://paperjs.org/reference/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "roughjs",
+      "name": "Rough.js",
+      "category": "creative-coding",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rough-stuff/rough/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://roughjs.com",
+      "repository": "https://github.com/rough-stuff/rough",
+      "docs": "https://github.com/rough-stuff/rough/wiki",
+      "summary": "Small library that draws hand-drawn, sketchy shapes on canvas or SVG.",
+      "useWhen": "Use instead of hand-writing sketch-style rendering for diagrams, charts or playful UI.",
+      "cautions": [
+        "Output is randomized per render; set a seed for stable visuals."
+      ],
+      "tags": [
+        "canvas",
+        "svg",
+        "sketch",
+        "hand-drawn"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "roughjs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rough-stuff/rough",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/rough-stuff/rough/wiki",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dotlottie-web",
+      "name": "dotLottie Web",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/LottieFiles/dotlottie-web/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://developers.lottiefiles.com",
+      "repository": "https://github.com/LottieFiles/dotlottie-web",
+      "docs": "https://developers.lottiefiles.com/docs/dotlottie-player/",
+      "summary": "WebAssembly-based player for Lottie and .lottie animations with React/Vue wrappers.",
+      "useWhen": "Use instead of hand-coding motion graphics or embedding heavy GIF/video for UI animations.",
+      "cautions": [
+        "Loads a WASM renderer; self-host the WASM file if your CSP blocks CDNs.",
+        "Check each downloaded animation's license on LottieFiles."
+      ],
+      "tags": [
+        "animation",
+        "lottie",
+        "wasm",
+        "react"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@lottiefiles/dotlottie-web"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/LottieFiles/dotlottie-web",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developers.lottiefiles.com/docs/dotlottie-player/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "penpot",
+      "name": "Penpot",
+      "category": "design-tools",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/penpot/penpot/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0."
+      },
+      "homepage": "https://penpot.app",
+      "repository": "https://github.com/penpot/penpot",
+      "docs": "https://help.penpot.app",
+      "summary": "Open-source, self-hostable design and prototyping platform using SVG/CSS standards.",
+      "useWhen": "Use instead of a proprietary design tool when you need self-hosting, open file formats or design-to-code inspection.",
+      "cautions": [
+        "Self-hosting needs PostgreSQL, Redis/Valkey and storage; follow the official Docker setup."
+      ],
+      "tags": [
+        "design",
+        "prototyping",
+        "self-hosted",
+        "svg",
+        "figma-alternative"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/penpot/penpot",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://help.penpot.app",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Self-host with the official Docker Compose files pinned to a release, or use penpot.app."
+      ]
+    },
+    {
+      "id": "figma-rest-api",
+      "name": "Figma REST API",
+      "category": "design-tools",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://www.figma.com/developer-terms/",
+        "scope": "Proprietary Figma service under the Figma Developer Terms; the OpenAPI spec repository is MIT."
+      },
+      "homepage": "https://www.figma.com/developers",
+      "repository": "https://github.com/figma/rest-api-spec",
+      "docs": "https://developers.figma.com/docs/rest-api/",
+      "summary": "Official HTTP API for reading Figma files, components, styles, variables, comments and image exports.",
+      "useWhen": "Use instead of scraping or manually exporting Figma assets when syncing design tokens, icons or images into code.",
+      "cautions": [
+        "Use per-user OAuth or scoped personal access tokens kept server-side; respect rate limits.",
+        "Variables API and some endpoints require specific plans."
+      ],
+      "tags": [
+        "figma",
+        "design-tokens",
+        "api",
+        "export"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/figma/rest-api-spec",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developers.figma.com/docs/rest-api/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Create a scoped token or OAuth app in Figma; store credentials in the secret manager."
+      ]
+    },
+    {
+      "id": "iconify",
+      "name": "Iconify",
+      "category": "icons",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/iconify/iconify/blob/HEAD/license.txt",
+        "scope": "MIT for Iconify code; each icon set keeps its own license (MIT, Apache-2.0, CC BY, etc.)."
+      },
+      "homepage": "https://iconify.design",
+      "repository": "https://github.com/iconify/iconify",
+      "docs": "https://iconify.design/docs/",
+      "summary": "Unified framework giving access to 200,000+ open-source icons from 150+ sets with on-demand loading.",
+      "useWhen": "Use instead of hand-copying SVG icons from many sets or building icon sprites.",
+      "cautions": [
+        "Check the license of each icon set you use; some require attribution (CC BY).",
+        "The default API fetches icons from Iconify servers; bundle or self-host for offline/privacy."
+      ],
+      "tags": [
+        "icons",
+        "svg",
+        "react",
+        "vue",
+        "design-assets"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@iconify/react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/iconify/iconify",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://iconify.design/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "font-awesome-free",
+      "name": "Font Awesome Free",
+      "category": "icons",
+      "platforms": [
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "CC-BY-4.0 AND OFL-1.1 AND MIT",
+        "url": "https://fontawesome.com/license/free",
+        "scope": "Icons CC BY 4.0, fonts SIL OFL 1.1, code MIT; Pro icons are commercial."
+      },
+      "homepage": "https://fontawesome.com",
+      "repository": "https://github.com/FortAwesome/Font-Awesome",
+      "docs": "https://docs.fontawesome.com",
+      "summary": "Free tier of the popular icon toolkit with SVG, web font and framework packages.",
+      "useWhen": "Use instead of drawing common UI icons when the project already follows Font Awesome conventions.",
+      "cautions": [
+        "Attribution is required by CC BY 4.0 (kept in file comments); do not use Pro icons without a license.",
+        "Import individual icons to avoid shipping the full font."
+      ],
+      "tags": [
+        "icons",
+        "svg",
+        "webfont",
+        "design-assets"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@fortawesome/fontawesome-free"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/FortAwesome/Font-Awesome",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.fontawesome.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "google-fonts",
+      "name": "Google Fonts",
+      "category": "fonts",
+      "platforms": [
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "OFL-1.1",
+        "url": "https://github.com/google/fonts#license",
+        "scope": "Most families are SIL OFL 1.1; some are Apache-2.0 or Ubuntu Font License (check per family)."
+      },
+      "homepage": "https://fonts.google.com",
+      "repository": "https://github.com/google/fonts",
+      "docs": "https://developers.google.com/fonts/docs/getting_started",
+      "summary": "Catalog of 1,500+ open-licensed font families with a CSS API and downloadable source files.",
+      "useWhen": "Use instead of licensing commercial fonts for most UI and marketing typography.",
+      "cautions": [
+        "Hotlinking the Google CDN sends visitor IPs to Google (GDPR concerns); self-host via Fontsource or downloads."
+      ],
+      "tags": [
+        "fonts",
+        "typography",
+        "design-assets",
+        "ofl"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/google/fonts",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developers.google.com/fonts/docs/getting_started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Prefer self-hosting the chosen families (e.g. via Fontsource); record family names and licenses."
+      ]
+    },
+    {
+      "id": "fontsource",
+      "name": "Fontsource",
+      "category": "fonts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT AND OFL-1.1",
+        "url": "https://github.com/fontsource/fontsource/blob/HEAD/LICENSE",
+        "scope": "MIT for Fontsource tooling; each font package carries its font license (mostly OFL-1.1)."
+      },
+      "homepage": "https://fontsource.org",
+      "repository": "https://github.com/fontsource/fontsource",
+      "docs": "https://fontsource.org/docs/getting-started/introduction",
+      "summary": "Self-hostable open-source fonts (including all of Google Fonts) packaged as npm modules.",
+      "useWhen": "Use instead of hotlinking font CDNs or hand-writing @font-face rules and subsetting.",
+      "cautions": [
+        "Import only the weights/subsets you need to limit bundle size."
+      ],
+      "tags": [
+        "fonts",
+        "self-hosted",
+        "typography",
+        "npm"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@fontsource/inter"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fontsource/fontsource",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://fontsource.org/docs/getting-started/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install the specific @fontsource/<family> (or @fontsource-variable/<family>) package; @fontsource/inter is an example."
+      ]
+    },
+    {
+      "id": "undraw",
+      "name": "unDraw",
+      "category": "illustrations",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://undraw.co/license",
+        "scope": "Custom unDraw license: free use including commercial, but not for building competing illustration libraries or bulk redistribution."
+      },
+      "homepage": "https://undraw.co",
+      "repository": null,
+      "docs": "https://undraw.co/license",
+      "summary": "Library of open-use SVG illustrations with a customizable accent color.",
+      "useWhen": "Use instead of commissioning generic spot illustrations for empty states, onboarding and landing pages.",
+      "cautions": [
+        "Read the license: no redistribution as an illustration pack or use in competing services."
+      ],
+      "tags": [
+        "illustrations",
+        "svg",
+        "design-assets",
+        "empty-states"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "marketing-site",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://undraw.co",
+          "title": "Official site and license terms"
+        },
+        {
+          "url": "https://undraw.co/license",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download chosen illustrations from undraw.co and commit them with a note of the source and license."
+      ]
+    },
+    {
+      "id": "open-peeps",
+      "name": "Open Peeps",
+      "category": "illustrations",
+      "platforms": [
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://www.openpeeps.com",
+        "scope": "Released under CC0 (public domain dedication) by Pablo Stanley."
+      },
+      "homepage": "https://www.openpeeps.com",
+      "repository": null,
+      "docs": "https://www.openpeeps.com",
+      "summary": "Hand-drawn mix-and-match people illustration library released into the public domain.",
+      "useWhen": "Use instead of drawing character illustrations or avatars from scratch for friendly, cartoon-style UI.",
+      "cautions": [
+        "Confirm the CC0 notice on the download source and keep a provenance note."
+      ],
+      "tags": [
+        "illustrations",
+        "avatars",
+        "characters",
+        "cc0",
+        "design-assets"
+      ],
+      "projectTypes": [
+        "media-creative",
+        "marketing-site",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.openpeeps.com",
+          "title": "Official site and license terms"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Download the asset pack from the official site; commit selected SVGs with a provenance note."
+      ]
+    },
+    {
+      "id": "puppeteer",
+      "name": "Puppeteer",
+      "category": "browser-automation",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/puppeteer/puppeteer/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://pptr.dev",
+      "repository": "https://github.com/puppeteer/puppeteer",
+      "docs": "https://pptr.dev/guides/what-is-puppeteer",
+      "summary": "Node.js API to control Chrome/Firefox over CDP/WebDriver BiDi for automation, PDFs and screenshots.",
+      "useWhen": "Use instead of hand-writing CDP clients for headless screenshots, PDF rendering, form automation or crawling.",
+      "cautions": [
+        "Downloads a browser on install; pin versions and cache in CI.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "browser",
+        "headless",
+        "chrome",
+        "screenshots",
+        "pdf",
+        "nodejs"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "testing-qa",
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "puppeteer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/puppeteer/puppeteer",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pptr.dev/guides/what-is-puppeteer",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "selenium",
+      "name": "Selenium",
+      "category": "browser-automation",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/SeleniumHQ/selenium/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://www.selenium.dev",
+      "repository": "https://github.com/SeleniumHQ/selenium",
+      "docs": "https://www.selenium.dev/documentation/",
+      "summary": "W3C WebDriver browser automation with bindings for Java, Python, JavaScript, C#, Ruby and Grid for scale.",
+      "useWhen": "Use instead of hand-writing WebDriver protocol clients for cross-browser automation in non-JS stacks.",
+      "cautions": [
+        "Selenium Manager downloads drivers automatically; pin browser/driver versions in CI.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "browser",
+        "webdriver",
+        "java",
+        "python",
+        "csharp"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "selenium"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "selenium-webdriver"
+        },
+        {
+          "ecosystem": "maven",
+          "name": "org.seleniumhq.selenium:selenium-java"
+        },
+        {
+          "ecosystem": "nuget",
+          "name": "Selenium.WebDriver"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SeleniumHQ/selenium",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.selenium.dev/documentation/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "webdriverio",
+      "name": "WebdriverIO",
+      "category": "browser-automation",
+      "platforms": [
+        "server",
+        "desktop",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/webdriverio/webdriverio/blob/HEAD/LICENSE-MIT",
+        "scope": "MIT."
+      },
+      "homepage": "https://webdriver.io",
+      "repository": "https://github.com/webdriverio/webdriverio",
+      "docs": "https://webdriver.io/docs/gettingstarted",
+      "summary": "Node.js automation framework for browsers and native mobile apps (via Appium) over WebDriver/BiDi.",
+      "useWhen": "Use instead of hand-writing WebDriver/Appium glue for web plus mobile automation from one JS codebase.",
+      "cautions": [
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "browser",
+        "webdriver",
+        "appium",
+        "mobile",
+        "nodejs"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "testing-qa",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "webdriverio"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/webdriverio/webdriverio",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://webdriver.io/docs/gettingstarted",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "crawlee",
+      "name": "Crawlee",
+      "category": "web-scraping",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/apify/crawlee/blob/HEAD/LICENSE.md",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://crawlee.dev",
+      "repository": "https://github.com/apify/crawlee",
+      "docs": "https://crawlee.dev/js/docs/quick-start",
+      "summary": "Node.js and Python crawling library with request queues, retries, proxies and HTTP/browser crawlers.",
+      "useWhen": "Use instead of hand-writing crawl queues, retry/backoff, session rotation and storage for scrapers.",
+      "cautions": [
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs.",
+        "Its fingerprinting/proxy features must not be used to evade blocks a site has deliberately applied."
+      ],
+      "tags": [
+        "scraping",
+        "crawler",
+        "nodejs",
+        "python",
+        "queues"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "data-analytics",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "crawlee"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "crawlee"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apify/crawlee",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://crawlee.dev/js/docs/quick-start",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "scrapy",
+      "name": "Scrapy",
+      "category": "web-scraping",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/scrapy/scrapy/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause."
+      },
+      "homepage": "https://scrapy.org",
+      "repository": "https://github.com/scrapy/scrapy",
+      "docs": "https://docs.scrapy.org",
+      "summary": "Python framework for fast, structured crawling with spiders, pipelines and auto-throttling.",
+      "useWhen": "Use instead of hand-writing Python crawl loops, deduplication, throttling and export pipelines.",
+      "cautions": [
+        "Keep ROBOTSTXT_OBEY enabled and AutoThrottle on.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "scraping",
+        "crawler",
+        "python",
+        "pipelines"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "Scrapy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/scrapy/scrapy",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.scrapy.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "beautifulsoup",
+      "name": "Beautiful Soup",
+      "category": "html-parsing",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://www.crummy.com/software/BeautifulSoup/",
+        "scope": "MIT."
+      },
+      "homepage": "https://www.crummy.com/software/BeautifulSoup/",
+      "repository": null,
+      "docs": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+      "summary": "Python library for parsing and navigating HTML/XML documents, tolerant of broken markup.",
+      "useWhen": "Use instead of regex-based HTML extraction in Python.",
+      "cautions": [
+        "Parsing only; fetch with requests/httpx and respect site terms.",
+        "Use the lxml parser for speed on large documents."
+      ],
+      "tags": [
+        "html",
+        "parsing",
+        "python",
+        "scraping"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "beautifulsoup4"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.crummy.com/software/BeautifulSoup/",
+          "title": "Official site and license terms"
+        },
+        {
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cheerio",
+      "name": "Cheerio",
+      "category": "html-parsing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cheeriojs/cheerio/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://cheerio.js.org",
+      "repository": "https://github.com/cheeriojs/cheerio",
+      "docs": "https://cheerio.js.org/docs/intro",
+      "summary": "Fast jQuery-like HTML/XML parsing and manipulation for Node.js without a browser.",
+      "useWhen": "Use instead of regex HTML parsing or launching a headless browser for static pages.",
+      "cautions": [
+        "Does not execute JavaScript; use Puppeteer/Playwright for client-rendered pages."
+      ],
+      "tags": [
+        "html",
+        "parsing",
+        "nodejs",
+        "scraping"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "cheerio"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cheeriojs/cheerio",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://cheerio.js.org/docs/intro",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "jsdom",
+      "name": "jsdom",
+      "category": "html-parsing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jsdom/jsdom/blob/HEAD/LICENSE.txt",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jsdom/jsdom",
+      "docs": "https://github.com/jsdom/jsdom#readme",
+      "summary": "Pure-JavaScript implementation of DOM and HTML standards for Node.js.",
+      "useWhen": "Use instead of hand-writing DOM shims for server-side HTML processing or DOM-based tests.",
+      "cautions": [
+        "Never enable runScripts: \"dangerously\" on untrusted HTML.",
+        "No layout/rendering; use a real browser for visual checks."
+      ],
+      "tags": [
+        "dom",
+        "html",
+        "nodejs",
+        "testing"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "jsdom"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jsdom/jsdom",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/jsdom/jsdom#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "browserless",
+      "name": "Browserless",
+      "category": "browser-infrastructure",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "SSPL-1.0",
+        "url": "https://github.com/browserless/browserless/blob/HEAD/LICENSE",
+        "scope": "SSPL-1.0 or commercial license; free for non-commercial/open-source use, commercial use requires a license."
+      },
+      "homepage": "https://www.browserless.io",
+      "repository": "https://github.com/browserless/browserless",
+      "docs": "https://docs.browserless.io",
+      "summary": "Headless Chrome/Firefox/WebKit as a Docker service or hosted API for Puppeteer/Playwright clients.",
+      "useWhen": "Use instead of building your own browser pool, queueing and session management service.",
+      "cautions": [
+        "SSPL/commercial terms: review before offering it inside a commercial or hosted product.",
+        "Set a TOKEN and network isolation; an open instance is a free proxy for attackers."
+      ],
+      "tags": [
+        "browser",
+        "headless",
+        "docker",
+        "service",
+        "puppeteer"
+      ],
+      "projectTypes": [
+        "browser-automation"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "ghcr.io/browserless/chromium"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/browserless/browserless",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.browserless.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Review the license; run the official image pinned to a tag with TOKEN set from secrets, or use the hosted service."
+      ]
+    },
+    {
+      "id": "browser-use",
+      "name": "Browser Use",
+      "category": "ai-browser-agents",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/browser-use/browser-use/blob/HEAD/LICENSE",
+        "scope": "MIT for the library; the cloud service is separate."
+      },
+      "homepage": "https://browser-use.com",
+      "repository": "https://github.com/browser-use/browser-use",
+      "docs": "https://docs.browser-use.com",
+      "summary": "Python library that lets LLM agents control a real browser to complete web tasks.",
+      "useWhen": "Use instead of hand-writing LLM-to-DOM action loops for agentic browsing.",
+      "cautions": [
+        "Agents act with the browser profile's credentials; use isolated profiles and confirm consequential actions.",
+        "Model calls cost money per step; set step and budget limits."
+      ],
+      "tags": [
+        "ai-agent",
+        "browser",
+        "llm",
+        "python",
+        "automation"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "browser-use"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/browser-use/browser-use",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.browser-use.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "stagehand",
+      "name": "Stagehand",
+      "category": "ai-browser-agents",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/browserbase/stagehand/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Browserbase hosting is a paid service."
+      },
+      "homepage": "https://www.stagehand.dev",
+      "repository": "https://github.com/browserbase/stagehand",
+      "docs": "https://docs.stagehand.dev",
+      "summary": "TypeScript browser automation SDK mixing code with natural-language act/extract/observe steps.",
+      "useWhen": "Use instead of brittle hand-written selectors when pages change often, keeping deterministic code where possible.",
+      "cautions": [
+        "LLM steps are non-deterministic and billed; cache actions and validate extracted data.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "ai-agent",
+        "browser",
+        "llm",
+        "typescript"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@browserbasehq/stagehand"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/browserbase/stagehand",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.stagehand.dev",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "skyvern",
+      "name": "Skyvern",
+      "category": "ai-browser-agents",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": "https://github.com/Skyvern-AI/skyvern/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for the open-source core; the cloud product is commercial."
+      },
+      "homepage": "https://www.skyvern.com",
+      "repository": "https://github.com/Skyvern-AI/skyvern",
+      "docs": "https://docs.skyvern.com",
+      "summary": "LLM and computer-vision driven browser workflow automation with an API and UI.",
+      "useWhen": "Use instead of building vision-based form filling and multi-step browser workflows from scratch.",
+      "cautions": [
+        "AGPL-3.0: offering a modified version over a network requires sharing source.",
+        "Consequential actions (purchases, submissions) need human confirmation."
+      ],
+      "tags": [
+        "ai-agent",
+        "browser",
+        "rpa",
+        "vision",
+        "python"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Skyvern-AI/skyvern",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.skyvern.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Review AGPL obligations; self-host from a pinned release with its Docker Compose setup."
+      ]
+    },
+    {
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "category": "web-scraping",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": "https://github.com/firecrawl/firecrawl/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for the server; official SDKs are MIT; hosted API is a paid service."
+      },
+      "homepage": "https://www.firecrawl.dev",
+      "repository": "https://github.com/firecrawl/firecrawl",
+      "docs": "https://docs.firecrawl.dev",
+      "summary": "Crawling/scraping API that turns websites into clean Markdown or structured data for LLMs.",
+      "useWhen": "Use instead of hand-writing crawl + HTML-to-Markdown cleanup for RAG ingestion.",
+      "cautions": [
+        "AGPL server: review before self-hosting inside a commercial service; the hosted API bills per page.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "scraping",
+        "markdown",
+        "rag",
+        "llm",
+        "api"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/firecrawl/firecrawl",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.firecrawl.dev",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Use the MIT SDK (@mendable/firecrawl-js or firecrawl-py) against the hosted API, or review AGPL before self-hosting."
+      ]
+    },
+    {
+      "id": "apify-sdk",
+      "name": "Apify SDK",
+      "category": "web-scraping",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/apify/apify-sdk-js/blob/HEAD/LICENSE.md",
+        "scope": "Apache-2.0; the Apify platform is a paid service."
+      },
+      "homepage": "https://apify.com",
+      "repository": "https://github.com/apify/apify-sdk-js",
+      "docs": "https://docs.apify.com/sdk/js/",
+      "summary": "SDK for building Apify Actors (packaged scrapers/automations) in JavaScript or Python.",
+      "useWhen": "Use instead of hand-writing deployment, storage and scheduling glue when running scrapers on the Apify platform.",
+      "cautions": [
+        "Platform usage is billed; set memory/timeouts and budget alerts.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "scraping",
+        "actors",
+        "nodejs",
+        "python",
+        "platform"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "apify"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "apify"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apify/apify-sdk-js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.apify.com/sdk/js/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pyautogui",
+      "name": "PyAutoGUI",
+      "category": "computer-automation",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/asweigart/pyautogui/blob/HEAD/LICENSE.txt",
+        "scope": "BSD-3-Clause."
+      },
+      "homepage": "https://pyautogui.readthedocs.io",
+      "repository": "https://github.com/asweigart/pyautogui",
+      "docs": "https://pyautogui.readthedocs.io",
+      "summary": "Cross-platform Python library for controlling mouse and keyboard and taking screenshots.",
+      "useWhen": "Use instead of hand-writing OS-specific input synthesis for simple desktop automation.",
+      "cautions": [
+        "Keep the fail-safe (move to corner) enabled; coordinate scripts break when screens change.",
+        "Releases are infrequent; prefer accessibility APIs where available."
+      ],
+      "tags": [
+        "rpa",
+        "desktop",
+        "mouse",
+        "keyboard",
+        "python"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pyautogui"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/asweigart/pyautogui",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pyautogui.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nutjs",
+      "name": "nut.js",
+      "category": "computer-automation",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/nut-tree/nut.js/blob/HEAD/LICENSE",
+        "scope": "Source is Apache-2.0, but maintained prebuilt packages are distributed via a paid subscription registry."
+      },
+      "homepage": "https://nutjs.dev",
+      "repository": "https://github.com/nut-tree/nut.js",
+      "docs": "https://nutjs.dev/docs/getting-started",
+      "summary": "Node.js desktop automation: keyboard, mouse, screen and image-based element search.",
+      "useWhen": "Use instead of hand-writing native input bindings for desktop automation in Node.js (robotjs is unmaintained).",
+      "cautions": [
+        "Public npm packages were removed; prebuilt binaries need a subscription or building from source.",
+        "Run automation in an isolated session with least-privilege accounts."
+      ],
+      "tags": [
+        "rpa",
+        "desktop",
+        "nodejs",
+        "mouse",
+        "keyboard"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nut-tree/nut.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nutjs.dev/docs/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Review the current distribution terms; build from source or obtain the official subscription packages."
+      ]
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "category": "workflow-automation",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "LicenseRef-n8n-Sustainable-Use",
+        "url": "https://github.com/n8n-io/n8n/blob/HEAD/LICENSE.md",
+        "scope": "Fair-code Sustainable Use License (not OSI); enterprise features under n8n Enterprise License. Internal business use allowed; reselling or hosting for others needs a commercial agreement."
+      },
+      "homepage": "https://n8n.io",
+      "repository": "https://github.com/n8n-io/n8n",
+      "docs": "https://docs.n8n.io",
+      "summary": "Node-based workflow automation platform with 400+ integrations, code nodes and AI agent nodes.",
+      "useWhen": "Use instead of hand-writing integration glue and scheduled sync jobs for internal workflows.",
+      "cautions": [
+        "Do not embed or copy n8n code into a commercial product without rights (Sustainable Use License).",
+        "Credentials live in n8n; set N8N_ENCRYPTION_KEY and restrict access."
+      ],
+      "tags": [
+        "workflow",
+        "automation",
+        "integrations",
+        "low-code",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "saas",
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/n8n-io/n8n",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.n8n.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Review the license; self-host the official Docker image pinned to a version, or use n8n Cloud."
+      ]
+    },
+    {
+      "id": "node-red",
+      "name": "Node-RED",
+      "category": "workflow-automation",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/node-red/node-red/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0; community nodes have their own licenses."
+      },
+      "homepage": "https://nodered.org",
+      "repository": "https://github.com/node-red/node-red",
+      "docs": "https://nodered.org/docs/",
+      "summary": "Flow-based low-code programming tool for wiring APIs, devices and services, popular for IoT.",
+      "useWhen": "Use instead of hand-writing event-routing glue for IoT, MQTT and simple integration flows.",
+      "cautions": [
+        "Enable adminAuth; an open editor allows arbitrary code execution.",
+        "Review community nodes before installing; they run with full privileges."
+      ],
+      "tags": [
+        "workflow",
+        "iot",
+        "mqtt",
+        "low-code",
+        "nodejs"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "node-red"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/node-red/node-red",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nodered.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "activepieces",
+      "name": "Activepieces",
+      "category": "workflow-automation",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/activepieces/activepieces/blob/HEAD/LICENSE",
+        "scope": "MIT for the community edition; packages/ee is under a commercial license."
+      },
+      "homepage": "https://www.activepieces.com",
+      "repository": "https://github.com/activepieces/activepieces",
+      "docs": "https://www.activepieces.com/docs",
+      "summary": "Open-source no-code automation platform (Zapier alternative) with TypeScript \"pieces\" and MCP support.",
+      "useWhen": "Use instead of building a Zapier-style trigger/action automation layer for users.",
+      "cautions": [
+        "Exclude the ee directory unless you hold a commercial license.",
+        "Secure credentials and sandbox code steps."
+      ],
+      "tags": [
+        "workflow",
+        "automation",
+        "no-code",
+        "typescript",
+        "mcp"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "saas",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "ghcr.io/activepieces/activepieces"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/activepieces/activepieces",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.activepieces.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Self-host the official image pinned to a release with Docker Compose; set encryption keys from secrets."
+      ]
+    },
+    {
+      "id": "windmill",
+      "name": "Windmill",
+      "category": "workflow-automation",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": "https://github.com/windmill-labs/windmill/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 core with Apache-2.0 clients; enterprise features are proprietary."
+      },
+      "homepage": "https://www.windmill.dev",
+      "repository": "https://github.com/windmill-labs/windmill",
+      "docs": "https://www.windmill.dev/docs/intro",
+      "summary": "Developer platform that turns Python/TypeScript/Go/Bash scripts into workflows, UIs and scheduled jobs.",
+      "useWhen": "Use instead of building internal job runners, script UIs and workflow orchestration from scratch.",
+      "cautions": [
+        "AGPL-3.0: review before embedding or offering as a service; some features need an enterprise license.",
+        "Scripts run with worker credentials; isolate workers."
+      ],
+      "tags": [
+        "workflow",
+        "jobs",
+        "scripts",
+        "internal-tools",
+        "rust"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "devops-infra",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/windmill-labs/windmill",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.windmill.dev/docs/intro",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Review the license; self-host with the official Docker Compose pinned to a release."
+      ]
+    },
+    {
+      "id": "huginn",
+      "name": "Huginn",
+      "category": "workflow-automation",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/huginn/huginn/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/huginn/huginn",
+      "docs": "https://github.com/huginn/huginn/wiki",
+      "summary": "Self-hosted Ruby agents that watch the web, collect events and take automated actions.",
+      "useWhen": "Use instead of hand-writing personal monitoring, scraping and notification bots.",
+      "cautions": [
+        "Release cadence is slow; run in Docker and keep dependencies patched.",
+        "Respect site terms of service, robots.txt, rate limits and personal-data law; do not bypass access controls or CAPTCHAs."
+      ],
+      "tags": [
+        "workflow",
+        "monitoring",
+        "ruby",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "browser-automation"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "ghcr.io/huginn/huginn"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/huginn/huginn",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/huginn/huginn/wiki",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Run the official container pinned to a digest; follow the wiki for configuration."
+      ]
+    },
+    {
+      "id": "trigger-dev",
+      "name": "Trigger.dev",
+      "category": "workflow-automation",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0 AND MIT",
+        "url": "https://github.com/triggerdotdev/trigger.dev/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the self-hostable platform; the @trigger.dev/sdk package is MIT. Cloud is a paid service."
+      },
+      "homepage": "https://trigger.dev",
+      "repository": "https://github.com/triggerdotdev/trigger.dev",
+      "docs": "https://trigger.dev/docs",
+      "summary": "TypeScript background jobs and long-running workflows with retries, queues and observability.",
+      "useWhen": "Use instead of hand-writing job queues, retries and long-running task orchestration in TypeScript apps.",
+      "cautions": [
+        "Cloud usage is billed by compute; set concurrency and max duration."
+      ],
+      "tags": [
+        "background-jobs",
+        "workflow",
+        "typescript",
+        "queues"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "api-backend",
+        "saas",
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@trigger.dev/sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/triggerdotdev/trigger.dev",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://trigger.dev/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/media-automation.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    }
+  ]
+}
