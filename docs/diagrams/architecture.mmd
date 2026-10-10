@@ -1,0 +1,70 @@
+flowchart TB
+  subgraph Authored["Authored sources (reviewed in Git)"]
+    MOD["modules/{id}/<br/>module.json · CONTRACT.md · files/"]
+    REC["resources/agent-recipes.json<br/>examples/recipes · utilities<br/>storefront · ui"]
+    LANG["examples/languages/modules.json<br/>examples/languages<br/>examples/cookbook"]
+    CAP["resources/capabilities.json<br/>task → code in 9 languages"]
+    TPL["templates/index.json<br/>project · github · docs · ship · ui"]
+    TOOLIDX["tools/index.json<br/>repo-map · AST graph<br/>context · diagram"]
+    RES["resources/*.json<br/>resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning,<br/>mapping-navigation)<br/>resources/project-types.json"]
+    SKL["resources/skills.json<br/>1,066 pinned agent skills"]
+    IDX["resources/mcp-servers.json<br/>clis.json · apis.json<br/>starters.json · task-recipes.json<br/>ranked install indexes"]
+  end
+  REG["registry/catalog.json<br/>registry/manifests/*.json<br/>(SHA-256)"]
+  DISC["lib/discover.mjs<br/>find · detect · catalog"]
+  CAPLIB["lib/capabilities.mjs<br/>capability list · inspect"]
+  SKLIB["lib/skills.mjs<br/>skill find · inspect"]
+  IDXLIB["lib/indexes.mjs<br/>mcp · cli · api · starter · task<br/>find · inspect"]
+  RESLIB["lib/resources.mjs<br/>validate · search · types"]
+  DOCS_MD["README · AGENTS · docs/**/*.md"]
+  DOCIDX["lib/docs-index.mjs<br/>sections + line ranges"]
+  JEV["lib/jev.mjs<br/>bounded yes/no packet"]
+  SIDX["registry/search-index.jsonl"]
+  BRIEF["lib/brief.mjs<br/>quick · compact find"]
+  CLI["bin/genlib.mjs"]
+  OUTL["lib/outline.mjs<br/>signatures, not source"]
+  SRC["lib/source.mjs<br/>sparse pinned fetch<br/>+ resources/equivalents.json"]
+  MCPS["bin/genlib-mcp.mjs<br/>MCP tools"]
+  TOK["docs/token-budget.md<br/>measured output sizes"]
+  INST["lib/install.mjs<br/>plan · add · verify"]
+  APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
+  NET["Git hosts · npm<br/>PyPI · crates.io"]
+  DOCS["scripts/sync-docs.mjs<br/>README and resource counts"]
+  DIAG["scripts/diagrams.mjs<br/>Agentic Mermaid SVGs"]
+  JEVX["Genisys Jev and<br/>other harnesses"]
+  GRAPH["registry/graph.json<br/>navigation graph"]
+  VAULT["Obsidian vault<br/>(generated notes only)"]
+  SKILL["skills/genlib-use"]
+  MOD -- "npm run registry:build" --> REG
+  REG --> DISC
+  REC --> DISC
+  LANG --> DISC
+  CAP --> CAPLIB --> DISC
+  LANG -. "language-modules add" .-> CAPLIB
+  TPL --> DISC
+  TOOLIDX --> DISC
+  SKL --> SKLIB --> DISC
+  IDX --> IDXLIB --> DISC
+  RES --> RESLIB --> DISC
+  DOCS_MD --> DOCIDX --> DISC
+  DISC --> JEV --> CLI
+  DISC -- "npm run index:build" --> SIDX
+  DISC --> BRIEF --> CLI
+  CAP & LANG & REC & REG --> OUTL --> CLI
+  OUTL & BRIEF --> MCPS
+  RES & SKL & IDX --> SRC --> CLI
+  SRC --> MCPS
+  CLI -- "npm run tokens:report" --> TOK
+  REG --> INST --> CLI
+  CLI -- "copies reviewed bytes" --> APP
+  SKLIB -. "npx skills add (pinned)" .-> APP
+  IDXLIB -. "mcp add · brew · SDK" .-> APP
+  RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
+  REG & RES --> DOCS
+  DOCS_MD -. "npm run diagrams:render" .-> DIAG
+  SIDX -. "grep / own retrieval" .-> JEVX
+  DISC --> MCPS -. "stdio JSON-RPC" .-> JEVX
+  DISC -- "npm run graph:build" --> GRAPH
+  DISC -- "export-obsidian.mjs" --> VAULT
+  JEV -. "genlib jev --json" .-> JEVX
+  SKILL -- "routes agents to" --> CLI

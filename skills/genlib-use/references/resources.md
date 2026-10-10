@@ -6,7 +6,7 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
 {
   "routing": [
     {
-      "need": "SEO and AI optimization, analytics, marketing, social media, dashboards, scheduling and calendars, chat and messaging, finance and accounting, business tools (BI, CRM, ERP, helpdesk, e-invoicing, service SDKs), education (LMS, whiteboards, slides, writing, quizzes, LTI 1.3), or a self-hosted alternative to a proprietary product",
+      "need": "SEO and AI optimization, analytics, marketing, social media, dashboards, scheduling and calendars, chat and messaging, finance and accounting, business tools (BI, CRM, ERP, helpdesk, e-invoicing, service SDKs), education (LMS, whiteboards, slides, writing, quizzes, LTI 1.3), maps, routing, tiles, geocoding, GIS and live geodata feeds (aircraft, ships, satellites, weather, traffic cameras, transit), diagram tools (Mermaid, draw.io, architecture diagrams), or a self-hosted alternative to a proprietary product",
       "search": "node \"$GENLIB_ROOT/bin/genlib.mjs\" quick <need> --language <lang>   (or '<product> alternative')",
       "note": "Records are link- and license-checked packages and apps in 12 languages with exact install commands; check license-review records before embedding."
     },

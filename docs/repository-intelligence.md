@@ -1,6 +1,6 @@
 # Repository intelligence
 
-Genlib generates a deterministic local index and a Mermaid architecture overview without uploading source code to a third-party service. [GitDiagram](https://gitdiagram.com/) is a visual reference, not a required dependency.
+Genlib generates a deterministic local index and a Mermaid architecture overview without uploading source code to a third-party service. [GitDiagram](https://gitdiagram.com/) is a visual reference, not a required dependency. To turn any Mermaid output into a deterministic SVG, PNG or ASCII picture without a browser, run the pinned Agentic Mermaid (`npx -y agentic-mermaid@0.4.1 render diagram.mmd --format svg --output diagram.svg`); `genlib find diagram` lists it with draw.io, Excalidraw and architecture-diagram tools.
 
 ## Commands
 

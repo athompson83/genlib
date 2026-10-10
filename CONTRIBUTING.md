@@ -19,7 +19,7 @@ npm ci --ignore-scripts
 npm run check
 ```
 
-`npm run check` performs registry freshness, skill mirror, resource catalog, documentation-count, search-index, graph and token-budget checks, a strict TypeScript build, and the repository tests. After changing catalogs, recipes, templates or tools, run `npm run docs:sync`; for new resource records also run `node scripts/verify-resources.mjs --file <catalog>` (network). For a focused iteration on the web components:
+`npm run check` performs registry freshness, skill mirror, resource catalog, documentation-count, search-index, graph token-budget and diagram checks, a strict TypeScript build, and the repository tests. After changing catalogs, recipes, templates or tools, run `npm run docs:sync`; for new resource records also run `node scripts/verify-resources.mjs --file <catalog>` (network). For a focused iteration on the web components:
 
 ```sh
 npm run build
@@ -91,4 +91,4 @@ If claiming a cost benefit, measure total model cost, context use, elapsed time,
 
 ## Documentation is part of every change
 
-Update the README, the diagrams (README and `docs/architecture.md`), the affected docs and guides, and the Jev guide, search index and navigation graph (`docs/jev.md`, `docs/agent-access.md`, `llms.txt`, `npm run index:build`, `npm run graph:build`, `npm run tokens:report`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.
+Update the README, the diagrams (README and `docs/architecture.md`, then `npm run diagrams:render` to redraw their SVGs with the pinned Agentic Mermaid; it needs network and Node 22), the affected docs and guides, and the Jev guide, search index and navigation graph (`docs/jev.md`, `docs/agent-access.md`, `llms.txt`, `npm run index:build`, `npm run graph:build`, `npm run tokens:report`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.

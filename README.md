@@ -62,33 +62,63 @@ One command searches everything below and returns each result's exact next step.
 
 ## How it works
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/readme-flow-dark.svg">
+  <img alt="How an agent task flows through genlib quick, find, outline and source to tested code in the app" src="docs/diagrams/readme-flow-light.svg">
+</picture>
+
+<details>
+<summary>Diagram source (Mermaid: edit this, then run <code>npm run diagrams:render</code>)</summary>
+
 ```mermaid
 flowchart LR
-  Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Quick["genlib quick<br/>best match + its commands"]
-  Quick --> Find["genlib find<br/>(+ detect --target)"]
-  Quick -.-> Outline["genlib outline<br/>signatures, not source"] -.-> App
-  X -.-> Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"] -.-> App
-  Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
-  Find --> M["Modules"]
-  Find --> R["Recipes and<br/>language examples"]
-  Find --> T["Templates"]
-  Find --> N["Navigation tools"]
-  Find --> S["Skills · MCP servers<br/>CLIs · APIs<br/>starters · task recipes"]
-  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning)"]
-  Find --> D["Doc sections<br/>(exact line ranges)"]
-  Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
-  Index["registry/search-index.jsonl"] -.-> Jev
-  MCP["genlib MCP server<br/>genlib_quick · genlib_find · genlib_outline · genlib_jev"] -.-> Find
-  Graph["registry/graph.json<br/>+ Obsidian export"] -.-> Find
-  M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
-  C --> Lang["pick the detected<br/>language's code"] --> Copy
-  R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
-  T --> Merge["read guide, merge<br/>selected files"] --> App
-  N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
-  S --> SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"] --> App
-  X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
-  D --> Section["sed -n start,end p"] --> App
+  Task["Agent task<br/>e.g. 'rate-limit the login API'"]
+  Quick["genlib quick<br/>best match + its commands"]
+  Find["genlib find<br/>(+ detect --target)"]
+  Outline["genlib outline<br/>signatures, not source"]
+  Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"]
+  Jev["genlib jev<br/>≤8 candidates, yes/no each"]
+  Index["registry/search-index.jsonl"]
+  MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Graph["registry/graph.json<br/>+ Obsidian export"]
+  C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
+  M["Modules"]
+  R["Recipes and<br/>language examples"]
+  T["Templates"]
+  N["Navigation tools"]
+  S["Skills · MCP servers<br/>CLIs · APIs<br/>starters · task recipes"]
+  X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning,<br/>diagrams, mapping and navigation)"]
+  D["Doc sections<br/>(exact line ranges)"]
+  Inspect["inspect contract"]
+  Plan["plan<br/>(no writes)"]
+  Add["add<br/>copy + .genlib/lock.json"]
+  Verify["verify hashes"]
+  Lang["pick the detected<br/>language's code"]
+  Copy["recipe-install / language-modules<br/>plan + add"]
+  Merge["read guide, merge<br/>selected files"]
+  Context["repo-context:<br/>5 files, imports, tests"]
+  SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"]
+  Adopt["inspect record:<br/>license, links, cautions"]
+  Section["sed -n start,end p"]
+  App["Adapt to the app<br/>and run its tests"]
+  Task --> Quick --> Find
+  Quick -.-> Outline -.-> App
+  Find --> C & M & R & T & N & S & X & D
+  X -.-> Source -.-> App
+  Index -.-> Jev -.-> Find
+  MCP -.-> Find
+  Graph -.-> Find
+  M --> Inspect --> Plan --> Add --> Verify --> App
+  C --> Lang --> Copy
+  R --> Copy --> App
+  T --> Merge --> App
+  N --> Context --> App
+  S --> SkillAdd --> App
+  X --> Adopt --> App
+  D --> Section --> App
 ```
+
+</details>
 
 - **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets.
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
