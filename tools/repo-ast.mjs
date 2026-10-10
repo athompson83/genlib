@@ -3,7 +3,9 @@ import {createRequire} from 'node:module';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {posix} from 'node:path';
-const ts=createRequire(import.meta.url)('typescript');
+// The parser needs TypeScript's JavaScript compiler API. TypeScript 7 ships only the native compiler,
+// so prefer the pinned 5.x API alias and fall back to a 'typescript' package that still exposes it.
+const ts=(()=>{const req=createRequire(import.meta.url);for(const name of ['typescript-ast','typescript']){try{const api=req(name);if(typeof api.createSourceFile==='function')return api}catch{}}throw new Error('TypeScript compiler API not found: run npm ci (typescript-ast alias)')})();
 const supported=/\.(?:[cm]?[jt]sx?)$/;
 export function extractImports(source,path){
  const kind=/\.tsx$/.test(path)?ts.ScriptKind.TSX:/\.jsx$/.test(path)?ts.ScriptKind.JSX:/\.ts$/.test(path)?ts.ScriptKind.TS:ts.ScriptKind.JS;

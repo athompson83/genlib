@@ -16,13 +16,17 @@ const recipeDir = join(root, 'examples/recipes');
 const files = readdirSync(recipeDir).filter((f) => f.endsWith('.ts')).sort();
 const out = mkdtempSync(join(tmpdir(), 'genlib-recipes-'));
 after(() => rmSync(out, { recursive: true, force: true }));
-execFileSync(process.execPath, [
-  join(root, 'node_modules/typescript/bin/tsc'),
-  '--strict', '--noUncheckedIndexedAccess', '--exactOptionalPropertyTypes', '--noImplicitReturns',
-  '--noFallthroughCasesInSwitch', '--noUnusedLocals', '--noUnusedParameters', '--skipLibCheck',
-  '--target', 'ES2022', '--module', 'NodeNext', '--moduleResolution', 'NodeNext', '--lib', 'ES2022,DOM,DOM.Iterable',
-  '--rootDir', recipeDir, '--outDir', out, ...files.map((f) => join(recipeDir, f)),
-], { stdio: 'pipe' });
+// A generated tsconfig keeps this working on TypeScript 5.x and 7.x: TypeScript 7 refuses to
+// compile files named on the command line while the repository's tsconfig.json is present.
+const compilerOptions = {
+  strict: true, noUncheckedIndexedAccess: true, exactOptionalPropertyTypes: true, noImplicitReturns: true,
+  noFallthroughCasesInSwitch: true, noUnusedLocals: true, noUnusedParameters: true, skipLibCheck: true,
+  target: 'ES2022', module: 'NodeNext', moduleResolution: 'NodeNext', lib: ['ES2022', 'DOM', 'DOM.Iterable'],
+  rootDir: recipeDir, outDir: out,
+};
+const project = join(out, 'tsconfig.recipes.json');
+writeFileSync(project, JSON.stringify({ compilerOptions, files: files.map((f) => join(recipeDir, f)) }));
+execFileSync(process.execPath, [join(root, 'node_modules/typescript/bin/tsc'), '-p', project], { stdio: 'pipe' });
 writeFileSync(join(out, 'package.json'), '{"type":"module"}');
 const load = (name) => import(pathToFileURL(join(out, `${name}.js`)).href);
 
