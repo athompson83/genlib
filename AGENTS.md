@@ -22,6 +22,17 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - Keep API clients on the trusted server. Test transport errors, authorization, credential handling and external-effect uncertainty without sending live emails, creating sessions or making purchases as a test.
 - Project templates are opt-in. Preserve receiving-project files and configure real checks; never replace a required verification gate with a successful placeholder command.
 
+## Keep documentation current on every change
+
+Every change to this repository, however small, ships with its documentation in the same commit or PR. A change is not finished, and must not be merged, until all of the following are current:
+
+1. **README.md**: the source table, capability matrix and catalog counts (`npm run docs:sync` regenerates the marked blocks), plus any prose, command table or Contents entry the change affects.
+2. **Diagrams**: the Mermaid flow in README.md and the system diagram in `docs/architecture.md`. Add or rename nodes and arrows when a source, command, library, catalog or data flow changes. Update any other diagram that shows the changed area.
+3. **Docs**: the guide for the changed area (`docs/capabilities.md`, `docs/cookbook/<topic>.md`, `docs/resources/<catalog>.md`, `docs/install-indexes.md`, `docs/lifecycle.md` and the others listed in `docs/architecture.md`), this file's surface list, CONTRIBUTING.md and the `genlib-use` skill (then `npm run skills:sync` for its mirrors).
+4. **Jev guide and search index**: `docs/jev.md` and the generated search index that Jev and other agents use to find anything in this repository. Regenerate the index with its build script whenever any catalog, capability, module, recipe, template, tool, doc or command changes, and update the guide when the shape of candidates, questions or commands changes.
+
+Run `npm run check` before publishing; it fails when generated docs, counts, mirrors or the search index are stale. In the PR description, list which of the four areas changed, or say why one did not need to. Never hand-edit generated blocks or files; change their source and regenerate.
+
 ## Repository surfaces
 
 - `modules/`: authored source modules and their integration contracts.

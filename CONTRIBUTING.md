@@ -84,3 +84,7 @@ Changes to the installer require tests for the affected safety and recovery beha
 A proposed change should state the problem, resulting behavior, affected modules and versions, compatibility or migration implications, and verification performed. Keep work scoped and preserve parallel contributors' changes.
 
 If claiming a cost benefit, measure total model cost, context use, elapsed time, repair attempts, and accepted feature behavior against a normal library-aware build process. Include curation and maintenance effort. Copied byte counts alone are not evidence of token savings.
+
+## Documentation is part of every change
+
+Update the README, the diagrams (README and `docs/architecture.md`), the affected docs and guides, and the Jev guide and search index (`docs/jev.md`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.
