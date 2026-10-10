@@ -171,6 +171,14 @@
    "guide": "docs/capabilities.md"
   },
   {
+   "id": "capability:json-patch",
+   "kind": "capability",
+   "label": "json-patch",
+   "count": 1,
+   "query": "json-patch",
+   "guide": "docs/capabilities.md"
+  },
+  {
    "id": "capability:line-diff",
    "kind": "capability",
    "label": "line-diff",
@@ -320,6 +328,14 @@
    "label": "signed-urls",
    "count": 1,
    "query": "signed-urls",
+   "guide": "docs/capabilities.md"
+  },
+  {
+   "id": "capability:slugify",
+   "kind": "capability",
+   "label": "slugify",
+   "count": 1,
+   "query": "slugify",
    "guide": "docs/capabilities.md"
   },
   {
@@ -2865,7 +2881,7 @@
    "id": "doc:docs/capabilities.md",
    "kind": "doc",
    "label": "docs/capabilities.md",
-   "count": 49,
+   "count": 51,
    "file": "docs/capabilities.md"
   },
   {
@@ -3445,14 +3461,14 @@
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 552,
+   "count": 556,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 342,
+   "count": 346,
    "query": "dart"
   },
   {
@@ -3473,7 +3489,7 @@
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 763,
+   "count": 767,
    "query": "go"
   },
   {
@@ -3508,7 +3524,7 @@
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 2917,
+   "count": 2921,
    "query": "java"
   },
   {
@@ -3536,7 +3552,7 @@
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 251,
+   "count": 255,
    "query": "kotlin"
   },
   {
@@ -3557,7 +3573,7 @@
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1631,
+   "count": 1635,
    "query": "python"
   },
   {
@@ -3571,7 +3587,7 @@
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 587,
+   "count": 591,
    "query": "rust"
   },
   {
@@ -3585,14 +3601,14 @@
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 278,
+   "count": 282,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3524,
+   "count": 3528,
    "query": "typescript"
   },
   {
@@ -3620,7 +3636,7 @@
    "id": "type:capability",
    "kind": "type",
    "label": "capability",
-   "count": 52,
+   "count": 54,
    "query": "--type capability"
   },
   {
@@ -3641,7 +3657,7 @@
    "id": "type:language-example",
    "kind": "type",
    "label": "language-example",
-   "count": 433,
+   "count": 449,
    "query": "--type language-example"
   },
   {
@@ -3662,7 +3678,7 @@
    "id": "type:recipe",
    "kind": "type",
    "label": "recipe",
-   "count": 75,
+   "count": 77,
    "query": "--type recipe"
   },
   {
@@ -4964,6 +4980,66 @@
    "weight": 1
   },
   {
+   "source": "capability:json-patch",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:json-patch",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
    "source": "capability:line-diff",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
@@ -6081,6 +6157,66 @@
   },
   {
    "source": "capability:signed-urls",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:slugify",
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
@@ -13883,7 +14019,7 @@
    "source": "genlib",
    "target": "type:capability",
    "relation": "contains",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "genlib",
@@ -13901,7 +14037,7 @@
    "source": "genlib",
    "target": "type:language-example",
    "relation": "contains",
-   "weight": 433
+   "weight": 449
   },
   {
    "source": "genlib",
@@ -13919,7 +14055,7 @@
    "source": "genlib",
    "target": "type:recipe",
    "relation": "contains",
-   "weight": 75
+   "weight": 77
   },
   {
    "source": "genlib",
@@ -16311,6 +16447,12 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:json-patch",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:line-diff",
    "relation": "includes",
    "weight": 1
@@ -16425,6 +16567,12 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:slugify",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:string-similarity",
    "relation": "includes",
    "weight": 1
@@ -16499,55 +16647,55 @@
    "source": "type:capability",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:capability",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 49
+   "weight": 51
   },
   {
    "source": "type:capability",
    "target": "language:go",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:capability",
    "target": "language:java",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:capability",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:capability",
    "target": "language:python",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:capability",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:capability",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 50
+   "weight": 52
   },
   {
    "source": "type:capability",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 52
+   "weight": 54
   },
   {
    "source": "type:doc",
@@ -16961,49 +17109,49 @@
    "source": "type:language-example",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 53
+   "weight": 55
   },
   {
    "source": "type:language-example",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 50
+   "weight": 52
   },
   {
    "source": "type:language-example",
    "target": "language:go",
    "relation": "serves",
-   "weight": 56
+   "weight": 58
   },
   {
    "source": "type:language-example",
    "target": "language:java",
    "relation": "serves",
-   "weight": 53
+   "weight": 55
   },
   {
    "source": "type:language-example",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 53
+   "weight": 55
   },
   {
    "source": "type:language-example",
    "target": "language:python",
    "relation": "serves",
-   "weight": 56
+   "weight": 58
   },
   {
    "source": "type:language-example",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 53
+   "weight": 55
   },
   {
    "source": "type:language-example",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 51
+   "weight": 53
   },
   {
    "source": "type:language-example",
@@ -17021,7 +17169,7 @@
    "source": "type:recipe",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 74
+   "weight": 76
   },
   {
    "source": "type:resource",

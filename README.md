@@ -25,10 +25,10 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 52 (463 implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with tested code in up to 9 languages (the count in brackets is the total of tested implementations) |
+| [Capabilities](#capabilities-one-task-every-language) | 54 (481 implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with tested code in up to 9 languages (the count in brackets is the total of tested implementations) |
 | [Modules](#modules) | 13 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
-| [TypeScript recipes](#recipes-language-examples-and-templates) | 77 | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |
-| [Language examples](#recipes-language-examples-and-templates) | 433 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 79 | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |
+| [Language examples](#recipes-language-examples-and-templates) | 449 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
@@ -227,6 +227,8 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `line-diff` Line diff and unified diff output | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `password-policy` Password policy checks (NIST SP 800-63B) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `text-sanitize` Text sanitizing and Trojan Source (bidi) detection | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `slugify` URL slugs: slugify titles and make them unique | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `json-patch` JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
