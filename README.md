@@ -68,7 +68,7 @@ flowchart LR
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
   Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
-  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools)"]
+  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education)"]
   Find --> D["Doc sections<br/>(exact line ranges)"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
   Index["registry/search-index.jsonl"] -.-> Jev

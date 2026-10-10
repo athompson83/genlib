@@ -23,7 +23,7 @@ test('loads every source catalog and reports counts', async () => {
 });
 
 test('query terms stem plurals and add reviewed synonyms without duplicating words', () => {
-  assert.deepEqual(queryTerms('Webhooks webhooks'), { words: ['webhook'], expanded: ['signature', 'hmac'] });
+  assert.deepEqual(queryTerms('Webhooks webhooks'), { words: ['webhook'], expanded: ['signature', 'hmac'], phrase: 'webhooks-webhooks' });
   assert.deepEqual(queryTerms('class').words, ['class']);
   assert.throws(() => queryTerms('x'.repeat(501)), /at most 500/);
 });
@@ -135,4 +135,13 @@ test('resource results lead with install steps and flag license review first', a
   const restricted = sources.resources.find(item => item.integrationMode === 'license-review');
   const hit = findInSources(sources, restricted.id, { type: 'resource', limit: 25 }).results.find(item => item.id === restricted.id);
   assert.match(hit.next[0], /^License review required/);
+});
+
+test('a multi-word query naming a whole entry outranks partial and stemmed matches', async () => {
+  // "canvas" stems to "canva"; the whole phrase still picks Canvas LMS over Canva.
+  assert.equal(queryTerms('canvas lms').phrase, 'canvas-lms');
+  const sources = await loadSources();
+  for (const [query, id] of [['canvas lms', 'canvas-lms'], ['firefly iii', 'firefly-iii'], ['financial freedom', 'financial-freedom'], ['open edx', 'open-edx']]) {
+    assert.equal(findInSources(sources, query, { type: 'resource', limit: 3 }).results[0].id, id, query);
+  }
 });
