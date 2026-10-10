@@ -13,23 +13,23 @@ Four ranked indexes let an agent find a widely used tool and install it in one o
 
 ## MCP servers
 
-- **Ranked list (500):** the most-downloaded packaged servers from the [official MCP Registry](https://registry.modelcontextprotocol.io), one per package.
+- **Ranked list (2,943):** packaged servers from the [official MCP Registry](https://registry.modelcontextprotocol.io), one per package: npm and PyPI servers with at least 1,000 downloads in the last month, by downloads, then container-only servers (no download signal) in registry order.
   - Commands pin the package version.
   - Required environment variables and arguments appear as `<PLACEHOLDER>` values to fill.
   - `npx` runs npm packages, `uvx` runs PyPI packages, and `docker run -i --rm` runs container images.
-- **Hosted servers (up to 100, `rank: null`):** listed separately, one per domain, ordered by domain popularity.
+- **Hosted servers (699, `rank: null`):** listed separately, one per domain, ordered by domain popularity.
   - Claude Code: `claude mcp add --transport http|sse <name> <url>`.
   - Codex: `codex mcp add <name> --url <url>`. Codex supports streamable HTTP only.
 - Both clients write their own config: Claude Code uses `.mcp.json` / `~/.claude.json`; Codex uses `~/.codex/config.toml`. Add `--scope project` to Claude Code's command to share a server through `.mcp.json`.
 
 ## CLIs
 
-The 500 Homebrew formulae users install most on purpose (dependencies don't count), with description, license and homepage. Homebrew covers macOS and Linux. On Windows use the tool's installer, winget or WSL. Keg-only formulae note the extra PATH step.
+The 1,500 Homebrew formulae users install most on purpose (dependencies don't count), with description, license and homepage. From rank 501, formulae without executables (libraries) and third-party taps are skipped. Homebrew covers macOS and Linux. On Windows use the tool's installer, winget or WSL. Keg-only formulae note the extra PATH step.
 
 ## APIs
 
-- **Selection:** 500 APIs with machine-readable OpenAPI specs. At most five services per provider, and flagship services only for AWS, Google and Azure, so one cloud can't fill the list.
-- **Official SDKs:** listed first where one exists on npm; 109 entries have one (for example `@aws-sdk/client-s3`, `googleapis`, `octokit`, `stripe`).
+- **Selection:** 2,526 APIs with machine-readable OpenAPI specs: every service in the APIs.guru OpenAPI Directory, one entry each, ranked by the provider's Tranco rank (unranked providers last). The first 500 keep the original cap of five services per provider; from rank 501 large providers contribute all their services (Azure 653, Google 282, AWS 271 in total).
+- **Official SDKs:** listed first where one exists on npm; 1,115 entries have one (AWS SDK v3 clients, `@azure/arm-*`, `googleapis`, `twilio`, `@adyen/api-library`, `octokit` and others, each checked on npm) (for example `@aws-sdk/client-s3`, `googleapis`, `octokit`, `stripe`).
 - **Without an SDK:** one command generates a typed client: `npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 <spec> -o src/api/<id>.ts`. For Python: `uvx openapi-python-client@0.29.1 generate --url <spec>`.
 - **Credentials:** keep them in server-side configuration (Genlib `env-config`) and call APIs from trusted server code.
 

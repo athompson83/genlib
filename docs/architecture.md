@@ -13,8 +13,8 @@ flowchart TB
     CAP["resources/capabilities.json<br/>task → code in 9 languages"]
     TPL["templates/index.json<br/>project · github · docs · ship · ui"]
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
-    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education)<br/>resources/project-types.json"]
-    SKL["resources/skills.json<br/>500 pinned agent skills"]
+    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning)<br/>resources/project-types.json"]
+    SKL["resources/skills.json<br/>1,066 pinned agent skills"]
     IDX["resources/mcp-servers.json · clis.json · apis.json<br/>ranked install indexes"]
   end
   MOD -- "npm run registry:build" --> REG["registry/catalog.json<br/>registry/manifests/*.json (SHA-256)"]
@@ -92,6 +92,7 @@ The capability index (`resources/capabilities.json`) maps common tasks to tested
 - `finance-accounting.json` (budgeting, accounting, ledgers, payments, money types, market data)
 - `business-tools.json` (BI, BaaS, PaaS, CRM, ERP, helpdesk, documents and business-service SDKs)
 - `education.json` (LMSs with their SCORM/LTI/H5P/xAPI support, whiteboards, slides, writing, assessment)
+- `ai-learning.json` (agent frameworks and tools such as browser-use, OpenViking, Flowise and Fabric, plus learning references such as TheAlgorithms and System Design Primer)
 
 Each has a guide under `docs/resources/`.
 

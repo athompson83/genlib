@@ -1,6 +1,6 @@
 # Agent skill library
 
-`resources/skills.json` indexes 500 agent skills that coding agents can install on demand. They work with Claude Code, Codex and other Agent Skills harnesses. Each entry is pinned to an exact upstream commit and installs with one command.
+`resources/skills.json` indexes 1,066 agent skills that coding agents can install on demand. They work with Claude Code, Codex and other Agent Skills harnesses. Each entry is pinned to an exact upstream commit and installs with one command.
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" skill find pdf forms --limit 5 --json        # search by need
@@ -16,13 +16,15 @@ npx skills@1.7.2 add https://github.com/mattpocock/skills/tree/49dd158d1076134a6
 
 Run it from the project root. It writes the skill to `.agents/skills/<name>/` (Codex and other universal harnesses), links it into `.claude/skills/` for Claude Code, and records it in `skills-lock.json`. Use `--harness claude` or `--harness codex` for one harness. The [`skills` CLI](https://github.com/vercel-labs/skills) (MIT) is pinned to version 1.7.2. Genlib never runs it for you.
 
-## How the 500 were chosen
+## How they were chosen
 
-- **Ranked (474):** the skills.sh leaderboard's all-time installs on 2026-10-10. Skipped entries:
+- **Ranked (1,040):** the skills.sh leaderboard's all-time installs on 2026-10-10. The first 474 come from the leaderboard's front page; ranks 606 to 1310 (566 skills from 113 repositories) come from its paginated all-time listing. Skipped entries:
   - skills renamed or removed upstream since the leaderboard was captured;
   - duplicate content, such as forks of obra/superpowers and two shadcn mirrors;
   - open.feishu.cn copies of the MIT `larksuite/cli` skills;
-  - repositories that require credentials.
+  - repositories that require credentials, non-GitHub sources and skills at a repository root;
+  - skills deprecated upstream.
+  Descriptions are read from each SKILL.md with a YAML parser at the pinned commit, so multi-line descriptions are complete.
 - **Curated (26, `rank: null`):** OpenAI's Codex skills plus remaining Anthropic and Superpowers skills, filling the list from official repositories.
 
 ## Fields

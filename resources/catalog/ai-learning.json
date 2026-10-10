@@ -1,0 +1,878 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "fabric-prompt-patterns-cli",
+      "name": "Fabric (prompt patterns CLI)",
+      "category": "agent-frameworks",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/danielmiessler/fabric",
+      "repository": "https://github.com/danielmiessler/fabric",
+      "docs": null,
+      "summary": "Open-source CLI framework for running modular, crowdsourced AI prompt patterns on any text.",
+      "useWhen": "Use as the agent framework, visual builder or MCP tool instead of writing orchestration, browsing or scraping glue yourself.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "agent-frameworks",
+        "go",
+        "github",
+        "prompts",
+        "cli",
+        "patterns",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/danielmiessler/fabric",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "go install github.com/danielmiessler/fabric/cmd/fabric@v1.4.518",
+        "Docs: https://github.com/danielmiessler/fabric"
+      ],
+      "languages": [
+        "go"
+      ]
+    },
+    {
+      "id": "firecrawl-mcp",
+      "name": "Firecrawl MCP Server",
+      "category": "agent-frameworks",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://firecrawl.dev",
+      "repository": "https://github.com/firecrawl/firecrawl-mcp-server",
+      "docs": null,
+      "summary": "MCP server for web scraping, crawling, markdown conversion and structured extraction via Firecrawl (needs FIRECRAWL_API_KEY).",
+      "useWhen": "Use as the agent framework, visual builder or MCP tool instead of writing orchestration, browsing or scraping glue yourself.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "agent-frameworks",
+        "typescript",
+        "npm",
+        "mcp",
+        "web-scraping",
+        "crawler",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/firecrawl/firecrawl-mcp-server",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://firecrawl.dev",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "firecrawl-mcp"
+        }
+      ],
+      "quickstart": [
+        "claude mcp add firecrawl -e FIRECRAWL_API_KEY=<FIRECRAWL_API_KEY> -- npx -y firecrawl-mcp@3.29.1",
+        "Docs: https://firecrawl.dev"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "flowise",
+      "name": "Flowise",
+      "category": "agent-frameworks",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://flowiseai.com",
+      "repository": "https://github.com/FlowiseAI/Flowise",
+      "docs": "https://docs.flowiseai.com",
+      "summary": "Drag-and-drop visual builder for LLM agent and RAG workflows, self-hosted.",
+      "useWhen": "Use as the agent framework, visual builder or MCP tool instead of writing orchestration, browsing or scraping glue yourself.",
+      "cautions": [
+        "The registry declares the license as \"SEE LICENSE IN LICENSE.md\"; confirm it before use.",
+        "Apache-2.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "agent-frameworks",
+        "typescript",
+        "npm",
+        "low-code",
+        "agents",
+        "rag",
+        "self-hosted",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/FlowiseAI/Flowise",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://docs.flowiseai.com",
+          "title": "Registry record or documentation"
+        },
+        {
+          "url": "https://flowiseai.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "flowise"
+        }
+      ],
+      "quickstart": [
+        "npx flowise@3.1.4 start",
+        "Docs: https://docs.flowiseai.com"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "openviking",
+      "name": "OpenViking",
+      "category": "agent-frameworks",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://github.com/volcengine/OpenViking",
+      "repository": "https://github.com/volcengine/OpenViking",
+      "docs": null,
+      "summary": "Context database for AI agents that unifies memory, knowledge resources and skills in one file-system-like architecture.",
+      "useWhen": "Use as the agent framework, visual builder or MCP tool instead of writing orchestration, browsing or scraping glue yourself.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "agent-frameworks",
+        "python",
+        "pypi",
+        "agent-memory",
+        "knowledge",
+        "skills",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/volcengine/OpenViking",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "openviking"
+        }
+      ],
+      "quickstart": [
+        "pip install openviking==0.5.0",
+        "Docs: https://github.com/volcengine/OpenViking"
+      ],
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "build-your-own-x",
+      "name": "build-your-own-x",
+      "category": "learning",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license declared; check the repository before use."
+      },
+      "homepage": "https://github.com/codecrafters-io/build-your-own-x",
+      "repository": "https://github.com/codecrafters-io/build-your-own-x",
+      "docs": null,
+      "summary": "Step-by-step guides for re-creating technologies from scratch: databases, Git, Docker, interpreters, web servers and more.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "No license declared; check the repository before use."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "any",
+        "github",
+        "tutorials",
+        "from-scratch",
+        "education",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/codecrafters-io/build-your-own-x",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/codecrafters-io/build-your-own-x",
+        "Docs: https://github.com/codecrafters-io/build-your-own-x"
+      ]
+    },
+    {
+      "id": "developer-roadmap",
+      "name": "developer-roadmap",
+      "category": "learning",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license declared; check the repository before use."
+      },
+      "homepage": "https://roadmap.sh",
+      "repository": "https://github.com/kamranahmedse/developer-roadmap",
+      "docs": null,
+      "summary": "Interactive roadmaps, guides and learning paths for frontend, backend, DevOps, AI and other engineering roles (roadmap.sh).",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "No license declared; check the repository before use."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "any",
+        "github",
+        "roadmaps",
+        "career",
+        "education",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kamranahmedse/developer-roadmap",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://roadmap.sh",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://roadmap.sh",
+        "Docs: https://roadmap.sh"
+      ]
+    },
+    {
+      "id": "public-apis",
+      "name": "public-apis",
+      "category": "learning",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/public-apis/public-apis",
+      "repository": "https://github.com/public-apis/public-apis",
+      "docs": null,
+      "summary": "Collective list of free public APIs for software and web development, by category with auth, HTTPS and CORS notes.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "any",
+        "github",
+        "apis",
+        "directory",
+        "free-apis",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/public-apis/public-apis",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/public-apis/public-apis",
+        "Docs: https://github.com/public-apis/public-apis"
+      ]
+    },
+    {
+      "id": "system-design-primer",
+      "name": "System Design Primer",
+      "category": "learning",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": null,
+        "scope": "CC-BY-4.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/donnemartin/system-design-primer",
+      "repository": "https://github.com/donnemartin/system-design-primer",
+      "docs": null,
+      "summary": "Learn how to design large-scale distributed systems, with interview questions and Anki flashcards.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "any",
+        "github",
+        "system-design",
+        "architecture",
+        "education",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/donnemartin/system-design-primer",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/donnemartin/system-design-primer",
+        "Docs: https://github.com/donnemartin/system-design-primer"
+      ]
+    },
+    {
+      "id": "thealgorithms-c",
+      "name": "TheAlgorithms C++",
+      "category": "learning",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://the-algorithms.com",
+      "repository": "https://github.com/TheAlgorithms/C-Plus-Plus",
+      "docs": null,
+      "summary": "Data structures and algorithms implemented in C++.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "c++",
+        "github",
+        "algorithms",
+        "data-structures",
+        "education",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheAlgorithms/C-Plus-Plus",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://the-algorithms.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/TheAlgorithms/C-Plus-Plus",
+        "Docs: https://the-algorithms.com"
+      ]
+    },
+    {
+      "id": "thealgorithms-go",
+      "name": "TheAlgorithms Go",
+      "category": "learning",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://the-algorithms.com",
+      "repository": "https://github.com/TheAlgorithms/Go",
+      "docs": null,
+      "summary": "Data structures and algorithms implemented in Go.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "go",
+        "github",
+        "algorithms",
+        "data-structures",
+        "education"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheAlgorithms/Go",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://the-algorithms.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/TheAlgorithms/Go",
+        "Docs: https://the-algorithms.com"
+      ],
+      "languages": [
+        "go"
+      ]
+    },
+    {
+      "id": "thealgorithms-java",
+      "name": "TheAlgorithms Java",
+      "category": "learning",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://the-algorithms.com",
+      "repository": "https://github.com/TheAlgorithms/Java",
+      "docs": null,
+      "summary": "Data structures and algorithms implemented in Java.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "java",
+        "github",
+        "algorithms",
+        "data-structures",
+        "education",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheAlgorithms/Java",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://the-algorithms.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/TheAlgorithms/Java",
+        "Docs: https://the-algorithms.com"
+      ],
+      "languages": [
+        "java"
+      ]
+    },
+    {
+      "id": "thealgorithms-javascript",
+      "name": "TheAlgorithms JavaScript",
+      "category": "learning",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://the-algorithms.com",
+      "repository": "https://github.com/TheAlgorithms/JavaScript",
+      "docs": null,
+      "summary": "Data structures and algorithms implemented in JavaScript.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "typescript",
+        "github",
+        "algorithms",
+        "data-structures",
+        "education"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheAlgorithms/JavaScript",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://the-algorithms.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/TheAlgorithms/JavaScript",
+        "Docs: https://the-algorithms.com"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "thealgorithms-python",
+      "name": "TheAlgorithms Python",
+      "category": "learning",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://the-algorithms.com",
+      "repository": "https://github.com/TheAlgorithms/Python",
+      "docs": null,
+      "summary": "Data structures and algorithms implemented in Python, for learning and reference.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "python",
+        "github",
+        "algorithms",
+        "data-structures",
+        "education",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheAlgorithms/Python",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://the-algorithms.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/TheAlgorithms/Python",
+        "Docs: https://the-algorithms.com"
+      ],
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "thealgorithms-rust",
+      "name": "TheAlgorithms Rust",
+      "category": "learning",
+      "platforms": [
+        "server",
+        "rust"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://the-algorithms.com",
+      "repository": "https://github.com/TheAlgorithms/Rust",
+      "docs": null,
+      "summary": "Data structures and algorithms implemented in Rust.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "rust",
+        "github",
+        "algorithms",
+        "data-structures",
+        "education"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheAlgorithms/Rust",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://the-algorithms.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/TheAlgorithms/Rust",
+        "Docs: https://the-algorithms.com"
+      ],
+      "languages": [
+        "rust"
+      ]
+    }
+  ]
+}

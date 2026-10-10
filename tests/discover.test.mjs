@@ -141,7 +141,7 @@ test('a multi-word query naming a whole entry outranks partial and stemmed match
   // "canvas" stems to "canva"; the whole phrase still picks Canvas LMS over Canva.
   assert.equal(queryTerms('canvas lms').phrase, 'canvas-lms');
   const sources = await loadSources();
-  for (const [query, id] of [['canvas lms', 'canvas-lms'], ['firefly iii', 'firefly-iii'], ['financial freedom', 'financial-freedom'], ['open edx', 'open-edx']]) {
+  for (const [query, id] of [['canvas lms', 'canvas-lms'], ['firefly iii', 'firefly-iii'], ['financial freedom', 'financial-freedom'], ['open edx', 'open-edx'], ['kubernetes', 'kubernetes'], ['browser-use', 'browser-use']]) {
     assert.equal(findInSources(sources, query, { type: 'resource', limit: 3 }).results[0].id, id, query);
   }
 });

@@ -7,12 +7,14 @@ import { installFor, loadIndex, searchIndex, validateEntry } from '../lib/indexe
 const cli = fileURLToPath(new URL('../bin/genlib.mjs', import.meta.url));
 const run = (...args) => spawnSync(process.execPath, [cli, ...args], { encoding: 'utf8' });
 
-test('each install index holds 500 ranked entries in rank order', async () => {
+// Minimum ranked sizes; the indexes grow when their ranking sources are refreshed.
+const MINIMUM = { mcp: 500, cli: 500, api: 2500 };
+test('each install index holds its ranked entries in rank order', async () => {
   for (const kind of ['mcp', 'cli', 'api']) {
     const index = await loadIndex(kind);
     const ranked = index.entries.filter(entry => entry.rank !== null);
-    assert.equal(ranked.length, 500, kind);
-    assert.ok(ranked.every((entry, i) => entry.rank === i + 1), kind + ' ranks are 1..500 in order');
+    assert.ok(ranked.length >= MINIMUM[kind], `${kind}: ${ranked.length}`);
+    assert.ok(ranked.every((entry, i) => entry.rank === i + 1), kind + ' ranks are 1..n in order');
     assert.ok(index.ranking && (index.ranking.source || index.ranking.sources), kind + ' records its ranking source');
   }
 });
@@ -41,7 +43,9 @@ test('CLIs install with brew and APIs offer an SDK or a typed client from a pinn
     assert.ok(entry.install.some(step => step.includes(`npx openapi-typescript@7.13.0 ${entry.spec}`)), entry.id);
     if (entry.sdk) assert.match(entry.install[0], new RegExp(`^npm install ${entry.sdk.npm.replace(/[/@.-]/g, '\\$&')}@`), entry.id);
   }
-  assert.ok(apis.entries.filter(entry => entry.provider === 'amazonaws.com').length <= 20);
+  // Every directory service is listed once; the first 500 keep the original per-provider cap.
+  assert.ok(apis.entries.slice(0, 500).filter(entry => entry.provider === 'amazonaws.com').length <= 20);
+  assert.equal(new Set(apis.entries.map(entry => entry.spec)).size, apis.entries.length);
 });
 
 test('validation rejects malformed entries and search prefers whole-word matches', async () => {
@@ -51,6 +55,8 @@ test('validation rejects malformed entries and search prefers whole-word matches
   assert.throws(() => validateEntry('cli', { ...sample, homepage: 'http://insecure.example' }));
   assert.throws(() => validateEntry('cli', { ...sample, id: 'Not Valid' }));
   assert.equal(searchIndex('cli', clis, 'json', { limit: 1 })[0].id, 'jq');
+  // A query naming a service exactly beats services that merely contain the word.
+  assert.equal(searchIndex('api', await loadIndex('api'), 's3', { limit: 1 })[0].id, 'amazonaws-com-s3');
 });
 
 test('the CLI exposes mcp, cli and api find/inspect and find searches them', () => {
