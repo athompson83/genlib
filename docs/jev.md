@@ -37,7 +37,7 @@ State and questions together stay under 20,000 characters, so a packet fits Geni
 
 After selection, run the candidate's `next` commands in order, under the task's existing authorization. Then inspect what was copied or installed and run the receiving project's checks.
 
-Put the task's constraints in the task text (for example "standard library only"): Jev answers only what the packet says, and a measured run selected a dependency the task forbade because the packet's task words left the rule out. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
+Put the task's constraints in the task text. When it forbids new dependencies ("standard library only", "no third-party dependencies", "do not install packages"), or with `--stdlib-only` (MCP: `stdlibOnly: true`), the packet keeps only candidates that need no install (capabilities, modules, recipes, language examples, templates, tools, docs), states the constraint in `state.constraints` and adds it to each question. A measured run without this selected python-dateutil for a task that forbade it. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
 
 ## What the shortlist searches
 

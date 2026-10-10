@@ -73,3 +73,17 @@ test('the committed search index is current and covers every source type', () =>
   for (const type of ['capability', 'module', 'recipe', 'language-example', 'template', 'tool', 'skill', 'mcp', 'cli', 'api', 'resource', 'doc']) assert.ok(types.has(type), type);
   assert.ok(lines.every(line => line.ref === `${line.type}:${line.id}` && line.next && line.title));
 });
+
+test('a no-dependency constraint keeps only candidates that need no install and is stated in the packet', () => {
+  const plain = jevPacket(sources, 'expand rrule recurrence rules like dateutil');
+  assert.ok(plain.state.candidates.some(candidate => candidate.type === 'resource'), 'baseline packet should include external resources');
+  assert.equal(plain.state.constraints, undefined);
+  for (const task of ['expand rrule recurrence rules like dateutil, standard library only', 'expand rrule recurrence rules; no third-party dependencies', 'expand rrule recurrence rules; do not install packages']) {
+    const packet = jevPacket(sources, task);
+    assert.ok(packet.state.constraints?.length, task);
+    assert.ok(packet.state.candidates.length > 0 && packet.state.candidates.every(candidate => ['capability', 'module', 'recipe', 'language-example', 'template', 'tool', 'doc'].includes(candidate.type)), task);
+    assert.match(packet.questions[0].question, /dependency the task forbids/);
+  }
+  assert.equal(jevPacket(sources, 'expand rrule recurrence rules', { stdlibOnly: true }).state.candidates.every(candidate => candidate.type !== 'resource'), true);
+  assert.equal(jevPacket(sources, 'expand rrule recurrence rules, standard library only', { stdlibOnly: false }).state.constraints, undefined);
+});

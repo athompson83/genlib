@@ -57,7 +57,7 @@ const TOOLS = [
     description: 'Bounded decision packet for Genisys Jev: up to 8 candidates, one yes/no question each.',
     inputSchema: { type: 'object', properties: {
       task: { type: 'string' }, type: { type: 'string', enum: SOURCE_TYPES }, target: TARGET,
-      limit: { type: 'integer', minimum: 1, maximum: 8, default: 8 },
+      limit: { type: 'integer', minimum: 1, maximum: 8, default: 8 }, stdlibOnly: { type: 'boolean' },
     }, required: ['task'] },
   },
   {
@@ -112,7 +112,7 @@ async function call(name, args = {}) {
   }
   if (name === 'genlib_jev') {
     const profile = await profileFor(args.target);
-    return jevPacket(all, String(args.task ?? ''), { type: args.type, target: profile?.target, profile, limit: args.limit ?? 8 });
+    return jevPacket(all, String(args.task ?? ''), { type: args.type, target: profile?.target, profile, limit: args.limit ?? 8, ...(args.stdlibOnly === true ? { stdlibOnly: true } : {}) });
   }
   if (name === 'genlib_capability') {
     if (!args.id) return { capabilities: all.capabilities.map(item => ({ id: item.id, title: item.title, tier: item.tier, ...coverage(item) })) };
