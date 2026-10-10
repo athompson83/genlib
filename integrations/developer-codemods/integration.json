@@ -64,7 +64,7 @@
       "python -m unittest discover -s python -v"
     ],
     "notes": [
-      "PHP/Composer/Rector and Java/Maven/OpenRewrite execution is unverified. The OpenRewrite behavior/migration/idempotence gate is python3 openrewrite/verify.py with Java 17+ and Maven; receiving-app dry runs still need review.",
+      "PHP/Composer and Java/Maven were unavailable in the local authoring environment. Dedicated CI jobs execute the Rector and allowlisted OpenRewrite profiles; receiving-app dry runs and behavior tests still require review.",
       "OpenRewrite core 8.90.4 and Maven plugin 6.46.1 exact artifact POMs resolved with Apache-2.0 declarations. Only the declared core recipe scope is selected; external recipe bundles are excluded.",
       "Copier writes only a disposable temporary Git fixture during tests. Conflicting receiving-app upgrades require diff review. No template tasks or installer hooks."
     ]

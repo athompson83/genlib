@@ -1,3 +1,11 @@
+<p align="center">
+  <img
+    src="assets/genlib-logo.png"
+    alt="Genlib — reusable code for coding agents"
+    width="460"
+  />
+</p>
+
 # Genlib
 
 [![CI](https://github.com/athompson83/genlib/actions/workflows/ci.yml/badge.svg)](https://github.com/athompson83/genlib/actions/workflows/ci.yml)

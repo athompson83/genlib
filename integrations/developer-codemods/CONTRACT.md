@@ -17,8 +17,8 @@ From this pack, provision development tools explicitly: `npm ci --ignore-scripts
 
 - `npm test` checks static imports, strings, comments, idempotence, AST calls and architecture violations.
 - `python -m unittest discover -s python -p 'test_*.py'` checks Python transforms and a real local Copier update.
-- In `php/`: `composer install`, `composer test`, `composer preview` (preview exits nonzero when changes are expected).
-- `python3 openrewrite/verify.py` requires Java 17+ and Maven. It copies the original fixture into a temporary directory, compiles and checks behavior, runs the actual package-migration recipe, asserts the new source path, compiles/checks behavior again, and verifies a second application makes no source change. Missing tools or failed assertions fail the gate. This Java/Maven profile has not been executed here. In a receiving checkout first use `mvn rewrite:dryRun` and review its patch before an explicitly selected `mvn rewrite:run`.
+- In `php/`: `composer install`, `composer test`, `composer preview` (preview exits nonzero when changes are expected). The fixture checks PHP arrow-function tokens, returned values and second-run idempotence independently of formatting.
+- `python3 openrewrite/verify.py` requires Java 17+ and Maven. It copies the original fixture into a temporary directory, compiles and checks behavior, runs the actual package-migration recipe, asserts the new source path, compiles/checks behavior again, and verifies a second application makes no source change. Missing tools or failed assertions fail the gate. Java/Maven were unavailable in the local authoring environment; the dedicated GitHub Actions job executes this profile on Java 21. In a receiving checkout first use `mvn rewrite:dryRun` and review its patch before an explicitly selected `mvn rewrite:run`.
 
 The profile pins OpenRewrite core 8.90.4, rewrite-maven-plugin 6.46.1 and maven-compiler-plugin 3.14.1. Their exact Maven Central POMs were reachable during authoring; that is resolution evidence, not execution evidence. `org.openrewrite.java.ChangePackage` is the only selected recipe. No external recipe jar is added.
 

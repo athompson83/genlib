@@ -651,8 +651,8 @@
         {
           "path": "integrations/desktop-delivery/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 11304,
-          "sha256": "3eaa315430e0d66a69a44ac3a134b6e7ab04335b6b9e1b1f6d8358046ff284f0"
+          "bytes": 11550,
+          "sha256": "966c4a9dfb543c0717c7eef395a77c43b61cde9c7828422003157d72820cfcfb"
         },
         {
           "path": "integrations/desktop-delivery/avalonia-tests/GenlibInventory.Tests.csproj",
@@ -807,14 +807,14 @@
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/Cargo.lock",
           "target": "tauri/src-tauri/Cargo.lock",
-          "bytes": 137982,
-          "sha256": "90ce5d371e393644bb65c12c25fb0afbfdf0a2e1fe65fc4bee20d116cea6417e"
+          "bytes": 137997,
+          "sha256": "5ab60ed4abdef04d6934dcc95a8f3505cb47cd8ac84b64df48c29516a709e0de"
         },
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/Cargo.toml",
           "target": "tauri/src-tauri/Cargo.toml",
-          "bytes": 409,
-          "sha256": "56307cc086a927b8f42f01f39169e2e06236685ace8f295433514fa9266bbc65"
+          "bytes": 433,
+          "sha256": "fb4d574ba22d4a2b406b1c3a018a5fe34a42349081a63e0a34da434859806f3a"
         },
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/build.rs",
@@ -1070,7 +1070,7 @@
           "python -m unittest discover -s python -v"
         ],
         "notes": [
-          "PHP/Composer/Rector and Java/Maven/OpenRewrite execution is unverified. The OpenRewrite behavior/migration/idempotence gate is python3 openrewrite/verify.py with Java 17+ and Maven; receiving-app dry runs still need review.",
+          "PHP/Composer and Java/Maven were unavailable in the local authoring environment. Dedicated CI jobs execute the Rector and allowlisted OpenRewrite profiles; receiving-app dry runs and behavior tests still require review.",
           "OpenRewrite core 8.90.4 and Maven plugin 6.46.1 exact artifact POMs resolved with Apache-2.0 declarations. Only the declared core recipe scope is selected; external recipe bundles are excluded.",
           "Copier writes only a disposable temporary Git fixture during tests. Conflicting receiving-app upgrades require diff review. No template tasks or installer hooks."
         ]
@@ -1085,8 +1085,8 @@
         {
           "path": "integrations/developer-codemods/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 3619,
-          "sha256": "e6008629353c96ae0e6f94802b3670a836255ebea95b74acfa13f168b1327053"
+          "bytes": 3816,
+          "sha256": "fb9cf7b0c7da70df92e9bfce74f9e1f88993c06903fed09f81444f1b0a1bdcd2"
         },
         {
           "path": "integrations/developer-codemods/ast-grep/console-logger.yml",
@@ -1247,8 +1247,8 @@
         {
           "path": "integrations/developer-codemods/php/test-refactor.php",
           "target": "php/test-refactor.php",
-          "bytes": 754,
-          "sha256": "b737109e55c4e1c8cfa54c562b0c5799aaa0478ff7b1076f8f386c3b237a4e2c"
+          "bytes": 1085,
+          "sha256": "7913e2027dcc902ce69988d1dda12ee99ca678162035aff2c8b1f287d1e48922"
         },
         {
           "path": "integrations/developer-codemods/python/import_migration.py",
@@ -1290,8 +1290,8 @@
       "manifest": {
         "path": "integrations/developer-codemods/integration.json",
         "target": "integration.json",
-        "bytes": 3528,
-        "sha256": "0a83f52c828775fbd91be70e5feaa32335f641ba69b8027f28ab41fa6b24da14"
+        "bytes": 3524,
+        "sha256": "4e995aed2693fd770d4e0d720fbfbb528a60626731cdd8be89013946791c3d8c"
       }
     },
     {

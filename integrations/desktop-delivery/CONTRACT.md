@@ -23,6 +23,8 @@ Wails binds the `App` capability methods; native paths, service/account and rele
 
 Direct pins are recorded in the npm/Cargo/Go/.NET manifests: Electron 44.7.0; electron-builder 26.15.3 and electron-updater 6.8.9; Tauri CLI 2.12.1/core 2.12.2, dialog 2.8.1, updater 2.13.2 and keyring 4.2.0; Wails 2.14.0, go-keyring 0.2.8 and go-selfupdate 1.6.0; Avalonia 12.1.4, ktsu.CredentialCache 1.3.62 and Velopack/vpk 1.2.161. The Go module requires Go 1.25.12+. Rust 1.99.0 is the selected check lane; the new plugin dependencies require at least Rust 1.90.
 
+The Tauri application also declares `serde_json = "=1.0.151"` directly: `tauri::generate_context!()` expands plugin configuration into references to that crate. A transitive dependency alone does not satisfy the generated application's imports.
+
 Run from this pack:
 
 ```sh
