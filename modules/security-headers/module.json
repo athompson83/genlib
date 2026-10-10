@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "security-headers",
+  "version": "0.1.0",
+  "title": "Security headers",
+  "description": "Framework-neutral TypeScript builder for HTTP response security headers: validated Content-Security-Policy with per-request nonces and report-only mode, HSTS, nosniff, Referrer-Policy, Permissions-Policy, COOP, and X-Frame-Options, applied to Fetch Responses.",
+  "kind": "utility",
+  "tags": ["security", "headers", "csp", "hsts", "nonce", "permissions-policy", "server", "middleware", "fetch"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/security-headers"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Uses standard Fetch Response/Headers, crypto.getRandomValues, and btoa; intended for Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js middleware/route handlers, and Hono. Only Node.js 22 was exercised by repository tests.",
+      "securityHeaders() returns a plain record usable with any server that sets headers, including Node http and Express res.set().",
+      "No runtime packages, environment reads, or network access."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/security-headers.ts", "target": "security-headers/security-headers.ts" }
+  ],
+  "exports": [
+    { "name": "securityHeaders", "from": "security-headers/security-headers.ts" },
+    { "name": "withSecurityHeaders", "from": "security-headers/security-headers.ts" },
+    { "name": "buildCsp", "from": "security-headers/security-headers.ts" },
+    { "name": "createNonce", "from": "security-headers/security-headers.ts" },
+    { "name": "DEFAULT_CSP_DIRECTIVES", "from": "security-headers/security-headers.ts" },
+    { "name": "DEFAULT_PERMISSIONS_POLICY", "from": "security-headers/security-headers.ts" }
+  ],
+  "configuration": [
+    "csp merges per directive over default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'. A directive set to false is removed, true emits a valueless directive, and csp: false omits the header.",
+    "nonce (from createNonce, generated per response) is appended to nonceDirectives (default script-src); the application must put the same nonce on its script tags.",
+    "reportOnly sends Content-Security-Policy-Report-Only. hsts defaults to max-age=31536000; includeSubDomains, preload is opt-in, and hsts: false omits it for plain-HTTP development.",
+    "referrerPolicy, permissionsPolicy (merged over camera/microphone/geolocation/payment/usb/browsing-topics disabled), crossOriginOpenerPolicy, frameOptions, and contentTypeOptions can each be changed or disabled with false.",
+    "withSecurityHeaders preserves existing response headers unless override: true. Invalid configuration throws a TypeError."
+  ],
+  "capabilities": [
+    "content-security-policy", "csp-nonce", "csp-report-only", "strict-transport-security",
+    "permissions-policy", "referrer-policy", "cross-origin-opener-policy", "frame-options",
+    "header-injection-validation"
+  ],
+  "limitations": [
+    "Default CSP blocks inline scripts/styles and third-party resources; applications must add their actual sources or nonces and test every page, ideally in reportOnly first.",
+    "Validation rejects separators, whitespace, and control characters in tokens, but does not judge whether a source such as 'unsafe-inline', 'unsafe-eval', or * is safe.",
+    "includeSubDomains in the default HSTS affects every subdomain once a browser sees it; disable or shorten it before all subdomains serve HTTPS. Preload submission is not performed.",
+    "No CSP violation report collector, Report-To/Reporting-Endpoints management, CORS, COEP/CORP, or cookie attribute handling is included.",
+    "withSecurityHeaders transfers the original body stream and returns Responses with a status outside 200-599 unchanged. Tests ran on Node.js 22 only; browser enforcement was not exercised."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/security-headers.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}
