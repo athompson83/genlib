@@ -135,7 +135,7 @@ The capability index (`resources/capabilities.json`) maps common tasks to tested
 
 Each has a guide under `docs/resources/`.
 
-Agents reach everything through one ranking (`lib/discover.mjs`) by any of these paths:
+Agents reach everything through one ranking (`lib/discover.mjs`): rarity-weighted matches on stemmed labels and terms, a reviewed synonym table, and a small prior that lets Genlib's own tested code (capabilities, modules, recipes) outrank the large external indexes on equal evidence. `scripts/routing-eval.mjs` measures how often one `quick` call picks the right capability on 220 task phrasings, 166 of them held out from tuning, and `tests/routing.test.mjs` keeps it from regressing. The paths are:
 - **CLI:** `bin/genlib.mjs`.
 - **MCP server:** `bin/genlib-mcp.mjs`.
 - **Jev decision packets:** `lib/jev.mjs`.

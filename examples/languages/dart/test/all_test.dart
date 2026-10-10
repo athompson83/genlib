@@ -37,10 +37,10 @@ import 'wave7_test.dart'
         runFeatureFlagsTests,
         runHashingTests,
         runHumanUnitsTests,
-        runLineDiffTests,
         runPasswordPolicyTests,
         runTextSanitizeTests,
         runVCardTests;
+import 'wave8_test.dart' show runJsonPatchTests, runLineDiffTests, runSlugifyTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -89,5 +89,7 @@ void main() {
   runLineDiffTests(c);
   runPasswordPolicyTests(c);
   runTextSanitizeTests(c);
+  runSlugifyTests(c);
+  runJsonPatchTests(c);
   c.finish();
 }

@@ -2079,16 +2079,17 @@
         "gnu diff",
         "diff -u",
         "line diff",
-        "lcs diff",
+        "myers diff",
+        "minimal diff",
         "patch output",
         "no newline at end of file",
         "compare files",
         "text changes"
       ],
       "checks": [
-        "Inputs above 4,000,000 line pairs throw; bound sizes first",
+        "More than 1,000,000 lines in total throw; O((N+M)*D) time grows with the number of edits, so bound sizes first",
         "Escape lines before rendering as HTML",
-        "Output is a valid unified diff (patch reproduces the new text); same format as GNU diff -u, which may pick a different alignment of equal size"
+        "Output is a valid, minimal unified diff (patch reproduces the new text); usually identical to GNU diff -u but not guaranteed"
       ],
       "variants": [
         "ops",
@@ -2147,6 +2148,63 @@
         "sanitize",
         "find-bidi",
         "normalize-whitespace"
+      ]
+    },
+    {
+      "id": "slugify",
+      "kind": "source-example",
+      "path": "examples/recipes/slugify-portable.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "slug",
+        "slugify",
+        "permalink",
+        "friendly title",
+        "title to slug",
+        "transliterate accents",
+        "latin transliteration",
+        "cross-language slug",
+        "unique slug suffix"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart slugify modules (shared vectors)",
+        "Non-Latin scripts are dropped and the slug can be empty; supply a fallback",
+        "uniqueSlug is only a pre-check; enforce a database unique constraint"
+      ],
+      "variants": [
+        "ascii",
+        "max-length",
+        "unique-suffix"
+      ]
+    },
+    {
+      "id": "json-patch",
+      "kind": "source-example",
+      "path": "examples/recipes/json-patch.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "json patch",
+        "rfc 6902",
+        "json diff",
+        "merge patch",
+        "rfc 7396",
+        "json pointer",
+        "rfc 6901",
+        "apply patch",
+        "create patch",
+        "canonical json"
+      ],
+      "checks": [
+        "applyPatch is atomic and never mutates its input; validate patches from clients before applying",
+        "createPatch is deterministic but not minimal (no move/copy operations)",
+        "Numbers compare numerically (1 equals 1.0); booleans never equal numbers"
+      ],
+      "variants": [
+        "pointer",
+        "apply",
+        "merge-patch",
+        "create-patch",
+        "canonical"
       ]
     }
   ]

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Checks for base-encodings, vcard, hashing, feature-flags, human-units, line-diff, password-policy and text-sanitize.
+// Checks for base-encodings, vcard, hashing, feature-flags, human-units, password-policy and text-sanitize.
 // Every vector comes from the shared wave 7 vector set (JSON null = nil; hex strings are byte inputs). Strings are
 // compared as UTF-8 bytes because Swift String equality treats canonically equivalent text as equal.
 import GenlibSwift
@@ -138,55 +138,6 @@ private let relativeVectors: [(Int64, String)] = [
     (315569520, "in 10 years"),
 ]
 
-private let diffOpVectors: [(String, String, [DiffOp])] = [
-    ("a\nb\nc\n", "a\nB\nc\n", [DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("+", "B"), DiffOp("=", "c")]),
-    ("", "x\n", [DiffOp("+", "x")]),
-    ("x\n", "", [DiffOp("-", "x")]),
-    ("one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", [DiffOp("=", "one"), DiffOp("-", "two"), DiffOp("+", "TWO"), DiffOp("=", "three"), DiffOp("=", "four"), DiffOp("=", "five"), DiffOp("=", "six"), DiffOp("=", "seven"), DiffOp("=", "eight"), DiffOp("-", "nine"), DiffOp("+", "NINE"), DiffOp("=", "ten")]),
-    ("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", [DiffOp("=", "1"), DiffOp("=", "2"), DiffOp("-", "3"), DiffOp("+", "X"), DiffOp("=", "4"), DiffOp("=", "5"), DiffOp("=", "6"), DiffOp("=", "7"), DiffOp("=", "8"), DiffOp("=", "9"), DiffOp("=", "10"), DiffOp("=", "11"), DiffOp("=", "12"), DiffOp("=", "13"), DiffOp("-", "14"), DiffOp("+", "Y"), DiffOp("=", "15"), DiffOp("=", "16")]),
-    ("a\nb\n", "a\nb", [DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("+", "b")]),
-    ("a\nb", "a\nc", [DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("+", "c")]),
-    ("same\n", "same\n", [DiffOp("=", "same")]),
-    ("a\nb\nc\nd\n", "b\nc\nd\ne\n", [DiffOp("-", "a"), DiffOp("=", "b"), DiffOp("=", "c"), DiffOp("=", "d"), DiffOp("+", "e")]),
-    ("x\ny\n", "y\nx\n", [DiffOp("-", "x"), DiffOp("=", "y"), DiffOp("+", "x")]),
-    ("a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", [DiffOp("-", "a"), DiffOp("-", "b"), DiffOp("-", "d"), DiffOp("+", "c"), DiffOp("=", "d"), DiffOp("-", "e"), DiffOp("=", "c"), DiffOp("-", "b"), DiffOp("+", "d"), DiffOp("+", "b"), DiffOp("+", "b"), DiffOp("+", "a"), DiffOp("+", "b")]),
-    ("a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", [DiffOp("+", "b"), DiffOp("=", "a"), DiffOp("-", "d"), DiffOp("-", "d"), DiffOp("+", "c"), DiffOp("+", "e"), DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("-", "a"), DiffOp("+", "a"), DiffOp("+", "a")]),
-    ("x", "x", [DiffOp("=", "x")]),
-    ("x", "x\n", [DiffOp("-", "x"), DiffOp("+", "x")]),
-    ("p\nq", "q\np", [DiffOp("-", "p"), DiffOp("-", "q"), DiffOp("+", "q"), DiffOp("+", "p")]),
-]
-private let unifiedVectors: [(String, String, String)] = [
-    ("a\nb\nc\n", "a\nB\nc\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"),
-    ("", "x\n",
-     "--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n"),
-    ("x\n", "",
-     "--- old.txt\n+++ new.txt\n@@ -1 +0,0 @@\n-x\n"),
-    ("one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,10 +1,10 @@\n one\n-two\n+TWO\n three\n four\n five\n six\n seven\n eight\n-nine\n+NINE\n ten\n"),
-    ("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -11,6 +11,6 @@\n 11\n 12\n 13\n-14\n+Y\n 15\n 16\n"),
-    ("a\nb\n", "a\nb",
-     "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"),
-    ("a\nb", "a\nc",
-     "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+c\n\\ No newline at end of file\n"),
-    ("same\n", "same\n",
-     ""),
-    ("a\nb\nc\nd\n", "b\nc\nd\ne\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"),
-    ("x\ny\n", "y\nx\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"),
-    ("a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n"),
-    ("a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n",
-     "--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n"),
-    ("x", "x",
-     ""),
-    ("x", "x\n",
-     "--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n"),
-    ("p\nq", "q\np",
-     "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n"),
-]
 
 private let passwordCases: [(String, PasswordOptions, PasswordCheck)] = [
     ("correct horse battery staple", PasswordOptions(), PasswordCheck(ok: true, failures: [])),
@@ -338,16 +289,6 @@ func runHumanUnitsChecks(_ c: inout Checks) {
     for (delta, want) in relativeVectors { eqText(&c, "relativeTime \(delta)", want, HumanUnits.relativeTime(delta)) }
 }
 
-func runLineDiffChecks(_ c: inout Checks) {
-    for (a, b, want) in diffOpVectors { c.eq("diffLines \(a.debugDescription)", want, try LineDiff.diffLines(a, b)) }
-    for (a, b, want) in unifiedVectors {
-        eqText(&c, "unifiedDiff \(a.debugDescription)", want, try LineDiff.unifiedDiff(a, b, fromName: "old.txt", toName: "new.txt"))
-    }
-    let big = String(repeating: "x\n", count: 2001)
-    c.throwsError("diffLines rejects oversized input", { _ = try LineDiff.diffLines(big, big) }, where: { $0 is LineDiffError })
-    c.eq("diffLines keeps CR in lines", [DiffOp("-", "a\r"), DiffOp("+", "a")], try LineDiff.diffLines("a\r\n", "a\n"))
-}
-
 func runPasswordPolicyChecks(_ c: inout Checks) {
     for (password, options, want) in passwordCases {
         c.eq("checkPassword \(password.debugDescription)", want, try PasswordPolicy.checkPassword(password, options))
@@ -370,7 +311,6 @@ func runWave7Checks(_ c: inout Checks) {
     runHashingChecks(&c)
     runFeatureFlagsChecks(&c)
     runHumanUnitsChecks(&c)
-    runLineDiffChecks(&c)
     runPasswordPolicyChecks(&c)
     runTextSanitizeChecks(&c)
 }

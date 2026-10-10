@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // Vector tests for the wave 7 TypeScript recipes: base encodings, vCard export, non-cryptographic hashing,
 // feature-flag evaluation, human-readable units, unified line diff, NIST password policy and text
-// sanitizing. Every vector is copied from the shared wave 7 vector set used by every language (hex strings
+// sanitizing. Every vector is copied from the shared wave 7 vector set used by every language (line-diff
+// vectors come from the wave 8 set for line-diff v2; hex strings
 // are byte inputs; 64-bit integers are written as decimal strings and compared as BigInt). Compiled with
 // the same generated-tsconfig approach and strict flags as tests/wave6-capabilities.test.mjs.
 import test, { after } from 'node:test';
@@ -224,40 +225,112 @@ const RELATIVE_TIME = [
   [63115200, "in 2 years"],
   [315569520, "in 10 years"],
 ];
+// Line-diff vectors from the shared wave 8 vector set (line-diff v2: Myers, slide and align).
+// [a, b, [[op, line], ...]]
 const DIFF_OPS = [
-  ["a\nb\nc\n", "a\nB\nc\n", [["=", "a"], ["-", "b"], ["+", "B"], ["=", "c"]]],
-  ["", "x\n", [["+", "x"]]],
-  ["x\n", "", [["-", "x"]]],
-  ["one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", [["=", "one"], ["-", "two"], ["+", "TWO"], ["=", "three"], ["=", "four"], ["=", "five"], ["=", "six"], ["=", "seven"], ["=", "eight"], ["-", "nine"], ["+", "NINE"], ["=", "ten"]]],
-  ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", [["=", "1"], ["=", "2"], ["-", "3"], ["+", "X"], ["=", "4"], ["=", "5"], ["=", "6"], ["=", "7"], ["=", "8"], ["=", "9"], ["=", "10"], ["=", "11"], ["=", "12"], ["=", "13"], ["-", "14"], ["+", "Y"], ["=", "15"], ["=", "16"]]],
-  ["a\nb\n", "a\nb", [["=", "a"], ["-", "b"], ["+", "b"]]],
-  ["a\nb", "a\nc", [["=", "a"], ["-", "b"], ["+", "c"]]],
-  ["same\n", "same\n", [["=", "same"]]],
-  ["a\nb\nc\nd\n", "b\nc\nd\ne\n", [["-", "a"], ["=", "b"], ["=", "c"], ["=", "d"], ["+", "e"]]],
-  ["x\ny\n", "y\nx\n", [["-", "x"], ["=", "y"], ["+", "x"]]],
-  ["a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", [["-", "a"], ["-", "b"], ["-", "d"], ["+", "c"], ["=", "d"], ["-", "e"], ["=", "c"], ["-", "b"], ["+", "d"], ["+", "b"], ["+", "b"], ["+", "a"], ["+", "b"]]],
-  ["a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", [["+", "b"], ["=", "a"], ["-", "d"], ["-", "d"], ["+", "c"], ["+", "e"], ["=", "a"], ["-", "b"], ["-", "a"], ["+", "a"], ["+", "a"]]],
-  ["x", "x", [["=", "x"]]],
-  ["x", "x\n", [["-", "x"], ["+", "x"]]],
-  ["p\nq", "q\np", [["-", "p"], ["-", "q"], ["+", "q"], ["+", "p"]]],
+  ["","",[]],
+  ["a\n","a\n",[["=","a"]]],
+  ["","a\n",[["+","a"]]],
+  ["a\n","",[["-","a"]]],
+  ["a\nb\nc\n","a\nc\n",[["=","a"],["-","b"],["=","c"]]],
+  ["a\nb\nc\n","a\nB\nc\n",[["=","a"],["-","b"],["+","B"],["=","c"]]],
+  ["a\nb","a\nb\n",[["=","a"],["-","b"],["+","b"]]],
+  ["a\nb\n","a\nb",[["=","a"],["-","b"],["+","b"]]],
+  ["x","y",[["-","x"],["+","y"]]],
+  ["a\n\nb\n","a\nb\n",[["=","a"],["-",""],["=","b"]]],
+  ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n","1\n2\nX\n4\n5\n6\n7\n8\n9\n10\nY\n12\n",[["=","1"],["=","2"],["-","3"],["+","X"],["=","4"],["=","5"],["=","6"],["=","7"],["=","8"],["=","9"],["=","10"],["-","11"],["+","Y"],["=","12"]]],
+  ["a\nb\na\nb\n","b\na\nb\na\n",[["-","a"],["=","b"],["=","a"],["=","b"],["+","a"]]],
 ];
-// [a, b, expected] with fromName 'old.txt', toName 'new.txt', context 3 (patch reproduces the new text; GNU diff -u format)
+// [a, b, context, expected] with fromName 'a' and toName 'b'
 const DIFF_UNIFIED = [
-  ["a\nb\nc\n", "a\nB\nc\n", "--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"],
-  ["", "x\n", "--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n"],
-  ["x\n", "", "--- old.txt\n+++ new.txt\n@@ -1 +0,0 @@\n-x\n"],
-  ["one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", "--- old.txt\n+++ new.txt\n@@ -1,10 +1,10 @@\n one\n-two\n+TWO\n three\n four\n five\n six\n seven\n eight\n-nine\n+NINE\n ten\n"],
-  ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -11,6 +11,6 @@\n 11\n 12\n 13\n-14\n+Y\n 15\n 16\n"],
-  ["a\nb\n", "a\nb", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"],
-  ["a\nb", "a\nc", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+c\n\\ No newline at end of file\n"],
-  ["same\n", "same\n", ""],
-  ["a\nb\nc\nd\n", "b\nc\nd\ne\n", "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"],
-  ["x\ny\n", "y\nx\n", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"],
-  ["a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", "--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n"],
-  ["a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n"],
-  ["x", "x", ""],
-  ["x", "x\n", "--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n"],
-  ["p\nq", "q\np", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n"],
+  ["","",3,""],
+  ["","",0,""],
+  ["","",1,""],
+  ["a\n","a\n",3,""],
+  ["a\n","a\n",0,""],
+  ["a\n","a\n",1,""],
+  ["","a\n",3,"--- a\n+++ b\n@@ -0,0 +1 @@\n+a\n"],
+  ["","a\n",0,"--- a\n+++ b\n@@ -0,0 +1 @@\n+a\n"],
+  ["","a\n",1,"--- a\n+++ b\n@@ -0,0 +1 @@\n+a\n"],
+  ["a\n","",3,"--- a\n+++ b\n@@ -1 +0,0 @@\n-a\n"],
+  ["a\n","",0,"--- a\n+++ b\n@@ -1 +0,0 @@\n-a\n"],
+  ["a\n","",1,"--- a\n+++ b\n@@ -1 +0,0 @@\n-a\n"],
+  ["a\nb\nc\n","a\nc\n",3,"--- a\n+++ b\n@@ -1,3 +1,2 @@\n a\n-b\n c\n"],
+  ["a\nb\nc\n","a\nc\n",0,"--- a\n+++ b\n@@ -2 +1,0 @@\n-b\n"],
+  ["a\nb\nc\n","a\nc\n",1,"--- a\n+++ b\n@@ -1,3 +1,2 @@\n a\n-b\n c\n"],
+  ["a\nb\nc\n","a\nB\nc\n",3,"--- a\n+++ b\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"],
+  ["a\nb\nc\n","a\nB\nc\n",0,"--- a\n+++ b\n@@ -2 +2 @@\n-b\n+B\n"],
+  ["a\nb\nc\n","a\nB\nc\n",1,"--- a\n+++ b\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"],
+  ["a\nb","a\nb\n",3,"--- a\n+++ b\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+b\n"],
+  ["a\nb","a\nb\n",0,"--- a\n+++ b\n@@ -2 +2 @@\n-b\n\\ No newline at end of file\n+b\n"],
+  ["a\nb","a\nb\n",1,"--- a\n+++ b\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+b\n"],
+  ["a\nb\n","a\nb",3,"--- a\n+++ b\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"],
+  ["a\nb\n","a\nb",0,"--- a\n+++ b\n@@ -2 +2 @@\n-b\n+b\n\\ No newline at end of file\n"],
+  ["a\nb\n","a\nb",1,"--- a\n+++ b\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"],
+  ["x","y",3,"--- a\n+++ b\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+y\n\\ No newline at end of file\n"],
+  ["x","y",0,"--- a\n+++ b\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+y\n\\ No newline at end of file\n"],
+  ["x","y",1,"--- a\n+++ b\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+y\n\\ No newline at end of file\n"],
+  ["a\n\nb\n","a\nb\n",3,"--- a\n+++ b\n@@ -1,3 +1,2 @@\n a\n-\n b\n"],
+  ["a\n\nb\n","a\nb\n",0,"--- a\n+++ b\n@@ -2 +1,0 @@\n-\n"],
+  ["a\n\nb\n","a\nb\n",1,"--- a\n+++ b\n@@ -1,3 +1,2 @@\n a\n-\n b\n"],
+  ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n","1\n2\nX\n4\n5\n6\n7\n8\n9\n10\nY\n12\n",3,"--- a\n+++ b\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -8,5 +8,5 @@\n 8\n 9\n 10\n-11\n+Y\n 12\n"],
+  ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n","1\n2\nX\n4\n5\n6\n7\n8\n9\n10\nY\n12\n",0,"--- a\n+++ b\n@@ -3 +3 @@\n-3\n+X\n@@ -11 +11 @@\n-11\n+Y\n"],
+  ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n","1\n2\nX\n4\n5\n6\n7\n8\n9\n10\nY\n12\n",1,"--- a\n+++ b\n@@ -2,3 +2,3 @@\n 2\n-3\n+X\n 4\n@@ -10,3 +10,3 @@\n 10\n-11\n+Y\n 12\n"],
+  ["a\nb\na\nb\n","b\na\nb\na\n",3,"--- a\n+++ b\n@@ -1,4 +1,4 @@\n-a\n b\n a\n b\n+a\n"],
+  ["a\nb\na\nb\n","b\na\nb\na\n",0,"--- a\n+++ b\n@@ -1 +0,0 @@\n-a\n@@ -4,0 +4 @@\n+a\n"],
+  ["a\nb\na\nb\n","b\na\nb\na\n",1,"--- a\n+++ b\n@@ -1,2 +1 @@\n-a\n b\n@@ -4 +3,2 @@\n b\n+a\n"],
+  ["line 5\nline 5\nline 4\n","}\nline 5\nline 4\n",3,"--- a\n+++ b\n@@ -1,3 +1,3 @@\n-line 5\n+}\n line 5\n line 4\n"],
+  ["line 5\nline 5\nline 4\n","}\nline 5\nline 4\n",0,"--- a\n+++ b\n@@ -1 +1 @@\n-line 5\n+}\n"],
+  ["line 5\nline 5\nline 4\n","}\nline 5\nline 4\n",1,"--- a\n+++ b\n@@ -1,2 +1,2 @@\n-line 5\n+}\n line 5\n"],
+  ["{\n}\n{\n}\n","{\n}\n{\nx\n}\n{\n}\n",3,"--- a\n+++ b\n@@ -1,4 +1,7 @@\n {\n }\n {\n+x\n }\n+{\n+}\n"],
+  ["{\n}\n{\n}\n","{\n}\n{\nx\n}\n{\n}\n",0,"--- a\n+++ b\n@@ -3,0 +4 @@\n+x\n@@ -4,0 +6,2 @@\n+{\n+}\n"],
+  ["{\n}\n{\n}\n","{\n}\n{\nx\n}\n{\n}\n",1,"--- a\n+++ b\n@@ -3,2 +3,5 @@\n {\n+x\n }\n+{\n+}\n"],
+  ["same\nsame\nsame\n","same\nsame\n",3,"--- a\n+++ b\n@@ -1,3 +1,2 @@\n same\n same\n-same\n"],
+  ["same\nsame\nsame\n","same\nsame\n",0,"--- a\n+++ b\n@@ -3 +2,0 @@\n-same\n"],
+  ["same\nsame\nsame\n","same\nsame\n",1,"--- a\n+++ b\n@@ -2,2 +2 @@\n same\n-same\n"],
+  ["p\nq\nr\n","a\nb\nc\n",3,"--- a\n+++ b\n@@ -1,3 +1,3 @@\n-p\n-q\n-r\n+a\n+b\n+c\n"],
+  ["p\nq\nr\n","a\nb\nc\n",0,"--- a\n+++ b\n@@ -1,3 +1,3 @@\n-p\n-q\n-r\n+a\n+b\n+c\n"],
+  ["p\nq\nr\n","a\nb\nc\n",1,"--- a\n+++ b\n@@ -1,3 +1,3 @@\n-p\n-q\n-r\n+a\n+b\n+c\n"],
+  ["line 0\nline 4\nline 3\nline 3\nline 2\nline 1\n    return x\n","line 4\nline 2\n{\nline 1\nline 3\n",3,"--- a\n+++ b\n@@ -1,7 +1,5 @@\n-line 0\n line 4\n-line 3\n-line 3\n line 2\n+{\n line 1\n-    return x\n+line 3\n"],
+  ["    return x\nline 2\nline 0\nline 0\n\nline 0\nline 2\n    return x\nline 2\n}\nline 2\n    return x\nline 0\n","    return x\nline 2\nline 0\nline 0\nline 0\nline 2\n    return x\nline 2\n}\n}\nline 2\n    return x\n{\nline 0\n",3,"--- a\n+++ b\n@@ -2,12 +2,13 @@\n line 2\n line 0\n line 0\n-\n line 0\n line 2\n     return x\n line 2\n }\n+}\n line 2\n     return x\n+{\n line 0\n"],
+  ["line 2\nline 5\nline 5\nline 3\n{\nline 4\n    return x\n{\n{\nline 1\n}\n{\nline 2\n\n    return x\nline 3\nline 2\nline 7\nline 6\nline 4\n{\n    return x\n","line 2\nline 3\nline 5\nline 5\nline 3\n{\n    return x\n{\n{\nline 1\n}\nline 5\nline 2\n\n    return x\nline 3\nline 2\nline 7\nline 6\nline 4\n{\n    return x\n\n",3,"--- a\n+++ b\n@@ -1,15 +1,15 @@\n line 2\n+line 3\n line 5\n line 5\n line 3\n {\n-line 4\n     return x\n {\n {\n line 1\n }\n-{\n+line 5\n line 2\n \n     return x\n@@ -20,3 +20,4 @@\n line 4\n {\n     return x\n+\n"],
+  ["line 3\n    return x\n\nline 6\n    return x\n\nline 2\nline 4\nline 2\nline 3\n}\n}\nline 4\n{\nline 6\n{\nline 6\nline 5\nline 3\nline 2\n","line 3\nline 1\n    return x\nline 0\nline 6\n\nline 2\nline 4\nline 2\nline 3\n}\n}\n{\n{\n}\nline 6\n{\nline 4\nline 5\nline 3\nline 2\n",3,"--- a\n+++ b\n@@ -1,8 +1,8 @@\n line 3\n+line 1\n     return x\n-\n+line 0\n line 6\n-    return x\n \n line 2\n line 4\n@@ -10,11 +10,12 @@\n line 3\n }\n }\n-line 4\n {\n+{\n+}\n line 6\n {\n-line 6\n+line 4\n line 5\n line 3\n line 2\n"],
+  ["line 2\n    return x\nline 0\n\nline 2\nline 1\n\nline 3\nline 2\n}\nline 2\nline 0\n}\n    return x\nline 0\nline 1\n}\n\nline 3\nline 0\nline 3\nline 1\nline 1\n    return x\nline 1\nline 2\nline 2\n","    return x\nline 0\n\nline 2\nline 1\n\nline 2\n}\nline 2\nline 0\n}\n    return x\n    return x\nline 0\nline 1\n}\n\nline 3\n{\nline 0\nline 3\nline 1\n    return x\nline 1\nline 2\nline 2\n",3,"--- a\n+++ b\n@@ -1,26 +1,25 @@\n-line 2\n     return x\n line 0\n \n line 2\n line 1\n \n-line 3\n line 2\n }\n line 2\n line 0\n }\n     return x\n+    return x\n line 0\n line 1\n }\n \n line 3\n+{\n line 0\n line 3\n line 1\n-line 1\n     return x\n line 1\n line 2\n"],
+  ["","line 1\n",3,"--- a\n+++ b\n@@ -0,0 +1 @@\n+line 1\n"],
+  ["line 0\n{\nline 1\n\n    return x\n}\nline 1\n{\nline 1\n    return x\n{\n{\n}\nline 1\n}\n}\nline 1\nline 0\nline 0\n    return x\n}\n","line 0\nline 0\nline 1\n\n    return x\n}\n{\nline 1\n    return x\nline 0\n{\n{\n}\nline 1\n    return x\n}\n}\nline 1\nline 0\nline 0\n}\n",3,"--- a\n+++ b\n@@ -1,21 +1,21 @@\n line 0\n-{\n+line 0\n line 1\n \n     return x\n }\n-line 1\n {\n line 1\n     return x\n+line 0\n {\n {\n }\n line 1\n+    return x\n }\n }\n line 1\n line 0\n line 0\n-    return x\n }\n"],
+  ["\nline 1\n    return x\nline 0\n\n    return x\n    return x\n    return x\n}\nline 0\nline 0\n{\n}\n    return x\nline 0\nline 0\n    return x","line 1\n    return x\nline 0\n\n    return x\n    return x\n    return x\n}\nline 0\nline 0\n{\nline 0\n}\n    return x\nline 0\n    return x\n",3,"--- a\n+++ b\n@@ -1,4 +1,3 @@\n-\n line 1\n     return x\n line 0\n@@ -10,8 +9,8 @@\n line 0\n line 0\n {\n+line 0\n }\n     return x\n line 0\n-line 0\n-    return x\n\\ No newline at end of file\n+    return x\n"],
+  ["line 4\nline 6\n    return x\n    return x\n\n{\n    return x\nline 7\nline 2\nline 3\nline 4\nline 3\nline 0\n}\n    return x\n\nline 0\n    return x\nline 5\nline 0\nline 0\n}\nline 7\n\n\nline 2\nline 0\n\nline 1\n","line 4\nline 6\n    return x\n\n{\n    return x\nline 7\nline 6\nline 2\nline 3\nline 4\nline 3\nline 0\n}\n    return x\n\nline 0\n    return x\nline 5\nline 0\nline 0\n}\nline 7\n\n\nline 2\nline 0\n\nline 1",3,"--- a\n+++ b\n@@ -1,11 +1,11 @@\n line 4\n line 6\n     return x\n-    return x\n \n {\n     return x\n line 7\n+line 6\n line 2\n line 3\n line 4\n@@ -26,4 +26,4 @@\n line 2\n line 0\n \n-line 1\n+line 1\n\\ No newline at end of file\n"],
+  ["}\nline 0\n}\nline 0\n\n{\n}\n}\n}\nline 2\nline 2\nline 1\n{\n{\nline 2\nline 1\nline 2\n\nline 1\n{\n{\nline 2\n\nline 2\n    return x\nline 0\nline 0\n\n}\n}\nline 0\nline 0\n}\nline 1\n}\nline 2\nline 1","}\nline 0\n}\nline 0\n\n{\n}\n}\n}\nline 2\nline 2\nline 1\n{\n{\nline 2\nline 1\nline 2\n\nline 1\n{\n{\nline 2\n\nline 1\n    return x\nline 0\nline 0\n\n}\nline 0\nline 0\n}\nline 1\nline 0\n}\nline 2\nline 2\nline 1\n",3,"--- a\n+++ b\n@@ -21,17 +21,18 @@\n {\n line 2\n \n-line 2\n+line 1\n     return x\n line 0\n line 0\n \n }\n-}\n line 0\n line 0\n }\n line 1\n+line 0\n }\n line 2\n-line 1\n\\ No newline at end of file\n+line 2\n+line 1\n"],
+  ["line 0\nline 0\n{\n}\nline 1\nline 2\nline 2\n}\nline 1\n{\nline 2\nline 1\n{\n{\n    return x\nline 2\n","line 0\nline 0\nline 0\nline 0\nline 1\nline 2\nline 2\nline 0\nline 1\n}\nline 1\n}\n{\nline 2\nline 1\n{\n{\n    return x\n{\nline 2\n",3,"--- a\n+++ b\n@@ -1,16 +1,20 @@\n line 0\n line 0\n-{\n-}\n+line 0\n+line 0\n line 1\n line 2\n line 2\n+line 0\n+line 1\n }\n line 1\n+}\n {\n line 2\n line 1\n {\n {\n     return x\n+{\n line 2\n"],
+  ["\nline 0\n\nline 1\n    return x\nline 1\n    return x\nline 0\n\n{\n}\n{\n    return x\nline 1\nline 1\nline 1\nline 1\n}\nline 0\n","\nline 0\n\nline 1\n    return x\nline 1\n    return x\n    return x\n\n{\n}\n}\n{\n    return x\nline 1\nline 1\nline 1\nline 1\n}\nline 0\n",3,"--- a\n+++ b\n@@ -5,10 +5,11 @@\n     return x\n line 1\n     return x\n-line 0\n+    return x\n \n {\n }\n+}\n {\n     return x\n line 1\n"],
+  ["line 0\n}\nline 1\nline 1\n}\n\n\nline 1\nline 1\nline 0\n    return x\nline 1\n}\n\n\nline 0\n\n\n    return x\n{\n}\n    return x\n{\n\n","line 0\n}\nline 1\nline 1\n}\n\n\nline 1\nline 1\nline 0\n    return x\nline 1\n}\n\n\nline 0\n\n\n    return x\n{\n}\n    return x\n{\n",3,"--- a\n+++ b\n@@ -21,4 +21,3 @@\n }\n     return x\n {\n-\n"],
+  ["line 2\nline 0\nline 0\n}\n\nline 2\n{\n    return x\nline 2\n\n}\n}\nline 0\n\n}\nline 1\nline 2\nline 0\n{\n\nline 0\n}\n    return x\n}\n{\n{\n{\n{\n{\nline 1\nline 2\n\nline 0\n{\nline 2\n}\nline 2\n","line 2\nline 0\nline 0\n}\n\nline 2\n{\n    return x\nline 2\n\n}\n}\nline 0\n\n}\nline 1\nline 2\nline 0\n{\n}\n\nline 0\n}\n    return x\n}\n{\n{\n{\n{\n{\nline 1\nline 2\n\nline 0\n{\nline 2\n}\nline 2\n",3,"--- a\n+++ b\n@@ -17,6 +17,7 @@\n line 2\n line 0\n {\n+}\n \n line 0\n }\n"],
+  ["    return x\nline 2\nline 3\n}\n}\nline 2\nline 4\n}\n    return x\nline 0\nline 4\nline 4\nline 3\n}\n\n{\n{\n{\n","    return x\nline 2\nline 3\n}\n}\nline 1\nline 2\n}\n    return x\nline 4\nline 4\nline 3\n}\n\n{\n{\n{\n",3,"--- a\n+++ b\n@@ -3,11 +3,10 @@\n line 3\n }\n }\n+line 1\n line 2\n-line 4\n }\n     return x\n-line 0\n line 4\n line 4\n line 3\n"],
+  ["line 0\nline 0\nline 1\n\n}\n    return x\n    return x\nline 0\n\n","    return x\nline 0\nline 0\n}\n}\n    return x\nline 0\n    return x\n\n",3,"--- a\n+++ b\n@@ -1,9 +1,9 @@\n+    return x\n line 0\n line 0\n-line 1\n-\n }\n-    return x\n+}\n     return x\n line 0\n+    return x\n \n"],
+  ["line 7\nline 2\nline 7\n{\n\n\n}\n","line 7\nline 2\nline 7\n\nline 3\nline 7\n\n    return x\n",3,"--- a\n+++ b\n@@ -1,7 +1,8 @@\n line 7\n line 2\n line 7\n-{\n \n+line 3\n+line 7\n \n-}\n+    return x\n"],
+  ["line 7\n{\nline 3\nline 4\nline 7\nline 1\n    return x\nline 4\nline 3\nline 4\nline 5\nline 5\n\nline 1\nline 2\nline 2\nline 3\nline 6\n    return x\nline 2\n    return x\nline 3\nline 1\nline 6\nline 6\nline 5\n\nline 7\nline 6\nline 0\nline 3\nline 6\nline 6","line 7\n{\nline 3\nline 4\nline 7\nline 1\n    return x\nline 4\nline 3\nline 4\nline 5\nline 5\n\nline 1\nline 2\nline 2\nline 3\nline 6\n    return x\nline 2\n    return x\nline 3\nline 1\nline 6\nline 6\nline 5\n\nline 7\nline 6\nline 0\nline 3\nline 6\nline 6\n",3,"--- a\n+++ b\n@@ -30,4 +30,4 @@\n line 0\n line 3\n line 6\n-line 6\n\\ No newline at end of file\n+line 6\n"],
+  ["line 0\n\nline 4\n}\n}\n    return x\n    return x\nline 3\n{\nline 3\nline 4\n}\n{\nline 0\n}\n\n}\nline 2\n{\nline 2\n    return x\nline 0\n}\nline 0\nline 1\n}\nline 2\n{\nline 2\nline 0\n","line 0\n\nline 4\n}\n}\n    return x\nline 3\n{\nline 3\nline 4\n}\n}\n{\nline 0\n}\n\n}\nline 2\n{\nline 2\n    return x\nline 0\n}\nline 0\nline 1\n}\nline 1\n{\nline 2\nline 0\n",3,"--- a\n+++ b\n@@ -4,12 +4,12 @@\n }\n }\n     return x\n-    return x\n line 3\n {\n line 3\n line 4\n }\n+}\n {\n line 0\n }\n@@ -24,7 +24,7 @@\n line 0\n line 1\n }\n-line 2\n+line 1\n {\n line 2\n line 0\n"],
+  ["line 1\n    return x\nline 0\n    return x\nline 0\nline 0\nline 1\nline 1\nline 0\n{\nline 1\nline 1\nline 1\n}\n    return x\nline 0\n{\nline 1\n}\n    return x\n\n\n","line 1\n    return x\nline 0\n    return x\nline 0\n\nline 0\nline 1\nline 1\nline 0\n{\nline 1\nline 1\nline 1\n}\n    return x\nline 0\n{\nline 1\n}\n    return x\n\n\nline 0\n",3,"--- a\n+++ b\n@@ -3,6 +3,7 @@\n line 0\n     return x\n line 0\n+\n line 0\n line 1\n line 1\n@@ -20,3 +21,4 @@\n     return x\n \n \n+line 0\n"],
+  ["{\n{\nline 3\nline 1\nline 3\nline 1\n\nline 1\nline 0\n}\n{\n}\nline 1\n}\nline 0\n{\n    return x\nline 1\n{\n}\n    return x\nline 2\n{\nline 2\n\n    return x\n    return x\n{\n\n}\nline 3\nline 1\n\n    return x\nline 3\n    return x\n","{\n{\nline 3\nline 1\nline 3\nline 1\n\nline 1\nline 0\n}\n{\n}\nline 1\n}\nline 0\n{\nline 1\n}\n    return x\nline 2\n{\nline 2\n\n    return x\n    return x\n{\n}\nline 3\nline 2\n    return x\nline 3\n    return x\nline 3\n",3,"--- a\n+++ b\n@@ -14,9 +14,7 @@\n }\n line 0\n {\n-    return x\n line 1\n-{\n }\n     return x\n line 2\n@@ -26,11 +24,10 @@\n     return x\n     return x\n {\n-\n }\n line 3\n-line 1\n-\n+line 2\n     return x\n line 3\n     return x\n+line 3\n"],
+  ["    return x\n\n\nline 0\nline 1\nline 4\nline 3\nline 6\nline 3\nline 4\n    return x\n{\nline 5\n\n}\n}\nline 5\nline 6\n}\nline 5\nline 5\n\nline 4\nline 4\nline 4\nline 3\nline 1\nline 3\nline 5\nline 1\n","    return x\n\n\nline 1\nline 4\nline 2\nline 6\nline 4\nline 4\n{\nline 5\n\n}\nline 5\nline 6\n}\nline 5\nline 4\nline 4\nline 4\nline 3\nline 1\nline 3\nline 5\nline 1\n",3,"--- a\n+++ b\n@@ -1,25 +1,20 @@\n     return x\n \n \n-line 0\n line 1\n line 4\n-line 3\n+line 2\n line 6\n-line 3\n line 4\n-    return x\n+line 4\n {\n line 5\n \n }\n-}\n line 5\n line 6\n }\n line 5\n-line 5\n-\n line 4\n line 4\n line 4\n"],
+  ["\n    return x\nline 1\n    return x\n}\nline 0\nline 0\n{\n\n}\n}\n}\n\nline 1\nline 0\n\n}\nline 0\nline 0\n}\n}\nline 0\n{\n    return x\n    return x\nline 0\nline 1\nline 1\n{\n\nline 0\nline 1\nline 0\n{\n}\n","\n    return x\nline 1\n}\nline 0\nline 0\n{\n\n}\n}\n}\n\nline 1\nline 0\n\n}\nline 0\nline 0\n}\n}\nline 0\n{\n    return x\n}\n    return x\nline 0\n\nline 1\n{\n\nline 0\nline 1\nline 0\n{\n}\n",3,"--- a\n+++ b\n@@ -1,7 +1,6 @@\n \n     return x\n line 1\n-    return x\n }\n line 0\n line 0\n@@ -22,9 +21,10 @@\n line 0\n {\n     return x\n+}\n     return x\n line 0\n-line 1\n+\n line 1\n {\n \n"],
+  ["{\nline 3\nline 4\n{\nline 1\nline 2\nline 3\nline 2\n\nline 1\nline 2\nline 0\nline 6\n","{\nline 3\nline 4\nline 2\nline 3\nline 4\nline 2\n\nline 1\n{\nline 7\nline 0\nline 6",3,"--- a\n+++ b\n@@ -1,13 +1,13 @@\n {\n line 3\n line 4\n-{\n-line 1\n line 2\n line 3\n+line 4\n line 2\n \n line 1\n-line 2\n+{\n+line 7\n line 0\n-line 6\n+line 6\n\\ No newline at end of file\n"],
+  ["line 1\nline 0\nline 2\nline 4\n}\n    return x\n}\nline 4\nline 7\n","line 1\nline 0\nline 2\nline 4\n    return x\n}\n    return x\n}\nline 4\nline 7\n",3,"--- a\n+++ b\n@@ -2,6 +2,7 @@\n line 0\n line 2\n line 4\n+    return x\n }\n     return x\n }\n"],
+  ["}\nline 1\n    return x\nline 0\n\nline 5\n    return x\nline 4\nline 0\nline 1\nline 3\n    return x\n    return x\nline 0\nline 4\n    return x\nline 0\nline 2\n}\n{\n}\nline 4\nline 2\n    return x\n\n}\nline 1\n}\nline 5\n\nline 5\n","}\nline 1\n    return x\nline 0\n\n    return x\nline 4\nline 0\nline 1\nline 5\nline 3\n    return x\n    return x\nline 0\nline 4\n    return x\nline 0\nline 2\n}\n{\nline 4\nline 2\n    return x\n{\n\n}\nline 1\n}\nline 5\n\nline 4\nline 5\n",3,"--- a\n+++ b\n@@ -3,11 +3,11 @@\n     return x\n line 0\n \n-line 5\n     return x\n line 4\n line 0\n line 1\n+line 5\n line 3\n     return x\n     return x\n@@ -18,14 +18,15 @@\n line 2\n }\n {\n-}\n line 4\n line 2\n     return x\n+{\n \n }\n line 1\n }\n line 5\n \n+line 4\n line 5\n"],
+  ["line 0\n{\n\nline 7\nline 6\nline 0\nline 3\n\nline 5\n}\nline 7\n{\nline 7\nline 0\nline 3\nline 4\n\nline 2\nline 4\nline 7\n    return x\nline 7\nline 1\nline 0\n{\n}\nline 3\n    return x\nline 2\nline 4\n\nline 0\n","line 0\n{\n\nline 7\nline 6\nline 0\nline 3\n{\nline 1\n\nline 6\nline 5\n}\nline 7\n{\nline 7\nline 0\nline 7\nline 3\nline 6\nline 4\nline 7\nline 2\nline 4\nline 7\n    return x\nline 7\nline 1\nline 0\n{\n}\nline 3\n    return x\nline 4\n\nline 0\n",3,"--- a\n+++ b\n@@ -5,16 +5,21 @@\n line 6\n line 0\n line 3\n+{\n+line 1\n \n+line 6\n line 5\n }\n line 7\n {\n line 7\n line 0\n+line 7\n line 3\n+line 6\n line 4\n-\n+line 7\n line 2\n line 4\n line 7\n@@ -26,7 +31,6 @@\n }\n line 3\n     return x\n-line 2\n line 4\n \n line 0\n"],
+  ["    return x\nline 4\nline 0\nline 4\nline 4\n{\nline 2\n{\n    return x\n{\n\n\n    return x\n    return x\n}\n{\n\nline 3\nline 3\n}\nline 3\n","    return x\nline 4\nline 0\n{\nline 4\n{\nline 2\n{\n    return x\n{\n\n\n}\n    return x\n    return x\nline 2\nline 2\nline 3\nline 3\n}\nline 3\n",3,"--- a\n+++ b\n@@ -1,7 +1,7 @@\n     return x\n line 4\n line 0\n-line 4\n+{\n line 4\n {\n line 2\n@@ -10,11 +10,11 @@\n {\n \n \n+}\n     return x\n     return x\n-}\n-{\n-\n+line 2\n+line 2\n line 3\n line 3\n }\n"],
+  ["line 6\n    return x\nline 2\nline 1\n\nline 4\nline 5\n{\nline 6\n","line 6\n    return x\nline 2\nline 1\n\nline 4\nline 5\n{\n    return x\n",3,"--- a\n+++ b\n@@ -6,4 +6,4 @@\n line 4\n line 5\n {\n-line 6\n+    return x\n"],
+  ["}\nline 0\n{\nline 1\nline 3\n    return x\n    return x\nline 4\nline 3\nline 1\nline 6\nline 1\n    return x\nline 1\n\nline 2\nline 4\nline 0\nline 0\nline 5\nline 0\nline 4\nline 5\nline 5\nline 6\nline 2\nline 3\n}\nline 6\n{\n    return x\n","}\nline 0\nline 1\nline 3\n    return x\n    return x\nline 4\nline 3\nline 1\nline 6\nline 1\n    return x\n{\nline 1\n\nline 2\nline 4\nline 0\nline 0\nline 5\nline 0\nline 4\nline 5\nline 5\nline 6\nline 2\nline 3\n}\nline 6\n{\n    return x\n",3,"--- a\n+++ b\n@@ -1,6 +1,5 @@\n }\n line 0\n-{\n line 1\n line 3\n     return x\n@@ -11,6 +10,7 @@\n line 6\n line 1\n     return x\n+{\n line 1\n \n line 2\n"],
+  ["line 3\n}\nline 4\n}\nline 4\nline 0\n}\nline 4\n{\n","line 3\n}\nline 4\n}\nline 4\n}\nline 4\n{\n",3,"--- a\n+++ b\n@@ -3,7 +3,6 @@\n line 4\n }\n line 4\n-line 0\n }\n line 4\n {\n"],
+  ["{\n    return x\nline 1\nline 3\n{\n}\n\n\nline 0\n{\n\nline 0","{\n    return x\nline 1\nline 3\n{\n}\n\n\nline 0\n{\n\nline 0\n",3,"--- a\n+++ b\n@@ -9,4 +9,4 @@\n line 0\n {\n \n-line 0\n\\ No newline at end of file\n+line 0\n"],
+  ["line 3\n}\nline 5\nline 3\n{\nline 3\n}\nline 4\n{\n    return x\n{\n{\nline 2\n{\nline 1\n{\n{\nline 0\n","line 3\n}\n}\nline 5\n{\nline 3\n}\nline 4\n{\n{\n{\nline 2\n{\n{\n{\nline 0\n",3,"--- a\n+++ b\n@@ -1,18 +1,16 @@\n line 3\n }\n+}\n line 5\n-line 3\n {\n line 3\n }\n line 4\n {\n-    return x\n {\n {\n line 2\n {\n-line 1\n {\n {\n line 0\n"],
+  ["{\n{\nline 4\nline 2\nline 4\n}\nline 4\nline 5\nline 1\n}\nline 1\nline 2\nline 3\n\n{\nline 5\nline 1\n\nline 0\nline 4\n{\nline 1\n}\n","{\n{\nline 4\nline 2\nline 4\n}\nline 4\nline 1\n}\nline 1\nline 2\nline 3\n\n{\nline 5\nline 1\n\nline 0\nline 4\nline 5\n{\nline 4\nline 1\n}\n",3,"--- a\n+++ b\n@@ -5,7 +5,6 @@\n line 4\n }\n line 4\n-line 5\n line 1\n }\n line 1\n@@ -18,6 +17,8 @@\n \n line 0\n line 4\n+line 5\n {\n+line 4\n line 1\n }\n"],
+  ["    return x\nline 4\n{\nline 6\nline 1\nline 2\nline 0\nline 0\nline 4\nline 7\nline 1\nline 1\nline 3\n\nline 2\nline 6\nline 7\nline 5\n{\n    return x\n    return x\n\nline 6\n}\n    return x\n    return x\nline 2\nline 6\n{","    return x\nline 4\n{\nline 6\nline 1\nline 2\nline 0\nline 0\nline 4\nline 7\nline 1\nline 1\nline 3\n}\nline 2\nline 6\nline 7\nline 5\n{\n    return x\n    return x\n\nline 6\n}\n    return x\n    return x\nline 2\nline 6\n{\n",3,"--- a\n+++ b\n@@ -11,7 +11,7 @@\n line 1\n line 1\n line 3\n-\n+}\n line 2\n line 6\n line 7\n@@ -26,4 +26,4 @@\n     return x\n line 2\n line 6\n-{\n\\ No newline at end of file\n+{\n"],
+  ["line 3\n\n\nline 3\nline 5\nline 1\n    return x\nline 5\n}\n    return x\nline 5\nline 0\nline 6\nline 4\nline 3\nline 1\n\nline 1\n    return x\nline 3\n    return x\n    return x\n{\n","line 3\n\n\nline 3\nline 5\nline 1\n    return x\nline 5\n}\n    return x\nline 5\nline 0\nline 6\nline 4\nline 3\nline 1\n\nline 1\n    return x\nline 3\n    return x\n    return x\n{\n",3,""],
+  ["line 1\nline 0\n    return x\n    return x\n}\nline 1\n}\nline 1\n    return x\n    return x\nline 1\nline 2\n    return x\nline 1\n    return x\n}\nline 0\nline 2\n    return x\nline 1\nline 1\n}\nline 2\n    return x\nline 1\nline 0\n{\n    return x\nline 0\nline 1\nline 0\nline 2\n    return x\n    return x\nline 1\n}\n","line 1\nline 0\n    return x\n    return x\n\n}\nline 1\n}\nline 1\n    return x\n    return x\nline 1\nline 2\n    return x\nline 1\n    return x\n}\nline 2\n    return x\nline 1\nline 1\n}\nline 2\n}\n    return x\nline 1\nline 0\n{\n}\nline 0\nline 1\nline 0\nline 2\n    return x\n    return x\nline 1\n}\n",3,"--- a\n+++ b\n@@ -2,6 +2,7 @@\n line 0\n     return x\n     return x\n+\n }\n line 1\n }\n@@ -14,18 +15,18 @@\n line 1\n     return x\n }\n-line 0\n line 2\n     return x\n line 1\n line 1\n }\n line 2\n+}\n     return x\n line 1\n line 0\n {\n-    return x\n+}\n line 0\n line 1\n line 0\n"],
+  ["line 4\n\n    return x\nline 0\nline 0\n\nline 6\nline 6\n    return x\nline 1\n\n\nline 1\nline 1\nline 5\n{\nline 2\nline 1\nline 2\nline 4\n{\n    return x\n{\n}\nline 5\nline 6\n{\n}\nline 4\n\n}\n{\nline 6\n","line 4\n\n    return x\nline 0\nline 0\n\nline 6\n    return x\nline 6\n    return x\nline 1\n\n\nline 1\nline 1\nline 5\n{\nline 2\nline 1\nline 2\nline 4\n{\n    return x\n{\n}\nline 5\nline 6\n{\n}\nline 4\n\n}\n{\nline 6\n",3,"--- a\n+++ b\n@@ -5,6 +5,7 @@\n line 0\n \n line 6\n+    return x\n line 6\n     return x\n line 1\n"],
+  ["line 6\n\nline 3\nline 6\nline 5\n\nline 6\nline 6\nline 1\nline 5\nline 6\nline 5\n    return x\n","line 6\nline 5\n\nline 6\nline 6\nline 1\nline 1\nline 5\nline 6\nline 5\n    return x\n",3,"--- a\n+++ b\n@@ -1,12 +1,10 @@\n line 6\n-\n-line 3\n-line 6\n line 5\n \n line 6\n line 6\n line 1\n+line 1\n line 5\n line 6\n line 5\n"],
+  ["line 0\n}\n}\n}\nline 2\n{\nline 0\n\nline 2\n    return x\n{\n    return x\n\n    return x\n{\nline 0\nline 2\n}\nline 2\nline 2\nline 0\n}\n}\nline 1\nline 1\n{\n\nline 1\n    return x\nline 0\nline 2\n    return x\n}\nline 2\nline 0","line 0\n}\n}\n}\nline 2\n{\nline 0\n\nline 2\n    return x\n{\n    return x\n\n    return x\n{\nline 0\nline 2\nline 0\n}\nline 2\nline 0\n}\n}\nline 1\nline 1\n{\n\n    return x\nline 1\n    return x\nline 0\nline 2\n    return x\n}\nline 2\nline 0\nline 0\n",3,"--- a\n+++ b\n@@ -15,9 +15,9 @@\n {\n line 0\n line 2\n+line 0\n }\n line 2\n-line 2\n line 0\n }\n }\n@@ -25,6 +25,7 @@\n line 1\n {\n \n+    return x\n line 1\n     return x\n line 0\n@@ -32,4 +33,5 @@\n     return x\n }\n line 2\n-line 0\n\\ No newline at end of file\n+line 0\n+line 0\n"],
 ];
 const PASSWORD_CASES = [
   ["correct horse battery staple", {}, {"ok": true, "failures": []}],
@@ -380,12 +453,13 @@ test('human-readable units format and parse with integer rounding', async () => 
   for (const [delta, expected] of RELATIVE_TIME) assert.equal(m.relativeTime(delta), expected, String(delta));
 });
 
-test('line diff ops and unified output in the GNU diff -u format', async () => {
+test('line diff ops and unified output match the shared vectors', async () => {
   const { diffLines, unifiedDiff } = await load('line-diff');
   for (const [a, b, expected] of DIFF_OPS) assert.deepEqual(diffLines(a, b), expected, JSON.stringify([a, b]));
-  for (const [a, b, expected] of DIFF_UNIFIED) assert.equal(unifiedDiff(a, b, 'old.txt', 'new.txt'), expected, JSON.stringify([a, b]));
-  const big = 'x\n'.repeat(2001);
-  assert.throws(() => diffLines(big, big.replace(/x/g, 'y')), RangeError);
+  for (const [a, b, context, expected] of DIFF_UNIFIED) assert.equal(unifiedDiff(a, b, 'a', 'b', context), expected, JSON.stringify([a, b, context]));
+  for (const context of [-1, 1.5]) assert.throws(() => unifiedDiff('a\n', 'b\n', 'a', 'b', context), RangeError);
+  const big = 'x\n'.repeat(500001);
+  assert.throws(() => diffLines(big, big), RangeError);
 });
 
 // Regression: a final line without a newline must only match another final line without one, or the

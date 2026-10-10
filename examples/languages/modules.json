@@ -5890,7 +5890,8 @@
         "go/linediff/linediff.go"
       ],
       "tests": [
-        "go/linediff/linediff_test.go"
+        "go/linediff/linediff_test.go",
+        "go/linediff/vectors_test.go"
       ],
       "verification": "CI go test",
       "status": "example"
@@ -5955,7 +5956,7 @@
         "dart/lib/line_diff.dart"
       ],
       "tests": [
-        "dart/test/wave7_test.dart",
+        "dart/test/wave8_test.dart",
         "dart/test/src/checks.dart"
       ],
       "verification": "CI dart run",
@@ -5970,7 +5971,7 @@
         "swift/Package.swift"
       ],
       "tests": [
-        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+        "swift/Sources/GenlibSwiftChecks/Wave8Checks.swift"
       ],
       "verification": "CI swift run",
       "status": "example"
@@ -6183,6 +6184,220 @@
       ],
       "tests": [
         "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-slugify",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/slugify.py"
+      ],
+      "tests": [
+        "python/test_slugify.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-json-patch",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/json_patch.py"
+      ],
+      "tests": [
+        "python/test_json_patch.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-slugify",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/slugify/slugify.go"
+      ],
+      "tests": [
+        "go/slugify/slugify_test.go",
+        "go/slugify/vectors_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-json-patch",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/jsonpatch/jsonpatch.go"
+      ],
+      "tests": [
+        "go/jsonpatch/jsonpatch_test.go",
+        "go/jsonpatch/vectors_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-slugify",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/slugify.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-json-patch",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/json_patch.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-slugify",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Slugify.java"
+      ],
+      "tests": [
+        "java/SlugifyTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-json-patch",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/JsonPatch.java"
+      ],
+      "tests": [
+        "java/JsonPatchTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-slugify",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Slugify.kt"
+      ],
+      "tests": [
+        "kotlin/SlugifyTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-json-patch",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/JsonPatch.kt"
+      ],
+      "tests": [
+        "kotlin/JsonPatchTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-slugify",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Slugify.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-json-patch",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/JsonPatch.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-slugify",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/slugify.dart"
+      ],
+      "tests": [
+        "dart/test/wave8_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-json-patch",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/json_patch.dart"
+      ],
+      "tests": [
+        "dart/test/wave8_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-slugify",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Slugify.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave8Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-json-patch",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/JsonPatch.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave8Checks.swift"
       ],
       "verification": "CI swift run",
       "status": "example"
