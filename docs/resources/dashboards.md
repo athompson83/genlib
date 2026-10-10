@@ -94,7 +94,7 @@ Total: 801 records in `resources/catalog/dashboards.json`.
 | --- | --- | --- |
 | typescript | `recharts-npm`, `d3-npm`, `chart-js`, `shadcn`, `echarts` | Apache-2.0, ISC, MIT |
 | python | `matplotlib-pypi`, `plotly-pypi`, `altair-pypi`, `seaborn-pypi`, `streamlit-pypi` | Apache-2.0, BSD-3-Clause, MIT, PSF-based (Matplotlib License) |
-| go | `v2`, `plot-go`, `glot`, `charts-go` | BSD-3-Clause, MIT |
+| go | `go-echarts`, `plot-go`, `glot`, `charts-go` | BSD-3-Clause, MIT |
 | rust | `plotters`, `egui-crates`, `eframe`, `egui-plot`, `plotly-crates` | MIT, MIT OR Apache-2.0 |
 | java | `mpandroidchart`, `com-github-haifengl-smile-plot` (review), `tech-tablesaw-tablesaw-jsplot`, `org-openjfx-javafx-controls` (review), `org-knowm-xchart-xchart` | Apache-2.0, GPL-2.0 WITH Classpath-exception-2.0, LicenseRef-custom |
 | kotlin | `com-patrykandpatrick-vico-compose`, `com-patrykandpatrick-vico-multiplatform`, `com-himanshoe-charty`, `io-github-ehsannarmani-compose-charts`, `io-github-koalaplot-koalaplot-core` | Apache-2.0, MIT |

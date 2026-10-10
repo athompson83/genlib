@@ -1,0 +1,17 @@
+{
+  "id": "RPT-2026-10", "title": "October inventory activity", "generatedOn": "2026-10-10", "preparedBy": "Example Operations",
+  "period": { "start": "2026-10-01", "end": "2026-10-10" },
+  "summary": "Movement and remaining inventory for the selected reporting period.",
+  "columns": [
+    { "key": "item", "label": "Item", "width": 50 },
+    { "key": "received", "label": "Received", "width": 15 },
+    { "key": "shipped", "label": "Shipped", "width": 15 },
+    { "key": "available", "label": "Available", "width": 20 }
+  ],
+  "rows": [
+    { "item": "Blue field notebook", "received": 120, "shipped": 74, "available": 46 },
+    { "item": "Black archival pen", "received": 60, "shipped": 35, "available": 25 },
+    { "item": "Visitor badge", "received": 500, "shipped": 240, "available": 260 }
+  ],
+  "notes": "Fixture data only. Counts reflect recorded movements and do not certify a physical stocktake."
+}

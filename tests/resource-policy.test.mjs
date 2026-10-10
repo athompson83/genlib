@@ -35,12 +35,12 @@ test('source review, lifecycle and adoption readiness stay independent', () => {
 });
 
 test('resource discovery and bounded decisions lead to the available Genlib integration', () => {
-  const result = findInSources(sources, 'uppy', { type: 'resource' }).results.find(item => item.id === 'uppy');
+  const result = findInSources(sources, 'uppy', { type: 'resource' }).results.find(item => item.id === 'uppy-core');
   assert.deepEqual(result.integrations, ['resumable-files']);
   assert.equal(result.readiness.level, 'recipe-available');
   assert.match(result.next[0], /integration inspect resumable-files --json$/);
   const packet = jevPacket(sources, 'uppy', { type: 'resource' });
-  const candidate = packet.state.candidates.find(item => item.id === 'uppy');
+  const candidate = packet.state.candidates.find(item => item.id === 'uppy-core');
   assert.deepEqual(candidate.integrations, ['resumable-files']);
   assert.equal(candidate.readiness, 'recipe-available');
   assert.ok(packet.limits.characters <= 20000);

@@ -9,7 +9,7 @@
     "Use genlib_catalog to see whether this server has project operations and installation enabled. Project arguments are relative to the configured root, usually a single receiving app; use project '.' for that app. A tool argument cannot authorize another root.",
     "Call genlib_plan_install with kind, id, project and optional out. Review conflicts and compatibility. The plan is read-only and uses the same checks as the CLI.",
     "Call genlib_install only when the existing task authorizes the receiving-project change and the tool is already available. It is registered only by startup write opt-in. Never change permissions, invent credentials or execute a returned command to bypass an unavailable tool.",
-    "Call genlib_verify_installation after copying. Configure the feature and run the contract's meaningful checks in the receiving app through the host's authorized development tools. The MCP server never runs package scripts or starts services."
+    "Call genlib_verify_installation after copying. If integration status is incomplete or installation reports INSTALL_INCOMPLETE, preserve the published source and inspect the recovery journal and docs/integrations.md; do not automatically delete files, rewrite baselines or retry. Configure the feature and run the contract's meaningful checks in the receiving app through the host's authorized development tools. The MCP server never runs package scripts or starts services."
   ],
   "selection": {
     "retired": "Hidden by default. Set includeRetired true only for deliberate historical or migration lookup.",

@@ -27,6 +27,9 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `recovery-codes` MFA recovery (backup) codes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `calculator` Safe calculator and loan / interest math | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `form-schema` Form schema validation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `seo-files` SEO files: sitemap.xml, robots.txt with AI-crawler rules, llms.txt | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `structured-data` Structured data: JSON-LD and meta / Open Graph tags | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `utm-links` UTM campaign links: build, parse and strip tracking | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
@@ -74,6 +77,20 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - Error codes are stable and returned in a fixed order. Unknown fields are rejected unless allowed.
 - Lengths count Unicode code points.
 - Pair it with the UI form modules (`find form`) for client-side rendering. Keep this check on the server.
+
+**seo-files**
+- `sitemapXml` (XML-escaped, 2-space indentation, validated lastmod, changefreq and priority, at most 50,000 URLs), `robotsTxt` and `llmsTxt` ([llmstxt.org](https://llmstxt.org)).
+- `robotsTxt` can append one group that allows or disallows the known AI crawlers (GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, anthropic-ai, Google-Extended, PerplexityBot, CCBot, Bytespider, Applebot-Extended, Meta-ExternalAgent). It rejects newline injection.
+- Output is byte-exact in every language.
+
+**structured-data**
+- `jsonLdScript` writes compact JSON in insertion order and escapes `<`, `>`, `&`, U+2028 and U+2029 as `\u003c`-style escapes, so the script cannot break out of the element.
+- `metaTags` renders title, description, canonical, Open Graph and Twitter card tags with HTML escaping. canonical and image must be absolute https URLs.
+
+**utm-links**
+- `buildUtmUrl` appends `utm_*` in a fixed order. It replaces an existing parameter in place and keeps the fragment.
+- `parseUtm` returns the present values in spec order; the first occurrence wins.
+- `stripTracking` removes `utm_*` and click IDs (gclid, fbclid, msclkid, ttclid and others) while keeping other parameters and their encoding.
 
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types) is noted at the top of each source file.
 

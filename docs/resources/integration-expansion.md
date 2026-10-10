@@ -1,6 +1,6 @@
 # Integration expansion
 
-This guide maps the October 2026 review into 51 explicit resource records: the 48 external recommendations, an Apache-scoped OpenRewrite profile, the original direct Genlib MCP package and a Typst compiler record promoted from the separate CLI index. Fifty records live in the expansion catalog; uPlot reuses the canonical dashboard record added during implementation. Existing catalog resources are reused by their canonical IDs instead of copied into another catalog.
+This guide maps the October 2026 review into 51 explicit resource records: the 48 external recommendations, an Apache-scoped OpenRewrite profile, the original direct Genlib MCP package and a Typst compiler record promoted from the separate CLI index. Forty-three records live in the expansion catalog; uPlot, React Big Calendar, ical-generator, pg-boss, MiniSearch, tus-js-client, tusd and Uppy core reuse canonical records added during implementation. Existing catalog resources are reused by their canonical IDs instead of copied into another catalog.
 
 The records identify exact upstream packages or APIs, their shortest adoption commands, source/service license boundaries and the matching Genlib contract. A source-reviewed record is useful discovery evidence. Executable behavior and runtime acceptance are recorded separately in module tests and integration-profile manifests.
 
@@ -8,7 +8,7 @@ The records identify exact upstream packages or APIs, their shortest adoption co
 
 ```sh
 node tools/resources.mjs search "resumable upload" --json --limit 5
-node tools/resources.mjs inspect uppy --json
+node tools/resources.mjs inspect uppy-core --json
 node tools/resources.mjs inspect census --json
 ```
 
@@ -18,13 +18,13 @@ Read [the public-data-clients contract](../../modules/public-data-clients/CONTRA
 
 | Resource IDs | Reusable behavior | Primary source and material boundary |
 | --- | --- | --- |
-| `uppy`, `tus-js-client`, `tusd` | Upload selection, resumable transfers, server-side tus protocol handling | [Uppy](https://uppy.io/docs/), [tus-js-client](https://github.com/tus/tus-js-client), [tusd](https://github.com/tus/tusd): MIT projects; receiving app owns authorization, storage, quotas and abandoned-upload cleanup |
+| `uppy-core`, `tus-js-client`, `tusd` | Upload selection, resumable transfers, server-side tus protocol handling | [Uppy](https://uppy.io/docs/), [tus-js-client](https://github.com/tus/tus-js-client), [tusd](https://github.com/tus/tusd): MIT projects; receiving app owns authorization, storage, quotas and abandoned-upload cleanup |
 | `json-forms` | JSON Schema/UI schema forms with a selected renderer | [JSON Forms](https://jsonforms.io/docs/): MIT; pin a supported framework/renderer pair and retain server validation |
 | `pdfme` | Template-driven PDF generation and optional designer | [pdfme](https://pdfme.com/docs/getting-started): MIT source; template assets and fonts retain their terms |
 | `zip-js` | ZIP creation/reading with explicit file handling | [zip.js](https://gildas-lormeau.github.io/zip.js/): BSD-3-Clause; enforce expanded-byte, entry-count and path limits in the receiving app |
 | `pg-boss` | Durable PostgreSQL jobs and retriable work | [pg-boss](https://github.com/timgit/pg-boss): MIT; external effects still need application-level idempotency and operational ownership |
 | `tabulator`, `glide-data-grid` | Vanilla-JavaScript or canvas-backed data grids | [Tabulator](https://github.com/olifolkerd/tabulator), [Glide Data Grid](https://github.com/glideapps/glide-data-grid): MIT; profile choice depends on accessibility, edit/selection behavior and framework |
-| `react-big-calendar`, `ical-generator` | Calendar presentation and server-side iCalendar generation | [React Big Calendar](https://github.com/jquense/react-big-calendar), [ical-generator](https://github.com/sebbo2002/ical-generator): MIT; date/timezone, recurrence, persistence and permissions remain explicit |
+| `react-big-calendar`, `ical-generator` | Calendar presentation and server-side iCalendar generation | [React Big Calendar](https://github.com/bigcalendar/react-big-calendar), [ical-generator](https://github.com/sebbo2002/ical-generator): MIT; date/timezone, recurrence, persistence and permissions remain explicit |
 | `react-arborist` | Virtualized interactive trees | [React Arborist](https://github.com/brimdata/react-arborist): MIT; receiving app owns keyboard behavior validation and persisted order |
 | `libphonenumber-js`, `imask` | Phone parsing and formatted input | [libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js), [IMask](https://github.com/uNmAnNeR/imaskjs): MIT; formatting and metadata checks are not proof that a phone number is owned or reachable |
 | `uplot`, `minisearch` | Time-series rendering and local full-text indexing | [uPlot](https://github.com/leeoniya/uPlot), [MiniSearch](https://github.com/lucaong/minisearch): MIT; choose scale, search fields, update lifecycle and accessible alternatives deliberately |
@@ -79,7 +79,7 @@ Ten direct wrappers are retained for historical migration discovery with `lifecy
 | Firebase Dynamic Links | `firebase-dynamic-link`, `firebase-dynamic-links`, `xamarin-firebase-dynamic-links`, `adame-firebase-ios-dynamiclinks`, `yedincisenol-dynamic-links`, `google-api-firebase-dynamic-links`, `google-apis-firebasedynamiclinks-v1` | [Firebase shutdown FAQ](https://firebase.google.com/support/dynamic-links-faq): service shut down August 25, 2025 |
 | Universal Analytics | `universal-analytics`, `thelia-google-universal-analytics`, `cordova-plugin-google-analytics` | [Google's legacy service notice](https://developers.google.com/analytics/legacy/universal-analytics): APIs and services shut down July 1, 2024 |
 
-License scope was clarified in twelve additional existing records:
+License scope was clarified in fourteen additional existing records, including the two Schedule-X records merged into main during implementation:
 
 | Resource scope | Correction |
 | --- | --- |
@@ -87,8 +87,9 @@ License scope was clarified in twelve additional existing records:
 | `survey-react-ui`, `survey-angular-ui` | MIT form renderers remain distinct from paid Creator, Dashboard and PDF features under [SurveyJS licensing](https://surveyjs.io/licensing) |
 | `survey-creator-core`, `survey-creator-react`, `survey-creator-vue`, `survey-creator-angular`, `survey-creator-js` | Commercial Creator scope, explicit license review and unknown SPDX ID; a `SEE LICENSE` registry declaration is not an open-source permission |
 | `medusa`, `medusajs-analytics`, `medusajs-analytics-posthog`, `medusajs-notification-sendgrid` | MIT core/package declarations do not extend to separate [Medusa Enterprise functionality](https://github.com/medusajs/medusa) |
+| `schedule-x-calendar`, `schedule-x-react` | MIT core/React-adapter declarations do not cover the separate Premium drag-and-drop, resize or advanced resource views described in [Schedule-X v4](https://schedule-x.dev/blog/schedule-x-v4) |
 
-Schedule-X had no existing external catalog record to correct. Its [v4 announcement](https://schedule-x.dev/blog/schedule-x-v4) moves drag-and-drop and resize into Premium, so these capabilities are not described as current free Schedule-X features here. The calendar integration uses an explicitly selected alternative. The broader OpenRewrite ecosystem likewise includes [MSAL source-available restrictions](https://docs.moderne.io/licensing/moderne-source-available-license/) and proprietary artifacts; only the narrow reviewed Apache profile is indexed for direct use.
+Schedule-X had no external catalog record at the start of the review; the subsequent scheduling catalog introduced two records, whose feature/license scopes are now corrected. Its [v4 announcement](https://schedule-x.dev/blog/schedule-x-v4) moves drag-and-drop and resize into Premium, so these capabilities are not described as current free Schedule-X features here. The calendar integration uses an explicitly selected alternative. The broader OpenRewrite ecosystem likewise includes [MSAL source-available restrictions](https://docs.moderne.io/licensing/moderne-source-available-license/) and proprietary artifacts; only the narrow reviewed Apache profile is indexed for direct use.
 
 ## Evidence and ongoing curation
 
@@ -118,7 +119,7 @@ These resource records include sorted `genlib.integrations` bindings and `readin
 - [PostgreSQL jobs and persistent webhook inbox](../../integrations/durable-jobs/CONTRACT.md): `pg-boss`.
 - [Native acceptance and snapshot profiles](../../integrations/native-acceptance/CONTRACT.md): `maestro`, `patrol`, `swift-snapshot-testing`.
 - [Native SQLite repositories and migrations](../../integrations/native-persistence/CONTRACT.md): `grdb-swift`, `sqldelight`.
-- [Resumable uploads and ZIP exports](../../integrations/resumable-files/CONTRACT.md): `tus-js-client`, `tusd`, `uppy`, `zip-js`.
+- [Resumable uploads and ZIP exports](../../integrations/resumable-files/CONTRACT.md): `tus-js-client`, `tusd`, `uppy-core`, `zip-js`.
 - [Shared Rust domain core and UniFFI bindings](../../integrations/shared-rust-core/CONTRACT.md): `uniffi`.
 - [Calendar export and controlled file trees](../../integrations/web-calendar-files/CONTRACT.md): `ical-generator`, `react-arborist`, `react-big-calendar`.
 - [Editable data tables, search and time series](../../integrations/web-data-workbench/CONTRACT.md): `glide-data-grid`, `minisearch`, `tabulator`, `uplot`.

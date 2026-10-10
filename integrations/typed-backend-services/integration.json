@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "license": "Apache-2.0",
   "title": "Typed backend services and SQL repositories",
-  "summary": "Generated Protobuf/Connect TypeScript service and clients with real local protocol tests, plus a generated sqlc Go SQLite repository with transaction and cancellation tests.",
+  "summary": "One Protobuf contract generates interoperable Go and TypeScript Connect clients/services with shared local HTTP conformance tests, plus an independent generated sqlc Go SQLite repository.",
   "languages": [
     "typescript",
     "go",
@@ -33,7 +33,9 @@
     "typed-backend",
     "sql",
     "transaction",
-    "codegen"
+    "codegen",
+    "cross-language",
+    "conformance"
   ],
   "entrypoints": [
     "CONTRACT.md",
@@ -42,33 +44,51 @@
     "connect/client.ts",
     "connect/client-node.ts",
     "go/sqlc.yaml",
-    "go/repository.go"
+    "go/repository.go",
+    "connect-go/server.go",
+    "connect-go/client.go",
+    "tests/conformance.json"
   ],
   "verification": {
     "level": "tested",
     "profiles": [
-      "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3, Buf 1.73.0, Connect 2.2.0: proto lint, descriptor generation/typecheck and 2 real local HTTP protocol tests passed.",
+      "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3, Buf 1.73.0, Protobuf-ES 2.16.0, Connect 2.2.0: proto lint, descriptor generation/typecheck and 3 real local HTTP protocol tests passed.",
+      "Linux x86_64, Go 1.27.2 / Connect Go and protoc-gen-connect-go 1.21.0 / Protobuf and protoc-gen-go 1.36.12: binding generation and 6 Go tests and the race detector passed, including shared conformance, pre-decode auth/body limits, cancellation, error boundaries, redirect refusal and concurrent storage.",
+      "Linux x86_64, the pinned Node and Go runtimes above: 2 cross-language HTTP/1.1 Connect tests passed (generated Go client to TypeScript service; TypeScript client to Go service), each using the same 3 create/get, 5 pagination and 10 typed-error cases.",
       "Linux x86_64, Go 1.27.2 / sqlc 1.31.1 / modernc SQLite 1.39.1: query generation and repository transaction, missing-row and cancellation test passed."
     ],
     "commands": [
       "npm ci --ignore-scripts",
       "npm run lint:proto",
       "npm test",
+      "go -C connect-go mod download",
+      "npm run test:go",
+      "npm run test:cross-language",
+      "go -C connect-go test -mod=readonly -race ./...",
       "go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.31.1",
       "sqlc generate -f go/sqlc.yaml",
       "go -C go test ./..."
     ],
     "notes": [
-      "Tested profiles are independent Node and Go runtimes. The injected repository is the integration boundary; the examples do not claim to share process memory.",
-      "Generated Protobuf and SQL query code is excluded from delivered files; commands regenerate it using pinned tools. Retain upstream generator/runtime notices.",
-      "The browser client source typechecks but no browser/CORS deployment was exercised. Production auth, database lifecycle and trusted breaking-change baselines remain receiving-service gates."
+      "Go and TypeScript share a protobuf contract and conformance fixture. Protocol tests cross separate local processes; each service owns its storage. The sqlc Go repository remains an independent persistence profile.",
+      "Generated Protobuf and SQL query code, downloaded runtime source and fixture binaries are excluded from delivered files; explicit commands regenerate them using pinned tools. Retain upstream generator/runtime notices and licenses.",
+      "The browser client source typechecks; browser/CORS deployment, gRPC, HTTP/2, streaming, production identity/TLS, durable database lifecycle and trusted breaking-change baselines remain receiving-service gates."
     ]
   },
   "files": [
     ".gitignore",
     "CONTRACT.md",
+    "buf.gen.go.yaml",
     "buf.gen.yaml",
     "buf.yaml",
+    "connect-go/client.go",
+    "connect-go/cmd/fixture/main.go",
+    "connect-go/go.mod",
+    "connect-go/go.sum",
+    "connect-go/internal/conformance/conformance.go",
+    "connect-go/repository.go",
+    "connect-go/server.go",
+    "connect-go/service_test.go",
     "connect/client-node.ts",
     "connect/client.ts",
     "connect/repository.ts",
@@ -83,7 +103,10 @@
     "package-lock.json",
     "package.json",
     "proto/genlib/inventory/v1/inventory.proto",
+    "tests/conformance.json",
+    "tests/conformance.mjs",
     "tests/connect.test.mjs",
+    "tests/cross-language.test.mjs",
     "tsconfig.json"
   ]
 }

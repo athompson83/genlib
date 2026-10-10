@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "license": "Apache-2.0",
   "title": "Invoices, PDF templates, email and spreadsheet exports",
-  "summary": "One validated invoice model drives pdfme templates, React Email, ExcelJS and PapaParse; bounded Gotenberg and trusted Typst adapters provide conversion alternatives.",
+  "summary": "Typed invoice, estimate, receipt, packing-slip and report models drive editable pdfme templates and dynamic PDFs; invoice email/XLSX/CSV and bounded Gotenberg/Typst adapters provide complementary output profiles.",
   "languages": [
     "typescript",
     "typst"
@@ -32,14 +32,24 @@
     "xlsx",
     "csv",
     "conversion",
-    "templates"
+    "templates",
+    "estimate",
+    "receipt",
+    "packing-slip",
+    "report"
   ],
   "files": [
     "CONTRACT.md",
+    "fixtures/estimate.json",
     "fixtures/invoice.json",
+    "fixtures/packing-slip.json",
+    "fixtures/receipt.json",
+    "fixtures/report.json",
     "package-lock.json",
     "package.json",
     "src/designer.ts",
+    "src/document-pdfs.ts",
+    "src/documents.ts",
     "src/email.tsx",
     "src/gotenberg.ts",
     "src/invoice.ts",
@@ -47,6 +57,7 @@
     "src/pdf.ts",
     "src/spreadsheet.ts",
     "src/typst.ts",
+    "tests/document-variants.test.mjs",
     "tests/documents.test.mjs",
     "tsconfig.json"
   ],
@@ -58,7 +69,9 @@
     "src/spreadsheet.ts",
     "src/gotenberg.ts",
     "src/typst.ts",
-    "src/invoice.typ"
+    "src/invoice.typ",
+    "src/documents.ts",
+    "src/document-pdfs.ts"
   ],
   "compatibility": {
     "reactMajors": [
@@ -73,7 +86,7 @@
       "npm test"
     ],
     "profiles": [
-      "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and six tests including real pdfme PDF generation, React Email rendering, ExcelJS reload and PapaParse round trips.",
+      "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and ten tests including real pdfme PDFs for five document types, a 90-row multi-page report with a supplied font map, React Email, ExcelJS reload and PapaParse round trips.",
       "Node 24.19.0; mocked Gotenberg HTTP boundary and controlled executable Typst argument/JSON/cleanup fixtures; neither external converter was run."
     ],
     "notes": [

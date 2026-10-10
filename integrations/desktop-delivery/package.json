@@ -8,10 +8,19 @@
     "test": "node --test tests/*.test.mjs",
     "electron": "electron electron/main.mjs",
     "tauri:dev": "cd tauri && tauri dev",
-    "tauri:build": "cd tauri && tauri build"
+    "tauri:build": "cd tauri && tauri build",
+    "electron:package": "node electron/package-release.mjs",
+    "electron:unpacked": "electron-builder --config electron-builder.yml --dir --publish never",
+    "tauri:package": "node tauri/package-release.mjs",
+    "wails:package": "node wails/package-release.mjs"
   },
   "devDependencies": {
     "electron": "44.7.0",
-    "@tauri-apps/cli": "2.12.1"
+    "@tauri-apps/cli": "2.12.1",
+    "electron-builder": "26.15.3"
+  },
+  "main": "electron/main.mjs",
+  "dependencies": {
+    "electron-updater": "6.8.9"
   }
 }

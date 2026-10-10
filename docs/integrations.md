@@ -41,9 +41,35 @@ The installer validates the manifest, checks source hashes, enforces declared Re
 
 Original source provenance and hashes are recorded in `.genlib/integrations-lock.json`. Attribution is copied under `.genlib`; the module and integration installers share a write lock. Dependency managers and project scripts remain under the receiving project's control. After intentional source customization, `integration verify` reports drift without overwriting files or changing the baseline. Upgrading an installed version requires a deliberate diff and migration; a newer manifest cannot silently replace an old installation.
 
-Files are staged before atomic publication. If installation fails, rollback removes only newly published files whose bytes still match that installation. Concurrent edits survive and remain available for deliberate reconciliation; temporary staging and the shared write lock are cleaned up.
+Files are staged before atomic publication. Before publishing a target file, the installer writes and syncs `.genlib/integrations-recovery.json`, an immutable write-ahead journal of the intended paths, source hashes, and previous/proposed baseline hashes. **Published source and attribution files are never deleted during failure cleanup.** An editor can save after a hash check, so an unchanged-looking hash cannot authorize rollback deletion. Only private staging files, temporary baseline files and the owned write lock are cleaned up.
 
 The [direct MCP server](mcp-server.md) exposes the same inspect/read/plan/install/verify operations. Source reads are separate, bounded requests over the exact file inventory.
+
+## Recover an incomplete integration install
+
+A failure after the recovery journal is published reports `INSTALL_INCOMPLETE`. The journal stays in place and subsequent integration plans/adds stop for review. `integration verify` remains read-only: it returns `status: "incomplete"` and a failing CLI exit status even if all baseline files currently match. Clearing a journal never makes untracked files eligible for automatic adoption or overwrite.
+
+The journal is bounded to 1 MiB and at most 1,003 records (the pack's declared files, its manifest and two attribution files). Its paths are validated before they are inspected. Invalid, oversized, linked or unreadable evidence produces an incomplete result without following its file entries. Verification returns complete status counts and up to 32 file observations, prioritizing missing/different/unreadable files; `omittedFiles` identifies a truncated preview. The journal contains the full intended inventory. These are observations of the current files, not a promise that every intended write occurred.
+
+`recovery.baselineState` distinguishes the current baseline from the two recorded hashes:
+
+| State | Meaning |
+| --- | --- |
+| `matches-previous` | The baseline still matches the state before the attempt, including an absent baseline when none existed |
+| `matches-proposed` | The baseline matches the proposed commit; a later cleanup failure may have left the journal |
+| `different` | The baseline matches neither recorded state and needs application-owner review |
+| `unreadable` | Genlib could not safely inspect the baseline |
+
+The journal is removed only after the baseline commit and private cleanup succeed. A baseline commit followed by a journal cleanup failure therefore remains incomplete; Genlib preserves the committed baseline and all published files. Successful installs and idempotent retries retain their normal behavior once no recovery journal remains.
+
+To recover deliberately:
+
+1. Confirm that no installer is running. A process crash may also leave `.genlib/install.lock` and staging files; inspect that state before removing a stale lock.
+2. Run `integration verify --target <project> --json`, inspect the recovery journal and compare the listed paths with project history. Preserve editor changes in version control or a separate backup before moving anything.
+3. If the proposed baseline committed and all intended files are accounted for, the application owner can archive or remove the reviewed journal and verify again. If the old baseline remains, reconcile the retained files first; new untracked files still conflict on a retry. Archive or move those files deliberately when appropriate, preserving existing baselines and application-owned files.
+4. Clear the reviewed journal only when that reconciliation is complete, then rerun verification and any deliberate install. Genlib provides no automatic adopt, overwrite or recovery-delete operation, and recovery never runs package managers or project hooks.
+
+The journal and staged file data are flushed before publication, with directory synchronization where the OS supports it. Durability after power loss depends on the host filesystem; Windows may provide file synchronization without directory synchronization. A crash can leave a conservative recovery marker after a completed baseline, so examine the recorded hashes instead of assuming that a pending marker means the baseline was rolled back.
 
 ## Interpret verification and readiness
 

@@ -15,7 +15,7 @@ await mkdir(dirname(target), { recursive: true });
 const created = spawnSync('flutter', ['create', '--no-pub', '--platforms=android,ios', '--org=dev.genlib', '--project-name=genlib_inventory', target], { stdio: 'inherit' });
 if (created.error || created.status !== 0) throw new Error('Flutter scaffold failed; inspect the new directory before retrying');
 const source = dirname(fileURLToPath(import.meta.url));
-for (const file of ['pubspec.yaml', 'lib/main.dart', 'test/inventory_test.dart', 'patrol_test/inventory_test.dart'])
+for (const file of ['pubspec.yaml', 'lib/main.dart', 'lib/controller.dart', 'test/inventory_test.dart', 'patrol_test/inventory_test.dart'])
   {
     await mkdir(dirname(resolve(target, file)), { recursive: true });
     await cp(resolve(source, file), resolve(target, file), { recursive: false, force: true });

@@ -8,17 +8,18 @@ Genlib distributes editable source and isolated integration profiles to an exist
 flowchart TD
   Source["Authored modules and integration packs"] --> Build["Registry builders and binding checks"]
   Build --> Hashes["Module and pack integrity manifests"]
-  Meta["Capabilities, recipes, indexes, resources, dashboards and docs"] --> Discovery["Shared discovery and selection policy"]
+  Meta["Capabilities, recipes, indexes, domain catalogs and docs"] --> Discovery["Shared discovery and selection policy"]
   Hashes --> Discovery
   Discovery --> Index["Search index and generated documentation"]
   Discovery --> Jev["Bounded Jev packets"]
   Discovery --> CLI["Dependency-free CLI"]
-  Discovery --> MCP["Optional SDK-based MCP server"]
+  Discovery --> MCP["MCP discovery and direct SDK server"]
+  Discovery --> Navigation["Navigation graph and Obsidian notes"]
   Jev --> CLI
   Jev --> MCP
   Hashes --> Install["Shared safe plan, copy and verify functions"]
   CLI --> Install
-  MCP --> Scope["Configured project root and write opt-in"]
+  MCP -- "direct SDK server" --> Scope["Configured project root and write opt-in"]
   Scope --> Install
   Install --> App["Receiving source, attribution and hash baselines"]
   Meta --> Health["Maintainer-only cached metadata checks"]
@@ -67,11 +68,36 @@ The module registry currently accepts only original Apache-2.0 source. External 
 
 `templates/project`, `templates/github`, `templates/docs`, `templates/ship` and `templates/ui` are opt-in project starters indexed by `templates/index.json`. They are not installer hooks and do not change live GitHub settings. A consuming project merges selected files, replaces placeholders and supplies real verification commands before adoption.
 
+## Generated catalogs and agent access
+
+The capability index (`resources/capabilities.json`) maps common tasks to tested code in 9 languages; see [capabilities.md](capabilities.md). Several resource catalogs are generated from verified registry research rather than written by hand, and carry `languages` and registry `popularity`:
+
+- `resources/catalog/marketing-*.json`
+- `social-media.json`
+- `dashboards.json`
+- `scheduling-calendar.json`
+- `chat-messaging.json`
+- `open-source-tools*.json` (records list the proprietary products they replace, searchable as "<product> alternative")
+
+Each has a guide under `docs/resources/`.
+
+Agents reach everything through one ranking (`lib/discover.mjs`) by any of these paths:
+
+- **CLI:** `bin/genlib.mjs`.
+- **Dependency-free MCP discovery:** `bin/genlib-mcp.mjs`.
+- **Direct SDK MCP, scoped project operations and HTTP:** `packages/genlib-mcp/server.mjs`.
+- **Jev decision packets:** `lib/jev.mjs`.
+- **Generated search index:** `registry/search-index.jsonl`.
+- **Navigation graph:** `registry/graph.json`.
+- **Obsidian vault export:** `scripts/export-obsidian.mjs`.
+
+`lib/docs-index.mjs` makes every documentation section searchable with its line range. See [agent-access.md](agent-access.md) and [jev.md](jev.md). `npm run check` fails when the index, graph or generated docs are stale.
+
 ## Trust and ownership
 
 Trust a reviewed repository revision before executing its CLI. Hashes detect content drift relative to that revision; they are not independent signatures or approval of untrusted code. Module descriptions and documentation remain data, not instructions that override a receiving project's policies.
 
-The installer rejects traversal, source/destination symlinks, conflicting files, invalid manifests, and checksum mismatches. A cooperating installer lock serializes Genlib writes per target. Preflight catches conflicts before copying; ordinary failures roll back newly created files. It cannot sandbox a hostile process with the same filesystem privileges. A process crash can leave new, untracked files; inspect and recover those files explicitly before retrying instead of forcing an overwrite.
+The installers reject traversal, source/destination symlinks, conflicting files, invalid manifests, and checksum mismatches. A cooperating installer lock serializes Genlib writes per target. Preflight catches conflicts before copying. Integration installation writes a bounded recovery journal before publishing source, retains published files after a failure, and reports an incomplete transaction for deliberate reconciliation. It never races an editor by deleting a published file during cleanup. The independent module installer retains its existing rollback behavior. These checks cannot sandbox a hostile process with the same filesystem privileges. A process crash can leave a stale write lock and untracked source; inspect the recovery evidence and project files explicitly before retrying.
 
 Genlib keeps original module and pack hashes so customized source is never silently overwritten by a future installation. Updates require review of upstream and local changes. There is no force-overwrite or automatic-upgrade operation.
 

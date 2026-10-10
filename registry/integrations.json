@@ -20,7 +20,7 @@
       "version": "0.1.0",
       "license": "Apache-2.0",
       "title": "API contracts and generated clients",
-      "summary": "Original OpenAPI inventory contract, generated typed client and real loopback server, plus executable contract fuzzing, breaking-change and HTTP checks with alternative generator configurations.",
+      "summary": "Original OpenAPI inventory/cache/chunk-upload contract, typed clients and a real loopback server; successful pagination, ETag 304 and idempotent completion fixtures plus Hurl, schema fuzzing and breaking-change checks.",
       "languages": [
         "typescript",
         "javascript",
@@ -54,7 +54,11 @@
         "api-contract",
         "contract-testing",
         "fuzzing",
-        "codegen"
+        "codegen",
+        "etag",
+        "cache",
+        "pagination",
+        "upload-completion"
       ],
       "entrypoints": [
         "CONTRACT.md",
@@ -65,14 +69,17 @@
         "http/check-breaking.mjs",
         "orval.config.mjs",
         "hey-api.config.mjs",
-        "typespec/main.tsp"
+        "typespec/main.tsp",
+        "http/inventory.hurl",
+        "http/tool-versions.json"
       ],
       "verification": {
         "level": "experimental",
         "profiles": [
-          "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3: generated openapi-typescript client typecheck and 4 HTTP/transport tests passed.",
-          "Linux x86_64, Node 24.19.0: Orval 8.41.0, Hey API 0.99.0 and TypeSpec 1.17.0 generation commands completed.",
-          "Linux x86_64, Python 3.12.14 / Schemathesis 4.30.1: seed 42, coverage plus fuzzing, 100 generated cases passed against the disposable loopback fixture."
+          "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3: generated client/typecheck and seven HTTP/transport tests passed, including pagination, ETag 304, concurrent upload offsets and exact/idempotent completion.",
+          "Linux x86_64, Node 24.19.0: Orval 8.41.0, Hey API 0.99.0 and TypeSpec 1.17.0 generation completed against the current schema/profile.",
+          "Linux x86_64, Hurl 8.0.1 verified upstream binary: all 22 local request-chain assertions passed. oasdiff v1.33.0 built with Go 1.27.2: unchanged baseline passed and removed GET /items failed as expected.",
+          "Linux x86_64, Python 3.12.14 / Schemathesis 4.30.1: seed 42 coverage/fuzzing selected eight operations; 284 generated cases passed, 14 skipped; stateful disabled and examples absent."
         ],
         "commands": [
           "npm ci --ignore-scripts",
@@ -81,12 +88,15 @@
           "npm run generate:hey",
           "npm run generate:typespec",
           "python -m pip install -r http/requirements.lock.txt",
-          "npm run test:schemathesis"
+          "npm run test:schemathesis",
+          "npm run test:hurl",
+          "npm run test:breaking"
         ],
         "notes": [
-          "Hurl, oasdiff and Docker/Microcks gates have not run in this environment; provision their tools explicitly and run the commands in CONTRACT.md.",
-          "Generated client/runtime trees are excluded from the delivered files. Regenerate deliberately and retain generator/dependency notices.",
-          "Token acquisition policy, production authorization, retries, deployment and generated-client compatibility with the receiving app remain host responsibilities."
+          "Docker/Microcks acceptance remains unexecuted. Provision external tools from http/tool-versions.json deliberately; copying this pack never installs them.",
+          "Schemathesis warned that PATCH/complete mostly rejected generated requests requiring existing upload state. Node and Hurl separately exercise positive ordered flows.",
+          "Generated client/runtime trees are excluded. Regenerate deliberately and retain upstream notices. The fixture upload protocol is not a production tus server and clears state on restart.",
+          "Token acquisition, production authorization, retries, deployment and receiving-app generated-client compatibility remain host responsibilities."
         ]
       },
       "files": [
@@ -99,8 +109,8 @@
         {
           "path": "integrations/api-contracts/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 3571,
-          "sha256": "71a6be4439ec1f0d9d629e799aa1582cbcc0fab491528cc9ed99265373d749ea"
+          "bytes": 6931,
+          "sha256": "96412651121cbdf98d285d67f2dfaab887e9f5428388878a990f65e27238e083"
         },
         {
           "path": "integrations/api-contracts/client.ts",
@@ -111,14 +121,14 @@
         {
           "path": "integrations/api-contracts/fixture/server.mjs",
           "target": "fixture/server.mjs",
-          "bytes": 3161,
-          "sha256": "fb737b49a98574aeeceea14a96ae91a067dc4083fba728d880609cf9b7832a91"
+          "bytes": 8020,
+          "sha256": "44282c3caed0459f954055fa1721db41e79b8f53b8e418316f78c150392e6b78"
         },
         {
           "path": "integrations/api-contracts/fixtures/openapi-breaking.json",
           "target": "fixtures/openapi-breaking.json",
-          "bytes": 4377,
-          "sha256": "5de2f3f43c88328dc5051260d98a139613c2f2f7a8552b3d3c45f5cfdeee9852"
+          "bytes": 17807,
+          "sha256": "84a5ab29a07fa855697569068d42bee4b7f1268dc9247004da14f8d9c43ad3a7"
         },
         {
           "path": "integrations/api-contracts/hey-api.config.mjs",
@@ -135,8 +145,8 @@
         {
           "path": "integrations/api-contracts/http/inventory.hurl",
           "target": "http/inventory.hurl",
-          "bytes": 563,
-          "sha256": "d3b8432f865214d3f73582d2ea23285aeebda4f8eaeb766bfb0a60149531ef59"
+          "bytes": 4324,
+          "sha256": "01c678d1f0ce73cf88aee88099a5de4b9ee03973783966f2aa988009ebd6220c"
         },
         {
           "path": "integrations/api-contracts/http/requirements.lock.txt",
@@ -161,6 +171,12 @@
           "target": "http/schemathesis.toml",
           "bytes": 66,
           "sha256": "ff921d8be40fa236d941fb736ba420366a616bbf1ab4864f44f2cd6cf27840e5"
+        },
+        {
+          "path": "integrations/api-contracts/http/tool-versions.json",
+          "target": "http/tool-versions.json",
+          "bytes": 874,
+          "sha256": "ad4dd965f03daadaf87558378e65ae65642c23140c516733804faa2cb0d9487a"
         },
         {
           "path": "integrations/api-contracts/microcks/compose.yaml",
@@ -195,14 +211,14 @@
         {
           "path": "integrations/api-contracts/schema/openapi.json",
           "target": "schema/openapi.json",
-          "bytes": 6228,
-          "sha256": "a13e94981340a3da05962886709e34c316bd5324fa67ca8866603505eb1447e2"
+          "bytes": 21078,
+          "sha256": "c22d6337ceca5243649ffd7ff362689777a18868c85f7019b3a39393991d229d"
         },
         {
           "path": "integrations/api-contracts/tests/fixture.test.mjs",
           "target": "tests/fixture.test.mjs",
-          "bytes": 3825,
-          "sha256": "3e279fc0d5f3e998d02e9df52bfad49001cf784806129001a99809510c6a9918"
+          "bytes": 8166,
+          "sha256": "4d2939d8a3838b6d829703340230d64bb8b88ec0ebaeee873b98f6f4b28e1001"
         },
         {
           "path": "integrations/api-contracts/tsconfig.json",
@@ -220,8 +236,8 @@
       "manifest": {
         "path": "integrations/api-contracts/integration.json",
         "target": "integration.json",
-        "bytes": 2946,
-        "sha256": "23d122c83c240dad5825a3e615fcf1a82741a854dafb515768cefdfc1c2b2e75"
+        "bytes": 3751,
+        "sha256": "b3cf4a17a3e2544e93b5ab79fb1b4142b8271a6c380bf1e285082cc975943119"
       }
     },
     {
@@ -549,7 +565,7 @@
       "version": "0.1.0",
       "license": "Apache-2.0",
       "title": "Desktop host and update profiles",
-      "summary": "Original bounded desktop interaction in Electron, Tauri, Wails and Avalonia, with narrow IPC validation and explicit local Windows Velopack packaging and user-controlled updates.",
+      "summary": "Electron, Tauri, Wails and Avalonia native pickers and fixed OS credential slots, bounded IPC, verified update state machines and opt-in local release profiles with explicit platform limits.",
       "languages": [
         "javascript",
         "typescript",
@@ -583,7 +599,10 @@
         "ipc",
         "packaging",
         "updates",
-        "distribution"
+        "distribution",
+        "file-picker",
+        "secure-storage",
+        "signed-updates"
       ],
       "entrypoints": [
         "CONTRACT.md",
@@ -593,45 +612,59 @@
         "wails/main.go",
         "avalonia/GenlibInventory.csproj",
         "avalonia/UpdateSession.cs",
-        "velopack/package-windows.ps1"
+        "velopack/package-windows.ps1",
+        "electron/package-release.mjs",
+        "tauri/package-release.mjs",
+        "wails/package-release.mjs",
+        "wails/delivery.go",
+        "avalonia/SessionVault.cs"
       ],
       "verification": {
         "level": "experimental",
         "profiles": [
-          "Linux x86_64, Node 24.19.0: 2 IPC frame/input boundary tests passed. No Electron GUI process was launched.",
-          "Linux x86_64, Go 1.27.2: go test app.go app_test.go passed for the original Wails method. No Wails GUI build was run."
+          "Linux x86_64, Node 24.19.0: 9 portable boundary/file-IO/injected-vault/update-consent tests passed; no Electron GUI or real OS vault used.",
+          "Linux x86_64, Go 1.27.2: 5 portable tests and their race run passed with real local TLS, ECDSA verification and final-consent replacement of a synthetic temporary file; no executable launched.",
+          "Linux x86_64, Rust 1.99.0: 3 standalone title/token/file validation tests passed. Tauri CLI 2.12.1 exported original SVG icons; Cargo lock resolution succeeded; native Tauri compilation not run.",
+          "Linux x86_64 cross-compiling Windows amd64, Go 1.27.2: actual Wails host built with CGO_ENABLED=0 and tags desktop,production. No Windows runtime executed."
         ],
         "commands": [
           "npm ci --ignore-scripts",
           "npm test",
-          "go -C wails test app.go app_test.go",
-          "dotnet test avalonia-tests/GenlibInventory.Tests.csproj"
+          "go -C wails test app.go app_test.go delivery.go delivery_test.go",
+          "dotnet test avalonia-tests/GenlibInventory.Tests.csproj",
+          "cargo check --locked --manifest-path tauri/src-tauri/Cargo.toml"
         ],
         "notes": [
-          "Electron GUI, Tauri/Wails builds, .NET/Avalonia execution, Windows packaging and real update round trips are unexecuted. OS WebView/GUI/build prerequisites are not present here.",
-          "Electron binary installation is deliberate and separate from npm ci --ignore-scripts. Never infer sandbox/GUI validation from the extracted Node unit tests.",
-          "Native command and update feed configuration must be reviewed in the receiving app. Velopack profile produces local Windows artifacts only and requires explicit user restart; signing/publishing and installed-VM update acceptance are separate gates.",
-          "All Wails frontend/dist files are original static source. No third-party generated runtime, binary or installer is included."
+          "Desktop GUI, native secure stores, .NET/Avalonia runtime, Tauri native build, platform signing and installed update acceptance were not run locally. This pack remains experimental.",
+          "Electron/Tauri/Wails/Velopack release scripts require trusted feed and appropriate release-owner signing inputs; all produce local artifacts and never publish. Native gates fail when prerequisites are absent.",
+          "Wails automatic executable update packaging supports Windows/Linux x64/arm64; macOS signed-bundle replacement is deliberately unsupported. Avalonia Velopack packaging targets Windows x64; other OS delivery needs a separate installed profile.",
+          "Included icons are original SVG-derived PNG/ICO exports. Wails frontend/dist is original source; generated binding/SDK/runtime trees and binaries are excluded."
         ]
       },
       "files": [
         {
           "path": "integrations/desktop-delivery/.gitignore",
           "target": ".gitignore",
-          "bytes": 108,
-          "sha256": "5556770c7e2b9e377d9cc6b98b773d8bfa7feab234262db55a5b85388b45fe56"
+          "bytes": 153,
+          "sha256": "892327adaeaec7a78552f34baee9b9c5ef59095f51a3a91619c1c769455f530c"
         },
         {
           "path": "integrations/desktop-delivery/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 4634,
-          "sha256": "3b91c364ce19ef8acc6039143e364d459a866714eea90451d3bf3af6f4458eb3"
+          "bytes": 11304,
+          "sha256": "3eaa315430e0d66a69a44ac3a134b6e7ab04335b6b9e1b1f6d8358046ff284f0"
         },
         {
           "path": "integrations/desktop-delivery/avalonia-tests/GenlibInventory.Tests.csproj",
           "target": "avalonia-tests/GenlibInventory.Tests.csproj",
           "bytes": 524,
           "sha256": "1f212c08bb3eb049be8d80ec7be467e1f653dcac772df0479e79a931bfa6bbf3"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia-tests/NativeBoundaryTests.cs",
+          "target": "avalonia-tests/NativeBoundaryTests.cs",
+          "bytes": 1404,
+          "sha256": "ecbbf9bb72494bc28584876b8484143bbc875df9705b6b51112f265240eab86c"
         },
         {
           "path": "integrations/desktop-delivery/avalonia-tests/TitleRulesTests.cs",
@@ -654,26 +687,38 @@
         {
           "path": "integrations/desktop-delivery/avalonia/GenlibInventory.csproj",
           "target": "avalonia/GenlibInventory.csproj",
-          "bytes": 558,
-          "sha256": "49cd698cce05c5ecae61d3b07052ee16b2d82f52269a6b7ff0df5bfc7221c501"
+          "bytes": 769,
+          "sha256": "6dca3a0b92410b0be1335a0a2994bd68ccbc6080c0f62d01a7bcee2080ddb099"
         },
         {
           "path": "integrations/desktop-delivery/avalonia/MainWindow.axaml",
           "target": "avalonia/MainWindow.axaml",
-          "bytes": 619,
-          "sha256": "5355bc83bc46f34d850091a2b1f2603c38c34618898121076adb41809917fa02"
+          "bytes": 1772,
+          "sha256": "46d6d2240def004622e76a8e7c9c02fa13e6a3c2ffdcb5c758417e6586594b5c"
         },
         {
           "path": "integrations/desktop-delivery/avalonia/MainWindow.axaml.cs",
           "target": "avalonia/MainWindow.axaml.cs",
-          "bytes": 1643,
-          "sha256": "d7b44a6e740daed0f58d66d4c358c0965fc1ebef825b9f40b2e131896ffd6129"
+          "bytes": 4019,
+          "sha256": "c233a48526cd481e27859cbd6e815306a19547ed6b52466b747ef2793c5c80cf"
         },
         {
           "path": "integrations/desktop-delivery/avalonia/Program.cs",
           "target": "avalonia/Program.cs",
           "bytes": 354,
           "sha256": "4c93f935dbe7e88ba3f5a8f71634bf6c9c79a330eb831ff16a0ed7f4f42ee383"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/SessionVault.cs",
+          "target": "avalonia/SessionVault.cs",
+          "bytes": 1963,
+          "sha256": "5fe864c7b7081ca284f28229ae05cc2bb1449a8687eec30e3910644786a4551a"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/TextSelection.cs",
+          "target": "avalonia/TextSelection.cs",
+          "bytes": 1820,
+          "sha256": "4b1be9fa4f390b3fd2db8716455cc99b3dd1ac3b2e91f6e9b8006c75524214d4"
         },
         {
           "path": "integrations/desktop-delivery/avalonia/TitleRules.cs",
@@ -684,8 +729,14 @@
         {
           "path": "integrations/desktop-delivery/avalonia/UpdateSession.cs",
           "target": "avalonia/UpdateSession.cs",
-          "bytes": 1049,
-          "sha256": "66bd3b096f3d0e1a5bedbe7a021f2a4b4e930f7aa80839b5c6ae2ee4565245e1"
+          "bytes": 1450,
+          "sha256": "88b40e068cbfeae8aa73a26d77e76e74969f8310a6aaf0e490f003a3a1b18f3c"
+        },
+        {
+          "path": "integrations/desktop-delivery/core/native-boundary.mjs",
+          "target": "core/native-boundary.mjs",
+          "bytes": 2958,
+          "sha256": "469946f1b591f6a6963aad25c90b8685939cf5202db0453feb6c62945d28514f"
         },
         {
           "path": "integrations/desktop-delivery/core/normalize.mjs",
@@ -694,34 +745,76 @@
           "sha256": "7a219d8412187235976f1a63b4e07e6218df12613e494a3e808afad9bf25722a"
         },
         {
+          "path": "integrations/desktop-delivery/electron-builder.yml",
+          "target": "electron-builder.yml",
+          "bytes": 433,
+          "sha256": "cdf03c61387e140947f0d832e7fd1e71519cb1af59222bcdae9d58490df6e382"
+        },
+        {
           "path": "integrations/desktop-delivery/electron/main.mjs",
           "target": "electron/main.mjs",
-          "bytes": 942,
-          "sha256": "9e2b32cece4d97e7a04f18aecc475ca4b94464ac958e2c51d918faab16ae4ff8"
+          "bytes": 1833,
+          "sha256": "206da85f514098c9667aee4929dd30b802d2aa12e01e1076c6b432677b268e20"
+        },
+        {
+          "path": "integrations/desktop-delivery/electron/native-services.mjs",
+          "target": "electron/native-services.mjs",
+          "bytes": 3489,
+          "sha256": "d7d3ad1d2ccd3cc2e9b602f0fba44aa350a1632df96c0f7b61bb2e112d7e4d33"
+        },
+        {
+          "path": "integrations/desktop-delivery/electron/package-release.mjs",
+          "target": "electron/package-release.mjs",
+          "bytes": 732,
+          "sha256": "4d71c7772502cc5d1906d15d39dde22d247d56a746bf6ee2a626eecfddafa956"
         },
         {
           "path": "integrations/desktop-delivery/electron/preload.cjs",
           "target": "electron/preload.cjs",
-          "bytes": 313,
-          "sha256": "866cb76fd83c87dfde755797702f38046fbf4bed5ad76074cda42cb413fb7b97"
+          "bytes": 777,
+          "sha256": "596fb652388ddb58a779aea5f3efcdaa4c626dc3fef66cdc647168a4b034eee9"
+        },
+        {
+          "path": "integrations/desktop-delivery/fixtures/app-icon.svg",
+          "target": "fixtures/app-icon.svg",
+          "bytes": 450,
+          "sha256": "f73dd73fc30aa2d6d04ae6235209ccb9218b14685485e48eaea4c1b4f8640f91"
+        },
+        {
+          "path": "integrations/desktop-delivery/fixtures/example.md",
+          "target": "fixtures/example.md",
+          "bytes": 67,
+          "sha256": "6a3fdafc9260c375320503a004ae9a739017e96e9089685d979da835ac7edadd"
         },
         {
           "path": "integrations/desktop-delivery/package-lock.json",
           "target": "package-lock.json",
-          "bytes": 12826,
-          "sha256": "c36e6ad2708fdec938ac166291476a89ee01f67d28df68fb24fe22127a7ab780"
+          "bytes": 136540,
+          "sha256": "3f2534f3f1ca9d89fbc0d948b878ef70099dcb45933225b790e27691042d19d0"
         },
         {
           "path": "integrations/desktop-delivery/package.json",
           "target": "package.json",
-          "bytes": 412,
-          "sha256": "58b28f6740e0a9cc502b0d9fa3e54c14330932be5052f1092e937de714e350d9"
+          "bytes": 803,
+          "sha256": "f0cb331368701c53df7f3a591f12fe81392a60457e79f60f2c9303468466f8a8"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/package-release.mjs",
+          "target": "tauri/package-release.mjs",
+          "bytes": 1597,
+          "sha256": "1ac6051773e6f415784b8d740cf2d2a58179febb44a1393b8df6bcb66f3c7a2c"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/Cargo.lock",
+          "target": "tauri/src-tauri/Cargo.lock",
+          "bytes": 137982,
+          "sha256": "90ce5d371e393644bb65c12c25fb0afbfdf0a2e1fe65fc4bee20d116cea6417e"
         },
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/Cargo.toml",
           "target": "tauri/src-tauri/Cargo.toml",
-          "bytes": 195,
-          "sha256": "63c8300de805a9470a59e7ef72a706ed8b6f9f22a97ac6a1dd075adb2b280775"
+          "bytes": 409,
+          "sha256": "56307cc086a927b8f42f01f39169e2e06236685ace8f295433514fa9266bbc65"
         },
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/build.rs",
@@ -732,44 +825,68 @@
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/capabilities/main.json",
           "target": "tauri/src-tauri/capabilities/main.json",
-          "bytes": 258,
-          "sha256": "8df0d2fdb57eba9f423409cb5d709552957678b219ff75ab43aac2e65cc496fa"
+          "bytes": 317,
+          "sha256": "24ce48cf089fe82275d0077b63d4b031aaf81c0c449e7c700cb4008fa8309364"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/icons/icon.ico",
+          "target": "tauri/src-tauri/icons/icon.ico",
+          "bytes": 7045,
+          "sha256": "555be301d230c5b2455d4835bdbcd8fbb837c97e62f445e2fb118f6a29dd48ef"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/icons/icon.png",
+          "target": "tauri/src-tauri/icons/icon.png",
+          "bytes": 6215,
+          "sha256": "86140ee30c398303aae9474e8855f9c1ae787d110099ce1e7f621ef1ad32ea67"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/src/boundary.rs",
+          "target": "tauri/src-tauri/src/boundary.rs",
+          "bytes": 1967,
+          "sha256": "5c2e369309f53c43e86068ea178fcab7caf291e30cee226811b172e10b3df960"
         },
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/src/main.rs",
           "target": "tauri/src-tauri/src/main.rs",
-          "bytes": 815,
-          "sha256": "91fc93d80804502cd87628cbce407fc397980f5421e0bc84878f19393709deff"
+          "bytes": 9358,
+          "sha256": "62607ceda2d815f8d185de81427d8e1db06d9d4cc19df7da179e7405e08b5e5f"
         },
         {
           "path": "integrations/desktop-delivery/tauri/src-tauri/tauri.conf.json",
           "target": "tauri/src-tauri/tauri.conf.json",
-          "bytes": 625,
-          "sha256": "d1ff32e0abc924384edacd8cfd2e2fbacb75b5446980a39a4fb91bc22f7eb41c"
+          "bytes": 824,
+          "sha256": "741549cf1678fd48a60ad9455d537160a3c86c6218883a3a5dba90cc6f730392"
         },
         {
           "path": "integrations/desktop-delivery/tauri/web/index.html",
           "target": "tauri/web/index.html",
-          "bytes": 733,
-          "sha256": "1830cbe36ce4723a029778ef1d0bb8df028c839b7b40be6fe7884bcc423515d9"
+          "bytes": 1878,
+          "sha256": "25f4dd8fb04470b9eb4055f195cd3937b141f667ca8092cd30b7eb8550e00147"
         },
         {
           "path": "integrations/desktop-delivery/tauri/web/renderer.js",
           "target": "tauri/web/renderer.js",
-          "bytes": 780,
-          "sha256": "ffff441b4eded9189fc56a016b3185305598227b5d779d2d74e8f986653a16f4"
+          "bytes": 2940,
+          "sha256": "a6997e1446feba5fec7623d791673c4ef2b564db05ac13e1f37ddf4005a14cde"
         },
         {
           "path": "integrations/desktop-delivery/tauri/web/style.css",
           "target": "tauri/web/style.css",
-          "bytes": 444,
-          "sha256": "82a89fd55626508a1229469a5075b806ecde36bf29981674102c7666585c5851"
+          "bytes": 632,
+          "sha256": "d3207ea4330849858f3e745dcc45149e210a04ab6314d2e71574d13a26225563"
         },
         {
           "path": "integrations/desktop-delivery/tests/ipc.test.mjs",
           "target": "tests/ipc.test.mjs",
           "bytes": 720,
           "sha256": "955a30e0f053a29143ba02676173ca99ad1bd7770e0e8f90a9222d1e6d55d38f"
+        },
+        {
+          "path": "integrations/desktop-delivery/tests/native-boundary.test.mjs",
+          "target": "tests/native-boundary.test.mjs",
+          "bytes": 6347,
+          "sha256": "dccec533ea5f516d5cac05bd5a497f2051708a56127904b1d70a7b9401bd6f27"
         },
         {
           "path": "integrations/desktop-delivery/velopack/.config/dotnet-tools.json",
@@ -780,50 +897,80 @@
         {
           "path": "integrations/desktop-delivery/velopack/package-windows.ps1",
           "target": "velopack/package-windows.ps1",
-          "bytes": 746,
-          "sha256": "32a2b7b22730b0c512140339494fa7e37d3b7971a900d2ac09b0780b9154595c"
+          "bytes": 1031,
+          "sha256": "8c5c7eb5dec2d7927e32bba5573723f0035bde7ed27ce95f4ddb0fd8118be46b"
         },
         {
           "path": "integrations/desktop-delivery/wails/app.go",
           "target": "wails/app.go",
-          "bytes": 371,
-          "sha256": "30d05f382effb360b247fb1eb22264d2990abb575b05d4850d8df967212d20f1"
+          "bytes": 3744,
+          "sha256": "5b190869324fa21cd401dd00a1497af38f61165521a0cff1e68743017749f4bf"
         },
         {
           "path": "integrations/desktop-delivery/wails/app_test.go",
           "target": "wails/app_test.go",
-          "bytes": 393,
-          "sha256": "28265de9d149984915ba9b166d768d920cf33d452cb9c49b761e87ef0f3b0ea1"
+          "bytes": 1131,
+          "sha256": "d269d9d212dd3f4f4752b6400f4a71746aa4ae3d4331984e17ece51868393da5"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/delivery.go",
+          "target": "wails/delivery.go",
+          "bytes": 8906,
+          "sha256": "d267421f7fd306b32319f5307c54b183d8753f3e1742060efbff5074b0dd7dd1"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/delivery_test.go",
+          "target": "wails/delivery_test.go",
+          "bytes": 5652,
+          "sha256": "bd23ebec14310ee56ccf9364dcc2aee8465a79cc4ecae0ff975eaf0630441ba8"
         },
         {
           "path": "integrations/desktop-delivery/wails/frontend/dist/index.html",
           "target": "wails/frontend/dist/index.html",
-          "bytes": 714,
-          "sha256": "6fa33546a5a4c8020fc1ffa97c3cbf6db1f77a82a86e992779d218a8b4deeaf3"
+          "bytes": 1859,
+          "sha256": "101790494de932f3347f553c2d9c9385546fadd4fd1573e74d6485063e66de07"
         },
         {
           "path": "integrations/desktop-delivery/wails/frontend/dist/renderer.js",
           "target": "wails/frontend/dist/renderer.js",
-          "bytes": 780,
-          "sha256": "ffff441b4eded9189fc56a016b3185305598227b5d779d2d74e8f986653a16f4"
+          "bytes": 2940,
+          "sha256": "a6997e1446feba5fec7623d791673c4ef2b564db05ac13e1f37ddf4005a14cde"
         },
         {
           "path": "integrations/desktop-delivery/wails/frontend/dist/style.css",
           "target": "wails/frontend/dist/style.css",
-          "bytes": 444,
-          "sha256": "82a89fd55626508a1229469a5075b806ecde36bf29981674102c7666585c5851"
+          "bytes": 632,
+          "sha256": "d3207ea4330849858f3e745dcc45149e210a04ab6314d2e71574d13a26225563"
         },
         {
           "path": "integrations/desktop-delivery/wails/go.mod",
           "target": "wails/go.mod",
-          "bytes": 93,
-          "sha256": "0e8b6ad21bd11089f0b84ffe6cd3a1e3e626c08312371e9343f777df823034c6"
+          "bytes": 2334,
+          "sha256": "2a34e316994daff21c781b77ed5accd29353f2c23f613a6733cd20eb6bf7e79a"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/go.sum",
+          "target": "wails/go.sum",
+          "bytes": 13065,
+          "sha256": "db28a2e5d33450ddb2235cd1960a7c41f02aa08b45e8e67dd4450eb5d569c02b"
         },
         {
           "path": "integrations/desktop-delivery/wails/main.go",
           "target": "wails/main.go",
-          "bytes": 460,
-          "sha256": "c9a28ed4a498cf43f4d2d9c52de45b54b2a0964c79fdd2bdefc1fc2c9629f3f8"
+          "bytes": 636,
+          "sha256": "292dbc427f5dfed52271e2f0b55aa88dedeb5cf53ff31bc4e5d4906ab629b38e"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/native.go",
+          "target": "wails/native.go",
+          "bytes": 3022,
+          "sha256": "2155279efed92f6067068bab03c2e1709950b3beae2c8da12ff8dce76c3d3408"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/package-release.mjs",
+          "target": "wails/package-release.mjs",
+          "bytes": 3051,
+          "sha256": "516297f4bcb671833cdb62d40eb7587637afabd80985ea1f581155ddf9470266"
         },
         {
           "path": "integrations/desktop-delivery/wails/wails.json",
@@ -834,27 +981,27 @@
         {
           "path": "integrations/desktop-delivery/web/index.html",
           "target": "web/index.html",
-          "bytes": 714,
-          "sha256": "6fa33546a5a4c8020fc1ffa97c3cbf6db1f77a82a86e992779d218a8b4deeaf3"
+          "bytes": 1859,
+          "sha256": "840b3b618b3c1b09c57d3f22f82d7b818f8c3c00afb3f31170da5b6200dd7c1a"
         },
         {
           "path": "integrations/desktop-delivery/web/renderer.js",
           "target": "web/renderer.js",
-          "bytes": 780,
-          "sha256": "ffff441b4eded9189fc56a016b3185305598227b5d779d2d74e8f986653a16f4"
+          "bytes": 2940,
+          "sha256": "a6997e1446feba5fec7623d791673c4ef2b564db05ac13e1f37ddf4005a14cde"
         },
         {
           "path": "integrations/desktop-delivery/web/style.css",
           "target": "web/style.css",
-          "bytes": 444,
-          "sha256": "82a89fd55626508a1229469a5075b806ecde36bf29981674102c7666585c5851"
+          "bytes": 632,
+          "sha256": "d3207ea4330849858f3e745dcc45149e210a04ab6314d2e71574d13a26225563"
         }
       ],
       "manifest": {
         "path": "integrations/desktop-delivery/integration.json",
         "target": "integration.json",
-        "bytes": 3537,
-        "sha256": "ea0a3307d72aba84f5c8c17d8b8e491a041ee3cbab8c8129388e5374789350d5"
+        "bytes": 5081,
+        "sha256": "330c5a28a24f3016ab2d77c9b201982c55308c0024e917460254a67094937d55"
       }
     },
     {
@@ -1153,7 +1300,7 @@
       "version": "0.1.0",
       "license": "Apache-2.0",
       "title": "Invoices, PDF templates, email and spreadsheet exports",
-      "summary": "One validated invoice model drives pdfme templates, React Email, ExcelJS and PapaParse; bounded Gotenberg and trusted Typst adapters provide conversion alternatives.",
+      "summary": "Typed invoice, estimate, receipt, packing-slip and report models drive editable pdfme templates and dynamic PDFs; invoice email/XLSX/CSV and bounded Gotenberg/Typst adapters provide complementary output profiles.",
       "languages": [
         "typescript",
         "typst"
@@ -1181,14 +1328,24 @@
         "xlsx",
         "csv",
         "conversion",
-        "templates"
+        "templates",
+        "estimate",
+        "receipt",
+        "packing-slip",
+        "report"
       ],
       "files": [
         {
           "path": "integrations/document-pipeline/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 5545,
-          "sha256": "2bb4a299b3dcbb11f83426810c86d8461d4205c2fa0aad35c23f9954648b57a3"
+          "bytes": 8255,
+          "sha256": "2181355144df4d17803d641e73665d0bba08933dbf101ef7e34d457682db18ee"
+        },
+        {
+          "path": "integrations/document-pipeline/fixtures/estimate.json",
+          "target": "fixtures/estimate.json",
+          "bytes": 590,
+          "sha256": "49c219af8c75abc3b9728b335d486479d78754cb97b491fa98d5d418a53e458f"
         },
         {
           "path": "integrations/document-pipeline/fixtures/invoice.json",
@@ -1197,22 +1354,52 @@
           "sha256": "ff1f8e2fa089d5c566e901ff0859720ac904895832d96ac4d321dcab222fb994"
         },
         {
+          "path": "integrations/document-pipeline/fixtures/packing-slip.json",
+          "target": "fixtures/packing-slip.json",
+          "bytes": 592,
+          "sha256": "db16024b35e3b1230fa19e8e34dfc392f1dfc66e684a334d0444e20e379f7924"
+        },
+        {
+          "path": "integrations/document-pipeline/fixtures/receipt.json",
+          "target": "fixtures/receipt.json",
+          "bytes": 746,
+          "sha256": "9a2c313bddb9f2943e1bc96f7d78e3040517c219f601259ebb8cdfd93a639cf4"
+        },
+        {
+          "path": "integrations/document-pipeline/fixtures/report.json",
+          "target": "fixtures/report.json",
+          "bytes": 911,
+          "sha256": "56aec5c218e31d9d0923d415e71a21fb7d7fd522ba3169b45c14bd7b5a6d89b4"
+        },
+        {
           "path": "integrations/document-pipeline/package-lock.json",
           "target": "package-lock.json",
-          "bytes": 278234,
-          "sha256": "d533f4d8e330ef41a807567e7a0728d10ca592ed959ff77f34ab91d0cea00350"
+          "bytes": 278269,
+          "sha256": "339d8073c1a56bf3087df8e42da1c3f48dc987e81840ed35398ea1918a6eae7f"
         },
         {
           "path": "integrations/document-pipeline/package.json",
           "target": "package.json",
-          "bytes": 894,
-          "sha256": "7afec340fb14233a780f0129cfc2f8312eca2724ffd6007796d680782ee33578"
+          "bytes": 925,
+          "sha256": "1eabf75e2dd23503ba0880157359cedbaf5104a101d99c419593471248adac2d"
         },
         {
           "path": "integrations/document-pipeline/src/designer.ts",
           "target": "src/designer.ts",
           "bytes": 1128,
           "sha256": "33f5c6b54ac66d92ab9c092ffa569390782a4ec7413580719c8cc16b95cdaf39"
+        },
+        {
+          "path": "integrations/document-pipeline/src/document-pdfs.ts",
+          "target": "src/document-pdfs.ts",
+          "bytes": 8055,
+          "sha256": "19f4e8a24ed30d50a40117fb4b4f68f8b9c5111645e851c4ba28632ceb831967"
+        },
+        {
+          "path": "integrations/document-pipeline/src/documents.ts",
+          "target": "src/documents.ts",
+          "bytes": 8449,
+          "sha256": "e59bd3e4383684ca782ca7a905dcd9e7cc16117287f6dbdbe357e33935718840"
         },
         {
           "path": "integrations/document-pipeline/src/email.tsx",
@@ -1257,6 +1444,12 @@
           "sha256": "f541b462d9f7d2844ebec92edb37009ff59b2f7c9a46292c662c8144453fceeb"
         },
         {
+          "path": "integrations/document-pipeline/tests/document-variants.test.mjs",
+          "target": "tests/document-variants.test.mjs",
+          "bytes": 4741,
+          "sha256": "fc1fe9428e6353fa1eb6825209dee14734f2862e231b0a933f664254e4287966"
+        },
+        {
           "path": "integrations/document-pipeline/tests/documents.test.mjs",
           "target": "tests/documents.test.mjs",
           "bytes": 5841,
@@ -1277,7 +1470,9 @@
         "src/spreadsheet.ts",
         "src/gotenberg.ts",
         "src/typst.ts",
-        "src/invoice.typ"
+        "src/invoice.typ",
+        "src/documents.ts",
+        "src/document-pdfs.ts"
       ],
       "compatibility": {
         "reactMajors": [
@@ -1292,7 +1487,7 @@
           "npm test"
         ],
         "profiles": [
-          "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and six tests including real pdfme PDF generation, React Email rendering, ExcelJS reload and PapaParse round trips.",
+          "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and ten tests including real pdfme PDFs for five document types, a 90-row multi-page report with a supplied font map, React Email, ExcelJS reload and PapaParse round trips.",
           "Node 24.19.0; mocked Gotenberg HTTP boundary and controlled executable Typst argument/JSON/cleanup fixtures; neither external converter was run."
         ],
         "notes": [
@@ -1304,8 +1499,8 @@
       "manifest": {
         "path": "integrations/document-pipeline/integration.json",
         "target": "integration.json",
-        "bytes": 2269,
-        "sha256": "3945e86f9af30e4733b45d3e37d7180e98619e1a4799d92619dbd5466bf77490"
+        "bytes": 2703,
+        "sha256": "c5e4712f6105aa38bd66626c563f87884680dda9485e994cb9e9b3a94fa824fa"
       }
     },
     {
@@ -1426,7 +1621,7 @@
       "version": "0.1.0",
       "license": "Apache-2.0",
       "title": "Native acceptance and snapshot profiles",
-      "summary": "Disposable Flutter inventory host with behavior assertions, Patrol and Maestro acceptance flows, plus Swift textual and iOS visual snapshot profiles with explicit native setup.",
+      "summary": "Deterministic Flutter sign-in, permission, navigation and offline recovery state flows; widget/controller tests, Patrol/Maestro device acceptance and five SwiftUI image snapshot scenarios with honest native gates.",
       "languages": [
         "dart",
         "swift",
@@ -1457,7 +1652,11 @@
         "acceptance",
         "accessibility",
         "snapshot",
-        "flutter"
+        "flutter",
+        "sign-in",
+        "permissions",
+        "offline-recovery",
+        "state-tests"
       ],
       "entrypoints": [
         "CONTRACT.md",
@@ -1466,21 +1665,28 @@
         "flutter/patrol_test/inventory_test.dart",
         "maestro/inventory.yaml",
         "swift/Package.swift",
-        "swift/ios/InventoryRowSnapshotTests.swift"
+        "swift/ios/InventoryRowSnapshotTests.swift",
+        "flutter/lib/controller.dart",
+        "flutter/test/inventory_test.dart",
+        "maestro/permission-denied.yaml",
+        "swift/Sources/InventoryPresentation/InventoryDashboard.swift",
+        "tool-versions.json"
       ],
       "verification": {
         "level": "experimental",
-        "profiles": [],
+        "profiles": [
+          "Linux x86_64, Node 24.19.0: fixture-scaffold JavaScript syntax checked. No Flutter, Swift or mobile runtime executed locally."
+        ],
         "commands": [
           "node --check flutter/create-fixture.mjs",
           "node flutter/create-fixture.mjs /tmp/genlib-native-fixture",
           "swift test --package-path swift"
         ],
         "notes": [
-          "Flutter/Dart, Android/iOS emulators, Swift and Xcode are unavailable here. No native execution or device result is claimed.",
-          "After creating the new fixture, run flutter pub get and flutter test test/inventory_test.dart in that fixture. Patrol additionally requires the documented Android or Xcode host integration and a booted emulator.",
-          "Use Patrol package 4.10.0 and patrol_cli 4.8.0 with Flutter 3.32+/Dart 3.8+. Java 17+, Android SDK or macOS/Xcode are separate prerequisites.",
-          "The included Swift textual baseline is authored. The iOS visual baseline must be recorded and reviewed on a fixed simulator; missing baselines intentionally fail. Maestro clears only the disposable fixture app state."
+          "Flutter/Dart, Android/iOS devices, Swift/Xcode and reviewed image baselines were unavailable locally; no native or headless Flutter success is claimed.",
+          "Resolved CI profile: Flutter 3.47.7 stable commit abaf9c523780a608bd46686fd5e53740a07077f8. In the newly created fixture run flutter pub get and flutter test test/inventory_test.dart (3 widget and 2 controller tests).",
+          "Patrol 4.10.0/CLI 4.8.0 and Maestro CLI 2.11.0 require a configured disposable native host, camera declarations and an emulator. Patrol requires a fresh real permission prompt.",
+          "Offline state and the simulated remote service are in memory; process-death persistence, real authentication and production connectivity are not claimed. Five iOS image assertions intentionally fail until real simulator baselines are recorded and reviewed."
         ]
       },
       "files": [
@@ -1493,20 +1699,38 @@
         {
           "path": "integrations/native-acceptance/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 4193,
-          "sha256": "b97f2cfed870eeae6a2a1ed08dd8d98636420394e75d4bf134882ba03e358cd9"
+          "bytes": 7161,
+          "sha256": "eb019108ad185d8abb9c251ac2b499b171fb84aceeeb384fa9c4e82c0a827473"
         },
         {
           "path": "integrations/native-acceptance/flutter/create-fixture.mjs",
           "target": "flutter/create-fixture.mjs",
-          "bytes": 1723,
-          "sha256": "58486635b6ea0f244ffd0a30d836582bb30844623ab61172c2fc1bd0fc725d35"
+          "bytes": 1746,
+          "sha256": "464c106706ab1154a524eab4bf74aa0a1a8878fcedf76236cb49cfd6e26cd555"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/lib/controller.dart",
+          "target": "flutter/lib/controller.dart",
+          "bytes": 4443,
+          "sha256": "12eeba42f41a3112741c20ce5fbf88ffeb074bb54bff287a94eb26afeccbdfea"
         },
         {
           "path": "integrations/native-acceptance/flutter/lib/main.dart",
           "target": "flutter/lib/main.dart",
-          "bytes": 2254,
-          "sha256": "7539291f0366f58691e23a736918f9c1cf4ffef5b464601d36220a060c7b3039"
+          "bytes": 8205,
+          "sha256": "94de0fb4c85f99c715f88ade9c08e032aa5a570a63a317b3ee773a391dd4db9a"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/native/AndroidManifest.fragment.xml",
+          "target": "flutter/native/AndroidManifest.fragment.xml",
+          "bytes": 248,
+          "sha256": "d510600d4fda00e47806c33768e15a927943e7878271849c8e6739c9a5e736ce"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/native/Info.plist.fragment.xml",
+          "target": "flutter/native/Info.plist.fragment.xml",
+          "bytes": 279,
+          "sha256": "2b9402cbc4819aceab242b6d71a525e83188a71f2439e29f72f995933eaef130"
         },
         {
           "path": "integrations/native-acceptance/flutter/native/MainActivityTest.java",
@@ -1517,8 +1741,8 @@
         {
           "path": "integrations/native-acceptance/flutter/native/Podfile.fragment.rb",
           "target": "flutter/native/Podfile.fragment.rb",
-          "bytes": 164,
-          "sha256": "eadbd95c632fb09e76152159e9b43197e3383441fc1851736a8959e113b5439b"
+          "bytes": 470,
+          "sha256": "a4d2242600670d7b47f577b41e6d60445d84b16b549e2d0e903126cd0dc980fe"
         },
         {
           "path": "integrations/native-acceptance/flutter/native/RunnerUITests.m",
@@ -1535,32 +1759,44 @@
         {
           "path": "integrations/native-acceptance/flutter/patrol_test/inventory_test.dart",
           "target": "flutter/patrol_test/inventory_test.dart",
-          "bytes": 727,
-          "sha256": "988ebfd349ce02e4e6a6fcee83c8dd53fa41eda9856ca0746ca968a098d7ff5c"
+          "bytes": 2063,
+          "sha256": "f36aa7a50bff461416ae67471ca32263f26122d969d747a7a90e12032c823bfb"
         },
         {
           "path": "integrations/native-acceptance/flutter/pubspec.yaml",
           "target": "flutter/pubspec.yaml",
-          "bytes": 407,
-          "sha256": "611d4d57a800f881619559cc10001705d6b6116253e3eb55e70768fbd48f50a5"
+          "bytes": 436,
+          "sha256": "814f8020db3ea50119f3ba36503c914cdf3d9863f20fe9b3bd6f1054c4cc02ab"
         },
         {
           "path": "integrations/native-acceptance/flutter/test/inventory_test.dart",
           "target": "flutter/test/inventory_test.dart",
-          "bytes": 991,
-          "sha256": "ca850606114bcfc0d9572564227c383d06668de9dd9cfbf87ff7ed1b3e95eceb"
+          "bytes": 5258,
+          "sha256": "b11b41384c4f60d1c3d97801e6edace4b207ab4d65a53dac67c1e14d522a9163"
         },
         {
           "path": "integrations/native-acceptance/maestro/inventory.yaml",
           "target": "maestro/inventory.yaml",
-          "bytes": 416,
-          "sha256": "b6f8a09bbbdd703b34958e1d397348b934685953d2cce72af73eabb875e5fc52"
+          "bytes": 1229,
+          "sha256": "b3e5fd02f7e41a986f12b9c835fc155b58b2061d5a41fb4f435d262c90d3c1b3"
+        },
+        {
+          "path": "integrations/native-acceptance/maestro/permission-denied.yaml",
+          "target": "maestro/permission-denied.yaml",
+          "bytes": 530,
+          "sha256": "e398486573145477104288406c1dd804f836c8b5e630e6f4ddf11e0f321b1b8a"
         },
         {
           "path": "integrations/native-acceptance/swift/Package.swift",
           "target": "swift/Package.swift",
           "bytes": 662,
           "sha256": "2dda1da765ba9b12b6849cb0e8fa704bf959cd77d6ed94c1a58898c1fc7794a9"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/Sources/InventoryPresentation/InventoryDashboard.swift",
+          "target": "swift/Sources/InventoryPresentation/InventoryDashboard.swift",
+          "bytes": 1626,
+          "sha256": "1cbdabee1916ea888dd0c6d38ef707bb476ade1849cb3bbb394322a1bb9560ab"
         },
         {
           "path": "integrations/native-acceptance/swift/Sources/InventoryPresentation/InventoryRow.swift",
@@ -1589,15 +1825,21 @@
         {
           "path": "integrations/native-acceptance/swift/ios/InventoryRowSnapshotTests.swift",
           "target": "swift/ios/InventoryRowSnapshotTests.swift",
-          "bytes": 753,
-          "sha256": "a5f58e4b5fa9c15a85b42e0513d51ef8712d8a2fabc8dfa06cc173032b04317a"
+          "bytes": 1410,
+          "sha256": "3670bdc0b0c420c207b41533bf5c0bf22f839a9700dc41eb04b4506cfeb98893"
+        },
+        {
+          "path": "integrations/native-acceptance/tool-versions.json",
+          "target": "tool-versions.json",
+          "bytes": 553,
+          "sha256": "40db53f0ee79637968a55e7d5a2e9c65a81d65108bf348fcca37aaa24b50acab"
         }
       ],
       "manifest": {
         "path": "integrations/native-acceptance/integration.json",
         "target": "integration.json",
-        "bytes": 2870,
-        "sha256": "cb34b6ab268dbf2b1513f5fd9be3faf23a5724eef8f5719828b05926a9c29167"
+        "bytes": 3703,
+        "sha256": "518a4aa684c2a02c3ead51e68f92cf844794217c2037527d966833c17b47dada"
       }
     },
     {
@@ -1967,9 +2209,9 @@
         "node"
       ],
       "resources": [
-        "uppy",
         "tus-js-client",
         "tusd",
+        "uppy-core",
         "zip-js"
       ],
       "tags": [
@@ -2077,8 +2319,8 @@
       "manifest": {
         "path": "integrations/resumable-files/integration.json",
         "target": "integration.json",
-        "bytes": 1646,
-        "sha256": "e7978c21671f32f495a2eb5b506685379441add4878a15a95ac08103ae2bf781"
+        "bytes": 1651,
+        "sha256": "034498c3c38263d17abe0a9ba14e3463f3ec1ba956a9d5e158ae6771e85fdcdf"
       }
     },
     {
@@ -2239,7 +2481,7 @@
       "version": "0.1.0",
       "license": "Apache-2.0",
       "title": "Typed backend services and SQL repositories",
-      "summary": "Generated Protobuf/Connect TypeScript service and clients with real local protocol tests, plus a generated sqlc Go SQLite repository with transaction and cancellation tests.",
+      "summary": "One Protobuf contract generates interoperable Go and TypeScript Connect clients/services with shared local HTTP conformance tests, plus an independent generated sqlc Go SQLite repository.",
       "languages": [
         "typescript",
         "go",
@@ -2268,7 +2510,9 @@
         "typed-backend",
         "sql",
         "transaction",
-        "codegen"
+        "codegen",
+        "cross-language",
+        "conformance"
       ],
       "entrypoints": [
         "CONTRACT.md",
@@ -2277,40 +2521,55 @@
         "connect/client.ts",
         "connect/client-node.ts",
         "go/sqlc.yaml",
-        "go/repository.go"
+        "go/repository.go",
+        "connect-go/server.go",
+        "connect-go/client.go",
+        "tests/conformance.json"
       ],
       "verification": {
         "level": "tested",
         "profiles": [
-          "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3, Buf 1.73.0, Connect 2.2.0: proto lint, descriptor generation/typecheck and 2 real local HTTP protocol tests passed.",
+          "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3, Buf 1.73.0, Protobuf-ES 2.16.0, Connect 2.2.0: proto lint, descriptor generation/typecheck and 3 real local HTTP protocol tests passed.",
+          "Linux x86_64, Go 1.27.2 / Connect Go and protoc-gen-connect-go 1.21.0 / Protobuf and protoc-gen-go 1.36.12: binding generation and 6 Go tests and the race detector passed, including shared conformance, pre-decode auth/body limits, cancellation, error boundaries, redirect refusal and concurrent storage.",
+          "Linux x86_64, the pinned Node and Go runtimes above: 2 cross-language HTTP/1.1 Connect tests passed (generated Go client to TypeScript service; TypeScript client to Go service), each using the same 3 create/get, 5 pagination and 10 typed-error cases.",
           "Linux x86_64, Go 1.27.2 / sqlc 1.31.1 / modernc SQLite 1.39.1: query generation and repository transaction, missing-row and cancellation test passed."
         ],
         "commands": [
           "npm ci --ignore-scripts",
           "npm run lint:proto",
           "npm test",
+          "go -C connect-go mod download",
+          "npm run test:go",
+          "npm run test:cross-language",
+          "go -C connect-go test -mod=readonly -race ./...",
           "go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.31.1",
           "sqlc generate -f go/sqlc.yaml",
           "go -C go test ./..."
         ],
         "notes": [
-          "Tested profiles are independent Node and Go runtimes. The injected repository is the integration boundary; the examples do not claim to share process memory.",
-          "Generated Protobuf and SQL query code is excluded from delivered files; commands regenerate it using pinned tools. Retain upstream generator/runtime notices.",
-          "The browser client source typechecks but no browser/CORS deployment was exercised. Production auth, database lifecycle and trusted breaking-change baselines remain receiving-service gates."
+          "Go and TypeScript share a protobuf contract and conformance fixture. Protocol tests cross separate local processes; each service owns its storage. The sqlc Go repository remains an independent persistence profile.",
+          "Generated Protobuf and SQL query code, downloaded runtime source and fixture binaries are excluded from delivered files; explicit commands regenerate them using pinned tools. Retain upstream generator/runtime notices and licenses.",
+          "The browser client source typechecks; browser/CORS deployment, gRPC, HTTP/2, streaming, production identity/TLS, durable database lifecycle and trusted breaking-change baselines remain receiving-service gates."
         ]
       },
       "files": [
         {
           "path": "integrations/typed-backend-services/.gitignore",
           "target": ".gitignore",
-          "bytes": 57,
-          "sha256": "344a348e1b7e91d22475388ca1bdb8eac59b9163746966c0edd2c4891499456d"
+          "bytes": 101,
+          "sha256": "ce9d8b9e63be0dd21ba3685ad420d72655a8e048747cfeea09aac4f3334ebe37"
         },
         {
           "path": "integrations/typed-backend-services/CONTRACT.md",
           "target": "CONTRACT.md",
-          "bytes": 2816,
-          "sha256": "f5482f2d37d56a918146637a2d066d7a6e603695ab95f7a53798c2113d4227d0"
+          "bytes": 6772,
+          "sha256": "562c75f5b8639e91979b82ea1a154af03f0717ff4ef681fd4844904cad482ecb"
+        },
+        {
+          "path": "integrations/typed-backend-services/buf.gen.go.yaml",
+          "target": "buf.gen.go.yaml",
+          "bytes": 295,
+          "sha256": "e205784fdda12f9db15a4a599b9c259800d464013949395761eb355d6b9bff4f"
         },
         {
           "path": "integrations/typed-backend-services/buf.gen.yaml",
@@ -2323,6 +2582,54 @@
           "target": "buf.yaml",
           "bytes": 93,
           "sha256": "bda68586bbdf808b33c348d4c11029efaedf23a94b5e078208337606e24cd1ce"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/client.go",
+          "target": "connect-go/client.go",
+          "bytes": 2671,
+          "sha256": "d63db44f0df53cb57507c29c88dced5f0ff1168af60daa0c43e1922768689ff1"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/cmd/fixture/main.go",
+          "target": "connect-go/cmd/fixture/main.go",
+          "bytes": 3444,
+          "sha256": "3dd2c36c59f68110674bf692d4f7840aac7c924d0e463b1a4b0e6e59f0c58553"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/go.mod",
+          "target": "connect-go/go.mod",
+          "bytes": 235,
+          "sha256": "67e05438cdc4df69b97ed9603a87e5aad6f0dd14435091de8f4652b35cd28d96"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/go.sum",
+          "target": "connect-go/go.sum",
+          "bytes": 507,
+          "sha256": "d8486ab0931f0e4f9e71c6f578b0a4396ade3058f01cd070b2a21e7929b433e7"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/internal/conformance/conformance.go",
+          "target": "connect-go/internal/conformance/conformance.go",
+          "bytes": 6042,
+          "sha256": "f43a16db22806714a19e307761ca62e3f0f5c2aa79fcfedcc74799ecb7b0021c"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/repository.go",
+          "target": "connect-go/repository.go",
+          "bytes": 3338,
+          "sha256": "dc736f8297d74af2557936e9a4dfe008f1d579076bec6d410d8b926bd8e585a7"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/server.go",
+          "target": "connect-go/server.go",
+          "bytes": 4604,
+          "sha256": "8e3e2b5dc36184753b3d6c9b0a3454c560830db35a610ef22bf947b4904cb75b"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect-go/service_test.go",
+          "target": "connect-go/service_test.go",
+          "bytes": 8024,
+          "sha256": "27f61be04ceb6436d124e3729c2d7f5dc0ec7b2418729541dd75d4a5c50f183b"
         },
         {
           "path": "integrations/typed-backend-services/connect/client-node.ts",
@@ -2399,20 +2706,38 @@
         {
           "path": "integrations/typed-backend-services/package.json",
           "target": "package.json",
-          "bytes": 715,
-          "sha256": "46a0a33cabc5ec7ed04d04f5c4cac619a89fbb825baf0de302dcfd47f2479435"
+          "bytes": 1073,
+          "sha256": "4a68ea6d85d16fcbb6a1ac1dd8dac3020b22f1c36f2fac32e6147916dfdfd307"
         },
         {
           "path": "integrations/typed-backend-services/proto/genlib/inventory/v1/inventory.proto",
           "target": "proto/genlib/inventory/v1/inventory.proto",
-          "bytes": 697,
-          "sha256": "ec5e0934f0972aeeb536938de5c1463965946ec20dd64171753bb650c060a292"
+          "bytes": 791,
+          "sha256": "27012dfa150e3887e83b40db7382ee53e6a267e86138cc9f66156d7f843c946d"
+        },
+        {
+          "path": "integrations/typed-backend-services/tests/conformance.json",
+          "target": "tests/conformance.json",
+          "bytes": 3480,
+          "sha256": "1fcfadd85ee46b3d8d3d8967327e019b4359481751f96a07a2c03fef33a27271"
+        },
+        {
+          "path": "integrations/typed-backend-services/tests/conformance.mjs",
+          "target": "tests/conformance.mjs",
+          "bytes": 2272,
+          "sha256": "ca680bf12a6f15f637e794a50cf191da87fecf6d922c83e7b48ed382c21aafda"
         },
         {
           "path": "integrations/typed-backend-services/tests/connect.test.mjs",
           "target": "tests/connect.test.mjs",
-          "bytes": 2091,
-          "sha256": "6e29e3f85d26387c3c06835f75dba28e432ad07f46dad0989eace40a9787e783"
+          "bytes": 2659,
+          "sha256": "b14d880dddbc3309272f6ebc8b08569e667efcfaa784f70bc6ab68b27bf34cd5"
+        },
+        {
+          "path": "integrations/typed-backend-services/tests/cross-language.test.mjs",
+          "target": "tests/cross-language.test.mjs",
+          "bytes": 3988,
+          "sha256": "58288bec19e61458ca7bbd73206763e1bf6e857c9dc6790b3e71081ff720f81c"
         },
         {
           "path": "integrations/typed-backend-services/tsconfig.json",
@@ -2424,8 +2749,8 @@
       "manifest": {
         "path": "integrations/typed-backend-services/integration.json",
         "target": "integration.json",
-        "bytes": 2649,
-        "sha256": "9eeaf0d51221c15020722320c924a6f67c588d9ecfe57b6b2b88c6fa939821eb"
+        "bytes": 4074,
+        "sha256": "642acaeeb7296ed894f7228d8efcbd2ed476a0c698c56c934dc33675dafa94dd"
       }
     },
     {

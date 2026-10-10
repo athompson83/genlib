@@ -70,6 +70,7 @@ npm run integrations:build
 npm run skills:sync
 npm run docs:sync
 npm run index:build
+npm run graph:build
 npm run check
 ```
 
@@ -80,7 +81,7 @@ Commit the relevant generated files with the authored changes:
 | Module manifests, contracts, source, `LICENSE`, and `NOTICE` | `registry/catalog.json` and `registry/manifests/` |
 | Integration manifests, contracts and declared files | `registry/integrations.json` |
 | `skills/genlib-use/` | `.agents/skills/genlib-use/` and `.claude/skills/genlib-use/` |
-| Source catalogs and documentation sections | Generated count blocks and `registry/search-index.jsonl` |
+| Source catalogs and documentation sections | Generated count blocks, `registry/search-index.jsonl` and `registry/graph.json` |
 
 Do not hand-edit generated hashes, catalog entries, or skill mirrors. Registry and skill check modes report drift without writing. Skill sync rejects unexpected content in its dedicated mirror directories; inspect such content before resolving a conflict so unrelated work is not lost.
 
@@ -102,4 +103,4 @@ Run the offline [retrieval evaluation](docs/retrieval-evaluation.md) when changi
 
 ## Documentation is part of every change
 
-Update the README, the diagrams (README and `docs/architecture.md`), the affected docs and guides, and the Jev guide and search index (`docs/jev.md`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.
+Update the README, the diagrams (README and `docs/architecture.md`), the affected docs and guides, and the Jev guide, search index and navigation graph (`docs/jev.md`, `docs/agent-access.md`, `npm run index:build`, `npm run graph:build`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.

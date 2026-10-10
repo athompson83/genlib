@@ -134,6 +134,12 @@ jobs:
         run: |
           cargo test --locked --manifest-path integrations/shared-rust-core/Cargo.toml
           cargo test --locked --manifest-path integrations/authorization-collaboration/cedar/Cargo.toml
+      - name: Test portable desktop input and update validation
+        env:
+          RUSTUP_TOOLCHAIN: 1.99.0
+        run: |
+          rustc --edition=2021 --test integrations/desktop-delivery/tauri/src-tauri/src/boundary.rs -o "$RUNNER_TEMP/genlib-desktop-boundary-tests"
+          "$RUNNER_TEMP/genlib-desktop-boundary-tests"
       - name: Generate and execute the Python foreign-function boundary
         working-directory: integrations/shared-rust-core
         env:
@@ -145,16 +151,21 @@ jobs:
           python bindings/test_python.py
 
   go:
-    name: Go generated SQL and desktop domain
+    name: Go generated SQL, cross-language RPC and desktop domain
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with: {persist-credentials: false}
       - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
         with:
-          go-version: "1.26"
-          cache-dependency-path: integrations/typed-backend-services/go/go.sum
+          go-version: "1.27.2"
+          cache-dependency-path: |
+            integrations/typed-backend-services/go/go.sum
+            integrations/typed-backend-services/connect-go/go.sum
+            integrations/desktop-delivery/wails/go.sum
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with: {node-version: "24"}
       - name: Provision the exact sqlc generator
         run: go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.31.1
       - name: Generate queries and test real SQLite transactions
@@ -162,9 +173,64 @@ jobs:
         run: |
           sqlc generate
           go test ./...
-      - name: Test the Wails application method
+      - name: Generate both RPC languages and test real cross-process calls
+        working-directory: integrations/typed-backend-services
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run lint:proto
+          npm test
+          go -C connect-go mod download
+          npm run test:go
+          npm run test:cross-language
+          go -C connect-go test -mod=readonly -race ./...
+      - name: Test Wails application and signed update behavior
         working-directory: integrations/desktop-delivery/wails
-        run: go test app.go app_test.go
+        run: go test app.go app_test.go delivery.go delivery_test.go
+
+  http-contracts:
+    name: HTTP pagination, cache, upload and breaking-contract checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: integrations/api-contracts
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with: {node-version: "24"}
+      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
+        with: {go-version: "1.27.2", cache: false}
+      - name: Provision the checksum-pinned Hurl executable
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json, os, pathlib, shutil, tarfile, urllib.request
+          pin = json.loads(pathlib.Path('http/tool-versions.json').read_text())['hurl']
+          with urllib.request.urlopen(pin['linuxX64Asset'], timeout=60) as response:
+              archive = response.read(64 * 1024 * 1024 + 1)
+          if len(archive) > 64 * 1024 * 1024 or hashlib.sha256(archive).hexdigest() != pin['linuxX64AssetSha256']:
+              raise SystemExit('Hurl archive size or SHA-256 differs from the reviewed pin')
+          destination = pathlib.Path(os.environ['RUNNER_TEMP']) / 'genlib-http-tools'
+          destination.mkdir(exist_ok=True)
+          with tarfile.open(fileobj=io.BytesIO(archive), mode='r:gz') as package:
+              entries = [entry for entry in package.getmembers() if entry.isfile() and pathlib.PurePosixPath(entry.name).name == 'hurl']
+              if len(entries) != 1:
+                  raise SystemExit('Expected one regular Hurl executable')
+              with package.extractfile(entries[0]) as source, (destination / 'hurl').open('xb') as target:
+                  shutil.copyfileobj(source, target)
+          (destination / 'hurl').chmod(0o755)
+          with open(os.environ['GITHUB_PATH'], 'a') as output:
+              output.write(str(destination) + '\n')
+          PY
+      - name: Provision the exact oasdiff module
+        run: |
+          go install "github.com/oasdiff/oasdiff@$(node -p "require('./http/tool-versions.json').oasdiff.version")"
+          go version -m "$(go env GOPATH)/bin/oasdiff"
+      - name: Verify successful HTTP state chains and breaking-change detection
+        run: |
+          hurl --version
+          npm run test:hurl
+          npm run test:breaking
 
   swift:
     name: Swift persistence and snapshot fixtures
@@ -176,6 +242,60 @@ jobs:
       - run: swift --version
       - run: swift test --package-path integrations/native-persistence/swift
       - run: swift test --package-path integrations/native-acceptance/swift
+
+  flutter:
+    name: Flutter controller and widget acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with: {node-version: "24"}
+      - name: Install Flutter's documented Linux prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes curl git unzip xz-utils zip libglu1-mesa
+      - name: Provision the exact official Flutter stable checkout
+        run: |
+          git clone --depth 1 --branch 3.47.7 https://github.com/flutter/flutter.git "$RUNNER_TEMP/genlib-flutter-sdk"
+          test "$(git -C "$RUNNER_TEMP/genlib-flutter-sdk" rev-parse HEAD)" = "abaf9c523780a608bd46686fd5e53740a07077f8"
+          echo "$RUNNER_TEMP/genlib-flutter-sdk/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/genlib-flutter-sdk/bin/flutter" config --no-analytics
+      - name: Create a disposable native project and exercise all widget/controller tests
+        run: |
+          flutter --version
+          node integrations/native-acceptance/flutter/create-fixture.mjs "$RUNNER_TEMP/genlib-native-fixture"
+          cd "$RUNNER_TEMP/genlib-native-fixture"
+          flutter pub get
+          flutter test
+
+  desktop-host-builds:
+    name: Windows Tauri and Wails host compilation
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
+        with:
+          go-version: "1.27.2"
+          cache-dependency-path: integrations/desktop-delivery/wails/go.sum
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with: {node-version: "24"}
+      - run: npm ci --ignore-scripts --no-audit --no-fund --prefix integrations/desktop-delivery
+      - name: Select the Rust toolchain
+        run: rustup toolchain install 1.99.0 --profile minimal
+      - name: Compile Tauri commands and platform adapters
+        env:
+          RUSTUP_TOOLCHAIN: 1.99.0
+          CARGO_PROFILE_DEV_DEBUG: "0"
+          CARGO_BUILD_JOBS: "2"
+        run: cargo check --locked --manifest-path integrations/desktop-delivery/tauri/src-tauri/Cargo.toml
+      - name: Compile the Wails host and platform adapters
+        run: |
+          New-Item -ItemType Directory -Force integrations/desktop-delivery/wails/build/bin | Out-Null
+          go -C integrations/desktop-delivery/wails build -tags desktop,production -o build/bin/genlib-inventory.exe .
 
   dotnet:
     name: Avalonia domain and build / ${{ matrix.os }}

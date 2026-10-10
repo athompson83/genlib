@@ -1,7 +1,7 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "main-window",
-  "description": "Local inventory normalization window. No file, shell, HTTP, clipboard or updater plugin permissions.",
+  "description": "Local main window with no direct filesystem, keyring, HTTP, dialog or updater plugin grants. Authored Rust commands provide only fixed, validated capabilities.",
   "windows": [
     "main"
   ],

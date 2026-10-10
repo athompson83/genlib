@@ -18,7 +18,7 @@ jobs:
         with: {persist-credentials: false}
       - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
         with: {distribution: temurin, java-version: '17'}
-      - run: cd examples/languages/java && out=$(mktemp -d) && javac --release 17 -Xlint:all -Werror -d "$out" *.java && for t in IdentifierValidatorTest TotpTest OidcPkceTest RecoveryCodesTest CalculatorTest FormSchemaTest; do java -cp "$out" $t || exit 1; done
+      - run: cd examples/languages/java && out=$(mktemp -d) && javac --release 17 -Xlint:all -Werror -d "$out" *.java && for t in IdentifierValidatorTest TotpTest OidcPkceTest RecoveryCodesTest CalculatorTest FormSchemaTest SeoFilesTest StructuredDataTest UtmLinksTest; do java -cp "$out" $t || exit 1; done
   csharp:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with: {persist-credentials: false}
-      - run: cd examples/languages/kotlin && out=$(mktemp -d) && kotlinc *.kt -include-runtime -d "$out/kotlin-tests.jar" && for t in IdentifierValidatorTestKt TotpTestKt OidcPkceTestKt RecoveryCodesTestKt CalculatorTestKt FormSchemaTestKt; do java -cp "$out/kotlin-tests.jar" $t || exit 1; done
+      - run: cd examples/languages/kotlin && out=$(mktemp -d) && kotlinc *.kt -include-runtime -d "$out/kotlin-tests.jar" && for t in IdentifierValidatorTestKt TotpTestKt OidcPkceTestKt RecoveryCodesTestKt CalculatorTestKt FormSchemaTestKt SeoFilesTestKt StructuredDataTestKt UtmLinksTestKt; do java -cp "$out/kotlin-tests.jar" $t || exit 1; done
   dart:
     runs-on: ubuntu-latest
     steps:

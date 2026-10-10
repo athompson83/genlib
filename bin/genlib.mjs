@@ -80,7 +80,7 @@ try {
     } else if (action === 'verify') {
       invariant(ids.length === 0 && options.target && Object.keys(options).every(key => ['target', 'json'].includes(key)), 'INVALID_OPTION', 'integration verify requires --target only.');
       result = await verifyIntegrations(options.target);
-      if (result.status === 'drift') process.exitCode = 1;
+      if (result.status !== 'unchanged') process.exitCode = 1;
     } else {
       invariant(['plan', 'add'].includes(action) && ids.length === 1 && options.target, 'INVALID_OPTION', 'Use integration plan|add <id> --target <existing-project>.');
       result = await (action === 'plan' ? planIntegration : installIntegration)(context, ids[0], { target: options.target, out: options.out, allowUnverified: options['allow-unverified'] === true });

@@ -10,7 +10,7 @@ These seven packs turn catalog selections into editable workflows: validated sou
 | [`web-forms-editor`](../../integrations/web-forms-editor/CONTRACT.md) | JSON Forms validation, Puck registered blocks, revision-safe drafts, Radix/React Aria dialogs, phone and masked inputs | Authorized schemas, document store, publication and design tokens |
 | [`web-data-workbench`](../../integrations/web-data-workbench/CONTRACT.md) | Shared typed batch edits for TanStack/Tabulator/Glide, MiniSearch updates, uPlot alignment and semantic previews | Versioned server data, atomic commits, paging and complete accessible data access |
 | [`web-calendar-files`](../../integrations/web-calendar-files/CONTRACT.md) | Explicit timed/all-day rules, stable iCalendar output, controlled Arborist rename/create/delete/move | Availability and permission checks, durable event/tree revisions |
-| [`document-pipeline`](../../integrations/document-pipeline/CONTRACT.md) | One invoice model across pdfme, React Email, ExcelJS/PapaParse; Gotenberg and trusted Typst variants | Accounting data, templates/fonts, conversion deployment and delivery |
+| [`document-pipeline`](../../integrations/document-pipeline/CONTRACT.md) | Typed invoice/estimate/receipt/packing-slip/report models and editable pdfme factories; invoice email/XLSX/CSV; Gotenberg and trusted Typst variants | Accounting/shipping/report data, templates/fonts, conversion deployment and delivery |
 | [`durable-jobs`](../../integrations/durable-jobs/CONTRACT.md) | pg-boss lifecycle, leased PostgreSQL webhook inbox, byte-identity deduplication, retries/dead states | Verified provider signature/tenant, database migration, workers and external-effect idempotency |
 | [`commerce-storefront`](../../integrations/commerce-storefront/CONTRACT.md) | Medusa core product/cart APIs and UI, shipping/payment/order sequencing, uncertain-outcome handling | Server session/cart authorization and an explicitly authorized payment SDK flow |
 
@@ -76,6 +76,12 @@ The storefront keeps credentials and cart ownership on the trusted server. It ne
 
 Convert deliberately at these boundaries rather than reusing similar-looking numbers or dates. In particular, the storefront and invoice fixtures intentionally use different monetary representations. The calendar displays browser-local timed events and exports UTC instants; this is not a generic venue-timezone or recurring-booking engine. Availability checks remain on the server.
 
+### Document types and editable layouts
+
+The document pack preserves the existing invoice API and adds separate estimate, receipt, packing-slip and report models in `src/documents.ts`. Matching factories and generators in `src/document-pdfs.ts` accept independent branding, font maps, locale and custom saved templates. Estimates validate an expiry and terms; receipts validate payment identities/amounts and show any balance; packing slips preserve partial-shipment quantities without including a price model; reports validate configured columns and render an explicit empty state. Each type has a realistic JSON fixture and actual PDF generation checks.
+
+The PDF tests also generate and parse a 90-row report with a supplied font map, verifying multiple pages and embedded font resources. These checks establish document structure and dynamic layout behavior. The receiving project still reviews visual output, its own fonts/assets and business-specific wording. Generating a receipt or packing slip never initiates payment or inventory changes.
+
 ## Styling and browser integration
 
 The packs expose controlled props, callbacks, column/series definitions, template/plugin registries and CSS classes/tokens. Import only the selected upstream CSS in the host's intended style layer:
@@ -95,7 +101,7 @@ Semantic alternatives are included where a canvas UI otherwise hides data. Glide
 
 ## Local verification matrix
 
-All results below were run on Node **24.19.0**, using each pack's pinned dependencies, strict TypeScript build and Node test runner. The lane has **39 passing tests**, zero failures and zero skips. These are named local profiles, not receiving-application certification.
+All results below were run on Node **24.19.0**, using each pack's pinned dependencies, strict TypeScript build and Node test runner. The lane has **43 passing tests**, zero failures and zero skips. These are named local profiles, not receiving-application certification.
 
 | Pack | React exercised | Tests | Actual execution | Remaining runtime acceptance |
 |---|---:|---:|---|---|
@@ -103,7 +109,7 @@ All results below were run on Node **24.19.0**, using each pack's pinned depende
 | `web-forms-editor` | 19.3.0 | 6 | Real JSON Forms/AJV and Puck SSR, draft races/conflicts, phone parsing, dialog triggers | Browser editor/masks/focus/keyboard, real persistence/publication |
 | `web-data-workbench` | 18.3.1 | 5 | Real TanStack v9 SSR, MiniSearch updates, typed edits/query checks, uPlot data alignment | Canvas/grid editing, resize, large data and accessibility |
 | `web-calendar-files` | 19.3.0 | 4 | Real iCalendar generation/DST rules; Arborist-compatible movement/tree invariants | Browser calendar/tree interaction, calendar-client import, booking persistence |
-| `document-pipeline` | 19.3.0 | 6 | Real pdfme PDF/React Email/ExcelJS/PapaParse; mocked Gotenberg transport; controlled executable Typst fixture | Real converters, designer browser, fonts/layout/email-client review |
+| `document-pipeline` | 19.3.0 | 10 | Real PDFs for five document types, multi-page report/explicit font map, React Email/ExcelJS/PapaParse; mocked Gotenberg and controlled Typst executable | Real converters, designer browser, receiving-app fonts/visual layout/email-client review |
 | `durable-jobs` | None | 5 | Real SQL in PGlite 0.5.8; actual pg-boss import/startup guards | External PostgreSQL concurrency/failover and pg-boss worker execution |
 | `commerce-storefront` | 19.3.0 | 7 | Fixture Medusa transport and real React SSR; checkout controller/uncertainty | Live Medusa, stock conflicts, provider challenge and order reconciliation |
 

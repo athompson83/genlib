@@ -1,15 +1,45 @@
 # SPDX-License-Identifier: Apache-2.0
 appId: ${APP_ID}
-name: Inventory creation and completion
+name: Sign-in, permission, navigation and offline recovery
 ---
 - launchApp:
     clearState: true
-- assertVisible: "0 completed"
+    permissions:
+      camera: allow
+- tapOn: "Sign in"
+- assertVisible: "Fixture sign-in failed"
+- tapOn: "Email"
+- inputText: "fixture@example.invalid"
+- tapOn: "Password"
+- inputText: "fixture-only"
+- tapOn: "Sign in"
+- tapOn: "Settings"
+- tapOn: "Request camera permission"
+- assertVisible: "Camera granted"
+- tapOn: "Go offline"
+- tapOn: "Inventory"
 - tapOn: "Item title"
-- inputText: "Ship integration"
+- inputText: "Offline item"
 - tapOn: "Add item"
-- assertVisible: "Ship integration"
-- assertVisible: "0 completed"
-- tapOn: "Mark Ship integration complete"
+- assertVisible: "1 pending changes"
+- tapOn: "Offline item"
+- assertVisible: "Item details"
+- tapOn: "Toggle completion"
+- assertVisible: "Completed"
+- tapOn: "Back to inventory"
 - assertVisible: "1 completed"
-- takeScreenshot: inventory-completed
+- tapOn: "Settings"
+- tapOn: "Make next sync fail"
+- tapOn: "Restore connection"
+- tapOn: "Inventory"
+- assertVisible: "Unable to sync. Changes are still on this device."
+- tapOn: "Retry sync"
+- assertVisible: "0 pending changes"
+- assertVisible: "Offline item"
+- takeScreenshot: inventory-recovered
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element: "Sign out"
+    direction: DOWN
+- tapOn: "Sign out"
+- assertVisible: "Fixture sign-in"

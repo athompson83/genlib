@@ -11,9 +11,9 @@
     "windows": [
       {
         "label": "main",
-        "title": "Inventory label",
-        "width": 640,
-        "height": 460,
+        "title": "Genlib Inventory",
+        "width": 780,
+        "height": 800,
         "devtools": false
       }
     ],
@@ -22,6 +22,17 @@
     }
   },
   "bundle": {
-    "active": false
+    "active": false,
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "",
+      "requireSignedVersion": true,
+      "allowDowngrades": false
+    }
   }
 }

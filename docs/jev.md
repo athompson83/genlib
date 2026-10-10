@@ -66,7 +66,13 @@ Ranking is lexical, but it is not naive:
 - **Hard exclusions:** retired resources are removed before selection unless `--include-retired` is explicit. `--license-policy permissive` excludes unknown/mixed/review-required external license records and packs whose declared resources fail that policy.
 - **Adoption evidence:** readiness breaks equal task/fit scores before popularity. A pack's tested profile remains visible; language compatibility does not establish runtime or receiving-application verification.
 
+"<product> alternative" (or "replacement") also matches records that list the product in their `replaces` tags, such as Penpot for Figma or n8n for Zapier.
+
 Lexical matching can miss related wording. Every source therefore stays reachable through `find`, `--type`, `catalog` and the search index, and the escape path in each packet says so.
+
+## Over MCP
+
+Both MCP entry points expose `genlib_jev` over the same packet builder. The dependency-free `bin/genlib-mcp.mjs` uses `genlib_find` and accepts a local absolute `target` (see [agent-access.md](agent-access.md)). The optional SDK server uses `genlib_search`, accepts a relative `project` inside its configured root, and exposes explicit `licensePolicy` and `includeRetired` inputs (see [MCP connection instructions](mcp-server.md)). Use the input schema of the connected server; their project-path arguments are different.
 
 ## The search index
 

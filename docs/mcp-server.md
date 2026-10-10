@@ -2,6 +2,8 @@
 
 Genlib ships its own MCP server in `packages/genlib-mcp`. It searches the same catalog as the CLI, returns contracts and bounded file pages, builds Jev decision packets, detects a configured project, and plans safe source installation. Installation is an explicit server startup option. The existing `genlib mcp find` command continues to search the external MCP index.
 
+An existing dependency-free entry point, `bin/genlib-mcp.mjs` (`npm run mcp`), remains available for local read-only discovery with the `genlib_find`, `genlib_capability` and `genlib_read_doc` tool names. This guide covers the optional SDK server, which adds bounded declared-file access, configured project scoping, installation plans, verification and Streamable HTTP. Configure one entry point as `genlib` in a client; if retaining both, use separate server names. See [agent access](agent-access.md) for the read-only entry point and the shared navigation graph and Obsidian exports.
+
 ## Install and start locally
 
 Use Node.js 22 or 24 and a reviewed Genlib checkout. The optional package has its own exact dependency lock; the core CLI still has no runtime dependencies.
@@ -74,7 +76,7 @@ See the [official Codex MCP documentation](https://developers.openai.com/codex/m
 | `genlib_jev` | Bounded independent yes/no questions and candidate metadata; no model or provider call |
 | `genlib_detect_project` | Top-level manifest evidence inside the configured project root |
 | `genlib_plan_install` | Integrity, compatibility, file conflicts and proposed destinations; no writes |
-| `genlib_verify_installation` | Missing/modified/unchanged status against the recorded installation baseline |
+| `genlib_verify_installation` | Missing/modified/unchanged status against the recorded baseline, or incomplete integration recovery evidence |
 | `genlib_install` | Source-copy operation, registered only when the server starts with `--allow-install` |
 
 Resources `genlib://catalog` and `genlib://guide/mcp` expose the compact catalog and this guide. Inspection returns metadata and contracts; source text is read separately. `genlib_read_file` uses character offsets and `nextOffset`, with at most 40,000 characters per page. Tool responses and HTTP request bodies are bounded to 128 KiB; stdio frames are bounded to 256 KiB. All tool input schemas reject unknown fields.
@@ -100,7 +102,9 @@ To let a trusted client copy reviewed Genlib source:
 node "$GENLIB_ROOT/packages/genlib-mcp/server.mjs" --project-root /absolute/path/to/app --allow-install
 ```
 
-This registers `genlib_install`. The user or host must already authorize the receiving-project change. The server delegates to the same module and integration installers as the CLI: declared files and hashes only, ordinary target paths, no symlink traversal, no overwriting customizations, shared write lock, rollback of newly created files after failure, and a recorded baseline for verification. Repeating the same install is idempotent. Project dependencies, database migrations and scripts require separate deliberate execution by the receiving project. Cancellation is checked before a tool operation starts; an installation already writing completes or rolls back to preserve its transaction.
+This registers `genlib_install`. The user or host must already authorize the receiving-project change. The server delegates to the same module and integration installers as the CLI: declared files and hashes only, ordinary target paths, no symlink traversal, no overwriting customizations, a shared write lock, and a recorded baseline for verification. Repeating the same completed install is idempotent. Project dependencies, database migrations and scripts require separate deliberate execution by the receiving project. Cancellation is checked before a tool operation starts; a running installation finishes its commit or failure-recovery path.
+
+Integration installation writes a recovery journal before publishing source. If a later operation fails, it retains published files and reports `INSTALL_INCOMPLETE`; verification reports `incomplete` and the recovery evidence. Further integration writes require deliberate reconciliation of that evidence. This preserves files that an editor may already have changed or opened. Private staging and the owned write lock are cleaned up. See [integration recovery](integrations.md) for the receiving-project procedure. The independent module installer retains its existing rollback behavior.
 
 The project root is a filesystem capability for this server process. Run a separate process with a separate root for each trust boundary. Do not treat a bearer token as a per-user authorization system. The server's trusted checkout should be read-only to its callers; edit and regenerate it through the normal reviewed repository workflow.
 

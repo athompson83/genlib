@@ -1110,7 +1110,7 @@
       "tests": [
         "pdf-form-filling/go/pdfforms_test.go"
       ],
-      "verification": "cookbook: yes (go vet ./... && go test ./..., 4 tests). pdfcpu v0.16 needs Go ≥ 1.26, which GOTOOLCHAIN=auto downloaded (local Go was 1.24.7). Fixture created with pdfcpu's JSON Create",
+      "verification": "cookbook: yes (go vet ./... && go test ./..., 4 tests). pdfcpu v0.16 needs Go \u2265 1.26, which GOTOOLCHAIN=auto downloaded (local Go was 1.24.7). Fixture created with pdfcpu's JSON Create",
       "status": "example",
       "library": "github.com/pdfcpu/pdfcpu v0.16.1 (JSON export/fill) (Apache-2.0)",
       "tested": true,
@@ -1265,7 +1265,7 @@
       "tests": [
         "pdf-text-extraction/go/pdftext_test.go"
       ],
-      "verification": "cookbook: yes (go vet ./... && go test ./..., 2 tests). Fixture made with pdfcpu v0.16.1 (Apache-2.0, test-only), which is why the module needs Go ≥ 1.26 (the toolchain was auto-downloaded)",
+      "verification": "cookbook: yes (go vet ./... && go test ./..., 2 tests). Fixture made with pdfcpu v0.16.1 (Apache-2.0, test-only), which is why the module needs Go \u2265 1.26 (the toolchain was auto-downloaded)",
       "status": "example",
       "library": "github.com/ledongthuc/pdf v0.0.0-20260907135840-6c8c28e0e8a0 (BSD-3-Clause)",
       "tested": true,
@@ -2005,6 +2005,339 @@
       "status": "example",
       "library": "ITfoxtec.Identity.Saml2 4.21.0 (BSD-3-Clause)",
       "tested": true
+    },
+    {
+      "id": "python-seo-files",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/seo_files.py"
+      ],
+      "tests": [
+        "python/test_seo_files.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-seo-files",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/seofiles/seofiles.go"
+      ],
+      "tests": [
+        "go/seofiles/seofiles_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-seo-files",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/seo_files.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-seo-files",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/SeoFiles.java"
+      ],
+      "tests": [
+        "java/SeoFilesTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-seo-files",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/SeoFiles.kt"
+      ],
+      "tests": [
+        "kotlin/SeoFilesTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-seo-files",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/SeoFiles.cs",
+        "csharp/Genlib.Validation/WebText.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-seo-files",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/seo_files.dart",
+        "dart/lib/src/web_text.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/marketing_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-seo-files",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/SeoFiles.swift",
+        "swift/Sources/GenlibSwift/WebText.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/MarketingChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-structured-data",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/structured_data.py"
+      ],
+      "tests": [
+        "python/test_structured_data.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-structured-data",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/structureddata/structureddata.go"
+      ],
+      "tests": [
+        "go/structureddata/structureddata_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-structured-data",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/structured_data.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-structured-data",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/StructuredData.java"
+      ],
+      "tests": [
+        "java/StructuredDataTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-structured-data",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/StructuredData.kt"
+      ],
+      "tests": [
+        "kotlin/StructuredDataTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-structured-data",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/StructuredData.cs",
+        "csharp/Genlib.Validation/WebText.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-structured-data",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/structured_data.dart",
+        "dart/lib/src/web_text.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/marketing_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-structured-data",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/StructuredData.swift",
+        "swift/Sources/GenlibSwift/WebText.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/MarketingChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-utm-links",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/utm_links.py"
+      ],
+      "tests": [
+        "python/test_utm_links.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-utm-links",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/utmlinks/utmlinks.go"
+      ],
+      "tests": [
+        "go/utmlinks/utmlinks_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-utm-links",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/utm_links.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-utm-links",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/UtmLinks.java"
+      ],
+      "tests": [
+        "java/UtmLinksTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-utm-links",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/UtmLinks.kt"
+      ],
+      "tests": [
+        "kotlin/UtmLinksTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-utm-links",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/UtmLinks.cs",
+        "csharp/Genlib.Validation/WebText.cs",
+        "csharp/Genlib.Validation/Totp.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-utm-links",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/utm_links.dart",
+        "dart/lib/src/web_text.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/marketing_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-utm-links",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/UtmLinks.swift",
+        "swift/Sources/GenlibSwift/WebText.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/MarketingChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }

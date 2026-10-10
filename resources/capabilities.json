@@ -333,6 +333,208 @@
       }
     },
     {
+      "id": "seo-files",
+      "title": "SEO files: sitemap.xml, robots.txt with AI-crawler rules, llms.txt",
+      "tier": "pure",
+      "summary": "XML-escaped sitemap.xml, robots.txt with optional allow/disallow rules for AI crawlers (GPTBot, ClaudeBot, Google-Extended, PerplexityBot and more) and llms.txt for AI answer engines. Standard library only, byte-exact output.",
+      "terms": [
+        "seo",
+        "sitemap",
+        "sitemap xml",
+        "robots",
+        "robots txt",
+        "llms txt",
+        "llms.txt",
+        "ai crawlers",
+        "gptbot",
+        "geo",
+        "aeo",
+        "ai optimization",
+        "search engine"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "seo-files-sitemap-robots-llms",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-seo-files",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-seo-files",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-seo-files",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-seo-files",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-seo-files",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-seo-files",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-seo-files",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-seo-files",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "structured-data",
+      "title": "Structured data: JSON-LD and meta / Open Graph tags",
+      "tier": "pure",
+      "summary": "JSON-LD script tags escaped so they cannot break out of the element, plus title, description, canonical, Open Graph and Twitter card tags with HTML escaping.",
+      "terms": [
+        "json ld",
+        "json-ld",
+        "schema org",
+        "structured data",
+        "rich results",
+        "meta tags",
+        "open graph",
+        "og tags",
+        "twitter card",
+        "canonical",
+        "seo"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "structured-data-json-ld-meta",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-structured-data",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-structured-data",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-structured-data",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-structured-data",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-structured-data",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-structured-data",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-structured-data",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-structured-data",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "utm-links",
+      "title": "UTM campaign links: build, parse and strip tracking",
+      "tier": "pure",
+      "summary": "Build campaign URLs with utm_* parameters (replacing existing ones, keeping fragments), parse UTM values, and strip tracking parameters (utm_*, gclid, fbclid, msclkid and more) from shared links.",
+      "terms": [
+        "utm",
+        "utm parameters",
+        "campaign url",
+        "tracking",
+        "attribution",
+        "gclid",
+        "fbclid",
+        "strip tracking",
+        "marketing links",
+        "analytics"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "utm-campaign-links",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-utm-links",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-utm-links",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-utm-links",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-utm-links",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-utm-links",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-utm-links",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-utm-links",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-utm-links",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

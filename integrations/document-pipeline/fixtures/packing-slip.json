@@ -1,0 +1,10 @@
+{
+  "id": "PKG-2026-0093", "orderId": "ORDER-2026-0051", "shippedOn": "2026-10-10",
+  "sender": "Example Supplies\n12 Harbor Road", "recipient": "Harbor Museum\n48 Main Street",
+  "carrier": "Fixture Delivery", "trackingReference": "TEST-0093",
+  "lines": [
+    { "id": "notebooks", "sku": "NB-BLUE", "description": "Blue field notebook", "orderedQuantity": 12, "shippedQuantity": 10 },
+    { "id": "pens", "sku": "PEN-BLK", "description": "Black archival pen", "orderedQuantity": 6, "shippedQuantity": 6 }
+  ],
+  "notes": "Partial shipment. Two notebooks will follow in the next package."
+}

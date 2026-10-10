@@ -1,16 +1,24 @@
 // SPDX-License-Identifier: Apache-2.0
 package main
+
 import (
- "embed"
- "log"
- "github.com/wailsapp/wails/v2"
- "github.com/wailsapp/wails/v2/pkg/options"
- "github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"context"
+	"embed"
+	"github.com/wailsapp/wails/v2"
+	"github.com/wailsapp/wails/v2/pkg/options"
+	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"log"
 )
+
 //go:embed all:frontend/dist
 var assets embed.FS
+
 func main() {
- err:=wails.Run(&options.App{Title:"Inventory label",Width:640,Height:460,
-  AssetServer:&assetserver.Options{Assets:assets},Bind:[]interface{}{&App{}}})
- if err!=nil {log.Fatal(err)}
+	native := &desktopNative{delivery: configuredDelivery()}
+	app := &App{native: native}
+	err := wails.Run(&options.App{Title: "Genlib Inventory", Width: 780, Height: 800,
+		AssetServer: &assetserver.Options{Assets: assets}, OnStartup: func(ctx context.Context) { native.ctx = ctx }, Bind: []interface{}{app}})
+	if err != nil {
+		log.Fatal(err)
+	}
 }

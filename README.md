@@ -17,19 +17,19 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 13 | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in 9 languages |
+| [Capabilities](#capabilities-one-task-every-language) | 16 | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in 9 languages |
 | [Modules](#modules) | 14 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
 | [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
-| [Task recipes](#recipes-language-examples-and-templates) | 41 | Single-file TypeScript sources copied with one command |
-| [Language examples](#recipes-language-examples-and-templates) | 121 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [Task recipes](#recipes-language-examples-and-templates) | 44 | Single-file TypeScript sources copied with one command |
+| [Language examples](#recipes-language-examples-and-templates) | 145 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Developer tools](#find-code-without-reading-the-whole-repository) | 6 | Repository navigation, dependency health and retrieval evaluation |
 | [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 600 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 5652 | Libraries, services, dashboards and references with source evidence, license scope, lifecycle and adoption metadata across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 493 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 7339 | Libraries, services, dashboards, calendars, messaging, open-source alternatives and references with source evidence, license scope, lifecycle and adoption metadata across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 554 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -45,6 +45,7 @@ One command searches everything below and returns each result's exact next step.
 - [Install indexes: skills, MCP servers, CLIs and APIs](#install-indexes-skills-mcp-servers-clis-and-apis)
 - [Find code without reading the whole repository](#find-code-without-reading-the-whole-repository)
 - [Jev and the search index](#jev-and-the-search-index)
+- [MCP server, graph and Obsidian](#mcp-server-graph-and-obsidian)
 - [From new repository to shipped app](#from-new-repository-to-shipped-app)
 - [Claude Code and Codex skill](#claude-code-and-codex-skill)
 - [Safety model](#safety-model)
@@ -57,8 +58,10 @@ One command searches everything below and returns each result's exact next step.
 flowchart TD
   Task["Agent task"] --> Entry["CLI or direct Genlib MCP"]
   Own["Modules, packs and language code"] --> Metadata["Compact discovery metadata"]
-  External["Resources, dashboards, install indexes and docs"] --> Metadata
+  External["Resources, open-source alternatives, install indexes and docs"] --> Metadata
   Metadata --> Entry
+  Metadata --> Navigation["Navigation graph and Obsidian notes"]
+  Navigation --> Entry
   Entry --> Eligible["Task fit, lifecycle and license filters"]
   Eligible --> Inspect["Inspect one contract or record"]
   Eligible --> Jev["Optional Jev selection: up to 8 candidates"]
@@ -99,6 +102,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | Command | Purpose |
 | --- | --- |
 | `find <words> [--target app] [--type …] [--project …]` | Rank all source types; add `--license-policy permissive` or `--include-retired` for explicit selection policy |
+| `genlib-mcp` (`bin/genlib-mcp.mjs`) | Dependency-free read-only MCP discovery; use the optional direct SDK server for scoped plans, installation and HTTP |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
 | `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
 | `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
@@ -109,7 +113,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
 | `integration list` / `integration inspect <id>` | Discover a complete optional integration profile and read its contract |
 | `integration plan\|add <id> --target app` | Plan/copy a pack, defaulting to `genlib/integrations/<id>` |
-| `integration verify --target app` | Verify the separate pack baseline without overwriting customizations |
+| `integration verify --target app` | Verify the separate pack baseline and recovery journal; exits nonzero for drift or an incomplete install |
 
 `add` writes `.genlib/lock.json` with versions, origin and original hashes, and copies license notices. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
 
@@ -134,6 +138,9 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `recovery-codes` MFA recovery (backup) codes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `calculator` Safe calculator and loan / interest math | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `form-schema` Form schema validation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `seo-files` SEO files: sitemap.xml, robots.txt with AI-crawler rules, llms.txt | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `structured-data` Structured data: JSON-LD and meta / Open Graph tags | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `utm-links` UTM campaign links: build, parse and strip tracking | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
@@ -224,11 +231,12 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`ui-foundations.json`](resources/ui-foundations.json) | 18 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
 | [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 91 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
 | [`catalog/backend-api.json`](resources/catalog/backend-api.json) | 95 | [backend-api.md](docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
+| [`catalog/chat-messaging.json`](resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
 | [`catalog/dashboards.json`](resources/catalog/dashboards.json) | 801 | [dashboards.md](docs/resources/dashboards.md) | chart-library, admin-template, observability, terminal-dashboard, realtime-kpi |
 | [`catalog/data-docs-office.json`](resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
 | [`catalog/devops-testing-security.json`](resources/catalog/devops-testing-security.json) | 116 | [devops-testing-security.md](docs/resources/devops-testing-security.md) | testing, security, code-quality, observability, logging |
 | [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
-| [`catalog/integration-expansion.json`](resources/catalog/integration-expansion.json) | 50 | several | public-data-api, codemods, catalog-maintenance, native-testing, resumable-upload |
+| [`catalog/integration-expansion.json`](resources/catalog/integration-expansion.json) | 43 | several | public-data-api, codemods, catalog-maintenance, native-testing, api-contracts |
 | [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
 | [`catalog/marketing-engagement-2.json`](resources/catalog/marketing-engagement-2.json) | 71 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | push, reviews |
@@ -237,12 +245,15 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/marketing-seo.json`](resources/catalog/marketing-seo.json) | 900 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo, content, links-qr, ai-optimization |
 | [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
+| [`catalog/open-source-tools-2.json`](resources/catalog/open-source-tools-2.json) | 342 | [open-source-tools.md](docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
+| [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 900 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
 | [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
+| [`catalog/scheduling-calendar.json`](resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **5652** | | |
+| **Total** | **7339** | | |
 <!-- genlib:catalog:end -->
 
 `verified` and `partial` describe upstream source review, independently of lifecycle and integration readiness. Network verification checks repositories, links and available package license declarations; blocked pages and unsupported ecosystem checks remain unresolved review items. The selected integration packs have their own runtime/fixture evidence. Retired services are hidden by default and can be included for migration lookup with `--include-retired`. Copyleft, source-available and commercial feature boundaries stay explicit. See the [resource index](docs/resources/README.md), [expansion review](docs/resources/integration-expansion.md) and [dependency health workflow](docs/catalog-health.md).
@@ -283,6 +294,21 @@ rg -i saml "$GENLIB_ROOT/registry/search-index.jsonl" --max-count 3   # one line
 ```
 
 `registry/search-index.jsonl` lists every searchable entry (`ref`, title, summary, terms, languages, file and lines for docs, next command) for harnesses that run their own retrieval. `npm run check` fails when it is stale. See the [Jev guide](docs/jev.md).
+
+## MCP server, graph and Obsidian
+
+For local read-only discovery without installing the optional SDK package, use the existing stdio entry point below. The [direct MCP server](#connect-directly-with-mcp) adds scoped planning, verification, optional installation and HTTP. Choose one server entry point for the client name `genlib`.
+
+```sh
+claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"    # or: codex mcp add genlib -- ...
+node "$GENLIB_ROOT/scripts/export-obsidian.mjs" --out "$VAULT/genlib" # linked notes per type, category and language
+```
+
+- **Read-only MCP server:** a dependency-free stdio server. Its tools are `genlib_find`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, including search and contract inspection for integration packs.
+- **Navigation graph:** `registry/graph.json` is a compact Graphify-style graph linking source types, catalogs, categories, languages, capabilities and docs, kept fresh by `npm run check`.
+- **Obsidian:** the vault export writes only its own notes.
+
+See [docs/agent-access.md](docs/agent-access.md) for which access path to use when.
 
 ## From new repository to shipped app
 

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 syntax = "proto3";
 package genlib.inventory.v1;
+option go_package = "dev.genlib/inventory-connect/generated/genlib/inventory/v1;inventoryv1";
 message Item { string id = 1; string title = 2; bool completed = 3; }
 message CreateItemRequest { string title = 1; }
 message CreateItemResponse { Item item = 1; }

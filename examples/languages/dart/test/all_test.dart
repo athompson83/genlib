@@ -3,6 +3,7 @@
 import 'calculator_test.dart' show runCalculatorTests;
 import 'form_schema_test.dart' show runFormSchemaTests;
 import 'identifier_validator_test.dart' as identifier;
+import 'marketing_test.dart' show runSeoFilesTests, runStructuredDataTests, runUtmLinksTests;
 import 'oidc_pkce_test.dart' show runOidcPkceTests;
 import 'recovery_codes_test.dart' show runRecoveryCodesTests;
 import 'src/checks.dart';
@@ -16,5 +17,8 @@ void main() {
   runRecoveryCodesTests(c);
   runCalculatorTests(c);
   runFormSchemaTests(c);
+  runSeoFilesTests(c);
+  runStructuredDataTests(c);
+  runUtmLinksTests(c);
   c.finish();
 }

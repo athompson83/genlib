@@ -9,8 +9,11 @@
   },
   "scripts": {
     "generate": "buf generate",
+    "generate:go": "buf generate --template buf.gen.go.yaml",
     "lint:proto": "buf lint",
-    "test": "npm run generate && tsc && node --test tests/*.test.mjs",
+    "test": "npm run generate && tsc && node --test tests/connect.test.mjs",
+    "test:go": "npm run generate:go && go -C connect-go test -mod=readonly ./...",
+    "test:cross-language": "npm run generate && tsc && npm run generate:go && go -C connect-go build -mod=readonly -o .test-bin/inventory-fixture ./cmd/fixture && node --test tests/cross-language.test.mjs",
     "serve": "node .test-build/connect/server.js"
   },
   "dependencies": {
