@@ -49,6 +49,7 @@ One command searches everything below and returns each result's exact next step.
 - [Resource catalog](#resource-catalog)
 - [Install indexes: skills, MCP servers, CLIs and APIs](#install-indexes-skills-mcp-servers-clis-and-apis)
 - [Find code without reading the whole repository](#find-code-without-reading-the-whole-repository)
+- [Token budget](#token-budget)
 - [Jev and the search index](#jev-and-the-search-index)
 - [MCP server, graph and Obsidian](#mcp-server-graph-and-obsidian)
 - [From new repository to shipped app](#from-new-repository-to-shipped-app)
@@ -61,7 +62,9 @@ One command searches everything below and returns each result's exact next step.
 
 ```mermaid
 flowchart LR
-  Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Find["genlib find<br/>(+ detect --target)"]
+  Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Quick["genlib quick<br/>best match + its commands"]
+  Quick --> Find["genlib find<br/>(+ detect --target)"]
+  Quick -.-> Outline["genlib outline<br/>signatures, not source"] -.-> App
   Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
   Find --> M["Modules"]
   Find --> R["Recipes and<br/>language examples"]
@@ -72,7 +75,7 @@ flowchart LR
   Find --> D["Doc sections<br/>(exact line ranges)"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
   Index["registry/search-index.jsonl"] -.-> Jev
-  MCP["genlib MCP server<br/>genlib_find · genlib_jev · genlib_inspect"] -.-> Find
+  MCP["genlib MCP server<br/>genlib_quick · genlib_find · genlib_outline · genlib_jev"] -.-> Find
   Graph["registry/graph.json<br/>+ Obsidian export"] -.-> Find
   M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
   C --> Lang["pick the detected<br/>language's code"] --> Copy
@@ -84,6 +87,7 @@ flowchart LR
   D --> Section["sed -n start,end p"] --> App
 ```
 
+- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets.
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
@@ -98,8 +102,10 @@ git clone https://github.com/athompson83/genlib.git
 export GENLIB_ROOT="$PWD/genlib"
 export APP_ROOT="/absolute/path/to/existing-application"
 
-# 1. Find candidates for the task across every source
-node "$GENLIB_ROOT/bin/genlib.mjs" find searchable table --target "$APP_ROOT" --limit 5 --json
+# 1. Get the best match and its exact commands (find lists options; outline shows signatures)
+node "$GENLIB_ROOT/bin/genlib.mjs" quick searchable table --target "$APP_ROOT"
+node "$GENLIB_ROOT/bin/genlib.mjs" find searchable table --target "$APP_ROOT" --limit 5
+node "$GENLIB_ROOT/bin/genlib.mjs" outline data-table
 
 # 2. Inspect one module contract, then plan without writing
 node "$GENLIB_ROOT/bin/genlib.mjs" inspect data-table --json
@@ -112,8 +118,10 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 
 | Command | Purpose |
 | --- | --- |
-| `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
-| `genlib-mcp` (`bin/genlib-mcp.mjs`) | MCP server exposing find, jev, capability, inspect, read_doc and catalog as tools |
+| `quick <words> [--target app] [--language go]` | The best match and only its install or copy commands, plus up to 3 alternative refs (cheapest call) |
+| `find <words> [--target app] [--language …] [--type …] [--project …]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON |
+| `outline <id> [--language go]` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
+| `genlib-mcp` (`bin/genlib-mcp.mjs`) | MCP server exposing quick, find, outline, jev, capability, inspect, read_doc and catalog as tools |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
 | `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
 | `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
@@ -270,6 +278,16 @@ node "$GENLIB_ROOT/tools/repo-diagram.mjs"        # Mermaid overview at docs/dia
 
 Artifacts refuse to load when their commit differs from `HEAD`. The [repository map workflow](.github/workflows/repo-map.yml) regenerates the map, graph and diagram for every push and publishes them as a short-lived artifact instead of committing them. Graphify-style semantic graphs are an optional Genisys adapter, not a bundled dependency. See [repository intelligence](docs/repository-intelligence.md), [AST indexing](docs/ast-indexing.md), [task context](docs/task-context.md) and the [diagram guide](docs/diagrams-guide.md).
 
+## Token budget
+
+Every path is sized for an agent's context. Measured on this checkout ([docs/token-budget.md](docs/token-budget.md), regenerated and checked by `npm run check`):
+
+- `quick` returns the best match and its commands in about 200 bytes, 5 to 25 times less than the full JSON records.
+- `outline` returns signatures and one-line docs at 3 to 8 times less than reading the source.
+- The `genlib-use` skill is under 5 KB, and the MCP tool list under 4.5 KB.
+
+`tests/token-budget.test.mjs` fails when a compact path grows past its budget. [llms.txt](llms.txt) gives agents that land on the repository the cheapest path in a few lines.
+
 ## Jev and the search index
 
 Genisys' Jev answers typed questions about a concise state. `genlib jev <task>` gives it exactly that: the deterministic shortlist from `find`, one independent yes/no question per candidate, an `independent-membership` rule with a 0.8 threshold, and each candidate's exact next command, all inside 20,000 characters. `find` and `jev` search every source type, including each documentation section (returned with the line range to read). They weight distinctive words higher, ignore filler words, and treat a language named in the task ("go", "C#", "flutter") like a detected project.
@@ -288,7 +306,7 @@ claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"    # or: codex m
 node "$GENLIB_ROOT/scripts/export-obsidian.mjs" --out "$VAULT/genlib" # linked notes per type, category and language
 ```
 
-- **MCP server:** a dependency-free stdio server. Its tools are `genlib_find`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, so MCP clients call Genlib natively.
+- **MCP server:** a dependency-free stdio server. Its tools are `genlib_quick`, `genlib_find`, `genlib_outline`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, so MCP clients call Genlib natively. Quick, find and outline answer with compact text plus the structured result; `detail: "full"` returns whole records.
 - **Navigation graph:** `registry/graph.json` is a compact Graphify-style graph linking source types, catalogs, categories, languages, capabilities and docs, kept fresh by `npm run check`.
 - **Obsidian:** the vault export writes only its own notes.
 

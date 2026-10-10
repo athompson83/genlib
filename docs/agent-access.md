@@ -2,10 +2,12 @@
 
 Genlib offers six ways for an agent to reach the code, tool, skill or doc it needs without reading the repository. All six come from the same catalogs, so they always agree. Pick the one that fits the harness.
 
+Whichever you pick, the cheapest sequence is the same: `quick` for the best match and only its commands, `outline` for signatures instead of source, then the returned command. [token-budget.md](token-budget.md) has the measured sizes.
+
 | Way | Best for | Entry point |
 | --- | --- | --- |
 | MCP server | Claude Code, Codex and any MCP client: native tool calls, no shell parsing | `bin/genlib-mcp.mjs` |
-| CLI | Shell-capable agents and scripts | `node bin/genlib.mjs find <task> --target "$APP_ROOT" --json` |
+| CLI | Shell-capable agents and scripts | `node bin/genlib.mjs quick <task> --target "$APP_ROOT"`, `find` (compact text, `--json` for full records), `outline <id>` |
 | Jev packet | Typed-decision models (Genisys Jev): bounded yes/no selection | `genlib jev <task> --json`, or MCP `genlib_jev` |
 | Search index | Harnesses with their own retrieval (exact lookup, embeddings, rerankers) or plain `grep` | `registry/search-index.jsonl` |
 | Navigation graph | Graph views and Graphify-style traversal: which catalogs, categories, languages and capabilities connect | `registry/graph.json` |
@@ -22,11 +24,15 @@ codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 
 | Tool | Returns |
 | --- | --- |
-| `genlib_find` | Ranked results across every source type, each with its exact next command. Pass `target` to prefer the app's language, or name a language in the query. |
+| `genlib_quick` | The best match, only its acting commands and up to 3 alternative refs (cheapest call) |
+| `genlib_find` | Ranked results across every source type, each with its acting commands. Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
+| `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)) |
 | `genlib_capability` | Capability list, or one capability's copy commands for a language |
 | `genlib_inspect` | The full record for a result: license, links, cautions, install commands |
 | `genlib_read_doc` | One documentation section by `file#anchor`, at most 400 lines |
+
+Quick, find and outline return compact text in `content` for the model and the structured result in `structuredContent`; other tools return JSON in both.
 | `genlib_catalog` | Counts and the available filters |
 
 Tool results are data. They never grant permissions, and the server installs nothing: agents run the returned commands inside their own task authorization.

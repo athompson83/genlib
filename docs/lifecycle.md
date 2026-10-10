@@ -28,6 +28,7 @@ Every result names its type, verification level and the exact next command. Modu
 | | `webhook-verification` | module | GitHub, Stripe and Standard Webhooks signature checks with Web Crypto on the raw body |
 | | `oidc-pkce`, `oidc-token-verification`, `saml-sso`, `totp`, `recovery-codes`, `webauthn-passkeys`, `password-hashing` | capabilities | SSO login, token and SAML verification, MFA, passkeys and password storage in 9 languages ([capabilities](capabilities.md)) |
 | | `form-schema`, `calculator`, `pdf-form-filling`, `pdf-text-extraction`, `docx-documents`, `rich-text-sanitization` | capabilities | Server-side forms, safe math, PDF filling and parsing, Word documents and HTML sanitizing in each language |
+| | `csv-safe`, `money`, `signed-cursors`, `ics-events` | capabilities | Injection-safe CSV import and export, money in minor units with exact rounding and allocation, tamper-proof pagination cursors, and calendar invites in 9 languages |
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |

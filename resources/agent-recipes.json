@@ -263,19 +263,23 @@
         "tax rate",
         "percentage",
         "format currency",
-        "decimal amount"
+        "decimal amount",
+        "iso 4217",
+        "half even"
       ],
       "checks": [
         "Store integer minor units and an ISO 4217 code per amount",
         "Approved rounding mode and allocation policy",
         "Jurisdiction-specific tax rules",
-        "Pin currency exponents if the runtime ICU data differs"
+        "Extend the pinned ISO 4217 exponent table deliberately; unknown codes are rejected"
       ],
       "variants": [
         "parse",
         "apply-rate",
         "allocate",
-        "format"
+        "format",
+        "to-minor",
+        "format-minor"
       ]
     },
     {
@@ -1228,6 +1232,94 @@
         "build",
         "parse",
         "strip-tracking"
+      ]
+    },
+    {
+      "id": "csv-safe",
+      "kind": "source-example",
+      "path": "examples/recipes/csv-safe.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "csv injection",
+        "formula injection",
+        "csv export",
+        "write csv",
+        "safe csv",
+        "spreadsheet export",
+        "excel formula",
+        "strict csv parse",
+        "rfc 4180 writer",
+        "download csv",
+        "neutralize formulas"
+      ],
+      "checks": [
+        "Authorize the export and limit rows to what the user may see",
+        "Keep formula neutralization on for any file opened in a spreadsheet",
+        "Validate and convert each parsed column; parsing yields strings only",
+        "Limit upload size before parsing imports"
+      ],
+      "variants": [
+        "write",
+        "parse",
+        "no-neutralize"
+      ]
+    },
+    {
+      "id": "signed-cursors",
+      "kind": "source-example",
+      "path": "examples/recipes/signed-cursors.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "signed cursor",
+        "hmac cursor",
+        "tamper-proof cursor",
+        "expiring cursor",
+        "signed page token",
+        "pagination token",
+        "cursor signature",
+        "next page token",
+        "hmac sha256",
+        "keyset cursor signing"
+      ],
+      "checks": [
+        "Keep the secret (32+ bytes) on the server and rotate it with an overlap window",
+        "Re-authorize every page request; signing does not hide values",
+        "Choose a short expiry and pass a trusted server clock as now",
+        "Map malformed, bad signature and expired to a generic 400 for clients"
+      ],
+      "variants": [
+        "encode",
+        "decode",
+        "rotate-secret"
+      ]
+    },
+    {
+      "id": "ics-events",
+      "kind": "source-example",
+      "path": "examples/recipes/ics-events.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "ics",
+        "icalendar",
+        "add to calendar",
+        "calendar invite",
+        "vevent",
+        "vcalendar",
+        "rfc 5545",
+        "calendar file",
+        "event download",
+        "all-day event"
+      ],
+      "checks": [
+        "Use a stable globally unique UID per event so updates replace, not duplicate",
+        "Store and write times in UTC; convert for display only",
+        "Serve as text/calendar with a sensible filename",
+        "Do not put private attendee data in public feeds"
+      ],
+      "variants": [
+        "timed",
+        "all-day",
+        "feed"
       ]
     }
   ]

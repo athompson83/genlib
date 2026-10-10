@@ -60,6 +60,7 @@ Ranking is lexical, but it is not naive:
 - **Filler and synonyms:** stopwords are ignored, and a small reviewed synonym table widens recall.
 - **Language:** a language named in the task ("go", "python", "c#", "flutter") acts like a detected project. It selects that language's capability code and hides packages for other languages, unless you filter by `--type`.
 - **Whole names:** a multi-word task that spells an entry's whole ID or title ranks that entry first, before stemming, so "canvas lms" finds Canvas LMS rather than Canva and "firefly iii" finds Firefly III.
+- **Coverage:** results that match more of the task's words rank above ones that match a single word strongly, so "verify stripe webhook" finds the webhook verifier before a Stripe SDK.
 - **Less repetition:** a matched capability absorbs its per-language examples, and no more than two sections come from any one document.
 
 "<product> alternative" (or "replacement") also matches records that list the product in their `replaces` tags, such as Penpot for Figma or n8n for Zapier.
@@ -68,7 +69,7 @@ Lexical matching can miss related wording. Every source therefore stays reachabl
 
 ## Over MCP
 
-MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`.
+MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`. After Jev selects a code candidate, `genlib outline <ref>` (MCP `genlib_outline`) gives its signatures without reading the source.
 
 ## The search index
 

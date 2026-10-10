@@ -2338,6 +2338,439 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "python-csv-safe",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/csv_safe.py"
+      ],
+      "tests": [
+        "python/test_csv_safe.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-csv-safe",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/csvsafe/csvsafe.go"
+      ],
+      "tests": [
+        "go/csvsafe/csvsafe_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-csv-safe",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/csv_safe.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-csv-safe",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/CsvSafe.java"
+      ],
+      "tests": [
+        "java/CsvSafeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-csv-safe",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/CsvSafe.kt"
+      ],
+      "tests": [
+        "kotlin/CsvSafeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-csv-safe",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/CsvSafe.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-csv-safe",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/csv_safe.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/core_capabilities_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-csv-safe",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/CsvSafe.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CoreCapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-money",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/money.py"
+      ],
+      "tests": [
+        "python/test_money.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-money",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/money/money.go"
+      ],
+      "tests": [
+        "go/money/money_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-money",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/money.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-money",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Money.java"
+      ],
+      "tests": [
+        "java/MoneyTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-money",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Money.kt"
+      ],
+      "tests": [
+        "kotlin/MoneyTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-money",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Money.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-money",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/money.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/core_capabilities_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-money",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Money.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CoreCapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-signed-cursors",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/signed_cursors.py"
+      ],
+      "tests": [
+        "python/test_signed_cursors.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-signed-cursors",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/cursors/cursors.go"
+      ],
+      "tests": [
+        "go/cursors/cursors_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-signed-cursors",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/signed_cursors.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-signed-cursors",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/SignedCursors.java"
+      ],
+      "tests": [
+        "java/SignedCursorsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-signed-cursors",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/SignedCursors.kt"
+      ],
+      "tests": [
+        "kotlin/SignedCursorsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-signed-cursors",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/SignedCursors.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-signed-cursors",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/signed_cursors.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/core_capabilities_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-signed-cursors",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/SignedCursors.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CoreCapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-ics-events",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/ics_events.py"
+      ],
+      "tests": [
+        "python/test_ics_events.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-ics-events",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/icsevents/icsevents.go"
+      ],
+      "tests": [
+        "go/icsevents/icsevents_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-ics-events",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/ics_events.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-ics-events",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/IcsEvents.java"
+      ],
+      "tests": [
+        "java/IcsEventsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-ics-events",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/IcsEvents.kt"
+      ],
+      "tests": [
+        "kotlin/IcsEventsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-ics-events",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/IcsEvents.cs",
+        "csharp/Genlib.Validation/WebText.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-ics-events",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/ics_events.dart",
+        "dart/lib/src/web_text.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/core_capabilities_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-ics-events",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/IcsEvents.swift",
+        "swift/Sources/GenlibSwift/WebText.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CoreCapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }

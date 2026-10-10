@@ -10,7 +10,7 @@ The index lives in `resources/capabilities.json`. Each language entry points at 
 
 ```sh
 # With a detected project, find picks that project's language and prints its copy command.
-node "$GENLIB_ROOT"/bin/genlib.mjs find totp two factor --target "$APP_ROOT" --json
+node "$GENLIB_ROOT"/bin/genlib.mjs quick totp two factor --target "$APP_ROOT"
 
 # Without a project: list the capabilities and their language coverage, then inspect one language.
 node "$GENLIB_ROOT"/bin/genlib.mjs capability list --json
@@ -92,7 +92,30 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - `parseUtm` returns the present values in spec order; the first occurrence wins.
 - `stripTracking` removes `utm_*` and click IDs (gclid, fbclid, msclkid, ttclid and others) while keeping other parameters and their encoding.
 
-Behavior that differs by language (option objects versus keyword arguments, ordered-map types) is noted at the top of each source file.
+**csv-safe**
+- `writeCsv` follows RFC 4180: CRLF after every record, and a field is quoted (with `"` doubled) when it contains a comma, quote, CR or LF, or starts or ends with a space.
+- By default a field starting with `=`, `+`, `-`, `@`, TAB or CR gets a leading `'`, so a spreadsheet does not run it as a formula (OWASP CSV injection). Turn this off only for files no spreadsheet opens.
+- `parseCsv` accepts CRLF or LF records, strips a leading BOM and handles quoted commas, newlines and doubled quotes. It rejects an unterminated quote, a bare quote inside a field and text after a closing quote, and never undoes neutralization.
+
+**money**
+- Amounts are integer minor units. Only listed ISO 4217 codes are accepted (2 decimals for USD, EUR and others; 0 for JPY, KRW and others; 3 for BHD, KWD and others), and `toMinor` refuses to round silently.
+- `applyRate` multiplies by a decimal rate string with banker's rounding (half to even) on the exact product, without floating point.
+- `allocate` splits a total by integer ratios with the largest-remainder method (ties to the earlier entry). Shares always add up to the total, and a zero ratio never receives a unit.
+- Arithmetic is checked or uses big integers, so it never overflows silently.
+
+**signed-cursors**
+- A cursor is `base64url(body).base64url(HMAC-SHA256)`. The body holds a version, an expiry and the last sort-key values. Use a secret of at least 32 bytes from the server's secret store.
+- `decodeCursor` compares the encoded signature in constant time, so changing any single character fails. Errors are distinguished as malformed, bad signature or expired, which lets an API answer 400 rather than 500.
+- Cursors are opaque but not encrypted: do not put private data in the values.
+
+**ics-events**
+- `icsCalendar` writes a VCALENDAR with one VEVENT per event: UTC (`...Z`) or all-day dates, TEXT escaping of `\ ; ,` and newlines, and 75-octet line folding that never splits a UTF-8 character.
+- It validates that end is after start, that both have the same kind and that the URL is absolute http(s). Serve the file as `text/calendar; charset=utf-8`.
+- Keep `uid` stable for an event so calendar clients update it instead of duplicating it.
+
+Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors) is noted at the top of each source file.
+
+Learn any implementation's API without opening it: `genlib outline <capability> --language <lang>` lists its signatures and one-line docs.
 
 ## Adding a capability
 
