@@ -36,6 +36,35 @@
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
     },
     {
+      "id": "common-api-clients",
+      "version": "0.1.0",
+      "title": "Common API clients",
+      "description": "Server-only TypeScript clients for GitHub, Stripe Checkout, Resend, Supabase reads, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor catalog reads, and Steel sessions with explicit credentials and bounded HTTP transport.",
+      "kind": "utility",
+      "tags": [
+        "api",
+        "http",
+        "github",
+        "stripe",
+        "resend",
+        "supabase",
+        "microsoft-graph",
+        "google-calendar",
+        "openai",
+        "anthropic",
+        "saleor",
+        "steel",
+        "server",
+        "integrations"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "verification": "tested",
+      "manifest": "registry/manifests/common-api-clients@0.1.0.json",
+      "sha256": "cef23e9440766c4a392fa439e4dcbd7f65e3d29ee606b3c1362e27cc47a863db"
+    },
+    {
       "id": "data-table",
       "version": "0.1.0",
       "title": "Searchable sortable data table",

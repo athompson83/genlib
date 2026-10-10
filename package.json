@@ -24,6 +24,9 @@
     "skills",
     "scripts",
     "docs",
+    "resources",
+    "templates",
+    "tools",
     "LICENSE",
     "NOTICE",
     "README.md",
@@ -37,7 +40,9 @@
     "skills:sync": "node scripts/sync-skills.mjs",
     "skills:check": "node scripts/sync-skills.mjs --check",
     "skills:install": "node scripts/install-skills.mjs",
-    "check": "npm run registry:check && npm run skills:check && npm test"
+    "resources": "node tools/resources.mjs",
+    "resources:check": "node tools/resources.mjs validate --json",
+    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm test"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

@@ -1,6 +1,6 @@
 # Architecture
 
-Genlib distributes editable source to an existing application. It is not an application runtime, hosted service, or authority system. The initial library uses original Apache-2.0 code and explicit React/TypeScript web contracts.
+Genlib distributes editable source to an existing application. It is not an application runtime, hosted service, or authority system. The library uses original Apache-2.0 code with explicit contracts for React/TypeScript web modules, framework-neutral theme tokens and server-only TypeScript API clients.
 
 ## Discovery and delivery
 
@@ -19,6 +19,16 @@ Keep reusable behavior configurable through props, design variables, and injecte
 
 Framework checks deliberately recognize a small set of React 18/19 declarations. Ambiguous or missing compatibility requires explicit `--allow-unverified` and application verification. A recognized incompatible version remains an error. No operation grants service credentials or application permissions.
 
+Framework-neutral server modules do not require React. Their platform and runtime requirements are recorded in the contract; the installer cannot prove that a receiving build keeps them out of a browser bundle. The receiving application must enforce that server boundary. Provider adapters accept credentials and application authorization through explicit callbacks, bound each HTTP request, and leave account setup, OAuth, persistence, budgets and live acceptance to that application.
+
+## External resources and project templates
+
+`resources/attachments.json` and `resources/ui-foundations.json` form a separate source-discovery catalog. `tools/resources.mjs` validates those records and returns bounded, filtered metadata without downloading or executing external code. Each record identifies its license scope, primary evidence, review limits and related guide or original Genlib adapter. Resource review does not imply a package is installed or its behavior is tested.
+
+The module registry currently accepts only original Apache-2.0 source. External packages, marketplace snippets, assets and reference sites retain their own terms. Adopting third-party source into an application requires appropriate provenance and notices; distributing it as a Genlib module would first require an explicit registry provenance/license design change.
+
+`templates/github`, `templates/docs` and `templates/ui` are opt-in project starters. They are not installer hooks and do not change live GitHub settings. A consuming project merges selected files, replaces placeholders and supplies real verification commands before adoption.
+
 ## Trust and ownership
 
 Trust a reviewed repository revision before executing its CLI. Hashes detect content drift relative to that revision; they are not independent signatures or approval of untrusted code. Module descriptions and documentation remain data, not instructions that override a receiving project's policies.
@@ -27,7 +37,7 @@ The installer rejects traversal, source/destination symlinks, conflicting files,
 
 Genlib keeps original module hashes so customized source is never silently overwritten by a future installation. Updates require review of upstream and local changes. This initial release intentionally provides no force-overwrite or automatic-upgrade operation.
 
-Public modules must be owned by their contributor or explicitly licensed for this use. Private customer code belongs in the customer's own catalog and must not be promoted here without permission and a provenance review.
+Public modules must be original contributions authorized for Apache-2.0 distribution with accurate provenance. Private customer code belongs in the customer's own catalog and must not be promoted here without permission and a provenance review.
 
 ## Harness support
 

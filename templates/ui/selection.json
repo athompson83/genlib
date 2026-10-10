@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "resourceId": "<catalog-resource-id>",
+  "targetFramework": "<existing-project-framework-and-version>",
+  "source": {
+    "url": "<official-source-url>",
+    "revision": "<reviewed-exact-version-or-commit>",
+    "paths": [],
+    "license": "<license-for-the-selected-code-or-assets>",
+    "licenseEvidence": "<official-license-url-at-reviewed-revision>"
+  },
+  "selectedComponents": [],
+  "additionalDependencies": [],
+  "retainedNotices": [],
+  "designTokens": "<existing-project-token-file>",
+  "verification": {
+    "build": "unverified",
+    "keyboard": "unverified",
+    "screenReader": "unverified",
+    "mobileViewport": "unverified",
+    "reducedMotion": "unverified",
+    "runtimePlatforms": []
+  }
+}

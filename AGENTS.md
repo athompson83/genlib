@@ -14,6 +14,10 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - Keep changes scoped and preserve unrelated work. One writer owns each shared file. Do not edit generated registry or skill mirrors manually.
 - Run `npm run check` and the relevant tests before publishing. Report measured results and limitations; do not invent token-savings percentages.
 - Format example user/agent prompts as JSON. Keep standard skill YAML frontmatter valid.
+- Source-registry modules are original Apache-2.0 code. External resources retain their own licenses; a catalog record does not authorize copying a gallery, paid component, prompt pack or provider content.
+- Query `tools/resources.mjs` for external source selection. Keep source-review status, executable module bindings and live runtime evidence distinct. Update primary-source links and caveats when revising a resource.
+- Keep API clients on the trusted server. Test transport errors, authorization, credential handling and external-effect uncertainty without sending live emails, creating sessions or making purchases as a test.
+- Project templates are opt-in. Preserve receiving-project files and configure real checks; never replace a required verification gate with a successful placeholder command.
 
 ## Repository surfaces
 
@@ -22,5 +26,9 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - `bin/` and `lib/`: deterministic discovery, planning, installation, and verification.
 - `skills/genlib-use/`: canonical cross-harness skill; `.agents/skills/` and `.claude/skills/` are generated mirrors.
 - `tests/`: CLI safety, integration, and module behavior tests.
+- `resources/`: reviewed external sources, attachment mapping, licensing and UI-library selection metadata.
+- `tools/resources.mjs`: dependency-free, read-only source discovery and validation.
+- `templates/`: GitHub configuration, documentation and UI selection records for deliberate project adoption.
+- `docs/best-practices/`: GitHub, README/docs, API and UI integration guidance.
 
-Genlib 0.1 uses a deliberately narrow React/TypeScript web compatibility family plus framework-neutral utilities. Record unsupported stacks clearly rather than claiming universal compatibility.
+Genlib uses a deliberately narrow React/TypeScript web compatibility family, framework-neutral utilities, and explicit server-side HTTPS API clients for Node 22+. Record unsupported stacks clearly rather than claiming universal compatibility. External resource metadata does not expand a module's runtime compatibility.

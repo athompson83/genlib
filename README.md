@@ -4,11 +4,11 @@
 
 Genlib lets a coding agent search compact descriptions, inspect a feature's integration contract, and copy reviewed source into an application. The agent can then concentrate on the project's data, behavior, permissions, and appearance instead of generating the same implementation again. The installed source belongs in the receiving application's normal development workflow and remains editable.
 
-The first release contains five original Apache-2.0 modules, a local CLI, integrity and provenance records, and a portable `genlib-use` skill. It is usable independently of Genisys. No hosted service, model API, paid account, or MCP server is required. Token savings are a goal to measure against completed, accepted features; this release does not claim a savings percentage.
+The library contains six original Apache-2.0 modules, a local CLI, integrity and provenance records, a portable `genlib-use` skill, and a reviewed external-resource catalog with project templates. Genlib itself is usable independently of Genisys and requires no hosted service, model API, paid account or MCP server. Calling an optional provider client requires that provider's authorized configuration. Token savings are a goal to measure against completed, accepted features; this release does not claim a savings percentage.
 
 ## Included modules
 
-All five modules are version `0.1.0`. Their `tested` status means the repository's relevant behavior checks pass; it does not certify a consuming application's integration.
+All six modules are version `0.1.0`. Their `tested` status means the repository's relevant behavior checks pass; it does not certify a consuming application's integration or live provider connection.
 
 | Module | Included behavior | Application responsibilities |
 | --- | --- | --- |
@@ -17,8 +17,31 @@ All five modules are version `0.1.0`. Their `tested` status means the repository
 | [`data-table`](modules/data-table/CONTRACT.md) | Typed React table with client-side search, stable sorting, pagination, and empty states | Supply already-authorized rows, columns, stable IDs, and custom rendering; use a separate design for large server-queried datasets |
 | [`validated-form`](modules/validated-form/CONTRACT.md) | React form state, injected validation/submission, error summary, busy state, and duplicate-submit protection | Render fields, provide validators and submission adapters, and enforce validation and authorization on the server |
 | [`notification-preferences`](modules/notification-preferences/CONTRACT.md) | Preference form, strict TypeScript domain validation, Fetch client, and a Request/Response handler with revision conflicts | Configure types/channels, authenticated identity and tenant authorization, allowed origins, and durable atomic persistence; connect actual notification delivery separately |
+| [`common-api-clients`](modules/common-api-clients/CONTRACT.md) | Server-side HTTP transport and clients for GitHub, Stripe, Resend, Supabase, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor and Steel | Configure trusted credentials, endpoint/API versions, authorization, scopes, spending and live acceptance; install only into a server package |
 
 `app-shell`, `data-table`, and `validated-form` depend on `theme-tokens`; the installer resolves and copies that exact local dependency automatically. Import the CSS files described in each contract. Installing files does not edit the application's imports or connect its services.
+
+## Resources and best practices
+
+The [resource catalog](docs/resources/README.md) includes **25 resources from the ten uploaded images** and **18 additional UI foundations**. Each record carries primary-source links, license scope, platform fit, reuse guidance and review limits. The [attachment review](docs/resources/attachment-review.md) maps every image to the named resources. Source references are distinct from Genlib code and do not imply the external packages or services are installed.
+
+```sh
+node tools/resources.mjs search dropdown --platform web --mode package --limit 5 --json
+node tools/resources.mjs search icons --license MIT --limit 5 --json
+node tools/resources.mjs inspect mapcn --json
+node tools/resources.mjs inspect steel-browser --json
+node tools/resources.mjs validate --json
+```
+
+| Section | Reusable contents |
+| --- | --- |
+| [GitHub setup and filtering](docs/best-practices/github-setup.md) | Folder conventions, Git ignores/attributes, partial/sparse checkout, search filters, ownership, dependency updates and path-aware CI |
+| [README and docs setup](docs/best-practices/readme-and-docs.md) | README, architecture, contributing/security, API reference, decision records, deployment/rollback and verification templates |
+| [Common APIs with code](docs/best-practices/common-apis.md) | Installable provider clients, required configuration, authorization boundaries, idempotency and local usage examples |
+| [Commerce and browser APIs](docs/best-practices/commerce-and-browser.md) | Saleor catalog queries and Steel session lifecycle with failure/recovery contracts |
+| [UI libraries](docs/best-practices/ui-libraries.md) | Sources for icons, buttons, navigation, menus, dropdowns, dialogs, forms, tables, maps, motion and platform-specific controls |
+
+Templates live under [`templates/`](templates) and are inactive until deliberately adopted. They require project-specific values and actual verification commands; they do not modify repository settings or replace existing files. The Claude/Codex skill routes agents to these sources with small, filtered reads. See [the addition's verification record](docs/RESOURCE_UPDATE_VALIDATION.md).
 
 ## Requirements and scope
 
@@ -26,6 +49,7 @@ All five modules are version `0.1.0`. Their `tested` status means the repository
 - **React modules:** The target's existing **React 18 or 19**, TypeScript/TSX tooling, and a browser application. They do not supply a React installation or native mobile components.
 - **Theme tokens:** Framework-neutral CSS, usable without React.
 - **Notification server adapter:** Standard Fetch `Request`/`Response` APIs, tested with Node 22+. The receiving framework owns route registration and its authorization and database adapters.
+- **Common API clients:** TypeScript with Fetch, streams, AbortController and Web Crypto on a trusted Node 22+ server. No runtime packages or automatic credential discovery. These are explicit calls, not OAuth/SSO provisioning or native application adapters.
 
 This repository is currently consumed from source, not as a published npm package. Each checkout exposes one selected version per module. Pin the reviewed Git commit to reproduce that catalog and its source.
 
@@ -110,7 +134,7 @@ See [harness setup](docs/harnesses.md) for discovery details, personal versus pr
 
 ## Safe reuse and updates
 
-Genlib rejects unsafe paths, symlinks, integrity failures, and conflicting files. Recognized incompatible React versions, React Native targets, and another declared UI framework without React are rejected. `--allow-unverified` is only for missing or unrecognized compatibility after an independent project check; it does not override a recognized mismatch or bypass integrity and overwrite protection.
+Genlib rejects unsafe paths, symlinks, integrity failures, and conflicting files. For React modules, recognized incompatible React versions, React Native targets, and another declared UI framework without React are rejected. `--allow-unverified` is only for missing or unrecognized compatibility after an independent project check; it does not override a recognized mismatch or bypass integrity and overwrite protection.
 
 Re-running `add` is idempotent for an unchanged, recorded installation. Existing untracked source, customized files, changed module manifests, and another recorded version or output location require explicit review. There is no force-overwrite or automatic-upgrade command. Retain `.genlib/lock.json` and the installed notices in version control, inspect upstream and local changes, and perform a deliberate migration when updating.
 
@@ -128,7 +152,7 @@ npm ci --ignore-scripts
 npm run check
 ```
 
-`check` verifies generated registry freshness and skill mirrors, compiles TypeScript, and runs the test suite. When modifying authored modules or the canonical skill, regenerate the relevant artifacts before checking:
+`check` verifies generated registry freshness, skill mirrors and resource catalog bindings, compiles TypeScript, and runs the test suite. When modifying authored modules or the canonical skill, regenerate the relevant artifacts before checking:
 
 ```sh
 npm run registry:build

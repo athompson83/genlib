@@ -55,7 +55,7 @@ function mirror(directory, harness) {
 
 test('portable skill instructions and display prompt contain valid JSON', () => {
   const files = contents(canonical);
-  for (const name of ['SKILL.md', 'references/bootstrap.md', 'references/cli.md']) {
+  for (const name of ['SKILL.md', 'references/bootstrap.md', 'references/cli.md', 'references/resources.md']) {
     const blocks = [...files[name].matchAll(/```json\n([\s\S]*?)\n```/g)];
     assert.ok(blocks.length > 0, `JSON instructions exist in ${name}`);
     for (const block of blocks) assert.doesNotThrow(() => JSON.parse(block[1]), name);
@@ -63,7 +63,7 @@ test('portable skill instructions and display prompt contain valid JSON', () => 
   const yamlValue = files['agents/openai.yaml'].match(/default_prompt: (.+)/)[1];
   const prompt = JSON.parse(JSON.parse(yamlValue));
   assert.match(prompt.task, /\$genlib-use/);
-  for (const relative of ['references/bootstrap.md', 'references/cli.md']) {
+  for (const relative of ['references/bootstrap.md', 'references/cli.md', 'references/resources.md']) {
     assert.ok(Object.hasOwn(files, relative), `${relative} travels with the skill`);
   }
 });

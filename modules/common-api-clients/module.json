@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "id": "common-api-clients",
+  "version": "0.1.0",
+  "title": "Common API clients",
+  "description": "Server-only TypeScript clients for GitHub, Stripe Checkout, Resend, Supabase reads, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor catalog reads, and Steel sessions with explicit credentials and bounded HTTP transport.",
+  "kind": "utility",
+  "tags": ["api", "http", "github", "stripe", "resend", "supabase", "microsoft-graph", "google-calendar", "openai", "anthropic", "saleor", "steel", "server", "integrations"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/common-api-clients"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and a server runtime with standard Fetch, AbortController, streams, TextEncoder, and TextDecoder; Node.js 22+ is the supported baseline.",
+      "No runtime packages, environment reads, OAuth flows, account setup, or live connections occur at install/import time.",
+      "Keep credentialed clients and their injected resolvers in server-only code; this module is not a browser bundle or a native credential vault.",
+      "Provider models, versions, scopes, tenant policy, billing limits, data schemas, and live integration acceptance belong to the consuming application."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/http.ts", "target": "common-api-clients/http.ts" },
+    { "source": "files/github.ts", "target": "common-api-clients/github.ts" },
+    { "source": "files/stripe.ts", "target": "common-api-clients/stripe.ts" },
+    { "source": "files/resend.ts", "target": "common-api-clients/resend.ts" },
+    { "source": "files/supabase.ts", "target": "common-api-clients/supabase.ts" },
+    { "source": "files/microsoft-graph.ts", "target": "common-api-clients/microsoft-graph.ts" },
+    { "source": "files/google-calendar.ts", "target": "common-api-clients/google-calendar.ts" },
+    { "source": "files/ai-core.ts", "target": "common-api-clients/ai-core.ts" },
+    { "source": "files/openai.ts", "target": "common-api-clients/openai.ts" },
+    { "source": "files/anthropic.ts", "target": "common-api-clients/anthropic.ts" },
+    { "source": "files/saleor.ts", "target": "common-api-clients/saleor.ts" },
+    { "source": "files/steel-browser.ts", "target": "common-api-clients/steel-browser.ts" }
+  ],
+  "exports": [
+    { "name": "createHttpClient", "from": "common-api-clients/http.ts" },
+    { "name": "ApiClientError", "from": "common-api-clients/http.ts" },
+    { "name": "createGitHubClient", "from": "common-api-clients/github.ts" },
+    { "name": "createStripeCheckoutClient", "from": "common-api-clients/stripe.ts" },
+    { "name": "createResendClient", "from": "common-api-clients/resend.ts" },
+    { "name": "createSupabaseReadClient", "from": "common-api-clients/supabase.ts" },
+    { "name": "createMicrosoftGraphClient", "from": "common-api-clients/microsoft-graph.ts" },
+    { "name": "createGoogleCalendarClient", "from": "common-api-clients/google-calendar.ts" },
+    { "name": "createOpenAIClient", "from": "common-api-clients/openai.ts" },
+    { "name": "createAnthropicClient", "from": "common-api-clients/anthropic.ts" },
+    { "name": "createSaleorClient", "from": "common-api-clients/saleor.ts" },
+    { "name": "createSteelBrowserClient", "from": "common-api-clients/steel-browser.ts" },
+    { "name": "SteelCleanupError", "from": "common-api-clients/steel-browser.ts" }
+  ],
+  "configuration": [
+    "Inject trusted token resolvers and Fetch configuration; never copy request headers, request JSON, user URLs, or client-supplied identity into client configuration.",
+    "GitHub, Stripe, and Anthropic require an explicit supported API version; AI adapters also require a configured model and output token limit.",
+    "Stripe requires approved server price mappings, return URLs, an order authorization callback, and a persisted idempotency key per attempt.",
+    "Resend requires a verified server-owned sender, exact recipient/content authorization, and a persisted idempotency key per delivery event.",
+    "Supabase requires a project HTTPS origin, publishable key, caller user token, and table/column allowlists; enable and test RLS in the target database.",
+    "Graph requires a delegated Graph token; Calendar requires allowed calendar IDs and explicit time bounds; these clients do not obtain or refresh OAuth tokens.",
+    "Model calls require a mandatory application authorization callback; check tenant, data disclosure, and budget before allowing each paid call.",
+    "Saleor requires a trusted GraphQL endpoint; Steel requires explicit authority for each session operation and careful handling of server-only connection URLs."
+  ],
+  "capabilities": [
+    "bounded-https-json-transport", "github-repository-read-list", "stripe-hosted-checkout-create",
+    "resend-transactional-email", "supabase-rls-user-read", "microsoft-graph-me",
+    "google-calendar-event-page", "openai-text-response", "anthropic-text-message",
+    "saleor-catalog-query", "steel-session-lifecycle"
+  ],
+  "limitations": [
+    "An API client does not provision SSO, connect user accounts, refresh tokens, create services, or grant spending authority.",
+    "No retries, durable idempotency store, webhook receiver, signature verification, email delivery reconciliation, billing entitlement processing, or job queue is included.",
+    "The transport enforces an exact trusted HTTPS origin, not DNS/IP egress isolation. The receiving environment must restrict outbound destinations and use a standards-compliant Fetch implementation.",
+    "Only the documented operations are implemented. Supabase service-role reads, Stripe custom Checkout domains, streaming AI/tools, full calendar synchronization, Saleor checkout, and browser navigation are outside this module.",
+    "Tests replace only the outbound HTTP boundary and make no live calls. Provider credentials, current permissions, database policies, actual payments/delivery, and deployed behavior remain unverified."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/common-api-clients.test.mjs", "tests/commerce-browser.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}

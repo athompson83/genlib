@@ -1,0 +1,953 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "lucide",
+      "name": "Lucide",
+      "category": "icons",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "ISC AND MIT",
+        "url": "https://lucide.dev/license",
+        "scope": "ISC for Lucide; retain the additional MIT notice for Feather-derived icons."
+      },
+      "homepage": "https://lucide.dev",
+      "repository": "https://github.com/lucide-icons/lucide",
+      "docs": "https://lucide.dev/guide/",
+      "summary": "Consistent interface icons with framework packages and direct SVG assets.",
+      "useWhen": "Use one icon family for navigation, buttons, status and forms.",
+      "cautions": [
+        "Import only selected icons and preserve both applicable notices; decorative icons need hidden semantics."
+      ],
+      "tags": [
+        "icons",
+        "svg",
+        "react",
+        "vue",
+        "native"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lucide-icons/lucide",
+          "title": "Lucide upstream source and license"
+        },
+        {
+          "url": "https://lucide.dev/license",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "heroicons",
+      "name": "Heroicons",
+      "category": "icons",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tailwindlabs/heroicons/blob/master/LICENSE",
+        "scope": "MIT for the repository icon code."
+      },
+      "homepage": "https://heroicons.com",
+      "repository": "https://github.com/tailwindlabs/heroicons",
+      "docs": "https://github.com/tailwindlabs/heroicons#usage",
+      "summary": "Outline and solid SVG interface icons with React and Vue bindings.",
+      "useWhen": "Use with Tailwind-based applications that need a coherent outline/solid set.",
+      "cautions": [
+        "An icon-only button still needs an accessible name; do not bundle the full collection."
+      ],
+      "tags": [
+        "icons",
+        "svg",
+        "react",
+        "vue",
+        "tailwind"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tailwindlabs/heroicons",
+          "title": "Heroicons upstream source and license"
+        },
+        {
+          "url": "https://github.com/tailwindlabs/heroicons/blob/master/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "tabler-icons",
+      "name": "Tabler Icons",
+      "category": "icons",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tabler/tabler-icons/blob/main/LICENSE",
+        "scope": "MIT for Tabler icon assets and code."
+      },
+      "homepage": "https://tabler.io/icons",
+      "repository": "https://github.com/tabler/tabler-icons",
+      "docs": "https://docs.tabler.io/icons",
+      "summary": "SVG icon library with framework bindings and configurable stroke.",
+      "useWhen": "Use for broad administrative and product icon coverage.",
+      "cautions": [
+        "Import selected icons and check small-size legibility."
+      ],
+      "tags": [
+        "icons",
+        "svg",
+        "react",
+        "vue"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tabler/tabler-icons",
+          "title": "Tabler Icons upstream source and license"
+        },
+        {
+          "url": "https://github.com/tabler/tabler-icons/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "radix-primitives",
+      "name": "Radix Primitives",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/radix-ui/primitives/blob/main/LICENSE",
+        "scope": "MIT for the open-source primitives."
+      },
+      "homepage": "https://www.radix-ui.com/primitives",
+      "repository": "https://github.com/radix-ui/primitives",
+      "docs": "https://www.radix-ui.com/primitives/docs/overview/introduction",
+      "summary": "Unstyled React interaction primitives for custom design systems.",
+      "useWhen": "Use for menus, selects, dialogs and popovers when the project owns styling.",
+      "cautions": [
+        "Keep focus, keyboard, portal and accessible-label behavior when wrapping primitives."
+      ],
+      "tags": [
+        "react",
+        "dropdown",
+        "menu",
+        "dialog",
+        "select",
+        "popover",
+        "tabs",
+        "headless"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/radix-ui/primitives",
+          "title": "Radix Primitives upstream source and license"
+        },
+        {
+          "url": "https://github.com/radix-ui/primitives/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "base-ui",
+      "name": "Base UI",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mui/base-ui/blob/master/LICENSE",
+        "scope": "MIT for the Base UI repository; distinct from paid MUI products."
+      },
+      "homepage": "https://base-ui.com",
+      "repository": "https://github.com/mui/base-ui",
+      "docs": "https://base-ui.com/react/overview/quick-start",
+      "summary": "Unstyled React components for application controls and overlays.",
+      "useWhen": "Use when the target design system selects Base UI as its interaction foundation.",
+      "cautions": [
+        "Check the selected package release and API; do not mix multiple menu/focus engines without a reason."
+      ],
+      "tags": [
+        "react",
+        "dropdown",
+        "menu",
+        "select",
+        "combobox",
+        "dialog",
+        "headless"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mui/base-ui",
+          "title": "Base UI upstream source and license"
+        },
+        {
+          "url": "https://github.com/mui/base-ui/blob/master/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "react-aria",
+      "name": "React Aria Components",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/adobe/react-spectrum/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the source repository; retain applicable notices."
+      },
+      "homepage": "https://react-spectrum.adobe.com/react-aria/",
+      "repository": "https://github.com/adobe/react-spectrum",
+      "docs": "https://react-spectrum.adobe.com/react-aria/components.html",
+      "summary": "Accessible, customizable React controls with internationalization support.",
+      "useWhen": "Use when complex input behavior and accessible interactions are central requirements.",
+      "cautions": [
+        "The application still supplies labels, error messages, design tokens and acceptance tests."
+      ],
+      "tags": [
+        "react",
+        "accessibility",
+        "dropdown",
+        "menu",
+        "combobox",
+        "datepicker",
+        "select"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/adobe/react-spectrum",
+          "title": "React Aria Components upstream source and license"
+        },
+        {
+          "url": "https://github.com/adobe/react-spectrum/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "headless-ui",
+      "name": "Headless UI",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tailwindlabs/headlessui/blob/main/LICENSE",
+        "scope": "MIT for the open-source React and Vue components."
+      },
+      "homepage": "https://headlessui.com",
+      "repository": "https://github.com/tailwindlabs/headlessui",
+      "docs": "https://headlessui.com/react/menu",
+      "summary": "Unstyled interactive components for React and Vue applications.",
+      "useWhen": "Use when the project already follows the Headless UI and Tailwind approach.",
+      "cautions": [
+        "React and Vue component APIs differ; use the correct documentation and installed version."
+      ],
+      "tags": [
+        "react",
+        "vue",
+        "tailwind",
+        "dropdown",
+        "menu",
+        "listbox",
+        "combobox",
+        "dialog"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tailwindlabs/headlessui",
+          "title": "Headless UI upstream source and license"
+        },
+        {
+          "url": "https://github.com/tailwindlabs/headlessui/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "mantine",
+      "name": "Mantine",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mantinedev/mantine/blob/master/LICENSE",
+        "scope": "MIT for the open-source library."
+      },
+      "homepage": "https://mantine.dev",
+      "repository": "https://github.com/mantinedev/mantine",
+      "docs": "https://mantine.dev/getting-started/",
+      "summary": "Comprehensive styled React UI, hooks and form tools.",
+      "useWhen": "Keep it when an existing application uses Mantine, or choose it for a cohesive administrative UI.",
+      "cautions": [
+        "Configure the provider/styles once; avoid importing a second complete design system for one control."
+      ],
+      "tags": [
+        "react",
+        "button",
+        "forms",
+        "dropdown",
+        "menu",
+        "select",
+        "table",
+        "dashboard"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mantinedev/mantine",
+          "title": "Mantine upstream source and license"
+        },
+        {
+          "url": "https://github.com/mantinedev/mantine/blob/master/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "material-ui",
+      "name": "Material UI",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mui/material-ui/blob/master/LICENSE",
+        "scope": "MIT for Material UI core. MUI X Pro/Premium and commercial templates have separate terms."
+      },
+      "homepage": "https://mui.com/material-ui/",
+      "repository": "https://github.com/mui/material-ui",
+      "docs": "https://mui.com/material-ui/getting-started/",
+      "summary": "React components implementing Material Design.",
+      "useWhen": "Use for a Material-based product or an existing MUI codebase.",
+      "cautions": [
+        "A free core component does not grant a license to premium data grids, date tools or templates."
+      ],
+      "tags": [
+        "react",
+        "material",
+        "button",
+        "dropdown",
+        "menu",
+        "select",
+        "forms"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mui/material-ui",
+          "title": "Material UI upstream source and license"
+        },
+        {
+          "url": "https://github.com/mui/material-ui/blob/master/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "react-native-paper",
+      "name": "React Native Paper",
+      "category": "ui-components",
+      "platforms": [
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/callstack/react-native-paper/blob/main/LICENSE.md",
+        "scope": "MIT for the native component source."
+      },
+      "homepage": "https://reactnativepaper.com",
+      "repository": "https://github.com/callstack/react-native-paper",
+      "docs": "https://oss.callstack.com/react-native-paper/docs/guides/getting-started",
+      "summary": "Material-style native React Native controls.",
+      "useWhen": "Use for Expo or React Native applications needing native buttons, menus, dialogs and form controls.",
+      "cautions": [
+        "Check Expo/React Native peer requirements; browser DOM component tests do not prove device behavior."
+      ],
+      "tags": [
+        "native",
+        "mobile",
+        "android",
+        "ios",
+        "button",
+        "menu",
+        "forms"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/callstack/react-native-paper",
+          "title": "React Native Paper upstream source and license"
+        },
+        {
+          "url": "https://github.com/callstack/react-native-paper/blob/main/LICENSE.md",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "reka-ui",
+      "name": "Reka UI",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/unovue/reka-ui/blob/main/LICENSE",
+        "scope": "MIT for the Vue primitives."
+      },
+      "homepage": "https://reka-ui.com",
+      "repository": "https://github.com/unovue/reka-ui",
+      "docs": "https://reka-ui.com/docs/overview/introduction",
+      "summary": "Unstyled interaction primitives for Vue, formerly Radix Vue.",
+      "useWhen": "Use for a custom Vue design system.",
+      "cautions": [
+        "Use Vue-specific integration and test keyboard/focus behavior after customization."
+      ],
+      "tags": [
+        "vue",
+        "nuxt",
+        "dropdown",
+        "menu",
+        "select",
+        "combobox",
+        "headless"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/unovue/reka-ui",
+          "title": "Reka UI upstream source and license"
+        },
+        {
+          "url": "https://github.com/unovue/reka-ui/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "nuxt-ui",
+      "name": "Nuxt UI",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nuxt/ui/blob/v4/LICENSE.md",
+        "scope": "MIT for the reviewed public repository; independently check third-party templates and assets."
+      },
+      "homepage": "https://ui.nuxt.com",
+      "repository": "https://github.com/nuxt/ui",
+      "docs": "https://ui.nuxt.com/docs/getting-started",
+      "summary": "Vue UI system built with Reka UI and Tailwind.",
+      "useWhen": "Use in a Nuxt/Vue project that needs a consistent styled system.",
+      "cautions": [
+        "Choose the release matching the application toolchain and follow its installation guide."
+      ],
+      "tags": [
+        "vue",
+        "nuxt",
+        "tailwind",
+        "button",
+        "dropdown",
+        "menu",
+        "select",
+        "forms"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nuxt/ui",
+          "title": "Nuxt UI upstream source and license"
+        },
+        {
+          "url": "https://github.com/nuxt/ui/blob/v4/LICENSE.md",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "fluent-ui",
+      "name": "Fluent UI React",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/fluentui/blob/master/LICENSE",
+        "scope": "Repository code is MIT; referenced fonts and icons use a separate assets license."
+      },
+      "homepage": "https://react.fluentui.dev",
+      "repository": "https://github.com/microsoft/fluentui",
+      "docs": "https://react.fluentui.dev",
+      "summary": "Microsoft Fluent web components and React controls.",
+      "useWhen": "Use for products that intentionally follow the Fluent design language.",
+      "cautions": [
+        "Select one supported generation; review the separate font/icon assets agreement."
+      ],
+      "tags": [
+        "react",
+        "enterprise",
+        "button",
+        "dropdown",
+        "menu",
+        "combobox",
+        "select"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/fluentui",
+          "title": "Fluent UI React upstream source and license"
+        },
+        {
+          "url": "https://github.com/microsoft/fluentui/blob/master/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "bootstrap",
+      "name": "Bootstrap",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/twbs/bootstrap/blob/main/LICENSE",
+        "scope": "MIT for code; documentation licensing is separate."
+      },
+      "homepage": "https://getbootstrap.com",
+      "repository": "https://github.com/twbs/bootstrap",
+      "docs": "https://getbootstrap.com/docs/5.3/getting-started/introduction/",
+      "summary": "CSS and JavaScript components for framework-light web applications.",
+      "useWhen": "Use when a server-rendered or existing Bootstrap site needs conventional controls.",
+      "cautions": [
+        "Load required JavaScript for interactive controls; preserve semantic HTML and avoid incompatible framework wrappers."
+      ],
+      "tags": [
+        "html",
+        "css",
+        "javascript",
+        "button",
+        "dropdown",
+        "menu",
+        "forms"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/twbs/bootstrap",
+          "title": "Bootstrap upstream source and license"
+        },
+        {
+          "url": "https://github.com/twbs/bootstrap/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "shoelace",
+      "name": "Shoelace (legacy)",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/shoelace-style/shoelace/blob/next/LICENSE.md",
+        "scope": "MIT for the existing codebase, which upstream has sunset."
+      },
+      "homepage": "https://shoelace.style",
+      "repository": "https://github.com/shoelace-style/shoelace",
+      "docs": "https://shoelace.style",
+      "summary": "Legacy web component library; upstream directs new development to Web Awesome.",
+      "useWhen": "Use as a migration/reference source for existing Shoelace applications.",
+      "cautions": [
+        "Upstream states there is no active development. Evaluate the successor for new applications."
+      ],
+      "tags": [
+        "web-components",
+        "legacy",
+        "migration",
+        "dropdown",
+        "menu"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/shoelace-style/shoelace",
+          "title": "Shoelace (legacy) upstream source and license"
+        },
+        {
+          "url": "https://github.com/shoelace-style/shoelace/blob/next/LICENSE.md",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Inspect existing usage and the upstream migration guidance before adopting new code."
+      ]
+    },
+    {
+      "id": "web-awesome",
+      "name": "Web Awesome",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/shoelace-style/webawesome/blob/next/LICENSE.md",
+        "scope": "MIT for the public free package. Pro features and commercial assets have separate terms."
+      },
+      "homepage": "https://webawesome.com",
+      "repository": "https://github.com/shoelace-style/webawesome",
+      "docs": "https://webawesome.com/docs/",
+      "summary": "Framework-independent web components, the successor to Shoelace.",
+      "useWhen": "Use when standards-based custom elements suit a mixed-framework product.",
+      "cautions": [
+        "Verify Shadow DOM theming, server rendering and free/Pro boundaries for the chosen package."
+      ],
+      "tags": [
+        "web-components",
+        "html",
+        "button",
+        "dropdown",
+        "menu",
+        "select"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/shoelace-style/webawesome",
+          "title": "Web Awesome upstream source and license"
+        },
+        {
+          "url": "https://github.com/shoelace-style/webawesome/blob/next/LICENSE.md",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "tanstack-table",
+      "name": "TanStack Table",
+      "category": "data-ui",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TanStack/table/blob/main/LICENSE",
+        "scope": "MIT for the table engine and framework adapters."
+      },
+      "homepage": "https://tanstack.com/table",
+      "repository": "https://github.com/TanStack/table",
+      "docs": "https://tanstack.com/table/latest/docs/introduction",
+      "summary": "Headless table state and row-model engine with multiple framework adapters.",
+      "useWhen": "Use for sophisticated table behavior when styling and data fetching remain application-owned.",
+      "cautions": [
+        "It does not automatically supply accessible table markup, server authorization or virtualization."
+      ],
+      "tags": [
+        "react",
+        "vue",
+        "svelte",
+        "solid",
+        "table",
+        "sorting",
+        "pagination"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TanStack/table",
+          "title": "TanStack Table upstream source and license"
+        },
+        {
+          "url": "https://github.com/TanStack/table/blob/main/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    },
+    {
+      "id": "storefront-ui",
+      "name": "Storefront UI",
+      "category": "ui-components",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vuestorefront/storefront-ui/blob/v2-develop/LICENSE",
+        "scope": "MIT for Storefront UI. This is not a blanket license for Alokai services or integrations."
+      },
+      "homepage": "https://storefrontui.io",
+      "repository": "https://github.com/vuestorefront/storefront-ui",
+      "docs": "https://docs.storefrontui.io/v2/",
+      "summary": "React and Vue components designed for ecommerce storefronts.",
+      "useWhen": "Use for product cards, navigation, cart and storefront layouts around a separate commerce backend.",
+      "cautions": [
+        "Configure its supported Tailwind setup; authenticate all checkout/order effects in a trusted service."
+      ],
+      "tags": [
+        "react",
+        "vue",
+        "commerce",
+        "button",
+        "dropdown",
+        "menu",
+        "product",
+        "cart"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vuestorefront/storefront-ui",
+          "title": "Storefront UI upstream source and license"
+        },
+        {
+          "url": "https://github.com/vuestorefront/storefront-ui/blob/v2-develop/LICENSE",
+          "title": "Selected code license scope"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ]
+    }
+  ]
+}
