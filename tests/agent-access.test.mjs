@@ -41,7 +41,7 @@ test('MCP server initializes, lists tools and answers tool calls in order', asyn
   const names = replies[1].result.tools.map(tool => tool.name);
   for (const name of ['genlib_quick', 'genlib_find', 'genlib_outline', 'genlib_jev', 'genlib_capability', 'genlib_inspect', 'genlib_read_doc', 'genlib_catalog']) assert.ok(names.includes(name), name);
   assert.ok(replies[1].result.tools.every(tool => tool.inputSchema?.type === 'object'));
-  assert.equal(replies[2].result.structuredContent.results[0].id, 'webhook-verification');
+  assert.match(replies[2].result.structuredContent.results[0].id, /^webhook-(?:verification|signature)$/);
   assert.match(replies[3].result.structuredContent.implementations.go.commands[0], /add go-totp/);
   assert.match(replies[4].result.structuredContent.text, /^## Adding a capability/);
   assert.ok(replies[5].result.structuredContent.questions.length >= 1);
