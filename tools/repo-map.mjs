@@ -13,8 +13,8 @@ for(const path of tracked){
  if(!accepted.has(extname(path))||path.startsWith('.genlib/')||path.startsWith('node_modules/'))continue;
  let body;try{body=readFileSync(path,'utf8')}catch{continue}
  if(body.length>500000)continue;
- const symbols=[...body.matchAll(/(?:export\\s+)?(?:async\\s+)?(?:function|class|interface|type|const|def)\\s+([A-Za-z_$][\\w$]*)/g)].map(x=>x[1]).slice(0,80);
- const imports=[...body.matchAll(/(?:from\\s*|import\\s*\\(|require\\s*\\()\\s*['"]([^'"]+)['"]/g)].map(x=>x[1]).slice(0,80);
+ const symbols=[...body.matchAll(/(?:export\s+)?(?:async\s+)?(?:function|class|interface|type|const|def)\s+([A-Za-z_$][\w$]*)/g)].map(x=>x[1]).slice(0,80);
+ const imports=[...body.matchAll(/(?:from\s*|import\s*\(|require\s*\()\s*['"]([^'"]+)['"]/g)].map(x=>x[1]).slice(0,80);
  index.push({path,sha256:createHash('sha256').update(body).digest('hex'),symbols,imports});
 }
 index.sort((a,b)=>a.path.localeCompare(b.path));
