@@ -1134,6 +1134,101 @@
         "strict-unknown",
         "allow-unknown"
       ]
+    },
+    {
+      "id": "seo-files-sitemap-robots-llms",
+      "kind": "source-example",
+      "path": "examples/recipes/seo-files.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "sitemap",
+        "sitemap.xml",
+        "robots.txt",
+        "robots",
+        "llms.txt",
+        "ai crawlers",
+        "block gptbot",
+        "seo files",
+        "crawler rules",
+        "search engine indexing",
+        "xml sitemap",
+        "llm crawlers"
+      ],
+      "checks": [
+        "Serve the files from the site root with correct content types (application/xml, text/plain)",
+        "robots.txt is advisory; enforce access control on the server",
+        "Keep sitemap lastmod values truthful and split sitemaps above 50,000 URLs",
+        "Review the AI crawler list periodically; vendors add new user agents"
+      ],
+      "variants": [
+        "sitemap",
+        "robots-ai-allow",
+        "robots-ai-disallow",
+        "llms-txt"
+      ]
+    },
+    {
+      "id": "structured-data-json-ld-meta",
+      "kind": "source-example",
+      "path": "examples/recipes/structured-data.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "json-ld",
+        "structured data",
+        "schema.org",
+        "rich results",
+        "open graph",
+        "og tags",
+        "twitter card",
+        "meta tags",
+        "social preview",
+        "canonical url",
+        "seo head tags",
+        "link preview"
+      ],
+      "checks": [
+        "Validate output with a schema.org or rich results testing tool",
+        "Structured data must describe content visible on the page",
+        "Use absolute https URLs for canonical and og:image",
+        "Render once per page server-side; avoid duplicate meta tags from frameworks"
+      ],
+      "variants": [
+        "json-ld-script",
+        "meta-tags",
+        "open-graph",
+        "twitter-card"
+      ]
+    },
+    {
+      "id": "utm-campaign-links",
+      "kind": "source-example",
+      "path": "examples/recipes/utm-links.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "utm",
+        "utm parameters",
+        "campaign url",
+        "campaign links",
+        "tracking parameters",
+        "strip tracking",
+        "gclid",
+        "fbclid",
+        "link builder",
+        "marketing attribution",
+        "clean url",
+        "utm source"
+      ],
+      "checks": [
+        "Agree on a lowercase naming convention for source, medium and campaign",
+        "Strip tracking parameters before storing canonical URLs or sharing links",
+        "Never put personal data in UTM values",
+        "Verify attribution in analytics before reporting results"
+      ],
+      "variants": [
+        "build",
+        "parse",
+        "strip-tracking"
+      ]
     }
   ]
 }

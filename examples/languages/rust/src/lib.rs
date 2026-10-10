@@ -6,7 +6,10 @@ pub mod calculator;
 pub mod form_schema;
 pub mod oidc_pkce;
 pub mod recovery_codes;
+pub mod seo_files;
+pub mod structured_data;
 pub mod totp;
+pub mod utm_links;
 
 pub fn valid_identifier(value: &str, max_len: usize) -> bool {
     max_len > 0 && value.len() <= max_len && !value.is_empty()

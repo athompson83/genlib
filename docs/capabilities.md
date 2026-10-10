@@ -75,6 +75,20 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - Lengths count Unicode code points.
 - Pair it with the UI form modules (`find form`) for client-side rendering. Keep this check on the server.
 
+**seo-files**
+- `sitemapXml` (XML-escaped, 2-space indentation, validated lastmod, changefreq and priority, at most 50,000 URLs), `robotsTxt` and `llmsTxt` ([llmstxt.org](https://llmstxt.org)).
+- `robotsTxt` can append one group that allows or disallows the known AI crawlers (GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, anthropic-ai, Google-Extended, PerplexityBot, CCBot, Bytespider, Applebot-Extended, Meta-ExternalAgent). It rejects newline injection.
+- Output is byte-exact in every language.
+
+**structured-data**
+- `jsonLdScript` writes compact JSON in insertion order and escapes `<`, `>`, `&`, U+2028 and U+2029 as `\u003c`-style escapes, so the script cannot break out of the element.
+- `metaTags` renders title, description, canonical, Open Graph and Twitter card tags with HTML escaping. canonical and image must be absolute https URLs.
+
+**utm-links**
+- `buildUtmUrl` appends `utm_*` in a fixed order. It replaces an existing parameter in place and keeps the fragment.
+- `parseUtm` returns the present values in spec order; the first occurrence wins.
+- `stripTracking` removes `utm_*` and click IDs (gclid, fbclid, msclkid, ttclid and others) while keeping other parameters and their encoding.
+
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types) is noted at the top of each source file.
 
 ## Adding a capability

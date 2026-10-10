@@ -63,6 +63,10 @@ Ranking is lexical, but it is not naive:
 
 Lexical matching can miss related wording. Every source therefore stays reachable through `find`, `--type`, `catalog` and the search index, and the escape path in each packet says so.
 
+## Over MCP
+
+MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`.
+
 ## The search index
 
 `registry/search-index.jsonl` holds one compact JSON line per searchable entry, with these fields:

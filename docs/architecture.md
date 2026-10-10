@@ -39,6 +39,9 @@ flowchart TB
   RES -. "scripts/verify-resources.mjs<br/>(network, maintainers)" .-> NET["Git hosts · npm · PyPI · crates.io"]
   REG & RES --> DOCS["scripts/sync-docs.mjs<br/>README and resource index counts"]
   SIDX -. "grep / own retrieval" .-> JEVX["Genisys Jev and other harnesses"]
+  DISC --> MCPS["bin/genlib-mcp.mjs<br/>MCP tools"] -. "stdio JSON-RPC" .-> JEVX
+  DISC -- "npm run graph:build" --> GRAPH["registry/graph.json<br/>navigation graph"]
+  DISC -- "export-obsidian.mjs" --> VAULT["Obsidian vault<br/>(generated notes only)"]
   JEV -. "genlib jev --json" .-> JEVX
   SKILL["skills/genlib-use"] -- "routes agents to" --> CLI
 ```

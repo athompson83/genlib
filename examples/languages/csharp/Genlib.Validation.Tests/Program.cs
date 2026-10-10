@@ -141,5 +141,70 @@ Eq("form max", "age:[max]", Show(FormSchema.Validate(schema, V(("name", "Al"), (
 Eq("form code points", "name:[minLength]", Show(FormSchema.Validate(schema, V(("name", "Ā"), ("email", "a@b.co")))));
 Eq("form boolean not number", "age:[type]", Show(FormSchema.Validate(schema, V(("name", "Al"), ("email", "a@b.co"), ("age", true)))));
 
+// 6. SEO files
+Eq("sitemap vector", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://example.com/</loc>\n    <lastmod>2026-10-01</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://example.com/a?x=1&amp;y=2</loc>\n  </url>\n</urlset>\n",
+    SeoFiles.SitemapXml(new[] { new SitemapEntry("https://example.com/", "2026-10-01", "weekly", 1), new SitemapEntry("https://example.com/a?x=1&y=2") }));
+Check("sitemap escapes quotes", SeoFiles.SitemapXml(new[] { new SitemapEntry("https://ex.com/'\"<>") }).Contains("<loc>https://ex.com/&apos;&quot;&lt;&gt;</loc>"));
+Check("sitemap priority one decimal", SeoFiles.SitemapXml(new[] { new SitemapEntry("https://ex.com/", Priority: 0.25) }).Contains("<priority>0.3</priority>"));
+Throws<ArgumentException>("sitemap relative loc", () => SeoFiles.SitemapXml(new[] { new SitemapEntry("/a") }));
+Throws<ArgumentException>("sitemap ftp loc", () => SeoFiles.SitemapXml(new[] { new SitemapEntry("ftp://ex.com/") }));
+Throws<ArgumentException>("sitemap bad lastmod", () => SeoFiles.SitemapXml(new[] { new SitemapEntry("https://ex.com/", "2026-13-01") }));
+Throws<ArgumentException>("sitemap bad changefreq", () => SeoFiles.SitemapXml(new[] { new SitemapEntry("https://ex.com/", Changefreq: "often") }));
+Throws<ArgumentException>("sitemap priority > 1", () => SeoFiles.SitemapXml(new[] { new SitemapEntry("https://ex.com/", Priority: 1.5) }));
+Throws<ArgumentException>("sitemap > 50000", () => SeoFiles.SitemapXml(Enumerable.Repeat(new SitemapEntry("https://ex.com/"), 50_001).ToList()));
+var robotRules = new[] { new RobotsRule("*", Disallow: new[] { "/admin" }) };
+Eq("robots vector", "User-agent: *\nDisallow: /admin\n\nUser-agent: GPTBot\nUser-agent: ChatGPT-User\nUser-agent: OAI-SearchBot\nUser-agent: ClaudeBot\nUser-agent: Claude-Web\nUser-agent: anthropic-ai\nUser-agent: Google-Extended\nUser-agent: PerplexityBot\nUser-agent: CCBot\nUser-agent: Bytespider\nUser-agent: Applebot-Extended\nUser-agent: Meta-ExternalAgent\nDisallow: /\n\nSitemap: https://example.com/sitemap.xml\n",
+    SeoFiles.RobotsTxt(robotRules, AiCrawlerPolicy.Disallow, new[] { "https://example.com/sitemap.xml" }));
+Eq("robots default no sitemaps", "User-agent: *\nDisallow: /admin\n", SeoFiles.RobotsTxt(robotRules, AiCrawlerPolicy.Default));
+Check("robots allow AI", SeoFiles.RobotsTxt(robotRules, AiCrawlerPolicy.Allow).EndsWith("User-agent: Meta-ExternalAgent\nAllow: /\n"));
+Eq("robots allow then disallow", "User-agent: Googlebot\nAllow: /public\nDisallow: /*.pdf$\n", SeoFiles.RobotsTxt(new[] { new RobotsRule("Googlebot", new[] { "/public" }, new[] { "/*.pdf$" }) }));
+Throws<ArgumentException>("robots bad path", () => SeoFiles.RobotsTxt(new[] { new RobotsRule("*", Disallow: new[] { "admin" }) }));
+Throws<ArgumentException>("robots newline injection", () => SeoFiles.RobotsTxt(new[] { new RobotsRule("*\nDisallow: /", Disallow: new[] { "/a" }) }));
+Throws<ArgumentException>("robots path newline", () => SeoFiles.RobotsTxt(new[] { new RobotsRule("*", Disallow: new[] { "/a\r\nSitemap: x" }) }));
+Throws<ArgumentException>("robots relative sitemap", () => SeoFiles.RobotsTxt(robotRules, sitemaps: new[] { "/sitemap.xml" }));
+var llmsSections = new[] {
+    new LlmsSection("Docs", new[] { new LlmsLink("Quickstart", "https://acme.dev/start", "Install and launch"), new LlmsLink("API [v2]", "https://acme.dev/api") }),
+    new LlmsSection("Optional", new[] { new LlmsLink("Blog", "https://acme.dev/blog") }),
+};
+Eq("llms vector", "# Acme\n\n> Acme builds rockets.\n\n## Docs\n\n- [Quickstart](https://acme.dev/start): Install and launch\n- [API [v2\\]](https://acme.dev/api)\n\n## Optional\n\n- [Blog](https://acme.dev/blog)\n",
+    SeoFiles.LlmsTxt("Acme", "Acme builds rockets.", llmsSections));
+Throws<ArgumentException>("llms empty title", () => SeoFiles.LlmsTxt("", "s", llmsSections));
+Throws<ArgumentException>("llms relative url", () => SeoFiles.LlmsTxt("Acme", "s", new[] { new LlmsSection("Docs", new[] { new LlmsLink("a", "/a") }) }));
+Throws<ArgumentException>("llms newline", () => SeoFiles.LlmsTxt("Acme", "line1\nline2", llmsSections));
+
+// 7. Structured data
+Eq("json-ld vector", "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"A\\u0026B \\u003c/script\\u003e\",\"url\":\"https://ab.example\",\"sameAs\":[\"https://x.com/ab\"]}</script>",
+    StructuredData.JsonLdScript(new List<KeyValuePair<string, object?>> {
+        new("@context", "https://schema.org"), new("@type", "Organization"), new("name", "A&B </script>"), new("url", "https://ab.example"), new("sameAs", new[] { "https://x.com/ab" }),
+    }));
+Eq("json-ld scalars", "<script type=\"application/ld+json\">{\"n\":3,\"f\":2.5,\"w\":2,\"t\":true,\"z\":null,\"s\":\"q\\\"\\\\\\n\\u2028\\u2029\",\"o\":{\"a\":[]}}</script>",
+    StructuredData.JsonLdScript(new Dictionary<string, object?> { ["n"] = 3, ["f"] = 2.5, ["w"] = 2.0, ["t"] = true, ["z"] = null, ["s"] = "q\"\\\n\u2028\u2029", ["o"] = new Dictionary<string, object?> { ["a"] = new List<object>() } }));
+Throws<ArgumentException>("json-ld NaN", () => StructuredData.JsonLdScript(new Dictionary<string, object?> { ["x"] = double.NaN }));
+Throws<ArgumentException>("json-ld Infinity", () => StructuredData.JsonLdScript(new Dictionary<string, object?> { ["x"] = double.PositiveInfinity }));
+Eq("meta vector", "<title>Tom &amp; &quot;Jerry&quot;</title>\n<meta name=\"description\" content=\"Cat &lt;3 mouse\">\n<link rel=\"canonical\" href=\"https://ex.com/tj\">\n<meta property=\"og:title\" content=\"Tom &amp; &quot;Jerry&quot;\">\n<meta property=\"og:description\" content=\"Cat &lt;3 mouse\">\n<meta property=\"og:url\" content=\"https://ex.com/tj\">\n<meta property=\"og:image\" content=\"https://ex.com/tj.png\">\n<meta property=\"og:site_name\" content=\"Ex\">\n<meta property=\"og:type\" content=\"website\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta name=\"twitter:title\" content=\"Tom &amp; &quot;Jerry&quot;\">\n<meta name=\"twitter:description\" content=\"Cat &lt;3 mouse\">\n<meta name=\"twitter:image\" content=\"https://ex.com/tj.png\">",
+    StructuredData.MetaTags(new MetaTagOptions("Tom & \"Jerry\"", "Cat <3 mouse", "https://ex.com/tj", "https://ex.com/tj.png", "Ex")));
+Eq("meta title only", "<title>T</title>\n<meta property=\"og:title\" content=\"T\">\n<meta property=\"og:type\" content=\"website\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta name=\"twitter:title\" content=\"T\">",
+    StructuredData.MetaTags(new MetaTagOptions("T")));
+Eq("meta title only 5 lines", 5, StructuredData.MetaTags(new MetaTagOptions("T")).Split('\n').Length);
+Throws<ArgumentException>("meta http canonical", () => StructuredData.MetaTags(new MetaTagOptions("T", Canonical: "http://ex.com")));
+Throws<ArgumentException>("meta bad twitter card", () => StructuredData.MetaTags(new MetaTagOptions("T", TwitterCard: "big")));
+Throws<ArgumentException>("meta empty title", () => StructuredData.MetaTags(new MetaTagOptions(" ")));
+
+// 8. UTM links
+Eq("utm build vector 1", "https://ex.com/p?ref=a&utm_source=newsletter&utm_medium=email&utm_campaign=fall%20sale#top",
+    UtmLinks.BuildUtmUrl("https://ex.com/p?ref=a#top", new UtmParameters("Newsletter", "email", "Fall Sale")));
+Eq("utm build vector 2", "https://ex.com/?utm_source=x&utm_medium=y&utm_campaign=z&utm_content=hero%20cta",
+    UtmLinks.BuildUtmUrl("https://ex.com/?utm_source=old", new UtmParameters("x", "y", "z", Content: "Hero CTA")));
+Eq("utm build id first", "https://ex.com/?utm_id=c1&utm_source=a&utm_medium=b&utm_campaign=c&utm_term=t", UtmLinks.BuildUtmUrl("https://ex.com/", new UtmParameters(" A ", "b", "c", "t", Id: "C1")));
+Throws<ArgumentException>("utm missing campaign", () => UtmLinks.BuildUtmUrl("https://ex.com/", new UtmParameters("a", "b", "  ")));
+Throws<ArgumentException>("utm relative base", () => UtmLinks.BuildUtmUrl("/p", new UtmParameters("a", "b", "c")));
+Throws<ArgumentException>("utm javascript base", () => UtmLinks.BuildUtmUrl("javascript:alert(1)", new UtmParameters("a", "b", "c")));
+var parsedUtm = UtmLinks.ParseUtm("https://ex.com/?a=1&utm_campaign=fall%20sale&utm_source=news+letter&utm_source=dup");
+Eq("utm parse vector", "source=news letter;campaign=fall sale", string.Join(";", parsedUtm.ToPairs().Select(p => p.Key + "=" + p.Value)));
+Check("utm parse record", parsedUtm == new UtmParameters(Source: "news letter", Campaign: "fall sale"));
+Eq("utm strip vector 1", "https://ex.com/p?id=7&b=2#s", UtmLinks.StripTracking("https://ex.com/p?id=7&utm_source=x&gclid=abc&b=2#s"));
+Eq("utm strip vector 2", "https://ex.com/", UtmLinks.StripTracking("https://ex.com/?fbclid=1"));
+Eq("utm strip keeps encoding", "https://ex.com/?q=a%20b+c", UtmLinks.StripTracking("https://ex.com/?q=a%20b+c&msclkid=9&_hsenc=x"));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;
