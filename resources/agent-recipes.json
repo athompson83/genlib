@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "storefront-cart",
+      "kind": "source-example",
+      "path": "examples/storefront/cart.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "cart",
+        "quantity",
+        "subtotal",
+        "shopping"
+      ],
+      "checks": [
+        "Server-side price and inventory validation",
+        "Integer minor units",
+        "Currency consistency"
+      ],
+      "variants": [
+        "drawer",
+        "page",
+        "mini-cart"
+      ]
+    },
+    {
+      "id": "storefront-catalog",
+      "kind": "source-example",
+      "path": "examples/storefront/catalog.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "products",
+        "catalog",
+        "filter",
+        "sort",
+        "storefront"
+      ],
+      "checks": [
+        "Authorized product visibility",
+        "Server pagination for large catalogs"
+      ],
+      "variants": [
+        "grid",
+        "list",
+        "search"
+      ]
+    },
+    {
+      "id": "invoice-totals",
+      "kind": "source-example",
+      "path": "examples/storefront/invoice.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "invoice",
+        "tax",
+        "total",
+        "estimate"
+      ],
+      "checks": [
+        "Jurisdiction-specific tax",
+        "Approved rounding policy"
+      ],
+      "variants": [
+        "invoice",
+        "estimate"
+      ]
+    },
+    {
+      "id": "csv-export",
+      "kind": "source-example",
+      "path": "examples/utilities/export.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "export",
+        "csv",
+        "spreadsheet"
+      ],
+      "checks": [
+        "Export authorization",
+        "Spreadsheet formula injection"
+      ],
+      "variants": [
+        "csv"
+      ]
+    },
+    {
+      "id": "upload-preflight",
+      "kind": "source-example",
+      "path": "examples/utilities/files.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "upload",
+        "file",
+        "mime",
+        "size"
+      ],
+      "checks": [
+        "Server-side MIME sniffing",
+        "Malware scanning",
+        "Signed storage URLs"
+      ],
+      "variants": [
+        "single",
+        "multiple"
+      ]
+    },
+    {
+      "id": "ui-primitives",
+      "kind": "structural-example",
+      "path": "examples/ui/Primitives.tsx",
+      "platform": "react",
+      "taskTerms": [
+        "modal",
+        "popup",
+        "disclosure",
+        "header",
+        "footer",
+        "info box"
+      ],
+      "checks": [
+        "Accessible dialog library for production",
+        "Focus management",
+        "Keyboard navigation"
+      ],
+      "variants": [
+        "info",
+        "disclosure",
+        "header",
+        "footer"
+      ]
+    },
+    {
+      "id": "theme-variants",
+      "kind": "source-example",
+      "path": "examples/ui/variants.css",
+      "platform": "css",
+      "taskTerms": [
+        "theme",
+        "dark",
+        "density",
+        "style",
+        "scrollbar"
+      ],
+      "checks": [
+        "Contrast",
+        "Reduced motion"
+      ],
+      "variants": [
+        "light",
+        "dark",
+        "compact",
+        "comfortable"
+      ]
+    },
+    {
+      "id": "formatting",
+      "kind": "source-example",
+      "path": "examples/utilities/formatting.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "currency",
+        "date",
+        "format",
+        "locale"
+      ],
+      "checks": [
+        "Currency minor units",
+        "Time zone"
+      ],
+      "variants": [
+        "money",
+        "date",
+        "count"
+      ]
+    },
+    {
+      "id": "data-table",
+      "kind": "versioned-module",
+      "path": "modules/data-table",
+      "platform": "react",
+      "taskTerms": [
+        "table",
+        "rows",
+        "sort",
+        "search"
+      ],
+      "checks": [
+        "Authorization",
+        "Large-data pagination"
+      ],
+      "variants": [
+        "searchable",
+        "sortable"
+      ]
+    },
+    {
+      "id": "common-api-clients",
+      "kind": "versioned-module",
+      "path": "modules/common-api-clients",
+      "platform": "node",
+      "taskTerms": [
+        "api",
+        "stripe",
+        "github",
+        "resend",
+        "saleor",
+        "steel"
+      ],
+      "checks": [
+        "Server-only credentials",
+        "Provider acceptance tests"
+      ],
+      "variants": [
+        "provider-adapters"
+      ]
+    }
+  ]
+}
