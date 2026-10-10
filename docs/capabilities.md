@@ -29,8 +29,8 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `form-schema` Form schema validation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | - | - | - | - | - | - | - | - | - | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | - | - | - | - | - | - | - | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
-| `webauthn-passkeys` WebAuthn passkeys | library | - | - | - | - | - | - | - | - | - | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
-| `password-hashing` Password hashing (Argon2id / bcrypt / scrypt) | library | - | - | - | - | - | - | - | - | - | [password-hashing.md](../docs/cookbook/password-hashing.md) |
+| `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
+| `password-hashing` Password hashing (Argon2id / bcrypt / scrypt) | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [password-hashing.md](../docs/cookbook/password-hashing.md) |
 | `pdf-form-filling` PDF form filling | library | yes | yes | yes | yes | yes | yes | yes | - | untested | [pdf-form-filling.md](../docs/cookbook/pdf-form-filling.md) |
 | `pdf-text-extraction` PDF parsing and text extraction | library | yes | yes | yes | yes | yes | yes | yes | yes | untested | [pdf-text-extraction.md](../docs/cookbook/pdf-text-extraction.md) |
 | `docx-documents` Word (DOCX) document editing | library | yes | yes | yes | yes | yes | yes | yes | yes | - | [docx-documents.md](../docs/cookbook/docx-documents.md) |

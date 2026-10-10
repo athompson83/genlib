@@ -13,10 +13,11 @@ failed=()
 for topic in "${topics[@]}"; do
   dir="$root/examples/cookbook/$topic/$language"
   [ -d "$dir" ] || { echo "skip $topic/$language (not available)"; continue; }
-  work="$(mktemp -d)"
-  # Test a copy so builds never write into the repository.
-  cp -R "$dir"/. "$work"/
-  [ -d "$root/examples/cookbook/$topic/fixtures" ] && cp -R "$root/examples/cookbook/$topic/fixtures" "$work/../fixtures" 2>/dev/null || true
+  scratch="$(mktemp -d)"
+  work="$scratch/$language"
+  # Test a copy so builds never write into the repository; shared ../fixtures keep their relative path.
+  mkdir -p "$work" && cp -R "$dir"/. "$work"/
+  if [ -d "$root/examples/cookbook/$topic/fixtures" ]; then cp -R "$root/examples/cookbook/$topic/fixtures" "$scratch/fixtures"; fi
   echo "::group::$topic/$language"
   if (
     cd "$work"
@@ -26,13 +27,13 @@ for topic in "${topics[@]}"; do
       go) go vet ./... && go test ./... ;;
       rust) cargo test --locked ;;
       java|kotlin) mvn -q -B test ;;
-      csharp) dotnet test ;;
+      csharp) if grep -q Microsoft.NET.Test.Sdk ./*.csproj; then dotnet test; else dotnet run; fi ;;
       dart) dart pub get && dart test ;;
       swift) if [ -d Tests ]; then swift test; else swift build; fi ;;
       *) echo "unknown language $language"; exit 2 ;;
     esac
   ); then echo "ok $topic/$language"; else failed+=("$topic/$language"); fi
   echo "::endgroup::"
-  rm -rf "$work"
+  rm -rf "$scratch"
 done
 if [ ${#failed[@]} -gt 0 ]; then echo "failed: ${failed[*]}"; exit 1; fi

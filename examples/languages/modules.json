@@ -1126,10 +1126,11 @@
       "files": [
         "pdf-form-filling/rust/Cargo.lock",
         "pdf-form-filling/rust/Cargo.toml",
-        "pdf-form-filling/rust/src/lib.rs",
+        "pdf-form-filling/rust/src/lib.rs"
+      ],
+      "tests": [
         "pdf-form-filling/rust/tests/forms.rs"
       ],
-      "tests": [],
       "verification": "cookbook: yes (cargo test, 3 tests, cargo 1.97; clippy clean). Fixture built from lopdf objects. No flatten (see notes)",
       "status": "example",
       "library": "lopdf 0.45.0 (object level) (MIT)",
@@ -1280,10 +1281,11 @@
       "files": [
         "pdf-text-extraction/rust/Cargo.lock",
         "pdf-text-extraction/rust/Cargo.toml",
-        "pdf-text-extraction/rust/src/lib.rs",
+        "pdf-text-extraction/rust/src/lib.rs"
+      ],
+      "tests": [
         "pdf-text-extraction/rust/tests/extract.rs"
       ],
-      "tests": [],
       "verification": "cookbook: yes (cargo test, 2 tests, cargo 1.97; clippy clean). Fixture built with the re-exported lopdf",
       "status": "example",
       "library": "pdf-extract 0.12.1 (re-exports lopdf 0.42) (MIT (declared in Cargo metadata; the crate and repository ship no LICENSE file, so keep the notice yourself: license-review))",
@@ -1381,6 +1383,334 @@
       "status": "example",
       "library": "Apple PDFKit (PDFPage.string, documentAttributes) (Apple SDK terms)",
       "tested": false
+    },
+    {
+      "id": "typescript-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "typescript",
+      "runtime": "TypeScript (Node 22.18+)",
+      "files": [
+        "webauthn-passkeys/typescript/client.browser.ts",
+        "webauthn-passkeys/typescript/package-lock.json",
+        "webauthn-passkeys/typescript/package.json",
+        "webauthn-passkeys/typescript/passkeys.ts",
+        "webauthn-passkeys/typescript/tsconfig.json"
+      ],
+      "tests": [
+        "webauthn-passkeys/typescript/passkeys.test.ts",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: npm test (4 pass, Node 22.22); npx tsc -p tsconfig.json clean, including client.browser.ts",
+      "status": "example",
+      "library": "@simplewebauthn/server 14.0.3 (+ @simplewebauthn/browser 14.0.0 for the client) (MIT)",
+      "tested": true,
+      "dependencies": [
+        "npm ci"
+      ]
+    },
+    {
+      "id": "python-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "python",
+      "runtime": "Python 3.13",
+      "files": [
+        "webauthn-passkeys/python/passkeys.py",
+        "webauthn-passkeys/python/requirements.txt"
+      ],
+      "tests": [
+        "webauthn-passkeys/python/test_passkeys.py",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: python -m unittest -v test_passkeys (5 pass)",
+      "status": "example",
+      "library": "webauthn (py_webauthn) 3.0.1 (BSD-3-Clause)",
+      "tested": true,
+      "dependencies": [
+        "pip install -r requirements.txt"
+      ]
+    },
+    {
+      "id": "go-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "go",
+      "runtime": "Go 1.26",
+      "files": [
+        "webauthn-passkeys/go/go.mod",
+        "webauthn-passkeys/go/go.sum",
+        "webauthn-passkeys/go/passkeys.go"
+      ],
+      "tests": [
+        "webauthn-passkeys/go/passkeys_test.go",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: go vet ./... && go test ./... (4 pass; GOTOOLCHAIN downloaded go1.26.0)",
+      "status": "example",
+      "library": "github.com/go-webauthn/webauthn v0.18.2 (BSD-3-Clause)",
+      "tested": true
+    },
+    {
+      "id": "rust-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "rust",
+      "runtime": "Rust",
+      "files": [
+        "webauthn-passkeys/rust/Cargo.lock",
+        "webauthn-passkeys/rust/Cargo.toml",
+        "webauthn-passkeys/rust/src/lib.rs"
+      ],
+      "tests": [
+        "webauthn-passkeys/rust/tests/passkeys.rs",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: cargo test (4 pass, cargo 1.97)",
+      "status": "example",
+      "library": "webauthn-rs 0.5.5 (Kanidm) (**MPL-2.0**)",
+      "tested": true
+    },
+    {
+      "id": "java-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "java",
+      "runtime": "Java 21",
+      "files": [
+        "webauthn-passkeys/java/pom.xml",
+        "webauthn-passkeys/java/src/main/java/example/passkeys/InMemoryCredentialRepository.java",
+        "webauthn-passkeys/java/src/main/java/example/passkeys/Passkeys.java"
+      ],
+      "tests": [
+        "webauthn-passkeys/java/src/test/java/example/passkeys/PasskeysTest.java",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: mvn -B test (3 pass)",
+      "status": "example",
+      "library": "com.yubico:webauthn-server-core 2.10.1 (BSD-2-Clause)",
+      "tested": true
+    },
+    {
+      "id": "kotlin-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "kotlin",
+      "runtime": "Kotlin 2.2.20 (JVM)",
+      "files": [
+        "webauthn-passkeys/kotlin/pom.xml",
+        "webauthn-passkeys/kotlin/src/main/kotlin/Passkeys.kt"
+      ],
+      "tests": [
+        "webauthn-passkeys/kotlin/src/test/kotlin/PasskeysTest.kt",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: mvn -B test (3 pass)",
+      "status": "example",
+      "library": "com.yubico:webauthn-server-core 2.10.1 (BSD-2-Clause)",
+      "tested": true
+    },
+    {
+      "id": "csharp-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "csharp",
+      "runtime": "C# (.NET 8)",
+      "files": [
+        "webauthn-passkeys/csharp/Passkeys.cs",
+        "webauthn-passkeys/csharp/Passkeys.csproj",
+        "webauthn-passkeys/csharp/Program.cs"
+      ],
+      "tests": [
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: dotnet run (16 checks pass)",
+      "status": "example",
+      "library": "Fido2 (fido2-net-lib) 4.2.0 (MIT)",
+      "tested": true
+    },
+    {
+      "id": "swift-webauthn-passkeys",
+      "base": "cookbook",
+      "language": "swift",
+      "runtime": "Swift 6.2 (server)",
+      "files": [
+        "webauthn-passkeys/swift/Package.resolved",
+        "webauthn-passkeys/swift/Package.swift",
+        "webauthn-passkeys/swift/Sources/Passkeys/Passkeys.swift",
+        "webauthn-passkeys/swift/client-apple/PasskeyClient.swift"
+      ],
+      "tests": [
+        "webauthn-passkeys/swift/Tests/PasskeysTests/PasskeysTests.swift",
+        "webauthn-passkeys/fixtures/generate_fixture.py",
+        "webauthn-passkeys/fixtures/passkey-es256-none.json"
+      ],
+      "verification": "cookbook: yes: swift test on Linux (3 pass)",
+      "status": "example",
+      "library": "swift-server/webauthn-swift 1.0.0-beta.1 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "typescript-password-hashing",
+      "base": "cookbook",
+      "language": "typescript",
+      "runtime": "TypeScript (Node 22)",
+      "files": [
+        "password-hashing/typescript/package-lock.json",
+        "password-hashing/typescript/package.json",
+        "password-hashing/typescript/passwords.ts",
+        "password-hashing/typescript/tsconfig.json"
+      ],
+      "tests": [
+        "password-hashing/typescript/passwords.test.ts"
+      ],
+      "verification": "cookbook: yes: npm test (5 pass), npx tsc -p tsconfig.json clean",
+      "status": "example",
+      "library": "argon2 (node-argon2) 0.45.1; bcryptjs 3.0.3 (MIT; BSD-3-Clause)",
+      "tested": true,
+      "dependencies": [
+        "npm ci"
+      ]
+    },
+    {
+      "id": "python-password-hashing",
+      "base": "cookbook",
+      "language": "python",
+      "runtime": "Python 3.13",
+      "files": [
+        "password-hashing/python/passwords.py",
+        "password-hashing/python/requirements.txt"
+      ],
+      "tests": [
+        "password-hashing/python/test_passwords.py"
+      ],
+      "verification": "cookbook: yes: python -m unittest -v test_passwords (5 pass)",
+      "status": "example",
+      "library": "argon2-cffi 25.1.0; optional bcrypt 5.0.0 (MIT; Apache-2.0)",
+      "tested": true,
+      "dependencies": [
+        "pip install -r requirements.txt"
+      ]
+    },
+    {
+      "id": "go-password-hashing",
+      "base": "cookbook",
+      "language": "go",
+      "runtime": "Go 1.26",
+      "files": [
+        "password-hashing/go/go.mod",
+        "password-hashing/go/go.sum",
+        "password-hashing/go/passwords.go"
+      ],
+      "tests": [
+        "password-hashing/go/passwords_test.go"
+      ],
+      "verification": "cookbook: yes: go test ./... (the go1.26.0 toolchain was downloaded automatically)",
+      "status": "example",
+      "library": "golang.org/x/crypto v0.58.0 (argon2, bcrypt) (BSD-3-Clause)",
+      "tested": true
+    },
+    {
+      "id": "rust-password-hashing",
+      "base": "cookbook",
+      "language": "rust",
+      "runtime": "Rust",
+      "files": [
+        "password-hashing/rust/Cargo.lock",
+        "password-hashing/rust/Cargo.toml",
+        "password-hashing/rust/src/lib.rs"
+      ],
+      "tests": [],
+      "verification": "cookbook: yes: cargo test --release (5 pass)",
+      "status": "example",
+      "library": "argon2 0.6.0 (RustCrypto); bcrypt 0.19.3 (MIT OR Apache-2.0; MIT)",
+      "tested": true
+    },
+    {
+      "id": "java-password-hashing",
+      "base": "cookbook",
+      "language": "java",
+      "runtime": "Java 21",
+      "files": [
+        "password-hashing/java/pom.xml",
+        "password-hashing/java/src/main/java/example/passwords/Passwords.java"
+      ],
+      "tests": [
+        "password-hashing/java/src/test/java/example/passwords/PasswordsTest.java"
+      ],
+      "verification": "cookbook: yes: mvn -B test (5 pass)",
+      "status": "example",
+      "library": "spring-security-crypto 7.1.1 + spring-core 7.0.9 + bcprov-jdk18on 1.86 (Apache-2.0; Apache-2.0; MIT (Bouncy Castle))",
+      "tested": true
+    },
+    {
+      "id": "kotlin-password-hashing",
+      "base": "cookbook",
+      "language": "kotlin",
+      "runtime": "Kotlin 2.2.20 (JVM)",
+      "files": [
+        "password-hashing/kotlin/pom.xml",
+        "password-hashing/kotlin/src/main/kotlin/Passwords.kt"
+      ],
+      "tests": [
+        "password-hashing/kotlin/src/test/kotlin/PasswordsTest.kt"
+      ],
+      "verification": "cookbook: yes: mvn -B test (5 pass)",
+      "status": "example",
+      "library": "same as Java (as above)",
+      "tested": true
+    },
+    {
+      "id": "csharp-password-hashing",
+      "base": "cookbook",
+      "language": "csharp",
+      "runtime": "C# (.NET 8)",
+      "files": [
+        "password-hashing/csharp/PasswordHashing.csproj",
+        "password-hashing/csharp/Passwords.cs",
+        "password-hashing/csharp/Program.cs"
+      ],
+      "tests": [],
+      "verification": "cookbook: yes: dotnet run (11 checks pass, linux-x64)",
+      "status": "example",
+      "library": "Geralt 4.4.0 (libsodium crypto_pwhash_str; pulls libsodium 1.0.22 native); BCrypt.Net-Next 4.2.1 (MIT (libsodium: ISC); MIT)",
+      "tested": true
+    },
+    {
+      "id": "dart-password-hashing",
+      "base": "cookbook",
+      "language": "dart",
+      "runtime": "Dart 3.13",
+      "files": [
+        "password-hashing/dart/lib/passwords.dart",
+        "password-hashing/dart/pubspec.lock",
+        "password-hashing/dart/pubspec.yaml"
+      ],
+      "tests": [
+        "password-hashing/dart/test/passwords_test.dart"
+      ],
+      "verification": "cookbook: yes: dart test (5 pass); dart analyze clean",
+      "status": "example",
+      "library": "cryptography 2.9.0 (pure-Dart Argon2id); bcrypt 1.2.0 (Apache-2.0; BSD-2-Clause-Views)",
+      "tested": true
+    },
+    {
+      "id": "swift-password-hashing",
+      "base": "cookbook",
+      "language": "swift",
+      "runtime": "Swift 6.2",
+      "files": [
+        "password-hashing/swift/Package.resolved",
+        "password-hashing/swift/Package.swift",
+        "password-hashing/swift/Sources/Passwords/Passwords.swift"
+      ],
+      "tests": [
+        "password-hashing/swift/Tests/PasswordsTests/PasswordsTests.swift"
+      ],
+      "verification": "cookbook: yes: swift test on Linux (4 pass)",
+      "status": "example",
+      "library": "Argon2 reference C library (P-H-C/phc-winner-argon2, pinned to commit f57e61e) (CC0-1.0 OR Apache-2.0)",
+      "tested": true
     }
   ]
 }

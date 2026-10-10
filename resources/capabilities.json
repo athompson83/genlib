@@ -465,40 +465,62 @@
       "guide": "docs/cookbook/webauthn-passkeys.md",
       "implementations": {
         "typescript": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed typescript library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "typescript-webauthn-passkeys",
+          "tested": true,
+          "library": "@simplewebauthn/server 14.0.3 (+ @simplewebauthn/browser 14.0.0 for the client) (MIT)",
+          "dependencies": [
+            "npm ci"
+          ]
         },
         "python": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed python library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "python-webauthn-passkeys",
+          "tested": true,
+          "library": "webauthn (py_webauthn) 3.0.1 (BSD-3-Clause)",
+          "dependencies": [
+            "pip install -r requirements.txt"
+          ]
         },
         "go": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed go library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "go-webauthn-passkeys",
+          "tested": true,
+          "library": "github.com/go-webauthn/webauthn v0.18.2 (BSD-3-Clause)"
         },
         "rust": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed rust library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "rust-webauthn-passkeys",
+          "tested": true,
+          "library": "webauthn-rs 0.5.5 (Kanidm) (**MPL-2.0**)"
         },
         "java": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed java library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "java-webauthn-passkeys",
+          "tested": true,
+          "library": "com.yubico:webauthn-server-core 2.10.1 (BSD-2-Clause)"
         },
         "kotlin": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed kotlin library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "kotlin-webauthn-passkeys",
+          "tested": true,
+          "library": "com.yubico:webauthn-server-core 2.10.1 (BSD-2-Clause)"
         },
         "csharp": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed csharp library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "csharp-webauthn-passkeys",
+          "tested": true,
+          "library": "Fido2 (fido2-net-lib) 4.2.0 (MIT)"
         },
         "dart": {
           "kind": "unavailable",
-          "note": "No maintained, permissively licensed dart library verified here; see the guide for alternatives."
+          "note": "pub.dev has no maintained WebAuthn relying-party (server) library. Verify ceremonies on a server using another language's implementation (for example typescript-webauthn-passkeys or go-webauthn-passkeys) or an identity broker; on the Flutter client use the passkeys package (BSD-3-Clause)."
         },
         "swift": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed swift library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "swift-webauthn-passkeys",
+          "tested": true,
+          "library": "swift-server/webauthn-swift 1.0.0-beta.1 (Apache-2.0)"
         }
       }
     },
@@ -521,40 +543,64 @@
       "guide": "docs/cookbook/password-hashing.md",
       "implementations": {
         "typescript": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed typescript library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "typescript-password-hashing",
+          "tested": true,
+          "library": "argon2 (node-argon2) 0.45.1; bcryptjs 3.0.3 (MIT; BSD-3-Clause)",
+          "dependencies": [
+            "npm ci"
+          ]
         },
         "python": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed python library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "python-password-hashing",
+          "tested": true,
+          "library": "argon2-cffi 25.1.0; optional bcrypt 5.0.0 (MIT; Apache-2.0)",
+          "dependencies": [
+            "pip install -r requirements.txt"
+          ]
         },
         "go": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed go library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "go-password-hashing",
+          "tested": true,
+          "library": "golang.org/x/crypto v0.58.0 (argon2, bcrypt) (BSD-3-Clause)"
         },
         "rust": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed rust library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "rust-password-hashing",
+          "tested": true,
+          "library": "argon2 0.6.0 (RustCrypto); bcrypt 0.19.3 (MIT OR Apache-2.0; MIT)"
         },
         "java": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed java library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "java-password-hashing",
+          "tested": true,
+          "library": "spring-security-crypto 7.1.1 + spring-core 7.0.9 + bcprov-jdk18on 1.86 (Apache-2.0; Apache-2.0; MIT (Bouncy Castle))"
         },
         "kotlin": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed kotlin library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "kotlin-password-hashing",
+          "tested": true,
+          "library": "same as Java (as above)"
         },
         "csharp": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed csharp library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "csharp-password-hashing",
+          "tested": true,
+          "library": "Geralt 4.4.0 (libsodium crypto_pwhash_str; pulls libsodium 1.0.22 native); BCrypt.Net-Next 4.2.1 (MIT (libsodium: ISC); MIT)"
         },
         "dart": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed dart library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "dart-password-hashing",
+          "tested": true,
+          "library": "cryptography 2.9.0 (pure-Dart Argon2id); bcrypt 1.2.0 (Apache-2.0; BSD-2-Clause-Views)"
         },
         "swift": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed swift library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "swift-password-hashing",
+          "tested": true,
+          "library": "Argon2 reference C library (P-H-C/phc-winner-argon2, pinned to commit f57e61e) (CC0-1.0 OR Apache-2.0)"
         }
       }
     },
