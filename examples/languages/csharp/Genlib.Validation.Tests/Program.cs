@@ -666,5 +666,167 @@ Eq("redirect DEL", "/", SafeRedirects.SafeRedirect("/a\u007Fb", srAllowed));
 Eq("redirect null", "/", SafeRedirects.SafeRedirect(null, srAllowed));
 Eq("redirect double dot host", "/", SafeRedirects.SafeRedirect("https://app..example.com/", new[] { "https://app..example.com" }));
 
+// 29. IP / CIDR (SSRF guard)
+foreach (var (text, e) in new[] { ("192.168.1.1", "192.168.1.1"), ("2001:DB8:0:0:0:0:0:1", "2001:db8::1"), ("2001:db8::0:1", "2001:db8::1"), ("::", "::"), ("::1", "::1"), ("2001:db8:0:0:1:0:0:1", "2001:db8::1:0:0:1"), ("2001:0db8:0000:0000:0000:ff00:0042:8329", "2001:db8::ff00:42:8329"), ("fe80::1:0:0:0", "fe80::1:0:0:0"), ("::ffff:192.0.2.128", "::ffff:192.0.2.128"), ("::ffff:c000:280", "::ffff:192.0.2.128"), ("1:0:0:2:0:0:0:3", "1:0:0:2::3"), ("64:ff9b::198.51.100.7", "64:ff9b::c633:6407") })
+    Eq($"ip canonical {text}", e, IpCidr.CanonicalIp(text));
+foreach (var bad in new[] { "256.1.1.1", "01.2.3.4", "1.2.3", "1.2.3.4.5", "1:2:3:4:5:6:7:8:9", "1::2::3", "::g", "fe80::1%eth0", "[::1]", "", " 1.2.3.4", "1.2.3.4/24", "12345::" })
+    Throws<FormatException>($"ip invalid '{bad}'", () => IpCidr.ParseIp(bad));
+Eq("ip parse v4 length", 4, IpCidr.ParseIp("192.168.1.1").Length);
+Eq("ip parse v6 length", 16, IpCidr.ParseIp("::1").Length);
+foreach (var (cidr, ip, e) in new[] { ("10.0.0.0/8", "10.255.1.2", true), ("10.0.0.0/8", "11.0.0.1", false), ("192.168.1.0/24", "192.168.1.255", true), ("0.0.0.0/0", "8.8.8.8", true), ("2001:db8::/32", "2001:db8:ffff::1", true), ("2001:db8::/32", "2001:db9::1", false), ("10.0.0.0/8", "::ffff:10.0.0.1", false), ("::/0", "::1", true), ("192.168.1.1/32", "192.168.1.1", true) })
+    Eq($"cidr {cidr} contains {ip}", e, IpCidr.CidrContains(cidr, ip));
+foreach (var bad in new[] { "10.0.0.1/8", "10.0.0.0/33", "10.0.0.0", "10.0.0.0/08", "2001:db8::/129" })
+    Throws<FormatException>($"cidr invalid '{bad}'", () => IpCidr.CidrContains(bad, "10.0.0.1"));
+foreach (var (ip, e) in new[] { ("8.8.8.8", true), ("10.1.2.3", false), ("127.0.0.1", false), ("169.254.169.254", false), ("100.64.0.1", false), ("172.31.255.255", false), ("172.32.0.1", true), ("192.168.0.10", false), ("0.0.0.0", false), ("255.255.255.255", false), ("224.0.0.1", false), ("2606:4700:4700::1111", true), ("::1", false), ("fd00::1", false), ("fe80::1", false), ("::ffff:127.0.0.1", false), ("::ffff:8.8.8.8", true), ("64:ff9b::a00:1", false), ("2001:db8::1", false), ("ff02::1", false) })
+    Eq($"public {ip}", e, IpCidr.IsPublicIp(ip));
+
+// 30. HTTP Range
+string RangeText(RangeResult r) => r.Kind switch {
+    RangeKind.None => "none", RangeKind.Unsatisfiable => "unsatisfiable " + r.ContentRange,
+    _ => "ranges " + string.Join(" ", r.Ranges.Select(x => $"{x.Start}-{x.End}")) };
+foreach (var (h, e) in new (string?, string)[] { ("bytes=0-499", "ranges 0-499"), ("bytes=500-999", "ranges 500-999"), ("bytes=-500", "ranges 9500-9999"), ("bytes=9500-", "ranges 9500-9999"), ("bytes=0-0,-1", "ranges 0-0 9999-9999"), ("bytes= 0-1 , 5-6", "ranges 0-1 5-6"), ("BYTES=0-99", "ranges 0-99"), ("bytes=9999-20000", "ranges 9999-9999"), ("bytes=10000-", "unsatisfiable bytes */10000"), ("bytes=-0", "unsatisfiable bytes */10000"), ("bytes=-20000", "ranges 0-9999"), ("bytes=500-400", "none"), ("items=0-1", "none"), ("bytes=", "none"), ("bytes=0-1,", "none"), ("bytes=abc", "none"), ("bytes=1-2-3", "none"), (null, "none"), ("bytes=10000-10001,20000-", "unsatisfiable bytes */10000") })
+    Eq($"range '{h ?? "null"}'", e, RangeText(HttpRange.ParseRange(h, 10000)));
+foreach (var (h, e) in new[] { ("bytes=0-", "unsatisfiable bytes */0"), ("bytes=-5", "unsatisfiable bytes */0") })
+    Eq($"range empty file '{h}'", e, RangeText(HttpRange.ParseRange(h, 0)));
+Eq("content range", "bytes 0-499/10000", HttpRange.ContentRange(0, 499, 10000));
+Eq("range 101 specs", "none", RangeText(HttpRange.ParseRange("bytes=" + string.Join(",", Enumerable.Repeat("0-0", 101)), 10)));
+Eq("range 100 specs", 100, HttpRange.ParseRange("bytes=" + string.Join(",", Enumerable.Repeat("0-0", 100)), 10).Ranges.Count);
+Eq("range huge size", "ranges 9223372036854775806-9223372036854775806", RangeText(HttpRange.ParseRange("bytes=-1", long.MaxValue)));
+
+// 31. Content negotiation
+var mediaAvailable = new[] { "application/json", "text/html", "text/csv" };
+foreach (var (h, e) in new (string?, string?)[] { ("application/json", "application/json"), ("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "text/html"), ("text/*;q=0.5, application/json;q=0.4", "text/html"), ("*/*", "application/json"), ("text/csv;q=0, text/*", "text/html"), ("image/png", null), ("application/json;q=0", null), ("TEXT/HTML", "text/html"), ("text/html;q=1.5, text/csv", "text/csv"), (null, "application/json"), ("", "application/json"), ("application/*;q=0.2, */*;q=0.1", "application/json"), ("text/html;level=1;q=0.7, text/csv;q=0.7", "text/html") })
+    Eq($"media '{h ?? "null"}'", e, ContentNegotiation.NegotiateMediaType(h, mediaAvailable));
+var languageAvailable = new[] { "en", "en-GB", "fr", "pt-BR" };
+foreach (var (h, e) in new (string?, string?)[] { ("fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5", "fr"), ("en-GB", "en-GB"), ("en-US,en;q=0.9", "en"), ("pt", "pt-BR"), ("de", null), ("de, *;q=0.1", "en"), ("en;q=0, *", "fr"), ("PT-br", "pt-BR"), (null, "en"), ("zh-Hant-TW", null) })
+    Eq($"language '{h ?? "null"}'", e, ContentNegotiation.NegotiateLanguage(h, languageAvailable));
+
+// 32. HTTP conditional requests
+foreach (var (h, e) in new[] { ("\"a\", W/\"b\" ,\"c\"", "\"a\"|W/\"b\"|\"c\""), ("*", "*"), (" * ", "*"), ("W/\"x\", bogus, \"y\"", "W/\"x\"|\"y\""), ("\"\"", "\"\"") }) {
+    var tags = HttpConditional.ParseEtags(h);
+    Eq($"etag parse '{h}'", e, tags.IsWildcard ? "*" : string.Join("|", tags.Tags));
+}
+var conditionalCases = new (ConditionalRequest Request, int Status)[] {
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", IfNoneMatch = "\"v2\"" }, 304),
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", IfNoneMatch = "W/\"v2\"" }, 304),
+    (new ConditionalRequest { Method = "GET", Etag = "W/\"v2\"", IfNoneMatch = "\"v1\", \"v2\"" }, 304),
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", IfNoneMatch = "\"v1\"" }, 200),
+    (new ConditionalRequest { Method = "HEAD", Etag = "\"v2\"", IfNoneMatch = "*" }, 304),
+    (new ConditionalRequest { Method = "PUT", Etag = "\"v2\"", IfNoneMatch = "*" }, 412),
+    (new ConditionalRequest { Method = "PUT", IfNoneMatch = "*" }, 200),
+    (new ConditionalRequest { Method = "PUT", Etag = "\"v2\"", IfMatch = "\"v2\"" }, 200),
+    (new ConditionalRequest { Method = "PUT", Etag = "\"v2\"", IfMatch = "\"v1\"" }, 412),
+    (new ConditionalRequest { Method = "PUT", Etag = "W/\"v2\"", IfMatch = "W/\"v2\"" }, 412),
+    (new ConditionalRequest { Method = "DELETE", IfMatch = "*" }, 412),
+    (new ConditionalRequest { Method = "DELETE", Etag = "\"a\"", IfMatch = "*" }, 200),
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", LastModified = 1792567680, IfModifiedSince = "Wed, 21 Oct 2026 07:28:00 GMT" }, 304),
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", LastModified = 1792567680, IfModifiedSince = "Tue, 20 Oct 2026 07:28:00 GMT" }, 200),
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", LastModified = 1792567680, IfNoneMatch = "\"v1\"", IfModifiedSince = "Wed, 21 Oct 2026 07:28:00 GMT" }, 200),
+    (new ConditionalRequest { Method = "POST", LastModified = 1792567680, IfModifiedSince = "Wed, 21 Oct 2026 07:28:00 GMT" }, 200),
+    (new ConditionalRequest { Method = "PUT", LastModified = 1792567680, IfUnmodifiedSince = "Tue, 20 Oct 2026 07:28:00 GMT" }, 412),
+    (new ConditionalRequest { Method = "PUT", LastModified = 1792567680, IfUnmodifiedSince = "Wed, 21 Oct 2026 07:28:00 GMT" }, 200),
+    (new ConditionalRequest { Method = "GET", LastModified = 1792567680, IfModifiedSince = "Wednesday, 21-Oct-26 07:28:00 GMT" }, 200),
+    (new ConditionalRequest { Method = "GET", Etag = "\"v2\"", IfNoneMatch = "v2" }, 200),
+    (new ConditionalRequest { Method = "PUT", Etag = "\"v2\"", IfMatch = "\"v2\"", IfUnmodifiedSince = "Tue, 20 Oct 2026 07:28:00 GMT" }, 200),
+};
+for (int i = 0; i < conditionalCases.Length; i++)
+    Eq($"conditional case {i} {conditionalCases[i].Request}", conditionalCases[i].Status, HttpConditional.EvaluateConditional(conditionalCases[i].Request));
+Eq("http date format", "Wed, 21 Oct 2026 07:28:00 GMT", HttpConditional.FormatHttpDate(1792567680));
+Eq("http date parse", (long?)1792567680, HttpConditional.ParseHttpDate("Wed, 21 Oct 2026 07:28:00 GMT"));
+Eq("http date wrong weekday", (long?)null, HttpConditional.ParseHttpDate("Thu, 21 Oct 2026 07:28:00 GMT"));
+Eq("http date epoch", "Thu, 01 Jan 1970 00:00:00 GMT", HttpConditional.FormatHttpDate(0));
+
+// 33. Cookies
+foreach (var (name, value, options, e) in new (string, string, CookieOptions, string)[] {
+    ("sid", "abc123", new CookieOptions { Path = "/", Secure = true, HttpOnly = true, SameSite = "Lax" }, "sid=abc123; Path=/; Secure; HttpOnly; SameSite=Lax"),
+    ("__Host-session", "x.y.z", new CookieOptions { Path = "/", Secure = true, HttpOnly = true, SameSite = "Strict", MaxAge = 3600 }, "__Host-session=x.y.z; Max-Age=3600; Path=/; Secure; HttpOnly; SameSite=Strict"),
+    ("theme", "dark", new CookieOptions { MaxAge = 0, Expires = 1792567680, Domain = "Example.COM", Path = "/app" }, "theme=dark; Max-Age=0; Expires=Wed, 21 Oct 2026 07:28:00 GMT; Domain=example.com; Path=/app"),
+    ("embed", "1", new CookieOptions { Secure = true, SameSite = "None", Partitioned = true }, "embed=1; Secure; SameSite=None; Partitioned"),
+    ("empty", "", new CookieOptions {  }, "empty="),
+})
+    Eq($"cookie serialize {name}", e, Cookies.SerializeCookie(name, value, options));
+Eq("cookie serialize no options", "a=b", Cookies.SerializeCookie("a", "b"));
+var invalidCookies = new (string Name, string Value, CookieOptions Options)[] {
+    ("bad name", "v", new CookieOptions {  }),
+    ("n", "a;b", new CookieOptions {  }),
+    ("n", "a b", new CookieOptions {  }),
+    ("n", "a\"b", new CookieOptions {  }),
+    ("n", "v", new CookieOptions { SameSite = "None" }),
+    ("__Secure-x", "v", new CookieOptions {  }),
+    ("__Host-x", "v", new CookieOptions { Secure = true, Path = "/a" }),
+    ("__Host-x", "v", new CookieOptions { Secure = true, Path = "/", Domain = "example.com" }),
+    ("n", "v", new CookieOptions { Path = "relative" }),
+    ("n", "v", new CookieOptions { SameSite = "lax" }),
+    ("n", "v", new CookieOptions { Partitioned = true }),
+    ("n", "v", new CookieOptions { MaxAge = -1 }),
+    ("", "v", new CookieOptions {  }),
+};
+for (int i = 0; i < invalidCookies.Length; i++) {
+    var bad = invalidCookies[i];
+    Throws<ArgumentException>($"cookie invalid {i} '{bad.Name}'", () => Cookies.SerializeCookie(bad.Name, bad.Value, bad.Options));
+}
+foreach (var (h, e) in new[] {
+    ("sid=abc; theme=dark", new (string, string)[] { ("sid", "abc"), ("theme", "dark") }),
+    (" a = 1 ;b=2;; c=\"quoted value\" ;flag;d==x", new (string, string)[] { ("a", "1"), ("b", "2"), ("c", "quoted value"), ("d", "=x") }),
+    ("a=1; a=2", new (string, string)[] { ("a", "1"), ("a", "2") }),
+    ("", new (string, string)[] {  }),
+})
+    Check($"cookie parse '{h}'", Cookies.ParseCookieHeader(h).SequenceEqual(e));
+
+// 34. URL normalization
+foreach (var (p, e) in new[] { ("/a/b/c/./../../g", "/a/g"), ("mid/content=5/../6", "mid/6"), ("/../a", "/a"), ("/a/./b/.", "/a/b/"), ("/a/b/..", "/a/"), (".", ""), ("../x", "x"), ("/a//b/../c", "/a//c") })
+    Eq($"remove dot segments {p}", e, UrlNormalize.RemoveDotSegments(p));
+foreach (var (u, e) in new[] { ("HTTP://Example.COM:80/%7Euser/./a/../b?q=%2f", "http://example.com/~user/b?q=%2F"), ("https://example.com", "https://example.com/"), ("https://example.com:443/a%2Fb#frag", "https://example.com/a%2Fb"), ("http://example.com:8080/A/B/../C?", "http://example.com:8080/A/C"), ("https://[2001:DB8::0:1]:8443/x", "https://[2001:db8::1]:8443/x"), ("https://example.com/%e2%82%ac", "https://example.com/%E2%82%AC"), ("http://example.com:/p", "http://example.com/p"), ("https://EXAMPLE.com/a%20b", "https://example.com/a%20b") })
+    Eq($"normalize {u}", e, UrlNormalize.NormalizeUrl(u));
+foreach (var bad in new[] { "ftp://example.com/", "https://user@example.com/", "https://exa mple.com/", "//example.com/", "https://example.com/%zz", "https://example.com:99999/", "example.com/path", "https://[::g]/" })
+    Throws<FormatException>($"normalize invalid '{bad}'", () => UrlNormalize.NormalizeUrl(bad));
+
+// 35. String similarity (code points)
+foreach (var (a, b, lev, osa, jaro, jw, ratio) in new[] {
+    ("kitten", "sitting", 3, 3, 0.746031746031746, 0.746031746031746, 0.5714285714285714),
+    ("flaw", "lawn", 2, 2, 0.8333333333333334, 0.8333333333333334, 0.5),
+    ("", "", 0, 0, 1.0, 1.0, 1.0),
+    ("", "abc", 3, 3, 0.0, 0.0, 0.0),
+    ("abc", "abc", 0, 0, 1.0, 1.0, 1.0),
+    ("ca", "abc", 3, 3, 0.0, 0.0, 0.0),
+    ("MARTHA", "MARHTA", 2, 1, 0.9444444444444445, 0.9611111111111111, 0.6666666666666667),
+    ("DIXON", "DICKSONX", 4, 4, 0.7666666666666666, 0.8133333333333332, 0.5),
+    ("DWAYNE", "DUANE", 2, 2, 0.8222222222222223, 0.8400000000000001, 0.6666666666666667),
+    ("caf\u00E9", "cafe", 1, 1, 0.8333333333333334, 0.8833333333333334, 0.75),
+    ("na\u00EFve", "naive", 1, 1, 0.8666666666666667, 0.8933333333333333, 0.8),
+    ("\uD83D\uDE42ab", "ab\uD83D\uDE42", 2, 2, 0.0, 0.0, 0.33333333333333337),
+    ("JELLYFISH", "SMELLYFISH", 2, 2, 0.8962962962962964, 0.8962962962962964, 0.8),
+}) {
+    Eq($"levenshtein '{a}' '{b}'", lev, StringSimilarity.Levenshtein(a, b));
+    Eq($"osa '{a}' '{b}'", osa, StringSimilarity.DamerauOsa(a, b));
+    Check($"jaro '{a}' '{b}'", Near(jaro, StringSimilarity.Jaro(a, b), 1e-12));
+    Check($"jaro-winkler '{a}' '{b}'", Near(jw, StringSimilarity.JaroWinkler(a, b), 1e-12));
+    Check($"ratio '{a}' '{b}'", Near(ratio, StringSimilarity.SimilarityRatio(a, b), 1e-12));
+}
+
+// 36. RRULE expansion
+foreach (var (start, rule, e) in new[] {
+    ("2026-01-31T09:00:00Z", "FREQ=MONTHLY;COUNT=5", new[] { "2026-01-31T09:00:00Z", "2026-03-31T09:00:00Z", "2026-05-31T09:00:00Z", "2026-07-31T09:00:00Z", "2026-08-31T09:00:00Z" }),
+    ("2026-10-12T09:30:00Z", "FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=7", new[] { "2026-10-12T09:30:00Z", "2026-10-14T09:30:00Z", "2026-10-16T09:30:00Z", "2026-10-19T09:30:00Z", "2026-10-21T09:30:00Z", "2026-10-23T09:30:00Z", "2026-10-26T09:30:00Z" }),
+    ("2026-10-01T00:00:00Z", "FREQ=DAILY;INTERVAL=10;UNTIL=20261115T000000Z", new[] { "2026-10-01T00:00:00Z", "2026-10-11T00:00:00Z", "2026-10-21T00:00:00Z", "2026-10-31T00:00:00Z", "2026-11-10T00:00:00Z" }),
+    ("2026-01-01T12:00:00Z", "FREQ=MONTHLY;BYDAY=-1FR;COUNT=4", new[] { "2026-01-30T12:00:00Z", "2026-02-27T12:00:00Z", "2026-03-27T12:00:00Z", "2026-04-24T12:00:00Z" }),
+    ("2026-01-01T12:00:00Z", "FREQ=MONTHLY;BYDAY=2TU,4TU;COUNT=6", new[] { "2026-01-13T12:00:00Z", "2026-01-27T12:00:00Z", "2026-02-10T12:00:00Z", "2026-02-24T12:00:00Z", "2026-03-10T12:00:00Z", "2026-03-24T12:00:00Z" }),
+    ("2026-01-15T08:00:00Z", "FREQ=MONTHLY;BYMONTHDAY=1,-1;COUNT=6", new[] { "2026-01-31T08:00:00Z", "2026-02-01T08:00:00Z", "2026-02-28T08:00:00Z", "2026-03-01T08:00:00Z", "2026-03-31T08:00:00Z", "2026-04-01T08:00:00Z" }),
+    ("2028-02-29T00:00:00Z", "FREQ=YEARLY;COUNT=3", new[] { "2028-02-29T00:00:00Z", "2032-02-29T00:00:00Z", "2036-02-29T00:00:00Z" }),
+    ("2026-03-10T10:00:00Z", "FREQ=YEARLY;BYMONTH=3,9;COUNT=5", new[] { "2026-03-10T10:00:00Z", "2026-09-10T10:00:00Z", "2027-03-10T10:00:00Z", "2027-09-10T10:00:00Z", "2028-03-10T10:00:00Z" }),
+    ("2026-10-14T18:00:00Z", "FREQ=WEEKLY;INTERVAL=2;BYDAY=TU;COUNT=3", new[] { "2026-10-27T18:00:00Z", "2026-11-10T18:00:00Z", "2026-11-24T18:00:00Z" }),
+    ("2026-10-14T18:00:00Z", "FREQ=WEEKLY;COUNT=2", new[] { "2026-10-14T18:00:00Z", "2026-10-21T18:00:00Z" }),
+    ("2026-01-31T09:00:00Z", "FREQ=MONTHLY;INTERVAL=2;BYMONTHDAY=31;UNTIL=20261231T235959Z", new[] { "2026-01-31T09:00:00Z", "2026-03-31T09:00:00Z", "2026-05-31T09:00:00Z", "2026-07-31T09:00:00Z" }),
+})
+    Check($"rrule {start} {rule}", RRule.ExpandRRule(start, rule).SequenceEqual(e));
+foreach (var bad in new[] { "FREQ=HOURLY", "COUNT=3", "FREQ=DAILY;COUNT=2;UNTIL=20261231T000000Z", "FREQ=WEEKLY;BYDAY=1MO", "FREQ=DAILY;BYDAY=MO", "FREQ=MONTHLY;BYMONTHDAY=32", "FREQ=MONTHLY;BYSETPOS=1", "FREQ=WEEKLY;INTERVAL=0", "FREQ=MONTHLY;BYDAY=MO;BYMONTHDAY=1", "FREQ=YEARLY;UNTIL=2026-12-31", "FREQ=DAILY;FREQ=DAILY", "FREQ=WEEKLY;BYDAY=XX" })
+    Throws<FormatException>($"rrule invalid '{bad}'", () => RRule.ExpandRRule("2026-01-01T00:00:00Z", bad));
+Throws<FormatException>("rrule bad dtstart", () => RRule.ExpandRRule("2026-02-30T00:00:00Z", "FREQ=DAILY"));
+Throws<ArgumentOutOfRangeException>("rrule limit 0", () => RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY", 0));
+Throws<ArgumentOutOfRangeException>("rrule limit 1001", () => RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY", 1001));
+Eq("rrule default limit 50", 50, RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY").Count);
+Eq("rrule limit 3", 3, RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY", 3).Count);
+Eq("rrule until before start", 0, RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY;UNTIL=20251231T000000Z").Count);
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;

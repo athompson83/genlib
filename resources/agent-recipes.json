@@ -1717,6 +1717,216 @@
         "path",
         "allowed-origin"
       ]
+    },
+    {
+      "id": "ip-cidr-ssrf-guard",
+      "kind": "source-example",
+      "path": "examples/recipes/ip-cidr.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "ssrf",
+        "ip address",
+        "cidr",
+        "subnet",
+        "private ip",
+        "ipv6",
+        "ipv4",
+        "allowlist ip",
+        "rfc 5952",
+        "webhook url guard"
+      ],
+      "checks": [
+        "Resolve the hostname yourself and check every resolved address",
+        "Connect to the checked address (no second DNS lookup) and re-check after redirects",
+        "IPv4-mapped and NAT64 IPv6 addresses are judged by their embedded IPv4"
+      ],
+      "variants": [
+        "parse",
+        "canonical",
+        "cidr-contains",
+        "public-ip"
+      ]
+    },
+    {
+      "id": "http-range-requests",
+      "kind": "source-example",
+      "path": "examples/recipes/http-range.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "range request",
+        "byte range",
+        "content-range",
+        "http 206",
+        "http 416",
+        "partial content",
+        "resume download",
+        "video streaming"
+      ],
+      "checks": [
+        "Ignore malformed headers and serve 200 with the full body",
+        "Respond 416 with Content-Range: bytes */size when nothing is satisfiable",
+        "Cap the number of ranges and serve multipart or only the first when several remain"
+      ],
+      "variants": [
+        "parse",
+        "content-range"
+      ]
+    },
+    {
+      "id": "content-negotiation",
+      "kind": "source-example",
+      "path": "examples/recipes/content-negotiation.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "content negotiation",
+        "accept header",
+        "accept-language",
+        "media type",
+        "q value",
+        "locale detection",
+        "language negotiation",
+        "http 406"
+      ],
+      "checks": [
+        "Send Vary: Accept or Vary: Accept-Language",
+        "q=0 excludes an entry even when a wildcard matches",
+        "Return 406 or a documented default when nothing matches"
+      ],
+      "variants": [
+        "media-type",
+        "language"
+      ]
+    },
+    {
+      "id": "http-conditional-requests",
+      "kind": "source-example",
+      "path": "examples/recipes/http-conditional.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "etag",
+        "if-none-match",
+        "if-match",
+        "if-modified-since",
+        "conditional request",
+        "http 304",
+        "http 412",
+        "optimistic concurrency",
+        "not modified"
+      ],
+      "checks": [
+        "If-Match uses strong comparison; If-None-Match uses weak comparison",
+        "Evaluate preconditions in RFC 9110 13.2.2 order before the method runs",
+        "Only exact IMF-fixdate values are honoured"
+      ],
+      "variants": [
+        "parse-etags",
+        "evaluate"
+      ]
+    },
+    {
+      "id": "cookies",
+      "kind": "source-example",
+      "path": "examples/recipes/cookies.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "cookie",
+        "set-cookie",
+        "samesite",
+        "httponly",
+        "secure cookie",
+        "__host- prefix",
+        "partitioned cookie",
+        "parse cookie header",
+        "session cookie"
+      ],
+      "checks": [
+        "Encode values first; only cookie-octets are accepted",
+        "SameSite=None and Partitioned require Secure",
+        "__Host- requires Secure, Path=/ and no Domain"
+      ],
+      "variants": [
+        "serialize",
+        "parse"
+      ]
+    },
+    {
+      "id": "url-normalization",
+      "kind": "source-example",
+      "path": "examples/recipes/url-normalize.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "url normalization",
+        "normalize url",
+        "canonical url",
+        "remove dot segments",
+        "percent encoding",
+        "cache key",
+        "dedupe urls",
+        "rfc 3986"
+      ],
+      "checks": [
+        "Userinfo is rejected and the fragment is dropped",
+        "Only unreserved percent-encodings are decoded; reserved ones keep uppercase hex",
+        "Compare normalized URLs, never raw strings"
+      ],
+      "variants": [
+        "normalize",
+        "remove-dot-segments"
+      ]
+    },
+    {
+      "id": "string-similarity",
+      "kind": "source-example",
+      "path": "examples/recipes/string-similarity.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "string similarity",
+        "levenshtein",
+        "edit distance",
+        "fuzzy match",
+        "jaro winkler",
+        "damerau",
+        "typo tolerance",
+        "did you mean"
+      ],
+      "checks": [
+        "Distances count Unicode code points, not UTF-16 units",
+        "Normalize case and Unicode form before comparing when it matters",
+        "Cap input lengths; distance tables are O(n*m)"
+      ],
+      "variants": [
+        "levenshtein",
+        "osa",
+        "jaro-winkler",
+        "ratio"
+      ]
+    },
+    {
+      "id": "rrule-recurrence",
+      "kind": "source-example",
+      "path": "examples/recipes/rrule.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "rrule",
+        "recurrence rule",
+        "recurring event",
+        "repeat schedule",
+        "rfc 5545",
+        "every second tuesday",
+        "last friday of month",
+        "calendar recurrence"
+      ],
+      "checks": [
+        "UTC only; convert local wall times yourself",
+        "Unsupported parts such as BYSETPOS throw instead of being ignored",
+        "Expansion is bounded by limit, COUNT, UNTIL and a period cap"
+      ],
+      "variants": [
+        "daily",
+        "weekly",
+        "monthly",
+        "yearly"
+      ]
     }
   ]
 }

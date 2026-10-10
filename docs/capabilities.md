@@ -50,6 +50,14 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `iso-duration` ISO 8601 durations | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `geometry` Polygon geometry: point in polygon, area, centroid, simplification | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `safe-redirect` Safe redirects (open-redirect guard) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `ip-cidr` IP addresses, CIDR ranges and SSRF guard | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `http-range` HTTP Range requests (byte ranges, 206 and 416) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `content-negotiation` Content negotiation: Accept and Accept-Language | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `http-conditional` ETags and conditional requests (304, 412) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `cookies` Cookies: Set-Cookie and Cookie headers | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `url-normalize` URL normalization (RFC 3986) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `string-similarity` String similarity: Levenshtein, Damerau, Jaro-Winkler | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `rrule` Recurring events: RFC 5545 RRULE expansion | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
@@ -189,6 +197,31 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 
 **safe-redirect**
 - `safeRedirect(target, allowedOrigins, fallback)` accepts a same-site path (not `//` or containing `\`) or an absolute http(s) URL whose origin exactly matches an allowed origin. Everything else, including `javascript:`, userinfo (`user@host`) and control characters, returns the fallback.
+
+**ip-cidr**
+- `parseIp`/`canonicalIp` (strict IPv4, RFC 4291 IPv6 text, RFC 5952 output), `cidrContains` (rejects CIDRs with host bits set; IPv4 and IPv6 never match each other) and `isPublicIp`, which rejects private, loopback, link-local (including the 169.254.169.254 metadata address), CGNAT, multicast, reserved and documentation ranges, and judges IPv4-mapped and NAT64 addresses by their embedded IPv4.
+- For SSRF protection, resolve the hostname yourself, check every resolved address, connect to the address you checked (no second lookup), and check again after each redirect. Go and Rust return false for unparseable input; the other languages raise an error.
+
+**http-range**
+- `parseRange(header, size)` returns `none` (serve 200 with the whole body), `unsatisfiable` (416 with `Content-Range: bytes */size`) or the inclusive byte ranges in header order; `contentRange` writes the 206 header. More than 100 ranges or any malformed range ignores the header.
+
+**content-negotiation**
+- `negotiateMediaType` and `negotiateLanguage` pick the available value with the highest q from the most specific matching range (`text/csv;q=0` excludes CSV even with `text/*`), preferring earlier available entries on ties; a missing header returns the first available value. Send `Vary: Accept` or `Vary: Accept-Language` with the response.
+
+**http-conditional**
+- `parseEtags`, strong and weak comparison, and `evaluateConditional`, which applies If-Match, If-Unmodified-Since, If-None-Match and If-Modified-Since in the RFC 9110 order and returns 200, 304 or 412. Use If-Match on PUT/PATCH/DELETE to prevent lost updates.
+
+**cookies**
+- `serializeCookie` writes `Set-Cookie` with attributes in a fixed order and refuses unsafe combinations (SameSite=None or Partitioned without Secure, `__Secure-`/`__Host-` prefix violations, characters outside cookie-octet: encode values yourself). `parseCookieHeader` returns ordered pairs, keeping duplicates.
+
+**url-normalize**
+- `normalizeUrl` canonicalizes http(s) URLs (lowercase scheme and host, default port removed, dot segments resolved, percent-encoding normalized, fragment dropped) for cache keys and de-duplication; `removeDotSegments` is RFC 3986 section 5.2.4. It is not a safety check: pair it with `safe-redirect` or `ip-cidr`.
+
+**string-similarity**
+- `levenshtein`, `damerauOsa`, `jaro`, `jaroWinkler` and `similarityRatio` over Unicode code points (so "café" and "cafe" differ by one). They are O(n·m); cap input length for user-supplied strings.
+
+**rrule**
+- `expandRRule(dtstart, rule, limit)` expands DAILY, WEEKLY, MONTHLY and YEARLY rules with INTERVAL, COUNT, UNTIL, BYDAY (including ordinals such as `2TU` and `-1FR` in MONTHLY), BYMONTHDAY and BYMONTH, in UTC, skipping dates that do not exist (31 April, 29 February) and matching python-dateutil on the test vectors. Other parts (BYSETPOS, BYHOUR, WKST, EXDATE) are rejected; convert local times to UTC around daylight-saving changes yourself.
 
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 

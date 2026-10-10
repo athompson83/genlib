@@ -93,6 +93,15 @@
     ],
     "resource:email-validator": [
       "capability:email-address"
+    ],
+    "resource:recurring-ical-events": [
+      "capability:rrule"
+    ],
+    "resource:rrule": [
+      "capability:rrule"
+    ],
+    "resource:python-dateutil": [
+      "capability:rrule"
     ]
   }
 }

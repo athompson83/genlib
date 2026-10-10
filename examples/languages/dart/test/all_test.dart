@@ -21,6 +21,16 @@ import 'wave5_test.dart'
         runSafeRedirectTests,
         runSignedUrlsTests,
         runTileMathTests;
+import 'wave6_test.dart'
+    show
+        runContentNegotiationTests,
+        runCookiesTests,
+        runHttpConditionalTests,
+        runHttpRangeTests,
+        runIpCidrTests,
+        runRRuleTests,
+        runStringSimilarityTests,
+        runUrlNormalizeTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -53,5 +63,13 @@ void main() {
   runIsoDurationTests(c);
   runGeometryTests(c);
   runSafeRedirectTests(c);
+  runIpCidrTests(c);
+  runHttpRangeTests(c);
+  runContentNegotiationTests(c);
+  runHttpConditionalTests(c);
+  runCookiesTests(c);
+  runUrlNormalizeTests(c);
+  runStringSimilarityTests(c);
+  runRRuleTests(c);
   c.finish();
 }

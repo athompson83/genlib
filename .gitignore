@@ -8,3 +8,9 @@ coverage/
 !.env.example
 .genlib/install.lock
 .genlib/lock.next.*
+__pycache__/
+*.pyc
+examples/languages/rust/target/
+examples/languages/dart/.dart_tool/
+examples/languages/csharp/**/bin/
+examples/languages/csharp/**/obj/
