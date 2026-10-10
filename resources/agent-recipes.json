@@ -974,6 +974,166 @@
         "truncate",
         "trim-history"
       ]
+    },
+    {
+      "id": "totp-mfa-codes",
+      "kind": "source-example",
+      "path": "examples/recipes/totp.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "totp",
+        "hotp",
+        "mfa",
+        "two factor",
+        "2fa",
+        "one time password",
+        "otp",
+        "authenticator app",
+        "otpauth uri",
+        "qr code enrollment",
+        "base32 secret",
+        "rfc 6238",
+        "rfc 4226",
+        "google authenticator"
+      ],
+      "checks": [
+        "Store the shared secret encrypted at rest and never log otpauth URIs",
+        "Rate-limit verification attempts and lock out on repeated failures",
+        "Record the last accepted counter per user to block replay within the window",
+        "Keep server clock synchronized (NTP); window 1 tolerates 30 seconds of skew"
+      ],
+      "variants": [
+        "sha1",
+        "sha256",
+        "sha512",
+        "verify-window"
+      ]
+    },
+    {
+      "id": "oidc-pkce-authorization-request",
+      "kind": "source-example",
+      "path": "examples/recipes/oidc-pkce.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "oidc",
+        "openid connect",
+        "sso",
+        "single sign on",
+        "oauth",
+        "oauth2",
+        "pkce",
+        "code verifier",
+        "code challenge",
+        "authorization code",
+        "login redirect",
+        "callback state",
+        "nonce",
+        "social login",
+        "authorization url"
+      ],
+      "checks": [
+        "Request side only: verify ID and access tokens with a vetted OIDC/JOSE library",
+        "Keep verifier, state and nonce in an HttpOnly server session bound to one login",
+        "Register exact redirect URIs with the provider",
+        "Send the token request from the server over HTTPS"
+      ],
+      "variants": [
+        "public-client",
+        "confidential-client",
+        "extra-params"
+      ]
+    },
+    {
+      "id": "mfa-recovery-codes",
+      "kind": "source-example",
+      "path": "examples/recipes/recovery-codes.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "recovery codes",
+        "backup codes",
+        "mfa recovery",
+        "two factor backup",
+        "account recovery",
+        "one time backup code",
+        "crockford base32",
+        "hashed codes",
+        "lost authenticator",
+        "2fa backup"
+      ],
+      "checks": [
+        "Show codes once and store only keyed HMAC hashes",
+        "Keep the HMAC key (pepper) outside the database",
+        "Delete a hash after use and notify the user",
+        "Rate-limit recovery attempts"
+      ],
+      "variants": [
+        "generate",
+        "verify"
+      ]
+    },
+    {
+      "id": "safe-calculator-and-loan-math",
+      "kind": "source-example",
+      "path": "examples/recipes/calculator.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "calculator",
+        "expression evaluator",
+        "math expression",
+        "formula",
+        "safe eval",
+        "no eval",
+        "parse arithmetic",
+        "loan calculator",
+        "mortgage",
+        "amortization",
+        "amortization schedule",
+        "compound interest",
+        "monthly payment",
+        "interest rate"
+      ],
+      "checks": [
+        "Results are doubles; use integer minor units for ledger amounts",
+        "Confirm the rounding convention (half away from zero, per row) with finance",
+        "Bound expression length and variables supplied by users",
+        "Mortgage figures are estimates, not lending disclosures"
+      ],
+      "variants": [
+        "evaluate",
+        "loan-payment",
+        "amortization",
+        "compound-interest"
+      ]
+    },
+    {
+      "id": "form-schema-validation",
+      "kind": "source-example",
+      "path": "examples/recipes/form-schema.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "form validation",
+        "validate form",
+        "form schema",
+        "server-side validation",
+        "input validation",
+        "required fields",
+        "field rules",
+        "email validation",
+        "date validation",
+        "min max length",
+        "request body validation",
+        "signup form"
+      ],
+      "checks": [
+        "Validate on the server even when the browser validates",
+        "Patterns come from schema authors, never end users",
+        "Confirm email ownership with a verification link",
+        "Map error codes to localized messages in the UI"
+      ],
+      "variants": [
+        "strict-unknown",
+        "allow-unknown"
+      ]
     }
   ]
 }
