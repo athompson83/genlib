@@ -19,7 +19,7 @@ npm ci --ignore-scripts
 npm run check
 ```
 
-`npm run check` performs registry freshness and skill mirror checks, a strict TypeScript build, and the repository tests. For a focused iteration on the web components:
+`npm run check` performs registry freshness, skill mirror, resource catalog and documentation-count checks, a strict TypeScript build, and the repository tests. After changing catalogs, recipes, templates or tools, run `npm run docs:sync`; for new resource records also run `node scripts/verify-resources.mjs --file <catalog>` (network). For a focused iteration on the web components:
 
 ```sh
 npm run build

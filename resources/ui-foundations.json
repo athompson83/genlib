@@ -42,6 +42,14 @@
         {
           "url": "https://lucide.dev/license",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -51,6 +59,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lucide-react"
+        }
+      ],
+      "quickstart": [
+        "npm install lucide-react",
+        "import { Camera } from \"lucide-react\";",
+        "Docs: https://lucide.dev/guide/packages/lucide-react"
       ]
     },
     {
@@ -93,6 +115,10 @@
         {
           "url": "https://github.com/tailwindlabs/heroicons/blob/master/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
         }
       ],
       "genlib": {
@@ -102,6 +128,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@heroicons/react"
+        }
+      ],
+      "quickstart": [
+        "npm install @heroicons/react",
+        "import { BeakerIcon } from \"@heroicons/react/24/solid\";"
       ]
     },
     {
@@ -143,6 +182,10 @@
         {
           "url": "https://github.com/tabler/tabler-icons/blob/main/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
         }
       ],
       "genlib": {
@@ -152,6 +195,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tabler/icons-react"
+        }
+      ],
+      "quickstart": [
+        "npm install @tabler/icons-react",
+        "import { IconHome } from \"@tabler/icons-react\";"
       ]
     },
     {
@@ -197,6 +253,14 @@
         {
           "url": "https://github.com/radix-ui/primitives/blob/main/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -206,6 +270,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "radix-ui"
+        }
+      ],
+      "quickstart": [
+        "npm install radix-ui",
+        "import { Dialog } from \"radix-ui\";",
+        "Docs: https://www.radix-ui.com/primitives/docs/overview/introduction"
       ]
     },
     {
@@ -259,6 +337,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@base-ui/react"
+        }
+      ],
+      "quickstart": [
+        "npm install @base-ui/react",
+        "Docs: https://base-ui.com/react/overview/quick-start"
       ]
     },
     {
@@ -303,6 +394,10 @@
         {
           "url": "https://github.com/adobe/react-spectrum/blob/main/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
         }
       ],
       "genlib": {
@@ -312,6 +407,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-aria-components"
+        }
+      ],
+      "quickstart": [
+        "npm install react-aria-components",
+        "Docs: https://react-spectrum.adobe.com/react-aria/getting-started.html"
       ]
     },
     {
@@ -357,6 +465,14 @@
         {
           "url": "https://github.com/tailwindlabs/headlessui/blob/main/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -366,6 +482,24 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@headlessui/react"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@headlessui/vue"
+        }
+      ],
+      "quickstart": [
+        "npm install @headlessui/react   # React",
+        "npm install @headlessui/vue     # Vue",
+        "Docs: https://headlessui.com"
       ]
     },
     {
@@ -420,6 +554,24 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mantine/core"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@mantine/hooks"
+        }
+      ],
+      "quickstart": [
+        "npm install @mantine/core @mantine/hooks",
+        "Wrap the app in <MantineProvider> and import \"@mantine/core/styles.css\"",
+        "Docs: https://mantine.dev/getting-started/"
       ]
     },
     {
@@ -464,6 +616,10 @@
         {
           "url": "https://github.com/mui/material-ui/blob/master/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
         }
       ],
       "genlib": {
@@ -473,6 +629,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mui/material"
+        }
+      ],
+      "quickstart": [
+        "npm install @mui/material @emotion/react @emotion/styled",
+        "Docs: https://mui.com/material-ui/getting-started/installation/"
       ]
     },
     {
@@ -525,6 +694,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-paper"
+        }
+      ],
+      "quickstart": [
+        "npm install react-native-paper react-native-safe-area-context",
+        "Wrap the app in <PaperProvider>",
+        "Docs: https://callstack.github.io/react-native-paper/docs/guides/getting-started"
       ]
     },
     {
@@ -569,6 +752,10 @@
         {
           "url": "https://github.com/unovue/reka-ui/blob/main/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -578,6 +765,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "reka-ui"
+        }
+      ],
+      "quickstart": [
+        "npm install reka-ui",
+        "Docs: https://reka-ui.com/docs/overview/getting-started"
       ]
     },
     {
@@ -623,6 +823,10 @@
         {
           "url": "https://github.com/nuxt/ui/blob/v4/LICENSE.md",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -632,6 +836,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@nuxt/ui"
+        }
+      ],
+      "quickstart": [
+        "npm install @nuxt/ui",
+        "Add \"@nuxt/ui\" to modules in nuxt.config.ts and @import \"@nuxt/ui\"; in main.css",
+        "Docs: https://ui.nuxt.com/docs/getting-started/installation/nuxt"
       ]
     },
     {
@@ -685,6 +903,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@fluentui/react-components"
+        }
+      ],
+      "quickstart": [
+        "npm install @fluentui/react-components",
+        "Wrap the app in <FluentProvider theme={webLightTheme}>",
+        "Docs: https://react.fluentui.dev"
       ]
     },
     {
@@ -729,6 +961,10 @@
         {
           "url": "https://github.com/twbs/bootstrap/blob/main/LICENSE",
           "title": "Selected code license scope"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
         }
       ],
       "genlib": {
@@ -738,6 +974,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "bootstrap"
+        }
+      ],
+      "quickstart": [
+        "npm install bootstrap",
+        "Or CDN: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css\">",
+        "Docs: https://getbootstrap.com/docs/5.3/getting-started/introduction/"
       ]
     },
     {
@@ -788,6 +1038,19 @@
       },
       "install": [
         "Inspect existing usage and the upstream migration guidance before adopting new code."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@shoelace-style/shoelace"
+        }
+      ],
+      "quickstart": [
+        "Maintenance only: prefer web-awesome for new work",
+        "npm install @shoelace-style/shoelace"
       ]
     },
     {
@@ -840,6 +1103,19 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@awesome.me/webawesome"
+        }
+      ],
+      "quickstart": [
+        "npm install @awesome.me/webawesome",
+        "Docs: https://webawesome.com/docs/"
       ]
     },
     {
@@ -860,7 +1136,7 @@
       },
       "homepage": "https://tanstack.com/table",
       "repository": "https://github.com/TanStack/table",
-      "docs": "https://tanstack.com/table/latest/docs/introduction",
+      "docs": "https://tanstack.com/table/latest",
       "summary": "Headless table state and row-model engine with multiple framework adapters.",
       "useWhen": "Use for sophisticated table behavior when styling and data fetching remain application-owned.",
       "cautions": [
@@ -893,6 +1169,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tanstack/react-table"
+        }
+      ],
+      "quickstart": [
+        "npm install @tanstack/react-table",
+        "Or use Genlib data-table: node \"$GENLIB_ROOT/bin/genlib.mjs\" plan data-table --target \"$APP_ROOT\"",
+        "Docs: https://tanstack.com/table/latest"
       ]
     },
     {
@@ -947,6 +1237,20 @@
       "install": [
         "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
         "Use the target project\u2019s package manager and lockfile; import only the required components."
+      ],
+      "projectTypes": [
+        "web-app",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@storefront-ui/react"
+        }
+      ],
+      "quickstart": [
+        "npm install @storefront-ui/react",
+        "Docs: https://docs.storefrontui.io/v2/"
       ]
     }
   ]

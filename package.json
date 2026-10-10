@@ -42,7 +42,10 @@
     "skills:install": "node scripts/install-skills.mjs",
     "resources": "node tools/resources.mjs",
     "resources:check": "node tools/resources.mjs validate --json",
-    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm test"
+    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm run docs:check && npm test",
+    "docs:sync": "node scripts/sync-docs.mjs",
+    "docs:check": "node scripts/sync-docs.mjs --check",
+    "resources:verify": "node scripts/verify-resources.mjs"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

@@ -31,6 +31,11 @@
       "frameworks": [
         "react"
       ],
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "platform": "web",
       "verification": "tested",
       "manifest": "registry/manifests/app-shell@0.1.0.json",
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
@@ -60,6 +65,10 @@
       "frameworks": [
         "any"
       ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/common-api-clients@0.1.0.json",
       "sha256": "cef23e9440766c4a392fa439e4dcbd7f65e3d29ee606b3c1362e27cc47a863db"
@@ -81,9 +90,99 @@
       "frameworks": [
         "react"
       ],
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "platform": "web",
       "verification": "tested",
       "manifest": "registry/manifests/data-table@0.1.0.json",
       "sha256": "1c4f9f90ce5a74a51e060dd2e9981ff5ac1582824daae75bde73f06b2187097f"
+    },
+    {
+      "id": "env-config",
+      "version": "0.1.0",
+      "title": "Environment configuration",
+      "description": "Framework-neutral TypeScript schema for environment variables that validates a caller-supplied record at startup, returns a frozen typed object, reports every problem by key without echoing values, redacts secrets, and renders .env.example text.",
+      "kind": "utility",
+      "tags": [
+        "config",
+        "env",
+        "environment",
+        "dotenv",
+        "validation",
+        "secrets",
+        "startup",
+        "typescript",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/env-config@0.1.0.json",
+      "sha256": "a4f249b72e5ccc587002e5929e95a6888f89a0346fe40ed4038098f1d5a83e5c"
+    },
+    {
+      "id": "health-checks",
+      "version": "0.1.0",
+      "title": "Health checks",
+      "description": "Framework-neutral Fetch handlers for liveness (/healthz) and readiness (/readyz) with concurrent named checks, per-check timeouts, critical versus degraded results, redacted errors, and no-store JSON.",
+      "kind": "utility",
+      "tags": [
+        "health",
+        "readiness",
+        "liveness",
+        "kubernetes",
+        "observability",
+        "server",
+        "fetch"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/health-checks@0.1.0.json",
+      "sha256": "401d04ed257f41a8a8d82836538cce4611113f6957a0410a7eab2c5f19b71e07"
+    },
+    {
+      "id": "http-resilience",
+      "version": "0.1.0",
+      "title": "HTTP resilience",
+      "description": "Runtime-neutral TypeScript retry with exponential backoff and full jitter, AbortSignal-aware timeouts, an idempotency-safe Fetch retry wrapper that honors Retry-After, and an in-process circuit breaker.",
+      "kind": "utility",
+      "tags": [
+        "http",
+        "fetch",
+        "retry",
+        "backoff",
+        "jitter",
+        "timeout",
+        "abort",
+        "retry-after",
+        "idempotency",
+        "circuit-breaker",
+        "resilience",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/http-resilience@0.1.0.json",
+      "sha256": "2fd8aa46f03682e74c1cb28b602dfa23268601c39a10d41314aad097b6007405"
     },
     {
       "id": "notification-preferences",
@@ -101,9 +200,99 @@
       "frameworks": [
         "react"
       ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "web",
       "verification": "tested",
       "manifest": "registry/manifests/notification-preferences@0.1.0.json",
       "sha256": "45112a7d81ad45ba65fdf89868cf1f74b8fbc1e45f73f0f82134200dc5c8d8d1"
+    },
+    {
+      "id": "rate-limit",
+      "version": "0.1.0",
+      "title": "Rate limit",
+      "description": "Runtime-neutral TypeScript rate limiting with token bucket, fixed window, and exact sliding window algorithms over a pluggable atomic store, a bounded in-memory LRU store, and Fetch-standard 429 and RateLimit header helpers.",
+      "kind": "utility",
+      "tags": [
+        "rate-limit",
+        "throttle",
+        "token-bucket",
+        "fixed-window",
+        "sliding-window",
+        "429",
+        "retry-after",
+        "ratelimit-headers",
+        "lru",
+        "fetch",
+        "server",
+        "security"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/rate-limit@0.1.0.json",
+      "sha256": "3a703d7e67554f79872bac75fddd35c6dc37a74339b2c9f75c7a612da9fdeeff"
+    },
+    {
+      "id": "security-headers",
+      "version": "0.1.0",
+      "title": "Security headers",
+      "description": "Framework-neutral TypeScript builder for HTTP response security headers: validated Content-Security-Policy with per-request nonces and report-only mode, HSTS, nosniff, Referrer-Policy, Permissions-Policy, COOP, and X-Frame-Options, applied to Fetch Responses.",
+      "kind": "utility",
+      "tags": [
+        "security",
+        "headers",
+        "csp",
+        "hsts",
+        "nonce",
+        "permissions-policy",
+        "server",
+        "middleware",
+        "fetch"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/security-headers@0.1.0.json",
+      "sha256": "7ae05d3ae2f88ea3fa52383a3028295f9f2354fd8465a2b4a4e51620979fbd38"
+    },
+    {
+      "id": "structured-logger",
+      "version": "0.1.0",
+      "title": "Structured logger",
+      "description": "Framework-neutral TypeScript JSON-lines logger with levels, child bindings, deterministic key-based redaction, bounded cycle-safe serialization, error cause chains, an injectable sink and clock, and x-request-id correlation for Fetch Request objects.",
+      "kind": "utility",
+      "tags": [
+        "logging",
+        "logger",
+        "json",
+        "observability",
+        "redaction",
+        "request-id",
+        "server",
+        "typescript"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/structured-logger@0.1.0.json",
+      "sha256": "b39afee8d51142aa4043f57c4918bcf4e6eb231c8fc3f0f4ae5f8ea69c1efb70"
     },
     {
       "id": "theme-tokens",
@@ -120,6 +309,10 @@
       "frameworks": [
         "any"
       ],
+      "languages": [
+        "css"
+      ],
+      "platform": "web",
       "verification": "tested",
       "manifest": "registry/manifests/theme-tokens@0.1.0.json",
       "sha256": "4cbe80aa9d584d8ebc55fabefba7d98d9ca32dd59a14d5c98d20ccaf4eb3633c"
@@ -140,9 +333,43 @@
       "frameworks": [
         "react"
       ],
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "platform": "web",
       "verification": "tested",
       "manifest": "registry/manifests/validated-form@0.1.0.json",
       "sha256": "b2815d38c3fc74ad4635c31f54222809e52432662f14522e44ae92eb807153b7"
+    },
+    {
+      "id": "webhook-verification",
+      "version": "0.1.0",
+      "title": "Webhook verification",
+      "description": "Framework-neutral TypeScript verification of inbound webhook HMAC-SHA256 signatures over raw body bytes with Web Crypto: generic hex, GitHub, Stripe, and Standard Webhooks/Svix, with secret rotation, timestamp tolerance, and a size-capped raw body reader.",
+      "kind": "utility",
+      "tags": [
+        "webhook",
+        "signature",
+        "hmac",
+        "security",
+        "github",
+        "stripe",
+        "standard-webhooks",
+        "svix",
+        "server",
+        "web-crypto"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/webhook-verification@0.1.0.json",
+      "sha256": "395f4f71fae1e2885ec625180219357d21edd7c1bdeb73ac8c2e7eafffd72a04"
     }
   ]
 }

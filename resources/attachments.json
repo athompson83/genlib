@@ -46,6 +46,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -93,6 +96,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -141,6 +147,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -194,6 +203,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -246,6 +258,9 @@
       },
       "install": [
         "Choose one design file on the official service, inspect its license and contents, and save a reviewed project-specific adaptation with attribution where required."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -301,6 +316,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -352,6 +370,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -401,6 +422,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -446,6 +470,10 @@
         {
           "url": "https://21st.dev/terms",
           "title": "21st.dev \u2014 marketplace terms"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -454,6 +482,9 @@
       },
       "install": [
         "Select an individual component through official access. Review its original source, exact license, dependencies and attribution before copying any permitted files."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -505,6 +536,14 @@
         {
           "url": "https://ui.shadcn.com/docs",
           "title": "shadcn/ui \u2014 official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -513,6 +552,14 @@
       },
       "install": [
         "Follow the official installation guide for the receiving stack. Select a reviewed CLI release and only the needed components; preserve the upstream license and resulting source diff."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "quickstart": [
+        "npx shadcn@latest init",
+        "npx shadcn@latest add button",
+        "Docs: https://ui.shadcn.com/docs/components"
       ]
     },
     {
@@ -557,6 +604,10 @@
         {
           "url": "https://ui.aceternity.com/licence",
           "title": "Aceternity UI \u2014 published license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -565,6 +616,14 @@
       },
       "install": [
         "Inspect the selected item's current license and the user's entitlement. Use it only within that grant; keep restricted source out of this public registry."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "quickstart": [
+        "Check the license tier first: https://ui.aceternity.com/licence",
+        "npx shadcn@latest add \"https://ui.aceternity.com/registry/background-beams.json\""
       ]
     },
     {
@@ -609,6 +668,10 @@
         {
           "url": "https://github.com/magicuidesign/magicui/blob/main/LICENSE.md",
           "title": "Magic UI \u2014 MIT license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -617,6 +680,14 @@
       },
       "install": [
         "Select the component and reviewed source revision from official documentation, copy only necessary files with notices, and install target-approved peer dependencies explicitly."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://magicui.design/r/marquee.json\"",
+        "Browse components: https://magicui.design/docs/components"
       ]
     },
     {
@@ -660,6 +731,10 @@
         {
           "url": "https://github.com/juliangarnier/anime/blob/master/LICENSE.md",
           "title": "Anime.js \u2014 MIT license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -668,6 +743,21 @@
       },
       "install": [
         "Review the official animejs package and select an exact compatible release in the receiving project's lockfile. Genlib does not run the package manager."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "animejs"
+        }
+      ],
+      "quickstart": [
+        "npm install animejs",
+        "import { animate } from \"animejs\";",
+        "Docs: https://animejs.com/documentation"
       ]
     },
     {
@@ -708,6 +798,10 @@
         {
           "url": "https://github.com/ibelick/motion-primitives",
           "title": "Motion Primitives \u2014 official repository and license declaration"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -716,6 +810,14 @@
       },
       "install": [
         "Review one component at an exact upstream revision, resolve its MIT notice and peer dependencies, then copy it with attribution and application-specific verification."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://motion-primitives.com/c/text-effect.json\"",
+        "Docs: https://motion-primitives.com/docs"
       ]
     },
     {
@@ -768,6 +870,10 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
       ]
     },
     {
@@ -825,6 +931,9 @@
       },
       "install": [
         "Select one official registry component, inspect its source and attribution, and use a reviewed shadcn CLI version or manual copy. No package or install hook runs through this catalog."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -874,6 +983,10 @@
         {
           "url": "https://github.com/AnmolSaini16/mapcn/blob/main/LICENSE",
           "title": "mapcn \u2014 MIT source license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -882,6 +995,14 @@
       },
       "install": [
         "Choose a reviewed component revision and compatible peers. Configure a licensed basemap/provider before testing the map with the application's intended commercial use."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://mapcn.dev/r/map.json\"",
+        "Configure a basemap style you are licensed to use",
+        "Docs: https://www.mapcn.dev/"
       ]
     },
     {
@@ -924,6 +1045,10 @@
         {
           "url": "https://uiverse.io/",
           "title": "Uiverse \u2014 official website and UI-element licensing declaration"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
         }
       ],
       "genlib": {
@@ -932,6 +1057,13 @@
       },
       "install": [
         "Choose an individual element, save its source URL and author, inspect its code, and retain the required MIT notice when adding permitted code."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "quickstart": [
+        "Pick an element on https://uiverse.io, open it and copy its HTML/CSS or Tailwind tab into the component",
+        "Or copy from the MIT repo: https://github.com/uiverse-io/galaxy"
       ]
     },
     {
@@ -989,6 +1121,18 @@
       },
       "install": [
         "Review an exact release of @samasante/liquid-glass and its React peer range. Add it through the receiving project's normal dependency workflow after choosing the cross-browser background strategy."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@samasante/liquid-glass"
+        }
+      ],
+      "quickstart": [
+        "npm install @samasante/liquid-glass"
       ]
     },
     {
@@ -1040,6 +1184,10 @@
       },
       "install": [
         "Select the needed asset from the official collection, confirm its CC0 notice, and import only required optimized files with source metadata."
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app"
       ]
     },
     {
@@ -1090,6 +1238,10 @@
       },
       "install": [
         "Select and inspect the required icon download, confirm its license, optimize it, and record its source before adding it to the project's asset directory."
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app"
       ]
     },
     {
@@ -1148,6 +1300,11 @@
       },
       "install": [
         "Read the common-api-clients contract and install that original Genlib module through the normal plan/add flow. Configure the receiving server to call an authorized Saleor endpoint; Saleor itself remains an external service."
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "ecommerce"
       ]
     },
     {
@@ -1206,6 +1363,10 @@
       },
       "install": [
         "Select the exact Storefront UI or Alokai package needed for the project, confirm its current license and framework support, and use its official installation guide. No enterprise source is bundled here."
+      ],
+      "projectTypes": [
+        "web-app",
+        "ecommerce"
       ]
     },
     {
@@ -1267,6 +1428,11 @@
       },
       "install": [
         "Read the common-api-clients contract and install that original Genlib module through the normal plan/add flow. Connect it to an authorized Steel service; review upstream deployment and session-isolation settings separately."
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "browser-automation"
       ]
     },
     {
@@ -1323,6 +1489,9 @@
       },
       "install": [
         "Use as a design reference. Before using upstream code, assess its exact GPL obligations and dependencies in a separately scoped project; this catalog installs no Echo Music source or binaries."
+      ],
+      "projectTypes": [
+        "mobile-app"
       ]
     }
   ]

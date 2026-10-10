@@ -213,6 +213,767 @@
       "variants": [
         "provider-adapters"
       ]
+    },
+    {
+      "id": "slugify-and-unique-slug",
+      "kind": "source-example",
+      "path": "examples/recipes/slugify.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "slug",
+        "slugify",
+        "permalink",
+        "url slug",
+        "pretty url",
+        "seo url",
+        "friendly url",
+        "handle",
+        "vanity url",
+        "unique slug",
+        "dedupe slug",
+        "kebab case"
+      ],
+      "checks": [
+        "Enforce a database unique constraint; uniqueSlug is only a pre-check",
+        "Decide unicode vs ASCII slugs per product and locale",
+        "Keep old slugs as redirects when titles change"
+      ],
+      "variants": [
+        "ascii",
+        "unicode",
+        "unique-suffix"
+      ]
+    },
+    {
+      "id": "money-minor-units",
+      "kind": "source-example",
+      "path": "examples/recipes/money.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "money",
+        "currency",
+        "cents",
+        "minor units",
+        "price",
+        "rounding",
+        "banker rounding",
+        "allocate",
+        "split payment",
+        "split bill",
+        "tax rate",
+        "percentage",
+        "format currency",
+        "decimal amount"
+      ],
+      "checks": [
+        "Store integer minor units and an ISO 4217 code per amount",
+        "Approved rounding mode and allocation policy",
+        "Jurisdiction-specific tax rules",
+        "Pin currency exponents if the runtime ICU data differs"
+      ],
+      "variants": [
+        "parse",
+        "apply-rate",
+        "allocate",
+        "format"
+      ]
+    },
+    {
+      "id": "date-ranges-and-business-days",
+      "kind": "source-example",
+      "path": "examples/recipes/date-ranges.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "date range",
+        "business days",
+        "working days",
+        "weekdays",
+        "holidays",
+        "due date",
+        "sla",
+        "add days",
+        "days between",
+        "calendar date",
+        "timezone",
+        "utc",
+        "overlap",
+        "delivery estimate"
+      ],
+      "checks": [
+        "Convert instants to the business time zone before using date-only helpers",
+        "Supply a reviewed holiday calendar per jurisdiction",
+        "Confirm inclusive vs exclusive range semantics with product"
+      ],
+      "variants": [
+        "count",
+        "add",
+        "each-day",
+        "overlap"
+      ]
+    },
+    {
+      "id": "cursor-pagination",
+      "kind": "source-example",
+      "path": "examples/recipes/cursor-pagination.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "cursor pagination",
+        "keyset pagination",
+        "seek pagination",
+        "infinite scroll",
+        "load more",
+        "next page",
+        "page token",
+        "opaque cursor",
+        "base64url",
+        "paging",
+        "api pagination"
+      ],
+      "checks": [
+        "Re-authorize every page request; cursors are not tamper-proof",
+        "Sign cursors (HMAC) if their contents must be trusted",
+        "Index the (sort, id) columns used by the keyset query",
+        "Stable unique tie-breaker column"
+      ],
+      "variants": [
+        "in-memory",
+        "sql-keyset"
+      ]
+    },
+    {
+      "id": "deep-merge-and-pick-omit",
+      "kind": "source-example",
+      "path": "examples/recipes/deep-merge.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "deep merge",
+        "merge objects",
+        "merge config",
+        "defaults",
+        "options merge",
+        "pick",
+        "omit",
+        "prototype pollution",
+        "__proto__",
+        "plain object",
+        "settings overrides"
+      ],
+      "checks": [
+        "Validate the merged shape with a schema before use",
+        "Decide array replace vs concat semantics",
+        "Non-plain objects are copied by reference"
+      ],
+      "variants": [
+        "replace-arrays",
+        "concat-arrays",
+        "pick",
+        "omit"
+      ]
+    },
+    {
+      "id": "debounce-throttle",
+      "kind": "source-example",
+      "path": "examples/recipes/debounce-throttle.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "debounce",
+        "throttle",
+        "rate limit ui",
+        "search as you type",
+        "typeahead",
+        "autosave",
+        "resize handler",
+        "scroll handler",
+        "input delay",
+        "cancel",
+        "flush"
+      ],
+      "checks": [
+        "Cancel pending calls on unmount or teardown",
+        "Create the wrapper once per component (useMemo/useRef)",
+        "Server-side rate limits still required"
+      ],
+      "variants": [
+        "debounce-trailing",
+        "debounce-leading",
+        "throttle"
+      ]
+    },
+    {
+      "id": "async-pool",
+      "kind": "source-example",
+      "path": "examples/recipes/async-pool.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "concurrency limit",
+        "bounded concurrency",
+        "promise pool",
+        "parallel map",
+        "batch requests",
+        "worker pool",
+        "p-limit",
+        "throttle requests",
+        "abort",
+        "abortsignal",
+        "fan out"
+      ],
+      "checks": [
+        "Pass the signal to fetch/IO so aborts stop real work",
+        "Choose concurrency within provider rate limits",
+        "No retries: add idempotent retry policy separately if needed"
+      ],
+      "variants": [
+        "fail-fast",
+        "settled"
+      ]
+    },
+    {
+      "id": "lru-cache-with-ttl",
+      "kind": "source-example",
+      "path": "examples/recipes/lru-cache.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "lru",
+        "cache",
+        "memoize",
+        "ttl",
+        "expiry",
+        "in-memory cache",
+        "request dedupe",
+        "single flight",
+        "stampede",
+        "evict"
+      ],
+      "checks": [
+        "Per-process only; use a shared cache across instances",
+        "Never share cached per-user data across users",
+        "Bound maxEntries for memory",
+        "Invalidate on writes"
+      ],
+      "variants": [
+        "ttl",
+        "no-ttl",
+        "get-or-load"
+      ]
+    },
+    {
+      "id": "semver-compare-and-range",
+      "kind": "source-example",
+      "path": "examples/recipes/semver.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "semver",
+        "semantic version",
+        "version compare",
+        "version range",
+        "caret",
+        "tilde",
+        "satisfies",
+        "prerelease",
+        "upgrade check",
+        "compatibility",
+        "min version"
+      ],
+      "checks": [
+        "Only strict SemVer 2.0.0 versions; no loose coercion",
+        "Prerelease matching follows npm rules unless includePrerelease",
+        "Use the package manager resolver for real dependency resolution"
+      ],
+      "variants": [
+        "compare",
+        "sort",
+        "satisfies",
+        "max-satisfying"
+      ]
+    },
+    {
+      "id": "safe-filename-and-path-join",
+      "kind": "source-example",
+      "path": "examples/recipes/safe-filename.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "filename",
+        "sanitize filename",
+        "safe filename",
+        "download name",
+        "content disposition",
+        "path traversal",
+        "zip slip",
+        "safe join",
+        "directory traversal",
+        "reserved names",
+        "windows filename"
+      ],
+      "checks": [
+        "Resolve realpath on the server and confirm it stays inside the base (symlinks)",
+        "Generate storage keys server-side instead of trusting user names",
+        "Encode Content-Disposition with RFC 6266 filename*"
+      ],
+      "variants": [
+        "sanitize",
+        "relative-path",
+        "join"
+      ]
+    },
+    {
+      "id": "csv-parse",
+      "kind": "source-example",
+      "path": "examples/recipes/csv-parse.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "csv",
+        "parse csv",
+        "csv import",
+        "rfc 4180",
+        "tsv",
+        "delimited",
+        "spreadsheet import",
+        "upload csv",
+        "comma separated",
+        "quoted fields",
+        "bulk import"
+      ],
+      "checks": [
+        "Validate and convert each column; parsing yields strings only",
+        "Limit upload size, rows and field length",
+        "Authorize the import and its target records",
+        "Escape formulas if data is re-exported"
+      ],
+      "variants": [
+        "rows",
+        "objects",
+        "semicolon"
+      ]
+    },
+    {
+      "id": "url-query-state",
+      "kind": "source-example",
+      "path": "examples/recipes/url-query-state.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "query string",
+        "url state",
+        "search params",
+        "urlsearchparams",
+        "filters in url",
+        "sort param",
+        "shareable link",
+        "deep link",
+        "router state",
+        "typed params",
+        "facets"
+      ],
+      "checks": [
+        "Authorize and validate the same parameters on the server",
+        "Reset page when filters change",
+        "Keep URLs canonical for caching and analytics"
+      ],
+      "variants": [
+        "parse",
+        "serialize",
+        "update"
+      ]
+    },
+    {
+      "id": "jwt-decode-unverified",
+      "kind": "source-example",
+      "path": "examples/recipes/jwt-decode-unverified.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "jwt",
+        "decode jwt",
+        "token claims",
+        "jwt payload",
+        "token expiry",
+        "refresh token timing",
+        "inspect token",
+        "id token",
+        "access token debug"
+      ],
+      "checks": [
+        "INSPECTION ONLY: never use for authentication or authorization",
+        "Verify signature, issuer, audience and expiry on the server with a JOSE library",
+        "Do not log full tokens"
+      ],
+      "variants": [
+        "decode",
+        "expiry"
+      ]
+    },
+    {
+      "id": "password-strength-policy",
+      "kind": "source-example",
+      "path": "examples/recipes/password-policy.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "password",
+        "password policy",
+        "password rules",
+        "password strength",
+        "nist 800-63b",
+        "blocklist",
+        "breached password",
+        "signup validation",
+        "credential policy",
+        "passphrase"
+      ],
+      "checks": [
+        "Hash with Argon2id/scrypt/bcrypt on the server",
+        "Check a breached-password corpus server-side",
+        "Confirm the minimum length for your compliance target",
+        "Allow paste and password managers"
+      ],
+      "variants": [
+        "single-factor",
+        "with-mfa"
+      ]
+    },
+    {
+      "id": "i18n-plural-and-message-format",
+      "kind": "source-example",
+      "path": "examples/recipes/i18n-message.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "i18n",
+        "l10n",
+        "localization",
+        "translation",
+        "plural",
+        "pluralization",
+        "plural rules",
+        "icu message",
+        "message format",
+        "ordinal",
+        "select gender",
+        "locale"
+      ],
+      "checks": [
+        "Subset of ICU MessageFormat; use a full library for dates and rich text",
+        "Escape output before inserting into HTML",
+        "Test every supported locale plural category"
+      ],
+      "variants": [
+        "plural",
+        "selectordinal",
+        "select"
+      ]
+    },
+    {
+      "id": "color-contrast-wcag",
+      "kind": "source-example",
+      "path": "examples/recipes/color-contrast.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "contrast",
+        "color contrast",
+        "wcag",
+        "accessibility",
+        "a11y",
+        "contrast ratio",
+        "readable text color",
+        "aa",
+        "aaa",
+        "luminance",
+        "theme colors"
+      ],
+      "checks": [
+        "WCAG 2.x ratio, not APCA",
+        "Test real states (hover, focus, disabled) and text over images",
+        "Large text and non-text thresholds differ"
+      ],
+      "variants": [
+        "ratio",
+        "level",
+        "text-color"
+      ]
+    },
+    {
+      "id": "markdown-to-plaintext-excerpt",
+      "kind": "source-example",
+      "path": "examples/recipes/markdown-excerpt.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "markdown",
+        "plain text",
+        "strip markdown",
+        "excerpt",
+        "summary",
+        "preview text",
+        "snippet",
+        "meta description",
+        "truncate text",
+        "teaser",
+        "notification text"
+      ],
+      "checks": [
+        "Not a CommonMark parser or sanitizer",
+        "Escape output before inserting into HTML",
+        "Render full Markdown with a maintained parser"
+      ],
+      "variants": [
+        "plain-text",
+        "excerpt",
+        "line-breaks"
+      ]
+    },
+    {
+      "id": "html-escape-and-safe-template",
+      "kind": "source-example",
+      "path": "examples/recipes/html-escape.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "escape html",
+        "html escape",
+        "xss",
+        "sanitize output",
+        "safe template",
+        "tagged template",
+        "encode entities",
+        "safe url",
+        "javascript url",
+        "email html",
+        "server rendered html"
+      ],
+      "checks": [
+        "Text and quoted attributes only; never script/style/event-handler contexts",
+        "Use DOMPurify or a sanitizer for user-authored HTML",
+        "Prefer framework auto-escaping (JSX, template engines)",
+        "Content Security Policy as defense in depth"
+      ],
+      "variants": [
+        "escape",
+        "template",
+        "safe-url"
+      ]
+    },
+    {
+      "id": "event-emitter-typed",
+      "kind": "source-example",
+      "path": "examples/recipes/typed-emitter.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "event emitter",
+        "event bus",
+        "pub sub",
+        "publish subscribe",
+        "observer",
+        "typed events",
+        "listeners",
+        "subscribe",
+        "unsubscribe",
+        "wait for event"
+      ],
+      "checks": [
+        "Unsubscribe on teardown to avoid leaks",
+        "In-process only; use BroadcastChannel or a queue across contexts",
+        "Decide listener error policy"
+      ],
+      "variants": [
+        "on-off",
+        "once",
+        "wait-for"
+      ]
+    },
+    {
+      "id": "result-type-and-error-mapping",
+      "kind": "source-example",
+      "path": "examples/recipes/result.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "result type",
+        "either",
+        "error handling",
+        "error mapping",
+        "typed errors",
+        "app error",
+        "api errors",
+        "try catch",
+        "error codes",
+        "http status",
+        "safe error message"
+      ],
+      "checks": [
+        "Never send causes or stack traces to clients",
+        "Log the original cause server-side",
+        "Retryable writes still need idempotency keys"
+      ],
+      "variants": [
+        "result",
+        "to-app-error",
+        "public-error"
+      ]
+    },
+    {
+      "id": "feature-flag-percentage-rollout",
+      "kind": "source-example",
+      "path": "examples/recipes/feature-flag-rollout.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "feature flag",
+        "feature toggle",
+        "percentage rollout",
+        "gradual rollout",
+        "canary",
+        "kill switch",
+        "a/b test",
+        "experiment",
+        "variant",
+        "bucketing",
+        "dark launch"
+      ],
+      "checks": [
+        "Flags are not authorization; enforce permissions separately",
+        "Freeze variant weights while an experiment runs",
+        "Hash is not cryptographic; do not use for secrets",
+        "Record exposure events for analysis"
+      ],
+      "variants": [
+        "percentage",
+        "allow-deny",
+        "variants"
+      ]
+    },
+    {
+      "id": "idempotency-key-store",
+      "kind": "source-example",
+      "path": "examples/recipes/idempotency-store.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "idempotency",
+        "idempotency key",
+        "idempotent",
+        "duplicate request",
+        "double submit",
+        "double charge",
+        "exactly once",
+        "replay response",
+        "dedupe post",
+        "payment safety"
+      ],
+      "checks": [
+        "Use a shared store with atomic insert-if-absent in production",
+        "Scope keys per user/tenant and route",
+        "Do not release keys after uncertain external effects; reconcile instead",
+        "Fingerprint the canonical request body"
+      ],
+      "variants": [
+        "memory",
+        "wrapper"
+      ]
+    },
+    {
+      "id": "outbox-pattern-in-memory",
+      "kind": "source-example",
+      "path": "examples/recipes/outbox.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "outbox",
+        "transactional outbox",
+        "event publishing",
+        "reliable messaging",
+        "at least once",
+        "message relay",
+        "domain events",
+        "dual write",
+        "dead letter",
+        "background delivery"
+      ],
+      "checks": [
+        "Write outbox rows in the same database transaction as business data",
+        "Consumers must de-duplicate by message id",
+        "Alert on dead messages",
+        "Single relay owner or row locking (SKIP LOCKED)"
+      ],
+      "variants": [
+        "in-memory",
+        "relay",
+        "dead-letter"
+      ]
+    },
+    {
+      "id": "state-machine-typed",
+      "kind": "source-example",
+      "path": "examples/recipes/state-machine.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "state machine",
+        "finite state machine",
+        "fsm",
+        "workflow states",
+        "status transitions",
+        "order status",
+        "approval flow",
+        "statechart",
+        "transition guard",
+        "lifecycle"
+      ],
+      "checks": [
+        "Guards supplement, never replace, server-side authorization",
+        "Persist state and validate transitions on the server",
+        "Record transition history for audit if required"
+      ],
+      "variants": [
+        "machine",
+        "actor",
+        "guard"
+      ]
+    },
+    {
+      "id": "text-diff-lines",
+      "kind": "source-example",
+      "path": "examples/recipes/text-diff.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "diff",
+        "text diff",
+        "line diff",
+        "compare text",
+        "changes",
+        "unified diff",
+        "patch",
+        "myers",
+        "revision history",
+        "version compare text"
+      ],
+      "checks": [
+        "Bound input size with maxEdits",
+        "Escape lines before rendering as HTML",
+        "Exact line comparison (no whitespace folding)"
+      ],
+      "variants": [
+        "ops",
+        "unified"
+      ]
+    },
+    {
+      "id": "token-budget-truncation",
+      "kind": "source-example",
+      "path": "examples/recipes/token-budget.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "token",
+        "token budget",
+        "context window",
+        "token count",
+        "estimate tokens",
+        "truncate prompt",
+        "trim history",
+        "chat history",
+        "llm context",
+        "prompt length",
+        "max tokens"
+      ],
+      "checks": [
+        "chars/4 is a rough estimate; use the provider tokenizer or count endpoint when limits are strict",
+        "Keep tool calls and results grouped",
+        "Reserve output tokens and a safety margin",
+        "Not a billing figure"
+      ],
+      "variants": [
+        "estimate",
+        "truncate",
+        "trim-history"
+      ]
     }
   ]
 }

@@ -1,0 +1,3061 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "gitclear-commit-activity",
+      "name": "GitClear Commit Activity",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; review its terms before use. No source to copy."
+      },
+      "homepage": "https://www.gitclear.com/github_profile_dynamic_readme_free#commit_activity",
+      "repository": null,
+      "docs": "https://www.gitclear.com/github_profile_dynamic_readme_free#commit_activity",
+      "summary": "Dynamically generating daily visualization of which tickets/repos/branches are being worked on by individual or team.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.gitclear.com/github_profile_dynamic_readme_free#commit_activity",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "gitclear-area-charts",
+      "name": "GitClear Area Charts",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; review its terms before use. No source to copy."
+      },
+      "homepage": "https://www.gitclear.com/github_profile_dynamic_readme_free#area_graph",
+      "repository": null,
+      "docs": "https://www.gitclear.com/github_profile_dynamic_readme_free#area_graph",
+      "summary": "Dynamically generating area charts to showcase relative velocity of work across repos.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.gitclear.com/github_profile_dynamic_readme_free#area_graph",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-contributions-chart",
+      "name": "GitHub Contributions Chart",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sallar/github-contributions-chart/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sallar/github-contributions-chart",
+      "docs": "https://github.com/sallar/github-contributions-chart#readme",
+      "summary": "Octocat: Generate an image of all your Github contributions.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sallar/github-contributions-chart",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "gh-follow-tracker",
+      "name": "Github Follow Tracker",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Bittu5134/GH-Follow-Tracker",
+      "docs": "https://github.com/Bittu5134/GH-Follow-Tracker#readme",
+      "summary": "Showcase Follower History using dynamically generating SVG images.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Bittu5134/GH-Follow-Tracker",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-pr-stats",
+      "name": "GitHub PR Stats",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/f14XuanLv/github-pr-stats/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/f14XuanLv/github-pr-stats",
+      "docs": "https://github.com/f14XuanLv/github-pr-stats#readme",
+      "summary": "Generate dynamic SVG tables showcasing your GitHub pull requests with repository statistics and star-based filtering.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/f14XuanLv/github-pr-stats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-linkedin",
+      "name": "GitHub Readme LinkedIn",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/soroushchehresa/github-readme-linkedin",
+      "docs": "https://github.com/soroushchehresa/github-readme-linkedin#readme",
+      "summary": "Dynamically generated images from your LinkedIn profile on your github readmes.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/soroushchehresa/github-readme-linkedin",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-medium",
+      "name": "GitHub Readme Medium",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/omidnikrah/github-readme-medium",
+      "docs": "https://github.com/omidnikrah/github-readme-medium#readme",
+      "summary": "Dynamically generated your latest Medium article on your github readmes.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/omidnikrah/github-readme-medium",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-packagist-stats",
+      "name": "GitHub Readme Packagist Stats",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/agonyz/github-readme-packagist-stats/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/agonyz/github-readme-packagist-stats",
+      "docs": "https://github.com/agonyz/github-readme-packagist-stats#readme",
+      "summary": "Dynamically generated statistics of your Packagist Bundles for your GitHub readme.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/agonyz/github-readme-packagist-stats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-stackoverflow",
+      "name": "GitHub Readme StackOverflow",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/omidnikrah/github-readme-stackoverflow",
+      "docs": "https://github.com/omidnikrah/github-readme-stackoverflow#readme",
+      "summary": "Dynamically generated your StackOverflow status on your github readmes.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/omidnikrah/github-readme-stackoverflow",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-stats",
+      "name": "GitHub Readme Stats",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/anuraghazra/github-readme-stats/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/anuraghazra/github-readme-stats",
+      "docs": "https://github.com/anuraghazra/github-readme-stats#readme",
+      "summary": "Dynamically generated stats for your github readmes.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "The shared public instance is heavily rate-limited; deploy your own instance with a scoped token.",
+        "Each card request reaches the hosting instance; avoid on private repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anuraghazra/github-readme-stats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-streak-stats",
+      "name": "GitHub Readme Streak Stats",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/DenverCoder1/github-readme-streak-stats",
+      "docs": "https://github.com/DenverCoder1/github-readme-streak-stats#readme",
+      "summary": "Display your total contributions, current streak, and longest streak on your github profile readme.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/DenverCoder1/github-readme-streak-stats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "telegram-card",
+      "name": "GitHub Readme Telegram",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Malith-Rukshan/telegram-card/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Malith-Rukshan/telegram-card",
+      "docs": "https://github.com/Malith-Rukshan/telegram-card#readme",
+      "summary": "Showcase your Telegram presence with beautiful, dynamic preview cards.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Malith-Rukshan/telegram-card",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-twitter",
+      "name": "GitHub Readme Twitter",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gazf/github-readme-twitter/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/gazf/github-readme-twitter",
+      "docs": "https://github.com/gazf/github-readme-twitter#readme",
+      "summary": "Add Twitter to your github readmes.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gazf/github-readme-twitter",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "isometric-contributions",
+      "name": "Isometric Contributions",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Spectrewolf8/isometric-contributions/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Spectrewolf8/isometric-contributions",
+      "docs": "https://github.com/Spectrewolf8/isometric-contributions#readme",
+      "summary": "Generate beautiful 3D isometric visualizations of GitHub contribution graphs with customizable themes, live preview builder, dark mode support, and intelligent caching.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Spectrewolf8/isometric-contributions",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "profile-activity-generator",
+      "name": "Profile Activity Generator",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/omidnikrah/profile-activity-generator",
+      "docs": "https://github.com/omidnikrah/profile-activity-generator#readme",
+      "summary": "Generate custom profile activity for your profile readme.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/omidnikrah/profile-activity-generator",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "readme-pagespeed-insights",
+      "name": "Readme Pagespeed Insights",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/ankurparihar/readme-pagespeed-insights/blob/master/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; keep NOTICE files when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ankurparihar/readme-pagespeed-insights",
+      "docs": "https://github.com/ankurparihar/readme-pagespeed-insights#readme",
+      "summary": "Google lighthouse stats of your website that you can put in readme.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ankurparihar/readme-pagespeed-insights",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "terminal-identity",
+      "name": "Terminal Identity",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/doyoon530/terminal-identity/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/doyoon530/terminal-identity",
+      "docs": "https://github.com/doyoon530/terminal-identity#readme",
+      "summary": "Generate terminal-style SVG identity cards for your github profile readme with live stats, 4 provider shells, 8 themes, and zero config.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/doyoon530/terminal-identity",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "waka-readme",
+      "name": "Waka Readme",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/athul/waka-readme/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/athul/waka-readme",
+      "docs": "https://github.com/athul/waka-readme#readme",
+      "summary": "Wakatime weekly metrics on your profile readme.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/athul/waka-readme",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "youtube-stats-card",
+      "name": "YouTube Stats Card",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Dhyeythumar/youtube-stats-card/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Dhyeythumar/youtube-stats-card",
+      "docs": "https://github.com/Dhyeythumar/youtube-stats-card#readme",
+      "summary": "Dynamic YouTube stats card for your github readmes.",
+      "useWhen": "Use to embed generated stats or activity cards in a README instead of hand-building SVG/image generators.",
+      "cautions": [
+        "Public hosted instances can be rate-limited or disappear; self-host for anything you depend on.",
+        "Each image request reaches a third party; avoid on private or sensitive repositories."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "svg",
+        "github-profile",
+        "stats"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Dhyeythumar/youtube-stats-card",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "coolreadme",
+      "name": "Coolreadme",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; review its terms before use. No source to copy."
+      },
+      "homepage": "https://coolreadme.xyz",
+      "repository": null,
+      "docs": "https://coolreadme.xyz",
+      "summary": "AI-powered README generator with live preview and customizable templates for both profile and project readmes.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://coolreadme.xyz",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "get-readme",
+      "name": "Get Readme",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/luctst/get-readme",
+      "docs": "https://github.com/luctst/get-readme#readme",
+      "summary": "CLI tool to generate an esthetic readme file 🔖.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/luctst/get-readme",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "arturssmirnovs-profile-readme-generator",
+      "name": "arturssmirnovs/GitHub Profile Readme Generator",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/arturssmirnovs/github-profile-readme-generator/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/arturssmirnovs/github-profile-readme-generator",
+      "docs": "https://github.com/arturssmirnovs/github-profile-readme-generator#readme",
+      "summary": "GitHub profile readme generator allows you to create nice and simple github profile readme files that will be included in your profile previews.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/arturssmirnovs/github-profile-readme-generator",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "rahuldkjain-profile-readme-generator",
+      "name": "rahuldkjain/GitHub Profile Readme Generator",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/rahuldkjain/github-profile-readme-generator/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; keep NOTICE files when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/rahuldkjain/github-profile-readme-generator",
+      "docs": "https://github.com/rahuldkjain/github-profile-readme-generator#readme",
+      "summary": "Generate github profile readme easily with the latest add-ons like visitors count, github stats, etc using minimal UI.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rahuldkjain/github-profile-readme-generator",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-profile-readme-maker",
+      "name": "GitHub Profile Readme Maker",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/VishwaGauravIn/github-profile-readme-maker/blob/main/LICENSE",
+        "scope": "GPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://github.com/VishwaGauravIn/github-profile-readme-maker",
+      "docs": "https://github.com/VishwaGauravIn/github-profile-readme-maker#readme",
+      "summary": "Best Profile Generator, Create your perfect GitHub Profile ReadMe in the best possible way. Lots of features and tools included, all for free ! 💫.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/VishwaGauravIn/github-profile-readme-maker",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-profilinator",
+      "name": "GitHub Profilinator",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rishavanand/github-profilinator/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/rishavanand/github-profilinator",
+      "docs": "https://github.com/rishavanand/github-profilinator#readme",
+      "summary": "This tool contains mini GUI components that you can hook together to automatically generate markdown code for a perfect readme.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rishavanand/github-profilinator",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "readme-generator",
+      "name": "NRG",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/nanolaba/readme-generator/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; keep NOTICE files when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/nanolaba/readme-generator",
+      "docs": "https://github.com/nanolaba/readme-generator#readme",
+      "summary": "Multi-language README generator that builds README files from a single `.src.md` template with imports, widgets, and a table-of-contents engine. CLI, Maven plugin, and Java library.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nanolaba/readme-generator",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "readme-manager",
+      "name": "Plantek README Manager",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0",
+        "url": "https://gitlab.com/MarleyPlant/readme-manager/-/blob/master/LICENSE",
+        "scope": "LGPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://gitlab.com/MarleyPlant/readme-manager",
+      "docs": "https://gitlab.com/MarleyPlant/readme-manager",
+      "summary": "Stop wasting time on READMEs. This CLI tool generates professional documents for your Git projects with ease.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://gitlab.com/MarleyPlant/readme-manager",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "profile-readme-generator",
+      "name": "Profile Readme Generator",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/maurodesouza/profile-readme-generator/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/maurodesouza/profile-readme-generator",
+      "docs": "https://github.com/maurodesouza/profile-readme-generator#readme",
+      "summary": "Beautify your github profile with this amazing tool.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/maurodesouza/profile-readme-generator",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "reheader",
+      "name": "REHeader",
+      "category": "readme-generator",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/khalby786/REHeader/blob/master/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/khalby786/REHeader",
+      "docs": "https://github.com/khalby786/REHeader#readme",
+      "summary": "Generate beautiful header images for your github profile readmes.",
+      "useWhen": "Use to draft README structure or a profile README quickly instead of composing the markdown layout from scratch; keep project facts accurate by hand.",
+      "cautions": [
+        "Generated text and badges must be checked against the project's real commands, status and license.",
+        "Profile generators target personal GitHub profiles; project READMEs should follow Genlib's docs starter."
+      ],
+      "tags": [
+        "readme",
+        "generator",
+        "markdown",
+        "template"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/khalby786/REHeader",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "activity-log",
+      "name": "Activity Log",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TheDanniCraft/activity-log/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/TheDanniCraft/activity-log",
+      "docs": "https://github.com/TheDanniCraft/activity-log#readme",
+      "summary": "Dynamically display your recent github activity (Markdown or HTML).",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TheDanniCraft/activity-log",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "TheDanniCraft/activity-log"
+        }
+      ]
+    },
+    {
+      "id": "blog-post-workflow",
+      "name": "Blog Post Workflow",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": "https://github.com/gautamkrishnar/blog-post-workflow/blob/master/LICENSE",
+        "scope": "AGPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://github.com/gautamkrishnar/blog-post-workflow",
+      "docs": "https://github.com/gautamkrishnar/blog-post-workflow#readme",
+      "summary": "Show the latest blog posts from any sources or StackOverflow activity or youtube videos on your github profile/project readme automatically using the RSS feed.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Copyleft license: run it as a workflow step; do not vendor its source into proprietary code without review."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gautamkrishnar/blog-post-workflow",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "gautamkrishnar/blog-post-workflow"
+        }
+      ]
+    },
+    {
+      "id": "github-action-dynamic-profile-page",
+      "name": "Dynamic Profile Page",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/umutphp/github-action-dynamic-profile-page/blob/master/LICENSE",
+        "scope": "GPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://github.com/umutphp/github-action-dynamic-profile-page",
+      "docs": "https://github.com/umutphp/github-action-dynamic-profile-page#readme",
+      "summary": "GitHub action to push updates to your special profile repository.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Copyleft license: run it as a workflow step; do not vendor its source into proprietary code without review."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/umutphp/github-action-dynamic-profile-page",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "umutphp/github-action-dynamic-profile-page"
+        }
+      ]
+    },
+    {
+      "id": "ghstats",
+      "name": "Ghstats",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/tiennm99/ghstats/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; keep NOTICE files when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tiennm99/ghstats",
+      "docs": "https://github.com/tiennm99/ghstats#readme",
+      "summary": "Go CLI + GitHub Action that generates 9 themed SVG profile cards with 61+ themes and byte-weighted commit-to-language attribution.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tiennm99/ghstats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "tiennm99/ghstats"
+        }
+      ]
+    },
+    {
+      "id": "github-activity-readme",
+      "name": "Github Activity Readme",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jamesgeorge007/github-activity-readme/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jamesgeorge007/github-activity-readme",
+      "docs": "https://github.com/jamesgeorge007/github-activity-readme#readme",
+      "summary": "Updates readme with the recent github activity of a user.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jamesgeorge007/github-activity-readme",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "jamesgeorge007/github-activity-readme"
+        }
+      ]
+    },
+    {
+      "id": "my-most-followed-followers",
+      "name": "My Most Famous Followers",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Joe-Huber/my-most-followed-followers/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Joe-Huber/my-most-followed-followers",
+      "docs": "https://github.com/Joe-Huber/my-most-followed-followers#readme",
+      "summary": "Automatically creates a table in your read me with your most followed followers.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Joe-Huber/my-most-followed-followers",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "Joe-Huber/my-most-followed-followers"
+        }
+      ]
+    },
+    {
+      "id": "actions-js-profile-readme",
+      "name": "Profile Readme",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/actions-js/profile-readme/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/actions-js/profile-readme",
+      "docs": "https://github.com/actions-js/profile-readme#readme",
+      "summary": "Display profile activity and other cool widgets in your profile readme.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/actions-js/profile-readme",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "actions-js/profile-readme"
+        }
+      ]
+    },
+    {
+      "id": "profile-readme-stats",
+      "name": "Profile Readme Stats",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/teoxoy/profile-readme-stats/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/teoxoy/profile-readme-stats",
+      "docs": "https://github.com/teoxoy/profile-readme-stats#readme",
+      "summary": "Showcase your github stats on your profile readme.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/teoxoy/profile-readme-stats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "teoxoy/profile-readme-stats"
+        }
+      ]
+    },
+    {
+      "id": "waka-readme-stats",
+      "name": "Waka Readme Stats",
+      "category": "readme-action",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/anmol098/waka-readme-stats/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/anmol098/waka-readme-stats",
+      "docs": "https://github.com/anmol098/waka-readme-stats#readme",
+      "summary": "GitHub action helps to add cool dev metrics to your github profile readme.",
+      "useWhen": "Use a scheduled workflow to keep README sections (activity, posts, stats) current instead of writing a custom update script.",
+      "cautions": [
+        "Pin the action to a full commit SHA and grant the minimum token permissions (usually contents: write on one repo).",
+        "Actions that commit on a schedule add noise to history; prefer a dedicated profile repository."
+      ],
+      "tags": [
+        "readme",
+        "github-actions",
+        "automation",
+        "workflow"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anmol098/waka-readme-stats",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "anmol098/waka-readme-stats"
+        }
+      ]
+    },
+    {
+      "id": "git-badges",
+      "name": "Git Badges",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/puf17640/git-badges/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/puf17640/git-badges",
+      "docs": "https://github.com/puf17640/git-badges#readme",
+      "summary": "An API serving useful badges for your github profile readme 🚀.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "Badge images are fetched from a third party on every view; prefer GitHub's native workflow badge for CI status.",
+        "Counters and visitor badges log requests; disclose or avoid them where privacy matters."
+      ],
+      "tags": [
+        "readme",
+        "badges",
+        "shields",
+        "svg",
+        "status"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/puf17640/git-badges",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "hits",
+      "name": "Hits",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0",
+        "url": "https://github.com/dwyl/hits/blob/main/LICENSE",
+        "scope": "LGPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://github.com/dwyl/hits",
+      "docs": "https://github.com/dwyl/hits#readme",
+      "summary": "General purpose hits (page views) counter.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "Badge images are fetched from a third party on every view; prefer GitHub's native workflow badge for CI status.",
+        "Counters and visitor badges log requests; disclose or avoid them where privacy matters."
+      ],
+      "tags": [
+        "readme",
+        "badges",
+        "shields",
+        "svg",
+        "status"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dwyl/hits",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "markdown-badges",
+      "name": "Markdown Badges",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Ileriayo/markdown-badges/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Ileriayo/markdown-badges",
+      "docs": "https://github.com/Ileriayo/markdown-badges#readme",
+      "summary": "Badges for your profile and projects.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "Badge images are fetched from a third party on every view; prefer GitHub's native workflow badge for CI status.",
+        "Counters and visitor badges log requests; disclose or avoid them where privacy matters."
+      ],
+      "tags": [
+        "readme",
+        "badges",
+        "shields",
+        "svg",
+        "status"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Ileriayo/markdown-badges",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "my-badges",
+      "name": "My Badges",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/my-badges/my-badges/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/my-badges/my-badges",
+      "docs": "https://github.com/my-badges/my-badges#readme",
+      "summary": "Funny badges. Similar to GitHub Achievements, but users can define own badges.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "Badge images are fetched from a third party on every view; prefer GitHub's native workflow badge for CI status.",
+        "Counters and visitor badges log requests; disclose or avoid them where privacy matters."
+      ],
+      "tags": [
+        "readme",
+        "badges",
+        "shields",
+        "svg",
+        "status"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/my-badges/my-badges",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "shields",
+      "name": "Shields",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/badges/shields/blob/master/LICENSE-MIT",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/badges/shields",
+      "docs": "https://github.com/badges/shields#readme",
+      "summary": "Concise, consistent, and legible badges in SVG and raster format.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "The public shields.io service has rate and content limits; self-host the MIT server only if you need control.",
+        "Use GitHub's native workflow status badge for CI to avoid a third-party dependency."
+      ],
+      "tags": [
+        "badges",
+        "shields",
+        "svg",
+        "status",
+        "readme"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/badges/shields",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "stackoverflow-badge",
+      "name": "StackOverflow Badge",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://github.com/claytonjhamilton/stackoverflow-badge/blob/main/LICENSE",
+        "scope": "CC0-1.0 public-domain dedication for the upstream content."
+      },
+      "homepage": null,
+      "repository": "https://github.com/claytonjhamilton/stackoverflow-badge",
+      "docs": "https://github.com/claytonjhamilton/stackoverflow-badge#readme",
+      "summary": "Display your stats with this unique StackOverflow badge.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "Badge images are fetched from a third party on every view; prefer GitHub's native workflow badge for CI status.",
+        "Counters and visitor badges log requests; disclose or avoid them where privacy matters."
+      ],
+      "tags": [
+        "readme",
+        "badges",
+        "shields",
+        "svg",
+        "status"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/claytonjhamilton/stackoverflow-badge",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "visitor-badge",
+      "name": "Visitor Badge",
+      "category": "badge",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/jwenjian/visitor-badge/blob/master/LICENSE",
+        "scope": "GPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jwenjian/visitor-badge",
+      "docs": "https://github.com/jwenjian/visitor-badge#readme",
+      "summary": "A badge generator service to count visitors of your markdown file.",
+      "useWhen": "Use for consistent README status badges instead of drawing or hosting custom SVGs.",
+      "cautions": [
+        "Badge images are fetched from a third party on every view; prefer GitHub's native workflow badge for CI status.",
+        "Counters and visitor badges log requests; disclose or avoid them where privacy matters."
+      ],
+      "tags": [
+        "readme",
+        "badges",
+        "shields",
+        "svg",
+        "status"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jwenjian/visitor-badge",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-profile-header-generator",
+      "name": "GitHub Profile Header Generator",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/leviarista/github-profile-header-generator/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/leviarista/github-profile-header-generator",
+      "docs": "https://github.com/leviarista/github-profile-header-generator#readme",
+      "summary": "A header image generator for your Github profile Readme.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/leviarista/github-profile-header-generator",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-profile-trophy",
+      "name": "GitHub Profile Trophy",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ryo-ma/github-profile-trophy/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ryo-ma/github-profile-trophy",
+      "docs": "https://github.com/ryo-ma/github-profile-trophy#readme",
+      "summary": "Add dynamically generated github trophy on your readme.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ryo-ma/github-profile-trophy",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-readme-quotes",
+      "name": "GitHub Readme Quotes",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/PiyushSuthar/github-readme-quotes/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/PiyushSuthar/github-readme-quotes",
+      "docs": "https://github.com/PiyushSuthar/github-readme-quotes#readme",
+      "summary": "Add programming quotes to your github readme.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/PiyushSuthar/github-readme-quotes",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "github-stats-terminal-style",
+      "name": "GitHub Stats Terminal Style",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/yogeshwaran01/github-stats-terminal-style/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/yogeshwaran01/github-stats-terminal-style",
+      "docs": "https://github.com/yogeshwaran01/github-stats-terminal-style#readme",
+      "summary": "Generate Stats as like Terminal Interface with typing effects dynamically for your profile Readme.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/yogeshwaran01/github-stats-terminal-style",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "readme-jokes",
+      "name": "Readme Jokes",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ABSphreak/readme-jokes/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ABSphreak/readme-jokes",
+      "docs": "https://github.com/ABSphreak/readme-jokes#readme",
+      "summary": "Jokes for your github readmes.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ABSphreak/readme-jokes",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "random-memer",
+      "name": "Random Memer",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No license file was found on the default branch on 2026-10-10. Treat the code as all rights reserved: link to or use the hosted tool; do not copy source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/techytushar/random-memer",
+      "docs": "https://github.com/techytushar/random-memer#readme",
+      "summary": "Returns random meme images scraped from Memedroid.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "No license file: do not copy its source into a project."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/techytushar/random-memer",
+          "title": "Upstream project"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "spotify-github-profile",
+      "name": "Spotify GitHub Profile",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/kittinan/spotify-github-profile/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/kittinan/spotify-github-profile",
+      "docs": "https://github.com/kittinan/spotify-github-profile#readme",
+      "summary": "Show your Spotify playing on your github profile.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kittinan/spotify-github-profile",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "spotify-readme",
+      "name": "Spotify Readme",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/tthn0/Spotify-Readme/blob/main/LICENSE",
+        "scope": "GPL-3.0 (copyleft): using the hosted tool or action is fine, but copying or modifying its source brings the license's obligations; review before reuse."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tthn0/Spotify-Readme",
+      "docs": "https://github.com/tthn0/Spotify-Readme#readme",
+      "summary": "A modern and customizable widget for showing your current Spotify song on your github profile.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tthn0/Spotify-Readme",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    },
+    {
+      "id": "simple-icons",
+      "name": "Simple Icons",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md",
+        "scope": "CC0-1.0 public-domain dedication for the upstream content."
+      },
+      "homepage": null,
+      "repository": "https://github.com/simple-icons/simple-icons",
+      "docs": "https://github.com/simple-icons/simple-icons#readme",
+      "summary": "SVG icons for popular brands.",
+      "useWhen": "Use for brand logos in READMEs, docs and UIs instead of collecting and cleaning SVGs by hand.",
+      "cautions": [
+        "Icons are CC0 but the brands are trademarks; follow each brand's guidelines and do not imply endorsement."
+      ],
+      "tags": [
+        "icons",
+        "brands",
+        "svg",
+        "readme"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/simple-icons/simple-icons",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "simple-icons"
+        }
+      ]
+    },
+    {
+      "id": "spotify-recently-played-readme",
+      "name": "Spotify Recently Played Readme",
+      "category": "readme-widget",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/JeffreyCA/spotify-recently-played-readme/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/JeffreyCA/spotify-recently-played-readme",
+      "docs": "https://github.com/JeffreyCA/spotify-recently-played-readme#readme",
+      "summary": "Display your recently played Spotify tracks on your GitHub profile README.",
+      "useWhen": "Use to add a decorative or personal README element without building and hosting an image service.",
+      "cautions": [
+        "Decorative widgets add external requests and can break; keep project READMEs focused on usage.",
+        "Services needing account tokens (for example Spotify) must store them as secrets, never in the README."
+      ],
+      "tags": [
+        "readme",
+        "widget",
+        "github-profile",
+        "svg"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/JeffreyCA/spotify-recently-played-readme",
+          "title": "Upstream project and license"
+        },
+        {
+          "url": "https://github.com/dhyeythumar/awesome-readme-tools",
+          "title": "Awesome README Tools list (CC0-1.0), reviewed at 4d577fc"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/readme-tools.md"
+      },
+      "install": [
+        "Read the upstream README for the current embed URL, action inputs or install steps; pin a version or commit.",
+        "Add the snippet to the README and confirm it renders on GitHub in light and dark themes."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Keep secrets, VCS metadata and local build output out of the build context.
+.git
+.github
+node_modules
+dist
+coverage
+.build
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Dockerfile
+.dockerignore

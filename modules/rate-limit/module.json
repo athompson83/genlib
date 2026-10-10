@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "rate-limit",
+  "version": "0.1.0",
+  "title": "Rate limit",
+  "description": "Runtime-neutral TypeScript rate limiting with token bucket, fixed window, and exact sliding window algorithms over a pluggable atomic store, a bounded in-memory LRU store, and Fetch-standard 429 and RateLimit header helpers.",
+  "kind": "utility",
+  "tags": ["rate-limit", "throttle", "token-bucket", "fixed-window", "sliding-window", "429", "retry-after", "ratelimit-headers", "lru", "fetch", "server", "security"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/rate-limit"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build; the header helpers use the Fetch standard Headers and Response: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers, and Hono handlers on those runtimes.",
+      "The included memory store is single-process. Multi-instance, serverless, or edge deployments need an application-supplied shared RateLimitStore (for example Redis or Durable Objects) that honors the atomic update contract.",
+      "No runtime packages, environment reads, timers, or network activity occur at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/store.ts", "target": "rate-limit/store.ts" },
+    { "source": "files/limiter.ts", "target": "rate-limit/limiter.ts" },
+    { "source": "files/headers.ts", "target": "rate-limit/headers.ts" }
+  ],
+  "exports": [
+    { "name": "createRateLimiter", "from": "rate-limit/limiter.ts" },
+    { "name": "createMemoryStore", "from": "rate-limit/store.ts" },
+    { "name": "RateLimitStore", "from": "rate-limit/store.ts" },
+    { "name": "rateLimitResponse", "from": "rate-limit/headers.ts" },
+    { "name": "applyRateLimitHeaders", "from": "rate-limit/headers.ts" }
+  ],
+  "configuration": [
+    "createRateLimiter({ algorithm: \"token-bucket\", limit, refillPerSecond, store, clock?, prefix? }) or ({ algorithm: \"fixed-window\" | \"sliding-window\", limit, windowMs, store, clock?, prefix? }). limit 1–1000000 (sliding-window 1–10000).",
+    "limiter.consume(key, cost = 1) returns { allowed, limit, remaining, resetAt, resetAfterMs, retryAfterMs }. Denied requests consume nothing.",
+    "createMemoryStore({ maxKeys = 10000, clock? }); pass the same clock as the limiter.",
+    "Derive keys on the trusted server from an authenticated principal, API key ID, or a client IP taken from your platform's trusted proxy configuration. Never trust a raw X-Forwarded-For header that clients can set."
+  ],
+  "capabilities": [
+    "token-bucket", "fixed-window", "sliding-window-log", "pluggable-atomic-store",
+    "bounded-lru-memory-store", "http-429-response", "ratelimit-headers"
+  ],
+  "limitations": [
+    "The memory store holds state in one JavaScript heap: not shared across processes, workers, isolates, serverless instances, or regions, and lost on restart. LRU eviction under key floods resets evicted keys' quotas.",
+    "No Redis, database, or Durable Object store is included; a shared store must implement RateLimitStore atomically and is the application's responsibility to test.",
+    "Store errors propagate to the caller; choosing fail-open or fail-closed is the application's decision.",
+    "The sliding window keeps one timestamp per allowed unit (exact log), so state grows with limit; limit is capped at 10000 for that algorithm.",
+    "Headers use the widely deployed RateLimit-Limit/Remaining/Reset fields (delta seconds); the newer IETF draft RateLimit/RateLimit-Policy structured fields are not emitted.",
+    "Key derivation, authentication, and abuse/bot detection are out of scope. Rate limiting is not a DDoS defense on its own.",
+    "Tests use an injected clock and the memory store only."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/rate-limit.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}

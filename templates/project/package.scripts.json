@@ -1,0 +1,12 @@
+{
+  "comment": "Reference only. Merge the scripts the project can actually satisfy into package.json; every command must run a real check.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test",
+    "lint": "REPLACE_WITH_REAL_LINTER",
+    "ci:docs": "REPLACE_WITH_REAL_DOCS_CHECK",
+    "ci:verify": "npm run typecheck && npm run lint && npm test && npm run build"
+  },
+  "engines": { "node": ">=22" }
+}

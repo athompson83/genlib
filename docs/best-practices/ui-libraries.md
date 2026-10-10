@@ -20,6 +20,39 @@ This section provides a selection map and working integration patterns. External
 
 These are selection recommendations, not claims that every library has been installed or tested in this repository. Primary source and license links are in [ui-foundations.json](../../resources/ui-foundations.json). Existing Shoelace installations can be maintained deliberately, but its [upstream notice](https://github.com/shoelace-style/shoelace) says development has ended and directs new work to Web Awesome.
 
+## Choose by delivery approach
+
+Decide first whether the project should own copied component source or depend on a versioned package. Every pick below is a catalog record; run `node tools/resources.mjs inspect <id> --json` for links, license and cautions.
+
+### 1. Copy and paste: own the source, no runtime dependency
+
+| Pick | Stack | Choose when |
+| --- | --- | --- |
+| [`shadcn-ui`](https://ui.shadcn.com) | React, Radix Primitives, Tailwind CSS | You want accessible (WAI-ARIA) components with a clean, minimal look, generated into your repo to edit freely |
+| [`uiverse`](https://uiverse.io) / [`uiverse-galaxy`](https://github.com/uiverse-io/galaxy) | HTML/CSS, Tailwind | You need one creative micro-interaction (an animated button, toggle, loader or card) from 3,000+ community elements rather than a full design system. Add accessibility per element |
+
+### 2. High-end animation: landing pages, portfolios, SaaS marketing
+
+| Pick | Stack | Choose when |
+| --- | --- | --- |
+| [`aceternity-ui`](https://ui.aceternity.com) | React/Next.js, Tailwind, Motion | Cinematic effects such as moving borders, grid beams and glowing cards. Uses its own license (`license-review`): read the terms before copying, especially pro components |
+| [`magic-ui`](https://magicui.design) | React/Next.js, Tailwind, Motion | Landing-page sections with animated typography, marquees and visual anchors (MIT; pro templates are separate) |
+
+Respect `prefers-reduced-motion`, keep animation off critical form and data flows, and measure bundle size: these components ship JavaScript animation.
+
+### 3. Traditional packages: `npm install` and upgrade through releases
+
+| Pick | Stack | Core strength |
+| --- | --- | --- |
+| [`daisyui`](https://daisyui.com) | Tailwind CSS plugin | Pure CSS with no JavaScript dependency; semantic classes (`btn`, `card`) replace long utility lists |
+| [`mantine`](https://mantine.dev) | React, PostCSS | 120+ responsive components, hooks and built-in light/dark switching; strong for data-heavy admin dashboards |
+| [`radix-primitives`](https://www.radix-ui.com/primitives) | React | Unstyled, headless primitives focused on accessibility and keyboard navigation; the foundation under shadcn/ui |
+| [`chakra-ui`](https://chakra-ui.com) | React | Accessible, prop-based styling that adjusts layouts with theme tokens directly in JSX |
+
+### 4. Curated indexes: when no record fits
+
+[`awesome-ui-components`](https://github.com/brandonhimpfen/awesome-ui-components) covers design systems, animation frameworks, headless kits and icon sets. [`awesome-ui-resources`](https://github.com/al-husayn/awesome-ui-resources) covers shadcn-compatible registries, color palette generators and Tailwind frameworks. Every entry from both lists is now its own catalog record with a verified quickstart (see the [UI index sources guide](../resources/ui-index-sources.md)). Search them with `node tools/resources.mjs search <need> --category shadcn-registry` or `genlib find <need>`.
+
 ## Find the actual element you need
 
 | Element or behavior | Suitable sources | Acceptance behavior |
