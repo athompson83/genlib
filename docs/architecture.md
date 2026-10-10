@@ -77,6 +77,26 @@ The module registry currently accepts only original Apache-2.0 source. External 
 
 `templates/project`, `templates/github`, `templates/docs`, `templates/ship` and `templates/ui` are opt-in project starters indexed by `templates/index.json`. They are not installer hooks and do not change live GitHub settings. A consuming project merges selected files, replaces placeholders and supplies real verification commands before adoption.
 
+## Generated catalogs and agent access
+
+The capability index (`resources/capabilities.json`) maps common tasks to tested code in 9 languages; see [capabilities.md](capabilities.md). Several resource catalogs are generated from verified registry research rather than written by hand, and carry `languages` and registry `popularity`:
+- `resources/catalog/marketing-*.json`
+- `social-media.json`
+- `dashboards.json`
+- `scheduling-calendar.json`
+
+Each has a guide under `docs/resources/`.
+
+Agents reach everything through one ranking (`lib/discover.mjs`) by any of these paths:
+- **CLI:** `bin/genlib.mjs`.
+- **MCP server:** `bin/genlib-mcp.mjs`.
+- **Jev decision packets:** `lib/jev.mjs`.
+- **Generated search index:** `registry/search-index.jsonl`.
+- **Navigation graph:** `registry/graph.json`.
+- **Obsidian vault export:** `scripts/export-obsidian.mjs`.
+
+`lib/docs-index.mjs` makes every documentation section searchable with its line range. See [agent-access.md](agent-access.md) and [jev.md](jev.md). `npm run check` fails when the index, graph or generated docs are stale.
+
 ## Trust and ownership
 
 Trust a reviewed repository revision before executing its CLI. Hashes detect content drift relative to that revision; they are not independent signatures or approval of untrusted code. Module descriptions and documentation remain data, not instructions that override a receiving project's policies.

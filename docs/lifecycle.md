@@ -31,6 +31,7 @@ Every result names its type, verification level and the exact next command. Modu
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
+| | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
 | 8. Operate | `structured-logger` | module | JSON-lines logs with key redaction, child loggers and request IDs |
 | | `health-checks` | module | `/healthz` liveness and `/readyz` readiness with per-check timeouts |
 | 9. Other languages | Every capability, plus `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | capabilities, language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |
