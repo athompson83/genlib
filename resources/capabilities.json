@@ -800,6 +800,525 @@
       }
     },
     {
+      "id": "ids",
+      "title": "Sortable IDs: UUIDv7 and ULID",
+      "tier": "pure",
+      "summary": "Time-ordered UUIDv7 (RFC 9562) and ULID generation from a CSPRNG and the clock, deterministic builders for tests, and timestamp extraction with strict parsing.",
+      "terms": [
+        "uuid",
+        "uuidv7",
+        "uuid v7",
+        "ulid",
+        "id generation",
+        "unique id",
+        "sortable id",
+        "primary key",
+        "identifier",
+        "rfc 9562"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "ids-uuidv7-ulid",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-ids",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-ids",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-ids",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-ids",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-ids",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-ids",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-ids",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-ids",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "retry-backoff",
+      "title": "Retry with exponential backoff and Retry-After",
+      "tier": "pure",
+      "summary": "Full-jitter exponential backoff with a cap that never overflows, and Retry-After parsing (delay-seconds or IMF-fixdate) for HTTP 429 and 503 responses.",
+      "terms": [
+        "retry",
+        "backoff",
+        "exponential backoff",
+        "jitter",
+        "retry after",
+        "429",
+        "rate limited",
+        "resilience",
+        "transient errors"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "retry-backoff",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-retry-backoff",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-retry-backoff",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-retry-backoff",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-retry-backoff",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-retry-backoff",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-retry-backoff",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-retry-backoff",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-retry-backoff",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "token-bucket",
+      "title": "Token-bucket rate limiter (pure, injectable clock)",
+      "tier": "pure",
+      "summary": "Integer millitoken token bucket with capacity and refill rate, an injected clock and an exact retry-after for denied requests; keep the state in memory or in your store.",
+      "terms": [
+        "rate limit",
+        "rate limiter",
+        "token bucket",
+        "throttle",
+        "throttling",
+        "quota",
+        "api limits",
+        "429"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "token-bucket",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-token-bucket",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-token-bucket",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-token-bucket",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-token-bucket",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-token-bucket",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-token-bucket",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-token-bucket",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-token-bucket",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "semver",
+      "title": "Semantic versions and npm-style ranges",
+      "tier": "pure",
+      "summary": "Strict SemVer 2.0.0 parsing and ordering (prerelease rules, build metadata ignored) and range matching with ^, ~, x-ranges, hyphen ranges and ||, desugared exactly like node-semver.",
+      "terms": [
+        "semver",
+        "semantic version",
+        "version compare",
+        "version range",
+        "caret",
+        "tilde",
+        "dependency version",
+        "compatibility",
+        "upgrade check"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "semver-compare-and-range",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-semver",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-semver",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-semver",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-semver",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-semver",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-semver",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-semver",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-semver",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "cron-next",
+      "title": "Cron schedules: next run time",
+      "tier": "pure",
+      "summary": "Five-field cron parsing (lists, ranges, steps, Sunday as 0 or 7) with the Vixie day-of-month/day-of-week rule, returning the next UTC run after a given time.",
+      "terms": [
+        "cron",
+        "crontab",
+        "schedule",
+        "scheduler",
+        "next run",
+        "recurring job",
+        "cron expression",
+        "job scheduling"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "cron-next-run",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-cron-next",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-cron-next",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-cron-next",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-cron-next",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-cron-next",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-cron-next",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-cron-next",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-cron-next",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "wcag-contrast",
+      "title": "WCAG color contrast",
+      "tier": "pure",
+      "summary": "Relative luminance and contrast ratio per WCAG 2.x for hex colors, with AA and AAA pass checks for normal and large text.",
+      "terms": [
+        "contrast",
+        "color contrast",
+        "wcag",
+        "accessibility",
+        "a11y",
+        "luminance",
+        "aa",
+        "aaa",
+        "readability"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "color-contrast-wcag",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-wcag-contrast",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-wcag-contrast",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-wcag-contrast",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-wcag-contrast",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-wcag-contrast",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-wcag-contrast",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-wcag-contrast",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-wcag-contrast",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "geo",
+      "title": "Geo distance, geohash and bounding boxes",
+      "tier": "pure",
+      "summary": "Haversine distance in meters, geohash encode and decode with error bounds, and a bounding box around a point for radius queries in a database.",
+      "terms": [
+        "geo",
+        "distance",
+        "haversine",
+        "geohash",
+        "latitude",
+        "longitude",
+        "nearby",
+        "radius search",
+        "location",
+        "bounding box"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "geo-distance-geohash",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-geo",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-geo",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-geo",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-geo",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-geo",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-geo",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-geo",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-geo",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "webhook-signature",
+      "title": "Webhook signing and verification (HMAC-SHA256, t/v1 header)",
+      "tier": "pure",
+      "summary": "Sign outgoing webhooks and verify incoming ones with Stripe-style t=...,v1=... headers: constant-time comparison, several v1 values for secret rotation, and a timestamp tolerance against replay.",
+      "terms": [
+        "webhook",
+        "webhook signature",
+        "hmac",
+        "sign webhook",
+        "verify webhook",
+        "replay protection",
+        "signing secret",
+        "outgoing webhooks"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "webhook-signature",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-webhook-signature",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-webhook-signature",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-webhook-signature",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-webhook-signature",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-webhook-signature",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-webhook-signature",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-webhook-signature",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-webhook-signature",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

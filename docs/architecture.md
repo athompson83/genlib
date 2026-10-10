@@ -15,7 +15,7 @@ flowchart TB
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
     RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>1,066 pinned agent skills"]
-    IDX["resources/mcp-servers.json · clis.json · apis.json<br/>ranked install indexes"]
+    IDX["resources/mcp-servers.json · clis.json · apis.json<br/>starters.json · task-recipes.json<br/>ranked install indexes"]
   end
   MOD -- "npm run registry:build" --> REG["registry/catalog.json<br/>registry/manifests/*.json (SHA-256)"]
   REG --> DISC["lib/discover.mjs<br/>find · detect · catalog"]
@@ -26,7 +26,7 @@ flowchart TB
   TPL --> DISC
   TOOLIDX --> DISC
   SKL --> SKLIB["lib/skills.mjs<br/>skill find · inspect"] --> DISC
-  IDX --> IDXLIB["lib/indexes.mjs<br/>mcp · cli · api find · inspect"] --> DISC
+  IDX --> IDXLIB["lib/indexes.mjs<br/>mcp · cli · api · starter · task<br/>find · inspect"] --> DISC
   RES --> RESLIB["lib/resources.mjs<br/>validate · search · types"] --> DISC
   DOCS_MD["README · AGENTS · docs/**/*.md"] --> DOCIDX["lib/docs-index.mjs<br/>sections + line ranges"] --> DISC
   DISC --> JEV["lib/jev.mjs<br/>bounded yes/no packet"] --> CLI

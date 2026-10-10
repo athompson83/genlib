@@ -63,7 +63,7 @@ const TOOLS = [
     name: 'genlib_inspect',
     description: 'Full record (license, links, cautions, commands) for one find result: pass its type and id.',
     inputSchema: { type: 'object', properties: {
-      type: { type: 'string', enum: ['module', 'resource', 'skill', 'mcp', 'cli', 'api', 'capability', 'recipe', 'language-example', 'template', 'tool'] },
+      type: { type: 'string', enum: ['module', 'resource', 'skill', 'mcp', 'cli', 'api', 'starter', 'task', 'capability', 'recipe', 'language-example', 'template', 'tool'] },
       id: { type: 'string' }, client: { type: 'string', enum: ['claude', 'codex', 'both'], default: 'both' },
     }, required: ['type', 'id'] },
   },
@@ -120,7 +120,7 @@ async function call(name, args = {}) {
     if (type === 'module') return inspectModule(all.context, id);
     if (type === 'resource') { const item = pick(all.resources, 'resource'); return { ...item, quickstart: quickstartFor(item) }; }
     if (type === 'skill') { const item = pick(all.skills, 'skill'); return { ...item, install: installCommand(item, args.client ?? 'both') }; }
-    if (['mcp', 'cli', 'api'].includes(type)) { const item = pick(all[type], type); return { ...item, install: installFor(type, item, args.client ?? 'both') }; }
+    if (['mcp', 'cli', 'api', 'starter', 'task'].includes(type)) { const item = pick(all[type], type); return { ...item, install: installFor(type, item, args.client ?? 'both') }; }
     if (type === 'capability') return call('genlib_capability', { id, language: args.language });
     const list = { recipe: all.recipes, 'language-example': all.languages, template: all.templates, tool: all.tools }[type];
     invariant(list, 'INVALID_OPTION', 'Unsupported type: ' + type);

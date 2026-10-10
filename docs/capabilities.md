@@ -34,6 +34,14 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `money` Money in integer minor units: parse, format, rates and allocation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `signed-cursors` Signed, expiring pagination cursors (HMAC-SHA256) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `ics-events` Calendar invites: RFC 5545 .ics events | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `ids` Sortable IDs: UUIDv7 and ULID | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `retry-backoff` Retry with exponential backoff and Retry-After | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `token-bucket` Token-bucket rate limiter (pure, injectable clock) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `semver` Semantic versions and npm-style ranges | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `cron-next` Cron schedules: next run time | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `wcag-contrast` WCAG color contrast | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `geo` Geo distance, geohash and bounding boxes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `webhook-signature` Webhook signing and verification (HMAC-SHA256, t/v1 header) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
@@ -117,7 +125,36 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - It validates that end is after start, that both have the same kind and that the URL is absolute http(s). Serve the file as `text/calendar; charset=utf-8`.
 - Keep `uid` stable for an event so calendar clients update it instead of duplicating it.
 
-Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors) is noted at the top of each source file.
+**ids**
+- `uuidV7` and `ulid` build time-ordered IDs from a millisecond timestamp and 10 random bytes; `newUuidV7` and `newUlid` use the CSPRNG and the clock. `uuidV7Time` and `ulidTime` read the timestamp back, rejecting bad versions, variants and characters.
+- Both sort by creation time, which keeps database indexes compact. They reveal the creation time, so do not use them where that is sensitive.
+
+**retry-backoff**
+- `backoffDelay` is full-jitter exponential backoff, `floor(random * min(cap, base * 2^attempt))`, capped before multiplying so large attempts cannot overflow.
+- `retryAfterMs` reads a `Retry-After` header as delay-seconds or an IMF-fixdate. Retry only idempotent requests, and give up after a bounded number of attempts.
+
+**token-bucket**
+- A pure state machine in integer millitokens: `newBucket` starts full, and `take(state, now, cost, capacity, rate)` returns whether the request is allowed, the new state and the exact `retryAfterMs`. A clock moving backwards adds nothing.
+- Keep the state per key in memory or in a shared store (with an atomic update) to rate-limit across instances.
+
+**semver**
+- Strict SemVer 2.0.0 parsing and ordering, and `satisfies` with npm-style ranges (`^`, `~`, x-ranges, hyphen ranges, `||`) desugared exactly like node-semver. A prerelease only matches a range that names a prerelease of the same version.
+
+**cron-next**
+- Five-field cron (lists, ranges, steps, Sunday as 0 or 7, no names). When both day-of-month and day-of-week are restricted, either may match (the Vixie rule). `nextRun` returns the next UTC minute strictly after the given time, and gives up after five years.
+
+**wcag-contrast**
+- WCAG 2.x relative luminance and contrast ratio for `#rgb` and `#rrggbb`, and `passes` for AA (4.5, large text 3) and AAA (7, large text 4.5), using the unrounded ratio.
+
+**geo**
+- `haversineMeters` (mean Earth radius 6,371,008.8 m), `geohashEncode` and `geohashDecode` with error bounds, and `boundingBox` for a radius query: filter rows by the box in the database, then by exact distance.
+- Spherical distance is accurate to about 0.5%; use a geodesic library for surveying.
+
+**webhook-signature**
+- `signWebhook` writes a `t=<seconds>,v1=<hex HMAC-SHA256 of "t.body">` header. `verifyWebhook` accepts any matching `v1` (so secrets can rotate), compares in constant time and rejects timestamps outside the tolerance (300 s by default).
+- Verify the exact raw body bytes before parsing JSON. Errors are `malformed`, `bad signature` or `expired`.
+
+Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 
 Learn any implementation's API without opening it: `genlib outline <capability> --language <lang>` lists its signatures and one-line docs.
 

@@ -1,15 +1,17 @@
-# Install indexes: skills, MCP servers, CLIs and APIs
+# Install indexes: skills, MCP servers, CLIs, APIs, starters and task recipes
 
-Four ranked indexes let an agent find a widely used tool and install it in one or two commands, instead of searching the web, reading install docs and guessing flags. Every entry carries its exact commands. Genlib never runs them.
+Six ranked indexes let an agent find a widely used tool and install it in one or two commands, instead of searching the web, reading install docs and guessing flags. Every entry carries its exact commands. Genlib never runs them.
 
 | Index | File | Ranking signal | Find | Install shape |
 | --- | --- | --- | --- | --- |
 | Agent skills | `resources/skills.json` | skills.sh all-time installs (2026-10-10) | `genlib skill find <need>` | `npx skills@1.7.2 add <pinned url> -a claude-code -a codex -y` |
 | MCP servers | `resources/mcp-servers.json` | Monthly npm/PyPI downloads, from the official MCP Registry | `genlib mcp find <need> --client claude\|codex\|both` | `claude mcp add <name> -e KEY=<KEY> -- npx -y <pkg>@<version>` and `codex mcp add … --env …` |
 | CLIs | `resources/clis.json` | Homebrew install-on-request, last 365 days | `genlib cli find <need>` | `brew install <formula>` |
+| Project starters | `resources/starters.json` | GitHub stars of the source repository, then registry downloads | `genlib starter find <need>` | `npx degit <owner>/<repo>#<sha> my-app`, `uvx cookiecutter … --checkout <sha>`, `npx create-…@<version>`, `dotnet new install <pack>::<version>` |
+| Task recipes | `resources/task-recipes.json` | Per source: OpenRewrite recipe-graph importance, n8n template views | `genlib task find <need>` | `mvn … rewrite-maven-plugin:<version>:run -Drewrite.activeRecipes=<recipe>` (or a one-line Gradle init script), `curl` an n8n template to import |
 | APIs | `resources/apis.json` | Tranco rank of the provider domain, from the APIs.guru OpenAPI Directory | `genlib api find <need>` | Official SDK `npm install`, or a typed client from the spec with `openapi-typescript` / `openapi-python-client` |
 
-`genlib find <task words>` searches all four alongside modules, recipes, templates and resources. Use `--type skill|mcp|cli|api` to narrow it. `genlib <index> inspect <id>` returns one full record.
+`genlib find <task words>` searches all six alongside modules, recipes, templates and resources. Use `--type skill|mcp|cli|api|starter|task` to narrow it. Without `--json`, each `find` prints one line and the install steps per result. `genlib <index> inspect <id>` returns one full record.
 
 ## MCP servers
 
@@ -32,6 +34,18 @@ The 1,500 Homebrew formulae users install most on purpose (dependencies don't co
 - **Official SDKs:** listed first where one exists on npm; 1,115 entries have one (AWS SDK v3 clients, `@azure/arm-*`, `googleapis`, `twilio`, `@adyen/api-library`, `octokit` and others, each checked on npm) (for example `@aws-sdk/client-s3`, `googleapis`, `octokit`, `stripe`).
 - **Without an SDK:** one command generates a typed client: `npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 <spec> -o src/api/<id>.ts`. For Python: `uvx openapi-python-client@0.29.1 generate --url <spec>`.
 - **Credentials:** keep them in server-side configuration (Genlib `env-config`) and call APIs from trusted server code.
+
+## Project starters
+
+- **2,818 starters** in 28 languages: 2,326 repository starters copied with `degit` at a pinned commit (1,147 are GitHub template repositories and also get `gh repo create --template`), 241 `dotnet new` template packs, 100 cookiecutters, 89 `create-*` CLIs, 54 framework generators (Rails, Laravel, Phoenix, Django, Spring Initializr, very_good_cli, cargo-generate and others) and 3 curated directories.
+- Ranked by the GitHub stars of the source repository (for CLIs and generators, the repository that publishes them); archived repositories, forks and repositories without a push since 2023-10-10 are skipped.
+- 695 are marked `license-review` (no license, copyleft or non-OSI). A starter copies third-party code into your project: read its license and keep the pinned commit.
+
+## Task recipes
+
+- **OpenRewrite (2,584):** framework migrations (Spring Boot, Jakarta EE, JUnit, Java versions), static analysis, security, logging and build fixes. Each record names the recipe and pins the Maven plugin (6.46.1), the Gradle plugin (7.39.0) and the recipe module to the last versions published on Maven Central (OpenRewrite moved newer releases behind a login in August 2026; `latestVersion` names them). 1,708 are under the Moderne Source Available License and marked `license-review`. Run them on a clean branch and review the diff.
+- **n8n (1,000)** most-viewed workflow templates and **Activepieces (420)** templates: download, then import into your instance. They are community content (`license-review`); read every node and credential before enabling one.
+- **Also:** Salesforce `lwc-recipes` components (132), Claude cookbook notebooks (97) and the awesome-workflow-engines directory, each at a pinned commit.
 
 ## Safety and freshness
 

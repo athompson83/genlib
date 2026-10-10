@@ -71,3 +71,25 @@ test('the CLI exposes mcp, cli and api find/inspect and find searches them', () 
   const unified = JSON.parse(run('find', 'jq', '--type', 'cli', '--limit', '1', '--json').stdout);
   assert.equal(unified.results[0].next[0], 'brew install jq');
 });
+
+test('starter and task indexes give pinned one-command installs and are searchable', async () => {
+  const starters = await loadIndex('starter');
+  assert.ok(starters.entries.length >= 2000, String(starters.entries.length));
+  for (const entry of starters.entries) {
+    if (['github-template', 'cookiecutter', 'cargo-generate'].includes(entry.kind)) {
+      assert.match(entry.commit, /^[0-9a-f]{40}$/, entry.id);
+      assert.ok(entry.install.some(step => step.includes(entry.commit)), entry.id + ' installs the pinned commit');
+    }
+  }
+  const tasks = await loadIndex('task');
+  assert.ok(tasks.entries.length >= 2000, String(tasks.entries.length));
+  const rewrite = tasks.entries.filter(entry => entry.source === 'openrewrite' && entry.install[0].startsWith('mvn '));
+  assert.ok(rewrite.length > 1000 && rewrite.every(entry => /rewrite-maven-plugin:\d+\.\d+\.\d+:run .*-Drewrite\.activeRecipes=/.test(entry.install[0])), 'OpenRewrite recipes pin the plugin and name the recipe');
+  assert.ok(tasks.entries.filter(entry => entry.source === 'n8n').every(entry => entry['license-review'] === true), 'community workflows are license-review');
+  assert.equal(searchIndex('starter', starters, 'create t3 app', { limit: 1 })[0].kind, 'create-cli');
+  // The registry namespace (io.github.*) is not a match; the vendor's own server wins.
+  assert.equal(searchIndex('mcp', await loadIndex('mcp'), 'github', { limit: 1 })[0].id, 'io-github-github-github-mcp-server');
+  const text = run('starter', 'find', 'django', '--limit', '2').stdout;
+  assert.match(text, /^1\. starter:/);
+  assert.ok(text.length < 1500, 'index find text output stays compact');
+});

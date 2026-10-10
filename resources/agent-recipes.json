@@ -476,7 +476,11 @@
         "prerelease",
         "upgrade check",
         "compatibility",
-        "min version"
+        "min version",
+        "semver ranges",
+        "npm range",
+        "hyphen range",
+        "x-range"
       ],
       "checks": [
         "Only strict SemVer 2.0.0 versions; no loose coercion",
@@ -678,7 +682,10 @@
         "aa",
         "aaa",
         "luminance",
-        "theme colors"
+        "theme colors",
+        "wcag contrast",
+        "contrast check",
+        "passes aa"
       ],
       "checks": [
         "WCAG 2.x ratio, not APCA",
@@ -688,7 +695,9 @@
       "variants": [
         "ratio",
         "level",
-        "text-color"
+        "text-color",
+        "rounded-ratio",
+        "passes"
       ]
     },
     {
@@ -1320,6 +1329,176 @@
         "timed",
         "all-day",
         "feed"
+      ]
+    },
+    {
+      "id": "ids-uuidv7-ulid",
+      "kind": "source-example",
+      "path": "examples/recipes/ids.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "uuid",
+        "uuidv7",
+        "uuid v7",
+        "ulid",
+        "unique id",
+        "sortable id",
+        "time-ordered id",
+        "primary key",
+        "rfc 9562",
+        "crockford base32",
+        "id timestamp"
+      ],
+      "checks": [
+        "IDs reveal their creation time; never use them as secrets or unguessable tokens",
+        "Generate with the CSPRNG (newUuidV7/newUlid); pure builders are for tests and replays",
+        "ULIDs from the same millisecond are not monotonic; sort ties by another key"
+      ],
+      "variants": [
+        "uuidv7",
+        "ulid",
+        "extract-time"
+      ]
+    },
+    {
+      "id": "retry-backoff",
+      "kind": "source-example",
+      "path": "examples/recipes/retry-backoff.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "retry",
+        "backoff",
+        "exponential backoff",
+        "full jitter",
+        "jitter",
+        "retry-after",
+        "retry after header",
+        "429",
+        "503",
+        "transient failure",
+        "reconnect delay"
+      ],
+      "checks": [
+        "Retry only idempotent requests or ones carrying an idempotency key",
+        "Cap the number of attempts and the total time, not just the delay",
+        "Prefer the server Retry-After value when present; null means fall back to backoff"
+      ],
+      "variants": [
+        "full-jitter",
+        "random-delay",
+        "retry-after"
+      ]
+    },
+    {
+      "id": "token-bucket",
+      "kind": "source-example",
+      "path": "examples/recipes/token-bucket.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "token bucket",
+        "rate limit",
+        "rate limiter",
+        "throttle requests",
+        "api quota",
+        "burst",
+        "requests per second",
+        "retry after",
+        "leaky bucket",
+        "per-key limit"
+      ],
+      "checks": [
+        "Store state per key and apply take() atomically when servers share a limit",
+        "Use a monotonic or server clock; client timestamps are untrusted",
+        "Return 429 with Retry-After from retryAfterMs when denied"
+      ],
+      "variants": [
+        "in-memory",
+        "per-key",
+        "distributed-store"
+      ]
+    },
+    {
+      "id": "cron-next-run",
+      "kind": "source-example",
+      "path": "examples/recipes/cron-next.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "cron",
+        "crontab",
+        "cron expression",
+        "next run",
+        "schedule",
+        "scheduled job",
+        "recurring job",
+        "vixie cron",
+        "next occurrence",
+        "job scheduler"
+      ],
+      "checks": [
+        "UTC only: convert local schedules and DST before calling",
+        "Five numeric fields only; names, seconds, ?, L and W are rejected",
+        "Throws when no run exists within 5 years (for example 30 February)"
+      ],
+      "variants": [
+        "next-run",
+        "validate-expression"
+      ]
+    },
+    {
+      "id": "geo-distance-geohash",
+      "kind": "source-example",
+      "path": "examples/recipes/geo.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "geo",
+        "geohash",
+        "haversine",
+        "distance",
+        "great circle",
+        "latitude longitude",
+        "nearby search",
+        "bounding box",
+        "radius search",
+        "store locator",
+        "proximity"
+      ],
+      "checks": [
+        "Spherical model: up to about 0.5% error versus WGS 84",
+        "Prefilter with the bounding box, then filter by exact distance",
+        "Neighbouring geohash cells can be close despite different prefixes"
+      ],
+      "variants": [
+        "distance",
+        "geohash",
+        "bounding-box"
+      ]
+    },
+    {
+      "id": "webhook-signature",
+      "kind": "source-example",
+      "path": "examples/recipes/webhook-signature.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "webhook",
+        "webhook signature",
+        "verify webhook",
+        "sign webhook",
+        "hmac sha256",
+        "t v1 header",
+        "signature header",
+        "replay protection",
+        "timestamp tolerance",
+        "incoming webhook"
+      ],
+      "checks": [
+        "Verify the raw request body bytes before JSON parsing",
+        "Keep the tolerance small and dedupe event ids to stop replays inside the window",
+        "Send several v1 values while rotating secrets; store secrets server-side only"
+      ],
+      "variants": [
+        "sign",
+        "verify",
+        "secret-rotation"
       ]
     }
   ]

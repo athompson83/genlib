@@ -69,6 +69,8 @@ Commit the relevant generated files with the authored changes:
 | Module manifests, contracts, source, `LICENSE`, and `NOTICE` | `registry/catalog.json` and `registry/manifests/` |
 | `skills/genlib-use/` | `.agents/skills/genlib-use/` and `.claude/skills/genlib-use/` |
 
+`.gitattributes` marks `examples/` as source code (GitHub Linguist would otherwise treat it as documentation and hide the nine languages from the repository's language bar) and `registry/` as generated. Keep both lines when reorganising folders.
+
 Do not hand-edit generated hashes, catalog entries, or skill mirrors. Registry and skill check modes report drift without writing. Skill sync rejects unexpected content in its dedicated mirror directories; inspect such content before resolving a conflict so unrelated work is not lost.
 
 When changing the skill, preserve standard `name` and `description` YAML frontmatter and the complete supporting references. Format example agent prompts as JSON. The copied skill must locate a separate Genlib checkout through `GENLIB_ROOT` and must remain usable outside this repository.

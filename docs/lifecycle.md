@@ -29,6 +29,7 @@ Every result names its type, verification level and the exact next command. Modu
 | | `oidc-pkce`, `oidc-token-verification`, `saml-sso`, `totp`, `recovery-codes`, `webauthn-passkeys`, `password-hashing` | capabilities | SSO login, token and SAML verification, MFA, passkeys and password storage in 9 languages ([capabilities](capabilities.md)) |
 | | `form-schema`, `calculator`, `pdf-form-filling`, `pdf-text-extraction`, `docx-documents`, `rich-text-sanitization` | capabilities | Server-side forms, safe math, PDF filling and parsing, Word documents and HTML sanitizing in each language |
 | | `csv-safe`, `money`, `signed-cursors`, `ics-events` | capabilities | Injection-safe CSV import and export, money in minor units with exact rounding and allocation, tamper-proof pagination cursors, and calendar invites in 9 languages |
+| | `ids`, `retry-backoff`, `token-bucket`, `semver`, `cron-next`, `wcag-contrast`, `geo`, `webhook-signature` | capabilities | Sortable IDs, retries and rate limits, version ranges, cron schedules, accessible colors, location search and signed webhooks in 9 languages |
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
@@ -39,6 +40,8 @@ Every result names its type, verification level and the exact next command. Modu
 | | `business-tools` catalog (Superset, Metabase, Supabase, Coolify, NocoDB, Dub, Ghost, CRM/ERP/helpdesk, business-service SDKs) | resources | Run the business without building internal tools; search `<product> alternative` |
 | | `education` catalog (Moodle, Canvas LMS, Open edX, Frappe LMS, ClassroomIO, Chamilo, Excalidraw, reveal.js, LanguageTool, H5P) | resources | LMS, whiteboards, slides, writing, assessment and LTI 1.3 integration in each language |
 | | `ai-learning` catalog (browser-use, OpenViking, Flowise, Fabric, Firecrawl MCP, TheAlgorithms, System Design Primer, developer-roadmap, public-apis, build-your-own-x) | resources | Agent tooling and learning references; LangChain, Transformers, Whisper and Kubernetes live in the AI and DevOps catalogs |
+| | `starter` index (2,818 project templates and boilerplates: Open SaaS, Next.js SaaS Starter, create-t3-app, cookiecutter-django, Ignite, dotnet new packs) | starters | Start a new project from a pinned, popular template in its language |
+| | `task` index (OpenRewrite migrations and fixes, n8n and Activepieces workflows) | task recipes | Upgrade frameworks, fix code at scale and automate workflows with one pinned command |
 | 8. Operate | `structured-logger` | module | JSON-lines logs with key redaction, child loggers and request IDs |
 | | `health-checks` | module | `/healthz` liveness and `/readyz` readiness with per-check timeouts |
 | 9. Other languages | Every capability, plus `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | capabilities, language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |

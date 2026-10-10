@@ -1,0 +1,5 @@
+# GitHub Linguist treats a top-level examples/ folder as documentation and leaves it out of the
+# repository's language statistics. Genlib's examples are its tested code in nine languages.
+examples/** linguist-documentation=false
+# Generated indexes and catalogs are data, not source.
+registry/** linguist-generated=true

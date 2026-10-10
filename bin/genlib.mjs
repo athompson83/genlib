@@ -7,7 +7,7 @@ import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } fro
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
 import { jevPacket } from '../lib/jev.mjs';
-import { briefFind, formatBrief, formatQuick, quickPick } from '../lib/brief.mjs';
+import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 
 // Languages a task can name: the nine capability languages plus the resource-only ones.
@@ -17,7 +17,7 @@ const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
     'quick <task words> [--language <name>] [--target <project>] [--type <source type>] [--json]   # best match: only its commands (cheapest)',
-    'find <task words> [--type capability|module|recipe|language-example|template|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
+    'find <task words> [--type capability|module|recipe|language-example|template|starter|task|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
     'outline <id|type:id> [--language <name>] [--json]   # signatures and doc lines only: call the code without reading its source',
     'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--json]   # bounded yes/no decision packet for Jev',
     'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
@@ -26,6 +26,8 @@ const HELP = {
     'skill inspect <id> [--harness claude|codex|both] [--json]',
     'mcp find <words> | mcp inspect <id> [--client claude|codex|both] [--limit 8] [--json]',
     'cli find <words> | cli inspect <id> [--limit 8] [--json]',
+    'starter find <words> | starter inspect <id> [--limit 8] [--json]   # project templates and boilerplates, commit-pinned',
+    'task find <words> | task inspect <id> [--limit 8] [--json]   # refactoring recipes (OpenRewrite) and workflow templates (n8n)',
     'api find <words> | api inspect <id> [--limit 8] [--json]',
     'catalog [--json]',
     'list [--json]',
@@ -61,7 +63,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result, text;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -78,6 +80,7 @@ try {
       invariant(words.length > 0, 'INVALID_OPTION', `Provide words, for example: ${command} find github.`);
       invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
       result = { [INDEXES[command].key]: searchIndex(command, index, words.join(' '), { limit: Number(options.limit ?? 8), client }), ranking: index.ranking };
+      text = formatIndexHits(command, result[INDEXES[command].key]);
     } else if (action === 'inspect') {
       invariant(words.length === 1, 'INVALID_OPTION', `Provide exactly one ${INDEXES[command].label} ID.`);
       const entry = index.entries.find(item => item.id === words[0]);
@@ -116,6 +119,7 @@ try {
       invariant(words.length > 0, 'INVALID_OPTION', 'Provide words, for example: skill find code review.');
       invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
       result = { skills: searchSkills(index, words.join(' '), { limit: Number(options.limit ?? 8), harness }), review: index.review };
+      text = formatIndexHits('skill', result.skills);
     } else if (action === 'inspect') {
       invariant(words.length === 1, 'INVALID_OPTION', 'Provide exactly one skill ID.');
       const skill = index.skills.find(item => item.id === words[0]);
