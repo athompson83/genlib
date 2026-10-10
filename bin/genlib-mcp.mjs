@@ -16,6 +16,7 @@ import { inspectModule } from '../lib/catalog.mjs';
 import { invariant, readRegular } from '../lib/safety.mjs';
 import { briefFind, formatBrief, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
+import { formatSource, sourcePlan } from '../lib/source.mjs';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05'];
@@ -28,27 +29,32 @@ const TARGET = { type: 'string', description: 'Absolute app path; detects its la
 const TOOLS = [
   {
     name: 'genlib_quick',
-    description: 'Cheapest lookup: the best Genlib match for a task and only the commands that install or copy it, plus up to 3 alternative refs.',
+    description: 'Cheapest lookup: the best match for a task and only its install or copy commands.',
     inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Task words, e.g. "passkey login".' }, language: LANGUAGE, target: TARGET, type: { type: 'string', enum: SOURCE_TYPES } }, required: ['query'] },
   },
   {
     name: 'genlib_find',
-    description: 'Ranked Genlib results for a task across code, capabilities, tools, skills, MCP servers, CLIs, APIs, resources and doc sections, each with its next command.',
+    description: 'Ranked results for a task across every Genlib source, each with its next command.',
     inputSchema: { type: 'object', properties: {
       query: { type: 'string' }, language: LANGUAGE, target: TARGET,
       type: { type: 'string', enum: SOURCE_TYPES }, project: { type: 'string', description: 'Resource project type, e.g. saas.' },
       limit: { type: 'integer', minimum: 1, maximum: 25, default: 8 },
-      detail: { type: 'string', enum: ['brief', 'full'], default: 'brief', description: 'full adds summaries, licenses and links.' },
+      detail: { type: 'string', enum: ['brief', 'full'], default: 'brief', description: 'full adds summaries and links.' },
     }, required: ['query'] },
   },
   {
     name: 'genlib_outline',
-    description: 'Signatures and one-line docs of a capability, module, recipe or language example, so code can be called without reading its source.',
+    description: 'Signatures and one-line docs of Genlib code, so it can be called without reading source.',
     inputSchema: { type: 'object', properties: { ref: { type: 'string', description: 'e.g. totp, capability:saml-sso, go-totp, webhook-verification' }, language: { type: 'string', enum: LANGUAGES } }, required: ['ref'] },
   },
   {
+    name: 'genlib_source',
+    description: 'Minimal pinned fetch of an external project\'s source (one path or file), its license and Genlib equivalents.',
+    inputSchema: { type: 'object', properties: { ref: { type: 'string', description: 'e.g. resource:pocketbase, starter:create-t3-app, skill:pdf' }, path: { type: 'string', description: 'Folder inside the repository to fetch.' } }, required: ['ref'] },
+  },
+  {
     name: 'genlib_jev',
-    description: 'Bounded decision packet for a typed-decision model (Genisys Jev): at most 8 candidates, one yes/no question each, 0.8 threshold, under 20,000 characters.',
+    description: 'Bounded decision packet for Genisys Jev: up to 8 candidates, one yes/no question each.',
     inputSchema: { type: 'object', properties: {
       task: { type: 'string' }, type: { type: 'string', enum: SOURCE_TYPES }, target: TARGET,
       limit: { type: 'integer', minimum: 1, maximum: 8, default: 8 },
@@ -56,12 +62,12 @@ const TOOLS = [
   },
   {
     name: 'genlib_capability',
-    description: 'List capabilities (one task, tested code in 9 languages) or get one capability\'s copy commands for a language.',
+    description: 'List capabilities, or one capability\'s copy commands for a language.',
     inputSchema: { type: 'object', properties: { id: { type: 'string', description: 'Omit to list all.' }, language: { type: 'string', enum: LANGUAGES } } },
   },
   {
     name: 'genlib_inspect',
-    description: 'Full record (license, links, cautions, commands) for one find result: pass its type and id.',
+    description: 'Full record (license, links, cautions, commands) for one result.',
     inputSchema: { type: 'object', properties: {
       type: { type: 'string', enum: ['module', 'resource', 'skill', 'mcp', 'cli', 'api', 'starter', 'task', 'capability', 'recipe', 'language-example', 'template', 'tool'] },
       id: { type: 'string' }, client: { type: 'string', enum: ['claude', 'codex', 'both'], default: 'both' },
@@ -95,6 +101,10 @@ async function call(name, args = {}) {
     if (args.detail === 'full') return found;
     const brief = briefFind(found);
     return { result: brief, text: formatBrief(brief) };
+  }
+  if (name === 'genlib_source') {
+    const result = await sourcePlan(all, String(args.ref ?? ''), { path: args.path });
+    return { result, text: formatSource(result) };
   }
   if (name === 'genlib_outline') {
     const result = await outline(ROOT, String(args.ref ?? ''), { language: args.language });

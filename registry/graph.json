@@ -325,6 +325,13 @@
    "query": "agent-frameworks"
   },
   {
+   "id": "category:ai-apps",
+   "kind": "category",
+   "label": "ai-apps",
+   "count": 4,
+   "query": "ai-apps"
+  },
+  {
    "id": "category:ai-browser-agents",
    "kind": "category",
    "label": "ai-browser-agents",
@@ -1039,6 +1046,13 @@
    "query": "design-tools"
   },
   {
+   "id": "category:desktop-apps",
+   "kind": "category",
+   "label": "desktop-apps",
+   "count": 3,
+   "query": "desktop-apps"
+  },
+  {
    "id": "category:desktop-framework",
    "kind": "category",
    "label": "desktop-framework",
@@ -1198,6 +1212,13 @@
    "label": "encrypted-messenger",
    "count": 25,
    "query": "encrypted-messenger"
+  },
+  {
+   "id": "category:engineering-guides",
+   "kind": "category",
+   "label": "engineering-guides",
+   "count": 8,
+   "query": "engineering-guides"
   },
   {
    "id": "category:erp",
@@ -2659,7 +2680,7 @@
    "id": "doc:docs/resources/ai-learning.md",
    "kind": "doc",
    "label": "docs/resources/ai-learning.md",
-   "count": 5,
+   "count": 8,
    "file": "docs/resources/ai-learning.md"
   },
   {
@@ -2882,7 +2903,7 @@
    "id": "guide:docs/resources/ai-learning.md",
    "kind": "guide",
    "label": "ai-learning",
-   "count": 14,
+   "count": 29,
    "file": "docs/resources/ai-learning.md"
   },
   {
@@ -3078,7 +3099,7 @@
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 681,
+   "count": 682,
    "query": "go"
   },
   {
@@ -3113,7 +3134,7 @@
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 2809,
+   "count": 2811,
    "query": "java"
   },
   {
@@ -3141,7 +3162,7 @@
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 187,
+   "count": 188,
    "query": "kotlin"
   },
   {
@@ -3162,7 +3183,7 @@
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1422,
+   "count": 1423,
    "query": "python"
   },
   {
@@ -3190,14 +3211,14 @@
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 211,
+   "count": 214,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3226,
+   "count": 3231,
    "query": "typescript"
   },
   {
@@ -3239,7 +3260,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 541,
+   "count": 544,
    "query": "--type doc"
   },
   {
@@ -3274,7 +3295,7 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 8918,
+   "count": 8933,
    "query": "--type resource"
   },
   {
@@ -5317,6 +5338,18 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 2
+  },
+  {
+   "source": "category:ai-apps",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:ai-apps",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 3
   },
   {
    "source": "category:ai-browser-agents",
@@ -7731,6 +7764,12 @@
    "weight": 8
   },
   {
+   "source": "category:desktop-apps",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
    "source": "category:desktop-framework",
    "target": "language:csharp",
    "relation": "in-language",
@@ -8305,6 +8344,30 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 6
+  },
+  {
+   "source": "category:engineering-guides",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:engineering-guides",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:engineering-guides",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:engineering-guides",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
   },
   {
    "source": "category:erp",
@@ -11532,7 +11595,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 541
+   "weight": 544
   },
   {
    "source": "genlib",
@@ -11562,7 +11625,7 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 8918
+   "weight": 8933
   },
   {
    "source": "genlib",
@@ -11725,6 +11788,24 @@
    "target": "category:agent-frameworks",
    "relation": "has-category",
    "weight": 4
+  },
+  {
+   "source": "guide:docs/resources/ai-learning.md",
+   "target": "category:ai-apps",
+   "relation": "has-category",
+   "weight": 4
+  },
+  {
+   "source": "guide:docs/resources/ai-learning.md",
+   "target": "category:desktop-apps",
+   "relation": "has-category",
+   "weight": 3
+  },
+  {
+   "source": "guide:docs/resources/ai-learning.md",
+   "target": "category:engineering-guides",
+   "relation": "has-category",
+   "weight": 8
   },
   {
    "source": "guide:docs/resources/ai-learning.md",
@@ -14112,7 +14193,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/ai-learning.md",
    "relation": "section-of",
-   "weight": 5
+   "weight": 8
   },
   {
    "source": "type:doc",
@@ -14364,7 +14445,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/ai-learning.md",
    "relation": "grouped-by",
-   "weight": 14
+   "weight": 29
   },
   {
    "source": "type:resource",
@@ -14514,19 +14595,19 @@
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 621
+   "weight": 622
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 361
+   "weight": 363
   },
   {
    "source": "type:resource",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 86
+   "weight": 87
   },
   {
    "source": "type:resource",
@@ -14538,7 +14619,7 @@
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 1265
+   "weight": 1266
   },
   {
    "source": "type:resource",
@@ -14556,13 +14637,13 @@
    "source": "type:resource",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 158
+   "weight": 161
   },
   {
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 3116
+   "weight": 3121
   },
   {
    "source": "type:starter",

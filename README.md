@@ -37,8 +37,8 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 8918 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 541 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 8933 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 544 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -67,6 +67,7 @@ flowchart LR
   Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Quick["genlib quick<br/>best match + its commands"]
   Quick --> Find["genlib find<br/>(+ detect --target)"]
   Quick -.-> Outline["genlib outline<br/>signatures, not source"] -.-> App
+  X -.-> Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"] -.-> App
   Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
   Find --> M["Modules"]
   Find --> R["Recipes and<br/>language examples"]
@@ -122,6 +123,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | --- | --- |
 | `quick <words> [--target app] [--language go]` | The best match and only its install or copy commands, plus up to 3 alternative refs (cheapest call) |
 | `find <words> [--target app] [--language …] [--type …] [--project …]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON |
+| `source <id> [--path dir]` | Pinned, minimal fetch of an external project's original source (sparse checkout of one folder, or one raw file), its license, and Genlib code that already covers the need |
 | `outline <id> [--language go]` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib-mcp` (`bin/genlib-mcp.mjs`) | MCP server exposing quick, find, outline, jev, capability, inspect, read_doc and catalog as tools |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
@@ -236,7 +238,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`attachments.json`](resources/attachments.json) | 25 | [attachment-review.md](docs/resources/attachment-review.md) | animation, ui-components, design-inspiration, design-prompts, design-system-files |
 | [`ui-foundations.json`](resources/ui-foundations.json) | 18 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
 | [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 91 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
-| [`catalog/ai-learning.json`](resources/catalog/ai-learning.json) | 14 | [ai-learning.md](docs/resources/ai-learning.md) | learning, agent-frameworks |
+| [`catalog/ai-learning.json`](resources/catalog/ai-learning.json) | 29 | [ai-learning.md](docs/resources/ai-learning.md) | learning, engineering-guides, agent-frameworks, ai-apps, desktop-apps |
 | [`catalog/backend-api.json`](resources/catalog/backend-api.json) | 95 | [backend-api.md](docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
 | [`catalog/business-tools.json`](resources/catalog/business-tools.json) | 868 | [business-tools.md](docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
 | [`catalog/chat-messaging.json`](resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
@@ -262,7 +264,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **8918** | | |
+| **Total** | **8933** | | |
 <!-- genlib:catalog:end -->
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).
@@ -323,7 +325,7 @@ claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"    # or: codex m
 node "$GENLIB_ROOT/scripts/export-obsidian.mjs" --out "$VAULT/genlib" # linked notes per type, category and language
 ```
 
-- **MCP server:** a dependency-free stdio server. Its tools are `genlib_quick`, `genlib_find`, `genlib_outline`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, so MCP clients call Genlib natively. Quick, find and outline answer with compact text plus the structured result; `detail: "full"` returns whole records.
+- **MCP server:** a dependency-free stdio server. Its tools are `genlib_quick`, `genlib_find`, `genlib_outline`, `genlib_source`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, so MCP clients call Genlib natively. Quick, find and outline answer with compact text plus the structured result; `detail: "full"` returns whole records.
 - **Navigation graph:** `registry/graph.json` is a compact Graphify-style graph linking source types, catalogs, categories, languages, capabilities and docs, kept fresh by `npm run check`.
 - **Obsidian:** the vault export writes only its own notes.
 
