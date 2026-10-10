@@ -51,7 +51,7 @@ Respect `prefers-reduced-motion`, keep animation off critical form and data flow
 
 ### 4. Curated indexes: when no record fits
 
-[`awesome-ui-components`](https://github.com/brandonhimpfen/awesome-ui-components) covers design systems, animation frameworks, headless kits and icon sets. [`awesome-ui-resources`](https://github.com/al-husayn/awesome-ui-resources) covers shadcn-compatible registries, color palette generators and Tailwind frameworks. Use them to shortlist candidates, then add the chosen library as a catalog record with its own license instead of relying on the list.
+[`awesome-ui-components`](https://github.com/brandonhimpfen/awesome-ui-components) covers design systems, animation frameworks, headless kits and icon sets. [`awesome-ui-resources`](https://github.com/al-husayn/awesome-ui-resources) covers shadcn-compatible registries, color palette generators and Tailwind frameworks. Every entry from both lists is now its own catalog record with a verified quickstart (see the [UI index sources guide](../resources/ui-index-sources.md)). Search them with `node tools/resources.mjs search <need> --category shadcn-registry` or `genlib find <need>`.
 
 ## Find the actual element you need
 

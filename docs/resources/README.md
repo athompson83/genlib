@@ -34,7 +34,8 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/readme-tools.json`](../../resources/catalog/readme-tools.json) | 55 | [readme-tools.md](../../docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](../../resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](../../docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
-| **Total** | **850** | | |
+| [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
+| **Total** | **989** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -46,26 +47,26 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 <!-- genlib:types:start -->
 | Project type | Records | Covers |
 | --- | ---: | --- |
-| `web-app` | 331 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
-| `marketing-site` | 121 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
-| `mobile-app` | 50 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
+| `web-app` | 457 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
+| `marketing-site` | 201 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
+| `mobile-app` | 52 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
 | `desktop-app` | 28 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
-| `api-backend` | 179 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
-| `cli-tool` | 38 | Argument parsing, prompts, output formatting, config files and distribution. |
-| `ai-agent` | 106 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
-| `data-analytics` | 73 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
-| `ecommerce` | 23 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
-| `saas` | 167 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
+| `api-backend` | 181 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
+| `cli-tool` | 40 | Argument parsing, prompts, output formatting, config files and distribution. |
+| `ai-agent` | 115 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
+| `data-analytics` | 86 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
+| `ecommerce` | 26 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
+| `saas` | 245 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
 | `realtime-collab` | 19 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
 | `devops-infra` | 84 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
 | `testing-qa` | 49 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
-| `docs-knowledge` | 88 | Docs sites, API references, diagrams, search and markdown tooling. |
+| `docs-knowledge` | 102 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 24 | Headless browsers, scraping within terms, workflow automation and RPA. |
-| `office-documents` | 31 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
-| `media-creative` | 68 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
+| `office-documents` | 32 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
+| `media-creative` | 72 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
 | `finance-accounting` | 42 | Money math, ledgers, invoicing, accounting APIs and financial data. |
 | `legal-compliance` | 10 | Contracts, e-signature, privacy, consent, accessibility and policy tooling. |
-| `game` | 25 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
+| `game` | 30 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
 | `security` | 45 | Crypto, secrets scanning, dependency auditing, auth hardening and threat checks. |
 <!-- genlib:types:end -->
 
