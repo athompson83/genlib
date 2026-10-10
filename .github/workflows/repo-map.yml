@@ -16,12 +16,16 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
+      - name: Install locked parser dependency
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Generate and verify commit-specific map
         run: |
           node tools/repo-map.mjs build
           node tools/repo-map.mjs check
           node tools/repo-deps.mjs build
           node tools/repo-deps.mjs check
+          node tools/repo-ast.mjs build
+          node tools/repo-ast.mjs check
           node tools/repo-diagram.mjs
           test -s docs/diagrams/repository.mmd
           node -e "const m=require('./.genlib/repo-map.json');if(m.commit!==process.env.GITHUB_SHA)process.exit(1)"
@@ -31,5 +35,6 @@ jobs:
           path: |
             .genlib/repo-map.json
             .genlib/dependencies.json
+            .genlib/ast-dependencies.json
             docs/diagrams/repository.mmd
           retention-days: 7

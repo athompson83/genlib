@@ -4,7 +4,8 @@ import {execFileSync} from 'node:child_process';
 const head=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const load=p=>{const d=JSON.parse(readFileSync(p,'utf8'));if(d.commit!==head)throw new Error('Stale artifact: '+p);return d};
 try{
- const map=load('.genlib/repo-map.json'),deps=load('.genlib/dependencies.json');
+ const map=load('.genlib/repo-map.json');
+ const deps=(()=>{try{return load('.genlib/ast-dependencies.json')}catch(e){if(!/ENOENT/.test(e.message))throw e;return load('.genlib/dependencies.json')}})();
  const query=process.argv.slice(2).join(' ').trim();
  if(!query)throw new Error('Usage: node tools/repo-context.mjs <task keywords>');
  const words=query.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
