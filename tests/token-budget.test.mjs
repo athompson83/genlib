@@ -9,6 +9,8 @@ import { actionCommands, briefResult, quickPick } from '../lib/brief.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const cli = (...args) => execFileSync(process.execPath, [root + 'bin/genlib.mjs', ...args], { cwd: root, encoding: 'utf8' });
 const bytes = text => Buffer.byteLength(text);
+// Budgets are measured with the placeholder path, so they do not depend on where the checkout lives.
+const sized = (...args) => execFileSync(process.execPath, [root + 'bin/genlib.mjs', ...args], { cwd: root, encoding: 'utf8', env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' } });
 
 test('quick prints only the best match, its acting commands and an outline hint', () => {
   const text = cli('quick', 'csv', 'export', '--language', 'python');
@@ -17,11 +19,13 @@ test('quick prints only the best match, its acting commands and an outline hint'
   // Text output names the real checkout path instead of "$GENLIB_ROOT", so commands run as printed.
   assert.match(text, /# api: node "[^"$]+"\/bin\/genlib\.mjs outline capability:csv-safe --language python/);
   assert.doesNotMatch(text, /inspect|Read docs/);
-  assert.ok(bytes(text) <= 600, 'quick budget: ' + bytes(text));
+  const quickSize = bytes(sized('quick', 'csv', 'export', '--language', 'python'));
+  assert.ok(quickSize <= 600, 'quick budget: ' + quickSize);
   // A capability's known limit is shown before copying, within the same budget.
   const diff = cli('quick', 'unified', 'diff', '--language', 'python');
   assert.match(diff, /^# caveat: .*GNU diff/m);
-  assert.ok(bytes(diff) <= 600, 'quick budget with caveat: ' + bytes(diff));
+  const diffSize = bytes(sized('quick', 'unified', 'diff', '--language', 'python'));
+  assert.ok(diffSize <= 600, 'quick budget with caveat: ' + diffSize);
   const json = JSON.parse(cli('quick', 'verify', 'stripe', 'webhook', '--json'));
   // Both are Genlib's tested code for this task: the 9-language capability or the TypeScript module.
   assert.match(json.best, /^(?:capability:webhook-signature|module:webhook-verification)$/);
@@ -32,7 +36,8 @@ test('quick prints only the best match, its acting commands and an outline hint'
 test('find text output stays compact while --json keeps full records', () => {
   const text = cli('find', 'verify', 'stripe', 'webhook');
   assert.match(text, /^1\. (?:capability:webhook-signature|module:webhook-verification) /);
-  assert.ok(bytes(text) <= 2000, 'find budget: ' + bytes(text));
+  const findSize = bytes(sized('find', 'verify', 'stripe', 'webhook'));
+  assert.ok(findSize <= 2000, 'find budget: ' + findSize);
   const full = JSON.parse(cli('find', 'verify', 'stripe', 'webhook', '--json'));
   assert.ok(full.results[0].summary.length > 0);
   const brief = JSON.parse(cli('find', 'verify', 'stripe', 'webhook', '--json', '--brief'));

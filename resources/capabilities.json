@@ -2879,7 +2879,7 @@
       "title": "Line diff and unified diff output",
       "tier": "pure",
       "summary": "Minimal line diff (Myers, linear memory, up to 1,000,000 lines) and unified diff output that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
-      "caveat": "Minimal, valid unified diffs, but not byte-identical to GNU diff -u (82-95% of random inputs match); call the system diff when exact GNU bytes are required.",
+      "caveat": "Valid, minimal unified diffs, but not byte-identical to GNU diff -u; call the system diff when exact GNU output is required.",
       "terms": [
         "diff",
         "unified diff",
