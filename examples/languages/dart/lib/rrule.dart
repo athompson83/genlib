@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
-/// RFC 5545 recurrence rule expansion for a UTC subset: FREQ (DAILY, WEEKLY, MONTHLY, YEARLY), INTERVAL, COUNT, UNTIL,
-/// BYDAY, BYMONTHDAY (MONTHLY) and BYMONTH (YEARLY). Every occurrence keeps the start's time of day.
+/// RFC 5545 recurrence rule expansion in UTC for FREQ (DAILY, WEEKLY, MONTHLY, YEARLY), INTERVAL, COUNT, UNTIL, BYDAY
+/// (with ordinals for MONTHLY and YEARLY), BYMONTHDAY and BYMONTH. Matches python-dateutil for every rule it accepts;
+/// rejects BYSETPOS, WKST, BYHOUR and every other part. Every occurrence keeps the start's time of day.
 library;
 
 const _maxPeriods = 100000;
@@ -8,7 +9,7 @@ const _weekdays = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 const _allowed = {'FREQ', 'INTERVAL', 'COUNT', 'UNTIL', 'BYDAY', 'BYMONTHDAY', 'BYMONTH'};
 final _start = RegExp(r'^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})Z$');
 final _until = RegExp(r'^([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2})([0-9]{2})([0-9]{2})Z$');
-final _byDay = RegExp(r'^([+-]?[1-5])?(MO|TU|WE|TH|FR|SA|SU)$');
+final _byDay = RegExp(r'^([+-]?[0-9]{1,2})?(MO|TU|WE|TH|FR|SA|SU)$');
 final _number = RegExp(r'^[+-]?[0-9]{1,4}$');
 
 class _Rule {
@@ -30,60 +31,43 @@ List<String> expandRRule(String dtstartIsoUtc, String rule, {int limit = 50}) {
   final s = _parseDate(_start, dtstartIsoUtc, 'DTSTART must be YYYY-MM-DDTHH:MM:SSZ');
   final r = _parseRule(rule);
   final startWd = s.weekday - 1;
+  // dateutil defaults apply only when no day-level filter is given.
+  var byDay = r.byDay, byMonthDay = r.byMonthDay, byMonth = r.byMonth;
+  if (byDay.isEmpty && byMonthDay.isEmpty) {
+    if (r.freq == 'WEEKLY') {
+      byDay = [(0, startWd)];
+    } else if (r.freq == 'MONTHLY') {
+      byMonthDay = [s.day];
+    } else if (r.freq == 'YEARLY') {
+      byMonthDay = [s.day];
+      if (byMonth.isEmpty) byMonth = [s.month];
+    }
+  }
+  final monthScope = r.freq == 'MONTHLY' || (r.freq == 'YEARLY' && r.byMonth.isNotEmpty);
   final out = <String>[];
-  DateTime at(int y, int m, int d) => DateTime.utc(y, m, d, s.hour, s.minute, s.second);
   for (var k = 0; k < _maxPeriods; k++) {
-    final candidates = <DateTime>[];
+    // Period k as (year, month, day) of its first day plus its length; day overflow normalizes via DateTime.utc.
+    int y, mo, d, length;
     if (r.freq == 'DAILY') {
-      final c = at(s.year, s.month, s.day + k * r.interval);
-      if (c.year > 9999) break;
-      candidates.add(c);
+      (y, mo, d, length) = (s.year, s.month, s.day + k * r.interval, 1);
     } else if (r.freq == 'WEEKLY') {
-      final days = r.byDay.isNotEmpty ? (r.byDay.map((x) => x.$2).toSet().toList()..sort()) : [startWd];
-      final monday = s.day - startWd + 7 * k * r.interval;
-      if (at(s.year, s.month, monday + 6).year > 9999) break;
-      for (final wd in days) {
-        candidates.add(at(s.year, s.month, monday + wd));
-      }
+      (y, mo, d, length) = (s.year, s.month, s.day - startWd + 7 * k * r.interval, 7);
     } else if (r.freq == 'MONTHLY') {
       final mi = s.month - 1 + k * r.interval;
-      final y = s.year + mi ~/ 12, mo = mi % 12 + 1;
+      (y, mo, d) = (s.year + mi ~/ 12, mi % 12 + 1, 1);
       if (y > 9999) break;
-      final nd = _daysInMonth(y, mo);
-      final days = <int>{};
-      if (r.byDay.isNotEmpty) {
-        for (final (n, wd) in r.byDay) {
-          final ds = [
-            for (var d = 1; d <= nd; d++)
-              if (DateTime.utc(y, mo, d).weekday - 1 == wd) d,
-          ];
-          if (n == 0) {
-            days.addAll(ds);
-          } else if (n.abs() <= ds.length) {
-            days.add(n > 0 ? ds[n - 1] : ds[ds.length + n]);
-          }
-        }
-      } else if (r.byMonthDay.isNotEmpty) {
-        for (final md in r.byMonthDay) {
-          final d = md > 0 ? md : nd + md + 1;
-          if (d >= 1 && d <= nd) days.add(d);
-        }
-      } else if (s.day <= nd) {
-        days.add(s.day);
-      }
-      for (final d in days) {
-        candidates.add(at(y, mo, d));
-      }
+      length = _daysInMonth(y, mo);
     } else {
-      final y = s.year + k * r.interval;
+      (y, mo, d) = (s.year + k * r.interval, 1, 1);
       if (y > 9999) break;
-      for (final mo in r.byMonth.isNotEmpty ? r.byMonth : [s.month]) {
-        if (s.day <= _daysInMonth(y, mo)) candidates.add(at(y, mo, s.day));
-      }
+      length = _isLeap(y) ? 366 : 365;
     }
-    candidates.sort();
+    final first = DateTime.utc(y, mo, d, s.hour, s.minute, s.second);
+    if (DateTime.utc(y, mo, d + length - 1).year > 9999) break;
     var stop = false;
-    for (final c in candidates) {
+    for (var i = 0; i < length; i++) {
+      final c = DateTime.utc(first.year, first.month, first.day + i, s.hour, s.minute, s.second);
+      if (!_matches(c, byDay, byMonthDay, byMonth, monthScope)) continue;
       if (c.isBefore(s)) continue;
       if (r.until != null && c.isAfter(r.until!)) {
         stop = true;
@@ -96,9 +80,26 @@ List<String> expandRRule(String dtstartIsoUtc, String rule, {int limit = 50}) {
       }
     }
     if (stop) break;
-    if (r.until != null && (candidates.isEmpty ? s : candidates.first).isAfter(r.until!)) break;
+    if (r.until != null && first.isAfter(r.until!)) break;
   }
   return out;
+}
+
+bool _matches(DateTime d, List<(int, int)> byDay, List<int> byMonthDay, List<int> byMonth, bool monthScope) {
+  if (byMonth.isNotEmpty && !byMonth.contains(d.month)) return false;
+  final nd = _daysInMonth(d.year, d.month);
+  if (byMonthDay.isNotEmpty && !byMonthDay.any((x) => d.day == (x > 0 ? x : nd + x + 1))) return false;
+  if (byDay.isEmpty) return true;
+  final wd = d.weekday - 1;
+  for (final (n, w) in byDay) {
+    if (w != wd) continue;
+    if (n == 0) return true;
+    // Ordinal among this weekday's days in the month, or in the year (YEARLY without BYMONTH).
+    final pos = monthScope ? d.day : _dayOfYear(d);
+    final len = monthScope ? nd : (_isLeap(d.year) ? 366 : 365);
+    if (n > 0 ? (pos - 1) ~/ 7 + 1 == n : (len - pos) ~/ 7 + 1 == -n) return true;
+  }
+  return false;
 }
 
 _Rule _parseRule(String rule) {
@@ -122,24 +123,31 @@ _Rule _parseRule(String rule) {
   final until = parts.containsKey('UNTIL') ? _parseDate(_until, parts['UNTIL']!, 'UNTIL must be YYYYMMDDTHHMMSSZ') : null;
   final byDay = <(int, int)>[];
   if (parts.containsKey('BYDAY')) {
-    if (freq == 'DAILY' || freq == 'YEARLY') throw const FormatException('BYDAY is only supported with WEEKLY or MONTHLY');
+    final ordinalLimit = freq == 'MONTHLY' || (freq == 'YEARLY' && parts.containsKey('BYMONTH')) ? 5 : 53;
+    var plain = false, ordinal = false;
     for (final d in parts['BYDAY']!.split(',')) {
       final m = _byDay.firstMatch(d);
       if (m == null) throw FormatException('invalid BYDAY value', d);
-      final n = m.group(1) == null ? 0 : int.parse(m.group(1)!);
-      if (n != 0 && freq != 'MONTHLY') throw const FormatException('BYDAY ordinals are only supported with MONTHLY');
+      var n = 0;
+      if (m.group(1) != null) {
+        n = int.parse(m.group(1)!);
+        if ((freq != 'MONTHLY' && freq != 'YEARLY') || n == 0 || n.abs() > ordinalLimit) {
+          throw FormatException('invalid BYDAY ordinal', d);
+        }
+        ordinal = true;
+      } else {
+        plain = true;
+      }
       byDay.add((n, _weekdays.indexOf(m.group(2)!)));
     }
+    if (plain && ordinal) throw const FormatException('BYDAY cannot mix plain and ordinal weekdays');
   }
   final byMonthDay = <int>[];
   if (parts.containsKey('BYMONTHDAY')) {
-    if (freq != 'MONTHLY') throw const FormatException('BYMONTHDAY is only supported with MONTHLY');
-    if (byDay.isNotEmpty) throw const FormatException('BYDAY and BYMONTHDAY cannot be combined');
     byMonthDay.addAll(parts['BYMONTHDAY']!.split(',').map((x) => _num(x, 1, 31, true)));
   }
   final byMonth = <int>[];
   if (parts.containsKey('BYMONTH')) {
-    if (freq != 'YEARLY') throw const FormatException('BYMONTH is only supported with YEARLY');
     byMonth.addAll(parts['BYMONTH']!.split(',').map((x) => _num(x, 1, 12, false)));
   }
   return _Rule(freq, interval, count, until, byDay, byMonthDay, byMonth);
@@ -164,6 +172,10 @@ DateTime _parseDate(RegExp pattern, String text, String message) {
 }
 
 int _daysInMonth(int y, int m) => DateTime.utc(y, m + 1, 0).day;
+
+bool _isLeap(int y) => y % 4 == 0 && (y % 100 != 0 || y % 400 == 0);
+
+int _dayOfYear(DateTime d) => DateTime.utc(d.year, d.month, d.day).difference(DateTime.utc(d.year)).inDays + 1;
 
 String _format(DateTime c) {
   String two(int v) => v.toString().padLeft(2, '0');

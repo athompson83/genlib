@@ -5,15 +5,16 @@ using System.Text.RegularExpressions;
 namespace Genlib.Validation;
 
 /// <summary>
-/// RFC 5545 recurrence rule expansion for a UTC subset: FREQ (DAILY, WEEKLY, MONTHLY, YEARLY), INTERVAL, COUNT, UNTIL, BYDAY,
-/// BYMONTHDAY (MONTHLY) and BYMONTH (YEARLY). Every occurrence keeps the start's time of day.
+/// RFC 5545 recurrence rule expansion in UTC for FREQ (DAILY, WEEKLY, MONTHLY, YEARLY), INTERVAL, COUNT, UNTIL, BYDAY (with
+/// ordinals for MONTHLY and YEARLY), BYMONTHDAY and BYMONTH. Matches python-dateutil for every rule it accepts; rejects BYSETPOS,
+/// WKST, BYHOUR and every other part. Every occurrence keeps the start's time of day.
 /// </summary>
 public static class RRule {
     private const int MaxPeriods = 100000;
     private static readonly string[] Weekdays = { "MO", "TU", "WE", "TH", "FR", "SA", "SU" };
     private static readonly Regex Start = new("^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})Z\\z", RegexOptions.CultureInvariant);
     private static readonly Regex Until = new("^([0-9]{4})([0-9]{2})([0-9]{2})T([0-9]{2})([0-9]{2})([0-9]{2})Z\\z", RegexOptions.CultureInvariant);
-    private static readonly Regex ByDay = new("^([+-]?[1-5])?(MO|TU|WE|TH|FR|SA|SU)\\z", RegexOptions.CultureInvariant);
+    private static readonly Regex ByDay = new("^([+-]?[0-9]{1,2})?(MO|TU|WE|TH|FR|SA|SU)\\z", RegexOptions.CultureInvariant);
     private static readonly Regex Number = new("^[+-]?[0-9]{1,4}\\z", RegexOptions.CultureInvariant);
     private static readonly HashSet<string> Allowed = new() { "FREQ", "INTERVAL", "COUNT", "UNTIL", "BYDAY", "BYMONTHDAY", "BYMONTH" };
 
@@ -34,55 +35,74 @@ public static class RRule {
         TimeSpan time = s.TimeOfDay;
         DateOnly startDay = DateOnly.FromDateTime(s);
         int startWd = Weekday(startDay);
+        // dateutil defaults apply only when no day-level filter is given.
+        var byDay = r.ByDay;
+        var byMonthDay = r.ByMonthDay;
+        var byMonth = r.ByMonth;
+        if (byDay.Count == 0 && byMonthDay.Count == 0) {
+            if (r.Freq == "WEEKLY") byDay = new List<(int, int)> { (0, startWd) };
+            else if (r.Freq == "MONTHLY") byMonthDay = new List<int> { s.Day };
+            else if (r.Freq == "YEARLY") {
+                byMonthDay = new List<int> { s.Day };
+                if (byMonth.Count == 0) byMonth = new List<int> { s.Month };
+            }
+        }
+        bool monthScope = r.Freq == "MONTHLY" || (r.Freq == "YEARLY" && r.ByMonth.Count > 0);
         var output = new List<string>();
         for (int k = 0; k < MaxPeriods; k++) {
-            var candidates = new List<DateTime>();
+            long first;
+            int length;
             if (r.Freq == "DAILY") {
-                long day = startDay.DayNumber + (long)k * r.Interval;
-                if (day > DateOnly.MaxValue.DayNumber) break;
-                candidates.Add(At(DateOnly.FromDayNumber((int)day), time));
+                first = startDay.DayNumber + (long)k * r.Interval;
+                length = 1;
             } else if (r.Freq == "WEEKLY") {
-                long monday = startDay.DayNumber - startWd + 7L * k * r.Interval;
-                var days = r.ByDay.Count > 0 ? r.ByDay.Select(x => x.Wd).Distinct().OrderBy(x => x).ToList() : new List<int> { startWd };
-                if (monday + 6 > DateOnly.MaxValue.DayNumber) break;
-                foreach (int wd in days) candidates.Add(At(DateOnly.FromDayNumber((int)(monday + wd)), time));
+                first = startDay.DayNumber - startWd + 7L * k * r.Interval;
+                length = 7;
             } else if (r.Freq == "MONTHLY") {
                 long mi = s.Month - 1 + (long)k * r.Interval;
                 long y = s.Year + mi / 12;
                 if (y > 9999) break;
-                int mo = (int)(mi % 12) + 1, nd = DateTime.DaysInMonth((int)y, mo);
-                var days = new SortedSet<int>();
-                if (r.ByDay.Count > 0) {
-                    foreach (var (n, wd) in r.ByDay) {
-                        var ds = Enumerable.Range(1, nd).Where(d => Weekday(new DateOnly((int)y, mo, d)) == wd).ToList();
-                        if (n == 0) days.UnionWith(ds);
-                        else if (Math.Abs(n) <= ds.Count) days.Add(n > 0 ? ds[n - 1] : ds[ds.Count + n]);
-                    }
-                } else if (r.ByMonthDay.Count > 0) {
-                    foreach (int md in r.ByMonthDay) {
-                        int d = md > 0 ? md : nd + md + 1;
-                        if (d >= 1 && d <= nd) days.Add(d);
-                    }
-                } else if (s.Day <= nd) days.Add(s.Day);
-                foreach (int d in days) candidates.Add(At(new DateOnly((int)y, mo, d), time));
+                int mo = (int)(mi % 12) + 1;
+                first = new DateOnly((int)y, mo, 1).DayNumber;
+                length = DateTime.DaysInMonth((int)y, mo);
             } else {
                 long y = s.Year + (long)k * r.Interval;
                 if (y > 9999) break;
-                foreach (int mo in r.ByMonth.Count > 0 ? r.ByMonth : new List<int> { s.Month })
-                    if (s.Day <= DateTime.DaysInMonth((int)y, mo)) candidates.Add(At(new DateOnly((int)y, mo, s.Day), time));
+                first = new DateOnly((int)y, 1, 1).DayNumber;
+                length = DateTime.IsLeapYear((int)y) ? 366 : 365;
             }
-            candidates.Sort();
+            if (first + length - 1 > DateOnly.MaxValue.DayNumber) break;
             bool stop = false;
-            foreach (DateTime c in candidates) {
+            for (int i = 0; i < length && !stop; i++) {
+                DateOnly d = DateOnly.FromDayNumber((int)(first + i));
+                if (!Matches(d, byDay, byMonthDay, byMonth, monthScope)) continue;
+                DateTime c = At(d, time);
                 if (c < s) continue;
                 if (r.Until is DateTime u && c > u) { stop = true; break; }
                 output.Add(c.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", CultureInfo.InvariantCulture));
-                if ((r.Count is int count && output.Count >= count) || output.Count >= limit) { stop = true; break; }
+                if ((r.Count is int count && output.Count >= count) || output.Count >= limit) stop = true;
             }
             if (stop) break;
-            if (r.Until is DateTime until && (candidates.Count > 0 ? candidates.Min() : s) > until) break;
+            if (r.Until is DateTime until && At(DateOnly.FromDayNumber((int)first), time) > until) break;
         }
         return output;
+    }
+
+    private static bool Matches(DateOnly d, List<(int N, int Wd)> byDay, List<int> byMonthDay, List<int> byMonth, bool monthScope) {
+        if (byMonth.Count > 0 && !byMonth.Contains(d.Month)) return false;
+        int nd = DateTime.DaysInMonth(d.Year, d.Month);
+        if (byMonthDay.Count > 0 && !byMonthDay.Exists(x => d.Day == (x > 0 ? x : nd + x + 1))) return false;
+        if (byDay.Count == 0) return true;
+        int wd = Weekday(d);
+        foreach (var (n, w) in byDay) {
+            if (w != wd) continue;
+            if (n == 0) return true;
+            // Ordinal among this weekday's days in the month, or in the year (YEARLY without BYMONTH).
+            int pos = monthScope ? d.Day : d.DayOfYear;
+            int len = monthScope ? nd : (DateTime.IsLeapYear(d.Year) ? 366 : 365);
+            if (n > 0 ? (pos - 1) / 7 + 1 == n : (len - pos) / 7 + 1 == -n) return true;
+        }
+        return false;
     }
 
     private static Rule ParseRule(string rule) {
@@ -102,26 +122,26 @@ public static class RRule {
         DateTime? until = parts.TryGetValue("UNTIL", out string? uv) ? ParseDate(Until, uv, "UNTIL must be YYYYMMDDTHHMMSSZ") : null;
         var byDay = new List<(int, int)>();
         if (parts.TryGetValue("BYDAY", out string? bd)) {
-            if (freq is "DAILY" or "YEARLY") throw new FormatException("BYDAY is only supported with WEEKLY or MONTHLY");
+            int ordinalLimit = freq == "MONTHLY" || (freq == "YEARLY" && parts.ContainsKey("BYMONTH")) ? 5 : 53;
+            bool plain = false, ordinal = false;
             foreach (string d in bd.Split(',')) {
                 var m = ByDay.Match(d);
                 if (!m.Success) throw new FormatException("invalid BYDAY value: '" + d + "'");
-                int n = m.Groups[1].Success ? int.Parse(m.Groups[1].Value, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture) : 0;
-                if (n != 0 && freq != "MONTHLY") throw new FormatException("BYDAY ordinals are only supported with MONTHLY");
+                int n = 0;
+                if (m.Groups[1].Success) {
+                    n = int.Parse(m.Groups[1].Value, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture);
+                    if (freq is not ("MONTHLY" or "YEARLY") || n == 0 || Math.Abs(n) > ordinalLimit)
+                        throw new FormatException("invalid BYDAY ordinal: '" + d + "'");
+                    ordinal = true;
+                } else plain = true;
                 byDay.Add((n, Array.IndexOf(Weekdays, m.Groups[2].Value)));
             }
+            if (plain && ordinal) throw new FormatException("BYDAY cannot mix plain and ordinal weekdays");
         }
         var byMonthDay = new List<int>();
-        if (parts.TryGetValue("BYMONTHDAY", out string? bmd)) {
-            if (freq != "MONTHLY") throw new FormatException("BYMONTHDAY is only supported with MONTHLY");
-            if (byDay.Count > 0) throw new FormatException("BYDAY and BYMONTHDAY cannot be combined");
-            byMonthDay.AddRange(bmd.Split(',').Select(x => Num(x, 1, 31, true)));
-        }
+        if (parts.TryGetValue("BYMONTHDAY", out string? bmd)) byMonthDay.AddRange(bmd.Split(',').Select(x => Num(x, 1, 31, true)));
         var byMonth = new List<int>();
-        if (parts.TryGetValue("BYMONTH", out string? bm)) {
-            if (freq != "YEARLY") throw new FormatException("BYMONTH is only supported with YEARLY");
-            byMonth.AddRange(bm.Split(',').Select(x => Num(x, 1, 12, false)));
-        }
+        if (parts.TryGetValue("BYMONTH", out string? bm)) byMonth.AddRange(bm.Split(',').Select(x => Num(x, 1, 12, false)));
         return new Rule(freq, interval, count, until, byDay, byMonthDay, byMonth);
     }
 

@@ -417,11 +417,18 @@ void runStringSimilarityTests(Checks c) {
 }
 
 void runRRuleTests(Checks c) {
+  // python-dateutil semantics
   const cases = [
     (
       '2026-01-31T09:00:00Z',
       'FREQ=MONTHLY;COUNT=5',
-      ['2026-01-31T09:00:00Z', '2026-03-31T09:00:00Z', '2026-05-31T09:00:00Z', '2026-07-31T09:00:00Z', '2026-08-31T09:00:00Z'],
+      [
+        '2026-01-31T09:00:00Z',
+        '2026-03-31T09:00:00Z',
+        '2026-05-31T09:00:00Z',
+        '2026-07-31T09:00:00Z',
+        '2026-08-31T09:00:00Z',
+      ],
     ),
     (
       '2026-10-12T09:30:00Z',
@@ -439,12 +446,23 @@ void runRRuleTests(Checks c) {
     (
       '2026-10-01T00:00:00Z',
       'FREQ=DAILY;INTERVAL=10;UNTIL=20261115T000000Z',
-      ['2026-10-01T00:00:00Z', '2026-10-11T00:00:00Z', '2026-10-21T00:00:00Z', '2026-10-31T00:00:00Z', '2026-11-10T00:00:00Z'],
+      [
+        '2026-10-01T00:00:00Z',
+        '2026-10-11T00:00:00Z',
+        '2026-10-21T00:00:00Z',
+        '2026-10-31T00:00:00Z',
+        '2026-11-10T00:00:00Z',
+      ],
     ),
     (
       '2026-01-01T12:00:00Z',
       'FREQ=MONTHLY;BYDAY=-1FR;COUNT=4',
-      ['2026-01-30T12:00:00Z', '2026-02-27T12:00:00Z', '2026-03-27T12:00:00Z', '2026-04-24T12:00:00Z'],
+      [
+        '2026-01-30T12:00:00Z',
+        '2026-02-27T12:00:00Z',
+        '2026-03-27T12:00:00Z',
+        '2026-04-24T12:00:00Z',
+      ],
     ),
     (
       '2026-01-01T12:00:00Z',
@@ -470,22 +488,222 @@ void runRRuleTests(Checks c) {
         '2026-04-01T08:00:00Z',
       ],
     ),
-    ('2028-02-29T00:00:00Z', 'FREQ=YEARLY;COUNT=3', ['2028-02-29T00:00:00Z', '2032-02-29T00:00:00Z', '2036-02-29T00:00:00Z']),
+    (
+      '2028-02-29T00:00:00Z',
+      'FREQ=YEARLY;COUNT=3',
+      [
+        '2028-02-29T00:00:00Z',
+        '2032-02-29T00:00:00Z',
+        '2036-02-29T00:00:00Z',
+      ],
+    ),
     (
       '2026-03-10T10:00:00Z',
       'FREQ=YEARLY;BYMONTH=3,9;COUNT=5',
-      ['2026-03-10T10:00:00Z', '2026-09-10T10:00:00Z', '2027-03-10T10:00:00Z', '2027-09-10T10:00:00Z', '2028-03-10T10:00:00Z'],
+      [
+        '2026-03-10T10:00:00Z',
+        '2026-09-10T10:00:00Z',
+        '2027-03-10T10:00:00Z',
+        '2027-09-10T10:00:00Z',
+        '2028-03-10T10:00:00Z',
+      ],
     ),
     (
       '2026-10-14T18:00:00Z',
       'FREQ=WEEKLY;INTERVAL=2;BYDAY=TU;COUNT=3',
-      ['2026-10-27T18:00:00Z', '2026-11-10T18:00:00Z', '2026-11-24T18:00:00Z'],
+      [
+        '2026-10-27T18:00:00Z',
+        '2026-11-10T18:00:00Z',
+        '2026-11-24T18:00:00Z',
+      ],
     ),
-    ('2026-10-14T18:00:00Z', 'FREQ=WEEKLY;COUNT=2', ['2026-10-14T18:00:00Z', '2026-10-21T18:00:00Z']),
+    (
+      '2026-10-14T18:00:00Z',
+      'FREQ=WEEKLY;COUNT=2',
+      [
+        '2026-10-14T18:00:00Z',
+        '2026-10-21T18:00:00Z',
+      ],
+    ),
     (
       '2026-01-31T09:00:00Z',
       'FREQ=MONTHLY;INTERVAL=2;BYMONTHDAY=31;UNTIL=20261231T235959Z',
-      ['2026-01-31T09:00:00Z', '2026-03-31T09:00:00Z', '2026-05-31T09:00:00Z', '2026-07-31T09:00:00Z'],
+      [
+        '2026-01-31T09:00:00Z',
+        '2026-03-31T09:00:00Z',
+        '2026-05-31T09:00:00Z',
+        '2026-07-31T09:00:00Z',
+      ],
+    ),
+    (
+      '2026-10-12T07:00:00Z',
+      'FREQ=DAILY;BYDAY=MO,TU,WE,TH,FR;COUNT=8',
+      [
+        '2026-10-12T07:00:00Z',
+        '2026-10-13T07:00:00Z',
+        '2026-10-14T07:00:00Z',
+        '2026-10-15T07:00:00Z',
+        '2026-10-16T07:00:00Z',
+        '2026-10-19T07:00:00Z',
+        '2026-10-20T07:00:00Z',
+        '2026-10-21T07:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T00:00:00Z',
+      'FREQ=MONTHLY;BYDAY=FR;BYMONTHDAY=13;COUNT=3',
+      [
+        '2026-02-13T00:00:00Z',
+        '2026-03-13T00:00:00Z',
+        '2026-11-13T00:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T09:00:00Z',
+      'FREQ=YEARLY;BYMONTH=11;BYDAY=4TH;COUNT=3',
+      [
+        '2026-11-26T09:00:00Z',
+        '2027-11-25T09:00:00Z',
+        '2028-11-23T09:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T09:00:00Z',
+      'FREQ=YEARLY;BYDAY=1MO;COUNT=3',
+      [
+        '2026-01-05T09:00:00Z',
+        '2027-01-04T09:00:00Z',
+        '2028-01-03T09:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T09:00:00Z',
+      'FREQ=YEARLY;BYDAY=-1SU;COUNT=2',
+      [
+        '2026-12-27T09:00:00Z',
+        '2027-12-26T09:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T10:00:00Z',
+      'FREQ=YEARLY;BYDAY=20MO;COUNT=2',
+      [
+        '2026-05-18T10:00:00Z',
+        '2027-05-17T10:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T10:00:00Z',
+      'FREQ=YEARLY;BYDAY=MO;BYMONTH=2;COUNT=5',
+      [
+        '2026-02-02T10:00:00Z',
+        '2026-02-09T10:00:00Z',
+        '2026-02-16T10:00:00Z',
+        '2026-02-23T10:00:00Z',
+        '2027-02-01T10:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T10:00:00Z',
+      'FREQ=YEARLY;BYMONTHDAY=-1;COUNT=4',
+      [
+        '2026-01-31T10:00:00Z',
+        '2026-02-28T10:00:00Z',
+        '2026-03-31T10:00:00Z',
+        '2026-04-30T10:00:00Z',
+      ],
+    ),
+    (
+      '2026-03-05T10:00:00Z',
+      'FREQ=YEARLY;BYMONTHDAY=1,15;BYMONTH=6;COUNT=4',
+      [
+        '2026-06-01T10:00:00Z',
+        '2026-06-15T10:00:00Z',
+        '2027-06-01T10:00:00Z',
+        '2027-06-15T10:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-05T08:00:00Z',
+      'FREQ=WEEKLY;BYMONTH=1,7;BYDAY=MO;COUNT=6',
+      [
+        '2026-01-05T08:00:00Z',
+        '2026-01-12T08:00:00Z',
+        '2026-01-19T08:00:00Z',
+        '2026-01-26T08:00:00Z',
+        '2026-07-06T08:00:00Z',
+        '2026-07-13T08:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T08:00:00Z',
+      'FREQ=DAILY;BYMONTHDAY=1,-1;COUNT=5',
+      [
+        '2026-01-01T08:00:00Z',
+        '2026-01-31T08:00:00Z',
+        '2026-02-01T08:00:00Z',
+        '2026-02-28T08:00:00Z',
+        '2026-03-01T08:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T08:00:00Z',
+      'FREQ=DAILY;BYMONTH=2;BYMONTHDAY=29;COUNT=2',
+      [
+        '2028-02-29T08:00:00Z',
+        '2032-02-29T08:00:00Z',
+      ],
+    ),
+    (
+      '2026-05-20T08:00:00Z',
+      'FREQ=MONTHLY;BYMONTH=6,12;COUNT=4',
+      [
+        '2026-06-20T08:00:00Z',
+        '2026-12-20T08:00:00Z',
+        '2027-06-20T08:00:00Z',
+        '2027-12-20T08:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-31T08:00:00Z',
+      'FREQ=MONTHLY;BYDAY=MO;BYMONTH=3;COUNT=5',
+      [
+        '2026-03-02T08:00:00Z',
+        '2026-03-09T08:00:00Z',
+        '2026-03-16T08:00:00Z',
+        '2026-03-23T08:00:00Z',
+        '2026-03-30T08:00:00Z',
+      ],
+    ),
+    (
+      '2026-06-01T08:00:00Z',
+      'FREQ=YEARLY;INTERVAL=2;BYMONTH=2;BYMONTHDAY=29;COUNT=2',
+      [
+        '2028-02-29T08:00:00Z',
+        '2032-02-29T08:00:00Z',
+      ],
+    ),
+    (
+      '2026-10-12T09:00:00Z',
+      'FREQ=WEEKLY;BYDAY=SA,SU;UNTIL=20261101T090000Z',
+      [
+        '2026-10-17T09:00:00Z',
+        '2026-10-18T09:00:00Z',
+        '2026-10-24T09:00:00Z',
+        '2026-10-25T09:00:00Z',
+        '2026-10-31T09:00:00Z',
+        '2026-11-01T09:00:00Z',
+      ],
+    ),
+    (
+      '2026-01-01T00:00:00Z',
+      'FREQ=MONTHLY;BYDAY=+1MO,-1FR;COUNT=4',
+      [
+        '2026-01-05T00:00:00Z',
+        '2026-01-30T00:00:00Z',
+        '2026-02-02T00:00:00Z',
+        '2026-02-27T00:00:00Z',
+      ],
     ),
   ];
   for (final (start, rule, e) in cases) {
@@ -496,18 +714,32 @@ void runRRuleTests(Checks c) {
     'COUNT=3',
     'FREQ=DAILY;COUNT=2;UNTIL=20261231T000000Z',
     'FREQ=WEEKLY;BYDAY=1MO',
-    'FREQ=DAILY;BYDAY=MO',
+    'FREQ=DAILY;BYDAY=1MO',
     'FREQ=MONTHLY;BYMONTHDAY=32',
+    'FREQ=MONTHLY;BYMONTHDAY=0',
     'FREQ=MONTHLY;BYSETPOS=1',
+    'FREQ=WEEKLY;WKST=MO',
     'FREQ=WEEKLY;INTERVAL=0',
-    'FREQ=MONTHLY;BYDAY=MO;BYMONTHDAY=1',
+    'FREQ=WEEKLY;INTERVAL=-1',
+    'FREQ=MONTHLY;BYDAY=6MO',
+    'FREQ=YEARLY;BYMONTH=1;BYDAY=6MO',
+    'FREQ=YEARLY;BYDAY=54MO',
+    'FREQ=MONTHLY;BYDAY=0MO',
+    'FREQ=MONTHLY;BYDAY=MO,1TU',
+    'FREQ=YEARLY;BYMONTH=13',
+    'FREQ=YEARLY;BYMONTH=-1',
     'FREQ=YEARLY;UNTIL=2026-12-31',
     'FREQ=DAILY;FREQ=DAILY',
     'FREQ=WEEKLY;BYDAY=XX',
+    'FREQ=DAILY;BYHOUR=9',
   ];
   for (final bad in invalid) {
     c.throws<FormatException>("rrule invalid '$bad'", () => expandRRule('2026-01-01T00:00:00Z', bad));
   }
+  for (final ok in const ['FREQ=DAILY;BYDAY=MO', 'FREQ=MONTHLY;BYDAY=MO;BYMONTHDAY=1', 'FREQ=YEARLY;BYDAY=20MO']) {
+    c.check("rrule now accepted '$ok'", expandRRule('2026-01-01T00:00:00Z', ok, limit: 3).isNotEmpty);
+  }
+  c.eq('rrule impossible rule is empty', 0, expandRRule('2026-01-01T00:00:00Z', 'FREQ=DAILY;BYMONTH=2;BYMONTHDAY=30;COUNT=1').length);
   c.throws<FormatException>('rrule bad dtstart', () => expandRRule('2026-02-30T00:00:00Z', 'FREQ=DAILY'));
   c.throws<RangeError>('rrule limit 0', () => expandRRule('2026-01-01T00:00:00Z', 'FREQ=DAILY', limit: 0));
   c.throws<RangeError>('rrule limit 1001', () => expandRRule('2026-01-01T00:00:00Z', 'FREQ=DAILY', limit: 1001));

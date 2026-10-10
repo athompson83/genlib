@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Package rrule expands a UTC subset of RFC 5545 recurrence rules: FREQ
-// DAILY/WEEKLY/MONTHLY/YEARLY with INTERVAL, COUNT or UNTIL, BYDAY (weekly
-// weekdays; monthly with optional ordinals), BYMONTHDAY (monthly) and BYMONTH
-// (yearly). Unsupported parts are errors rather than silently ignored.
+// DAILY/WEEKLY/MONTHLY/YEARLY with INTERVAL, COUNT or UNTIL, BYDAY (ordinals
+// only with MONTHLY or YEARLY), BYMONTHDAY and BYMONTH with any frequency.
+// It matches python-dateutil for every rule it accepts; it rejects BYSETPOS,
+// WKST, BYHOUR and every other part rather than silently ignoring them.
 package rrule
 
 import (
 	"errors"
 	"fmt"
-	"sort"
 	"strings"
 )
 
@@ -33,6 +33,7 @@ type rule struct {
 	hasUntil            bool
 	byday               []byDay
 	bymonthday, bymonth []int
+	monthScope          bool // YEARLY with an explicit BYMONTH: ordinals count per month
 }
 
 func fail(format string, a ...interface{}) error {
@@ -156,6 +157,25 @@ func numbers(s string, lo, hi int, signed bool) ([]int, error) {
 	return out, nil
 }
 
+// ordinal parses the optional BYDAY prefix [+-]?d{1,2}.
+func ordinal(s string) (int, bool) {
+	body := s
+	if body != "" && (body[0] == '+' || body[0] == '-') {
+		body = body[1:]
+	}
+	if len(body) < 1 || len(body) > 2 {
+		return 0, false
+	}
+	n, ok := digits(body)
+	if !ok {
+		return 0, false
+	}
+	if s[0] == '-' {
+		return -int(n), true
+	}
+	return int(n), true
+}
+
 func parseRule(text string) (*rule, error) {
 	parts := map[string]string{}
 	for _, p := range strings.Split(text, ";") {
@@ -185,6 +205,7 @@ func parseRule(text string) (*rule, error) {
 	if _, hasUntil := parts["UNTIL"]; hasCount && hasUntil {
 		return nil, errors.New("rrule: COUNT and UNTIL are mutually exclusive")
 	}
+	_, hasMonth := parts["BYMONTH"]
 	var err error
 	if v, ok := parts["INTERVAL"]; ok {
 		if r.interval, err = number(v, 1, 9999, false); err != nil {
@@ -202,9 +223,7 @@ func parseRule(text string) (*rule, error) {
 		}
 	}
 	if v, ok := parts["BYDAY"]; ok {
-		if r.freq == "DAILY" || r.freq == "YEARLY" {
-			return nil, errors.New("rrule: BYDAY needs FREQ=WEEKLY or MONTHLY")
-		}
+		plain, ordinals := false, false
 		for _, d := range strings.Split(v, ",") {
 			if len(d) < 2 {
 				return nil, fail("invalid BYDAY %q", d)
@@ -215,36 +234,38 @@ func parseRule(text string) (*rule, error) {
 					wd = i
 				}
 			}
-			n := 0
-			if prefix := d[:len(d)-2]; prefix != "" {
-				if n, err = number(prefix, 1, 5, true); err != nil || len(strings.TrimLeft(prefix, "+-")) != 1 {
-					return nil, fail("invalid BYDAY ordinal %q", d)
-				}
-				if r.freq != "MONTHLY" {
-					return nil, errors.New("rrule: BYDAY ordinals need FREQ=MONTHLY")
-				}
-			}
 			if wd < 0 {
 				return nil, fail("invalid BYDAY %q", d)
 			}
+			n := 0
+			if prefix := d[:len(d)-2]; prefix != "" {
+				var ok bool
+				if n, ok = ordinal(prefix); !ok {
+					return nil, fail("invalid BYDAY ordinal %q", d)
+				}
+				lim := 53
+				if r.freq == "MONTHLY" || (r.freq == "YEARLY" && hasMonth) {
+					lim = 5
+				}
+				if (r.freq != "MONTHLY" && r.freq != "YEARLY") || n == 0 || n > lim || n < -lim {
+					return nil, fail("BYDAY ordinal %q is not allowed with FREQ=%s", d, r.freq)
+				}
+				ordinals = true
+			} else {
+				plain = true
+			}
 			r.byday = append(r.byday, byDay{n, wd})
+		}
+		if plain && ordinals {
+			return nil, errors.New("rrule: BYDAY cannot mix plain and ordinal weekdays")
 		}
 	}
 	if v, ok := parts["BYMONTHDAY"]; ok {
-		if r.freq != "MONTHLY" {
-			return nil, errors.New("rrule: BYMONTHDAY needs FREQ=MONTHLY")
-		}
-		if r.byday != nil {
-			return nil, errors.New("rrule: BYDAY and BYMONTHDAY cannot be combined")
-		}
 		if r.bymonthday, err = numbers(v, 1, 31, true); err != nil {
 			return nil, err
 		}
 	}
 	if v, ok := parts["BYMONTH"]; ok {
-		if r.freq != "YEARLY" {
-			return nil, errors.New("rrule: BYMONTH needs FREQ=YEARLY")
-		}
 		if r.bymonth, err = numbers(v, 1, 12, false); err != nil {
 			return nil, err
 		}
@@ -259,89 +280,102 @@ func format(t int64) string {
 	return fmt.Sprintf("%04d-%02d-%02dT%02d:%02d:%02dZ", y, m, d, sec/3600, sec/60%60, sec%60)
 }
 
-// candidates returns the sorted, de-duplicated candidate days of period k, or
-// false once the period passes year 9999.
-func (r *rule) candidates(startDay int64, k int64) ([]int64, bool) {
-	sy, sm, sd := civilFromDays(startDay)
+// matches reports whether day passes every filter of r; r already carries the
+// dateutil defaults derived from dtstart.
+func (r *rule) matches(day int64) bool {
+	y, m, d := civilFromDays(day)
+	if len(r.bymonth) > 0 && !containsInt(r.bymonth, int(m)) {
+		return false
+	}
+	nd := monthDays(y, m)
+	if len(r.bymonthday) > 0 {
+		ok := false
+		for _, x := range r.bymonthday {
+			want := int64(x)
+			if x < 0 {
+				want = nd + int64(x) + 1
+			}
+			if d == want {
+				ok = true
+				break
+			}
+		}
+		if !ok {
+			return false
+		}
+	}
+	if len(r.byday) == 0 {
+		return true
+	}
+	wd := weekday(day)
+	for _, b := range r.byday {
+		if b.wd != wd {
+			continue
+		}
+		if b.n == 0 {
+			return true
+		}
+		// Ordinals count within the month (MONTHLY, or YEARLY with BYMONTH)
+		// or within the whole year.
+		var first, last int64
+		if r.freq == "MONTHLY" || r.monthScope {
+			first = day - (d - 1)
+			last = first + nd - 1
+		} else {
+			first = daysFromCivil(y, 1, 1)
+			last = daysFromCivil(y, 12, 31)
+		}
+		if (b.n > 0 && (day-first)/7+1 == int64(b.n)) || (b.n < 0 && (last-day)/7+1 == int64(-b.n)) {
+			return true
+		}
+	}
+	return false
+}
+
+func containsInt(xs []int, v int) bool {
+	for _, x := range xs {
+		if x == v {
+			return true
+		}
+	}
+	return false
+}
+
+// period returns the first day and length of period k, or false once the
+// period starts after 9999-12-31.
+func (r *rule) period(startDay int64, k int64) (int64, int64, bool) {
+	sy, sm, _ := civilFromDays(startDay)
 	step := k * int64(r.interval)
-	set := map[int64]bool{}
+	var first, n int64
 	switch r.freq {
 	case "DAILY":
-		set[startDay+step] = true
+		first, n = startDay+step, 1
 	case "WEEKLY":
-		monday := startDay - int64(weekday(startDay)) + 7*step
-		if len(r.byday) == 0 {
-			set[monday+int64(weekday(startDay))] = true
-		}
-		for _, b := range r.byday {
-			set[monday+int64(b.wd)] = true
-		}
+		first, n = startDay-int64(weekday(startDay))+7*step, 7
 	case "MONTHLY":
 		mi := sm - 1 + step
 		y, mo := sy+mi/12, mi%12+1
 		if y > 9999 {
-			return nil, false
+			return 0, 0, false
 		}
-		nd := monthDays(y, mo)
-		first := daysFromCivil(y, mo, 1)
-		switch {
-		case len(r.byday) > 0:
-			for _, b := range r.byday {
-				var ds []int64
-				for d := int64(0); d < nd; d++ {
-					if weekday(first+d) == b.wd {
-						ds = append(ds, first+d)
-					}
-				}
-				switch {
-				case b.n == 0:
-					for _, d := range ds {
-						set[d] = true
-					}
-				case b.n > 0 && b.n <= len(ds):
-					set[ds[b.n-1]] = true
-				case b.n < 0 && -b.n <= len(ds):
-					set[ds[len(ds)+b.n]] = true
-				}
-			}
-		case len(r.bymonthday) > 0:
-			for _, md := range r.bymonthday {
-				d := int64(md)
-				if md < 0 {
-					d = nd + int64(md) + 1
-				}
-				if d >= 1 && d <= nd {
-					set[first+d-1] = true
-				}
-			}
-		case sd <= nd:
-			set[first+sd-1] = true
-		}
+		first, n = daysFromCivil(y, mo, 1), monthDays(y, mo)
 	default: // YEARLY
 		y := sy + step
 		if y > 9999 {
-			return nil, false
+			return 0, 0, false
 		}
-		months := r.bymonth
-		if len(months) == 0 {
-			months = []int{int(sm)}
-		}
-		for _, mo := range months {
-			if sd <= monthDays(y, int64(mo)) {
-				set[daysFromCivil(y, int64(mo), sd)] = true
-			}
-		}
+		first, n = daysFromCivil(y, 1, 1), daysFromCivil(y+1, 1, 1)-daysFromCivil(y, 1, 1)
 	}
-	out := make([]int64, 0, len(set))
-	for d := range set {
-		if y, _, _ := civilFromDays(d); y > 9999 {
-			return nil, false
-		}
-		out = append(out, d)
+	if first > maxDay {
+		return 0, 0, false
 	}
-	sort.Slice(out, func(i, j int) bool { return out[i] < out[j] })
-	return out, true
+	if first+n-1 > maxDay {
+		n = maxDay - first + 1
+	}
+	return first, n, true
 }
+
+var maxDay = daysFromCivil(9999, 12, 31)
 
 // Expand returns up to limit (1..1000; use DefaultLimit) occurrences of rule
 // starting at dtstart ("YYYY-MM-DDTHH:MM:SSZ"), formatted the same way. All
@@ -360,13 +394,31 @@ func Expand(dtstart, ruleText string, limit int) ([]string, error) {
 		return nil, err
 	}
 	startDay, tod := start/86400, start%86400
+	r.monthScope = r.freq == "YEARLY" && len(r.bymonth) > 0
+	if len(r.byday) == 0 && len(r.bymonthday) == 0 {
+		_, sm, sd := civilFromDays(startDay)
+		switch r.freq {
+		case "WEEKLY":
+			r.byday = []byDay{{0, weekday(startDay)}}
+		case "MONTHLY":
+			r.bymonthday = []int{int(sd)}
+		case "YEARLY":
+			r.bymonthday = []int{int(sd)}
+			if len(r.bymonth) == 0 {
+				r.bymonth = []int{int(sm)}
+			}
+		}
+	}
 	out := []string{}
 	for k := int64(0); k < MaxPeriods; k++ {
-		days, ok := r.candidates(startDay, k)
+		first, n, ok := r.period(startDay, k)
 		if !ok {
 			break
 		}
-		for _, d := range days {
+		for d := first; d < first+n; d++ {
+			if !r.matches(d) {
+				continue
+			}
 			c := d*86400 + tod
 			if c < start {
 				continue
@@ -379,11 +431,7 @@ func Expand(dtstart, ruleText string, limit int) ([]string, error) {
 				return out, nil
 			}
 		}
-		earliest := start
-		if len(days) > 0 {
-			earliest = days[0]*86400 + tod
-		}
-		if r.hasUntil && earliest > r.until {
+		if r.hasUntil && first*86400+tod > r.until {
 			break
 		}
 	}

@@ -35,7 +35,9 @@ The Jev decisions themselves read about 5,200 tokens of packets and wrote about 
 - `tools/language-modules.mjs` gained `--into <dir>` and `--flat`, and prints compact text (copied paths, public signatures, the test command) instead of a long JSON plan, so agents need not read the copied source to learn its API.
 - CLI and MCP text output print the checkout's real path instead of `$GENLIB_ROOT`, removing a turn spent resolving it.
 - `line-diff`: a final line without a newline only matches another such line, so every diff applies with `patch`; the docs no longer claim byte-identical GNU output.
-- Known gaps from the short set, not yet changed: `rrule` is a deliberate RFC 5545 subset and rejects some combinations python-dateutil accepts (BYDAY with DAILY or YEARLY, BYDAY with BYMONTHDAY); `line-diff` picks an LCS alignment that GNU diff may not. The `jev` task text should carry the task's constraints (a run selected `python-dateutil` for a task that forbade dependencies because the packet's task words omitted that rule).
+- `rrule` now follows python-dateutil's rule model in all nine languages: BYDAY works with every frequency, BYDAY with BYMONTHDAY intersects, BYMONTH and BYMONTHDAY filter any frequency, and ordinals count within the year when no month scopes them. The 28 shared vectors come from dateutil, and every port matched the reference on thousands of random rules.
+- `genlib jev` keeps only candidates that need no install when the task forbids dependencies (or with `--stdlib-only`), and says so in each question. A run had selected `python-dateutil` for a task that forbade it.
+- `--flat` copies straight into the target and the copy output says what is already verified, so agents neither move files nor re-read source to check it.
 
 ## Reproduce
 
