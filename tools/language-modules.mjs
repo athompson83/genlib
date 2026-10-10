@@ -6,6 +6,8 @@ import {createHash} from 'node:crypto';
 import {outlineSource} from '../lib/outline.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(readFileSync(join(root,'examples/languages/modules.json'),'utf8'));
+// The capability a language module implements may name a known limit; the copy output repeats it.
+const capabilityCaveat=id=>{try{return JSON.parse(readFileSync(join(root,'resources/capabilities.json'),'utf8')).capabilities.find(c=>Object.values(c.implementations).some(i=>i.id===id))?.caveat}catch{return undefined}};
 const [cmd,id,...flags]=process.argv.slice(2);
 const selected=catalog.modules.find(m=>m.id===id);
 const arg=name=>{const i=flags.indexOf(name);return i<0?null:flags[i+1]};
@@ -63,6 +65,7 @@ try{
    if(tests.length)lines.push('# test: '+(hint[selected.language]?.(tests)??'run '+tests.join(', ')+' with the project test runner'));
    // Agents in measured runs read the whole copied source to check it; say what is already verified instead.
    lines.push('# verified: '+(selected.verification??'tested')+' against shared vectors in every language; read the source only to change it.');
+   const caveat=capabilityCaveat(id);if(caveat)lines.push('# caveat: '+caveat);
    console.log(lines.join('\n'));
   }
  }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests] [--into <dir>] [--flat] [--json]');

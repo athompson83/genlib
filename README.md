@@ -120,7 +120,7 @@ flowchart LR
 
 </details>
 
-- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib and with Jev selecting the code: when Genlib has the code, agents wrote 83–89% fewer tokens and finished 46–65% faster; when its code did not match the requirement there was no saving. `node scripts/routing-eval.mjs` measures how often one `quick` call lands on the right capability: 81% top-1 and 88% top-3 on 166 held-out task phrasings (61% and 75% before the stemming, term and prior changes measured in [docs/benchmarks.md](docs/benchmarks.md)).
+- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 400 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib and with Jev selecting the code: when Genlib has the code, agents wrote 80–90% fewer tokens, finished in under half the time and cost 22–27% less; when a requirement is one Genlib cannot meet (byte-identical GNU diff) it costs more, which capability caveats now flag before copying. `node scripts/routing-eval.mjs` measures how often one `quick` call lands on the right capability: 81% top-1 and 88% top-3 on 166 held-out task phrasings (61% and 75% before the stemming, term and prior changes measured in [docs/benchmarks.md](docs/benchmarks.md)).
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
@@ -445,6 +445,7 @@ npm ci --ignore-scripts
 npm run registry:build   # after editing modules
 npm run skills:sync      # after editing the canonical skill
 npm run check            # registry, skills, resources, TypeScript build and all tests
+node scripts/routing-eval.mjs --misses   # how often quick picks the right capability
 ```
 
 CI runs the checks on Node 22 and 24 with React 18 and 19, plus language lanes for Python, Go, Rust, Java, Kotlin, C#, Dart and Swift. See [CONTRIBUTING.md](CONTRIBUTING.md), the [module format](docs/module-format.md) and the [architecture](docs/architecture.md).

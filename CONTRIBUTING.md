@@ -69,7 +69,7 @@ Commit the relevant generated files with the authored changes:
 | Module manifests, contracts, source, `LICENSE`, and `NOTICE` | `registry/catalog.json` and `registry/manifests/` |
 | `skills/genlib-use/` | `.agents/skills/genlib-use/` and `.claude/skills/genlib-use/` |
 
-When you add a capability, give it the everyday words people use for the need (not only the standard's name), add two or three task phrasings to the `tuning` set in `tests/fixtures/routing-queries.json`, and run `node scripts/routing-eval.mjs --misses`. Leave the `heldout` set alone: it measures ranking changes honestly only while nobody tunes against it.
+When you add a capability, give it the everyday words people use for the need (not only the standard's name), a one-sentence `caveat` when it has a limit users would otherwise discover after copying, add two or three task phrasings to the `tuning` set in `tests/fixtures/routing-queries.json`, and run `node scripts/routing-eval.mjs --misses`. Leave the `heldout` set alone: it measures ranking changes honestly only while nobody tunes against it.
 
 When a new capability or module covers what an indexed external project does, add the pair to `resources/equivalents.json` (`type:id` of the record to `capability:`/`module:`/`template:` targets) so agents reuse the tested code first.
 

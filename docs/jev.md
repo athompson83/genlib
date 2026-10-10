@@ -18,7 +18,7 @@ The result is a `genlib.jev/v1` packet:
 
 | Field | Contents |
 | --- | --- |
-| `state` | The task (at most 2,000 characters), the detected project languages and frameworks when `--target` is given, and up to 8 candidates. Each candidate has `ref`, `type`, `id`, `title`, a summary of at most 200 characters, languages and fit. |
+| `state` | The task (at most 2,000 characters), the detected project languages and frameworks when `--target` is given, and up to 8 candidates. Each candidate has `ref`, `type`, `id`, `title`, a summary of at most 200 characters, languages and fit, plus a `caveat` (at most 200 characters) when the capability has a known limit. |
 | `questions` | One `yes_no` question per candidate, for example: "Would the capability ... (c2) directly help complete the task?". Several candidates may be useful at once. |
 | `decision` | `independent-membership` with threshold `0.8`, and the selection rule. |
 | `next` | For each `ref`, the exact commands to run after selection: copy, install, inspect or read a section. |
@@ -37,7 +37,7 @@ State and questions together stay under 20,000 characters, so a packet fits Geni
 
 After selection, run the candidate's `next` commands in order, under the task's existing authorization. Then inspect what was copied or installed and run the receiving project's checks.
 
-Put the task's constraints in the task text. When it forbids new dependencies ("standard library only", "no third-party dependencies", "do not install packages"), or with `--stdlib-only` (MCP: `stdlibOnly: true`), the packet keeps only candidates that need no install (capabilities, modules, recipes, language examples, templates, tools, docs), states the constraint in `state.constraints` and adds it to each question. A measured run without this selected python-dateutil for a task that forbade it. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
+Put the task's constraints in the task text. When it forbids new dependencies ("standard library only", "no third-party dependencies", "do not install packages"), or with `--stdlib-only` (MCP: `stdlibOnly: true`), the packet keeps only candidates that need no install (capabilities, modules, recipes, language examples, templates, tools, docs), states the constraint in `state.constraints` and adds it to each question. A measured run without this selected python-dateutil for a task that forbade it. A candidate's `caveat` names a known limit (line-diff is not byte-identical to GNU diff; slugify keeps Latin letters only); its question then asks whether the caveat conflicts with the task, so a model can say no before the code is copied. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
 
 ## What the shortlist searches
 

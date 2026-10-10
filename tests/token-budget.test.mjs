@@ -18,6 +18,10 @@ test('quick prints only the best match, its acting commands and an outline hint'
   assert.match(text, /# api: node "[^"$]+"\/bin\/genlib\.mjs outline capability:csv-safe --language python/);
   assert.doesNotMatch(text, /inspect|Read docs/);
   assert.ok(bytes(text) <= 600, 'quick budget: ' + bytes(text));
+  // A capability's known limit is shown before copying, within the same budget.
+  const diff = cli('quick', 'unified', 'diff', '--language', 'python');
+  assert.match(diff, /^# caveat: .*GNU diff/m);
+  assert.ok(bytes(diff) <= 600, 'quick budget with caveat: ' + bytes(diff));
   const json = JSON.parse(cli('quick', 'verify', 'stripe', 'webhook', '--json'));
   // Both are Genlib's tested code for this task: the 9-language capability or the TypeScript module.
   assert.match(json.best, /^(?:capability:webhook-signature|module:webhook-verification)$/);
@@ -52,6 +56,8 @@ test('outline extracts public signatures and docs per language and skips private
     [{ signature: 'export function add(a: number, b: number): number', doc: 'Adds.' }]);
   assert.deepEqual(outlineSource('def run(x: int) -> str:\n    """Runs it."""\n    return ""\n\ndef _private():\n    pass\n', 'python'),
     [{ signature: 'def run(x: int) -> str', doc: 'Runs it.' }]);
+  // Quotes inside a docstring's first line do not cut it short.
+  assert.equal(outlineSource('def ops(a: str) -> list:\n    """List of ["=" | "-", line] pairs."""\n    return []\n', 'python')[0].doc, 'List of ["=" | "-", line] pairs.');
   assert.deepEqual(outlineSource('// Sum adds.\nfunc Sum(a, b int) int {\n\treturn a + b\n}\nfunc private() {}\n', 'go'), [{ signature: 'func Sum(a, b int) int', doc: 'Sum adds.' }]);
   assert.deepEqual(outlineSource('/// Doubles.\npub fn double(x: i64) -> i64 {\n    x * 2\n}\nfn hidden() {}\n', 'rust'), [{ signature: 'pub fn double(x: i64) -> i64', doc: 'Doubles.' }]);
   assert.deepEqual(outlineSource('export interface Opts {\n  // the size\n  size: number;\n}\n', 'typescript'), [{ signature: 'export interface Opts { size: number; }' }]);

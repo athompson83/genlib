@@ -87,3 +87,12 @@ test('a no-dependency constraint keeps only candidates that need no install and 
   assert.equal(jevPacket(sources, 'expand rrule recurrence rules', { stdlibOnly: true }).state.candidates.every(candidate => candidate.type !== 'resource'), true);
   assert.equal(jevPacket(sources, 'expand rrule recurrence rules, standard library only', { stdlibOnly: false }).state.constraints, undefined);
 });
+
+test('a capability caveat travels with the candidate and the question asks to weigh it', () => {
+  const packet = jevPacket(sources, 'unified diff byte-identical to GNU diff -u', { limit: 3 });
+  const diff = packet.state.candidates.find(candidate => candidate.id === 'line-diff');
+  assert.match(diff.caveat, /not byte-identical to GNU diff/);
+  assert.match(packet.questions.find(question => question.ref === diff.ref).question, /caveat conflicts/);
+  const plain = packet.state.candidates.find(candidate => !candidate.caveat);
+  if (plain) assert.doesNotMatch(packet.questions.find(question => question.ref === plain.ref).question, /caveat/);
+});

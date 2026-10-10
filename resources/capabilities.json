@@ -2386,6 +2386,7 @@
       "title": "String similarity: Levenshtein, Damerau, Jaro-Winkler",
       "tier": "pure",
       "summary": "Edit distances (Levenshtein, optimal string alignment) and Jaro/Jaro-Winkler scores over Unicode code points, plus a normalized ratio, for fuzzy search, typo suggestions and duplicate detection.",
+      "caveat": "O(n*m) time; cap input length for user-supplied strings.",
       "terms": [
         "levenshtein",
         "edit distance",
@@ -2457,6 +2458,7 @@
       "title": "Recurring events: RFC 5545 RRULE expansion",
       "tier": "pure",
       "summary": "Expand DAILY, WEEKLY, MONTHLY and YEARLY recurrence rules with INTERVAL, COUNT, UNTIL, BYDAY (including 2TU, -1FR and 20MO in the year), BYMONTHDAY and BYMONTH as filters for any frequency, in UTC, matching python-dateutil for every rule it accepts.",
+      "caveat": "UTC only; BYSETPOS, BYHOUR/BYMINUTE/BYSECOND, WKST and EXDATE are rejected.",
       "terms": [
         "rrule",
         "recurrence",
@@ -2533,6 +2535,7 @@
       "title": "Base32, Base58 and Base64url encoding",
       "tier": "pure",
       "summary": "RFC 4648 base32 (standard and extended-hex alphabets, padded or not), Bitcoin-alphabet base58 and unpadded base64url, with strict decoders that reject bad characters, padding and non-canonical bits.",
+      "caveat": "base32 functions take the alphabet before the padding flag: pass padding by name where the language allows.",
       "terms": [
         "base32",
         "base58",
@@ -2665,6 +2668,7 @@
       "title": "Non-cryptographic hashing and jump consistent hashing",
       "tier": "pure",
       "summary": "CRC-32 (IEEE), FNV-1a 32/64, MurmurHash3 x86_32 and Google jump consistent hash for checksums, sharding, cache keys and bucketing. Not for passwords, MACs or signatures.",
+      "caveat": "Not cryptographic: use HMAC or a password hash for anything an attacker can influence.",
       "terms": [
         "crc32",
         "checksum",
@@ -2804,6 +2808,7 @@
       "title": "Human-readable bytes, durations and relative times",
       "tier": "pure",
       "summary": "Format and parse byte sizes in SI (kB) or IEC (KiB) units with integer rounding, compact durations (\"1h 2m\") and relative times (\"3 minutes ago\", \"in 2 days\").",
+      "caveat": "relativeTime and formatDuration produce English only.",
       "terms": [
         "format bytes",
         "file size",
@@ -2873,7 +2878,8 @@
       "id": "line-diff",
       "title": "Line diff and unified diff output",
       "tier": "pure",
-      "summary": "Deterministic LCS line diff and unified diff in the GNU diff -u format that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
+      "summary": "Minimal line diff (Myers, linear memory, up to 1,000,000 lines) and unified diff output that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
+      "caveat": "Minimal, valid unified diffs, but not byte-identical to GNU diff -u (82-95% of random inputs match); call the system diff when exact GNU bytes are required.",
       "terms": [
         "diff",
         "unified diff",
@@ -3085,6 +3091,7 @@
       "title": "URL slugs: slugify titles and make them unique",
       "tier": "pure",
       "summary": "Turn titles into URL-safe slugs (Latin accents transliterated by one fixed table, apostrophes joined, word-boundary truncation) and pick the first free slug-2, slug-3 ..., identically in every language.",
+      "caveat": "Transliterates Latin letters U+00C0-U+017F only; other scripts and emoji are dropped, so keep an id-based fallback for non-Latin titles.",
       "terms": [
         "slug",
         "slugify",
@@ -3152,6 +3159,7 @@
       "title": "JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396)",
       "tier": "pure",
       "summary": "Apply RFC 6902 JSON Patch atomically, resolve RFC 6901 pointers, apply RFC 7396 merge patches and generate a deterministic patch (JSON diff) between two documents; includes a strict JSON parser where the language has none.",
+      "caveat": "createPatch compares arrays by index: always correct, but not minimal when items are inserted or moved.",
       "terms": [
         "json patch",
         "rfc 6902",

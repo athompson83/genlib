@@ -25,7 +25,7 @@ test('safe plan and copy without overwrites',()=>{
   // Text mode: flat copy into a chosen folder, with the API and the command that runs the copied tests.
   // --flat without --into copies straight into the target and says what is already verified.
   const flatDir=mkdtempSync(join(tmpdir(),'genlib-flat-'));
-  try{const flatText=run('add','python-totp','--target',flatDir,'--with-tests','--flat');assert.ok(existsSync(join(flatDir,'totp.py'))&&existsSync(join(flatDir,'test_totp.py')));assert.match(flatText,/# verified: /);}finally{rmSync(flatDir,{recursive:true,force:true})}
+  try{const flatText=run('add','python-totp','--target',flatDir,'--with-tests','--flat');assert.ok(existsSync(join(flatDir,'totp.py'))&&existsSync(join(flatDir,'test_totp.py')));assert.match(flatText,/# verified: /);assert.doesNotMatch(flatText,/# caveat:/);const diffText=run('add','python-line-diff','--target',flatDir,'--flat');assert.match(diffText,/# caveat: .*GNU diff/);}finally{rmSync(flatDir,{recursive:true,force:true})}
   const text=run('add','python-rrule','--target',dir,'--with-tests','--into','app','--flat');
   assert.match(text,/app\/rrule\.py/);assert.match(text,/def expand_rrule\(/);assert.match(text,/# test: cd .*app && python3 -m unittest test_rrule/);
   assert.ok(existsSync(join(dir,'app/test_rrule.py')));

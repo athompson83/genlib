@@ -8,6 +8,10 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "quick_best_match_first": "node \"$GENLIB_ROOT/bin/genlib.mjs\" quick verify stripe webhook --target \"$APP_ROOT\"",
     "find_for_options": "node \"$GENLIB_ROOT/bin/genlib.mjs\" find verify stripe webhook --target \"$APP_ROOT\" --limit 5",
     "outline_signatures": "node \"$GENLIB_ROOT/bin/genlib.mjs\" outline totp --language go",
+    "copy_capability_code": "node \"$GENLIB_ROOT/tools/language-modules.mjs\" add python-totp --target \"$APP_ROOT\" --with-tests --flat",
+    "list_capabilities": "node \"$GENLIB_ROOT/bin/genlib.mjs\" capability list",
+    "decision_packet": "node \"$GENLIB_ROOT/bin/genlib.mjs\" jev \"expand recurring events, standard library only\" --target \"$APP_ROOT\" --json",
+    "external_source_slice": "node \"$GENLIB_ROOT/bin/genlib.mjs\" source resource:pocketbase --path core",
     "detect_target_stack": "node \"$GENLIB_ROOT/bin/genlib.mjs\" detect --target \"$APP_ROOT\" --json",
     "catalog_overview": "node \"$GENLIB_ROOT/bin/genlib.mjs\" catalog --json",
     "list_metadata": "node \"$GENLIB_ROOT/bin/genlib.mjs\" list --json",
@@ -17,6 +21,9 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "install_files": "node \"$GENLIB_ROOT/bin/genlib.mjs\" add <id> --target \"$APP_ROOT\" --json",
     "verify_installation": "node \"$GENLIB_ROOT/bin/genlib.mjs\" verify --target \"$APP_ROOT\" --json"
   },
+  "copy": [
+    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run and # verified: how it was tested. Run that test; do not re-read the copied source to check it."
+  ],
   "find": [
     "Output is sized for agents: quick prints the best match and only its acting commands; find prints one line plus commands per result. Add --json for full records (--json --brief for compact JSON). --language <name> prefers a language without a target.",
     "outline <id|type:id> [--language] lists public signatures and one-line docs for a capability, module, recipe or language example, with measured sourceBytes and outlineBytes. Read source only for code you will change.",
