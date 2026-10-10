@@ -348,6 +348,13 @@
    "query": "booking-scheduling"
   },
   {
+   "id": "category:bot-framework",
+   "kind": "category",
+   "label": "bot-framework",
+   "count": 65,
+   "query": "bot-framework"
+  },
+  {
    "id": "category:browser-automation",
    "kind": "category",
    "label": "browser-automation",
@@ -423,6 +430,20 @@
    "label": "charts",
    "count": 13,
    "query": "charts"
+  },
+  {
+   "id": "category:chat-api-sdk",
+   "kind": "category",
+   "label": "chat-api-sdk",
+   "count": 50,
+   "query": "chat-api-sdk"
+  },
+  {
+   "id": "category:chat-sdk-library",
+   "kind": "category",
+   "label": "chat-sdk-library",
+   "count": 62,
+   "query": "chat-sdk-library"
   },
   {
    "id": "category:ci-cd",
@@ -857,6 +878,13 @@
    "label": "embeddings",
    "count": 3,
    "query": "embeddings"
+  },
+  {
+   "id": "category:encrypted-messenger",
+   "kind": "category",
+   "label": "encrypted-messenger",
+   "count": 25,
+   "query": "encrypted-messenger"
   },
   {
    "id": "category:evals",
@@ -1440,6 +1468,13 @@
    "query": "prompt-optimization"
   },
   {
+   "id": "category:protocol-server",
+   "kind": "category",
+   "label": "protocol-server",
+   "count": 22,
+   "query": "protocol-server"
+  },
+  {
    "id": "category:push",
    "kind": "category",
    "label": "push",
@@ -1650,11 +1685,25 @@
    "query": "styling"
   },
   {
+   "id": "category:support-chat",
+   "kind": "category",
+   "label": "support-chat",
+   "count": 8,
+   "query": "support-chat"
+  },
+  {
    "id": "category:tailwind-components",
    "kind": "category",
    "label": "tailwind-components",
    "count": 10,
    "query": "tailwind-components"
+  },
+  {
+   "id": "category:team-chat",
+   "kind": "category",
+   "label": "team-chat",
+   "count": 31,
+   "query": "team-chat"
   },
   {
    "id": "category:terminal-dashboard",
@@ -2098,6 +2147,13 @@
    "file": "docs/resources/backend-api.md"
   },
   {
+   "id": "doc:docs/resources/chat-messaging.md",
+   "kind": "doc",
+   "label": "docs/resources/chat-messaging.md",
+   "count": 10,
+   "file": "docs/resources/chat-messaging.md"
+  },
+  {
    "id": "doc:docs/resources/dashboards.md",
    "kind": "doc",
    "label": "docs/resources/dashboards.md",
@@ -2272,6 +2328,13 @@
    "file": "docs/resources/backend-api.md"
   },
   {
+   "id": "guide:docs/resources/chat-messaging.md",
+   "kind": "guide",
+   "label": "chat-messaging",
+   "count": 263,
+   "file": "docs/resources/chat-messaging.md"
+  },
+  {
    "id": "guide:docs/resources/dashboards.md",
    "kind": "guide",
    "label": "dashboards",
@@ -2373,84 +2436,84 @@
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 296,
+   "count": 307,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 165,
+   "count": 178,
    "query": "dart"
   },
   {
    "id": "language:elixir",
    "kind": "language",
    "label": "elixir",
-   "count": 142,
+   "count": 145,
    "query": "elixir"
   },
   {
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 344,
+   "count": 365,
    "query": "go"
   },
   {
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 191,
+   "count": 211,
    "query": "java"
   },
   {
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 68,
+   "count": 75,
    "query": "kotlin"
   },
   {
    "id": "language:php",
    "kind": "language",
    "label": "php",
-   "count": 528,
+   "count": 540,
    "query": "php"
   },
   {
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 743,
+   "count": 777,
    "query": "python"
   },
   {
    "id": "language:ruby",
    "kind": "language",
    "label": "ruby",
-   "count": 298,
+   "count": 307,
    "query": "ruby"
   },
   {
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 289,
+   "count": 310,
    "query": "rust"
   },
   {
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 124,
+   "count": 136,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 2382,
+   "count": 2461,
    "query": "typescript"
   },
   {
@@ -2478,7 +2541,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 439,
+   "count": 449,
    "query": "--type doc"
   },
   {
@@ -2513,7 +2576,7 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 5791,
+   "count": 6054,
    "query": "--type resource"
   },
   {
@@ -4034,6 +4097,72 @@
    "weight": 6
   },
   {
+   "source": "category:bot-framework",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 19
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:bot-framework",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 17
+  },
+  {
    "source": "category:browser-automation",
    "target": "language:csharp",
    "relation": "in-language",
@@ -4356,6 +4485,138 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 9
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:chat-api-sdk",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 19
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 10
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:chat-sdk-library",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 18
   },
   {
    "source": "category:ci-cd",
@@ -5034,6 +5295,42 @@
    "target": "language:python",
    "relation": "in-language",
    "weight": 2
+  },
+  {
+   "source": "category:encrypted-messenger",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:encrypted-messenger",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:encrypted-messenger",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:encrypted-messenger",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:encrypted-messenger",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:encrypted-messenger",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 6
   },
   {
    "source": "category:evals",
@@ -6014,6 +6311,42 @@
    "weight": 1
   },
   {
+   "source": "category:protocol-server",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:protocol-server",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:protocol-server",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:protocol-server",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:protocol-server",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:protocol-server",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:push",
    "target": "language:csharp",
    "relation": "in-language",
@@ -6596,10 +6929,76 @@
    "weight": 9
   },
   {
+   "source": "category:support-chat",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:support-chat",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:support-chat",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
    "source": "category:tailwind-components",
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 6
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:team-chat",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 14
   },
   {
    "source": "category:terminal-dashboard",
@@ -6863,7 +7262,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 439
+   "weight": 449
   },
   {
    "source": "genlib",
@@ -6893,7 +7292,7 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 5791
+   "weight": 6054
   },
   {
    "source": "genlib",
@@ -7236,6 +7635,48 @@
    "target": "category:validation",
    "relation": "has-category",
    "weight": 4
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:bot-framework",
+   "relation": "has-category",
+   "weight": 65
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:chat-api-sdk",
+   "relation": "has-category",
+   "weight": 50
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:chat-sdk-library",
+   "relation": "has-category",
+   "weight": 62
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:encrypted-messenger",
+   "relation": "has-category",
+   "weight": 25
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:protocol-server",
+   "relation": "has-category",
+   "weight": 22
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:support-chat",
+   "relation": "has-category",
+   "weight": 8
+  },
+  {
+   "source": "guide:docs/resources/chat-messaging.md",
+   "target": "category:team-chat",
+   "relation": "has-category",
+   "weight": 31
   },
   {
    "source": "guide:docs/resources/dashboards.md",
@@ -8901,6 +9342,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/resources/chat-messaging.md",
+   "relation": "section-of",
+   "weight": 10
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/resources/dashboards.md",
    "relation": "section-of",
    "weight": 11
@@ -9111,6 +9558,12 @@
   },
   {
    "source": "type:resource",
+   "target": "guide:docs/resources/chat-messaging.md",
+   "relation": "grouped-by",
+   "weight": 263
+  },
+  {
+   "source": "type:resource",
    "target": "guide:docs/resources/dashboards.md",
    "relation": "grouped-by",
    "weight": 801
@@ -9197,73 +9650,73 @@
    "source": "type:resource",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 263
+   "weight": 274
   },
   {
    "source": "type:resource",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 138
+   "weight": 151
   },
   {
    "source": "type:resource",
    "target": "language:elixir",
    "relation": "serves",
-   "weight": 142
+   "weight": 145
   },
   {
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 308
+   "weight": 329
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 158
+   "weight": 178
   },
   {
    "source": "type:resource",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 35
+   "weight": 42
   },
   {
    "source": "type:resource",
    "target": "language:php",
    "relation": "serves",
-   "weight": 528
+   "weight": 540
   },
   {
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 707
+   "weight": 741
   },
   {
    "source": "type:resource",
    "target": "language:ruby",
    "relation": "serves",
-   "weight": 298
+   "weight": 307
   },
   {
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 256
+   "weight": 277
   },
   {
    "source": "type:resource",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 95
+   "weight": 107
   },
   {
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 2305
+   "weight": 2384
   }
  ]
 }
