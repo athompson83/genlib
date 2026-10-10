@@ -1124,6 +1124,13 @@
    "query": "desktop-framework"
   },
   {
+   "id": "category:desktop-gis",
+   "kind": "category",
+   "label": "desktop-gis",
+   "count": 20,
+   "query": "desktop-gis"
+  },
+  {
    "id": "category:desktop-packaging",
    "kind": "category",
    "label": "desktop-packaging",
@@ -1143,6 +1150,13 @@
    "label": "dev-tools",
    "count": 107,
    "query": "dev-tools"
+  },
+  {
+   "id": "category:diagram-tools",
+   "kind": "category",
+   "label": "diagram-tools",
+   "count": 6,
+   "query": "diagram-tools"
   },
   {
    "id": "category:diagrams",
@@ -1285,6 +1299,13 @@
    "query": "engineering-guides"
   },
   {
+   "id": "category:environment-hazard-feeds",
+   "kind": "category",
+   "label": "environment-hazard-feeds",
+   "count": 6,
+   "query": "environment-hazard-feeds"
+  },
+  {
    "id": "category:erp",
    "kind": "category",
    "label": "erp",
@@ -1390,6 +1411,27 @@
    "query": "game-rendering"
   },
   {
+   "id": "category:geo-processing-libraries",
+   "kind": "category",
+   "label": "geo-processing-libraries",
+   "count": 267,
+   "query": "geo-processing-libraries"
+  },
+  {
+   "id": "category:geo-servers-databases",
+   "kind": "category",
+   "label": "geo-servers-databases",
+   "count": 34,
+   "query": "geo-servers-databases"
+  },
+  {
+   "id": "category:geocoding-search",
+   "kind": "category",
+   "label": "geocoding-search",
+   "count": 42,
+   "query": "geocoding-search"
+  },
+  {
    "id": "category:geospatial",
    "kind": "category",
    "label": "geospatial",
@@ -1402,6 +1444,13 @@
    "label": "git-hooks",
    "count": 3,
    "query": "git-hooks"
+  },
+  {
+   "id": "category:globe-apps",
+   "kind": "category",
+   "label": "globe-apps",
+   "count": 2,
+   "query": "globe-apps"
   },
   {
    "id": "category:graphql",
@@ -1596,7 +1645,7 @@
    "id": "category:learning",
    "kind": "category",
    "label": "learning",
-   "count": 18,
+   "count": 19,
    "query": "learning"
   },
   {
@@ -1619,6 +1668,13 @@
    "label": "links-qr",
    "count": 147,
    "query": "links-qr"
+  },
+  {
+   "id": "category:live-tracking-feeds",
+   "kind": "category",
+   "label": "live-tracking-feeds",
+   "count": 7,
+   "query": "live-tracking-feeds"
   },
   {
    "id": "category:llm-abstraction",
@@ -1656,6 +1712,13 @@
    "query": "local-inference"
   },
   {
+   "id": "category:location-sdks-apis",
+   "kind": "category",
+   "label": "location-sdks-apis",
+   "count": 92,
+   "query": "location-sdks-apis"
+  },
+  {
    "id": "category:logging",
    "kind": "category",
    "label": "logging",
@@ -1675,6 +1738,13 @@
    "label": "machine-learning",
    "count": 1,
    "query": "machine-learning"
+  },
+  {
+   "id": "category:map-styles-assets",
+   "kind": "category",
+   "label": "map-styles-assets",
+   "count": 37,
+   "query": "map-styles-assets"
   },
   {
    "id": "category:maps",
@@ -1775,6 +1845,13 @@
    "query": "mobile-input"
   },
   {
+   "id": "category:mobile-map-sdks",
+   "kind": "category",
+   "label": "mobile-map-sdks",
+   "count": 35,
+   "query": "mobile-map-sdks"
+  },
+  {
    "id": "category:mobile-navigation",
    "kind": "category",
    "label": "mobile-navigation",
@@ -1859,11 +1936,25 @@
    "query": "monorepo"
   },
   {
+   "id": "category:navigation-apps",
+   "kind": "category",
+   "label": "navigation-apps",
+   "count": 28,
+   "query": "navigation-apps"
+  },
+  {
    "id": "category:networking",
    "kind": "category",
    "label": "networking",
    "count": 31,
    "query": "networking"
+  },
+  {
+   "id": "category:news-events-feeds",
+   "kind": "category",
+   "label": "news-events-feeds",
+   "count": 2,
+   "query": "news-events-feeds"
   },
   {
    "id": "category:notebooks",
@@ -1913,6 +2004,13 @@
    "label": "orm",
    "count": 13,
    "query": "orm"
+  },
+  {
+   "id": "category:osm-data-tools",
+   "kind": "category",
+   "label": "osm-data-tools",
+   "count": 45,
+   "query": "osm-data-tools"
   },
   {
    "id": "category:paas",
@@ -2111,6 +2209,20 @@
    "query": "routing"
   },
   {
+   "id": "category:routing-engines",
+   "kind": "category",
+   "label": "routing-engines",
+   "count": 27,
+   "query": "routing-engines"
+  },
+  {
+   "id": "category:routing-services",
+   "kind": "category",
+   "label": "routing-services",
+   "count": 1,
+   "query": "routing-services"
+  },
+  {
    "id": "category:rpc",
    "kind": "category",
    "label": "rpc",
@@ -2251,6 +2363,13 @@
    "query": "streaming-server"
   },
   {
+   "id": "category:street-imagery",
+   "kind": "category",
+   "label": "street-imagery",
+   "count": 4,
+   "query": "street-imagery"
+  },
+  {
    "id": "category:structured-output",
    "kind": "category",
    "label": "structured-output",
@@ -2321,6 +2440,20 @@
    "query": "theming"
   },
   {
+   "id": "category:tile-servers",
+   "kind": "category",
+   "label": "tile-servers",
+   "count": 41,
+   "query": "tile-servers"
+  },
+  {
+   "id": "category:tile-services",
+   "kind": "category",
+   "label": "tile-services",
+   "count": 5,
+   "query": "tile-services"
+  },
+  {
    "id": "category:time-tracking",
    "kind": "category",
    "label": "time-tracking",
@@ -2340,6 +2473,20 @@
    "label": "toolchains",
    "count": 2,
    "query": "toolchains"
+  },
+  {
+   "id": "category:traffic-cameras",
+   "kind": "category",
+   "label": "traffic-cameras",
+   "count": 13,
+   "query": "traffic-cameras"
+  },
+  {
+   "id": "category:transit-data",
+   "kind": "category",
+   "label": "transit-data",
+   "count": 10,
+   "query": "transit-data"
   },
   {
    "id": "category:ui-components",
@@ -2431,6 +2578,20 @@
    "label": "visual-effects",
    "count": 1,
    "query": "visual-effects"
+  },
+  {
+   "id": "category:weather-data",
+   "kind": "category",
+   "label": "weather-data",
+   "count": 5,
+   "query": "weather-data"
+  },
+  {
+   "id": "category:web-map-libraries",
+   "kind": "category",
+   "label": "web-map-libraries",
+   "count": 91,
+   "query": "web-map-libraries"
   },
   {
    "id": "category:web-scraping",
@@ -2744,7 +2905,7 @@
    "id": "doc:docs/resources/ai-learning.md",
    "kind": "doc",
    "label": "docs/resources/ai-learning.md",
-   "count": 8,
+   "count": 9,
    "file": "docs/resources/ai-learning.md"
   },
   {
@@ -2816,6 +2977,13 @@
    "label": "docs/resources/frontend-web.md",
    "count": 21,
    "file": "docs/resources/frontend-web.md"
+  },
+  {
+   "id": "doc:docs/resources/mapping-navigation.md",
+   "kind": "doc",
+   "label": "docs/resources/mapping-navigation.md",
+   "count": 25,
+   "file": "docs/resources/mapping-navigation.md"
   },
   {
    "id": "doc:docs/resources/marketing-analytics.md",
@@ -2967,7 +3135,7 @@
    "id": "guide:docs/resources/ai-learning.md",
    "kind": "guide",
    "label": "ai-learning",
-   "count": 29,
+   "count": 36,
    "file": "docs/resources/ai-learning.md"
   },
   {
@@ -3039,6 +3207,13 @@
    "label": "frontend-web",
    "count": 89,
    "file": "docs/resources/frontend-web.md"
+  },
+  {
+   "id": "guide:docs/resources/mapping-navigation.md",
+   "kind": "guide",
+   "label": "mapping-navigation",
+   "count": 814,
+   "file": "docs/resources/mapping-navigation.md"
   },
   {
    "id": "guide:docs/resources/marketing-analytics.md",
@@ -3135,14 +3310,14 @@
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 492,
+   "count": 520,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 280,
+   "count": 310,
    "query": "dart"
   },
   {
@@ -3156,14 +3331,14 @@
    "id": "language:elixir",
    "kind": "language",
    "label": "elixir",
-   "count": 203,
+   "count": 214,
    "query": "elixir"
   },
   {
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 698,
+   "count": 731,
    "query": "go"
   },
   {
@@ -3198,7 +3373,7 @@
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 2827,
+   "count": 2885,
    "query": "java"
   },
   {
@@ -3226,14 +3401,14 @@
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 204,
+   "count": 219,
    "query": "kotlin"
   },
   {
    "id": "language:php",
    "kind": "language",
    "label": "php",
-   "count": 822,
+   "count": 840,
    "query": "php"
   },
   {
@@ -3247,21 +3422,21 @@
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1439,
+   "count": 1599,
    "query": "python"
   },
   {
    "id": "language:ruby",
    "kind": "language",
    "label": "ruby",
-   "count": 454,
+   "count": 473,
    "query": "ruby"
   },
   {
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 503,
+   "count": 555,
    "query": "rust"
   },
   {
@@ -3275,14 +3450,14 @@
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 230,
+   "count": 246,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3247,
+   "count": 3492,
    "query": "typescript"
   },
   {
@@ -3324,7 +3499,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 544,
+   "count": 570,
    "query": "--type doc"
   },
   {
@@ -3359,7 +3534,7 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 8933,
+   "count": 9754,
    "query": "--type resource"
   },
   {
@@ -8338,6 +8513,36 @@
    "weight": 4
   },
   {
+   "source": "category:desktop-gis",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:desktop-gis",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:desktop-gis",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:desktop-gis",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:desktop-gis",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:desktop-packaging",
    "target": "language:typescript",
    "relation": "in-language",
@@ -8414,6 +8619,18 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 31
+  },
+  {
+   "source": "category:diagram-tools",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:diagram-tools",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 4
   },
   {
    "source": "category:diagrams",
@@ -9190,6 +9407,162 @@
    "weight": 1
   },
   {
+   "source": "category:geo-processing-libraries",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 16
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 10
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 20
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 19
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 73
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 14
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 29
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:geo-processing-libraries",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 46
+  },
+  {
+   "source": "category:geo-servers-databases",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:geo-servers-databases",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:geo-servers-databases",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:geo-servers-databases",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:geo-servers-databases",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:geo-servers-databases",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 12
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:geocoding-search",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
    "source": "category:geospatial",
    "target": "language:typescript",
    "relation": "in-language",
@@ -9206,6 +9579,12 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 3
+  },
+  {
+   "source": "category:globe-apps",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
   },
   {
    "source": "category:graphql",
@@ -9559,7 +9938,7 @@
    "source": "category:learning",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 1
+   "weight": 2
   },
   {
    "source": "category:learning",
@@ -9802,6 +10181,72 @@
    "weight": 4
   },
   {
+   "source": "category:location-sdks-apis",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 10
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:location-sdks-apis",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 45
+  },
+  {
    "source": "category:logging",
    "target": "language:go",
    "relation": "in-language",
@@ -9854,6 +10299,24 @@
    "target": "language:python",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:map-styles-assets",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:map-styles-assets",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:map-styles-assets",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 22
   },
   {
    "source": "category:maps",
@@ -10102,6 +10565,48 @@
    "weight": 1
   },
   {
+   "source": "category:mobile-map-sdks",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:mobile-map-sdks",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:mobile-map-sdks",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:mobile-map-sdks",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:mobile-map-sdks",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:mobile-map-sdks",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:mobile-map-sdks",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
    "source": "category:mobile-navigation",
    "target": "language:dart",
    "relation": "in-language",
@@ -10330,6 +10835,42 @@
    "weight": 2
   },
   {
+   "source": "category:navigation-apps",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:navigation-apps",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:navigation-apps",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:navigation-apps",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:navigation-apps",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:navigation-apps",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
    "source": "category:networking",
    "target": "language:csharp",
    "relation": "in-language",
@@ -10478,6 +11019,42 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 5
+  },
+  {
+   "source": "category:osm-data-tools",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:osm-data-tools",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:osm-data-tools",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 12
+  },
+  {
+   "source": "category:osm-data-tools",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:osm-data-tools",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:osm-data-tools",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 10
   },
   {
    "source": "category:paas-deploy",
@@ -11132,6 +11709,36 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 5
+  },
+  {
+   "source": "category:routing-engines",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:routing-engines",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 9
+  },
+  {
+   "source": "category:routing-engines",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:routing-engines",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:routing-engines",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 3
   },
   {
    "source": "category:routing",
@@ -11878,6 +12485,36 @@
    "weight": 3
   },
   {
+   "source": "category:tile-servers",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:tile-servers",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:tile-servers",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:tile-servers",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
+   "source": "category:tile-servers",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 9
+  },
+  {
    "source": "category:time-tracking",
    "target": "language:go",
    "relation": "in-language",
@@ -11930,6 +12567,12 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 3
+  },
+  {
+   "source": "category:transit-data",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
   },
   {
    "source": "category:ui-components",
@@ -12002,6 +12645,24 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:web-map-libraries",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
+   "source": "category:web-map-libraries",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:web-map-libraries",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 76
   },
   {
    "source": "category:web-scraping",
@@ -12139,7 +12800,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 544
+   "weight": 570
   },
   {
    "source": "genlib",
@@ -12169,7 +12830,7 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 8933
+   "weight": 9754
   },
   {
    "source": "genlib",
@@ -12347,6 +13008,12 @@
   },
   {
    "source": "guide:docs/resources/ai-learning.md",
+   "target": "category:diagram-tools",
+   "relation": "has-category",
+   "weight": 6
+  },
+  {
+   "source": "guide:docs/resources/ai-learning.md",
    "target": "category:engineering-guides",
    "relation": "has-category",
    "weight": 8
@@ -12355,7 +13022,7 @@
    "source": "guide:docs/resources/ai-learning.md",
    "target": "category:learning",
    "relation": "has-category",
-   "weight": 10
+   "weight": 11
   },
   {
    "source": "guide:docs/resources/attachment-review.md",
@@ -13310,6 +13977,138 @@
    "target": "category:virtualization",
    "relation": "has-category",
    "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:desktop-gis",
+   "relation": "has-category",
+   "weight": 20
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:environment-hazard-feeds",
+   "relation": "has-category",
+   "weight": 6
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:geo-processing-libraries",
+   "relation": "has-category",
+   "weight": 267
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:geo-servers-databases",
+   "relation": "has-category",
+   "weight": 34
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:geocoding-search",
+   "relation": "has-category",
+   "weight": 42
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:globe-apps",
+   "relation": "has-category",
+   "weight": 2
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:live-tracking-feeds",
+   "relation": "has-category",
+   "weight": 7
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:location-sdks-apis",
+   "relation": "has-category",
+   "weight": 92
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:map-styles-assets",
+   "relation": "has-category",
+   "weight": 37
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:mobile-map-sdks",
+   "relation": "has-category",
+   "weight": 35
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:navigation-apps",
+   "relation": "has-category",
+   "weight": 28
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:news-events-feeds",
+   "relation": "has-category",
+   "weight": 2
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:osm-data-tools",
+   "relation": "has-category",
+   "weight": 45
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:routing-engines",
+   "relation": "has-category",
+   "weight": 27
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:routing-services",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:street-imagery",
+   "relation": "has-category",
+   "weight": 4
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:tile-servers",
+   "relation": "has-category",
+   "weight": 41
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:tile-services",
+   "relation": "has-category",
+   "weight": 5
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:traffic-cameras",
+   "relation": "has-category",
+   "weight": 13
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:transit-data",
+   "relation": "has-category",
+   "weight": 10
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:weather-data",
+   "relation": "has-category",
+   "weight": 5
+  },
+  {
+   "source": "guide:docs/resources/mapping-navigation.md",
+   "target": "category:web-map-libraries",
+   "relation": "has-category",
+   "weight": 91
   },
   {
    "source": "guide:docs/resources/marketing-analytics.md",
@@ -14785,7 +15584,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/ai-learning.md",
    "relation": "section-of",
-   "weight": 8
+   "weight": 9
   },
   {
    "source": "type:doc",
@@ -14846,6 +15645,12 @@
    "target": "doc:docs/resources/frontend-web.md",
    "relation": "section-of",
    "weight": 21
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/resources/mapping-navigation.md",
+   "relation": "section-of",
+   "weight": 25
   },
   {
    "source": "type:doc",
@@ -15037,7 +15842,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/ai-learning.md",
    "relation": "grouped-by",
-   "weight": 29
+   "weight": 36
   },
   {
    "source": "type:resource",
@@ -15098,6 +15903,12 @@
    "target": "guide:docs/resources/frontend-web.md",
    "relation": "grouped-by",
    "weight": 89
+  },
+  {
+   "source": "type:resource",
+   "target": "guide:docs/resources/mapping-navigation.md",
+   "relation": "grouped-by",
+   "weight": 814
   },
   {
    "source": "type:resource",
@@ -15169,73 +15980,73 @@
    "source": "type:resource",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 419
+   "weight": 447
   },
   {
    "source": "type:resource",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 213
+   "weight": 243
   },
   {
    "source": "type:resource",
    "target": "language:elixir",
    "relation": "serves",
-   "weight": 203
+   "weight": 214
   },
   {
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 622
+   "weight": 655
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 363
+   "weight": 421
   },
   {
    "source": "type:resource",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 87
+   "weight": 102
   },
   {
    "source": "type:resource",
    "target": "language:php",
    "relation": "serves",
-   "weight": 822
+   "weight": 840
   },
   {
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 1266
+   "weight": 1426
   },
   {
    "source": "type:resource",
    "target": "language:ruby",
    "relation": "serves",
-   "weight": 454
+   "weight": 473
   },
   {
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 430
+   "weight": 482
   },
   {
    "source": "type:resource",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 161
+   "weight": 177
   },
   {
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 3121
+   "weight": 3366
   },
   {
    "source": "type:starter",
