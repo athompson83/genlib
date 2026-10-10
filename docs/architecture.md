@@ -13,7 +13,7 @@ flowchart TB
     CAP["resources/capabilities.json<br/>task → code in 9 languages"]
     TPL["templates/index.json<br/>project · github · docs · ship · ui"]
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
-    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar)<br/>resources/project-types.json"]
+    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>500 pinned agent skills"]
     IDX["resources/mcp-servers.json · clis.json · apis.json<br/>ranked install indexes"]
   end
@@ -84,6 +84,7 @@ The capability index (`resources/capabilities.json`) maps common tasks to tested
 - `social-media.json`
 - `dashboards.json`
 - `scheduling-calendar.json`
+- `chat-messaging.json`
 
 Each has a guide under `docs/resources/`.
 

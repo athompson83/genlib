@@ -17,7 +17,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json  # net
 
 ## Catalogs and guides
 
-Each domain catalog has a guide with `Need | Pick | Why / when | License` tables. Read only the table you need. The marketing, social media, dashboard and scheduling catalogs (`marketing-*.json`, `social-media.json`, `dashboards.json`, `scheduling-calendar.json`) are generated from verified registry research; their guides list the most-used picks per category and language. Package records there carry `languages` (so `find --target` and `--language` choose the app's language) and `popularity`.
+Each domain catalog has a guide with `Need | Pick | Why / when | License` tables. Read only the table you need. The marketing, social media, dashboard, scheduling and chat catalogs (`marketing-*.json`, `social-media.json`, `dashboards.json`, `scheduling-calendar.json`, `chat-messaging.json`) are generated from verified registry research; their guides list the most-used picks per category and language. Package records there carry `languages` (so `find --target` and `--language` choose the app's language) and `popularity`.
 
 <!-- genlib:catalog:start -->
 | Catalog | Records | Guide | Main categories |
