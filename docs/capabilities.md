@@ -31,8 +31,8 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `saml-sso` SAML 2.0 SSO (service provider) | library | - | - | - | - | - | - | - | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | - | - | - | - | - | - | - | - | - | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
 | `password-hashing` Password hashing (Argon2id / bcrypt / scrypt) | library | - | - | - | - | - | - | - | - | - | [password-hashing.md](../docs/cookbook/password-hashing.md) |
-| `pdf-form-filling` PDF form filling | library | - | - | - | - | - | - | - | - | - | [pdf-form-filling.md](../docs/cookbook/pdf-form-filling.md) |
-| `pdf-text-extraction` PDF parsing and text extraction | library | - | - | - | - | - | - | - | - | - | [pdf-text-extraction.md](../docs/cookbook/pdf-text-extraction.md) |
+| `pdf-form-filling` PDF form filling | library | yes | yes | yes | yes | yes | yes | yes | - | untested | [pdf-form-filling.md](../docs/cookbook/pdf-form-filling.md) |
+| `pdf-text-extraction` PDF parsing and text extraction | library | yes | yes | yes | yes | yes | yes | yes | yes | untested | [pdf-text-extraction.md](../docs/cookbook/pdf-text-extraction.md) |
 | `docx-documents` Word (DOCX) document editing | library | yes | yes | yes | yes | yes | yes | yes | yes | - | [docx-documents.md](../docs/cookbook/docx-documents.md) |
 | `rich-text-sanitization` Rich text / HTML sanitization | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [rich-text-sanitization.md](../docs/cookbook/rich-text-sanitization.md) |
 <!-- genlib:capabilities:end -->

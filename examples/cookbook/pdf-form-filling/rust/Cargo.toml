@@ -1,0 +1,9 @@
+[package]
+name = "genlib-cookbook-pdf-forms"
+version = "0.0.0"
+edition = "2021"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+lopdf = { version = "=0.45.0", default-features = false }

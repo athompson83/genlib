@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: Apache-2.0
+name: genlib_pdf_text_extraction
+description: Genlib cookbook - per-page PDF text (pdfrx_engine/PDFium) and Info metadata (dart_pdf_reader).
+publish_to: none
+environment:
+  sdk: ^3.13.0
+dependencies:
+  dart_pdf_reader: 2.2.0
+  pdfrx_engine: 0.6.1
+dev_dependencies:
+  pdf: 3.13.1
+  test: 1.26.3

@@ -1,0 +1,9 @@
+[package]
+name = "genlib-cookbook-pdf-text"
+version = "0.0.0"
+edition = "2021"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+pdf-extract = "=0.12.1"

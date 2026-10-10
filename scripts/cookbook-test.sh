@@ -22,13 +22,13 @@ for topic in "${topics[@]}"; do
     cd "$work"
     case "$language" in
       typescript) npm ci --no-audit --no-fund && npm test ;;
-      python) python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt && .venv/bin/python -m unittest discover -v ;;
+      python) python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt && { [ ! -f requirements-dev.txt ] || .venv/bin/pip install -q -r requirements-dev.txt; } && .venv/bin/python -m unittest discover -v ;;
       go) go vet ./... && go test ./... ;;
       rust) cargo test --locked ;;
       java|kotlin) mvn -q -B test ;;
       csharp) dotnet test ;;
       dart) dart pub get && dart test ;;
-      swift) swift test ;;
+      swift) if [ -d Tests ]; then swift test; else swift build; fi ;;
       *) echo "unknown language $language"; exit 2 ;;
     esac
   ); then echo "ok $topic/$language"; else failed+=("$topic/$language"); fi

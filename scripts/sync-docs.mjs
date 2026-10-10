@@ -68,7 +68,7 @@ const capabilitiesBlock = from => [
   `| --- | --- | ${LANGUAGES.map(() => ':---:').join(' | ')} | --- |`,
   ...sources.capabilities.map(capability => `| \`${capability.id}\` ${capability.title} | ${capability.tier} | ${LANGUAGES.map(language => {
     const impl = capability.implementations[language];
-    return !impl || impl.kind === 'unavailable' ? '-' : impl.tested ? 'yes' : 'compiles';
+    return !impl || impl.kind === 'unavailable' ? '-' : impl.tested ? 'yes' : 'untested';
   }).join(' | ')} | [${capability.guide.split('/').at(-1)}](${link(capability.guide, from)}) |`),
 ].join('\n');
 

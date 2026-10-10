@@ -576,40 +576,71 @@
       "guide": "docs/cookbook/pdf-form-filling.md",
       "implementations": {
         "typescript": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed typescript library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "typescript-pdf-form-filling",
+          "tested": true,
+          "library": "@cantoo/pdf-lib 2.11.1 (maintained fork of pdf-lib) (MIT)",
+          "dependencies": [
+            "npm install @cantoo/pdf-lib@2.11.1"
+          ]
         },
         "python": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed python library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "python-pdf-form-filling",
+          "tested": true,
+          "library": "pypdf 6.20.0 (BSD-3-Clause)",
+          "dependencies": [
+            "pip install pypdf==6.20.0 (tests: pip install -r requirements-dev.txt)"
+          ]
         },
         "go": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed go library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "go-pdf-form-filling",
+          "tested": true,
+          "library": "github.com/pdfcpu/pdfcpu v0.16.1 (JSON export/fill) (Apache-2.0)",
+          "dependencies": [
+            "go get github.com/pdfcpu/pdfcpu@v0.16.1"
+          ]
         },
         "rust": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed rust library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "rust-pdf-form-filling",
+          "tested": true,
+          "library": "lopdf 0.45.0 (object level) (MIT)",
+          "dependencies": [
+            "cargo add lopdf@=0.45.0 --no-default-features"
+          ]
         },
         "java": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed java library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "java-pdf-form-filling",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (Apache-2.0)"
         },
         "kotlin": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed kotlin library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "kotlin-pdf-form-filling",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (Apache-2.0)"
         },
         "csharp": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed csharp library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "csharp-pdf-form-filling",
+          "tested": true,
+          "library": "PDFsharp 6.2.4 (MIT)",
+          "dependencies": [
+            "dotnet add package PDFsharp --version 6.2.4"
+          ]
         },
         "dart": {
           "kind": "unavailable",
-          "note": "No maintained, permissively licensed dart library verified here; see the guide for alternatives."
+          "note": "No maintained, permissively licensed pure-Dart library fills an existing AcroForm (package pdf only creates PDFs; pdfrx_engine has no form API). syncfusion_flutter_pdf can, but needs Flutter and a commercial/community license (license-review). Fill on a server with another language's implementation, e.g. python-pdf-form-filling."
         },
         "swift": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed swift library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "swift-pdf-form-filling",
+          "tested": false,
+          "library": "Apple PDFKit (system framework) (Apple SDK terms)"
         }
       }
     },
@@ -631,40 +662,76 @@
       "guide": "docs/cookbook/pdf-text-extraction.md",
       "implementations": {
         "typescript": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed typescript library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "typescript-pdf-text-extraction",
+          "tested": true,
+          "library": "unpdf 1.8.1 (bundled serverless PDF.js build) (MIT (PDF.js: Apache-2.0))",
+          "dependencies": [
+            "npm install unpdf@1.8.1"
+          ]
         },
         "python": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed python library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "python-pdf-text-extraction",
+          "tested": true,
+          "library": "pypdf 6.20.0 (BSD-3-Clause)",
+          "dependencies": [
+            "pip install pypdf==6.20.0 (tests: pip install -r requirements-dev.txt)"
+          ]
         },
         "go": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed go library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "go-pdf-text-extraction",
+          "tested": true,
+          "library": "github.com/ledongthuc/pdf v0.0.0-20260907135840-6c8c28e0e8a0 (BSD-3-Clause)",
+          "dependencies": [
+            "go get github.com/ledongthuc/pdf@v0.0.0-20260907135840-6c8c28e0e8a0"
+          ]
         },
         "rust": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed rust library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "rust-pdf-text-extraction",
+          "tested": true,
+          "library": "pdf-extract 0.12.1 (re-exports lopdf 0.42) (MIT (declared in Cargo metadata; the crate and repository ship no LICENSE file, so keep the notice yourself: license-review))",
+          "dependencies": [
+            "cargo add pdf-extract@=0.12.1"
+          ]
         },
         "java": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed java library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "java-pdf-text-extraction",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (PDFTextStripper) (Apache-2.0)"
         },
         "kotlin": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed kotlin library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "kotlin-pdf-text-extraction",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (Apache-2.0)"
         },
         "csharp": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed csharp library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "csharp-pdf-text-extraction",
+          "tested": true,
+          "library": "PdfPig 0.1.16 (Apache-2.0)",
+          "dependencies": [
+            "dotnet add package PdfPig --version 0.1.16"
+          ]
         },
         "dart": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed dart library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "dart-pdf-text-extraction",
+          "tested": true,
+          "library": "pdfrx_engine 0.6.1 (text, PDFium via FFI) + dart_pdf_reader 2.2.0 (Info dictionary) (MIT; Apache-2.0 (PDFium: BSD-style))",
+          "dependencies": [
+            "dart pub add pdfrx_engine:0.6.1 dart_pdf_reader:2.2.0"
+          ]
         },
         "swift": {
-          "kind": "unavailable",
-          "note": "No maintained, permissively licensed swift library verified here; see the guide for alternatives."
+          "kind": "language-example",
+          "id": "swift-pdf-text-extraction",
+          "tested": false,
+          "library": "Apple PDFKit (PDFPage.string, documentAttributes) (Apple SDK terms)"
         }
       }
     },

@@ -20,7 +20,7 @@ One command searches everything below and returns each result's exact next step.
 | [Capabilities](#capabilities-one-task-every-language) | 13 | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in 9 languages |
 | [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
 | [Task recipes](#recipes-language-examples-and-templates) | 41 | Single-file TypeScript sources copied with one command |
-| [Language examples](#recipes-language-examples-and-templates) | 71 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [Language examples](#recipes-language-examples-and-templates) | 88 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
 | [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
@@ -131,13 +131,13 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `saml-sso` SAML 2.0 SSO (service provider) | library | - | - | - | - | - | - | - | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | - | - | - | - | - | - | - | - | - | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
 | `password-hashing` Password hashing (Argon2id / bcrypt / scrypt) | library | - | - | - | - | - | - | - | - | - | [password-hashing.md](docs/cookbook/password-hashing.md) |
-| `pdf-form-filling` PDF form filling | library | - | - | - | - | - | - | - | - | - | [pdf-form-filling.md](docs/cookbook/pdf-form-filling.md) |
-| `pdf-text-extraction` PDF parsing and text extraction | library | - | - | - | - | - | - | - | - | - | [pdf-text-extraction.md](docs/cookbook/pdf-text-extraction.md) |
+| `pdf-form-filling` PDF form filling | library | yes | yes | yes | yes | yes | yes | yes | - | untested | [pdf-form-filling.md](docs/cookbook/pdf-form-filling.md) |
+| `pdf-text-extraction` PDF parsing and text extraction | library | yes | yes | yes | yes | yes | yes | yes | yes | untested | [pdf-text-extraction.md](docs/cookbook/pdf-text-extraction.md) |
 | `docx-documents` Word (DOCX) document editing | library | yes | yes | yes | yes | yes | yes | yes | yes | - | [docx-documents.md](docs/cookbook/docx-documents.md) |
 | `rich-text-sanitization` Rich text / HTML sanitization | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [rich-text-sanitization.md](docs/cookbook/rich-text-sanitization.md) |
 <!-- genlib:capabilities:end -->
 
-`yes` means the code ran its tests here, `compiles` means it built but its test was not run here, and `-` means unavailable. [docs/capabilities.md](docs/capabilities.md) explains the tiers and how to add a capability.
+`yes` means the code ran its tests here, `untested` means code is provided but its tests were not run here (for example Apple-only PDFKit snippets, compiled on the macOS CI runner), and `-` means unavailable with an alternative named in the guide. [docs/capabilities.md](docs/capabilities.md) explains the tiers and how to add a capability.
 
 ## Modules
 

@@ -5,9 +5,15 @@ import {mkdtempSync,readFileSync,rmSync,existsSync,symlinkSync,mkdirSync} from '
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 const run=(...args)=>execFileSync(process.execPath,['tools/language-modules.mjs',...args],{encoding:'utf8'});
-test('all fourteen language examples are discoverable and have source files',()=>{
- const list=JSON.parse(run('list'));assert.equal(list.length,54);
- for(const item of list){const detail=JSON.parse(run('inspect',item.id));assert.ok(detail.files.length);}
+test('every registered language example is discoverable and its files exist',()=>{
+ const catalog=JSON.parse(readFileSync('examples/languages/modules.json','utf8')).modules;
+ const list=JSON.parse(run('list'));assert.equal(list.length,catalog.length);assert.ok(list.length>=54);
+ assert.equal(new Set(list.map(item=>item.id)).size,list.length);
+ for(const item of catalog){
+  const base=item.base==='cookbook'?'examples/cookbook':'examples/languages';
+  assert.ok(item.files.length,item.id);
+  for(const file of [...item.files,...item.tests])assert.ok(existsSync(join(base,file)),item.id+': '+file);
+ }
 });
 test('safe plan and copy without overwrites',()=>{
  const dir=mkdtempSync(join(tmpdir(),'genlib-modules-'));
