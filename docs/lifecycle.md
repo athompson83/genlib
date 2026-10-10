@@ -26,11 +26,13 @@ Every result names its type, verification level and the exact next command. Modu
 | 6. Integrate services | `common-api-clients` | module | Bounded server clients for GitHub, Stripe, Resend, Supabase, Graph, Calendar, OpenAI, Anthropic, Saleor, Steel |
 | | `http-resilience` | module | Retries with backoff and jitter limited to idempotent requests, `Retry-After`, timeouts, circuit breaker |
 | | `webhook-verification` | module | GitHub, Stripe and Standard Webhooks signature checks with Web Crypto on the raw body |
+| | `oidc-pkce`, `oidc-token-verification`, `saml-sso`, `totp`, `recovery-codes`, `webauthn-passkeys`, `password-hashing` | capabilities | SSO login, token and SAML verification, MFA, passkeys and password storage in 9 languages ([capabilities](capabilities.md)) |
+| | `form-schema`, `calculator`, `pdf-form-filling`, `pdf-text-extraction`, `docx-documents`, `rich-text-sanitization` | capabilities | Server-side forms, safe math, PDF filling and parsing, Word documents and HTML sanitizing in each language |
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
 | 8. Operate | `structured-logger` | module | JSON-lines logs with key redaction, child loggers and request IDs |
 | | `health-checks` | module | `/healthz` liveness and `/readyz` readiness with per-check timeouts |
-| 9. Other languages | `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |
+| 9. Other languages | Every capability, plus `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | capabilities, language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |
 | 10. Document | `docs-starter` (`templates/docs`) | template | README, architecture, security, API, decision records, runbooks |
 | 11. Verify in CI | `github-starter` workflow | template | Path-aware Node CI with a docs-only lane and a required `Verify` job |
 | 12. Ship | `ship-starter` (`templates/ship`) | template | Non-root Dockerfile, tag-driven release, GHCR image with SBOM/provenance, CodeQL, changelog |
@@ -46,7 +48,7 @@ The framework-neutral server modules (`env-config`, `structured-logger`, `http-r
 
 ## What Genlib does not cover yet
 
-- Authentication and session management. Use the framework's maintained auth library; do not hand-roll password or token storage.
+- Session management and user stores. The capabilities cover the protocol pieces (SSO request and token verification, SAML, MFA, passkeys, password hashing); use the framework's maintained session library or an identity provider for the rest.
 - Database schema, migrations and background job queues.
 - Native mobile or desktop UI. The React modules target the browser.
 - Platform-specific deployment (Vercel, Fly.io, AWS, app stores). Use the provider's documentation and the deployment runbook template.

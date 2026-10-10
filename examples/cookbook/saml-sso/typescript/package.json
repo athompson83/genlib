@@ -1,0 +1,22 @@
+{
+  "name": "genlib-cookbook-saml-sso-ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test saml.test.ts"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@node-saml/node-saml": "5.1.0",
+    "@xmldom/xmldom": "0.8.15"
+  },
+  "devDependencies": {
+    "@peculiar/x509": "2.1.0",
+    "@types/node": "26.6.5",
+    "reflect-metadata": "0.2.2",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "xml-crypto": "6.3.3"
+  },
+  "private": true,
+  "type": "module"
+}

@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+name: genlib_docx_documents
+description: Genlib cookbook - create, patch and read DOCX files with docx_creator.
+publish_to: none
+environment:
+  sdk: ^3.5.0
+dependencies:
+  docx_creator: 1.4.0
+dev_dependencies:
+  test: 1.26.3

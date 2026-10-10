@@ -1,0 +1,1011 @@
+{
+  "schemaVersion": 1,
+  "review": "Pure capabilities are standard-library code tested against RFC vectors. Library capabilities wrap the maintained library named per language; check its license and pin the version shown. Copy, then run the copied tests in the consuming project.",
+  "capabilities": [
+    {
+      "id": "totp",
+      "title": "TOTP / HOTP MFA codes",
+      "tier": "pure",
+      "summary": "RFC 4226 HOTP and RFC 6238 TOTP (SHA-1/256/512), base32 secrets, otpauth:// enrollment URIs and constant-time verification with a skew window. Standard library only.",
+      "terms": [
+        "totp",
+        "hotp",
+        "mfa",
+        "2fa",
+        "two factor",
+        "one time password",
+        "otp",
+        "authenticator",
+        "otpauth",
+        "google authenticator"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "totp-mfa-codes",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-totp",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-totp",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-totp",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-totp",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-totp",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-totp",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-totp",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-totp",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "oidc-pkce",
+      "title": "SSO login request: OAuth 2.0 / OIDC authorization code + PKCE",
+      "tier": "pure",
+      "summary": "RFC 7636 PKCE verifier/challenge, state and nonce, authorization URL builder, callback parsing with constant-time state check, and the token request body. Pair with oidc-token-verification to validate the returned ID token.",
+      "terms": [
+        "sso",
+        "oidc",
+        "openid connect",
+        "oauth",
+        "oauth2",
+        "pkce",
+        "login",
+        "sign in",
+        "authorization code",
+        "okta",
+        "auth0",
+        "entra",
+        "azure ad",
+        "keycloak",
+        "google login"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "oidc-pkce-authorization-request",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-oidc-pkce",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-oidc-pkce",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-oidc-pkce",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-oidc-pkce",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-oidc-pkce",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-oidc-pkce",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-oidc-pkce",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-oidc-pkce",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "recovery-codes",
+      "title": "MFA recovery (backup) codes",
+      "tier": "pure",
+      "summary": "Unbiased Crockford-style recovery codes, normalization, HMAC-SHA256 hashing for storage and constant-time single-use lookup.",
+      "terms": [
+        "recovery codes",
+        "backup codes",
+        "mfa",
+        "2fa",
+        "account recovery",
+        "one time codes"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "mfa-recovery-codes",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-recovery-codes",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-recovery-codes",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-recovery-codes",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-recovery-codes",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-recovery-codes",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-recovery-codes",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-recovery-codes",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-recovery-codes",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "calculator",
+      "title": "Safe calculator and loan / interest math",
+      "tier": "pure",
+      "summary": "Expression evaluator without eval (precedence, parentheses, unary minus, %, ^), loan payment, amortization schedule and compound interest rounded to cents.",
+      "terms": [
+        "calculator",
+        "expression",
+        "math",
+        "eval",
+        "loan",
+        "mortgage",
+        "amortization",
+        "interest",
+        "compound interest",
+        "finance",
+        "payment"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "safe-calculator-and-loan-math",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-calculator",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-calculator",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-calculator",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-calculator",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-calculator",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-calculator",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-calculator",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-calculator",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "form-schema",
+      "title": "Form schema validation",
+      "tier": "pure",
+      "summary": "Declarative server-side form validation (string, email, number, integer, boolean, date; required, length, range, pattern, enum) with stable error codes and unknown-field rejection.",
+      "terms": [
+        "form",
+        "forms",
+        "validation",
+        "validate",
+        "schema",
+        "form builder",
+        "input validation",
+        "server side validation"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "form-schema-validation",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-form-schema",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-form-schema",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-form-schema",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-form-schema",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-form-schema",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-form-schema",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-form-schema",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-form-schema",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "oidc-token-verification",
+      "title": "OIDC ID token / JWT verification",
+      "tier": "library",
+      "summary": "Verify ID tokens and access-token JWTs with the maintained JOSE library of each language: JWKS keys, algorithm allow-list, issuer, audience, expiry and nonce.",
+      "terms": [
+        "jwt",
+        "jwks",
+        "id token",
+        "oidc",
+        "sso",
+        "token verification",
+        "jose",
+        "bearer token",
+        "auth"
+      ],
+      "guide": "docs/cookbook/oidc-token-verification.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-oidc-token-verification",
+          "tested": true,
+          "library": "jose 6.2.12 (MIT)",
+          "dependencies": [
+            "npm ci"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-oidc-token-verification",
+          "tested": true,
+          "library": "PyJWT[crypto] 2.15.1 (+ cryptography 50.0.2) (MIT (cryptography: Apache-2.0 OR BSD-3-Clause))",
+          "dependencies": [
+            "pip install -r requirements.txt"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-oidc-token-verification",
+          "tested": true,
+          "library": "github.com/coreos/go-oidc/v3 v3.21.0, github.com/go-jose/go-jose/v4 v4.1.5 (Apache-2.0)"
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-oidc-token-verification",
+          "tested": true,
+          "library": "jsonwebtoken 11.1.0 (feature rust_crypto), ureq 3.4.2 for the JWKS fetch (MIT; MIT OR Apache-2.0)"
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-oidc-token-verification",
+          "tested": true,
+          "library": "com.nimbusds:nimbus-jose-jwt 10.10 (Apache-2.0)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-oidc-token-verification",
+          "tested": true,
+          "library": "com.nimbusds:nimbus-jose-jwt 10.10 (Apache-2.0)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-oidc-token-verification",
+          "tested": true,
+          "library": "Microsoft.IdentityModel.JsonWebTokens 8.23.0, Microsoft.IdentityModel.Protocols.OpenIdConnect 8.23.0 (MIT)"
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-oidc-token-verification",
+          "tested": true,
+          "library": "jose 0.3.5+2, http 1.6.0 (BSD-3-Clause)"
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-oidc-token-verification",
+          "tested": true,
+          "library": "vapor/jwt-kit (JWTKit) 5.7.1 (MIT)"
+        }
+      }
+    },
+    {
+      "id": "saml-sso",
+      "title": "SAML 2.0 SSO (service provider)",
+      "tier": "library",
+      "summary": "Validate signed SAML responses and assertions with a maintained SAML library: signature, audience, recipient, time conditions and replay.",
+      "terms": [
+        "saml",
+        "saml2",
+        "sso",
+        "single sign on",
+        "identity provider",
+        "idp",
+        "service provider",
+        "okta",
+        "adfs",
+        "entra",
+        "enterprise sso"
+      ],
+      "guide": "docs/cookbook/saml-sso.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-saml-sso",
+          "tested": true,
+          "library": "@node-saml/node-saml 5.1.0 (+ @xmldom/xmldom 0.8.15) (MIT)",
+          "dependencies": [
+            "npm ci"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-saml-sso",
+          "tested": true,
+          "library": "python3-saml 1.16.0 (+ xmlsec 1.3.17, lxml 6.1.3) (MIT)",
+          "dependencies": [
+            "pip install -r requirements.txt (xmlsec wheel bundles libxmlsec1)"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-saml-sso",
+          "tested": true,
+          "library": "github.com/crewjam/saml v0.5.1 (goxmldsig v1.4.0) (BSD-2-Clause (goxmldsig: Apache-2.0))"
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-saml-sso",
+          "tested": true,
+          "library": "samael 0.0.22, feature xmlsec (MIT)"
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-saml-sso",
+          "tested": true,
+          "library": "spring-security-saml2-service-provider 7.1.1 (OpenSAML 5.2.3) (Apache-2.0)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-saml-sso",
+          "tested": true,
+          "library": "spring-security-saml2-service-provider 7.1.1 (OpenSAML 5.2.3) (Apache-2.0)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-saml-sso",
+          "tested": true,
+          "library": "ITfoxtec.Identity.Saml2 4.21.0 (BSD-3-Clause)"
+        },
+        "dart": {
+          "kind": "unavailable",
+          "note": "No maintained, permissively licensed Dart SAML library verifies XML signatures. Put an identity broker (Keycloak, Authentik or ZITADEL) in front of the SAML IdP and use the oidc-pkce and oidc-token-verification capabilities in Dart, or terminate SAML on a server with another language's implementation (for example go-saml-sso)."
+        },
+        "swift": {
+          "kind": "unavailable",
+          "note": "No maintained, permissively licensed Swift SAML library verifies XML signatures. Put an identity broker (Keycloak, Authentik or ZITADEL) in front of the SAML IdP and use the oidc-pkce and oidc-token-verification capabilities in Swift, or terminate SAML on a server with another language's implementation (for example go-saml-sso)."
+        }
+      }
+    },
+    {
+      "id": "webauthn-passkeys",
+      "title": "WebAuthn passkeys",
+      "tier": "library",
+      "summary": "Passkey registration and authentication ceremonies with a maintained WebAuthn server library: challenges, origin/RP ID checks, signature counters.",
+      "terms": [
+        "webauthn",
+        "passkey",
+        "passkeys",
+        "fido2",
+        "mfa",
+        "passwordless",
+        "security key",
+        "biometric",
+        "auth"
+      ],
+      "guide": "docs/cookbook/webauthn-passkeys.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-webauthn-passkeys",
+          "tested": true,
+          "library": "@simplewebauthn/server 14.0.3 (+ @simplewebauthn/browser 14.0.0 for the client) (MIT)",
+          "dependencies": [
+            "npm ci"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-webauthn-passkeys",
+          "tested": true,
+          "library": "webauthn (py_webauthn) 3.0.1 (BSD-3-Clause)",
+          "dependencies": [
+            "pip install -r requirements.txt"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-webauthn-passkeys",
+          "tested": true,
+          "library": "github.com/go-webauthn/webauthn v0.18.2 (BSD-3-Clause)"
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-webauthn-passkeys",
+          "tested": true,
+          "library": "webauthn-rs 0.5.5 (Kanidm) (**MPL-2.0**)"
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-webauthn-passkeys",
+          "tested": true,
+          "library": "com.yubico:webauthn-server-core 2.10.1 (BSD-2-Clause)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-webauthn-passkeys",
+          "tested": true,
+          "library": "com.yubico:webauthn-server-core 2.10.1 (BSD-2-Clause)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-webauthn-passkeys",
+          "tested": true,
+          "library": "Fido2 (fido2-net-lib) 4.2.0 (MIT)"
+        },
+        "dart": {
+          "kind": "unavailable",
+          "note": "pub.dev has no maintained WebAuthn relying-party (server) library. Verify ceremonies on a server using another language's implementation (for example typescript-webauthn-passkeys or go-webauthn-passkeys) or an identity broker; on the Flutter client use the passkeys package (BSD-3-Clause)."
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-webauthn-passkeys",
+          "tested": true,
+          "library": "swift-server/webauthn-swift 1.0.0-beta.1 (Apache-2.0)"
+        }
+      }
+    },
+    {
+      "id": "password-hashing",
+      "title": "Password hashing (Argon2id / bcrypt / scrypt)",
+      "tier": "library",
+      "summary": "Hash and verify passwords with Argon2id (or bcrypt/scrypt where Argon2 is unavailable), including parameter choice and rehash-on-login.",
+      "terms": [
+        "password",
+        "password hashing",
+        "argon2",
+        "argon2id",
+        "bcrypt",
+        "scrypt",
+        "auth",
+        "login",
+        "credentials"
+      ],
+      "guide": "docs/cookbook/password-hashing.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-password-hashing",
+          "tested": true,
+          "library": "argon2 (node-argon2) 0.45.1; bcryptjs 3.0.3 (MIT; BSD-3-Clause)",
+          "dependencies": [
+            "npm ci"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-password-hashing",
+          "tested": true,
+          "library": "argon2-cffi 25.1.0; optional bcrypt 5.0.0 (MIT; Apache-2.0)",
+          "dependencies": [
+            "pip install -r requirements.txt"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-password-hashing",
+          "tested": true,
+          "library": "golang.org/x/crypto v0.58.0 (argon2, bcrypt) (BSD-3-Clause)"
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-password-hashing",
+          "tested": true,
+          "library": "argon2 0.6.0 (RustCrypto); bcrypt 0.19.3 (MIT OR Apache-2.0; MIT)"
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-password-hashing",
+          "tested": true,
+          "library": "spring-security-crypto 7.1.1 + spring-core 7.0.9 + bcprov-jdk18on 1.86 (Apache-2.0; Apache-2.0; MIT (Bouncy Castle))"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-password-hashing",
+          "tested": true,
+          "library": "same as Java (as above)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-password-hashing",
+          "tested": true,
+          "library": "Geralt 4.4.0 (libsodium crypto_pwhash_str; pulls libsodium 1.0.22 native); BCrypt.Net-Next 4.2.1 (MIT (libsodium: ISC); MIT)"
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-password-hashing",
+          "tested": true,
+          "library": "cryptography 2.9.0 (pure-Dart Argon2id); bcrypt 1.2.0 (Apache-2.0; BSD-2-Clause-Views)"
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-password-hashing",
+          "tested": true,
+          "library": "Argon2 reference C library (P-H-C/phc-winner-argon2, pinned to commit f57e61e) (CC0-1.0 OR Apache-2.0)"
+        }
+      }
+    },
+    {
+      "id": "pdf-form-filling",
+      "title": "PDF form filling",
+      "tier": "library",
+      "summary": "Fill AcroForm fields in an existing PDF, optionally flatten, and read values back with a maintained, permissively licensed PDF library.",
+      "terms": [
+        "pdf",
+        "pdf form",
+        "fill pdf",
+        "pdf filler",
+        "acroform",
+        "fillable pdf",
+        "flatten",
+        "documents"
+      ],
+      "guide": "docs/cookbook/pdf-form-filling.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-pdf-form-filling",
+          "tested": true,
+          "library": "@cantoo/pdf-lib 2.11.1 (maintained fork of pdf-lib) (MIT)",
+          "dependencies": [
+            "npm install @cantoo/pdf-lib@2.11.1"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-pdf-form-filling",
+          "tested": true,
+          "library": "pypdf 6.20.0 (BSD-3-Clause)",
+          "dependencies": [
+            "pip install pypdf==6.20.0 (tests: pip install -r requirements-dev.txt)"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-pdf-form-filling",
+          "tested": true,
+          "library": "github.com/pdfcpu/pdfcpu v0.16.1 (JSON export/fill) (Apache-2.0)",
+          "dependencies": [
+            "go get github.com/pdfcpu/pdfcpu@v0.16.1"
+          ]
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-pdf-form-filling",
+          "tested": true,
+          "library": "lopdf 0.45.0 (object level) (MIT)",
+          "dependencies": [
+            "cargo add lopdf@=0.45.0 --no-default-features"
+          ]
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-pdf-form-filling",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (Apache-2.0)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-pdf-form-filling",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (Apache-2.0)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-pdf-form-filling",
+          "tested": true,
+          "library": "PDFsharp 6.2.4 (MIT)",
+          "dependencies": [
+            "dotnet add package PDFsharp --version 6.2.4"
+          ]
+        },
+        "dart": {
+          "kind": "unavailable",
+          "note": "No maintained, permissively licensed pure-Dart library fills an existing AcroForm (package pdf only creates PDFs; pdfrx_engine has no form API). syncfusion_flutter_pdf can, but needs Flutter and a commercial/community license (license-review). Fill on a server with another language's implementation, e.g. python-pdf-form-filling."
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-pdf-form-filling",
+          "tested": false,
+          "library": "Apple PDFKit (system framework) (Apple SDK terms)"
+        }
+      }
+    },
+    {
+      "id": "pdf-text-extraction",
+      "title": "PDF parsing and text extraction",
+      "tier": "library",
+      "summary": "Extract page text and metadata from PDFs with a maintained library; notes on scanned PDFs (OCR) and layout limits.",
+      "terms": [
+        "pdf",
+        "pdf parser",
+        "parse pdf",
+        "extract text",
+        "pdf text",
+        "pdf to text",
+        "documents",
+        "ocr"
+      ],
+      "guide": "docs/cookbook/pdf-text-extraction.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-pdf-text-extraction",
+          "tested": true,
+          "library": "unpdf 1.8.1 (bundled serverless PDF.js build) (MIT (PDF.js: Apache-2.0))",
+          "dependencies": [
+            "npm install unpdf@1.8.1"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-pdf-text-extraction",
+          "tested": true,
+          "library": "pypdf 6.20.0 (BSD-3-Clause)",
+          "dependencies": [
+            "pip install pypdf==6.20.0 (tests: pip install -r requirements-dev.txt)"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-pdf-text-extraction",
+          "tested": true,
+          "library": "github.com/ledongthuc/pdf v0.0.0-20260907135840-6c8c28e0e8a0 (BSD-3-Clause)",
+          "dependencies": [
+            "go get github.com/ledongthuc/pdf@v0.0.0-20260907135840-6c8c28e0e8a0"
+          ]
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-pdf-text-extraction",
+          "tested": true,
+          "library": "pdf-extract 0.12.1 (re-exports lopdf 0.42) (MIT (declared in Cargo metadata; the crate and repository ship no LICENSE file, so keep the notice yourself: license-review))",
+          "dependencies": [
+            "cargo add pdf-extract@=0.12.1"
+          ]
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-pdf-text-extraction",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (PDFTextStripper) (Apache-2.0)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-pdf-text-extraction",
+          "tested": true,
+          "library": "Apache PDFBox pdfbox 3.0.8 (Apache-2.0)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-pdf-text-extraction",
+          "tested": true,
+          "library": "PdfPig 0.1.16 (Apache-2.0)",
+          "dependencies": [
+            "dotnet add package PdfPig --version 0.1.16"
+          ]
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-pdf-text-extraction",
+          "tested": true,
+          "library": "pdfrx_engine 0.6.1 (text, PDFium via FFI) + dart_pdf_reader 2.2.0 (Info dictionary) (MIT; Apache-2.0 (PDFium: BSD-style))",
+          "dependencies": [
+            "dart pub add pdfrx_engine:0.6.1 dart_pdf_reader:2.2.0"
+          ]
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-pdf-text-extraction",
+          "tested": false,
+          "library": "Apple PDFKit (PDFPage.string, documentAttributes) (Apple SDK terms)"
+        }
+      }
+    },
+    {
+      "id": "docx-documents",
+      "title": "Word (DOCX) document editing",
+      "tier": "library",
+      "summary": "Create, edit and read .docx documents (paragraphs, tables, replacing placeholders) with a maintained library.",
+      "terms": [
+        "docx",
+        "word",
+        "document",
+        "document editor",
+        "office",
+        "ms word",
+        "template",
+        "mail merge",
+        "documents"
+      ],
+      "guide": "docs/cookbook/docx-documents.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-docx-documents",
+          "tested": true,
+          "library": "docx 9.9.0 (create + patchDocument), mammoth 1.13.0 (text) (MIT; BSD-2-Clause)",
+          "dependencies": [
+            "npm install docx@9.9.0 mammoth@1.13.0"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-docx-documents",
+          "tested": true,
+          "library": "python-docx 1.2.0 (MIT)",
+          "dependencies": [
+            "pip install python-docx==1.2.0"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-docx-documents",
+          "tested": true,
+          "library": "github.com/gomutex/godocx v0.1.5 (create), github.com/lukasjarosch/go-docx v0.5.0 (placeholders); text via archive/zip + encoding/xml read-only scan (MIT; MIT)",
+          "dependencies": [
+            "go get github.com/gomutex/godocx@v0.1.5 github.com/lukasjarosch/go-docx@v0.5.0"
+          ]
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-docx-documents",
+          "tested": true,
+          "library": "docx-rs 0.4.22 (MIT)",
+          "dependencies": [
+            "cargo add docx-rs@=0.4.22"
+          ]
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-docx-documents",
+          "tested": true,
+          "library": "Apache POI poi-ooxml 5.5.1 (XWPF) (Apache-2.0)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-docx-documents",
+          "tested": true,
+          "library": "Apache POI poi-ooxml 5.5.1 (Apache-2.0)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-docx-documents",
+          "tested": true,
+          "library": "DocumentFormat.OpenXml 3.5.1 (Open XML SDK) (MIT)",
+          "dependencies": [
+            "dotnet add package DocumentFormat.OpenXml --version 3.5.1"
+          ]
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-docx-documents",
+          "tested": true,
+          "library": "docx_creator 1.4.0 (MIT (package LICENSE; pub.dev shows \"unknown\", repository root is Apache-2.0: license-review))",
+          "dependencies": [
+            "dart pub add docx_creator:1.4.0"
+          ]
+        },
+        "swift": {
+          "kind": "unavailable",
+          "note": "No maintained, permissively licensed Swift DOCX library works on Linux. Generate or fill the DOCX on a server with another language's implementation (for example python-docx-documents or csharp-docx-documents). On macOS only, NSAttributedString supports .officeOpenXML export (not verified here)."
+        }
+      }
+    },
+    {
+      "id": "rich-text-sanitization",
+      "title": "Rich text / HTML sanitization",
+      "tier": "library",
+      "summary": "Sanitize user HTML from rich-text editors with an allow-list sanitizer before storage or rendering.",
+      "terms": [
+        "sanitize",
+        "html sanitizer",
+        "xss",
+        "rich text",
+        "wysiwyg",
+        "editor",
+        "document editor",
+        "markdown",
+        "user content"
+      ],
+      "guide": "docs/cookbook/rich-text-sanitization.md",
+      "implementations": {
+        "typescript": {
+          "kind": "language-example",
+          "id": "typescript-rich-text-sanitization",
+          "tested": true,
+          "library": "dompurify 3.4.16 on jsdom 30.1.2 (Apache-2.0 OR MPL-2.0; MIT)",
+          "dependencies": [
+            "npm install dompurify@3.4.16 jsdom@30.1.2"
+          ]
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-rich-text-sanitization",
+          "tested": true,
+          "library": "nh3 0.3.7 (bindings to Rust ammonia) (MIT)",
+          "dependencies": [
+            "pip install nh3==0.3.7"
+          ]
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-rich-text-sanitization",
+          "tested": true,
+          "library": "github.com/microcosm-cc/bluemonday v1.0.27 (BSD-3-Clause)",
+          "dependencies": [
+            "go get github.com/microcosm-cc/bluemonday@v1.0.27"
+          ]
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-rich-text-sanitization",
+          "tested": true,
+          "library": "ammonia 4.2.1 (MIT OR Apache-2.0)",
+          "dependencies": [
+            "cargo add ammonia@=4.2.1"
+          ]
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-rich-text-sanitization",
+          "tested": true,
+          "library": "OWASP Java HTML Sanitizer 20260924.2 (Apache-2.0)"
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-rich-text-sanitization",
+          "tested": true,
+          "library": "OWASP Java HTML Sanitizer 20260924.2 (Apache-2.0)"
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-rich-text-sanitization",
+          "tested": true,
+          "library": "HtmlSanitizer (mganss) 9.2.1039 on AngleSharp 1.7.2 (MIT)",
+          "dependencies": [
+            "dotnet add package HtmlSanitizer --version 9.2.1039"
+          ]
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-rich-text-sanitization",
+          "tested": true,
+          "library": "sanitize_html 2.2.0 (publisher google.dev) (Apache-2.0)",
+          "dependencies": [
+            "dart pub add sanitize_html:2.2.0"
+          ]
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-rich-text-sanitization",
+          "tested": true,
+          "library": "SwiftSoup 2.14.1 (Whitelist + Cleaner) (MIT)"
+        }
+      }
+    }
+  ]
+}

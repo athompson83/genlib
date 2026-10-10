@@ -1,4 +1,13 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Bounded, ASCII identifier validation; not authentication or SQL sanitization.
+//! The capability modules below are independent, tested examples.
+
+pub mod calculator;
+pub mod form_schema;
+pub mod oidc_pkce;
+pub mod recovery_codes;
+pub mod totp;
+
 pub fn valid_identifier(value: &str, max_len: usize) -> bool {
     max_len > 0 && value.len() <= max_len && !value.is_empty()
         && value.bytes().enumerate().all(|(i, c)| {

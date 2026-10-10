@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+name: genlib_rich_text_sanitization
+description: Genlib cookbook - server-side sanitization of editor HTML with sanitize_html.
+publish_to: none
+environment:
+  sdk: ^3.5.0
+dependencies:
+  sanitize_html: 2.2.0
+dev_dependencies:
+  test: 1.26.3

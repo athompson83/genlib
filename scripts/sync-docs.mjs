@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { loadSources, sourceCounts } from '../lib/discover.mjs';
 import { loadProjectTypes } from '../lib/resources.mjs';
+import { LANGUAGES } from '../lib/capabilities.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const check = process.argv.includes('--check');
@@ -34,6 +35,7 @@ const link = (target, from) => {
 const sourcesBlock = from => [
   '| Source | Count | What it is |',
   '| --- | ---: | --- |',
+  `| [Capabilities](#capabilities-one-task-every-language) | ${counts.capability} | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in ${LANGUAGES.length} languages |`,
   `| [Modules](#modules) | ${counts.module} | Original, versioned, hash-verified source installed with \`plan\` / \`add\` / \`verify\` |`,
   `| [Task recipes](#recipes-language-examples-and-templates) | ${counts.recipe} | Single-file TypeScript sources copied with one command |`,
   `| [Language examples](#recipes-language-examples-and-templates) | ${counts['language-example']} | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |`,
@@ -59,8 +61,20 @@ const typesBlock = [
   ...types.map(type => `| \`${type.id}\` | ${perType[type.id]} | ${type.summary} |`),
 ].join('\n');
 
+// Capability x language matrix: "tested" or "lib" when code ships, "-" when the guide documents the gap.
+const LABELS = { typescript: 'TS', python: 'Py', go: 'Go', rust: 'Rust', java: 'Java', kotlin: 'Kotlin', csharp: 'C#', dart: 'Dart', swift: 'Swift' };
+const capabilitiesBlock = from => [
+  `| Capability | Tier | ${LANGUAGES.map(language => LABELS[language]).join(' | ')} | Guide |`,
+  `| --- | --- | ${LANGUAGES.map(() => ':---:').join(' | ')} | --- |`,
+  ...sources.capabilities.map(capability => `| \`${capability.id}\` ${capability.title} | ${capability.tier} | ${LANGUAGES.map(language => {
+    const impl = capability.implementations[language];
+    return !impl || impl.kind === 'unavailable' ? '-' : impl.tested ? 'yes' : 'untested';
+  }).join(' | ')} | [${capability.guide.split('/').at(-1)}](${link(capability.guide, from)}) |`),
+].join('\n');
+
 const files = {
-  'README.md': { sources: sourcesBlock('README.md'), catalog: catalogBlock('README.md') },
+  'README.md': { sources: sourcesBlock('README.md'), catalog: catalogBlock('README.md'), capabilities: capabilitiesBlock('README.md') },
+  'docs/capabilities.md': { capabilities: capabilitiesBlock('docs/capabilities.md') },
   'docs/resources/README.md': { catalog: catalogBlock('docs/resources/README.md'), types: typesBlock },
 };
 const stale = [];

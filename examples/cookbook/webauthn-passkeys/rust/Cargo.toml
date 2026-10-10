@@ -1,0 +1,19 @@
+[package]
+name = "cookbook-webauthn-passkeys"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+# MPL-2.0 (file-level copyleft): using it unmodified as a dependency is fine;
+# changes to its own files must be published under MPL-2.0. Needs OpenSSL.
+webauthn-rs = "=0.5.5"
+serde_json = "=1.0.151"
+
+[dev-dependencies]
+# Tests only: lets the test swap a recorded challenge into generated state.
+# Enable it in [dependencies] too if you persist ceremony state in a shared
+# session store across server instances.
+webauthn-rs = { version = "=0.5.5", features = ["danger-allow-state-serialisation"] }
+serde = { version = "=1.0.229", features = ["derive"] }

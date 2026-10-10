@@ -9,7 +9,8 @@ flowchart TB
   subgraph Authored["Authored sources (reviewed in Git)"]
     MOD["modules/&lt;id&gt;/<br/>module.json · CONTRACT.md · files/"]
     REC["resources/agent-recipes.json<br/>examples/recipes · utilities · storefront · ui"]
-    LANG["examples/languages/modules.json"]
+    LANG["examples/languages/modules.json<br/>examples/languages · examples/cookbook"]
+    CAP["resources/capabilities.json<br/>task → code in 9 languages"]
     TPL["templates/index.json<br/>project · github · docs · ship · ui"]
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
     RES["resources/*.json · resources/catalog/*.json<br/>resources/project-types.json"]
@@ -20,6 +21,8 @@ flowchart TB
   REG --> DISC["lib/discover.mjs<br/>find · detect · catalog"]
   REC --> DISC
   LANG --> DISC
+  CAP --> CAPLIB["lib/capabilities.mjs<br/>capability list · inspect"] --> DISC
+  LANG -. "language-modules add" .-> CAPLIB
   TPL --> DISC
   TOOLIDX --> DISC
   SKL --> SKLIB["lib/skills.mjs<br/>skill find · inspect"] --> DISC
@@ -41,7 +44,7 @@ Every arrow into the target app goes through `plan`/`add` (modules), the recipe 
 
 1. Authors maintain `modules/<id>/module.json`, `CONTRACT.md`, and `files/`.
 2. `npm run registry:build` emits a compact `registry/catalog.json` and detailed manifests with SHA-256 file hashes. `registry:check` checks freshness without changing files.
-3. Agents run `find` (or module-only `search`), inspect one integration contract, and select a compatible feature. `find` ranks modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
+3. Agents run `find` (or module-only `search`), inspect one integration contract, and select a compatible feature. `find` ranks capabilities, modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
 4. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
 5. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`. License notices accompany the copy. It never runs module hooks or package managers.
 6. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.

@@ -1,0 +1,10 @@
+[package]
+name = "cookbook-password-hashing"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+argon2 = "=0.6.0"
+bcrypt = "=0.19.3"

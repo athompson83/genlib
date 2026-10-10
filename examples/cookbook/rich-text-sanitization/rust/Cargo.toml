@@ -1,0 +1,12 @@
+[package]
+name = "rich_text_sanitization"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+publish = false
+
+[dependencies]
+ammonia = "=4.2.1"
+
+[dev-dependencies]
+regex = "=1.13.1"
