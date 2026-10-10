@@ -6,6 +6,12 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
 {
   "routing": [
     {
+      "need": "Repository code navigation, dependency graph, impact analysis or Mermaid diagrams",
+      "guide": "docs/repository-intelligence.md",
+      "dependencyGuide": "docs/dependency-navigation.md",
+      "reference": "references/repository-intelligence.md"
+    },
+    {
       "need": "UI library, icons, menus, dropdowns, animation, design reference or attachment resource",
       "search": "node \"$GENLIB_ROOT/tools/resources.mjs\" search <capability> --platform <platform> --limit 5 --json",
       "inspect": "node \"$GENLIB_ROOT/tools/resources.mjs\" inspect <resource-id> --json",

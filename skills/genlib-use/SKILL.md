@@ -19,6 +19,7 @@ description: Find, plan, and install reusable Genlib code while coding an applic
     "If no checkout is available, read references/bootstrap.md. Do not invent a path or run remote shell scripts."
   ],
   "workflow": [
+    "For repository navigation, first read references/repository-intelligence.md. Verify commit freshness, query compact file/symbol metadata and dependency impact, then inspect only selected source. Never treat heuristic edges as complete.",
     "Search concise metadata using the CLI in references/cli.md. Start with a specific capability, framework filter, and at most five candidates. Do not read the whole registry or all module source.",
     "For external UI/resources, common API clients, or GitHub/README/docs setup, read references/resources.md and route to the relevant catalog or template. Search resources with at most five results, inspect only selected records, and distinguish source review from installed or tested code. An image or gallery listing is not permission to redistribute its content.",
     "Inspect the best candidate's manifest and CONTRACT.md. Check stack compatibility, runtime assumptions, dependencies, license, provenance, limitations, and verification level. Prefer an existing project implementation when it fits better.",
@@ -38,4 +39,4 @@ description: Find, plan, and install reusable Genlib code while coding an applic
 }
 ```
 
-Read [bootstrap instructions](references/bootstrap.md) only when locating or obtaining a checkout. Read the [CLI reference](references/cli.md) for exact commands and conflict handling. Read [resource and project-setup routing](references/resources.md) when selecting UI libraries, API integrations, GitHub configuration or documentation templates.
+Read [repository intelligence instructions](references/repository-intelligence.md) for task-driven code navigation. Read [bootstrap instructions](references/bootstrap.md) only when locating or obtaining a checkout. Read the [CLI reference](references/cli.md) for exact commands and conflict handling. Read [resource and project-setup routing](references/resources.md) when selecting UI libraries, API integrations, GitHub configuration or documentation templates.
