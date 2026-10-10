@@ -68,6 +68,14 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `text-sanitize` Text sanitizing and Trojan Source (bidi) detection | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `slugify` URL slugs: slugify titles and make them unique | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `json-patch` JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `sse` Server-sent events: parse and format event streams | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `text-chunking` Text chunking for retrieval (RAG) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `vector-math` Vector similarity: cosine, top-k and MMR | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `circuit-breaker` Circuit breaker (closed, open, half-open) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `business-days` Business days: add, count and check with holidays | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `natural-sort` Natural sort order (file2 before file10) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `file-signature` File type detection from magic bytes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `color` Color conversion: hex, RGB, HSL and OKLCH | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
