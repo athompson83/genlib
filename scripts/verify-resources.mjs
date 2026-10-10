@@ -43,14 +43,19 @@ const tokens = value => new Set(String(value).toLowerCase().replace(/\b(software
 function licenseMatches(recorded, declared) {
   if (!recorded || !declared) return null;
   const a = tokens(recorded), b = tokens(declared);
+  // "GNU Affero General Public License v3" and "AGPL-3.0" are the same family.
+  const alias = set => { if (set.has('affero')) set.add('agpl'); if (set.has('lesser')) set.add('lgpl'); if (set.has('gnu') && set.has('general') && !set.has('affero') && !set.has('lesser')) set.add('gpl'); return set; };
+  alias(a); alias(b);
   const families = ['mit', 'apache', 'bsd', 'isc', 'mpl', 'gpl', 'lgpl', 'agpl', 'unlicense', 'zlib', 'cc', 'epl', 'psf', 'python', 'elastic', 'sspl', 'busl', 'bsl'];
   return families.some(family => a.has(family) && b.has(family)) || [...b].some(token => token.length > 2 && a.has(token));
 }
 
 async function repositoryExists(url) {
   if (!url || !/^https:\/\/(github\.com|gitlab\.com|codeberg\.org|bitbucket\.org)\//.test(url)) return undefined;
+  // Monorepo package links (…/tree/<ref>/packages/x, GitLab …/-/tree/…) point inside a repository; check the repository.
+  const repository = url.replace(/\/(-\/)?(tree|blob)\/.*$/, '').replace(/\/$/, '');
   try {
-    await run('git', ['ls-remote', '--exit-code', url, 'HEAD'], { timeout: TIMEOUT, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
+    await run('git', ['ls-remote', '--exit-code', repository, 'HEAD'], { timeout: TIMEOUT, env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
     return true;
   } catch { return false; }
 }
