@@ -61,6 +61,8 @@ Ranking is lexical, but it is not naive:
 - **Language:** a language named in the task ("go", "python", "c#", "flutter") acts like a detected project. It selects that language's capability code and hides packages for other languages, unless you filter by `--type`.
 - **Less repetition:** a matched capability absorbs its per-language examples, and no more than two sections come from any one document.
 
+"<product> alternative" (or "replacement") also matches records that list the product in their `replaces` tags, such as Penpot for Figma or n8n for Zapier.
+
 Lexical matching can miss related wording. Every source therefore stays reachable through `find`, `--type`, `catalog` and the search index, and the escape path in each packet says so.
 
 ## Over MCP
