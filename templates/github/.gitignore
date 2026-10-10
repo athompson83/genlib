@@ -1,0 +1,42 @@
+# Original starter for Node/web applications. Review against the target stack.
+# Keep lockfiles, source, migrations, fixtures, and useful editor settings tracked.
+node_modules/
+coverage/
+.nyc_output/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+/dist/
+/build/
+/out/
+*.tsbuildinfo
+*.log
+
+# Local credentials and configuration; only sanitized examples are committed.
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+.aws/
+.vercel/
+.netlify/
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Local operating-system/editor noise. Do not hide every editor directory.
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# The lockfile records reproducibility and must remain tracked:
+# package-lock.json, pnpm-lock.yaml, yarn.lock, bun.lock, Cargo.lock (apps), etc.
+# These rules do not remove already tracked files or erase leaked secrets.

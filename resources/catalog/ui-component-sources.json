@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "uiverse-galaxy",
+      "name": "Uiverse Galaxy",
+      "category": "copy-paste-elements",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/uiverse-io/galaxy/blob/main/LICENSE",
+        "scope": "MIT for the repository's elements; attribution to the creator and Uiverse.io is requested but not required."
+      },
+      "homepage": "https://uiverse.io",
+      "repository": "https://github.com/uiverse-io/galaxy",
+      "docs": "https://github.com/uiverse-io/galaxy#readme",
+      "summary": "The open-source repository behind Uiverse: thousands of community-made HTML/CSS and Tailwind elements (buttons, cards, toggles, loaders, inputs, tooltips) in per-element files.",
+      "useWhen": "Use when a page needs one specific micro-interaction (an animated button, toggle, loader or card) instead of writing the CSS animation by hand; copy only the selected element.",
+      "cautions": [
+        "Quality, accessibility and browser support vary per element; add focus states, reduced-motion handling and semantic markup before shipping.",
+        "Copy single elements, not the collection, and map hard-coded colors to the project's tokens."
+      ],
+      "tags": [
+        "uiverse",
+        "css",
+        "tailwind",
+        "copy-paste",
+        "micro-interactions",
+        "buttons",
+        "loaders",
+        "toggles"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/uiverse-io/galaxy",
+          "title": "Galaxy repository, element folders and MIT license"
+        },
+        {
+          "url": "https://uiverse.io",
+          "title": "Uiverse gallery"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Browse the element on uiverse.io or in the Galaxy folder, copy its HTML/CSS (or Tailwind) into the project, and record the source path.",
+        "Replace hard-coded colors with project tokens and test keyboard, focus and prefers-reduced-motion."
+      ],
+      "quickstart": [
+        "Copy one element folder's HTML/CSS from https://github.com/uiverse-io/galaxy (e.g. Buttons/) into the component",
+        "Replace hard-coded colors with project tokens and add focus and reduced-motion styles"
+      ]
+    },
+    {
+      "id": "awesome-ui-components",
+      "name": "Awesome UI Components (brandonhimpfen)",
+      "category": "index",
+      "platforms": [
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "CC-BY-SA-4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "scope": "The list text is CC BY-SA 4.0 per its README license link (the badge's alt text says CC0). Each linked project keeps its own license."
+      },
+      "homepage": null,
+      "repository": "https://github.com/brandonhimpfen/awesome-ui-components",
+      "docs": "https://github.com/brandonhimpfen/awesome-ui-components#readme",
+      "summary": "Actively maintained curated list of UI component libraries, design systems, headless kits, accessibility-focused components, animation libraries and icon sets.",
+      "useWhen": "Use to discover candidates when no Genlib record fits a UI need, instead of open-ended web searching; then evaluate the chosen library's license and maintenance directly.",
+      "cautions": [
+        "Listing is not endorsement or a license review; verify each project's license, maintenance and accessibility yourself.",
+        "Reusing the list's own text requires CC BY-SA attribution and share-alike."
+      ],
+      "tags": [
+        "awesome-list",
+        "ui",
+        "components",
+        "design-systems",
+        "headless",
+        "icons",
+        "animation"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site",
+        "mobile-app",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Curated list and license notice"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the relevant section, shortlist at most three libraries, and add the selected one as a Genlib resource record with its own license and links."
+      ],
+      "quickstart": [
+        "Every entry is imported as its own Genlib record: node tools/resources.mjs search <need> --category component-library --limit 5"
+      ]
+    },
+    {
+      "id": "awesome-ui-resources",
+      "name": "Awesome UI Resources (al-husayn)",
+      "category": "index",
+      "platforms": [
+        "web"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/al-husayn/awesome-ui-resources/blob/main/LICENSE",
+        "scope": "MIT for the list repository. Each linked registry, generator or framework keeps its own license and terms."
+      },
+      "homepage": null,
+      "repository": "https://github.com/al-husayn/awesome-ui-resources",
+      "docs": "https://github.com/al-husayn/awesome-ui-resources#readme",
+      "summary": "Hub of UI resources for developers: shadcn-compatible component registries, color palette generators, Tailwind frameworks and design tools.",
+      "useWhen": "Use to find a shadcn-compatible registry, palette generator or Tailwind add-on instead of searching the web; then review the chosen source before copying.",
+      "cautions": [
+        "Registries copied into a project become project code; check each registry's license and accessibility before adoption.",
+        "Listing is not endorsement; confirm maintenance and terms for each linked tool."
+      ],
+      "tags": [
+        "awesome-list",
+        "ui",
+        "shadcn",
+        "registry",
+        "tailwind",
+        "color-palette",
+        "design-tools"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Curated list and MIT license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/best-practices/ui-libraries.md"
+      },
+      "install": [
+        "Read the relevant section, shortlist candidates, and record the selected source as a Genlib resource with its own license and links."
+      ],
+      "quickstart": [
+        "Every entry is imported as its own Genlib record: node tools/resources.mjs search <need> --category shadcn-registry --limit 5"
+      ]
+    }
+  ]
+}

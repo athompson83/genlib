@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "env-config",
+  "version": "0.1.0",
+  "title": "Environment configuration",
+  "description": "Framework-neutral TypeScript schema for environment variables that validates a caller-supplied record at startup, returns a frozen typed object, reports every problem by key without echoing values, redacts secrets, and renders .env.example text.",
+  "kind": "utility",
+  "tags": ["config", "env", "environment", "dotenv", "validation", "secrets", "startup", "typescript", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/env-config"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript 5.0+ build (const type parameters infer string choices); no runtime packages.",
+      "The module never reads process.env, Deno.env, files, or globals; the caller passes a record such as process.env, Deno.env.toObject(), a Cloudflare Workers env, or import.meta.env.",
+      "Primarily for server/startup code. It can run in a browser bundle, but anything bundled to a client is public regardless of the secret() marker.",
+      "Tested on Node.js 22 in this repository; other runtimes are expected to work because only ES2022 built-ins and URL are used, but were not executed here."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/fields.ts", "target": "env-config/fields.ts" },
+    { "source": "files/config.ts", "target": "env-config/config.ts" }
+  ],
+  "exports": [
+    { "name": "defineConfig", "from": "env-config/config.ts" },
+    { "name": "ConfigError", "from": "env-config/config.ts" },
+    { "name": "REDACTED", "from": "env-config/config.ts" },
+    { "name": "str", "from": "env-config/fields.ts" },
+    { "name": "secret", "from": "env-config/fields.ts" },
+    { "name": "num", "from": "env-config/fields.ts" },
+    { "name": "bool", "from": "env-config/fields.ts" },
+    { "name": "url", "from": "env-config/fields.ts" },
+    { "name": "list", "from": "env-config/fields.ts" },
+    { "name": "json", "from": "env-config/fields.ts" }
+  ],
+  "configuration": [
+    "Declare a schema with str/num/bool/url/list/json/secret fields; chain .optional(), .secret(), .describe(text), and .example(text) as needed.",
+    "Call defineConfig(schema).parse(source) once at startup with the runtime's environment record and let ConfigError stop the process; use safeParse for a result object instead.",
+    "Use toExample() to generate or check a committed .env.example, and redact(config) or JSON.stringify(config) for safe startup logging."
+  ],
+  "capabilities": [
+    "typed-env-schema", "fail-fast-startup-validation", "aggregated-config-errors", "secret-redaction",
+    "env-example-rendering", "runtime-neutral-source"
+  ],
+  "limitations": [
+    "Does not load .env files, expand ${VAR} references, watch for changes, or fetch from secret managers.",
+    "Empty strings are treated as missing. Defaults are trusted schema values and are not re-validated against min/max/pattern rules.",
+    "secret() controls rendering by this module only; it does not encrypt values or stop application code from logging config.KEY directly.",
+    "json() values are not deep-frozen, and a json validate function's own error text is replaced by a fixed message.",
+    "Only own properties of the source record are read; proxy or getter-based environment objects must expose schema keys as own properties."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/env-config.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}

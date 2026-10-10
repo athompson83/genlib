@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "id": "health-checks",
+  "version": "0.1.0",
+  "title": "Health checks",
+  "description": "Framework-neutral Fetch handlers for liveness (/healthz) and readiness (/readyz) with concurrent named checks, per-check timeouts, critical versus degraded results, redacted errors, and no-store JSON.",
+  "kind": "utility",
+  "tags": [
+    "health",
+    "readiness",
+    "liveness",
+    "kubernetes",
+    "observability",
+    "server",
+    "fetch"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/health-checks"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Uses only standard Fetch Request/Response/Headers, AbortController, and timers; intended for Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers, and Hono. Only Node.js 22 was exercised by repository tests.",
+      "No runtime packages, environment reads, or network access; the application supplies every check function and its dependencies."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/health.ts",
+      "target": "health-checks/health.ts",
+      "path": "modules/health-checks/files/health.ts",
+      "sha256": "9699f73a9846fd39fee5e7a56200cd368b7b67a87cff6b8d180c4f04f3e1cab0",
+      "bytes": 8222
+    }
+  ],
+  "exports": [
+    {
+      "name": "createHealthHandler",
+      "from": "health-checks/health.ts"
+    }
+  ],
+  "configuration": [
+    "checks: named functions (critical by default) or { check, critical?, timeoutMs? }. Each receives an AbortSignal that fires on timeout. Names match [A-Za-z0-9_.:-]{1,64}; at most 50 checks.",
+    "timeoutMs (default 2000, 1-60000), clock (epoch milliseconds, default Date.now), optional non-sensitive version label, livenessPath/readinessPath for handle().",
+    "exposeErrors (default false) adds truncated error messages; enable only behind a trusted internal network."
+  ],
+  "capabilities": [
+    "liveness-endpoint",
+    "readiness-endpoint",
+    "concurrent-checks",
+    "per-check-timeout",
+    "critical-and-degraded-checks",
+    "redacted-errors",
+    "head-support",
+    "method-restriction"
+  ],
+  "limitations": [
+    "Every readiness request runs every check; there is no result caching, request coalescing, rate limiting, or authentication. Restrict exposure and probe frequency at the platform or proxy.",
+    "A timed-out check is reported and aborted via its signal, but a check that ignores the signal keeps running in the background.",
+    "detail strings returned by checks are included verbatim (control characters replaced, truncated to 256 characters); keep secrets and topology out of them.",
+    "No metrics export, startup probe semantics, dependency graph, or process-level self-healing is included.",
+    "Tests ran on Node.js 22 with in-process fake checks; no orchestrator or load balancer integration was exercised."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/health-checks.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/health-checks/module.json",
+    "sha256": "5766aca76bbebcb474cdab524715818f1fa597bf98e9dc104de0b46bf9b438af"
+  },
+  "contractFile": {
+    "path": "modules/health-checks/CONTRACT.md",
+    "sha256": "ef6c440ca9a1ba121f44af13db2e0e34825f471edbb060a4dfe03e64698de69a",
+    "bytes": 3651
+  }
+}

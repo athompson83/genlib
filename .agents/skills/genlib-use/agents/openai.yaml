@@ -1,4 +1,4 @@
 interface:
   display_name: "Genlib Reuse"
-  short_description: "Reuse Genlib modules in application projects"
-  default_prompt: "{\"task\":\"Use $genlib-use to find and integrate compatible Genlib modules for this project.\"}"
+  short_description: "Reuse Genlib code, API clients and project templates"
+  default_prompt: "{\"task\":\"Use $genlib-use to select compatible code, API clients, UI resources and project templates for this project.\"}"

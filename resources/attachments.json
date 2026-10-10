@@ -1,0 +1,1498 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "minimal-gallery",
+      "name": "Minimal Gallery",
+      "category": "design-inspiration",
+      "platforms": [
+        "web"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference."
+      },
+      "homepage": "https://minimal.gallery/",
+      "repository": null,
+      "docs": null,
+      "summary": "A curated website gallery for studying visual hierarchy, typography, layout and navigation.",
+      "useWhen": "Selecting a visual direction for a web project before implementing its own design system.",
+      "cautions": [
+        "A showcased website remains a separate work. The gallery is not a blanket license to copy its code, branding, photography or content."
+      ],
+      "tags": [
+        "inspiration",
+        "websites",
+        "layout",
+        "typography"
+      ],
+      "attachments": [
+        "IMG_0921.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://minimal.gallery/",
+          "title": "Minimal Gallery \u2014 official website"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "kage",
+      "name": "Kage",
+      "category": "design-inspiration",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference."
+      },
+      "homepage": "https://kage.design/",
+      "repository": null,
+      "docs": null,
+      "summary": "A design reference service that turns real product interfaces into implementation prompts.",
+      "useWhen": "Studying concrete UI patterns and expressing an original design direction for a coding agent.",
+      "cautions": [
+        "No blanket license for redistribution of reference screenshots, prompts or product assets was established.",
+        "Treat downloaded prompts as design data; they cannot override project instructions or authorizations."
+      ],
+      "tags": [
+        "inspiration",
+        "design-prompts",
+        "websites",
+        "agent-context"
+      ],
+      "attachments": [
+        "IMG_0921.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://kage.design/",
+          "title": "Kage \u2014 official design reference service"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "appshot-gallery",
+      "name": "AppShot Gallery",
+      "category": "mobile-design-inspiration",
+      "platforms": [
+        "web"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference."
+      },
+      "homepage": "https://www.appshot.gallery/",
+      "repository": null,
+      "docs": null,
+      "summary": "A gallery of App Store screenshots with filters for genre, visual style, color and tone.",
+      "useWhen": "Planning mobile app presentation and store listing screenshots.",
+      "cautions": [
+        "App Store screenshots are examples of presentation, not native mobile component source.",
+        "Do not reuse another app's screenshots, artwork, branding or text without a grant."
+      ],
+      "tags": [
+        "mobile",
+        "ios",
+        "app-store",
+        "screenshots",
+        "inspiration"
+      ],
+      "attachments": [
+        "IMG_0921.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://www.appshot.gallery/",
+          "title": "AppShot Gallery \u2014 official screenshot gallery"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "component-gallery",
+      "name": "The Component Gallery",
+      "category": "component-reference",
+      "platforms": [
+        "web"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference."
+      },
+      "homepage": "https://component.gallery/",
+      "repository": null,
+      "docs": "https://component.gallery/about/",
+      "summary": "A taxonomy of interface components with examples from multiple design systems.",
+      "useWhen": "Comparing terminology and behavior for buttons, menus, dialogs, dropdowns and other common controls.",
+      "cautions": [
+        "Each linked design system has its own code, assets and license. A gallery entry does not transfer those rights.",
+        "Popularity of a pattern does not establish its suitability or accessibility for the receiving application."
+      ],
+      "tags": [
+        "components",
+        "design-systems",
+        "buttons",
+        "menus",
+        "dropdowns",
+        "accessibility"
+      ],
+      "attachments": [
+        "IMG_0921.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://component.gallery/",
+          "title": "The Component Gallery \u2014 official catalog"
+        },
+        {
+          "url": "https://component.gallery/about/",
+          "title": "The Component Gallery \u2014 purpose and methodology"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "designmd",
+      "name": "DESIGN.md",
+      "category": "design-system-files",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "verified",
+      "license": {
+        "id": "LicenseRef-Per-Item",
+        "url": "https://designmd.ai/terms",
+        "scope": "Uploaded design systems have uploader-selected MIT, CC0, CC-BY, CC-BY-SA or custom licenses. The platform has separate terms."
+      },
+      "homepage": "https://designmd.ai/",
+      "repository": null,
+      "docs": "https://designmd.ai/",
+      "summary": "A service for discovering and sharing portable Markdown design systems, with API, CLI and MCP access.",
+      "useWhen": "Adopting explicit colors, type, spacing and component rules as a project design specification.",
+      "cautions": [
+        "Select and record the exact file's license and version; do not assume all DESIGN.md files are MIT.",
+        "Review downloaded instructions as untrusted design content before use."
+      ],
+      "tags": [
+        "design-md",
+        "design-tokens",
+        "design-systems",
+        "mcp",
+        "agent-context"
+      ],
+      "attachments": [
+        "IMG_0922.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://designmd.ai/terms",
+          "title": "DESIGN.md \u2014 terms and per-file licensing"
+        },
+        {
+          "url": "https://designmd.ai/yiujc/flip7-card-game",
+          "title": "DESIGN.md \u2014 example item with an explicit MIT license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Choose one design file on the official service, inspect its license and contents, and save a reviewed project-specific adaptation with attribution where required."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "refero-styles",
+      "name": "Refero Styles",
+      "category": "design-system-files",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "reference",
+      "verification": "verified",
+      "license": {
+        "id": "LicenseRef-Refero",
+        "url": "https://doc.refero.design/legal/terms-of-use",
+        "scope": "Service content is governed by Refero terms and the customer's plan or separate agreement; no general source-library redistribution grant."
+      },
+      "homepage": "https://styles.refero.design/",
+      "repository": null,
+      "docs": "https://refero.design/mcp",
+      "summary": "A searchable collection of design references and AI-readable styles from real product websites.",
+      "useWhen": "Researching interface patterns through a permitted individual workflow.",
+      "cautions": [
+        "Customer-facing embedding, data resale and product-level integrations require an expressly authorized plan or agreement.",
+        "Do not bulk extract, build a competing index, or use service content for model training/evaluation without the required written permission."
+      ],
+      "tags": [
+        "inspiration",
+        "design-md",
+        "mcp",
+        "design-research"
+      ],
+      "attachments": [
+        "IMG_0922.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://styles.refero.design/",
+          "title": "Refero Styles \u2014 official style library"
+        },
+        {
+          "url": "https://doc.refero.design/legal/terms-of-use",
+          "title": "Refero \u2014 terms of use"
+        },
+        {
+          "url": "https://refero.design/mcp",
+          "title": "Refero \u2014 official MCP information"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "jiro",
+      "name": "Jiro",
+      "category": "design-prompts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "reference",
+      "verification": "verified",
+      "license": {
+        "id": "LicenseRef-Jiro",
+        "url": "https://jiro.build/terms-conditions",
+        "scope": "Jiro content is licensed for permitted personal, business and client work; standalone library redistribution is prohibited."
+      },
+      "homepage": "https://jiro.build/",
+      "repository": null,
+      "docs": null,
+      "summary": "A visual prompt and template service for generating websites with AI development tools.",
+      "useWhen": "A user selects an individually licensed design prompt for an end product.",
+      "cautions": [
+        "Terms prohibit distributing its content as a component library, template pack or competing resource, including modified or free copies.",
+        "Use official access paths; do not scrape the collection or add its prompt corpus to Genlib."
+      ],
+      "tags": [
+        "design-prompts",
+        "landing-pages",
+        "templates",
+        "mcp"
+      ],
+      "attachments": [
+        "IMG_0922.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://jiro.build/",
+          "title": "Jiro \u2014 official website"
+        },
+        {
+          "url": "https://jiro.build/terms-conditions",
+          "title": "Jiro \u2014 terms and conditions"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "vibeprompt",
+      "name": "VibePrompt",
+      "category": "design-prompts",
+      "platforms": [
+        "web"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference."
+      },
+      "homepage": "https://vibeprompts.dev/",
+      "repository": null,
+      "docs": null,
+      "summary": "A collection of UI layout prompts and Tailwind CSS snippets for common website sections.",
+      "useWhen": "Studying approaches to hero sections, pricing, authentication forms, navigation and dashboards.",
+      "cautions": [
+        "The screenshot identifies vibeprompts.dev, not similarly named Python packages or other VibePrompt products.",
+        "No explicit redistribution license was established. Keep it a link until the selected item's grant is verified."
+      ],
+      "tags": [
+        "design-prompts",
+        "tailwind",
+        "heroes",
+        "pricing",
+        "dashboards",
+        "navigation"
+      ],
+      "attachments": [
+        "IMG_0922.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://vibeprompts.dev/",
+          "title": "VibePrompt \u2014 official UI prompt library"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "21st-dev",
+      "name": "21st.dev",
+      "category": "ui-marketplace",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "license-review",
+      "verification": "verified",
+      "license": {
+        "id": "LicenseRef-Per-Item",
+        "url": "https://21st.dev/terms",
+        "scope": "Underlying components may have author-specific licenses; platform previews, curation, metadata and media have separate marketplace restrictions."
+      },
+      "homepage": "https://21st.dev/",
+      "repository": null,
+      "docs": "https://21st.dev/",
+      "summary": "A component, template and theme marketplace with shadcn registry compatibility.",
+      "useWhen": "Discovering a specific component whose original source and reuse license can be independently reviewed.",
+      "cautions": [
+        "Do not scrape, mirror or bulk import marketplace metadata, demos, previews or component collections.",
+        "A permissive original component license does not grant rights to the marketplace's previews or media.",
+        "Use official access within the user's plan and preserve applicable license notices and required source links."
+      ],
+      "tags": [
+        "react",
+        "shadcn",
+        "components",
+        "marketplace",
+        "landing-pages"
+      ],
+      "attachments": [
+        "IMG_0923.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://21st.dev/",
+          "title": "21st.dev \u2014 official component marketplace"
+        },
+        {
+          "url": "https://21st.dev/terms",
+          "title": "21st.dev \u2014 marketplace terms"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Select an individual component through official access. Review its original source, exact license, dependencies and attribution before copying any permitted files."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "shadcn-ui",
+      "name": "shadcn/ui",
+      "category": "ui-components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/shadcn-ui/ui/blob/main/LICENSE.md",
+        "scope": "Upstream shadcn/ui source; retain applicable copyright and permission notices when copying."
+      },
+      "homepage": "https://ui.shadcn.com/",
+      "repository": "https://github.com/shadcn-ui/ui",
+      "docs": "https://ui.shadcn.com/docs",
+      "summary": "Editable React UI primitives and components with a registry-based distribution model.",
+      "useWhen": "Building project-owned buttons, menus, dropdowns, forms, dialogs and other ordinary application controls.",
+      "cautions": [
+        "Match the selected component's React, styling and primitive dependencies to the target application.",
+        "Source copying transfers update maintenance to the receiving project; test keyboard and assistive-technology behavior after customization."
+      ],
+      "tags": [
+        "react",
+        "buttons",
+        "menus",
+        "dropdowns",
+        "dialogs",
+        "forms",
+        "accessibility",
+        "source-code"
+      ],
+      "attachments": [
+        "IMG_0923.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/shadcn-ui/ui",
+          "title": "shadcn/ui \u2014 official repository"
+        },
+        {
+          "url": "https://github.com/shadcn-ui/ui/blob/main/LICENSE.md",
+          "title": "shadcn/ui \u2014 MIT license"
+        },
+        {
+          "url": "https://ui.shadcn.com/docs",
+          "title": "shadcn/ui \u2014 official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Follow the official installation guide for the receiving stack. Select a reviewed CLI release and only the needed components; preserve the upstream license and resulting source diff."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "quickstart": [
+        "npx shadcn@latest init",
+        "npx shadcn@latest add button",
+        "Docs: https://ui.shadcn.com/docs/components"
+      ]
+    },
+    {
+      "id": "aceternity-ui",
+      "name": "Aceternity UI",
+      "category": "ui-components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "license-review",
+      "verification": "verified",
+      "license": {
+        "id": "LicenseRef-Aceternity",
+        "url": "https://ui.aceternity.com/licence",
+        "scope": "The published license page labels Aceternity UI Pro and restricts item/source redistribution; verify any separate grant for the exact free or third-party item."
+      },
+      "homepage": "https://ui.aceternity.com/",
+      "repository": null,
+      "docs": "https://ui.aceternity.com/",
+      "summary": "React, Tailwind CSS and Motion components and templates focused on animated websites.",
+      "useWhen": "Selecting a licensed end-product component for a landing page or marketing site.",
+      "cautions": [
+        "The published license permits end products but forbids redistributing items or source files as a library.",
+        "Free availability does not prove MIT licensing; do not vendor paid or restricted component source into Genlib."
+      ],
+      "tags": [
+        "react",
+        "tailwind",
+        "motion",
+        "animation",
+        "landing-pages"
+      ],
+      "attachments": [
+        "IMG_0923.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://ui.aceternity.com/",
+          "title": "Aceternity UI \u2014 official website"
+        },
+        {
+          "url": "https://ui.aceternity.com/licence",
+          "title": "Aceternity UI \u2014 published license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Inspect the selected item's current license and the user's entitlement. Use it only within that grant; keep restricted source out of this public registry."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "quickstart": [
+        "Check the license tier first: https://ui.aceternity.com/licence",
+        "npx shadcn@latest add \"https://ui.aceternity.com/registry/background-beams.json\""
+      ]
+    },
+    {
+      "id": "magic-ui",
+      "name": "Magic UI",
+      "category": "ui-components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/magicuidesign/magicui/blob/main/LICENSE.md",
+        "scope": "Source in the public Magic UI repository; paid products and unrelated media require separate review."
+      },
+      "homepage": "https://magicui.design/",
+      "repository": "https://github.com/magicuidesign/magicui",
+      "docs": "https://magicui.design/docs",
+      "summary": "Editable React animation components and interface effects.",
+      "useWhen": "Adding a deliberate animated element that fits the receiving application's design system.",
+      "cautions": [
+        "Choose a few required effects rather than multiple overlapping animation libraries.",
+        "Honor reduced-motion preferences and check rendering cost, text readability and interaction behavior."
+      ],
+      "tags": [
+        "react",
+        "tailwind",
+        "animation",
+        "motion",
+        "landing-pages"
+      ],
+      "attachments": [
+        "IMG_0923.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/magicuidesign/magicui",
+          "title": "Magic UI \u2014 official repository"
+        },
+        {
+          "url": "https://github.com/magicuidesign/magicui/blob/main/LICENSE.md",
+          "title": "Magic UI \u2014 MIT license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Select the component and reviewed source revision from official documentation, copy only necessary files with notices, and install target-approved peer dependencies explicitly."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://magicui.design/r/marquee.json\"",
+        "Browse components: https://magicui.design/docs/components"
+      ]
+    },
+    {
+      "id": "animejs",
+      "name": "Anime.js",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/juliangarnier/anime/blob/master/LICENSE.md",
+        "scope": "Anime.js JavaScript animation engine."
+      },
+      "homepage": "https://animejs.com/",
+      "repository": "https://github.com/juliangarnier/anime",
+      "docs": "https://animejs.com/documentation/",
+      "summary": "A JavaScript engine for animating properties and coordinating timelines.",
+      "useWhen": "An application needs custom animation behavior beyond a component-specific effect.",
+      "cautions": [
+        "Review the API for the selected major version; avoid mixing examples from incompatible versions.",
+        "Clean up active animations when components unmount and support reduced motion."
+      ],
+      "tags": [
+        "javascript",
+        "animation",
+        "timeline",
+        "svg"
+      ],
+      "attachments": [
+        "IMG_0924.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/juliangarnier/anime",
+          "title": "Anime.js \u2014 official repository"
+        },
+        {
+          "url": "https://github.com/juliangarnier/anime/blob/master/LICENSE.md",
+          "title": "Anime.js \u2014 MIT license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Review the official animejs package and select an exact compatible release in the receiving project's lockfile. Genlib does not run the package manager."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "animejs"
+        }
+      ],
+      "quickstart": [
+        "npm install animejs",
+        "import { animate } from \"animejs\";",
+        "Docs: https://animejs.com/documentation"
+      ]
+    },
+    {
+      "id": "motion-primitives",
+      "name": "Motion Primitives",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ibelick/motion-primitives",
+        "scope": "The official README declares MIT. Its linked LICENSE.md could not be retrieved during this review; retrieve the actual license at the selected revision before copying."
+      },
+      "homepage": "https://motion-primitives.com/",
+      "repository": "https://github.com/ibelick/motion-primitives",
+      "docs": "https://motion-primitives.com/docs",
+      "summary": "Customizable motion components built for React interfaces with Motion and Tailwind CSS.",
+      "useWhen": "A project needs a focused animated primitive such as a transition or text effect.",
+      "cautions": [
+        "The repository describes the project as beta; confirm the selected component and dependencies at a fixed revision.",
+        "Resolve the license file and preserve its notices before importing source."
+      ],
+      "tags": [
+        "react",
+        "tailwind",
+        "motion",
+        "animation",
+        "primitives"
+      ],
+      "attachments": [
+        "IMG_0924.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/ibelick/motion-primitives",
+          "title": "Motion Primitives \u2014 official repository and license declaration"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Review one component at an exact upstream revision, resolve its MIT notice and peer dependencies, then copy it with attribution and application-specific verification."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://motion-primitives.com/c/text-effect.json\"",
+        "Docs: https://motion-primitives.com/docs"
+      ]
+    },
+    {
+      "id": "kinetics",
+      "name": "Kinetics",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://github.com/ckissi/kinetics",
+        "scope": "The official site exposes CSS, React and prompt examples, but no explicit source redistribution license was located in the reviewed site or repository."
+      },
+      "homepage": "https://kinetics.colorion.co/",
+      "repository": "https://github.com/ckissi/kinetics",
+      "docs": null,
+      "summary": "A collection of spring-style interface interactions with CSS, React and prompt examples.",
+      "useWhen": "Studying how stiffness, damping and feedback influence interface motion.",
+      "cautions": [
+        "Publicly visible code and a copy button are not sufficient evidence of a redistribution license.",
+        "Keep the resource as a reference until the selected code's license is established."
+      ],
+      "tags": [
+        "animation",
+        "spring",
+        "microinteractions",
+        "css",
+        "react"
+      ],
+      "attachments": [
+        "IMG_0924.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://kinetics.colorion.co/",
+          "title": "Kinetics \u2014 official interaction gallery"
+        },
+        {
+          "url": "https://github.com/ckissi/kinetics",
+          "title": "Kinetics \u2014 official repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ]
+    },
+    {
+      "id": "microkit-ui",
+      "name": "MicroKit UI",
+      "category": "microinteractions",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/henriquegpb/microkit/blob/main/LICENSE",
+        "scope": "Code in the MicroKit repository. Review component-level provenance and dependencies."
+      },
+      "homepage": "https://microkit.co/",
+      "repository": "https://github.com/henriquegpb/microkit",
+      "docs": "https://microkit.co/",
+      "summary": "Copyable React and CSS microinteractions for hover, click and feedback behavior.",
+      "useWhen": "Adding a small interaction to an existing control without replacing the whole UI system.",
+      "cautions": [
+        "The maintainer notes some examples were adapted or rewritten from public examples and Webflow exports; retain specific attribution and review provenance.",
+        "An animation demonstration still needs keyboard, touch and reduced-motion checks in the actual application."
+      ],
+      "tags": [
+        "react",
+        "css",
+        "microinteractions",
+        "hover",
+        "buttons",
+        "shadcn"
+      ],
+      "attachments": [
+        "IMG_0924.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://microkit.co/",
+          "title": "MicroKit UI \u2014 official site and provenance FAQ"
+        },
+        {
+          "url": "https://github.com/henriquegpb/microkit",
+          "title": "MicroKit UI \u2014 official repository"
+        },
+        {
+          "url": "https://github.com/henriquegpb/microkit/blob/main/LICENSE",
+          "title": "MicroKit UI \u2014 MIT license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Select one official registry component, inspect its source and attribution, and use a reviewed shadcn CLI version or manual copy. No package or install hook runs through this catalog."
+      ],
+      "projectTypes": [
+        "web-app"
+      ]
+    },
+    {
+      "id": "mapcn",
+      "name": "mapcn",
+      "category": "maps",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/AnmolSaini16/mapcn/blob/main/LICENSE",
+        "scope": "React map component source only; basemap, geodata, routing and hosting services have separate terms."
+      },
+      "homepage": "https://www.mapcn.dev/",
+      "repository": "https://github.com/AnmolSaini16/mapcn",
+      "docs": "https://www.mapcn.dev/",
+      "summary": "Customizable React map components for markers, routes and interactive map views.",
+      "useWhen": "Adding a map to a compatible web application with an explicitly chosen map data provider.",
+      "cautions": [
+        "The upstream README says its default CARTO basemaps require an Enterprise license for commercial use; do not assume the default tiles are free for production.",
+        "Configure an appropriately licensed tile source and preserve required map attribution. Review any routing or geocoding service separately."
+      ],
+      "tags": [
+        "react",
+        "maps",
+        "markers",
+        "routes",
+        "geospatial",
+        "shadcn"
+      ],
+      "attachments": [
+        "IMG_0925.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://www.mapcn.dev/",
+          "title": "mapcn \u2014 official website"
+        },
+        {
+          "url": "https://github.com/AnmolSaini16/mapcn",
+          "title": "mapcn \u2014 repository and basemap terms"
+        },
+        {
+          "url": "https://github.com/AnmolSaini16/mapcn/blob/main/LICENSE",
+          "title": "mapcn \u2014 MIT source license"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Choose a reviewed component revision and compatible peers. Configure a licensed basemap/provider before testing the map with the application's intended commercial use."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://mapcn.dev/r/map.json\"",
+        "Configure a basemap style you are licensed to use",
+        "Docs: https://www.mapcn.dev/"
+      ]
+    },
+    {
+      "id": "uiverse",
+      "name": "Uiverse",
+      "category": "ui-elements",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://uiverse.io/",
+        "scope": "The official site declares its UI elements MIT; retain the selected author's copyright and permission notices."
+      },
+      "homepage": "https://uiverse.io/",
+      "repository": null,
+      "docs": "https://uiverse.io/",
+      "summary": "A community collection of small UI elements including buttons, toggles, cards and loaders.",
+      "useWhen": "Selecting an individual styling or interaction pattern for an existing design system.",
+      "cautions": [
+        "Record the exact element page and author when copying; the catalog entry alone is not a component's provenance.",
+        "Review semantic HTML, focus behavior, contrast and animation cost before promoting a demo to a reusable module."
+      ],
+      "tags": [
+        "css",
+        "html",
+        "buttons",
+        "toggles",
+        "loaders",
+        "cards",
+        "tailwind"
+      ],
+      "attachments": [
+        "IMG_0925.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://uiverse.io/",
+          "title": "Uiverse \u2014 official website and UI-element licensing declaration"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Choose an individual element, save its source URL and author, inspect its code, and retain the required MIT notice when adding permitted code."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "quickstart": [
+        "Pick an element on https://uiverse.io, open it and copy its HTML/CSS or Tailwind tab into the component",
+        "Or copy from the MIT repo: https://github.com/uiverse-io/galaxy"
+      ]
+    },
+    {
+      "id": "liquid-glass",
+      "name": "Liquid Glass (@samasante/liquid-glass)",
+      "category": "visual-effects",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/samasante/liquid-glass/blob/main/LICENSE",
+        "scope": "The samasante/liquid-glass React package; not Apple's native Liquid Glass APIs or other similarly named packages."
+      },
+      "homepage": "https://glass.samasante.com/",
+      "repository": "https://github.com/samasante/liquid-glass",
+      "docs": "https://github.com/samasante/liquid-glass",
+      "summary": "A headless React glass effect that can refract a provided background or style a backdrop.",
+      "useWhen": "A web design calls for a limited glass surface with an acceptable fallback.",
+      "cautions": [
+        "Upstream documents live backdrop bending as Chrome/Edge-only; Safari and Firefox need a copy of the background for refraction.",
+        "React and react-dom are peers despite the zero-runtime-dependencies claim.",
+        "Test readability, rendering cost and browser fallback before release."
+      ],
+      "tags": [
+        "react",
+        "glass",
+        "refraction",
+        "effects",
+        "browser-compatibility"
+      ],
+      "attachments": [
+        "IMG_0925.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://glass.samasante.com/",
+          "title": "Liquid Glass \u2014 official demo"
+        },
+        {
+          "url": "https://github.com/samasante/liquid-glass",
+          "title": "Liquid Glass \u2014 official README and browser caveats"
+        },
+        {
+          "url": "https://github.com/samasante/liquid-glass/blob/main/LICENSE",
+          "title": "Liquid Glass \u2014 MIT license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Review an exact release of @samasante/liquid-glass and its React peer range. Add it through the receiving project's normal dependency workflow after choosing the cross-browser background strategy."
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@samasante/liquid-glass"
+        }
+      ],
+      "quickstart": [
+        "npm install @samasante/liquid-glass"
+      ]
+    },
+    {
+      "id": "kitbitz",
+      "name": "Kitbitz",
+      "category": "illustrations",
+      "platforms": [
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://kitbitz.art/",
+        "scope": "The official site declares its illustration collection CC0. Confirm the notice on the selected downloadable asset."
+      },
+      "homepage": "https://kitbitz.art/",
+      "repository": null,
+      "docs": null,
+      "summary": "Hand-drawn illustrations available for product visuals and themed scenes.",
+      "useWhen": "Adding appropriately styled illustrations or environment art to a project.",
+      "cautions": [
+        "This is an asset source, not application behavior or native UI code.",
+        "Record the selected asset, download source and license even where attribution is optional; review visual fit and file size."
+      ],
+      "tags": [
+        "illustrations",
+        "svg",
+        "png",
+        "assets",
+        "cc0",
+        "figma"
+      ],
+      "attachments": [
+        "IMG_0926.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://kitbitz.art/",
+          "title": "Kitbitz \u2014 official collection and CC0 declaration"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Select the needed asset from the official collection, confirm its CC0 notice, and import only required optimized files with source metadata."
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app"
+      ]
+    },
+    {
+      "id": "3dicons",
+      "name": "3dicons",
+      "category": "icons",
+      "platforms": [
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "asset-library",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://3dicons.co/",
+        "scope": "The official site's FAQ declares the current icon collection CC0; verify the selected download and any separately offered content."
+      },
+      "homepage": "https://3dicons.co/",
+      "repository": null,
+      "docs": null,
+      "summary": "A collection of three-dimensional icon assets for interface illustration.",
+      "useWhen": "Providing decorative or explanatory icon artwork while retaining clear semantic labels.",
+      "cautions": [
+        "Asset files are not accessible controls by themselves; provide appropriate labels or decorative treatment.",
+        "Keep the collection's distinctive 3D style consistent and optimize downloaded images for their intended size."
+      ],
+      "tags": [
+        "icons",
+        "3d",
+        "assets",
+        "cc0",
+        "illustration"
+      ],
+      "attachments": [
+        "IMG_0926.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://3dicons.co/",
+          "title": "3dicons \u2014 official site and CC0 license FAQ"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Select and inspect the required icon download, confirm its license, optimize it, and record its source before adding it to the project's asset directory."
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app"
+      ]
+    },
+    {
+      "id": "saleor",
+      "name": "Saleor",
+      "category": "commerce",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/saleor/saleor/blob/main/LICENSE",
+        "scope": "Saleor Core repository; hosted services, dashboard, apps and other packages require their own review."
+      },
+      "homepage": "https://saleor.io/",
+      "repository": "https://github.com/saleor/saleor",
+      "docs": "https://docs.saleor.io/",
+      "summary": "A headless commerce backend exposing a GraphQL API for storefront integrations.",
+      "useWhen": "A project requires commerce capabilities beyond a simple payment link.",
+      "cautions": [
+        "Run or connect to a separately configured Saleor instance; adding the client module does not deploy a commerce backend.",
+        "Keep private commerce credentials server-side and enforce application authorization before mutations."
+      ],
+      "tags": [
+        "commerce",
+        "graphql",
+        "products",
+        "checkout",
+        "server",
+        "api"
+      ],
+      "attachments": [
+        "IMG_0914.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/saleor/saleor",
+          "title": "Saleor \u2014 official Core repository"
+        },
+        {
+          "url": "https://github.com/saleor/saleor/blob/main/LICENSE",
+          "title": "Saleor \u2014 BSD-3-Clause license"
+        },
+        {
+          "url": "https://docs.saleor.io/",
+          "title": "Saleor \u2014 official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "common-api-clients",
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Read the common-api-clients contract and install that original Genlib module through the normal plan/add flow. Configure the receiving server to call an authorized Saleor endpoint; Saleor itself remains an external service."
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "ecommerce"
+      ]
+    },
+    {
+      "id": "alokai",
+      "name": "Vue Storefront / Alokai",
+      "category": "commerce-ui",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "license-review",
+      "verification": "verified",
+      "license": {
+        "id": "LicenseRef-Component-Specific",
+        "url": "https://alokai.com/news/alokai-licensing-and-open-source-changes",
+        "scope": "Alokai is a product family. Storefront UI remains MIT; other SDK/middleware components and enterprise storefront products have different licenses or availability."
+      },
+      "homepage": "https://alokai.com/",
+      "repository": "https://github.com/vuestorefront/storefront-ui",
+      "docs": "https://storefrontui.io/",
+      "summary": "A commerce frontend ecosystem; Storefront UI is the specifically identified public React/Vue component library.",
+      "useWhen": "A commerce project needs storefront controls and patterns in a compatible React or Vue application.",
+      "cautions": [
+        "Do not label the entire Vue Storefront/Alokai platform MIT or assume the historical boilerplates are still public.",
+        "For reusable UI code, inspect Storefront UI's exact version and MIT license; separately review every SDK, integration and enterprise component."
+      ],
+      "tags": [
+        "commerce",
+        "react",
+        "vue",
+        "storefront",
+        "buttons",
+        "navigation",
+        "components"
+      ],
+      "attachments": [
+        "IMG_0915.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://alokai.com/news/alokai-licensing-and-open-source-changes",
+          "title": "Alokai \u2014 official licensing and open-source changes"
+        },
+        {
+          "url": "https://github.com/vuestorefront/storefront-ui",
+          "title": "Storefront UI \u2014 official repository"
+        },
+        {
+          "url": "https://github.com/vuestorefront/storefront-ui/blob/v2-develop/LICENSE",
+          "title": "Storefront UI \u2014 MIT license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Select the exact Storefront UI or Alokai package needed for the project, confirm its current license and framework support, and use its official installation guide. No enterprise source is bundled here."
+      ],
+      "projectTypes": [
+        "web-app",
+        "ecommerce"
+      ]
+    },
+    {
+      "id": "steel-browser",
+      "name": "Steel Browser",
+      "category": "browser-automation",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/steel-dev/steel-browser/blob/main/LICENSE",
+        "scope": "Steel Browser open-source repository; hosted Steel services have separate account, usage and pricing terms."
+      },
+      "homepage": "https://steel.dev/",
+      "repository": "https://github.com/steel-dev/steel-browser",
+      "docs": "https://docs.steel.dev/",
+      "summary": "A browser session API for connecting automation tools to managed Chrome instances.",
+      "useWhen": "Genisys or another harness needs a separately operated browser automation service.",
+      "cautions": [
+        "Steel is browser automation infrastructure, not a complete embedded native browser interface.",
+        "Treat session cookies, remote debugging connections and credentials as secrets; keep the API behind the application's authorization boundary.",
+        "Create and release sessions deliberately; adding a client does not configure hosting or approve external browser actions."
+      ],
+      "tags": [
+        "browser",
+        "automation",
+        "chrome",
+        "chromium",
+        "cdp",
+        "playwright",
+        "server",
+        "api"
+      ],
+      "attachments": [
+        "IMG_0916.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/steel-dev/steel-browser",
+          "title": "Steel Browser \u2014 official repository"
+        },
+        {
+          "url": "https://github.com/steel-dev/steel-browser/blob/main/LICENSE",
+          "title": "Steel Browser \u2014 Apache-2.0 license"
+        },
+        {
+          "url": "https://docs.steel.dev/",
+          "title": "Steel \u2014 official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "common-api-clients",
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Read the common-api-clients contract and install that original Genlib module through the normal plan/add flow. Connect it to an authorized Steel service; review upstream deployment and session-isolation settings separately."
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "browser-automation"
+      ]
+    },
+    {
+      "id": "echo-music",
+      "name": "Echo Music",
+      "category": "media-application",
+      "platforms": [
+        "mobile",
+        "android"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/EchoMusicApp/Echo-Music/blob/main/LICENSE",
+        "scope": "Upstream identifies GPL-3.0. Review the selected code's notices, dependencies and distribution requirements before any incorporation."
+      },
+      "homepage": "https://github.com/EchoMusicApp/Echo-Music",
+      "repository": "https://github.com/EchoMusicApp/Echo-Music",
+      "docs": "https://github.com/EchoMusicApp/Echo-Music",
+      "summary": "An Android music application useful as a reference for media-library, queue, playback and synchronized-lyrics interfaces.",
+      "useWhen": "Researching media interaction patterns or assessing a separately licensed open-source media application.",
+      "cautions": [
+        "Do not copy GPL application code into Apache-only Genlib modules without a compatible distribution plan.",
+        "Software licensing does not grant music/content rights or authorization for the underlying music services.",
+        "No archived or discontinued notice was found on the reviewed repository page; maintenance and release readiness were not independently established."
+      ],
+      "tags": [
+        "android",
+        "music",
+        "media",
+        "playback",
+        "lyrics",
+        "gpl",
+        "reference"
+      ],
+      "attachments": [
+        "IMG_0777.jpeg"
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/EchoMusicApp/Echo-Music",
+          "title": "Echo Music \u2014 official Android repository"
+        },
+        {
+          "url": "https://github.com/EchoMusicApp/Echo-Music/blob/main/LICENSE",
+          "title": "Echo Music \u2014 GPL-3.0 license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/attachment-review.md"
+      },
+      "install": [
+        "Use as a design reference. Before using upstream code, assess its exact GPL obligations and dependencies in a separately scoped project; this catalog installs no Echo Music source or binaries."
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6121 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "actions-checkout",
+      "name": "actions/checkout",
+      "category": "ci-cd",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/actions/checkout/blob/HEAD/LICENSE",
+        "scope": "MIT for the action source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/actions/checkout",
+      "docs": "https://github.com/actions/checkout#readme",
+      "summary": "Official GitHub Action that checks out the repository into the workflow workspace.",
+      "useWhen": "Use instead of hand-written git clone/auth steps in GitHub Actions workflows.",
+      "cautions": [
+        "Set persist-credentials: false unless later steps must push.",
+        "Pin to a commit SHA; default fetch-depth is 1."
+      ],
+      "tags": [
+        "github-actions",
+        "ci",
+        "git"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "actions/checkout"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/actions/checkout",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Reference it with uses: in a workflow and pin to a full commit SHA (with a version comment) rather than a moving tag."
+      ]
+    },
+    {
+      "id": "actions-setup-node",
+      "name": "actions/setup-node",
+      "category": "ci-cd",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/actions/setup-node/blob/HEAD/LICENSE",
+        "scope": "MIT for the action source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/actions/setup-node",
+      "docs": "https://github.com/actions/setup-node#readme",
+      "summary": "Official GitHub Action that installs a Node.js version and optionally caches npm, yarn or pnpm dependencies.",
+      "useWhen": "Use instead of hand-written Node installation and package-cache scripts in GitHub Actions.",
+      "cautions": [
+        "Read the version from .nvmrc or package.json engines to keep CI and local in sync."
+      ],
+      "tags": [
+        "github-actions",
+        "node",
+        "ci",
+        "cache"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "actions/setup-node"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/actions/setup-node",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Reference it with uses: in a workflow and pin to a full commit SHA (with a version comment) rather than a moving tag."
+      ]
+    },
+    {
+      "id": "actions-cache",
+      "name": "actions/cache",
+      "category": "ci-cd",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/actions/cache/blob/HEAD/LICENSE",
+        "scope": "MIT for the action source."
+      },
+      "homepage": null,
+      "repository": "https://github.com/actions/cache",
+      "docs": "https://github.com/actions/cache#readme",
+      "summary": "Official GitHub Action that saves and restores dependency and build caches between workflow runs.",
+      "useWhen": "Use instead of hand-rolled artifact upload/download tricks for caching build outputs in GitHub Actions.",
+      "cautions": [
+        "Never cache secrets or credentials; caches are readable by other branches' workflows.",
+        "Key caches on lockfile hashes."
+      ],
+      "tags": [
+        "github-actions",
+        "cache",
+        "ci"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "actions/cache"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/actions/cache",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Reference it with uses: in a workflow and pin to a full commit SHA (with a version comment) rather than a moving tag."
+      ]
+    },
+    {
+      "id": "act",
+      "name": "act",
+      "category": "ci-cd",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nektos/act/blob/HEAD/LICENSE",
+        "scope": "MIT for the CLI."
+      },
+      "homepage": "https://nektosact.com",
+      "repository": "https://github.com/nektos/act",
+      "docs": "https://nektosact.com",
+      "summary": "Runs GitHub Actions workflows locally in Docker containers.",
+      "useWhen": "Use instead of push-and-wait debugging of GitHub Actions workflows.",
+      "cautions": [
+        "Runner images differ from GitHub-hosted runners; confirm on real CI.",
+        "Do not pass production secrets to local runs."
+      ],
+      "tags": [
+        "github-actions",
+        "ci",
+        "local",
+        "docker"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/nektos/act"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nektos/act",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "changesets",
+      "name": "Changesets",
+      "category": "release",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/changesets/changesets/blob/HEAD/LICENSE",
+        "scope": "MIT for the CLI and packages."
+      },
+      "homepage": null,
+      "repository": "https://github.com/changesets/changesets",
+      "docs": "https://github.com/changesets/changesets#readme",
+      "summary": "Versioning and changelog workflow for single packages and monorepos based on committed change files.",
+      "useWhen": "Use instead of hand-editing versions and changelogs across monorepo packages.",
+      "cautions": [
+        "Publishing needs a scoped npm token; prefer trusted publishing/provenance."
+      ],
+      "tags": [
+        "release",
+        "changelog",
+        "monorepo",
+        "semver",
+        "npm"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@changesets/cli"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/changesets/changesets",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "semantic-release",
+      "name": "semantic-release",
+      "category": "release",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/semantic-release/semantic-release/blob/HEAD/LICENSE",
+        "scope": "MIT for the core and official plugins."
+      },
+      "homepage": "https://semantic-release.gitbook.io",
+      "repository": "https://github.com/semantic-release/semantic-release",
+      "docs": "https://semantic-release.gitbook.io/semantic-release/",
+      "summary": "Fully automated version bumps, changelogs and publishing from Conventional Commit messages.",
+      "useWhen": "Use instead of hand-written release scripts that compute versions, tag and publish.",
+      "cautions": [
+        "Requires disciplined commit messages; a bad commit type can cut a major release."
+      ],
+      "tags": [
+        "release",
+        "semver",
+        "conventional-commits",
+        "changelog"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "semantic-release"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/semantic-release/semantic-release",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "release-please",
+      "name": "release-please",
+      "category": "release",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/googleapis/release-please/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the CLI and action."
+      },
+      "homepage": null,
+      "repository": "https://github.com/googleapis/release-please",
+      "docs": "https://github.com/googleapis/release-please#readme",
+      "summary": "Generates release pull requests with version bumps and changelogs from Conventional Commits.",
+      "useWhen": "Use instead of manual release PRs and changelog edits; supports many languages via release types.",
+      "cautions": [
+        "The GitHub Action lives at googleapis/release-please-action; pin it."
+      ],
+      "tags": [
+        "release",
+        "changelog",
+        "conventional-commits",
+        "github"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "release-please"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/googleapis/release-please",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "renovate",
+      "name": "Renovate",
+      "category": "dependencies",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/renovatebot/renovate/blob/HEAD/license",
+        "scope": "AGPL-3.0 for the self-hosted bot; running it unmodified in CI is common, modifying and offering it as a network service triggers source obligations. A hosted app is also offered."
+      },
+      "homepage": "https://docs.renovatebot.com",
+      "repository": "https://github.com/renovatebot/renovate",
+      "docs": "https://docs.renovatebot.com",
+      "summary": "Automated dependency update bot for many package managers, lockfiles, Dockerfiles and CI configs.",
+      "useWhen": "Use instead of manually checking and bumping dependencies across ecosystems.",
+      "cautions": [
+        "Configure grouping and schedules to avoid PR floods.",
+        "AGPL: review before modifying or redistributing."
+      ],
+      "tags": [
+        "dependencies",
+        "updates",
+        "automation",
+        "supply-chain"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "renovate"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/renovatebot/renovate",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dependabot",
+      "name": "Dependabot",
+      "category": "dependencies",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features",
+        "scope": "GitHub-hosted feature configured through .github/dependabot.yml; governed by GitHub terms."
+      },
+      "homepage": "https://docs.github.com/en/code-security/dependabot",
+      "repository": null,
+      "docs": "https://docs.github.com/en/code-security/dependabot",
+      "summary": "GitHub's built-in dependency update and security alert service.",
+      "useWhen": "Use instead of manual dependency monitoring on GitHub-hosted repositories with a committed dependabot.yml.",
+      "cautions": [
+        "GitHub only; group updates to limit PR noise."
+      ],
+      "tags": [
+        "dependencies",
+        "github",
+        "security-updates",
+        "reference"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.github.com/en/code-security/dependabot",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Commit .github/dependabot.yml; no package install."
+      ]
+    },
+    {
+      "id": "turborepo",
+      "name": "Turborepo",
+      "category": "monorepo",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vercel/turborepo/blob/HEAD/LICENSE",
+        "scope": "MIT for the CLI."
+      },
+      "homepage": "https://turborepo.com",
+      "repository": "https://github.com/vercel/turborepo",
+      "docs": "https://turborepo.com/docs",
+      "summary": "High-performance task runner and build cache for JavaScript/TypeScript monorepos.",
+      "useWhen": "Use instead of hand-written monorepo scripts that order builds and skip unchanged packages.",
+      "cautions": [
+        "Remote caching sends artifacts to a provider; keep secrets out of outputs."
+      ],
+      "tags": [
+        "monorepo",
+        "build",
+        "cache",
+        "typescript"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "turbo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vercel/turborepo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nx",
+      "name": "Nx",
+      "category": "monorepo",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nrwl/nx/blob/HEAD/LICENSE",
+        "scope": "MIT for the open-source CLI and plugins; Nx Cloud is a separate paid service."
+      },
+      "homepage": "https://nx.dev",
+      "repository": "https://github.com/nrwl/nx",
+      "docs": "https://nx.dev/docs",
+      "summary": "Monorepo build system with task graph, affected-project detection, caching and code generators.",
+      "useWhen": "Use instead of custom scripts computing which monorepo projects changed and need rebuilding.",
+      "cautions": [
+        "Nx Cloud features are optional and hosted; review data sharing."
+      ],
+      "tags": [
+        "monorepo",
+        "build",
+        "cache",
+        "generators"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nrwl/nx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pnpm",
+      "name": "pnpm",
+      "category": "package-management",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pnpm/pnpm/blob/HEAD/LICENSE",
+        "scope": "MIT for the package manager."
+      },
+      "homepage": "https://pnpm.io",
+      "repository": "https://github.com/pnpm/pnpm",
+      "docs": "https://pnpm.io/motivation",
+      "summary": "Fast, disk-efficient Node.js package manager with strict dependency isolation and workspace support.",
+      "useWhen": "Use instead of hand-managed node_modules linking in monorepos when a project standardizes on pnpm.",
+      "cautions": [
+        "Do not mix lockfiles; follow the project's chosen package manager (e.g. npm-only repositories)."
+      ],
+      "tags": [
+        "package-manager",
+        "node",
+        "monorepo",
+        "workspaces"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pnpm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pnpm/pnpm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mise",
+      "name": "mise",
+      "category": "toolchains",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jdx/mise/blob/HEAD/LICENSE",
+        "scope": "MIT for the CLI."
+      },
+      "homepage": "https://mise.jdx.dev",
+      "repository": "https://github.com/jdx/mise",
+      "docs": "https://mise.jdx.dev",
+      "summary": "Polyglot tool version manager, environment loader and task runner (asdf-compatible).",
+      "useWhen": "Use instead of per-language version managers and ad-hoc setup scripts for Node, Python, Go and other toolchains.",
+      "cautions": [
+        "Pin exact tool versions in mise.toml; verify plugin sources."
+      ],
+      "tags": [
+        "toolchain",
+        "version-manager",
+        "env",
+        "tasks"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jdx/mise",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "asdf",
+      "name": "asdf",
+      "category": "toolchains",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/asdf-vm/asdf/blob/HEAD/LICENSE",
+        "scope": "MIT for the core; plugins have their own licenses."
+      },
+      "homepage": "https://asdf-vm.com",
+      "repository": "https://github.com/asdf-vm/asdf",
+      "docs": "https://asdf-vm.com/guide/getting-started.html",
+      "summary": "Plugin-based version manager for multiple language runtimes via .tool-versions.",
+      "useWhen": "Use instead of juggling nvm, pyenv and similar tools separately.",
+      "cautions": [
+        "Third-party plugins execute code; review them."
+      ],
+      "tags": [
+        "toolchain",
+        "version-manager",
+        "tool-versions"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/asdf-vm/asdf",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "husky",
+      "name": "Husky",
+      "category": "git-hooks",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/typicode/husky/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://typicode.github.io/husky/",
+      "repository": "https://github.com/typicode/husky",
+      "docs": "https://typicode.github.io/husky/",
+      "summary": "Lightweight manager for Git hooks committed with the repository.",
+      "useWhen": "Use instead of hand-copying scripts into .git/hooks for pre-commit and commit-msg checks.",
+      "cautions": [
+        "Hooks are bypassable (--no-verify); enforce checks in CI too."
+      ],
+      "tags": [
+        "git-hooks",
+        "pre-commit",
+        "node"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "husky"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/typicode/husky",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lint-staged",
+      "name": "lint-staged",
+      "category": "git-hooks",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/lint-staged/lint-staged/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/lint-staged/lint-staged",
+      "docs": "https://github.com/lint-staged/lint-staged#readme",
+      "summary": "Runs linters and formatters only on staged Git files.",
+      "useWhen": "Use instead of custom scripts that diff staged files and pipe them to linters.",
+      "cautions": [
+        "Pair with a hook manager (Husky/lefthook); still run full checks in CI."
+      ],
+      "tags": [
+        "git-hooks",
+        "lint",
+        "pre-commit"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lint-staged"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lint-staged/lint-staged",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lefthook",
+      "name": "Lefthook",
+      "category": "git-hooks",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/evilmartians/lefthook/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://lefthook.dev",
+      "repository": "https://github.com/evilmartians/lefthook",
+      "docs": "https://lefthook.dev",
+      "summary": "Fast polyglot Git hooks manager with parallel commands configured in lefthook.yml.",
+      "useWhen": "Use instead of hand-written hook scripts in multi-language repositories.",
+      "cautions": [
+        "Hooks are local conveniences; CI remains the enforcement point."
+      ],
+      "tags": [
+        "git-hooks",
+        "pre-commit",
+        "polyglot"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lefthook"
+        },
+        {
+          "ecosystem": "go",
+          "name": "github.com/evilmartians/lefthook"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/evilmartians/lefthook",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "docker-docs",
+      "name": "Docker documentation",
+      "category": "containers",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Documentation reference; Docker Engine components are Apache-2.0, Docker Desktop has commercial subscription terms for larger organizations."
+      },
+      "homepage": "https://docs.docker.com",
+      "repository": null,
+      "docs": "https://docs.docker.com",
+      "summary": "Official reference for Dockerfiles, images, builds, networking and the Docker CLI.",
+      "useWhen": "Use instead of guessing Dockerfile syntax or build/security best practices.",
+      "cautions": [
+        "Docker Desktop licensing differs from the open-source engine."
+      ],
+      "tags": [
+        "docker",
+        "containers",
+        "dockerfile",
+        "reference"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.docker.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Reference only."
+      ]
+    },
+    {
+      "id": "docker-compose",
+      "name": "Docker Compose",
+      "category": "containers",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/docker/compose/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://docs.docker.com/compose/",
+      "repository": "https://github.com/docker/compose",
+      "docs": "https://docs.docker.com/compose/",
+      "summary": "Defines and runs multi-container applications from a compose.yaml file.",
+      "useWhen": "Use instead of shell scripts that start, network and tear down local service containers.",
+      "cautions": [
+        "Keep secrets out of compose files; use env files excluded from Git."
+      ],
+      "tags": [
+        "docker",
+        "compose",
+        "local-dev",
+        "containers"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/docker/compose",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "podman",
+      "name": "Podman",
+      "category": "containers",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/containers/podman/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://podman.io",
+      "repository": "https://github.com/containers/podman",
+      "docs": "https://docs.podman.io",
+      "summary": "Daemonless, rootless OCI container engine with a Docker-compatible CLI.",
+      "useWhen": "Use instead of a root Docker daemon when rootless containers or Docker Desktop licensing are concerns.",
+      "cautions": [
+        "Compose and socket compatibility is good but not identical to Docker."
+      ],
+      "tags": [
+        "containers",
+        "oci",
+        "rootless"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/containers/podman",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "category": "orchestration",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/kubernetes/kubernetes/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://kubernetes.io",
+      "repository": "https://github.com/kubernetes/kubernetes",
+      "docs": "https://kubernetes.io/docs/home/",
+      "summary": "Container orchestration platform for deploying, scaling and healing workloads.",
+      "useWhen": "Use instead of custom scheduling, rolling-update and health-restart scripts when operating many services.",
+      "cautions": [
+        "Significant operational overhead; prefer a managed PaaS for small apps.",
+        "Configure liveness/readiness probes against real health endpoints."
+      ],
+      "tags": [
+        "kubernetes",
+        "orchestration",
+        "containers",
+        "probes"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kubernetes/kubernetes",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "health-checks",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "helm",
+      "name": "Helm",
+      "category": "orchestration",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/helm/helm/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://helm.sh",
+      "repository": "https://github.com/helm/helm",
+      "docs": "https://helm.sh/docs/",
+      "summary": "Package manager for Kubernetes that templates and versions application manifests as charts.",
+      "useWhen": "Use instead of copy-pasted, hand-templated Kubernetes YAML per environment.",
+      "cautions": [
+        "Third-party charts are executable configuration; review and pin versions."
+      ],
+      "tags": [
+        "kubernetes",
+        "helm",
+        "charts",
+        "deploy"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/helm/helm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "kind",
+      "name": "kind",
+      "category": "orchestration",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/kubernetes-sigs/kind/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://kind.sigs.k8s.io",
+      "repository": "https://github.com/kubernetes-sigs/kind",
+      "docs": "https://kind.sigs.k8s.io",
+      "summary": "Runs local Kubernetes clusters using Docker container nodes, mainly for testing and CI.",
+      "useWhen": "Use instead of provisioning a cloud cluster to test manifests or controllers in CI.",
+      "cautions": [
+        "Not for production workloads."
+      ],
+      "tags": [
+        "kubernetes",
+        "local",
+        "ci",
+        "testing"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "sigs.k8s.io/kind"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kubernetes-sigs/kind",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "k3d",
+      "name": "k3d",
+      "category": "orchestration",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/k3d-io/k3d/blob/HEAD/LICENSE",
+        "scope": "MIT for k3d; k3s itself is Apache-2.0."
+      },
+      "homepage": "https://k3d.io",
+      "repository": "https://github.com/k3d-io/k3d",
+      "docs": "https://k3d.io",
+      "summary": "Runs lightweight k3s Kubernetes clusters in Docker for local development.",
+      "useWhen": "Use instead of heavyweight local clusters when iterating on Kubernetes deployments.",
+      "cautions": [
+        "k3s defaults (Traefik, local-path storage) differ from managed clusters."
+      ],
+      "tags": [
+        "kubernetes",
+        "k3s",
+        "local-dev"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/k3d-io/k3d",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "opentofu",
+      "name": "OpenTofu",
+      "category": "iac",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/opentofu/opentofu/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0; open-source fork of Terraform under the Linux Foundation."
+      },
+      "homepage": "https://opentofu.org",
+      "repository": "https://github.com/opentofu/opentofu",
+      "docs": "https://opentofu.org/docs/",
+      "summary": "Open-source infrastructure-as-code tool compatible with Terraform configurations and providers.",
+      "useWhen": "Use instead of click-ops or hand-written cloud API scripts for provisioning infrastructure, when an OSI license is required.",
+      "cautions": [
+        "State files contain secrets; use encrypted remote state.",
+        "Review plans before apply; apply is a real-world effect."
+      ],
+      "tags": [
+        "iac",
+        "terraform",
+        "infrastructure",
+        "cloud"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/opentofu/opentofu",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform",
+      "category": "iac",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "BUSL-1.1",
+        "url": "https://github.com/hashicorp/terraform/blob/HEAD/LICENSE",
+        "scope": "Business Source License 1.1 (source-available, not OSI) since v1.6; restricts competing hosted offerings. Review before embedding or offering as a service; consider OpenTofu."
+      },
+      "homepage": "https://developer.hashicorp.com/terraform",
+      "repository": "https://github.com/hashicorp/terraform",
+      "docs": "https://developer.hashicorp.com/terraform/docs",
+      "summary": "HashiCorp's infrastructure-as-code tool with a large provider ecosystem.",
+      "useWhen": "Use instead of hand-written cloud provisioning scripts when the organization already standardizes on Terraform and accepts BUSL terms.",
+      "cautions": [
+        "BUSL license: needs review for embedding in a commercial product.",
+        "State files contain secrets."
+      ],
+      "tags": [
+        "iac",
+        "infrastructure",
+        "cloud",
+        "busl"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hashicorp/terraform",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pulumi",
+      "name": "Pulumi",
+      "category": "iac",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/pulumi/pulumi/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the engine and SDKs; Pulumi Cloud is a separate optional service."
+      },
+      "homepage": "https://www.pulumi.com",
+      "repository": "https://github.com/pulumi/pulumi",
+      "docs": "https://www.pulumi.com/docs/",
+      "summary": "Infrastructure as code in TypeScript, Python, Go, C# and Java.",
+      "useWhen": "Use instead of hand-written cloud SDK provisioning scripts when infrastructure should live in a general-purpose language.",
+      "cautions": [
+        "Default state backend is Pulumi Cloud; choose a self-managed backend if data must stay local."
+      ],
+      "tags": [
+        "iac",
+        "infrastructure",
+        "typescript",
+        "python"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@pulumi/pulumi"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "pulumi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pulumi/pulumi",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ansible",
+      "name": "Ansible",
+      "category": "iac",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/ansible/ansible/blob/HEAD/COPYING",
+        "scope": "GPL-3.0-or-later for ansible-core; using it to manage hosts does not affect your application license."
+      },
+      "homepage": "https://www.ansible.com",
+      "repository": "https://github.com/ansible/ansible",
+      "docs": "https://docs.ansible.com",
+      "summary": "Agentless configuration management and automation over SSH using YAML playbooks.",
+      "useWhen": "Use instead of hand-written SSH shell scripts for server configuration and deployment.",
+      "cautions": [
+        "Encrypt secrets with Ansible Vault or an external secret store.",
+        "Galaxy collections are third-party code; pin and review."
+      ],
+      "tags": [
+        "configuration-management",
+        "automation",
+        "ssh",
+        "python"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "ansible-core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ansible/ansible",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "caddy",
+      "name": "Caddy",
+      "category": "web-servers",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/caddyserver/caddy/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://caddyserver.com",
+      "repository": "https://github.com/caddyserver/caddy",
+      "docs": "https://caddyserver.com/docs/",
+      "summary": "Web server and reverse proxy with automatic HTTPS certificates.",
+      "useWhen": "Use instead of hand-configured TLS certificate renewal and reverse-proxy setup.",
+      "cautions": [
+        "Set security headers explicitly; defaults do not include a CSP."
+      ],
+      "tags": [
+        "web-server",
+        "reverse-proxy",
+        "tls",
+        "https"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/caddyserver/caddy/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/caddyserver/caddy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "security-headers",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "traefik",
+      "name": "Traefik",
+      "category": "web-servers",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/traefik/traefik/blob/HEAD/LICENSE.md",
+        "scope": "MIT for Traefik Proxy; Traefik Enterprise/Hub are commercial."
+      },
+      "homepage": "https://traefik.io/traefik/",
+      "repository": "https://github.com/traefik/traefik",
+      "docs": "https://doc.traefik.io/traefik/",
+      "summary": "Cloud-native reverse proxy and load balancer that configures routes from Docker and Kubernetes labels.",
+      "useWhen": "Use instead of manually rewriting proxy configs when containers come and go.",
+      "cautions": [
+        "Do not expose the dashboard/API publicly without authentication."
+      ],
+      "tags": [
+        "reverse-proxy",
+        "load-balancer",
+        "docker",
+        "kubernetes"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/traefik/traefik",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nginx",
+      "name": "NGINX",
+      "category": "web-servers",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/nginx/nginx/blob/HEAD/LICENSE",
+        "scope": "BSD-2-Clause for open-source NGINX; NGINX Plus is commercial."
+      },
+      "homepage": "https://nginx.org",
+      "repository": "https://github.com/nginx/nginx",
+      "docs": "https://nginx.org/en/docs/",
+      "summary": "High-performance HTTP server, reverse proxy and load balancer.",
+      "useWhen": "Use instead of serving static assets or proxying from application code.",
+      "cautions": [
+        "Add security headers and TLS settings explicitly.",
+        "Use the official repository/packages, not unvetted mirrors."
+      ],
+      "tags": [
+        "web-server",
+        "reverse-proxy",
+        "load-balancer"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nginx/nginx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "security-headers",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "coolify",
+      "name": "Coolify",
+      "category": "paas",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/coollabsio/coolify/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for self-hosting; Coolify Cloud is a paid hosted option."
+      },
+      "homepage": "https://coolify.io",
+      "repository": "https://github.com/coollabsio/coolify",
+      "docs": "https://coolify.io/docs/",
+      "summary": "Self-hostable PaaS for deploying apps, databases and services to your own servers.",
+      "useWhen": "Use instead of building a custom deploy dashboard on top of Docker and a reverse proxy.",
+      "cautions": [
+        "Self-hosting means you own patching, backups and server security."
+      ],
+      "tags": [
+        "paas",
+        "self-hosted",
+        "deploy",
+        "docker"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/coollabsio/coolify",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dokku",
+      "name": "Dokku",
+      "category": "paas",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dokku/dokku/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://dokku.com",
+      "repository": "https://github.com/dokku/dokku",
+      "docs": "https://dokku.com/docs/getting-started/installation/",
+      "summary": "Docker-powered single-server PaaS with git-push deploys.",
+      "useWhen": "Use instead of hand-written deployment scripts for small apps on a single VPS.",
+      "cautions": [
+        "Single-host by design; plan backups and failover."
+      ],
+      "tags": [
+        "paas",
+        "self-hosted",
+        "git-push",
+        "heroku-like"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dokku/dokku",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "kamal",
+      "name": "Kamal",
+      "category": "deploy",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/basecamp/kamal/blob/HEAD/MIT-LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://kamal-deploy.org",
+      "repository": "https://github.com/basecamp/kamal",
+      "docs": "https://kamal-deploy.org/docs/installation/",
+      "summary": "Deploys containerized web apps to any servers with zero-downtime rolling restarts.",
+      "useWhen": "Use instead of hand-written SSH + Docker deployment scripts for VMs or bare metal.",
+      "cautions": [
+        "Keep .kamal/secrets out of Git."
+      ],
+      "tags": [
+        "deploy",
+        "docker",
+        "zero-downtime",
+        "ruby"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "gem",
+          "name": "kamal"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/basecamp/kamal",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sst",
+      "name": "SST",
+      "category": "deploy",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sst/sst/blob/HEAD/LICENSE",
+        "scope": "MIT for the framework; deployed cloud resources are billed by the provider."
+      },
+      "homepage": "https://sst.dev",
+      "repository": "https://github.com/sst/sst",
+      "docs": "https://sst.dev/docs/",
+      "summary": "Framework for defining and deploying full-stack apps and infrastructure on AWS and Cloudflare in TypeScript.",
+      "useWhen": "Use instead of hand-writing infrastructure and deploy glue for serverless full-stack apps.",
+      "cautions": [
+        "Deploys create billable cloud resources; set removal policies for stages."
+      ],
+      "tags": [
+        "deploy",
+        "serverless",
+        "aws",
+        "typescript",
+        "iac"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sst"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sst/sst",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "flyio-docs",
+      "name": "Fly.io",
+      "category": "paas",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; usage is governed by the provider's terms and pricing, not an open-source license."
+      },
+      "homepage": "https://fly.io",
+      "repository": null,
+      "docs": "https://fly.io/docs/",
+      "summary": "Hosted platform that runs containerized apps on VMs close to users.",
+      "useWhen": "Use instead of operating your own servers when a managed container host with global regions fits.",
+      "cautions": [
+        "Usage-based billing; set spend limits and verify region data residency."
+      ],
+      "tags": [
+        "paas",
+        "hosting",
+        "containers",
+        "service"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://fly.io/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install the flyctl CLI from the official docs; authenticate per user."
+      ]
+    },
+    {
+      "id": "render-docs",
+      "name": "Render",
+      "category": "paas",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; usage is governed by the provider's terms and pricing, not an open-source license."
+      },
+      "homepage": "https://render.com",
+      "repository": null,
+      "docs": "https://render.com/docs",
+      "summary": "Managed hosting for web services, static sites, workers, cron jobs and databases.",
+      "useWhen": "Use instead of self-managing servers for typical web apps with Git-based deploys.",
+      "cautions": [
+        "Free tiers sleep and have limits; check plan behavior before relying on them."
+      ],
+      "tags": [
+        "paas",
+        "hosting",
+        "service"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://render.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Connect the repository in the provider dashboard or commit a render.yaml blueprint."
+      ]
+    },
+    {
+      "id": "railway-docs",
+      "name": "Railway",
+      "category": "paas",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; usage is governed by the provider's terms and pricing, not an open-source license."
+      },
+      "homepage": "https://railway.com",
+      "repository": null,
+      "docs": "https://docs.railway.com",
+      "summary": "Managed platform for deploying apps and databases from Git or Docker images.",
+      "useWhen": "Use instead of self-managing servers for prototypes and small production services.",
+      "cautions": [
+        "Usage-based billing; set limits and review backup options."
+      ],
+      "tags": [
+        "paas",
+        "hosting",
+        "service"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.railway.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Connect the repository in the provider dashboard or use the official CLI."
+      ]
+    },
+    {
+      "id": "opentelemetry-js",
+      "name": "OpenTelemetry JavaScript",
+      "category": "observability",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-telemetry/opentelemetry-js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://opentelemetry.io",
+      "repository": "https://github.com/open-telemetry/opentelemetry-js",
+      "docs": "https://opentelemetry.io/docs/languages/js/",
+      "summary": "Vendor-neutral tracing, metrics and logs SDK for Node.js and browsers.",
+      "useWhen": "Use instead of hand-instrumenting request timing and vendor-specific tracing clients.",
+      "cautions": [
+        "Scrub PII from span attributes; local-only data must not be exported.",
+        "Sample in production to control cost."
+      ],
+      "tags": [
+        "opentelemetry",
+        "tracing",
+        "metrics",
+        "node"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@opentelemetry/api"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@opentelemetry/sdk-node"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "opentelemetry-python",
+      "name": "OpenTelemetry Python",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-telemetry/opentelemetry-python/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://opentelemetry.io",
+      "repository": "https://github.com/open-telemetry/opentelemetry-python",
+      "docs": "https://opentelemetry.io/docs/languages/python/",
+      "summary": "Vendor-neutral tracing, metrics and logs API and SDK for Python.",
+      "useWhen": "Use instead of hand-written timing middleware and vendor-locked tracing clients in Python services.",
+      "cautions": [
+        "Scrub PII from attributes before export."
+      ],
+      "tags": [
+        "opentelemetry",
+        "tracing",
+        "metrics",
+        "python"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "opentelemetry-api"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "opentelemetry-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "opentelemetry-collector",
+      "name": "OpenTelemetry Collector",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-telemetry/opentelemetry-collector/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://opentelemetry.io",
+      "repository": "https://github.com/open-telemetry/opentelemetry-collector",
+      "docs": "https://opentelemetry.io/docs/collector/",
+      "summary": "Vendor-agnostic agent/gateway that receives, processes and exports telemetry.",
+      "useWhen": "Use instead of custom telemetry relays, batching and per-vendor exporters in each service.",
+      "cautions": [
+        "Use processors to redact sensitive attributes centrally.",
+        "contrib distribution has many more components; include only what you need."
+      ],
+      "tags": [
+        "opentelemetry",
+        "collector",
+        "telemetry",
+        "pipeline"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "otel/opentelemetry-collector-contrib"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-telemetry/opentelemetry-collector",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "prometheus",
+      "name": "Prometheus",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/prometheus/prometheus/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://prometheus.io",
+      "repository": "https://github.com/prometheus/prometheus",
+      "docs": "https://prometheus.io/docs/introduction/overview/",
+      "summary": "Pull-based metrics database and alerting toolkit with the PromQL query language.",
+      "useWhen": "Use instead of custom metric storage and threshold-alert scripts.",
+      "cautions": [
+        "Avoid high-cardinality labels such as user IDs."
+      ],
+      "tags": [
+        "metrics",
+        "monitoring",
+        "alerting",
+        "promql"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/prometheus/prometheus",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "health-checks",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "category": "observability",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/grafana/grafana/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for Grafana OSS; running it unmodified is common, but modifying and serving it requires source availability. Grafana Cloud/Enterprise are commercial."
+      },
+      "homepage": "https://grafana.com/oss/grafana/",
+      "repository": "https://github.com/grafana/grafana",
+      "docs": "https://grafana.com/docs/grafana/latest/",
+      "summary": "Dashboards and alerting over Prometheus, Loki, Tempo, SQL and many other data sources.",
+      "useWhen": "Use instead of building custom operational dashboards and alert UIs.",
+      "cautions": [
+        "AGPL: do not embed modified Grafana in a product without license review.",
+        "Change the default admin credentials."
+      ],
+      "tags": [
+        "dashboards",
+        "monitoring",
+        "alerting",
+        "agpl"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/grafana/grafana",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "grafana-loki",
+      "name": "Grafana Loki",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/grafana/loki/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for Loki; client libraries and some components use Apache-2.0."
+      },
+      "homepage": "https://grafana.com/oss/loki/",
+      "repository": "https://github.com/grafana/loki",
+      "docs": "https://grafana.com/docs/loki/latest/",
+      "summary": "Log aggregation system that indexes labels rather than full log content.",
+      "useWhen": "Use instead of shipping logs to ad-hoc files or a custom search index.",
+      "cautions": [
+        "Keep label cardinality low; scrub secrets before ingestion."
+      ],
+      "tags": [
+        "logs",
+        "aggregation",
+        "agpl"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/grafana/loki",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "grafana-tempo",
+      "name": "Grafana Tempo",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/grafana/tempo/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0."
+      },
+      "homepage": "https://grafana.com/oss/tempo/",
+      "repository": "https://github.com/grafana/tempo",
+      "docs": "https://grafana.com/docs/tempo/latest/",
+      "summary": "High-scale distributed tracing backend that stores traces in object storage.",
+      "useWhen": "Use instead of running a custom trace store for OpenTelemetry data.",
+      "cautions": [
+        "AGPL; review before modifying or offering as a service."
+      ],
+      "tags": [
+        "tracing",
+        "opentelemetry",
+        "agpl"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/grafana/tempo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "jaeger",
+      "name": "Jaeger",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/jaegertracing/jaeger/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0; CNCF graduated project."
+      },
+      "homepage": "https://www.jaegertracing.io",
+      "repository": "https://github.com/jaegertracing/jaeger",
+      "docs": "https://www.jaegertracing.io/docs/",
+      "summary": "Distributed tracing backend and UI that accepts OpenTelemetry data.",
+      "useWhen": "Use instead of grepping logs to follow requests across services.",
+      "cautions": [
+        "Use OpenTelemetry SDKs for instrumentation; Jaeger client libraries are retired."
+      ],
+      "tags": [
+        "tracing",
+        "opentelemetry",
+        "distributed-systems"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "jaegertracing/jaeger"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jaegertracing/jaeger",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sentry-javascript",
+      "name": "Sentry JavaScript SDK",
+      "category": "observability",
+      "platforms": [
+        "web",
+        "server",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/getsentry/sentry-javascript/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; the Sentry service is commercial SaaS (self-hosted Sentry uses FSL)."
+      },
+      "homepage": "https://sentry.io",
+      "repository": "https://github.com/getsentry/sentry-javascript",
+      "docs": "https://docs.sentry.io/platforms/javascript/",
+      "summary": "Error and performance monitoring SDK for browsers, Node.js and JS frameworks.",
+      "useWhen": "Use instead of hand-written global error handlers that post stack traces to a custom endpoint.",
+      "cautions": [
+        "Configure beforeSend to scrub PII; session replay needs privacy review."
+      ],
+      "tags": [
+        "errors",
+        "monitoring",
+        "apm",
+        "javascript"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@sentry/node"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@sentry/browser"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/getsentry/sentry-javascript",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sentry-python",
+      "name": "Sentry Python SDK",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/getsentry/sentry-python/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; the Sentry service is commercial SaaS."
+      },
+      "homepage": "https://sentry.io",
+      "repository": "https://github.com/getsentry/sentry-python",
+      "docs": "https://docs.sentry.io/platforms/python/",
+      "summary": "Error and performance monitoring SDK for Python with Django, Flask, FastAPI and Celery integrations.",
+      "useWhen": "Use instead of custom exception hooks and email-on-error scripts.",
+      "cautions": [
+        "Disable send_default_pii unless reviewed."
+      ],
+      "tags": [
+        "errors",
+        "monitoring",
+        "apm",
+        "python"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sentry-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/getsentry/sentry-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pino",
+      "name": "pino",
+      "category": "logging",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pinojs/pino/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://getpino.io",
+      "repository": "https://github.com/pinojs/pino",
+      "docs": "https://getpino.io",
+      "summary": "Very fast JSON structured logger for Node.js.",
+      "useWhen": "Use instead of console.log wrappers or hand-built JSON log formatting in Node services.",
+      "cautions": [
+        "Configure redact paths for secrets and tokens."
+      ],
+      "tags": [
+        "logging",
+        "json",
+        "node",
+        "structured"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pino"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pinojs/pino",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "winston",
+      "name": "winston",
+      "category": "logging",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/winstonjs/winston/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/winstonjs/winston",
+      "docs": "https://github.com/winstonjs/winston#readme",
+      "summary": "Versatile Node.js logger with pluggable transports and formats.",
+      "useWhen": "Use instead of hand-rolled multi-destination logging in Node applications.",
+      "cautions": [
+        "Slower than pino; redact sensitive fields in formats."
+      ],
+      "tags": [
+        "logging",
+        "node",
+        "transports"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "winston"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/winstonjs/winston",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "structlog",
+      "name": "structlog",
+      "category": "logging",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/hynek/structlog/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0."
+      },
+      "homepage": "https://www.structlog.org",
+      "repository": "https://github.com/hynek/structlog",
+      "docs": "https://www.structlog.org/en/stable/",
+      "summary": "Structured logging for Python with processor pipelines and JSON output.",
+      "useWhen": "Use instead of string-formatted logging and custom JSON log formatters in Python.",
+      "cautions": [
+        "Add a processor that drops secrets before rendering."
+      ],
+      "tags": [
+        "logging",
+        "python",
+        "structured",
+        "json"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "structlog"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hynek/structlog",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "loguru",
+      "name": "Loguru",
+      "category": "logging",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Delgan/loguru/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Delgan/loguru",
+      "docs": "https://loguru.readthedocs.io",
+      "summary": "Python logging library with zero-boilerplate setup, rotation and structured serialization.",
+      "useWhen": "Use instead of verbose logging.config setup for scripts and services.",
+      "cautions": [
+        "Use serialize=True for machine-readable logs; avoid logging secrets in exceptions with diagnose=True in production."
+      ],
+      "tags": [
+        "logging",
+        "python",
+        "rotation"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "loguru"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Delgan/loguru",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "zap",
+      "name": "zap",
+      "category": "logging",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/uber-go/zap/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/uber-go/zap",
+      "docs": "https://pkg.go.dev/go.uber.org/zap",
+      "summary": "Blazing fast, structured, leveled logging for Go.",
+      "useWhen": "Use instead of fmt-based log lines or hand-built JSON logging in Go services.",
+      "cautions": [
+        "Consider the standard library log/slog for simple needs."
+      ],
+      "tags": [
+        "logging",
+        "go",
+        "structured"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "go.uber.org/zap"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/uber-go/zap",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "zerolog",
+      "name": "zerolog",
+      "category": "logging",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rs/zerolog/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/rs/zerolog",
+      "docs": "https://pkg.go.dev/github.com/rs/zerolog",
+      "summary": "Zero-allocation JSON logger for Go.",
+      "useWhen": "Use instead of hand-written JSON log encoding in latency-sensitive Go code.",
+      "cautions": [
+        "Avoid logging request bodies containing secrets."
+      ],
+      "tags": [
+        "logging",
+        "go",
+        "json"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/rs/zerolog"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rs/zerolog",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tokio-tracing",
+      "name": "tracing (Rust)",
+      "category": "logging",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tokio-rs/tracing/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://tokio.rs",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "docs": "https://docs.rs/tracing",
+      "summary": "Application-level structured tracing and logging framework for Rust, including async code.",
+      "useWhen": "Use instead of println!-style logging or hand-built span timing in Rust services.",
+      "cautions": [
+        "Pair with tracing-subscriber and filter levels per environment."
+      ],
+      "tags": [
+        "logging",
+        "tracing",
+        "rust",
+        "async"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "tracing"
+        },
+        {
+          "ecosystem": "crates",
+          "name": "tracing-subscriber"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tokio-rs/tracing",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "structured-logger",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "uptime-kuma",
+      "name": "Uptime Kuma",
+      "category": "monitoring",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/louislam/uptime-kuma/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://uptime.kuma.pet",
+      "repository": "https://github.com/louislam/uptime-kuma",
+      "docs": "https://github.com/louislam/uptime-kuma/wiki",
+      "summary": "Self-hosted uptime monitor with HTTP, TCP, DNS checks, status pages and notifications.",
+      "useWhen": "Use instead of cron-based ping scripts for endpoint availability monitoring.",
+      "cautions": [
+        "Protect the admin UI; monitor from outside the infrastructure being checked."
+      ],
+      "tags": [
+        "uptime",
+        "monitoring",
+        "status-page",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "louislam/uptime-kuma"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/louislam/uptime-kuma",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "health-checks",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vitest",
+      "name": "Vitest",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vitest-dev/vitest/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://vitest.dev",
+      "repository": "https://github.com/vitest-dev/vitest",
+      "docs": "https://vitest.dev/guide/",
+      "summary": "Vite-native unit test framework with Jest-compatible APIs, fast watch mode and coverage.",
+      "useWhen": "Use instead of hand-rolled assertion runners or slow transpile-heavy test setups in Vite/TypeScript projects.",
+      "cautions": [
+        "Pick jsdom/happy-dom or browser mode deliberately; they differ from real browsers."
+      ],
+      "tags": [
+        "testing",
+        "unit",
+        "typescript",
+        "vite"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vitest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vitest-dev/vitest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "jest",
+      "name": "Jest",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jestjs/jest/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://jestjs.io",
+      "repository": "https://github.com/jestjs/jest",
+      "docs": "https://jestjs.io/docs/getting-started",
+      "summary": "Widely used JavaScript test runner with mocking, snapshots and coverage.",
+      "useWhen": "Use instead of custom test harnesses in existing Jest-based or React Native projects.",
+      "cautions": [
+        "ESM and TypeScript need extra transform configuration."
+      ],
+      "tags": [
+        "testing",
+        "unit",
+        "javascript",
+        "snapshots"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "jest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jestjs/jest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/microsoft/playwright/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://playwright.dev",
+      "repository": "https://github.com/microsoft/playwright",
+      "docs": "https://playwright.dev/docs/intro",
+      "summary": "Cross-browser end-to-end testing and automation for Chromium, Firefox and WebKit.",
+      "useWhen": "Use instead of hand-written Selenium scripts and sleeps for end-to-end and browser regression tests.",
+      "cautions": [
+        "Prefer role/label locators; use traces to debug flaky tests.",
+        "Browser binaries download separately."
+      ],
+      "tags": [
+        "testing",
+        "e2e",
+        "browser",
+        "automation"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app",
+        "browser-automation"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@playwright/test"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "playwright"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/playwright",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cypress",
+      "name": "Cypress",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cypress-io/cypress/blob/HEAD/LICENSE",
+        "scope": "MIT for the test runner; Cypress Cloud is a paid service."
+      },
+      "homepage": "https://www.cypress.io",
+      "repository": "https://github.com/cypress-io/cypress",
+      "docs": "https://docs.cypress.io",
+      "summary": "In-browser end-to-end and component testing with time-travel debugging.",
+      "useWhen": "Use instead of hand-written browser automation for front-end E2E and component tests.",
+      "cautions": [
+        "Runs inside the browser; multi-tab and multi-origin flows are limited."
+      ],
+      "tags": [
+        "testing",
+        "e2e",
+        "component",
+        "browser"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "cypress"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cypress-io/cypress",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "testing-library",
+      "name": "Testing Library",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/testing-library/react-testing-library/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://testing-library.com",
+      "repository": "https://github.com/testing-library/react-testing-library",
+      "docs": "https://testing-library.com/docs/",
+      "summary": "Utilities for testing UI components the way users interact with them, for React, Vue, Svelte, Angular and DOM.",
+      "useWhen": "Use instead of implementation-detail tests that poke component internals.",
+      "cautions": [
+        "Query by role and label first; use user-event for realistic interactions."
+      ],
+      "tags": [
+        "testing",
+        "react",
+        "accessibility",
+        "components"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@testing-library/react"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@testing-library/dom"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/testing-library/react-testing-library",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "msw",
+      "name": "Mock Service Worker",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mswjs/msw/blob/HEAD/LICENSE.md",
+        "scope": "MIT."
+      },
+      "homepage": "https://mswjs.io",
+      "repository": "https://github.com/mswjs/msw",
+      "docs": "https://mswjs.io/docs/",
+      "summary": "API mocking library that intercepts network requests in browsers and Node.js.",
+      "useWhen": "Use instead of stubbing fetch/axios by hand in tests and local development.",
+      "cautions": [
+        "Keep handlers in sync with the real API contract (generate from OpenAPI where possible)."
+      ],
+      "tags": [
+        "testing",
+        "mocking",
+        "http",
+        "api"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "msw"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mswjs/msw",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "storybook-test-runner",
+      "name": "Storybook test runner",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/storybookjs/test-runner/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://storybook.js.org",
+      "repository": "https://github.com/storybookjs/test-runner",
+      "docs": "https://storybook.js.org/docs/writing-tests",
+      "summary": "Turns Storybook stories into executable smoke, interaction and accessibility tests.",
+      "useWhen": "Use instead of duplicating component states in separate test files.",
+      "cautions": [
+        "Newer Storybook versions favor the Vitest addon; follow the docs for your Storybook version."
+      ],
+      "tags": [
+        "testing",
+        "storybook",
+        "components",
+        "interaction"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@storybook/test-runner"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/storybookjs/test-runner",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pytest",
+      "name": "pytest",
+      "category": "testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pytest-dev/pytest/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://pytest.org",
+      "repository": "https://github.com/pytest-dev/pytest",
+      "docs": "https://docs.pytest.org",
+      "summary": "Python testing framework with fixtures, parametrization and a large plugin ecosystem.",
+      "useWhen": "Use instead of unittest boilerplate or custom test runners in Python.",
+      "cautions": [
+        "Plugins run code at collection time; pin and review them."
+      ],
+      "tags": [
+        "testing",
+        "python",
+        "fixtures",
+        "unit"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pytest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pytest-dev/pytest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hypothesis",
+      "name": "Hypothesis",
+      "category": "testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/HypothesisWorks/hypothesis/blob/HEAD/LICENSE.txt",
+        "scope": "MPL-2.0 (file-level copyleft; using it as a test dependency is unaffected)."
+      },
+      "homepage": "https://hypothesis.works",
+      "repository": "https://github.com/HypothesisWorks/hypothesis",
+      "docs": "https://hypothesis.readthedocs.io",
+      "summary": "Property-based testing for Python that generates and shrinks failing inputs.",
+      "useWhen": "Use instead of hand-enumerated edge-case tables for parsers, serializers and invariants.",
+      "cautions": [
+        "Commit the example database or seeds to reproduce CI failures."
+      ],
+      "tags": [
+        "testing",
+        "property-based",
+        "python",
+        "fuzzing"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "hypothesis"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/HypothesisWorks/hypothesis",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "testify",
+      "name": "Testify",
+      "category": "testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/stretchr/testify/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/stretchr/testify",
+      "docs": "https://pkg.go.dev/github.com/stretchr/testify",
+      "summary": "Assertions, mocks and suites for Go tests.",
+      "useWhen": "Use instead of repetitive if/t.Errorf assertion boilerplate in Go tests.",
+      "cautions": [
+        "Use require for fatal preconditions and assert for checks."
+      ],
+      "tags": [
+        "testing",
+        "go",
+        "assertions",
+        "mocks"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/stretchr/testify"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stretchr/testify",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rstest",
+      "name": "rstest",
+      "category": "testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/la10736/rstest/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0."
+      },
+      "homepage": null,
+      "repository": "https://github.com/la10736/rstest",
+      "docs": "https://docs.rs/rstest",
+      "summary": "Fixture-based and parametrized test framework for Rust.",
+      "useWhen": "Use instead of copy-pasted Rust test functions for each input case.",
+      "cautions": [
+        "Procedural macros add compile time."
+      ],
+      "tags": [
+        "testing",
+        "rust",
+        "fixtures",
+        "parametrized"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "rstest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/la10736/rstest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "proptest",
+      "name": "proptest",
+      "category": "testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/proptest-rs/proptest/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0."
+      },
+      "homepage": null,
+      "repository": "https://github.com/proptest-rs/proptest",
+      "docs": "https://docs.rs/proptest",
+      "summary": "Hypothesis-like property-based testing with shrinking for Rust.",
+      "useWhen": "Use instead of hand-picked edge cases for Rust parsers and data structures.",
+      "cautions": [
+        "Commit proptest-regressions files to reproduce failures."
+      ],
+      "tags": [
+        "testing",
+        "rust",
+        "property-based"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "proptest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/proptest-rs/proptest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "k6",
+      "name": "Grafana k6",
+      "category": "load-testing",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/grafana/k6/blob/HEAD/LICENSE.md",
+        "scope": "AGPL-3.0 for the k6 CLI; test scripts you write are your own. Grafana Cloud k6 is commercial."
+      },
+      "homepage": "https://k6.io",
+      "repository": "https://github.com/grafana/k6",
+      "docs": "https://grafana.com/docs/k6/latest/",
+      "summary": "Load and performance testing tool with JavaScript test scripts.",
+      "useWhen": "Use instead of hand-written concurrent request loops for load testing.",
+      "cautions": [
+        "Only load-test systems you own or are authorized to test.",
+        "AGPL: review before modifying or redistributing."
+      ],
+      "tags": [
+        "load-testing",
+        "performance",
+        "javascript"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "go.k6.io/k6"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/grafana/k6",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "locust",
+      "name": "Locust",
+      "category": "load-testing",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/locustio/locust/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://locust.io",
+      "repository": "https://github.com/locustio/locust",
+      "docs": "https://docs.locust.io",
+      "summary": "Scalable load testing with user behavior written in Python.",
+      "useWhen": "Use instead of custom threaded Python scripts for load generation.",
+      "cautions": [
+        "Only test systems you are authorized to load."
+      ],
+      "tags": [
+        "load-testing",
+        "performance",
+        "python"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "locust"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/locustio/locust",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "artillery",
+      "name": "Artillery",
+      "category": "load-testing",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/artilleryio/artillery/blob/HEAD/LICENSE.txt",
+        "scope": "MPL-2.0 for the CLI; Artillery Cloud is a paid service."
+      },
+      "homepage": "https://www.artillery.io",
+      "repository": "https://github.com/artilleryio/artillery",
+      "docs": "https://www.artillery.io/docs",
+      "summary": "Load testing for HTTP, WebSocket and Playwright-driven browser scenarios defined in YAML or JS.",
+      "useWhen": "Use instead of hand-written load scripts when YAML scenarios or Playwright-based load tests fit.",
+      "cautions": [
+        "Distributed runs on cloud accounts incur cost."
+      ],
+      "tags": [
+        "load-testing",
+        "performance",
+        "node",
+        "websocket"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "artillery"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/artilleryio/artillery",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "axe-core",
+      "name": "axe-core",
+      "category": "accessibility",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/dequelabs/axe-core/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 (file-level copyleft; unmodified use as a dependency is straightforward)."
+      },
+      "homepage": "https://www.deque.com/axe/",
+      "repository": "https://github.com/dequelabs/axe-core",
+      "docs": "https://github.com/dequelabs/axe-core#readme",
+      "summary": "Accessibility rules engine for automated WCAG checks in browsers and test frameworks.",
+      "useWhen": "Use instead of hand-written accessibility assertions in unit, E2E and CI tests.",
+      "cautions": [
+        "Automated rules catch only part of WCAG; include manual and assistive-technology checks."
+      ],
+      "tags": [
+        "accessibility",
+        "a11y",
+        "wcag",
+        "testing"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app",
+        "legal-compliance"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "axe-core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dequelabs/axe-core",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pa11y",
+      "name": "Pa11y",
+      "category": "accessibility",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "url": "https://github.com/pa11y/pa11y/blob/HEAD/LICENSE",
+        "scope": "LGPL-3.0."
+      },
+      "homepage": "https://pa11y.org",
+      "repository": "https://github.com/pa11y/pa11y",
+      "docs": "https://github.com/pa11y/pa11y#readme",
+      "summary": "Command-line and Node accessibility tester that runs axe or HTML_CodeSniffer against pages.",
+      "useWhen": "Use instead of manual page-by-page accessibility spot checks; pa11y-ci runs URL lists in CI.",
+      "cautions": [
+        "Automated checks are partial coverage of WCAG."
+      ],
+      "tags": [
+        "accessibility",
+        "a11y",
+        "ci",
+        "cli"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pa11y"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pa11y/pa11y",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lighthouse-ci",
+      "name": "Lighthouse CI",
+      "category": "performance",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/GoogleChrome/lighthouse-ci/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": null,
+      "repository": "https://github.com/GoogleChrome/lighthouse-ci",
+      "docs": "https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/getting-started.md",
+      "summary": "Runs Lighthouse in CI and asserts budgets for performance, accessibility, SEO and best practices.",
+      "useWhen": "Use instead of manual Lighthouse runs and ad-hoc performance budget scripts.",
+      "cautions": [
+        "Scores vary run to run; use multiple runs and budget tolerances."
+      ],
+      "tags": [
+        "performance",
+        "lighthouse",
+        "ci",
+        "web-vitals"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@lhci/cli"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/GoogleChrome/lighthouse-ci",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "testcontainers-node",
+      "name": "Testcontainers for Node.js",
+      "category": "testing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/testcontainers/testcontainers-node/blob/HEAD/LICENSE",
+        "scope": "MIT; sibling projects exist for Java, Go, Python, .NET and Rust."
+      },
+      "homepage": "https://testcontainers.com",
+      "repository": "https://github.com/testcontainers/testcontainers-node",
+      "docs": "https://node.testcontainers.org",
+      "summary": "Starts throwaway Docker containers (databases, brokers, browsers) from integration tests.",
+      "useWhen": "Use instead of shared test databases or hand-written docker run scripts in integration tests.",
+      "cautions": [
+        "Requires a Docker-compatible runtime in CI."
+      ],
+      "tags": [
+        "testing",
+        "integration",
+        "docker",
+        "databases"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "testcontainers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/testcontainers/testcontainers-node",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "testcontainers-go",
+      "name": "Testcontainers for Go",
+      "category": "testing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/testcontainers/testcontainers-go/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://testcontainers.com",
+      "repository": "https://github.com/testcontainers/testcontainers-go",
+      "docs": "https://golang.testcontainers.org",
+      "summary": "Go library for disposable Docker containers in integration tests.",
+      "useWhen": "Use instead of hand-written container setup and teardown in Go integration tests.",
+      "cautions": [
+        "Requires a Docker-compatible runtime."
+      ],
+      "tags": [
+        "testing",
+        "integration",
+        "docker",
+        "go"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/testcontainers/testcontainers-go"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/testcontainers/testcontainers-go",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "testcontainers-python",
+      "name": "Testcontainers for Python",
+      "category": "testing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/testcontainers/testcontainers-python/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://testcontainers.com",
+      "repository": "https://github.com/testcontainers/testcontainers-python",
+      "docs": "https://testcontainers-python.readthedocs.io",
+      "summary": "Python library for disposable Docker containers in integration tests.",
+      "useWhen": "Use instead of hand-written container fixtures in pytest integration tests.",
+      "cautions": [
+        "Requires a Docker-compatible runtime."
+      ],
+      "tags": [
+        "testing",
+        "integration",
+        "docker",
+        "python"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "testcontainers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/testcontainers/testcontainers-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "faker-js",
+      "name": "Faker (JavaScript)",
+      "category": "test-data",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/faker-js/faker/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://fakerjs.dev",
+      "repository": "https://github.com/faker-js/faker",
+      "docs": "https://fakerjs.dev/guide/",
+      "summary": "Generates realistic fake names, addresses, dates and other data for tests and seeds.",
+      "useWhen": "Use instead of hand-written fixture generators and hard-coded sample data.",
+      "cautions": [
+        "Seed the generator for reproducible tests; never use fake data as real PII."
+      ],
+      "tags": [
+        "test-data",
+        "fixtures",
+        "seeding",
+        "javascript"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@faker-js/faker"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/faker-js/faker",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "faker-python",
+      "name": "Faker (Python)",
+      "category": "test-data",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/joke2k/faker/blob/HEAD/LICENSE.txt",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/joke2k/faker",
+      "docs": "https://faker.readthedocs.io",
+      "summary": "Python package that generates fake data for tests, seeds and anonymization.",
+      "useWhen": "Use instead of hand-written random fixture builders in Python.",
+      "cautions": [
+        "Seed for determinism."
+      ],
+      "tags": [
+        "test-data",
+        "fixtures",
+        "python"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "Faker"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/joke2k/faker",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "fast-check",
+      "name": "fast-check",
+      "category": "testing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dubzzz/fast-check/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://fast-check.dev",
+      "repository": "https://github.com/dubzzz/fast-check",
+      "docs": "https://fast-check.dev/docs/introduction/",
+      "summary": "Property-based testing for JavaScript and TypeScript with shrinking.",
+      "useWhen": "Use instead of hand-picked edge cases for parsers, reducers and validation logic.",
+      "cautions": [
+        "Log the seed on failure to reproduce."
+      ],
+      "tags": [
+        "testing",
+        "property-based",
+        "typescript"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "fast-check"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dubzzz/fast-check",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "stryker-js",
+      "name": "StrykerJS",
+      "category": "testing",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/stryker-mutator/stryker-js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0; Stryker.NET and Stryker4s are sibling projects."
+      },
+      "homepage": "https://stryker-mutator.io",
+      "repository": "https://github.com/stryker-mutator/stryker-js",
+      "docs": "https://stryker-mutator.io/docs/stryker-js/introduction/",
+      "summary": "Mutation testing for JavaScript and TypeScript to measure test-suite effectiveness.",
+      "useWhen": "Use instead of relying on line coverage alone to judge test quality.",
+      "cautions": [
+        "Slow on large codebases; run incrementally or on critical modules."
+      ],
+      "tags": [
+        "testing",
+        "mutation",
+        "quality",
+        "typescript"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@stryker-mutator/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stryker-mutator/stryker-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "eslint",
+      "name": "ESLint",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/eslint/eslint/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://eslint.org",
+      "repository": "https://github.com/eslint/eslint",
+      "docs": "https://eslint.org/docs/latest/",
+      "summary": "Pluggable linter for JavaScript and TypeScript.",
+      "useWhen": "Use instead of code-review comments for style and bug-pattern checks.",
+      "cautions": [
+        "Use the flat config (eslint.config.js); plugins are executable dependencies."
+      ],
+      "tags": [
+        "lint",
+        "javascript",
+        "typescript",
+        "static-analysis"
+      ],
+      "projectTypes": [
+        "testing-qa",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "eslint"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/eslint/eslint",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "typescript-eslint",
+      "name": "typescript-eslint",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/typescript-eslint/typescript-eslint/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://typescript-eslint.io",
+      "repository": "https://github.com/typescript-eslint/typescript-eslint",
+      "docs": "https://typescript-eslint.io/getting-started/",
+      "summary": "Parser and rules that let ESLint lint TypeScript, including type-aware rules.",
+      "useWhen": "Use instead of custom TypeScript lint scripts or relying on tsc alone for bug patterns.",
+      "cautions": [
+        "Type-aware rules are slower; enable them deliberately."
+      ],
+      "tags": [
+        "lint",
+        "typescript",
+        "eslint"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "typescript-eslint"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/typescript-eslint/typescript-eslint",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "biome",
+      "name": "Biome",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/biomejs/biome/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0."
+      },
+      "homepage": "https://biomejs.dev",
+      "repository": "https://github.com/biomejs/biome",
+      "docs": "https://biomejs.dev/guides/getting-started/",
+      "summary": "Fast all-in-one formatter and linter for JavaScript, TypeScript, JSON and CSS.",
+      "useWhen": "Use instead of configuring separate ESLint and Prettier setups when Biome's rules cover the project.",
+      "cautions": [
+        "Not every ESLint plugin rule has an equivalent; check coverage before migrating."
+      ],
+      "tags": [
+        "lint",
+        "format",
+        "typescript",
+        "rust"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@biomejs/biome"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/biomejs/biome",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "prettier",
+      "name": "Prettier",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/prettier/prettier/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://prettier.io",
+      "repository": "https://github.com/prettier/prettier",
+      "docs": "https://prettier.io/docs/",
+      "summary": "Opinionated code formatter for JS, TS, CSS, Markdown, YAML and more.",
+      "useWhen": "Use instead of style debates and manual formatting fixes.",
+      "cautions": [
+        "Pin the exact version; formatting changes across releases."
+      ],
+      "tags": [
+        "format",
+        "javascript",
+        "typescript",
+        "markdown"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "prettier"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/prettier/prettier",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "oxlint",
+      "name": "Oxc / oxlint",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/oxc-project/oxc/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://oxc.rs",
+      "repository": "https://github.com/oxc-project/oxc",
+      "docs": "https://oxc.rs/docs/guide/usage/linter.html",
+      "summary": "Very fast Rust-based JavaScript/TypeScript linter from the Oxc toolchain.",
+      "useWhen": "Use instead of slow full ESLint passes for common correctness rules, often alongside ESLint.",
+      "cautions": [
+        "Rule coverage differs from ESLint plugins; verify before replacing."
+      ],
+      "tags": [
+        "lint",
+        "javascript",
+        "typescript",
+        "rust"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "oxlint"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/oxc-project/oxc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ruff",
+      "name": "Ruff",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/astral-sh/ruff/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://docs.astral.sh/ruff/",
+      "repository": "https://github.com/astral-sh/ruff",
+      "docs": "https://docs.astral.sh/ruff/",
+      "summary": "Extremely fast Python linter and formatter written in Rust.",
+      "useWhen": "Use instead of combining flake8, isort, pyupgrade and Black configurations.",
+      "cautions": [
+        "Pin the version; new rules can appear in preview mode."
+      ],
+      "tags": [
+        "lint",
+        "format",
+        "python"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "ruff"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/astral-sh/ruff",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mypy",
+      "name": "mypy",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/python/mypy/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": "https://mypy-lang.org",
+      "repository": "https://github.com/python/mypy",
+      "docs": "https://mypy.readthedocs.io",
+      "summary": "Static type checker for Python.",
+      "useWhen": "Use instead of runtime-only discovery of Python type errors.",
+      "cautions": [
+        "Adopt strictness incrementally; third-party stubs may be needed."
+      ],
+      "tags": [
+        "types",
+        "python",
+        "static-analysis"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mypy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/python/mypy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pyright",
+      "name": "Pyright",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/pyright/blob/HEAD/LICENSE.txt",
+        "scope": "MIT."
+      },
+      "homepage": "https://microsoft.github.io/pyright/",
+      "repository": "https://github.com/microsoft/pyright",
+      "docs": "https://microsoft.github.io/pyright/",
+      "summary": "Fast static type checker for Python.",
+      "useWhen": "Use instead of mypy when faster checks or editor-consistent results are preferred.",
+      "cautions": [
+        "The npm package needs Node.js."
+      ],
+      "tags": [
+        "types",
+        "python",
+        "static-analysis"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pyright"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/pyright",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "golangci-lint",
+      "name": "golangci-lint",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/golangci/golangci-lint/blob/HEAD/LICENSE",
+        "scope": "GPL-3.0 for the tool; running it on your code does not affect your code license."
+      },
+      "homepage": "https://golangci-lint.run",
+      "repository": "https://github.com/golangci/golangci-lint",
+      "docs": "https://golangci-lint.run/docs/",
+      "summary": "Fast Go linters runner aggregating dozens of linters with caching.",
+      "useWhen": "Use instead of wiring go vet, staticcheck and other linters individually.",
+      "cautions": [
+        "Install the binary rather than go install to match upstream builds; pin the version."
+      ],
+      "tags": [
+        "lint",
+        "go",
+        "static-analysis"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/golangci/golangci-lint",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "clippy",
+      "name": "Clippy",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/rust-lang/rust-clippy/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0."
+      },
+      "homepage": "https://doc.rust-lang.org/clippy/",
+      "repository": "https://github.com/rust-lang/rust-clippy",
+      "docs": "https://doc.rust-lang.org/clippy/",
+      "summary": "Official Rust linter with hundreds of correctness, style and performance lints.",
+      "useWhen": "Use instead of manual review for common Rust mistakes.",
+      "cautions": [
+        "Run with -D warnings in CI for enforcement."
+      ],
+      "tags": [
+        "lint",
+        "rust",
+        "static-analysis"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rust-lang/rust-clippy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with rustup component add clippy; pin the toolchain in rust-toolchain.toml."
+      ]
+    },
+    {
+      "id": "knip",
+      "name": "Knip",
+      "category": "code-quality",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/webpro-nl/knip/blob/HEAD/LICENSE",
+        "scope": "ISC."
+      },
+      "homepage": "https://knip.dev",
+      "repository": "https://github.com/webpro-nl/knip",
+      "docs": "https://knip.dev/overview/getting-started",
+      "summary": "Finds unused files, exports and dependencies in JavaScript/TypeScript projects.",
+      "useWhen": "Use instead of hand-auditing dead code and unused package.json dependencies (replaces unmaintained depcheck).",
+      "cautions": [
+        "Dynamic imports and plugins may need configuration to avoid false positives."
+      ],
+      "tags": [
+        "dead-code",
+        "dependencies",
+        "typescript",
+        "lint"
+      ],
+      "projectTypes": [
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "knip"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/webpro-nl/knip",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "semgrep",
+      "name": "Semgrep",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-2.1",
+        "url": "https://github.com/semgrep/semgrep/blob/HEAD/LICENSE",
+        "scope": "LGPL-2.1 for Semgrep Community Edition engine; Semgrep Registry rules use the Semgrep Rules License, and the Semgrep platform is commercial."
+      },
+      "homepage": "https://semgrep.dev",
+      "repository": "https://github.com/semgrep/semgrep",
+      "docs": "https://semgrep.dev/docs/",
+      "summary": "Fast pattern-based static analysis for security bugs across many languages.",
+      "useWhen": "Use instead of grep-based security audits and hand-written AST scanners.",
+      "cautions": [
+        "Rule licensing differs from the engine; review before redistributing rules."
+      ],
+      "tags": [
+        "sast",
+        "security",
+        "static-analysis",
+        "ci"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "semgrep"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/semgrep/semgrep",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "codeql",
+      "name": "CodeQL",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "reference",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://github.com/github/codeql-cli-binaries/blob/HEAD/LICENSE.md",
+        "scope": "Queries/libraries in github/codeql are MIT, but the CodeQL CLI is under GitHub CodeQL Terms: free for OSS and research, private repos need GitHub Advanced Security."
+      },
+      "homepage": "https://codeql.github.com",
+      "repository": "https://github.com/github/codeql",
+      "docs": "https://codeql.github.com/docs/",
+      "summary": "Semantic code analysis engine and query packs used by GitHub code scanning.",
+      "useWhen": "Use instead of custom security code review scripts on GitHub repositories with code scanning.",
+      "cautions": [
+        "CLI terms restrict use on private code without a license."
+      ],
+      "tags": [
+        "sast",
+        "security",
+        "github",
+        "code-scanning"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "github/codeql-action"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/github/codeql",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "trivy",
+      "name": "Trivy",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/aquasecurity/trivy/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://trivy.dev",
+      "repository": "https://github.com/aquasecurity/trivy",
+      "docs": "https://trivy.dev/latest/docs/",
+      "summary": "Scanner for vulnerabilities, misconfigurations, secrets and licenses in images, filesystems, repos and IaC.",
+      "useWhen": "Use instead of separate ad-hoc scripts for container, dependency and IaC security scanning.",
+      "cautions": [
+        "Pin the version and verify release checksums or signatures.",
+        "Cache the vulnerability DB in CI."
+      ],
+      "tags": [
+        "security",
+        "containers",
+        "vulnerabilities",
+        "iac",
+        "sbom"
+      ],
+      "projectTypes": [
+        "security",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "aquasec/trivy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/aquasecurity/trivy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "grype",
+      "name": "Grype",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/anchore/grype/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://anchore.com/opensource/",
+      "repository": "https://github.com/anchore/grype",
+      "docs": "https://github.com/anchore/grype#readme",
+      "summary": "Vulnerability scanner for container images, filesystems and SBOMs.",
+      "useWhen": "Use instead of manual CVE lookups for image and package dependencies.",
+      "cautions": [
+        "Pair with Syft SBOMs for reproducible scans."
+      ],
+      "tags": [
+        "security",
+        "vulnerabilities",
+        "containers",
+        "sbom"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/anchore/grype"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anchore/grype",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "syft",
+      "name": "Syft",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/anchore/syft/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://anchore.com/opensource/",
+      "repository": "https://github.com/anchore/syft",
+      "docs": "https://github.com/anchore/syft#readme",
+      "summary": "Generates software bills of materials (SPDX, CycloneDX) from images and filesystems.",
+      "useWhen": "Use instead of hand-assembled dependency inventories for SBOM requirements.",
+      "cautions": [
+        "SBOM completeness depends on detectable package metadata."
+      ],
+      "tags": [
+        "sbom",
+        "supply-chain",
+        "spdx",
+        "cyclonedx"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/anchore/syft"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anchore/syft",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "osv-scanner",
+      "name": "OSV-Scanner",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/google/osv-scanner/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://google.github.io/osv-scanner/",
+      "repository": "https://github.com/google/osv-scanner",
+      "docs": "https://google.github.io/osv-scanner/",
+      "summary": "Scans lockfiles, SBOMs and directories for known vulnerabilities using the OSV database.",
+      "useWhen": "Use instead of per-ecosystem audit commands when a repository spans several languages.",
+      "cautions": [
+        "Network lookups send package names/versions to osv.dev unless offline mode is used."
+      ],
+      "tags": [
+        "security",
+        "vulnerabilities",
+        "dependencies",
+        "osv"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/google/osv-scanner/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/google/osv-scanner",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gitleaks",
+      "name": "Gitleaks",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gitleaks/gitleaks/blob/HEAD/LICENSE",
+        "scope": "MIT for the CLI; the gitleaks-action requires a license key for organization accounts."
+      },
+      "homepage": "https://gitleaks.io",
+      "repository": "https://github.com/gitleaks/gitleaks",
+      "docs": "https://github.com/gitleaks/gitleaks#readme",
+      "summary": "Detects hardcoded secrets in Git history, files and staged changes.",
+      "useWhen": "Use instead of hand-written regex secret checks in pre-commit hooks and CI.",
+      "cautions": [
+        "Rotate any secret found; deleting the commit is not enough."
+      ],
+      "tags": [
+        "secrets",
+        "scanning",
+        "git",
+        "pre-commit"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gitleaks/gitleaks",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "trufflehog",
+      "name": "TruffleHog",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/trufflesecurity/trufflehog/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for the open-source scanner; running it in CI is common, modifying and serving it needs review. Enterprise edition is commercial."
+      },
+      "homepage": "https://trufflesecurity.com",
+      "repository": "https://github.com/trufflesecurity/trufflehog",
+      "docs": "https://github.com/trufflesecurity/trufflehog#readme",
+      "summary": "Finds and verifies leaked credentials across Git, filesystems, cloud storage and more.",
+      "useWhen": "Use instead of unverified regex secret scanning when you need to know which secrets are live.",
+      "cautions": [
+        "Verification makes network calls to providers with found credentials; review data paths."
+      ],
+      "tags": [
+        "secrets",
+        "scanning",
+        "verification",
+        "agpl"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/trufflesecurity/trufflehog",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "snyk-cli",
+      "name": "Snyk CLI",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/snyk/cli/blob/HEAD/LICENSE",
+        "scope": "CLI source is Apache-2.0, but scanning requires a Snyk account and is governed by Snyk service terms and plan limits."
+      },
+      "homepage": "https://snyk.io",
+      "repository": "https://github.com/snyk/cli",
+      "docs": "https://docs.snyk.io/developer-tools/snyk-cli",
+      "summary": "Command-line client for Snyk dependency, code, container and IaC scanning.",
+      "useWhen": "Use instead of manual vulnerability triage when the organization already licenses Snyk.",
+      "cautions": [
+        "Uploads dependency/code data to Snyk; check privacy requirements.",
+        "Free tier test limits apply."
+      ],
+      "tags": [
+        "security",
+        "vulnerabilities",
+        "sca",
+        "service"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "snyk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/snyk/cli",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "owasp-zap",
+      "name": "ZAP",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "desktop",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/zaproxy/zaproxy/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://www.zaproxy.org",
+      "repository": "https://github.com/zaproxy/zaproxy",
+      "docs": "https://www.zaproxy.org/docs/",
+      "summary": "Dynamic application security testing (DAST) proxy and scanner, including baseline header checks.",
+      "useWhen": "Use instead of manual penetration probes for common web vulnerabilities and missing security headers.",
+      "cautions": [
+        "Active scans attack the target; only scan systems you own or are authorized to test."
+      ],
+      "tags": [
+        "dast",
+        "security",
+        "web",
+        "headers"
+      ],
+      "projectTypes": [
+        "security",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "zaproxy/zap-stable"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/zaproxy/zaproxy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "security-headers",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "npm-audit",
+      "name": "npm audit",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Artistic-2.0",
+        "url": "https://github.com/npm/cli/blob/HEAD/LICENSE",
+        "scope": "The npm CLI is Artistic-2.0; audit queries the npm registry advisory service."
+      },
+      "homepage": null,
+      "repository": null,
+      "docs": "https://docs.npmjs.com/cli/commands/npm-audit",
+      "summary": "Built-in npm command that reports known vulnerabilities in installed dependencies.",
+      "useWhen": "Use instead of manual advisory lookups for npm projects; run in CI with an audit level.",
+      "cautions": [
+        "npm audit fix --force can apply breaking upgrades; review changes."
+      ],
+      "tags": [
+        "security",
+        "npm",
+        "vulnerabilities",
+        "reference"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.npmjs.com/cli/commands/npm-audit",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Bundled with npm; no install."
+      ]
+    },
+    {
+      "id": "socket-dev",
+      "name": "Socket",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary hosted service; usage is governed by the provider's terms and pricing, not an open-source license."
+      },
+      "homepage": "https://socket.dev",
+      "repository": null,
+      "docs": "https://docs.socket.dev",
+      "summary": "Supply-chain security service that flags risky package behavior such as install scripts, network access and typosquats.",
+      "useWhen": "Use instead of manual review of every new npm/PyPI dependency's behavior.",
+      "cautions": [
+        "Hosted service with plan limits; scans send dependency metadata to the provider."
+      ],
+      "tags": [
+        "supply-chain",
+        "security",
+        "dependencies",
+        "service"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.socket.dev",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install the GitHub app or official CLI from the provider docs; authenticate per organization."
+      ]
+    },
+    {
+      "id": "cosign",
+      "name": "Sigstore cosign",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/sigstore/cosign/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://www.sigstore.dev",
+      "repository": "https://github.com/sigstore/cosign",
+      "docs": "https://docs.sigstore.dev/cosign/signing/overview/",
+      "summary": "Signs and verifies container images and blobs, including keyless signing with OIDC identities.",
+      "useWhen": "Use instead of hand-managed GPG signing of release artifacts and images.",
+      "cautions": [
+        "Keyless signatures are recorded in the public Rekor log; identities become public."
+      ],
+      "tags": [
+        "signing",
+        "supply-chain",
+        "containers",
+        "sigstore"
+      ],
+      "projectTypes": [
+        "security",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/sigstore/cosign/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sigstore/cosign",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sops",
+      "name": "SOPS",
+      "category": "secrets",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/getsops/sops/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0."
+      },
+      "homepage": "https://getsops.io",
+      "repository": "https://github.com/getsops/sops",
+      "docs": "https://getsops.io/docs/",
+      "summary": "Encrypts values in YAML, JSON, ENV and INI files with age, PGP or cloud KMS keys.",
+      "useWhen": "Use instead of committing plaintext secrets or inventing a custom file-encryption scheme.",
+      "cautions": [
+        "Protect and rotate the decryption keys; encrypted files reveal key names."
+      ],
+      "tags": [
+        "secrets",
+        "encryption",
+        "gitops",
+        "kms"
+      ],
+      "projectTypes": [
+        "security",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/getsops/sops",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "env-config",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "age",
+      "name": "age",
+      "category": "secrets",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/FiloSottile/age/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause."
+      },
+      "homepage": "https://age-encryption.org",
+      "repository": "https://github.com/FiloSottile/age",
+      "docs": "https://github.com/FiloSottile/age#readme",
+      "summary": "Simple, modern file encryption tool and Go library with small explicit keys.",
+      "useWhen": "Use instead of GPG or hand-built encryption for files and backups.",
+      "cautions": [
+        "No signing; pair with a signature tool when authenticity matters."
+      ],
+      "tags": [
+        "encryption",
+        "files",
+        "go",
+        "secrets"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "filippo.io/age"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/FiloSottile/age",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "infisical",
+      "name": "Infisical",
+      "category": "secrets",
+      "platforms": [
+        "server",
+        "cli",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Infisical/infisical/blob/HEAD/LICENSE",
+        "scope": "Core is MIT, but enterprise features under ee/ directories are proprietary; Infisical Cloud is a paid service. Review which features you use."
+      },
+      "homepage": "https://infisical.com",
+      "repository": "https://github.com/Infisical/infisical",
+      "docs": "https://infisical.com/docs/documentation/getting-started/introduction",
+      "summary": "Open-core secrets management platform with CLI injection, SDKs and secret rotation.",
+      "useWhen": "Use instead of sharing .env files or building a custom secrets store.",
+      "cautions": [
+        "Open-core licensing; self-hosting requires securing the platform itself."
+      ],
+      "tags": [
+        "secrets",
+        "secrets-management",
+        "env",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "security",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Infisical/infisical",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "env-config",
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hashicorp-vault",
+      "name": "HashiCorp Vault",
+      "category": "secrets",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "BUSL-1.1",
+        "url": "https://github.com/hashicorp/vault/blob/HEAD/LICENSE",
+        "scope": "Business Source License 1.1 (source-available, not OSI) since v1.15; restricts competing offerings. Consider OpenBao for an MPL-2.0 fork."
+      },
+      "homepage": "https://www.hashicorp.com/products/vault",
+      "repository": "https://github.com/hashicorp/vault",
+      "docs": "https://developer.hashicorp.com/vault/docs",
+      "summary": "Secrets management, dynamic credentials, encryption-as-a-service and PKI.",
+      "useWhen": "Use instead of custom credential stores and rotation scripts when BUSL terms are acceptable.",
+      "cautions": [
+        "BUSL: license review needed for embedding or offering as a service.",
+        "Unseal key custody is critical."
+      ],
+      "tags": [
+        "secrets",
+        "pki",
+        "encryption",
+        "busl"
+      ],
+      "projectTypes": [
+        "security",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hashicorp/vault",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openssf-scorecard",
+      "name": "OpenSSF Scorecard",
+      "category": "security",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/ossf/scorecard/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": "https://scorecard.dev",
+      "repository": "https://github.com/ossf/scorecard",
+      "docs": "https://github.com/ossf/scorecard#readme",
+      "summary": "Automated checks that score open-source projects on supply-chain security practices.",
+      "useWhen": "Use instead of manual due diligence on dependency maintenance and repository hygiene.",
+      "cautions": [
+        "Scores are heuristics, not proof of safety."
+      ],
+      "tags": [
+        "supply-chain",
+        "security",
+        "open-source",
+        "github"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "ossf/scorecard-action"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ossf/scorecard",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "libsodium",
+      "name": "libsodium",
+      "category": "crypto",
+      "platforms": [
+        "server",
+        "web",
+        "mobile",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/jedisct1/libsodium/blob/HEAD/LICENSE",
+        "scope": "ISC for libsodium and the libsodium.js wrappers."
+      },
+      "homepage": "https://libsodium.org",
+      "repository": "https://github.com/jedisct1/libsodium",
+      "docs": "https://doc.libsodium.org",
+      "summary": "Portable, easy-to-use crypto library for encryption, signatures, password hashing and key exchange.",
+      "useWhen": "Use instead of hand-assembling crypto primitives or writing custom encryption code.",
+      "cautions": [
+        "Use the high-level APIs (secretbox, box, pwhash); never invent protocols."
+      ],
+      "tags": [
+        "crypto",
+        "encryption",
+        "signatures",
+        "c"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "libsodium-wrappers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jedisct1/libsodium",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pynacl",
+      "name": "PyNaCl",
+      "category": "crypto",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/pyca/pynacl/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the bindings; bundles libsodium (ISC)."
+      },
+      "homepage": null,
+      "repository": "https://github.com/pyca/pynacl",
+      "docs": "https://pynacl.readthedocs.io",
+      "summary": "Python bindings to libsodium from the Python Cryptographic Authority.",
+      "useWhen": "Use instead of custom Python encryption or signing code.",
+      "cautions": [
+        "Use SecretBox/Box/signing APIs; store keys outside source."
+      ],
+      "tags": [
+        "crypto",
+        "python",
+        "libsodium"
+      ],
+      "projectTypes": [
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "PyNaCl"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pyca/pynacl",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "node-argon2",
+      "name": "node-argon2",
+      "category": "crypto",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ranisalt/node-argon2/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ranisalt/node-argon2",
+      "docs": "https://github.com/ranisalt/node-argon2#readme",
+      "summary": "Argon2 password hashing bindings for Node.js.",
+      "useWhen": "Use instead of SHA-based or home-made password hashing in Node services.",
+      "cautions": [
+        "Native addon; check prebuilt binaries for your platforms.",
+        "Use argon2id with OWASP-recommended parameters."
+      ],
+      "tags": [
+        "password-hashing",
+        "argon2",
+        "node",
+        "auth"
+      ],
+      "projectTypes": [
+        "security",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "argon2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ranisalt/node-argon2",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "argon2-cffi",
+      "name": "argon2-cffi",
+      "category": "crypto",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/hynek/argon2-cffi/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/hynek/argon2-cffi",
+      "docs": "https://argon2-cffi.readthedocs.io",
+      "summary": "Argon2 password hashing for Python with safe defaults.",
+      "useWhen": "Use instead of hashlib-based password storage in Python apps.",
+      "cautions": [
+        "Use PasswordHasher.check_needs_rehash to upgrade parameters."
+      ],
+      "tags": [
+        "password-hashing",
+        "argon2",
+        "python",
+        "auth"
+      ],
+      "projectTypes": [
+        "security",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "argon2-cffi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hynek/argon2-cffi",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pyca-bcrypt",
+      "name": "bcrypt (Python)",
+      "category": "crypto",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/pyca/bcrypt/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
+      },
+      "homepage": null,
+      "repository": "https://github.com/pyca/bcrypt",
+      "docs": "https://github.com/pyca/bcrypt#readme",
+      "summary": "Modern bcrypt password hashing for Python from the Python Cryptographic Authority.",
+      "useWhen": "Use instead of custom salted-hash password storage when bcrypt is required for compatibility.",
+      "cautions": [
+        "bcrypt truncates input at 72 bytes; prefer Argon2id for new systems."
+      ],
+      "tags": [
+        "password-hashing",
+        "bcrypt",
+        "python",
+        "auth"
+      ],
+      "projectTypes": [
+        "security",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "bcrypt"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pyca/bcrypt",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "node-bcrypt",
+      "name": "node.bcrypt.js",
+      "category": "crypto",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/kelektiv/node.bcrypt.js/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/kelektiv/node.bcrypt.js",
+      "docs": "https://github.com/kelektiv/node.bcrypt.js#readme",
+      "summary": "Native bcrypt password hashing for Node.js.",
+      "useWhen": "Use instead of custom salted-hash password code in Node when bcrypt compatibility is needed.",
+      "cautions": [
+        "72-byte input limit; prefer Argon2id for new systems."
+      ],
+      "tags": [
+        "password-hashing",
+        "bcrypt",
+        "node",
+        "auth"
+      ],
+      "projectTypes": [
+        "security",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "bcrypt"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kelektiv/node.bcrypt.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/devops-testing-security.md"
+      },
+      "install": [
+        "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ]
+    }
+  ]
+}
