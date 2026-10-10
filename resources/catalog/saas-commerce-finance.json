@@ -1,0 +1,6001 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "better-auth",
+      "name": "Better Auth",
+      "category": "auth",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/better-auth/better-auth/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://www.better-auth.com",
+      "repository": "https://github.com/better-auth/better-auth",
+      "docs": "https://www.better-auth.com/docs",
+      "summary": "Framework-agnostic TypeScript authentication library with sessions, OAuth, 2FA, passkeys and organization plugins.",
+      "useWhen": "Use instead of hand-writing session handling, password hashing, OAuth callbacks and org/team membership tables in a TypeScript app.",
+      "cautions": [
+        "Plugins add database tables; run its migrations and review the generated schema.",
+        "Configure trusted origins and secure cookie settings for production."
+      ],
+      "tags": [
+        "auth",
+        "sessions",
+        "oauth",
+        "typescript",
+        "passkeys"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "better-auth"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/better-auth/better-auth",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.better-auth.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "authjs",
+      "name": "Auth.js (NextAuth.js)",
+      "category": "auth",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/nextauthjs/next-auth/blob/HEAD/LICENSE",
+        "scope": "ISC for the upstream code."
+      },
+      "homepage": "https://authjs.dev",
+      "repository": "https://github.com/nextauthjs/next-auth",
+      "docs": "https://authjs.dev/getting-started",
+      "summary": "OAuth/OIDC, email and credentials authentication for Next.js, SvelteKit, Express and other web frameworks.",
+      "useWhen": "Use instead of hand-writing OAuth provider flows and session cookies in an existing Next.js or Auth.js-based app.",
+      "cautions": [
+        "The project is now stewarded by the Better Auth team; prefer Better Auth for new projects and check the current maintenance notice.",
+        "v5 (@auth/*) and v4 (next-auth@4) APIs differ; pin one major line."
+      ],
+      "tags": [
+        "auth",
+        "oauth",
+        "nextjs",
+        "sessions"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "next-auth"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@auth/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nextauthjs/next-auth",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://authjs.dev/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "clerk",
+      "name": "Clerk",
+      "category": "auth",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/clerk/javascript/blob/HEAD/LICENSE",
+        "scope": "MIT for the JavaScript SDKs; the Clerk hosted service is proprietary and billed per monthly active user."
+      },
+      "homepage": "https://clerk.com",
+      "repository": "https://github.com/clerk/javascript",
+      "docs": "https://clerk.com/docs",
+      "summary": "Hosted user management with prebuilt sign-in UI, organizations and session SDKs for React, Next.js and Expo.",
+      "useWhen": "Use instead of building sign-up/sign-in screens, MFA and org invites yourself when a hosted identity vendor is acceptable.",
+      "cautions": [
+        "User data lives with the vendor; check data residency and export options.",
+        "Verify webhook signatures (Svix) before trusting user events."
+      ],
+      "tags": [
+        "auth",
+        "hosted",
+        "user-management",
+        "react"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@clerk/nextjs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/clerk/javascript",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://clerk.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "webhook-verification",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "supabase-auth",
+      "name": "Supabase Auth",
+      "category": "auth",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/supabase/auth/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://supabase.com/auth",
+      "repository": "https://github.com/supabase/auth",
+      "docs": "https://supabase.com/docs/guides/auth",
+      "summary": "Go JWT-based auth server (formerly GoTrue) with email, OAuth, phone and SSO, used by Supabase.",
+      "useWhen": "Use instead of hand-writing user signup, JWT issuance and OAuth login when the app uses Supabase or Postgres row-level security.",
+      "cautions": [
+        "Pair JWT claims with Postgres RLS policies; auth alone does not protect tables.",
+        "Self-hosting needs SMTP and secret rotation set up."
+      ],
+      "tags": [
+        "auth",
+        "jwt",
+        "postgres",
+        "go",
+        "supabase"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@supabase/auth-js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/supabase/auth",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://supabase.com/docs/guides/auth",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "keycloak",
+      "name": "Keycloak",
+      "category": "identity-server",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/keycloak/keycloak/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://www.keycloak.org",
+      "repository": "https://github.com/keycloak/keycloak",
+      "docs": "https://www.keycloak.org/documentation",
+      "summary": "Self-hosted Java identity and access management server with OIDC, SAML, SSO, user federation and admin console.",
+      "useWhen": "Use instead of building an in-house SSO/OIDC provider when you need enterprise SAML/LDAP federation and realm-based tenancy.",
+      "cautions": [
+        "Operationally heavy (JVM + database); plan backups, upgrades and theme customization.",
+        "Harden admin console access and token lifetimes."
+      ],
+      "tags": [
+        "identity",
+        "oidc",
+        "saml",
+        "sso",
+        "java"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "quay.io/keycloak/keycloak"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/keycloak/keycloak",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.keycloak.org/documentation",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "ory-kratos",
+      "name": "Ory Kratos",
+      "category": "identity-server",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/ory/kratos/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://www.ory.sh/kratos",
+      "repository": "https://github.com/ory/kratos",
+      "docs": "https://www.ory.sh/docs/kratos/ory-kratos-intro",
+      "summary": "Headless, API-first Go identity server for registration, login, MFA, account recovery and profile management.",
+      "useWhen": "Use instead of hand-writing account recovery, verification and MFA flows when you want your own UI on a self-hosted identity API.",
+      "cautions": [
+        "Headless: you build every UI screen against its self-service flows.",
+        "Some advanced features are Ory Network/enterprise only."
+      ],
+      "tags": [
+        "identity",
+        "headless",
+        "mfa",
+        "go"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "oryd/kratos"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ory/kratos",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.ory.sh/docs/kratos/ory-kratos-intro",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "ory-hydra",
+      "name": "Ory Hydra",
+      "category": "identity-server",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/ory/hydra/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://www.ory.sh/hydra",
+      "repository": "https://github.com/ory/hydra",
+      "docs": "https://www.ory.sh/docs/hydra",
+      "summary": "OpenID Certified OAuth 2.0 and OpenID Connect provider in Go that delegates login and consent to your app.",
+      "useWhen": "Use instead of implementing an OAuth 2.0 authorization server (token, consent, client registration) yourself.",
+      "cautions": [
+        "It is not a user store; pair it with Kratos or your existing login.",
+        "Review token TTLs and client secrets rotation."
+      ],
+      "tags": [
+        "oauth2",
+        "oidc",
+        "authorization-server",
+        "go"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "oryd/hydra"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ory/hydra",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.ory.sh/docs/hydra",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "authentik",
+      "name": "authentik",
+      "category": "identity-server",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/goauthentik/authentik/blob/HEAD/LICENSE",
+        "scope": "MIT for most code; authentik/enterprise/ is under a separate enterprise license and website/ under CC BY-SA 4.0."
+      },
+      "homepage": "https://goauthentik.io",
+      "repository": "https://github.com/goauthentik/authentik",
+      "docs": "https://docs.goauthentik.io",
+      "summary": "Self-hosted identity provider with SSO via OIDC, SAML, LDAP and proxy outposts plus configurable login flows.",
+      "useWhen": "Use instead of wiring per-app login for self-hosted internal tools when you need one SSO portal with flows and policies.",
+      "cautions": [
+        "Enterprise directory features are not MIT; avoid them without a license.",
+        "Requires PostgreSQL; plan backups."
+      ],
+      "tags": [
+        "identity",
+        "sso",
+        "oidc",
+        "saml",
+        "ldap"
+      ],
+      "projectTypes": [
+        "saas",
+        "devops-infra",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "ghcr.io/goauthentik/server"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/goauthentik/authentik",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.goauthentik.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "zitadel",
+      "name": "ZITADEL",
+      "category": "identity-server",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/zitadel/zitadel/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for the server since v3 (2025); client SDKs/APIs are published separately. Review network-copyleft obligations before modifying."
+      },
+      "homepage": "https://zitadel.com",
+      "repository": "https://github.com/zitadel/zitadel",
+      "docs": "https://zitadel.com/docs",
+      "summary": "Go identity platform with multi-tenancy, OIDC/SAML, passkeys, actions and an event-sourced audit trail.",
+      "useWhen": "Use instead of building multi-tenant B2B identity (orgs, SSO per customer, audit log) from scratch.",
+      "cautions": [
+        "License changed from Apache-2.0 to AGPL-3.0; check obligations for modified deployments.",
+        "Hosted cloud and self-hosted features differ."
+      ],
+      "tags": [
+        "identity",
+        "multi-tenant",
+        "oidc",
+        "go",
+        "b2b"
+      ],
+      "projectTypes": [
+        "saas",
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/zitadel/zitadel",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://zitadel.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "supertokens",
+      "name": "SuperTokens",
+      "category": "auth",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/supertokens/supertokens-core/blob/HEAD/LICENSE.md",
+        "scope": "Apache-2.0 outside ee/; ee/ paid features are under a separate license."
+      },
+      "homepage": "https://supertokens.com",
+      "repository": "https://github.com/supertokens/supertokens-core",
+      "docs": "https://supertokens.com/docs",
+      "summary": "Open-source auth core with backend SDKs (Node, Python, Go) and prebuilt UI for sessions, passwordless and social login.",
+      "useWhen": "Use instead of hand-writing session rotation, refresh-token theft detection and login UI in Node, Python or Go backends.",
+      "cautions": [
+        "Runs a separate core service (self-hosted or managed).",
+        "MFA and some multi-tenancy features are paid."
+      ],
+      "tags": [
+        "auth",
+        "sessions",
+        "passwordless",
+        "node",
+        "python"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "supertokens-node"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/supertokens/supertokens-core",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://supertokens.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "logto",
+      "name": "Logto",
+      "category": "identity-server",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/logto-io/logto/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 file-level copyleft for the server; modified Logto files must stay MPL. SDKs are separate repositories."
+      },
+      "homepage": "https://logto.io",
+      "repository": "https://github.com/logto-io/logto",
+      "docs": "https://docs.logto.io",
+      "summary": "OIDC-based identity platform for B2C/B2B apps with organizations, RBAC, social sign-in and SDKs for many frameworks.",
+      "useWhen": "Use instead of building sign-in experience, organizations and RBAC for a SaaS product when you want a self-hostable OIDC provider.",
+      "cautions": [
+        "MPL obligations apply to modified Logto source files.",
+        "Cloud and OSS editions differ in enterprise SSO features."
+      ],
+      "tags": [
+        "identity",
+        "oidc",
+        "rbac",
+        "organizations"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/logto-io/logto",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.logto.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "oauth4webapi",
+      "name": "oauth4webapi",
+      "category": "auth-protocol",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/panva/oauth4webapi/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/panva/oauth4webapi",
+      "docs": "https://github.com/panva/oauth4webapi#readme",
+      "summary": "Low-level OAuth 2 / OpenID Connect client using only Web APIs, for browsers, Node, Deno, Bun and edge runtimes.",
+      "useWhen": "Use instead of hand-writing PKCE, token requests, DPoP and ID-token validation against an OIDC provider.",
+      "cautions": [
+        "Low-level: you orchestrate each step; prefer openid-client for a higher-level Node API."
+      ],
+      "tags": [
+        "oauth2",
+        "oidc",
+        "pkce",
+        "edge"
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "oauth4webapi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/panva/oauth4webapi",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/panva/oauth4webapi#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openid-client",
+      "name": "openid-client",
+      "category": "auth-protocol",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/panva/openid-client/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/panva/openid-client",
+      "docs": "https://github.com/panva/openid-client#readme",
+      "summary": "OpenID Certified OAuth 2 / OIDC relying-party client for JavaScript runtimes, built on oauth4webapi.",
+      "useWhen": "Use instead of hand-writing discovery, authorization-code + PKCE and token refresh when integrating with any OIDC identity provider.",
+      "cautions": [
+        "v6 is a breaking ESM rewrite; older tutorials use the v5 API."
+      ],
+      "tags": [
+        "oidc",
+        "oauth2",
+        "sso",
+        "node"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "openid-client"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/panva/openid-client",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/panva/openid-client#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "jose",
+      "name": "jose",
+      "category": "auth-protocol",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/panva/jose/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/panva/jose",
+      "docs": "https://github.com/panva/jose#readme",
+      "summary": "Dependency-free JWA, JWS, JWE, JWT and JWK implementation for all Web-interoperable JavaScript runtimes.",
+      "useWhen": "Use instead of hand-writing JWT signing/verification, JWKS fetching and key import with raw crypto APIs.",
+      "cautions": [
+        "Always pin allowed algorithms, issuer and audience when verifying."
+      ],
+      "tags": [
+        "jwt",
+        "jwk",
+        "crypto",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "jose"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/panva/jose",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/panva/jose#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "passport",
+      "name": "Passport",
+      "category": "auth",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jaredhanson/passport/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://www.passportjs.org",
+      "repository": "https://github.com/jaredhanson/passport",
+      "docs": "https://www.passportjs.org/docs/",
+      "summary": "Express-compatible authentication middleware with hundreds of strategy plugins (local, OAuth, SAML, JWT).",
+      "useWhen": "Use instead of hand-writing per-provider login middleware in an existing Express/Connect app.",
+      "cautions": [
+        "Core releases are infrequent; review each strategy package's maintenance separately.",
+        "Session handling and CSRF are left to you."
+      ],
+      "tags": [
+        "auth",
+        "express",
+        "middleware",
+        "oauth"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "passport"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jaredhanson/passport",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.passportjs.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "authlib",
+      "name": "Authlib",
+      "category": "auth-protocol",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/authlib/authlib/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the library; the author also sells a commercial license."
+      },
+      "homepage": "https://authlib.org",
+      "repository": "https://github.com/authlib/authlib",
+      "docs": "https://docs.authlib.org",
+      "summary": "Python library for building OAuth 1/2 and OpenID Connect clients and servers, plus JOSE/JWT, with Flask, Django and httpx integrations.",
+      "useWhen": "Use instead of hand-writing OAuth client flows or an OAuth/OIDC provider in a Python web app.",
+      "cautions": [
+        "Pin algorithms and validate claims explicitly when decoding JWTs."
+      ],
+      "tags": [
+        "oauth2",
+        "oidc",
+        "jwt",
+        "python",
+        "flask"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "Authlib"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/authlib/authlib",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.authlib.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "django-allauth",
+      "name": "django-allauth",
+      "category": "auth",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://codeberg.org/allauth/django-allauth/blob/main/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://allauth.org",
+      "repository": "https://codeberg.org/allauth/django-allauth",
+      "docs": "https://docs.allauth.org",
+      "summary": "Django apps for local accounts, email verification, MFA, social login and headless (API) authentication.",
+      "useWhen": "Use instead of hand-writing signup, email confirmation and social OAuth login in a Django project.",
+      "cautions": [
+        "Primary development moved to Codeberg; GitHub is a mirror.",
+        "Enable rate limits and review account enumeration settings."
+      ],
+      "tags": [
+        "auth",
+        "django",
+        "python",
+        "social-login",
+        "mfa"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "django-allauth"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://codeberg.org/allauth/django-allauth",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.allauth.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "casbin",
+      "name": "Casbin",
+      "category": "authorization",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/casbin/casbin/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://casbin.org",
+      "repository": "https://github.com/casbin/casbin",
+      "docs": "https://casbin.org/docs/overview",
+      "summary": "Authorization library supporting ACL, RBAC and ABAC models via a policy config, with ports for Go, Node, Python, Java and more.",
+      "useWhen": "Use instead of hand-writing role/permission checks scattered through handlers when you need a declarative access model.",
+      "cautions": [
+        "Ports differ in feature parity; check the adapter for your language and storage.",
+        "Policy enforcement must run server-side on every request."
+      ],
+      "tags": [
+        "authorization",
+        "rbac",
+        "abac",
+        "go",
+        "policy"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/casbin/casbin/v2"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "casbin"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "casbin"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/casbin/casbin",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://casbin.org/docs/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cerbos",
+      "name": "Cerbos",
+      "category": "authorization",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/cerbos/cerbos/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://www.cerbos.dev",
+      "repository": "https://github.com/cerbos/cerbos",
+      "docs": "https://docs.cerbos.dev",
+      "summary": "Stateless policy decision point that evaluates YAML resource policies (RBAC/ABAC) via gRPC/HTTP with SDKs for many languages.",
+      "useWhen": "Use instead of hand-coding permission logic in each service when several services need the same testable access policies.",
+      "cautions": [
+        "Runs as a sidecar/service; plan latency and availability.",
+        "Cerbos Hub management features are commercial."
+      ],
+      "tags": [
+        "authorization",
+        "policy",
+        "abac",
+        "grpc"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@cerbos/grpc"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cerbos/cerbos",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.cerbos.dev",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "openfga",
+      "name": "OpenFGA",
+      "category": "authorization",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/openfga/openfga/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://openfga.dev",
+      "repository": "https://github.com/openfga/openfga",
+      "docs": "https://openfga.dev/docs",
+      "summary": "CNCF relationship-based (Zanzibar-style) fine-grained authorization server with SDKs for JS, Go, Python, Java and .NET.",
+      "useWhen": "Use instead of hand-writing sharing/permission graphs (owner, editor, viewer, inherited folders) in application tables.",
+      "cautions": [
+        "Relationship tuples must stay in sync with your app data.",
+        "Model changes need migration planning."
+      ],
+      "tags": [
+        "authorization",
+        "rebac",
+        "zanzibar",
+        "fine-grained"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@openfga/sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openfga/openfga",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://openfga.dev/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "simplewebauthn",
+      "name": "SimpleWebAuthn",
+      "category": "auth",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/MasterKale/SimpleWebAuthn/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://simplewebauthn.dev",
+      "repository": "https://github.com/MasterKale/SimpleWebAuthn",
+      "docs": "https://simplewebauthn.dev/docs/",
+      "summary": "TypeScript server and browser libraries for WebAuthn passkey registration and authentication.",
+      "useWhen": "Use instead of hand-parsing CBOR attestation and verifying WebAuthn assertions when adding passkeys.",
+      "cautions": [
+        "Store and check credential counters and challenge expiry server-side."
+      ],
+      "tags": [
+        "webauthn",
+        "passkeys",
+        "fido2",
+        "typescript"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@simplewebauthn/server"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@simplewebauthn/browser"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/MasterKale/SimpleWebAuthn",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://simplewebauthn.dev/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "stripe-node",
+      "name": "Stripe Node.js SDK",
+      "category": "payments",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/stripe/stripe-node/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Stripe is a paid payment service with per-transaction fees."
+      },
+      "homepage": "https://stripe.com",
+      "repository": "https://github.com/stripe/stripe-node",
+      "docs": "https://docs.stripe.com/api?lang=node",
+      "summary": "Official typed Node.js client for the Stripe API, including webhook signature verification.",
+      "useWhen": "Use instead of hand-writing HTTP calls, idempotency keys and webhook signature checks against the Stripe API.",
+      "cautions": [
+        "Pin the API version and test webhooks with the Stripe CLI.",
+        "Never trust client-side amounts; create PaymentIntents/Checkout Sessions server-side."
+      ],
+      "tags": [
+        "payments",
+        "stripe",
+        "subscriptions",
+        "node",
+        "webhooks"
+      ],
+      "projectTypes": [
+        "saas",
+        "ecommerce",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "stripe"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stripe/stripe-node",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.stripe.com/api?lang=node",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "common-api-clients",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "stripe-python",
+      "name": "Stripe Python SDK",
+      "category": "payments",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/stripe/stripe-python/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Stripe is a paid payment service."
+      },
+      "homepage": "https://stripe.com",
+      "repository": "https://github.com/stripe/stripe-python",
+      "docs": "https://docs.stripe.com/api?lang=python",
+      "summary": "Official Python client for the Stripe API with typed resources and webhook verification helpers.",
+      "useWhen": "Use instead of hand-writing Stripe API requests and webhook signature verification in Django, FastAPI or Flask.",
+      "cautions": [
+        "Verify webhook signatures with the raw request body.",
+        "Use idempotency keys on retries."
+      ],
+      "tags": [
+        "payments",
+        "stripe",
+        "python",
+        "webhooks"
+      ],
+      "projectTypes": [
+        "saas",
+        "ecommerce",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "stripe"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stripe/stripe-python",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.stripe.com/api?lang=python",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "webhook-verification",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "stripe-go",
+      "name": "Stripe Go SDK",
+      "category": "payments",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/stripe/stripe-go/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Stripe is a paid payment service."
+      },
+      "homepage": "https://stripe.com",
+      "repository": "https://github.com/stripe/stripe-go",
+      "docs": "https://docs.stripe.com/api?lang=go",
+      "summary": "Official Go client for the Stripe API with webhook event construction and signature verification.",
+      "useWhen": "Use instead of hand-writing Stripe REST calls and webhook verification in Go services.",
+      "cautions": [
+        "The module path carries the major version (github.com/stripe/stripe-go/vNN); use the path from the current README."
+      ],
+      "tags": [
+        "payments",
+        "stripe",
+        "go",
+        "webhooks"
+      ],
+      "projectTypes": [
+        "saas",
+        "ecommerce",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stripe/stripe-go",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.stripe.com/api?lang=go",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "go get the current major module path shown in the repository README; pin it in go.mod and keep keys in server-side secrets."
+      ]
+    },
+    {
+      "id": "stripe-js",
+      "name": "Stripe.js loader and React Stripe.js",
+      "category": "payments",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/stripe/stripe-js/blob/HEAD/LICENSE",
+        "scope": "MIT for the loader/wrappers; Stripe.js itself is loaded from js.stripe.com under Stripe terms."
+      },
+      "homepage": "https://stripe.com",
+      "repository": "https://github.com/stripe/stripe-js",
+      "docs": "https://docs.stripe.com/js",
+      "summary": "Typed loader for Stripe.js plus React components for Elements and Embedded Checkout.",
+      "useWhen": "Use instead of building card forms yourself; Elements keeps card data off your servers and reduces PCI scope.",
+      "cautions": [
+        "Always load Stripe.js from js.stripe.com; do not self-host or bundle it."
+      ],
+      "tags": [
+        "payments",
+        "stripe",
+        "checkout",
+        "react",
+        "pci"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@stripe/stripe-js"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@stripe/react-stripe-js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stripe/stripe-js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.stripe.com/js",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "paddle-node-sdk",
+      "name": "Paddle Node.js SDK",
+      "category": "payments",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/PaddleHQ/paddle-node-sdk/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the SDK; Paddle Billing is a paid merchant-of-record service."
+      },
+      "homepage": "https://www.paddle.com",
+      "repository": "https://github.com/PaddleHQ/paddle-node-sdk",
+      "docs": "https://developer.paddle.com",
+      "summary": "Official server-side SDK for Paddle Billing, a merchant of record that handles subscriptions and global sales tax.",
+      "useWhen": "Use instead of hand-writing Paddle API calls and webhook verification when you want a merchant of record to handle VAT/sales tax.",
+      "cautions": [
+        "Paddle Classic and Paddle Billing APIs differ; this SDK targets Billing.",
+        "Verify webhook signatures before fulfilling."
+      ],
+      "tags": [
+        "payments",
+        "subscriptions",
+        "merchant-of-record",
+        "tax"
+      ],
+      "projectTypes": [
+        "saas",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@paddle/paddle-node-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/PaddleHQ/paddle-node-sdk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developer.paddle.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "webhook-verification",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "lemonsqueezy-js",
+      "name": "Lemon Squeezy JS SDK",
+      "category": "payments",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/lmsqueezy/lemonsqueezy.js/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Lemon Squeezy is a paid merchant-of-record service (owned by Stripe)."
+      },
+      "homepage": "https://www.lemonsqueezy.com",
+      "repository": "https://github.com/lmsqueezy/lemonsqueezy.js",
+      "docs": "https://docs.lemonsqueezy.com",
+      "summary": "Official typed JavaScript SDK for the Lemon Squeezy merchant-of-record API (products, checkouts, subscriptions, licenses).",
+      "useWhen": "Use instead of hand-writing REST calls for checkouts, subscriptions and software license keys on Lemon Squeezy.",
+      "cautions": [
+        "SDK releases are infrequent; check API changelog for newer endpoints.",
+        "Confirm the vendor's current onboarding status for new stores."
+      ],
+      "tags": [
+        "payments",
+        "merchant-of-record",
+        "license-keys",
+        "subscriptions"
+      ],
+      "projectTypes": [
+        "saas",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@lemonsqueezy/lemonsqueezy.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lmsqueezy/lemonsqueezy.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.lemonsqueezy.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "paypal-js",
+      "name": "PayPal JS SDK loader",
+      "category": "payments",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/paypal/paypal-js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the loader; PayPal is a paid payment service."
+      },
+      "homepage": "https://developer.paypal.com",
+      "repository": "https://github.com/paypal/paypal-js",
+      "docs": "https://developer.paypal.com/sdk/js/",
+      "summary": "Official loader and React components for PayPal Checkout buttons, Venmo and card fields.",
+      "useWhen": "Use instead of hand-injecting the PayPal script and managing button lifecycles in a web checkout.",
+      "cautions": [
+        "Create and capture orders on your server with the Orders API; never trust client totals."
+      ],
+      "tags": [
+        "payments",
+        "paypal",
+        "checkout",
+        "react"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@paypal/paypal-js"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@paypal/react-paypal-js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/paypal/paypal-js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developer.paypal.com/sdk/js/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "lago",
+      "name": "Lago",
+      "category": "billing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/getlago/lago/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for self-hosted Lago; premium features and Lago Cloud are commercial."
+      },
+      "homepage": "https://www.getlago.com",
+      "repository": "https://github.com/getlago/lago",
+      "docs": "https://docs.getlago.com",
+      "summary": "Open-source usage-based metering and billing engine (events, plans, invoices) that works with Stripe or other gateways.",
+      "useWhen": "Use instead of hand-writing usage aggregation, plan pricing tiers and invoice generation for metered SaaS billing.",
+      "cautions": [
+        "AGPL network-copyleft applies to modified deployments.",
+        "You still need a payment provider to collect money."
+      ],
+      "tags": [
+        "billing",
+        "usage-based",
+        "metering",
+        "invoicing"
+      ],
+      "projectTypes": [
+        "saas",
+        "finance-accounting"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/getlago/lago",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.getlago.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "killbill",
+      "name": "Kill Bill",
+      "category": "billing",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/killbill/killbill/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://killbill.io",
+      "repository": "https://github.com/killbill/killbill",
+      "docs": "https://docs.killbill.io",
+      "summary": "Mature Java subscription billing and payments platform with plugins for gateways, tax and invoicing.",
+      "useWhen": "Use instead of building subscription lifecycle, proration and invoice runs when you need a self-hosted billing system.",
+      "cautions": [
+        "JVM platform with a steep learning curve; budget for operations."
+      ],
+      "tags": [
+        "billing",
+        "subscriptions",
+        "java",
+        "invoicing"
+      ],
+      "projectTypes": [
+        "saas",
+        "finance-accounting",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "killbill/killbill"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/killbill/killbill",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.killbill.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "medusa",
+      "name": "Medusa",
+      "category": "commerce",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/medusajs/medusa/blob/HEAD/LICENSE",
+        "scope": "MIT except Enterprise Edition materials listed in ENTERPRISE-LICENSE.md. npm packages declare \"SEE LICENSE IN LICENSE\"."
+      },
+      "homepage": "https://medusajs.com",
+      "repository": "https://github.com/medusajs/medusa",
+      "docs": "https://docs.medusajs.com",
+      "summary": "Modular headless commerce platform in TypeScript/Node with carts, orders, payments, fulfillment and an admin dashboard.",
+      "useWhen": "Use instead of hand-building cart, checkout, order and inventory modules for a custom storefront.",
+      "cautions": [
+        "Avoid Enterprise Edition materials without a commercial agreement.",
+        "v1 and v2 architectures differ substantially."
+      ],
+      "tags": [
+        "ecommerce",
+        "headless",
+        "typescript",
+        "checkout"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/medusajs/medusa",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.medusajs.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Scaffold with the official create-medusa-app command, commit the lockfile and pin @medusajs/* versions together."
+      ]
+    },
+    {
+      "id": "vendure",
+      "name": "Vendure",
+      "category": "commerce",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/vendure-ecommerce/vendure/blob/HEAD/LICENSE.md",
+        "scope": "GPLv3 Community Edition or a paid Vendure Commercial License."
+      },
+      "homepage": "https://vendure.io",
+      "repository": "https://github.com/vendure-ecommerce/vendure",
+      "docs": "https://docs.vendure.io",
+      "summary": "Headless TypeScript/NestJS commerce framework with a GraphQL API, plugin system and admin UI.",
+      "useWhen": "Use instead of building a GraphQL commerce backend (catalog, orders, promotions, channels) from scratch.",
+      "cautions": [
+        "GPLv3 since v3; closed-source distribution requires the commercial license."
+      ],
+      "tags": [
+        "ecommerce",
+        "graphql",
+        "nestjs",
+        "headless"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@vendure/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vendure-ecommerce/vendure",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.vendure.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "shopify-hydrogen",
+      "name": "Shopify Hydrogen",
+      "category": "commerce",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Shopify/hydrogen/blob/HEAD/LICENSE",
+        "scope": "MIT for the framework; requires a paid Shopify store and Storefront API access."
+      },
+      "homepage": "https://hydrogen.shopify.dev",
+      "repository": "https://github.com/Shopify/hydrogen",
+      "docs": "https://shopify.dev/docs/storefronts/headless/hydrogen",
+      "summary": "React Router-based framework and components for building custom Shopify storefronts on the Storefront API.",
+      "useWhen": "Use instead of hand-writing Storefront API queries, cart state and SEO helpers for a headless Shopify store.",
+      "cautions": [
+        "Tied to Shopify; versions follow Shopify API calendar releases."
+      ],
+      "tags": [
+        "ecommerce",
+        "shopify",
+        "react",
+        "storefront"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@shopify/hydrogen"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Shopify/hydrogen",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://shopify.dev/docs/storefronts/headless/hydrogen",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "bagisto",
+      "name": "Bagisto",
+      "category": "commerce",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/bagisto/bagisto/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://bagisto.com",
+      "repository": "https://github.com/bagisto/bagisto",
+      "docs": "https://devdocs.bagisto.com",
+      "summary": "Laravel/PHP e-commerce platform with multi-channel, multi-currency and marketplace extensions.",
+      "useWhen": "Use instead of building a Laravel storefront, catalog and order admin from scratch.",
+      "cautions": [
+        "Many marketplace extensions are paid; check each extension license."
+      ],
+      "tags": [
+        "ecommerce",
+        "laravel",
+        "php",
+        "storefront"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "bagisto/bagisto"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bagisto/bagisto",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://devdocs.bagisto.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Create the project with Composer per the official docs and pin the release tag."
+      ]
+    },
+    {
+      "id": "sylius",
+      "name": "Sylius",
+      "category": "commerce",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Sylius/Sylius/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://sylius.com",
+      "repository": "https://github.com/Sylius/Sylius",
+      "docs": "https://docs.sylius.com",
+      "summary": "Symfony-based headless e-commerce framework with API Platform, checkout state machines and an admin panel.",
+      "useWhen": "Use instead of hand-building order/checkout workflows in a Symfony PHP application.",
+      "cautions": [
+        "Plus features are commercial."
+      ],
+      "tags": [
+        "ecommerce",
+        "symfony",
+        "php",
+        "headless"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "sylius/sylius"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Sylius/Sylius",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.sylius.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Create the project with Composer (sylius/sylius-standard) and pin the release."
+      ]
+    },
+    {
+      "id": "solidus",
+      "name": "Solidus",
+      "category": "commerce",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/solidusio/solidus/blob/HEAD/LICENSE.md",
+        "scope": "BSD-3-Clause for the upstream code."
+      },
+      "homepage": "https://solidus.io",
+      "repository": "https://github.com/solidusio/solidus",
+      "docs": "https://guides.solidus.io",
+      "summary": "Ruby on Rails e-commerce framework (Spree fork) for customizable storefronts, orders and promotions.",
+      "useWhen": "Use instead of building cart, checkout, tax and promotion logic in a Rails app.",
+      "cautions": [
+        "Extensions vary in maintenance; check Rails version compatibility."
+      ],
+      "tags": [
+        "ecommerce",
+        "rails",
+        "ruby",
+        "storefront"
+      ],
+      "projectTypes": [
+        "ecommerce",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "gem",
+          "name": "solidus"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/solidusio/solidus",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://guides.solidus.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Add the solidus gem to the Gemfile, run its installer and commit Gemfile.lock."
+      ]
+    },
+    {
+      "id": "dinero-js",
+      "name": "Dinero.js",
+      "category": "money",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dinerojs/dinero.js/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://dinerojs.com",
+      "repository": "https://github.com/dinerojs/dinero.js",
+      "docs": "https://dinerojs.com",
+      "summary": "Immutable JavaScript/TypeScript library for creating, calculating and formatting monetary amounts in integer minor units.",
+      "useWhen": "Use instead of floating-point money math and hand-written allocation/rounding/currency conversion in JS.",
+      "cautions": [
+        "v2 API differs from v1; most tutorials show v1.",
+        "Store amounts with currency and scale, not formatted strings."
+      ],
+      "tags": [
+        "money",
+        "currency",
+        "typescript",
+        "immutable"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "ecommerce",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "dinero.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dinerojs/dinero.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://dinerojs.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "big-js",
+      "name": "big.js",
+      "category": "money",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/MikeMcl/big.js/blob/HEAD/LICENCE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://mikemcl.github.io/big.js/",
+      "repository": "https://github.com/MikeMcl/big.js",
+      "docs": "https://mikemcl.github.io/big.js/",
+      "summary": "Small, fast arbitrary-precision decimal arithmetic library for JavaScript.",
+      "useWhen": "Use instead of Number arithmetic for prices, tax and totals where 0.1 + 0.2 errors are unacceptable.",
+      "cautions": [
+        "Set rounding mode and decimal places explicitly."
+      ],
+      "tags": [
+        "decimal",
+        "arbitrary-precision",
+        "money",
+        "javascript"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "big.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/MikeMcl/big.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://mikemcl.github.io/big.js/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "decimal-js",
+      "name": "decimal.js",
+      "category": "money",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/MikeMcl/decimal.js/blob/HEAD/LICENCE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://mikemcl.github.io/decimal.js/",
+      "repository": "https://github.com/MikeMcl/decimal.js",
+      "docs": "https://mikemcl.github.io/decimal.js/",
+      "summary": "Arbitrary-precision Decimal type for JavaScript with trigonometric, exponential and configurable rounding functions.",
+      "useWhen": "Use instead of floating-point math for financial or scientific calculations that need exact decimal results.",
+      "cautions": [
+        "Larger than big.js; pick big.js when only basic arithmetic is needed."
+      ],
+      "tags": [
+        "decimal",
+        "arbitrary-precision",
+        "math",
+        "javascript"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "decimal.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/MikeMcl/decimal.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://mikemcl.github.io/decimal.js/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "py-moneyed",
+      "name": "py-moneyed",
+      "category": "money",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/py-moneyed/py-moneyed/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/py-moneyed/py-moneyed",
+      "docs": "https://py-moneyed.readthedocs.io",
+      "summary": "Python Money and Currency classes built on Decimal with Babel-based locale formatting.",
+      "useWhen": "Use instead of hand-written money tuples and currency formatting in Python; pair with django-money for model fields.",
+      "cautions": [
+        "Arithmetic across currencies raises; convert explicitly."
+      ],
+      "tags": [
+        "money",
+        "currency",
+        "python",
+        "decimal"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "py-moneyed"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/py-moneyed/py-moneyed",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://py-moneyed.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "shopspring-decimal",
+      "name": "shopspring/decimal",
+      "category": "money",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/shopspring/decimal/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/shopspring/decimal",
+      "docs": "https://pkg.go.dev/github.com/shopspring/decimal",
+      "summary": "Arbitrary-precision fixed-point decimal numbers for Go.",
+      "useWhen": "Use instead of float64 for money and rates in Go services.",
+      "cautions": [
+        "Division needs an explicit precision; check DivisionPrecision."
+      ],
+      "tags": [
+        "decimal",
+        "money",
+        "go",
+        "fixed-point"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/shopspring/decimal"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/shopspring/decimal",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pkg.go.dev/github.com/shopspring/decimal",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "go get github.com/shopspring/decimal and pin the version in go.mod."
+      ]
+    },
+    {
+      "id": "rust-decimal",
+      "name": "rust_decimal",
+      "category": "money",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/paupino/rust-decimal/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/paupino/rust-decimal",
+      "docs": "https://docs.rs/rust_decimal",
+      "summary": "96-bit decimal number type for Rust suited to financial calculations, with serde and database integrations.",
+      "useWhen": "Use instead of f64 or hand-rolled integer cents for exact decimal money math in Rust.",
+      "cautions": [
+        "Fixed 28-digit precision; overflow returns errors with checked_* methods."
+      ],
+      "tags": [
+        "decimal",
+        "money",
+        "rust",
+        "serde"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "rust_decimal"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/paupino/rust-decimal",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.rs/rust_decimal",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "cargo add rust_decimal and commit Cargo.lock."
+      ]
+    },
+    {
+      "id": "beancount",
+      "name": "Beancount",
+      "category": "ledger",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-only",
+        "url": "https://github.com/beancount/beancount/blob/HEAD/LICENSE",
+        "scope": "GPL-2.0; using the CLI on your files is fine, but importing it into distributed code carries copyleft obligations."
+      },
+      "homepage": "https://beancount.github.io",
+      "repository": "https://github.com/beancount/beancount",
+      "docs": "https://beancount.github.io/docs/",
+      "summary": "Plain-text double-entry accounting language and Python tools for validating and querying ledgers.",
+      "useWhen": "Use instead of hand-writing a double-entry ledger format, balance assertions and reports for personal or small-business books.",
+      "cautions": [
+        "v3 split tools (bean-query, fava) into separate packages.",
+        "Not a substitute for jurisdiction-specific accounting review."
+      ],
+      "tags": [
+        "accounting",
+        "double-entry",
+        "plain-text",
+        "python"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "beancount"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/beancount/beancount",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://beancount.github.io/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hledger",
+      "name": "hledger",
+      "category": "ledger",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-or-later",
+        "url": "https://github.com/simonmichael/hledger/blob/HEAD/LICENSE",
+        "scope": "GPL-3.0+; running the tool is unrestricted, linking or distributing modified code carries copyleft obligations."
+      },
+      "homepage": "https://hledger.org",
+      "repository": "https://github.com/simonmichael/hledger",
+      "docs": "https://hledger.org/doc.html",
+      "summary": "Fast, reliable plain-text double-entry accounting CLI, TUI and web UI written in Haskell.",
+      "useWhen": "Use instead of building a custom ledger report tool for plain-text journals (balance sheets, income statements, CSV import rules).",
+      "cautions": [
+        "Journal syntax is close to but not identical with Ledger and Beancount."
+      ],
+      "tags": [
+        "accounting",
+        "double-entry",
+        "plain-text",
+        "haskell",
+        "cli"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "cli-tool"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/simonmichael/hledger",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://hledger.org/doc.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install a pinned release binary or distro package; keep journals under version control."
+      ]
+    },
+    {
+      "id": "actual-budget",
+      "name": "Actual Budget",
+      "category": "finance-app",
+      "platforms": [
+        "web",
+        "desktop",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/actualbudget/actual/blob/master/LICENSE.txt",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://actualbudget.org",
+      "repository": "https://github.com/actualbudget/actual",
+      "docs": "https://actualbudget.org/docs/",
+      "summary": "Local-first envelope budgeting app with optional self-hosted sync server and bank-sync integrations.",
+      "useWhen": "Use instead of building a personal budgeting app; its @actual-app/api package can also script imports.",
+      "cautions": [
+        "Bank sync relies on third-party providers with their own terms."
+      ],
+      "tags": [
+        "budgeting",
+        "personal-finance",
+        "local-first",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "finance-accounting"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/actualbudget/actual",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://actualbudget.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "firefly-iii",
+      "name": "Firefly III",
+      "category": "finance-app",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-or-later",
+        "url": "https://github.com/firefly-iii/firefly-iii/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0; self-hosting unmodified is fine, modified network deployments must share source."
+      },
+      "homepage": "https://www.firefly-iii.org",
+      "repository": "https://github.com/firefly-iii/firefly-iii",
+      "docs": "https://docs.firefly-iii.org",
+      "summary": "Self-hosted PHP/Laravel personal finance manager with double-entry bookkeeping, budgets, rules and a REST API.",
+      "useWhen": "Use instead of building a self-hosted personal finance tracker with transaction rules and reports.",
+      "cautions": [
+        "AGPL obligations for modifications.",
+        "Import tooling is a separate Data Importer app."
+      ],
+      "tags": [
+        "personal-finance",
+        "budgeting",
+        "laravel",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "finance-accounting"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/firefly-iii/firefly-iii",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.firefly-iii.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "invoice-ninja",
+      "name": "Invoice Ninja",
+      "category": "invoicing",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Elastic-2.0",
+        "url": "https://github.com/invoiceninja/invoiceninja/blob/HEAD/LICENSE",
+        "scope": "Elastic License 2.0 (source-available, not OSI): no offering as a managed service, keep license keys intact."
+      },
+      "homepage": "https://invoiceninja.com",
+      "repository": "https://github.com/invoiceninja/invoiceninja",
+      "docs": "https://invoiceninja.github.io",
+      "summary": "Invoicing, quotes, payments, expenses and time-tracking app built on Laravel, self-hostable or hosted.",
+      "useWhen": "Use instead of building invoice generation, client portals and payment-gateway collection for a small business.",
+      "cautions": [
+        "Elastic License restricts providing it as a hosted service to third parties.",
+        "White-label features require a paid plan."
+      ],
+      "tags": [
+        "invoicing",
+        "billing",
+        "laravel",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/invoiceninja/invoiceninja",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://invoiceninja.github.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "akaunting",
+      "name": "Akaunting",
+      "category": "accounting-app",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "BUSL-1.1",
+        "url": "https://github.com/akaunting/akaunting/blob/HEAD/LICENSE.txt",
+        "scope": "Business Source License 1.1 with an additional use grant; read the restrictions before commercial or hosted use."
+      },
+      "homepage": "https://akaunting.com",
+      "repository": "https://github.com/akaunting/akaunting",
+      "docs": "https://akaunting.com/hc/docs",
+      "summary": "Laravel-based small-business accounting app with invoicing, bills, banking and an app marketplace.",
+      "useWhen": "Use as a self-hosted small-business accounting reference instead of building invoicing and bookkeeping screens.",
+      "cautions": [
+        "Source-available BUSL, not open source; check the additional use grant.",
+        "Many modules are paid apps."
+      ],
+      "tags": [
+        "accounting",
+        "invoicing",
+        "laravel",
+        "small-business"
+      ],
+      "projectTypes": [
+        "finance-accounting"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/akaunting/akaunting",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://akaunting.com/hc/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "erpnext",
+      "name": "ERPNext",
+      "category": "accounting-app",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-only",
+        "url": "https://github.com/frappe/erpnext/blob/HEAD/license.txt",
+        "scope": "GPL-3.0; self-hosting is free, distributed modifications carry copyleft obligations."
+      },
+      "homepage": "https://frappe.io/erpnext",
+      "repository": "https://github.com/frappe/erpnext",
+      "docs": "https://docs.frappe.io/erpnext",
+      "summary": "Full ERP on the Frappe framework: accounting, inventory, manufacturing, HR, CRM and point of sale.",
+      "useWhen": "Use instead of building accounting, stock and procurement modules when a business needs a complete open-source ERP.",
+      "cautions": [
+        "Large system; customizations should be Frappe apps, not core edits.",
+        "Verify localization and tax rules for your jurisdiction."
+      ],
+      "tags": [
+        "erp",
+        "accounting",
+        "inventory",
+        "python",
+        "frappe"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/frappe/erpnext",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.frappe.io/erpnext",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "plaid-node",
+      "name": "Plaid Node SDK",
+      "category": "finance-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/plaid/plaid-node/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Plaid is a paid bank-data service with its own developer terms."
+      },
+      "homepage": "https://plaid.com",
+      "repository": "https://github.com/plaid/plaid-node",
+      "docs": "https://plaid.com/docs/",
+      "summary": "Official generated Node.js client for the Plaid API (Link tokens, transactions, auth, identity, balances).",
+      "useWhen": "Use instead of hand-writing Plaid REST calls and token exchange when connecting user bank accounts.",
+      "cautions": [
+        "Access tokens are sensitive financial credentials; encrypt at rest.",
+        "Major versions track API changes frequently."
+      ],
+      "tags": [
+        "banking",
+        "open-banking",
+        "plaid",
+        "fintech"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "plaid"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/plaid/plaid-node",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://plaid.com/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "common-api-clients",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "intuit-oauth",
+      "name": "Intuit OAuth JS client (QuickBooks)",
+      "category": "finance-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/intuit/oauth-jsclient/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the client; QuickBooks Online API use is governed by Intuit developer terms."
+      },
+      "homepage": "https://developer.intuit.com",
+      "repository": "https://github.com/intuit/oauth-jsclient",
+      "docs": "https://developer.intuit.com/app/developer/qbo/docs/develop/sdks-and-samples-collections/nodejs/oauth-nodejs-client",
+      "summary": "Official Intuit OAuth 2.0 client for Node.js used to authorize and call QuickBooks Online APIs.",
+      "useWhen": "Use instead of hand-writing Intuit OAuth flows and token refresh before calling QuickBooks Online accounting endpoints.",
+      "cautions": [
+        "Keep realm (company) ID and environment (sandbox/production) explicit.",
+        "Refresh tokens rotate; persist the latest one."
+      ],
+      "tags": [
+        "quickbooks",
+        "accounting-api",
+        "oauth2",
+        "intuit"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "intuit-oauth"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/intuit/oauth-jsclient",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developer.intuit.com/app/developer/qbo/docs/develop/sdks-and-samples-collections/nodejs/oauth-nodejs-client",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "xero-node",
+      "name": "Xero Node SDK",
+      "category": "finance-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/XeroAPI/xero-node/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Xero API access follows Xero developer terms and app limits."
+      },
+      "homepage": "https://developer.xero.com",
+      "repository": "https://github.com/XeroAPI/xero-node",
+      "docs": "https://developer.xero.com/documentation/",
+      "summary": "Official Node.js SDK for Xero accounting, payroll, assets and files APIs with OAuth 2.0 helpers.",
+      "useWhen": "Use instead of hand-writing Xero OAuth and REST calls to sync invoices, contacts and payments.",
+      "cautions": [
+        "Respect tenant IDs and per-tenant rate limits.",
+        "Write operations post to real books; test in a demo company first."
+      ],
+      "tags": [
+        "xero",
+        "accounting-api",
+        "oauth2",
+        "invoices"
+      ],
+      "projectTypes": [
+        "finance-accounting",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "xero-node"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/XeroAPI/xero-node",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://developer.xero.com/documentation/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "rate-limit",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "resend-node",
+      "name": "Resend Node.js SDK",
+      "category": "email",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/resend/resend-node/blob/HEAD/LICENSE",
+        "scope": "MIT for the SDK; Resend is a paid email-sending service with a free tier."
+      },
+      "homepage": "https://resend.com",
+      "repository": "https://github.com/resend/resend-node",
+      "docs": "https://resend.com/docs",
+      "summary": "Official Node.js client for the Resend transactional email API, with React Email support.",
+      "useWhen": "Use instead of hand-writing SMTP or REST email sending, batch sends and idempotency for transactional mail.",
+      "cautions": [
+        "Verify your sending domain (SPF/DKIM) before production.",
+        "Verify webhook signatures for delivery events."
+      ],
+      "tags": [
+        "email",
+        "transactional",
+        "resend",
+        "node"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "resend"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/resend/resend-node",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://resend.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "common-api-clients",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "react-email",
+      "name": "React Email",
+      "category": "email",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/resend/react-email/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://react.email",
+      "repository": "https://github.com/resend/react-email",
+      "docs": "https://react.email/docs",
+      "summary": "React components and a preview server for building responsive, client-compatible HTML emails.",
+      "useWhen": "Use instead of hand-writing table-based HTML email markup and inline styles for transactional templates.",
+      "cautions": [
+        "Package layout changed: @react-email/components is no longer supported; follow the current install docs.",
+        "Test in real clients (Outlook, Gmail) before shipping."
+      ],
+      "tags": [
+        "email",
+        "templates",
+        "react",
+        "html-email"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-email"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/resend/react-email",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://react.email/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mjml",
+      "name": "MJML",
+      "category": "email",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mjmlio/mjml/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://mjml.io",
+      "repository": "https://github.com/mjmlio/mjml",
+      "docs": "https://documentation.mjml.io",
+      "summary": "Markup language and compiler that turns semantic tags into responsive, Outlook-compatible HTML email.",
+      "useWhen": "Use instead of hand-coding nested tables and conditional comments for responsive email templates in any backend.",
+      "cautions": [
+        "Compile at build time or cache output; compilation is relatively slow."
+      ],
+      "tags": [
+        "email",
+        "templates",
+        "responsive",
+        "html-email"
+      ],
+      "projectTypes": [
+        "saas",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "mjml"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mjmlio/mjml",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://documentation.mjml.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nodemailer",
+      "name": "Nodemailer",
+      "category": "email",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT-0",
+        "url": "https://github.com/nodemailer/nodemailer/blob/HEAD/LICENSE",
+        "scope": "MIT-0 for the upstream code."
+      },
+      "homepage": "https://nodemailer.com",
+      "repository": "https://github.com/nodemailer/nodemailer",
+      "docs": "https://nodemailer.com/about/",
+      "summary": "Zero-dependency Node.js module for sending email over SMTP, SES and other transports with attachments and DKIM.",
+      "useWhen": "Use instead of hand-writing SMTP sessions, MIME encoding and DKIM signing in Node.js.",
+      "cautions": [
+        "Do not pass untrusted input into headers; validate addresses.",
+        "Use a provider/queue for bulk sending."
+      ],
+      "tags": [
+        "email",
+        "smtp",
+        "node",
+        "mime"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nodemailer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nodemailer/nodemailer",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nodemailer.com/about/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "knock-node",
+      "name": "Knock Node SDK",
+      "category": "notifications",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/knocklabs/knock-node/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the SDK; Knock is a paid notification-infrastructure service."
+      },
+      "homepage": "https://knock.app",
+      "repository": "https://github.com/knocklabs/knock-node",
+      "docs": "https://docs.knock.app",
+      "summary": "Official Node.js client for Knock, a hosted service for cross-channel notification workflows, preferences and in-app feeds.",
+      "useWhen": "Use instead of building notification routing, batching, user preferences and in-app feeds across email, SMS, push and chat.",
+      "cautions": [
+        "Workflows and templates live in the vendor; version them via its CLI."
+      ],
+      "tags": [
+        "notifications",
+        "workflows",
+        "in-app-feed",
+        "preferences"
+      ],
+      "projectTypes": [
+        "saas",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@knocklabs/node"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/knocklabs/knock-node",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.knock.app",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "notification-preferences",
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "listmonk",
+      "name": "listmonk",
+      "category": "email",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/knadh/listmonk/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0; self-hosting unmodified is fine, modified network deployments must share source."
+      },
+      "homepage": "https://listmonk.app",
+      "repository": "https://github.com/knadh/listmonk",
+      "docs": "https://listmonk.app/docs/",
+      "summary": "Self-hosted Go newsletter and mailing-list manager with a single binary, PostgreSQL and an API.",
+      "useWhen": "Use instead of building subscriber lists, campaign sending and unsubscribe handling for newsletters.",
+      "cautions": [
+        "Needs an SMTP relay with good deliverability.",
+        "Comply with consent and unsubscribe laws in your markets."
+      ],
+      "tags": [
+        "newsletter",
+        "email",
+        "mailing-list",
+        "go",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "saas",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "listmonk/listmonk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/knadh/listmonk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://listmonk.app/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "postal",
+      "name": "Postal",
+      "category": "email",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/postalserver/postal/blob/HEAD/MIT-LICENCE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://docs.postalserver.io",
+      "repository": "https://github.com/postalserver/postal",
+      "docs": "https://docs.postalserver.io",
+      "summary": "Self-hosted mail delivery platform for sending and receiving transactional email with webhooks and tracking.",
+      "useWhen": "Use instead of running raw Postfix plus custom tracking when you must self-host outbound transactional email.",
+      "cautions": [
+        "Deliverability (IP reputation, rDNS, SPF/DKIM) is your responsibility."
+      ],
+      "tags": [
+        "email",
+        "smtp",
+        "self-hosted",
+        "ruby"
+      ],
+      "projectTypes": [
+        "saas",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/postalserver/postal",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.postalserver.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "web-push",
+      "name": "web-push",
+      "category": "notifications",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/web-push-libs/web-push/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/web-push-libs/web-push",
+      "docs": "https://github.com/web-push-libs/web-push#readme",
+      "summary": "Node.js library for sending Web Push Protocol messages with VAPID and payload encryption.",
+      "useWhen": "Use instead of hand-implementing VAPID JWTs and aes128gcm payload encryption for browser push notifications.",
+      "cautions": [
+        "Releases are infrequent but the protocol is stable.",
+        "Remove subscriptions that return 404/410."
+      ],
+      "tags": [
+        "push",
+        "web-push",
+        "vapid",
+        "notifications"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "web-push"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/web-push-libs/web-push",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/web-push-libs/web-push#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ntfy",
+      "name": "ntfy",
+      "category": "notifications",
+      "platforms": [
+        "server",
+        "android",
+        "ios",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/binwiederhier/ntfy/blob/HEAD/LICENSE",
+        "scope": "Dual-licensed Apache-2.0 or GPL-2.0; choose Apache-2.0."
+      },
+      "homepage": "https://ntfy.sh",
+      "repository": "https://github.com/binwiederhier/ntfy",
+      "docs": "https://docs.ntfy.sh",
+      "summary": "Simple HTTP pub-sub push notification service with phone apps; send alerts with a single POST.",
+      "useWhen": "Use instead of building a push channel for ops alerts or personal notifications to phones and desktops.",
+      "cautions": [
+        "Public ntfy.sh topics are guessable; use access control or self-host for private alerts."
+      ],
+      "tags": [
+        "notifications",
+        "push",
+        "pubsub",
+        "go",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "binwiederhier/ntfy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/binwiederhier/ntfy",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.ntfy.sh",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "openfeature-js-sdk",
+      "name": "OpenFeature JavaScript SDK",
+      "category": "feature-flags",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-feature/js-sdk/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://openfeature.dev",
+      "repository": "https://github.com/open-feature/js-sdk",
+      "docs": "https://openfeature.dev/docs/reference/technologies/server/javascript",
+      "summary": "CNCF vendor-neutral feature-flag evaluation API for JavaScript with providers for most flag backends.",
+      "useWhen": "Use instead of coupling code to one flag vendor's SDK; swap providers (Unleash, Flagsmith, GrowthBook, LaunchDarkly) without code changes.",
+      "cautions": [
+        "You still need a provider package and a flag backend."
+      ],
+      "tags": [
+        "feature-flags",
+        "openfeature",
+        "cncf",
+        "typescript"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@openfeature/server-sdk"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@openfeature/web-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-feature/js-sdk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://openfeature.dev/docs/reference/technologies/server/javascript",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openfeature-python-sdk",
+      "name": "OpenFeature Python SDK",
+      "category": "feature-flags",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-feature/python-sdk/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://openfeature.dev",
+      "repository": "https://github.com/open-feature/python-sdk",
+      "docs": "https://openfeature.dev/docs/reference/technologies/server/python",
+      "summary": "Vendor-neutral OpenFeature evaluation API for Python services.",
+      "useWhen": "Use instead of binding Python code to a single flag vendor's client.",
+      "cautions": [
+        "Check provider availability for your flag backend."
+      ],
+      "tags": [
+        "feature-flags",
+        "openfeature",
+        "python"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "openfeature-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-feature/python-sdk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://openfeature.dev/docs/reference/technologies/server/python",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openfeature-go-sdk",
+      "name": "OpenFeature Go SDK",
+      "category": "feature-flags",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-feature/go-sdk/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://openfeature.dev",
+      "repository": "https://github.com/open-feature/go-sdk",
+      "docs": "https://openfeature.dev/docs/reference/technologies/server/go",
+      "summary": "Vendor-neutral OpenFeature evaluation API for Go services.",
+      "useWhen": "Use instead of binding Go services to a single flag vendor's client.",
+      "cautions": [
+        "Check provider availability for your flag backend."
+      ],
+      "tags": [
+        "feature-flags",
+        "openfeature",
+        "go"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/open-feature/go-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-feature/go-sdk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://openfeature.dev/docs/reference/technologies/server/go",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "go get github.com/open-feature/go-sdk and pin it in go.mod."
+      ]
+    },
+    {
+      "id": "unleash",
+      "name": "Unleash",
+      "category": "feature-flags",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/Unleash/unleash/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the open-source server; Unleash Enterprise features are commercial."
+      },
+      "homepage": "https://www.getunleash.io",
+      "repository": "https://github.com/Unleash/unleash",
+      "docs": "https://docs.getunleash.io",
+      "summary": "Self-hostable feature-flag server with gradual rollouts, strategies, variants and SDKs for many languages.",
+      "useWhen": "Use instead of building a flag table, targeting rules and percentage rollouts in your own database.",
+      "cautions": [
+        "Some governance features (change requests, SSO) are enterprise-only."
+      ],
+      "tags": [
+        "feature-flags",
+        "rollouts",
+        "self-hosted",
+        "experimentation"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "unleash-client"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Unleash/unleash",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.getunleash.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "flagsmith",
+      "name": "Flagsmith",
+      "category": "feature-flags",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/Flagsmith/flagsmith/blob/HEAD/LICENSE.md",
+        "scope": "BSD-3-Clause for the open-source edition; enterprise features are commercial."
+      },
+      "homepage": "https://www.flagsmith.com",
+      "repository": "https://github.com/Flagsmith/flagsmith",
+      "docs": "https://docs.flagsmith.com",
+      "summary": "Open-source feature-flag and remote-config service with segments, A/B variants and self-hosting.",
+      "useWhen": "Use instead of building remote config and per-segment flag targeting yourself.",
+      "cautions": [
+        "The old \"flagsmith\" npm package moved to @flagsmith/flagsmith."
+      ],
+      "tags": [
+        "feature-flags",
+        "remote-config",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "saas",
+        "mobile-app",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@flagsmith/flagsmith"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Flagsmith/flagsmith",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.flagsmith.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "growthbook",
+      "name": "GrowthBook",
+      "category": "feature-flags",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/growthbook/growthbook/blob/HEAD/LICENSE",
+        "scope": "MIT except directories marked GrowthBook Enterprise License; SDKs are MIT."
+      },
+      "homepage": "https://www.growthbook.io",
+      "repository": "https://github.com/growthbook/growthbook",
+      "docs": "https://docs.growthbook.io",
+      "summary": "Feature flags plus warehouse-native A/B testing with Bayesian and frequentist statistics.",
+      "useWhen": "Use instead of hand-rolling experiment assignment and significance calculations on top of your data warehouse.",
+      "cautions": [
+        "Enterprise directories are not MIT.",
+        "Experiment results are only as good as your event tracking."
+      ],
+      "tags": [
+        "feature-flags",
+        "ab-testing",
+        "experimentation",
+        "statistics"
+      ],
+      "projectTypes": [
+        "saas",
+        "data-analytics",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@growthbook/growthbook"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/growthbook/growthbook",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.growthbook.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "posthog",
+      "name": "PostHog",
+      "category": "product-analytics",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/PostHog/posthog/blob/HEAD/LICENSE",
+        "scope": "MIT outside ee/; ee/ is under the PostHog Enterprise license. posthog-js declares Apache-2.0 AND MIT."
+      },
+      "homepage": "https://posthog.com",
+      "repository": "https://github.com/PostHog/posthog",
+      "docs": "https://posthog.com/docs",
+      "summary": "Product analytics, session replay, feature flags, experiments and surveys in one platform, hosted or self-hosted.",
+      "useWhen": "Use instead of wiring separate analytics, flag and experiment tools when you want one SDK for product telemetry.",
+      "cautions": [
+        "Configure consent and PII masking before enabling session replay.",
+        "Self-hosting is a hobby deployment; production is usually PostHog Cloud."
+      ],
+      "tags": [
+        "analytics",
+        "feature-flags",
+        "session-replay",
+        "experiments"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "posthog-js"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "posthog"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/PostHog/posthog",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://posthog.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "payload",
+      "name": "Payload",
+      "category": "cms",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/payloadcms/payload/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://payloadcms.com",
+      "repository": "https://github.com/payloadcms/payload",
+      "docs": "https://payloadcms.com/docs",
+      "summary": "TypeScript headless CMS and app framework that installs into a Next.js app with auth, access control and admin UI.",
+      "useWhen": "Use instead of hand-building admin CRUD screens, access control and content APIs inside a Next.js project.",
+      "cautions": [
+        "Pin all @payloadcms/* packages to the same version."
+      ],
+      "tags": [
+        "cms",
+        "headless",
+        "nextjs",
+        "admin",
+        "typescript"
+      ],
+      "projectTypes": [
+        "saas",
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "payload"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/payloadcms/payload",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://payloadcms.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "strapi",
+      "name": "Strapi",
+      "category": "cms",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/strapi/strapi/blob/HEAD/LICENSE",
+        "scope": "MIT except ee/ directories (Enterprise Edition). npm packages declare \"SEE LICENSE IN LICENSE\"."
+      },
+      "homepage": "https://strapi.io",
+      "repository": "https://github.com/strapi/strapi",
+      "docs": "https://docs.strapi.io",
+      "summary": "Node.js headless CMS with a content-type builder, REST/GraphQL APIs, roles and a plugin marketplace.",
+      "useWhen": "Use instead of building content models, editorial admin and content APIs from scratch.",
+      "cautions": [
+        "Avoid ee/ features without a license.",
+        "Major upgrades (v4 to v5) need migration."
+      ],
+      "tags": [
+        "cms",
+        "headless",
+        "node",
+        "graphql"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/strapi/strapi",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.strapi.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Scaffold with the official create-strapi command, commit the lockfile and pin @strapi/* versions together."
+      ]
+    },
+    {
+      "id": "directus",
+      "name": "Directus",
+      "category": "cms",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://github.com/directus/directus/blob/HEAD/license",
+        "scope": "Monospace Sustainable Core License 1.0 (MSCL-1.0-GPL), source-available and not OSI-approved; read the grant and revenue thresholds before use."
+      },
+      "homepage": "https://directus.io",
+      "repository": "https://github.com/directus/directus",
+      "docs": "https://directus.io/docs",
+      "summary": "Data platform that wraps any SQL database with instant REST/GraphQL APIs and a no-code admin app.",
+      "useWhen": "Use instead of hand-building an admin panel and API over an existing SQL schema.",
+      "cautions": [
+        "License is source-available with commercial thresholds; confirm eligibility."
+      ],
+      "tags": [
+        "cms",
+        "headless",
+        "sql",
+        "admin",
+        "api"
+      ],
+      "projectTypes": [
+        "saas",
+        "api-backend",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/directus/directus",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://directus.io/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "sanity",
+      "name": "Sanity",
+      "category": "cms",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sanity-io/sanity/blob/HEAD/LICENSE",
+        "scope": "MIT for Sanity Studio; the Content Lake backend is a hosted paid service."
+      },
+      "homepage": "https://www.sanity.io",
+      "repository": "https://github.com/sanity-io/sanity",
+      "docs": "https://www.sanity.io/docs",
+      "summary": "Customizable React content studio backed by the hosted Sanity Content Lake with GROQ queries and real-time collaboration.",
+      "useWhen": "Use instead of building structured content editing and a content API when a hosted backend is acceptable.",
+      "cautions": [
+        "Usage-based pricing on documents, API requests and bandwidth."
+      ],
+      "tags": [
+        "cms",
+        "headless",
+        "react",
+        "groq",
+        "hosted"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sanity"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sanity-io/sanity",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.sanity.io/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "keystone",
+      "name": "Keystone",
+      "category": "cms",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/keystonejs/keystone/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://keystonejs.com",
+      "repository": "https://github.com/keystonejs/keystone",
+      "docs": "https://keystonejs.com/docs",
+      "summary": "Schema-driven Node.js CMS and GraphQL API generator with Prisma and an admin UI.",
+      "useWhen": "Use instead of hand-writing GraphQL CRUD, access control and admin screens from a data schema.",
+      "cautions": [
+        "Smaller ecosystem than Payload/Strapi; check plugin availability."
+      ],
+      "tags": [
+        "cms",
+        "graphql",
+        "prisma",
+        "node",
+        "admin"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@keystone-6/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/keystonejs/keystone",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://keystonejs.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ghost",
+      "name": "Ghost",
+      "category": "cms",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TryGhost/Ghost/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://ghost.org",
+      "repository": "https://github.com/TryGhost/Ghost",
+      "docs": "https://ghost.org/docs/",
+      "summary": "Node.js publishing platform for blogs and newsletters with memberships, paid subscriptions and a Content API.",
+      "useWhen": "Use instead of building a blog, newsletter and paid-membership site from scratch.",
+      "cautions": [
+        "Paid memberships rely on Stripe; email newsletters need Mailgun for bulk sending."
+      ],
+      "tags": [
+        "cms",
+        "blog",
+        "newsletter",
+        "memberships"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TryGhost/Ghost",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://ghost.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "refine",
+      "name": "Refine",
+      "category": "admin",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/refinedev/refine/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://refine.dev",
+      "repository": "https://github.com/refinedev/refine",
+      "docs": "https://refine.dev/docs",
+      "summary": "Headless React framework for CRUD-heavy admin panels and internal tools with data-provider adapters.",
+      "useWhen": "Use instead of hand-writing list/edit/create pages, auth guards and data fetching for internal admin apps.",
+      "cautions": [
+        "Pin core and UI integration packages to compatible majors."
+      ],
+      "tags": [
+        "admin",
+        "react",
+        "crud",
+        "internal-tools"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@refinedev/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/refinedev/refine",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://refine.dev/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-admin",
+      "name": "react-admin",
+      "category": "admin",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/marmelab/react-admin/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://marmelab.com/react-admin/",
+      "repository": "https://github.com/marmelab/react-admin",
+      "docs": "https://marmelab.com/react-admin/documentation.html",
+      "summary": "React framework for B2B admin apps on REST/GraphQL APIs, built on Material UI.",
+      "useWhen": "Use instead of hand-building data grids, forms, filters and auth for back-office apps.",
+      "cautions": [
+        "Enterprise Edition modules are commercial."
+      ],
+      "tags": [
+        "admin",
+        "react",
+        "material-ui",
+        "crud"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-admin"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/marmelab/react-admin",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://marmelab.com/react-admin/documentation.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "appsmith",
+      "name": "Appsmith",
+      "category": "internal-tools",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/appsmithorg/appsmith/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 Community Edition; business/enterprise editions are commercial."
+      },
+      "homepage": "https://www.appsmith.com",
+      "repository": "https://github.com/appsmithorg/appsmith",
+      "docs": "https://docs.appsmith.com",
+      "summary": "Low-code internal-tool builder with drag-and-drop widgets, database/API connectors and JavaScript.",
+      "useWhen": "Use instead of hand-coding dashboards and CRUD back-office tools over existing databases and APIs.",
+      "cautions": [
+        "Restrict datasource credentials; apps run queries with stored connector secrets."
+      ],
+      "tags": [
+        "low-code",
+        "internal-tools",
+        "dashboards",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "saas",
+        "data-analytics"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/appsmithorg/appsmith",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.appsmith.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "tooljet",
+      "name": "ToolJet",
+      "category": "internal-tools",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/ToolJet/ToolJet/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 community edition; enterprise features are commercial."
+      },
+      "homepage": "https://www.tooljet.com",
+      "repository": "https://github.com/ToolJet/ToolJet",
+      "docs": "https://docs.tooljet.com",
+      "summary": "Low-code platform for internal tools and workflows with many datasource connectors.",
+      "useWhen": "Use instead of hand-coding admin dashboards and approval tools for internal teams.",
+      "cautions": [
+        "AGPL obligations for modified deployments."
+      ],
+      "tags": [
+        "low-code",
+        "internal-tools",
+        "workflows",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "saas",
+        "data-analytics"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ToolJet/ToolJet",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.tooljet.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "nocodb",
+      "name": "NocoDB",
+      "category": "internal-tools",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://github.com/nocodb/nocodb/blob/HEAD/LICENSE.md",
+        "scope": "Sustainable Use License (fair-code, not OSI) on the master branch per LICENSE.md updated January 2026; read before commercial or hosted use."
+      },
+      "homepage": "https://nocodb.com",
+      "repository": "https://github.com/nocodb/nocodb",
+      "docs": "https://nocodb.com/docs",
+      "summary": "Spreadsheet-style UI and REST APIs on top of PostgreSQL, MySQL or SQLite (Airtable alternative).",
+      "useWhen": "Use instead of building spreadsheet-like data editing and quick APIs over an existing database for non-developers.",
+      "cautions": [
+        "License moved away from AGPL; confirm current terms for your use."
+      ],
+      "tags": [
+        "no-code",
+        "database",
+        "airtable-alternative",
+        "api"
+      ],
+      "projectTypes": [
+        "saas",
+        "data-analytics"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nocodb/nocodb",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nocodb.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "baserow",
+      "name": "Baserow",
+      "category": "internal-tools",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://gitlab.com/baserow/baserow/blob/develop/LICENSE",
+        "scope": "MIT for core; premium/ and enterprise/ directories are under a commercial license."
+      },
+      "homepage": "https://baserow.io",
+      "repository": "https://gitlab.com/baserow/baserow",
+      "docs": "https://baserow.io/docs/index",
+      "summary": "Open-source no-code database and application builder with a REST API, built on Django and Vue.",
+      "useWhen": "Use instead of building an Airtable-like collaborative table editor and API for internal data.",
+      "cautions": [
+        "Premium and enterprise directories are not MIT."
+      ],
+      "tags": [
+        "no-code",
+        "database",
+        "django",
+        "airtable-alternative"
+      ],
+      "projectTypes": [
+        "saas",
+        "data-analytics"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://gitlab.com/baserow/baserow",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://baserow.io/docs/index",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "baas",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/supabase/supabase/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the platform repository; client libraries such as supabase-js are MIT. Supabase Cloud is a paid service."
+      },
+      "homepage": "https://supabase.com",
+      "repository": "https://github.com/supabase/supabase",
+      "docs": "https://supabase.com/docs",
+      "summary": "Postgres-based backend platform with auth, instant APIs, realtime, storage, edge functions and vector support.",
+      "useWhen": "Use instead of assembling auth, REST/GraphQL APIs, file storage and realtime on Postgres yourself.",
+      "cautions": [
+        "Enable and test row-level security on every exposed table.",
+        "Never ship the service-role key to clients."
+      ],
+      "tags": [
+        "baas",
+        "postgres",
+        "auth",
+        "realtime",
+        "storage"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "mobile-app",
+        "api-backend"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/supabase/supabase",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://supabase.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Use the Supabase CLI for local development and migrations; install @supabase/supabase-js (MIT) in clients and pin versions."
+      ]
+    },
+    {
+      "id": "appwrite",
+      "name": "Appwrite",
+      "category": "baas",
+      "platforms": [
+        "web",
+        "server",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/appwrite/appwrite/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code."
+      },
+      "homepage": "https://appwrite.io",
+      "repository": "https://github.com/appwrite/appwrite",
+      "docs": "https://appwrite.io/docs",
+      "summary": "Self-hostable backend platform with auth, databases, storage, functions, messaging and realtime.",
+      "useWhen": "Use instead of building auth, document storage, file uploads and serverless functions for web and mobile apps.",
+      "cautions": [
+        "Runs many containers when self-hosted; plan resources."
+      ],
+      "tags": [
+        "baas",
+        "auth",
+        "storage",
+        "functions",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "saas",
+        "mobile-app",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "appwrite"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/appwrite/appwrite",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://appwrite.io/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "pocketbase",
+      "name": "PocketBase",
+      "category": "baas",
+      "platforms": [
+        "server",
+        "web",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pocketbase/pocketbase/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://pocketbase.io",
+      "repository": "https://github.com/pocketbase/pocketbase",
+      "docs": "https://pocketbase.io/docs/",
+      "summary": "Single-file Go backend with embedded SQLite, auth, realtime subscriptions, file storage and admin UI.",
+      "useWhen": "Use instead of building a small app backend (auth, CRUD API, realtime) for prototypes and modest workloads.",
+      "cautions": [
+        "Pre-1.0: breaking changes between minor versions.",
+        "SQLite single-node; plan scaling limits."
+      ],
+      "tags": [
+        "baas",
+        "sqlite",
+        "go",
+        "realtime",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pocketbase"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pocketbase/pocketbase",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pocketbase.io/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "firebase-js-sdk",
+      "name": "Firebase JavaScript SDK",
+      "category": "baas",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/firebase/firebase-js-sdk/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the SDK; Firebase is a Google-hosted service with usage-based pricing."
+      },
+      "homepage": "https://firebase.google.com",
+      "repository": "https://github.com/firebase/firebase-js-sdk",
+      "docs": "https://firebase.google.com/docs/web/setup",
+      "summary": "Modular web SDK for Firebase Auth, Firestore, Storage, Cloud Messaging, Remote Config and more.",
+      "useWhen": "Use instead of building auth, realtime document sync and push messaging when a Google-hosted backend fits.",
+      "cautions": [
+        "Security Rules are your authorization layer; test them.",
+        "Watch read/write costs from realtime listeners."
+      ],
+      "tags": [
+        "baas",
+        "firebase",
+        "firestore",
+        "auth",
+        "google"
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "firebase"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/firebase/firebase-js-sdk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://firebase.google.com/docs/web/setup",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "convex",
+      "name": "Convex",
+      "category": "baas",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/get-convex/convex-js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the client/CLI package; the hosted platform is commercial and the self-hostable backend uses FSL-1.1-Apache-2.0."
+      },
+      "homepage": "https://www.convex.dev",
+      "repository": "https://github.com/get-convex/convex-js",
+      "docs": "https://docs.convex.dev",
+      "summary": "Reactive backend with TypeScript server functions, a transactional document database and live-updating queries.",
+      "useWhen": "Use instead of hand-wiring an API layer, cache invalidation and websocket subscriptions for live data in a TypeScript app.",
+      "cautions": [
+        "Vendor-specific programming model; plan an exit strategy."
+      ],
+      "tags": [
+        "baas",
+        "reactive",
+        "typescript",
+        "realtime",
+        "database"
+      ],
+      "projectTypes": [
+        "saas",
+        "web-app",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "convex"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/get-convex/convex-js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.convex.dev",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "yjs",
+      "name": "Yjs",
+      "category": "realtime",
+      "platforms": [
+        "web",
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/yjs/yjs/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://yjs.dev",
+      "repository": "https://github.com/yjs/yjs",
+      "docs": "https://docs.yjs.dev",
+      "summary": "High-performance CRDT framework for shared types with bindings for ProseMirror, Tiptap, CodeMirror, Monaco and more.",
+      "useWhen": "Use instead of hand-writing operational transforms or conflict resolution for collaborative editing and offline sync.",
+      "cautions": [
+        "Choose a provider (y-websocket, Hocuspocus, WebRTC) and persistence separately.",
+        "Authorize document access at the provider."
+      ],
+      "tags": [
+        "crdt",
+        "collaboration",
+        "realtime",
+        "offline"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "yjs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/yjs/yjs",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.yjs.dev",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "automerge",
+      "name": "Automerge",
+      "category": "realtime",
+      "platforms": [
+        "web",
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/automerge/automerge/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://automerge.org",
+      "repository": "https://github.com/automerge/automerge",
+      "docs": "https://automerge.org/docs/hello/",
+      "summary": "JSON-like CRDT library (Rust core with JavaScript bindings) for local-first apps with sync and history.",
+      "useWhen": "Use instead of designing your own merge logic for local-first documents that sync between peers or servers.",
+      "cautions": [
+        "Use automerge-repo for networking and storage."
+      ],
+      "tags": [
+        "crdt",
+        "local-first",
+        "rust",
+        "sync"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "desktop-app",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@automerge/automerge"
+        },
+        {
+          "ecosystem": "crates",
+          "name": "automerge"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/automerge/automerge",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://automerge.org/docs/hello/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "socket-io",
+      "name": "Socket.IO",
+      "category": "realtime",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/socketio/socket.io/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://socket.io",
+      "repository": "https://github.com/socketio/socket.io",
+      "docs": "https://socket.io/docs/v4/",
+      "summary": "Bidirectional event-based realtime communication with rooms, reconnection, acknowledgements and fallbacks.",
+      "useWhen": "Use instead of hand-writing reconnection, heartbeats, rooms and broadcast fan-out on raw WebSockets.",
+      "cautions": [
+        "Not wire-compatible with plain WebSocket clients.",
+        "Use an adapter (Redis, Postgres) for multiple nodes."
+      ],
+      "tags": [
+        "websocket",
+        "realtime",
+        "rooms",
+        "node"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "socket.io"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "socket.io-client"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/socketio/socket.io",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://socket.io/docs/v4/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ws",
+      "name": "ws",
+      "category": "realtime",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/websockets/ws/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/websockets/ws",
+      "docs": "https://github.com/websockets/ws#readme",
+      "summary": "Fast, tested WebSocket client and server implementation for Node.js.",
+      "useWhen": "Use instead of implementing the WebSocket protocol handshake and framing yourself in Node.js.",
+      "cautions": [
+        "Add your own heartbeats, auth and backpressure handling.",
+        "Set maxPayload to limit memory use."
+      ],
+      "tags": [
+        "websocket",
+        "node",
+        "realtime"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ws"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/websockets/ws",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/websockets/ws#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "python-websockets",
+      "name": "websockets (Python)",
+      "category": "realtime",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/python-websockets/websockets/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/python-websockets/websockets",
+      "docs": "https://websockets.readthedocs.io",
+      "summary": "Python library for building WebSocket servers and clients with asyncio, focused on correctness and simplicity.",
+      "useWhen": "Use instead of hand-implementing WebSocket framing and connection handling in Python asyncio services.",
+      "cautions": [
+        "The legacy API was replaced by the new asyncio implementation; follow current docs."
+      ],
+      "tags": [
+        "websocket",
+        "python",
+        "asyncio",
+        "realtime"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "websockets"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/python-websockets/websockets",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://websockets.readthedocs.io",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "liveblocks",
+      "name": "Liveblocks",
+      "category": "realtime",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/liveblocks/liveblocks/blob/HEAD/LICENSE",
+        "scope": "Most SDK code Apache-2.0; some listed components are AGPL-3.0-or-later. The Liveblocks backend is a paid hosted service."
+      },
+      "homepage": "https://liveblocks.io",
+      "repository": "https://github.com/liveblocks/liveblocks",
+      "docs": "https://liveblocks.io/docs",
+      "summary": "Hosted realtime collaboration infrastructure: presence, storage, comments, notifications and Yjs sync with React hooks.",
+      "useWhen": "Use instead of building presence, multiplayer cursors, comments and collaborative storage infrastructure yourself.",
+      "cautions": [
+        "Check which repository components are AGPL before modifying them.",
+        "Authorize rooms via your backend auth endpoint."
+      ],
+      "tags": [
+        "realtime",
+        "collaboration",
+        "presence",
+        "react",
+        "hosted"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@liveblocks/client"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@liveblocks/react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/liveblocks/liveblocks",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://liveblocks.io/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install the official SDK, keep API keys in server-side secrets, and pin the reviewed SDK version."
+      ]
+    },
+    {
+      "id": "partyserver",
+      "name": "PartyServer (PartyKit)",
+      "category": "realtime",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/cloudflare/partykit/blob/HEAD/LICENSE",
+        "scope": "ISC for the upstream code."
+      },
+      "homepage": "https://www.partykit.io",
+      "repository": "https://github.com/cloudflare/partykit",
+      "docs": "https://github.com/cloudflare/partykit#readme",
+      "summary": "Cloudflare-maintained libraries for stateful realtime rooms on Durable Objects, successor to the PartyKit platform.",
+      "useWhen": "Use instead of hand-writing Durable Object routing, websocket hibernation and reconnecting clients for multiplayer rooms on Cloudflare.",
+      "cautions": [
+        "Cloudflare Workers/Durable Objects specific.",
+        "The original partykit CLI/platform is in maintenance; prefer partyserver."
+      ],
+      "tags": [
+        "realtime",
+        "cloudflare",
+        "durable-objects",
+        "websocket"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "partyserver"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cloudflare/partykit",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/cloudflare/partykit#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "centrifugo",
+      "name": "Centrifugo",
+      "category": "realtime",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/centrifugal/centrifugo/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the OSS server; Centrifugo PRO is commercial."
+      },
+      "homepage": "https://centrifugal.dev",
+      "repository": "https://github.com/centrifugal/centrifugo",
+      "docs": "https://centrifugal.dev/docs/getting-started/introduction",
+      "summary": "Scalable Go realtime messaging server (WebSocket, SSE, HTTP-streaming) with channels, presence and history.",
+      "useWhen": "Use instead of building your own pub/sub fan-out tier for live updates in any backend language.",
+      "cautions": [
+        "Publish from your backend via its API; clients authenticate with JWTs you issue."
+      ],
+      "tags": [
+        "realtime",
+        "pubsub",
+        "websocket",
+        "go",
+        "sse"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "centrifugo/centrifugo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/centrifugal/centrifugo",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://centrifugal.dev/docs/getting-started/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "matrix-js-sdk",
+      "name": "Matrix JavaScript SDK",
+      "category": "realtime",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/matrix-org/matrix-js-sdk/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://matrix.org",
+      "repository": "https://github.com/matrix-org/matrix-js-sdk",
+      "docs": "https://matrix-org.github.io/matrix-js-sdk/",
+      "summary": "Client-server SDK for the Matrix open, federated chat protocol, including end-to-end encryption.",
+      "useWhen": "Use instead of building chat sync, rooms and E2EE messaging yourself when interoperable chat is needed.",
+      "cautions": [
+        "Requires a homeserver (Synapse, Conduit or hosted).",
+        "E2EE crypto uses the Rust crypto WASM module."
+      ],
+      "tags": [
+        "chat",
+        "matrix",
+        "federation",
+        "e2ee"
+      ],
+      "projectTypes": [
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "matrix-js-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/matrix-org/matrix-js-sdk",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://matrix-org.github.io/matrix-js-sdk/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hocuspocus",
+      "name": "Hocuspocus",
+      "category": "realtime",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ueberdosis/hocuspocus/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://tiptap.dev/docs/hocuspocus/introduction",
+      "repository": "https://github.com/ueberdosis/hocuspocus",
+      "docs": "https://tiptap.dev/docs/hocuspocus/introduction",
+      "summary": "Plug-and-play Yjs WebSocket backend from the Tiptap team with auth hooks, persistence extensions and scaling.",
+      "useWhen": "Use instead of hand-writing a Yjs sync server, document persistence and auth hooks for collaborative editors.",
+      "cautions": [
+        "Implement onAuthenticate to enforce document permissions."
+      ],
+      "tags": [
+        "yjs",
+        "collaboration",
+        "websocket",
+        "tiptap"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@hocuspocus/server"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@hocuspocus/provider"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ueberdosis/hocuspocus",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tiptap.dev/docs/hocuspocus/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "docuseal",
+      "name": "DocuSeal",
+      "category": "e-signature",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/docusealco/docuseal/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 with additional terms; Pro features are commercial."
+      },
+      "homepage": "https://www.docuseal.com",
+      "repository": "https://github.com/docusealco/docuseal",
+      "docs": "https://www.docuseal.com/docs",
+      "summary": "Self-hostable document e-signature platform with a PDF form builder, API and embeddable signing components.",
+      "useWhen": "Use instead of building PDF field placement, signing flows and audit trails for contracts.",
+      "cautions": [
+        "Confirm e-signature legal validity for your jurisdiction and document type.",
+        "AGPL obligations for modifications."
+      ],
+      "tags": [
+        "e-signature",
+        "pdf",
+        "contracts",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/docusealco/docuseal",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.docuseal.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "documenso",
+      "name": "Documenso",
+      "category": "e-signature",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/documenso/documenso/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 community edition; enterprise features are commercial."
+      },
+      "homepage": "https://documenso.com",
+      "repository": "https://github.com/documenso/documenso",
+      "docs": "https://docs.documenso.com",
+      "summary": "Open-source DocuSign alternative built with Next.js, offering signing workflows, templates and an API.",
+      "useWhen": "Use instead of building a document signing product or embedding signing flows from scratch.",
+      "cautions": [
+        "Configure signing certificates for verifiable PDF signatures.",
+        "Check legal validity per jurisdiction."
+      ],
+      "tags": [
+        "e-signature",
+        "nextjs",
+        "contracts",
+        "pdf"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/documenso/documenso",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.documenso.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "opensign",
+      "name": "OpenSign",
+      "category": "e-signature",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only",
+        "url": "https://github.com/OpenSignLabs/OpenSign/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0 for most code; a custom-route directory has its own license per LICENSE."
+      },
+      "homepage": "https://www.opensignlabs.com",
+      "repository": "https://github.com/OpenSignLabs/OpenSign",
+      "docs": "https://docs.opensignlabs.com",
+      "summary": "Open-source PDF e-signature app with templates, multi-signer workflows and audit certificates.",
+      "useWhen": "Use instead of building multi-party PDF signing and completion certificates yourself.",
+      "cautions": [
+        "AGPL obligations; review the separately licensed directory."
+      ],
+      "tags": [
+        "e-signature",
+        "pdf",
+        "contracts"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/OpenSignLabs/OpenSign",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.opensignlabs.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    },
+    {
+      "id": "cookieconsent",
+      "name": "CookieConsent (orestbida)",
+      "category": "consent",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/orestbida/cookieconsent/blob/master/LICENSE",
+        "scope": "MIT for the upstream code."
+      },
+      "homepage": "https://cookieconsent.orestbida.com",
+      "repository": "https://github.com/orestbida/cookieconsent",
+      "docs": "https://cookieconsent.orestbida.com/essential/getting-started.html",
+      "summary": "Lightweight, dependency-free cookie consent banner and preferences modal with category-based script blocking.",
+      "useWhen": "Use instead of hand-building a consent banner, preference storage and conditional loading of analytics scripts.",
+      "cautions": [
+        "A banner alone is not compliance; have counsel review categories, wording and records."
+      ],
+      "tags": [
+        "cookies",
+        "consent",
+        "gdpr",
+        "privacy"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vanilla-cookieconsent"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/orestbida/cookieconsent",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://cookieconsent.orestbida.com/essential/getting-started.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "osano",
+      "name": "Osano",
+      "category": "consent",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary commercial consent-management service; reference only."
+      },
+      "homepage": "https://www.osano.com",
+      "repository": null,
+      "docs": "https://docs.osano.com",
+      "summary": "Commercial consent-management and privacy platform (cookie consent, DSAR, vendor monitoring).",
+      "useWhen": "Reference when a client needs a managed consent platform with legal updates instead of a self-maintained banner.",
+      "cautions": [
+        "Paid service; evaluate data-processing terms.",
+        "Do not copy its scripts or branding."
+      ],
+      "tags": [
+        "consent",
+        "privacy",
+        "cmp",
+        "dsar"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.osano.com",
+          "title": "Official product site"
+        },
+        {
+          "url": "https://docs.osano.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Reference only: follow the vendor onboarding under the client's own account."
+      ]
+    },
+    {
+      "id": "termly",
+      "name": "Termly",
+      "category": "consent",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Proprietary commercial policy-generator and consent service; reference only."
+      },
+      "homepage": "https://termly.io",
+      "repository": null,
+      "docs": "https://termly.io/resources/",
+      "summary": "Commercial service for generating privacy policies and terms and running a cookie-consent banner.",
+      "useWhen": "Reference when a small site owner wants generated policies and a managed consent banner rather than custom legal text.",
+      "cautions": [
+        "Generated policies still need review for the actual data practices."
+      ],
+      "tags": [
+        "privacy-policy",
+        "consent",
+        "terms",
+        "cmp"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "marketing-site"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://termly.io",
+          "title": "Official product site"
+        },
+        {
+          "url": "https://termly.io/resources/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Reference only: the site owner signs up and embeds the vendor snippet."
+      ]
+    },
+    {
+      "id": "opa",
+      "name": "Open Policy Agent",
+      "category": "authorization",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/open-policy-agent/opa/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code."
+      },
+      "homepage": "https://www.openpolicyagent.org",
+      "repository": "https://github.com/open-policy-agent/opa",
+      "docs": "https://www.openpolicyagent.org/docs",
+      "summary": "CNCF general-purpose policy engine using the Rego language for authorization, admission control and compliance checks.",
+      "useWhen": "Use instead of hard-coding policy decisions (API authz, Kubernetes admission, config compliance) in each service.",
+      "cautions": [
+        "Rego has a learning curve; write policy unit tests.",
+        "Keep decision logs free of sensitive data."
+      ],
+      "tags": [
+        "policy",
+        "authorization",
+        "rego",
+        "compliance",
+        "cncf"
+      ],
+      "projectTypes": [
+        "legal-compliance",
+        "api-backend",
+        "security",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/open-policy-agent/opa"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-policy-agent/opa",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.openpolicyagent.org/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/saas-commerce-finance.md"
+      },
+      "install": [
+        "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ]
+    }
+  ]
+}
