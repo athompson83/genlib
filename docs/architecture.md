@@ -14,6 +14,7 @@ flowchart TB
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
     RES["resources/*.json · resources/catalog/*.json<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>500 pinned agent skills"]
+    IDX["resources/mcp-servers.json · clis.json · apis.json<br/>ranked install indexes"]
   end
   MOD -- "npm run registry:build" --> REG["registry/catalog.json<br/>registry/manifests/*.json (SHA-256)"]
   REG --> DISC["lib/discover.mjs<br/>find · detect · catalog"]
@@ -22,11 +23,13 @@ flowchart TB
   TPL --> DISC
   TOOLIDX --> DISC
   SKL --> SKLIB["lib/skills.mjs<br/>skill find · inspect"] --> DISC
+  IDX --> IDXLIB["lib/indexes.mjs<br/>mcp · cli · api find · inspect"] --> DISC
   RES --> RESLIB["lib/resources.mjs<br/>validate · search · types"] --> DISC
   DISC --> CLI["bin/genlib.mjs"]
   REG --> INST["lib/install.mjs<br/>plan · add · verify"] --> CLI
   CLI -- "copies reviewed bytes" --> APP
-  SKLIB -. "prints npx skills add &lt;pinned url&gt;" .-> APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
+  SKLIB -. "prints npx skills add &lt;pinned url&gt;" .-> APP
+  IDXLIB -. "prints claude/codex mcp add, brew install, SDK or client generator" .-> APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
   RES -. "scripts/verify-resources.mjs<br/>(network, maintainers)" .-> NET["Git hosts · npm · PyPI · crates.io"]
   REG & RES --> DOCS["scripts/sync-docs.mjs<br/>README and resource index counts"]
   SKILL["skills/genlib-use"] -- "routes agents to" --> CLI

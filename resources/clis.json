@@ -1,0 +1,7051 @@
+{
+ "schemaVersion": 1,
+ "generatedAt": "2026-10-10",
+ "ranking": {
+  "source": "https://formulae.brew.sh/analytics/install-on-request/365d/",
+  "window": "2025-10-10 to 2026-10-10",
+  "method": "Homebrew install-on-request counts (user-requested installs, not dependencies). Deprecated and disabled formulae skipped."
+ },
+ "platforms": "macOS and Linux via Homebrew (https://brew.sh). On Windows use the tool's own installer, winget or WSL.",
+ "clis": [
+  {
+   "id": "gh",
+   "name": "gh",
+   "description": "GitHub command-line tool",
+   "rank": 1,
+   "installs365d": 2982264,
+   "license": "MIT",
+   "version": "2.102.0",
+   "homepage": "https://cli.github.com/",
+   "formula": "https://formulae.brew.sh/formula/gh",
+   "install": [
+    "brew install gh"
+   ]
+  },
+  {
+   "id": "node",
+   "name": "node",
+   "description": "Open-source, cross-platform JavaScript runtime environment",
+   "rank": 2,
+   "installs365d": 2483972,
+   "license": "MIT",
+   "version": "26.11.1",
+   "homepage": "https://nodejs.org/",
+   "formula": "https://formulae.brew.sh/formula/node",
+   "install": [
+    "brew install node"
+   ]
+  },
+  {
+   "id": "awscli",
+   "name": "awscli",
+   "description": "Official Amazon AWS command-line interface",
+   "rank": 3,
+   "installs365d": 2310874,
+   "license": "Apache-2.0",
+   "version": "2.37.12",
+   "homepage": "https://aws.amazon.com/cli/",
+   "formula": "https://formulae.brew.sh/formula/awscli",
+   "install": [
+    "brew install awscli"
+   ]
+  },
+  {
+   "id": "uv",
+   "name": "uv",
+   "description": "Extremely fast Python package installer and resolver, written in Rust",
+   "rank": 4,
+   "installs365d": 1922768,
+   "license": "Apache-2.0 OR MIT",
+   "version": "0.13.0",
+   "homepage": "https://docs.astral.sh/uv/",
+   "formula": "https://formulae.brew.sh/formula/uv",
+   "install": [
+    "brew install uv"
+   ]
+  },
+  {
+   "id": "ffmpeg",
+   "name": "ffmpeg",
+   "description": "Play, record, convert, and stream select audio and video codecs",
+   "rank": 5,
+   "installs365d": 1728020,
+   "license": "GPL-3.0-or-later",
+   "version": "9.0.2",
+   "homepage": "https://ffmpeg.org/",
+   "formula": "https://formulae.brew.sh/formula/ffmpeg",
+   "install": [
+    "brew install ffmpeg"
+   ]
+  },
+  {
+   "id": "git",
+   "name": "git",
+   "description": "Distributed revision control system",
+   "rank": 6,
+   "installs365d": 1421109,
+   "license": "GPL-2.0-only AND GPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause AND MIT",
+   "version": "2.56.0",
+   "homepage": "https://git-scm.com",
+   "formula": "https://formulae.brew.sh/formula/git",
+   "install": [
+    "brew install git"
+   ]
+  },
+  {
+   "id": "cmake",
+   "name": "cmake",
+   "description": "Cross-platform make",
+   "rank": 7,
+   "installs365d": 1260133,
+   "license": "BSD-3-Clause",
+   "version": "4.4.4",
+   "homepage": "https://www.cmake.org/",
+   "formula": "https://formulae.brew.sh/formula/cmake",
+   "install": [
+    "brew install cmake"
+   ]
+  },
+  {
+   "id": "go",
+   "name": "go",
+   "description": "Open source programming language to build simple/reliable/efficient software",
+   "rank": 8,
+   "installs365d": 1231809,
+   "license": "BSD-3-Clause",
+   "version": "1.27.2",
+   "homepage": "https://go.dev/",
+   "formula": "https://formulae.brew.sh/formula/go",
+   "install": [
+    "brew install go"
+   ]
+  },
+  {
+   "id": "coreutils",
+   "name": "coreutils",
+   "description": "GNU File, Shell, and Text utilities",
+   "rank": 9,
+   "installs365d": 983620,
+   "license": "GPL-3.0-or-later",
+   "version": "9.12",
+   "homepage": "https://www.gnu.org/software/coreutils/",
+   "formula": "https://formulae.brew.sh/formula/coreutils",
+   "install": [
+    "brew install coreutils"
+   ]
+  },
+  {
+   "id": "python-3-14",
+   "name": "python@3.14",
+   "description": "Interpreted, interactive, object-oriented programming language",
+   "rank": 10,
+   "installs365d": 848931,
+   "license": "Python-2.0",
+   "version": "3.14.8",
+   "homepage": "https://www.python.org/",
+   "formula": "https://formulae.brew.sh/formula/python@3.14",
+   "install": [
+    "brew install python@3.14"
+   ]
+  },
+  {
+   "id": "pkgconf",
+   "name": "pkgconf",
+   "description": "Package compiler and linker metadata toolkit",
+   "rank": 11,
+   "installs365d": 839365,
+   "license": "ISC",
+   "version": "3.0.7",
+   "homepage": "https://github.com/pkgconf/pkgconf",
+   "formula": "https://formulae.brew.sh/formula/pkgconf",
+   "install": [
+    "brew install pkgconf"
+   ]
+  },
+  {
+   "id": "xcbeautify",
+   "name": "xcbeautify",
+   "description": "Little beautifier tool for xcodebuild",
+   "rank": 12,
+   "installs365d": 822942,
+   "license": "MIT",
+   "version": "3.2.1",
+   "homepage": "https://github.com/cpisciotta/xcbeautify",
+   "formula": "https://formulae.brew.sh/formula/xcbeautify",
+   "install": [
+    "brew install xcbeautify"
+   ]
+  },
+  {
+   "id": "imagemagick",
+   "name": "imagemagick",
+   "description": "Tools and libraries to manipulate images in select formats",
+   "rank": 13,
+   "installs365d": 802440,
+   "license": "ImageMagick",
+   "version": "7.1.2-32",
+   "homepage": "https://imagemagick.org",
+   "formula": "https://formulae.brew.sh/formula/imagemagick",
+   "install": [
+    "brew install imagemagick"
+   ]
+  },
+  {
+   "id": "jq",
+   "name": "jq",
+   "description": "Lightweight and flexible command-line JSON processor",
+   "rank": 14,
+   "installs365d": 796448,
+   "license": "MIT",
+   "version": "1.8.2",
+   "homepage": "https://jqlang.github.io/jq/",
+   "formula": "https://formulae.brew.sh/formula/jq",
+   "install": [
+    "brew install jq"
+   ]
+  },
+  {
+   "id": "mise",
+   "name": "mise",
+   "description": "Polyglot runtime manager (asdf rust clone)",
+   "rank": 15,
+   "installs365d": 795212,
+   "license": "MIT",
+   "version": "2026.10.7",
+   "homepage": "https://mise.jdx.dev/",
+   "formula": "https://formulae.brew.sh/formula/mise",
+   "install": [
+    "brew install mise"
+   ]
+  },
+  {
+   "id": "pyenv",
+   "name": "pyenv",
+   "description": "Python version management",
+   "rank": 16,
+   "installs365d": 756802,
+   "license": "MIT",
+   "version": "2.8.9",
+   "homepage": "https://github.com/pyenv/pyenv",
+   "formula": "https://formulae.brew.sh/formula/pyenv",
+   "install": [
+    "brew install pyenv"
+   ]
+  },
+  {
+   "id": "docker",
+   "name": "docker",
+   "description": "Pack, ship and run any application as a lightweight container",
+   "rank": 17,
+   "installs365d": 749507,
+   "license": "Apache-2.0",
+   "version": "29.9.0",
+   "homepage": "https://www.docker.com/",
+   "formula": "https://formulae.brew.sh/formula/docker",
+   "install": [
+    "brew install docker"
+   ]
+  },
+  {
+   "id": "openssl-3",
+   "name": "openssl@3",
+   "description": "Cryptography and SSL/TLS Toolkit",
+   "rank": 18,
+   "installs365d": 742351,
+   "license": "Apache-2.0",
+   "version": "3.6.5",
+   "homepage": "https://openssl-library.org",
+   "formula": "https://formulae.brew.sh/formula/openssl@3",
+   "install": [
+    "brew install openssl@3",
+    "Keg-only: add $(brew --prefix openssl@3)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "poppler",
+   "name": "poppler",
+   "description": "PDF rendering library (based on the xpdf-3.0 code base)",
+   "rank": 19,
+   "installs365d": 653030,
+   "license": "GPL-2.0-only OR GPL-3.0-only",
+   "version": "26.10.0",
+   "homepage": "https://poppler.freedesktop.org/",
+   "formula": "https://formulae.brew.sh/formula/poppler",
+   "install": [
+    "brew install poppler"
+   ]
+  },
+  {
+   "id": "ollama",
+   "name": "ollama",
+   "description": "Create, run, and share large language models (LLMs)",
+   "rank": 20,
+   "installs365d": 631972,
+   "license": "MIT",
+   "version": "0.40.2",
+   "homepage": "https://ollama.com/",
+   "formula": "https://formulae.brew.sh/formula/ollama",
+   "install": [
+    "brew install ollama"
+   ]
+  },
+  {
+   "id": "yt-dlp",
+   "name": "yt-dlp",
+   "description": "Feature-rich command-line audio/video downloader",
+   "rank": 21,
+   "installs365d": 627694,
+   "license": "Unlicense",
+   "version": "2026.8.19",
+   "homepage": "https://github.com/yt-dlp/yt-dlp",
+   "formula": "https://formulae.brew.sh/formula/yt-dlp",
+   "install": [
+    "brew install yt-dlp"
+   ]
+  },
+  {
+   "id": "pipx",
+   "name": "pipx",
+   "description": "Execute binaries from Python packages in isolated environments",
+   "rank": 22,
+   "installs365d": 627290,
+   "license": "MIT",
+   "version": "1.17.12",
+   "homepage": "https://pipx.pypa.io",
+   "formula": "https://formulae.brew.sh/formula/pipx",
+   "install": [
+    "brew install pipx"
+   ]
+  },
+  {
+   "id": "yq",
+   "name": "yq",
+   "description": "Process YAML, JSON, XML, CSV and properties documents from the CLI",
+   "rank": 23,
+   "installs365d": 618561,
+   "license": "MIT",
+   "version": "4.54.1",
+   "homepage": "https://github.com/mikefarah/yq",
+   "formula": "https://formulae.brew.sh/formula/yq",
+   "install": [
+    "brew install yq"
+   ]
+  },
+  {
+   "id": "pnpm",
+   "name": "pnpm",
+   "description": "Fast, disk space efficient package manager",
+   "rank": 24,
+   "installs365d": 607643,
+   "license": "MIT",
+   "version": "12.10.1",
+   "homepage": "https://pnpm.io/",
+   "formula": "https://formulae.brew.sh/formula/pnpm",
+   "install": [
+    "brew install pnpm"
+   ]
+  },
+  {
+   "id": "xz",
+   "name": "xz",
+   "description": "General-purpose data compression with high compression ratio",
+   "rank": 25,
+   "installs365d": 567902,
+   "license": "0BSD AND GPL-2.0-or-later",
+   "version": "5.8.4",
+   "homepage": "https://tukaani.org/xz/",
+   "formula": "https://formulae.brew.sh/formula/xz",
+   "install": [
+    "brew install xz"
+   ]
+  },
+  {
+   "id": "tmux",
+   "name": "tmux",
+   "description": "Terminal multiplexer",
+   "rank": 26,
+   "installs365d": 564697,
+   "license": "ISC",
+   "version": "3.8",
+   "homepage": "https://tmux.github.io/",
+   "formula": "https://formulae.brew.sh/formula/tmux",
+   "install": [
+    "brew install tmux"
+   ]
+  },
+  {
+   "id": "fzf",
+   "name": "fzf",
+   "description": "Command-line fuzzy finder written in Go",
+   "rank": 27,
+   "installs365d": 561664,
+   "license": "MIT",
+   "version": "0.74.4",
+   "homepage": "https://junegunn.github.io/fzf/",
+   "formula": "https://formulae.brew.sh/formula/fzf",
+   "install": [
+    "brew install fzf"
+   ]
+  },
+  {
+   "id": "python-3-12",
+   "name": "python@3.12",
+   "description": "Interpreted, interactive, object-oriented programming language",
+   "rank": 28,
+   "installs365d": 556963,
+   "license": "Python-2.0",
+   "version": "3.12.15",
+   "homepage": "https://www.python.org/",
+   "formula": "https://formulae.brew.sh/formula/python@3.12",
+   "install": [
+    "brew install python@3.12"
+   ]
+  },
+  {
+   "id": "gnupg",
+   "name": "gnupg",
+   "description": "GNU Privacy Guard (OpenPGP)",
+   "rank": 29,
+   "installs365d": 554015,
+   "license": "GPL-3.0-or-later",
+   "version": "2.5.24",
+   "homepage": "https://gnupg.org/",
+   "formula": "https://formulae.brew.sh/formula/gnupg",
+   "install": [
+    "brew install gnupg"
+   ]
+  },
+  {
+   "id": "python-3-11",
+   "name": "python@3.11",
+   "description": "Interpreted, interactive, object-oriented programming language",
+   "rank": 30,
+   "installs365d": 532809,
+   "license": "Python-2.0",
+   "version": "3.11.17",
+   "homepage": "https://www.python.org/",
+   "formula": "https://formulae.brew.sh/formula/python@3.11",
+   "install": [
+    "brew install python@3.11"
+   ]
+  },
+  {
+   "id": "python-3-13",
+   "name": "python@3.13",
+   "description": "Interpreted, interactive, object-oriented programming language",
+   "rank": 31,
+   "installs365d": 529834,
+   "license": "Python-2.0",
+   "version": "3.13.16",
+   "homepage": "https://www.python.org/",
+   "formula": "https://formulae.brew.sh/formula/python@3.13",
+   "install": [
+    "brew install python@3.13"
+   ]
+  },
+  {
+   "id": "ripgrep",
+   "name": "ripgrep",
+   "description": "Search tool like grep and The Silver Searcher",
+   "rank": 32,
+   "installs365d": 526878,
+   "license": "Unlicense",
+   "version": "15.2.0",
+   "homepage": "https://github.com/BurntSushi/ripgrep",
+   "formula": "https://formulae.brew.sh/formula/ripgrep",
+   "install": [
+    "brew install ripgrep"
+   ]
+  },
+  {
+   "id": "nvm",
+   "name": "nvm",
+   "description": "Manage multiple Node.js versions",
+   "rank": 33,
+   "installs365d": 519187,
+   "license": "MIT",
+   "version": "0.40.8",
+   "homepage": "https://github.com/nvm-sh/nvm",
+   "formula": "https://formulae.brew.sh/formula/nvm",
+   "install": [
+    "brew install nvm"
+   ]
+  },
+  {
+   "id": "gcc",
+   "name": "gcc",
+   "description": "GNU compiler collection",
+   "rank": 34,
+   "installs365d": 517550,
+   "license": "GPL-3.0-or-later WITH GCC-exception-3.1",
+   "version": "16.2.0",
+   "homepage": "https://gcc.gnu.org/",
+   "formula": "https://formulae.brew.sh/formula/gcc",
+   "install": [
+    "brew install gcc"
+   ]
+  },
+  {
+   "id": "helm",
+   "name": "helm",
+   "description": "Kubernetes package manager",
+   "rank": 35,
+   "installs365d": 495049,
+   "license": "Apache-2.0",
+   "version": "4.3.0",
+   "homepage": "https://helm.sh/",
+   "formula": "https://formulae.brew.sh/formula/helm",
+   "install": [
+    "brew install helm"
+   ]
+  },
+  {
+   "id": "neovim",
+   "name": "neovim",
+   "description": "Ambitious Vim-fork focused on extensibility and agility",
+   "rank": 36,
+   "installs365d": 494502,
+   "license": "Apache-2.0",
+   "version": "0.12.6",
+   "homepage": "https://neovim.io/",
+   "formula": "https://formulae.brew.sh/formula/neovim",
+   "install": [
+    "brew install neovim"
+   ]
+  },
+  {
+   "id": "kubernetes-cli",
+   "name": "kubernetes-cli",
+   "description": "Kubernetes command-line interface",
+   "rank": 37,
+   "installs365d": 489349,
+   "license": "Apache-2.0",
+   "version": "1.37.1",
+   "homepage": "https://kubernetes.io/docs/reference/kubectl/",
+   "formula": "https://formulae.brew.sh/formula/kubernetes-cli",
+   "install": [
+    "brew install kubernetes-cli"
+   ]
+  },
+  {
+   "id": "protobuf",
+   "name": "protobuf",
+   "description": "Protocol buffers (Google's data interchange format)",
+   "rank": 38,
+   "installs365d": 455716,
+   "license": "BSD-3-Clause",
+   "version": "36.2",
+   "homepage": "https://protobuf.dev/",
+   "formula": "https://formulae.brew.sh/formula/protobuf",
+   "install": [
+    "brew install protobuf"
+   ]
+  },
+  {
+   "id": "mkcert",
+   "name": "mkcert",
+   "description": "Simple tool to make locally trusted development certificates",
+   "rank": 39,
+   "installs365d": 447221,
+   "license": "BSD-3-Clause",
+   "version": "1.4.4",
+   "homepage": "https://github.com/FiloSottile/mkcert",
+   "formula": "https://formulae.brew.sh/formula/mkcert",
+   "install": [
+    "brew install mkcert"
+   ]
+  },
+  {
+   "id": "graphviz",
+   "name": "graphviz",
+   "description": "Graph visualization software from AT&T and Bell Labs",
+   "rank": 40,
+   "installs365d": 432272,
+   "license": "EPL-1.0",
+   "version": "16.1.0",
+   "homepage": "https://graphviz.org/",
+   "formula": "https://formulae.brew.sh/formula/graphviz",
+   "install": [
+    "brew install graphviz"
+   ]
+  },
+  {
+   "id": "hello",
+   "name": "hello",
+   "description": "Program providing model for GNU coding standards and practices",
+   "rank": 41,
+   "installs365d": 421811,
+   "license": "GPL-3.0-or-later",
+   "version": "2.12.3",
+   "homepage": "https://www.gnu.org/software/hello/",
+   "formula": "https://formulae.brew.sh/formula/hello",
+   "install": [
+    "brew install hello"
+   ]
+  },
+  {
+   "id": "just",
+   "name": "just",
+   "description": "Handy way to save and run project-specific commands",
+   "rank": 42,
+   "installs365d": 415996,
+   "license": "CC0-1.0",
+   "version": "1.58.0",
+   "homepage": "https://just.systems",
+   "formula": "https://formulae.brew.sh/formula/just",
+   "install": [
+    "brew install just"
+   ]
+  },
+  {
+   "id": "pandoc",
+   "name": "pandoc",
+   "description": "Swiss-army knife of markup format conversion",
+   "rank": 43,
+   "installs365d": 396840,
+   "license": "GPL-2.0-or-later",
+   "version": "3.12.1",
+   "homepage": "https://pandoc.org/",
+   "formula": "https://formulae.brew.sh/formula/pandoc",
+   "install": [
+    "brew install pandoc"
+   ]
+  },
+  {
+   "id": "swiftlint",
+   "name": "swiftlint",
+   "description": "Tool to enforce Swift style and conventions",
+   "rank": 44,
+   "installs365d": 387344,
+   "license": "MIT",
+   "version": "0.65.1",
+   "homepage": "https://github.com/realm/SwiftLint",
+   "formula": "https://formulae.brew.sh/formula/swiftlint",
+   "install": [
+    "brew install swiftlint"
+   ]
+  },
+  {
+   "id": "opencode",
+   "name": "opencode",
+   "description": "AI coding agent, built for the terminal",
+   "rank": 45,
+   "installs365d": 382369,
+   "license": "MIT",
+   "version": "2.0.25",
+   "homepage": "https://opencode.ai",
+   "formula": "https://formulae.brew.sh/formula/opencode",
+   "install": [
+    "brew install opencode"
+   ]
+  },
+  {
+   "id": "harfbuzz",
+   "name": "harfbuzz",
+   "description": "OpenType text shaping engine",
+   "rank": 46,
+   "installs365d": 368593,
+   "license": "MIT",
+   "version": "14.6.0",
+   "homepage": "https://github.com/harfbuzz/harfbuzz",
+   "formula": "https://formulae.brew.sh/formula/harfbuzz",
+   "install": [
+    "brew install harfbuzz"
+   ]
+  },
+  {
+   "id": "glib",
+   "name": "glib",
+   "description": "Core application library for C",
+   "rank": 47,
+   "installs365d": 364379,
+   "license": "LGPL-2.1-or-later",
+   "version": "2.90.1",
+   "homepage": "https://docs.gtk.org/glib/",
+   "formula": "https://formulae.brew.sh/formula/glib",
+   "install": [
+    "brew install glib"
+   ]
+  },
+  {
+   "id": "redis",
+   "name": "redis",
+   "description": "Persistent key-value database, with built-in net interface",
+   "rank": 48,
+   "installs365d": 358954,
+   "license": "AGPL-3.0-only AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT AND (CC0-1.0 OR BSD-2-Clause) AND (Artistic-1.0-Perl OR GPL-1.0-or-later)",
+   "version": "8.10.2",
+   "homepage": "https://redis.io/",
+   "formula": "https://formulae.brew.sh/formula/redis",
+   "install": [
+    "brew install redis"
+   ]
+  },
+  {
+   "id": "ninja",
+   "name": "ninja",
+   "description": "Small build system for use with gyp or CMake",
+   "rank": 49,
+   "installs365d": 354773,
+   "license": "Apache-2.0",
+   "version": "1.13.2",
+   "homepage": "https://ninja-build.org/",
+   "formula": "https://formulae.brew.sh/formula/ninja",
+   "install": [
+    "brew install ninja"
+   ]
+  },
+  {
+   "id": "glab",
+   "name": "glab",
+   "description": "Open-source GitLab command-line tool",
+   "rank": 50,
+   "installs365d": 351209,
+   "license": "MIT",
+   "version": "1.122.0",
+   "homepage": "https://gitlab.com/gitlab-org/cli",
+   "formula": "https://formulae.brew.sh/formula/glab",
+   "install": [
+    "brew install glab"
+   ]
+  },
+  {
+   "id": "node-22",
+   "name": "node@22",
+   "description": "Open-source, cross-platform JavaScript runtime environment",
+   "rank": 51,
+   "installs365d": 349948,
+   "license": "MIT",
+   "version": "22.23.3",
+   "homepage": "https://nodejs.org/",
+   "formula": "https://formulae.brew.sh/formula/node@22",
+   "install": [
+    "brew install node@22",
+    "Keg-only: add $(brew --prefix node@22)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "docker-compose",
+   "name": "docker-compose",
+   "description": "Isolated development environments using Docker",
+   "rank": 52,
+   "installs365d": 348404,
+   "license": "Apache-2.0",
+   "version": "5.6.0",
+   "homepage": "https://docs.docker.com/compose/",
+   "formula": "https://formulae.brew.sh/formula/docker-compose",
+   "install": [
+    "brew install docker-compose"
+   ]
+  },
+  {
+   "id": "cocoapods",
+   "name": "cocoapods",
+   "description": "Dependency manager for Cocoa projects",
+   "rank": 53,
+   "installs365d": 340637,
+   "license": "MIT",
+   "version": "1.17.0",
+   "homepage": "https://cocoapods.org/",
+   "formula": "https://formulae.brew.sh/formula/cocoapods",
+   "install": [
+    "brew install cocoapods"
+   ]
+  },
+  {
+   "id": "tree",
+   "name": "tree",
+   "description": "Display directories as trees (with optional color/HTML output)",
+   "rank": 54,
+   "installs365d": 338042,
+   "license": "GPL-2.0-or-later",
+   "version": "2.3.2",
+   "homepage": "https://oldmanprogrammer.net/source.php?dir=projects/tree",
+   "formula": "https://formulae.brew.sh/formula/tree",
+   "install": [
+    "brew install tree"
+   ]
+  },
+  {
+   "id": "openjdk-17",
+   "name": "openjdk@17",
+   "description": "Development kit for the Java programming language",
+   "rank": 55,
+   "installs365d": 326270,
+   "license": "GPL-2.0-only WITH Classpath-exception-2.0",
+   "version": "17.0.20.1",
+   "homepage": "https://openjdk.org/",
+   "formula": "https://formulae.brew.sh/formula/openjdk@17",
+   "install": [
+    "brew install openjdk@17",
+    "Keg-only: add $(brew --prefix openjdk@17)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "wget",
+   "name": "wget",
+   "description": "Internet file retriever",
+   "rank": 56,
+   "installs365d": 320117,
+   "license": "GPL-3.0-or-later",
+   "version": "1.25.0",
+   "homepage": "https://www.gnu.org/software/wget/",
+   "formula": "https://formulae.brew.sh/formula/wget",
+   "install": [
+    "brew install wget"
+   ]
+  },
+  {
+   "id": "rust",
+   "name": "rust",
+   "description": "Safe, concurrent, practical language",
+   "rank": 57,
+   "installs365d": 315871,
+   "license": "Apache-2.0 OR MIT",
+   "version": "1.99.0",
+   "homepage": "https://www.rust-lang.org/",
+   "formula": "https://formulae.brew.sh/formula/rust",
+   "install": [
+    "brew install rust"
+   ]
+  },
+  {
+   "id": "llvm",
+   "name": "llvm",
+   "description": "Next-gen compiler infrastructure",
+   "rank": 58,
+   "installs365d": 314627,
+   "license": "Apache-2.0 WITH LLVM-exception",
+   "version": "23.1.3",
+   "homepage": "https://llvm.org/",
+   "formula": "https://formulae.brew.sh/formula/llvm",
+   "install": [
+    "brew install llvm",
+    "Keg-only: add $(brew --prefix llvm)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "curl",
+   "name": "curl",
+   "description": "Get a file from an HTTP, HTTPS or FTP server",
+   "rank": 59,
+   "installs365d": 313326,
+   "license": "curl",
+   "version": "8.22.0",
+   "homepage": "https://curl.se",
+   "formula": "https://formulae.brew.sh/formula/curl",
+   "install": [
+    "brew install curl",
+    "Keg-only: add $(brew --prefix curl)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "php",
+   "name": "php",
+   "description": "General-purpose scripting language",
+   "rank": 60,
+   "installs365d": 304157,
+   "license": "PHP-3.01 AND Zend-2.0 AND BSL-1.0 AND MIT AND Apache-1.0 AND Apache-2.0 AND bcrypt-Solar-Designer AND BSD-2-Clause-Darwin AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause-UC AND ISC AND LGPL-2.1-only AND LGPL-2.1-or-later AND OLDAP-2.8 AND TCL AND Zlib",
+   "version": "8.5.11",
+   "homepage": "https://www.php.net/",
+   "formula": "https://formulae.brew.sh/formula/php",
+   "install": [
+    "brew install php"
+   ]
+  },
+  {
+   "id": "gnu-tar",
+   "name": "gnu-tar",
+   "description": "GNU version of the tar archiving utility",
+   "rank": 61,
+   "installs365d": 303238,
+   "license": "GPL-3.0-or-later",
+   "version": "1.35",
+   "homepage": "https://www.gnu.org/software/tar/",
+   "formula": "https://formulae.brew.sh/formula/gnu-tar",
+   "install": [
+    "brew install gnu-tar"
+   ]
+  },
+  {
+   "id": "maven",
+   "name": "maven",
+   "description": "Java-based project management",
+   "rank": 62,
+   "installs365d": 298924,
+   "license": "Apache-2.0",
+   "version": "3.10.0",
+   "homepage": "https://maven.apache.org/",
+   "formula": "https://formulae.brew.sh/formula/maven",
+   "install": [
+    "brew install maven"
+   ]
+  },
+  {
+   "id": "mole",
+   "name": "mole",
+   "description": "Deep clean and optimize your Mac",
+   "rank": 63,
+   "installs365d": 297244,
+   "license": "GPL-3.0-or-later",
+   "version": "1.59.1",
+   "homepage": "https://mole.fit",
+   "formula": "https://formulae.brew.sh/formula/mole",
+   "install": [
+    "brew install mole"
+   ]
+  },
+  {
+   "id": "ccache",
+   "name": "ccache",
+   "description": "Object-file caching compiler wrapper",
+   "rank": 64,
+   "installs365d": 295334,
+   "license": "GPL-3.0-or-later",
+   "version": "4.14.1",
+   "homepage": "https://ccache.dev/",
+   "formula": "https://formulae.brew.sh/formula/ccache",
+   "install": [
+    "brew install ccache"
+   ]
+  },
+  {
+   "id": "lazygit",
+   "name": "lazygit",
+   "description": "Simple terminal UI for git commands",
+   "rank": 65,
+   "installs365d": 289210,
+   "license": "MIT",
+   "version": "0.66.0",
+   "homepage": "https://github.com/jesseduffield/lazygit/",
+   "formula": "https://formulae.brew.sh/formula/lazygit",
+   "install": [
+    "brew install lazygit"
+   ]
+  },
+  {
+   "id": "openjdk",
+   "name": "openjdk",
+   "description": "Development kit for the Java programming language",
+   "rank": 66,
+   "installs365d": 288230,
+   "license": "GPL-2.0-only WITH Classpath-exception-2.0",
+   "version": "27",
+   "homepage": "https://openjdk.org/",
+   "formula": "https://formulae.brew.sh/formula/openjdk",
+   "install": [
+    "brew install openjdk",
+    "Keg-only: add $(brew --prefix openjdk)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "llama-cpp",
+   "name": "llama.cpp",
+   "description": "LLM inference in C/C++",
+   "rank": 67,
+   "installs365d": 282626,
+   "license": "MIT",
+   "version": "0.6.0",
+   "homepage": "https://llama.app",
+   "formula": "https://formulae.brew.sh/formula/llama.cpp",
+   "install": [
+    "brew install llama.cpp"
+   ]
+  },
+  {
+   "id": "cloudflared",
+   "name": "cloudflared",
+   "description": "Cloudflare Tunnel client (formerly Argo Tunnel)",
+   "rank": 68,
+   "installs365d": 282246,
+   "license": "Apache-2.0",
+   "version": "2026.10.0",
+   "homepage": "https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/",
+   "formula": "https://formulae.brew.sh/formula/cloudflared",
+   "install": [
+    "brew install cloudflared"
+   ]
+  },
+  {
+   "id": "ruby",
+   "name": "ruby",
+   "description": "Powerful, clean, object-oriented scripting language",
+   "rank": 69,
+   "installs365d": 266309,
+   "license": "Ruby",
+   "version": "4.0.7",
+   "homepage": "https://www.ruby-lang.org/",
+   "formula": "https://formulae.brew.sh/formula/ruby",
+   "install": [
+    "brew install ruby"
+   ]
+  },
+  {
+   "id": "xcodegen",
+   "name": "xcodegen",
+   "description": "Generate your Xcode project from a spec file and your folder structure",
+   "rank": 70,
+   "installs365d": 263591,
+   "license": "MIT",
+   "version": "2.46.0",
+   "homepage": "https://github.com/yonaskolb/XcodeGen",
+   "formula": "https://formulae.brew.sh/formula/xcodegen",
+   "install": [
+    "brew install xcodegen"
+   ]
+  },
+  {
+   "id": "starship",
+   "name": "starship",
+   "description": "Cross-shell prompt for astronauts",
+   "rank": 71,
+   "installs365d": 259085,
+   "license": "ISC",
+   "version": "1.26.0",
+   "homepage": "https://starship.rs/",
+   "formula": "https://formulae.brew.sh/formula/starship",
+   "install": [
+    "brew install starship"
+   ]
+  },
+  {
+   "id": "bash",
+   "name": "bash",
+   "description": "Bourne-Again SHell, a UNIX command interpreter",
+   "rank": 72,
+   "installs365d": 257270,
+   "license": "GPL-3.0-or-later",
+   "version": "5.3.20",
+   "homepage": "https://www.gnu.org/software/bash/",
+   "formula": "https://formulae.brew.sh/formula/bash",
+   "install": [
+    "brew install bash"
+   ]
+  },
+  {
+   "id": "tesseract",
+   "name": "tesseract",
+   "description": "OCR (Optical Character Recognition) engine",
+   "rank": 73,
+   "installs365d": 256208,
+   "license": "Apache-2.0",
+   "version": "5.5.3",
+   "homepage": "https://tesseract-ocr.github.io/",
+   "formula": "https://formulae.brew.sh/formula/tesseract",
+   "install": [
+    "brew install tesseract"
+   ]
+  },
+  {
+   "id": "git-lfs",
+   "name": "git-lfs",
+   "description": "Git extension for versioning large files",
+   "rank": 74,
+   "installs365d": 255942,
+   "license": "MIT",
+   "version": "3.8.0",
+   "homepage": "https://git-lfs.com/",
+   "formula": "https://formulae.brew.sh/formula/git-lfs",
+   "install": [
+    "brew install git-lfs"
+   ]
+  },
+  {
+   "id": "watchman",
+   "name": "watchman",
+   "description": "Watch files and take action when they change",
+   "rank": 75,
+   "installs365d": 254468,
+   "license": "MIT",
+   "version": "2026.10.05.00",
+   "homepage": "https://facebook.github.io/watchman/",
+   "formula": "https://formulae.brew.sh/formula/watchman",
+   "install": [
+    "brew install watchman"
+   ]
+  },
+  {
+   "id": "htop",
+   "name": "htop",
+   "description": "Improved top (interactive process viewer)",
+   "rank": 76,
+   "installs365d": 253173,
+   "license": "GPL-2.0-or-later",
+   "version": "3.5.3",
+   "homepage": "https://htop.dev/",
+   "formula": "https://formulae.brew.sh/formula/htop",
+   "install": [
+    "brew install htop"
+   ]
+  },
+  {
+   "id": "openjdk-21",
+   "name": "openjdk@21",
+   "description": "Development kit for the Java programming language",
+   "rank": 77,
+   "installs365d": 252880,
+   "license": "GPL-2.0-only WITH Classpath-exception-2.0",
+   "version": "21.0.12.1",
+   "homepage": "https://openjdk.org/",
+   "formula": "https://formulae.brew.sh/formula/openjdk@21",
+   "install": [
+    "brew install openjdk@21",
+    "Keg-only: add $(brew --prefix openjdk@21)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "mysql",
+   "name": "mysql",
+   "description": "Open source relational database management system",
+   "rank": 78,
+   "installs365d": 245912,
+   "license": "GPL-2.0-only WITH Universal-FOSS-exception-1.0",
+   "version": "26.7.0",
+   "homepage": "https://github.com/mysql/mysql-server",
+   "formula": "https://formulae.brew.sh/formula/mysql",
+   "install": [
+    "brew install mysql"
+   ]
+  },
+  {
+   "id": "qemu",
+   "name": "qemu",
+   "description": "Generic machine emulator and virtualizer",
+   "rank": 79,
+   "installs365d": 241572,
+   "license": "GPL-2.0-only",
+   "version": "11.1.2",
+   "homepage": "https://www.qemu.org/",
+   "formula": "https://formulae.brew.sh/formula/qemu",
+   "install": [
+    "brew install qemu"
+   ]
+  },
+  {
+   "id": "vim",
+   "name": "vim",
+   "description": "Vi 'workalike' with many additional features",
+   "rank": 80,
+   "installs365d": 241313,
+   "license": "Vim",
+   "version": "9.2.1150",
+   "homepage": "https://www.vim.org/",
+   "formula": "https://formulae.brew.sh/formula/vim",
+   "install": [
+    "brew install vim"
+   ]
+  },
+  {
+   "id": "mint",
+   "name": "mint",
+   "description": "Dependency manager that installs and runs Swift command-line tool packages",
+   "rank": 81,
+   "installs365d": 239137,
+   "license": "MIT",
+   "version": "0.18.0",
+   "homepage": "https://github.com/yonaskolb/Mint",
+   "formula": "https://formulae.brew.sh/formula/mint",
+   "install": [
+    "brew install mint"
+   ]
+  },
+  {
+   "id": "libpq",
+   "name": "libpq",
+   "description": "Postgres C API library",
+   "rank": 82,
+   "installs365d": 238860,
+   "license": "PostgreSQL",
+   "version": "18.6",
+   "homepage": "https://www.postgresql.org/docs/current/libpq.html",
+   "formula": "https://formulae.brew.sh/formula/libpq",
+   "install": [
+    "brew install libpq",
+    "Keg-only: add $(brew --prefix libpq)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "ansible",
+   "name": "ansible",
+   "description": "Automate deployment, configuration, and upgrading",
+   "rank": 83,
+   "installs365d": 234922,
+   "license": "GPL-3.0-or-later",
+   "version": "14.5.0",
+   "homepage": "https://www.ansible.com/",
+   "formula": "https://formulae.brew.sh/formula/ansible",
+   "install": [
+    "brew install ansible"
+   ]
+  },
+  {
+   "id": "nmap",
+   "name": "nmap",
+   "description": "Port scanning utility for large networks",
+   "rank": 84,
+   "installs365d": 229207,
+   "license": "LicenseRef-Homebrew-cannot-represent",
+   "version": "7.991",
+   "homepage": "https://nmap.org/",
+   "formula": "https://formulae.brew.sh/formula/nmap",
+   "install": [
+    "brew install nmap"
+   ]
+  },
+  {
+   "id": "fastfetch",
+   "name": "fastfetch",
+   "description": "Like neofetch, but much faster because written mostly in C",
+   "rank": 85,
+   "installs365d": 224469,
+   "license": "MIT",
+   "version": "2.69.0",
+   "homepage": "https://github.com/fastfetch-cli/fastfetch",
+   "formula": "https://formulae.brew.sh/formula/fastfetch",
+   "install": [
+    "brew install fastfetch"
+   ]
+  },
+  {
+   "id": "fd",
+   "name": "fd",
+   "description": "Simple, fast and user-friendly alternative to find",
+   "rank": 86,
+   "installs365d": 220918,
+   "license": "Apache-2.0 OR MIT",
+   "version": "10.5.0",
+   "homepage": "https://github.com/sharkdp/fd",
+   "formula": "https://formulae.brew.sh/formula/fd",
+   "install": [
+    "brew install fd"
+   ]
+  },
+  {
+   "id": "kubeconform",
+   "name": "kubeconform",
+   "description": "FAST Kubernetes manifests validator, with support for Custom Resources!",
+   "rank": 87,
+   "installs365d": 214373,
+   "license": "Apache-2.0",
+   "version": "0.8.0",
+   "homepage": "https://github.com/yannh/kubeconform",
+   "formula": "https://formulae.brew.sh/formula/kubeconform",
+   "install": [
+    "brew install kubeconform"
+   ]
+  },
+  {
+   "id": "pango",
+   "name": "pango",
+   "description": "Framework for layout and rendering of i18n text",
+   "rank": 88,
+   "installs365d": 212505,
+   "license": "LGPL-2.0-or-later",
+   "version": "1.58.2",
+   "homepage": "https://www.gtk.org/docs/architecture/pango",
+   "formula": "https://formulae.brew.sh/formula/pango",
+   "install": [
+    "brew install pango"
+   ]
+  },
+  {
+   "id": "xclogparser",
+   "name": "xclogparser",
+   "description": "Tool to parse the SLF serialization format used by Xcode",
+   "rank": 89,
+   "installs365d": 211770,
+   "license": "Apache-2.0",
+   "version": "0.2.49",
+   "homepage": "https://github.com/MobileNativeFoundation/XCLogParser",
+   "formula": "https://formulae.brew.sh/formula/xclogparser",
+   "install": [
+    "brew install xclogparser"
+   ]
+  },
+  {
+   "id": "librsvg",
+   "name": "librsvg",
+   "description": "Library to render SVG files using Cairo",
+   "rank": 90,
+   "installs365d": 208783,
+   "license": "LGPL-2.1-or-later",
+   "version": "2.63.2",
+   "homepage": "https://wiki.gnome.org/Projects/LibRsvg",
+   "formula": "https://formulae.brew.sh/formula/librsvg",
+   "install": [
+    "brew install librsvg"
+   ]
+  },
+  {
+   "id": "colima",
+   "name": "colima",
+   "description": "Container runtimes on MacOS (and Linux) with minimal setup",
+   "rank": 91,
+   "installs365d": 206313,
+   "license": "MIT",
+   "version": "0.10.3",
+   "homepage": "https://colima.run",
+   "formula": "https://formulae.brew.sh/formula/colima",
+   "install": [
+    "brew install colima"
+   ]
+  },
+  {
+   "id": "bat",
+   "name": "bat",
+   "description": "Clone of cat(1) with syntax highlighting and Git integration",
+   "rank": 92,
+   "installs365d": 206278,
+   "license": "Apache-2.0 OR MIT",
+   "version": "0.26.1",
+   "homepage": "https://github.com/sharkdp/bat",
+   "formula": "https://formulae.brew.sh/formula/bat",
+   "install": [
+    "brew install bat"
+   ]
+  },
+  {
+   "id": "rclone",
+   "name": "rclone",
+   "description": "Rsync for cloud storage",
+   "rank": 93,
+   "installs365d": 205195,
+   "license": "MIT",
+   "version": "1.75.2",
+   "homepage": "https://rclone.org/",
+   "formula": "https://formulae.brew.sh/formula/rclone",
+   "install": [
+    "brew install rclone"
+   ]
+  },
+  {
+   "id": "podman",
+   "name": "podman",
+   "description": "Tool for managing OCI containers and pods",
+   "rank": 94,
+   "installs365d": 205106,
+   "license": "Apache-2.0 AND GPL-3.0-or-later",
+   "version": "6.1.3",
+   "homepage": "https://podman.io/",
+   "formula": "https://formulae.brew.sh/formula/podman",
+   "install": [
+    "brew install podman"
+   ]
+  },
+  {
+   "id": "automake",
+   "name": "automake",
+   "description": "Tool for generating GNU Standards-compliant Makefiles",
+   "rank": 95,
+   "installs365d": 199468,
+   "license": "GPL-2.0-or-later",
+   "version": "1.19",
+   "homepage": "https://www.gnu.org/software/automake/",
+   "formula": "https://formulae.brew.sh/formula/automake",
+   "install": [
+    "brew install automake"
+   ]
+  },
+  {
+   "id": "gradle",
+   "name": "gradle",
+   "description": "Open-source build automation tool based on the Groovy and Kotlin DSL",
+   "rank": 96,
+   "installs365d": 193349,
+   "license": "Apache-2.0",
+   "version": "9.8.1",
+   "homepage": "https://www.gradle.org/",
+   "formula": "https://formulae.brew.sh/formula/gradle",
+   "install": [
+    "brew install gradle"
+   ]
+  },
+  {
+   "id": "lcov",
+   "name": "lcov",
+   "description": "Graphical front-end for GCC's coverage testing tool (gcov)",
+   "rank": 97,
+   "installs365d": 191734,
+   "license": "GPL-2.0-or-later",
+   "version": "2.6",
+   "homepage": "https://github.com/linux-test-project/lcov",
+   "formula": "https://formulae.brew.sh/formula/lcov",
+   "install": [
+    "brew install lcov"
+   ]
+  },
+  {
+   "id": "zsh",
+   "name": "zsh",
+   "description": "UNIX shell (command interpreter)",
+   "rank": 98,
+   "installs365d": 190907,
+   "license": "MIT-Modern-Variant AND GPL-2.0-only AND GPL-2.0-or-later AND ISC",
+   "version": "5.9.2",
+   "homepage": "https://www.zsh.org/",
+   "formula": "https://formulae.brew.sh/formula/zsh",
+   "install": [
+    "brew install zsh"
+   ]
+  },
+  {
+   "id": "flyctl",
+   "name": "flyctl",
+   "description": "Command-line tools for fly.io services",
+   "rank": 99,
+   "installs365d": 189525,
+   "license": "Apache-2.0",
+   "version": "0.4.115",
+   "homepage": "https://fly.io",
+   "formula": "https://formulae.brew.sh/formula/flyctl",
+   "install": [
+    "brew install flyctl"
+   ]
+  },
+  {
+   "id": "actionlint",
+   "name": "actionlint",
+   "description": "Static checker for GitHub Actions workflow files",
+   "rank": 100,
+   "installs365d": 188756,
+   "license": "MIT",
+   "version": "1.7.12",
+   "homepage": "https://rhysd.github.io/actionlint/",
+   "formula": "https://formulae.brew.sh/formula/actionlint",
+   "install": [
+    "brew install actionlint"
+   ]
+  },
+  {
+   "id": "libomp",
+   "name": "libomp",
+   "description": "LLVM's OpenMP runtime library",
+   "rank": 101,
+   "installs365d": 187177,
+   "license": "MIT",
+   "version": "23.1.3",
+   "homepage": "https://openmp.llvm.org/",
+   "formula": "https://formulae.brew.sh/formula/libomp",
+   "install": [
+    "brew install libomp",
+    "Keg-only: add $(brew --prefix libomp)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "ghostscript",
+   "name": "ghostscript",
+   "description": "Interpreter for PostScript and PDF",
+   "rank": 102,
+   "installs365d": 184838,
+   "license": "AGPL-3.0-or-later",
+   "version": "10.08.0",
+   "homepage": "https://www.ghostscript.com/",
+   "formula": "https://formulae.brew.sh/formula/ghostscript",
+   "install": [
+    "brew install ghostscript"
+   ]
+  },
+  {
+   "id": "gnutls",
+   "name": "gnutls",
+   "description": "GNU Transport Layer Security (TLS) Library",
+   "rank": 103,
+   "installs365d": 178038,
+   "license": "LGPL-2.1-or-later AND GPL-3.0-only",
+   "version": "3.8.13",
+   "homepage": "https://gnutls.org/",
+   "formula": "https://formulae.brew.sh/formula/gnutls",
+   "install": [
+    "brew install gnutls"
+   ]
+  },
+  {
+   "id": "k9s",
+   "name": "k9s",
+   "description": "Kubernetes CLI To Manage Your Clusters In Style!",
+   "rank": 104,
+   "installs365d": 170286,
+   "license": "Apache-2.0",
+   "version": "0.51.0",
+   "homepage": "https://k9scli.io/",
+   "formula": "https://formulae.brew.sh/formula/k9s",
+   "install": [
+    "brew install k9s"
+   ]
+  },
+  {
+   "id": "deno",
+   "name": "deno",
+   "description": "Secure runtime for JavaScript and TypeScript",
+   "rank": 105,
+   "installs365d": 167926,
+   "license": "MIT",
+   "version": "2.9.7",
+   "homepage": "https://deno.com/",
+   "formula": "https://formulae.brew.sh/formula/deno",
+   "install": [
+    "brew install deno"
+   ]
+  },
+  {
+   "id": "postgresql-16",
+   "name": "postgresql@16",
+   "description": "Object-relational database system",
+   "rank": 106,
+   "installs365d": 167523,
+   "license": "PostgreSQL",
+   "version": "16.15",
+   "homepage": "https://www.postgresql.org/",
+   "formula": "https://formulae.brew.sh/formula/postgresql@16",
+   "install": [
+    "brew install postgresql@16",
+    "Keg-only: add $(brew --prefix postgresql@16)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "fish",
+   "name": "fish",
+   "description": "User-friendly command-line shell for UNIX-like operating systems",
+   "rank": 107,
+   "installs365d": 166182,
+   "license": "GPL-2.0-only",
+   "version": "4.9.3",
+   "homepage": "https://fishshell.com",
+   "formula": "https://formulae.brew.sh/formula/fish",
+   "install": [
+    "brew install fish"
+   ]
+  },
+  {
+   "id": "hugo",
+   "name": "hugo",
+   "description": "Configurable static site generator",
+   "rank": 108,
+   "installs365d": 165494,
+   "license": "Apache-2.0",
+   "version": "0.167.0",
+   "homepage": "https://gohugo.io/",
+   "formula": "https://formulae.brew.sh/formula/hugo",
+   "install": [
+    "brew install hugo"
+   ]
+  },
+  {
+   "id": "zoxide",
+   "name": "zoxide",
+   "description": "Shell extension to navigate your filesystem faster",
+   "rank": 109,
+   "installs365d": 165370,
+   "license": "MIT",
+   "version": "0.10.0",
+   "homepage": "https://github.com/ajeetdsouza/zoxide",
+   "formula": "https://formulae.brew.sh/formula/zoxide",
+   "install": [
+    "brew install zoxide"
+   ]
+  },
+  {
+   "id": "tailscale",
+   "name": "tailscale",
+   "description": "Easiest, most secure way to use WireGuard and 2FA",
+   "rank": 110,
+   "installs365d": 165160,
+   "license": "BSD-3-Clause",
+   "version": "1.104.1",
+   "homepage": "https://tailscale.com",
+   "formula": "https://formulae.brew.sh/formula/tailscale",
+   "install": [
+    "brew install tailscale"
+   ]
+  },
+  {
+   "id": "kustomize",
+   "name": "kustomize",
+   "description": "Template-free customization of Kubernetes YAML manifests",
+   "rank": 111,
+   "installs365d": 164588,
+   "license": "Apache-2.0",
+   "version": "5.8.3",
+   "homepage": "https://github.com/kubernetes-sigs/kustomize",
+   "formula": "https://formulae.brew.sh/formula/kustomize",
+   "install": [
+    "brew install kustomize"
+   ]
+  },
+  {
+   "id": "shellcheck",
+   "name": "shellcheck",
+   "description": "Static analysis and lint tool, for (ba)sh scripts",
+   "rank": 112,
+   "installs365d": 158490,
+   "license": "GPL-3.0-or-later",
+   "version": "0.11.0",
+   "homepage": "https://www.shellcheck.net/",
+   "formula": "https://formulae.brew.sh/formula/shellcheck",
+   "install": [
+    "brew install shellcheck"
+   ]
+  },
+  {
+   "id": "atuin",
+   "name": "atuin",
+   "description": "Improved shell history for zsh, bash, fish and nushell",
+   "rank": 113,
+   "installs365d": 155368,
+   "license": "MIT",
+   "version": "18.23.0",
+   "homepage": "https://atuin.sh/",
+   "formula": "https://formulae.brew.sh/formula/atuin",
+   "install": [
+    "brew install atuin"
+   ]
+  },
+  {
+   "id": "composer",
+   "name": "composer",
+   "description": "Dependency Manager for PHP",
+   "rank": 114,
+   "installs365d": 153632,
+   "license": "MIT",
+   "version": "2.10.3",
+   "homepage": "https://getcomposer.org/",
+   "formula": "https://formulae.brew.sh/formula/composer",
+   "install": [
+    "brew install composer"
+   ]
+  },
+  {
+   "id": "ca-certificates",
+   "name": "ca-certificates",
+   "description": "Mozilla CA certificate store",
+   "rank": 115,
+   "installs365d": 150959,
+   "license": "MPL-2.0",
+   "version": "2026-09-25",
+   "homepage": "https://curl.se/docs/caextract.html",
+   "formula": "https://formulae.brew.sh/formula/ca-certificates",
+   "install": [
+    "brew install ca-certificates"
+   ]
+  },
+  {
+   "id": "unbound",
+   "name": "unbound",
+   "description": "Validating, recursive, caching DNS resolver",
+   "rank": 116,
+   "installs365d": 147487,
+   "license": "BSD-3-Clause",
+   "version": "1.26.1",
+   "homepage": "https://www.unbound.net",
+   "formula": "https://formulae.brew.sh/formula/unbound",
+   "install": [
+    "brew install unbound"
+   ]
+  },
+  {
+   "id": "eza",
+   "name": "eza",
+   "description": "Modern, maintained replacement for ls",
+   "rank": 117,
+   "installs365d": 146995,
+   "license": "EUPL-1.2",
+   "version": "0.23.5",
+   "homepage": "https://eza.rocks",
+   "formula": "https://formulae.brew.sh/formula/eza",
+   "install": [
+    "brew install eza"
+   ]
+  },
+  {
+   "id": "golangci-lint",
+   "name": "golangci-lint",
+   "description": "Fast linters runner for Go",
+   "rank": 118,
+   "installs365d": 145892,
+   "license": "GPL-3.0-only",
+   "version": "2.14.0",
+   "homepage": "https://golangci-lint.run/",
+   "formula": "https://formulae.brew.sh/formula/golangci-lint",
+   "install": [
+    "brew install golangci-lint"
+   ]
+  },
+  {
+   "id": "fastlane",
+   "name": "fastlane",
+   "description": "Easiest way to build and release mobile apps",
+   "rank": 119,
+   "installs365d": 144745,
+   "license": "MIT",
+   "version": "2.240.1",
+   "homepage": "https://fastlane.tools",
+   "formula": "https://formulae.brew.sh/formula/fastlane",
+   "install": [
+    "brew install fastlane"
+   ]
+  },
+  {
+   "id": "terragrunt",
+   "name": "terragrunt",
+   "description": "Thin wrapper for Terraform e.g. for locking state",
+   "rank": 120,
+   "installs365d": 142831,
+   "license": "MIT",
+   "version": "1.1.6",
+   "homepage": "https://terragrunt.gruntwork.io/",
+   "formula": "https://formulae.brew.sh/formula/terragrunt",
+   "install": [
+    "brew install terragrunt"
+   ]
+  },
+  {
+   "id": "argocd",
+   "name": "argocd",
+   "description": "GitOps Continuous Delivery for Kubernetes",
+   "rank": 121,
+   "installs365d": 142489,
+   "license": "Apache-2.0",
+   "version": "3.5.4",
+   "homepage": "https://argoproj.github.io/cd/",
+   "formula": "https://formulae.brew.sh/formula/argocd",
+   "install": [
+    "brew install argocd"
+   ]
+  },
+  {
+   "id": "node-24",
+   "name": "node@24",
+   "description": "Open-source, cross-platform JavaScript runtime environment",
+   "rank": 122,
+   "installs365d": 142364,
+   "license": "MIT",
+   "version": "24.21.0",
+   "homepage": "https://nodejs.org/",
+   "formula": "https://formulae.brew.sh/formula/node@24",
+   "install": [
+    "brew install node@24",
+    "Keg-only: add $(brew --prefix node@24)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "postgresql-17",
+   "name": "postgresql@17",
+   "description": "Object-relational database system",
+   "rank": 123,
+   "installs365d": 140310,
+   "license": "PostgreSQL",
+   "version": "17.11",
+   "homepage": "https://www.postgresql.org/",
+   "formula": "https://formulae.brew.sh/formula/postgresql@17",
+   "install": [
+    "brew install postgresql@17",
+    "Keg-only: add $(brew --prefix postgresql@17)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "exiftool",
+   "name": "exiftool",
+   "description": "Perl lib for reading and writing EXIF metadata",
+   "rank": 124,
+   "installs365d": 139749,
+   "license": "Artistic-1.0-Perl OR GPL-1.0-or-later",
+   "version": "13.55",
+   "homepage": "https://exiftool.org",
+   "formula": "https://formulae.brew.sh/formula/exiftool",
+   "install": [
+    "brew install exiftool"
+   ]
+  },
+  {
+   "id": "chezmoi",
+   "name": "chezmoi",
+   "description": "Manage your dotfiles across multiple diverse machines, securely",
+   "rank": 125,
+   "installs365d": 139054,
+   "license": "MIT",
+   "version": "2.73.0",
+   "homepage": "https://chezmoi.io/",
+   "formula": "https://formulae.brew.sh/formula/chezmoi",
+   "install": [
+    "brew install chezmoi"
+   ]
+  },
+  {
+   "id": "postgresql-18",
+   "name": "postgresql@18",
+   "description": "Object-relational database system",
+   "rank": 126,
+   "installs365d": 138067,
+   "license": "PostgreSQL",
+   "version": "18.6",
+   "homepage": "https://www.postgresql.org/",
+   "formula": "https://formulae.brew.sh/formula/postgresql@18",
+   "install": [
+    "brew install postgresql@18",
+    "Keg-only: add $(brew --prefix postgresql@18)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "xcresultparser",
+   "name": "xcresultparser",
+   "description": "Parse binary .xcresult bundles from Xcode builds and test runs",
+   "rank": 127,
+   "installs365d": 137972,
+   "license": "MIT",
+   "version": "2.2.0",
+   "homepage": "https://github.com/a7ex/xcresultparser",
+   "formula": "https://formulae.brew.sh/formula/xcresultparser",
+   "install": [
+    "brew install xcresultparser"
+   ]
+  },
+  {
+   "id": "sqlite",
+   "name": "sqlite",
+   "description": "Command-line interface for SQLite",
+   "rank": 128,
+   "installs365d": 134995,
+   "license": "blessing",
+   "version": "3.53.4",
+   "homepage": "https://sqlite.org/index.html",
+   "formula": "https://formulae.brew.sh/formula/sqlite",
+   "install": [
+    "brew install sqlite",
+    "Keg-only: add $(brew --prefix sqlite)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "trivy",
+   "name": "trivy",
+   "description": "Vulnerability scanner for container images, file systems, and Git repos",
+   "rank": 129,
+   "installs365d": 134422,
+   "license": "Apache-2.0",
+   "version": "0.75.0",
+   "homepage": "https://trivy.dev/",
+   "formula": "https://formulae.brew.sh/formula/trivy",
+   "install": [
+    "brew install trivy"
+   ]
+  },
+  {
+   "id": "powershell",
+   "name": "powershell",
+   "description": "Command-line shell and scripting language",
+   "rank": 130,
+   "installs365d": 133860,
+   "license": "MIT",
+   "version": "7.6.6",
+   "homepage": "https://github.com/PowerShell/PowerShell",
+   "formula": "https://formulae.brew.sh/formula/powershell",
+   "install": [
+    "brew install powershell"
+   ]
+  },
+  {
+   "id": "boost",
+   "name": "boost",
+   "description": "Collection of portable C++ source libraries",
+   "rank": 131,
+   "installs365d": 133157,
+   "license": "BSL-1.0",
+   "version": "1.92.0",
+   "homepage": "https://www.boost.org/",
+   "formula": "https://formulae.brew.sh/formula/boost",
+   "install": [
+    "brew install boost"
+   ]
+  },
+  {
+   "id": "rtk",
+   "name": "rtk",
+   "description": "CLI proxy to minimize LLM token consumption",
+   "rank": 132,
+   "installs365d": 131763,
+   "license": "Apache-2.0",
+   "version": "0.51.0",
+   "homepage": "https://www.rtk-ai.app/",
+   "formula": "https://formulae.brew.sh/formula/rtk",
+   "install": [
+    "brew install rtk"
+   ]
+  },
+  {
+   "id": "btop",
+   "name": "btop",
+   "description": "Resource monitor. C++ version and continuation of bashtop and bpytop",
+   "rank": 133,
+   "installs365d": 131592,
+   "license": "Apache-2.0",
+   "version": "1.4.7",
+   "homepage": "https://github.com/aristocratos/btop",
+   "formula": "https://formulae.brew.sh/formula/btop",
+   "install": [
+    "brew install btop"
+   ]
+  },
+  {
+   "id": "mas",
+   "name": "mas",
+   "description": "Mac App Store command-line interface",
+   "rank": 134,
+   "installs365d": 131541,
+   "license": "MIT",
+   "version": "7.0.0",
+   "homepage": "https://github.com/mas-cli/mas",
+   "formula": "https://formulae.brew.sh/formula/mas",
+   "install": [
+    "brew install mas"
+   ]
+  },
+  {
+   "id": "ruby-build",
+   "name": "ruby-build",
+   "description": "Install various Ruby versions and implementations",
+   "rank": 135,
+   "installs365d": 128920,
+   "license": "MIT",
+   "version": "20260924",
+   "homepage": "https://rbenv.org/man/ruby-build.1",
+   "formula": "https://formulae.brew.sh/formula/ruby-build",
+   "install": [
+    "brew install ruby-build"
+   ]
+  },
+  {
+   "id": "direnv",
+   "name": "direnv",
+   "description": "Load/unload environment variables based on $PWD",
+   "rank": 136,
+   "installs365d": 128291,
+   "license": "MIT",
+   "version": "2.38.2",
+   "homepage": "https://direnv.net/",
+   "formula": "https://formulae.brew.sh/formula/direnv",
+   "install": [
+    "brew install direnv"
+   ]
+  },
+  {
+   "id": "pre-commit",
+   "name": "pre-commit",
+   "description": "Framework for managing multi-language pre-commit hooks",
+   "rank": 137,
+   "installs365d": 126041,
+   "license": "MIT",
+   "version": "4.6.2",
+   "homepage": "https://pre-commit.com/",
+   "formula": "https://formulae.brew.sh/formula/pre-commit",
+   "install": [
+    "brew install pre-commit"
+   ]
+  },
+  {
+   "id": "ruff",
+   "name": "ruff",
+   "description": "Extremely fast Python linter, written in Rust",
+   "rank": 138,
+   "installs365d": 125358,
+   "license": "MIT",
+   "version": "0.17.0",
+   "homepage": "https://docs.astral.sh/ruff/",
+   "formula": "https://formulae.brew.sh/formula/ruff",
+   "install": [
+    "brew install ruff"
+   ]
+  },
+  {
+   "id": "telnet",
+   "name": "telnet",
+   "description": "User interface to the TELNET protocol",
+   "rank": 139,
+   "installs365d": 125167,
+   "license": "BSD-4-Clause-UC AND APSL-1.0",
+   "version": "308",
+   "homepage": "https://opensource.apple.com/",
+   "formula": "https://formulae.brew.sh/formula/telnet",
+   "install": [
+    "brew install telnet"
+   ]
+  },
+  {
+   "id": "rsync",
+   "name": "rsync",
+   "description": "Utility that provides fast incremental file transfer",
+   "rank": 140,
+   "installs365d": 120810,
+   "license": "GPL-3.0-or-later",
+   "version": "3.5.1",
+   "homepage": "https://rsync.samba.org/",
+   "formula": "https://formulae.brew.sh/formula/rsync",
+   "install": [
+    "brew install rsync"
+   ]
+  },
+  {
+   "id": "rbenv",
+   "name": "rbenv",
+   "description": "Ruby version manager",
+   "rank": 141,
+   "installs365d": 118656,
+   "license": "MIT",
+   "version": "1.3.2",
+   "homepage": "https://rbenv.org",
+   "formula": "https://formulae.brew.sh/formula/rbenv",
+   "install": [
+    "brew install rbenv"
+   ]
+  },
+  {
+   "id": "nginx",
+   "name": "nginx",
+   "description": "HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server",
+   "rank": 142,
+   "installs365d": 118390,
+   "license": "BSD-2-Clause",
+   "version": "1.31.6",
+   "homepage": "https://nginx.org/",
+   "formula": "https://formulae.brew.sh/formula/nginx",
+   "install": [
+    "brew install nginx"
+   ]
+  },
+  {
+   "id": "zstd",
+   "name": "zstd",
+   "description": "Zstandard is a real-time compression algorithm",
+   "rank": 143,
+   "installs365d": 118284,
+   "license": "(BSD-3-Clause OR GPL-2.0-only) AND BSD-2-Clause AND MIT",
+   "version": "1.5.7",
+   "homepage": "https://facebook.github.io/zstd/",
+   "formula": "https://formulae.brew.sh/formula/zstd",
+   "install": [
+    "brew install zstd"
+   ]
+  },
+  {
+   "id": "gitleaks",
+   "name": "gitleaks",
+   "description": "Audit git repos for secrets",
+   "rank": 144,
+   "installs365d": 117233,
+   "license": "MIT",
+   "version": "8.30.1",
+   "homepage": "https://gitleaks.io/",
+   "formula": "https://formulae.brew.sh/formula/gitleaks",
+   "install": [
+    "brew install gitleaks"
+   ]
+  },
+  {
+   "id": "zlib",
+   "name": "zlib",
+   "description": "General-purpose lossless data-compression library",
+   "rank": 145,
+   "installs365d": 115624,
+   "license": "Zlib",
+   "version": "1.3.2",
+   "homepage": "https://zlib.net/",
+   "formula": "https://formulae.brew.sh/formula/zlib",
+   "install": [
+    "brew install zlib",
+    "Keg-only: add $(brew --prefix zlib)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "aom",
+   "name": "aom",
+   "description": "Codec library for encoding and decoding AV1 video streams",
+   "rank": 146,
+   "installs365d": 114778,
+   "license": "BSD-2-Clause",
+   "version": "3.15.2",
+   "homepage": "https://aomedia.googlesource.com/aom",
+   "formula": "https://formulae.brew.sh/formula/aom",
+   "install": [
+    "brew install aom"
+   ]
+  },
+  {
+   "id": "aria2",
+   "name": "aria2",
+   "description": "Download with resuming and segmented downloading",
+   "rank": 147,
+   "installs365d": 114482,
+   "license": "GPL-2.0-or-later",
+   "version": "1.37.0",
+   "homepage": "https://aria2.github.io/",
+   "formula": "https://formulae.brew.sh/formula/aria2",
+   "install": [
+    "brew install aria2"
+   ]
+  },
+  {
+   "id": "himalaya",
+   "name": "himalaya",
+   "description": "CLI email client written in Rust",
+   "rank": 148,
+   "installs365d": 113162,
+   "license": "MIT",
+   "version": "2.2.1",
+   "homepage": "https://pimalaya.org",
+   "formula": "https://formulae.brew.sh/formula/himalaya",
+   "install": [
+    "brew install himalaya"
+   ]
+  },
+  {
+   "id": "sops",
+   "name": "sops",
+   "description": "Editor of encrypted files",
+   "rank": 149,
+   "installs365d": 113079,
+   "license": "MPL-2.0",
+   "version": "3.13.3",
+   "homepage": "https://getsops.io/",
+   "formula": "https://formulae.brew.sh/formula/sops",
+   "install": [
+    "brew install sops"
+   ]
+  },
+  {
+   "id": "openai-whisper",
+   "name": "openai-whisper",
+   "description": "General-purpose speech recognition model",
+   "rank": 150,
+   "installs365d": 112884,
+   "license": "MIT",
+   "version": "20250625",
+   "homepage": "https://github.com/openai/whisper",
+   "formula": "https://formulae.brew.sh/formula/openai-whisper",
+   "install": [
+    "brew install openai-whisper"
+   ]
+  },
+  {
+   "id": "p7zip",
+   "name": "p7zip",
+   "description": "7-Zip (high compression file archiver) implementation",
+   "rank": 151,
+   "installs365d": 112056,
+   "license": "LGPL-2.1-or-later AND GPL-2.0-or-later",
+   "version": "17.06",
+   "homepage": "https://github.com/p7zip-project/p7zip",
+   "formula": "https://formulae.brew.sh/formula/p7zip",
+   "install": [
+    "brew install p7zip"
+   ]
+  },
+  {
+   "id": "gettext",
+   "name": "gettext",
+   "description": "GNU internationalization (i18n) and localization (l10n) library",
+   "rank": 152,
+   "installs365d": 110519,
+   "license": "GPL-3.0-or-later AND LGPL-2.1-or-later",
+   "version": "1.0",
+   "homepage": "https://www.gnu.org/software/gettext/",
+   "formula": "https://formulae.brew.sh/formula/gettext",
+   "install": [
+    "brew install gettext"
+   ]
+  },
+  {
+   "id": "xctesthtmlreport",
+   "name": "xctesthtmlreport",
+   "description": "Xcode-like HTML report for Unit and UI Tests",
+   "rank": 153,
+   "installs365d": 110096,
+   "license": "MIT",
+   "version": "3.0.0",
+   "homepage": "https://github.com/XCTestHTMLReport/XCTestHTMLReport",
+   "formula": "https://formulae.brew.sh/formula/xctesthtmlreport",
+   "install": [
+    "brew install xctesthtmlreport"
+   ]
+  },
+  {
+   "id": "tilt",
+   "name": "tilt",
+   "description": "Define your dev environment as code. For microservice apps on Kubernetes",
+   "rank": 154,
+   "installs365d": 109926,
+   "license": "Apache-2.0",
+   "version": "0.37.8",
+   "homepage": "https://tilt.dev/",
+   "formula": "https://formulae.brew.sh/formula/tilt",
+   "install": [
+    "brew install tilt"
+   ]
+  },
+  {
+   "id": "tfenv",
+   "name": "tfenv",
+   "description": "Terraform version manager inspired by rbenv",
+   "rank": 155,
+   "installs365d": 109684,
+   "license": "MIT",
+   "version": "3.2.2",
+   "homepage": "https://github.com/tfutils/tfenv",
+   "formula": "https://formulae.brew.sh/formula/tfenv",
+   "install": [
+    "brew install tfenv"
+   ]
+  },
+  {
+   "id": "libtool",
+   "name": "libtool",
+   "description": "Generic library support script",
+   "rank": 156,
+   "installs365d": 107938,
+   "license": "GPL-2.0-or-later",
+   "version": "2.6.2",
+   "homepage": "https://www.gnu.org/software/libtool/",
+   "formula": "https://formulae.brew.sh/formula/libtool",
+   "install": [
+    "brew install libtool"
+   ]
+  },
+  {
+   "id": "libpng",
+   "name": "libpng",
+   "description": "Library for manipulating PNG images",
+   "rank": 157,
+   "installs365d": 107638,
+   "license": "libpng-2.0",
+   "version": "1.6.59",
+   "homepage": "https://www.libpng.org/pub/png/libpng.html",
+   "formula": "https://formulae.brew.sh/formula/libpng",
+   "install": [
+    "brew install libpng"
+   ]
+  },
+  {
+   "id": "libxml2",
+   "name": "libxml2",
+   "description": "GNOME XML library",
+   "rank": 158,
+   "installs365d": 105858,
+   "license": "MIT",
+   "version": "2.15.4",
+   "homepage": null,
+   "formula": "https://formulae.brew.sh/formula/libxml2",
+   "install": [
+    "brew install libxml2",
+    "Keg-only: add $(brew --prefix libxml2)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "autoconf",
+   "name": "autoconf",
+   "description": "Automatic configure script builder",
+   "rank": 159,
+   "installs365d": 105560,
+   "license": "GPL-3.0-or-later AND (GPL-3.0-or-later WITH Autoconf-exception-3.0)",
+   "version": "2.73",
+   "homepage": "https://www.gnu.org/software/autoconf/",
+   "formula": "https://formulae.brew.sh/formula/autoconf",
+   "install": [
+    "brew install autoconf"
+   ]
+  },
+  {
+   "id": "libtiff",
+   "name": "libtiff",
+   "description": "TIFF library and utilities",
+   "rank": 160,
+   "installs365d": 104909,
+   "license": "libtiff",
+   "version": "4.7.2",
+   "homepage": "https://libtiff.gitlab.io/libtiff/",
+   "formula": "https://formulae.brew.sh/formula/libtiff",
+   "install": [
+    "brew install libtiff"
+   ]
+  },
+  {
+   "id": "oras",
+   "name": "oras",
+   "description": "OCI Registry As Storage",
+   "rank": 161,
+   "installs365d": 102318,
+   "license": "Apache-2.0",
+   "version": "1.3.4",
+   "homepage": "https://oras.land",
+   "formula": "https://formulae.brew.sh/formula/oras",
+   "install": [
+    "brew install oras"
+   ]
+  },
+  {
+   "id": "lua",
+   "name": "lua",
+   "description": "Powerful, lightweight programming language",
+   "rank": 162,
+   "installs365d": 102049,
+   "license": "MIT",
+   "version": "5.5.1",
+   "homepage": "https://www.lua.org/",
+   "formula": "https://formulae.brew.sh/formula/lua",
+   "install": [
+    "brew install lua"
+   ]
+  },
+  {
+   "id": "k3d",
+   "name": "k3d",
+   "description": "Little helper to run CNCF's k3s in Docker",
+   "rank": 163,
+   "installs365d": 99867,
+   "license": "MIT",
+   "version": "5.9.0",
+   "homepage": "https://k3d.io",
+   "formula": "https://formulae.brew.sh/formula/k3d",
+   "install": [
+    "brew install k3d"
+   ]
+  },
+  {
+   "id": "jpeg-xl",
+   "name": "jpeg-xl",
+   "description": "New file format for still image compression",
+   "rank": 164,
+   "installs365d": 99588,
+   "license": "BSD-3-Clause",
+   "version": "0.12.0",
+   "homepage": "https://jpeg.org/jpegxl/index.html",
+   "formula": "https://formulae.brew.sh/formula/jpeg-xl",
+   "install": [
+    "brew install jpeg-xl"
+   ]
+  },
+  {
+   "id": "nss",
+   "name": "nss",
+   "description": "Libraries for security-enabled client and server applications",
+   "rank": 165,
+   "installs365d": 99444,
+   "license": "MPL-2.0",
+   "version": "3.131",
+   "homepage": "https://firefox-source-docs.mozilla.org/security/nss/index.html",
+   "formula": "https://formulae.brew.sh/formula/nss",
+   "install": [
+    "brew install nss"
+   ]
+  },
+  {
+   "id": "jupyterlab",
+   "name": "jupyterlab",
+   "description": "Interactive environments for writing and running code",
+   "rank": 166,
+   "installs365d": 98040,
+   "license": "BSD-3-Clause AND MIT",
+   "version": "4.6.4",
+   "homepage": "https://jupyter.org/",
+   "formula": "https://formulae.brew.sh/formula/jupyterlab",
+   "install": [
+    "brew install jupyterlab"
+   ]
+  },
+  {
+   "id": "go-task",
+   "name": "go-task",
+   "description": "Task is a task runner/build tool that aims to be simpler and easier to use",
+   "rank": 167,
+   "installs365d": 97719,
+   "license": "MIT",
+   "version": "3.54.0",
+   "homepage": "https://taskfile.dev/",
+   "formula": "https://formulae.brew.sh/formula/go-task",
+   "install": [
+    "brew install go-task"
+   ]
+  },
+  {
+   "id": "yazi",
+   "name": "yazi",
+   "description": "Blazing fast terminal file manager written in Rust, based on async I/O",
+   "rank": 168,
+   "installs365d": 96905,
+   "license": "MIT",
+   "version": "26.9.1",
+   "homepage": "https://yazi-rs.github.io",
+   "formula": "https://formulae.brew.sh/formula/yazi",
+   "install": [
+    "brew install yazi"
+   ]
+  },
+  {
+   "id": "mysql-client",
+   "name": "mysql-client",
+   "description": "Open source relational database management system",
+   "rank": 169,
+   "installs365d": 95549,
+   "license": "GPL-2.0-only WITH Universal-FOSS-exception-1.0",
+   "version": "26.7.0",
+   "homepage": "https://github.com/mysql/mysql-server",
+   "formula": "https://formulae.brew.sh/formula/mysql-client",
+   "install": [
+    "brew install mysql-client",
+    "Keg-only: add $(brew --prefix mysql-client)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "gnu-sed",
+   "name": "gnu-sed",
+   "description": "GNU implementation of the famous stream editor",
+   "rank": 170,
+   "installs365d": 95188,
+   "license": "GPL-3.0-or-later",
+   "version": "4.10",
+   "homepage": "https://www.gnu.org/software/sed/",
+   "formula": "https://formulae.brew.sh/formula/gnu-sed",
+   "install": [
+    "brew install gnu-sed"
+   ]
+  },
+  {
+   "id": "openssl-3-5",
+   "name": "openssl@3.5",
+   "description": "Cryptography and SSL/TLS Toolkit",
+   "rank": 171,
+   "installs365d": 93871,
+   "license": "Apache-2.0",
+   "version": "3.5.9",
+   "homepage": "https://openssl-library.org",
+   "formula": "https://formulae.brew.sh/formula/openssl@3.5",
+   "install": [
+    "brew install openssl@3.5",
+    "Keg-only: add $(brew --prefix openssl@3.5)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "sevenzip",
+   "name": "sevenzip",
+   "description": "7-Zip is a file archiver with a high compression ratio",
+   "rank": 172,
+   "installs365d": 93106,
+   "license": "LGPL-2.1-or-later AND BSD-3-Clause",
+   "version": "26.04",
+   "homepage": "https://7-zip.org",
+   "formula": "https://formulae.brew.sh/formula/sevenzip",
+   "install": [
+    "brew install sevenzip"
+   ]
+  },
+  {
+   "id": "bats-core",
+   "name": "bats-core",
+   "description": "Bash Automated Testing System",
+   "rank": 173,
+   "installs365d": 92996,
+   "license": "MIT",
+   "version": "1.14.0",
+   "homepage": "https://github.com/bats-core/bats-core",
+   "formula": "https://formulae.brew.sh/formula/bats-core",
+   "install": [
+    "brew install bats-core"
+   ]
+  },
+  {
+   "id": "scrcpy",
+   "name": "scrcpy",
+   "description": "Display and control your Android device",
+   "rank": 174,
+   "installs365d": 92620,
+   "license": "Apache-2.0",
+   "version": "5.0.1",
+   "homepage": "https://github.com/Genymobile/scrcpy",
+   "formula": "https://formulae.brew.sh/formula/scrcpy",
+   "install": [
+    "brew install scrcpy"
+   ]
+  },
+  {
+   "id": "poetry",
+   "name": "poetry",
+   "description": "Python package management tool",
+   "rank": 175,
+   "installs365d": 92495,
+   "license": "MIT",
+   "version": "2.5.1",
+   "homepage": "https://python-poetry.org/",
+   "formula": "https://formulae.brew.sh/formula/poetry",
+   "install": [
+    "brew install poetry"
+   ]
+  },
+  {
+   "id": "uutils-findutils",
+   "name": "uutils-findutils",
+   "description": "Cross-platform Rust rewrite of the GNU findutils",
+   "rank": 176,
+   "installs365d": 92060,
+   "license": "MIT",
+   "version": "0.10.0",
+   "homepage": "https://uutils.github.io/findutils/",
+   "formula": "https://formulae.brew.sh/formula/uutils-findutils",
+   "install": [
+    "brew install uutils-findutils"
+   ]
+  },
+  {
+   "id": "docker-buildx",
+   "name": "docker-buildx",
+   "description": "Docker CLI plugin for extended build capabilities with BuildKit",
+   "rank": 177,
+   "installs365d": 91670,
+   "license": "Apache-2.0",
+   "version": "0.38.0",
+   "homepage": "https://docs.docker.com/buildx/working-with-buildx/",
+   "formula": "https://formulae.brew.sh/formula/docker-buildx",
+   "install": [
+    "brew install docker-buildx"
+   ]
+  },
+  {
+   "id": "sourcekitten",
+   "name": "sourcekitten",
+   "description": "Framework and command-line tool for interacting with SourceKit",
+   "rank": 178,
+   "installs365d": 91407,
+   "license": "MIT",
+   "version": "0.39.0",
+   "homepage": "https://github.com/jpsim/SourceKitten",
+   "formula": "https://formulae.brew.sh/formula/sourcekitten",
+   "install": [
+    "brew install sourcekitten"
+   ]
+  },
+  {
+   "id": "uutils-coreutils",
+   "name": "uutils-coreutils",
+   "description": "Cross-platform Rust rewrite of the GNU coreutils",
+   "rank": 179,
+   "installs365d": 90797,
+   "license": "MIT",
+   "version": "0.12.0",
+   "homepage": "https://uutils.github.io/coreutils/",
+   "formula": "https://formulae.brew.sh/formula/uutils-coreutils",
+   "install": [
+    "brew install uutils-coreutils"
+   ]
+  },
+  {
+   "id": "asdf",
+   "name": "asdf",
+   "description": "Extendable version manager with support for Ruby, Node.js, Erlang & more",
+   "rank": 180,
+   "installs365d": 90245,
+   "license": "MIT",
+   "version": "0.20.2",
+   "homepage": "https://asdf-vm.com/",
+   "formula": "https://formulae.brew.sh/formula/asdf",
+   "install": [
+    "brew install asdf"
+   ]
+  },
+  {
+   "id": "postgresql-15",
+   "name": "postgresql@15",
+   "description": "Object-relational database system",
+   "rank": 181,
+   "installs365d": 89894,
+   "license": "PostgreSQL",
+   "version": "15.19",
+   "homepage": "https://www.postgresql.org/",
+   "formula": "https://formulae.brew.sh/formula/postgresql@15",
+   "install": [
+    "brew install postgresql@15",
+    "Keg-only: add $(brew --prefix postgresql@15)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "swiftformat",
+   "name": "swiftformat",
+   "description": "Formatting tool for reformatting Swift code",
+   "rank": 182,
+   "installs365d": 89703,
+   "license": "MIT",
+   "version": "0.63.1",
+   "homepage": "https://github.com/nicklockwood/SwiftFormat",
+   "formula": "https://formulae.brew.sh/formula/swiftformat",
+   "install": [
+    "brew install swiftformat"
+   ]
+  },
+  {
+   "id": "libheif",
+   "name": "libheif",
+   "description": "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder",
+   "rank": 183,
+   "installs365d": 89324,
+   "license": "LGPL-3.0-or-later",
+   "version": "1.23.6",
+   "homepage": "https://www.libde265.org/",
+   "formula": "https://formulae.brew.sh/formula/libheif",
+   "install": [
+    "brew install libheif"
+   ]
+  },
+  {
+   "id": "azcopy",
+   "name": "azcopy",
+   "description": "Azure Storage data transfer utility",
+   "rank": 184,
+   "installs365d": 89181,
+   "license": "MIT",
+   "version": "10.32.8",
+   "homepage": "https://github.com/Azure/azure-storage-azcopy",
+   "formula": "https://formulae.brew.sh/formula/azcopy",
+   "install": [
+    "brew install azcopy"
+   ]
+  },
+  {
+   "id": "python-tk-3-14",
+   "name": "python-tk@3.14",
+   "description": "Python interface to Tcl/Tk",
+   "rank": 185,
+   "installs365d": 89070,
+   "license": "Python-2.0",
+   "version": "3.14.8",
+   "homepage": "https://www.python.org/",
+   "formula": "https://formulae.brew.sh/formula/python-tk@3.14",
+   "install": [
+    "brew install python-tk@3.14"
+   ]
+  },
+  {
+   "id": "cairo",
+   "name": "cairo",
+   "description": "Vector graphics library with cross-device output support",
+   "rank": 186,
+   "installs365d": 88098,
+   "license": "LGPL-2.1-only OR MPL-1.1",
+   "version": "1.18.6",
+   "homepage": "https://cairographics.org/",
+   "formula": "https://formulae.brew.sh/formula/cairo",
+   "install": [
+    "brew install cairo"
+   ]
+  },
+  {
+   "id": "git-filter-repo",
+   "name": "git-filter-repo",
+   "description": "Quickly rewrite git repository history",
+   "rank": 187,
+   "installs365d": 87122,
+   "license": "MIT",
+   "version": "2.47.0",
+   "homepage": "https://github.com/newren/git-filter-repo",
+   "formula": "https://formulae.brew.sh/formula/git-filter-repo",
+   "install": [
+    "brew install git-filter-repo"
+   ]
+  },
+  {
+   "id": "watch",
+   "name": "watch",
+   "description": "Executes a program periodically, showing output fullscreen",
+   "rank": 188,
+   "installs365d": 86358,
+   "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
+   "version": "4.0.7",
+   "homepage": "https://gitlab.com/procps-ng/procps",
+   "formula": "https://formulae.brew.sh/formula/watch",
+   "install": [
+    "brew install watch"
+   ]
+  },
+  {
+   "id": "virtualenv",
+   "name": "virtualenv",
+   "description": "Tool for creating isolated virtual python environments",
+   "rank": 189,
+   "installs365d": 85811,
+   "license": "MIT",
+   "version": "21.14.6",
+   "homepage": "https://virtualenv.pypa.io/",
+   "formula": "https://formulae.brew.sh/formula/virtualenv",
+   "install": [
+    "brew install virtualenv"
+   ]
+  },
+  {
+   "id": "rustup",
+   "name": "rustup",
+   "description": "Rust toolchain installer",
+   "rank": 190,
+   "installs365d": 85539,
+   "license": "Apache-2.0 OR MIT",
+   "version": "1.29.1",
+   "homepage": "https://rust-lang.github.io/rustup/",
+   "formula": "https://formulae.brew.sh/formula/rustup",
+   "install": [
+    "brew install rustup",
+    "Keg-only: add $(brew --prefix rustup)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "cliclick",
+   "name": "cliclick",
+   "description": "Tool for emulating mouse and keyboard events",
+   "rank": 191,
+   "installs365d": 85149,
+   "license": "BSD-3-Clause",
+   "version": "5.1",
+   "homepage": "https://www.bluem.net/jump/cliclick/",
+   "formula": "https://formulae.brew.sh/formula/cliclick",
+   "install": [
+    "brew install cliclick"
+   ]
+  },
+  {
+   "id": "webp",
+   "name": "webp",
+   "description": "Image format providing lossless and lossy compression for web images",
+   "rank": 192,
+   "installs365d": 85041,
+   "license": "BSD-3-Clause",
+   "version": "1.6.0",
+   "homepage": "https://developers.google.com/speed/webp/",
+   "formula": "https://formulae.brew.sh/formula/webp",
+   "install": [
+    "brew install webp"
+   ]
+  },
+  {
+   "id": "mpv",
+   "name": "mpv",
+   "description": "Media player based on MPlayer and mplayer2",
+   "rank": 193,
+   "installs365d": 84909,
+   "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
+   "version": "0.41.0",
+   "homepage": "https://mpv.io",
+   "formula": "https://formulae.brew.sh/formula/mpv",
+   "install": [
+    "brew install mpv"
+   ]
+  },
+  {
+   "id": "numpy",
+   "name": "numpy",
+   "description": "Package for scientific computing with Python",
+   "rank": 194,
+   "installs365d": 84338,
+   "license": "BSD-3-Clause",
+   "version": "2.5.3",
+   "homepage": "https://www.numpy.org/",
+   "formula": "https://formulae.brew.sh/formula/numpy",
+   "install": [
+    "brew install numpy"
+   ]
+  },
+  {
+   "id": "python-yq",
+   "name": "python-yq",
+   "description": "Command-line YAML and XML processor that wraps jq",
+   "rank": 195,
+   "installs365d": 84241,
+   "license": "Apache-2.0",
+   "version": "4.4.0",
+   "homepage": "https://kislyuk.github.io/yq/",
+   "formula": "https://formulae.brew.sh/formula/python-yq",
+   "install": [
+    "brew install python-yq"
+   ]
+  },
+  {
+   "id": "opentofu",
+   "name": "opentofu",
+   "description": "Drop-in replacement for Terraform. Infrastructure as Code Tool",
+   "rank": 196,
+   "installs365d": 83203,
+   "license": "MPL-2.0",
+   "version": "1.13.1",
+   "homepage": "https://opentofu.org/",
+   "formula": "https://formulae.brew.sh/formula/opentofu",
+   "install": [
+    "brew install opentofu"
+   ]
+  },
+  {
+   "id": "iperf3",
+   "name": "iperf3",
+   "description": "Update of iperf: measures TCP, UDP, and SCTP bandwidth",
+   "rank": 197,
+   "installs365d": 82645,
+   "license": "BSD-3-Clause",
+   "version": "3.22",
+   "homepage": "https://github.com/esnet/iperf",
+   "formula": "https://formulae.brew.sh/formula/iperf3",
+   "install": [
+    "brew install iperf3"
+   ]
+  },
+  {
+   "id": "tcl-tk",
+   "name": "tcl-tk",
+   "description": "Tool Command Language",
+   "rank": 198,
+   "installs365d": 81944,
+   "license": "TCL",
+   "version": "9.1.0",
+   "homepage": "https://www.tcl-lang.org",
+   "formula": "https://formulae.brew.sh/formula/tcl-tk",
+   "install": [
+    "brew install tcl-tk"
+   ]
+  },
+  {
+   "id": "git-delta",
+   "name": "git-delta",
+   "description": "Syntax-highlighting pager for git and diff output",
+   "rank": 199,
+   "installs365d": 81834,
+   "license": "MIT",
+   "version": "0.20.1",
+   "homepage": "https://dandavison.github.io/delta/",
+   "formula": "https://formulae.brew.sh/formula/git-delta",
+   "install": [
+    "brew install git-delta"
+   ]
+  },
+  {
+   "id": "swiftgen",
+   "name": "swiftgen",
+   "description": "Swift code generator for assets, storyboards, Localizable.strings, etc.",
+   "rank": 200,
+   "installs365d": 81553,
+   "license": "MIT",
+   "version": "6.6.3",
+   "homepage": "https://github.com/SwiftGen/SwiftGen",
+   "formula": "https://formulae.brew.sh/formula/swiftgen",
+   "install": [
+    "brew install swiftgen"
+   ]
+  },
+  {
+   "id": "ast-grep",
+   "name": "ast-grep",
+   "description": "Code searching, linting, rewriting",
+   "rank": 201,
+   "installs365d": 81507,
+   "license": "MIT",
+   "version": "0.50.0",
+   "homepage": "https://ast-grep.github.io/",
+   "formula": "https://formulae.brew.sh/formula/ast-grep",
+   "install": [
+    "brew install ast-grep"
+   ]
+  },
+  {
+   "id": "sshpass",
+   "name": "sshpass",
+   "description": "Non-interactive SSH password auth",
+   "rank": 202,
+   "installs365d": 80647,
+   "license": "GPL-2.0-only",
+   "version": "1.10",
+   "homepage": "https://sourceforge.net/projects/sshpass/",
+   "formula": "https://formulae.brew.sh/formula/sshpass",
+   "install": [
+    "brew install sshpass"
+   ]
+  },
+  {
+   "id": "aws-sam-cli",
+   "name": "aws-sam-cli",
+   "description": "CLI tool to build, test, debug, and deploy Serverless applications using AWS SAM",
+   "rank": 203,
+   "installs365d": 80320,
+   "license": "Apache-2.0",
+   "version": "1.167.0",
+   "homepage": "https://aws.amazon.com/serverless/sam/",
+   "formula": "https://formulae.brew.sh/formula/aws-sam-cli",
+   "install": [
+    "brew install aws-sam-cli"
+   ]
+  },
+  {
+   "id": "binutils",
+   "name": "binutils",
+   "description": "GNU binary tools for native development",
+   "rank": 204,
+   "installs365d": 79949,
+   "license": "GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later AND LGPL-3.0-only",
+   "version": "2.47",
+   "homepage": "https://www.gnu.org/software/binutils/binutils.html",
+   "formula": "https://formulae.brew.sh/formula/binutils",
+   "install": [
+    "brew install binutils",
+    "Keg-only: add $(brew --prefix binutils)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "clang-format",
+   "name": "clang-format",
+   "description": "Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript",
+   "rank": 205,
+   "installs365d": 79902,
+   "license": "Apache-2.0 WITH LLVM-exception",
+   "version": "23.1.3",
+   "homepage": "https://clang.llvm.org/docs/ClangFormat.html",
+   "formula": "https://formulae.brew.sh/formula/clang-format",
+   "install": [
+    "brew install clang-format"
+   ]
+  },
+  {
+   "id": "pipenv",
+   "name": "pipenv",
+   "description": "Python dependency management tool",
+   "rank": 206,
+   "installs365d": 79758,
+   "license": "MIT",
+   "version": "2026.8.0",
+   "homepage": "https://github.com/pypa/pipenv",
+   "formula": "https://formulae.brew.sh/formula/pipenv",
+   "install": [
+    "brew install pipenv"
+   ]
+  },
+  {
+   "id": "xcodes",
+   "name": "xcodes",
+   "description": "Command-line tool to install and switch between multiple versions of Xcode",
+   "rank": 207,
+   "installs365d": 78866,
+   "license": "MIT",
+   "version": "2.1.0",
+   "homepage": "https://github.com/XcodesOrg/xcodes",
+   "formula": "https://formulae.brew.sh/formula/xcodes",
+   "install": [
+    "brew install xcodes"
+   ]
+  },
+  {
+   "id": "vale",
+   "name": "vale",
+   "description": "Syntax-aware linter for prose",
+   "rank": 208,
+   "installs365d": 77540,
+   "license": "MIT",
+   "version": "3.24.0",
+   "homepage": "https://vale.sh/",
+   "formula": "https://formulae.brew.sh/formula/vale",
+   "install": [
+    "brew install vale"
+   ]
+  },
+  {
+   "id": "dotnet",
+   "name": "dotnet",
+   "description": ".NET Core",
+   "rank": 209,
+   "installs365d": 76778,
+   "license": "MIT",
+   "version": "10.0.401",
+   "homepage": "https://dotnet.microsoft.com/",
+   "formula": "https://formulae.brew.sh/formula/dotnet",
+   "install": [
+    "brew install dotnet"
+   ]
+  },
+  {
+   "id": "jfrog-cli",
+   "name": "jfrog-cli",
+   "description": "Command-line interface for JFrog products",
+   "rank": 210,
+   "installs365d": 76690,
+   "license": "Apache-2.0",
+   "version": "2.126.0",
+   "homepage": "https://docs.jfrog.com/integrations/docs/jfrog-cli",
+   "formula": "https://formulae.brew.sh/formula/jfrog-cli",
+   "install": [
+    "brew install jfrog-cli"
+   ]
+  },
+  {
+   "id": "freetype",
+   "name": "freetype",
+   "description": "Software library to render fonts",
+   "rank": 211,
+   "installs365d": 76469,
+   "license": "FTL",
+   "version": "2.14.3",
+   "homepage": "https://www.freetype.org/",
+   "formula": "https://formulae.brew.sh/formula/freetype",
+   "install": [
+    "brew install freetype"
+   ]
+  },
+  {
+   "id": "libffi",
+   "name": "libffi",
+   "description": "Portable Foreign Function Interface library",
+   "rank": 212,
+   "installs365d": 76441,
+   "license": "MIT",
+   "version": "3.8.0",
+   "homepage": "https://sourceware.org/libffi/",
+   "formula": "https://formulae.brew.sh/formula/libffi",
+   "install": [
+    "brew install libffi",
+    "Keg-only: add $(brew --prefix libffi)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "mongosh",
+   "name": "mongosh",
+   "description": "MongoDB Shell to connect, configure, query, and work with your MongoDB database",
+   "rank": 213,
+   "installs365d": 75629,
+   "license": "Apache-2.0",
+   "version": "2.13.0",
+   "homepage": "https://www.mongodb.com/try/download/shell",
+   "formula": "https://formulae.brew.sh/formula/mongosh",
+   "install": [
+    "brew install mongosh"
+   ]
+  },
+  {
+   "id": "yarn",
+   "name": "yarn",
+   "description": "JavaScript package manager",
+   "rank": 214,
+   "installs365d": 75481,
+   "license": "BSD-2-Clause",
+   "version": "1.22.22",
+   "homepage": "https://yarnpkg.com/",
+   "formula": "https://formulae.brew.sh/formula/yarn",
+   "install": [
+    "brew install yarn"
+   ]
+  },
+  {
+   "id": "freetds",
+   "name": "freetds",
+   "description": "Libraries to talk to Microsoft SQL Server and Sybase databases",
+   "rank": 215,
+   "installs365d": 75364,
+   "license": "GPL-2.0-or-later",
+   "version": "1.5.19",
+   "homepage": "https://www.freetds.org/",
+   "formula": "https://formulae.brew.sh/formula/freetds",
+   "install": [
+    "brew install freetds"
+   ]
+  },
+  {
+   "id": "gdk-pixbuf",
+   "name": "gdk-pixbuf",
+   "description": "Toolkit for image loading and pixel buffer manipulation",
+   "rank": 216,
+   "installs365d": 74627,
+   "license": "LGPL-2.1-or-later",
+   "version": "2.44.8",
+   "homepage": "https://gtk.org",
+   "formula": "https://formulae.brew.sh/formula/gdk-pixbuf",
+   "install": [
+    "brew install gdk-pixbuf"
+   ]
+  },
+  {
+   "id": "caddy",
+   "name": "caddy",
+   "description": "Powerful, enterprise-ready, open source web server with automatic HTTPS",
+   "rank": 217,
+   "installs365d": 73174,
+   "license": "Apache-2.0",
+   "version": "2.11.7",
+   "homepage": "https://caddyserver.com/",
+   "formula": "https://formulae.brew.sh/formula/caddy",
+   "install": [
+    "brew install caddy"
+   ]
+  },
+  {
+   "id": "zig",
+   "name": "zig",
+   "description": "Programming language designed for robustness, optimality, and clarity",
+   "rank": 218,
+   "installs365d": 72744,
+   "license": "MIT",
+   "version": "0.17.0",
+   "homepage": "https://ziglang.org/",
+   "formula": "https://formulae.brew.sh/formula/zig",
+   "install": [
+    "brew install zig"
+   ]
+  },
+  {
+   "id": "opencv",
+   "name": "opencv",
+   "description": "Open source computer vision library",
+   "rank": 219,
+   "installs365d": 72678,
+   "license": "Apache-2.0",
+   "version": "5.0.0",
+   "homepage": "https://opencv.org/",
+   "formula": "https://formulae.brew.sh/formula/opencv",
+   "install": [
+    "brew install opencv"
+   ]
+  },
+  {
+   "id": "shfmt",
+   "name": "shfmt",
+   "description": "Autoformat shell script source code",
+   "rank": 220,
+   "installs365d": 72501,
+   "license": "BSD-3-Clause",
+   "version": "3.14.1",
+   "homepage": "https://github.com/mvdan/sh",
+   "formula": "https://formulae.brew.sh/formula/shfmt",
+   "install": [
+    "brew install shfmt"
+   ]
+  },
+  {
+   "id": "semgrep",
+   "name": "semgrep",
+   "description": "Easily detect and prevent bugs and anti-patterns in your codebase",
+   "rank": 221,
+   "installs365d": 71812,
+   "license": "LGPL-2.1-only",
+   "version": "1.180.0",
+   "homepage": "https://semgrep.dev",
+   "formula": "https://formulae.brew.sh/formula/semgrep",
+   "install": [
+    "brew install semgrep"
+   ]
+  },
+  {
+   "id": "license-eye",
+   "name": "license-eye",
+   "description": "Tool to check and fix license headers and resolve dependency licenses",
+   "rank": 222,
+   "installs365d": 71446,
+   "license": "Apache-2.0",
+   "version": "0.9.0",
+   "homepage": "https://skywalking.apache.org/",
+   "formula": "https://formulae.brew.sh/formula/license-eye",
+   "install": [
+    "brew install license-eye"
+   ]
+  },
+  {
+   "id": "c-ares",
+   "name": "c-ares",
+   "description": "Asynchronous DNS library",
+   "rank": 223,
+   "installs365d": 71268,
+   "license": "MIT",
+   "version": "1.34.8",
+   "homepage": "https://c-ares.org/",
+   "formula": "https://formulae.brew.sh/formula/c-ares",
+   "install": [
+    "brew install c-ares"
+   ]
+  },
+  {
+   "id": "httpie",
+   "name": "httpie",
+   "description": "User-friendly cURL replacement (command-line HTTP client)",
+   "rank": 224,
+   "installs365d": 70892,
+   "license": "BSD-3-Clause",
+   "version": "3.2.4",
+   "homepage": "https://httpie.io/",
+   "formula": "https://formulae.brew.sh/formula/httpie",
+   "install": [
+    "brew install httpie"
+   ]
+  },
+  {
+   "id": "qt",
+   "name": "qt",
+   "description": "Cross-platform application and UI framework",
+   "rank": 225,
+   "installs365d": 70252,
+   "license": "BSD-3-Clause AND GFDL-1.3-no-invariants-only AND GPL-2.0-only AND (GPL-3.0-only WITH Qt-GPL-exception-1.0) AND LGPL-3.0-only",
+   "version": "6.11.2",
+   "homepage": "https://www.qt.io/",
+   "formula": "https://formulae.brew.sh/formula/qt",
+   "install": [
+    "brew install qt"
+   ]
+  },
+  {
+   "id": "zsh-autosuggestions",
+   "name": "zsh-autosuggestions",
+   "description": "Fish-like fast/unobtrusive autosuggestions for zsh",
+   "rank": 226,
+   "installs365d": 70031,
+   "license": "MIT",
+   "version": "0.7.1",
+   "homepage": "https://github.com/zsh-users/zsh-autosuggestions",
+   "formula": "https://formulae.brew.sh/formula/zsh-autosuggestions",
+   "install": [
+    "brew install zsh-autosuggestions"
+   ]
+  },
+  {
+   "id": "parallel",
+   "name": "parallel",
+   "description": "Shell command parallelization utility",
+   "rank": 227,
+   "installs365d": 69736,
+   "license": "GPL-3.0-or-later",
+   "version": "20260922",
+   "homepage": "https://savannah.gnu.org/projects/parallel/",
+   "formula": "https://formulae.brew.sh/formula/parallel",
+   "install": [
+    "brew install parallel"
+   ]
+  },
+  {
+   "id": "k6",
+   "name": "k6",
+   "description": "Modern load testing tool, using Go and JavaScript",
+   "rank": 228,
+   "installs365d": 69621,
+   "license": "AGPL-3.0-or-later",
+   "version": "2.3.0",
+   "homepage": "https://k6.io",
+   "formula": "https://formulae.brew.sh/formula/k6",
+   "install": [
+    "brew install k6"
+   ]
+  },
+  {
+   "id": "wimlib",
+   "name": "wimlib",
+   "description": "Library to create, extract, and modify Windows Imaging files",
+   "rank": 229,
+   "installs365d": 69542,
+   "license": "GPL-3.0-or-later",
+   "version": "1.14.5",
+   "homepage": "https://wimlib.net/",
+   "formula": "https://formulae.brew.sh/formula/wimlib",
+   "install": [
+    "brew install wimlib"
+   ]
+  },
+  {
+   "id": "herdr",
+   "name": "herdr",
+   "description": "Agent multiplexer that lives in your terminal",
+   "rank": 230,
+   "installs365d": 69351,
+   "license": "Apache-2.0",
+   "version": "0.9.3",
+   "homepage": "https://herdr.dev",
+   "formula": "https://formulae.brew.sh/formula/herdr",
+   "install": [
+    "brew install herdr"
+   ]
+  },
+  {
+   "id": "qwen-code",
+   "name": "qwen-code",
+   "description": "AI-powered command-line workflow tool for developers",
+   "rank": 231,
+   "installs365d": 69343,
+   "license": "Apache-2.0",
+   "version": "0.25.0",
+   "homepage": "https://github.com/QwenLM/qwen-code",
+   "formula": "https://formulae.brew.sh/formula/qwen-code",
+   "install": [
+    "brew install qwen-code"
+   ]
+  },
+  {
+   "id": "terraform-docs",
+   "name": "terraform-docs",
+   "description": "Tool to generate documentation from Terraform modules",
+   "rank": 232,
+   "installs365d": 68946,
+   "license": "MIT",
+   "version": "0.24.0",
+   "homepage": "https://terraform-docs.io/",
+   "formula": "https://formulae.brew.sh/formula/terraform-docs",
+   "install": [
+    "brew install terraform-docs"
+   ]
+  },
+  {
+   "id": "allure",
+   "name": "allure",
+   "description": "Flexible lightweight test report tool",
+   "rank": 233,
+   "installs365d": 67804,
+   "license": "Apache-2.0",
+   "version": "2.46.1",
+   "homepage": "https://allurereport.org/",
+   "formula": "https://formulae.brew.sh/formula/allure",
+   "install": [
+    "brew install allure"
+   ]
+  },
+  {
+   "id": "socat",
+   "name": "socat",
+   "description": "SOcket CAT: netcat on steroids",
+   "rank": 234,
+   "installs365d": 66842,
+   "license": "GPL-2.0-only",
+   "version": "1.8.1.3",
+   "homepage": null,
+   "formula": "https://formulae.brew.sh/formula/socat",
+   "install": [
+    "brew install socat"
+   ]
+  },
+  {
+   "id": "dart-sdk",
+   "name": "dart-sdk",
+   "description": "Dart Language SDK, including the VM, dart2js, core libraries, and more",
+   "rank": 235,
+   "installs365d": 66747,
+   "license": "BSD-3-Clause",
+   "version": "3.13.5",
+   "homepage": "https://dart.dev",
+   "formula": "https://formulae.brew.sh/formula/dart-sdk",
+   "install": [
+    "brew install dart-sdk"
+   ]
+  },
+  {
+   "id": "libimobiledevice",
+   "name": "libimobiledevice",
+   "description": "Library to communicate with iOS devices natively",
+   "rank": 236,
+   "installs365d": 66729,
+   "license": "LGPL-2.1-or-later",
+   "version": "1.4.0",
+   "homepage": "https://www.libimobiledevice.org/",
+   "formula": "https://formulae.brew.sh/formula/libimobiledevice",
+   "install": [
+    "brew install libimobiledevice"
+   ]
+  },
+  {
+   "id": "hf",
+   "name": "hf",
+   "description": "Client library for huggingface.co hub",
+   "rank": 237,
+   "installs365d": 66522,
+   "license": "Apache-2.0",
+   "version": "2.2.0",
+   "homepage": "https://huggingface.co/docs/huggingface_hub/guides/cli",
+   "formula": "https://formulae.brew.sh/formula/hf",
+   "install": [
+    "brew install hf"
+   ]
+  },
+  {
+   "id": "llmfit",
+   "name": "llmfit",
+   "description": "Find what models run on your hardware",
+   "rank": 238,
+   "installs365d": 65743,
+   "license": "MIT",
+   "version": "1.1.17",
+   "homepage": "https://github.com/AlexsJones/llmfit",
+   "formula": "https://formulae.brew.sh/formula/llmfit",
+   "install": [
+    "brew install llmfit"
+   ]
+  },
+  {
+   "id": "tesseract-lang",
+   "name": "tesseract-lang",
+   "description": "Enables extra languages support for Tesseract",
+   "rank": 239,
+   "installs365d": 65345,
+   "license": "Apache-2.0",
+   "version": "4.1.0",
+   "homepage": "https://github.com/tesseract-ocr/tessdata_fast/",
+   "formula": "https://formulae.brew.sh/formula/tesseract-lang",
+   "install": [
+    "brew install tesseract-lang"
+   ]
+  },
+  {
+   "id": "xmlstarlet",
+   "name": "xmlstarlet",
+   "description": "XML command-line utilities",
+   "rank": 240,
+   "installs365d": 64656,
+   "license": "MIT",
+   "version": "1.6.1",
+   "homepage": "https://xmlstar.sourceforge.net/",
+   "formula": "https://formulae.brew.sh/formula/xmlstarlet",
+   "install": [
+    "brew install xmlstarlet"
+   ]
+  },
+  {
+   "id": "little-cms2",
+   "name": "little-cms2",
+   "description": "Color management engine supporting ICC profiles",
+   "rank": 241,
+   "installs365d": 64356,
+   "license": "MIT",
+   "version": "2.19.1",
+   "homepage": "https://www.littlecms.com/",
+   "formula": "https://formulae.brew.sh/formula/little-cms2",
+   "install": [
+    "brew install little-cms2"
+   ]
+  },
+  {
+   "id": "ocrmypdf",
+   "name": "ocrmypdf",
+   "description": "Adds an OCR text layer to scanned PDF files",
+   "rank": 242,
+   "installs365d": 64190,
+   "license": "MPL-2.0",
+   "version": "17.13.0",
+   "homepage": "https://ocrmypdf.readthedocs.io/en/latest/",
+   "formula": "https://formulae.brew.sh/formula/ocrmypdf",
+   "install": [
+    "brew install ocrmypdf"
+   ]
+  },
+  {
+   "id": "mosh",
+   "name": "mosh",
+   "description": "Remote terminal application",
+   "rank": 243,
+   "installs365d": 64130,
+   "license": "GPL-3.0-or-later",
+   "version": "1.4.0",
+   "homepage": "https://mosh.org",
+   "formula": "https://formulae.brew.sh/formula/mosh",
+   "install": [
+    "brew install mosh"
+   ]
+  },
+  {
+   "id": "television",
+   "name": "television",
+   "description": "General purpose fuzzy finder TUI",
+   "rank": 244,
+   "installs365d": 64075,
+   "license": "MIT",
+   "version": "0.15.9",
+   "homepage": "https://alexpasmantier.github.io/television/",
+   "formula": "https://formulae.brew.sh/formula/television",
+   "install": [
+    "brew install television"
+   ]
+  },
+  {
+   "id": "railway",
+   "name": "railway",
+   "description": "Develop and deploy code with zero configuration",
+   "rank": 245,
+   "installs365d": 63823,
+   "license": "MIT",
+   "version": "5.64.2",
+   "homepage": "https://railway.com/",
+   "formula": "https://formulae.brew.sh/formula/railway",
+   "install": [
+    "brew install railway"
+   ]
+  },
+  {
+   "id": "fnm",
+   "name": "fnm",
+   "description": "Fast and simple Node.js version manager",
+   "rank": 246,
+   "installs365d": 63721,
+   "license": "GPL-3.0-only",
+   "version": "1.39.0",
+   "homepage": "https://github.com/Schniz/fnm",
+   "formula": "https://formulae.brew.sh/formula/fnm",
+   "install": [
+    "brew install fnm"
+   ]
+  },
+  {
+   "id": "subversion",
+   "name": "subversion",
+   "description": "Version control system designed to be a better CVS",
+   "rank": 247,
+   "installs365d": 63510,
+   "license": "Apache-2.0",
+   "version": "1.15.0",
+   "homepage": "https://subversion.apache.org/",
+   "formula": "https://formulae.brew.sh/formula/subversion",
+   "install": [
+    "brew install subversion"
+   ]
+  },
+  {
+   "id": "python-setuptools",
+   "name": "python-setuptools",
+   "description": "Easily download, build, install, upgrade, and uninstall Python packages",
+   "rank": 248,
+   "installs365d": 63391,
+   "license": "MIT",
+   "version": "84.0.0",
+   "homepage": "https://setuptools.pypa.io/",
+   "formula": "https://formulae.brew.sh/formula/python-setuptools",
+   "install": [
+    "brew install python-setuptools"
+   ]
+  },
+  {
+   "id": "jpeg",
+   "name": "jpeg",
+   "description": "Image manipulation library",
+   "rank": 249,
+   "installs365d": 63067,
+   "license": "IJG",
+   "version": "10",
+   "homepage": "https://www.ijg.org/",
+   "formula": "https://formulae.brew.sh/formula/jpeg",
+   "install": [
+    "brew install jpeg",
+    "Keg-only: add $(brew --prefix jpeg)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "gobject-introspection",
+   "name": "gobject-introspection",
+   "description": "Generate introspection data for GObject libraries",
+   "rank": 250,
+   "installs365d": 62751,
+   "license": "GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT",
+   "version": "1.86.0",
+   "homepage": "https://gi.readthedocs.io/en/latest/",
+   "formula": "https://formulae.brew.sh/formula/gobject-introspection",
+   "install": [
+    "brew install gobject-introspection"
+   ]
+  },
+  {
+   "id": "zsh-syntax-highlighting",
+   "name": "zsh-syntax-highlighting",
+   "description": "Fish shell like syntax highlighting for zsh",
+   "rank": 251,
+   "installs365d": 62644,
+   "license": "BSD-3-Clause",
+   "version": "0.8.0",
+   "homepage": "https://github.com/zsh-users/zsh-syntax-highlighting",
+   "formula": "https://formulae.brew.sh/formula/zsh-syntax-highlighting",
+   "install": [
+    "brew install zsh-syntax-highlighting"
+   ]
+  },
+  {
+   "id": "oh-my-posh",
+   "name": "oh-my-posh",
+   "description": "Prompt theme engine for any shell",
+   "rank": 252,
+   "installs365d": 62502,
+   "license": "MIT",
+   "version": "31.7.0",
+   "homepage": "https://ohmyposh.dev",
+   "formula": "https://formulae.brew.sh/formula/oh-my-posh",
+   "install": [
+    "brew install oh-my-posh"
+   ]
+  },
+  {
+   "id": "lima",
+   "name": "lima",
+   "description": "Linux virtual machines",
+   "rank": 253,
+   "installs365d": 62362,
+   "license": "Apache-2.0",
+   "version": "2.2.1",
+   "homepage": "https://lima-vm.io/",
+   "formula": "https://formulae.brew.sh/formula/lima",
+   "install": [
+    "brew install lima"
+   ]
+  },
+  {
+   "id": "gdal",
+   "name": "gdal",
+   "description": "Geospatial Data Abstraction Library",
+   "rank": 254,
+   "installs365d": 62312,
+   "license": "MIT",
+   "version": "3.13.3",
+   "homepage": "https://gdal.org/en/stable/",
+   "formula": "https://formulae.brew.sh/formula/gdal",
+   "install": [
+    "brew install gdal"
+   ]
+  },
+  {
+   "id": "zellij",
+   "name": "zellij",
+   "description": "Pluggable terminal workspace, with terminal multiplexer as the base feature",
+   "rank": 255,
+   "installs365d": 62061,
+   "license": "MIT",
+   "version": "0.45.1",
+   "homepage": "https://zellij.dev",
+   "formula": "https://formulae.brew.sh/formula/zellij",
+   "install": [
+    "brew install zellij"
+   ]
+  },
+  {
+   "id": "libusb",
+   "name": "libusb",
+   "description": "Library for USB device access",
+   "rank": 256,
+   "installs365d": 61995,
+   "license": "LGPL-2.1-or-later",
+   "version": "1.0.30",
+   "homepage": "https://libusb.info/",
+   "formula": "https://formulae.brew.sh/formula/libusb",
+   "install": [
+    "brew install libusb"
+   ]
+  },
+  {
+   "id": "ctlptl",
+   "name": "ctlptl",
+   "description": "Making local Kubernetes clusters fun and easy to set up",
+   "rank": 257,
+   "installs365d": 61954,
+   "license": "Apache-2.0",
+   "version": "0.9.6",
+   "homepage": "https://github.com/tilt-dev/ctlptl",
+   "formula": "https://formulae.brew.sh/formula/ctlptl",
+   "install": [
+    "brew install ctlptl"
+   ]
+  },
+  {
+   "id": "guile",
+   "name": "guile",
+   "description": "GNU Ubiquitous Intelligent Language for Extensions",
+   "rank": 258,
+   "installs365d": 61072,
+   "license": "LGPL-3.0-or-later",
+   "version": "3.0.11",
+   "homepage": "https://www.gnu.org/software/guile/",
+   "formula": "https://formulae.brew.sh/formula/guile",
+   "install": [
+    "brew install guile"
+   ]
+  },
+  {
+   "id": "minikube",
+   "name": "minikube",
+   "description": "Run a Kubernetes cluster locally",
+   "rank": 259,
+   "installs365d": 60532,
+   "license": "Apache-2.0",
+   "version": "1.39.0",
+   "homepage": "https://minikube.sigs.k8s.io/",
+   "formula": "https://formulae.brew.sh/formula/minikube",
+   "install": [
+    "brew install minikube"
+   ]
+  },
+  {
+   "id": "qpdf",
+   "name": "qpdf",
+   "description": "Tools for and transforming and inspecting PDF files",
+   "rank": 260,
+   "installs365d": 60137,
+   "license": "Apache-2.0",
+   "version": "12.4.2",
+   "homepage": "https://qpdf.sourceforge.io/",
+   "formula": "https://formulae.brew.sh/formula/qpdf",
+   "install": [
+    "brew install qpdf"
+   ]
+  },
+  {
+   "id": "firebase-cli",
+   "name": "firebase-cli",
+   "description": "Firebase command-line tools",
+   "rank": 261,
+   "installs365d": 60062,
+   "license": "MIT",
+   "version": "15.33.0",
+   "homepage": "https://firebase.google.com/docs/cli/",
+   "formula": "https://formulae.brew.sh/formula/firebase-cli",
+   "install": [
+    "brew install firebase-cli"
+   ]
+  },
+  {
+   "id": "libngtcp2",
+   "name": "libngtcp2",
+   "description": "IETF QUIC protocol implementation",
+   "rank": 262,
+   "installs365d": 59694,
+   "license": "MIT",
+   "version": "1.25.0",
+   "homepage": "https://nghttp2.org/ngtcp2/",
+   "formula": "https://formulae.brew.sh/formula/libngtcp2",
+   "install": [
+    "brew install libngtcp2"
+   ]
+  },
+  {
+   "id": "kind",
+   "name": "kind",
+   "description": "Run local Kubernetes cluster in Docker",
+   "rank": 263,
+   "installs365d": 59669,
+   "license": "Apache-2.0",
+   "version": "0.33.0",
+   "homepage": "https://kind.sigs.k8s.io/",
+   "formula": "https://formulae.brew.sh/formula/kind",
+   "install": [
+    "brew install kind"
+   ]
+  },
+  {
+   "id": "tree-sitter-cli",
+   "name": "tree-sitter-cli",
+   "description": "Parser generator tool",
+   "rank": 264,
+   "installs365d": 59555,
+   "license": "MIT",
+   "version": "0.27.1",
+   "homepage": "https://tree-sitter.github.io",
+   "formula": "https://formulae.brew.sh/formula/tree-sitter-cli",
+   "install": [
+    "brew install tree-sitter-cli"
+   ]
+  },
+  {
+   "id": "expat",
+   "name": "expat",
+   "description": "XML 1.0 parser",
+   "rank": 265,
+   "installs365d": 59174,
+   "license": "MIT",
+   "version": "2.9.0",
+   "homepage": "https://libexpat.github.io/",
+   "formula": "https://formulae.brew.sh/formula/expat",
+   "install": [
+    "brew install expat",
+    "Keg-only: add $(brew --prefix expat)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "gsasl",
+   "name": "gsasl",
+   "description": "SASL library command-line interface",
+   "rank": 266,
+   "installs365d": 59027,
+   "license": "GPL-3.0-or-later",
+   "version": "2.2.4",
+   "homepage": "https://www.gnu.org/software/gsasl/",
+   "formula": "https://formulae.brew.sh/formula/gsasl",
+   "install": [
+    "brew install gsasl"
+   ]
+  },
+  {
+   "id": "vips",
+   "name": "vips",
+   "description": "Image processing library",
+   "rank": 267,
+   "installs365d": 58889,
+   "license": "LGPL-2.1-or-later",
+   "version": "8.18.7",
+   "homepage": "https://github.com/libvips/libvips",
+   "formula": "https://formulae.brew.sh/formula/vips",
+   "install": [
+    "brew install vips"
+   ]
+  },
+  {
+   "id": "glow",
+   "name": "glow",
+   "description": "Render markdown on the CLI",
+   "rank": 268,
+   "installs365d": 58740,
+   "license": "MIT",
+   "version": "3.0.0",
+   "homepage": "https://github.com/charmbracelet/glow",
+   "formula": "https://formulae.brew.sh/formula/glow",
+   "install": [
+    "brew install glow"
+   ]
+  },
+  {
+   "id": "act",
+   "name": "act",
+   "description": "Run your GitHub Actions locally",
+   "rank": 269,
+   "installs365d": 58476,
+   "license": "MIT",
+   "version": "0.2.89",
+   "homepage": "https://nektosact.com",
+   "formula": "https://formulae.brew.sh/formula/act",
+   "install": [
+    "brew install act"
+   ]
+  },
+  {
+   "id": "lld",
+   "name": "lld",
+   "description": "LLVM Project Linker",
+   "rank": 270,
+   "installs365d": 58276,
+   "license": "Apache-2.0 WITH LLVM-exception",
+   "version": "23.1.3",
+   "homepage": "https://lld.llvm.org/",
+   "formula": "https://formulae.brew.sh/formula/lld",
+   "install": [
+    "brew install lld"
+   ]
+  },
+  {
+   "id": "meson",
+   "name": "meson",
+   "description": "Fast and user friendly build system",
+   "rank": 271,
+   "installs365d": 58111,
+   "license": "Apache-2.0",
+   "version": "1.12.1",
+   "homepage": "https://mesonbuild.com/",
+   "formula": "https://formulae.brew.sh/formula/meson",
+   "install": [
+    "brew install meson"
+   ]
+  },
+  {
+   "id": "duckdb",
+   "name": "duckdb",
+   "description": "Embeddable SQL OLAP Database Management System",
+   "rank": 272,
+   "installs365d": 57747,
+   "license": "MIT",
+   "version": "1.5.6",
+   "homepage": "https://www.duckdb.org",
+   "formula": "https://formulae.brew.sh/formula/duckdb",
+   "install": [
+    "brew install duckdb"
+   ]
+  },
+  {
+   "id": "gomplate",
+   "name": "gomplate",
+   "description": "Command-line Golang template processor",
+   "rank": 273,
+   "installs365d": 56997,
+   "license": "MIT",
+   "version": "5.2.0",
+   "homepage": "https://gomplate.ca/",
+   "formula": "https://formulae.brew.sh/formula/gomplate",
+   "install": [
+    "brew install gomplate"
+   ]
+  },
+  {
+   "id": "sourcery",
+   "name": "sourcery",
+   "description": "Meta-programming for Swift, stop writing boilerplate code",
+   "rank": 274,
+   "installs365d": 56964,
+   "license": "MIT",
+   "version": "2.3.0",
+   "homepage": "https://github.com/krzysztofzablocki/Sourcery",
+   "formula": "https://formulae.brew.sh/formula/sourcery",
+   "install": [
+    "brew install sourcery"
+   ]
+  },
+  {
+   "id": "libnghttp3",
+   "name": "libnghttp3",
+   "description": "HTTP/3 library written in C",
+   "rank": 275,
+   "installs365d": 56951,
+   "license": "MIT",
+   "version": "1.18.0",
+   "homepage": "https://nghttp2.org/nghttp3/",
+   "formula": "https://formulae.brew.sh/formula/libnghttp3",
+   "install": [
+    "brew install libnghttp3"
+   ]
+  },
+  {
+   "id": "grpc",
+   "name": "grpc",
+   "description": "Next generation open source RPC library and framework",
+   "rank": 276,
+   "installs365d": 56031,
+   "license": "Apache-2.0",
+   "version": "1.84.0",
+   "homepage": "https://grpc.io/",
+   "formula": "https://formulae.brew.sh/formula/grpc",
+   "install": [
+    "brew install grpc"
+   ]
+  },
+  {
+   "id": "temporal",
+   "name": "temporal",
+   "description": "Command-line interface for running and interacting with Temporal Server and UI",
+   "rank": 277,
+   "installs365d": 55206,
+   "license": "MIT",
+   "version": "1.9.1",
+   "homepage": "https://temporal.io/",
+   "formula": "https://formulae.brew.sh/formula/temporal",
+   "install": [
+    "brew install temporal"
+   ]
+  },
+  {
+   "id": "age",
+   "name": "age",
+   "description": "Simple, modern, secure file encryption",
+   "rank": 278,
+   "installs365d": 54987,
+   "license": "BSD-3-Clause",
+   "version": "1.3.2",
+   "homepage": "https://github.com/FiloSottile/age",
+   "formula": "https://formulae.brew.sh/formula/age",
+   "install": [
+    "brew install age"
+   ]
+  },
+  {
+   "id": "luajit",
+   "name": "luajit",
+   "description": "Just-In-Time Compiler (JIT) for the Lua programming language",
+   "rank": 279,
+   "installs365d": 54775,
+   "license": "MIT",
+   "version": "2.1.1788856981",
+   "homepage": "https://luajit.org/luajit.html",
+   "formula": "https://formulae.brew.sh/formula/luajit",
+   "install": [
+    "brew install luajit"
+   ]
+  },
+  {
+   "id": "zizmor",
+   "name": "zizmor",
+   "description": "Find security issues in GitHub Actions setups",
+   "rank": 280,
+   "installs365d": 53817,
+   "license": "MIT",
+   "version": "1.30.1",
+   "homepage": "https://docs.zizmor.sh/",
+   "formula": "https://formulae.brew.sh/formula/zizmor",
+   "install": [
+    "brew install zizmor"
+   ]
+  },
+  {
+   "id": "pyenv-virtualenv",
+   "name": "pyenv-virtualenv",
+   "description": "Pyenv plugin to manage virtualenv",
+   "rank": 281,
+   "installs365d": 53812,
+   "license": "MIT",
+   "version": "1.4.0",
+   "homepage": "https://github.com/pyenv/pyenv-virtualenv",
+   "formula": "https://formulae.brew.sh/formula/pyenv-virtualenv",
+   "install": [
+    "brew install pyenv-virtualenv"
+   ]
+  },
+  {
+   "id": "ffmpeg-full",
+   "name": "ffmpeg-full",
+   "description": "Play, record, convert, and stream many audio and video codecs",
+   "rank": 282,
+   "installs365d": 53775,
+   "license": "GPL-3.0-or-later",
+   "version": "9.0.2",
+   "homepage": "https://ffmpeg.org/",
+   "formula": "https://formulae.brew.sh/formula/ffmpeg-full",
+   "install": [
+    "brew install ffmpeg-full",
+    "Keg-only: add $(brew --prefix ffmpeg-full)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "trufflehog",
+   "name": "trufflehog",
+   "description": "Find and verify credentials",
+   "rank": 283,
+   "installs365d": 53630,
+   "license": "AGPL-3.0-only",
+   "version": "3.99.2",
+   "homepage": "https://trufflesecurity.com/",
+   "formula": "https://formulae.brew.sh/formula/trufflehog",
+   "install": [
+    "brew install trufflehog"
+   ]
+  },
+  {
+   "id": "wireshark",
+   "name": "wireshark",
+   "description": "Network analyzer and capture tool - without graphical user interface",
+   "rank": 284,
+   "installs365d": 53379,
+   "license": "GPL-2.0-or-later",
+   "version": "4.6.9",
+   "homepage": "https://www.wireshark.org",
+   "formula": "https://formulae.brew.sh/formula/wireshark",
+   "install": [
+    "brew install wireshark"
+   ]
+  },
+  {
+   "id": "supabase",
+   "name": "supabase",
+   "description": "Postgres development platform",
+   "rank": 285,
+   "installs365d": 53061,
+   "license": "MIT",
+   "version": "2.120.0",
+   "homepage": "https://supabase.com/docs/reference/cli/about",
+   "formula": "https://formulae.brew.sh/formula/supabase",
+   "install": [
+    "brew install supabase"
+   ]
+  },
+  {
+   "id": "bazelisk",
+   "name": "bazelisk",
+   "description": "User-friendly launcher for Bazel",
+   "rank": 286,
+   "installs365d": 52849,
+   "license": "Apache-2.0",
+   "version": "1.29.0",
+   "homepage": "https://github.com/bazelbuild/bazelisk/",
+   "formula": "https://formulae.brew.sh/formula/bazelisk",
+   "install": [
+    "brew install bazelisk"
+   ]
+  },
+  {
+   "id": "typos-cli",
+   "name": "typos-cli",
+   "description": "Source code spell checker",
+   "rank": 287,
+   "installs365d": 52551,
+   "license": "Apache-2.0 OR MIT",
+   "version": "1.51.1",
+   "homepage": "https://github.com/crate-ci/typos",
+   "formula": "https://formulae.brew.sh/formula/typos-cli",
+   "install": [
+    "brew install typos-cli"
+   ]
+  },
+  {
+   "id": "cosign",
+   "name": "cosign",
+   "description": "Container Signing",
+   "rank": 288,
+   "installs365d": 52266,
+   "license": "Apache-2.0",
+   "version": "3.1.3",
+   "homepage": "https://github.com/sigstore/cosign",
+   "formula": "https://formulae.brew.sh/formula/cosign",
+   "install": [
+    "brew install cosign"
+   ]
+  },
+  {
+   "id": "summarize",
+   "name": "summarize",
+   "description": "Multi-modal AI tool to extract and summarize content",
+   "rank": 289,
+   "installs365d": 52198,
+   "license": "MIT",
+   "version": "0.25.1",
+   "homepage": "https://summarize.sh",
+   "formula": "https://formulae.brew.sh/formula/summarize",
+   "install": [
+    "brew install summarize"
+   ]
+  },
+  {
+   "id": "unar",
+   "name": "unar",
+   "description": "Command-line unarchiving tools supporting multiple formats",
+   "rank": 290,
+   "installs365d": 51118,
+   "license": "LGPL-2.1-or-later",
+   "version": "1.10.8",
+   "homepage": "https://theunarchiver.com/command-line",
+   "formula": "https://formulae.brew.sh/formula/unar",
+   "install": [
+    "brew install unar"
+   ]
+  },
+  {
+   "id": "openssh",
+   "name": "openssh",
+   "description": "OpenBSD freely-licensed SSH connectivity tools",
+   "rank": 291,
+   "installs365d": 51048,
+   "license": "SSH-OpenSSH",
+   "version": "10.6p1",
+   "homepage": "https://www.openssh.com/",
+   "formula": "https://formulae.brew.sh/formula/openssh",
+   "install": [
+    "brew install openssh"
+   ]
+  },
+  {
+   "id": "pv",
+   "name": "pv",
+   "description": "Monitor data's progress through a pipe",
+   "rank": 292,
+   "installs365d": 50727,
+   "license": "Artistic-2.0",
+   "version": "1.12.0",
+   "homepage": "https://www.ivarch.com/programs/pv.shtml",
+   "formula": "https://formulae.brew.sh/formula/pv",
+   "install": [
+    "brew install pv"
+   ]
+  },
+  {
+   "id": "kubectx",
+   "name": "kubectx",
+   "description": "Tool that can switch between kubectl contexts easily and create aliases",
+   "rank": 293,
+   "installs365d": 50724,
+   "license": "Apache-2.0",
+   "version": "0.11.0",
+   "homepage": "https://github.com/ahmetb/kubectx",
+   "formula": "https://formulae.brew.sh/formula/kubectx",
+   "install": [
+    "brew install kubectx"
+   ]
+  },
+  {
+   "id": "tree-sitter",
+   "name": "tree-sitter",
+   "description": "Incremental parsing library",
+   "rank": 294,
+   "installs365d": 50620,
+   "license": "MIT",
+   "version": "0.27.1",
+   "homepage": "https://tree-sitter.github.io/",
+   "formula": "https://formulae.brew.sh/formula/tree-sitter",
+   "install": [
+    "brew install tree-sitter"
+   ]
+  },
+  {
+   "id": "openshift-cli",
+   "name": "openshift-cli",
+   "description": "OpenShift command-line interface tools",
+   "rank": 295,
+   "installs365d": 50374,
+   "license": "Apache-2.0",
+   "version": "4.22.16",
+   "homepage": "https://www.openshift.com/",
+   "formula": "https://formulae.brew.sh/formula/openshift-cli",
+   "install": [
+    "brew install openshift-cli"
+   ]
+  },
+  {
+   "id": "nushell",
+   "name": "nushell",
+   "description": "Modern shell for the GitHub era",
+   "rank": 296,
+   "installs365d": 50101,
+   "license": "MIT",
+   "version": "0.116.1",
+   "homepage": "https://www.nushell.sh",
+   "formula": "https://formulae.brew.sh/formula/nushell",
+   "install": [
+    "brew install nushell"
+   ]
+  },
+  {
+   "id": "make",
+   "name": "make",
+   "description": "Utility for directing compilation",
+   "rank": 297,
+   "installs365d": 49407,
+   "license": "GPL-3.0-only",
+   "version": "4.4.1",
+   "homepage": "https://www.gnu.org/software/make/",
+   "formula": "https://formulae.brew.sh/formula/make",
+   "install": [
+    "brew install make"
+   ]
+  },
+  {
+   "id": "folly",
+   "name": "folly",
+   "description": "Collection of reusable C++ library artifacts developed at Facebook",
+   "rank": 298,
+   "installs365d": 48980,
+   "license": "Apache-2.0",
+   "version": "2026.10.05.00",
+   "homepage": "https://github.com/facebook/folly",
+   "formula": "https://formulae.brew.sh/formula/folly",
+   "install": [
+    "brew install folly"
+   ]
+  },
+  {
+   "id": "gmp",
+   "name": "gmp",
+   "description": "GNU multiple precision arithmetic library",
+   "rank": 299,
+   "installs365d": 48737,
+   "license": "LGPL-3.0-or-later OR GPL-2.0-or-later",
+   "version": "6.3.0",
+   "homepage": "https://gmplib.org/",
+   "formula": "https://formulae.brew.sh/formula/gmp",
+   "install": [
+    "brew install gmp"
+   ]
+  },
+  {
+   "id": "libssh2",
+   "name": "libssh2",
+   "description": "C library implementing the SSH2 protocol",
+   "rank": 300,
+   "installs365d": 48230,
+   "license": "BSD-3-Clause",
+   "version": "1.11.1",
+   "homepage": "https://libssh2.org/",
+   "formula": "https://formulae.brew.sh/formula/libssh2",
+   "install": [
+    "brew install libssh2"
+   ]
+  },
+  {
+   "id": "p11-kit",
+   "name": "p11-kit",
+   "description": "Library to load and enumerate PKCS#11 modules",
+   "rank": 301,
+   "installs365d": 48204,
+   "license": "BSD-3-Clause",
+   "version": "0.26.5",
+   "homepage": "https://p11-glue.github.io/p11-glue/p11-kit.html",
+   "formula": "https://formulae.brew.sh/formula/p11-kit",
+   "install": [
+    "brew install p11-kit"
+   ]
+  },
+  {
+   "id": "glances",
+   "name": "glances",
+   "description": "Alternative to top/htop",
+   "rank": 302,
+   "installs365d": 48160,
+   "license": "LGPL-3.0-or-later",
+   "version": "4.5.7",
+   "homepage": "https://nicolargo.github.io/glances/",
+   "formula": "https://formulae.brew.sh/formula/glances",
+   "install": [
+    "brew install glances"
+   ]
+  },
+  {
+   "id": "openvpn",
+   "name": "openvpn",
+   "description": "SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension",
+   "rank": 303,
+   "installs365d": 48115,
+   "license": "GPL-2.0-only WITH openvpn-openssl-exception",
+   "version": "2.7.8",
+   "homepage": "https://openvpn.net/community/",
+   "formula": "https://formulae.brew.sh/formula/openvpn",
+   "install": [
+    "brew install openvpn"
+   ]
+  },
+  {
+   "id": "topgrade",
+   "name": "topgrade",
+   "description": "Upgrade all the things",
+   "rank": 304,
+   "installs365d": 48001,
+   "license": "GPL-3.0-or-later",
+   "version": "17.12.3",
+   "homepage": "https://github.com/topgrade-rs/topgrade",
+   "formula": "https://formulae.brew.sh/formula/topgrade",
+   "install": [
+    "brew install topgrade"
+   ]
+  },
+  {
+   "id": "glfw",
+   "name": "glfw",
+   "description": "Multi-platform library for OpenGL applications",
+   "rank": 305,
+   "installs365d": 47413,
+   "license": "Zlib",
+   "version": "3.5.1",
+   "homepage": "https://www.glfw.org/",
+   "formula": "https://formulae.brew.sh/formula/glfw",
+   "install": [
+    "brew install glfw"
+   ]
+  },
+  {
+   "id": "libavif",
+   "name": "libavif",
+   "description": "Library for encoding and decoding .avif files",
+   "rank": 306,
+   "installs365d": 47164,
+   "license": "BSD-2-Clause",
+   "version": "1.4.2",
+   "homepage": "https://github.com/AOMediaCodec/libavif",
+   "formula": "https://formulae.brew.sh/formula/libavif",
+   "install": [
+    "brew install libavif"
+   ]
+  },
+  {
+   "id": "syncthing",
+   "name": "syncthing",
+   "description": "Open source continuous file synchronization application",
+   "rank": 307,
+   "installs365d": 47160,
+   "license": "MPL-2.0",
+   "version": "2.1.6",
+   "homepage": "https://syncthing.net/",
+   "formula": "https://formulae.brew.sh/formula/syncthing",
+   "install": [
+    "brew install syncthing"
+   ]
+  },
+  {
+   "id": "mysql-8-4",
+   "name": "mysql@8.4",
+   "description": "Open source relational database management system",
+   "rank": 308,
+   "installs365d": 47010,
+   "license": "GPL-2.0-only WITH Universal-FOSS-exception-1.0",
+   "version": "8.4.11",
+   "homepage": "https://github.com/mysql/mysql-server",
+   "formula": "https://formulae.brew.sh/formula/mysql@8.4",
+   "install": [
+    "brew install mysql@8.4",
+    "Keg-only: add $(brew --prefix mysql@8.4)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "gstreamer",
+   "name": "gstreamer",
+   "description": "Development framework for multimedia applications",
+   "rank": 309,
+   "installs365d": 46913,
+   "license": "LGPL-2.0-or-later AND LGPL-2.1-or-later AND MIT",
+   "version": "1.28.8",
+   "homepage": "https://gstreamer.freedesktop.org/",
+   "formula": "https://formulae.brew.sh/formula/gstreamer",
+   "install": [
+    "brew install gstreamer"
+   ]
+  },
+  {
+   "id": "portaudio",
+   "name": "portaudio",
+   "description": "Cross-platform library for audio I/O",
+   "rank": 310,
+   "installs365d": 46832,
+   "license": "MIT",
+   "version": "19.7.0",
+   "homepage": "https://www.portaudio.com",
+   "formula": "https://formulae.brew.sh/formula/portaudio",
+   "install": [
+    "brew install portaudio"
+   ]
+  },
+  {
+   "id": "mongodb-atlas-cli",
+   "name": "mongodb-atlas-cli",
+   "description": "Atlas CLI enables you to manage your MongoDB Atlas",
+   "rank": 311,
+   "installs365d": 46811,
+   "license": "Apache-2.0",
+   "version": "1.59.1",
+   "homepage": "https://www.mongodb.com/docs/atlas/cli/stable/",
+   "formula": "https://formulae.brew.sh/formula/mongodb-atlas-cli",
+   "install": [
+    "brew install mongodb-atlas-cli"
+   ]
+  },
+  {
+   "id": "sonar-scanner",
+   "name": "sonar-scanner",
+   "description": "Launcher to analyze a project with SonarQube",
+   "rank": 312,
+   "installs365d": 46589,
+   "license": "LGPL-3.0-or-later",
+   "version": "8.1.0.6389",
+   "homepage": "https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/",
+   "formula": "https://formulae.brew.sh/formula/sonar-scanner",
+   "install": [
+    "brew install sonar-scanner"
+   ]
+  },
+  {
+   "id": "libass",
+   "name": "libass",
+   "description": "Subtitle renderer for the ASS/SSA subtitle format",
+   "rank": 313,
+   "installs365d": 45912,
+   "license": "ISC",
+   "version": "0.17.5",
+   "homepage": "https://github.com/libass/libass",
+   "formula": "https://formulae.brew.sh/formula/libass",
+   "install": [
+    "brew install libass"
+   ]
+  },
+  {
+   "id": "rust-analyzer",
+   "name": "rust-analyzer",
+   "description": "Experimental Rust compiler front-end for IDEs",
+   "rank": 314,
+   "installs365d": 45653,
+   "license": "Apache-2.0 OR MIT",
+   "version": "2026-10-05",
+   "homepage": "https://rust-analyzer.github.io/",
+   "formula": "https://formulae.brew.sh/formula/rust-analyzer",
+   "install": [
+    "brew install rust-analyzer"
+   ]
+  },
+  {
+   "id": "git-gui",
+   "name": "git-gui",
+   "description": "Tcl/Tk UI for the git revision control system",
+   "rank": 315,
+   "installs365d": 45245,
+   "license": "GPL-2.0-only",
+   "version": "2.56.0",
+   "homepage": "https://git-scm.com",
+   "formula": "https://formulae.brew.sh/formula/git-gui",
+   "install": [
+    "brew install git-gui"
+   ]
+  },
+  {
+   "id": "readline",
+   "name": "readline",
+   "description": "Library for command-line editing",
+   "rank": 316,
+   "installs365d": 45222,
+   "license": "GPL-3.0-or-later",
+   "version": "8.3.6",
+   "homepage": "https://tiswww.case.edu/php/chet/readline/rltop.html",
+   "formula": "https://formulae.brew.sh/formula/readline",
+   "install": [
+    "brew install readline",
+    "Keg-only: add $(brew --prefix readline)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "ansible-lint",
+   "name": "ansible-lint",
+   "description": "Checks ansible playbooks for practices and behaviour",
+   "rank": 317,
+   "installs365d": 45191,
+   "license": "MIT AND GPL-3.0-or-later",
+   "version": "26.9.0",
+   "homepage": "https://ansible-lint.readthedocs.io/",
+   "formula": "https://formulae.brew.sh/formula/ansible-lint",
+   "install": [
+    "brew install ansible-lint"
+   ]
+  },
+  {
+   "id": "python-tk-3-13",
+   "name": "python-tk@3.13",
+   "description": "Python interface to Tcl/Tk",
+   "rank": 318,
+   "installs365d": 44577,
+   "license": "Python-2.0",
+   "version": "3.13.16",
+   "homepage": "https://www.python.org/",
+   "formula": "https://formulae.brew.sh/formula/python-tk@3.13",
+   "install": [
+    "brew install python-tk@3.13"
+   ]
+  },
+  {
+   "id": "biome",
+   "name": "biome",
+   "description": "Toolchain of the web",
+   "rank": 319,
+   "installs365d": 44340,
+   "license": "Apache-2.0 OR MIT",
+   "version": "2.5.15",
+   "homepage": "https://biomejs.dev/",
+   "formula": "https://formulae.brew.sh/formula/biome",
+   "install": [
+    "brew install biome"
+   ]
+  },
+  {
+   "id": "cryptography",
+   "name": "cryptography",
+   "description": "Cryptographic recipes and primitives for Python",
+   "rank": 320,
+   "installs365d": 44256,
+   "license": "Apache-2.0 OR BSD-3-Clause",
+   "version": "50.0.2",
+   "homepage": "https://cryptography.io/en/latest/",
+   "formula": "https://formulae.brew.sh/formula/cryptography",
+   "install": [
+    "brew install cryptography"
+   ]
+  },
+  {
+   "id": "lazydocker",
+   "name": "lazydocker",
+   "description": "Lazier way to manage everything docker",
+   "rank": 321,
+   "installs365d": 44211,
+   "license": "MIT",
+   "version": "0.25.2",
+   "homepage": "https://github.com/jesseduffield/lazydocker",
+   "formula": "https://formulae.brew.sh/formula/lazydocker",
+   "install": [
+    "brew install lazydocker"
+   ]
+  },
+  {
+   "id": "jj",
+   "name": "jj",
+   "description": "Git-compatible distributed version control system",
+   "rank": 322,
+   "installs365d": 44074,
+   "license": "Apache-2.0",
+   "version": "0.46.0",
+   "homepage": "https://github.com/jj-vcs/jj",
+   "formula": "https://formulae.brew.sh/formula/jj",
+   "install": [
+    "brew install jj"
+   ]
+  },
+  {
+   "id": "bitwarden-cli",
+   "name": "bitwarden-cli",
+   "description": "Secure and free password manager for all of your devices",
+   "rank": 323,
+   "installs365d": 43952,
+   "license": "GPL-3.0-only",
+   "version": "2026.9.1",
+   "homepage": "https://bitwarden.com/",
+   "formula": "https://formulae.brew.sh/formula/bitwarden-cli",
+   "install": [
+    "brew install bitwarden-cli"
+   ]
+  },
+  {
+   "id": "ncdu",
+   "name": "ncdu",
+   "description": "NCurses Disk Usage",
+   "rank": 324,
+   "installs365d": 43837,
+   "license": "MIT",
+   "version": "2.9.2",
+   "homepage": "https://dev.yorhel.nl/ncdu",
+   "formula": "https://formulae.brew.sh/formula/ncdu",
+   "install": [
+    "brew install ncdu"
+   ]
+  },
+  {
+   "id": "fizz",
+   "name": "fizz",
+   "description": "C++14 implementation of the TLS-1.3 standard",
+   "rank": 325,
+   "installs365d": 43836,
+   "license": "BSD-3-Clause",
+   "version": "2026.10.05.00",
+   "homepage": "https://github.com/facebookincubator/fizz",
+   "formula": "https://formulae.brew.sh/formula/fizz",
+   "install": [
+    "brew install fizz"
+   ]
+  },
+  {
+   "id": "aws-vault",
+   "name": "aws-vault",
+   "description": "Securely store and access AWS credentials in development environments",
+   "rank": 326,
+   "installs365d": 43578,
+   "license": "MIT",
+   "version": "7.16.2",
+   "homepage": "https://github.com/ByteNess/aws-vault",
+   "formula": "https://formulae.brew.sh/formula/aws-vault",
+   "install": [
+    "brew install aws-vault"
+   ]
+  },
+  {
+   "id": "unixodbc",
+   "name": "unixodbc",
+   "description": "ODBC 3 connectivity for UNIX",
+   "rank": 327,
+   "installs365d": 43364,
+   "license": "LGPL-2.1-or-later AND GPL-2.0-or-later",
+   "version": "2.3.14",
+   "homepage": "https://www.unixodbc.org/",
+   "formula": "https://formulae.brew.sh/formula/unixodbc",
+   "install": [
+    "brew install unixodbc"
+   ]
+  },
+  {
+   "id": "fbthrift",
+   "name": "fbthrift",
+   "description": "Facebook's branch of Apache Thrift, including a new C++ server",
+   "rank": 328,
+   "installs365d": 43185,
+   "license": "Apache-2.0",
+   "version": "2026.10.05.00",
+   "homepage": "https://github.com/facebook/fbthrift",
+   "formula": "https://formulae.brew.sh/formula/fbthrift",
+   "install": [
+    "brew install fbthrift"
+   ]
+  },
+  {
+   "id": "cmake-docs",
+   "name": "cmake-docs",
+   "description": "Documentation for CMake",
+   "rank": 329,
+   "installs365d": 42944,
+   "license": "BSD-3-Clause",
+   "version": "4.4.4",
+   "homepage": "https://www.cmake.org/",
+   "formula": "https://formulae.brew.sh/formula/cmake-docs",
+   "install": [
+    "brew install cmake-docs"
+   ]
+  },
+  {
+   "id": "pi-coding-agent",
+   "name": "pi-coding-agent",
+   "description": "AI agent toolkit",
+   "rank": 330,
+   "installs365d": 42662,
+   "license": "MIT",
+   "version": "1.1.0",
+   "homepage": "https://pi.dev/",
+   "formula": "https://formulae.brew.sh/formula/pi-coding-agent",
+   "install": [
+    "brew install pi-coding-agent"
+   ]
+  },
+  {
+   "id": "fb303",
+   "name": "fb303",
+   "description": "Thrift functions for querying information from a service",
+   "rank": 331,
+   "installs365d": 42417,
+   "license": "Apache-2.0",
+   "version": "2026.10.05.00",
+   "homepage": "https://github.com/facebook/fb303",
+   "formula": "https://formulae.brew.sh/formula/fb303",
+   "install": [
+    "brew install fb303"
+   ]
+  },
+  {
+   "id": "gawk",
+   "name": "gawk",
+   "description": "GNU awk utility",
+   "rank": 332,
+   "installs365d": 42375,
+   "license": "GPL-3.0-or-later",
+   "version": "5.4.1",
+   "homepage": "https://www.gnu.org/software/gawk/",
+   "formula": "https://formulae.brew.sh/formula/gawk",
+   "install": [
+    "brew install gawk"
+   ]
+  },
+  {
+   "id": "git-crypt",
+   "name": "git-crypt",
+   "description": "Enable transparent encryption/decryption of files in a git repo",
+   "rank": 333,
+   "installs365d": 42262,
+   "license": "GPL-3.0-or-later",
+   "version": "0.8.0",
+   "homepage": "https://www.agwa.name/projects/git-crypt/",
+   "formula": "https://formulae.brew.sh/formula/git-crypt",
+   "install": [
+    "brew install git-crypt"
+   ]
+  },
+  {
+   "id": "unzip",
+   "name": "unzip",
+   "description": "Extraction utility for .zip compressed archives",
+   "rank": 334,
+   "installs365d": 42154,
+   "license": "Info-ZIP",
+   "version": "6.0",
+   "homepage": "https://infozip.sourceforge.net/UnZip.html",
+   "formula": "https://formulae.brew.sh/formula/unzip",
+   "install": [
+    "brew install unzip",
+    "Keg-only: add $(brew --prefix unzip)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "yamllint",
+   "name": "yamllint",
+   "description": "Linter for YAML files",
+   "rank": 335,
+   "installs365d": 41926,
+   "license": "GPL-3.0-or-later",
+   "version": "1.38.0",
+   "homepage": "https://github.com/adrienverge/yamllint",
+   "formula": "https://formulae.brew.sh/formula/yamllint",
+   "install": [
+    "brew install yamllint"
+   ]
+  },
+  {
+   "id": "oci-cli",
+   "name": "oci-cli",
+   "description": "Oracle Cloud Infrastructure CLI",
+   "rank": 336,
+   "installs365d": 41707,
+   "license": "UPL-1.0 OR Apache-2.0",
+   "version": "3.94.2",
+   "homepage": "https://docs.cloud.oracle.com/iaas/Content/API/Concepts/cliconcepts.htm",
+   "formula": "https://formulae.brew.sh/formula/oci-cli",
+   "install": [
+    "brew install oci-cli"
+   ]
+  },
+  {
+   "id": "doctl",
+   "name": "doctl",
+   "description": "Command-line tool for DigitalOcean",
+   "rank": 337,
+   "installs365d": 41703,
+   "license": "Apache-2.0",
+   "version": "1.181.0",
+   "homepage": "https://docs.digitalocean.com/reference/doctl/",
+   "formula": "https://formulae.brew.sh/formula/doctl",
+   "install": [
+    "brew install doctl"
+   ]
+  },
+  {
+   "id": "wangle",
+   "name": "wangle",
+   "description": "Modular, composable client/server abstractions framework",
+   "rank": 338,
+   "installs365d": 41470,
+   "license": "Apache-2.0",
+   "version": "2026.10.05.00",
+   "homepage": "https://github.com/facebook/wangle",
+   "formula": "https://formulae.brew.sh/formula/wangle",
+   "install": [
+    "brew install wangle"
+   ]
+  },
+  {
+   "id": "dos2unix",
+   "name": "dos2unix",
+   "description": "Convert text between DOS, UNIX, and Mac formats",
+   "rank": 339,
+   "installs365d": 41380,
+   "license": "BSD-2-Clause",
+   "version": "7.5.7",
+   "homepage": "https://waterlander.net/dos2unix/",
+   "formula": "https://formulae.brew.sh/formula/dos2unix",
+   "install": [
+    "brew install dos2unix"
+   ]
+  },
+  {
+   "id": "qrencode",
+   "name": "qrencode",
+   "description": "QR Code generation",
+   "rank": 340,
+   "installs365d": 41351,
+   "license": "LGPL-2.1-or-later",
+   "version": "4.1.1",
+   "homepage": "https://fukuchi.org/works/qrencode/index.html.en",
+   "formula": "https://formulae.brew.sh/formula/qrencode",
+   "install": [
+    "brew install qrencode"
+   ]
+  },
+  {
+   "id": "gauche",
+   "name": "gauche",
+   "description": "R7RS Scheme implementation, developed to be a handy script interpreter",
+   "rank": 341,
+   "installs365d": 41090,
+   "license": "BSD-3-Clause",
+   "version": "0.9.15",
+   "homepage": "https://practical-scheme.net/gauche/",
+   "formula": "https://formulae.brew.sh/formula/gauche",
+   "install": [
+    "brew install gauche"
+   ]
+  },
+  {
+   "id": "ugrep",
+   "name": "ugrep",
+   "description": "Ultra fast grep with query UI, fuzzy search, archive search, and more",
+   "rank": 342,
+   "installs365d": 40778,
+   "license": "BSD-3-Clause",
+   "version": "7.8.5",
+   "homepage": "https://ugrep.com/",
+   "formula": "https://formulae.brew.sh/formula/ugrep",
+   "install": [
+    "brew install ugrep"
+   ]
+  },
+  {
+   "id": "graphicsmagick",
+   "name": "graphicsmagick",
+   "description": "Image processing tools collection",
+   "rank": 343,
+   "installs365d": 40701,
+   "license": "MIT",
+   "version": "1.3.49",
+   "homepage": "https://graphicsmagick.sourceforge.io/",
+   "formula": "https://formulae.brew.sh/formula/graphicsmagick",
+   "install": [
+    "brew install graphicsmagick"
+   ]
+  },
+  {
+   "id": "emacs",
+   "name": "emacs",
+   "description": "GNU Emacs text editor",
+   "rank": 344,
+   "installs365d": 40284,
+   "license": "GPL-3.0-or-later",
+   "version": "31.1",
+   "homepage": "https://www.gnu.org/software/emacs/",
+   "formula": "https://formulae.brew.sh/formula/emacs",
+   "install": [
+    "brew install emacs"
+   ]
+  },
+  {
+   "id": "elixir",
+   "name": "elixir",
+   "description": "Functional metaprogramming aware language built on Erlang VM",
+   "rank": 345,
+   "installs365d": 40217,
+   "license": "Apache-2.0",
+   "version": "1.20.4",
+   "homepage": "https://elixir-lang.org/",
+   "formula": "https://formulae.brew.sh/formula/elixir",
+   "install": [
+    "brew install elixir"
+   ]
+  },
+  {
+   "id": "mariadb",
+   "name": "mariadb",
+   "description": "Drop-in replacement for MySQL",
+   "rank": 346,
+   "installs365d": 40185,
+   "license": "GPL-2.0-only",
+   "version": "13.0.2",
+   "homepage": "https://mariadb.org/",
+   "formula": "https://formulae.brew.sh/formula/mariadb",
+   "install": [
+    "brew install mariadb"
+   ]
+  },
+  {
+   "id": "cliproxyapi",
+   "name": "cliproxyapi",
+   "description": "Wrap Gemini CLI, Codex, Claude Code, Qwen Code as an API service",
+   "rank": 347,
+   "installs365d": 40179,
+   "license": "MIT",
+   "version": "8.0.20",
+   "homepage": "https://github.com/router-for-me/CLIProxyAPI",
+   "formula": "https://formulae.brew.sh/formula/cliproxyapi",
+   "install": [
+    "brew install cliproxyapi"
+   ]
+  },
+  {
+   "id": "jsonnet",
+   "name": "jsonnet",
+   "description": "Domain specific configuration language for defining JSON data",
+   "rank": 348,
+   "installs365d": 40004,
+   "license": "Apache-2.0",
+   "version": "0.22.0",
+   "homepage": "https://jsonnet.org/",
+   "formula": "https://formulae.brew.sh/formula/jsonnet",
+   "install": [
+    "brew install jsonnet"
+   ]
+  },
+  {
+   "id": "bottom",
+   "name": "bottom",
+   "description": "Yet another cross-platform graphical process/system monitor",
+   "rank": 349,
+   "installs365d": 39988,
+   "license": "MIT",
+   "version": "0.14.9",
+   "homepage": "https://clementtsang.github.io/bottom/",
+   "formula": "https://formulae.brew.sh/formula/bottom",
+   "install": [
+    "brew install bottom"
+   ]
+  },
+  {
+   "id": "fontconfig",
+   "name": "fontconfig",
+   "description": "XML-based font configuration API for X Windows",
+   "rank": 350,
+   "installs365d": 39785,
+   "license": "HPND-sell-variant AND Unicode-3.0 AND MIT-Modern-Variant AND MIT AND LicenseRef-Homebrew-public-domain",
+   "version": "2.18.3",
+   "homepage": "https://wiki.freedesktop.org/www/Software/fontconfig/",
+   "formula": "https://formulae.brew.sh/formula/fontconfig",
+   "install": [
+    "brew install fontconfig"
+   ]
+  },
+  {
+   "id": "podman-compose",
+   "name": "podman-compose",
+   "description": "Alternative to docker-compose using podman",
+   "rank": 351,
+   "installs365d": 39714,
+   "license": "GPL-2.0-only",
+   "version": "1.6.0",
+   "homepage": "https://github.com/containers/podman-compose",
+   "formula": "https://formulae.brew.sh/formula/podman-compose",
+   "install": [
+    "brew install podman-compose"
+   ]
+  },
+  {
+   "id": "helmfile",
+   "name": "helmfile",
+   "description": "Deploy Kubernetes Helm Charts",
+   "rank": 352,
+   "installs365d": 39708,
+   "license": "MIT",
+   "version": "1.8.1",
+   "homepage": "https://github.com/helmfile/helmfile",
+   "formula": "https://formulae.brew.sh/formula/helmfile",
+   "install": [
+    "brew install helmfile"
+   ]
+  },
+  {
+   "id": "lefthook",
+   "name": "lefthook",
+   "description": "Fast and powerful Git hooks manager for any type of projects",
+   "rank": 353,
+   "installs365d": 39661,
+   "license": "MIT",
+   "version": "2.2.1",
+   "homepage": "https://github.com/evilmartians/lefthook",
+   "formula": "https://formulae.brew.sh/formula/lefthook",
+   "install": [
+    "brew install lefthook"
+   ]
+  },
+  {
+   "id": "nghttp2",
+   "name": "nghttp2",
+   "description": "HTTP/2 C Library",
+   "rank": 354,
+   "installs365d": 39602,
+   "license": "MIT",
+   "version": "1.70.0",
+   "homepage": "https://nghttp2.org/",
+   "formula": "https://formulae.brew.sh/formula/nghttp2",
+   "install": [
+    "brew install nghttp2"
+   ]
+  },
+  {
+   "id": "sbt",
+   "name": "sbt",
+   "description": "Build tool for Scala projects",
+   "rank": 355,
+   "installs365d": 39584,
+   "license": "Apache-2.0",
+   "version": "2.0.10",
+   "homepage": "https://www.scala-sbt.org/",
+   "formula": "https://formulae.brew.sh/formula/sbt",
+   "install": [
+    "brew install sbt"
+   ]
+  },
+  {
+   "id": "pulumi",
+   "name": "pulumi",
+   "description": "Cloud native development platform",
+   "rank": 356,
+   "installs365d": 39565,
+   "license": "Apache-2.0",
+   "version": "3.268.0",
+   "homepage": "https://www.pulumi.com/",
+   "formula": "https://formulae.brew.sh/formula/pulumi",
+   "install": [
+    "brew install pulumi"
+   ]
+  },
+  {
+   "id": "apktool",
+   "name": "apktool",
+   "description": "Tool for reverse engineering 3rd party, closed, binary Android apps",
+   "rank": 357,
+   "installs365d": 39524,
+   "license": "Apache-2.0",
+   "version": "3.0.3",
+   "homepage": "https://apktool.org",
+   "formula": "https://formulae.brew.sh/formula/apktool",
+   "install": [
+    "brew install apktool"
+   ]
+  },
+  {
+   "id": "netpbm",
+   "name": "netpbm",
+   "description": "Image manipulation",
+   "rank": 358,
+   "installs365d": 39457,
+   "license": "GPL-3.0-or-later",
+   "version": "11.02.30",
+   "homepage": "https://netpbm.sourceforge.net/",
+   "formula": "https://formulae.brew.sh/formula/netpbm",
+   "install": [
+    "brew install netpbm"
+   ]
+  },
+  {
+   "id": "swift-sh",
+   "name": "swift-sh",
+   "description": "Scripting with easy zero-conf dependency imports",
+   "rank": 359,
+   "installs365d": 39439,
+   "license": "Unlicense",
+   "version": "2.5.0",
+   "homepage": "https://github.com/mxcl/swift-sh",
+   "formula": "https://formulae.brew.sh/formula/swift-sh",
+   "install": [
+    "brew install swift-sh"
+   ]
+  },
+  {
+   "id": "perl",
+   "name": "perl",
+   "description": "Highly capable, feature-rich programming language",
+   "rank": 360,
+   "installs365d": 39417,
+   "license": "Artistic-1.0-Perl OR GPL-1.0-or-later",
+   "version": "5.44.0",
+   "homepage": "https://www.perl.org/",
+   "formula": "https://formulae.brew.sh/formula/perl",
+   "install": [
+    "brew install perl"
+   ]
+  },
+  {
+   "id": "jenv",
+   "name": "jenv",
+   "description": "Manage your Java environment",
+   "rank": 361,
+   "installs365d": 39416,
+   "license": "MIT",
+   "version": "0.6.0",
+   "homepage": "https://github.com/jenv/jenv",
+   "formula": "https://formulae.brew.sh/formula/jenv",
+   "install": [
+    "brew install jenv"
+   ]
+  },
+  {
+   "id": "bubblewrap",
+   "name": "bubblewrap",
+   "description": "Unprivileged sandboxing tool for Linux",
+   "rank": 362,
+   "installs365d": 39116,
+   "license": "LGPL-2.0-or-later",
+   "version": "0.13.0",
+   "homepage": "https://github.com/containers/bubblewrap",
+   "formula": "https://formulae.brew.sh/formula/bubblewrap",
+   "install": [
+    "brew install bubblewrap"
+   ]
+  },
+  {
+   "id": "agent-browser",
+   "name": "agent-browser",
+   "description": "Browser automation CLI for AI agents",
+   "rank": 363,
+   "installs365d": 39026,
+   "license": "Apache-2.0",
+   "version": "0.39.0",
+   "homepage": "https://agent-browser.dev/",
+   "formula": "https://formulae.brew.sh/formula/agent-browser",
+   "install": [
+    "brew install agent-browser"
+   ]
+  },
+  {
+   "id": "certbot",
+   "name": "certbot",
+   "description": "Tool to obtain certs from Let's Encrypt and autoenable HTTPS",
+   "rank": 364,
+   "installs365d": 38954,
+   "license": "Apache-2.0",
+   "version": "5.8.0",
+   "homepage": "https://certbot.eff.org/",
+   "formula": "https://formulae.brew.sh/formula/certbot",
+   "install": [
+    "brew install certbot"
+   ]
+  },
+  {
+   "id": "pgvector",
+   "name": "pgvector",
+   "description": "Open-source vector similarity search for Postgres",
+   "rank": 365,
+   "installs365d": 38944,
+   "license": "PostgreSQL",
+   "version": "0.8.7",
+   "homepage": "https://github.com/pgvector/pgvector",
+   "formula": "https://formulae.brew.sh/formula/pgvector",
+   "install": [
+    "brew install pgvector"
+   ]
+  },
+  {
+   "id": "openvino",
+   "name": "openvino",
+   "description": "Open Visual Inference And Optimization toolkit for AI inference",
+   "rank": 366,
+   "installs365d": 38807,
+   "license": "Apache-2.0",
+   "version": "2026.4.1",
+   "homepage": "https://docs.openvino.ai",
+   "formula": "https://formulae.brew.sh/formula/openvino",
+   "install": [
+    "brew install openvino"
+   ]
+  },
+  {
+   "id": "chibi-scheme",
+   "name": "chibi-scheme",
+   "description": "Small footprint Scheme for use as a C Extension Language",
+   "rank": 367,
+   "installs365d": 38103,
+   "license": "BSD-3-Clause",
+   "version": "0.12",
+   "homepage": "https://github.com/ashinn/chibi-scheme",
+   "formula": "https://formulae.brew.sh/formula/chibi-scheme",
+   "install": [
+    "brew install chibi-scheme"
+   ]
+  },
+  {
+   "id": "smartmontools",
+   "name": "smartmontools",
+   "description": "SMART hard drive monitoring",
+   "rank": 368,
+   "installs365d": 37948,
+   "license": "GPL-2.0-or-later",
+   "version": "7.5",
+   "homepage": "https://www.smartmontools.org/",
+   "formula": "https://formulae.brew.sh/formula/smartmontools",
+   "install": [
+    "brew install smartmontools"
+   ]
+  },
+  {
+   "id": "docker-credential-helper",
+   "name": "docker-credential-helper",
+   "description": "Platform keystore credential helper for Docker",
+   "rank": 369,
+   "installs365d": 37929,
+   "license": "MIT",
+   "version": "0.9.10",
+   "homepage": "https://github.com/docker/docker-credential-helpers",
+   "formula": "https://formulae.brew.sh/formula/docker-credential-helper",
+   "install": [
+    "brew install docker-credential-helper"
+   ]
+  },
+  {
+   "id": "gogcli",
+   "name": "gogcli",
+   "description": "Google Suite CLI",
+   "rank": 370,
+   "installs365d": 37779,
+   "license": "MIT",
+   "version": "0.43.0",
+   "homepage": "https://gogcli.sh",
+   "formula": "https://formulae.brew.sh/formula/gogcli",
+   "install": [
+    "brew install gogcli"
+   ]
+  },
+  {
+   "id": "gambit-scheme",
+   "name": "gambit-scheme",
+   "description": "Implementation of the Scheme Language",
+   "rank": 371,
+   "installs365d": 37769,
+   "license": "Apache-2.0",
+   "version": "4.9.8",
+   "homepage": "https://gambitscheme.org/",
+   "formula": "https://formulae.brew.sh/formula/gambit-scheme",
+   "install": [
+    "brew install gambit-scheme"
+   ]
+  },
+  {
+   "id": "giflib",
+   "name": "giflib",
+   "description": "Library and utilities for processing GIFs",
+   "rank": 372,
+   "installs365d": 37548,
+   "license": "MIT",
+   "version": "6.1.3",
+   "homepage": "https://giflib.sourceforge.net/",
+   "formula": "https://formulae.brew.sh/formula/giflib",
+   "install": [
+    "brew install giflib"
+   ]
+  },
+  {
+   "id": "bison",
+   "name": "bison",
+   "description": "Parser generator",
+   "rank": 373,
+   "installs365d": 37422,
+   "license": "GPL-3.0-or-later",
+   "version": "3.8.2",
+   "homepage": "https://www.gnu.org/software/bison/",
+   "formula": "https://formulae.brew.sh/formula/bison",
+   "install": [
+    "brew install bison",
+    "Keg-only: add $(brew --prefix bison)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "docker-credential-helper-ecr",
+   "name": "docker-credential-helper-ecr",
+   "description": "Docker Credential Helper for Amazon ECR",
+   "rank": 374,
+   "installs365d": 37354,
+   "license": "Apache-2.0",
+   "version": "0.12.0",
+   "homepage": "https://github.com/awslabs/amazon-ecr-credential-helper",
+   "formula": "https://formulae.brew.sh/formula/docker-credential-helper-ecr",
+   "install": [
+    "brew install docker-credential-helper-ecr"
+   ]
+  },
+  {
+   "id": "cloc",
+   "name": "cloc",
+   "description": "Statistics utility to count lines of code",
+   "rank": 375,
+   "installs365d": 37026,
+   "license": "GPL-2.0-or-later",
+   "version": "2.10",
+   "homepage": "https://github.com/AlDanial/cloc/",
+   "formula": "https://formulae.brew.sh/formula/cloc",
+   "install": [
+    "brew install cloc"
+   ]
+  },
+  {
+   "id": "typst",
+   "name": "typst",
+   "description": "Markup-based typesetting system",
+   "rank": 376,
+   "installs365d": 36781,
+   "license": "Apache-2.0",
+   "version": "0.15.1",
+   "homepage": "https://typst.app/",
+   "formula": "https://formulae.brew.sh/formula/typst",
+   "install": [
+    "brew install typst"
+   ]
+  },
+  {
+   "id": "moreutils",
+   "name": "moreutils",
+   "description": "Collection of tools that nobody wrote when UNIX was young",
+   "rank": 377,
+   "installs365d": 36707,
+   "license": "GPL-2.0-or-later AND (GPL-2.0-only OR Artistic-2.0)",
+   "version": "0.70",
+   "homepage": "https://joeyh.name/code/moreutils/",
+   "formula": "https://formulae.brew.sh/formula/moreutils",
+   "install": [
+    "brew install moreutils"
+   ]
+  },
+  {
+   "id": "nano",
+   "name": "nano",
+   "description": "Free (GNU) replacement for the Pico text editor",
+   "rank": 378,
+   "installs365d": 36593,
+   "license": "GPL-3.0-or-later",
+   "version": "9.2",
+   "homepage": "https://www.nano-editor.org/",
+   "formula": "https://formulae.brew.sh/formula/nano",
+   "install": [
+    "brew install nano"
+   ]
+  },
+  {
+   "id": "nasm",
+   "name": "nasm",
+   "description": "Netwide Assembler (NASM) is an 80x86 assembler",
+   "rank": 379,
+   "installs365d": 36481,
+   "license": "BSD-2-Clause",
+   "version": "3.02",
+   "homepage": "https://www.nasm.us/",
+   "formula": "https://formulae.brew.sh/formula/nasm",
+   "install": [
+    "brew install nasm"
+   ]
+  },
+  {
+   "id": "edencommon",
+   "name": "edencommon",
+   "description": "Shared library for Watchman and Eden projects",
+   "rank": 380,
+   "installs365d": 36328,
+   "license": "MIT",
+   "version": "2026.10.05.00",
+   "homepage": "https://github.com/facebookexperimental/edencommon",
+   "formula": "https://formulae.brew.sh/formula/edencommon",
+   "install": [
+    "brew install edencommon"
+   ]
+  },
+  {
+   "id": "httpd",
+   "name": "httpd",
+   "description": "Apache HTTP server",
+   "rank": 381,
+   "installs365d": 36101,
+   "license": "Apache-2.0",
+   "version": "2.4.69",
+   "homepage": "https://httpd.apache.org/",
+   "formula": "https://formulae.brew.sh/formula/httpd",
+   "install": [
+    "brew install httpd"
+   ]
+  },
+  {
+   "id": "php-8-3",
+   "name": "php@8.3",
+   "description": "General-purpose scripting language",
+   "rank": 382,
+   "installs365d": 36098,
+   "license": "PHP-3.01 AND Zend-2.0 AND BSL-1.0 AND MIT AND Apache-1.0 AND bcrypt-Solar-Designer AND BSD-2-Clause-Darwin AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause-UC AND ISC AND LGPL-2.1-only AND LGPL-2.1-or-later AND OLDAP-2.8 AND TCL AND Zlib",
+   "version": "8.3.35",
+   "homepage": "https://www.php.net/",
+   "formula": "https://formulae.brew.sh/formula/php@8.3",
+   "install": [
+    "brew install php@8.3",
+    "Keg-only: add $(brew --prefix php@8.3)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "syft",
+   "name": "syft",
+   "description": "CLI for generating a Software Bill of Materials from container images",
+   "rank": 383,
+   "installs365d": 35948,
+   "license": "Apache-2.0",
+   "version": "1.54.1",
+   "homepage": "https://github.com/anchore/syft",
+   "formula": "https://formulae.brew.sh/formula/syft",
+   "install": [
+    "brew install syft"
+   ]
+  },
+  {
+   "id": "skopeo",
+   "name": "skopeo",
+   "description": "Work with remote images registries",
+   "rank": 384,
+   "installs365d": 35633,
+   "license": "Apache-2.0",
+   "version": "1.24.1",
+   "homepage": "https://github.com/podman-container-tools/skopeo",
+   "formula": "https://formulae.brew.sh/formula/skopeo",
+   "install": [
+    "brew install skopeo"
+   ]
+  },
+  {
+   "id": "jadx",
+   "name": "jadx",
+   "description": "Dex to Java decompiler",
+   "rank": 385,
+   "installs365d": 35527,
+   "license": "Apache-2.0",
+   "version": "1.5.6",
+   "homepage": "https://github.com/skylot/jadx",
+   "formula": "https://formulae.brew.sh/formula/jadx",
+   "install": [
+    "brew install jadx"
+   ]
+  },
+  {
+   "id": "openblas",
+   "name": "openblas",
+   "description": "Optimized BLAS library",
+   "rank": 386,
+   "installs365d": 35400,
+   "license": "BSD-3-Clause AND BSD-2-Clause-Views AND BSD-3-Clause-Open-MPI AND BSD-2-Clause",
+   "version": "0.3.34",
+   "homepage": "https://www.openblas.net/",
+   "formula": "https://formulae.brew.sh/formula/openblas",
+   "install": [
+    "brew install openblas",
+    "Keg-only: add $(brew --prefix openblas)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "sccache",
+   "name": "sccache",
+   "description": "Used as a compiler wrapper and avoids compilation when possible",
+   "rank": 387,
+   "installs365d": 35247,
+   "license": "Apache-2.0",
+   "version": "0.18.0",
+   "homepage": "https://github.com/mozilla/sccache",
+   "formula": "https://formulae.brew.sh/formula/sccache",
+   "install": [
+    "brew install sccache"
+   ]
+  },
+  {
+   "id": "openexr",
+   "name": "openexr",
+   "description": "High dynamic-range image file format",
+   "rank": 388,
+   "installs365d": 35049,
+   "license": "BSD-3-Clause",
+   "version": "3.5.2",
+   "homepage": "https://www.openexr.com/",
+   "formula": "https://formulae.brew.sh/formula/openexr",
+   "install": [
+    "brew install openexr"
+   ]
+  },
+  {
+   "id": "sonic",
+   "name": "sonic",
+   "description": "Fast, lightweight & schema-less search backend",
+   "rank": 389,
+   "installs365d": 34803,
+   "license": "MPL-2.0",
+   "version": "1.10.2",
+   "homepage": "https://github.com/valeriansaliou/sonic",
+   "formula": "https://formulae.brew.sh/formula/sonic",
+   "install": [
+    "brew install sonic"
+   ]
+  },
+  {
+   "id": "dysk",
+   "name": "dysk",
+   "description": "Linux utility to get information on filesystems, like df but better",
+   "rank": 390,
+   "installs365d": 34380,
+   "license": "MIT",
+   "version": "3.7.1",
+   "homepage": "https://dystroy.org/dysk/",
+   "formula": "https://formulae.brew.sh/formula/dysk",
+   "install": [
+    "brew install dysk"
+   ]
+  },
+  {
+   "id": "container",
+   "name": "container",
+   "description": "Create and run Linux containers using lightweight virtual machines",
+   "rank": 391,
+   "installs365d": 34269,
+   "license": "Apache-2.0",
+   "version": "1.5.0",
+   "homepage": "https://apple.github.io/container/documentation/",
+   "formula": "https://formulae.brew.sh/formula/container",
+   "install": [
+    "brew install container"
+   ]
+  },
+  {
+   "id": "wireguard-tools",
+   "name": "wireguard-tools",
+   "description": "Tools for the WireGuard secure network tunnel",
+   "rank": 392,
+   "installs365d": 34177,
+   "license": "GPL-2.0-only",
+   "version": "1.0.20260223",
+   "homepage": "https://www.wireguard.com/",
+   "formula": "https://formulae.brew.sh/formula/wireguard-tools",
+   "install": [
+    "brew install wireguard-tools"
+   ]
+  },
+  {
+   "id": "libarchive",
+   "name": "libarchive",
+   "description": "Multi-format archive and compression library",
+   "rank": 393,
+   "installs365d": 33967,
+   "license": "BSD-2-Clause",
+   "version": "3.8.9",
+   "homepage": "https://www.libarchive.org",
+   "formula": "https://formulae.brew.sh/formula/libarchive",
+   "install": [
+    "brew install libarchive",
+    "Keg-only: add $(brew --prefix libarchive)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "grep",
+   "name": "grep",
+   "description": "GNU grep, egrep and fgrep",
+   "rank": 394,
+   "installs365d": 33918,
+   "license": "GPL-3.0-or-later",
+   "version": "3.12",
+   "homepage": "https://www.gnu.org/software/grep/",
+   "formula": "https://formulae.brew.sh/formula/grep",
+   "install": [
+    "brew install grep"
+   ]
+  },
+  {
+   "id": "buf",
+   "name": "buf",
+   "description": "New way of working with Protocol Buffers",
+   "rank": 395,
+   "installs365d": 33835,
+   "license": "Apache-2.0",
+   "version": "1.73.0",
+   "homepage": "https://buf.build",
+   "formula": "https://formulae.brew.sh/formula/buf",
+   "install": [
+    "brew install buf"
+   ]
+  },
+  {
+   "id": "checkov",
+   "name": "checkov",
+   "description": "Prevent cloud misconfigurations during build-time for IaC tools",
+   "rank": 396,
+   "installs365d": 33793,
+   "license": "Apache-2.0",
+   "version": "3.3.20",
+   "homepage": "https://www.checkov.io/",
+   "formula": "https://formulae.brew.sh/formula/checkov",
+   "install": [
+    "brew install checkov"
+   ]
+  },
+  {
+   "id": "plantuml",
+   "name": "plantuml",
+   "description": "Draw UML diagrams",
+   "rank": 397,
+   "installs365d": 33607,
+   "license": "GPL-3.0-or-later",
+   "version": "1.2026.8",
+   "homepage": "https://plantuml.com/",
+   "formula": "https://formulae.brew.sh/formula/plantuml",
+   "install": [
+    "brew install plantuml"
+   ]
+  },
+  {
+   "id": "leptonica",
+   "name": "leptonica",
+   "description": "Image processing and image analysis library",
+   "rank": 398,
+   "installs365d": 33452,
+   "license": "BSD-2-Clause",
+   "version": "1.87.0",
+   "homepage": null,
+   "formula": "https://formulae.brew.sh/formula/leptonica",
+   "install": [
+    "brew install leptonica"
+   ]
+  },
+  {
+   "id": "stress-ng",
+   "name": "stress-ng",
+   "description": "Stress test a computer system in various selectable ways",
+   "rank": 399,
+   "installs365d": 33336,
+   "license": "GPL-2.0-or-later",
+   "version": "0.22.01",
+   "homepage": "https://wiki.ubuntu.com/Kernel/Reference/stress-ng",
+   "formula": "https://formulae.brew.sh/formula/stress-ng",
+   "install": [
+    "brew install stress-ng"
+   ]
+  },
+  {
+   "id": "r",
+   "name": "r",
+   "description": "Software environment for statistical computing",
+   "rank": 400,
+   "installs365d": 33252,
+   "license": "GPL-2.0-or-later",
+   "version": "4.6.1",
+   "homepage": "https://www.r-project.org/",
+   "formula": "https://formulae.brew.sh/formula/r",
+   "install": [
+    "brew install r"
+   ]
+  },
+  {
+   "id": "block-goose-cli",
+   "name": "block-goose-cli",
+   "description": "Open source, extensible AI agent that goes beyond code suggestions",
+   "rank": 401,
+   "installs365d": 33128,
+   "license": "Apache-2.0",
+   "version": "1.54.0",
+   "homepage": "https://goose-docs.ai/",
+   "formula": "https://formulae.brew.sh/formula/block-goose-cli",
+   "install": [
+    "brew install block-goose-cli"
+   ]
+  },
+  {
+   "id": "freerdp",
+   "name": "freerdp",
+   "description": "X11 implementation of the Remote Desktop Protocol (RDP)",
+   "rank": 402,
+   "installs365d": 33028,
+   "license": "Apache-2.0",
+   "version": "3.32.1",
+   "homepage": "https://www.freerdp.com/",
+   "formula": "https://formulae.brew.sh/formula/freerdp",
+   "install": [
+    "brew install freerdp"
+   ]
+  },
+  {
+   "id": "overmind",
+   "name": "overmind",
+   "description": "Process manager for Procfile-based applications and tmux",
+   "rank": 403,
+   "installs365d": 32884,
+   "license": "MIT",
+   "version": "2.5.1",
+   "homepage": "https://github.com/DarthSim/overmind",
+   "formula": "https://formulae.brew.sh/formula/overmind",
+   "install": [
+    "brew install overmind"
+   ]
+  },
+  {
+   "id": "openjpeg",
+   "name": "openjpeg",
+   "description": "Library for JPEG-2000 image manipulation",
+   "rank": 404,
+   "installs365d": 32782,
+   "license": "BSD-2-Clause",
+   "version": "2.5.4",
+   "homepage": "https://www.openjpeg.org/",
+   "formula": "https://formulae.brew.sh/formula/openjpeg",
+   "install": [
+    "brew install openjpeg"
+   ]
+  },
+  {
+   "id": "grype",
+   "name": "grype",
+   "description": "Vulnerability scanner for container images and filesystems",
+   "rank": 405,
+   "installs365d": 32673,
+   "license": "Apache-2.0",
+   "version": "0.120.1",
+   "homepage": "https://github.com/anchore/grype",
+   "formula": "https://formulae.brew.sh/formula/grype",
+   "install": [
+    "brew install grype"
+   ]
+  },
+  {
+   "id": "cloudflare-wrangler",
+   "name": "cloudflare-wrangler",
+   "description": "CLI tool for Cloudflare Workers",
+   "rank": 406,
+   "installs365d": 32476,
+   "license": "Apache-2.0 OR MIT",
+   "version": "4.149.0",
+   "homepage": "https://developers.cloudflare.com/workers/",
+   "formula": "https://formulae.brew.sh/formula/cloudflare-wrangler",
+   "install": [
+    "brew install cloudflare-wrangler"
+   ]
+  },
+  {
+   "id": "php-8-4",
+   "name": "php@8.4",
+   "description": "General-purpose scripting language",
+   "rank": 407,
+   "installs365d": 32300,
+   "license": "PHP-3.01 AND Zend-2.0 AND BSL-1.0 AND MIT AND Apache-1.0 AND Apache-2.0 AND bcrypt-Solar-Designer AND BSD-2-Clause-Darwin AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause-UC AND ISC AND LGPL-2.1-only AND LGPL-2.1-or-later AND OLDAP-2.8 AND TCL AND Zlib",
+   "version": "8.4.26",
+   "homepage": "https://www.php.net/",
+   "formula": "https://formulae.brew.sh/formula/php@8.4",
+   "install": [
+    "brew install php@8.4",
+    "Keg-only: add $(brew --prefix php@8.4)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "fswatch",
+   "name": "fswatch",
+   "description": "Monitor a directory for changes and run a shell command",
+   "rank": 408,
+   "installs365d": 32299,
+   "license": "GPL-3.0-or-later AND Apache-2.0",
+   "version": "1.22.0",
+   "homepage": "https://emcrisostomo.github.io/fswatch/",
+   "formula": "https://formulae.brew.sh/formula/fswatch",
+   "install": [
+    "brew install fswatch"
+   ]
+  },
+  {
+   "id": "swig",
+   "name": "swig",
+   "description": "Generate scripting interfaces to C/C++ code",
+   "rank": 409,
+   "installs365d": 32166,
+   "license": "GPL-3.0-or-later",
+   "version": "4.5.1",
+   "homepage": "https://www.swig.org/",
+   "formula": "https://formulae.brew.sh/formula/swig",
+   "install": [
+    "brew install swig"
+   ]
+  },
+  {
+   "id": "ipython",
+   "name": "ipython",
+   "description": "Interactive computing in Python",
+   "rank": 410,
+   "installs365d": 32148,
+   "license": "BSD-3-Clause",
+   "version": "9.17.1",
+   "homepage": "https://ipython.org/",
+   "formula": "https://formulae.brew.sh/formula/ipython",
+   "install": [
+    "brew install ipython"
+   ]
+  },
+  {
+   "id": "grpcurl",
+   "name": "grpcurl",
+   "description": "Like cURL, but for gRPC",
+   "rank": 411,
+   "installs365d": 31781,
+   "license": "MIT",
+   "version": "1.9.4",
+   "homepage": "https://www.fullstory.com/resources/content/fullstory-engineering-blog/",
+   "formula": "https://formulae.brew.sh/formula/grpcurl",
+   "install": [
+    "brew install grpcurl"
+   ]
+  },
+  {
+   "id": "pigz",
+   "name": "pigz",
+   "description": "Parallel gzip",
+   "rank": 412,
+   "installs365d": 31760,
+   "license": "Zlib",
+   "version": "2.8",
+   "homepage": "https://zlib.net/pigz/",
+   "formula": "https://formulae.brew.sh/formula/pigz",
+   "install": [
+    "brew install pigz"
+   ]
+  },
+  {
+   "id": "dust",
+   "name": "dust",
+   "description": "More intuitive version of du in rust",
+   "rank": 413,
+   "installs365d": 31659,
+   "license": "Apache-2.0",
+   "version": "1.2.6",
+   "homepage": "https://github.com/bootandy/dust",
+   "formula": "https://formulae.brew.sh/formula/dust",
+   "install": [
+    "brew install dust"
+   ]
+  },
+  {
+   "id": "prettier",
+   "name": "prettier",
+   "description": "Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML",
+   "rank": 414,
+   "installs365d": 31575,
+   "license": "MIT",
+   "version": "3.9.9",
+   "homepage": "https://prettier.io/",
+   "formula": "https://formulae.brew.sh/formula/prettier",
+   "install": [
+    "brew install prettier"
+   ]
+  },
+  {
+   "id": "gum",
+   "name": "gum",
+   "description": "Tool for glamorous shell scripts",
+   "rank": 415,
+   "installs365d": 31561,
+   "license": "MIT",
+   "version": "2.0.2",
+   "homepage": "https://github.com/charmbracelet/gum",
+   "formula": "https://formulae.brew.sh/formula/gum",
+   "install": [
+    "brew install gum"
+   ]
+  },
+  {
+   "id": "the-silver-searcher",
+   "name": "the_silver_searcher",
+   "description": "Code-search similar to ack",
+   "rank": 416,
+   "installs365d": 31484,
+   "license": "Apache-2.0",
+   "version": "2.2.0",
+   "homepage": "https://geoff.greer.fm/ag/",
+   "formula": "https://formulae.brew.sh/formula/the_silver_searcher",
+   "install": [
+    "brew install the_silver_searcher"
+   ]
+  },
+  {
+   "id": "pcre2",
+   "name": "pcre2",
+   "description": "Perl compatible regular expressions library with a new API",
+   "rank": 417,
+   "installs365d": 31459,
+   "license": "BSD-3-Clause",
+   "version": "10.49",
+   "homepage": "https://www.pcre.org/",
+   "formula": "https://formulae.brew.sh/formula/pcre2",
+   "install": [
+    "brew install pcre2"
+   ]
+  },
+  {
+   "id": "stern",
+   "name": "stern",
+   "description": "Tail multiple Kubernetes pods & their containers",
+   "rank": 418,
+   "installs365d": 31429,
+   "license": "Apache-2.0",
+   "version": "1.34.0",
+   "homepage": "https://github.com/stern/stern",
+   "formula": "https://formulae.brew.sh/formula/stern",
+   "install": [
+    "brew install stern"
+   ]
+  },
+  {
+   "id": "gallery-dl",
+   "name": "gallery-dl",
+   "description": "Command-line downloader for image-hosting site galleries and collections",
+   "rank": 419,
+   "installs365d": 31264,
+   "license": "GPL-2.0-only",
+   "version": "1.32.15",
+   "homepage": "https://codeberg.org/mikf/gallery-dl",
+   "formula": "https://formulae.brew.sh/formula/gallery-dl",
+   "install": [
+    "brew install gallery-dl"
+   ]
+  },
+  {
+   "id": "mtr",
+   "name": "mtr",
+   "description": "'traceroute' and 'ping' in a single tool",
+   "rank": 420,
+   "installs365d": 30828,
+   "license": "GPL-2.0-only AND BSD-3-Clause AND LGPL-2.0-only",
+   "version": "0.96",
+   "homepage": "https://www.bitwizard.nl/mtr/",
+   "formula": "https://formulae.brew.sh/formula/mtr",
+   "install": [
+    "brew install mtr"
+   ]
+  },
+  {
+   "id": "bc",
+   "name": "bc",
+   "description": "Arbitrary precision numeric processing language",
+   "rank": 421,
+   "installs365d": 30496,
+   "license": "GPL-3.0-or-later",
+   "version": "1.08.2",
+   "homepage": "https://www.gnu.org/software/bc/",
+   "formula": "https://formulae.brew.sh/formula/bc",
+   "install": [
+    "brew install bc",
+    "Keg-only: add $(brew --prefix bc)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "sshuttle",
+   "name": "sshuttle",
+   "description": "Proxy server that works as a poor man's VPN",
+   "rank": 422,
+   "installs365d": 30376,
+   "license": "LGPL-2.1-or-later",
+   "version": "2.0.0",
+   "homepage": "https://github.com/sshuttle/sshuttle",
+   "formula": "https://formulae.brew.sh/formula/sshuttle",
+   "install": [
+    "brew install sshuttle"
+   ]
+  },
+  {
+   "id": "tealdeer",
+   "name": "tealdeer",
+   "description": "Very fast implementation of tldr in Rust",
+   "rank": 423,
+   "installs365d": 30350,
+   "license": "Apache-2.0 OR MIT",
+   "version": "1.9.0",
+   "homepage": "https://tealdeer-rs.github.io/tealdeer/",
+   "formula": "https://formulae.brew.sh/formula/tealdeer",
+   "install": [
+    "brew install tealdeer"
+   ]
+  },
+  {
+   "id": "zsh-completions",
+   "name": "zsh-completions",
+   "description": "Additional completion definitions for zsh",
+   "rank": 424,
+   "installs365d": 30254,
+   "license": "MIT-Modern-Variant AND BSD-3-Clause AND MIT AND Apache-2.0 AND ISC AND NCSA",
+   "version": "0.36.0",
+   "homepage": "https://github.com/zsh-users/zsh-completions",
+   "formula": "https://formulae.brew.sh/formula/zsh-completions",
+   "install": [
+    "brew install zsh-completions"
+   ]
+  },
+  {
+   "id": "hdf5",
+   "name": "hdf5",
+   "description": "File format designed to store large amounts of data",
+   "rank": 425,
+   "installs365d": 30069,
+   "license": "BSD-3-Clause",
+   "version": "2.2.0",
+   "homepage": "https://www.hdfgroup.org/solutions/hdf5/",
+   "formula": "https://formulae.brew.sh/formula/hdf5",
+   "install": [
+    "brew install hdf5"
+   ]
+  },
+  {
+   "id": "libksba",
+   "name": "libksba",
+   "description": "X.509 and CMS library",
+   "rank": 426,
+   "installs365d": 29817,
+   "license": "LGPL-3.0-or-later OR GPL-2.0-or-later",
+   "version": "1.8.1",
+   "homepage": "https://www.gnupg.org/related_software/libksba/",
+   "formula": "https://formulae.brew.sh/formula/libksba",
+   "install": [
+    "brew install libksba"
+   ]
+  },
+  {
+   "id": "terminal-notifier",
+   "name": "terminal-notifier",
+   "description": "Send macOS User Notifications from the command-line",
+   "rank": 427,
+   "installs365d": 29801,
+   "license": "MIT",
+   "version": "3.1.0",
+   "homepage": "https://github.com/julienXX/terminal-notifier",
+   "formula": "https://formulae.brew.sh/formula/terminal-notifier",
+   "install": [
+    "brew install terminal-notifier"
+   ]
+  },
+  {
+   "id": "sqlcmd",
+   "name": "sqlcmd",
+   "description": "Microsoft SQL Server command-line interface",
+   "rank": 428,
+   "installs365d": 29661,
+   "license": "MIT",
+   "version": "1.10.0",
+   "homepage": "https://github.com/microsoft/go-sqlcmd",
+   "formula": "https://formulae.brew.sh/formula/sqlcmd",
+   "install": [
+    "brew install sqlcmd"
+   ]
+  },
+  {
+   "id": "dnsmasq",
+   "name": "dnsmasq",
+   "description": "Lightweight DNS forwarder and DHCP server",
+   "rank": 429,
+   "installs365d": 29448,
+   "license": "GPL-2.0-only OR GPL-3.0-only",
+   "version": "2.93",
+   "homepage": "https://thekelleys.org.uk/dnsmasq/doc.html",
+   "formula": "https://formulae.brew.sh/formula/dnsmasq",
+   "install": [
+    "brew install dnsmasq"
+   ]
+  },
+  {
+   "id": "php-8-2",
+   "name": "php@8.2",
+   "description": "General-purpose scripting language",
+   "rank": 430,
+   "installs365d": 29443,
+   "license": "PHP-3.01 AND Zend-2.0 AND BSL-1.0 AND MIT AND Apache-1.0 AND bcrypt-Solar-Designer AND BSD-2-Clause-Darwin AND BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause-UC AND ISC AND LGPL-2.1-only AND LGPL-2.1-or-later AND OLDAP-2.8 AND TCL AND Zlib",
+   "version": "8.2.34",
+   "homepage": "https://www.php.net/",
+   "formula": "https://formulae.brew.sh/formula/php@8.2",
+   "install": [
+    "brew install php@8.2",
+    "Keg-only: add $(brew --prefix php@8.2)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "aws-cdk",
+   "name": "aws-cdk",
+   "description": "AWS Cloud Development Kit - framework for defining AWS infra as code",
+   "rank": 431,
+   "installs365d": 29439,
+   "license": "Apache-2.0",
+   "version": "2.1145.0",
+   "homepage": "https://github.com/aws/aws-cdk",
+   "formula": "https://formulae.brew.sh/formula/aws-cdk",
+   "install": [
+    "brew install aws-cdk"
+   ]
+  },
+  {
+   "id": "cowsay",
+   "name": "cowsay",
+   "description": "Apjanke's fork of the classic cowsay project",
+   "rank": 432,
+   "installs365d": 29410,
+   "license": "GPL-3.0-only",
+   "version": "3.8.4",
+   "homepage": "https://cowsay.diamonds",
+   "formula": "https://formulae.brew.sh/formula/cowsay",
+   "install": [
+    "brew install cowsay"
+   ]
+  },
+  {
+   "id": "mycli",
+   "name": "mycli",
+   "description": "CLI for MySQL with auto-completion and syntax highlighting",
+   "rank": 433,
+   "installs365d": 29401,
+   "license": "BSD-3-Clause",
+   "version": "2.28.2",
+   "homepage": "https://www.mycli.net/",
+   "formula": "https://formulae.brew.sh/formula/mycli",
+   "install": [
+    "brew install mycli"
+   ]
+  },
+  {
+   "id": "imagemagick-full",
+   "name": "imagemagick-full",
+   "description": "Tools and libraries to manipulate images in many formats",
+   "rank": 434,
+   "installs365d": 29318,
+   "license": "ImageMagick",
+   "version": "7.1.2-32",
+   "homepage": "https://imagemagick.org",
+   "formula": "https://formulae.brew.sh/formula/imagemagick-full",
+   "install": [
+    "brew install imagemagick-full",
+    "Keg-only: add $(brew --prefix imagemagick-full)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "luarocks",
+   "name": "luarocks",
+   "description": "Package manager for the Lua programming language",
+   "rank": 435,
+   "installs365d": 28956,
+   "license": "MIT",
+   "version": "3.13.0",
+   "homepage": "https://luarocks.org/",
+   "formula": "https://formulae.brew.sh/formula/luarocks",
+   "install": [
+    "brew install luarocks"
+   ]
+  },
+  {
+   "id": "ghidra",
+   "name": "ghidra",
+   "description": "Multi-platform software reverse engineering framework",
+   "rank": 436,
+   "installs365d": 28929,
+   "license": "Apache-2.0",
+   "version": "12.1.4",
+   "homepage": "https://github.com/NationalSecurityAgency/ghidra",
+   "formula": "https://formulae.brew.sh/formula/ghidra",
+   "install": [
+    "brew install ghidra"
+   ]
+  },
+  {
+   "id": "tectonic",
+   "name": "tectonic",
+   "description": "Modernized, complete, self-contained TeX/LaTeX engine",
+   "rank": 437,
+   "installs365d": 28914,
+   "license": "MIT",
+   "version": "0.17.0",
+   "homepage": "https://tectonic-typesetting.github.io/",
+   "formula": "https://formulae.brew.sh/formula/tectonic",
+   "install": [
+    "brew install tectonic"
+   ]
+  },
+  {
+   "id": "tor",
+   "name": "tor",
+   "description": "Anonymizing overlay network for TCP",
+   "rank": 438,
+   "installs365d": 28895,
+   "license": "BSD-2-Clause AND BSD-3-Clause AND MIT AND NCSA",
+   "version": "0.4.9.14",
+   "homepage": "https://www.torproject.org/",
+   "formula": "https://formulae.brew.sh/formula/tor",
+   "install": [
+    "brew install tor"
+   ]
+  },
+  {
+   "id": "mactop",
+   "name": "mactop",
+   "description": "Apple Silicon Monitor Top written in Go Lang",
+   "rank": 439,
+   "installs365d": 28554,
+   "license": "MIT",
+   "version": "2.1.6",
+   "homepage": "https://github.com/metaspartan/mactop",
+   "formula": "https://formulae.brew.sh/formula/mactop",
+   "install": [
+    "brew install mactop"
+   ]
+  },
+  {
+   "id": "black",
+   "name": "black",
+   "description": "Python code formatter",
+   "rank": 440,
+   "installs365d": 28478,
+   "license": "MIT",
+   "version": "26.10.0",
+   "homepage": "https://black.readthedocs.io/en/stable/",
+   "formula": "https://formulae.brew.sh/formula/black",
+   "install": [
+    "brew install black"
+   ]
+  },
+  {
+   "id": "shared-mime-info",
+   "name": "shared-mime-info",
+   "description": "Database of common MIME types",
+   "rank": 441,
+   "installs365d": 28341,
+   "license": "GPL-2.0-only",
+   "version": "2.5.1",
+   "homepage": "https://wiki.freedesktop.org/www/Software/shared-mime-info",
+   "formula": "https://formulae.brew.sh/formula/shared-mime-info",
+   "install": [
+    "brew install shared-mime-info"
+   ]
+  },
+  {
+   "id": "sdl2-image",
+   "name": "sdl2_image",
+   "description": "Library for loading images as SDL surfaces and textures",
+   "rank": 442,
+   "installs365d": 28312,
+   "license": "Zlib",
+   "version": "2.8.12",
+   "homepage": "https://github.com/libsdl-org/SDL_image",
+   "formula": "https://formulae.brew.sh/formula/sdl2_image",
+   "install": [
+    "brew install sdl2_image"
+   ]
+  },
+  {
+   "id": "prek",
+   "name": "prek",
+   "description": "Fast Git hook manager written in Rust, drop-in alternative to pre-commit",
+   "rank": 443,
+   "installs365d": 28299,
+   "license": "MIT",
+   "version": "0.5.5",
+   "homepage": "https://prek.j178.dev/",
+   "formula": "https://formulae.brew.sh/formula/prek",
+   "install": [
+    "brew install prek"
+   ]
+  },
+  {
+   "id": "mit-scheme",
+   "name": "mit-scheme",
+   "description": "MIT/GNU Scheme development tools and runtime library",
+   "rank": 444,
+   "installs365d": 28259,
+   "license": "GPL-2.0-or-later",
+   "version": "12.1",
+   "homepage": "https://www.gnu.org/software/mit-scheme/",
+   "formula": "https://formulae.brew.sh/formula/mit-scheme",
+   "install": [
+    "brew install mit-scheme"
+   ]
+  },
+  {
+   "id": "sox",
+   "name": "sox",
+   "description": "SOund eXchange: universal sound sample translator",
+   "rank": 445,
+   "installs365d": 28207,
+   "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
+   "version": "14.4.2",
+   "homepage": "https://sox.sourceforge.net/",
+   "formula": "https://formulae.brew.sh/formula/sox",
+   "install": [
+    "brew install sox"
+   ]
+  },
+  {
+   "id": "cfn-lint",
+   "name": "cfn-lint",
+   "description": "Validate CloudFormation templates against the CloudFormation spec",
+   "rank": 446,
+   "installs365d": 28154,
+   "license": "MIT-0",
+   "version": "1.57.2",
+   "homepage": "https://github.com/aws-cloudformation/cfn-lint/",
+   "formula": "https://formulae.brew.sh/formula/cfn-lint",
+   "install": [
+    "brew install cfn-lint"
+   ]
+  },
+  {
+   "id": "libmagic",
+   "name": "libmagic",
+   "description": "Implementation of the file(1) command",
+   "rank": 447,
+   "installs365d": 28148,
+   "license": "BSD-2-Clause-Darwin AND BSD-2-Clause AND LicenseRef-Homebrew-public-domain",
+   "version": "5.48",
+   "homepage": "https://www.darwinsys.com/file/",
+   "formula": "https://formulae.brew.sh/formula/libmagic",
+   "install": [
+    "brew install libmagic"
+   ]
+  },
+  {
+   "id": "rustls-ffi",
+   "name": "rustls-ffi",
+   "description": "FFI bindings for the rustls TLS library",
+   "rank": 448,
+   "installs365d": 27975,
+   "license": "Apache-2.0 OR MIT OR ISC",
+   "version": "0.15.4",
+   "homepage": "https://github.com/rustls/rustls-ffi",
+   "formula": "https://formulae.brew.sh/formula/rustls-ffi",
+   "install": [
+    "brew install rustls-ffi"
+   ]
+  },
+  {
+   "id": "openssl-4",
+   "name": "openssl@4",
+   "description": "Cryptography and SSL/TLS Toolkit",
+   "rank": 449,
+   "installs365d": 27864,
+   "license": "Apache-2.0",
+   "version": "4.0.3",
+   "homepage": "https://openssl-library.org",
+   "formula": "https://formulae.brew.sh/formula/openssl@4",
+   "install": [
+    "brew install openssl@4"
+   ]
+  },
+  {
+   "id": "doxygen",
+   "name": "doxygen",
+   "description": "Generate documentation for several programming languages",
+   "rank": 450,
+   "installs365d": 27781,
+   "license": "GPL-2.0-only",
+   "version": "1.18.0",
+   "homepage": "https://www.doxygen.nl/",
+   "formula": "https://formulae.brew.sh/formula/doxygen",
+   "install": [
+    "brew install doxygen"
+   ]
+  },
+  {
+   "id": "gtk-3",
+   "name": "gtk+3",
+   "description": "Toolkit for creating graphical user interfaces",
+   "rank": 451,
+   "installs365d": 27704,
+   "license": "LGPL-2.0-or-later",
+   "version": "3.24.52",
+   "homepage": "https://gtk.org/",
+   "formula": "https://formulae.brew.sh/formula/gtk+3",
+   "install": [
+    "brew install gtk+3"
+   ]
+  },
+  {
+   "id": "kcov",
+   "name": "kcov",
+   "description": "Code coverage tester for compiled programs, Python, and shell scripts",
+   "rank": 452,
+   "installs365d": 27699,
+   "license": "GPL-2.0-or-later",
+   "version": "43",
+   "homepage": "https://simonkagstrom.github.io/kcov/",
+   "formula": "https://formulae.brew.sh/formula/kcov",
+   "install": [
+    "brew install kcov"
+   ]
+  },
+  {
+   "id": "fresh-editor",
+   "name": "fresh-editor",
+   "description": "Text editor for your terminal: easy, powerful and fast",
+   "rank": 453,
+   "installs365d": 27682,
+   "license": "GPL-3.0-or-later",
+   "version": "0.5.2",
+   "homepage": "https://sinelaw.github.io/fresh/",
+   "formula": "https://formulae.brew.sh/formula/fresh-editor",
+   "install": [
+    "brew install fresh-editor"
+   ]
+  },
+  {
+   "id": "swift-protobuf",
+   "name": "swift-protobuf",
+   "description": "Plugin and runtime library for using protobuf with Swift",
+   "rank": 454,
+   "installs365d": 27661,
+   "license": "Apache-2.0",
+   "version": "1.38.1",
+   "homepage": "https://github.com/apple/swift-protobuf",
+   "formula": "https://formulae.brew.sh/formula/swift-protobuf",
+   "install": [
+    "brew install swift-protobuf"
+   ]
+  },
+  {
+   "id": "tfsec",
+   "name": "tfsec",
+   "description": "Static analysis security scanner for your terraform code",
+   "rank": 455,
+   "installs365d": 27560,
+   "license": "MIT",
+   "version": "1.28.14",
+   "homepage": "https://aquasecurity.github.io/tfsec/latest/",
+   "formula": "https://formulae.brew.sh/formula/tfsec",
+   "install": [
+    "brew install tfsec"
+   ]
+  },
+  {
+   "id": "apache-arrow",
+   "name": "apache-arrow",
+   "description": "Columnar in-memory analytics layer designed to accelerate big data",
+   "rank": 456,
+   "installs365d": 27534,
+   "license": "Apache-2.0",
+   "version": "25.0.1",
+   "homepage": "https://arrow.apache.org/",
+   "formula": "https://formulae.brew.sh/formula/apache-arrow",
+   "install": [
+    "brew install apache-arrow"
+   ]
+  },
+  {
+   "id": "chicken",
+   "name": "chicken",
+   "description": "Compiler for the Scheme programming language",
+   "rank": 457,
+   "installs365d": 27476,
+   "license": "BSD-3-Clause",
+   "version": "6.0.0",
+   "homepage": "https://www.call-cc.org/",
+   "formula": "https://formulae.brew.sh/formula/chicken",
+   "install": [
+    "brew install chicken"
+   ]
+  },
+  {
+   "id": "eksctl",
+   "name": "eksctl",
+   "description": "Simple command-line tool for creating clusters on Amazon EKS",
+   "rank": 458,
+   "installs365d": 27463,
+   "license": "Apache-2.0",
+   "version": "0.231.0",
+   "homepage": "https://eksctl.io",
+   "formula": "https://formulae.brew.sh/formula/eksctl",
+   "install": [
+    "brew install eksctl"
+   ]
+  },
+  {
+   "id": "expect",
+   "name": "expect",
+   "description": "Program that can automate interactive applications",
+   "rank": 459,
+   "installs365d": 27461,
+   "license": "LicenseRef-Homebrew-public-domain",
+   "version": "5.45.4",
+   "homepage": "https://core.tcl-lang.org/expect/index",
+   "formula": "https://formulae.brew.sh/formula/expect",
+   "install": [
+    "brew install expect"
+   ]
+  },
+  {
+   "id": "icu4c-78",
+   "name": "icu4c@78",
+   "description": "C/C++ and Java libraries for Unicode and globalization",
+   "rank": 460,
+   "installs365d": 27427,
+   "license": "Unicode-3.0",
+   "version": "78.3",
+   "homepage": "https://icu.unicode.org/home",
+   "formula": "https://formulae.brew.sh/formula/icu4c@78",
+   "install": [
+    "brew install icu4c@78",
+    "Keg-only: add $(brew --prefix icu4c@78)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "crane",
+   "name": "crane",
+   "description": "Tool for interacting with remote images and registries",
+   "rank": 461,
+   "installs365d": 27378,
+   "license": "Apache-2.0",
+   "version": "0.22.1",
+   "homepage": "https://github.com/google/go-containerregistry",
+   "formula": "https://formulae.brew.sh/formula/crane",
+   "install": [
+    "brew install crane"
+   ]
+  },
+  {
+   "id": "espeak-ng",
+   "name": "espeak-ng",
+   "description": "Speech synthesizer that supports more than hundred languages and accents",
+   "rank": 462,
+   "installs365d": 27353,
+   "license": "GPL-3.0-or-later",
+   "version": "1.52.0",
+   "homepage": "https://github.com/espeak-ng/espeak-ng",
+   "formula": "https://formulae.brew.sh/formula/espeak-ng",
+   "install": [
+    "brew install espeak-ng"
+   ]
+  },
+  {
+   "id": "mingw-w64",
+   "name": "mingw-w64",
+   "description": "Minimalist GNU for Windows and GCC cross-compilers",
+   "rank": 463,
+   "installs365d": 27310,
+   "license": "ZPL-2.1 AND (GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.0-or-later AND LGPL-3.0-only) AND (GPL-3.0-or-later WITH GCC-exception-3.1)",
+   "version": "14.0.0",
+   "homepage": "https://sourceforge.net/projects/mingw-w64/",
+   "formula": "https://formulae.brew.sh/formula/mingw-w64",
+   "install": [
+    "brew install mingw-w64"
+   ]
+  },
+  {
+   "id": "hadolint",
+   "name": "hadolint",
+   "description": "Smarter Dockerfile linter to validate best practices",
+   "rank": 464,
+   "installs365d": 27208,
+   "license": "GPL-3.0-only",
+   "version": "2.15.1",
+   "homepage": "https://github.com/hadolint/hadolint",
+   "formula": "https://formulae.brew.sh/formula/hadolint",
+   "install": [
+    "brew install hadolint"
+   ]
+  },
+  {
+   "id": "erlang",
+   "name": "erlang",
+   "description": "Programming language for highly scalable real-time systems",
+   "rank": 465,
+   "installs365d": 27173,
+   "license": "Apache-2.0",
+   "version": "29.1.1",
+   "homepage": "https://www.erlang.org/",
+   "formula": "https://formulae.brew.sh/formula/erlang",
+   "install": [
+    "brew install erlang"
+   ]
+  },
+  {
+   "id": "mbedtls",
+   "name": "mbedtls",
+   "description": "Cryptographic & SSL/TLS library",
+   "rank": 466,
+   "installs365d": 26740,
+   "license": "Apache-2.0",
+   "version": "4.2.0",
+   "homepage": "https://www.trustedfirmware.org/projects/mbed-tls/",
+   "formula": "https://formulae.brew.sh/formula/mbedtls",
+   "install": [
+    "brew install mbedtls"
+   ]
+  },
+  {
+   "id": "kotlin",
+   "name": "kotlin",
+   "description": "Statically typed programming language for the JVM",
+   "rank": 467,
+   "installs365d": 26725,
+   "license": "Apache-2.0",
+   "version": "2.4.21",
+   "homepage": "https://kotlinlang.org/",
+   "formula": "https://formulae.brew.sh/formula/kotlin",
+   "install": [
+    "brew install kotlin"
+   ]
+  },
+  {
+   "id": "open-mpi",
+   "name": "open-mpi",
+   "description": "High performance message passing library",
+   "rank": 468,
+   "installs365d": 26587,
+   "license": "BSD-3-Clause-Open-MPI AND mpich2",
+   "version": "5.0.11",
+   "homepage": "https://www.open-mpi.org/",
+   "formula": "https://formulae.brew.sh/formula/open-mpi",
+   "install": [
+    "brew install open-mpi"
+   ]
+  },
+  {
+   "id": "percona-toolkit",
+   "name": "percona-toolkit",
+   "description": "Command-line tools for MySQL, MariaDB and system tasks",
+   "rank": 469,
+   "installs365d": 26561,
+   "license": "GPL-2.0-only OR Artistic-1.0-Perl",
+   "version": "3.7.1-4",
+   "homepage": "https://www.percona.com/software/percona-toolkit/",
+   "formula": "https://formulae.brew.sh/formula/percona-toolkit",
+   "install": [
+    "brew install percona-toolkit"
+   ]
+  },
+  {
+   "id": "certifi",
+   "name": "certifi",
+   "description": "Mozilla CA bundle for Python",
+   "rank": 470,
+   "installs365d": 26434,
+   "license": "MPL-2.0",
+   "version": "2026.7.22",
+   "homepage": "https://github.com/certifi/python-certifi",
+   "formula": "https://formulae.brew.sh/formula/certifi",
+   "install": [
+    "brew install certifi"
+   ]
+  },
+  {
+   "id": "llvm-20",
+   "name": "llvm@20",
+   "description": "Next-gen compiler infrastructure",
+   "rank": 471,
+   "installs365d": 26340,
+   "license": "Apache-2.0 WITH LLVM-exception",
+   "version": "20.1.8",
+   "homepage": "https://llvm.org/",
+   "formula": "https://formulae.brew.sh/formula/llvm@20",
+   "install": [
+    "brew install llvm@20",
+    "Keg-only: add $(brew --prefix llvm@20)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "powerlevel10k",
+   "name": "powerlevel10k",
+   "description": "Theme for zsh",
+   "rank": 472,
+   "installs365d": 26296,
+   "license": "MIT",
+   "version": "1.20.0",
+   "homepage": "https://github.com/romkatv/powerlevel10k",
+   "formula": "https://formulae.brew.sh/formula/powerlevel10k",
+   "install": [
+    "brew install powerlevel10k"
+   ]
+  },
+  {
+   "id": "autoconf-archive",
+   "name": "autoconf-archive",
+   "description": "Collection of over 500 reusable autoconf macros",
+   "rank": 473,
+   "installs365d": 26174,
+   "license": "GPL-3.0-or-later",
+   "version": "2024.10.16",
+   "homepage": "https://savannah.gnu.org/projects/autoconf-archive/",
+   "formula": "https://formulae.brew.sh/formula/autoconf-archive",
+   "install": [
+    "brew install autoconf-archive"
+   ]
+  },
+  {
+   "id": "worktrunk",
+   "name": "worktrunk",
+   "description": "CLI for Git worktree management, designed for parallel AI agent workflows",
+   "rank": 474,
+   "installs365d": 26086,
+   "license": "Apache-2.0 OR MIT",
+   "version": "0.80.0",
+   "homepage": "https://worktrunk.dev",
+   "formula": "https://formulae.brew.sh/formula/worktrunk",
+   "install": [
+    "brew install worktrunk"
+   ]
+  },
+  {
+   "id": "swift-format",
+   "name": "swift-format",
+   "description": "Formatting technology for Swift source code",
+   "rank": 475,
+   "installs365d": 25968,
+   "license": "Apache-2.0",
+   "version": "604.0.0",
+   "homepage": "https://github.com/swiftlang/swift-format",
+   "formula": "https://formulae.brew.sh/formula/swift-format",
+   "install": [
+    "brew install swift-format"
+   ]
+  },
+  {
+   "id": "gitlab-runner",
+   "name": "gitlab-runner",
+   "description": "Official GitLab CI runner",
+   "rank": 476,
+   "installs365d": 25932,
+   "license": "MIT",
+   "version": "19.4.1",
+   "homepage": "https://gitlab.com/gitlab-org/gitlab-runner",
+   "formula": "https://formulae.brew.sh/formula/gitlab-runner",
+   "install": [
+    "brew install gitlab-runner"
+   ]
+  },
+  {
+   "id": "libgit2",
+   "name": "libgit2",
+   "description": "C library of Git core methods that is re-entrant and linkable",
+   "rank": 477,
+   "installs365d": 25929,
+   "license": "GPL-2.0-only WITH GCC-exception-2.0",
+   "version": "1.9.7",
+   "homepage": "https://libgit2.org/",
+   "formula": "https://formulae.brew.sh/formula/libgit2",
+   "install": [
+    "brew install libgit2"
+   ]
+  },
+  {
+   "id": "googletest",
+   "name": "googletest",
+   "description": "Google Testing and Mocking Framework",
+   "rank": 478,
+   "installs365d": 25861,
+   "license": "BSD-3-Clause",
+   "version": "1.18.0",
+   "homepage": "https://google.github.io/googletest/",
+   "formula": "https://formulae.brew.sh/formula/googletest",
+   "install": [
+    "brew install googletest"
+   ]
+  },
+  {
+   "id": "cycode",
+   "name": "cycode",
+   "description": "Boost security in your dev lifecycle via SAST, SCA, Secrets & IaC scanning",
+   "rank": 479,
+   "installs365d": 25796,
+   "license": "MIT",
+   "version": "3.26.0",
+   "homepage": "https://github.com/cycodehq/cycode-cli",
+   "formula": "https://formulae.brew.sh/formula/cycode",
+   "install": [
+    "brew install cycode"
+   ]
+  },
+  {
+   "id": "pillow",
+   "name": "pillow",
+   "description": "Friendly PIL fork (Python Imaging Library)",
+   "rank": 480,
+   "installs365d": 25635,
+   "license": "MIT-CMU",
+   "version": "12.3.0",
+   "homepage": "https://python-pillow.github.io/",
+   "formula": "https://formulae.brew.sh/formula/pillow",
+   "install": [
+    "brew install pillow"
+   ]
+  },
+  {
+   "id": "libraw",
+   "name": "libraw",
+   "description": "Library for reading RAW files from digital photo cameras",
+   "rank": 481,
+   "installs365d": 25510,
+   "license": "LGPL-2.1-only OR CDDL-1.0",
+   "version": "0.22.2",
+   "homepage": "https://www.libraw.org/",
+   "formula": "https://formulae.brew.sh/formula/libraw",
+   "install": [
+    "brew install libraw"
+   ]
+  },
+  {
+   "id": "carapace",
+   "name": "carapace",
+   "description": "Multi-shell multi-command argument completer",
+   "rank": 482,
+   "installs365d": 25403,
+   "license": "MIT",
+   "version": "1.8.0",
+   "homepage": "https://carapace.sh",
+   "formula": "https://formulae.brew.sh/formula/carapace",
+   "install": [
+    "brew install carapace"
+   ]
+  },
+  {
+   "id": "goreman",
+   "name": "goreman",
+   "description": "Foreman clone written in Go",
+   "rank": 483,
+   "installs365d": 25226,
+   "license": "MIT",
+   "version": "0.3.19",
+   "homepage": "https://github.com/mattn/goreman",
+   "formula": "https://formulae.brew.sh/formula/goreman",
+   "install": [
+    "brew install goreman"
+   ]
+  },
+  {
+   "id": "bun",
+   "name": "bun",
+   "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager",
+   "rank": 484,
+   "installs365d": 25157,
+   "license": "MIT AND LGPL-2.0-or-later AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND IJG AND LGPL-2.1-or-later AND Zlib AND (Apache-2.0 WITH LLVM-exception)",
+   "version": "1.4.2",
+   "homepage": "https://bun.com/",
+   "formula": "https://formulae.brew.sh/formula/bun",
+   "install": [
+    "brew install bun"
+   ]
+  },
+  {
+   "id": "sdl2-compat",
+   "name": "sdl2-compat",
+   "description": "SDL2 compatibility layer that uses SDL3 behind the scenes",
+   "rank": 485,
+   "installs365d": 25018,
+   "license": "Zlib",
+   "version": "2.32.74",
+   "homepage": "https://github.com/libsdl-org/sdl2-compat",
+   "formula": "https://formulae.brew.sh/formula/sdl2-compat",
+   "install": [
+    "brew install sdl2-compat"
+   ]
+  },
+  {
+   "id": "helix",
+   "name": "helix",
+   "description": "Post-modern modal text editor",
+   "rank": 486,
+   "installs365d": 24985,
+   "license": "MPL-2.0",
+   "version": "25.07.1",
+   "homepage": "https://helix-editor.com",
+   "formula": "https://formulae.brew.sh/formula/helix",
+   "install": [
+    "brew install helix"
+   ]
+  },
+  {
+   "id": "putty",
+   "name": "putty",
+   "description": "Implementation of Telnet and SSH",
+   "rank": 487,
+   "installs365d": 24795,
+   "license": "MIT",
+   "version": "0.85",
+   "homepage": "https://putty.software/",
+   "formula": "https://formulae.brew.sh/formula/putty",
+   "install": [
+    "brew install putty"
+   ]
+  },
+  {
+   "id": "libyaml",
+   "name": "libyaml",
+   "description": "YAML Parser",
+   "rank": 488,
+   "installs365d": 24675,
+   "license": "MIT",
+   "version": "0.2.5",
+   "homepage": "https://github.com/yaml/libyaml",
+   "formula": "https://formulae.brew.sh/formula/libyaml",
+   "install": [
+    "brew install libyaml"
+   ]
+  },
+  {
+   "id": "stow",
+   "name": "stow",
+   "description": "Organize software neatly under a single directory tree (e.g. /usr/local)",
+   "rank": 489,
+   "installs365d": 24658,
+   "license": "GPL-3.0-or-later",
+   "version": "2.4.1",
+   "homepage": "https://www.gnu.org/software/stow/",
+   "formula": "https://formulae.brew.sh/formula/stow",
+   "install": [
+    "brew install stow"
+   ]
+  },
+  {
+   "id": "testdisk",
+   "name": "testdisk",
+   "description": "Powerful free data recovery utility",
+   "rank": 490,
+   "installs365d": 24578,
+   "license": "GPL-2.0-or-later",
+   "version": "7.2",
+   "homepage": "https://www.cgsecurity.org/wiki/TestDisk",
+   "formula": "https://formulae.brew.sh/formula/testdisk",
+   "install": [
+    "brew install testdisk"
+   ]
+  },
+  {
+   "id": "difftastic",
+   "name": "difftastic",
+   "description": "Diff that understands syntax",
+   "rank": 491,
+   "installs365d": 24549,
+   "license": "MIT",
+   "version": "0.71.0",
+   "homepage": "https://difftastic.wilfred.me.uk/",
+   "formula": "https://formulae.brew.sh/formula/difftastic",
+   "install": [
+    "brew install difftastic"
+   ]
+  },
+  {
+   "id": "libfido2",
+   "name": "libfido2",
+   "description": "Provides library functionality for FIDO U2F & FIDO 2.0, including USB",
+   "rank": 492,
+   "installs365d": 24518,
+   "license": "BSD-2-Clause",
+   "version": "1.17.0",
+   "homepage": "https://developers.yubico.com/libfido2/",
+   "formula": "https://formulae.brew.sh/formula/libfido2",
+   "install": [
+    "brew install libfido2"
+   ]
+  },
+  {
+   "id": "rabbitmq",
+   "name": "rabbitmq",
+   "description": "Messaging and streaming broker",
+   "rank": 493,
+   "installs365d": 24469,
+   "license": "MPL-2.0",
+   "version": "4.3.6",
+   "homepage": "https://www.rabbitmq.com",
+   "formula": "https://formulae.brew.sh/formula/rabbitmq",
+   "install": [
+    "brew install rabbitmq"
+   ]
+  },
+  {
+   "id": "glslang",
+   "name": "glslang",
+   "description": "OpenGL and OpenGL ES reference compiler for shading languages",
+   "rank": 494,
+   "installs365d": 24114,
+   "license": "BSD-3-Clause AND GPL-3.0-or-later AND MIT AND Apache-2.0",
+   "version": "16.6.0",
+   "homepage": "https://www.khronos.org/opengles/sdk/Reference-Compiler/",
+   "formula": "https://formulae.brew.sh/formula/glslang",
+   "install": [
+    "brew install glslang"
+   ]
+  },
+  {
+   "id": "openapi-generator",
+   "name": "openapi-generator",
+   "description": "Generate clients, server & docs from an OpenAPI spec (v2, v3)",
+   "rank": 495,
+   "installs365d": 24098,
+   "license": "Apache-2.0",
+   "version": "7.26.0",
+   "homepage": "https://openapi-generator.tech/",
+   "formula": "https://formulae.brew.sh/formula/openapi-generator",
+   "install": [
+    "brew install openapi-generator"
+   ]
+  },
+  {
+   "id": "libxslt",
+   "name": "libxslt",
+   "description": "C XSLT library for GNOME",
+   "rank": 496,
+   "installs365d": 24082,
+   "license": "X11",
+   "version": "1.1.45",
+   "homepage": null,
+   "formula": "https://formulae.brew.sh/formula/libxslt",
+   "install": [
+    "brew install libxslt",
+    "Keg-only: add $(brew --prefix libxslt)/bin to PATH if the binaries are needed on PATH"
+   ]
+  },
+  {
+   "id": "libzip",
+   "name": "libzip",
+   "description": "C library for reading, creating, and modifying zip archives",
+   "rank": 497,
+   "installs365d": 23905,
+   "license": "BSD-3-Clause",
+   "version": "1.12",
+   "homepage": "https://libzip.org/",
+   "formula": "https://formulae.brew.sh/formula/libzip",
+   "install": [
+    "brew install libzip"
+   ]
+  },
+  {
+   "id": "gdb",
+   "name": "gdb",
+   "description": "GNU debugger",
+   "rank": 498,
+   "installs365d": 23790,
+   "license": "GPL-3.0-or-later",
+   "version": "18.1",
+   "homepage": "https://www.gnu.org/software/gdb/",
+   "formula": "https://formulae.brew.sh/formula/gdb",
+   "install": [
+    "brew install gdb"
+   ]
+  },
+  {
+   "id": "libgcrypt",
+   "name": "libgcrypt",
+   "description": "Cryptographic library based on the code from GnuPG",
+   "rank": 499,
+   "installs365d": 23712,
+   "license": "LGPL-2.1-or-later AND GPL-2.0-or-later",
+   "version": "1.12.4",
+   "homepage": "https://gnupg.org/related_software/libgcrypt/",
+   "formula": "https://formulae.brew.sh/formula/libgcrypt",
+   "install": [
+    "brew install libgcrypt"
+   ]
+  },
+  {
+   "id": "osv-scanner",
+   "name": "osv-scanner",
+   "description": "Vulnerability scanner which uses the OSV database",
+   "rank": 500,
+   "installs365d": 23655,
+   "license": "Apache-2.0",
+   "version": "2.6.0",
+   "homepage": "https://google.github.io/osv-scanner/",
+   "formula": "https://formulae.brew.sh/formula/osv-scanner",
+   "install": [
+    "brew install osv-scanner"
+   ]
+  }
+ ]
+}

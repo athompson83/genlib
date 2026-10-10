@@ -33,6 +33,7 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - `tools/resources.mjs`: dependency-free, read-only source discovery and validation.
 - `templates/`: project, GitHub, documentation, ship/release and UI selection starters for deliberate project adoption, indexed by `templates/index.json`.
 - `resources/skills.json` and `lib/skills.mjs`: commit-pinned index of third-party agent skills (`genlib skill find|inspect`). Index and pin; never copy skill code into this repository without explicit approval, a redistributable license and its notices.
+- `resources/mcp-servers.json`, `clis.json`, `apis.json` and `lib/indexes.mjs`: ranked install indexes (`genlib mcp|cli|api find|inspect`). Regenerate from their documented ranking sources; never hand-edit ranks or install counts.
 - `lib/discover.mjs`: `genlib find`/`detect`/`catalog` over every source. Register new recipes, language examples, templates and navigation tools (`tools/index.json`) in their catalogs so `find` can reach them.
 - `docs/best-practices/`: GitHub, README/docs, API and UI integration guidance.
 
