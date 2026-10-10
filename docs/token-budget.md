@@ -8,8 +8,8 @@ The baseline column is what the same step costs without the compact path: the fu
 | --- | --- | ---: | ---: | --- | ---: | ---: |
 | Pick code for a task | `quick verify stripe webhook` | 291 | ~73 | find --json (8 full records) | 5,726 | 19.7× |
 | Compare options | `find verify stripe webhook` | 1,219 | ~305 | find --json (8 full records) | 5,726 | 4.7× |
-| Pick code for a task | `quick passkey login --language go` | 326 | ~82 | find --json (8 full records) | 7,600 | 23.3× |
-| Compare options | `find passkey login --language go` | 2,474 | ~619 | find --json (8 full records) | 7,600 | 3.1× |
+| Pick code for a task | `quick passkey login --language go` | 326 | ~82 | find --json (8 full records) | 6,759 | 20.7× |
+| Compare options | `find passkey login --language go` | 2,224 | ~556 | find --json (8 full records) | 6,759 | 3.0× |
 | Pick code for a task | `quick csv export --language python` | 416 | ~104 | find --json (8 full records) | 5,909 | 14.2× |
 | Compare options | `find csv export --language python` | 1,864 | ~466 | find --json (8 full records) | 5,909 | 3.2× |
 | Learn an API | `outline totp --language go` | 1,446 | ~362 | read its source files | 6,589 | 4.6× |
