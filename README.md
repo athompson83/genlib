@@ -4,11 +4,11 @@
 
 Genlib lets a coding agent search compact descriptions, inspect a feature's integration contract, and copy reviewed source into an application. The agent can then concentrate on the project's data, behavior, permissions, and appearance instead of generating the same implementation again. The installed source belongs in the receiving application's normal development workflow and remains editable.
 
-The library contains six original Apache-2.0 modules, a local CLI, integrity and provenance records, a portable `genlib-use` skill, and a reviewed external-resource catalog with project templates. Genlib itself is usable independently of Genisys and requires no hosted service, model API, paid account or MCP server. Calling an optional provider client requires that provider's authorized configuration. Token savings are a goal to measure against completed, accepted features; this release does not claim a savings percentage.
+The library contains thirteen original Apache-2.0 modules, task recipes, cross-language examples, project-to-release templates, a local CLI with one `find` command across all of them, integrity and provenance records, a portable `genlib-use` skill, and a reviewed external-resource catalog with project templates. Genlib itself is usable independently of Genisys and requires no hosted service, model API, paid account or MCP server. Calling an optional provider client requires that provider's authorized configuration. Token savings are a goal to measure against completed, accepted features; this release does not claim a savings percentage.
 
 ## Included modules
 
-All six modules are version `0.1.0`. Their `tested` status means the repository's relevant behavior checks pass; it does not certify a consuming application's integration or live provider connection.
+All modules are version `0.1.0`. Their `tested` status means the repository's relevant behavior checks pass; it does not certify a consuming application's integration or live provider connection.
 
 | Module | Included behavior | Application responsibilities |
 | --- | --- | --- |
@@ -18,6 +18,15 @@ All six modules are version `0.1.0`. Their `tested` status means the repository'
 | [`validated-form`](modules/validated-form/CONTRACT.md) | React form state, injected validation/submission, error summary, busy state, and duplicate-submit protection | Render fields, provide validators and submission adapters, and enforce validation and authorization on the server |
 | [`notification-preferences`](modules/notification-preferences/CONTRACT.md) | Preference form, strict TypeScript domain validation, Fetch client, and a Request/Response handler with revision conflicts | Configure types/channels, authenticated identity and tenant authorization, allowed origins, and durable atomic persistence; connect actual notification delivery separately |
 | [`common-api-clients`](modules/common-api-clients/CONTRACT.md) | Server-side HTTP transport and clients for GitHub, Stripe, Resend, Supabase, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor and Steel | Configure trusted credentials, endpoint/API versions, authorization, scopes, spending and live acceptance; install only into a server package |
+
+| [`env-config`](modules/env-config/CONTRACT.md) | Typed, fail-fast environment validation from any record (`process.env`, Workers `env`, `import.meta.env`), secret redaction and `.env.example` rendering | Declare every variable the app reads; load secrets from the platform's secret store |
+| [`structured-logger`](modules/structured-logger/CONTRACT.md) | JSON-lines logger with levels, child bindings, key-based redaction, bounded error serialization and request IDs | Choose the sink and retention; review the redaction list for the app's data |
+| [`http-resilience`](modules/http-resilience/CONTRACT.md) | Retry with exponential backoff and jitter for idempotent requests, `Retry-After`, timeouts and a circuit breaker | Decide which operations are idempotent and supply idempotency keys for writes |
+| [`rate-limit`](modules/rate-limit/CONTRACT.md) | Token-bucket and window limiters with a pluggable atomic store and standard 429/`RateLimit-*` headers | Derive trustworthy client keys; use a shared store (for example Redis) across instances |
+| [`webhook-verification`](modules/webhook-verification/CONTRACT.md) | Web Crypto signature checks for GitHub, Stripe and Standard Webhooks with timestamp tolerance, secret rotation and capped raw-body reads | Keep secrets server-side, verify before parsing, de-duplicate deliveries |
+| [`health-checks`](modules/health-checks/CONTRACT.md) | Fetch-standard `/healthz` liveness and `/readyz` readiness handlers with concurrent, time-limited checks | Supply real dependency checks and route them; keep details off public networks |
+| [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies applied to any `Response` | Tune the CSP to the app's actual script, style and connect sources |
+The seven server utilities use only web-standard APIs (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers, Hono and similar runtimes; repository tests run on Node.js.
 
 `app-shell`, `data-table`, and `validated-form` depend on `theme-tokens`; the installer resolves and copies that exact local dependency automatically. Import the CSS files described in each contract. Installing files does not edit the application's imports or connect its services.
 
@@ -40,6 +49,15 @@ node tools/resources.mjs validate --json
 | [Common APIs with code](docs/best-practices/common-apis.md) | Installable provider clients, required configuration, authorization boundaries, idempotency and local usage examples |
 | [Commerce and browser APIs](docs/best-practices/commerce-and-browser.md) | Saleor catalog queries and Steel session lifecycle with failure/recovery contracts |
 | [UI libraries](docs/best-practices/ui-libraries.md) | Sources for icons, buttons, navigation, menus, dropdowns, dialogs, forms, tables, maps, motion and platform-specific controls |
+
+| [Repository-to-release map](docs/lifecycle.md) | Which Genlib asset covers each stage from `git init` to a shipped release |
+
+| Template set | Contents |
+| --- | --- |
+| [`templates/project`](templates/project/README.md) | Strict NodeNext `tsconfig`, runtime pin, reference `ci:verify` scripts, `.env.example` |
+| [`templates/github`](templates/github/README.md) | Git ignores/attributes, editorconfig, CODEOWNERS, PR/issue forms, Dependabot, path-aware CI |
+| [`templates/docs`](templates/docs/README.md) | README, architecture, contributing, security, API, decision record and runbooks |
+| [`templates/ship`](templates/ship/README.md) | Non-root Dockerfile, tag-driven GitHub release, GHCR image with SBOM/provenance, CodeQL, changelog |
 
 Templates live under [`templates/`](templates) and are inactive until deliberately adopted. They require project-specific values and actual verification commands; they do not modify repository settings or replace existing files. The Claude/Codex skill routes agents to these sources with small, filtered reads. See [the addition's verification record](docs/RESOURCE_UPDATE_VALIDATION.md).
 
@@ -69,7 +87,14 @@ git rev-parse HEAD
 
 Review the checkout before executing its tools. For repeatable builds, check out the specific reviewed commit before continuing. A recorded hash identifies a baseline; it is not an independent signature or an approval of untrusted code.
 
-### 2. Search metadata, then inspect one contract
+### 2. Find candidates for the task, then inspect one contract
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" find searchable table --target "$APP_ROOT" --limit 5 --json
+node "$GENLIB_ROOT/bin/genlib.mjs" detect --target "$APP_ROOT" --json
+```
+
+`find` ranks modules, task recipes, language examples, templates and external resources together. With `--target` it detects the project's stack from its manifests, marks each result `compatible` or `review`, hides known mismatches, and fills the target into each result's `next` commands. Module-only search remains available:
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" search table --framework react --limit 5 --json

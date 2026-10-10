@@ -5,8 +5,8 @@ import {mkdtempSync,readFileSync,rmSync,existsSync,symlinkSync,mkdirSync} from '
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 const run=(...args)=>execFileSync(process.execPath,['tools/language-modules.mjs',...args],{encoding:'utf8'});
-test('all eight language examples are discoverable and have source files',()=>{
- const list=JSON.parse(run('list'));assert.equal(list.length,8);
+test('all fourteen language examples are discoverable and have source files',()=>{
+ const list=JSON.parse(run('list'));assert.equal(list.length,14);
  for(const item of list){const detail=JSON.parse(run('inspect',item.id));assert.ok(detail.files.length);}
 });
 test('safe plan and copy without overwrites',()=>{

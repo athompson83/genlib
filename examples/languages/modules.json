@@ -100,6 +100,84 @@
       ],
       "verification": "CI dart run",
       "status": "example"
+    },
+    {
+      "id": "python-config",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/config.py"
+      ],
+      "tests": [
+        "python/test_config.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-http-client",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/http_client.py"
+      ],
+      "tests": [
+        "python/test_http_client.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-safe-logging",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/logging_utils.py"
+      ],
+      "tests": [
+        "python/test_logging_utils.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-config",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/config/config.go"
+      ],
+      "tests": [
+        "go/config/config_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-http-client",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/httpclient/httpclient.go"
+      ],
+      "tests": [
+        "go/httpclient/httpclient_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-safe-logging",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/safelog/safelog.go"
+      ],
+      "tests": [
+        "go/safelog/safelog_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
     }
   ]
 }

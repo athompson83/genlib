@@ -28,7 +28,8 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - `tests/`: CLI safety, integration, and module behavior tests.
 - `resources/`: reviewed external sources, attachment mapping, licensing and UI-library selection metadata.
 - `tools/resources.mjs`: dependency-free, read-only source discovery and validation.
-- `templates/`: GitHub configuration, documentation and UI selection records for deliberate project adoption.
+- `templates/`: project, GitHub, documentation, ship/release and UI selection starters for deliberate project adoption, indexed by `templates/index.json`.
+- `lib/discover.mjs`: `genlib find`/`detect`/`catalog` over every source. Register new recipes, language examples and templates in their catalogs so `find` can reach them.
 - `docs/best-practices/`: GitHub, README/docs, API and UI integration guidance.
 
-Genlib uses a deliberately narrow React/TypeScript web compatibility family, framework-neutral utilities, and explicit server-side HTTPS API clients for Node 22+. Record unsupported stacks clearly rather than claiming universal compatibility. External resource metadata does not expand a module's runtime compatibility.
+Genlib uses a deliberately narrow React/TypeScript web compatibility family, framework-neutral utilities built on web-standard APIs, and explicit server-side HTTPS API clients for Node 22+. Record unsupported stacks clearly rather than claiming universal compatibility. External resource metadata does not expand a module's runtime compatibility.
