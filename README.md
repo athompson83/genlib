@@ -27,7 +27,8 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 600 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 4736 | Link- and license-checked records for open-source libraries, services and references across 21 [project types](resources/project-types.json) |
+| [External resources](#resource-catalog) | 4736 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing and social media in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 411 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -40,6 +41,7 @@ One command searches everything below and returns each result's exact next step.
 - [Resource catalog](#resource-catalog)
 - [Install indexes: skills, MCP servers, CLIs and APIs](#install-indexes-skills-mcp-servers-clis-and-apis)
 - [Find code without reading the whole repository](#find-code-without-reading-the-whole-repository)
+- [Jev and the search index](#jev-and-the-search-index)
 - [From new repository to shipped app](#from-new-repository-to-shipped-app)
 - [Claude Code and Codex skill](#claude-code-and-codex-skill)
 - [Safety model](#safety-model)
@@ -57,7 +59,10 @@ flowchart LR
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
   Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
-  Find --> X["Resource catalog"]
+  Find --> X["Resource catalog<br/>(incl. marketing, social)"]
+  Find --> D["Doc sections<br/>(exact line ranges)"]
+  Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
+  Index["registry/search-index.jsonl"] -.-> Jev
   M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
   C --> Lang["pick the detected<br/>language's code"] --> Copy
   R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
@@ -65,6 +70,7 @@ flowchart LR
   N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
   S --> SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"] --> App
   X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
+  D --> Section["sed -n start,end p"] --> App
 ```
 
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
@@ -96,6 +102,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | Command | Purpose |
 | --- | --- |
 | `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
+| `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
 | `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
 | `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
@@ -239,6 +246,17 @@ node "$GENLIB_ROOT/tools/repo-diagram.mjs"        # Mermaid overview at docs/dia
 ```
 
 Artifacts refuse to load when their commit differs from `HEAD`. The [repository map workflow](.github/workflows/repo-map.yml) regenerates the map, graph and diagram for every push and publishes them as a short-lived artifact instead of committing them. Graphify-style semantic graphs are an optional Genisys adapter, not a bundled dependency. See [repository intelligence](docs/repository-intelligence.md), [AST indexing](docs/ast-indexing.md), [task context](docs/task-context.md) and the [diagram guide](docs/diagrams-guide.md).
+
+## Jev and the search index
+
+Genisys' Jev answers typed questions about a concise state. `genlib jev <task>` gives it exactly that: the deterministic shortlist from `find`, one independent yes/no question per candidate, an `independent-membership` rule with a 0.8 threshold, and each candidate's exact next command, all inside 20,000 characters. `find` and `jev` search every source type, including each documentation section (returned with the line range to read). They weight distinctive words higher, ignore filler words, and treat a language named in the task ("go", "C#", "flutter") like a detected project.
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" jev add passkey login to a Go API --json
+grep -i saml "$GENLIB_ROOT/registry/search-index.jsonl" | head -3   # one line per searchable entry
+```
+
+`registry/search-index.jsonl` lists every searchable entry (`ref`, title, summary, terms, languages, file and lines for docs, next command) for harnesses that run their own retrieval. `npm run check` fails when it is stale. See the [Jev guide](docs/jev.md).
 
 ## From new repository to shipped app
 

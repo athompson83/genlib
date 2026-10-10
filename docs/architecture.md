@@ -13,7 +13,7 @@ flowchart TB
     CAP["resources/capabilities.json<br/>task → code in 9 languages"]
     TPL["templates/index.json<br/>project · github · docs · ship · ui"]
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
-    RES["resources/*.json · resources/catalog/*.json<br/>resources/project-types.json"]
+    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>500 pinned agent skills"]
     IDX["resources/mcp-servers.json · clis.json · apis.json<br/>ranked install indexes"]
   end
@@ -28,6 +28,9 @@ flowchart TB
   SKL --> SKLIB["lib/skills.mjs<br/>skill find · inspect"] --> DISC
   IDX --> IDXLIB["lib/indexes.mjs<br/>mcp · cli · api find · inspect"] --> DISC
   RES --> RESLIB["lib/resources.mjs<br/>validate · search · types"] --> DISC
+  DOCS_MD["README · AGENTS · docs/**/*.md"] --> DOCIDX["lib/docs-index.mjs<br/>sections + line ranges"] --> DISC
+  DISC --> JEV["lib/jev.mjs<br/>bounded yes/no packet"] --> CLI
+  DISC -- "npm run index:build" --> SIDX["registry/search-index.jsonl"]
   DISC --> CLI["bin/genlib.mjs"]
   REG --> INST["lib/install.mjs<br/>plan · add · verify"] --> CLI
   CLI -- "copies reviewed bytes" --> APP
@@ -35,6 +38,8 @@ flowchart TB
   IDXLIB -. "prints claude/codex mcp add, brew install, SDK or client generator" .-> APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
   RES -. "scripts/verify-resources.mjs<br/>(network, maintainers)" .-> NET["Git hosts · npm · PyPI · crates.io"]
   REG & RES --> DOCS["scripts/sync-docs.mjs<br/>README and resource index counts"]
+  SIDX -. "grep / own retrieval" .-> JEVX["Genisys Jev and other harnesses"]
+  JEV -. "genlib jev --json" .-> JEVX
   SKILL["skills/genlib-use"] -- "routes agents to" --> CLI
 ```
 
