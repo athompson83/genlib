@@ -112,7 +112,7 @@ Total: 971 records in `resources/catalog/marketing-engagement*.json`.
 | --- | --- | --- |
 | typescript | `firebase-messaging`, `web-push-npm`, `expo-notifications`, `capacitor-push-notifications` | Apache-2.0, MIT, MPL-2.0 |
 | python | `firebase-admin`, `pywebpush`, `aioapns`, `knockapi` | Apache-2.0, MPL-2.0 |
-| go | `server`, `gorush`, `firebase-google-com-go`, `apns2-go` | Apache-2.0, MIT |
+| go | `gotify-server`, `gorush`, `firebase-google-com-go`, `apns2-go` | Apache-2.0, MIT |
 | rust | `web-push-crates`, `a2`, `google-fcm1`, `web-push-native` | Apache-2.0, MIT, MIT OR Apache-2.0 |
 | java | `com-eatthepath-pushy`, `com-onesignal-onesignal`, `com-google-firebase-firebase-admin`, `nl-martijndwars-web-push` | Apache-2.0, MIT |
 | kotlin | `com-interaso-webpush` | MIT |

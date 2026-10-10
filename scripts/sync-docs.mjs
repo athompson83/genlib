@@ -45,7 +45,7 @@ const sourcesBlock = from => [
   `| [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.mcp} | Top MCP servers by downloads plus hosted servers, wired with one \`claude mcp add\` / \`codex mcp add\` |`,
   `| [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.cli} | Top Homebrew CLIs by install requests, one \`brew install\` each |`,
   `| [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.api} | Top OpenAPI-described APIs with official SDK or one-command typed client |`,
-  `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media and dashboards in 12 languages) across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
+  `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar and chat/messaging in 12 languages) across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
   `| [Documentation sections](#jev-and-the-search-index) | ${counts.doc} | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |`,
 ].join('\n');
 const catalogBlock = from => [

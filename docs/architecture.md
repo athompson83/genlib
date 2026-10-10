@@ -13,7 +13,7 @@ flowchart TB
     CAP["resources/capabilities.json<br/>task → code in 9 languages"]
     TPL["templates/index.json<br/>project · github · docs · ship · ui"]
     TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
-    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media, dashboards)<br/>resources/project-types.json"]
+    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>500 pinned agent skills"]
     IDX["resources/mcp-servers.json · clis.json · apis.json<br/>ranked install indexes"]
   end
@@ -76,6 +76,27 @@ Framework-neutral server modules do not require React. Their platform and runtim
 The module registry currently accepts only original Apache-2.0 source. External packages, marketplace snippets, assets and reference sites retain their own terms. Adopting third-party source into an application requires appropriate provenance and notices; distributing it as a Genlib module would first require an explicit registry provenance/license design change.
 
 `templates/project`, `templates/github`, `templates/docs`, `templates/ship` and `templates/ui` are opt-in project starters indexed by `templates/index.json`. They are not installer hooks and do not change live GitHub settings. A consuming project merges selected files, replaces placeholders and supplies real verification commands before adoption.
+
+## Generated catalogs and agent access
+
+The capability index (`resources/capabilities.json`) maps common tasks to tested code in 9 languages; see [capabilities.md](capabilities.md). Several resource catalogs are generated from verified registry research rather than written by hand, and carry `languages` and registry `popularity`:
+- `resources/catalog/marketing-*.json`
+- `social-media.json`
+- `dashboards.json`
+- `scheduling-calendar.json`
+- `chat-messaging.json`
+
+Each has a guide under `docs/resources/`.
+
+Agents reach everything through one ranking (`lib/discover.mjs`) by any of these paths:
+- **CLI:** `bin/genlib.mjs`.
+- **MCP server:** `bin/genlib-mcp.mjs`.
+- **Jev decision packets:** `lib/jev.mjs`.
+- **Generated search index:** `registry/search-index.jsonl`.
+- **Navigation graph:** `registry/graph.json`.
+- **Obsidian vault export:** `scripts/export-obsidian.mjs`.
+
+`lib/docs-index.mjs` makes every documentation section searchable with its line range. See [agent-access.md](agent-access.md) and [jev.md](jev.md). `npm run check` fails when the index, graph or generated docs are stale.
 
 ## Trust and ownership
 
