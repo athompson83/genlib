@@ -2820,6 +2820,13 @@
    "file": "docs/ast-indexing.md"
   },
   {
+   "id": "doc:docs/benchmarks.md",
+   "kind": "doc",
+   "label": "docs/benchmarks.md",
+   "count": 6,
+   "file": "docs/benchmarks.md"
+  },
+  {
    "id": "doc:docs/best-practices/commerce-and-browser.md",
    "kind": "doc",
    "label": "docs/best-practices/commerce-and-browser.md",
@@ -3627,7 +3634,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 570,
+   "count": 576,
    "query": "--type doc"
   },
   {
@@ -13888,7 +13895,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 570
+   "weight": 576
   },
   {
    "source": "genlib",
@@ -16583,6 +16590,12 @@
    "target": "doc:docs/ast-indexing.md",
    "relation": "section-of",
    "weight": 1
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/benchmarks.md",
+   "relation": "section-of",
+   "weight": 6
   },
   {
    "source": "type:doc",
