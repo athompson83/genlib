@@ -78,6 +78,7 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
   - `unresolved`: not selectable as code.
   - None of these means the project passed an application build, security audit, device test or live provider test.
 - `license-review`: copyleft, source-available, fair-code or custom terms (for example AGPL, SSPL, BUSL, Elastic, Sustainable Use, or a vendor license). Make a license decision before copying, embedding or offering the software as a service.
+- `quickstart`: the shortest working path, as up to six exact commands or copy steps (for example `npx shadcn@latest add "https://magicui.design/r/marquee.json"`, `npm install bullmq`, or a pinned CDN tag). When a record has no authored quickstart, Genlib derives one from `packages`. `find` puts these steps first in a resource's `next`, and `search` and `inspect` return them. The verifier checks every URL inside a quickstart.
 - `packages`: the primary installable package identities (`npm`, `pypi`, `crates`, `go`, `maven`, `nuget`, `gem`, `packagist`, `pub`, `swift`, `hex`, `github-action`, `docker`).
 - `genlib.module`: set only when this checkout has callable original code for the resource.
 
@@ -86,6 +87,7 @@ Upstream code keeps its own license. Genlib's Apache-2.0 license covers only the
 ## Maintaining the catalog
 
 - Add records to the matching `resources/catalog/<domain>.json` file, or create a new domain file with its own guide under `docs/resources/`.
+- Give each record the fewest-steps `quickstart` the project actually supports, and confirm every command, registry URL and copy source.
 - Run `node tools/resources.mjs validate --json` and `node scripts/verify-resources.mjs --file <catalog>`. Fix or drop every failure, including deprecated or archived projects.
 - Run `node scripts/sync-docs.mjs` so the count and catalog tables here and in the README stay current. `npm run check` fails when they drift.
 - Validation rejects duplicate IDs, unknown project types, unsafe URLs, missing guides, fake module bindings and unresolved resources offered as packages.

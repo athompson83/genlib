@@ -543,6 +543,11 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "quickstart": [
+        "npx shadcn@latest init",
+        "npx shadcn@latest add button",
+        "Docs: https://ui.shadcn.com/docs/components"
       ]
     },
     {
@@ -599,6 +604,10 @@
       "projectTypes": [
         "web-app",
         "marketing-site"
+      ],
+      "quickstart": [
+        "Check the license tier first: https://ui.aceternity.com/licence",
+        "npx shadcn@latest add \"https://ui.aceternity.com/registry/background-beams.json\""
       ]
     },
     {
@@ -655,6 +664,10 @@
       "projectTypes": [
         "web-app",
         "marketing-site"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://magicui.design/r/marquee.json\"",
+        "Browse components: https://magicui.design/docs/components"
       ]
     },
     {
@@ -710,6 +723,17 @@
       "projectTypes": [
         "web-app",
         "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "animejs"
+        }
+      ],
+      "quickstart": [
+        "npm install animejs",
+        "import { animate } from \"animejs\";",
+        "Docs: https://animejs.com/documentation"
       ]
     },
     {
@@ -762,6 +786,10 @@
       "projectTypes": [
         "web-app",
         "marketing-site"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://motion-primitives.com/c/text-effect.json\"",
+        "Docs: https://motion-primitives.com/docs"
       ]
     },
     {
@@ -938,6 +966,11 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "quickstart": [
+        "npx shadcn@latest add \"https://mapcn.dev/r/map.json\"",
+        "Configure a basemap style you are licensed to use",
+        "Docs: https://www.mapcn.dev/"
       ]
     },
     {
@@ -991,6 +1024,10 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "quickstart": [
+        "Pick an element on https://uiverse.io, open it and copy its HTML/CSS or Tailwind tab into the component",
+        "Or copy from the MIT repo: https://github.com/uiverse-io/galaxy"
       ]
     },
     {
@@ -1051,6 +1088,15 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@samasante/liquid-glass"
+        }
+      ],
+      "quickstart": [
+        "npm install @samasante/liquid-glass"
       ]
     },
     {

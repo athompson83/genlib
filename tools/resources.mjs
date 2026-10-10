@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { loadProjectTypes, loadResources, searchResources } from '../lib/resources.mjs';
+import { loadProjectTypes, loadResources, quickstartFor, searchResources } from '../lib/resources.mjs';
 
 const HELP = `Usage:
   node tools/resources.mjs search <query> [--platform web|mobile|desktop] [--category value] [--mode reference|selective-copy|package|service|license-review] [--license MIT] [--project <type>] [--limit 5] [--json]
@@ -36,6 +36,7 @@ try {
       if (words.length !== 1) throw new Error('Inspect requires one resource ID.');
       result = catalog.items.find(item => item.id === words[0]);
       if (!result) throw new Error('Resource not found: ' + words[0]);
+      result = { ...result, quickstart: quickstartFor(result) };
     } else if (command === 'types') {
       const counts = {};
       for (const item of catalog.items) for (const type of item.projectTypes ?? []) counts[type] = (counts[type] ?? 0) + 1;

@@ -71,6 +71,10 @@ async function verify(item) {
   for (const field of ['homepage', 'docs']) {
     if (item[field] && item[field] !== item.repository && (await linkResolves(item[field])) === false) report.problems.push(field + '-unreachable');
   }
+  // Authored quickstart steps must point at reachable URLs (registry JSON, CDN files, copy sources).
+  for (const url of new Set((item.quickstart ?? []).flatMap(step => step.match(/https:\/\/[^\s"'`<>)]+/g) ?? []))) {
+    if ((await linkResolves(url.replace(/[.,;]$/, ''))) === false) report.problems.push('quickstart-unreachable:' + url);
+  }
   report.packages = [];
   for (const entry of item.packages ?? []) {
     try {

@@ -125,3 +125,14 @@ test('module results list installed files, exports and module dependencies', asy
   const table = findInSources(sources, 'data table', { type: 'module' }).results[0];
   assert.deepEqual(table.dependencies, ['theme-tokens']);
 });
+
+test('resource results lead with install steps and flag license review first', async () => {
+  const sources = await loadSources();
+  const queue = findInSources(sources, 'bullmq', { type: 'resource' }).results[0];
+  assert.equal(queue.id, 'bullmq');
+  assert.equal(queue.next[0], 'npm install bullmq');
+  assert.match(queue.next.at(-1), /resources\.mjs inspect bullmq/);
+  const restricted = sources.resources.find(item => item.integrationMode === 'license-review');
+  const hit = findInSources(sources, restricted.id, { type: 'resource', limit: 25 }).results.find(item => item.id === restricted.id);
+  assert.match(hit.next[0], /^License review required/);
+});

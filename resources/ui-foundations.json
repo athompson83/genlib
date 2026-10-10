@@ -54,6 +54,17 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lucide-react"
+        }
+      ],
+      "quickstart": [
+        "npm install lucide-react",
+        "import { Camera } from \"lucide-react\";",
+        "Docs: https://lucide.dev/guide/packages/lucide-react"
       ]
     },
     {
@@ -108,6 +119,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@heroicons/react"
+        }
+      ],
+      "quickstart": [
+        "npm install @heroicons/react",
+        "import { BeakerIcon } from \"@heroicons/react/24/solid\";"
       ]
     },
     {
@@ -161,6 +182,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tabler/icons-react"
+        }
+      ],
+      "quickstart": [
+        "npm install @tabler/icons-react",
+        "import { IconHome } from \"@tabler/icons-react\";"
       ]
     },
     {
@@ -218,6 +249,17 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "radix-ui"
+        }
+      ],
+      "quickstart": [
+        "npm install radix-ui",
+        "import { Dialog } from \"radix-ui\";",
+        "Docs: https://www.radix-ui.com/primitives/docs/overview/introduction"
       ]
     },
     {
@@ -274,6 +316,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@base-ui/react"
+        }
+      ],
+      "quickstart": [
+        "npm install @base-ui/react",
+        "Docs: https://base-ui.com/react/overview/quick-start"
       ]
     },
     {
@@ -330,6 +382,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-aria-components"
+        }
+      ],
+      "quickstart": [
+        "npm install react-aria-components",
+        "Docs: https://react-spectrum.adobe.com/react-aria/getting-started.html"
       ]
     },
     {
@@ -387,6 +449,21 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@headlessui/react"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@headlessui/vue"
+        }
+      ],
+      "quickstart": [
+        "npm install @headlessui/react   # React",
+        "npm install @headlessui/vue     # Vue",
+        "Docs: https://headlessui.com"
       ]
     },
     {
@@ -444,6 +521,21 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mantine/core"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@mantine/hooks"
+        }
+      ],
+      "quickstart": [
+        "npm install @mantine/core @mantine/hooks",
+        "Wrap the app in <MantineProvider> and import \"@mantine/core/styles.css\"",
+        "Docs: https://mantine.dev/getting-started/"
       ]
     },
     {
@@ -500,6 +592,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mui/material"
+        }
+      ],
+      "quickstart": [
+        "npm install @mui/material @emotion/react @emotion/styled",
+        "Docs: https://mui.com/material-ui/getting-started/installation/"
       ]
     },
     {
@@ -555,6 +657,17 @@
       ],
       "projectTypes": [
         "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-paper"
+        }
+      ],
+      "quickstart": [
+        "npm install react-native-paper react-native-safe-area-context",
+        "Wrap the app in <PaperProvider>",
+        "Docs: https://callstack.github.io/react-native-paper/docs/guides/getting-started"
       ]
     },
     {
@@ -611,6 +724,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "reka-ui"
+        }
+      ],
+      "quickstart": [
+        "npm install reka-ui",
+        "Docs: https://reka-ui.com/docs/overview/getting-started"
       ]
     },
     {
@@ -668,6 +791,17 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@nuxt/ui"
+        }
+      ],
+      "quickstart": [
+        "npm install @nuxt/ui",
+        "Add \"@nuxt/ui\" to modules in nuxt.config.ts and @import \"@nuxt/ui\"; in main.css",
+        "Docs: https://ui.nuxt.com/docs/getting-started/installation/nuxt"
       ]
     },
     {
@@ -724,6 +858,17 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@fluentui/react-components"
+        }
+      ],
+      "quickstart": [
+        "npm install @fluentui/react-components",
+        "Wrap the app in <FluentProvider theme={webLightTheme}>",
+        "Docs: https://react.fluentui.dev"
       ]
     },
     {
@@ -780,6 +925,17 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "bootstrap"
+        }
+      ],
+      "quickstart": [
+        "npm install bootstrap",
+        "Or CDN: <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css\">",
+        "Docs: https://getbootstrap.com/docs/5.3/getting-started/introduction/"
       ]
     },
     {
@@ -833,6 +989,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@shoelace-style/shoelace"
+        }
+      ],
+      "quickstart": [
+        "Maintenance only: prefer web-awesome for new work",
+        "npm install @shoelace-style/shoelace"
       ]
     },
     {
@@ -888,6 +1054,16 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@awesome.me/webawesome"
+        }
+      ],
+      "quickstart": [
+        "npm install @awesome.me/webawesome",
+        "Docs: https://webawesome.com/docs/"
       ]
     },
     {
@@ -944,6 +1120,17 @@
       ],
       "projectTypes": [
         "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tanstack/react-table"
+        }
+      ],
+      "quickstart": [
+        "npm install @tanstack/react-table",
+        "Or use Genlib data-table: node \"$GENLIB_ROOT/bin/genlib.mjs\" plan data-table --target \"$APP_ROOT\"",
+        "Docs: https://tanstack.com/table/latest"
       ]
     },
     {
@@ -1002,6 +1189,16 @@
       "projectTypes": [
         "web-app",
         "ecommerce"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@storefront-ui/react"
+        }
+      ],
+      "quickstart": [
+        "npm install @storefront-ui/react",
+        "Docs: https://docs.storefrontui.io/v2/"
       ]
     }
   ]

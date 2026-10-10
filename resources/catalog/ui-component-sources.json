@@ -58,6 +58,10 @@
       "install": [
         "Browse the element on uiverse.io or in the Galaxy folder, copy its HTML/CSS (or Tailwind) into the project, and record the source path.",
         "Replace hard-coded colors with project tokens and test keyboard, focus and prefers-reduced-motion."
+      ],
+      "quickstart": [
+        "Copy one element folder's HTML/CSS from https://github.com/uiverse-io/galaxy (e.g. Buttons/) into the component",
+        "Replace hard-coded colors with project tokens and add focus and reduced-motion styles"
       ]
     },
     {
@@ -114,6 +118,9 @@
       },
       "install": [
         "Read the relevant section, shortlist at most three libraries, and add the selected one as a Genlib resource record with its own license and links."
+      ],
+      "quickstart": [
+        "Every entry is imported as its own Genlib record: node tools/resources.mjs search <need> --category component-library --limit 5"
       ]
     },
     {
@@ -166,6 +173,9 @@
       },
       "install": [
         "Read the relevant section, shortlist candidates, and record the selected source as a Genlib resource with its own license and links."
+      ],
+      "quickstart": [
+        "Every entry is imported as its own Genlib record: node tools/resources.mjs search <need> --category shadcn-registry --limit 5"
       ]
     }
   ]

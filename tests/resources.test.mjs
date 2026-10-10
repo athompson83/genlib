@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
-import { loadResources, searchResources, validateResource } from '../lib/resources.mjs';
+import { loadResources, quickstartFor, searchResources, validateResource } from '../lib/resources.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 
@@ -76,4 +76,22 @@ test('the types command lists every Genisys project type with resource counts', 
   assert.ok(types.length >= 20);
   assert.ok(types.every(type => typeof type.resources === 'number' && type.summary.length > 0));
   assert.ok(types.some(type => type.id === 'ai-agent'));
+});
+
+test('every resource exposes a shortest-path quickstart, authored or derived from its packages', async () => {
+  const { items } = await loadResources();
+  for (const item of items) {
+    const steps = quickstartFor(item);
+    assert.ok(Array.isArray(steps) && steps.length > 0 && steps.every(step => typeof step === 'string' && step.length > 0), item.id);
+  }
+  const base = items[0];
+  assert.deepEqual(quickstartFor({ ...base, quickstart: undefined, packages: [{ ecosystem: 'npm', name: 'zod' }, { ecosystem: 'pypi', name: 'httpx' }], docs: 'https://zod.dev' }),
+    ['npm install zod', 'pip install httpx', 'Docs: https://zod.dev']);
+  assert.deepEqual(quickstartFor({ ...base, quickstart: ['npx shadcn@latest add button'] }), ['npx shadcn@latest add button']);
+  assert.match(quickstartFor({ ...base, quickstart: undefined, packages: undefined, integrationMode: 'service', docs: 'https://example.com/docs' })[0], /^Sign up/);
+  assert.throws(() => validateResource({ ...base, quickstart: [] }));
+  assert.throws(() => validateResource({ ...base, quickstart: ['x'.repeat(301)] }));
+  assert.ok(searchResources(items, 'button', { limit: 3 }).every(item => item.quickstart.length > 0));
+  const shadcn = items.find(item => item.id === 'shadcn-ui');
+  assert.ok(quickstartFor(shadcn).some(step => step.startsWith('npx shadcn@latest add')));
 });

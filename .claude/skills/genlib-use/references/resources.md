@@ -42,6 +42,7 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
   ],
   "adoption": [
     "Read the selected record's integrationMode, verification, license.scope, sources, genlib binding and cautions. Resource verification describes evidence review, not runtime testing: verified = hand-reviewed source claims; partial = repository, registry license and links checked automatically by scripts/verify-resources.mjs.",
+    "Use the record's quickstart (returned by find, search and inspect) as the exact install or copy steps; do not re-derive them from docs.",
     "Prefer a record whose useWhen names the work you would otherwise write. Treat license-review records (copyleft, source-available, fair-code, custom terms) as needing a license decision before copying or embedding.",
     "Prefer the project's existing UI system. Pin any selected external release or commit, keep required notices, inspect transitive dependencies and test target compatibility.",
     "Do not copy galleries, paid component collections or prompt packs into a shared library without applicable redistribution rights. Check mixed licenses and external service terms at the selected item level.",
