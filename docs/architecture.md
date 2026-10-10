@@ -34,6 +34,8 @@ flowchart TB
   DISC --> BRIEF["lib/brief.mjs<br/>quick · compact find"] --> CLI["bin/genlib.mjs"]
   CAP & LANG & REC & REG --> OUTL["lib/outline.mjs<br/>signatures, not source"] --> CLI
   OUTL & BRIEF --> MCPS
+  RES & SKL & IDX --> SRC["lib/source.mjs<br/>sparse pinned fetch<br/>+ resources/equivalents.json"] --> CLI
+  SRC --> MCPS
   CLI -- "npm run tokens:report" --> TOK["docs/token-budget.md<br/>measured output sizes"]
   REG --> INST["lib/install.mjs<br/>plan · add · verify"] --> CLI
   CLI -- "copies reviewed bytes" --> APP

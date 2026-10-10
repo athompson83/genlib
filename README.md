@@ -67,6 +67,7 @@ flowchart LR
   Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Quick["genlib quick<br/>best match + its commands"]
   Quick --> Find["genlib find<br/>(+ detect --target)"]
   Quick -.-> Outline["genlib outline<br/>signatures, not source"] -.-> App
+  X -.-> Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"] -.-> App
   Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
   Find --> M["Modules"]
   Find --> R["Recipes and<br/>language examples"]
@@ -122,6 +123,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | --- | --- |
 | `quick <words> [--target app] [--language go]` | The best match and only its install or copy commands, plus up to 3 alternative refs (cheapest call) |
 | `find <words> [--target app] [--language …] [--type …] [--project …]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON |
+| `source <id> [--path dir]` | Pinned, minimal fetch of an external project's original source (sparse checkout of one folder, or one raw file), its license, and Genlib code that already covers the need |
 | `outline <id> [--language go]` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib-mcp` (`bin/genlib-mcp.mjs`) | MCP server exposing quick, find, outline, jev, capability, inspect, read_doc and catalog as tools |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
@@ -323,7 +325,7 @@ claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"    # or: codex m
 node "$GENLIB_ROOT/scripts/export-obsidian.mjs" --out "$VAULT/genlib" # linked notes per type, category and language
 ```
 
-- **MCP server:** a dependency-free stdio server. Its tools are `genlib_quick`, `genlib_find`, `genlib_outline`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, so MCP clients call Genlib natively. Quick, find and outline answer with compact text plus the structured result; `detail: "full"` returns whole records.
+- **MCP server:** a dependency-free stdio server. Its tools are `genlib_quick`, `genlib_find`, `genlib_outline`, `genlib_source`, `genlib_jev`, `genlib_capability`, `genlib_inspect`, `genlib_read_doc` and `genlib_catalog`, so MCP clients call Genlib natively. Quick, find and outline answer with compact text plus the structured result; `detail: "full"` returns whole records.
 - **Navigation graph:** `registry/graph.json` is a compact Graphify-style graph linking source types, catalogs, categories, languages, capabilities and docs, kept fresh by `npm run check`.
 - **Obsidian:** the vault export writes only its own notes.
 

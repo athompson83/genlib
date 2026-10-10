@@ -275,6 +275,937 @@
       ]
     },
     {
+      "id": "chatbotx",
+      "name": "ChatbotX",
+      "category": "ai-apps",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://github.com/ChatbotXIO/ChatbotX",
+      "repository": "https://github.com/ChatbotXIO/ChatbotX",
+      "docs": null,
+      "summary": "Open-source omnichannel chat marketing platform (WhatsApp, Messenger, Instagram, Telegram, Zalo, email, webchat) with AI agents, visual flows, live chat, CRM, broadcasts, API, CLI and MCP.",
+      "useWhen": "Use as the AI app, or study it for agent, MCP and local-model integration patterns; check licenses and permissions first.",
+      "cautions": [
+        "MIT: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "ai-apps",
+        "typescript",
+        "github",
+        "chatbot",
+        "whatsapp",
+        "marketing",
+        "manychat-alternative",
+        "mcp",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ChatbotXIO/ChatbotX",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/ChatbotXIO/ChatbotX && cd ChatbotX && docker compose up -d",
+        "Docs: https://github.com/ChatbotXIO/ChatbotX"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "locally-uncensored",
+      "name": "Locally Uncensored",
+      "category": "ai-apps",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://locallyuncensored.com",
+      "repository": "https://github.com/PurpleDoubleD/locally-uncensored",
+      "docs": null,
+      "summary": "All-in-one local AI desktop studio for Windows and Linux: chat, image and video generation and a coding agent with locally run models.",
+      "useWhen": "Use as the AI app, or study it for agent, MCP and local-model integration patterns; check licenses and permissions first.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "ai-apps",
+        "typescript",
+        "github",
+        "local-llm",
+        "image-generation",
+        "desktop",
+        "ollama-alternative",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/PurpleDoubleD/locally-uncensored",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://locallyuncensored.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse releases: https://github.com/PurpleDoubleD/locally-uncensored/releases",
+        "Docs: https://locallyuncensored.com"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "openchatcut",
+      "name": "OpenChatCut",
+      "category": "ai-apps",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://openchatcut.com",
+      "repository": "https://github.com/0xsline/OpenChatCut",
+      "docs": null,
+      "summary": "Local-first AI video editor: conversational agents edit a real multitrack timeline (captions, effects, reframing) with MCP tools for external agents and editable exports (MP4, FCPXML).",
+      "useWhen": "Use as the AI app, or study it for agent, MCP and local-model integration patterns; check licenses and permissions first.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "ai-apps",
+        "typescript",
+        "github",
+        "video-editor",
+        "ai-agents",
+        "mcp",
+        "local-first",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/0xsline/OpenChatCut",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://openchatcut.com",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse releases: https://github.com/0xsline/OpenChatCut/releases",
+        "Docs: https://openchatcut.com"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "opendroid",
+      "name": "OpenDroid",
+      "category": "ai-apps",
+      "platforms": [
+        "server",
+        "jvm",
+        "android"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://github.com/yashab-cyber/opendroid",
+      "repository": "https://github.com/yashab-cyber/opendroid",
+      "docs": null,
+      "summary": "Autonomous AI agent for Android that plans and executes multi-step phone tasks through the Accessibility Service with several LLM providers. Caution: the README promotes a crypto token, and the app requests broad device control.",
+      "useWhen": "Use as the AI app, or study it for agent, MCP and local-model integration patterns; check licenses and permissions first.",
+      "cautions": [
+        "Apache-2.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "ai-apps",
+        "kotlin",
+        "github",
+        "android",
+        "ai-agents",
+        "automation",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/yashab-cyber/opendroid",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/yashab-cyber/opendroid && cd opendroid && ./gradlew assembleDebug",
+        "Docs: https://github.com/yashab-cyber/opendroid"
+      ],
+      "languages": [
+        "kotlin"
+      ]
+    },
+    {
+      "id": "capd",
+      "name": "Capd",
+      "category": "desktop-apps",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/jamiedavenport/capd",
+      "repository": "https://github.com/jamiedavenport/capd",
+      "docs": null,
+      "summary": "Private native macOS app that captures pages, text, notes, links and images and finds them with full-text search and on-device OCR; includes a CLI and read-only MCP server.",
+      "useWhen": "Use as the end-user app, or study its source for native macOS patterns (SwiftUI, SQLite FTS5, Vision OCR).",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "desktop-apps",
+        "swift",
+        "github",
+        "read-later",
+        "full-text-search",
+        "ocr",
+        "macos",
+        "mcp",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jamiedavenport/capd",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse releases: https://github.com/jamiedavenport/capd/releases",
+        "Docs: https://github.com/jamiedavenport/capd"
+      ],
+      "languages": [
+        "swift"
+      ]
+    },
+    {
+      "id": "compositor",
+      "name": "Compositor",
+      "category": "desktop-apps",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/robbietilton/Compositor",
+      "repository": "https://github.com/robbietilton/Compositor",
+      "docs": null,
+      "summary": "Free, open-source Photoshop-style image editor for macOS: layers, masks, adjustments, retouching and PSD support (macOS 26, Apple silicon).",
+      "useWhen": "Use as the end-user app, or study its source for native macOS patterns (SwiftUI, SQLite FTS5, Vision OCR).",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "desktop-apps",
+        "swift",
+        "github",
+        "image-editor",
+        "photoshop-alternative",
+        "macos",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/robbietilton/Compositor",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse releases: https://github.com/robbietilton/Compositor/releases",
+        "Docs: https://github.com/robbietilton/Compositor"
+      ],
+      "languages": [
+        "swift"
+      ]
+    },
+    {
+      "id": "snapzy",
+      "name": "Snapzy",
+      "category": "desktop-apps",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/duongductrong/Snapzy",
+      "repository": "https://github.com/duongductrong/Snapzy",
+      "docs": null,
+      "summary": "Open-source native macOS app for screenshots and recordings, annotation, video trimming and GIF export.",
+      "useWhen": "Use as the end-user app, or study its source for native macOS patterns (SwiftUI, SQLite FTS5, Vision OCR).",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "desktop-apps",
+        "swift",
+        "github",
+        "screenshot",
+        "screen-recording",
+        "macos",
+        "cleanshot-alternative",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/duongductrong/Snapzy",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse releases: https://github.com/duongductrong/Snapzy/releases",
+        "Docs: https://github.com/duongductrong/Snapzy"
+      ],
+      "languages": [
+        "swift"
+      ]
+    },
+    {
+      "id": "backstage",
+      "name": "Backstage",
+      "category": "engineering-guides",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://backstage.io",
+      "repository": "https://github.com/backstage/backstage",
+      "docs": "https://backstage.io/docs",
+      "summary": "Spotify's open platform for building developer portals: software catalog, templates, TechDocs and plugins.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "typescript",
+        "github",
+        "developer-portal",
+        "platform-engineering",
+        "service-catalog",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/backstage/backstage",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://backstage.io/docs",
+          "title": "Registry record or documentation"
+        },
+        {
+          "url": "https://backstage.io",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "npx @backstage/create-app@latest",
+        "Docs: https://backstage.io/docs"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "google-engineering-practices",
+      "name": "Google Engineering Practices",
+      "category": "engineering-guides",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "CC-BY-3.0",
+        "url": null,
+        "scope": "CC-BY-3.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://google.github.io/eng-practices/",
+      "repository": "https://github.com/google/eng-practices",
+      "docs": null,
+      "summary": "Google's code review guide for authors and reviewers: what to look for, how to write change descriptions, and how to handle pushback.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "any",
+        "github",
+        "code-review",
+        "engineering-practices",
+        "guide",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/google/eng-practices",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://google.github.io/eng-practices/",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://google.github.io/eng-practices/",
+        "Docs: https://google.github.io/eng-practices/"
+      ]
+    },
+    {
+      "id": "microsoft-rest-api-guidelines",
+      "name": "Microsoft REST API Guidelines",
+      "category": "engineering-guides",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "CC-BY-4.0",
+        "url": null,
+        "scope": "CC-BY-4.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/microsoft/api-guidelines",
+      "repository": "https://github.com/microsoft/api-guidelines",
+      "docs": null,
+      "summary": "Microsoft's REST and Graph API design guidelines: naming, versioning, errors, pagination, long-running operations.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "any",
+        "github",
+        "api-design",
+        "rest",
+        "guidelines",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/api-guidelines",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/microsoft/api-guidelines",
+        "Docs: https://github.com/microsoft/api-guidelines"
+      ]
+    },
+    {
+      "id": "netflix-eureka",
+      "name": "Netflix Eureka",
+      "category": "engineering-guides",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/Netflix/eureka",
+      "repository": "https://github.com/Netflix/eureka",
+      "docs": null,
+      "summary": "AWS-oriented service registry for resilient mid-tier load balancing and failover.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "java",
+        "github",
+        "service-discovery",
+        "distributed-systems",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Netflix/eureka",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/Netflix/eureka",
+        "Docs: https://github.com/Netflix/eureka"
+      ],
+      "languages": [
+        "java"
+      ]
+    },
+    {
+      "id": "netflix-open-source",
+      "name": "Netflix Open Source",
+      "category": "engineering-guides",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://netflix.github.io/",
+      "repository": "https://github.com/Netflix/metaflow",
+      "docs": "https://docs.metaflow.org",
+      "summary": "Netflix OSS entry point: Metaflow (ML and data workflows); see also Eureka (service discovery) and Zuul (edge gateway) and the Netflix Tech Blog for distributed-systems write-ups.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "python",
+        "github",
+        "netflix",
+        "distributed-systems",
+        "ml-workflows",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Netflix/metaflow",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://docs.metaflow.org",
+          "title": "Registry record or documentation"
+        },
+        {
+          "url": "https://netflix.github.io/",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "pip install metaflow",
+        "Docs: https://docs.metaflow.org"
+      ],
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "netflix-zuul",
+      "name": "Netflix Zuul",
+      "category": "engineering-guides",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/Netflix/zuul",
+      "repository": "https://github.com/Netflix/zuul",
+      "docs": null,
+      "summary": "L7 gateway for dynamic routing, monitoring, resiliency and security at the edge.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "java",
+        "github",
+        "api-gateway",
+        "edge",
+        "distributed-systems",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Netflix/zuul",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/Netflix/zuul",
+        "Docs: https://github.com/Netflix/zuul"
+      ],
+      "languages": [
+        "java"
+      ]
+    },
+    {
+      "id": "thoughtworks-build-your-own-radar",
+      "name": "Thoughtworks Build Your Own Radar",
+      "category": "engineering-guides",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": "https://www.thoughtworks.com/radar",
+      "repository": "https://github.com/thoughtworks/build-your-own-radar",
+      "docs": null,
+      "summary": "Generate a Thoughtworks-style technology radar from a Google Sheet, CSV or JSON to track adopt/trial/assess/hold decisions.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "typescript",
+        "github",
+        "technology-radar",
+        "architecture-decisions",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/thoughtworks/build-your-own-radar",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://www.thoughtworks.com/radar",
+          "title": "Official site"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "docker run --rm -p 8080:80 wwwthoughtworks/build-your-own-radar",
+        "Docs: https://www.thoughtworks.com/radar"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "uber-go-style-guide",
+      "name": "Uber Go Style Guide",
+      "category": "engineering-guides",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/uber-go/guide",
+      "repository": "https://github.com/uber-go/guide",
+      "docs": null,
+      "summary": "Uber's Go style guide: patterns, performance and style conventions for large Go codebases.",
+      "useWhen": "Read these guides before designing APIs, reviewing code or standardising a codebase; use the platforms for developer portals and technology radars.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "engineering-guides",
+        "go",
+        "github",
+        "style-guide",
+        "engineering-practices",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/uber-go/guide",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "Browse: https://github.com/uber-go/guide/blob/master/style.md",
+        "Docs: https://github.com/uber-go/guide"
+      ],
+      "languages": [
+        "go"
+      ]
+    },
+    {
       "id": "build-your-own-x",
       "name": "build-your-own-x",
       "category": "learning",

@@ -9,6 +9,7 @@ import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capab
 import { jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
+import { formatSource, sourcePlan } from '../lib/source.mjs';
 
 // Languages a task can name: the nine capability languages plus the resource-only ones.
 const FIND_LANGUAGES = [...LANGUAGES, 'ruby', 'php', 'elixir'];
@@ -19,6 +20,7 @@ const HELP = {
     'quick <task words> [--language <name>] [--target <project>] [--type <source type>] [--json]   # best match: only its commands (cheapest)',
     'find <task words> [--type capability|module|recipe|language-example|template|starter|task|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
     'outline <id|type:id> [--language <name>] [--json]   # signatures and doc lines only: call the code without reading its source',
+    'source <id|type:id> [--path <dir>] [--json]   # pinned sparse checkout or one raw file of an external project, its license, and Genlib equivalents',
     'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--json]   # bounded yes/no decision packet for Jev',
     'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
     'detect --target <existing-project> [--json]',
@@ -43,7 +45,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -63,7 +65,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result, text;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -140,6 +142,10 @@ try {
     invariant(positional.length === 1, 'INVALID_OPTION', 'Provide exactly one reference, for example: outline totp --language go.');
     result = await outline(undefined, positional[0], { language: options.language });
     text = formatOutline(result);
+  } else if (command === 'source') {
+    invariant(positional.length === 1, 'INVALID_OPTION', 'Provide exactly one reference, for example: source resource:pocketbase --path apis.');
+    result = await sourcePlan(await loadSources(), positional[0], { path: options.path });
+    text = formatSource(result);
   } else if (command === 'find' || command === 'quick' || command === 'catalog') {
     const sources = await loadSources();
     if (command === 'catalog') {

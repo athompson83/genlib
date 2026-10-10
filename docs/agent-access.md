@@ -2,7 +2,7 @@
 
 Genlib offers six ways for an agent to reach the code, tool, skill or doc it needs without reading the repository. All six come from the same catalogs, so they always agree. Pick the one that fits the harness.
 
-Whichever you pick, the cheapest sequence is the same: `quick` for the best match and only its commands, `outline` for signatures instead of source, then the returned command. [token-budget.md](token-budget.md) has the measured sizes.
+Whichever you pick, the cheapest sequence is the same: `quick` for the best match and only its commands, `outline` for signatures instead of source, then the returned command. When the best match is an external project and you need to read its code, `source <id> [--path dir]` fetches only that folder at a pinned commit (`git fetch --depth 1 --filter=blob:none` plus sparse checkout) instead of cloning the repository, and names any Genlib capability or module that already does the job (`resources/equivalents.json`, also shown first in `find` and `quick` results). [token-budget.md](token-budget.md) has the measured sizes.
 
 | Way | Best for | Entry point |
 | --- | --- | --- |
@@ -26,6 +26,7 @@ codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 | --- | --- |
 | `genlib_quick` | The best match, only its acting commands and up to 3 alternative refs (cheapest call) |
 | `genlib_find` | Ranked results across every source type, each with its acting commands. Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
+| `genlib_source` | For an external record: a pinned, blob-less, sparse fetch of one folder (or a raw-file URL), the license note, and Genlib code that already covers the need |
 | `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)) |
 | `genlib_capability` | Capability list, or one capability's copy commands for a language |

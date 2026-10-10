@@ -20,6 +20,7 @@ description: Find, plan, and install reusable Genlib code while coding an applic
     "1. node $GENLIB_ROOT/bin/genlib.mjs quick <task words> --target <app>  -> the best match and only its install or copy commands (about 150 bytes). Use find <task> --target <app> --limit 5 when you need options; its text output is compact, --json adds full records.",
     "2. node $GENLIB_ROOT/bin/genlib.mjs outline <id> [--language <lang>]  -> signatures and one-line docs. Call the code from the outline; open source only for lines you must change.",
     "3. Run the returned command (capability copy, add for modules, recipe-install, package install). Then run the app's own build, type and behaviour checks.",
+    "External project you must read? genlib source <id> [--path dir] fetches one folder at a pinned commit and names Genlib code that already does the job; never clone whole repositories into context.",
     "MCP: if configured (claude/codex mcp add genlib -- node $GENLIB_ROOT/bin/genlib-mcp.mjs) use genlib_quick, genlib_find, genlib_outline, genlib_read_doc; outputs match the CLI.",
     "Decision models such as Genisys Jev: genlib jev <task> --target <app> --json (8 candidates, yes/no each, 0.8 threshold). Own retrieval: registry/search-index.jsonl. Selections never grant authority."
   ],

@@ -71,7 +71,7 @@ Lexical matching can miss related wording. Every source therefore stays reachabl
 
 ## Over MCP
 
-MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`. After Jev selects a code candidate, `genlib outline <ref>` (MCP `genlib_outline`) gives its signatures without reading the source.
+MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`. After Jev selects a code candidate, `genlib outline <ref>` (MCP `genlib_outline`) gives its signatures without reading the source; for an external candidate, `genlib source <ref>` (MCP `genlib_source`) fetches only the needed folder at a pinned commit.
 
 ## The search index
 
