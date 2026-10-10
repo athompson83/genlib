@@ -154,6 +154,34 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - `signWebhook` writes a `t=<seconds>,v1=<hex HMAC-SHA256 of "t.body">` header. `verifyWebhook` accepts any matching `v1` (so secrets can rotate), compares in constant time and rejects timestamps outside the tolerance (300 s by default).
 - Verify the exact raw body bytes before parsing JSON. Errors are `malformed`, `bad signature` or `expired`.
 
+**check-digits**
+- `luhnValid` and `luhnCheckDigit` for card and account numbers, `ibanValid` and `ibanFormat` (ISO 13616 mod 97, computed without big integers), `gtinValid` for GTIN-8/12/13/14 (EAN, UPC), and `isbn10Valid`, `isbn13Valid` and `isbn10To13`.
+- Validators return false instead of throwing. A valid check digit proves the number is well formed, not that the card, account or book exists.
+
+**signed-urls**
+- `signUrl(path?query, secret, expires)` appends `expires=<seconds>&signature=<base64url HMAC-SHA256>`. `verifyUrl` checks it in constant time and returns `malformed`, `bad signature` or `expired` (valid through the expiry second).
+- Sign the exact path and query the server will see. Keep the secret on the server and rotate it by accepting the old one for one expiry window.
+
+**polyline**
+- `encodePolyline` and `decodePolyline` for the Google encoded polyline algorithm at precision 5 (Google, Mapbox) or 6 (OSRM, Valhalla). Points are `(lat, lon)` in that order; decoding rejects bad characters and truncated input.
+
+**tile-math**
+- `lonLatToTile`, `tileBounds`, `tileToQuadkey`, `quadkeyToTile` and `lonLatToMercator` for XYZ (slippy-map) tiles and EPSG:3857, zoom 0 to 24. Latitudes are clamped to the Web Mercator limit of ±85.0511°.
+
+**email-address**
+- `emailValid` applies the WHATWG HTML "valid e-mail address" rule plus the 254/64-character limits, so `a@b` and `user.@example.com` pass, as they do in browsers. `emailNormalize` trims and lowercases only the domain.
+- This checks syntax only. Prove ownership with a confirmation email; never lowercase or strip the local part.
+
+**iso-duration**
+- `parseDuration` (ISO 8601 `PnYnMnWnDTnHnMnS`, fractions only on seconds, at most 3 digits), `durationMilliseconds` (refuses years and months, whose length depends on the calendar) and `formatDuration`.
+
+**geometry**
+- `pointInPolygon` (points on an edge count as inside), `signedArea` (counter-clockwise positive), `centroid`, `simplify` (Douglas-Peucker) and `ringAreaSquareMeters` (spherical approximation used by Turf and Mapbox).
+- Planar functions treat longitude and latitude as x and y: fine for geofences and small shapes; project first for large areas or areas near the poles.
+
+**safe-redirect**
+- `safeRedirect(target, allowedOrigins, fallback)` accepts a same-site path (not `//` or containing `\`) or an absolute http(s) URL whose origin exactly matches an allowed origin. Everything else, including `javascript:`, userinfo (`user@host`) and control characters, returns the fallback.
+
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 
 Learn any implementation's API without opening it: `genlib outline <capability> --language <lang>` lists its signatures and one-line docs.
