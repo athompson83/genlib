@@ -52,7 +52,7 @@ function argumentsFor(argv) {
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -138,7 +138,7 @@ try {
     invariant(positional.length > 0, 'INVALID_OPTION', 'Provide the task, for example: jev add passkey login to a Go API.');
     invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
     const profile = options.target ? await detectProject(options.target) : undefined;
-    result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8) });
+    result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8), ...(options['stdlib-only'] ? { stdlibOnly: true } : {}) });
   } else if (command === 'outline') {
     invariant(positional.length === 1, 'INVALID_OPTION', 'Provide exactly one reference, for example: outline totp --language go.');
     result = await outline(undefined, positional[0], { language: options.language });

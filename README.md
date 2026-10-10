@@ -25,10 +25,10 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 52 (463 implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with tested code in up to 9 languages (the count in brackets is the total of tested implementations) |
+| [Capabilities](#capabilities-one-task-every-language) | 54 (481 implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with tested code in up to 9 languages (the count in brackets is the total of tested implementations) |
 | [Modules](#modules) | 13 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
-| [TypeScript recipes](#recipes-language-examples-and-templates) | 77 | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |
-| [Language examples](#recipes-language-examples-and-templates) | 433 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 79 | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |
+| [Language examples](#recipes-language-examples-and-templates) | 449 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
@@ -38,7 +38,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9754 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 576 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 577 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -120,7 +120,7 @@ flowchart LR
 
 </details>
 
-- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib and with Jev selecting the code: when Genlib has the code, agents wrote 83–89% fewer tokens and finished 46–65% faster; when its code did not match the requirement there was no saving.
+- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 400 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib and with Jev selecting the code: when Genlib has the code, agents wrote 80–90% fewer tokens, finished in under half the time and cost 22–27% less; when a requirement is one Genlib cannot meet (byte-identical GNU diff) it costs more, which capability caveats now flag before copying. `node scripts/routing-eval.mjs` measures how often one `quick` call lands on the right capability: 81% top-1 and 88% top-3 on 166 held-out task phrasings (61% and 75% before the stemming, term and prior changes measured in [docs/benchmarks.md](docs/benchmarks.md)).
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
@@ -227,6 +227,8 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `line-diff` Line diff and unified diff output | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `password-policy` Password policy checks (NIST SP 800-63B) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `text-sanitize` Text sanitizing and Trojan Source (bidi) detection | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `slugify` URL slugs: slugify titles and make them unique | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `json-patch` JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
@@ -443,6 +445,7 @@ npm ci --ignore-scripts
 npm run registry:build   # after editing modules
 npm run skills:sync      # after editing the canonical skill
 npm run check            # registry, skills, resources, TypeScript build and all tests
+node scripts/routing-eval.mjs --misses   # how often quick picks the right capability
 ```
 
 CI runs the checks on Node 22 and 24 with React 18 and 19, plus language lanes for Python, Go, Rust, Java, Kotlin, C#, Dart and Swift. See [CONTRIBUTING.md](CONTRIBUTING.md), the [module format](docs/module-format.md) and the [architecture](docs/architecture.md).

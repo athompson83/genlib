@@ -4,57 +4,151 @@ package linediff
 
 import (
 	"reflect"
+	"strconv"
 	"strings"
 	"testing"
+	"time"
 )
 
-type c struct{ a, b, ops, unified string }
-
-// ops are written as "=a|-b|+B" for compactness.
-var cases = []c{
-	{"a\nb\nc\n", "a\nB\nc\n", "=a|-b|+B|=c", "--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"},
-	{"", "x\n", "+x", "--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n"},
-	{"x\n", "", "-x", "--- old.txt\n+++ new.txt\n@@ -1 +0,0 @@\n-x\n"},
-	{"one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", "=one|-two|+TWO|=three|=four|=five|=six|=seven|=eight|-nine|+NINE|=ten", "--- old.txt\n+++ new.txt\n@@ -1,10 +1,10 @@\n one\n-two\n+TWO\n three\n four\n five\n six\n seven\n eight\n-nine\n+NINE\n ten\n"},
-	{"1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", "=1|=2|-3|+X|=4|=5|=6|=7|=8|=9|=10|=11|=12|=13|-14|+Y|=15|=16", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -11,6 +11,6 @@\n 11\n 12\n 13\n-14\n+Y\n 15\n 16\n"},
-	{"a\nb\n", "a\nb", "=a|-b|+b", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"},
-	{"a\nb", "a\nc", "=a|-b|+c", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+c\n\\ No newline at end of file\n"},
-	{"same\n", "same\n", "=same", ""},
-	{"a\nb\nc\nd\n", "b\nc\nd\ne\n", "-a|=b|=c|=d|+e", "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"},
-	{"x\ny\n", "y\nx\n", "-x|=y|+x", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"},
-	{"a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", "-a|-b|-d|+c|=d|-e|=c|-b|+d|+b|+b|+a|+b", "--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n"},
-	{"a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", "+b|=a|-d|-d|+c|+e|=a|-b|-a|+a|+a", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n"},
-	{"x", "x", "=x", ""},
-	{"x", "x\n", "-x|+x", "--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n"},
-	{"p\nq", "q\np", "-p|-q|+q|+p", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n"},
-}
-
-func TestLines(t *testing.T) {
-	for _, tc := range cases {
-		var want []Op
-		for _, s := range strings.Split(tc.ops, "|") {
-			want = append(want, Op{s[:1], s[1:]})
-		}
-		if got, err := Lines(tc.a, tc.b); err != nil || !reflect.DeepEqual(got, want) {
-			t.Errorf("Lines(%q, %q) = %v, %v; want %v", tc.a, tc.b, got, err, want)
+func TestUnifiedVectors(t *testing.T) {
+	for _, tc := range unifiedVectors {
+		if got, err := Unified(tc.a, tc.b, "a", "b", tc.context); err != nil || got != tc.want {
+			t.Errorf("Unified(%q, %q, %d) = %q, %v; want %q", tc.a, tc.b, tc.context, got, err, tc.want)
 		}
 	}
 }
 
-func TestUnified(t *testing.T) {
-	for _, tc := range cases {
-		if got, err := Unified(tc.a, tc.b, "old.txt", "new.txt", 3); err != nil || got != tc.unified {
-			t.Errorf("Unified(%q, %q) = %q, %v; want %q", tc.a, tc.b, got, err, tc.unified)
+func TestLinesVectors(t *testing.T) {
+	for _, tc := range linesVectors {
+		got, err := Lines(tc.a, tc.b)
+		if len(got) == 0 && len(tc.want) == 0 {
+			got, tc.want = nil, nil
+		}
+		if err != nil || !reflect.DeepEqual(got, tc.want) {
+			t.Errorf("Lines(%q, %q) = %v, %v; want %v", tc.a, tc.b, got, err, tc.want)
 		}
 	}
 }
 
-func TestLimit(t *testing.T) {
-	big := strings.Repeat("x\n", 2001)
-	if _, err := Lines(big, big); err == nil {
-		t.Error("Lines over 4,000,000 pairs want error")
+// numbered returns "<prefix>0\n" ... "<prefix>(n-1)\n".
+func numbered(prefix string, n int) []string {
+	out := make([]string, n)
+	for i := range out {
+		out[i] = prefix + strconv.Itoa(i)
+	}
+	return out
+}
+
+func TestLargeInputFast(t *testing.T) {
+	a := numbered("line ", 100000)
+	b := append([]string(nil), a...)
+	for k := 0; k < 20; k++ {
+		b[k*4999+17] = "edited " + strconv.Itoa(k)
+	}
+	start := time.Now()
+	got, err := Lines(strings.Join(a, "\n")+"\n", strings.Join(b, "\n")+"\n")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if d := time.Since(start); d > 10*time.Second {
+		t.Fatalf("100,000-line diff took %v", d)
+	}
+	changes := 0
+	for _, o := range got {
+		if o.Kind != "=" {
+			changes++
+		}
+	}
+	if changes != 40 {
+		t.Fatalf("got %d changed lines, want 40", changes)
+	}
+}
+
+func TestNoCommonLine(t *testing.T) {
+	a := strings.Join(numbered("a", 3000), "\n") + "\n"
+	b := strings.Join(numbered("b", 3000), "\n") + "\n"
+	got, err := Lines(a, b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	del, ins := 0, 0
+	for _, o := range got {
+		switch o.Kind {
+		case "-":
+			del++
+		case "+":
+			ins++
+		}
+	}
+	if del != 3000 || ins != 3000 || len(got) != 6000 {
+		t.Fatalf("got %d deletions, %d insertions of %d ops", del, ins, len(got))
+	}
+}
+
+func TestLimitAndContext(t *testing.T) {
+	big := strings.Repeat("x\n", MaxLines/2)
+	if _, err := Lines(big, big+"y\n"); err == nil {
+		t.Error("more than 1,000,000 lines want error")
 	}
 	if _, err := Unified("a\n", "b\n", "a", "b", -1); err == nil {
 		t.Error("negative context want error")
+	}
+}
+
+// patch applies a unified diff produced by Unified to a.
+func patch(t *testing.T, a, diff string) string {
+	t.Helper()
+	if diff == "" {
+		return a
+	}
+	src := split(a)
+	var out []line
+	pos := 0
+	rows := strings.Split(strings.TrimSuffix(diff, "\n"), "\n")[2:]
+	for k := 0; k < len(rows); k++ {
+		r := rows[k]
+		if strings.HasPrefix(r, "@@ -") {
+			start, _ := strconv.Atoi(strings.SplitN(strings.Fields(r)[1][1:], ",", 2)[0])
+			first := start - 1
+			if strings.HasSuffix(strings.Fields(r)[1], ",0") {
+				first = start
+			}
+			for pos < first {
+				out = append(out, src[pos])
+				pos++
+			}
+			continue
+		}
+		noEOL := k+1 < len(rows) && strings.HasPrefix(rows[k+1], "\\ ")
+		switch r[0] {
+		case ' ':
+			out = append(out, src[pos])
+			pos++
+		case '-':
+			pos++
+		case '+':
+			out = append(out, line{r[1:], noEOL})
+		}
+	}
+	out = append(out, src[pos:]...)
+	var b strings.Builder
+	for _, l := range out {
+		b.WriteString(l.text)
+		if !l.noEOL {
+			b.WriteByte('\n')
+		}
+	}
+	return b.String()
+}
+
+func TestPatchRoundTrip(t *testing.T) {
+	for _, tc := range unifiedVectors {
+		got, err := Unified(tc.a, tc.b, "a", "b", tc.context)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if back := patch(t, tc.a, got); back != tc.b {
+			t.Errorf("patch(%q, Unified) = %q; want %q", tc.a, back, tc.b)
+		}
 	}
 }

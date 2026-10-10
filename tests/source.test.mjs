@@ -37,9 +37,9 @@ test('source resolves any external record and names Genlib equivalents', async (
   assert.deepEqual(svix.equivalents, ['capability:webhook-signature', 'module:webhook-verification']);
   await assert.rejects(sourcePlan(sources, 'no-such-record'), /No external record/);
   await assert.rejects(sourcePlan(sources, 'module:data-table'), /source supports/);
-  // Equivalents appear first in ordinary search results too.
+  // Ordinary search reaches the Genlib code too: either ranked first or named as the equivalent of the external pick.
   const quick = cli('quick', 'svix', 'webhooks').stdout;
-  assert.match(quick, /Genlib already has tested code for this: capability:webhook-signature/);
+  assert.match(quick, /^(?:module:webhook-verification|capability:webhook-signature)\s|Genlib already has tested code for this: capability:webhook-signature/);
 });
 
 test('every equivalent points at an existing capability, module or template', async () => {

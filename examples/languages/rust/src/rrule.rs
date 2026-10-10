@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 //! A UTC subset of RFC 5545 recurrence rules: FREQ DAILY/WEEKLY/MONTHLY/YEARLY
-//! with INTERVAL, COUNT or UNTIL, BYDAY (weekly weekdays; monthly with optional
-//! ordinals), BYMONTHDAY (monthly) and BYMONTH (yearly). Unsupported parts are
-//! errors rather than silently ignored.
+//! with INTERVAL, COUNT or UNTIL, BYDAY (ordinals only with MONTHLY or YEARLY),
+//! BYMONTHDAY and BYMONTH with any frequency. Matches python-dateutil for every
+//! rule it accepts; rejects BYSETPOS, WKST, BYHOUR and every other part rather
+//! than silently ignoring them.
 
-use std::collections::{BTreeSet, HashMap};
+use std::collections::HashMap;
 use std::fmt;
 
 /// Conventional occurrence limit.
@@ -49,6 +50,8 @@ struct Rule {
     byday: Vec<(i64, i64)>,
     bymonthday: Vec<i64>,
     bymonth: Vec<i64>,
+    /// YEARLY with an explicit BYMONTH: ordinals count within the month.
+    month_scope: bool,
 }
 
 fn days_from_civil(y: i64, m: i64, d: i64) -> i64 {
@@ -160,7 +163,7 @@ fn parse_rule(text: &str) -> Result<Rule, RRuleError> {
     if parts.contains_key("COUNT") && parts.contains_key("UNTIL") {
         return err("COUNT and UNTIL are mutually exclusive");
     }
-    let mut r = Rule { freq, interval: 1, count: None, until: None, byday: Vec::new(), bymonthday: Vec::new(), bymonth: Vec::new() };
+    let mut r = Rule { freq, interval: 1, count: None, until: None, byday: Vec::new(), bymonthday: Vec::new(), bymonth: Vec::new(), month_scope: false };
     if let Some(v) = parts.get("INTERVAL") {
         r.interval = number(v, 1, 9999, false)?;
     }
@@ -170,40 +173,37 @@ fn parse_rule(text: &str) -> Result<Rule, RRuleError> {
     if let Some(v) = parts.get("UNTIL") {
         r.until = Some(parse_until(v).ok_or_else(|| RRuleError("UNTIL must be YYYYMMDDTHHMMSSZ".into()))?);
     }
+    let month_scope = parts.contains_key("BYMONTH");
     if let Some(v) = parts.get("BYDAY") {
-        if freq == Freq::Daily || freq == Freq::Yearly {
-            return err("BYDAY needs FREQ=WEEKLY or MONTHLY");
-        }
         for d in v.split(',') {
             let split = d.len().saturating_sub(2);
             let Some(wd) = d.get(split..).and_then(|w| WEEKDAYS.iter().position(|x| *x == w)) else { return err(format!("invalid BYDAY {d:?}")) };
             let prefix = &d[..split];
             let mut n = 0;
             if !prefix.is_empty() {
-                if prefix.trim_start_matches(['+', '-']).len() != 1 {
+                let body = prefix.strip_prefix(['+', '-']).unwrap_or(prefix);
+                if body.is_empty() || body.len() > 2 || !body.bytes().all(|c| c.is_ascii_digit()) {
                     return err(format!("invalid BYDAY ordinal {d:?}"));
                 }
-                n = number(prefix, 1, 5, true)?;
-                if freq != Freq::Monthly {
-                    return err("BYDAY ordinals need FREQ=MONTHLY");
+                n = body.parse::<i64>().map_err(|_| RRuleError(format!("invalid BYDAY ordinal {d:?}")))?;
+                if prefix.starts_with('-') {
+                    n = -n;
+                }
+                let lim = if freq == Freq::Monthly || (freq == Freq::Yearly && month_scope) { 5 } else { 53 };
+                if !matches!(freq, Freq::Monthly | Freq::Yearly) || n == 0 || n.abs() > lim {
+                    return err(format!("BYDAY ordinal {d:?} is not allowed here"));
                 }
             }
             r.byday.push((n, wd as i64));
         }
+        if r.byday.iter().any(|b| b.0 != 0) && r.byday.iter().any(|b| b.0 == 0) {
+            return err("BYDAY cannot mix plain and ordinal weekdays");
+        }
     }
     if let Some(v) = parts.get("BYMONTHDAY") {
-        if freq != Freq::Monthly {
-            return err("BYMONTHDAY needs FREQ=MONTHLY");
-        }
-        if !r.byday.is_empty() {
-            return err("BYDAY and BYMONTHDAY cannot be combined");
-        }
         r.bymonthday = numbers(v, 1, 31, true)?;
     }
     if let Some(v) = parts.get("BYMONTH") {
-        if freq != Freq::Yearly {
-            return err("BYMONTH needs FREQ=YEARLY");
-        }
         r.bymonth = numbers(v, 1, 12, false)?;
     }
     Ok(r)
@@ -215,71 +215,72 @@ fn format(t: i64) -> String {
     format!("{y:04}-{m:02}-{d:02}T{:02}:{:02}:{:02}Z", sec / 3600, sec / 60 % 60, sec % 60)
 }
 
+const MAX_DAY: i64 = 2_932_896; // 9999-12-31
+
 impl Rule {
-    /// Sorted, de-duplicated candidate days of period k; `None` past year 9999.
-    fn candidates(&self, start_day: i64, k: i64) -> Option<BTreeSet<i64>> {
-        let (sy, sm, sd) = civil_from_days(start_day);
+    /// First day and length of period k; `None` once it starts after 9999-12-31.
+    fn period(&self, start_day: i64, k: i64) -> Option<(i64, i64)> {
+        let (sy, sm, _) = civil_from_days(start_day);
         let step = k * self.interval;
-        let mut set = BTreeSet::new();
-        match self.freq {
-            Freq::Daily => {
-                set.insert(start_day + step);
-            }
-            Freq::Weekly => {
-                let monday = start_day - weekday(start_day) + 7 * step;
-                if self.byday.is_empty() {
-                    set.insert(monday + weekday(start_day));
-                }
-                set.extend(self.byday.iter().map(|&(_, wd)| monday + wd));
-            }
+        let (first, n) = match self.freq {
+            Freq::Daily => (start_day + step, 1),
+            Freq::Weekly => (start_day - weekday(start_day) + 7 * step, 7),
             Freq::Monthly => {
                 let mi = sm - 1 + step;
                 let (y, mo) = (sy + mi / 12, mi % 12 + 1);
                 if y > 9999 {
                     return None;
                 }
-                let nd = month_days(y, mo);
-                let first = days_from_civil(y, mo, 1);
-                if !self.byday.is_empty() {
-                    for &(n, wd) in &self.byday {
-                        let ds: Vec<i64> = (first..first + nd).filter(|&d| weekday(d) == wd).collect();
-                        let len = ds.len() as i64;
-                        if n == 0 {
-                            set.extend(ds);
-                        } else if n > 0 && n <= len {
-                            set.insert(ds[(n - 1) as usize]);
-                        } else if n < 0 && -n <= len {
-                            set.insert(ds[(len + n) as usize]);
-                        }
-                    }
-                } else if !self.bymonthday.is_empty() {
-                    for &md in &self.bymonthday {
-                        let d = if md > 0 { md } else { nd + md + 1 };
-                        if (1..=nd).contains(&d) {
-                            set.insert(first + d - 1);
-                        }
-                    }
-                } else if sd <= nd {
-                    set.insert(first + sd - 1);
-                }
+                (days_from_civil(y, mo, 1), month_days(y, mo))
             }
             Freq::Yearly => {
                 let y = sy + step;
                 if y > 9999 {
                     return None;
                 }
-                let months = if self.bymonth.is_empty() { vec![sm] } else { self.bymonth.clone() };
-                for mo in months {
-                    if sd <= month_days(y, mo) {
-                        set.insert(days_from_civil(y, mo, sd));
-                    }
-                }
+                (days_from_civil(y, 1, 1), days_from_civil(y + 1, 1, 1) - days_from_civil(y, 1, 1))
             }
-        }
-        if set.iter().any(|&d| civil_from_days(d).0 > 9999) {
+        };
+        if first > MAX_DAY {
             return None;
         }
-        Some(set)
+        Some((first, n.min(MAX_DAY - first + 1)))
+    }
+
+    /// Whether `day` passes every filter (the dateutil defaults already applied).
+    fn matches(&self, day: i64) -> bool {
+        let (y, m, d) = civil_from_days(day);
+        if !self.bymonth.is_empty() && !self.bymonth.contains(&m) {
+            return false;
+        }
+        let nd = month_days(y, m);
+        if !self.bymonthday.is_empty() && !self.bymonthday.iter().any(|&x| d == if x > 0 { x } else { nd + x + 1 }) {
+            return false;
+        }
+        if self.byday.is_empty() {
+            return true;
+        }
+        let wd = weekday(day);
+        self.byday.iter().any(|&(n, w)| {
+            if w != wd {
+                return false;
+            }
+            if n == 0 {
+                return true;
+            }
+            // Ordinals count within the month (MONTHLY, or YEARLY with BYMONTH)
+            // or within the whole year.
+            let (first, last) = if self.freq == Freq::Monthly || self.month_scope {
+                (day - (d - 1), day - d + nd)
+            } else {
+                (days_from_civil(y, 1, 1), days_from_civil(y, 12, 31))
+            };
+            if n > 0 {
+                (day - first) / 7 + 1 == n
+            } else {
+                (last - day) / 7 + 1 == -n
+            }
+        })
     }
 }
 
@@ -292,12 +293,30 @@ pub fn expand_rrule(dtstart: &str, rule: &str, limit: usize) -> Result<Vec<Strin
         return err("limit must be in 1..=1000");
     }
     let Some(start) = parse_start(dtstart) else { return err("dtstart must be YYYY-MM-DDTHH:MM:SSZ") };
-    let r = parse_rule(rule)?;
+    let mut r = parse_rule(rule)?;
     let (start_day, tod) = (start.div_euclid(86_400), start.rem_euclid(86_400));
+    r.month_scope = r.freq == Freq::Yearly && !r.bymonth.is_empty();
+    if r.byday.is_empty() && r.bymonthday.is_empty() {
+        let (_, sm, sd) = civil_from_days(start_day);
+        match r.freq {
+            Freq::Daily => {}
+            Freq::Weekly => r.byday = vec![(0, weekday(start_day))],
+            Freq::Monthly => r.bymonthday = vec![sd],
+            Freq::Yearly => {
+                r.bymonthday = vec![sd];
+                if r.bymonth.is_empty() {
+                    r.bymonth = vec![sm];
+                }
+            }
+        }
+    }
     let mut out = Vec::new();
     for k in 0..MAX_PERIODS {
-        let Some(days) = r.candidates(start_day, k) else { break };
-        for &d in &days {
+        let Some((first, n)) = r.period(start_day, k) else { break };
+        for d in first..first + n {
+            if !r.matches(d) {
+                continue;
+            }
             let c = d * 86_400 + tod;
             if c < start {
                 continue;
@@ -310,8 +329,7 @@ pub fn expand_rrule(dtstart: &str, rule: &str, limit: usize) -> Result<Vec<Strin
                 return Ok(out);
             }
         }
-        let earliest = days.iter().next().map_or(start, |&d| d * 86_400 + tod);
-        if r.until.is_some_and(|u| earliest > u) {
+        if r.until.is_some_and(|u| first * 86_400 + tod > u) {
             break;
         }
     }
@@ -324,7 +342,7 @@ mod tests {
 
     #[test]
     fn cases() {
-        for (start, rule, want) in [
+        let cases: [(&str, &str, Vec<&str>); 28] = [
             ("2026-01-31T09:00:00Z", "FREQ=MONTHLY;COUNT=5", vec!["2026-01-31T09:00:00Z", "2026-03-31T09:00:00Z", "2026-05-31T09:00:00Z", "2026-07-31T09:00:00Z", "2026-08-31T09:00:00Z"]),
             ("2026-10-12T09:30:00Z", "FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=7", vec!["2026-10-12T09:30:00Z", "2026-10-14T09:30:00Z", "2026-10-16T09:30:00Z", "2026-10-19T09:30:00Z", "2026-10-21T09:30:00Z", "2026-10-23T09:30:00Z", "2026-10-26T09:30:00Z"]),
             ("2026-10-01T00:00:00Z", "FREQ=DAILY;INTERVAL=10;UNTIL=20261115T000000Z", vec!["2026-10-01T00:00:00Z", "2026-10-11T00:00:00Z", "2026-10-21T00:00:00Z", "2026-10-31T00:00:00Z", "2026-11-10T00:00:00Z"]),
@@ -336,7 +354,25 @@ mod tests {
             ("2026-10-14T18:00:00Z", "FREQ=WEEKLY;INTERVAL=2;BYDAY=TU;COUNT=3", vec!["2026-10-27T18:00:00Z", "2026-11-10T18:00:00Z", "2026-11-24T18:00:00Z"]),
             ("2026-10-14T18:00:00Z", "FREQ=WEEKLY;COUNT=2", vec!["2026-10-14T18:00:00Z", "2026-10-21T18:00:00Z"]),
             ("2026-01-31T09:00:00Z", "FREQ=MONTHLY;INTERVAL=2;BYMONTHDAY=31;UNTIL=20261231T235959Z", vec!["2026-01-31T09:00:00Z", "2026-03-31T09:00:00Z", "2026-05-31T09:00:00Z", "2026-07-31T09:00:00Z"]),
-        ] {
+            ("2026-10-12T07:00:00Z", "FREQ=DAILY;BYDAY=MO,TU,WE,TH,FR;COUNT=8", vec!["2026-10-12T07:00:00Z", "2026-10-13T07:00:00Z", "2026-10-14T07:00:00Z", "2026-10-15T07:00:00Z", "2026-10-16T07:00:00Z", "2026-10-19T07:00:00Z", "2026-10-20T07:00:00Z", "2026-10-21T07:00:00Z"]),
+            ("2026-01-01T00:00:00Z", "FREQ=MONTHLY;BYDAY=FR;BYMONTHDAY=13;COUNT=3", vec!["2026-02-13T00:00:00Z", "2026-03-13T00:00:00Z", "2026-11-13T00:00:00Z"]),
+            ("2026-01-01T09:00:00Z", "FREQ=YEARLY;BYMONTH=11;BYDAY=4TH;COUNT=3", vec!["2026-11-26T09:00:00Z", "2027-11-25T09:00:00Z", "2028-11-23T09:00:00Z"]),
+            ("2026-01-01T09:00:00Z", "FREQ=YEARLY;BYDAY=1MO;COUNT=3", vec!["2026-01-05T09:00:00Z", "2027-01-04T09:00:00Z", "2028-01-03T09:00:00Z"]),
+            ("2026-01-01T09:00:00Z", "FREQ=YEARLY;BYDAY=-1SU;COUNT=2", vec!["2026-12-27T09:00:00Z", "2027-12-26T09:00:00Z"]),
+            ("2026-01-01T10:00:00Z", "FREQ=YEARLY;BYDAY=20MO;COUNT=2", vec!["2026-05-18T10:00:00Z", "2027-05-17T10:00:00Z"]),
+            ("2026-01-01T10:00:00Z", "FREQ=YEARLY;BYDAY=MO;BYMONTH=2;COUNT=5", vec!["2026-02-02T10:00:00Z", "2026-02-09T10:00:00Z", "2026-02-16T10:00:00Z", "2026-02-23T10:00:00Z", "2027-02-01T10:00:00Z"]),
+            ("2026-01-01T10:00:00Z", "FREQ=YEARLY;BYMONTHDAY=-1;COUNT=4", vec!["2026-01-31T10:00:00Z", "2026-02-28T10:00:00Z", "2026-03-31T10:00:00Z", "2026-04-30T10:00:00Z"]),
+            ("2026-03-05T10:00:00Z", "FREQ=YEARLY;BYMONTHDAY=1,15;BYMONTH=6;COUNT=4", vec!["2026-06-01T10:00:00Z", "2026-06-15T10:00:00Z", "2027-06-01T10:00:00Z", "2027-06-15T10:00:00Z"]),
+            ("2026-01-05T08:00:00Z", "FREQ=WEEKLY;BYMONTH=1,7;BYDAY=MO;COUNT=6", vec!["2026-01-05T08:00:00Z", "2026-01-12T08:00:00Z", "2026-01-19T08:00:00Z", "2026-01-26T08:00:00Z", "2026-07-06T08:00:00Z", "2026-07-13T08:00:00Z"]),
+            ("2026-01-01T08:00:00Z", "FREQ=DAILY;BYMONTHDAY=1,-1;COUNT=5", vec!["2026-01-01T08:00:00Z", "2026-01-31T08:00:00Z", "2026-02-01T08:00:00Z", "2026-02-28T08:00:00Z", "2026-03-01T08:00:00Z"]),
+            ("2026-01-01T08:00:00Z", "FREQ=DAILY;BYMONTH=2;BYMONTHDAY=29;COUNT=2", vec!["2028-02-29T08:00:00Z", "2032-02-29T08:00:00Z"]),
+            ("2026-05-20T08:00:00Z", "FREQ=MONTHLY;BYMONTH=6,12;COUNT=4", vec!["2026-06-20T08:00:00Z", "2026-12-20T08:00:00Z", "2027-06-20T08:00:00Z", "2027-12-20T08:00:00Z"]),
+            ("2026-01-31T08:00:00Z", "FREQ=MONTHLY;BYDAY=MO;BYMONTH=3;COUNT=5", vec!["2026-03-02T08:00:00Z", "2026-03-09T08:00:00Z", "2026-03-16T08:00:00Z", "2026-03-23T08:00:00Z", "2026-03-30T08:00:00Z"]),
+            ("2026-06-01T08:00:00Z", "FREQ=YEARLY;INTERVAL=2;BYMONTH=2;BYMONTHDAY=29;COUNT=2", vec!["2028-02-29T08:00:00Z", "2032-02-29T08:00:00Z"]),
+            ("2026-10-12T09:00:00Z", "FREQ=WEEKLY;BYDAY=SA,SU;UNTIL=20261101T090000Z", vec!["2026-10-17T09:00:00Z", "2026-10-18T09:00:00Z", "2026-10-24T09:00:00Z", "2026-10-25T09:00:00Z", "2026-10-31T09:00:00Z", "2026-11-01T09:00:00Z"]),
+            ("2026-01-01T00:00:00Z", "FREQ=MONTHLY;BYDAY=+1MO,-1FR;COUNT=4", vec!["2026-01-05T00:00:00Z", "2026-01-30T00:00:00Z", "2026-02-02T00:00:00Z", "2026-02-27T00:00:00Z"]),
+        ];
+        for (start, rule, want) in cases {
             assert_eq!(expand_rrule(start, rule, DEFAULT_LIMIT), Ok(want.iter().map(|s| s.to_string()).collect()), "{start} {rule}");
         }
     }
@@ -344,8 +380,8 @@ mod tests {
     #[test]
     fn invalid() {
         for rule in [
-            "FREQ=HOURLY", "COUNT=3", "FREQ=DAILY;COUNT=2;UNTIL=20261231T000000Z", "FREQ=WEEKLY;BYDAY=1MO", "FREQ=DAILY;BYDAY=MO", "FREQ=MONTHLY;BYMONTHDAY=32", "FREQ=MONTHLY;BYSETPOS=1", "FREQ=WEEKLY;INTERVAL=0", "FREQ=MONTHLY;BYDAY=MO;BYMONTHDAY=1", "FREQ=YEARLY;UNTIL=2026-12-31", "FREQ=DAILY;FREQ=DAILY", "FREQ=WEEKLY;BYDAY=XX",
-            "", "FREQ=MONTHLY;BYDAY=0MO", "FREQ=MONTHLY;BYDAY=6MO", "FREQ=WEEKLY;COUNT=-3", "FREQ=YEARLY;BYMONTH=-1", "FREQ=MONTHLY;BYMONTHDAY=0", "FREQ=MONTHLY;BYDAY=1é",
+            "FREQ=HOURLY", "COUNT=3", "FREQ=DAILY;COUNT=2;UNTIL=20261231T000000Z", "FREQ=WEEKLY;BYDAY=1MO", "FREQ=DAILY;BYDAY=1MO", "FREQ=MONTHLY;BYMONTHDAY=32", "FREQ=MONTHLY;BYMONTHDAY=0", "FREQ=MONTHLY;BYSETPOS=1", "FREQ=WEEKLY;WKST=MO", "FREQ=WEEKLY;INTERVAL=0", "FREQ=WEEKLY;INTERVAL=-1", "FREQ=MONTHLY;BYDAY=6MO", "FREQ=YEARLY;BYMONTH=1;BYDAY=6MO", "FREQ=YEARLY;BYDAY=54MO", "FREQ=MONTHLY;BYDAY=0MO", "FREQ=MONTHLY;BYDAY=MO,1TU", "FREQ=YEARLY;BYMONTH=13", "FREQ=YEARLY;BYMONTH=-1", "FREQ=YEARLY;UNTIL=2026-12-31", "FREQ=DAILY;FREQ=DAILY", "FREQ=WEEKLY;BYDAY=XX", "FREQ=DAILY;BYHOUR=9",
+            "", "FREQ=WEEKLY;COUNT=-3", "FREQ=MONTHLY;BYDAY=1MO,MO", "FREQ=MONTHLY;BYDAY=001MO", "FREQ=MONTHLY;BYDAY=1é",
         ] {
             assert!(expand_rrule("2026-01-01T00:00:00Z", rule, DEFAULT_LIMIT).is_err(), "{rule}");
         }
@@ -355,6 +391,14 @@ mod tests {
         for limit in [0, 1001] {
             assert!(expand_rrule("2026-01-01T00:00:00Z", "FREQ=DAILY", limit).is_err());
         }
+    }
+
+    #[test]
+    fn widened() {
+        for rule in ["FREQ=DAILY;BYDAY=MO", "FREQ=MONTHLY;BYDAY=MO;BYMONTHDAY=1", "FREQ=YEARLY;BYDAY=20MO"] {
+            assert!(expand_rrule("2026-01-01T00:00:00Z", rule, DEFAULT_LIMIT).is_ok(), "{rule}");
+        }
+        assert_eq!(expand_rrule("2026-01-01T00:00:00Z", "FREQ=DAILY;BYMONTH=2;BYMONTHDAY=30;COUNT=1", DEFAULT_LIMIT), Ok(vec![]));
     }
 
     #[test]

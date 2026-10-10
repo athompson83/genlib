@@ -17,7 +17,14 @@
         "otp",
         "authenticator",
         "otpauth",
-        "google authenticator"
+        "google authenticator",
+        "authenticator app",
+        "one-time code",
+        "verification code",
+        "two-step verification",
+        "two-factor authentication",
+        "6 digit code",
+        "rfc 6238"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -88,7 +95,13 @@
         "entra",
         "azure ad",
         "keycloak",
-        "google login"
+        "google login",
+        "sign in with google",
+        "sign in with microsoft",
+        "social login",
+        "oauth login",
+        "authorization code flow",
+        "redirect to identity provider"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -150,7 +163,11 @@
         "mfa",
         "2fa",
         "account recovery",
-        "one time codes"
+        "one time codes",
+        "lost phone",
+        "lost device",
+        "emergency codes",
+        "account recovery codes"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -217,7 +234,11 @@
         "interest",
         "compound interest",
         "finance",
-        "payment"
+        "payment",
+        "loan calculator",
+        "monthly payment",
+        "roi calculator",
+        "bmi"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -281,7 +302,14 @@
         "schema",
         "form builder",
         "input validation",
-        "server side validation"
+        "server side validation",
+        "signup form",
+        "registration form",
+        "form fields",
+        "required fields",
+        "field validation",
+        "validate request body",
+        "form errors"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -350,7 +378,9 @@
         "geo",
         "aeo",
         "ai optimization",
-        "search engine"
+        "search engine",
+        "search engine indexing",
+        "crawl rules"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -417,7 +447,10 @@
         "og tags",
         "twitter card",
         "canonical",
-        "seo"
+        "seo",
+        "rich snippets",
+        "product markup",
+        "seo metadata"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -483,7 +516,11 @@
         "fbclid",
         "strip tracking",
         "marketing links",
-        "analytics"
+        "analytics",
+        "campaign links",
+        "tracking parameters",
+        "utm source",
+        "attribution links"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -549,7 +586,8 @@
         "formula injection",
         "csv injection",
         "excel export",
-        "download csv"
+        "download csv",
+        "download as csv"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -618,7 +656,13 @@
         "tax",
         "split payment",
         "allocate",
-        "price"
+        "price",
+        "currency amounts",
+        "prices",
+        "floating point money",
+        "invoice totals",
+        "currency formatting",
+        "split bill"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -683,7 +727,8 @@
         "opaque cursor",
         "signed token",
         "hmac",
-        "infinite scroll"
+        "infinite scroll",
+        "infinite scroll api"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -748,7 +793,12 @@
         "vevent",
         "rfc 5545",
         "meeting invite",
-        "event export"
+        "event export",
+        "ics file",
+        "add to google calendar",
+        "outlook invite",
+        "event attachment",
+        "icalendar export"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -814,7 +864,9 @@
         "sortable id",
         "primary key",
         "identifier",
-        "rfc 9562"
+        "rfc 9562",
+        "random id",
+        "nanoid"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -879,7 +931,9 @@
         "429",
         "rate limited",
         "resilience",
-        "transient errors"
+        "transient errors",
+        "retry failed requests",
+        "retry policy"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -943,7 +997,11 @@
         "throttling",
         "quota",
         "api limits",
-        "429"
+        "429",
+        "rate limiting",
+        "requests per minute",
+        "api quota",
+        "too many requests"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1008,7 +1066,13 @@
         "tilde",
         "dependency version",
         "compatibility",
-        "upgrade check"
+        "upgrade check",
+        "version numbers",
+        "compare versions",
+        "version ordering",
+        "version constraint",
+        "minimum version",
+        "release version"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1072,7 +1136,10 @@
         "next run",
         "recurring job",
         "cron expression",
-        "job scheduling"
+        "job scheduling",
+        "cron schedule",
+        "next run time",
+        "scheduled job"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1137,7 +1204,11 @@
         "luminance",
         "aa",
         "aaa",
-        "readability"
+        "readability",
+        "accessibility contrast",
+        "text readability",
+        "a11y colors",
+        "contrast ratio"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1203,7 +1274,16 @@
         "nearby",
         "radius search",
         "location",
-        "bounding box"
+        "bounding box",
+        "gps",
+        "coordinates",
+        "lat lng",
+        "distance between points",
+        "great circle",
+        "nearest locations",
+        "store locator",
+        "miles",
+        "kilometers"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1267,7 +1347,12 @@
         "verify webhook",
         "replay protection",
         "signing secret",
-        "outgoing webhooks"
+        "outgoing webhooks",
+        "stripe webhook",
+        "github webhook",
+        "signed payload",
+        "hmac signature",
+        "webhook security"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1406,7 +1491,11 @@
         "hmac",
         "magic link",
         "temporary url",
-        "private file"
+        "private file",
+        "expiring links",
+        "temporary download link",
+        "share link with expiry",
+        "secure download"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1472,7 +1561,9 @@
         "google maps",
         "mapbox",
         "path encoding",
-        "navigation"
+        "navigation",
+        "google maps polyline",
+        "directions path"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1541,7 +1632,9 @@
         "maplibre",
         "leaflet",
         "openlayers",
-        "mapping"
+        "mapping",
+        "lat lng to tile",
+        "tile x y z"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1605,7 +1698,8 @@
         "email format",
         "normalize email",
         "signup form",
-        "contact form"
+        "contact form",
+        "email syntax"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1670,7 +1764,14 @@
         "youtube duration",
         "schema org duration",
         "timeout",
-        "interval"
+        "interval",
+        "duration string",
+        "pt1h30m",
+        "pt30m",
+        "p1d",
+        "parse duration",
+        "format duration",
+        "video length"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1738,7 +1839,10 @@
         "area",
         "turf",
         "mapping",
-        "gis"
+        "gis",
+        "line intersection",
+        "bounding box",
+        "inside region"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1803,7 +1907,9 @@
         "login redirect",
         "callback url",
         "allowlist",
-        "security"
+        "security",
+        "redirect after login",
+        "redirect validation"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1873,7 +1979,11 @@
         "webhook url validation",
         "metadata endpoint",
         "169.254.169.254",
-        "rfc 5952"
+        "rfc 5952",
+        "internal network",
+        "ip range",
+        "block localhost",
+        "user supplied url fetch"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -1939,7 +2049,10 @@
         "content-range",
         "video streaming",
         "resumable download",
-        "seek"
+        "seek",
+        "range requests",
+        "video seeking",
+        "resume download"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2005,7 +2118,10 @@
         "i18n",
         "media type",
         "mime type",
-        "api versioning"
+        "api versioning",
+        "language selection",
+        "response format",
+        "locale negotiation"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2073,7 +2189,10 @@
         "conditional request",
         "http caching",
         "optimistic concurrency",
-        "lost update"
+        "lost update",
+        "304 not modified",
+        "412 precondition",
+        "caching"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2140,7 +2259,8 @@
         "parse cookies",
         "cookie header",
         "partitioned cookie",
-        "chips"
+        "chips",
+        "cookie parsing"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2205,7 +2325,12 @@
         "dedupe urls",
         "crawler",
         "url comparison",
-        "rfc 3986"
+        "rfc 3986",
+        "canonicalize url",
+        "duplicate urls",
+        "deduplicate links",
+        "url equivalence",
+        "clean url"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2261,6 +2386,7 @@
       "title": "String similarity: Levenshtein, Damerau, Jaro-Winkler",
       "tier": "pure",
       "summary": "Edit distances (Levenshtein, optimal string alignment) and Jaro/Jaro-Winkler scores over Unicode code points, plus a normalized ratio, for fuzzy search, typo suggestions and duplicate detection.",
+      "caveat": "O(n*m) time; cap input length for user-supplied strings.",
       "terms": [
         "levenshtein",
         "edit distance",
@@ -2272,7 +2398,11 @@
         "typo",
         "did you mean",
         "dedupe",
-        "record linkage"
+        "record linkage",
+        "fuzzy matching",
+        "typo tolerance",
+        "similar names",
+        "duplicate detection"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2327,7 +2457,8 @@
       "id": "rrule",
       "title": "Recurring events: RFC 5545 RRULE expansion",
       "tier": "pure",
-      "summary": "Expand DAILY, WEEKLY, MONTHLY and YEARLY recurrence rules with INTERVAL, COUNT, UNTIL, BYDAY (including 2TU and -1FR), BYMONTHDAY and BYMONTH in UTC, skipping invalid dates like python-dateutil.",
+      "summary": "Expand DAILY, WEEKLY, MONTHLY and YEARLY recurrence rules with INTERVAL, COUNT, UNTIL, BYDAY (including 2TU, -1FR and 20MO in the year), BYMONTHDAY and BYMONTH as filters for any frequency, in UTC, matching python-dateutil for every rule it accepts.",
+      "caveat": "UTC only; BYSETPOS, BYHOUR/BYMINUTE/BYSECOND, WKST and EXDATE are rejected.",
       "terms": [
         "rrule",
         "recurrence",
@@ -2342,7 +2473,13 @@
         "recurring meeting",
         "recurring events",
         "repeating events",
-        "recurring event rule"
+        "recurring event rule",
+        "repeat weekly",
+        "every monday",
+        "monthly on the first",
+        "repeating schedule",
+        "recurrence rule",
+        "occurrences"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2398,6 +2535,7 @@
       "title": "Base32, Base58 and Base64url encoding",
       "tier": "pure",
       "summary": "RFC 4648 base32 (standard and extended-hex alphabets, padded or not), Bitcoin-alphabet base58 and unpadded base64url, with strict decoders that reject bad characters, padding and non-canonical bits.",
+      "caveat": "base32 functions take the alphabet before the padding flag: pass padding by name where the language allows.",
       "terms": [
         "base32",
         "base58",
@@ -2473,7 +2611,8 @@
         "rfc 6350",
         "business card",
         "contact qr code",
-        "address book"
+        "address book",
+        "share contact"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2529,6 +2668,7 @@
       "title": "Non-cryptographic hashing and jump consistent hashing",
       "tier": "pure",
       "summary": "CRC-32 (IEEE), FNV-1a 32/64, MurmurHash3 x86_32 and Google jump consistent hash for checksums, sharding, cache keys and bucketing. Not for passwords, MACs or signatures.",
+      "caveat": "Not cryptographic: use HMAC or a password hash for anything an attacker can influence.",
       "terms": [
         "crc32",
         "checksum",
@@ -2541,7 +2681,10 @@
         "sharding",
         "hash function",
         "bucketing",
-        "partitioning"
+        "partitioning",
+        "bucket assignment",
+        "murmur",
+        "non-cryptographic hash"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2608,7 +2751,8 @@
         "experiment",
         "variant",
         "split test",
-        "kill switch"
+        "kill switch",
+        "canary release"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2664,6 +2808,7 @@
       "title": "Human-readable bytes, durations and relative times",
       "tier": "pure",
       "summary": "Format and parse byte sizes in SI (kB) or IEC (KiB) units with integer rounding, compact durations (\"1h 2m\") and relative times (\"3 minutes ago\", \"in 2 days\").",
+      "caveat": "relativeTime and formatDuration produce English only.",
       "terms": [
         "format bytes",
         "file size",
@@ -2675,7 +2820,10 @@
         "humanize",
         "duration format",
         "pretty print",
-        "timeago"
+        "timeago",
+        "human readable bytes",
+        "kb mb gb",
+        "parse sizes"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2730,7 +2878,8 @@
       "id": "line-diff",
       "title": "Line diff and unified diff output",
       "tier": "pure",
-      "summary": "Deterministic LCS line diff and unified diff in the GNU diff -u format that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
+      "summary": "Minimal line diff (Myers, linear memory, up to 1,000,000 lines) and unified diff output that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
+      "caveat": "Valid, minimal unified diffs, but not byte-identical to GNU diff -u; call the system diff when exact GNU output is required.",
       "terms": [
         "diff",
         "unified diff",
@@ -2742,7 +2891,11 @@
         "lcs",
         "diff -u",
         "show changes",
-        "version compare"
+        "version compare",
+        "compare files",
+        "patch file",
+        "what changed",
+        "version comparison of text"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2807,7 +2960,11 @@
         "weak password",
         "password strength",
         "signup",
-        "blocklist"
+        "blocklist",
+        "weak passwords",
+        "nist",
+        "password requirements",
+        "breached passwords"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2874,7 +3031,11 @@
         "unicode safety",
         "normalize whitespace",
         "user input",
-        "prompt injection"
+        "prompt injection",
+        "control characters",
+        "unicode cleanup",
+        "trim whitespace",
+        "normalize text input"
       ],
       "guide": "docs/capabilities.md",
       "implementations": {
@@ -2926,6 +3087,144 @@
       }
     },
     {
+      "id": "slugify",
+      "title": "URL slugs: slugify titles and make them unique",
+      "tier": "pure",
+      "summary": "Turn titles into URL-safe slugs (Latin accents transliterated by one fixed table, apostrophes joined, word-boundary truncation) and pick the first free slug-2, slug-3 ..., identically in every language.",
+      "caveat": "Transliterates Latin letters U+00C0-U+017F only; other scripts and emoji are dropped, so keep an id-based fallback for non-Latin titles.",
+      "terms": [
+        "slug",
+        "slugify",
+        "permalink",
+        "url slug",
+        "friendly url",
+        "seo url",
+        "title to url",
+        "unique slug",
+        "pretty url",
+        "transliterate",
+        "accents"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "slugify",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-slugify",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-slugify",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-slugify",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-slugify",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-slugify",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-slugify",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-slugify",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-slugify",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "json-patch",
+      "title": "JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396)",
+      "tier": "pure",
+      "summary": "Apply RFC 6902 JSON Patch atomically, resolve RFC 6901 pointers, apply RFC 7396 merge patches and generate a deterministic patch (JSON diff) between two documents; includes a strict JSON parser where the language has none.",
+      "caveat": "createPatch compares arrays by index: always correct, but not minimal when items are inserted or moved.",
+      "terms": [
+        "json patch",
+        "rfc 6902",
+        "json pointer",
+        "rfc 6901",
+        "merge patch",
+        "rfc 7396",
+        "json diff",
+        "diff two json objects",
+        "patch document",
+        "partial update",
+        "http patch",
+        "apply changes to json",
+        "canonical json"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "json-patch",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-json-patch",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-json-patch",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-json-patch",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-json-patch",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-json-patch",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-json-patch",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-json-patch",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-json-patch",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",
@@ -2939,7 +3238,13 @@
         "token verification",
         "jose",
         "bearer token",
-        "auth"
+        "auth",
+        "validate jwt",
+        "verify id token",
+        "jwt signature",
+        "access token validation",
+        "jwks endpoint",
+        "token claims"
       ],
       "guide": "docs/cookbook/oidc-token-verification.md",
       "implementations": {
@@ -3023,7 +3328,11 @@
         "okta",
         "adfs",
         "entra",
-        "enterprise sso"
+        "enterprise sso",
+        "azure ad",
+        "entra id",
+        "single sign-on",
+        "assertion"
       ],
       "guide": "docs/cookbook/saml-sso.md",
       "implementations": {
@@ -3102,7 +3411,10 @@
         "auth",
         "login",
         "sign in",
-        "passkey login"
+        "passkey login",
+        "face id login",
+        "touch id login",
+        "biometric login"
       ],
       "guide": "docs/cookbook/webauthn-passkeys.md",
       "implementations": {
@@ -3180,7 +3492,13 @@
         "scrypt",
         "auth",
         "login",
-        "credentials"
+        "credentials",
+        "store passwords",
+        "hash passwords",
+        "password storage",
+        "verify password",
+        "salted hash",
+        "securely store passwords"
       ],
       "guide": "docs/cookbook/password-hashing.md",
       "implementations": {
@@ -3259,7 +3577,9 @@
         "acroform",
         "fillable pdf",
         "flatten",
-        "documents"
+        "documents",
+        "pdf fields",
+        "populate pdf"
       ],
       "guide": "docs/cookbook/pdf-form-filling.md",
       "implementations": {
@@ -3345,7 +3665,9 @@
         "pdf text",
         "pdf to text",
         "documents",
-        "ocr"
+        "ocr",
+        "read pdf",
+        "pdf content"
       ],
       "guide": "docs/cookbook/pdf-text-extraction.md",
       "implementations": {
@@ -3437,7 +3759,12 @@
         "ms word",
         "template",
         "mail merge",
-        "documents"
+        "documents",
+        "word document",
+        "generate docx",
+        "create word file",
+        "report generation",
+        "edit docx"
       ],
       "guide": "docs/cookbook/docx-documents.md",
       "implementations": {
@@ -3527,7 +3854,13 @@
         "editor",
         "document editor",
         "markdown",
-        "user content"
+        "user content",
+        "sanitize html",
+        "xss prevention",
+        "user html",
+        "allowlist html",
+        "clean html",
+        "wysiwyg content"
       ],
       "guide": "docs/cookbook/rich-text-sanitization.md",
       "implementations": {

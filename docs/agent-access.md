@@ -27,10 +27,10 @@ Text output from the CLI and the MCP tools names this checkout's real path in pl
 | Tool | Returns |
 | --- | --- |
 | `genlib_quick` | The best match, only its acting commands and up to 3 alternative refs (cheapest call) |
-| `genlib_find` | Ranked results across every source type, each with its acting commands. Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
+| `genlib_find` | Ranked results across every source type, each with its acting commands (and a capability's `caveat`, its main known limit, when it has one). Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
 | `genlib_source` | For an external record: a pinned, blob-less, sparse fetch of one folder (or a raw-file URL), the license note, and Genlib code that already covers the need |
 | `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
-| `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)) |
+| `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)); `stdlibOnly: true` (or a task that forbids dependencies) keeps only candidates that need no install |
 | `genlib_capability` | Capability list, or one capability's copy commands for a language |
 | `genlib_inspect` | The full record for a result (any type, including `starter` and `task`): license, links, cautions, install commands |
 | `genlib_read_doc` | One documentation section by `file#anchor`, at most 400 lines |

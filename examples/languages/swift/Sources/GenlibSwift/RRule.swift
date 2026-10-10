@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-// RFC 5545 recurrence-rule subset in UTC: FREQ (DAILY|WEEKLY|MONTHLY|YEARLY), INTERVAL, COUNT, UNTIL, BYDAY (WEEKLY
-// weekdays; MONTHLY optionally with ordinal -5..5), BYMONTHDAY (MONTHLY) and BYMONTH (YEARLY). Plain civil-date math
-// (no Calendar/DateFormatter). Unsupported parts such as BYSETPOS, WKST or BYHOUR throw rather than being ignored.
+// RFC 5545 recurrence-rule subset in UTC: FREQ (DAILY|WEEKLY|MONTHLY|YEARLY), INTERVAL, COUNT, UNTIL, BYDAY (plain
+// weekdays with any FREQ; ordinals with MONTHLY or YEARLY), BYMONTHDAY and BYMONTH, in any combination. Expansion follows
+// python-dateutil's model and matches python-dateutil for every rule it accepts; rejects BYSETPOS, WKST, BYHOUR and other
+// parts rather than ignoring them. Plain civil-date math (no Calendar/DateFormatter).
 
 public enum RRuleError: Error, Equatable {
     case invalidArgument(String)
@@ -90,6 +91,7 @@ public enum RRule {
             r.until = u
         }
         if let v = parts["BYDAY"] {
+            let ordinalLimit = freq == .monthly || (freq == .yearly && parts["BYMONTH"] != nil) ? 5 : 53
             for d in v.split(separator: ",", omittingEmptySubsequences: false) {
                 let b = Array(d.utf8)
                 guard b.count >= 2, let wd = weekdays.firstIndex(of: String(decoding: b.suffix(2), as: UTF8.self)) else {
@@ -99,21 +101,21 @@ public enum RRule {
                 if b.count > 2 {
                     var o = b.dropLast(2), sign = 1
                     if o.first == 0x2B || o.first == 0x2D { if o.first == 0x2D { sign = -1 }; o = o.dropFirst() }
-                    guard o.count == 1, let x = digits(o), (1...5).contains(x) else { throw fail("invalid BYDAY value: \(d)") }
+                    guard (1...2).contains(o.count), let x = digits(o) else { throw fail("invalid BYDAY value: \(d)") }
+                    guard freq == .monthly || freq == .yearly else { throw fail("BYDAY ordinals require FREQ=MONTHLY or YEARLY") }
+                    guard (1...ordinalLimit).contains(x) else { throw fail("BYDAY ordinal out of range: \(d)") }
                     n = sign * x
                 }
-                if n != 0 && freq != .monthly { throw fail("BYDAY ordinals are only allowed with FREQ=MONTHLY") }
                 r.byDay.append((n, wd))
             }
-            if freq == .daily || freq == .yearly { throw fail("BYDAY is not supported with FREQ=\(f)") }
+            if r.byDay.contains(where: { $0.ordinal != 0 }) && r.byDay.contains(where: { $0.ordinal == 0 }) {
+                throw fail("BYDAY cannot mix plain and ordinal weekdays")
+            }
         }
         if let v = parts["BYMONTHDAY"] {
-            if freq != .monthly { throw fail("BYMONTHDAY requires FREQ=MONTHLY") }
             r.byMonthDay = try v.split(separator: ",", omittingEmptySubsequences: false).map { try number(String($0), 1, 31, negative: true, "BYMONTHDAY") }
-            if !r.byDay.isEmpty { throw fail("BYDAY and BYMONTHDAY cannot be combined") }
         }
         if let v = parts["BYMONTH"] {
-            if freq != .yearly { throw fail("BYMONTH requires FREQ=YEARLY") }
             r.byMonth = try v.split(separator: ",", omittingEmptySubsequences: false).map { try number(String($0), 1, 12, negative: false, "BYMONTH") }
         }
         return r
@@ -142,53 +144,82 @@ public enum RRule {
         let (sy, sm, sd) = HttpConditional.civilFromDays(startDay)
         let startWeekday = mod(startDay + 3, 7)  // 1970-01-01 was a Thursday; Monday = 0
         let lastDay = HttpConditional.daysFromCivil(9999, 12, 31)
+        // dateutil defaults apply only when no day-level filter is given.
+        var byDay = r.byDay, byMonthDay = r.byMonthDay, byMonth = r.byMonth
+        if byDay.isEmpty && byMonthDay.isEmpty {
+            switch r.freq {
+            case .daily: break
+            case .weekly: byDay = [(0, startWeekday)]
+            case .monthly: byMonthDay = [sd]
+            case .yearly: byMonthDay = [sd]; if byMonth.isEmpty { byMonth = [sm] }
+            }
+        }
+        let monthScope = r.freq == .monthly || (r.freq == .yearly && !r.byMonth.isEmpty)
+        var monthSet = [Bool](repeating: byMonth.isEmpty, count: 13)
+        for m in byMonth { monthSet[m] = true }
+
+        /// Whether a civil day passes every filter; `doy`/`ylen` give its position in the year for year-scoped ordinals.
+        func matches(_ day: Int, _ y: Int, _ m: Int, _ d: Int, _ nd: Int, _ doy: Int, _ ylen: Int) -> Bool {
+            if !monthSet[m] { return false }
+            if !byMonthDay.isEmpty && !byMonthDay.contains(where: { d == ($0 > 0 ? $0 : nd + $0 + 1) }) { return false }
+            if !byDay.isEmpty {
+                let wd = mod(day + 3, 7)
+                return byDay.contains { n, w in
+                    guard w == wd else { return false }
+                    if n == 0 { return true }
+                    let (pos, len) = monthScope ? (d, nd) : (doy, ylen)
+                    return n > 0 ? (pos - 1) / 7 + 1 == n : (len - pos) / 7 + 1 == -n
+                }
+            }
+            return true
+        }
+        func yearLength(_ y: Int) -> Int { HttpConditional.daysFromCivil(y + 1, 1, 1) - HttpConditional.daysFromCivil(y, 1, 1) }
+        /// Matching days of every day in months mo0...mo1 of year y, in order.
+        func monthsHits(_ y: Int, _ mo0: Int, _ mo1: Int) -> [Int] {
+            var hits: [Int] = []
+            let jan1 = HttpConditional.daysFromCivil(y, 1, 1), ylen = yearLength(y)
+            for mo in mo0...mo1 where monthSet[mo] {
+                let first = HttpConditional.daysFromCivil(y, mo, 1), nd = daysInMonth(y, mo)
+                for d in 1...nd where matches(first + d - 1, y, mo, d, nd, first + d - jan1, ylen) { hits.append(first + d - 1) }
+            }
+            return hits
+        }
+        func dayHit(_ day: Int) -> Bool {
+            let (y, m, d) = HttpConditional.civilFromDays(day)
+            return matches(day, y, m, d, daysInMonth(y, m), day - HttpConditional.daysFromCivil(y, 1, 1) + 1, yearLength(y))
+        }
         func at(_ day: Int) -> Int64 { Int64(day) * 86400 + tod }
         var out: [Int64] = []
 
         periods: for k in 0..<maxPeriods {
-            var cands: [Int64] = []
+            let firstDay: Int, hits: [Int]
             switch r.freq {
             case .daily:
-                let day = startDay + k * r.interval
-                if day > lastDay { break periods }
-                cands = [at(day)]
+                firstDay = startDay + k * r.interval
+                if firstDay > lastDay { break periods }
+                hits = dayHit(firstDay) ? [firstDay] : []
             case .weekly:
-                let monday = startDay - startWeekday + 7 * k * r.interval
-                if monday > lastDay { break periods }
-                let wds = r.byDay.isEmpty ? [startWeekday] : Array(Set(r.byDay.map { $0.weekday })).sorted()
-                cands = wds.map { monday + $0 }.filter { $0 <= lastDay }.map(at)
+                firstDay = startDay - startWeekday + 7 * k * r.interval
+                if firstDay > lastDay { break periods }
+                hits = (firstDay..<firstDay + 7).filter { $0 <= lastDay && dayHit($0) }
             case .monthly:
                 let mi = sm - 1 + k * r.interval, y = sy + mi / 12, mo = mi % 12 + 1
                 if y > 9999 { break periods }
-                let first = HttpConditional.daysFromCivil(y, mo, 1), nd = daysInMonth(y, mo)
-                var days = Set<Int>()
-                if !r.byDay.isEmpty {
-                    for (n, wd) in r.byDay {
-                        let ds = (1...nd).filter { mod(first + $0 - 1 + 3, 7) == wd }
-                        if n == 0 { days.formUnion(ds) } else if abs(n) <= ds.count { days.insert(n > 0 ? ds[n - 1] : ds[ds.count + n]) }
-                    }
-                } else if !r.byMonthDay.isEmpty {
-                    for md in r.byMonthDay {
-                        let d = md > 0 ? md : nd + md + 1
-                        if (1...nd).contains(d) { days.insert(d) }
-                    }
-                } else if sd <= nd { days.insert(sd) }
-                cands = days.map { at(first + $0 - 1) }
+                firstDay = HttpConditional.daysFromCivil(y, mo, 1)
+                hits = monthsHits(y, mo, mo)
             case .yearly:
                 let y = sy + k * r.interval
                 if y > 9999 { break periods }
-                for mo in (r.byMonth.isEmpty ? [sm] : r.byMonth) where sd <= daysInMonth(y, mo) {
-                    cands.append(at(HttpConditional.daysFromCivil(y, mo, sd)))
-                }
+                firstDay = HttpConditional.daysFromCivil(y, 1, 1)
+                hits = monthsHits(y, 1, 12)
             }
-            cands.sort()
-            for c in cands where c >= start {
+            for c in hits.map(at) where c >= start {
                 if let u = r.until, c > u { break periods }
                 out.append(c)
                 if let n = r.count, out.count >= n { break periods }
                 if out.count >= limit { break periods }
             }
-            if let u = r.until, (cands.first ?? start) > u { break periods }
+            if let u = r.until, at(firstDay) > u { break periods }
         }
         return out.map(format)
     }

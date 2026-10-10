@@ -1,0 +1,887 @@
+{
+ "about": "Task phrasings mapped to the capability that should rank first for a Python project. 'tuning' was written alongside the capability terms; 'heldout' was written by a separate agent that saw only capability titles, before ranking changes, and was scored only in aggregate. Used by tests/routing.test.mjs and scripts/routing-eval.mjs.",
+ "tuning": [
+  [
+   "two-factor authentication codes for login",
+   "totp"
+  ],
+  [
+   "google authenticator setup qr code",
+   "totp"
+  ],
+  [
+   "login with google or microsoft using authorization code flow",
+   "oidc-pkce"
+  ],
+  [
+   "backup codes when user loses phone",
+   "recovery-codes"
+  ],
+  [
+   "mortgage payment calculator",
+   "calculator"
+  ],
+  [
+   "validate signup form fields on server",
+   "form-schema"
+  ],
+  [
+   "generate sitemap.xml and robots.txt",
+   "seo-files"
+  ],
+  [
+   "add schema.org json-ld for products",
+   "structured-data"
+  ],
+  [
+   "campaign tracking links with utm parameters",
+   "utm-links"
+  ],
+  [
+   "export users to csv safely for excel",
+   "csv-safe"
+  ],
+  [
+   "handle currency amounts without floating point errors",
+   "money"
+  ],
+  [
+   "paginate api results with opaque cursor",
+   "signed-cursors"
+  ],
+  [
+   "send calendar invite attachment",
+   "ics-events"
+  ],
+  [
+   "generate sortable unique ids",
+   "ids"
+  ],
+  [
+   "retry failed http requests with exponential backoff",
+   "retry-backoff"
+  ],
+  [
+   "throttle requests per user",
+   "token-bucket"
+  ],
+  [
+   "compare version numbers",
+   "semver"
+  ],
+  [
+   "next run time for a cron expression",
+   "cron-next"
+  ],
+  [
+   "check text color contrast for accessibility",
+   "wcag-contrast"
+  ],
+  [
+   "distance between two gps coordinates",
+   "geo"
+  ],
+  [
+   "verify stripe webhook",
+   "webhook-signature"
+  ],
+  [
+   "validate credit card number luhn",
+   "check-digits"
+  ],
+  [
+   "expiring download links",
+   "signed-urls"
+  ],
+  [
+   "decode google maps encoded polyline",
+   "polyline"
+  ],
+  [
+   "convert lat lng to map tile x y",
+   "tile-math"
+  ],
+  [
+   "validate email address",
+   "email-address"
+  ],
+  [
+   "parse PT1H30M duration",
+   "iso-duration"
+  ],
+  [
+   "is a point inside a polygon",
+   "geometry"
+  ],
+  [
+   "prevent open redirect after login",
+   "safe-redirect"
+  ],
+  [
+   "block requests to private ip addresses from user supplied urls",
+   "ip-cidr"
+  ],
+  [
+   "support video seeking with byte ranges",
+   "http-range"
+  ],
+  [
+   "pick response language from accept-language header",
+   "content-negotiation"
+  ],
+  [
+   "return 304 not modified with etag",
+   "http-conditional"
+  ],
+  [
+   "set secure session cookie",
+   "cookies"
+  ],
+  [
+   "deduplicate urls by normalizing them",
+   "url-normalize"
+  ],
+  [
+   "fuzzy match names typo tolerant search",
+   "string-similarity"
+  ],
+  [
+   "repeat a meeting every second tuesday",
+   "rrule"
+  ],
+  [
+   "base58 encode bitcoin address",
+   "base-encodings"
+  ],
+  [
+   "export contacts as vcf",
+   "vcard"
+  ],
+  [
+   "sha256 checksum of a file",
+   "hashing"
+  ],
+  [
+   "gradual rollout of a feature to 10% of users",
+   "feature-flags"
+  ],
+  [
+   "format bytes as human readable file size",
+   "human-units"
+  ],
+  [
+   "show what changed between two versions of a text",
+   "line-diff"
+  ],
+  [
+   "enforce password strength rules",
+   "password-policy"
+  ],
+  [
+   "strip invisible unicode characters from user input",
+   "text-sanitize"
+  ],
+  [
+   "verify id token from identity provider",
+   "oidc-token-verification"
+  ],
+  [
+   "enterprise single sign-on with okta saml",
+   "saml-sso"
+  ],
+  [
+   "passwordless login with passkeys",
+   "webauthn-passkeys"
+  ],
+  [
+   "store user passwords securely",
+   "password-hashing"
+  ],
+  [
+   "fill a pdf form",
+   "pdf-form-filling"
+  ],
+  [
+   "extract text from pdf",
+   "pdf-text-extraction"
+  ],
+  [
+   "generate a word document",
+   "docx-documents"
+  ],
+  [
+   "sanitize html from rich text editor",
+   "rich-text-sanitization"
+  ],
+  [
+   "rate limit api",
+   "token-bucket"
+  ]
+ ],
+ "heldout": [
+  [
+   "let users log in with a one-time code from an authenticator app",
+   "totp"
+  ],
+  [
+   "Google Authenticator compatible 6-digit codes for our admin panel",
+   "totp"
+  ],
+  [
+   "RFC 6238 time-based OTP generate and verify with drift window",
+   "totp"
+  ],
+  [
+   "add Sign in with Google to my web app",
+   "oidc-pkce"
+  ],
+  [
+   "Okta single sign-on redirect with code challenge for a SPA",
+   "oidc-pkce"
+  ],
+  [
+   "build authorize URL, S256 code_verifier, exchange code for tokens",
+   "oidc-pkce"
+  ],
+  [
+   "give users one-time backup codes in case they lose their phone",
+   "recovery-codes"
+  ],
+  [
+   "generate 10 emergency codes at 2FA enrollment, store hashed",
+   "recovery-codes"
+  ],
+  [
+   "single-use fallback codes: issue, verify, burn",
+   "recovery-codes"
+  ],
+  [
+   "evaluate a math expression typed by a user without using eval",
+   "calculator"
+  ],
+  [
+   "mortgage payment and amortization schedule for a loan calculator page",
+   "calculator"
+  ],
+  [
+   "expression parser, PMT, compound interest",
+   "calculator"
+  ],
+  [
+   "check that submitted form fields match the rules and show errors",
+   "form-schema"
+  ],
+  [
+   "signup form server-side validation from a declarative definition",
+   "form-schema"
+  ],
+  [
+   "declarative field schema validator returning per-field errors",
+   "form-schema"
+  ],
+  [
+   "tell search engines and AI bots which pages to crawl",
+   "seo-files"
+  ],
+  [
+   "generate a sitemap for my Next.js marketing site and block GPTBot",
+   "seo-files"
+  ],
+  [
+   "build sitemap.xml, robots.txt, llms.txt",
+   "seo-files"
+  ],
+  [
+   "make my pages show rich previews when shared and in Google results",
+   "structured-data"
+  ],
+  [
+   "add schema.org product markup and social cards to blog posts",
+   "structured-data"
+  ],
+  [
+   "emit JSON-LD plus og: and twitter: meta tags",
+   "structured-data"
+  ],
+  [
+   "add campaign tracking to links in our newsletter",
+   "utm-links"
+  ],
+  [
+   "tag every outbound link in our email blasts with source and medium",
+   "utm-links"
+  ],
+  [
+   "parse and strip utm_* query params",
+   "utm-links"
+  ],
+  [
+   "export user data to a spreadsheet file without it being exploitable",
+   "csv-safe"
+  ],
+  [
+   "import customer CSV with quoted commas and newlines, block =cmd injection",
+   "csv-safe"
+  ],
+  [
+   "RFC 4180 parser/writer, escape leading = + - @",
+   "csv-safe"
+  ],
+  [
+   "store prices without floating point rounding errors",
+   "money"
+  ],
+  [
+   "split a $100 bill three ways without losing a cent in our checkout",
+   "money"
+  ],
+  [
+   "integer cents, currency formatting, allocate remainder",
+   "money"
+  ],
+  [
+   "stop clients from tampering with the next-page token in my API",
+   "signed-cursors"
+  ],
+  [
+   "opaque tamper-proof page tokens for infinite scroll endpoint that expire",
+   "signed-cursors"
+  ],
+  [
+   "HMAC cursor encode/decode with exp",
+   "signed-cursors"
+  ],
+  [
+   "let people add our webinar to their calendar",
+   "ics-events"
+  ],
+  [
+   "email a meeting invite attachment that opens in Outlook and Apple Calendar",
+   "ics-events"
+  ],
+  [
+   "generate VEVENT .ics with timezone and reminder",
+   "ics-events"
+  ],
+  [
+   "unique record keys that sort by creation time",
+   "ids"
+  ],
+  [
+   "primary keys for a Postgres table that stay index-friendly",
+   "ids"
+  ],
+  [
+   "UUIDv7 / ULID generator and timestamp extraction",
+   "ids"
+  ],
+  [
+   "retry failed API calls without hammering the server",
+   "retry-backoff"
+  ],
+  [
+   "handle 429 from the Stripe API and wait as long as the server says",
+   "retry-backoff"
+  ],
+  [
+   "exponential backoff with jitter honoring Retry-After",
+   "retry-backoff"
+  ],
+  [
+   "limit how many requests each user can make per minute",
+   "token-bucket"
+  ],
+  [
+   "throttle our public API per API key with bursts allowed",
+   "token-bucket"
+  ],
+  [
+   "rate limiter, refill rate, injectable now()",
+   "token-bucket"
+  ],
+  [
+   "check whether an installed version satisfies a required range",
+   "semver"
+  ],
+  [
+   "decide if a plugin update is a breaking change before auto-upgrading",
+   "semver"
+  ],
+  [
+   "parse, compare, satisfies ^1.2.3 ~2.0",
+   "semver"
+  ],
+  [
+   "show when a scheduled job will run next",
+   "cron-next"
+  ],
+  [
+   "preview the next 5 fire times for a user-entered schedule in our job scheduler UI",
+   "cron-next"
+  ],
+  [
+   "parse 5-field cron, compute next occurrence in tz",
+   "cron-next"
+  ],
+  [
+   "make sure text is readable against its background for accessibility",
+   "wcag-contrast"
+  ],
+  [
+   "audit our theme colors for AA compliance and suggest a darker shade",
+   "wcag-contrast"
+  ],
+  [
+   "contrast ratio calculation, relative luminance, AA/AAA",
+   "wcag-contrast"
+  ],
+  [
+   "find stores within 10 km of the user",
+   "geo"
+  ],
+  [
+   "show distance between two GPS points on a delivery tracker",
+   "geo"
+  ],
+  [
+   "haversine, geohash encode/decode, bbox around point",
+   "geo"
+  ],
+  [
+   "make sure incoming callbacks really came from the sender",
+   "webhook-signature"
+  ],
+  [
+   "verify Stripe-style webhook payloads and reject replays",
+   "webhook-signature"
+  ],
+  [
+   "HMAC-SHA256 header t=,v1= sign and verify with tolerance",
+   "webhook-signature"
+  ],
+  [
+   "catch typos in card numbers or book codes before submitting",
+   "check-digits"
+  ],
+  [
+   "validate a bank account number and product barcode in a checkout form",
+   "check-digits"
+  ],
+  [
+   "Luhn, IBAN mod-97, EAN-13, ISBN-10/13 checksum",
+   "check-digits"
+  ],
+  [
+   "share a private file link that stops working after an hour",
+   "signed-urls"
+  ],
+  [
+   "temporary download links for paid invoices that can't be edited",
+   "signed-urls"
+  ],
+  [
+   "HMAC signature + expires query param verify",
+   "signed-urls"
+  ],
+  [
+   "compress a GPS route into a short string for the API",
+   "polyline"
+  ],
+  [
+   "decode the route string returned by the Google Directions API to draw on a map",
+   "polyline"
+  ],
+  [
+   "encode/decode polyline precision 5 and 6",
+   "polyline"
+  ],
+  [
+   "figure out which map tile covers a given lat/lng at a zoom level",
+   "tile-math"
+  ],
+  [
+   "build a custom Leaflet tile server and convert coordinates to tile x/y",
+   "tile-math"
+  ],
+  [
+   "slippy xyz, quadkey, EPSG:3857 projection",
+   "tile-math"
+  ],
+  [
+   "check that an email address typed into signup looks valid",
+   "email-address"
+  ],
+  [
+   "dedupe users whose emails differ only by case or plus-tags",
+   "email-address"
+  ],
+  [
+   "validate and canonicalize email, split local/domain, IDN",
+   "email-address"
+  ],
+  [
+   "parse a time length like P3DT4H from an API response",
+   "iso-duration"
+  ],
+  [
+   "video platform length fields such as PT1H30M to seconds",
+   "iso-duration"
+  ],
+  [
+   "ISO 8601 duration parse/format/add to date",
+   "iso-duration"
+  ],
+  [
+   "check whether a customer's address falls inside a delivery zone",
+   "geometry"
+  ],
+  [
+   "draw a service-area polygon, get its size and middle point, and reduce its vertices",
+   "geometry"
+  ],
+  [
+   "point-in-polygon, shoelace area, centroid, Douglas-Peucker",
+   "geometry"
+  ],
+  [
+   "send users back to the page they came from after login without letting attackers redirect them elsewhere",
+   "safe-redirect"
+  ],
+  [
+   "validate the next= parameter on my login page",
+   "safe-redirect"
+  ],
+  [
+   "allowlist redirect target, reject //evil.com and javascript:",
+   "safe-redirect"
+  ],
+  [
+   "check if a client IP is in our office network range",
+   "ip-cidr"
+  ],
+  [
+   "stop my server fetching user-supplied URLs that point to internal addresses",
+   "ip-cidr"
+  ],
+  [
+   "parse IPv4/IPv6, CIDR contains, block private ranges",
+   "ip-cidr"
+  ],
+  [
+   "support seeking in video files served from my API",
+   "http-range"
+  ],
+  [
+   "resume interrupted downloads for large files in an Express route",
+   "http-range"
+  ],
+  [
+   "parse Range header, build Content-Range, 206/416",
+   "http-range"
+  ],
+  [
+   "return JSON or HTML depending on what the client asks for",
+   "content-negotiation"
+  ],
+  [
+   "pick the best language for a visitor based on their browser settings",
+   "content-negotiation"
+  ],
+  [
+   "parse Accept / Accept-Language q-values and choose",
+   "content-negotiation"
+  ],
+  [
+   "avoid re-sending unchanged responses to browsers",
+   "http-conditional"
+  ],
+  [
+   "prevent two editors from overwriting each other in a REST API",
+   "http-conditional"
+  ],
+  [
+   "ETag generate, If-None-Match 304, If-Match 412",
+   "http-conditional"
+  ],
+  [
+   "set a session cookie securely from a server handler",
+   "cookies"
+  ],
+  [
+   "parse the Cookie header from a request in a worker without a framework",
+   "cookies"
+  ],
+  [
+   "Set-Cookie serialize SameSite HttpOnly Max-Age",
+   "cookies"
+  ],
+  [
+   "treat links that differ only trivially as the same page",
+   "url-normalize"
+  ],
+  [
+   "dedupe URLs in a crawler queue",
+   "url-normalize"
+  ],
+  [
+   "canonicalize URL: lowercase host, drop default port, resolve dot segments",
+   "url-normalize"
+  ],
+  [
+   "suggest 'did you mean' for a misspelled search",
+   "string-similarity"
+  ],
+  [
+   "fuzzy match company names when merging duplicate records",
+   "string-similarity"
+  ],
+  [
+   "edit distance, Jaro-Winkler score",
+   "string-similarity"
+  ],
+  [
+   "list the dates of a meeting that repeats every other Tuesday",
+   "rrule"
+  ],
+  [
+   "calendar app: expand a repeating event for the month view",
+   "rrule"
+  ],
+  [
+   "RRULE FREQ=WEEKLY;BYDAY expansion with EXDATE",
+   "rrule"
+  ],
+  [
+   "make a short URL-safe string from binary data",
+   "base-encodings"
+  ],
+  [
+   "decode a secret key given in the format authenticator apps use, and Bitcoin-style addresses",
+   "base-encodings"
+  ],
+  [
+   "base32 RFC 4648, base58, base64url no padding",
+   "base-encodings"
+  ],
+  [
+   "let users download a contact card to their phone address book",
+   "vcard"
+  ],
+  [
+   "export team directory as .vcf",
+   "vcard"
+  ],
+  [
+   "generate vCard 4.0 with escaping and line folding",
+   "vcard"
+  ],
+  [
+   "quickly hash strings for a hash table or sharding",
+   "hashing"
+  ],
+  [
+   "assign keys to cache nodes so few move when a node is added",
+   "hashing"
+  ],
+  [
+   "FNV-1a / murmur, jump consistent hash",
+   "hashing"
+  ],
+  [
+   "roll out a new feature to 10% of users",
+   "feature-flags"
+  ],
+  [
+   "show half of visitors a different checkout button and keep each person on the same version",
+   "feature-flags"
+  ],
+  [
+   "deterministic bucketing by user id and flag key, variants weights",
+   "feature-flags"
+  ],
+  [
+   "display file sizes like 1.5 MB",
+   "human-units"
+  ],
+  [
+   "show 'posted 3 hours ago' under comments",
+   "human-units"
+  ],
+  [
+   "format bytes, seconds as 2h 5m, relative time",
+   "human-units"
+  ],
+  [
+   "show what changed between two versions of a document",
+   "line-diff"
+  ],
+  [
+   "render a git-style patch for config file changes in an admin audit log",
+   "line-diff"
+  ],
+  [
+   "Myers diff, unified diff hunks",
+   "line-diff"
+  ],
+  [
+   "decide whether a new password is good enough when users sign up",
+   "password-policy"
+  ],
+  [
+   "reject passwords that are too short or on a breached list in our registration flow",
+   "password-policy"
+  ],
+  [
+   "NIST 800-63B length, blocklist, no composition rules",
+   "password-policy"
+  ],
+  [
+   "clean up user-provided text before storing or displaying it",
+   "text-sanitize"
+  ],
+  [
+   "detect hidden direction-override characters in pasted source code",
+   "text-sanitize"
+  ],
+  [
+   "strip control chars, normalize unicode, flag bidi U+202E",
+   "text-sanitize"
+  ],
+  [
+   "check that a token from the identity provider is genuine and not expired",
+   "oidc-token-verification"
+  ],
+  [
+   "validate Auth0 access tokens in my API middleware",
+   "oidc-token-verification"
+  ],
+  [
+   "verify JWT signature via JWKS, iss, aud, exp, nonce",
+   "oidc-token-verification"
+  ],
+  [
+   "let enterprise customers log in with their company identity provider via SAML",
+   "saml-sso"
+  ],
+  [
+   "Azure AD SAML login for our B2B SaaS",
+   "saml-sso"
+  ],
+  [
+   "SP metadata, AuthnRequest, validate assertion signature",
+   "saml-sso"
+  ],
+  [
+   "let users sign in with Face ID or a security key instead of a password",
+   "webauthn-passkeys"
+  ],
+  [
+   "add passkey registration and login to my app",
+   "webauthn-passkeys"
+  ],
+  [
+   "WebAuthn attestation/assertion verification, navigator.credentials",
+   "webauthn-passkeys"
+  ],
+  [
+   "store user passwords safely in my database",
+   "password-hashing"
+  ],
+  [
+   "migrate from MD5 password hashes to something secure",
+   "password-hashing"
+  ],
+  [
+   "Argon2id hash and verify with rehash on login",
+   "password-hashing"
+  ],
+  [
+   "fill in the fields of a fillable PDF contract from user data",
+   "pdf-form-filling"
+  ],
+  [
+   "auto-populate IRS form PDFs with customer details",
+   "pdf-form-filling"
+  ],
+  [
+   "AcroForm set field values, flatten",
+   "pdf-form-filling"
+  ],
+  [
+   "pull the words out of uploaded PDF files so I can search them",
+   "pdf-text-extraction"
+  ],
+  [
+   "extract invoice text from PDFs for an AI pipeline",
+   "pdf-text-extraction"
+  ],
+  [
+   "PDF to text, per page, pdfjs",
+   "pdf-text-extraction"
+  ],
+  [
+   "generate a Word report from a template with placeholders",
+   "docx-documents"
+  ],
+  [
+   "edit paragraphs and tables inside an existing .docx programmatically",
+   "docx-documents"
+  ],
+  [
+   "docx read/modify/write, replace text keep styles",
+   "docx-documents"
+  ],
+  [
+   "allow users to post formatted comments without XSS risk",
+   "rich-text-sanitization"
+  ],
+  [
+   "render markdown-generated HTML safely in a CMS",
+   "rich-text-sanitization"
+  ],
+  [
+   "HTML allowlist sanitizer, DOMPurify, strip script and on* attributes",
+   "rich-text-sanitization"
+  ],
+  [
+   "make URL-friendly slugs from titles",
+   "slugify"
+  ],
+  [
+   "turn blog post titles into clean permalinks",
+   "slugify"
+  ],
+  [
+   "slug from unicode string, strip accents, hyphenate",
+   "slugify"
+  ],
+  [
+   "generate unique slug and append -2 when it already exists",
+   "slugify"
+  ],
+  [
+   "convert 'Café Menu & Prices!' to cafe-menu-prices",
+   "slugify"
+  ],
+  [
+   "apply a set of add/remove/replace changes to a JSON document",
+   "json-patch"
+  ],
+  [
+   "compute the difference between two JSON objects as a patch",
+   "json-patch"
+  ],
+  [
+   "RFC 6902 JSON Patch apply and diff",
+   "json-patch"
+  ],
+  [
+   "RFC 7396 merge patch for partial updates to a REST resource",
+   "json-patch"
+  ],
+  [
+   "PATCH endpoint that accepts JSON Pointer operations with test op",
+   "json-patch"
+  ]
+ ]
+}

@@ -23,8 +23,14 @@ test('loads every source catalog and reports counts', async () => {
 });
 
 test('query terms stem plurals and add reviewed synonyms without duplicating words', () => {
-  assert.deepEqual(queryTerms('Webhooks webhooks'), { words: ['webhook'], expanded: ['signature', 'hmac'], phrase: 'webhooks-webhooks' });
+  const { words, expanded, phrase } = queryTerms('Webhooks webhooks');
+  assert.deepEqual({ words, expanded, phrase }, { words: ['webhook'], expanded: ['signature', 'hmac'], phrase: 'webhooks-webhooks' });
   assert.deepEqual(queryTerms('class').words, ['class']);
+  // Light suffix stemming joins word forms without merging unrelated words.
+  assert.deepEqual(queryTerms('normalizing normalization normalize').words, ['normal']);
+  assert.deepEqual(queryTerms('coordinates coordinate addresses address hashes').words, ['coordin', 'address', 'hash']);
+  assert.deepEqual(queryTerms('generate general').words, ['gener', 'general']);
+  assert.deepEqual(queryTerms('logging').words, queryTerms('logger').words);
   assert.throws(() => queryTerms('x'.repeat(501)), /at most 500/);
 });
 
