@@ -25,7 +25,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`attachments.json`](../../resources/attachments.json) | 25 | [attachment-review.md](../../docs/resources/attachment-review.md) | animation, ui-components, design-inspiration, design-prompts, design-system-files |
 | [`ui-foundations.json`](../../resources/ui-foundations.json) | 18 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
 | [`catalog/ai-agents.json`](../../resources/catalog/ai-agents.json) | 91 | [ai-agents.md](../../docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
-| [`catalog/ai-learning.json`](../../resources/catalog/ai-learning.json) | 14 | [ai-learning.md](../../docs/resources/ai-learning.md) | learning, agent-frameworks |
+| [`catalog/ai-learning.json`](../../resources/catalog/ai-learning.json) | 29 | [ai-learning.md](../../docs/resources/ai-learning.md) | learning, engineering-guides, agent-frameworks, ai-apps, desktop-apps |
 | [`catalog/backend-api.json`](../../resources/catalog/backend-api.json) | 95 | [backend-api.md](../../docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
 | [`catalog/business-tools.json`](../../resources/catalog/business-tools.json) | 868 | [business-tools.md](../../docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
 | [`catalog/chat-messaging.json`](../../resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](../../docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
@@ -51,7 +51,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 796 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **8918** | | |
+| **Total** | **8933** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -66,20 +66,20 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 | `web-app` | 4960 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
 | `marketing-site` | 3980 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
 | `mobile-app` | 679 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
-| `desktop-app` | 68 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
+| `desktop-app` | 71 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
 | `api-backend` | 1405 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
 | `cli-tool` | 132 | Argument parsing, prompts, output formatting, config files and distribution. |
-| `ai-agent` | 273 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
+| `ai-agent` | 277 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
 | `data-analytics` | 1327 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 774 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
 | `saas` | 6107 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
 | `realtime-collab` | 297 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
-| `devops-infra` | 847 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
+| `devops-infra` | 855 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
 | `testing-qa` | 156 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
-| `docs-knowledge` | 417 | Docs sites, API references, diagrams, search and markdown tooling. |
+| `docs-knowledge` | 425 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 24 | Headless browsers, scraping within terms, workflow automation and RPA. |
 | `office-documents` | 556 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
-| `media-creative` | 941 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
+| `media-creative` | 948 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
 | `finance-accounting` | 418 | Money math, ledgers, invoicing, accounting APIs and financial data. |
 | `legal-compliance` | 120 | Contracts, e-signature, privacy, consent, accessibility and policy tooling. |
 | `game` | 30 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
