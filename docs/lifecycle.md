@@ -33,6 +33,7 @@ Every result names its type, verification level and the exact next command. Modu
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
 | | `chat-messaging` catalog (Mattermost, Rocket.Chat, Zulip, Chatwoot, Matrix, SimpleX, Socket.IO, bot SDKs) | resources | Team chat, live support, real-time messaging and bots in each language |
+| | `open-source-tools` catalog (Ollama, Open WebUI, Stirling-PDF, AppFlowy, Penpot, n8n, Coolify, Uptime Kuma and 1,200+ more) | resources | Self-hostable alternatives to proprietary products; search `<product> alternative` |
 | 8. Operate | `structured-logger` | module | JSON-lines logs with key redaction, child loggers and request IDs |
 | | `health-checks` | module | `/healthz` liveness and `/readyz` readiness with per-check timeouts |
 | 9. Other languages | Every capability, plus `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | capabilities, language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |
