@@ -39,7 +39,10 @@ const sourcesBlock = from => [
   `| [Language examples](#recipes-language-examples-and-templates) | ${counts['language-example']} | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |`,
   `| [Project templates](#recipes-language-examples-and-templates) | ${counts.template} | Project, GitHub, docs, ship/release and UI-selection starters |`,
   `| [Code-navigation tools](#find-code-without-reading-the-whole-repository) | ${counts.tool} | Repository map, AST graph, task context and Mermaid diagram |`,
-  `| [Agent skills](#agent-skills) | ${counts.skill} | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |`,
+  `| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.skill} | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |`,
+  `| [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.mcp} | Top MCP servers by downloads plus hosted servers, wired with one \`claude mcp add\` / \`codex mcp add\` |`,
+  `| [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.cli} | Top Homebrew CLIs by install requests, one \`brew install\` each |`,
+  `| [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.api} | Top OpenAPI-described APIs with official SDK or one-command typed client |`,
   `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and references across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
 ].join('\n');
 const catalogBlock = from => [

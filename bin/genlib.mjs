@@ -4,6 +4,7 @@ import { installModule, planInstall, verifyInstallation } from '../lib/install.m
 import { detectProject, findInSources, loadSources, sourceCounts } from '../lib/discover.mjs';
 import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
+import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 
 const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
@@ -12,6 +13,9 @@ const HELP = {
     'detect --target <existing-project> [--json]',
     'skill find <words> [--harness claude|codex|both] [--limit 8] [--json]',
     'skill inspect <id> [--harness claude|codex|both] [--json]',
+    'mcp find <words> | mcp inspect <id> [--client claude|codex|both] [--limit 8] [--json]',
+    'cli find <words> | cli inspect <id> [--limit 8] [--json]',
+    'api find <words> | api inspect <id> [--limit 8] [--json]',
     'catalog [--json]',
     'list [--json]',
     'search <words> [--framework react] [--limit 5] [--json]',
@@ -26,7 +30,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -46,7 +50,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result;
   const supported = {
-    help: [], '--help': [], list: ['json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -54,7 +58,24 @@ try {
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
     'INVALID_OPTION', 'An option does not apply to this command.');
   if (command === 'help' || command === '--help') result = HELP;
-  else if (command === 'skill') {
+  else if (Object.hasOwn(INDEXES, command)) {
+    const [action, ...words] = positional;
+    const client = options.client ?? 'both';
+    invariant(MCP_CLIENTS.includes(client), 'INVALID_OPTION', 'Client must be claude, codex or both.');
+    const index = await loadIndex(command);
+    if (action === 'find') {
+      invariant(words.length > 0, 'INVALID_OPTION', `Provide words, for example: ${command} find github.`);
+      invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
+      result = { [INDEXES[command].key]: searchIndex(command, index, words.join(' '), { limit: Number(options.limit ?? 8), client }), ranking: index.ranking };
+    } else if (action === 'inspect') {
+      invariant(words.length === 1, 'INVALID_OPTION', `Provide exactly one ${INDEXES[command].label} ID.`);
+      const entry = index.entries.find(item => item.id === words[0]);
+      invariant(entry, 'NOT_FOUND', `No ${INDEXES[command].label} named ${words[0]}. Run ${command} find first.`);
+      result = { ...entry, install: installFor(command, entry, client) };
+    } else {
+      invariant(false, 'INVALID_OPTION', `Use ${command} find <words> or ${command} inspect <id>.`);
+    }
+  } else if (command === 'skill') {
     const [action, ...words] = positional;
     const harness = options.harness ?? 'both';
     invariant(Object.hasOwn(HARNESSES, harness), 'INVALID_OPTION', 'Harness must be claude, codex or both.');

@@ -33,7 +33,7 @@ One command searches everything below and returns each result's exact next step.
 - [Modules](#modules)
 - [Recipes, language examples and templates](#recipes-language-examples-and-templates)
 - [Resource catalog](#resource-catalog)
-- [Agent skills](#agent-skills)
+- [Install indexes: skills, MCP servers, CLIs and APIs](#install-indexes-skills-mcp-servers-clis-and-apis)
 - [Find code without reading the whole repository](#find-code-without-reading-the-whole-repository)
 - [From new repository to shipped app](#from-new-repository-to-shipped-app)
 - [Claude Code and Codex skill](#claude-code-and-codex-skill)
@@ -50,13 +50,13 @@ flowchart LR
   Find --> R["Recipes and<br/>language examples"]
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
-  Find --> S["Agent skills"]
+  Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
   Find --> X["Resource catalog"]
   M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
   R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
   T --> Merge["read guide, merge<br/>selected files"] --> App
   N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
-  S --> SkillAdd["npx skills add<br/>pinned commit"] --> App
+  S --> SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"] --> App
   X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
 ```
 
@@ -89,7 +89,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | Command | Purpose |
 | --- | --- |
 | `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
-| `skill find <words>` / `skill inspect <id>` | Search the 500-skill index and get the one-step pinned install for Claude Code, Codex or both |
+| `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
 | `catalog` | Counts and a short overview of every source |
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
@@ -166,16 +166,18 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).
 
-## Agent skills
+## Install indexes: skills, MCP servers, CLIs and APIs
 
-[`resources/skills.json`](resources/skills.json) indexes 500 Claude Code and Codex skills. They're ranked by skills.sh installs and each is pinned to an upstream commit. An agent finds one and installs it in one command:
+Four ranked indexes of 500 entries each give agents the shortest install path for widely used tools, ranked by real usage data:
 
-```sh
-node "$GENLIB_ROOT/bin/genlib.mjs" skill find pdf forms --harness claude --limit 5 --json
-npx skills@1.7.2 add https://github.com/<owner>/<repo>/tree/<commit>/<path> -a claude-code -y   # from the result
-```
+| Index | Ranked by | Example |
+| --- | --- | --- |
+| [Agent skills](resources/skills.json) | skills.sh installs | `genlib skill find pdf --harness claude` → `npx skills@1.7.2 add <pinned url> -a claude-code -y` |
+| [MCP servers](resources/mcp-servers.json) | Monthly npm/PyPI downloads (official MCP Registry) | `genlib mcp find github --client both` → `claude mcp add …` and `codex mcp add …` |
+| [CLIs](resources/clis.json) | Homebrew install requests (365 days) | `genlib cli find json` → `brew install jq` |
+| [APIs](resources/apis.json) | Provider popularity (Tranco), OpenAPI Directory specs | `genlib api find payments` → official SDK, or `npx openapi-typescript <spec>` |
 
-Skills run with the agent's full permissions. Read the pinned `SKILL.md` and scripts first. See the [skill library guide](docs/skill-library.md).
+Each record carries the exact commands, with versions and commits pinned where the ecosystem allows. `genlib find` searches all four together with everything else (`--type skill|mcp|cli|api`). Skills, MCP servers and CLIs run with the agent's permissions, so review them first. See the [install indexes guide](docs/install-indexes.md) and the [skill library guide](docs/skill-library.md).
 
 ## Find code without reading the whole repository
 
@@ -231,7 +233,7 @@ lib/                      catalog, installer, discovery, resources and safety co
 modules/<id>/             module.json, CONTRACT.md and files/ for each module
 registry/                 generated catalog and integrity manifests (npm run registry:build)
 examples/                 recipes, language examples, storefront, UI and utility sources
-resources/                project types, recipes, skills.json, UI foundations and resources/catalog/*.json
+resources/                project types, recipes, skills/mcp-servers/clis/apis indexes, UI foundations and resources/catalog/*.json
 templates/                project, github, docs, ship and ui starters (templates/index.json)
 tools/                    resources, recipes, language installer, repo map/AST/context/diagram (tools/index.json)
 scripts/                  registry build, skill sync/install, resource verifier
