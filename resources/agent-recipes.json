@@ -2206,6 +2206,229 @@
         "create-patch",
         "canonical"
       ]
+    },
+    {
+      "id": "sse-stream",
+      "kind": "source-example",
+      "path": "examples/recipes/sse.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "server-sent events",
+        "sse",
+        "eventsource",
+        "event stream",
+        "text/event-stream",
+        "streaming response",
+        "stream llm tokens",
+        "live updates",
+        "keep-alive ping",
+        "last-event-id"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart sse modules (shared vectors)",
+        "Parser accepts arbitrary chunks, including a CRLF split across chunks; an unterminated final event is dropped",
+        "Honor retry and Last-Event-ID on reconnect; authenticate the stream like any other endpoint"
+      ],
+      "variants": [
+        "parser",
+        "format-event",
+        "keep-alive-comment"
+      ]
+    },
+    {
+      "id": "text-chunking",
+      "kind": "source-example",
+      "path": "examples/recipes/text-chunking.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "text chunking",
+        "chunk text",
+        "rag",
+        "retrieval augmented generation",
+        "split text",
+        "text splitter",
+        "recursive splitter",
+        "chunk overlap",
+        "embedding chunks",
+        "document chunks"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart text-chunking modules (shared vectors)",
+        "Lengths count code points, not tokens; size chunks from your embedding model's token limit with headroom",
+        "Whitespace is ASCII only; chunks are trimmed and never empty"
+      ],
+      "variants": [
+        "paragraphs",
+        "sentences",
+        "overlap"
+      ]
+    },
+    {
+      "id": "vector-math",
+      "kind": "source-example",
+      "path": "examples/recipes/vector-math.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "cosine similarity",
+        "dot product",
+        "embeddings",
+        "vector search",
+        "top k",
+        "nearest neighbors",
+        "semantic search",
+        "mmr",
+        "maximal marginal relevance",
+        "normalize vector",
+        "rerank"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart vector-math modules (shared vectors)",
+        "Brute force is O(n*d); use a vector index (pgvector, HNSW) for large collections",
+        "Cosine of a zero vector is 0; normalize throws on it"
+      ],
+      "variants": [
+        "cosine",
+        "top-k",
+        "mmr"
+      ]
+    },
+    {
+      "id": "circuit-breaker",
+      "kind": "source-example",
+      "path": "examples/recipes/circuit-breaker.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "circuit breaker",
+        "circuit-breaker",
+        "fail fast",
+        "half open",
+        "cascading failure",
+        "downstream outage",
+        "resilience",
+        "failing dependency",
+        "cooldown",
+        "bulkhead"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart circuit-breaker modules (shared vectors)",
+        "Pure state machine with an injected clock; state is per process unless you store it centrally",
+        "Combine with retry-backoff and timeouts; count only failures that indicate an unhealthy dependency"
+      ],
+      "variants": [
+        "closed-open-half-open",
+        "retry-after",
+        "half-open-trials"
+      ]
+    },
+    {
+      "id": "business-days",
+      "kind": "source-example",
+      "path": "examples/recipes/business-days.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "working day",
+        "workday calculator",
+        "add working days",
+        "weekend",
+        "holiday list",
+        "settlement date",
+        "sla deadline",
+        "iso date",
+        "net 30 due",
+        "shipping estimate"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart business-days modules (shared vectors)",
+        "Dates are strict YYYY-MM-DD civil dates; convert to the business's own time zone first",
+        "Holiday lists are data you must maintain per region; weekends are MO..SU codes"
+      ],
+      "variants": [
+        "is-business-day",
+        "add",
+        "between"
+      ]
+    },
+    {
+      "id": "natural-sort",
+      "kind": "source-example",
+      "path": "examples/recipes/natural-sort.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "natural sort",
+        "natural order",
+        "alphanumeric sort",
+        "human sort",
+        "file2 before file10",
+        "numeric aware sort",
+        "sort filenames",
+        "version-like sort",
+        "sort with numbers"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart natural-sort modules (shared vectors)",
+        "Locale-independent ASCII case folding; use Intl.Collator numeric for language-aware UI",
+        "Digit runs of any length compare without number overflow"
+      ],
+      "variants": [
+        "compare",
+        "sort"
+      ]
+    },
+    {
+      "id": "file-signature",
+      "kind": "source-example",
+      "path": "examples/recipes/file-signature.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "magic number",
+        "magic bytes",
+        "file signature",
+        "sniff file type",
+        "detect mime",
+        "content sniffing",
+        "check real file type",
+        "extension mismatch",
+        "file header check",
+        "spoofed extension"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart file-signature modules (shared vectors)",
+        "Detection is a first check, not a malware scan; still re-encode or sandbox untrusted files",
+        "Reads only the first 64 bytes; a matching extension does not prove the whole file is valid"
+      ],
+      "variants": [
+        "detect",
+        "matches-extension"
+      ]
+    },
+    {
+      "id": "color-convert",
+      "kind": "source-example",
+      "path": "examples/recipes/color-convert.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "color conversion",
+        "convert color",
+        "hex to rgb",
+        "rgb to hex",
+        "hsl",
+        "oklch",
+        "oklab",
+        "color space",
+        "gamut check",
+        "css color",
+        "palette generation"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart color modules (shared vectors)",
+        "oklchToRgb is unclamped; check inGamut before using the result",
+        "toHex clamps and rounds half up; alpha is written only when below 1"
+      ],
+      "variants": [
+        "hex",
+        "hsl",
+        "oklch"
+      ]
     }
   ]
 }

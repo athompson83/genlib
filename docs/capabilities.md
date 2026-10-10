@@ -257,6 +257,30 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 **json-patch**
 - `applyPatch(doc, patch)` applies RFC 6902 (add, remove, replace, move, copy, test) atomically and returns a new document; `getPointer` resolves RFC 6901 pointers; `mergePatch` applies RFC 7396; `createPatch(a, b)` returns a deterministic patch (object keys in code point order, arrays compared by index, so it is correct but not the shortest for inserted array items); `canonical` prints compact JSON with sorted keys. Java, Kotlin, Swift and Rust include a strict RFC 8259 parser because their standard libraries have none (Swift's avoids Foundation's number/boolean ambiguity). Numbers compare numerically (1 equals 1.0, true never equals 1); use the test vectors' integers when values cross languages.
 
+**sse**
+- `SseParser.feed(chunk)` turns server-sent event text into `{event, data, id}` events as it arrives, following the WHATWG rules: CRLF, CR or LF line endings even when a CRLF is split across chunks, comments, multi-line data, an id that persists until changed, and `retry` as the parser's reconnection delay. An unterminated final event is dropped, as browsers do. `formatSse(data, event, id, retry)` and `formatComment(text)` write events and keep-alive pings; serve them as `text/event-stream` with caching disabled.
+
+**text-chunking**
+- `chunkText(text, maxChars, overlap)` splits at the largest boundary that fits (paragraph, line, sentence, word, then code point), packs pieces greedily, trims each chunk and can repeat whole trailing pieces of the previous chunk as overlap. Lengths are code points, not model tokens, so leave a margin under the embedding model's limit.
+
+**vector-math**
+- `dot`, `norm`, `cosine`, `normalize`, `topK(query, vectors, k)` (best first, ties by index) and `mmr(query, vectors, k, lambda)` for relevance-plus-diversity re-ranking. Brute force is right for thousands of vectors; beyond that use an approximate index such as HNSW or pgvector.
+
+**circuit-breaker**
+- `CircuitBreaker(failureThreshold, cooldownMs, halfOpenMax)` with `allow(now)`, `recordSuccess(now)`, `recordFailure(now)`, `state(now)` and `retryAfterMs(now)`. The clock is passed in, so it is deterministic in tests and works with any HTTP client; pair it with `retry-backoff` and only retry idempotent requests.
+
+**business-days**
+- `addBusinessDays(date, n, holidays, weekend)`, `businessDaysBetween(start, end, holidays, weekend)` (counts `[start, end)`, negative when reversed) and `isBusinessDay` over ISO dates. The weekend is configurable (Friday/Saturday, Sunday only); the holiday list is yours to supply per country and year.
+
+**natural-sort**
+- `naturalCompare(a, b)` and `naturalSort(list)` order embedded numbers by value of any length (file2 before file10, v1.9 before v1.10), fold ASCII case, and break ties deterministically (fewer leading zeros first, then code points). Use the platform collator instead when you need locale-aware ordering of accented letters.
+
+**file-signature**
+- `detectFileType(bytes)` names about 30 formats from their first bytes (PNG, JPEG, GIF, WebP, AVIF/HEIC, PDF, ZIP and Office containers, gzip, 7z, RAR, audio, video, fonts, WASM, SQLite) and `matchesExtension(bytes, filename)` checks an upload's content against its name. It is a first gate, not a malware scan: still re-encode images and sandbox documents. Text formats (SVG, HTML, CSV) are not detected.
+
+**color**
+- `parseHex`/`toHex` (#rgb to #rrggbbaa), `rgbToHsl`/`hslToRgb`, `rgbToOklch`/`oklchToRgb` (Björn Ottosson's Oklab matrices, unclamped) and `inGamut`. OKLCH keeps perceived lightness steady when you change hue, which makes it the better space for generated palettes; clamp or reduce chroma when `inGamut` is false.
+
 **password-policy**
 - `checkPassword` reports too-short, too-long (code points), control-characters, blocklisted, contains-context and repetitive (aaaa, 1234, dcba) with no composition rules, following NIST SP 800-63B. Use a large breached-password list as the blocklist, allow spaces and emoji, never truncate, and rate-limit attempts.
 

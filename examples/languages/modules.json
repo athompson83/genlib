@@ -6401,6 +6401,854 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "swift-sse",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Sse.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-text-chunking",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TextChunking.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-vector-math",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/VectorMath.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-circuit-breaker",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/CircuitBreaker.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-business-days",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/BusinessDays.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-natural-sort",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/NaturalSort.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-file-signature",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/FileSignature.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-color",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/ColorConvert.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave9Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "java-sse",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Sse.java"
+      ],
+      "tests": [
+        "java/SseTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-sse",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Sse.kt"
+      ],
+      "tests": [
+        "kotlin/SseTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-text-chunking",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TextChunking.java"
+      ],
+      "tests": [
+        "java/TextChunkingTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-text-chunking",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TextChunking.kt"
+      ],
+      "tests": [
+        "kotlin/TextChunkingTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-vector-math",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/VectorMath.java"
+      ],
+      "tests": [
+        "java/VectorMathTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-vector-math",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/VectorMath.kt"
+      ],
+      "tests": [
+        "kotlin/VectorMathTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-circuit-breaker",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/CircuitBreaker.java"
+      ],
+      "tests": [
+        "java/CircuitBreakerTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-circuit-breaker",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/CircuitBreaker.kt"
+      ],
+      "tests": [
+        "kotlin/CircuitBreakerTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-business-days",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/BusinessDays.java"
+      ],
+      "tests": [
+        "java/BusinessDaysTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-business-days",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/BusinessDays.kt"
+      ],
+      "tests": [
+        "kotlin/BusinessDaysTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-natural-sort",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/NaturalSort.java"
+      ],
+      "tests": [
+        "java/NaturalSortTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-natural-sort",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/NaturalSort.kt"
+      ],
+      "tests": [
+        "kotlin/NaturalSortTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-file-signature",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/FileSignature.java"
+      ],
+      "tests": [
+        "java/FileSignatureTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-file-signature",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/FileSignature.kt"
+      ],
+      "tests": [
+        "kotlin/FileSignatureTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "java-color",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/ColorConvert.java"
+      ],
+      "tests": [
+        "java/ColorConvertTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-color",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/ColorConvert.kt"
+      ],
+      "tests": [
+        "kotlin/ColorConvertTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-sse",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Sse.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-sse",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/sse.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-text-chunking",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TextChunking.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-text-chunking",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/text_chunking.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-vector-math",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/VectorMath.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-vector-math",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/vector_math.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-circuit-breaker",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/CircuitBreaker.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-circuit-breaker",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/circuit_breaker.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-business-days",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/BusinessDays.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-business-days",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/business_days.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-natural-sort",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/NaturalSort.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-natural-sort",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/natural_sort.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-file-signature",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/FileSignature.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-file-signature",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/file_signature.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-color",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/ColorConvert.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-color",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/color_convert.dart"
+      ],
+      "tests": [
+        "dart/test/wave9_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "go-sse",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/sse/sse.go"
+      ],
+      "tests": [
+        "go/sse/sse_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-sse",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/sse.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-text-chunking",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/chunking/chunking.go"
+      ],
+      "tests": [
+        "go/chunking/chunking_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-text-chunking",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/text_chunking.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-vector-math",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/vectormath/vectormath.go"
+      ],
+      "tests": [
+        "go/vectormath/vectormath_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-vector-math",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/vector_math.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-circuit-breaker",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/breaker/breaker.go"
+      ],
+      "tests": [
+        "go/breaker/breaker_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-circuit-breaker",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/circuit_breaker.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-business-days",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/bizdays/bizdays.go"
+      ],
+      "tests": [
+        "go/bizdays/bizdays_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-business-days",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/business_days.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-natural-sort",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/natsort/natsort.go"
+      ],
+      "tests": [
+        "go/natsort/natsort_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-natural-sort",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/natural_sort.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-file-signature",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/filesig/filesig.go"
+      ],
+      "tests": [
+        "go/filesig/filesig_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-file-signature",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/file_signature.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "go-color",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/colorconv/colorconv.go"
+      ],
+      "tests": [
+        "go/colorconv/colorconv_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-color",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/color_convert.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "python-sse",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/sse.py"
+      ],
+      "tests": [
+        "python/test_sse.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-text-chunking",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/text_chunking.py"
+      ],
+      "tests": [
+        "python/test_text_chunking.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-vector-math",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/vector_math.py"
+      ],
+      "tests": [
+        "python/test_vector_math.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-circuit-breaker",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/circuit_breaker.py"
+      ],
+      "tests": [
+        "python/test_circuit_breaker.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-business-days",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/business_days.py"
+      ],
+      "tests": [
+        "python/test_business_days.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-natural-sort",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/natural_sort.py"
+      ],
+      "tests": [
+        "python/test_natural_sort.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-file-signature",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/file_signature.py"
+      ],
+      "tests": [
+        "python/test_file_signature.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-color",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/color_convert.py"
+      ],
+      "tests": [
+        "python/test_color_convert.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
     }
   ]
 }

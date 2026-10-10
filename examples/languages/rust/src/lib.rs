@@ -3,14 +3,18 @@
 //! The capability modules below are independent, tested examples.
 
 pub mod base_encodings;
+pub mod business_days;
 pub mod calculator;
 pub mod check_digits;
+pub mod circuit_breaker;
+pub mod color_convert;
 pub mod content_negotiation;
 pub mod cookies;
 pub mod cron_next;
 pub mod csv_safe;
 pub mod email_address;
 pub mod feature_flags;
+pub mod file_signature;
 pub mod form_schema;
 pub mod geo;
 pub mod geometry;
@@ -25,6 +29,7 @@ pub mod iso_duration;
 pub mod json_patch;
 pub mod line_diff;
 pub mod money;
+pub mod natural_sort;
 pub mod oidc_pkce;
 pub mod password_policy;
 pub mod polyline;
@@ -37,8 +42,10 @@ pub mod seo_files;
 pub mod signed_cursors;
 pub mod signed_urls;
 pub mod slugify;
+pub mod sse;
 pub mod string_similarity;
 pub mod structured_data;
+pub mod text_chunking;
 pub mod text_sanitize;
 pub mod tile_math;
 pub mod token_bucket;
@@ -46,6 +53,7 @@ pub mod totp;
 pub mod url_normalize;
 pub mod utm_links;
 pub mod vcard;
+pub mod vector_math;
 pub mod wcag_contrast;
 pub mod webhook_signature;
 

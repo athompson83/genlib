@@ -3225,6 +3225,536 @@
       }
     },
     {
+      "id": "sse",
+      "title": "Server-sent events: parse and format event streams",
+      "tier": "pure",
+      "summary": "Incremental WHATWG server-sent events parser (chunk-safe, CRLF/CR/LF, comments, id and retry) and formatter for streaming responses such as LLM token streams, live feeds and progress updates.",
+      "terms": [
+        "sse",
+        "server-sent events",
+        "event stream",
+        "text/event-stream",
+        "eventsource",
+        "streaming response",
+        "stream llm tokens",
+        "openai stream",
+        "live updates",
+        "push updates",
+        "keep-alive ping"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "sse-stream",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-sse",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-sse",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-sse",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-sse",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-sse",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-sse",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-sse",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-sse",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "text-chunking",
+      "title": "Text chunking for retrieval (RAG)",
+      "tier": "pure",
+      "summary": "Split documents into chunks of at most N code points at the largest natural boundary (paragraph, line, sentence, word), with optional whole-piece overlap, for embeddings and retrieval.",
+      "caveat": "Counts code points, not model tokens: size chunks with a margin or count tokens with your model's tokenizer.",
+      "terms": [
+        "chunking",
+        "text splitter",
+        "split text",
+        "rag",
+        "retrieval augmented generation",
+        "embeddings",
+        "chunk documents",
+        "overlap",
+        "recursive character splitter",
+        "context window"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "text-chunking",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-text-chunking",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-text-chunking",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-text-chunking",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-text-chunking",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-text-chunking",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-text-chunking",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-text-chunking",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-text-chunking",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "vector-math",
+      "title": "Vector similarity: cosine, top-k and MMR",
+      "tier": "pure",
+      "summary": "Dot product, norm, cosine similarity, normalization, brute-force top-k nearest neighbours and maximal marginal relevance (MMR) re-ranking for embedding search without a vector database.",
+      "caveat": "Brute force over every vector: fine for thousands of items; use an approximate index (HNSW, pgvector) beyond that.",
+      "terms": [
+        "cosine similarity",
+        "vector search",
+        "nearest neighbors",
+        "top k",
+        "embeddings search",
+        "semantic search",
+        "mmr",
+        "maximal marginal relevance",
+        "dot product",
+        "similarity score",
+        "rerank"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "vector-math",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-vector-math",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-vector-math",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-vector-math",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-vector-math",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-vector-math",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-vector-math",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-vector-math",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-vector-math",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "circuit-breaker",
+      "title": "Circuit breaker (closed, open, half-open)",
+      "tier": "pure",
+      "summary": "A clock-injected circuit breaker state machine: consecutive failures open it, a cooldown moves it to half-open, limited trial calls close or re-open it, with retry-after for callers.",
+      "terms": [
+        "circuit breaker",
+        "fail fast",
+        "resilience",
+        "half open",
+        "cascading failure",
+        "downstream outage",
+        "retry after",
+        "fault tolerance",
+        "stop calling failing service"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "circuit-breaker",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-circuit-breaker",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-circuit-breaker",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-circuit-breaker",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-circuit-breaker",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-circuit-breaker",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-circuit-breaker",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-circuit-breaker",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-circuit-breaker",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "business-days",
+      "title": "Business days: add, count and check with holidays",
+      "tier": "pure",
+      "summary": "Add or subtract business days, count business days between ISO dates and check a date, with a holiday list and any weekend (Saturday/Sunday by default, Friday/Saturday and others).",
+      "terms": [
+        "business days",
+        "working days",
+        "weekdays",
+        "holidays",
+        "sla due date",
+        "delivery date",
+        "add workdays",
+        "count working days",
+        "net working days",
+        "shipping estimate"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "business-days",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-business-days",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-business-days",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-business-days",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-business-days",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-business-days",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-business-days",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-business-days",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-business-days",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "natural-sort",
+      "title": "Natural sort order (file2 before file10)",
+      "tier": "pure",
+      "summary": "Compare and sort strings so embedded numbers sort by value (file2 before file10, v1.9 before v1.10), case-insensitively, with deterministic tie-breaks and any number length.",
+      "terms": [
+        "natural sort",
+        "human sort",
+        "alphanumeric sort",
+        "sort file names",
+        "numeric string sort",
+        "version-like sort",
+        "sort with numbers",
+        "natsort"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "natural-sort",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-natural-sort",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-natural-sort",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-natural-sort",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-natural-sort",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-natural-sort",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-natural-sort",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-natural-sort",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-natural-sort",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "file-signature",
+      "title": "File type detection from magic bytes",
+      "tier": "pure",
+      "summary": "Detect about 30 common formats (images, PDF, archives, audio, video, fonts, WASM, SQLite) from the first bytes and check that an upload's content matches its file extension.",
+      "caveat": "A first check, not a malware scan: still re-encode or sandbox untrusted files, and note that text formats (SVG, HTML, CSV) are not detected.",
+      "terms": [
+        "magic bytes",
+        "file signature",
+        "mime sniffing",
+        "detect file type",
+        "upload validation",
+        "content type check",
+        "file extension mismatch",
+        "is this a png",
+        "validate uploaded image"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "file-signature",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-file-signature",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-file-signature",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-file-signature",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-file-signature",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-file-signature",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-file-signature",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-file-signature",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-file-signature",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "color",
+      "title": "Color conversion: hex, RGB, HSL and OKLCH",
+      "tier": "pure",
+      "summary": "Parse and format CSS hex colors and convert between sRGB, HSL and OKLCH (Oklab), with a gamut check, for themes, palettes and design tokens.",
+      "terms": [
+        "color conversion",
+        "hex to rgb",
+        "rgb to hsl",
+        "oklch",
+        "oklab",
+        "css colors",
+        "color palette",
+        "design tokens",
+        "hex color",
+        "lighten color",
+        "theme colors"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "color-convert",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-color",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-color",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-color",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-color",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-color",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-color",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-color",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-color",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",
