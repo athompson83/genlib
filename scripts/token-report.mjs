@@ -8,8 +8,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const FILE = 'docs/token-budget.md';
-const cli = (...args) => execFileSync(process.execPath, [root + 'bin/genlib.mjs', ...args], { cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
-const mcp = request => execFileSync(process.execPath, [root + 'bin/genlib-mcp.mjs'], { cwd: root, input: JSON.stringify({ jsonrpc: '2.0', id: 1, ...request }) + '\n', encoding: 'utf8' });
+const cli = (...args) => execFileSync(process.execPath, [root + 'bin/genlib.mjs', ...args], { cwd: root, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' } });
+const mcp = request => execFileSync(process.execPath, [root + 'bin/genlib-mcp.mjs'], { cwd: root, env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' }, input: JSON.stringify({ jsonrpc: '2.0', id: 1, ...request }) + '\n', encoding: 'utf8' });
 const bytes = text => Buffer.byteLength(text);
 
 export function measure() {

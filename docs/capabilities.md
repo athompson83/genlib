@@ -17,7 +17,7 @@ node "$GENLIB_ROOT"/bin/genlib.mjs capability list --json
 node "$GENLIB_ROOT"/bin/genlib.mjs capability inspect oidc-pkce --language kotlin --json
 ```
 
-Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes, or `tools/language-modules.mjs add <id> --with-tests` for the other languages. Both refuse to overwrite existing files. Run the copied tests inside the consuming project.
+Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes, or `tools/language-modules.mjs add <id> --with-tests` (Python adds `--flat`; `--into <dir>` chooses the folder) for the other languages, which prints the copied paths, the public signatures and the test command. Both refuse to overwrite existing files. Run the copied tests inside the consuming project.
 
 <!-- genlib:capabilities:start -->
 | Capability | Tier | TS | Py | Go | Rust | Java | Kotlin | C# | Dart | Swift | Guide |

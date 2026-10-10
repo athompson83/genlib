@@ -3,6 +3,7 @@ import {readFileSync,writeFileSync,mkdirSync,lstatSync,realpathSync,existsSync} 
 import {resolve,join,dirname,relative,isAbsolute,sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
+import {outlineSource} from '../lib/outline.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(readFileSync(join(root,'examples/languages/modules.json'),'utf8'));
 const [cmd,id,...flags]=process.argv.slice(2);
@@ -39,12 +40,28 @@ try{
   if(!selected)throw Error('Unknown module');
   const target=arg('--target');if(!target||!existsSync(target)||!lstatSync(target).isDirectory())throw Error('Existing target directory required');
   const includeTests=flags.includes('--with-tests');
+  // --into <relative dir> chooses the destination folder (default genlib/); --flat drops the source folders so a
+  // Python module and its test land side by side, importable as written. Both stay inside the target.
+  const into=arg('--into')??'genlib';const flat=flags.includes('--flat');
+  const prefix=into==='.'?'':safePath(into.replace(/\/+$/,''))+'/';
   const paths=[...selected.files,...(includeTests?selected.tests:[])];
-  const planned=paths.map(path=>({source:path,destination:destination(target,'genlib/'+path),sha256:digest(readFileSync(checkSource(path)))}));
+  const rel=path=>prefix+(flat?path.split('/').pop():path);
+  if(flat&&new Set(paths.map(rel)).size!==paths.length)throw Error('--flat would overwrite: two files share a name');
+  const planned=paths.map(path=>({source:path,destination:destination(target,rel(path)),sha256:digest(readFileSync(checkSource(path)))}));
   if(cmd==='add'){
    // Validate the entire plan before creating any destination.
    for(const p of planned){mkdirSync(dirname(p.destination),{recursive:true});writeFileSync(p.destination,readFileSync(checkSource(p.source)),{flag:'wx',mode:0o644});}
   }
-  console.log(JSON.stringify({operation:cmd,id,target:realpathSync(target),files:planned},null,2));
- }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests]');
+  if(flags.includes('--json')){console.log(JSON.stringify({operation:cmd,id,target:realpathSync(target),files:planned},null,2));}
+  else{
+   // Compact text: what was copied, the public API and how to run the copied tests, so the agent need not read the source.
+   const base=realpathSync(target),lines=[`${cmd==='add'?'added':'would add'} ${id} to ${base} (sha256 checked):`,...planned.map(p=>'  '+relative(base,p.destination))];
+   const api=selected.files.flatMap(f=>{try{return outlineSource(readFileSync(checkSource(f),'utf8'),selected.language).map(e=>'  '+e.signature+(e.doc?'  // '+e.doc.slice(0,70):''))}catch{return[]}}).slice(0,12);
+   if(api.length)lines.push('# api:',...api);
+   const tests=planned.filter(p=>selected.tests.includes(p.source)).map(p=>relative(base,p.destination));
+   const hint={python:t=>`cd ${join(base,dirname(t[0]))} && python3 -m unittest ${t.map(x=>x.split('/').pop().replace(/\.py$/,'')).join(' ')}`,go:t=>`cd ${base} && go test ./${dirname(t[0])}`};
+   if(tests.length)lines.push('# test: '+(hint[selected.language]?.(tests)??'run '+tests.join(', ')+' with the project test runner'));
+   console.log(lines.join('\n'));
+  }
+ }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests] [--into <dir>] [--flat] [--json]');
 }catch(e){console.error(e.message);process.exitCode=1}

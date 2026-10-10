@@ -13,8 +13,9 @@ const bytes = text => Buffer.byteLength(text);
 test('quick prints only the best match, its acting commands and an outline hint', () => {
   const text = cli('quick', 'csv', 'export', '--language', 'python');
   assert.match(text, /^capability:csv-safe /);
-  assert.match(text, /language-modules\.mjs add python-csv-safe --target "\$APP_ROOT" --with-tests/);
-  assert.match(text, /# api: node "\$GENLIB_ROOT"\/bin\/genlib\.mjs outline capability:csv-safe --language python/);
+  assert.match(text, /language-modules\.mjs add python-csv-safe --target "\$APP_ROOT" --with-tests --flat/);
+  // Text output names the real checkout path instead of "$GENLIB_ROOT", so commands run as printed.
+  assert.match(text, /# api: node "[^"$]+"\/bin\/genlib\.mjs outline capability:csv-safe --language python/);
   assert.doesNotMatch(text, /inspect|Read docs/);
   assert.ok(bytes(text) <= 600, 'quick budget: ' + bytes(text));
   const json = JSON.parse(cli('quick', 'verify', 'stripe', 'webhook', '--json'));
