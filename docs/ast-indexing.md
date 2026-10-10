@@ -1,6 +1,6 @@
 # TypeScript AST dependency index
 
-`tools/repo-ast.mjs` uses the TypeScript compiler API already declared as a development dependency. Run `npm ci --ignore-scripts` first. It extracts imports, re-exports, require calls and string-literal dynamic imports from JS/TS source syntax, avoiding false positives in comments.
+`tools/repo-ast.mjs` uses the TypeScript compiler API from the pinned `typescript-ast` development dependency (`npm:typescript@5.9.3`). TypeScript 7 ships only a native compiler with no JavaScript API, so the alias keeps parsing independent of the compiler version used for builds. Run `npm ci --ignore-scripts` first. It extracts imports, re-exports, require calls and string-literal dynamic imports from JS/TS source syntax, avoiding false positives in comments.
 
 ```sh
 node tools/repo-map.mjs build
