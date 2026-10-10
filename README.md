@@ -22,6 +22,7 @@ One command searches everything below and returns each result's exact next step.
 | [Language examples](#recipes-language-examples-and-templates) | 14 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
+| [Agent skills](#agent-skills) | 500 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [External resources](#resource-catalog) | 850 | Link- and license-checked records for open-source libraries, services and references across 21 [project types](resources/project-types.json) |
 <!-- genlib:sources:end -->
 
@@ -32,6 +33,7 @@ One command searches everything below and returns each result's exact next step.
 - [Modules](#modules)
 - [Recipes, language examples and templates](#recipes-language-examples-and-templates)
 - [Resource catalog](#resource-catalog)
+- [Agent skills](#agent-skills)
 - [Find code without reading the whole repository](#find-code-without-reading-the-whole-repository)
 - [From new repository to shipped app](#from-new-repository-to-shipped-app)
 - [Claude Code and Codex skill](#claude-code-and-codex-skill)
@@ -48,11 +50,13 @@ flowchart LR
   Find --> R["Recipes and<br/>language examples"]
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
+  Find --> S["Agent skills"]
   Find --> X["Resource catalog"]
   M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
   R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
   T --> Merge["read guide, merge<br/>selected files"] --> App
   N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
+  S --> SkillAdd["npx skills add<br/>pinned commit"] --> App
   X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
 ```
 
@@ -85,6 +89,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | Command | Purpose |
 | --- | --- |
 | `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
+| `skill find <words>` / `skill inspect <id>` | Search the 500-skill index and get the one-step pinned install for Claude Code, Codex or both |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
 | `catalog` | Counts and a short overview of every source |
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
@@ -160,6 +165,17 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).
 
+## Agent skills
+
+[`resources/skills.json`](resources/skills.json) indexes 500 Claude Code and Codex skills. They're ranked by skills.sh installs and each is pinned to an upstream commit. An agent finds one and installs it in one command:
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" skill find pdf forms --harness claude --limit 5 --json
+npx skills@1.7.2 add https://github.com/<owner>/<repo>/tree/<commit>/<path> -a claude-code -y   # from the result
+```
+
+Skills run with the agent's full permissions. Read the pinned `SKILL.md` and scripts first. See the [skill library guide](docs/skill-library.md).
+
 ## Find code without reading the whole repository
 
 Genlib also ships navigation tools that index whichever repository they run in, so an agent opens a handful of files instead of scanning everything:
@@ -214,7 +230,7 @@ lib/                      catalog, installer, discovery, resources and safety co
 modules/<id>/             module.json, CONTRACT.md and files/ for each module
 registry/                 generated catalog and integrity manifests (npm run registry:build)
 examples/                 recipes, language examples, storefront, UI and utility sources
-resources/                project types, recipes, UI foundations and resources/catalog/*.json
+resources/                project types, recipes, skills.json, UI foundations and resources/catalog/*.json
 templates/                project, github, docs, ship and ui starters (templates/index.json)
 tools/                    resources, recipes, language installer, repo map/AST/context/diagram (tools/index.json)
 scripts/                  registry build, skill sync/install, resource verifier

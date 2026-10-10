@@ -3,12 +3,15 @@ import { inspectModule, loadCatalog, searchCatalog } from '../lib/catalog.mjs';
 import { installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
 import { detectProject, findInSources, loadSources, sourceCounts } from '../lib/discover.mjs';
 import { invariant } from '../lib/safety.mjs';
+import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 
 const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
     'find <task words> [--type module|recipe|language-example|template|tool|resource] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
     'detect --target <existing-project> [--json]',
+    'skill find <words> [--harness claude|codex|both] [--limit 8] [--json]',
+    'skill inspect <id> [--harness claude|codex|both] [--json]',
     'catalog [--json]',
     'list [--json]',
     'search <words> [--framework react] [--limit 5] [--json]',
@@ -23,7 +26,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -43,7 +46,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result;
   const supported = {
-    help: [], '--help': [], list: ['json'], find: ['type', 'project', 'target', 'limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -51,7 +54,24 @@ try {
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
     'INVALID_OPTION', 'An option does not apply to this command.');
   if (command === 'help' || command === '--help') result = HELP;
-  else if (command === 'detect') {
+  else if (command === 'skill') {
+    const [action, ...words] = positional;
+    const harness = options.harness ?? 'both';
+    invariant(Object.hasOwn(HARNESSES, harness), 'INVALID_OPTION', 'Harness must be claude, codex or both.');
+    const index = await loadSkills();
+    if (action === 'find') {
+      invariant(words.length > 0, 'INVALID_OPTION', 'Provide words, for example: skill find code review.');
+      invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
+      result = { skills: searchSkills(index, words.join(' '), { limit: Number(options.limit ?? 8), harness }), review: index.review };
+    } else if (action === 'inspect') {
+      invariant(words.length === 1, 'INVALID_OPTION', 'Provide exactly one skill ID.');
+      const skill = index.skills.find(item => item.id === words[0]);
+      invariant(skill, 'NOT_FOUND', 'No skill named ' + words[0] + '. Run skill find first.');
+      result = { ...skill, install: installCommand(skill, harness), review: index.review };
+    } else {
+      invariant(false, 'INVALID_OPTION', 'Use skill find <words> or skill inspect <id>.');
+    }
+  } else if (command === 'detect') {
     invariant(options.target && positional.length === 0, 'INVALID_OPTION', 'detect requires --target and no positional arguments.');
     result = await detectProject(options.target);
   } else if (command === 'find' || command === 'catalog') {

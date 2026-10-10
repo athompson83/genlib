@@ -39,6 +39,7 @@ const sourcesBlock = from => [
   `| [Language examples](#recipes-language-examples-and-templates) | ${counts['language-example']} | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |`,
   `| [Project templates](#recipes-language-examples-and-templates) | ${counts.template} | Project, GitHub, docs, ship/release and UI-selection starters |`,
   `| [Code-navigation tools](#find-code-without-reading-the-whole-repository) | ${counts.tool} | Repository map, AST graph, task context and Mermaid diagram |`,
+  `| [Agent skills](#agent-skills) | ${counts.skill} | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |`,
   `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and references across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
 ].join('\n');
 const catalogBlock = from => [
