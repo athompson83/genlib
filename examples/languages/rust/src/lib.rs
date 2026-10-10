@@ -2,6 +2,7 @@
 //! Bounded, ASCII identifier validation; not authentication or SQL sanitization.
 //! The capability modules below are independent, tested examples.
 
+pub mod base_encodings;
 pub mod calculator;
 pub mod check_digits;
 pub mod content_negotiation;
@@ -9,17 +10,22 @@ pub mod cookies;
 pub mod cron_next;
 pub mod csv_safe;
 pub mod email_address;
+pub mod feature_flags;
 pub mod form_schema;
 pub mod geo;
 pub mod geometry;
+pub mod hashing;
 pub mod http_conditional;
 pub mod http_range;
+pub mod human_units;
 pub mod ics_events;
 pub mod ids;
 pub mod ip_cidr;
 pub mod iso_duration;
+pub mod line_diff;
 pub mod money;
 pub mod oidc_pkce;
+pub mod password_policy;
 pub mod polyline;
 pub mod recovery_codes;
 pub mod retry_backoff;
@@ -31,11 +37,13 @@ pub mod signed_cursors;
 pub mod signed_urls;
 pub mod string_similarity;
 pub mod structured_data;
+pub mod text_sanitize;
 pub mod tile_math;
 pub mod token_bucket;
 pub mod totp;
 pub mod url_normalize;
 pub mod utm_links;
+pub mod vcard;
 pub mod wcag_contrast;
 pub mod webhook_signature;
 

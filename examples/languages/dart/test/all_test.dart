@@ -31,6 +31,16 @@ import 'wave6_test.dart'
         runRRuleTests,
         runStringSimilarityTests,
         runUrlNormalizeTests;
+import 'wave7_test.dart'
+    show
+        runBaseEncodingsTests,
+        runFeatureFlagsTests,
+        runHashingTests,
+        runHumanUnitsTests,
+        runLineDiffTests,
+        runPasswordPolicyTests,
+        runTextSanitizeTests,
+        runVCardTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -71,5 +81,13 @@ void main() {
   runUrlNormalizeTests(c);
   runStringSimilarityTests(c);
   runRRuleTests(c);
+  runBaseEncodingsTests(c);
+  runVCardTests(c);
+  runHashingTests(c);
+  runFeatureFlagsTests(c);
+  runHumanUnitsTests(c);
+  runLineDiffTests(c);
+  runPasswordPolicyTests(c);
+  runTextSanitizeTests(c);
   c.finish();
 }

@@ -828,5 +828,207 @@ Eq("rrule default limit 50", 50, RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ
 Eq("rrule limit 3", 3, RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY", 3).Count);
 Eq("rrule until before start", 0, RRule.ExpandRRule("2026-01-01T00:00:00Z", "FREQ=DAILY;UNTIL=20251231T000000Z").Count);
 
+// 37. Base encodings (wave 7 vectors)
+foreach (var (hex, rfc, hexAlpha, unpadded) in new[] {
+    ("", "", "", ""),
+    ("66", "MY======", "CO======", "MY"),
+    ("666f", "MZXQ====", "CPNG====", "MZXQ"),
+    ("666f6f", "MZXW6===", "CPNMU===", "MZXW6"),
+    ("666f6f62", "MZXW6YQ=", "CPNMUOG=", "MZXW6YQ"),
+    ("666f6f6261", "MZXW6YTB", "CPNMUOJ1", "MZXW6YTB"),
+    ("666f6f626172", "MZXW6YTBOI======", "CPNMUOJ1E8======", "MZXW6YTBOI"),
+}) {
+    var data = Convert.FromHexString(hex);
+    Eq($"base32 encode {hex}", rfc, BaseEncodings.Base32Encode(data));
+    Eq($"base32hex encode {hex}", hexAlpha, BaseEncodings.Base32Encode(data, "hex"));
+    Eq($"base32 unpadded encode {hex}", unpadded, BaseEncodings.Base32Encode(data, padding: false));
+    Check($"base32 decode {rfc}", BaseEncodings.Base32Decode(rfc).SequenceEqual(data));
+    Check($"base32hex decode {hexAlpha}", BaseEncodings.Base32Decode(hexAlpha, "hex").SequenceEqual(data));
+    Check($"base32 unpadded decode {unpadded}", BaseEncodings.Base32Decode(unpadded, padding: false).SequenceEqual(data));
+}
+Check("base32 decode case-insensitive", BaseEncodings.Base32Decode("mzxw6ytboi======").SequenceEqual(Convert.FromHexString("666f6f626172")));
+foreach (var (text, padding) in new[] { ("MZXW6YT", true), ("MZXW6YR=", true), ("MZ======", true), ("MZXW6YTB1=======", true), ("MZXR====", true), ("MZXW6===", false) })
+    Throws<FormatException>($"base32 invalid '{text}' padding={padding}", () => BaseEncodings.Base32Decode(text, padding: padding));
+foreach (var (hex, text) in new[] { ("", ""), ("48656c6c6f20576f726c6421", "2NEpo7TZRRrLZSi2U"), ("0000287fb4cd", "11233QC4"), ("00", "1"), ("0000", "11"), ("ff", "5Q"), ("00eb15231dfceb60925886b67d065299925915aeb172c06647", "1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L") }) {
+    Eq($"base58 encode {hex}", text, BaseEncodings.Base58Encode(Convert.FromHexString(hex)));
+    Eq($"base58 decode {text}", hex, Convert.ToHexString(BaseEncodings.Base58Decode(text)).ToLowerInvariant());
+}
+foreach (var bad in new[] { "0OIl", "abc0", "I" }) Throws<FormatException>($"base58 invalid '{bad}'", () => BaseEncodings.Base58Decode(bad));
+foreach (var (hex, text) in new[] { ("", ""), ("66", "Zg"), ("666f", "Zm8"), ("666f6f", "Zm9v"), ("666f6f62", "Zm9vYg"), ("666f6f6261", "Zm9vYmE"), ("666f6f626172", "Zm9vYmFy"), ("fbff", "-_8"), ("000102030405", "AAECAwQF") }) {
+    Eq($"base64url encode {hex}", text, BaseEncodings.Base64UrlEncode(Convert.FromHexString(hex)));
+    Eq($"base64url decode {text}", hex, Convert.ToHexString(BaseEncodings.Base64UrlDecode(text)).ToLowerInvariant());
+}
+foreach (var bad in new[] { "Zg==", "Zh", "a", "+/", "Zm9v!" }) Throws<FormatException>($"base64url invalid '{bad}'", () => BaseEncodings.Base64UrlDecode(bad));
+
+// 38. vCard (wave 7 vectors, byte-exact)
+foreach (var (contact, expected) in new (VCardContact, string)[] {
+    (new VCardContact("Ada Lovelace") { N = new VCardName(Family: "Lovelace", Given: "Ada", Prefix: "Countess"), Org = "Analytical Engines, Ltd.", Title = "Programmer", Note = "First line\nSecond; with, punctuation \\ backslash", Uid = "urn:uuid:01a0c450-6c7b-7102-8304-05060708090a", Emails = new[] { new VCardTypedValue("ada@example.com", "work") }, Phones = new[] { new VCardTypedValue("+44 20 7946 0000", "cell") }, Address = new VCardAddress(Type: "home", Street: "12 St. James's Sq", Locality: "London", PostalCode: "SW1Y 4LB", Country: "United Kingdom"), Urls = new[] { "https://example.com/ada" } },
+        "BEGIN:VCARD\r\nVERSION:4.0\r\nFN:Ada Lovelace\r\nN:Lovelace;Ada;;Countess;\r\nORG:Analytical Engines\\, Ltd.\r\nTITLE:Programmer\r\nEMAIL;TYPE=work:ada@example.com\r\nTEL;TYPE=cell:+44 20 7946 0000\r\nADR;TYPE=home:;;12 St. James's Sq;London;;SW1Y 4LB;United Kingdom\r\nURL:https://example.com/ada\r\nNOTE:First line\\nSecond\\; with\\, punctuation \\\\ backslash\r\nUID:urn:uuid:01a0c450-6c7b-7102-8304-05060708090a\r\nEND:VCARD\r\n"),
+    (new VCardContact("Zo\u00EB \u00C5ngstr\u00F6m") {  },
+        "BEGIN:VCARD\r\nVERSION:4.0\r\nFN:Zo\u00EB \u00C5ngstr\u00F6m\r\nEND:VCARD\r\n"),
+    (new VCardContact("Long Note") { Note = "\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9" },
+        "BEGIN:VCARD\r\nVERSION:4.0\r\nFN:Long Note\r\nNOTE:\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\r\n \u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\u00E9\r\nEND:VCARD\r\n"),
+})
+    Eq($"vcard {contact.Fn}", expected, VCard.BuildVcard(contact));
+var invalidVcards = new VCardContact[] {
+    new VCardContact("") {  },
+    new VCardContact("   ") {  },
+    new VCardContact("A") { Emails = new[] { new VCardTypedValue("not an email") } },
+    new VCardContact("A") { Phones = new[] { new VCardTypedValue("call me") } },
+    new VCardContact("A") { Urls = new[] { "javascript:alert(1)" } },
+    new VCardContact("A") { Emails = new[] { new VCardTypedValue("a@b.c", "Work") } },
+    new VCardContact("Tab\there") {  },
+};
+for (int i = 0; i < invalidVcards.Length; i++) { var bad = invalidVcards[i]; Throws<ArgumentException>($"vcard invalid {i}", () => VCard.BuildVcard(bad)); }
+
+// 39. Non-cryptographic hashing (wave 7 vectors)
+foreach (var (text, crc, fnv32, fnv64, m0, m42) in new (string, uint, uint, string, uint, uint)[] {
+    ("", 0u, 2166136261u, "cbf29ce484222325", 0u, 142593372u),
+    ("a", 3904355907u, 3826002220u, "af63dc4c8601ec8c", 1009084850u, 3001393763u),
+    ("foobar", 2666930069u, 3214735720u, "85944171f73967e8", 2764362941u, 1018276128u),
+    ("123456789", 3421780262u, 3146166556u, "06d5573923c6cdfc", 3036607362u, 3059026825u),
+    ("hello", 907060870u, 1335831723u, "a430d84680aabd0b", 613153351u, 3806057185u),
+    ("The quick brown fox jumps over the lazy dog", 1095738169u, 76545936u, "f3f9b7f5e7e47110", 776992547u, 880582914u),
+    ("h\u00E9llo w\u00F6rld", 354246585u, 3558752674u, "11824ab841812022", 2549609076u, 857211688u),
+}) {
+    var data = Encoding.UTF8.GetBytes(text);
+    Eq($"crc32 '{text}'", crc, Hashing.Crc32(data));
+    Eq($"fnv1a32 '{text}'", fnv32, Hashing.Fnv1a32(data));
+    Eq($"fnv1a64 '{text}'", fnv64, Hashing.Fnv1a64(data).ToString("x16"));
+    Eq($"murmur3 seed 0 '{text}'", m0, Hashing.Murmur3_32(data));
+    Eq($"murmur3 seed 42 '{text}'", m42, Hashing.Murmur3_32(data, 42));
+}
+foreach (var (jumpKey, jumpBuckets, jumpBucket) in new (ulong, int, int)[] { (0UL, 1, 0), (1UL, 10, 6), (256UL, 1024, 520), (3735928559UL, 100, 87), (18446744073709551615UL, 1000, 313), (12345678901234567UL, 7, 5), (42UL, 2147483647, 1603940301) })
+    Eq($"jump hash {jumpKey} {jumpBuckets}", jumpBucket, Hashing.JumpHash(jumpKey, jumpBuckets));
+Throws<ArgumentOutOfRangeException>("jump hash 0 buckets", () => Hashing.JumpHash(1, 0));
+
+// 40. Feature flags (wave 7 vectors)
+foreach (var (flag, user, expected) in new (FeatureFlag, string, FlagResult)[] {
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-1", new FlagResult(false, "excluded", 4063, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-2", new FlagResult(true, "rollout", 1682, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-3", new FlagResult(false, "excluded", 9301, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-42", new FlagResult(false, "excluded", 9926, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "alice@example.com", new FlagResult(false, "excluded", 2919, null)),
+    (new FeatureFlag("new-checkout") { Allow = new[] { "user-2" }, Deny = new[] { "user-1" }, RolloutPercent = 25 }, "user-1", new FlagResult(false, "deny", 4063, null)),
+    (new FeatureFlag("new-checkout") { Allow = new[] { "user-2" }, Deny = new[] { "user-1" }, RolloutPercent = 25 }, "user-2", new FlagResult(true, "allow", 1682, null)),
+    (new FeatureFlag("beta") { Enabled = false, Allow = new[] { "vip" } }, "vip", new FlagResult(false, "disabled", 3546, null)),
+    (new FeatureFlag("banner") { RolloutPercent = 0 }, "user-1", new FlagResult(false, "excluded", 6646, null)),
+    (new FeatureFlag("banner") { RolloutPercent = 100 }, "user-1", new FlagResult(true, "rollout", 6646, null)),
+    (new FeatureFlag("banner") { RolloutPercent = 12.34 }, "user-9", new FlagResult(false, "excluded", 7598, null)),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u1", new FlagResult(true, "rollout", 4196, "monthly-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u2", new FlagResult(true, "rollout", 7053, "control")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u3", new FlagResult(true, "rollout", 9434, "annual-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u4", new FlagResult(true, "rollout", 1339, "annual-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u5", new FlagResult(true, "rollout", 3720, "annual-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "\u00FCn\u00EFcode", new FlagResult(true, "rollout", 9874, "control")),
+})
+    Eq($"flag {flag.Key} {user}", expected, FeatureFlags.EvaluateFlag(flag, user));
+var invalidFlags = new FeatureFlag[] { new FeatureFlag("bad key") {  }, new FeatureFlag("k") { RolloutPercent = 101 }, new FeatureFlag("k") { RolloutPercent = 12.345 }, new FeatureFlag("k") { Variants = new[] { new FlagVariant("a", 0) } }, new FeatureFlag("") {  } };
+for (int i = 0; i < invalidFlags.Length; i++) { var bad = invalidFlags[i]; Throws<ArgumentException>($"flag invalid {i}", () => FeatureFlags.EvaluateFlag(bad, "u")); }
+Eq("flag same user same answer", FeatureFlags.EvaluateFlag(new FeatureFlag("x") { RolloutPercent = 50 }, "u7"), FeatureFlags.EvaluateFlag(new FeatureFlag("x") { RolloutPercent = 50 }, "u7"));
+Check("flag raising percent only adds users", Enumerable.Range(0, 500).All(i => !FeatureFlags.EvaluateFlag(new FeatureFlag("ramp") { RolloutPercent = 10 }, "user-" + i).On || FeatureFlags.EvaluateFlag(new FeatureFlag("ramp") { RolloutPercent = 30 }, "user-" + i).On));
+
+// 41. Human units (wave 7 vectors)
+foreach (var (n, unitBase, decimals, expected) in new (long, string, int, string)[] { (0L, "si", 1, "0 B"), (999L, "si", 1, "999 B"), (1000L, "si", 1, "1 kB"), (1536L, "iec", 1, "1.5 KiB"), (1536L, "si", 1, "1.5 kB"), (999950L, "si", 1, "1 MB"), (999949L, "si", 1, "999.9 kB"), (1048576L, "iec", 2, "1 MiB"), (123456789L, "si", 2, "123.46 MB"), (123456789L, "iec", 0, "118 MiB"), (9223372036854775807L, "iec", 3, "8 EiB"), (1023L, "iec", 1, "1023 B"), (1024L, "iec", 1, "1 KiB"), (5000000000000L, "si", 1, "5 TB") })
+    Eq($"format bytes {n} {unitBase} {decimals}", expected, HumanUnits.FormatBytes(n, unitBase, decimals));
+foreach (var (text, expected) in new (string, long)[] { ("0", 0L), ("512", 512L), ("1kB", 1000L), ("1 KiB", 1024L), ("1.5 GiB", 1610612736L), ("2.25MB", 2250000L), (" 10 b ", 10L), ("1.0005 kB", 1001L), ("1.5", 2L), ("0.5 B", 1L), ("7 EiB", 8070450532247928832L) })
+    Eq($"parse bytes '{text}'", expected, HumanUnits.ParseBytes(text));
+foreach (var bad in new[] { "", "abc", "1 KB B", "1.5.2 MB", "-1 kB", "1 kbit", "1e3 B", "9 EiB", ".5 kB" }) Throws<FormatException>($"parse bytes invalid '{bad}'", () => HumanUnits.ParseBytes(bad));
+foreach (var (ms, expected) in new (long, string)[] { (0L, "0ms"), (850L, "850ms"), (1000L, "1s"), (45000L, "45s"), (65000L, "1m 5s"), (3600000L, "1h"), (3725000L, "1h 2m"), (90061000L, "1d 1h"), (172800000L, "2d"), (59999L, "59s") })
+    Eq($"format duration {ms}", expected, HumanUnits.FormatDuration(ms));
+foreach (var (delta, expected) in new (long, string)[] { (0L, "just now"), (30L, "just now"), (-44L, "just now"), (45L, "in a minute"), (-89L, "a minute ago"), (90L, "in 2 minutes"), (150L, "in 3 minutes"), (-2670L, "45 minutes ago"), (2700L, "in an hour"), (5399L, "in an hour"), (5400L, "in 2 hours"), (-75600L, "21 hours ago"), (79200L, "in a day"), (129599L, "in a day"), (129600L, "in 2 days"), (2246400L, "in a month"), (-3974400L, "2 months ago"), (15552000L, "in 6 months"), (27648000L, "in a year"), (-47347200L, "2 years ago"), (63115200L, "in 2 years"), (315569520L, "in 10 years") })
+    Eq($"relative time {delta}", expected, HumanUnits.RelativeTime(delta));
+Throws<ArgumentOutOfRangeException>("format bytes negative", () => HumanUnits.FormatBytes(-1));
+Throws<ArgumentOutOfRangeException>("format bytes decimals 4", () => HumanUnits.FormatBytes(1, "si", 4));
+
+// 42. Line diff (wave 7 vectors; unified output matches GNU diff -u)
+string OpsText(List<DiffOp> ops) => string.Join("|", ops.Select(o => o.Op + o.Line));
+foreach (var (a, b, expected) in new[] {
+    ("a\nb\nc\n", "a\nB\nc\n", "=a|-b|+B|=c"),
+    ("", "x\n", "+x"),
+    ("x\n", "", "-x"),
+    ("one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", "=one|-two|+TWO|=three|=four|=five|=six|=seven|=eight|-nine|+NINE|=ten"),
+    ("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", "=1|=2|-3|+X|=4|=5|=6|=7|=8|=9|=10|=11|=12|=13|-14|+Y|=15|=16"),
+    ("a\nb\n", "a\nb", "=a|=b"),
+    ("a\nb", "a\nc", "=a|-b|+c"),
+    ("same\n", "same\n", "=same"),
+    ("a\nb\nc\nd\n", "b\nc\nd\ne\n", "-a|=b|=c|=d|+e"),
+    ("x\ny\n", "y\nx\n", "-x|=y|+x"),
+})
+    Eq($"diff lines {Regex.Escape(a)} -> {Regex.Escape(b)}", expected, OpsText(LineDiff.DiffLines(a, b)));
+foreach (var (a, b, expected) in new[] {
+    ("a\nb\nc\n", "a\nB\nc\n",
+        "--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"),
+    ("", "x\n",
+        "--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n"),
+    ("x\n", "",
+        "--- old.txt\n+++ new.txt\n@@ -1 +0,0 @@\n-x\n"),
+    ("one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n",
+        "--- old.txt\n+++ new.txt\n@@ -1,10 +1,10 @@\n one\n-two\n+TWO\n three\n four\n five\n six\n seven\n eight\n-nine\n+NINE\n ten\n"),
+    ("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n",
+        "--- old.txt\n+++ new.txt\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -11,6 +11,6 @@\n 11\n 12\n 13\n-14\n+Y\n 15\n 16\n"),
+    ("a\nb\n", "a\nb",
+        "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"),
+    ("a\nb", "a\nc",
+        "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+c\n\\ No newline at end of file\n"),
+    ("same\n", "same\n",
+        ""),
+    ("a\nb\nc\nd\n", "b\nc\nd\ne\n",
+        "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"),
+    ("x\ny\n", "y\nx\n",
+        "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"),
+})
+    Eq($"unified diff {Regex.Escape(a)} -> {Regex.Escape(b)}", expected, LineDiff.UnifiedDiff(a, b, "old.txt", "new.txt"));
+Throws<ArgumentException>("diff too large", () => LineDiff.DiffLines(new string('\n', 2001), new string('\n', 2001)));
+
+// 43. Password policy (wave 7 vectors)
+foreach (var (password, options, ok, failures) in new (string, PasswordOptions, bool, string)[] {
+    ("correct horse battery staple", new PasswordOptions(), true, ""),
+    ("short", new PasswordOptions(), false, "too-short"),
+    ("Tr0ub4dor&3", new PasswordOptions { MinLength = 8 }, true, ""),
+    ("password", new PasswordOptions { MinLength = 8, Blocklist = new[] { "Password", "123456" } }, false, "blocklisted"),
+    ("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", new PasswordOptions { MaxLength = 64 }, false, "too-long,repetitive"),
+    ("aaaa-unique-phrase-x", new PasswordOptions(), false, "repetitive"),
+    ("my-1234-long-passphrase", new PasswordOptions(), false, "repetitive"),
+    ("zyxw-backwards-phrase!", new PasswordOptions(), false, "repetitive"),
+    ("alice-secret-passphrase", new PasswordOptions { Context = new[] { "alice", "example" } }, false, "contains-context"),
+    ("tab\tinside-long-enough", new PasswordOptions(), false, "control-characters"),
+    ("\u00FCn\u00EFc\u00F6d\u00E9-p\u00E4ssw\u00F6rd-long", new PasswordOptions(), true, ""),
+    ("\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00", new PasswordOptions(), false, "repetitive"),
+    ("ABCD-upper-sequence-x", new PasswordOptions(), false, "repetitive"),
+}) {
+    var r = PasswordPolicy.CheckPassword(password, options);
+    Check($"password '{password}'", r.Ok == ok && string.Join(",", r.Failures) == failures);
+}
+Throws<ArgumentException>("password minLength 0", () => PasswordPolicy.CheckPassword("x", new PasswordOptions { MinLength = 0 }));
+Throws<ArgumentException>("password maxLength < minLength", () => PasswordPolicy.CheckPassword("x", new PasswordOptions { MinLength = 10, MaxLength = 9 }));
+
+// 44. Text sanitize (wave 7 vectors)
+foreach (var (text, allowNewlines, maxLength, expected) in new (string, bool, int?, string)[] {
+    ("plain text", true, null, "plain text"),
+    ("line1\r\nline2\rline3", true, null, "line1\nline2\nline3"),
+    ("zero\u200Bwidth\uFEFFbom", true, null, "zerowidthbom"),
+    ("tab\there\u0000nul\u007Fdel\u0085nel", true, null, "tab\therenuldelnel"),
+    ("if (accessLevel != \"user\u202E \u2066// Check if admin\u2069 \u2066\") {", true, null, "if (accessLevel != \"user // Check if admin \") {"),
+    ("emoji \uD83D\uDC4D\uD83C\uDFFD and ZWJ \uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67 family", true, null, "emoji \uD83D\uDC4D\uD83C\uDFFD and ZWJ \uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67 family"),
+    ("caf\u00E9 e\u0301", true, null, "caf\u00E9 e\u0301"),
+    ("a\nb\r\nc", false, null, "a b c"),
+    ("abcdef", true, 3, "abc"),
+    ("\uD83D\uDE00\uD83D\uDE00\uD83D\uDE00", true, 2, "\uD83D\uDE00\uD83D\uDE00"),
+})
+    Eq($"sanitize {Regex.Escape(text)}", expected, TextSanitize.SanitizeText(text, allowNewlines, maxLength));
+foreach (var (text, expected) in new[] {
+    ("plain text", ""),
+    ("line1\r\nline2\rline3", ""),
+    ("zero\u200Bwidth\uFEFFbom", ""),
+    ("tab\there\u0000nul\u007Fdel\u0085nel", ""),
+    ("if (accessLevel != \"user\u202E \u2066// Check if admin\u2069 \u2066\") {", "24:202E 26:2066 44:2069 46:2066"),
+    ("emoji \uD83D\uDC4D\uD83C\uDFFD and ZWJ \uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67 family", ""),
+    ("caf\u00E9 e\u0301", ""),
+})
+    Eq($"find bidi {Regex.Escape(text)}", expected, string.Join(" ", TextSanitize.FindBidiControls(text).Select(x => $"{x.Index}:{x.Hex}")));
+foreach (var (text, expected) in new[] { ("  a   b\t\tc\n\nd  ", "a b c d"), ("", ""), (" \t\n ", ""), ("one", "one") })
+    Eq($"normalize whitespace {Regex.Escape(text)}", expected, TextSanitize.NormalizeWhitespace(text));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;
