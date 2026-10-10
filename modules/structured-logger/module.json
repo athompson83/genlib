@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "structured-logger",
+  "version": "0.1.0",
+  "title": "Structured logger",
+  "description": "Framework-neutral TypeScript JSON-lines logger with levels, child bindings, deterministic key-based redaction, bounded cycle-safe serialization, error cause chains, an injectable sink and clock, and x-request-id correlation for Fetch Request objects.",
+  "kind": "utility",
+  "tags": ["logging", "logger", "json", "observability", "redaction", "request-id", "server", "typescript"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/structured-logger"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build; no runtime packages. Uses TextEncoder, console, and (for withRequest) the standard Request, Headers, and crypto.randomUUID.",
+      "Tested on Node.js 22 in this repository. Bun, Deno, and Cloudflare Workers expose the same standard APIs but were not executed here.",
+      "The default sink writes to console.log/console.error; log shipping, files, and retention belong to the hosting platform or an injected sink."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/logger.ts", "target": "structured-logger/logger.ts" },
+    { "source": "files/request.ts", "target": "structured-logger/request.ts" }
+  ],
+  "exports": [
+    { "name": "createLogger", "from": "structured-logger/logger.ts" },
+    { "name": "defaultSink", "from": "structured-logger/logger.ts" },
+    { "name": "DEFAULT_REDACT_KEYS", "from": "structured-logger/logger.ts" },
+    { "name": "REDACTED", "from": "structured-logger/logger.ts" },
+    { "name": "withRequest", "from": "structured-logger/request.ts" },
+    { "name": "REQUEST_ID_PATTERN", "from": "structured-logger/request.ts" }
+  ],
+  "configuration": [
+    "createLogger({ level, sink, base, redact, includeStack, clock, maxDepth, maxStringLength, maxArrayLength, maxKeys, maxCauseDepth, maxLineBytes }); every option has a safe default.",
+    "Pass the level from application configuration (for example an env-config field); the module does not read environment variables.",
+    "Add application-specific sensitive field names through redact; they extend the default list.",
+    "withRequest(logger, request, { header, trustIncoming, generate }) returns a child logger and requestId; set the same ID on the response."
+  ],
+  "capabilities": [
+    "json-lines-logging", "log-levels", "child-bindings", "key-based-redaction", "error-cause-serialization",
+    "bounded-cycle-safe-serialization", "request-id-correlation"
+  ],
+  "limitations": [
+    "Redaction matches whole key names after normalization (case, -, _, ., spaces); it does not scan values or message text, so secrets inside msg or under unlisted keys are logged.",
+    "Writes synchronously to the sink with no buffering, batching, sampling, async transport, or delivery guarantee; sink exceptions are swallowed.",
+    "Records over maxLineBytes are replaced by a truncation notice rather than split.",
+    "No OpenTelemetry trace context, W3C traceparent parsing, or pretty-printing is included.",
+    "Error stacks are omitted unless includeStack is true; stack text can still reveal file paths when enabled."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/structured-logger.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}

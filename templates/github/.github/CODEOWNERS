@@ -1,0 +1,15 @@
+# REPLACE @REPLACE_WITH_OWNER with a real user or visible team having write
+# access. This placeholder confers no ownership. Verify it in GitHub before
+# enabling required code-owner reviews. Last matching pattern wins.
+* @REPLACE_WITH_OWNER
+
+# Protect the rules and verification code themselves.
+/.github/ @REPLACE_WITH_OWNER
+/scripts/ @REPLACE_WITH_OWNER
+/SECURITY.md @REPLACE_WITH_OWNER
+
+# Optional narrower ownership, once the target actually has these folders:
+# /apps/web/ @REPLACE_WITH_WEB_TEAM
+# /apps/mobile/ @REPLACE_WITH_MOBILE_TEAM
+# /packages/auth/ @REPLACE_WITH_SECURITY_TEAM
+# /docs/ @REPLACE_WITH_DOCS_TEAM

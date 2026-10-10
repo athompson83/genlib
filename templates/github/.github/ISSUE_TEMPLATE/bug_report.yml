@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a reproducible functional problem.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For security vulnerabilities, follow SECURITY.md instead of posting details here.
+        Remove secrets and personal/customer data from examples and logs.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Expected and actual behavior
+      description: Describe the impact and the behavior you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Provide a minimal example and exact steps using sanitized data.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: App/version, platform, browser/runtime, deployment environment, and relevant configuration.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and attempted workarounds
+      description: Sanitized logs, screenshots, error/request IDs, and what you already tried.

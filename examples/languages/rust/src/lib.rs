@@ -1,0 +1,12 @@
+//! Bounded, ASCII identifier validation; not authentication or SQL sanitization.
+pub fn valid_identifier(value: &str, max_len: usize) -> bool {
+    max_len > 0 && value.len() <= max_len && !value.is_empty()
+        && value.bytes().enumerate().all(|(i, c)| {
+            c.is_ascii_alphanumeric() || (i > 0 && (c == b'_' || c == b'-'))
+        })
+}
+#[cfg(test)] mod tests {
+    use super::*;
+    #[test] fn accepted() { assert!(valid_identifier("user_1", 16)); assert!(valid_identifier("A", 1)); }
+    #[test] fn rejected() { for s in ["", "_bad", "a/b", "é", "a b"] { assert!(!valid_identifier(s, 16)); } assert!(!valid_identifier("abcd", 3)); }
+}

@@ -1,0 +1,540 @@
+{
+  "schemaVersion": 1,
+  "reviewPolicy": "Reference links only; versions, licenses, and suitability must be verified before installation or code reuse",
+  "languages": [
+    {
+      "name": "TypeScript",
+      "extensions": [
+        "ts",
+        "tsx"
+      ],
+      "docs": "https://www.typescriptlang.org/docs/",
+      "source": "https://github.com/microsoft/TypeScript",
+      "tooling": [
+        "compiler API",
+        "tsconfig paths",
+        "ESLint",
+        "Vitest"
+      ],
+      "platforms": [
+        "web",
+        "Node",
+        "mobile"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "JavaScript",
+      "extensions": [
+        "js",
+        "jsx",
+        "mjs",
+        "cjs"
+      ],
+      "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "source": "https://github.com/nodejs/node",
+      "tooling": [
+        "TypeScript parser",
+        "ESLint",
+        "Node test runner"
+      ],
+      "platforms": [
+        "web",
+        "Node"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Python",
+      "extensions": [
+        "py"
+      ],
+      "docs": "https://docs.python.org/3/",
+      "source": "https://github.com/python/cpython",
+      "tooling": [
+        "ast",
+        "Ruff",
+        "pytest",
+        "uv"
+      ],
+      "platforms": [
+        "automation",
+        "data",
+        "backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Go",
+      "extensions": [
+        "go"
+      ],
+      "docs": "https://go.dev/doc/",
+      "source": "https://github.com/golang/go",
+      "tooling": [
+        "go/parser",
+        "go/packages",
+        "go test"
+      ],
+      "platforms": [
+        "backend",
+        "CLI"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Rust",
+      "extensions": [
+        "rs"
+      ],
+      "docs": "https://doc.rust-lang.org/book/",
+      "source": "https://github.com/rust-lang/rust",
+      "tooling": [
+        "rust-analyzer",
+        "cargo",
+        "clippy"
+      ],
+      "platforms": [
+        "systems",
+        "backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Java",
+      "extensions": [
+        "java"
+      ],
+      "docs": "https://dev.java/learn/",
+      "source": "https://github.com/openjdk/jdk",
+      "tooling": [
+        "JavaParser",
+        "JUnit",
+        "Maven/Gradle"
+      ],
+      "platforms": [
+        "enterprise",
+        "Android"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Kotlin",
+      "extensions": [
+        "kt",
+        "kts"
+      ],
+      "docs": "https://kotlinlang.org/docs/home.html",
+      "source": "https://github.com/JetBrains/kotlin",
+      "tooling": [
+        "Kotlin compiler",
+        "detekt",
+        "Gradle"
+      ],
+      "platforms": [
+        "Android",
+        "backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Swift",
+      "extensions": [
+        "swift"
+      ],
+      "docs": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/",
+      "source": "https://github.com/swiftlang/swift",
+      "tooling": [
+        "SwiftSyntax",
+        "SwiftLint",
+        "XCTest"
+      ],
+      "platforms": [
+        "iOS",
+        "macOS"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "C#",
+      "extensions": [
+        "cs"
+      ],
+      "docs": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+      "source": "https://github.com/dotnet/roslyn",
+      "tooling": [
+        "Roslyn",
+        "dotnet test"
+      ],
+      "platforms": [
+        "desktop",
+        "backend",
+        "Unity"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "C",
+      "extensions": [
+        "c",
+        "h"
+      ],
+      "docs": "https://en.cppreference.com/w/c",
+      "source": "https://github.com/llvm/llvm-project",
+      "tooling": [
+        "clangd",
+        "clang-tidy",
+        "CMake"
+      ],
+      "platforms": [
+        "embedded",
+        "systems"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "C++",
+      "extensions": [
+        "cpp",
+        "cc",
+        "cxx",
+        "hpp"
+      ],
+      "docs": "https://en.cppreference.com/w/cpp",
+      "source": "https://github.com/llvm/llvm-project",
+      "tooling": [
+        "clangd",
+        "clang-tidy",
+        "CMake"
+      ],
+      "platforms": [
+        "native",
+        "games"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "PHP",
+      "extensions": [
+        "php"
+      ],
+      "docs": "https://www.php.net/manual/en/",
+      "source": "https://github.com/php/php-src",
+      "tooling": [
+        "PHPStan",
+        "Composer",
+        "PHPUnit"
+      ],
+      "platforms": [
+        "web backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Ruby",
+      "extensions": [
+        "rb"
+      ],
+      "docs": "https://www.ruby-lang.org/en/documentation/",
+      "source": "https://github.com/ruby/ruby",
+      "tooling": [
+        "Prism",
+        "RuboCop",
+        "RSpec"
+      ],
+      "platforms": [
+        "web backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Dart",
+      "extensions": [
+        "dart"
+      ],
+      "docs": "https://dart.dev/guides",
+      "source": "https://github.com/dart-lang/sdk",
+      "tooling": [
+        "Dart analyzer",
+        "flutter test"
+      ],
+      "platforms": [
+        "Flutter mobile",
+        "web"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "SQL",
+      "extensions": [
+        "sql"
+      ],
+      "docs": "https://www.postgresql.org/docs/",
+      "source": "https://github.com/sqlfluff/sqlfluff",
+      "tooling": [
+        "SQLFluff",
+        "migrations",
+        "dialect-specific parser"
+      ],
+      "platforms": [
+        "databases"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Shell",
+      "extensions": [
+        "sh",
+        "bash",
+        "zsh"
+      ],
+      "docs": "https://www.gnu.org/software/bash/manual/",
+      "source": "https://github.com/koalaman/shellcheck",
+      "tooling": [
+        "ShellCheck",
+        "shfmt",
+        "bats"
+      ],
+      "platforms": [
+        "DevOps",
+        "scripts"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "PowerShell",
+      "extensions": [
+        "ps1",
+        "psm1"
+      ],
+      "docs": "https://learn.microsoft.com/en-us/powershell/",
+      "source": "https://github.com/PowerShell/PowerShell",
+      "tooling": [
+        "PSScriptAnalyzer",
+        "Pester"
+      ],
+      "platforms": [
+        "Windows",
+        "automation"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "HTML/CSS",
+      "extensions": [
+        "html",
+        "css",
+        "scss"
+      ],
+      "docs": "https://developer.mozilla.org/en-US/docs/Web",
+      "source": "https://github.com/stylelint/stylelint",
+      "tooling": [
+        "HTML parser",
+        "Stylelint",
+        "accessibility tests"
+      ],
+      "platforms": [
+        "web UI"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Vue",
+      "extensions": [
+        "vue"
+      ],
+      "docs": "https://vuejs.org/guide/introduction.html",
+      "source": "https://github.com/vuejs/core",
+      "tooling": [
+        "Vue compiler",
+        "vue-tsc",
+        "ESLint"
+      ],
+      "platforms": [
+        "web UI"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Svelte",
+      "extensions": [
+        "svelte"
+      ],
+      "docs": "https://svelte.dev/docs",
+      "source": "https://github.com/sveltejs/svelte",
+      "tooling": [
+        "Svelte compiler",
+        "svelte-check"
+      ],
+      "platforms": [
+        "web UI"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "R",
+      "extensions": [
+        "r"
+      ],
+      "docs": "https://cran.r-project.org/manuals.html",
+      "source": "https://github.com/r-lib/lintr",
+      "tooling": [
+        "lintr",
+        "testthat"
+      ],
+      "platforms": [
+        "statistics"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Julia",
+      "extensions": [
+        "jl"
+      ],
+      "docs": "https://docs.julialang.org/",
+      "source": "https://github.com/JuliaLang/julia",
+      "tooling": [
+        "JuliaSyntax",
+        "Test stdlib"
+      ],
+      "platforms": [
+        "scientific computing"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Scala",
+      "extensions": [
+        "scala",
+        "sc"
+      ],
+      "docs": "https://docs.scala-lang.org/",
+      "source": "https://github.com/scala/scala3",
+      "tooling": [
+        "Scalafix",
+        "sbt",
+        "ScalaTest"
+      ],
+      "platforms": [
+        "JVM",
+        "data"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Elixir",
+      "extensions": [
+        "ex",
+        "exs"
+      ],
+      "docs": "https://elixir-lang.org/docs.html",
+      "source": "https://github.com/elixir-lang/elixir",
+      "tooling": [
+        "Credo",
+        "ExUnit",
+        "mix"
+      ],
+      "platforms": [
+        "concurrent backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Lua",
+      "extensions": [
+        "lua"
+      ],
+      "docs": "https://www.lua.org/manual/5.4/",
+      "source": "https://github.com/lua/lua",
+      "tooling": [
+        "LuaLS",
+        "luacheck",
+        "busted"
+      ],
+      "platforms": [
+        "games",
+        "embedded"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Objective-C",
+      "extensions": [
+        "m",
+        "mm"
+      ],
+      "docs": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html",
+      "source": "https://github.com/llvm/llvm-project",
+      "tooling": [
+        "clangd",
+        "XCTest"
+      ],
+      "platforms": [
+        "Apple legacy"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Zig",
+      "extensions": [
+        "zig"
+      ],
+      "docs": "https://ziglang.org/documentation/master/",
+      "source": "https://github.com/ziglang/zig",
+      "tooling": [
+        "ZLS",
+        "zig test"
+      ],
+      "platforms": [
+        "systems"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    },
+    {
+      "name": "Haskell",
+      "extensions": [
+        "hs"
+      ],
+      "docs": "https://www.haskell.org/documentation/",
+      "source": "https://github.com/haskell/haskell-language-server",
+      "tooling": [
+        "HLS",
+        "HLint",
+        "Cabal"
+      ],
+      "platforms": [
+        "functional backend"
+      ],
+      "status": "reference-only",
+      "license": "Verify per project and selected dependency; not bundled"
+    }
+  ]
+}

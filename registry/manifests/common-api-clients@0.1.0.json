@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "id": "common-api-clients",
+  "version": "0.1.0",
+  "title": "Common API clients",
+  "description": "Server-only TypeScript clients for GitHub, Stripe Checkout, Resend, Supabase reads, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor catalog reads, and Steel sessions with explicit credentials and bounded HTTP transport.",
+  "kind": "utility",
+  "tags": [
+    "api",
+    "http",
+    "github",
+    "stripe",
+    "resend",
+    "supabase",
+    "microsoft-graph",
+    "google-calendar",
+    "openai",
+    "anthropic",
+    "saleor",
+    "steel",
+    "server",
+    "integrations"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/common-api-clients"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and a server runtime with standard Fetch, AbortController, streams, TextEncoder, and TextDecoder; Node.js 22+ is the supported baseline.",
+      "No runtime packages, environment reads, OAuth flows, account setup, or live connections occur at install/import time.",
+      "Keep credentialed clients and their injected resolvers in server-only code; this module is not a browser bundle or a native credential vault.",
+      "Provider models, versions, scopes, tenant policy, billing limits, data schemas, and live integration acceptance belong to the consuming application."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/http.ts",
+      "target": "common-api-clients/http.ts",
+      "path": "modules/common-api-clients/files/http.ts",
+      "sha256": "aeb88787f28f084a8a5647066990fc6ba619465af254d45c3c0345c27b639ff9",
+      "bytes": 12891
+    },
+    {
+      "source": "files/github.ts",
+      "target": "common-api-clients/github.ts",
+      "path": "modules/common-api-clients/files/github.ts",
+      "sha256": "65317cd80d3b2352615134d30c9438696d98fd503c6eee1ba7dd4b6b66c95338",
+      "bytes": 3368
+    },
+    {
+      "source": "files/stripe.ts",
+      "target": "common-api-clients/stripe.ts",
+      "path": "modules/common-api-clients/files/stripe.ts",
+      "sha256": "3f0092aff776f917e1c6895b437e5a945f8b2adae1ae6a9dc52c0a156a782a05",
+      "bytes": 5187
+    },
+    {
+      "source": "files/resend.ts",
+      "target": "common-api-clients/resend.ts",
+      "path": "modules/common-api-clients/files/resend.ts",
+      "sha256": "6b3b1c5bd6a4de03075dea9d90d0184c0d04d2c5abbf74c8d43289a087ecd7ad",
+      "bytes": 3366
+    },
+    {
+      "source": "files/supabase.ts",
+      "target": "common-api-clients/supabase.ts",
+      "path": "modules/common-api-clients/files/supabase.ts",
+      "sha256": "52cd0c7c4e1b7fd43a9658e9d40d3f3cbcf822228288aaff564bbfd587bff493",
+      "bytes": 4437
+    },
+    {
+      "source": "files/microsoft-graph.ts",
+      "target": "common-api-clients/microsoft-graph.ts",
+      "path": "modules/common-api-clients/files/microsoft-graph.ts",
+      "sha256": "6bdaa283f27bdd276a90f58840cede25e1035092676ee00eaeccad1f55c4b7aa",
+      "bytes": 1540
+    },
+    {
+      "source": "files/google-calendar.ts",
+      "target": "common-api-clients/google-calendar.ts",
+      "path": "modules/common-api-clients/files/google-calendar.ts",
+      "sha256": "b0dde3cc10a072778924c3ea50abe29ced01751f3ce3d9447851ae5677b72859",
+      "bytes": 3964
+    },
+    {
+      "source": "files/ai-core.ts",
+      "target": "common-api-clients/ai-core.ts",
+      "path": "modules/common-api-clients/files/ai-core.ts",
+      "sha256": "05a7f536797977fb0daca12b4fe02de29b1d575d51c7abc08d94008ed387a876",
+      "bytes": 2254
+    },
+    {
+      "source": "files/openai.ts",
+      "target": "common-api-clients/openai.ts",
+      "path": "modules/common-api-clients/files/openai.ts",
+      "sha256": "73748dc840dbda85534ff28d16308ee60775944fb1741cd6d5ff45f34089a5c8",
+      "bytes": 2949
+    },
+    {
+      "source": "files/anthropic.ts",
+      "target": "common-api-clients/anthropic.ts",
+      "path": "modules/common-api-clients/files/anthropic.ts",
+      "sha256": "a98c1da7a1a2ee4579839aa805b6c41251179d8e633214eb8b9e568b99d68682",
+      "bytes": 2809
+    },
+    {
+      "source": "files/saleor.ts",
+      "target": "common-api-clients/saleor.ts",
+      "path": "modules/common-api-clients/files/saleor.ts",
+      "sha256": "485758c29c35504e3d9715409037861e1998caf99d64e90a4a1d66f624512f82",
+      "bytes": 4139
+    },
+    {
+      "source": "files/steel-browser.ts",
+      "target": "common-api-clients/steel-browser.ts",
+      "path": "modules/common-api-clients/files/steel-browser.ts",
+      "sha256": "795c2b0fc7bea221a23c875311342a17f0e43d17b0b786a1b770cc20685a34e3",
+      "bytes": 6070
+    }
+  ],
+  "exports": [
+    {
+      "name": "createHttpClient",
+      "from": "common-api-clients/http.ts"
+    },
+    {
+      "name": "ApiClientError",
+      "from": "common-api-clients/http.ts"
+    },
+    {
+      "name": "createGitHubClient",
+      "from": "common-api-clients/github.ts"
+    },
+    {
+      "name": "createStripeCheckoutClient",
+      "from": "common-api-clients/stripe.ts"
+    },
+    {
+      "name": "createResendClient",
+      "from": "common-api-clients/resend.ts"
+    },
+    {
+      "name": "createSupabaseReadClient",
+      "from": "common-api-clients/supabase.ts"
+    },
+    {
+      "name": "createMicrosoftGraphClient",
+      "from": "common-api-clients/microsoft-graph.ts"
+    },
+    {
+      "name": "createGoogleCalendarClient",
+      "from": "common-api-clients/google-calendar.ts"
+    },
+    {
+      "name": "createOpenAIClient",
+      "from": "common-api-clients/openai.ts"
+    },
+    {
+      "name": "createAnthropicClient",
+      "from": "common-api-clients/anthropic.ts"
+    },
+    {
+      "name": "createSaleorClient",
+      "from": "common-api-clients/saleor.ts"
+    },
+    {
+      "name": "createSteelBrowserClient",
+      "from": "common-api-clients/steel-browser.ts"
+    },
+    {
+      "name": "SteelCleanupError",
+      "from": "common-api-clients/steel-browser.ts"
+    }
+  ],
+  "configuration": [
+    "Inject trusted token resolvers and Fetch configuration; never copy request headers, request JSON, user URLs, or client-supplied identity into client configuration.",
+    "GitHub, Stripe, and Anthropic require an explicit supported API version; AI adapters also require a configured model and output token limit.",
+    "Stripe requires approved server price mappings, return URLs, an order authorization callback, and a persisted idempotency key per attempt.",
+    "Resend requires a verified server-owned sender, exact recipient/content authorization, and a persisted idempotency key per delivery event.",
+    "Supabase requires a project HTTPS origin, publishable key, caller user token, and table/column allowlists; enable and test RLS in the target database.",
+    "Graph requires a delegated Graph token; Calendar requires allowed calendar IDs and explicit time bounds; these clients do not obtain or refresh OAuth tokens.",
+    "Model calls require a mandatory application authorization callback; check tenant, data disclosure, and budget before allowing each paid call.",
+    "Saleor requires a trusted GraphQL endpoint; Steel requires explicit authority for each session operation and careful handling of server-only connection URLs."
+  ],
+  "capabilities": [
+    "bounded-https-json-transport",
+    "github-repository-read-list",
+    "stripe-hosted-checkout-create",
+    "resend-transactional-email",
+    "supabase-rls-user-read",
+    "microsoft-graph-me",
+    "google-calendar-event-page",
+    "openai-text-response",
+    "anthropic-text-message",
+    "saleor-catalog-query",
+    "steel-session-lifecycle"
+  ],
+  "limitations": [
+    "An API client does not provision SSO, connect user accounts, refresh tokens, create services, or grant spending authority.",
+    "No retries, durable idempotency store, webhook receiver, signature verification, email delivery reconciliation, billing entitlement processing, or job queue is included.",
+    "The transport enforces an exact trusted HTTPS origin, not DNS/IP egress isolation. The receiving environment must restrict outbound destinations and use a standards-compliant Fetch implementation.",
+    "Only the documented operations are implemented. Supabase service-role reads, Stripe custom Checkout domains, streaming AI/tools, full calendar synchronization, Saleor checkout, and browser navigation are outside this module.",
+    "Tests replace only the outbound HTTP boundary and make no live calls. Provider credentials, current permissions, database policies, actual payments/delivery, and deployed behavior remain unverified."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/common-api-clients.test.mjs",
+      "tests/commerce-browser.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/common-api-clients/module.json",
+    "sha256": "79272d005bfb200374bd2130bca2abf735029b2bd7c4fa9d908b9d4e1f197ce0"
+  },
+  "contractFile": {
+    "path": "modules/common-api-clients/CONTRACT.md",
+    "sha256": "c63720208080bdfc8dd1b0e7f08f6a063f23348aed8f16cd3d95b8be9578bdd2",
+    "bytes": 12771
+  }
+}

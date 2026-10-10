@@ -1,0 +1,66 @@
+name: Application CI
+
+# Adoption required: read templates/github/README.md in Genlib first.
+# Copy classify-changes.mjs with this file; supply real ci:docs and ci:verify
+# package scripts. This workflow intentionally fails when either is missing.
+"on":
+  push:
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the tested revision
+        # Pins match Genlib's existing CI at the time this starter was authored.
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Require target verification commands
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+          for (const name of ['ci:docs', 'ci:verify']) {
+            if (typeof pkg.scripts?.[name] !== 'string' || !pkg.scripts[name].trim()) {
+              throw new Error(`Configure a real ${name} package script before adopting this CI starter.`);
+            }
+          }
+          NODE
+
+      - name: Classify changes conservatively
+        id: changes
+        run: node .github/scripts/classify-changes.mjs
+
+      - name: Install the locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify documentation
+        run: npm run ci:docs
+
+      - name: Verify application behavior and build
+        if: steps.changes.outputs.docs_only != 'true'
+        run: npm run ci:verify
+
+      - name: Confirm dependency manifests were preserved
+        run: git diff --exit-code -- package.json package-lock.json
