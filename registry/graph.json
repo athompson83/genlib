@@ -254,6 +254,13 @@
    "query": "agent-framework"
   },
   {
+   "id": "category:agent-frameworks",
+   "kind": "category",
+   "label": "agent-frameworks",
+   "count": 4,
+   "query": "agent-frameworks"
+  },
+  {
    "id": "category:ai-browser-agents",
    "kind": "category",
    "label": "ai-browser-agents",
@@ -1440,7 +1447,7 @@
    "id": "category:learning",
    "kind": "category",
    "label": "learning",
-   "count": 8,
+   "count": 18,
    "query": "learning"
   },
   {
@@ -2585,6 +2592,13 @@
    "file": "docs/resources/ai-agents.md"
   },
   {
+   "id": "doc:docs/resources/ai-learning.md",
+   "kind": "doc",
+   "label": "docs/resources/ai-learning.md",
+   "count": 5,
+   "file": "docs/resources/ai-learning.md"
+  },
+  {
    "id": "doc:docs/resources/attachment-review.md",
    "kind": "doc",
    "label": "docs/resources/attachment-review.md",
@@ -2801,6 +2815,13 @@
    "file": "docs/resources/ai-agents.md"
   },
   {
+   "id": "guide:docs/resources/ai-learning.md",
+   "kind": "guide",
+   "label": "ai-learning",
+   "count": 14,
+   "file": "docs/resources/ai-learning.md"
+  },
+  {
    "id": "guide:docs/resources/attachment-review.md",
    "kind": "guide",
    "label": "attachment-review",
@@ -2972,14 +2993,14 @@
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 663,
+   "count": 665,
    "query": "go"
   },
   {
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 401,
+   "count": 402,
    "query": "java"
   },
   {
@@ -3000,7 +3021,7 @@
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1307,
+   "count": 1309,
    "query": "python"
   },
   {
@@ -3014,7 +3035,7 @@
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 470,
+   "count": 471,
    "query": "rust"
   },
   {
@@ -3028,14 +3049,14 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3197,
+   "count": 3200,
    "query": "typescript"
   },
   {
    "id": "type:api",
    "kind": "type",
    "label": "api",
-   "count": 500,
+   "count": 2526,
    "query": "--type api"
   },
   {
@@ -3049,14 +3070,14 @@
    "id": "type:cli",
    "kind": "type",
    "label": "cli",
-   "count": 500,
+   "count": 1500,
    "query": "--type cli"
   },
   {
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 534,
+   "count": 539,
    "query": "--type doc"
   },
   {
@@ -3070,7 +3091,7 @@
    "id": "type:mcp",
    "kind": "type",
    "label": "mcp",
-   "count": 600,
+   "count": 3642,
    "query": "--type mcp"
   },
   {
@@ -3091,14 +3112,14 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 8904,
+   "count": 8918,
    "query": "--type resource"
   },
   {
    "id": "type:skill",
    "kind": "type",
    "label": "skill",
-   "count": 500,
+   "count": 1066,
    "query": "--type skill"
   },
   {
@@ -4622,6 +4643,24 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 3
+  },
+  {
+   "source": "category:agent-frameworks",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:agent-frameworks",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:agent-frameworks",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
   },
   {
    "source": "category:ai-browser-agents",
@@ -8237,13 +8276,43 @@
   },
   {
    "source": "category:learning",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:learning",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:learning",
    "target": "language:php",
    "relation": "in-language",
    "weight": 1
   },
   {
    "source": "category:learning",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:learning",
    "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:learning",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:learning",
+   "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
   },
@@ -10789,7 +10858,7 @@
    "source": "genlib",
    "target": "type:api",
    "relation": "contains",
-   "weight": 500
+   "weight": 2526
   },
   {
    "source": "genlib",
@@ -10801,13 +10870,13 @@
    "source": "genlib",
    "target": "type:cli",
    "relation": "contains",
-   "weight": 500
+   "weight": 1500
   },
   {
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 534
+   "weight": 539
   },
   {
    "source": "genlib",
@@ -10819,7 +10888,7 @@
    "source": "genlib",
    "target": "type:mcp",
    "relation": "contains",
-   "weight": 600
+   "weight": 3642
   },
   {
    "source": "genlib",
@@ -10837,13 +10906,13 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 8904
+   "weight": 8918
   },
   {
    "source": "genlib",
    "target": "type:skill",
    "relation": "contains",
-   "weight": 500
+   "weight": 1066
   },
   {
    "source": "genlib",
@@ -10982,6 +11051,18 @@
    "target": "category:vector-database",
    "relation": "has-category",
    "weight": 8
+  },
+  {
+   "source": "guide:docs/resources/ai-learning.md",
+   "target": "category:agent-frameworks",
+   "relation": "has-category",
+   "weight": 4
+  },
+  {
+   "source": "guide:docs/resources/ai-learning.md",
+   "target": "category:learning",
+   "relation": "has-category",
+   "weight": 10
   },
   {
    "source": "guide:docs/resources/attachment-review.md",
@@ -13313,6 +13394,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/resources/ai-learning.md",
+   "relation": "section-of",
+   "weight": 5
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/resources/attachment-review.md",
    "relation": "section-of",
    "weight": 9
@@ -13559,6 +13646,12 @@
   },
   {
    "source": "type:resource",
+   "target": "guide:docs/resources/ai-learning.md",
+   "relation": "grouped-by",
+   "weight": 14
+  },
+  {
+   "source": "type:resource",
    "target": "guide:docs/resources/attachment-review.md",
    "relation": "grouped-by",
    "weight": 25
@@ -13705,13 +13798,13 @@
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 619
+   "weight": 621
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 360
+   "weight": 361
   },
   {
    "source": "type:resource",
@@ -13729,7 +13822,7 @@
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 1263
+   "weight": 1265
   },
   {
    "source": "type:resource",
@@ -13741,7 +13834,7 @@
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 429
+   "weight": 430
   },
   {
    "source": "type:resource",
@@ -13753,7 +13846,7 @@
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 3113
+   "weight": 3116
   }
  ]
 }
