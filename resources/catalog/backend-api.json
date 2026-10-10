@@ -1,0 +1,5350 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "express",
+      "name": "Express",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/expressjs/express/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://expressjs.com",
+      "repository": "https://github.com/expressjs/express",
+      "docs": "https://expressjs.com",
+      "summary": "Minimal, widely used HTTP server and middleware framework for Node.js.",
+      "useWhen": "Use instead of hand-writing routing, middleware chaining and request/response helpers on raw node:http.",
+      "cautions": [
+        "Express 5 changed path syntax and async error handling; do not mix v4 middleware examples blindly.",
+        "Add body-size limits, security headers and input validation explicitly."
+      ],
+      "tags": [
+        "nodejs",
+        "http",
+        "routing",
+        "middleware",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "express"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/expressjs/express",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "fastify",
+      "name": "Fastify",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fastify/fastify/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://fastify.dev",
+      "repository": "https://github.com/fastify/fastify",
+      "docs": "https://fastify.dev/docs/latest/",
+      "summary": "Fast, low-overhead Node.js web framework with JSON-schema validation, serialization and a plugin system.",
+      "useWhen": "Use instead of hand-writing routing, schema-based request validation and response serialization for a Node.js API.",
+      "cautions": [
+        "Plugin encapsulation scopes decorators and hooks; register shared plugins with fastify-plugin.",
+        "Match @fastify/* plugin major versions to the Fastify major."
+      ],
+      "tags": [
+        "nodejs",
+        "http",
+        "json-schema",
+        "performance",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "fastify"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fastify/fastify",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hono",
+      "name": "Hono",
+      "category": "server-framework",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/honojs/hono/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://hono.dev",
+      "repository": "https://github.com/honojs/hono",
+      "docs": "https://hono.dev/docs/",
+      "summary": "Small Web-Standards-based router and framework that runs on Node.js, Bun, Deno, Cloudflare Workers and other edge runtimes.",
+      "useWhen": "Use instead of hand-writing a fetch-handler router, middleware and typed RPC client for edge or multi-runtime APIs.",
+      "cautions": [
+        "Runtime adapters differ (node-server, bun, workers); test on the deployed runtime.",
+        "Edge runtimes lack many Node APIs; check driver compatibility."
+      ],
+      "tags": [
+        "typescript",
+        "edge",
+        "web-standards",
+        "routing",
+        "cloudflare-workers",
+        "bun"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "hono"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/honojs/hono",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "security-headers",
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nestjs",
+      "name": "NestJS",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nestjs/nest/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://nestjs.com",
+      "repository": "https://github.com/nestjs/nest",
+      "docs": "https://docs.nestjs.com",
+      "summary": "Opinionated TypeScript server framework with modules, dependency injection, guards and pipes on Express or Fastify.",
+      "useWhen": "Use instead of hand-building dependency injection, module structure and cross-cutting guards/interceptors for a large TypeScript backend.",
+      "cautions": [
+        "Decorator-heavy; keep business rules in plain services so they stay testable.",
+        "Keep all @nestjs/* packages on the same major version."
+      ],
+      "tags": [
+        "typescript",
+        "nodejs",
+        "dependency-injection",
+        "enterprise",
+        "decorators"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@nestjs/core"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@nestjs/common"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nestjs/nest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "koa",
+      "name": "Koa",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/koajs/koa/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://koajs.com",
+      "repository": "https://github.com/koajs/koa",
+      "docs": "https://koajs.com",
+      "summary": "Small async-middleware HTTP framework for Node.js from the original Express team.",
+      "useWhen": "Use instead of hand-writing an async middleware pipeline and context object on raw node:http.",
+      "cautions": [
+        "Core ships no router or body parser; choose maintained @koa/* middleware."
+      ],
+      "tags": [
+        "nodejs",
+        "http",
+        "middleware",
+        "async"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "koa"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/koajs/koa",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "elysia",
+      "name": "Elysia",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/elysiajs/elysia/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://elysiajs.com",
+      "repository": "https://github.com/elysiajs/elysia",
+      "docs": "https://elysiajs.com/at-glance.html",
+      "summary": "Bun-first TypeScript web framework with end-to-end type safety and schema validation.",
+      "useWhen": "Use instead of hand-writing typed routes, validation and an end-to-end typed client for a Bun API.",
+      "cautions": [
+        "Optimized for Bun; confirm adapter support before targeting Node.js.",
+        "Fast-moving API; pin versions and read release notes."
+      ],
+      "tags": [
+        "bun",
+        "typescript",
+        "type-safety",
+        "http"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "elysia"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/elysiajs/elysia",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fastapi/fastapi/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://fastapi.tiangolo.com",
+      "repository": "https://github.com/fastapi/fastapi",
+      "docs": "https://fastapi.tiangolo.com",
+      "summary": "Python async web framework that derives validation and OpenAPI docs from type hints via Pydantic.",
+      "useWhen": "Use instead of hand-writing request parsing, validation and OpenAPI generation for a Python API.",
+      "cautions": [
+        "Blocking calls inside async endpoints stall the event loop; use sync endpoints or threads.",
+        "Run behind a production ASGI server such as Uvicorn with workers."
+      ],
+      "tags": [
+        "python",
+        "asgi",
+        "openapi",
+        "pydantic",
+        "async"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "fastapi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fastapi/fastapi",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "category": "server-framework",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/django/django/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.djangoproject.com",
+      "repository": "https://github.com/django/django",
+      "docs": "https://docs.djangoproject.com",
+      "summary": "Batteries-included Python web framework with ORM, migrations, admin, auth and templating.",
+      "useWhen": "Use instead of hand-assembling ORM, migrations, admin screens, sessions and CSRF protection for a Python web app.",
+      "cautions": [
+        "Set DEBUG=False, ALLOWED_HOSTS and a secret key from the environment in production.",
+        "Follow the supported LTS release cadence for security fixes."
+      ],
+      "tags": [
+        "python",
+        "orm",
+        "admin",
+        "migrations",
+        "full-stack"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "Django"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/django/django",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "django-rest-framework",
+      "name": "Django REST framework",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/encode/django-rest-framework/blob/HEAD/LICENSE.md",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.django-rest-framework.org",
+      "repository": "https://github.com/encode/django-rest-framework",
+      "docs": "https://www.django-rest-framework.org",
+      "summary": "Toolkit for building REST APIs on Django with serializers, viewsets, auth and a browsable API.",
+      "useWhen": "Use instead of hand-writing JSON serialization, permissions, pagination and throttling for Django REST endpoints.",
+      "cautions": [
+        "Serializer N+1 queries are common; use select_related/prefetch_related.",
+        "Check the supported Django versions for the pinned release."
+      ],
+      "tags": [
+        "python",
+        "django",
+        "rest",
+        "serializers"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "djangorestframework"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/encode/django-rest-framework",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "flask",
+      "name": "Flask",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/pallets/flask/blob/HEAD/LICENSE.txt",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://flask.palletsprojects.com",
+      "repository": "https://github.com/pallets/flask",
+      "docs": "https://flask.palletsprojects.com",
+      "summary": "Lightweight Python WSGI micro-framework with routing, request context and extensions.",
+      "useWhen": "Use instead of hand-writing WSGI routing and request handling for a small Python service.",
+      "cautions": [
+        "Use a production WSGI server (e.g. Gunicorn), not the development server.",
+        "Validation and ORM come from extensions; choose maintained ones."
+      ],
+      "tags": [
+        "python",
+        "wsgi",
+        "micro-framework",
+        "http"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "Flask"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pallets/flask",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "litestar",
+      "name": "Litestar",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/litestar-org/litestar/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://litestar.dev",
+      "repository": "https://github.com/litestar-org/litestar",
+      "docs": "https://docs.litestar.dev",
+      "summary": "Python ASGI framework with typed handlers, dependency injection, DTOs and OpenAPI generation.",
+      "useWhen": "Use instead of hand-writing ASGI routing, DTO serialization and OpenAPI docs for a typed Python API.",
+      "cautions": [
+        "Smaller ecosystem than FastAPI; check plugin availability first."
+      ],
+      "tags": [
+        "python",
+        "asgi",
+        "openapi",
+        "dependency-injection"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "litestar"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/litestar-org/litestar",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gin",
+      "name": "Gin",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gin-gonic/gin/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://gin-gonic.com",
+      "repository": "https://github.com/gin-gonic/gin",
+      "docs": "https://gin-gonic.com",
+      "summary": "Popular Go HTTP web framework with a fast router, middleware and JSON binding.",
+      "useWhen": "Use instead of hand-writing routing, parameter binding and middleware on net/http for a Go API.",
+      "cautions": [
+        "Set release mode in production and configure trusted proxies."
+      ],
+      "tags": [
+        "go",
+        "http",
+        "routing",
+        "middleware"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/gin-gonic/gin"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gin-gonic/gin",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "echo",
+      "name": "Echo",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/labstack/echo/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://echo.labstack.com",
+      "repository": "https://github.com/labstack/echo",
+      "docs": "https://echo.labstack.com",
+      "summary": "High-performance, minimalist Go web framework with router, middleware and data binding.",
+      "useWhen": "Use instead of hand-writing routing, binding and centralized error handling on net/http for a Go API.",
+      "cautions": [
+        "Use the module path matching the major version (e.g. /v4)."
+      ],
+      "tags": [
+        "go",
+        "http",
+        "routing",
+        "middleware"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/labstack/echo/v4"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/labstack/echo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "fiber",
+      "name": "Fiber",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gofiber/fiber/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://gofiber.io",
+      "repository": "https://github.com/gofiber/fiber",
+      "docs": "https://docs.gofiber.io",
+      "summary": "Express-inspired Go web framework built on fasthttp.",
+      "useWhen": "Use instead of hand-writing routing and middleware for a Go API when Express-style ergonomics matter.",
+      "cautions": [
+        "Built on fasthttp, not net/http; many net/http middlewares need adapters.",
+        "Request values are reused between requests; copy them before retaining."
+      ],
+      "tags": [
+        "go",
+        "http",
+        "fasthttp",
+        "express-style"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/gofiber/fiber/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gofiber/fiber",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "chi",
+      "name": "chi",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/go-chi/chi/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://go-chi.io",
+      "repository": "https://github.com/go-chi/chi",
+      "docs": "https://go-chi.io",
+      "summary": "Lightweight, idiomatic net/http-compatible router for Go.",
+      "useWhen": "Use instead of hand-writing path routing, sub-routers and middleware stacks while staying on standard net/http.",
+      "cautions": [
+        "Go 1.22+ ServeMux supports methods and wildcards; chi is still useful for middleware groups."
+      ],
+      "tags": [
+        "go",
+        "router",
+        "net-http",
+        "middleware"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/go-chi/chi/v5"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/go-chi/chi",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "axum",
+      "name": "Axum",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tokio-rs/axum/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tokio-rs/axum",
+      "docs": "https://docs.rs/axum",
+      "summary": "Ergonomic Rust web framework built on Tokio, Hyper and Tower middleware.",
+      "useWhen": "Use instead of hand-writing routing, extractors and middleware on Hyper for a Rust HTTP service.",
+      "cautions": [
+        "Minor 0.x releases contain breaking changes; pin and follow the changelog.",
+        "Keep tower/tower-http versions compatible with the axum release."
+      ],
+      "tags": [
+        "rust",
+        "tokio",
+        "http",
+        "tower"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "axum"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tokio-rs/axum",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "actix-web",
+      "name": "Actix Web",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/actix/actix-web/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0 at your option."
+      },
+      "homepage": "https://actix.rs",
+      "repository": "https://github.com/actix/actix-web",
+      "docs": "https://actix.rs",
+      "summary": "High-performance Rust web framework with routing, extractors and middleware.",
+      "useWhen": "Use instead of hand-writing an HTTP server, routing and request extraction in Rust.",
+      "cautions": [
+        "Uses its own actor-free runtime setup on Tokio; check crate compatibility with #[actix_web::main]."
+      ],
+      "tags": [
+        "rust",
+        "http",
+        "performance",
+        "web-framework"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "actix-web"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/actix/actix-web",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "spring-boot",
+      "name": "Spring Boot",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/spring-projects/spring-boot/blob/main/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://spring.io/projects/spring-boot",
+      "repository": "https://github.com/spring-projects/spring-boot",
+      "docs": "https://spring.io/projects/spring-boot",
+      "summary": "Convention-over-configuration Java/Kotlin framework for production-ready Spring applications.",
+      "useWhen": "Use instead of hand-wiring an embedded server, configuration, dependency injection and actuator health checks for a JVM service.",
+      "cautions": [
+        "Manage dependency versions through the Spring Boot BOM or parent.",
+        "Restrict actuator endpoints in production."
+      ],
+      "tags": [
+        "java",
+        "kotlin",
+        "jvm",
+        "dependency-injection",
+        "enterprise"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "org.springframework.boot:spring-boot-starter-web"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/spring-projects/spring-boot",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "quarkus",
+      "name": "Quarkus",
+      "category": "server-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/quarkusio/quarkus/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://quarkus.io",
+      "repository": "https://github.com/quarkusio/quarkus",
+      "docs": "https://quarkus.io/guides/",
+      "summary": "Kubernetes-native Java framework with fast startup and optional GraalVM native images.",
+      "useWhen": "Use instead of hand-tuning a JVM microservice stack for container startup time and memory.",
+      "cautions": [
+        "Native-image builds restrict reflection; test the native build in CI."
+      ],
+      "tags": [
+        "java",
+        "jvm",
+        "kubernetes",
+        "graalvm",
+        "microservices"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "io.quarkus:quarkus-core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/quarkusio/quarkus",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "aspnet-core",
+      "name": "ASP.NET Core",
+      "category": "server-framework",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://dotnet.microsoft.com/en-us/apps/aspnet",
+      "repository": "https://github.com/dotnet/aspnetcore",
+      "docs": "https://learn.microsoft.com/en-us/aspnet/core/",
+      "summary": "Cross-platform .NET framework for web APIs, minimal APIs, MVC and real-time apps.",
+      "useWhen": "Use instead of hand-writing HTTP hosting, routing, model binding and middleware for a .NET service.",
+      "cautions": [
+        "Target a supported .NET LTS/STS release and track its end-of-support date."
+      ],
+      "tags": [
+        "dotnet",
+        "csharp",
+        "minimal-api",
+        "web-api"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Microsoft.AspNetCore.OpenApi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dotnet/aspnetcore",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rails",
+      "name": "Ruby on Rails",
+      "category": "server-framework",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rails/rails/blob/main/MIT-LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://rubyonrails.org",
+      "repository": "https://github.com/rails/rails",
+      "docs": "https://guides.rubyonrails.org",
+      "summary": "Full-stack Ruby framework with Active Record ORM, migrations, jobs, mailers and conventions.",
+      "useWhen": "Use instead of hand-assembling ORM, migrations, background jobs and conventions for a Ruby web app or API.",
+      "cautions": [
+        "Track the Rails maintenance policy and upgrade one minor at a time."
+      ],
+      "tags": [
+        "ruby",
+        "full-stack",
+        "orm",
+        "migrations",
+        "mvc"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "gem",
+          "name": "rails"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rails/rails",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "laravel",
+      "name": "Laravel",
+      "category": "server-framework",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/laravel/framework/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://laravel.com",
+      "repository": "https://github.com/laravel/framework",
+      "docs": "https://laravel.com/docs",
+      "summary": "Full-featured PHP framework with Eloquent ORM, queues, migrations and routing.",
+      "useWhen": "Use instead of hand-building routing, ORM, queues and migrations for a PHP web app or API.",
+      "cautions": [
+        "Some first-party products (e.g. Forge, Vapor, Nova) are paid services with separate terms."
+      ],
+      "tags": [
+        "php",
+        "full-stack",
+        "orm",
+        "queues",
+        "mvc"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "laravel/framework"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/laravel/framework",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix",
+      "category": "server-framework",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/phoenixframework/phoenix/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.phoenixframework.org",
+      "repository": "https://github.com/phoenixframework/phoenix",
+      "docs": "https://hexdocs.pm/phoenix",
+      "summary": "Elixir web framework with channels, LiveView and fault-tolerant BEAM runtime.",
+      "useWhen": "Use instead of hand-writing routing, WebSocket channels and real-time server rendering for an Elixir app.",
+      "cautions": [
+        "Requires Elixir/Erlang operational knowledge for clustering and releases."
+      ],
+      "tags": [
+        "elixir",
+        "beam",
+        "realtime",
+        "liveview",
+        "websockets"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "hex",
+          "name": "phoenix"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/phoenixframework/phoenix",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "prisma",
+      "name": "Prisma ORM",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/prisma/prisma/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.prisma.io",
+      "repository": "https://github.com/prisma/prisma",
+      "docs": "https://www.prisma.io/docs",
+      "summary": "Type-safe TypeScript ORM with a declarative schema, generated client and migrations.",
+      "useWhen": "Use instead of hand-writing SQL access code, row-to-type mapping and migration files for a TypeScript backend.",
+      "cautions": [
+        "Prisma Accelerate/Postgres are paid hosted services separate from the ORM.",
+        "Generated client must be regenerated after schema changes."
+      ],
+      "tags": [
+        "typescript",
+        "orm",
+        "migrations",
+        "postgresql",
+        "mysql",
+        "sqlite"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "prisma"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@prisma/client"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/prisma/prisma",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "drizzle-orm",
+      "name": "Drizzle ORM",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/drizzle-team/drizzle-orm/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://orm.drizzle.team",
+      "repository": "https://github.com/drizzle-team/drizzle-orm",
+      "docs": "https://orm.drizzle.team/docs/overview",
+      "summary": "Lightweight SQL-like TypeScript ORM with schema-as-code and drizzle-kit migrations.",
+      "useWhen": "Use instead of hand-writing typed SQL queries and migration diffs in TypeScript, including edge runtimes.",
+      "cautions": [
+        "The drizzle-kit migration CLI is a separate package with its own (MIT) license and versioning; keep it compatible with drizzle-orm."
+      ],
+      "tags": [
+        "typescript",
+        "orm",
+        "sql",
+        "edge",
+        "migrations"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "drizzle-orm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/drizzle-team/drizzle-orm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "kysely",
+      "name": "Kysely",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/kysely-org/kysely/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://kysely.dev",
+      "repository": "https://github.com/kysely-org/kysely",
+      "docs": "https://kysely.dev",
+      "summary": "Type-safe TypeScript SQL query builder.",
+      "useWhen": "Use instead of hand-concatenating SQL strings while keeping full control of queries with compile-time column checking.",
+      "cautions": [
+        "Database types must be generated or maintained (e.g. kysely-codegen) to stay accurate."
+      ],
+      "tags": [
+        "typescript",
+        "sql",
+        "query-builder",
+        "type-safety"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "kysely"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kysely-org/kysely",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "typeorm",
+      "name": "TypeORM",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/typeorm/typeorm/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://typeorm.io",
+      "repository": "https://github.com/typeorm/typeorm",
+      "docs": "https://typeorm.io",
+      "summary": "Decorator-based ORM for TypeScript/JavaScript supporting Data Mapper and Active Record patterns.",
+      "useWhen": "Use instead of hand-writing entity mapping, relations and migrations when a decorator/entity-class model fits (common with NestJS).",
+      "cautions": [
+        "Never enable synchronize in production; use migrations."
+      ],
+      "tags": [
+        "typescript",
+        "orm",
+        "decorators",
+        "migrations"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "typeorm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/typeorm/typeorm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sequelize",
+      "name": "Sequelize",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sequelize/sequelize/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://sequelize.org",
+      "repository": "https://github.com/sequelize/sequelize",
+      "docs": "https://sequelize.org",
+      "summary": "Mature promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and SQL Server.",
+      "useWhen": "Use instead of hand-writing model mapping, associations and transactions in an existing JavaScript backend.",
+      "cautions": [
+        "v6 is the stable line; v7 has a different package name (@sequelize/core) and is in alpha."
+      ],
+      "tags": [
+        "nodejs",
+        "orm",
+        "sql",
+        "migrations"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sequelize"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sequelize/sequelize",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sqlalchemy",
+      "name": "SQLAlchemy",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sqlalchemy/sqlalchemy/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.sqlalchemy.org",
+      "repository": "https://github.com/sqlalchemy/sqlalchemy",
+      "docs": "https://docs.sqlalchemy.org",
+      "summary": "Python SQL toolkit and ORM with Core expression language and unit-of-work sessions.",
+      "useWhen": "Use instead of hand-writing SQL composition, connection pooling and object mapping in Python.",
+      "cautions": [
+        "Use the 2.0-style API; many tutorials still show legacy 1.x patterns."
+      ],
+      "tags": [
+        "python",
+        "orm",
+        "sql",
+        "connection-pool"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "SQLAlchemy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sqlalchemy/sqlalchemy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sqlmodel",
+      "name": "SQLModel",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fastapi/sqlmodel/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://sqlmodel.tiangolo.com",
+      "repository": "https://github.com/fastapi/sqlmodel",
+      "docs": "https://sqlmodel.tiangolo.com",
+      "summary": "Python ORM combining SQLAlchemy and Pydantic models in one class.",
+      "useWhen": "Use instead of maintaining duplicate Pydantic schemas and SQLAlchemy models in a FastAPI app.",
+      "cautions": [
+        "Advanced queries fall back to SQLAlchemy; learn both APIs."
+      ],
+      "tags": [
+        "python",
+        "orm",
+        "pydantic",
+        "fastapi"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sqlmodel"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fastapi/sqlmodel",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tortoise-orm",
+      "name": "Tortoise ORM",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/tortoise/tortoise-orm/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://tortoise.github.io",
+      "repository": "https://github.com/tortoise/tortoise-orm",
+      "docs": "https://tortoise.github.io",
+      "summary": "Asyncio Python ORM inspired by the Django ORM.",
+      "useWhen": "Use instead of hand-writing async SQL access and model mapping in an asyncio Python service.",
+      "cautions": [
+        "Migrations use a separate tool (Aerich); check compatibility."
+      ],
+      "tags": [
+        "python",
+        "orm",
+        "asyncio"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "tortoise-orm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tortoise/tortoise-orm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gorm",
+      "name": "GORM",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/go-gorm/gorm/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://gorm.io",
+      "repository": "https://github.com/go-gorm/gorm",
+      "docs": "https://gorm.io/docs/",
+      "summary": "Full-featured ORM for Go with associations, hooks and auto-migration.",
+      "useWhen": "Use instead of hand-writing struct scanning, associations and CRUD SQL in Go.",
+      "cautions": [
+        "AutoMigrate is not a substitute for reviewed migrations in production."
+      ],
+      "tags": [
+        "go",
+        "orm",
+        "sql"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "gorm.io/gorm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/go-gorm/gorm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sqlc",
+      "name": "sqlc",
+      "category": "orm",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sqlc-dev/sqlc/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://sqlc.dev",
+      "repository": "https://github.com/sqlc-dev/sqlc",
+      "docs": "https://docs.sqlc.dev",
+      "summary": "Generates type-safe Go (and other language) code from plain SQL queries and schema.",
+      "useWhen": "Use instead of hand-writing row scanning and query wrapper functions for SQL you already write by hand.",
+      "cautions": [
+        "Generated code must not be edited; regenerate on schema/query change.",
+        "Some features use the optional hosted sqlc Cloud."
+      ],
+      "tags": [
+        "go",
+        "sql",
+        "codegen",
+        "type-safety"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/sqlc-dev/sqlc"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sqlc-dev/sqlc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "diesel",
+      "name": "Diesel",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/diesel-rs/diesel/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0 at your option."
+      },
+      "homepage": "https://diesel.rs",
+      "repository": "https://github.com/diesel-rs/diesel",
+      "docs": "https://diesel.rs",
+      "summary": "Safe, extensible compile-time-checked ORM and query builder for Rust.",
+      "useWhen": "Use instead of hand-writing SQL strings and row mapping in Rust with compile-time query checking.",
+      "cautions": [
+        "Synchronous by default; use diesel-async for async runtimes."
+      ],
+      "tags": [
+        "rust",
+        "orm",
+        "query-builder",
+        "migrations"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "diesel"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/diesel-rs/diesel",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sea-orm",
+      "name": "SeaORM",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/SeaQL/sea-orm/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0 at your option."
+      },
+      "homepage": "https://www.sea-ql.org/SeaORM/",
+      "repository": "https://github.com/SeaQL/sea-orm",
+      "docs": "https://www.sea-ql.org/SeaORM/",
+      "summary": "Async dynamic ORM for Rust built on SQLx.",
+      "useWhen": "Use instead of hand-writing async entity mapping and relations in a Rust service.",
+      "cautions": [
+        "Entity code is generated with sea-orm-cli; keep generator and crate versions aligned."
+      ],
+      "tags": [
+        "rust",
+        "orm",
+        "async",
+        "sqlx"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "sea-orm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SeaQL/sea-orm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ecto",
+      "name": "Ecto",
+      "category": "orm",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/elixir-ecto/ecto/blob/HEAD/LICENSE.md",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/elixir-ecto/ecto",
+      "docs": "https://hexdocs.pm/ecto",
+      "summary": "Elixir toolkit for data mapping, changesets, queries and migrations.",
+      "useWhen": "Use instead of hand-writing data validation, query composition and migrations in Elixir.",
+      "cautions": [
+        "SQL adapters and migrations live in ecto_sql; pin both."
+      ],
+      "tags": [
+        "elixir",
+        "orm",
+        "changesets",
+        "migrations"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "hex",
+          "name": "ecto"
+        },
+        {
+          "ecosystem": "hex",
+          "name": "ecto_sql"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/elixir-ecto/ecto",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "alembic",
+      "name": "Alembic",
+      "category": "migrations",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sqlalchemy/alembic/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://alembic.sqlalchemy.org",
+      "repository": "https://github.com/sqlalchemy/alembic",
+      "docs": "https://alembic.sqlalchemy.org",
+      "summary": "Database migration tool for SQLAlchemy with autogenerate support.",
+      "useWhen": "Use instead of hand-writing and ordering schema change scripts for a SQLAlchemy/SQLModel database.",
+      "cautions": [
+        "Review autogenerated migrations; renames and some type changes are not detected."
+      ],
+      "tags": [
+        "python",
+        "migrations",
+        "sqlalchemy",
+        "schema"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "alembic"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sqlalchemy/alembic",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "golang-migrate",
+      "name": "golang-migrate",
+      "category": "migrations",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/golang-migrate/migrate/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/golang-migrate/migrate",
+      "docs": null,
+      "summary": "Database migrations as a Go library and CLI supporting many databases and sources.",
+      "useWhen": "Use instead of hand-writing migration version tracking and up/down runners in a Go service.",
+      "cautions": [
+        "A failed migration leaves a dirty flag that must be resolved manually."
+      ],
+      "tags": [
+        "go",
+        "migrations",
+        "cli",
+        "sql"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/golang-migrate/migrate/v4"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/golang-migrate/migrate",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "category": "migrations",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/ariga/atlas/blob/HEAD/LICENSE",
+        "scope": "Source repository is Apache-2.0; official prebuilt binaries and Atlas Pro/Cloud features are under Ariga's separate terms. Build the community edition or review the EULA."
+      },
+      "homepage": "https://atlasgo.io",
+      "repository": "https://github.com/ariga/atlas",
+      "docs": "https://atlasgo.io",
+      "summary": "Declarative, schema-as-code database migration tool with diffing, linting and planning.",
+      "useWhen": "Use instead of hand-diffing schemas and writing migration linting for SQL databases.",
+      "cautions": [
+        "Default binaries are not the Apache-2.0 community build; check which edition is installed."
+      ],
+      "tags": [
+        "migrations",
+        "schema-as-code",
+        "cli",
+        "go",
+        "linting"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "ariga.io/atlas"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ariga/atlas",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install a pinned community-edition build or review the official binary terms before use in CI."
+      ]
+    },
+    {
+      "id": "flyway",
+      "name": "Flyway",
+      "category": "migrations",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/flyway/flyway/blob/main/LICENSE.txt",
+        "scope": "Flyway Community (open source) is Apache-2.0; Teams/Enterprise editions are commercial."
+      },
+      "homepage": "https://www.red-gate.com/products/flyway/",
+      "repository": "https://github.com/flyway/flyway",
+      "docs": "https://documentation.red-gate.com/flyway",
+      "summary": "Versioned SQL migration tool for JVM and CLI use across many databases.",
+      "useWhen": "Use instead of hand-writing versioned SQL migration runners for JVM services or polyglot teams.",
+      "cautions": [
+        "Some features (e.g. undo migrations) require paid editions."
+      ],
+      "tags": [
+        "migrations",
+        "java",
+        "sql",
+        "cli"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "org.flywaydb:flyway-core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/flyway/flyway",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "postgresql",
+      "name": "PostgreSQL",
+      "category": "database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "PostgreSQL",
+        "url": "https://www.postgresql.org/about/licence/",
+        "scope": "PostgreSQL License (permissive, BSD/MIT-like). The GitHub repository is a read-only mirror."
+      },
+      "homepage": "https://www.postgresql.org",
+      "repository": "https://github.com/postgres/postgres",
+      "docs": "https://www.postgresql.org/docs/",
+      "summary": "Advanced open-source relational database with JSONB, full-text search and rich extensions.",
+      "useWhen": "Use instead of building custom persistence; default relational database for most new backends.",
+      "cautions": [
+        "Plan backups, point-in-time recovery and major-version upgrades before production.",
+        "Use connection pooling (e.g. PgBouncer) for serverless or high-concurrency clients."
+      ],
+      "tags": [
+        "database",
+        "sql",
+        "relational",
+        "jsonb",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "postgres"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/postgres/postgres",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "sqlite",
+      "name": "SQLite",
+      "category": "database",
+      "platforms": [
+        "server",
+        "desktop",
+        "mobile",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://www.sqlite.org/copyright.html",
+        "scope": "Public domain (SQLite copyright page). No SPDX identifier recorded."
+      },
+      "homepage": "https://www.sqlite.org",
+      "repository": null,
+      "docs": "https://www.sqlite.org/docs.html",
+      "summary": "Embedded, serverless, single-file SQL database engine.",
+      "useWhen": "Use instead of hand-rolling file-based storage for local, embedded, test or low-write single-node apps.",
+      "cautions": [
+        "Single writer at a time; enable WAL mode and busy timeouts for concurrent access."
+      ],
+      "tags": [
+        "database",
+        "sql",
+        "embedded",
+        "local-first"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app",
+        "desktop-app",
+        "mobile-app",
+        "cli-tool"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.sqlite.org",
+          "title": "Official project site and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Use the SQLite build bundled with your language driver or platform; record its version."
+      ]
+    },
+    {
+      "id": "valkey",
+      "name": "Valkey",
+      "category": "database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/valkey-io/valkey/blob/HEAD/COPYING",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://valkey.io",
+      "repository": "https://github.com/valkey-io/valkey",
+      "docs": "https://valkey.io",
+      "summary": "Linux Foundation open-source (BSD) fork of Redis: in-memory key-value store for cache, queues and pub/sub.",
+      "useWhen": "Use instead of hand-building an in-memory cache, rate-limit store or job broker; BSD-licensed Redis-compatible choice.",
+      "cautions": [
+        "Configure persistence and eviction policy deliberately; it is memory-bound.",
+        "Never expose without auth/TLS on a public network."
+      ],
+      "tags": [
+        "cache",
+        "key-value",
+        "redis-compatible",
+        "pubsub",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "valkey/valkey"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/valkey-io/valkey",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": "rate-limit",
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "category": "database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0-only OR RSALv2 OR SSPL-1.0",
+        "url": "https://github.com/redis/redis/blob/HEAD/LICENSE.txt",
+        "scope": "Redis 8+ is tri-licensed AGPLv3, RSALv2 or SSPLv1; 7.4–7.x were RSALv2/SSPL only. Review obligations before offering it as part of a service; consider Valkey (BSD)."
+      },
+      "homepage": "https://redis.io",
+      "repository": "https://github.com/redis/redis",
+      "docs": "https://redis.io/docs/latest/",
+      "summary": "In-memory data store for caching, streams, pub/sub, queues and data structures.",
+      "useWhen": "Use instead of hand-building caching, sessions and job brokering when Redis-specific features or managed Redis are required.",
+      "cautions": [
+        "License depends on version; record the exact version and chosen license.",
+        "Configure persistence, eviction and auth explicitly."
+      ],
+      "tags": [
+        "cache",
+        "key-value",
+        "pubsub",
+        "streams"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "redis"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/redis/redis",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB Community Server",
+      "category": "database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "SSPL-1.0",
+        "url": "https://github.com/mongodb/mongo/blob/master/LICENSE-Community.txt",
+        "scope": "Server is under the Server Side Public License (not OSI-approved); offering MongoDB as a service triggers SSPL obligations. Official drivers are Apache-2.0."
+      },
+      "homepage": "https://www.mongodb.com",
+      "repository": "https://github.com/mongodb/mongo",
+      "docs": "https://www.mongodb.com/docs/manual/",
+      "summary": "Document database storing JSON-like BSON documents with flexible schemas.",
+      "useWhen": "Use instead of building custom document storage when the data is document-shaped and the SSPL terms are acceptable.",
+      "cautions": [
+        "SSPL review required before hosting it for third parties.",
+        "Design indexes and schema validation up front."
+      ],
+      "tags": [
+        "database",
+        "document",
+        "nosql",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "mongo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mongodb/mongo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL Community Server",
+      "category": "database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0-only",
+        "url": "https://github.com/mysql/mysql-server/blob/trunk/LICENSE",
+        "scope": "Community Server is GPLv2 with Oracle's FOSS exceptions; client connectors have separate licenses. Running it as a separate server does not relicense your app."
+      },
+      "homepage": "https://www.mysql.com",
+      "repository": "https://github.com/mysql/mysql-server",
+      "docs": "https://dev.mysql.com/doc/",
+      "summary": "Widely deployed open-source relational database from Oracle.",
+      "useWhen": "Use instead of custom persistence when the stack, host or existing data requires MySQL.",
+      "cautions": [
+        "Use utf8mb4 and strict SQL mode.",
+        "Bundling or linking client libraries has GPL considerations; check connector licenses."
+      ],
+      "tags": [
+        "database",
+        "sql",
+        "relational",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "mysql"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mysql/mysql-server",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "node-postgres",
+      "name": "node-postgres (pg)",
+      "category": "database-driver",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/brianc/node-postgres/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://node-postgres.com",
+      "repository": "https://github.com/brianc/node-postgres",
+      "docs": "https://node-postgres.com",
+      "summary": "PostgreSQL client for Node.js with pooling, parameterized queries and streaming.",
+      "useWhen": "Use instead of hand-implementing the Postgres wire protocol or connection pooling in Node.js.",
+      "cautions": [
+        "Always use parameterized queries; never interpolate user input.",
+        "Release pooled clients in finally blocks."
+      ],
+      "tags": [
+        "nodejs",
+        "postgresql",
+        "driver",
+        "connection-pool"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pg"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/brianc/node-postgres",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "postgres-js",
+      "name": "Postgres.js",
+      "category": "database-driver",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Unlicense",
+        "url": "https://github.com/porsager/postgres/blob/HEAD/UNLICENSE",
+        "scope": "Unlicense for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/porsager/postgres",
+      "docs": null,
+      "summary": "Fast PostgreSQL client for Node.js, Deno and Bun with tagged-template queries.",
+      "useWhen": "Use instead of hand-writing safe SQL parameterization and pooling with tagged template literals.",
+      "cautions": [
+        "Prepared statements must be disabled behind transaction-mode poolers like PgBouncer."
+      ],
+      "tags": [
+        "nodejs",
+        "postgresql",
+        "driver",
+        "bun",
+        "deno"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "postgres"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/porsager/postgres",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "psycopg",
+      "name": "Psycopg 3",
+      "category": "database-driver",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "url": "https://github.com/psycopg/psycopg/blob/HEAD/LICENSE.txt",
+        "scope": "LGPL-3.0 for the library; using it as an unmodified dependency does not require relicensing your app."
+      },
+      "homepage": "https://www.psycopg.org",
+      "repository": "https://github.com/psycopg/psycopg",
+      "docs": "https://www.psycopg.org/psycopg3/docs/",
+      "summary": "PostgreSQL adapter for Python with sync/async APIs, pooling and COPY support.",
+      "useWhen": "Use instead of hand-implementing Postgres connectivity, type adaptation and connection pooling in Python.",
+      "cautions": [
+        "Package name is psycopg (v3); psycopg2 is the older API."
+      ],
+      "tags": [
+        "python",
+        "postgresql",
+        "driver",
+        "async"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "psycopg"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/psycopg/psycopg",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pgx",
+      "name": "pgx",
+      "category": "database-driver",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jackc/pgx/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jackc/pgx",
+      "docs": "https://pkg.go.dev/github.com/jackc/pgx/v5",
+      "summary": "Pure-Go PostgreSQL driver and toolkit with pooling and native type support.",
+      "useWhen": "Use instead of hand-writing Postgres connectivity, pooling and type mapping in Go.",
+      "cautions": [
+        "Use the /v5 module path; pgxpool for concurrent use."
+      ],
+      "tags": [
+        "go",
+        "postgresql",
+        "driver",
+        "connection-pool"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/jackc/pgx/v5"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jackc/pgx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "node-redis",
+      "name": "node-redis",
+      "category": "database-driver",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/redis/node-redis/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/redis/node-redis",
+      "docs": "https://redis.io/docs/latest/develop/clients/nodejs/",
+      "summary": "Official, actively maintained Redis client for Node.js, also usable with Valkey for core commands.",
+      "useWhen": "Use instead of hand-writing the Redis protocol, reconnection and command typing in Node.js.",
+      "cautions": [
+        "BullMQ uses ioredis instead; ioredis is now maintained on a best-effort basis.",
+        "Redis-Stack-only modules (search, JSON) are not available on Valkey."
+      ],
+      "tags": [
+        "nodejs",
+        "redis",
+        "valkey",
+        "driver",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "redis"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/redis/node-redis",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "bullmq",
+      "name": "BullMQ",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/taskforcesh/bullmq/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://bullmq.io",
+      "repository": "https://github.com/taskforcesh/bullmq",
+      "docs": "https://docs.bullmq.io",
+      "summary": "Redis-backed job and message queue for Node.js with retries, delays, priorities and flows.",
+      "useWhen": "Use instead of hand-writing job queues, retry/backoff and scheduled jobs on Redis in Node.js.",
+      "cautions": [
+        "Requires Redis/Valkey with maxmemory-policy noeviction.",
+        "Make job handlers idempotent; jobs can be retried."
+      ],
+      "tags": [
+        "nodejs",
+        "queue",
+        "jobs",
+        "redis",
+        "retries"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "bullmq"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/taskforcesh/bullmq",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "celery",
+      "name": "Celery",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/celery/celery/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://docs.celeryq.dev",
+      "repository": "https://github.com/celery/celery",
+      "docs": "https://docs.celeryq.dev",
+      "summary": "Distributed task queue for Python with RabbitMQ/Redis brokers, scheduling and retries.",
+      "useWhen": "Use instead of hand-writing distributed background workers, periodic tasks and retries in Python.",
+      "cautions": [
+        "Set acks_late and idempotent tasks for at-least-once safety.",
+        "Pin kombu/billiard versions alongside Celery."
+      ],
+      "tags": [
+        "python",
+        "queue",
+        "jobs",
+        "scheduling",
+        "distributed"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "celery"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/celery/celery",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rq",
+      "name": "RQ (Redis Queue)",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/rq/rq/blob/HEAD/LICENSE",
+        "scope": "BSD-2-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://python-rq.org",
+      "repository": "https://github.com/rq/rq",
+      "docs": "https://python-rq.org",
+      "summary": "Simple Python library for queueing jobs on Redis and processing them with workers.",
+      "useWhen": "Use instead of hand-writing a small Redis-backed background worker in Python when Celery is too heavy.",
+      "cautions": [
+        "Workers fork per job by default; not supported natively on Windows."
+      ],
+      "tags": [
+        "python",
+        "queue",
+        "jobs",
+        "redis"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "rq"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rq/rq",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dramatiq",
+      "name": "Dramatiq",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0-or-later",
+        "url": "https://github.com/Bogdanp/dramatiq/blob/HEAD/COPYING",
+        "scope": "LGPL-3.0 for the library; use as an unmodified dependency is generally permitted in proprietary apps."
+      },
+      "homepage": "https://dramatiq.io",
+      "repository": "https://github.com/Bogdanp/dramatiq",
+      "docs": "https://dramatiq.io",
+      "summary": "Reliable distributed task processing for Python with RabbitMQ or Redis.",
+      "useWhen": "Use instead of hand-writing background task workers with retries and middleware in Python.",
+      "cautions": [
+        "Smaller ecosystem than Celery; check middleware needs (e.g. results, rate limits)."
+      ],
+      "tags": [
+        "python",
+        "queue",
+        "jobs",
+        "rabbitmq",
+        "redis"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "dramatiq"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Bogdanp/dramatiq",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sidekiq",
+      "name": "Sidekiq",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "url": "https://github.com/sidekiq/sidekiq/blob/HEAD/LICENSE.txt",
+        "scope": "Open-source Sidekiq is LGPL-3.0; Sidekiq Pro/Enterprise are commercial add-ons."
+      },
+      "homepage": "https://sidekiq.org",
+      "repository": "https://github.com/sidekiq/sidekiq",
+      "docs": "https://github.com/sidekiq/sidekiq/wiki",
+      "summary": "Redis-backed background job processing for Ruby.",
+      "useWhen": "Use instead of hand-writing threaded background workers and retries in Ruby/Rails.",
+      "cautions": [
+        "Some features (batches, unique jobs, rate limiting) require paid editions."
+      ],
+      "tags": [
+        "ruby",
+        "rails",
+        "queue",
+        "jobs",
+        "redis"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "gem",
+          "name": "sidekiq"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sidekiq/sidekiq",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "oban",
+      "name": "Oban",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/oban-bg/oban/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/oban-bg/oban",
+      "docs": "https://hexdocs.pm/oban",
+      "summary": "Robust PostgreSQL-backed job processing for Elixir.",
+      "useWhen": "Use instead of hand-writing persistent, transactional job queues in Elixir.",
+      "cautions": [
+        "Oban Pro and Oban Web features have separate licensing; check before use."
+      ],
+      "tags": [
+        "elixir",
+        "queue",
+        "jobs",
+        "postgresql"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "hex",
+          "name": "oban"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/oban-bg/oban",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "temporal",
+      "name": "Temporal",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/temporalio/temporal/blob/HEAD/LICENSE",
+        "scope": "Server and official SDKs are MIT; Temporal Cloud is a paid hosted service."
+      },
+      "homepage": "https://temporal.io",
+      "repository": "https://github.com/temporalio/temporal",
+      "docs": "https://docs.temporal.io",
+      "summary": "Durable execution platform for long-running, fault-tolerant workflows with SDKs in many languages.",
+      "useWhen": "Use instead of hand-building workflow state machines, durable timers, retries and compensations across services.",
+      "cautions": [
+        "Workflow code must be deterministic; follow SDK versioning rules.",
+        "Self-hosting requires a persistence store and operations effort."
+      ],
+      "tags": [
+        "workflows",
+        "durable-execution",
+        "orchestration",
+        "go",
+        "typescript",
+        "python"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@temporalio/client"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "temporalio"
+        },
+        {
+          "ecosystem": "go",
+          "name": "go.temporal.io/sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/temporalio/temporal",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "inngest-sdk",
+      "name": "Inngest SDK",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/inngest/inngest-js/blob/HEAD/packages/inngest/LICENSE.md",
+        "scope": "The TypeScript SDK is Apache-2.0; the Inngest dev server/platform and Inngest Cloud have separate terms."
+      },
+      "homepage": "https://www.inngest.com",
+      "repository": "https://github.com/inngest/inngest-js",
+      "docs": "https://www.inngest.com/docs",
+      "summary": "TypeScript SDK for event-driven, durable step functions and background jobs.",
+      "useWhen": "Use instead of hand-writing event-triggered background functions with steps, retries and schedules in TypeScript.",
+      "cautions": [
+        "Production execution needs Inngest Cloud or a self-hosted server under its own license."
+      ],
+      "tags": [
+        "typescript",
+        "jobs",
+        "durable-execution",
+        "events",
+        "serverless"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "inngest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/inngest/inngest-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "river",
+      "name": "River",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/riverqueue/river/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 for the library; River Pro is a commercial add-on."
+      },
+      "homepage": "https://riverqueue.com",
+      "repository": "https://github.com/riverqueue/river",
+      "docs": "https://riverqueue.com/docs",
+      "summary": "Fast, transactional PostgreSQL-backed job queue for Go.",
+      "useWhen": "Use instead of hand-writing a Postgres job table, locking and retries in Go, enqueueing jobs in the same transaction.",
+      "cautions": [
+        "Requires running River migrations against your database."
+      ],
+      "tags": [
+        "go",
+        "queue",
+        "jobs",
+        "postgresql",
+        "transactional"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/riverqueue/river"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/riverqueue/river",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "asynq",
+      "name": "Asynq",
+      "category": "background-jobs",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/hibiken/asynq/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/hibiken/asynq",
+      "docs": null,
+      "summary": "Redis-backed distributed task queue for Go with retries, scheduling and a web UI.",
+      "useWhen": "Use instead of hand-writing Redis-backed background workers and retries in Go.",
+      "cautions": [
+        "Pre-1.0; check release notes for breaking changes."
+      ],
+      "tags": [
+        "go",
+        "queue",
+        "jobs",
+        "redis"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/hibiken/asynq"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hibiken/asynq",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lru-cache",
+      "name": "lru-cache",
+      "category": "caching",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BlueOak-1.0.0",
+        "url": "https://github.com/isaacs/node-lru-cache/blob/HEAD/LICENSE.md",
+        "scope": "BlueOak-1.0.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/isaacs/node-lru-cache",
+      "docs": null,
+      "summary": "Fast in-memory LRU cache for JavaScript with TTL and size limits.",
+      "useWhen": "Use instead of hand-writing an in-process LRU map with eviction and TTL in Node.js.",
+      "cautions": [
+        "Per-process only; use Valkey/Redis for shared caches across instances."
+      ],
+      "tags": [
+        "nodejs",
+        "cache",
+        "lru",
+        "in-memory"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lru-cache"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/isaacs/node-lru-cache",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cachetools",
+      "name": "cachetools",
+      "category": "caching",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tkem/cachetools/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tkem/cachetools",
+      "docs": "https://cachetools.readthedocs.io",
+      "summary": "Extensible memoizing collections and decorators for Python (LRU, TTL, LFU).",
+      "useWhen": "Use instead of hand-writing TTL/LRU caches and memoization decorators in Python.",
+      "cautions": [
+        "Not thread-safe by default; pass a lock to the decorator when shared."
+      ],
+      "tags": [
+        "python",
+        "cache",
+        "lru",
+        "ttl",
+        "memoization"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "cachetools"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tkem/cachetools",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "moka",
+      "name": "Moka",
+      "category": "caching",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/moka-rs/moka/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0 at your option."
+      },
+      "homepage": null,
+      "repository": "https://github.com/moka-rs/moka",
+      "docs": "https://docs.rs/moka",
+      "summary": "High-performance concurrent in-memory cache for Rust with TTL and size-based eviction.",
+      "useWhen": "Use instead of hand-writing a concurrent cache with eviction policies in Rust.",
+      "cautions": [
+        "Choose sync or future (async) cache features explicitly."
+      ],
+      "tags": [
+        "rust",
+        "cache",
+        "concurrent",
+        "in-memory"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "moka"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/moka-rs/moka",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openapi-typescript",
+      "name": "openapi-typescript",
+      "category": "api-spec",
+      "platforms": [
+        "server",
+        "web",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/openapi-ts/openapi-typescript/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://openapi-ts.dev",
+      "repository": "https://github.com/openapi-ts/openapi-typescript",
+      "docs": "https://openapi-ts.dev",
+      "summary": "Generates TypeScript types from OpenAPI 3 schemas, with the companion openapi-fetch client.",
+      "useWhen": "Use instead of hand-writing TypeScript types and fetch wrappers for an OpenAPI-described API.",
+      "cautions": [
+        "Regenerate in CI when the spec changes and fail on drift."
+      ],
+      "tags": [
+        "openapi",
+        "typescript",
+        "codegen",
+        "api-client"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "openapi-typescript"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "openapi-fetch"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openapi-ts/openapi-typescript",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "orval",
+      "name": "Orval",
+      "category": "api-spec",
+      "platforms": [
+        "server",
+        "web",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/orval-labs/orval/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://orval.dev",
+      "repository": "https://github.com/orval-labs/orval",
+      "docs": "https://orval.dev",
+      "summary": "Generates typed API clients, TanStack Query hooks, Zod schemas and mocks from OpenAPI.",
+      "useWhen": "Use instead of hand-writing API client functions, data-fetching hooks and mocks from an OpenAPI spec.",
+      "cautions": [
+        "Generated files should not be hand-edited; customize via config/mutators."
+      ],
+      "tags": [
+        "openapi",
+        "typescript",
+        "codegen",
+        "react-query",
+        "zod"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "orval"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/orval-labs/orval",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "swagger-ui",
+      "name": "Swagger UI",
+      "category": "api-spec",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/swagger-api/swagger-ui/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://swagger.io/tools/swagger-ui/",
+      "repository": "https://github.com/swagger-api/swagger-ui",
+      "docs": "https://swagger.io/tools/swagger-ui/",
+      "summary": "Interactive in-browser documentation and try-it-out console for OpenAPI specs.",
+      "useWhen": "Use instead of hand-building interactive API reference pages from an OpenAPI document.",
+      "cautions": [
+        "Do not expose try-it-out against production with real credentials publicly."
+      ],
+      "tags": [
+        "openapi",
+        "documentation",
+        "api-reference"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "swagger-ui-dist"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/swagger-api/swagger-ui",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "redoc",
+      "name": "Redoc",
+      "category": "api-spec",
+      "platforms": [
+        "web",
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Redocly/redoc/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://redocly.com/docs/redoc",
+      "repository": "https://github.com/Redocly/redoc",
+      "docs": "https://redocly.com/docs/redoc",
+      "summary": "Generates clean three-panel API reference documentation from OpenAPI.",
+      "useWhen": "Use instead of hand-writing static API reference docs from an OpenAPI spec.",
+      "cautions": [
+        "Redocly hosted platform features are commercial; the Redoc renderer is MIT."
+      ],
+      "tags": [
+        "openapi",
+        "documentation",
+        "api-reference",
+        "static"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "redoc"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Redocly/redoc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "grpc",
+      "name": "gRPC",
+      "category": "rpc",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/grpc/grpc/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://grpc.io",
+      "repository": "https://github.com/grpc/grpc",
+      "docs": "https://grpc.io/docs/",
+      "summary": "High-performance RPC framework using Protocol Buffers over HTTP/2 with implementations in many languages.",
+      "useWhen": "Use instead of hand-designing service-to-service RPC, streaming and code-generated stubs.",
+      "cautions": [
+        "Browsers need gRPC-Web or Connect; plain gRPC is for service-to-service.",
+        "Version .proto contracts carefully; never reuse field numbers."
+      ],
+      "tags": [
+        "rpc",
+        "protobuf",
+        "http2",
+        "microservices",
+        "codegen"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@grpc/grpc-js"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "grpcio"
+        },
+        {
+          "ecosystem": "go",
+          "name": "google.golang.org/grpc"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/grpc/grpc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "connect-rpc",
+      "name": "Connect RPC",
+      "category": "rpc",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/connectrpc/connect-es/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://connectrpc.com",
+      "repository": "https://github.com/connectrpc/connect-es",
+      "docs": "https://connectrpc.com/docs/introduction",
+      "summary": "Protobuf RPC libraries compatible with gRPC and gRPC-Web that also work over plain HTTP/JSON.",
+      "useWhen": "Use instead of hand-writing typed RPC clients/servers for browsers and services from .proto definitions.",
+      "cautions": [
+        "Use Buf or protoc plugins pinned to versions matching the runtime library."
+      ],
+      "tags": [
+        "rpc",
+        "protobuf",
+        "grpc-compatible",
+        "typescript",
+        "go"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@connectrpc/connect"
+        },
+        {
+          "ecosystem": "go",
+          "name": "connectrpc.com/connect"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/connectrpc/connect-es",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "graphql-yoga",
+      "name": "GraphQL Yoga",
+      "category": "graphql",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dotansimha/graphql-yoga/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://the-guild.dev/graphql/yoga-server",
+      "repository": "https://github.com/dotansimha/graphql-yoga",
+      "docs": "https://the-guild.dev/graphql/yoga-server/docs",
+      "summary": "Spec-compliant, runtime-agnostic GraphQL server built on Web standards and Envelop plugins.",
+      "useWhen": "Use instead of hand-writing GraphQL-over-HTTP handling, subscriptions and plugins across Node, Bun, Deno or Workers.",
+      "cautions": [
+        "Add depth/complexity limits and disable introspection where appropriate."
+      ],
+      "tags": [
+        "graphql",
+        "typescript",
+        "edge",
+        "subscriptions"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "graphql-yoga"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dotansimha/graphql-yoga",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "apollo-server",
+      "name": "Apollo Server",
+      "category": "graphql",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/apollographql/apollo-server/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.apollographql.com/docs/apollo-server",
+      "repository": "https://github.com/apollographql/apollo-server",
+      "docs": "https://www.apollographql.com/docs/apollo-server",
+      "summary": "Popular spec-compliant GraphQL server for Node.js with integrations for common frameworks.",
+      "useWhen": "Use instead of hand-writing GraphQL request execution, error formatting and caching hints in Node.js.",
+      "cautions": [
+        "GraphOS/Studio features are hosted services with separate terms.",
+        "Add query depth/cost limits."
+      ],
+      "tags": [
+        "graphql",
+        "nodejs",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@apollo/server"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apollographql/apollo-server",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "strawberry",
+      "name": "Strawberry GraphQL",
+      "category": "graphql",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/strawberry-graphql/strawberry/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://strawberry.rocks",
+      "repository": "https://github.com/strawberry-graphql/strawberry",
+      "docs": "https://strawberry.rocks/docs",
+      "summary": "Python GraphQL library using type hints and dataclasses, with Django/FastAPI integrations.",
+      "useWhen": "Use instead of hand-writing GraphQL schemas and resolvers by string in Python.",
+      "cautions": [
+        "Use DataLoaders to avoid N+1 queries."
+      ],
+      "tags": [
+        "python",
+        "graphql",
+        "type-hints",
+        "fastapi",
+        "django"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "strawberry-graphql"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/strawberry-graphql/strawberry",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gqlgen",
+      "name": "gqlgen",
+      "category": "graphql",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/99designs/gqlgen/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://gqlgen.com",
+      "repository": "https://github.com/99designs/gqlgen",
+      "docs": "https://gqlgen.com",
+      "summary": "Schema-first GraphQL server code generator for Go.",
+      "useWhen": "Use instead of hand-writing GraphQL resolvers and type plumbing from a schema in Go.",
+      "cautions": [
+        "Regenerate after schema changes; keep custom code out of generated files."
+      ],
+      "tags": [
+        "go",
+        "graphql",
+        "codegen",
+        "schema-first"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/99designs/gqlgen"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/99designs/gqlgen",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pothos",
+      "name": "Pothos",
+      "category": "graphql",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/hayes/pothos/blob/HEAD/LICENSE",
+        "scope": "ISC for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://pothos-graphql.dev",
+      "repository": "https://github.com/hayes/pothos",
+      "docs": "https://pothos-graphql.dev",
+      "summary": "Plugin-based, code-first GraphQL schema builder for TypeScript.",
+      "useWhen": "Use instead of hand-writing GraphQL SDL and resolver types separately in TypeScript.",
+      "cautions": [
+        "Plugins (Prisma, Relay, auth) are versioned separately; keep them aligned."
+      ],
+      "tags": [
+        "graphql",
+        "typescript",
+        "code-first",
+        "schema-builder"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@pothos/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hayes/pothos",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pydantic",
+      "name": "Pydantic",
+      "category": "validation",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pydantic/pydantic/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://docs.pydantic.dev",
+      "repository": "https://github.com/pydantic/pydantic",
+      "docs": "https://docs.pydantic.dev",
+      "summary": "Data validation and settings management for Python using type hints, with a Rust core.",
+      "useWhen": "Use instead of hand-writing validation, parsing and serialization of request bodies and config in Python.",
+      "cautions": [
+        "v2 API differs from v1; avoid mixing examples."
+      ],
+      "tags": [
+        "python",
+        "validation",
+        "serialization",
+        "type-hints"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pydantic"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pydantic/pydantic",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "marshmallow",
+      "name": "marshmallow",
+      "category": "validation",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/marshmallow-code/marshmallow/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://marshmallow.readthedocs.io",
+      "repository": "https://github.com/marshmallow-code/marshmallow",
+      "docs": "https://marshmallow.readthedocs.io",
+      "summary": "ORM/framework-agnostic Python library for (de)serializing and validating complex objects.",
+      "useWhen": "Use instead of hand-writing schema validation and object serialization in Flask or other Python apps.",
+      "cautions": [
+        "Major versions change defaults (e.g. unknown-field handling); pin and read changelog."
+      ],
+      "tags": [
+        "python",
+        "validation",
+        "serialization",
+        "flask"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "marshmallow"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/marshmallow-code/marshmallow",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "class-validator",
+      "name": "class-validator",
+      "category": "validation",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/typestack/class-validator/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/typestack/class-validator",
+      "docs": null,
+      "summary": "Decorator-based validation for TypeScript classes, commonly used with NestJS DTOs.",
+      "useWhen": "Use instead of hand-writing DTO validation logic in NestJS or decorator-based TypeScript code.",
+      "cautions": [
+        "Enable whitelist/forbidNonWhitelisted to strip unexpected properties."
+      ],
+      "tags": [
+        "typescript",
+        "validation",
+        "decorators",
+        "nestjs"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "class-validator"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/typestack/class-validator",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "joi",
+      "name": "Joi",
+      "category": "validation",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/hapijs/joi/blob/HEAD/LICENSE.md",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://joi.dev",
+      "repository": "https://github.com/hapijs/joi",
+      "docs": "https://joi.dev",
+      "summary": "Expressive schema description and data validation for JavaScript.",
+      "useWhen": "Use instead of hand-writing object validation rules for JavaScript request payloads and config.",
+      "cautions": [
+        "No static TypeScript inference; prefer a type-inferring validator for new TypeScript code."
+      ],
+      "tags": [
+        "javascript",
+        "validation",
+        "schema",
+        "nodejs"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "joi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/hapijs/joi",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "axios",
+      "name": "Axios",
+      "category": "http-client",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/axios/axios/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://axios-http.com",
+      "repository": "https://github.com/axios/axios",
+      "docs": "https://axios-http.com",
+      "summary": "Promise-based HTTP client for browsers and Node.js with interceptors and cancellation.",
+      "useWhen": "Use instead of hand-writing fetch wrappers with interceptors, timeouts and JSON handling.",
+      "cautions": [
+        "Set explicit timeouts; the default is none.",
+        "Pin versions; watch advisories for SSRF/redirect issues."
+      ],
+      "tags": [
+        "http-client",
+        "javascript",
+        "typescript",
+        "interceptors"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "axios"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/axios/axios",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ky",
+      "name": "Ky",
+      "category": "http-client",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sindresorhus/ky/blob/HEAD/license",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sindresorhus/ky",
+      "docs": null,
+      "summary": "Tiny fetch-based HTTP client with retries, timeouts and hooks.",
+      "useWhen": "Use instead of hand-writing retry, timeout and error-on-non-2xx logic around fetch.",
+      "cautions": [
+        "ESM-only package."
+      ],
+      "tags": [
+        "http-client",
+        "fetch",
+        "retries",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ky"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sindresorhus/ky",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ofetch",
+      "name": "ofetch",
+      "category": "http-client",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/unjs/ofetch/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/unjs/ofetch",
+      "docs": null,
+      "summary": "Better fetch API with smart JSON parsing, retries and interceptors that works in Node, browsers and workers.",
+      "useWhen": "Use instead of hand-writing JSON parsing, retry and base-URL handling around fetch across runtimes.",
+      "cautions": [
+        "Retries apply only to certain methods/status codes by default; configure explicitly."
+      ],
+      "tags": [
+        "http-client",
+        "fetch",
+        "unjs",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ofetch"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/unjs/ofetch",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "got",
+      "name": "Got",
+      "category": "http-client",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sindresorhus/got/blob/HEAD/license",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sindresorhus/got",
+      "docs": null,
+      "summary": "Feature-rich HTTP request library for Node.js with retries, hooks, streams and pagination.",
+      "useWhen": "Use instead of hand-writing retries, pagination and streaming downloads on node:http.",
+      "cautions": [
+        "Node.js only and ESM-only."
+      ],
+      "tags": [
+        "http-client",
+        "nodejs",
+        "retries",
+        "streams"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "got"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sindresorhus/got",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "httpx",
+      "name": "HTTPX",
+      "category": "http-client",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/encode/httpx/blob/HEAD/LICENSE.md",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://www.python-httpx.org",
+      "repository": "https://github.com/encode/httpx",
+      "docs": "https://www.python-httpx.org",
+      "summary": "Fully featured Python HTTP client with sync and async APIs and HTTP/2 support.",
+      "useWhen": "Use instead of hand-writing async HTTP calls, connection pooling and timeouts in Python.",
+      "cautions": [
+        "Reuse a Client instance; set explicit timeouts."
+      ],
+      "tags": [
+        "python",
+        "http-client",
+        "async",
+        "http2"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "httpx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/encode/httpx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "requests",
+      "name": "Requests",
+      "category": "http-client",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/psf/requests/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://requests.readthedocs.io",
+      "repository": "https://github.com/psf/requests",
+      "docs": "https://requests.readthedocs.io",
+      "summary": "Simple, widely used synchronous HTTP library for Python.",
+      "useWhen": "Use instead of hand-writing urllib request code, sessions and auth handling in synchronous Python.",
+      "cautions": [
+        "No default timeout; always pass timeout=.",
+        "Synchronous only; use HTTPX or aiohttp in async code."
+      ],
+      "tags": [
+        "python",
+        "http-client",
+        "sync"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "requests"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/psf/requests",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "aiohttp",
+      "name": "aiohttp",
+      "category": "http-client",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/aio-libs/aiohttp/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://docs.aiohttp.org",
+      "repository": "https://github.com/aio-libs/aiohttp",
+      "docs": "https://docs.aiohttp.org",
+      "summary": "Asyncio HTTP client and server framework for Python.",
+      "useWhen": "Use instead of hand-writing asyncio HTTP clients, WebSockets and connection pools in Python.",
+      "cautions": [
+        "Reuse one ClientSession per application, not per request."
+      ],
+      "tags": [
+        "python",
+        "http-client",
+        "asyncio",
+        "websockets"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "aiohttp"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/aio-libs/aiohttp",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "resty",
+      "name": "Resty",
+      "category": "http-client",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/go-resty/resty/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://resty.dev",
+      "repository": "https://github.com/go-resty/resty",
+      "docs": "https://resty.dev",
+      "summary": "Simple HTTP and REST client library for Go with retries and middleware.",
+      "useWhen": "Use instead of hand-writing request builders, retries and JSON decoding on net/http in Go.",
+      "cautions": [
+        "v3 uses the resty.dev/v3 module path; v2 uses github.com/go-resty/resty/v2."
+      ],
+      "tags": [
+        "go",
+        "http-client",
+        "rest",
+        "retries"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "resty.dev/v3"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/go-resty/resty",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "reqwest",
+      "name": "reqwest",
+      "category": "http-client",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/seanmonstar/reqwest/blob/HEAD/LICENSE-MIT",
+        "scope": "Dual-licensed MIT or Apache-2.0 at your option."
+      },
+      "homepage": null,
+      "repository": "https://github.com/seanmonstar/reqwest",
+      "docs": "https://docs.rs/reqwest",
+      "summary": "Ergonomic async and blocking HTTP client for Rust.",
+      "useWhen": "Use instead of hand-writing HTTP requests, TLS and JSON handling on Hyper in Rust.",
+      "cautions": [
+        "Choose TLS backend features (rustls or native-tls) explicitly."
+      ],
+      "tags": [
+        "rust",
+        "http-client",
+        "async",
+        "tokio"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "reqwest"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/seanmonstar/reqwest",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "protobufjs",
+      "name": "protobuf.js",
+      "category": "serialization",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/protobufjs/protobuf.js/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/protobufjs/protobuf.js",
+      "docs": null,
+      "summary": "Pure JavaScript Protocol Buffers implementation with reflection and static code generation.",
+      "useWhen": "Use instead of hand-writing protobuf encoding/decoding in JavaScript or TypeScript.",
+      "cautions": [
+        "For new TypeScript code, @bufbuild/protobuf (used by Connect) is an alternative."
+      ],
+      "tags": [
+        "protobuf",
+        "serialization",
+        "javascript",
+        "binary"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "protobufjs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/protobufjs/protobuf.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "superjson",
+      "name": "SuperJSON",
+      "category": "serialization",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/flightcontrolhq/superjson/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/flightcontrolhq/superjson",
+      "docs": null,
+      "summary": "Serializes JavaScript values like Date, Map, Set and BigInt over JSON and restores them.",
+      "useWhen": "Use instead of hand-writing revivers for Dates, Maps, Sets and BigInts sent over JSON (e.g. with tRPC).",
+      "cautions": [
+        "Output is not plain JSON; non-JavaScript consumers need the raw json/meta format."
+      ],
+      "tags": [
+        "serialization",
+        "json",
+        "typescript",
+        "trpc"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "superjson"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/flightcontrolhq/superjson",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "msgpack-javascript",
+      "name": "MessagePack for JavaScript",
+      "category": "serialization",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/msgpack/msgpack-javascript/blob/HEAD/LICENSE",
+        "scope": "ISC for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/msgpack/msgpack-javascript",
+      "docs": null,
+      "summary": "Official MessagePack encoder/decoder for JavaScript and TypeScript.",
+      "useWhen": "Use instead of hand-writing a compact binary encoding for messages, caches or WebSocket payloads.",
+      "cautions": [
+        "Configure extension types for Dates/BigInt consistently on both ends."
+      ],
+      "tags": [
+        "serialization",
+        "msgpack",
+        "binary",
+        "typescript"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@msgpack/msgpack"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/msgpack/msgpack-javascript",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "seaweedfs",
+      "name": "SeaweedFS",
+      "category": "object-storage",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/seaweedfs/seaweedfs/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": null,
+      "repository": "https://github.com/seaweedfs/seaweedfs",
+      "docs": "https://github.com/seaweedfs/seaweedfs/wiki",
+      "summary": "Distributed object/file store with an S3-compatible API for self-hosted blob storage.",
+      "useWhen": "Use instead of hand-building file upload storage when a self-hosted S3-compatible endpoint is needed (MinIO's open-source repository is no longer maintained).",
+      "cautions": [
+        "S3 API coverage is partial; test the exact operations your SDK uses.",
+        "Some enterprise features are commercial."
+      ],
+      "tags": [
+        "object-storage",
+        "s3-compatible",
+        "self-hosted",
+        "go"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "chrislusf/seaweedfs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/seaweedfs/seaweedfs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "meilisearch",
+      "name": "Meilisearch",
+      "category": "search",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/meilisearch/meilisearch/blob/HEAD/LICENSE",
+        "scope": "Community Edition is MIT; Enterprise Edition features are under a separate business license and Meilisearch Cloud is a paid service."
+      },
+      "homepage": "https://www.meilisearch.com",
+      "repository": "https://github.com/meilisearch/meilisearch",
+      "docs": "https://www.meilisearch.com/docs",
+      "summary": "Fast, typo-tolerant search engine with a simple REST API.",
+      "useWhen": "Use instead of hand-writing typo-tolerant search, faceting and ranking over app data.",
+      "cautions": [
+        "Not a primary datastore; keep the source of truth elsewhere and reindex.",
+        "Use scoped API keys; never ship the master key to clients."
+      ],
+      "tags": [
+        "search",
+        "full-text",
+        "typo-tolerance",
+        "self-hosted",
+        "rust"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "getmeili/meilisearch"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/meilisearch/meilisearch",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "typesense",
+      "name": "Typesense",
+      "category": "search",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-only",
+        "url": "https://github.com/typesense/typesense/blob/HEAD/LICENSE.txt",
+        "scope": "Server is GPL-3.0; client libraries are Apache-2.0. Running the server separately does not relicense your app."
+      },
+      "homepage": "https://typesense.org",
+      "repository": "https://github.com/typesense/typesense",
+      "docs": "https://typesense.org/docs/",
+      "summary": "Open-source, typo-tolerant in-memory search engine with faceting and geo search.",
+      "useWhen": "Use instead of hand-writing instant search, faceting and typo tolerance over app data.",
+      "cautions": [
+        "Index size is memory-bound; size RAM accordingly."
+      ],
+      "tags": [
+        "search",
+        "full-text",
+        "self-hosted",
+        "faceting"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "typesense/typesense"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/typesense/typesense",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    },
+    {
+      "id": "opensearch",
+      "name": "OpenSearch",
+      "category": "search",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/opensearch-project/OpenSearch/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; verify notices of transitive dependencies."
+      },
+      "homepage": "https://opensearch.org",
+      "repository": "https://github.com/opensearch-project/OpenSearch",
+      "docs": "https://docs.opensearch.org",
+      "summary": "Apache-2.0 distributed search and analytics engine forked from Elasticsearch.",
+      "useWhen": "Use instead of hand-building large-scale full-text search, aggregations and log analytics.",
+      "cautions": [
+        "Operationally heavy (JVM, cluster sizing, shards); prefer Meilisearch/Typesense for small app search."
+      ],
+      "tags": [
+        "search",
+        "analytics",
+        "distributed",
+        "self-hosted",
+        "java"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "opensearchproject/opensearch"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/opensearch-project/OpenSearch",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/backend-api.md"
+      },
+      "install": [
+        "Run the official release or container image pinned to an exact version; keep data volumes, backups and upgrade notes under change control."
+      ]
+    }
+  ]
+}

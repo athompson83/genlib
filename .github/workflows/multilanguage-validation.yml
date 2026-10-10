@@ -1,0 +1,48 @@
+name: Multi-language validation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - run: cd examples/languages/rust && cargo test --offline
+  java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
+        with: {distribution: temurin, java-version: '17'}
+      - run: cd examples/languages/java && javac IdentifierValidator.java IdentifierValidatorTest.java && java IdentifierValidatorTest
+  csharp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d
+        with: {dotnet-version: '8.0.x'}
+      - run: dotnet run --project examples/languages/csharp/Genlib.Validation.Tests
+  swift:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - run: cd examples/languages/swift && swiftc IdentifierValidator.swift IdentifierValidatorTests.swift -o validator && ./validator
+  kotlin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - run: cd examples/languages/kotlin && kotlinc IdentifierValidator.kt IdentifierValidatorTest.kt -include-runtime -d validator.jar && java -jar validator.jar
+  dart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - uses: dart-lang/setup-dart@v1
+      - run: cd examples/languages/dart && dart run test/identifier_validator_test.dart

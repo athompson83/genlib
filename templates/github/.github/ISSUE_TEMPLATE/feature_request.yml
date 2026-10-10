@@ -1,0 +1,28 @@
+name: Feature request
+description: Describe a user problem and a measurable desired result.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem and evidence
+      description: Who encounters this, how often, and what is the current cost or workaround?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe observable acceptance criteria and relevant constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Possible approach and alternatives
+      description: Optional implementation idea, existing capabilities to reuse, and tradeoffs.
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and dependencies
+      description: Affected platforms, accessibility, permissions, integrations, and rollout needs.

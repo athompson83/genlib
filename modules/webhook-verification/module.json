@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "webhook-verification",
+  "version": "0.1.0",
+  "title": "Webhook verification",
+  "description": "Framework-neutral TypeScript verification of inbound webhook HMAC-SHA256 signatures over raw body bytes with Web Crypto: generic hex, GitHub, Stripe, and Standard Webhooks/Svix, with secret rotation, timestamp tolerance, and a size-capped raw body reader.",
+  "kind": "utility",
+  "tags": ["webhook", "signature", "hmac", "security", "github", "stripe", "standard-webhooks", "svix", "server", "web-crypto"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/webhook-verification"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Uses only Web Crypto (crypto.subtle HMAC), Fetch Request/Headers, ReadableStream, TextEncoder, and atob; intended for Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers, and Hono. Only Node.js 22 was exercised by repository tests.",
+      "Requires access to the exact raw request body. Frameworks that parse JSON before the handler (for example Express json() or a body-parsing middleware) must be configured to expose raw bytes.",
+      "No runtime packages, environment reads, secret discovery, or network access occur at install, import, or call time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/hmac.ts", "target": "webhook-verification/hmac.ts" },
+    { "source": "files/providers.ts", "target": "webhook-verification/providers.ts" },
+    { "source": "files/raw-body.ts", "target": "webhook-verification/raw-body.ts" }
+  ],
+  "exports": [
+    { "name": "verifyHmacSha256", "from": "webhook-verification/hmac.ts" },
+    { "name": "timingSafeEqual", "from": "webhook-verification/hmac.ts" },
+    { "name": "verifyGitHubWebhook", "from": "webhook-verification/providers.ts" },
+    { "name": "verifyStripeWebhook", "from": "webhook-verification/providers.ts" },
+    { "name": "verifyStandardWebhook", "from": "webhook-verification/providers.ts" },
+    { "name": "readRawBody", "from": "webhook-verification/raw-body.ts" }
+  ],
+  "configuration": [
+    "Supply each signing secret from trusted server configuration; pass an array (1-10, current first) during rotation. String secrets are UTF-8 key bytes except Standard Webhooks, which expects whsec_<base64> (16-128 decoded bytes).",
+    "Stripe and Standard Webhooks accept toleranceSeconds (default 300, 1-86400, enforced in both directions) and an injectable clock returning epoch milliseconds.",
+    "readRawBody(request, maxBytes) requires an explicit cap from 1 byte to 64 MiB; choose the provider's documented maximum payload size.",
+    "Invalid configuration (missing/oversized secrets, bad tolerance, bad cap) throws a TypeError with a fixed message that never contains secret material; request input never throws."
+  ],
+  "capabilities": [
+    "hmac-sha256-hex-verification", "github-webhook-signature", "stripe-webhook-signature",
+    "standard-webhooks-signature", "svix-header-compatibility", "secret-rotation",
+    "timestamp-tolerance", "constant-time-comparison", "size-capped-raw-body"
+  ],
+  "limitations": [
+    "Signature verification proves only that a holder of the secret produced the bytes. Replay protection beyond the timestamp window (deduplicating event or delivery IDs) and idempotent event processing belong to the application.",
+    "GitHub signatures carry no timestamp, so GitHub verification cannot reject old replays; deduplicate on X-GitHub-Delivery.",
+    "Asymmetric schemes (Standard Webhooks v1a/ed25519), SHA-1 X-Hub-Signature, Stripe v0, Slack, Shopify, Twilio, and other provider formats are not implemented.",
+    "timingSafeEqual is constant-time for equal-length byte arrays in JavaScript to the extent the engine allows; it returns early on differing lengths, which are public.",
+    "Tests ran on Node.js 22 with signatures computed independently by node:crypto; no live provider deliveries were received and other runtimes were not exercised."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/webhook-verification.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}
