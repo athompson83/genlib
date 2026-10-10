@@ -711,6 +711,382 @@
       ]
     },
     {
+      "id": "agentic-ai-architecture-visualisation",
+      "name": "Agentic AI Architecture Visualisation",
+      "category": "diagram-tools",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/danielrosehill/Agentic-AI-Architecture-Visualisation",
+      "docs": null,
+      "summary": "Framework-agnostic canonical data model (data/architecture.json validated by data/schema.json) of the layers, nodes and connections of a production agentic AI system, with docs and a D3.js interactive reference rendering.",
+      "useWhen": "Use to generate, verify or render architecture diagrams, flowcharts and mind maps instead of hand-drawing SVG or hand-writing diagram markup.",
+      "cautions": [
+        "Small single-author reference; the site loads D3 from d3js.org without an integrity hash, so pin and self-host it if you reuse the page."
+      ],
+      "tags": [
+        "ai-learning",
+        "diagram-tools",
+        "typescript",
+        "github",
+        "architecture",
+        "json-schema",
+        "agentic-ai",
+        "d3",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/danielrosehill/Agentic-AI-Architecture-Visualisation",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/danielrosehill/Agentic-AI-Architecture-Visualisation"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "agentic-mermaid",
+      "name": "Agentic Mermaid",
+      "category": "diagram-tools",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/adewale/agentic-mermaid",
+      "docs": null,
+      "summary": "Mermaid toolkit for AI agents: library, `am` CLI and MCP server that verify, edit (typed mutations) and render Mermaid diagrams to deterministic SVG, PNG, ASCII or Unicode with brand palettes and typography, without a DOM or headless browser. Genlib renders its own README and architecture diagrams with it.",
+      "useWhen": "Use to generate, verify or render architecture diagrams, flowcharts and mind maps instead of hand-drawing SVG or hand-writing diagram markup.",
+      "cautions": [
+        "Pre-1.0: pin the version. Fork of Beautiful Mermaid (LICENSE copyright Craft Docs) with bundled Apache-2.0 Material Design Icons; keep THIRD_PARTY_NOTICES.md.",
+        "The hosted MCP endpoint is public and unauthenticated; run the local stdio server (npx -y agentic-mermaid@0.4.1 mcp) for private diagrams."
+      ],
+      "tags": [
+        "ai-learning",
+        "diagram-tools",
+        "typescript",
+        "npm",
+        "mermaid",
+        "diagrams",
+        "svg",
+        "mcp",
+        "agent-skill",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/adewale/agentic-mermaid",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "agentic-mermaid"
+        }
+      ],
+      "quickstart": [
+        "npx -y agentic-mermaid@0.4.1 render diagram.mmd --format svg --output diagram.svg"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "architecture-diagram-skill",
+      "name": "architecture-diagram skill",
+      "category": "diagram-tools",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/konraddzbik/architecture-diagram-skill",
+      "docs": null,
+      "summary": "Agent skill for Claude Code, Gemini CLI, Copilot CLI, OpenCode and Cursor that writes one self-contained architecture.html with animated click-through flows, mode toggles and theming, plus a companion architecture.md.",
+      "useWhen": "Use to generate, verify or render architecture diagrams, flowcharts and mind maps instead of hand-drawing SVG or hand-writing diagram markup.",
+      "cautions": [
+        "The template loads Google Fonts, so the output is not fully offline; GitHub READMEs do not render its HTML inline."
+      ],
+      "tags": [
+        "ai-learning",
+        "diagram-tools",
+        "typescript",
+        "github",
+        "architecture",
+        "html",
+        "animated-diagram",
+        "agent-skill",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/konraddzbik/architecture-diagram-skill",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "/plugin marketplace add konraddzbik/architecture-diagram-skill && /plugin install architecture-diagram"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "azure-agent-architecture-review-sample",
+      "name": "Azure Agent Architecture Review sample",
+      "category": "diagram-tools",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Azure-Samples/agent-architecture-review-sample",
+      "docs": null,
+      "summary": "Microsoft sample agent that parses architecture descriptions (YAML, Markdown, text or code) and returns prioritised risks, recommendations and editable Excalidraw/PNG diagrams, as a web app or Foundry hosted agent.",
+      "useWhen": "Use to generate, verify or render architecture diagrams, flowcharts and mind maps instead of hand-drawing SVG or hand-writing diagram markup.",
+      "cautions": [
+        "Needs paid Azure OpenAI or Microsoft Foundry; --render sends diagram data to a third-party hosted Excalidraw MCP; never set ARCH_REVIEW_NO_SSL_VERIFY. A sample, not a supported product."
+      ],
+      "tags": [
+        "ai-learning",
+        "diagram-tools",
+        "python",
+        "github",
+        "architecture-review",
+        "excalidraw",
+        "azure",
+        "risk-analysis",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Azure-Samples/agent-architecture-review-sample",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/Azure-Samples/agent-architecture-review-sample && pip install -r requirements.txt"
+      ],
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "deepdiagram",
+      "name": "DeepDiagram",
+      "category": "diagram-tools",
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/twwch/DeepDiagram",
+      "docs": null,
+      "summary": "Self-hosted React 19 + FastAPI + LangGraph app whose router agent turns prompts or documents into mind maps, React Flow flowcharts, Mermaid, Apache ECharts charts, draw.io files and infographics streamed over SSE.",
+      "useWhen": "Use to generate, verify or render architecture diagrams, flowcharts and mind maps instead of hand-drawing SVG or hand-writing diagram markup.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use, commercial or custom terms) before embedding, modifying or distributing.",
+        "Needs an OpenAI-compatible LLM API key, Docker and a database; calls are billed by the provider."
+      ],
+      "tags": [
+        "ai-learning",
+        "diagram-tools",
+        "typescript",
+        "github",
+        "mind-map",
+        "mermaid",
+        "echarts",
+        "langgraph",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/twwch/DeepDiagram",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/twwch/DeepDiagram && cd DeepDiagram && docker-compose up -d"
+      ],
+      "languages": [
+        "typescript"
+      ]
+    },
+    {
+      "id": "drawio-skill",
+      "name": "drawio-skill",
+      "category": "diagram-tools",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Agents365-ai/drawio-skill",
+      "docs": null,
+      "summary": "Agent skill, `diagramctl` CLI and optional stdlib MCP server that turn natural language, Mermaid, codebases, Terraform, Kubernetes, docker-compose, SQL and OpenAPI/AsyncAPI/Protobuf specs into editable .drawio files, exporting PNG/SVG/PDF through the draw.io desktop CLI.",
+      "useWhen": "Use to generate, verify or render architecture diagrams, flowcharts and mind maps instead of hand-drawing SVG or hand-writing diagram markup.",
+      "cautions": [
+        "Export needs the Electron draw.io desktop CLI (xvfb on headless Linux); keep lobe-icons (MIT) and simple-icons (CC0) attribution for bundled logos."
+      ],
+      "tags": [
+        "ai-learning",
+        "diagram-tools",
+        "python",
+        "github",
+        "drawio",
+        "diagrams",
+        "iac",
+        "agent-skill",
+        "mcp",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge",
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Agents365-ai/drawio-skill",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "npx skills add Agents365-ai/drawio-skill -g"
+      ],
+      "languages": [
+        "python"
+      ]
+    },
+    {
       "id": "backstage",
       "name": "Backstage",
       "category": "engineering-guides",
@@ -1203,6 +1579,64 @@
       ],
       "languages": [
         "go"
+      ]
+    },
+    {
+      "id": "agentic-ai-systems",
+      "name": "Agentic-AI-Systems",
+      "category": "learning",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/alirezadir/Agentic-AI-Systems",
+      "docs": null,
+      "summary": "Curated knowledge base and hands-on guide to agent foundations, frameworks (OpenAI, LangGraph, LlamaIndex, CrewAI), agentic system design with architecture and pattern diagrams, use cases and interview preparation.",
+      "useWhen": "Read or study these references; they teach patterns and list resources rather than being dependencies.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "ai-learning",
+        "learning",
+        "python",
+        "github",
+        "agentic-ai",
+        "system-design",
+        "patterns",
+        "owner-named"
+      ],
+      "projectTypes": [
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/alirezadir/Agentic-AI-Systems",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-learning.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/alirezadir/Agentic-AI-Systems"
+      ],
+      "languages": [
+        "python"
       ]
     },
     {
