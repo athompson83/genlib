@@ -30,6 +30,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/data-docs-office.json`](../../resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](../../docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
 | [`catalog/devops-testing-security.json`](../../resources/catalog/devops-testing-security.json) | 116 | [devops-testing-security.md](../../docs/resources/devops-testing-security.md) | testing, security, code-quality, observability, logging |
 | [`catalog/frontend-web.json`](../../resources/catalog/frontend-web.json) | 89 | [frontend-web.md](../../docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
+| [`catalog/integration-expansion.json`](../../resources/catalog/integration-expansion.json) | 50 | several | public-data-api, codemods, catalog-maintenance, native-testing, resumable-upload |
 | [`catalog/marketing-analytics-2.json`](../../resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](../../docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](../../resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](../../docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
 | [`catalog/marketing-engagement-2.json`](../../resources/catalog/marketing-engagement-2.json) | 71 | [marketing-engagement.md](../../docs/resources/marketing-engagement.md) | push, reviews |
@@ -43,7 +44,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 796 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **5602** | | |
+| **Total** | **5652** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -55,19 +56,19 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 <!-- genlib:types:start -->
 | Project type | Records | Covers |
 | --- | ---: | --- |
-| `web-app` | 4292 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
+| `web-app` | 4307 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
 | `marketing-site` | 3855 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
-| `mobile-app` | 375 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
-| `desktop-app` | 28 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
-| `api-backend` | 313 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
-| `cli-tool` | 121 | Argument parsing, prompts, output formatting, config files and distribution. |
-| `ai-agent` | 115 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
-| `data-analytics` | 1007 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
+| `mobile-app` | 381 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
+| `desktop-app` | 32 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
+| `api-backend` | 335 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
+| `cli-tool` | 128 | Argument parsing, prompts, output formatting, config files and distribution. |
+| `ai-agent` | 117 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
+| `data-analytics` | 1019 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 554 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
-| `saas` | 4673 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
-| `realtime-collab` | 19 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
-| `devops-infra` | 364 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
-| `testing-qa` | 49 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
+| `saas` | 4701 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
+| `realtime-collab` | 20 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
+| `devops-infra` | 371 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
+| `testing-qa` | 56 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
 | `docs-knowledge` | 102 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 24 | Headless browsers, scraping within terms, workflow automation and RPA. |
 | `office-documents` | 32 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
@@ -75,7 +76,7 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 | `finance-accounting` | 42 | Money math, ledgers, invoicing, accounting APIs and financial data. |
 | `legal-compliance` | 91 | Contracts, e-signature, privacy, consent, accessibility and policy tooling. |
 | `game` | 30 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
-| `security` | 45 | Crypto, secrets scanning, dependency auditing, auth hardening and threat checks. |
+| `security` | 46 | Crypto, secrets scanning, dependency auditing, auth hardening and threat checks. |
 <!-- genlib:types:end -->
 
 ## Record fields and status

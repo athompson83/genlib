@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "desktop-delivery",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Desktop host and update profiles",
+  "summary": "Original bounded desktop interaction in Electron, Tauri, Wails and Avalonia, with narrow IPC validation and explicit local Windows Velopack packaging and user-controlled updates.",
+  "languages": [
+    "javascript",
+    "typescript",
+    "rust",
+    "go",
+    "csharp",
+    "powershell"
+  ],
+  "frameworks": [
+    "electron",
+    "tauri",
+    "wails",
+    "avalonia",
+    "velopack"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "resources": [
+    "electron",
+    "tauri",
+    "wails",
+    "avalonia",
+    "velopack"
+  ],
+  "tags": [
+    "desktop",
+    "native",
+    "ipc",
+    "packaging",
+    "updates",
+    "distribution"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "electron/main.mjs",
+    "electron/preload.cjs",
+    "tauri/src-tauri/tauri.conf.json",
+    "wails/main.go",
+    "avalonia/GenlibInventory.csproj",
+    "avalonia/UpdateSession.cs",
+    "velopack/package-windows.ps1"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0: 2 IPC frame/input boundary tests passed. No Electron GUI process was launched.",
+      "Linux x86_64, Go 1.27.2: go test app.go app_test.go passed for the original Wails method. No Wails GUI build was run."
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test",
+      "go -C wails test app.go app_test.go",
+      "dotnet test avalonia-tests/GenlibInventory.Tests.csproj"
+    ],
+    "notes": [
+      "Electron GUI, Tauri/Wails builds, .NET/Avalonia execution, Windows packaging and real update round trips are unexecuted. OS WebView/GUI/build prerequisites are not present here.",
+      "Electron binary installation is deliberate and separate from npm ci --ignore-scripts. Never infer sandbox/GUI validation from the extracted Node unit tests.",
+      "Native command and update feed configuration must be reviewed in the receiving app. Velopack profile produces local Windows artifacts only and requires explicit user restart; signing/publishing and installed-VM update acceptance are separate gates.",
+      "All Wails frontend/dist files are original static source. No third-party generated runtime, binary or installer is included."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "avalonia-tests/GenlibInventory.Tests.csproj",
+    "avalonia-tests/TitleRulesTests.cs",
+    "avalonia/App.axaml",
+    "avalonia/App.axaml.cs",
+    "avalonia/GenlibInventory.csproj",
+    "avalonia/MainWindow.axaml",
+    "avalonia/MainWindow.axaml.cs",
+    "avalonia/Program.cs",
+    "avalonia/TitleRules.cs",
+    "avalonia/UpdateSession.cs",
+    "core/normalize.mjs",
+    "electron/main.mjs",
+    "electron/preload.cjs",
+    "package-lock.json",
+    "package.json",
+    "tauri/src-tauri/Cargo.toml",
+    "tauri/src-tauri/build.rs",
+    "tauri/src-tauri/capabilities/main.json",
+    "tauri/src-tauri/src/main.rs",
+    "tauri/src-tauri/tauri.conf.json",
+    "tauri/web/index.html",
+    "tauri/web/renderer.js",
+    "tauri/web/style.css",
+    "tests/ipc.test.mjs",
+    "velopack/.config/dotnet-tools.json",
+    "velopack/package-windows.ps1",
+    "wails/app.go",
+    "wails/app_test.go",
+    "wails/frontend/dist/index.html",
+    "wails/frontend/dist/renderer.js",
+    "wails/frontend/dist/style.css",
+    "wails/go.mod",
+    "wails/main.go",
+    "wails/wails.json",
+    "web/index.html",
+    "web/renderer.js",
+    "web/style.css"
+  ]
+}

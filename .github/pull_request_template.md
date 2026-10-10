@@ -14,4 +14,6 @@ Every change updates these in the same PR. Check each box, or say why it does no
 ## Verification
 
 - [ ] `npm run check` passed (it fails on stale docs, counts, skill mirrors or search index)
+- [ ] Changed integration packs passed their documented checks; actual tested profiles and unavailable environments are recorded
+- [ ] Direct MCP changes passed `npm run mcp:test`, when applicable
 - Other checks run and their results:

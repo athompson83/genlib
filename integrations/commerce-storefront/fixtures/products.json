@@ -1,0 +1,4 @@
+{ "count": 1, "products": [{ "id": "prod_notebook", "title": "Notebook", "description": "A practical ruled notebook.", "thumbnail": "https://images.example.test/notebook.jpg", "variants": [
+  { "id": "variant_blue", "title": "Blue", "manage_inventory": true, "inventory_quantity": 10, "calculated_price": { "calculated_amount": 12.5, "currency_code": "usd" } },
+  { "id": "variant_red", "title": "Red", "manage_inventory": true, "inventory_quantity": 0, "calculated_price": { "calculated_amount": 12.5, "currency_code": "usd" } }
+] }] }

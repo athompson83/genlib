@@ -1,0 +1,21 @@
+name: genlib_inventory
+publish_to: none
+version: 0.1.0+1
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+  flutter: '>=3.32.0'
+dependencies:
+  flutter:
+    sdk: flutter
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  patrol: 4.10.0
+flutter:
+  uses-material-design: true
+patrol:
+  app_name: Genlib Inventory
+  android:
+    package_name: dev.genlib.genlib_inventory
+  ios:
+    bundle_id: dev.genlib.genlibInventory

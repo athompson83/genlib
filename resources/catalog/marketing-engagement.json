@@ -20630,20 +20630,21 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
+      "integrationMode": "license-review",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "url": "https://github.com/unlayer/react-email-editor/blob/master/LICENSE",
+        "scope": "MIT covers the React wrapper only. The embedded Unlayer editor and hosted service are subject to a separate agreement; wrapper rights do not license every editor feature."
       },
       "homepage": null,
       "repository": "https://github.com/unlayer/react-email-editor",
       "docs": "https://www.npmjs.com/package/react-email-editor",
       "summary": "Unlayer's Email Editor Component for React.js",
-      "useWhen": "Use for newsletters, templates or ESP APIs (templates) from TypeScript/JavaScript instead of building email delivery and templating.",
+      "useWhen": "Use when the embedded editor/service agreement is accepted for the intended application; the MIT package is only its React wrapper.",
       "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
+        "Review https://unlayer.com/terms for embedded editor, hosted use and paid feature rights."
       ],
       "tags": [
         "marketing",
@@ -20668,6 +20669,10 @@
         {
           "url": "https://github.com/unlayer/react-email-editor",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://unlayer.com/terms",
+          "title": "Separate embedded editor/service agreement"
         }
       ],
       "genlib": {
@@ -22228,8 +22233,8 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "url": "https://github.com/medusajs/medusa/blob/develop/LICENSE",
+        "scope": "MIT applies only to the identified Medusa core package/files. Enterprise Edition materials and hosted offerings retain separate terms; registry SEE LICENSE IN LICENSE metadata is not blanket permission."
       },
       "homepage": "https://github.com/medusajs/medusa#readme",
       "repository": "https://github.com/medusajs/medusa/tree/HEAD/packages/modules/providers/notification-sendgrid",
@@ -22237,7 +22242,8 @@
       "summary": "Sendgrid notification provider for Medusa",
       "useWhen": "Use for newsletters, templates or ESP APIs (esp sdk) from TypeScript/JavaScript instead of building email delivery and templating.",
       "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
+        "Use only reviewed MIT core files/packages; exclude Enterprise Edition materials unless separately authorized."
       ],
       "tags": [
         "marketing",
@@ -22261,6 +22267,10 @@
         {
           "url": "https://github.com/medusajs/medusa/tree/HEAD/packages/modules/providers/notification-sendgrid",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://github.com/medusajs/medusa",
+          "title": "Medusa core and Enterprise license boundaries"
         }
       ],
       "genlib": {
@@ -40348,7 +40358,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/marketing-engagement.md"
+        "guide": "docs/resources/marketing-engagement.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
         "Install with the package command below, pin the version, then read the docs."
@@ -40365,6 +40378,12 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 1146489
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
       }
     },
     {
@@ -40380,8 +40399,8 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "url": "https://surveyjs.io/licensing",
+        "scope": "MIT applies to the SurveyJS Form Library renderer. Creator, Dashboard and PDF Generator are separately licensed commercial products."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/surveyjs",
@@ -40389,7 +40408,8 @@
       "summary": "React form library for rendering dynamic, JSON-based forms and surveys. Collect user responses and store them in your own database.",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -40415,6 +40435,10 @@
         {
           "url": "https://github.com/surveyjs/surveyjs",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {
@@ -40450,9 +40474,9 @@
       "integrationMode": "license-review",
       "verification": "partial",
       "license": {
-        "id": "SEE LICENSE IN LICENSE",
-        "url": null,
-        "scope": "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "id": null,
+        "url": "https://surveyjs.io/licensing",
+        "scope": "Commercial SurveyJS Creator product; do not infer MIT rights from the separate Form Library renderer. Review the exact developer/distribution agreement."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/survey-creator",
@@ -40460,7 +40484,8 @@
       "summary": "Framework-independent core of SurveyJS Survey Creator, an embeddable drag-and-drop form builder. Holds the editor model, design surface, toolbox, property grid, and logic/theme editors. Pair it...",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -40485,6 +40510,10 @@
         {
           "url": "https://github.com/surveyjs/survey-creator",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {
@@ -40729,9 +40758,9 @@
       "integrationMode": "license-review",
       "verification": "partial",
       "license": {
-        "id": "SEE LICENSE IN LICENSE",
-        "url": null,
-        "scope": "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "id": null,
+        "url": "https://surveyjs.io/licensing",
+        "scope": "Commercial SurveyJS Creator product; do not infer MIT rights from the separate Form Library renderer. Review the exact developer/distribution agreement."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/survey-creator",
@@ -40739,7 +40768,8 @@
       "summary": "Embeddable SurveyJS drag-and-drop form builder for JSON-based forms in React. Create dynamic surveys, polls, quizzes, and other forms, configure conditional logic and validation, and customize the...",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -40765,6 +40795,10 @@
         {
           "url": "https://github.com/surveyjs/survey-creator",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {
@@ -42119,8 +42153,8 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "url": "https://surveyjs.io/licensing",
+        "scope": "MIT applies to the SurveyJS Form Library renderer. Creator, Dashboard and PDF Generator are separately licensed commercial products."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/survey-library",
@@ -42128,7 +42162,8 @@
       "summary": "Angular form library for rendering dynamic, JSON-based forms and surveys. Collect user responses and store them in your own database.",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -42153,6 +42188,10 @@
         {
           "url": "https://github.com/surveyjs/survey-library",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {
@@ -42392,9 +42431,9 @@
       "integrationMode": "license-review",
       "verification": "partial",
       "license": {
-        "id": "SEE LICENSE IN LICENSE",
-        "url": null,
-        "scope": "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "id": null,
+        "url": "https://surveyjs.io/licensing",
+        "scope": "Commercial SurveyJS Creator product; do not infer MIT rights from the separate Form Library renderer. Review the exact developer/distribution agreement."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/survey-creator",
@@ -42402,7 +42441,8 @@
       "summary": "Embeddable SurveyJS drag-and-drop form builder for JSON-based forms in Vue 3. Create dynamic surveys, polls, quizzes, and other forms, configure conditional logic and validation, and customize the...",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -42428,6 +42468,10 @@
         {
           "url": "https://github.com/surveyjs/survey-creator",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {
@@ -42525,9 +42569,9 @@
       "integrationMode": "license-review",
       "verification": "partial",
       "license": {
-        "id": "SEE LICENSE IN LICENSE",
-        "url": null,
-        "scope": "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "id": null,
+        "url": "https://surveyjs.io/licensing",
+        "scope": "Commercial SurveyJS Creator product; do not infer MIT rights from the separate Form Library renderer. Review the exact developer/distribution agreement."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/survey-creator",
@@ -42535,7 +42579,8 @@
       "summary": "Embeddable SurveyJS drag-and-drop form builder for JSON-based forms in Angular. Create dynamic surveys, polls, quizzes, and other forms, configure conditional logic and validation, and customize...",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -42561,6 +42606,10 @@
         {
           "url": "https://github.com/surveyjs/survey-creator",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {
@@ -42596,9 +42645,9 @@
       "integrationMode": "license-review",
       "verification": "partial",
       "license": {
-        "id": "SEE LICENSE IN LICENSE",
-        "url": null,
-        "scope": "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "id": null,
+        "url": "https://surveyjs.io/licensing",
+        "scope": "Commercial SurveyJS Creator product; do not infer MIT rights from the separate Form Library renderer. Review the exact developer/distribution agreement."
       },
       "homepage": "https://surveyjs.io/",
       "repository": "https://github.com/surveyjs/survey-creator",
@@ -42606,7 +42655,8 @@
       "summary": "Embeddable SurveyJS drag-and-drop form builder for JSON-based forms in plain JavaScript applications (without frontend frameworks). Create dynamic surveys, polls, quizzes, and other forms...",
       "useWhen": "Use for lead-capture forms and landing pages (form builder) instead of building them from scratch.",
       "cautions": [
-        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
+        "Separate renderer rights from commercial Creator, Dashboard and PDF Generator products."
       ],
       "tags": [
         "marketing",
@@ -42631,6 +42681,10 @@
         {
           "url": "https://github.com/surveyjs/survey-creator",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://surveyjs.io/try/angular",
+          "title": "Official product/license scope explanation"
         }
       ],
       "genlib": {

@@ -1,0 +1,34 @@
+{
+  "name": "@genlib/api-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "fixture": "node fixture/server.mjs",
+    "generate": "openapi-typescript schema/openapi.json -o generated/openapi.d.ts",
+    "generate:orval": "orval --config orval.config.mjs",
+    "generate:hey": "openapi-ts -f hey-api.config.mjs",
+    "generate:typespec": "tsp compile typespec/main.tsp --emit @typespec/openapi3 --output-dir generated/typespec",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run generate && tsc --outDir .test-build --noEmit false && node --test tests/*.test.mjs",
+    "test:schemathesis": "node http/run-fixture-check.mjs schemathesis",
+    "test:hurl": "node http/run-fixture-check.mjs hurl",
+    "test:breaking": "node http/check-breaking.mjs"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.17.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0",
+    "orval": "8.41.0",
+    "@hey-api/openapi-ts": "0.99.0",
+    "@typespec/compiler": "1.17.0",
+    "@typespec/http": "1.17.0",
+    "@typespec/openapi3": "1.17.0",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,5 @@
+namespace App {
+  entity User { tenant: String, suspended: Bool };
+  entity Document { tenant: String, owner: User };
+  action "view", "edit" appliesTo { principal: User, resource: Document, context: {} };
+}

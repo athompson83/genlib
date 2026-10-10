@@ -146,3 +146,6 @@ Total: 801 records in `resources/catalog/dashboards.json`.
 | swift | `progressui`, `gaugekit` | MIT |
 | any | `cstate` | MIT |
 
+## Genlib integration profile
+
+The canonical `uplot` record binds to [`web-data-workbench`](../../integrations/web-data-workbench/CONTRACT.md), with downsampling and an accessible data alternative. Its recipe readiness is independent of the upstream source review and each browser/runtime acceptance profile.

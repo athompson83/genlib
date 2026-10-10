@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "id": "native-acceptance",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Native acceptance and snapshot profiles",
+  "summary": "Disposable Flutter inventory host with behavior assertions, Patrol and Maestro acceptance flows, plus Swift textual and iOS visual snapshot profiles with explicit native setup.",
+  "languages": [
+    "dart",
+    "swift",
+    "javascript",
+    "java",
+    "objective-c"
+  ],
+  "frameworks": [
+    "flutter",
+    "patrol",
+    "maestro",
+    "swiftui",
+    "xctest"
+  ],
+  "platforms": [
+    "android",
+    "ios",
+    "macos"
+  ],
+  "resources": [
+    "maestro",
+    "patrol",
+    "swift-snapshot-testing"
+  ],
+  "tags": [
+    "native",
+    "mobile",
+    "acceptance",
+    "accessibility",
+    "snapshot",
+    "flutter"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "flutter/create-fixture.mjs",
+    "flutter/lib/main.dart",
+    "flutter/patrol_test/inventory_test.dart",
+    "maestro/inventory.yaml",
+    "swift/Package.swift",
+    "swift/ios/InventoryRowSnapshotTests.swift"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [],
+    "commands": [
+      "node --check flutter/create-fixture.mjs",
+      "node flutter/create-fixture.mjs /tmp/genlib-native-fixture",
+      "swift test --package-path swift"
+    ],
+    "notes": [
+      "Flutter/Dart, Android/iOS emulators, Swift and Xcode are unavailable here. No native execution or device result is claimed.",
+      "After creating the new fixture, run flutter pub get and flutter test test/inventory_test.dart in that fixture. Patrol additionally requires the documented Android or Xcode host integration and a booted emulator.",
+      "Use Patrol package 4.10.0 and patrol_cli 4.8.0 with Flutter 3.32+/Dart 3.8+. Java 17+, Android SDK or macOS/Xcode are separate prerequisites.",
+      "The included Swift textual baseline is authored. The iOS visual baseline must be recorded and reviewed on a fixed simulator; missing baselines intentionally fail. Maestro clears only the disposable fixture app state."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "flutter/create-fixture.mjs",
+    "flutter/lib/main.dart",
+    "flutter/native/MainActivityTest.java",
+    "flutter/native/Podfile.fragment.rb",
+    "flutter/native/RunnerUITests.m",
+    "flutter/native/android.gradle.kts",
+    "flutter/patrol_test/inventory_test.dart",
+    "flutter/pubspec.yaml",
+    "flutter/test/inventory_test.dart",
+    "maestro/inventory.yaml",
+    "swift/Package.swift",
+    "swift/Sources/InventoryPresentation/InventoryRow.swift",
+    "swift/Sources/InventoryPresentation/InventorySummary.swift",
+    "swift/Tests/InventoryPresentationTests/InventorySummaryTests.swift",
+    "swift/Tests/InventoryPresentationTests/__Snapshots__/InventorySummaryTests/testSummary.summary.txt",
+    "swift/ios/InventoryRowSnapshotTests.swift"
+  ]
+}

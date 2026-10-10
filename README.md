@@ -6,7 +6,7 @@
 [![Node.js 22+](https://img.shields.io/badge/node-%E2%89%A522-339933.svg?logo=node.js&logoColor=white)](package.json)
 [![No runtime dependencies](https://img.shields.io/badge/CLI%20dependencies-0-brightgreen.svg)](bin/genlib.mjs)
 
-**Genlib is a reusable code library and resource catalog for coding agents.** Genisys agents and other harnesses (Claude Code, Codex) find a proven module, recipe, template or library here, then copy or adopt it instead of generating the same code again. That leaves model context for each project's real differences: its data, rules, permissions and design.
+**Genlib is a reusable code library and resource catalog for coding agents.** Genisys agents and other harnesses (Claude Code, Codex) discover modules, integration packs, recipes, templates and external tools, inspect their contracts and verification profiles, then adopt the selected source. A direct MCP server exposes the same workflow alongside the dependency-free CLI.
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" find verify stripe webhook --target "$APP_ROOT" --limit 5 --json
@@ -18,17 +18,18 @@ One command searches everything below and returns each result's exact next step.
 | Source | Count | What it is |
 | --- | ---: | --- |
 | [Capabilities](#capabilities-one-task-every-language) | 13 | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in 9 languages |
-| [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
+| [Modules](#modules) | 14 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
+| [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
 | [Task recipes](#recipes-language-examples-and-templates) | 41 | Single-file TypeScript sources copied with one command |
 | [Language examples](#recipes-language-examples-and-templates) | 121 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
-| [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
+| [Developer tools](#find-code-without-reading-the-whole-repository) | 6 | Repository navigation, dependency health and retrieval evaluation |
 | [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 600 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 5602 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media and dashboards in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 422 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 5652 | Libraries, services, dashboards and references with source evidence, license scope, lifecycle and adoption metadata across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 493 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -37,6 +38,8 @@ One command searches everything below and returns each result's exact next step.
 - [Quick start](#quick-start)
 - [Capabilities: one task, every language](#capabilities-one-task-every-language)
 - [Modules](#modules)
+- [Integration packs](#integration-packs)
+- [Connect directly with MCP](#connect-directly-with-mcp)
 - [Recipes, language examples and templates](#recipes-language-examples-and-templates)
 - [Resource catalog](#resource-catalog)
 - [Install indexes: skills, MCP servers, CLIs and APIs](#install-indexes-skills-mcp-servers-clis-and-apis)
@@ -51,26 +54,20 @@ One command searches everything below and returns each result's exact next step.
 ## How it works
 
 ```mermaid
-flowchart LR
-  Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Find["genlib find<br/>(+ detect --target)"]
-  Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
-  Find --> M["Modules"]
-  Find --> R["Recipes and<br/>language examples"]
-  Find --> T["Templates"]
-  Find --> N["Navigation tools"]
-  Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
-  Find --> X["Resource catalog<br/>(incl. marketing, social, dashboards)"]
-  Find --> D["Doc sections<br/>(exact line ranges)"]
-  Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
-  Index["registry/search-index.jsonl"] -.-> Jev
-  M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
-  C --> Lang["pick the detected<br/>language's code"] --> Copy
-  R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
-  T --> Merge["read guide, merge<br/>selected files"] --> App
-  N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
-  S --> SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"] --> App
-  X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
-  D --> Section["sed -n start,end p"] --> App
+flowchart TD
+  Task["Agent task"] --> Entry["CLI or direct Genlib MCP"]
+  Own["Modules, packs and language code"] --> Metadata["Compact discovery metadata"]
+  External["Resources, dashboards, install indexes and docs"] --> Metadata
+  Metadata --> Entry
+  Entry --> Eligible["Task fit, lifecycle and license filters"]
+  Eligible --> Inspect["Inspect one contract or record"]
+  Eligible --> Jev["Optional Jev selection: up to 8 candidates"]
+  Jev --> Inspect
+  Inspect --> Plan["Plan source changes without writes"]
+  Plan --> Copy["Copy declared files and record hashes"]
+  Copy --> Verify["Verify baseline and run app checks"]
+  Inspect --> Setup["Follow selected tool or service profile"]
+  Setup --> Verify
 ```
 
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
@@ -101,7 +98,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 
 | Command | Purpose |
 | --- | --- |
-| `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
+| `find <words> [--target app] [--type …] [--project …]` | Rank all source types; add `--license-policy permissive` or `--include-retired` for explicit selection policy |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
 | `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
 | `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
@@ -110,6 +107,9 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
 | `plan <id> --target app` / `add <id> --target app` | Show, then perform, the exact file copy (default `src/genlib`, or `--out`) |
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
+| `integration list` / `integration inspect <id>` | Discover a complete optional integration profile and read its contract |
+| `integration plan\|add <id> --target app` | Plan/copy a pack, defaulting to `genlib/integrations/<id>` |
+| `integration verify --target app` | Verify the separate pack baseline without overwriting customizations |
 
 `add` writes `.genlib/lock.json` with versions, origin and original hashes, and copies license notices. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
 
@@ -158,6 +158,7 @@ All modules are original Apache-2.0 code, version `0.1.0`, with a contract and b
 | [`validated-form`](modules/validated-form/CONTRACT.md) | React form state, injected validation/submission, error summary, duplicate-submit guard | Fields, validators, server-side validation |
 | [`notification-preferences`](modules/notification-preferences/CONTRACT.md) | Preference UI, domain validation, Fetch client, revision-checked handler | Identity, tenancy, durable atomic storage, delivery |
 | [`common-api-clients`](modules/common-api-clients/CONTRACT.md) | Bounded server clients for GitHub, Stripe, Resend, Supabase, Graph, Calendar, OpenAI, Anthropic, Saleor, Steel | Credentials, scopes, spending limits, live acceptance |
+| [`public-data-clients`](modules/public-data-clients/CONTRACT.md) | Twelve typed read-only adapters: Frankfurter, NWS, Census, vPIC, Crossref, GLEIF, ROR, Open Food Facts, Open-Meteo, deps.dev, OSV and endoflife.date | Provider terms, attribution, credentials when required, cache storage and live acceptance |
 | [`env-config`](modules/env-config/CONTRACT.md) | Typed fail-fast env validation, secret redaction, `.env.example` rendering | The variable list and secret store |
 | [`structured-logger`](modules/structured-logger/CONTRACT.md) | JSON-lines logs, child bindings, key redaction, request IDs | Sink, retention, extra redaction keys |
 | [`http-resilience`](modules/http-resilience/CONTRACT.md) | Backoff + jitter retries for idempotent requests, `Retry-After`, timeouts, circuit breaker | Which writes are idempotent; idempotency keys |
@@ -167,6 +168,29 @@ All modules are original Apache-2.0 code, version `0.1.0`, with a contract and b
 | [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies | A CSP matching its real sources |
 
 The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The seven server utilities use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
+
+## Integration packs
+
+Sixteen opt-in packs turn selected catalog resources into configurable application and developer workflows. They include forms/Puck editing, resumable uploads/ZIP, PDFs/email/import-export, data grids/search/charts, calendars/file trees, PostgreSQL jobs/webhook deduplication, Medusa storefronts, codemods, API contracts, native testing/persistence, Rust bindings, desktop delivery, authorization/collaboration, typed backend services and observability.
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" integration inspect resumable-files --json
+node "$GENLIB_ROOT/bin/genlib.mjs" integration plan resumable-files --target "$APP_ROOT" --json
+node "$GENLIB_ROOT/bin/genlib.mjs" integration add resumable-files --target "$APP_ROOT" --json
+```
+
+Each pack has explicit source files, pinned dependency/tool profiles, fixtures, a contract and scoped verification. The installer copies these files and attribution and records `.genlib/integrations-lock.json`; it executes no package commands. React peer constraints and native/service limits remain explicit. See the [pack selection and installation guide](docs/integrations.md), [web profiles](docs/integrations/web.md) and [developer/native profiles](docs/integrations/developer-native.md).
+
+## Connect directly with MCP
+
+The optional server in [`packages/genlib-mcp`](packages/genlib-mcp) exposes `genlib_search`, `genlib_catalog`, `genlib_inspect`, `genlib_read_file`, `genlib_jev`, project detection, installation planning and verification. `genlib_install` is available only when the server is started with an explicit project root and `--allow-install`.
+
+```sh
+npm ci --ignore-scripts --prefix "$GENLIB_ROOT/packages/genlib-mcp"
+node "$GENLIB_ROOT/packages/genlib-mcp/server.mjs" --project-root "$APP_ROOT"
+```
+
+Use stdio for a local agent or Streamable HTTP for a private deployed service. The optional MCP package uses the official SDK with its own lockfile, while the core CLI remains dependency-free. See [connection instructions for Claude Code, Codex and Genisys](docs/mcp-server.md), including HTTP authentication, project scoping and protocol tests. This repository provides the server; it does not imply a hosted endpoint exists.
 
 ## Recipes, language examples and templates
 
@@ -204,6 +228,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/data-docs-office.json`](resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
 | [`catalog/devops-testing-security.json`](resources/catalog/devops-testing-security.json) | 116 | [devops-testing-security.md](docs/resources/devops-testing-security.md) | testing, security, code-quality, observability, logging |
 | [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
+| [`catalog/integration-expansion.json`](resources/catalog/integration-expansion.json) | 50 | several | public-data-api, codemods, catalog-maintenance, native-testing, resumable-upload |
 | [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
 | [`catalog/marketing-engagement-2.json`](resources/catalog/marketing-engagement-2.json) | 71 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | push, reviews |
@@ -217,14 +242,14 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **5602** | | |
+| **Total** | **5652** | | |
 <!-- genlib:catalog:end -->
 
-`verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).
+`verified` and `partial` describe upstream source review, independently of lifecycle and integration readiness. Network verification checks repositories, links and available package license declarations; blocked pages and unsupported ecosystem checks remain unresolved review items. The selected integration packs have their own runtime/fixture evidence. Retired services are hidden by default and can be included for migration lookup with `--include-retired`. Copyleft, source-available and commercial feature boundaries stay explicit. See the [resource index](docs/resources/README.md), [expansion review](docs/resources/integration-expansion.md) and [dependency health workflow](docs/catalog-health.md).
 
 ## Install indexes: skills, MCP servers, CLIs and APIs
 
-Four ranked indexes of 500 entries each give agents the shortest install path for widely used tools, ranked by real usage data:
+Four ranked indexes give agents install paths for commonly used tools, using the stated usage signals:
 
 | Index | Ranked by | Example |
 | --- | --- | --- |
@@ -254,7 +279,7 @@ Genisys' Jev answers typed questions about a concise state. `genlib jev <task>` 
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" jev add passkey login to a Go API --json
-grep -i saml "$GENLIB_ROOT/registry/search-index.jsonl" | head -3   # one line per searchable entry
+rg -i saml "$GENLIB_ROOT/registry/search-index.jsonl" --max-count 3   # one line per searchable entry
 ```
 
 `registry/search-index.jsonl` lists every searchable entry (`ref`, title, summary, terms, languages, file and lines for docs, next command) for harnesses that run their own retrieval. `npm run check` fails when it is stale. See the [Jev guide](docs/jev.md).
@@ -295,14 +320,16 @@ The skill tells agents to start with `find`, inspect one contract, plan, copy, v
 ## Repository layout
 
 ```text
-bin/genlib.mjs            CLI: find, detect, catalog, search, inspect, plan, add, verify
+bin/genlib.mjs             CLI: find, detect, catalog, integration, search, inspect, plan, add, verify
 lib/                      catalog, installer, discovery, resources and safety code
 modules/<id>/             module.json, CONTRACT.md and files/ for each module
-registry/                 generated catalog and integrity manifests (npm run registry:build)
+integrations/<id>/        optional dependency-isolated packs, contracts and fixtures
+packages/genlib-mcp/      direct Genlib MCP server and SDK protocol tests
+registry/                 generated catalogs, integrity manifests and search index
 examples/                 recipes, language examples, storefront, UI and utility sources
 resources/                project types, recipes, skills/mcp-servers/clis/apis indexes, UI foundations and resources/catalog/*.json
 templates/                project, github, docs, ship and ui starters (templates/index.json)
-tools/                    resources, recipes, language installer, repo map/AST/context/diagram (tools/index.json)
+tools/                    resources, catalog health, retrieval evaluation, recipes and repository navigation
 scripts/                  registry build, skill sync/install, resource verifier
 skills/genlib-use/        canonical skill; .claude/ and .agents/ hold generated mirrors
 docs/                     architecture, lifecycle, best practices and per-domain resource guides
@@ -314,10 +341,17 @@ tests/                    CLI safety, module behavior, discovery and catalog tes
 ```sh
 npm ci --ignore-scripts
 npm run registry:build   # after editing modules
+npm run integrations:build # after editing pack manifests or source
 npm run skills:sync      # after editing the canonical skill
-npm run check            # registry, skills, resources, TypeScript build and all tests
+npm run docs:sync        # refresh catalog counts
+npm run index:build      # refresh discovery after source or documentation changes
+npm run check            # generated artifacts, catalogs, TypeScript and behavioral tests
+npm ci --prefix packages/genlib-mcp --ignore-scripts
+npm run mcp:test         # real stdio/HTTP SDK clients, both protocol generations
+npm run retrieval:check  # task recall and bounded search/decision packets
+npm run catalog:health  # offline inventory of exact locked dependencies
 ```
 
-CI runs the checks on Node 22 and 24 with React 18 and 19, plus language lanes for Python, Go, Rust, Java, Kotlin, C#, Dart and Swift. See [CONTRIBUTING.md](CONTRIBUTING.md), the [module format](docs/module-format.md) and the [architecture](docs/architecture.md).
+CI runs the core checks on Node 22 and 24 with React 18 and 19, plus language lanes for Python, Go, Rust, Java, Kotlin, C#, Dart and Swift. The separate [integration workflow](.github/workflows/integration-profiles.yml) exercises isolated pack dependencies, direct MCP clients, generated API/SQL code, disposable PostgreSQL, policy/FFI behavior and selected native compilation profiles. Per-pack contracts record local evidence and remaining browser, device, service and release acceptance. See [CONTRIBUTING.md](CONTRIBUTING.md), the [module format](docs/module-format.md) and the [architecture](docs/architecture.md).
 
 README structure and badges follow practices from [Awesome README Tools](https://github.com/dhyeythumar/awesome-readme-tools), whose entries are part of the catalog. Source is licensed under [Apache-2.0](LICENSE); keep [NOTICE](NOTICE) when redistributing.

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "durable-jobs",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "PostgreSQL jobs and persistent webhook inbox",
+  "summary": "Explicit pg-boss worker lifecycle and a PostgreSQL webhook inbox with byte-identity deduplication, expiring lease tokens, retries and dead states.",
+  "languages": [
+    "typescript",
+    "sql"
+  ],
+  "frameworks": [
+    "any"
+  ],
+  "platforms": [
+    "node",
+    "postgresql"
+  ],
+  "resources": [
+    "pg-boss"
+  ],
+  "tags": [
+    "jobs",
+    "queue",
+    "webhooks",
+    "idempotency",
+    "postgresql",
+    "retry",
+    "leases"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/webhook.json",
+    "package-lock.json",
+    "package.json",
+    "src/inbox.sql",
+    "src/inbox.ts",
+    "src/jobs.ts",
+    "tests/inbox.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/jobs.ts",
+    "src/inbox.ts",
+    "src/inbox.sql"
+  ],
+  "verification": {
+    "level": "experimental",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0 + PGlite 0.5.8; TypeScript build and five tests executing PostgreSQL inbox SQL for uniqueness, collision, lease, retry/dead-state and completion behavior, plus actual pg-boss import/lifecycle guards."
+    ],
+    "notes": [
+      "PGlite tests do not establish external PostgreSQL concurrency/failover or pg-boss worker execution; no external database or queue was started.",
+      "Apply inbox.sql deliberately and supply verified provider signatures/tenant identity before intake; handlers still need provider-side idempotency for external effects."
+    ]
+  }
+}

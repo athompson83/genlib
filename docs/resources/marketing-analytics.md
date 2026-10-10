@@ -2,7 +2,7 @@
 
 Product and web analytics SDKs, self-hosted analytics, UTM and campaign attribution, A/B testing and feature flags, cookie consent, and ad platform APIs (Google, Meta, LinkedIn, TikTok, Microsoft and programmatic).
 
-Every record here was checked against its registry or repository on 2026-10-10: the package or repository exists, is not deprecated, and its license comes from registry metadata or the LICENSE file. Popularity is the registry's own number (monthly downloads, total downloads, importers or GitHub stars) and is only comparable within one ecosystem. Records marked `license-review` are copyleft, commercial or have no declared license; decide before embedding them. Platform terms change often: prefer official APIs, keep keys and user tokens on the server, and honor consent and unsubscribe laws.
+Imported registry and repository metadata is a starting point for source selection. A reachable package does not establish current provider availability, integration readiness or rights to every product feature. Lifecycle and license-scope corrections reviewed on 2026-10-10 are documented in [the integration expansion guide](integration-expansion.md); retired service wrappers are retained only for migration discovery and excluded from ordinary recommendations. Review the exact record and current provider terms before adoption.
 
 ## Find and install
 
@@ -74,12 +74,11 @@ Total: 1017 records in `resources/catalog/marketing-analytics*.json`.
 | typescript | `react-native-appsflyer`, `react-native-branch`, `dub-analytics`, `react-native-adjust` | MIT, MPL-2.0 |
 | python | `lifetimes`, `pymc-marketing`, `causalml`, `scikit-uplift` (review) | Apache-2.0, MIT, n/a |
 | java | `com-adjust-sdk-adjust-android`, `io-branch-sdk-android-library`, `com-tenjin-android-sdk`, `com-kochava-tracker-tracker` (review) | Apache-2.0, MIT, Proprietary |
-| csharp | `xamarin-firebase-dynamic-links`, `appsflyerxamarinbindingandroid`, `appsflyerxamarinbinding` (review), `adame-firebase-ios-dynamiclinks` (review) | MIT, MIT AND Apache-2.0, NOASSERTION, non-standard |
-| ruby | `referer-parser` (review), `firebase-dynamic-link`, `referer-tracking`, `google-apis-firebasedynamiclinks-v1` | Apache-2.0, MIT, NOASSERTION |
-| php | `yedincisenol-dynamic-links`, `kyranb-footprints`, `xsuchy09-utm-cookie`, `suarez-laravel-utm-parameter` | Apache-2.0, MIT |
+| csharp | `appsflyerxamarinbindingandroid`, `appsflyerxamarinbinding` (review) | Review the exact package scope |
+| ruby | `referer-parser` (review), `referer-tracking` | Review the exact package scope |
+| php | `kyranb-footprints`, `xsuchy09-utm-cookie`, `suarez-laravel-utm-parameter` | Review the exact package scope |
 | dart | `flutter-branch-sdk`, `appsflyer-sdk`, `adjust-sdk`, `flutter-facebook-app-links` | MIT |
 | swift | `ios-branch-deep-linking-attribution`, `appsflyerframework` (review) | MIT, NOASSERTION |
-| elixir | `google-api-firebase-dynamic-links` | Apache-2.0 |
 
 ## Consent
 
@@ -113,3 +112,7 @@ Total: 1017 records in `resources/catalog/marketing-analytics*.json`.
 | elixir | `fun-with-flags`, `launchdarkly-server-sdk-hex`, `unleash-fresha`, `unleash-hex` | Apache-2.0, MIT |
 | any | `google-optimize`, `optimal-ux`, `optimizely`, `unbounce` | n/a |
 
+
+## Retired provider integrations
+
+Firebase Dynamic Links shut down on [August 25, 2025](https://firebase.google.com/support/dynamic-links-faq). Universal Analytics shut down on [July 1, 2024](https://developers.google.com/analytics/legacy/universal-analytics). Their wrappers are historical references, including the Xamarin and AdamE iOS bindings. Search with explicit migration intent to inspect them; choose a currently supported API or app/universal-link implementation for new work. Dedicated replacement services remain eligible according to their own metadata and terms.

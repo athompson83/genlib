@@ -2,7 +2,7 @@
 import { loadProjectTypes, loadResources, quickstartFor, searchResources } from '../lib/resources.mjs';
 
 const HELP = `Usage:
-  node tools/resources.mjs search <query> [--platform web|mobile|desktop] [--category value] [--mode reference|selective-copy|package|service|license-review] [--license MIT] [--project <type>] [--language python|go|...] [--limit 5] [--json]
+  node tools/resources.mjs search <query> [--platform web|mobile|desktop] [--category value] [--mode reference|selective-copy|package|service|license-review] [--license MIT] [--license-policy any|permissive] [--include-retired] [--project <type>] [--language python|go|...] [--limit 5] [--json]
   node tools/resources.mjs types [--json]
   node tools/resources.mjs inspect <resource-id> [--json]
   node tools/resources.mjs validate [--json]
@@ -16,13 +16,16 @@ try {
     process.stdout.write(HELP);
   } else {
     if (!['search', 'inspect', 'validate', 'types'].includes(command)) throw new Error('Unknown resource command.\n' + HELP);
-    const options = {}, words = [];
+    const options = {}, words = [], seen = new Set();
     for (let index = 0; index < args.length; index++) {
       const arg = args[index];
       if (!arg.startsWith('--')) { words.push(arg); continue; }
       const key = arg.slice(2);
-      if (Object.hasOwn(options, key)) throw new Error('Duplicate option: ' + arg);
+      if (seen.has(key)) throw new Error('Duplicate option: ' + arg);
+      seen.add(key);
       if (key === 'json') { options.json = true; continue; }
+      if (key === 'include-retired' && command === 'search') { options.includeRetired = true; continue; }
+      if (key === 'license-policy' && command === 'search') { const value = args[++index]; if (!value || value.startsWith('--')) throw new Error('Missing license policy.'); options.licensePolicy = value; continue; }
       if (command !== 'search' || !['platform', 'category', 'mode', 'license', 'project', 'language', 'limit'].includes(key)) throw new Error('Unknown option: ' + arg);
       const value = args[++index];
       if (!value || value.startsWith('--')) throw new Error('Missing value for ' + arg);

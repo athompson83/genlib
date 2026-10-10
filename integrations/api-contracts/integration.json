@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "api-contracts",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "API contracts and generated clients",
+  "summary": "Original OpenAPI inventory contract, generated typed client and real loopback server, plus executable contract fuzzing, breaking-change and HTTP checks with alternative generator configurations.",
+  "languages": [
+    "typescript",
+    "javascript",
+    "python",
+    "typespec"
+  ],
+  "frameworks": [
+    "node",
+    "openapi",
+    "typespec",
+    "microcks"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "resources": [
+    "openapi-typescript",
+    "orval",
+    "hey-api",
+    "typespec",
+    "oasdiff",
+    "hurl",
+    "schemathesis",
+    "microcks"
+  ],
+  "tags": [
+    "openapi",
+    "typed-client",
+    "api-contract",
+    "contract-testing",
+    "fuzzing",
+    "codegen"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "schema/openapi.json",
+    "client.ts",
+    "fixture/server.mjs",
+    "http/run-fixture-check.mjs",
+    "http/check-breaking.mjs",
+    "orval.config.mjs",
+    "hey-api.config.mjs",
+    "typespec/main.tsp"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3: generated openapi-typescript client typecheck and 4 HTTP/transport tests passed.",
+      "Linux x86_64, Node 24.19.0: Orval 8.41.0, Hey API 0.99.0 and TypeSpec 1.17.0 generation commands completed.",
+      "Linux x86_64, Python 3.12.14 / Schemathesis 4.30.1: seed 42, coverage plus fuzzing, 100 generated cases passed against the disposable loopback fixture."
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test",
+      "npm run generate:orval",
+      "npm run generate:hey",
+      "npm run generate:typespec",
+      "python -m pip install -r http/requirements.lock.txt",
+      "npm run test:schemathesis"
+    ],
+    "notes": [
+      "Hurl, oasdiff and Docker/Microcks gates have not run in this environment; provision their tools explicitly and run the commands in CONTRACT.md.",
+      "Generated client/runtime trees are excluded from the delivered files. Regenerate deliberately and retain generator/dependency notices.",
+      "Token acquisition policy, production authorization, retries, deployment and generated-client compatibility with the receiving app remain host responsibilities."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "client.ts",
+    "fixture/server.mjs",
+    "fixtures/openapi-breaking.json",
+    "hey-api.config.mjs",
+    "http/check-breaking.mjs",
+    "http/inventory.hurl",
+    "http/requirements.lock.txt",
+    "http/requirements.txt",
+    "http/run-fixture-check.mjs",
+    "http/schemathesis.toml",
+    "microcks/compose.yaml",
+    "microcks/import-spec.sh",
+    "orval.config.mjs",
+    "package-lock.json",
+    "package.json",
+    "schema/openapi.json",
+    "tests/fixture.test.mjs",
+    "tsconfig.json",
+    "typespec/main.tsp"
+  ]
+}

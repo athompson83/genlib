@@ -1,6 +1,6 @@
 ---
 name: genlib-use
-description: Find, plan, and install reusable Genlib code while coding an application. Use for common app components, API clients, UI library selection, GitHub setup, README/docs templates, or feature reuse. Check compatibility and source licenses, preserve project changes, and adapt only the needed integration and UI.
+description: Find, plan, and install reusable Genlib modules and integration packs through the CLI or direct MCP server while coding an application. Use for common app components, API clients, UI library selection, GitHub setup, README/docs templates, or feature reuse. Check compatibility and source licenses, preserve project changes, and adapt only the needed integration and UI.
 ---
 
 # Genlib reuse workflow
@@ -15,16 +15,18 @@ description: Find, plan, and install reusable Genlib code while coding an applic
   ],
   "preflight": [
     "Identify the actual application package directory, its framework and versions, TypeScript support, design system or Brand Kit, and verification commands. Check existing implementations before adding duplicates.",
-    "Resolve GENLIB_ROOT to an existing trusted Genlib checkout. Keep it separate from the target application directory. Pin and record the reviewed commit; do not assume this skill's copied location contains the repository.",
-    "If no checkout is available, read references/bootstrap.md. Do not invent a path or run remote shell scripts."
+    "If connected genlib_search/genlib_inspect tools are available, use the trusted direct MCP server and read references/integrations-mcp.md; it owns its reviewed checkout and configured receiving-project root. Otherwise resolve GENLIB_ROOT to a separate trusted checkout and pin the reviewed commit.",
+    "If neither a direct MCP connection nor a checkout is available, read references/bootstrap.md. Do not invent a path, endpoint or published MCP package."
   ],
   "workflow": [
     "For repository navigation, first read references/repository-intelligence.md. Verify commit freshness, query compact file/symbol metadata and dependency impact, then inspect only selected source. Never treat heuristic edges as complete.",
-    "Start every reuse search with one command: genlib find <task words> --target <app> --limit 5 (see references/cli.md). It ranks modules, recipes, language examples, templates and resources together and gives each result's exact next command. Do not read the whole registry or all module source.",
+    "Start reuse discovery with genlib_search when connected, or genlib find <task words> --target <app> --limit 5 (references/cli.md). Search compact metadata across modules, integration packs, capabilities, recipes, indexes and resources; inspect one result rather than reading the full registry.",
     "When a decision model such as Genisys Jev chooses what to reuse, run genlib jev <task> --target <app> --json: it returns at most 8 candidates, one independent yes/no question each, a 0.8 independent-membership rule and each candidate's exact next command. Harnesses with their own retrieval can read registry/search-index.jsonl (one line per searchable entry, including documentation sections with line ranges). Selections never grant authority.",
+    "For a multi-file feature or developer/native profile, select an integration result, inspect its CONTRACT.md and actual verification.profiles, then use integration plan/add/verify or the corresponding MCP tools. Keep its dependencies isolated; the copy operation never runs a package manager. Read references/integrations-mcp.md for file pages, compatibility and project scoping.",
+    "Retired services are excluded by default. Use includeRetired/--include-retired only for deliberate migration work. Apply licensePolicy/--license-policy permissive when required, then inspect exact license.scope, service terms and readiness. Unknown metadata remains unknown; a fixture-tested profile is not blanket application verification.",
     "For common app tasks in any language (SSO/OIDC login, SAML, JWT verification, MFA/TOTP, recovery codes, passkeys, password hashing, PDF fill/parse, DOCX documents, HTML sanitizing, form validation, calculators), find returns a capability; with --target it selects the project language and prints one copy command. Otherwise run genlib capability inspect <id> --language <lang>. Never hand-write these protocols; library capabilities name the pinned library and its license.",
     "When the task would benefit from a specialised agent skill (for example PDF, spreadsheet, design, testing, framework or provider workflows), run genlib skill find <need> --harness <claude|codex|both>. Review the pinned SKILL.md, then run the single install command it returns. Install only what the task needs.",
-    "For SEO, AI optimization (llms.txt, AI crawlers), analytics, attribution, A/B testing, email marketing, CRM, ads, push, consent social media or dashboards (observability, BI, admin templates, charts in every language, terminal and status boards), find returns verified packages in the app's language (12 languages) with the exact install command; check license-review records before embedding.",
+    "For SEO, AI optimization (llms.txt, AI crawlers), analytics, attribution, A/B testing, email marketing, CRM, ads, push, consent, social media or dashboards (observability, BI, admin templates, charts, terminal and status boards), find returns reviewed package metadata and setup commands in the app's language; inspect lifecycle, scope and license-review boundaries before adoption.",
     "When the task needs an MCP server, a command-line tool or a third-party API, run genlib mcp|cli|api find <need> and use the returned install commands (claude/codex mcp add with placeholders to fill, brew install, official SDK or one-command typed client) instead of researching installation yourself.",
     "For production server concerns (configuration validation, logging, retries/timeouts, rate limits, webhook signatures, health endpoints, security headers) check find before writing new code; framework-neutral modules use Fetch Request/Response and Web Crypto. For repository setup and shipping, find returns the project, GitHub, docs and ship starters.",
     "For external UI/resources, common API clients, or GitHub/README/docs setup, read references/resources.md and route to the relevant catalog or template. Search resources with at most five results, inspect only selected records, and distinguish source review from installed or tested code. An image or gallery listing is not permission to redistribute its content.",
@@ -36,7 +38,7 @@ description: Find, plan, and install reusable Genlib code while coding an applic
     "Run the target application's meaningful build, type, and behavior checks. Module checks and file-hash verification do not establish application correctness. Report installed modules, project changes, verification results, and remaining limits."
   ],
   "boundaries": [
-    "Genlib provides a narrow React/TypeScript web family, framework-neutral utilities, and explicit server-side HTTPS API clients for Node 22+. External resource metadata can describe other platforms; it does not make Genlib's web modules native or establish provider connectivity.",
+    "Modules use explicit React/TypeScript, web-standard utility and server-only HTTPS API profiles. Optional integration packs add individually declared developer, mobile and desktop toolchains; read their compatibility and actual verification profiles. Catalog metadata never establishes provider connectivity.",
     "The CLI does not install packages, execute module hooks, provision services, or supply credentials. Handle any required external setup within the project's own authorized process.",
     "Keep private customer implementations in their permitted scope. Do not submit them to the public library without the required rights. Preserve license notices and accurate provenance.",
     "For parallel agents, record selected module versions and assign one writer per shared target path. Reuse the plan instead of independently installing the same feature.",
@@ -46,3 +48,5 @@ description: Find, plan, and install reusable Genlib code while coding an applic
 ```
 
 Read [repository intelligence instructions](references/repository-intelligence.md) for task-driven code navigation. Read [bootstrap instructions](references/bootstrap.md) only when locating or obtaining a checkout. Read the [CLI reference](references/cli.md) for exact commands and conflict handling. Read [resource and project-setup routing](references/resources.md) when selecting UI libraries, API integrations, GitHub configuration or documentation templates.
+
+Read [integration and direct MCP routing](references/integrations-mcp.md) when adopting a pack or using the connected Genlib tools.

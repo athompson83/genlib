@@ -176,3 +176,9 @@ Start with the provider's official SDK and a direct tool-calling loop; add a fra
 | Agent skill/CLI that maps a project (code via local tree-sitter, plus docs and media) into a queryable knowledge graph | `graphify` | Use instead of repeated grep-and-read passes; agents query graph.json and GRAPH_REPORT.md rather than re-reading files, cutting context tokens | Apache-2.0 |
 | MCP coding-agent toolkit providing language-server-backed semantic symbol search and editing | `serena` | Use instead of whole-file reads; symbol-level retrieval and edits let agents work with far fewer context tokens | MIT |
 | Terminal AI pair programmer known for its tree-sitter repository map and edit formats | `aider` | Use as a reference for repo-map ranking and diff edit formats instead of designing agent code-context strategies from scratch | Apache-2.0 |
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Developer codemods and template evolution](../../integrations/developer-codemods/CONTRACT.md): `ast-grep`.

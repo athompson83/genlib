@@ -1,0 +1,2893 @@
+{
+  "schemaVersion": 1,
+  "provenance": "Original Genlib adapters. Dependencies retain their upstream terms; no package installation or hooks are executed.",
+  "license": {
+    "path": "LICENSE",
+    "target": "LICENSE",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "notice": {
+    "path": "NOTICE",
+    "target": "NOTICE",
+    "bytes": 394,
+    "sha256": "b2b22ddb08aa389cb5d016ee0c3a43fd593c4d29eeadc05073f560be2a256ad7"
+  },
+  "items": [
+    {
+      "schemaVersion": 1,
+      "id": "api-contracts",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "API contracts and generated clients",
+      "summary": "Original OpenAPI inventory contract, generated typed client and real loopback server, plus executable contract fuzzing, breaking-change and HTTP checks with alternative generator configurations.",
+      "languages": [
+        "typescript",
+        "javascript",
+        "python",
+        "typespec"
+      ],
+      "frameworks": [
+        "node",
+        "openapi",
+        "typespec",
+        "microcks"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "resources": [
+        "openapi-typescript",
+        "orval",
+        "hey-api",
+        "typespec",
+        "oasdiff",
+        "hurl",
+        "schemathesis",
+        "microcks"
+      ],
+      "tags": [
+        "openapi",
+        "typed-client",
+        "api-contract",
+        "contract-testing",
+        "fuzzing",
+        "codegen"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "schema/openapi.json",
+        "client.ts",
+        "fixture/server.mjs",
+        "http/run-fixture-check.mjs",
+        "http/check-breaking.mjs",
+        "orval.config.mjs",
+        "hey-api.config.mjs",
+        "typespec/main.tsp"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [
+          "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3: generated openapi-typescript client typecheck and 4 HTTP/transport tests passed.",
+          "Linux x86_64, Node 24.19.0: Orval 8.41.0, Hey API 0.99.0 and TypeSpec 1.17.0 generation commands completed.",
+          "Linux x86_64, Python 3.12.14 / Schemathesis 4.30.1: seed 42, coverage plus fuzzing, 100 generated cases passed against the disposable loopback fixture."
+        ],
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test",
+          "npm run generate:orval",
+          "npm run generate:hey",
+          "npm run generate:typespec",
+          "python -m pip install -r http/requirements.lock.txt",
+          "npm run test:schemathesis"
+        ],
+        "notes": [
+          "Hurl, oasdiff and Docker/Microcks gates have not run in this environment; provision their tools explicitly and run the commands in CONTRACT.md.",
+          "Generated client/runtime trees are excluded from the delivered files. Regenerate deliberately and retain generator/dependency notices.",
+          "Token acquisition policy, production authorization, retries, deployment and generated-client compatibility with the receiving app remain host responsibilities."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/api-contracts/.gitignore",
+          "target": ".gitignore",
+          "bytes": 107,
+          "sha256": "96d8f94663abce23b4cc8b40192ae18422780838fb9613e168a245b103e7908e"
+        },
+        {
+          "path": "integrations/api-contracts/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 3571,
+          "sha256": "71a6be4439ec1f0d9d629e799aa1582cbcc0fab491528cc9ed99265373d749ea"
+        },
+        {
+          "path": "integrations/api-contracts/client.ts",
+          "target": "client.ts",
+          "bytes": 2398,
+          "sha256": "484a7ce6148ee2c35c9f63441d5d5512360bc88628d5e4ab0ede82e509c6b03f"
+        },
+        {
+          "path": "integrations/api-contracts/fixture/server.mjs",
+          "target": "fixture/server.mjs",
+          "bytes": 3161,
+          "sha256": "fb737b49a98574aeeceea14a96ae91a067dc4083fba728d880609cf9b7832a91"
+        },
+        {
+          "path": "integrations/api-contracts/fixtures/openapi-breaking.json",
+          "target": "fixtures/openapi-breaking.json",
+          "bytes": 4377,
+          "sha256": "5de2f3f43c88328dc5051260d98a139613c2f2f7a8552b3d3c45f5cfdeee9852"
+        },
+        {
+          "path": "integrations/api-contracts/hey-api.config.mjs",
+          "target": "hey-api.config.mjs",
+          "bytes": 257,
+          "sha256": "a3921ea5b6daba80eb27d0c41ed690adaadb42b76869768e494fe93b873f09dc"
+        },
+        {
+          "path": "integrations/api-contracts/http/check-breaking.mjs",
+          "target": "http/check-breaking.mjs",
+          "bytes": 659,
+          "sha256": "28204011785fe0a3370e7e9af7bc86c5625101cbc3b71200640ffe0f48a44e6f"
+        },
+        {
+          "path": "integrations/api-contracts/http/inventory.hurl",
+          "target": "http/inventory.hurl",
+          "bytes": 563,
+          "sha256": "d3b8432f865214d3f73582d2ea23285aeebda4f8eaeb766bfb0a60149531ef59"
+        },
+        {
+          "path": "integrations/api-contracts/http/requirements.lock.txt",
+          "target": "http/requirements.lock.txt",
+          "bytes": 547,
+          "sha256": "c3832ea72d51e7b338711ba28c75fafd781799f0a547c3fd81eb47f823feaa8a"
+        },
+        {
+          "path": "integrations/api-contracts/http/requirements.txt",
+          "target": "http/requirements.txt",
+          "bytes": 21,
+          "sha256": "cbb44bce2e0acdaebdd465479cbbeb56e73a0af852ca032dafb5f5bf3f74071a"
+        },
+        {
+          "path": "integrations/api-contracts/http/run-fixture-check.mjs",
+          "target": "http/run-fixture-check.mjs",
+          "bytes": 1368,
+          "sha256": "ba990f21d6deaef02e9a17539b5eb52a4f9a575cbb7b16e48be90bfdc5311ccb"
+        },
+        {
+          "path": "integrations/api-contracts/http/schemathesis.toml",
+          "target": "http/schemathesis.toml",
+          "bytes": 66,
+          "sha256": "ff921d8be40fa236d941fb736ba420366a616bbf1ab4864f44f2cd6cf27840e5"
+        },
+        {
+          "path": "integrations/api-contracts/microcks/compose.yaml",
+          "target": "microcks/compose.yaml",
+          "bytes": 207,
+          "sha256": "a74fbbc90b58dc498317a5050402ebc3ef16e572aea6152ebeeff31d387b92ec"
+        },
+        {
+          "path": "integrations/api-contracts/microcks/import-spec.sh",
+          "target": "microcks/import-spec.sh",
+          "bytes": 277,
+          "sha256": "fc147fe4894f2d9919a3dcdfface71503354600648e19a6c8ca0e6d46d7f1f0d"
+        },
+        {
+          "path": "integrations/api-contracts/orval.config.mjs",
+          "target": "orval.config.mjs",
+          "bytes": 243,
+          "sha256": "5fd282413d9e8250d2f452d86423daaf19b41f88d879a3b2d3bcd545b3a79a45"
+        },
+        {
+          "path": "integrations/api-contracts/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 117211,
+          "sha256": "fc12ec14140de27e616ac44b2e35fa4865f2108c36340026b0b1f1c90c206fd8"
+        },
+        {
+          "path": "integrations/api-contracts/package.json",
+          "target": "package.json",
+          "bytes": 1176,
+          "sha256": "c79975127f0be177986277a2ce168beebf36931f56eee1ddded979828adc701d"
+        },
+        {
+          "path": "integrations/api-contracts/schema/openapi.json",
+          "target": "schema/openapi.json",
+          "bytes": 6228,
+          "sha256": "a13e94981340a3da05962886709e34c316bd5324fa67ca8866603505eb1447e2"
+        },
+        {
+          "path": "integrations/api-contracts/tests/fixture.test.mjs",
+          "target": "tests/fixture.test.mjs",
+          "bytes": 3825,
+          "sha256": "3e279fc0d5f3e998d02e9df52bfad49001cf784806129001a99809510c6a9918"
+        },
+        {
+          "path": "integrations/api-contracts/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 296,
+          "sha256": "036ec7a0d715fa93523259700979dd4bc4b0ef27519b66b6105ac5e4fcb4919d"
+        },
+        {
+          "path": "integrations/api-contracts/typespec/main.tsp",
+          "target": "typespec/main.tsp",
+          "bytes": 326,
+          "sha256": "d0d3d2384354afd0e57765c2b0d593f502437338218087de1ffaa087ccb196f1"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/api-contracts/integration.json",
+        "target": "integration.json",
+        "bytes": 2946,
+        "sha256": "23d122c83c240dad5825a3e615fcf1a82741a854dafb515768cefdfc1c2b2e75"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "authorization-collaboration",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Authorization and collaborative state",
+      "summary": "Fail-closed OpenFGA check adapter and tested Cedar policy, plus bounded Loro inventory/tree updates and replica convergence fixtures with explicit server authority boundaries.",
+      "languages": [
+        "javascript",
+        "rust",
+        "cedar"
+      ],
+      "frameworks": [
+        "node",
+        "cedar",
+        "openfga",
+        "loro"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "resources": [
+        "cedar",
+        "openfga",
+        "loro"
+      ],
+      "tags": [
+        "authorization",
+        "permissions",
+        "policy",
+        "local-first",
+        "crdt",
+        "collaboration"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "openfga/gate.mjs",
+        "openfga/model.fga.yaml",
+        "cedar/src/lib.rs",
+        "cedar/policy.cedar",
+        "loro/inventory.mjs",
+        "loro/outline.mjs"
+      ],
+      "verification": {
+        "level": "tested",
+        "profiles": [
+          "Linux x86_64, Node 24.19.0 / Loro 1.16.4: 6 tests passed covering replica convergence, movable trees, invalid update staging and injected OpenFGA HTTP failure/denial boundaries.",
+          "Linux x86_64, Rust 1.99.0 / cedar-policy 4.13.0: 2 real-engine tests passed for policy/schema validation, tenant/owner decisions, forbid precedence and malformed entities."
+        ],
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test",
+          "cargo test --locked --manifest-path cedar/Cargo.toml"
+        ],
+        "notes": [
+          "Tested scope is the local Node adapters and actual Rust Cedar engine. OpenFGA CLI model-fixture execution and live service/deployment acceptance remain unexecuted.",
+          "Run fga model test --tests openfga/model.fga.yaml with an explicitly provisioned compatible CLI; live store/model/tuple writes are not performed by this pack.",
+          "The host authenticates actors, supplies trusted policy entities and authorizes CRDT update transport. Replicated client state is not authoritative for permissions or budgets.",
+          "Cedar was verified using an isolated build target with debug info disabled and two build jobs after the workspace filesystem failed to archive an object. This was an environment build retry, not a waived source/test failure."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/authorization-collaboration/.gitignore",
+          "target": ".gitignore",
+          "bytes": 28,
+          "sha256": "b6b0f800469fcb3e6e8685ffab68b573793ee404a0cfeacfefecedad419580c9"
+        },
+        {
+          "path": "integrations/authorization-collaboration/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 3126,
+          "sha256": "3e6ac9ee597bef4a372de9c918802920d6ad892d8bd7ff9648ec2f52c7fe4ccc"
+        },
+        {
+          "path": "integrations/authorization-collaboration/cedar/Cargo.lock",
+          "target": "cedar/Cargo.lock",
+          "bytes": 37817,
+          "sha256": "4bbd91572c05196e81ddbfad55b280b952d3965ef9911d0180fb4a2f854035ee"
+        },
+        {
+          "path": "integrations/authorization-collaboration/cedar/Cargo.toml",
+          "target": "cedar/Cargo.toml",
+          "bytes": 168,
+          "sha256": "3e38a75e36d09a904aede5e4dd1ad843d731763e057a22311bb2e9390ff3949b"
+        },
+        {
+          "path": "integrations/authorization-collaboration/cedar/fixtures/entities.json",
+          "target": "cedar/fixtures/entities.json",
+          "bytes": 1016,
+          "sha256": "87016906e83762544c5b5f467df0a01c09cd9a3d571834c517b9653a4b6c4067"
+        },
+        {
+          "path": "integrations/authorization-collaboration/cedar/policy.cedar",
+          "target": "cedar/policy.cedar",
+          "bytes": 280,
+          "sha256": "802f913581085c75c4b2ed35ae6a63b452dc7df4179030e725fd251ad037caac"
+        },
+        {
+          "path": "integrations/authorization-collaboration/cedar/schema.cedarschema",
+          "target": "cedar/schema.cedarschema",
+          "bytes": 208,
+          "sha256": "76c3970f684b32d4677c4f411c417aa02b3fd2c215391755d2061fe3656ff2a6"
+        },
+        {
+          "path": "integrations/authorization-collaboration/cedar/src/lib.rs",
+          "target": "cedar/src/lib.rs",
+          "bytes": 3091,
+          "sha256": "ca1c4c95cf090bda22e354dd0d5374c8d5a44faf5bc8da0207c2a5354bf3b0fc"
+        },
+        {
+          "path": "integrations/authorization-collaboration/loro/inventory.mjs",
+          "target": "loro/inventory.mjs",
+          "bytes": 2276,
+          "sha256": "0fce742f4bdcf77f3f5cea93df492c70ef6c691e81a3e16d19d0050ffabcef2b"
+        },
+        {
+          "path": "integrations/authorization-collaboration/loro/outline.mjs",
+          "target": "loro/outline.mjs",
+          "bytes": 521,
+          "sha256": "37bc1a63401f19abb90592cdfcf5feddca4aa1e577bdbc3c0e7551e2d886480a"
+        },
+        {
+          "path": "integrations/authorization-collaboration/openfga/gate.mjs",
+          "target": "openfga/gate.mjs",
+          "bytes": 2984,
+          "sha256": "204b0d07ed7e0cf3424212b6c93cfc4072ad982dee7f9fbdf93b34b5804dc193"
+        },
+        {
+          "path": "integrations/authorization-collaboration/openfga/model.fga",
+          "target": "openfga/model.fga",
+          "bytes": 151,
+          "sha256": "7a41ca77e029748a9a80a724b0a499e1ca53137f45ea72cb150460c7e9929bda"
+        },
+        {
+          "path": "integrations/authorization-collaboration/openfga/model.fga.yaml",
+          "target": "openfga/model.fga.yaml",
+          "bytes": 726,
+          "sha256": "90fdf76861fe57baadb198034d981e8420588e2a582ae94550b14537844c2948"
+        },
+        {
+          "path": "integrations/authorization-collaboration/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 671,
+          "sha256": "23078d0a8d642b78ed1fece0eb3609182f682792abc429747c41ada587df83e6"
+        },
+        {
+          "path": "integrations/authorization-collaboration/package.json",
+          "target": "package.json",
+          "bytes": 298,
+          "sha256": "b9ec48f3aea040a5c57eb39f0fad93c9fbbe4d75233ab13c93a34bf8a51fd529"
+        },
+        {
+          "path": "integrations/authorization-collaboration/tests/loro.test.mjs",
+          "target": "tests/loro.test.mjs",
+          "bytes": 2226,
+          "sha256": "3969b02f2efc4ba3d04e1810be0b847add1c51d4d24a3b621c29c7f9eab60592"
+        },
+        {
+          "path": "integrations/authorization-collaboration/tests/openfga.test.mjs",
+          "target": "tests/openfga.test.mjs",
+          "bytes": 2374,
+          "sha256": "7eb8e68f31929168f1f95d11177b8ed7e8ace9028144765b6082325532c022df"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/authorization-collaboration/integration.json",
+        "target": "integration.json",
+        "bytes": 2743,
+        "sha256": "c44d3a4f891e7e3ef7d1bd3c0227936ff1e3365e1ce929e57ecb2f271b75cd26"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "commerce-storefront",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Medusa core storefront and explicit checkout",
+      "summary": "Original Medusa Store API adapter, product/cart components and serialized checkout with regional prices, ownership callbacks, provider allowlists and uncertain-outcome handling.",
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "platforms": [
+        "node",
+        "browser"
+      ],
+      "resources": [
+        "medusa"
+      ],
+      "tags": [
+        "commerce",
+        "storefront",
+        "cart",
+        "checkout",
+        "medusa",
+        "payments",
+        "authorization"
+      ],
+      "files": [
+        {
+          "path": "integrations/commerce-storefront/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 5696,
+          "sha256": "078b73473dd1a079bd8de2834ff0824d9c6e9eb42b6e37581c8379b93eb3b9c4"
+        },
+        {
+          "path": "integrations/commerce-storefront/fixtures/cart.json",
+          "target": "fixtures/cart.json",
+          "bytes": 375,
+          "sha256": "c6dc4bcef4a312a2e9a88e14fbdfa36e841bb1ab5bc93458e5ed816328960666"
+        },
+        {
+          "path": "integrations/commerce-storefront/fixtures/products.json",
+          "target": "fixtures/products.json",
+          "bytes": 537,
+          "sha256": "e0057d8461c9eda0379f1679086de80bab539ccead9c7ad271fcafa33cc4644a"
+        },
+        {
+          "path": "integrations/commerce-storefront/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 15759,
+          "sha256": "739ca912caec6a85bfc6d268010cff113704591979b424ffa48516b62c930354"
+        },
+        {
+          "path": "integrations/commerce-storefront/package.json",
+          "target": "package.json",
+          "bytes": 626,
+          "sha256": "0bc8aec10929fa372608d8585ba5cdd7d8bf89094bf2bd8dbda86e31b84b74a6"
+        },
+        {
+          "path": "integrations/commerce-storefront/src/CheckoutPanel.tsx",
+          "target": "src/CheckoutPanel.tsx",
+          "bytes": 4553,
+          "sha256": "b06b4b7abed1d4458b998fe63650aafddd4e3f3a2dd144899368aaf7f6f5f367"
+        },
+        {
+          "path": "integrations/commerce-storefront/src/Storefront.tsx",
+          "target": "src/Storefront.tsx",
+          "bytes": 6608,
+          "sha256": "c408ed8d97aa282acf6190126512d6975bb7982830d5a58a6606883696f75729"
+        },
+        {
+          "path": "integrations/commerce-storefront/src/checkout.ts",
+          "target": "src/checkout.ts",
+          "bytes": 2655,
+          "sha256": "4194d7659387595fcd48b9676bc78f7b35ed5077062a326d7ff4988c2972bde3"
+        },
+        {
+          "path": "integrations/commerce-storefront/src/medusa.server.ts",
+          "target": "src/medusa.server.ts",
+          "bytes": 11348,
+          "sha256": "1d0039bd80487b93cdfc130dccc9b5d2b863a6bd12e4a7c125f02f06b0c9a69c"
+        },
+        {
+          "path": "integrations/commerce-storefront/src/model.ts",
+          "target": "src/model.ts",
+          "bytes": 3197,
+          "sha256": "7addaf53925c46401a8ec679ad950e481959baa95bec561b9ffd97a491d6a0d4"
+        },
+        {
+          "path": "integrations/commerce-storefront/src/styles.css",
+          "target": "src/styles.css",
+          "bytes": 1197,
+          "sha256": "9e56f7326568d5a8aacdf9aa85485da4e1a3d513b807570f425804e54b5ad36c"
+        },
+        {
+          "path": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "target": "tests/commerce.test.mjs",
+          "bytes": 7507,
+          "sha256": "7f89ba85489a4cbd6152c9551dbcea6be5a1a0769f84ae776f96f47973ef7706"
+        },
+        {
+          "path": "integrations/commerce-storefront/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/model.ts",
+        "src/medusa.server.ts",
+        "src/Storefront.tsx",
+        "src/checkout.ts",
+        "src/CheckoutPanel.tsx"
+      ],
+      "compatibility": {
+        "reactMajors": [
+          18,
+          19
+        ]
+      },
+      "verification": {
+        "level": "experimental",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and seven fixture-transport/SSR tests covering regional price units, authorization-before-credentials, cart routes, payment-collection reuse, order sequencing and uncertain outcomes."
+        ],
+        "notes": [
+          "No live Medusa service, payment session, purchase, email or provider challenge was performed; React 18 is peer-compatible but unexecuted.",
+          "Keep the HTTP adapter on the trusted server; the host supplies cart/session ownership, authenticated routes and an explicitly authorized payment-provider SDK flow.",
+          "Medusa binding covers MIT core only; Enterprise Edition and hosted services retain separate terms."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/commerce-storefront/integration.json",
+        "target": "integration.json",
+        "bytes": 2061,
+        "sha256": "ee74832d8269bd3830427621fc4d6d1f92ae7e72290b9111c6e4458852d6a63c"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "desktop-delivery",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Desktop host and update profiles",
+      "summary": "Original bounded desktop interaction in Electron, Tauri, Wails and Avalonia, with narrow IPC validation and explicit local Windows Velopack packaging and user-controlled updates.",
+      "languages": [
+        "javascript",
+        "typescript",
+        "rust",
+        "go",
+        "csharp",
+        "powershell"
+      ],
+      "frameworks": [
+        "electron",
+        "tauri",
+        "wails",
+        "avalonia",
+        "velopack"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "resources": [
+        "electron",
+        "tauri",
+        "wails",
+        "avalonia",
+        "velopack"
+      ],
+      "tags": [
+        "desktop",
+        "native",
+        "ipc",
+        "packaging",
+        "updates",
+        "distribution"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "electron/main.mjs",
+        "electron/preload.cjs",
+        "tauri/src-tauri/tauri.conf.json",
+        "wails/main.go",
+        "avalonia/GenlibInventory.csproj",
+        "avalonia/UpdateSession.cs",
+        "velopack/package-windows.ps1"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [
+          "Linux x86_64, Node 24.19.0: 2 IPC frame/input boundary tests passed. No Electron GUI process was launched.",
+          "Linux x86_64, Go 1.27.2: go test app.go app_test.go passed for the original Wails method. No Wails GUI build was run."
+        ],
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test",
+          "go -C wails test app.go app_test.go",
+          "dotnet test avalonia-tests/GenlibInventory.Tests.csproj"
+        ],
+        "notes": [
+          "Electron GUI, Tauri/Wails builds, .NET/Avalonia execution, Windows packaging and real update round trips are unexecuted. OS WebView/GUI/build prerequisites are not present here.",
+          "Electron binary installation is deliberate and separate from npm ci --ignore-scripts. Never infer sandbox/GUI validation from the extracted Node unit tests.",
+          "Native command and update feed configuration must be reviewed in the receiving app. Velopack profile produces local Windows artifacts only and requires explicit user restart; signing/publishing and installed-VM update acceptance are separate gates.",
+          "All Wails frontend/dist files are original static source. No third-party generated runtime, binary or installer is included."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/desktop-delivery/.gitignore",
+          "target": ".gitignore",
+          "bytes": 108,
+          "sha256": "5556770c7e2b9e377d9cc6b98b773d8bfa7feab234262db55a5b85388b45fe56"
+        },
+        {
+          "path": "integrations/desktop-delivery/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 4634,
+          "sha256": "3b91c364ce19ef8acc6039143e364d459a866714eea90451d3bf3af6f4458eb3"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia-tests/GenlibInventory.Tests.csproj",
+          "target": "avalonia-tests/GenlibInventory.Tests.csproj",
+          "bytes": 524,
+          "sha256": "1f212c08bb3eb049be8d80ec7be467e1f653dcac772df0479e79a931bfa6bbf3"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia-tests/TitleRulesTests.cs",
+          "target": "avalonia-tests/TitleRulesTests.cs",
+          "bytes": 565,
+          "sha256": "15c74978d2547f2c0d6cbdc56a5a1ebdb61694a3ba68ad23a5a6ec8e173f9b63"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/App.axaml",
+          "target": "avalonia/App.axaml",
+          "bytes": 207,
+          "sha256": "f8ab45d7ca3275114222394e71386343ed7c804ead55c201763ccf711bb82570"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/App.axaml.cs",
+          "target": "avalonia/App.axaml.cs",
+          "bytes": 512,
+          "sha256": "4e9666224352e675eb9a56c3df86dade60422b604af4eca7f87f6c518258010e"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/GenlibInventory.csproj",
+          "target": "avalonia/GenlibInventory.csproj",
+          "bytes": 558,
+          "sha256": "49cd698cce05c5ecae61d3b07052ee16b2d82f52269a6b7ff0df5bfc7221c501"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/MainWindow.axaml",
+          "target": "avalonia/MainWindow.axaml",
+          "bytes": 619,
+          "sha256": "5355bc83bc46f34d850091a2b1f2603c38c34618898121076adb41809917fa02"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/MainWindow.axaml.cs",
+          "target": "avalonia/MainWindow.axaml.cs",
+          "bytes": 1643,
+          "sha256": "d7b44a6e740daed0f58d66d4c358c0965fc1ebef825b9f40b2e131896ffd6129"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/Program.cs",
+          "target": "avalonia/Program.cs",
+          "bytes": 354,
+          "sha256": "4c93f935dbe7e88ba3f5a8f71634bf6c9c79a330eb831ff16a0ed7f4f42ee383"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/TitleRules.cs",
+          "target": "avalonia/TitleRules.cs",
+          "bytes": 388,
+          "sha256": "6c53b470d59bc12f40b04fce418b7f8bc168a12d591f48b9dbf5c0824146d115"
+        },
+        {
+          "path": "integrations/desktop-delivery/avalonia/UpdateSession.cs",
+          "target": "avalonia/UpdateSession.cs",
+          "bytes": 1049,
+          "sha256": "66bd3b096f3d0e1a5bedbe7a021f2a4b4e930f7aa80839b5c6ae2ee4565245e1"
+        },
+        {
+          "path": "integrations/desktop-delivery/core/normalize.mjs",
+          "target": "core/normalize.mjs",
+          "bytes": 461,
+          "sha256": "7a219d8412187235976f1a63b4e07e6218df12613e494a3e808afad9bf25722a"
+        },
+        {
+          "path": "integrations/desktop-delivery/electron/main.mjs",
+          "target": "electron/main.mjs",
+          "bytes": 942,
+          "sha256": "9e2b32cece4d97e7a04f18aecc475ca4b94464ac958e2c51d918faab16ae4ff8"
+        },
+        {
+          "path": "integrations/desktop-delivery/electron/preload.cjs",
+          "target": "electron/preload.cjs",
+          "bytes": 313,
+          "sha256": "866cb76fd83c87dfde755797702f38046fbf4bed5ad76074cda42cb413fb7b97"
+        },
+        {
+          "path": "integrations/desktop-delivery/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 12826,
+          "sha256": "c36e6ad2708fdec938ac166291476a89ee01f67d28df68fb24fe22127a7ab780"
+        },
+        {
+          "path": "integrations/desktop-delivery/package.json",
+          "target": "package.json",
+          "bytes": 412,
+          "sha256": "58b28f6740e0a9cc502b0d9fa3e54c14330932be5052f1092e937de714e350d9"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/Cargo.toml",
+          "target": "tauri/src-tauri/Cargo.toml",
+          "bytes": 195,
+          "sha256": "63c8300de805a9470a59e7ef72a706ed8b6f9f22a97ac6a1dd075adb2b280775"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/build.rs",
+          "target": "tauri/src-tauri/build.rs",
+          "bytes": 75,
+          "sha256": "a1b8d4b3ff1063b0a830e972ac92c037bb6afd51561d8f03bf693b81495c0927"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/capabilities/main.json",
+          "target": "tauri/src-tauri/capabilities/main.json",
+          "bytes": 258,
+          "sha256": "8df0d2fdb57eba9f423409cb5d709552957678b219ff75ab43aac2e65cc496fa"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/src/main.rs",
+          "target": "tauri/src-tauri/src/main.rs",
+          "bytes": 815,
+          "sha256": "91fc93d80804502cd87628cbce407fc397980f5421e0bc84878f19393709deff"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/src-tauri/tauri.conf.json",
+          "target": "tauri/src-tauri/tauri.conf.json",
+          "bytes": 625,
+          "sha256": "d1ff32e0abc924384edacd8cfd2e2fbacb75b5446980a39a4fb91bc22f7eb41c"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/web/index.html",
+          "target": "tauri/web/index.html",
+          "bytes": 733,
+          "sha256": "1830cbe36ce4723a029778ef1d0bb8df028c839b7b40be6fe7884bcc423515d9"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/web/renderer.js",
+          "target": "tauri/web/renderer.js",
+          "bytes": 780,
+          "sha256": "ffff441b4eded9189fc56a016b3185305598227b5d779d2d74e8f986653a16f4"
+        },
+        {
+          "path": "integrations/desktop-delivery/tauri/web/style.css",
+          "target": "tauri/web/style.css",
+          "bytes": 444,
+          "sha256": "82a89fd55626508a1229469a5075b806ecde36bf29981674102c7666585c5851"
+        },
+        {
+          "path": "integrations/desktop-delivery/tests/ipc.test.mjs",
+          "target": "tests/ipc.test.mjs",
+          "bytes": 720,
+          "sha256": "955a30e0f053a29143ba02676173ca99ad1bd7770e0e8f90a9222d1e6d55d38f"
+        },
+        {
+          "path": "integrations/desktop-delivery/velopack/.config/dotnet-tools.json",
+          "target": "velopack/.config/dotnet-tools.json",
+          "bytes": 144,
+          "sha256": "306975f6083b6d387632e6e297648ec71e5146f8bbfdec26acc54f3232c5b01d"
+        },
+        {
+          "path": "integrations/desktop-delivery/velopack/package-windows.ps1",
+          "target": "velopack/package-windows.ps1",
+          "bytes": 746,
+          "sha256": "32a2b7b22730b0c512140339494fa7e37d3b7971a900d2ac09b0780b9154595c"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/app.go",
+          "target": "wails/app.go",
+          "bytes": 371,
+          "sha256": "30d05f382effb360b247fb1eb22264d2990abb575b05d4850d8df967212d20f1"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/app_test.go",
+          "target": "wails/app_test.go",
+          "bytes": 393,
+          "sha256": "28265de9d149984915ba9b166d768d920cf33d452cb9c49b761e87ef0f3b0ea1"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/frontend/dist/index.html",
+          "target": "wails/frontend/dist/index.html",
+          "bytes": 714,
+          "sha256": "6fa33546a5a4c8020fc1ffa97c3cbf6db1f77a82a86e992779d218a8b4deeaf3"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/frontend/dist/renderer.js",
+          "target": "wails/frontend/dist/renderer.js",
+          "bytes": 780,
+          "sha256": "ffff441b4eded9189fc56a016b3185305598227b5d779d2d74e8f986653a16f4"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/frontend/dist/style.css",
+          "target": "wails/frontend/dist/style.css",
+          "bytes": 444,
+          "sha256": "82a89fd55626508a1229469a5075b806ecde36bf29981674102c7666585c5851"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/go.mod",
+          "target": "wails/go.mod",
+          "bytes": 93,
+          "sha256": "0e8b6ad21bd11089f0b84ffe6cd3a1e3e626c08312371e9343f777df823034c6"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/main.go",
+          "target": "wails/main.go",
+          "bytes": 460,
+          "sha256": "c9a28ed4a498cf43f4d2d9c52de45b54b2a0964c79fdd2bdefc1fc2c9629f3f8"
+        },
+        {
+          "path": "integrations/desktop-delivery/wails/wails.json",
+          "target": "wails/wails.json",
+          "bytes": 262,
+          "sha256": "5bd6e744f9c47c0bc1564e9c14684e35c81ecb330e427e19918545e48c715900"
+        },
+        {
+          "path": "integrations/desktop-delivery/web/index.html",
+          "target": "web/index.html",
+          "bytes": 714,
+          "sha256": "6fa33546a5a4c8020fc1ffa97c3cbf6db1f77a82a86e992779d218a8b4deeaf3"
+        },
+        {
+          "path": "integrations/desktop-delivery/web/renderer.js",
+          "target": "web/renderer.js",
+          "bytes": 780,
+          "sha256": "ffff441b4eded9189fc56a016b3185305598227b5d779d2d74e8f986653a16f4"
+        },
+        {
+          "path": "integrations/desktop-delivery/web/style.css",
+          "target": "web/style.css",
+          "bytes": 444,
+          "sha256": "82a89fd55626508a1229469a5075b806ecde36bf29981674102c7666585c5851"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/desktop-delivery/integration.json",
+        "target": "integration.json",
+        "bytes": 3537,
+        "sha256": "ea0a3307d72aba84f5c8c17d8b8e491a041ee3cbab8c8129388e5374789350d5"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "developer-codemods",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Developer codemods and template evolution",
+      "summary": "Reviewable TypeScript and Python transforms, AST rules, architecture checks and a real Copier template-upgrade fixture, with opt-in Rector and narrowly allowlisted OpenRewrite profiles.",
+      "languages": [
+        "typescript",
+        "javascript",
+        "python",
+        "php",
+        "java"
+      ],
+      "frameworks": [
+        "node",
+        "copier",
+        "libcst",
+        "rector",
+        "openrewrite"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "resources": [
+        "copier",
+        "ts-morph",
+        "libcst",
+        "rector",
+        "dependency-cruiser",
+        "ast-grep",
+        "openrewrite"
+      ],
+      "tags": [
+        "codemod",
+        "refactor",
+        "template-upgrade",
+        "architecture",
+        "agent-efficiency",
+        "source-transform"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "codemods/imports.mjs",
+        "codemods/ast-rewrite.mjs",
+        "python/import_migration.py",
+        "copier/template/copier.yml",
+        "php/rector.php",
+        "openrewrite/allowed-artifacts.json",
+        "openrewrite/verify.py"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [
+          "Linux x86_64, Node 24.19.0: 3 tests passed using ts-morph 28.0.0, ast-grep 0.50.0 and dependency-cruiser 18.5.0.",
+          "Linux x86_64, Python 3.12.14: 4 tests passed with LibCST 1.9.0 and a real Copier 9.18.2 Git template upgrade."
+        ],
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test",
+          "python -m pip install -r python/requirements.lock.txt",
+          "python -m unittest discover -s python -v"
+        ],
+        "notes": [
+          "PHP/Composer/Rector and Java/Maven/OpenRewrite execution is unverified. The OpenRewrite behavior/migration/idempotence gate is python3 openrewrite/verify.py with Java 17+ and Maven; receiving-app dry runs still need review.",
+          "OpenRewrite core 8.90.4 and Maven plugin 6.46.1 exact artifact POMs resolved with Apache-2.0 declarations. Only the declared core recipe scope is selected; external recipe bundles are excluded.",
+          "Copier writes only a disposable temporary Git fixture during tests. Conflicting receiving-app upgrades require diff review. No template tasks or installer hooks."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/developer-codemods/.gitignore",
+          "target": ".gitignore",
+          "bytes": 47,
+          "sha256": "51c8a0dabc6d45d6ad60051f6d2c1c9b4bda26f415807f6bf67a30ad5c899537"
+        },
+        {
+          "path": "integrations/developer-codemods/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 3619,
+          "sha256": "e6008629353c96ae0e6f94802b3670a836255ebea95b74acfa13f168b1327053"
+        },
+        {
+          "path": "integrations/developer-codemods/ast-grep/console-logger.yml",
+          "target": "ast-grep/console-logger.yml",
+          "bytes": 202,
+          "sha256": "a543d5b6988641f1b6370f3121154d360527e07e17cad569759b89034ee495c2"
+        },
+        {
+          "path": "integrations/developer-codemods/codemods/ast-rewrite.mjs",
+          "target": "codemods/ast-rewrite.mjs",
+          "bytes": 490,
+          "sha256": "87bb70b384686ef1699915c61b06de68c260dbf7ea27ea2823efd54de8b4e43c"
+        },
+        {
+          "path": "integrations/developer-codemods/codemods/imports.mjs",
+          "target": "codemods/imports.mjs",
+          "bytes": 1212,
+          "sha256": "65ef969f952ed543c124987fbff8b41b274c6badc88063182a998f1e1161f786"
+        },
+        {
+          "path": "integrations/developer-codemods/copier/template/copier.yml",
+          "target": "copier/template/copier.yml",
+          "bytes": 100,
+          "sha256": "3166e27c1d140976aedcc33f90a533b5c01e90def537ef14368ca9978e44ab86"
+        },
+        {
+          "path": "integrations/developer-codemods/copier/template/project/.copier-answers.yml.jinja",
+          "target": "copier/template/project/.copier-answers.yml.jinja",
+          "bytes": 38,
+          "sha256": "e684988fee42166da2d26bce92c65d8f90de7995ca420fc8f0369530b53e70b8"
+        },
+        {
+          "path": "integrations/developer-codemods/copier/template/project/README.md.jinja",
+          "target": "copier/template/project/README.md.jinja",
+          "bytes": 129,
+          "sha256": "81b1185a5afaa09dc0366d623bd30e1b42074c78b090e556696df9d9a367b8f3"
+        },
+        {
+          "path": "integrations/developer-codemods/copier/template/project/inventory.py.jinja",
+          "target": "copier/template/project/inventory.py.jinja",
+          "bytes": 102,
+          "sha256": "f7fa1533bae8b2d2b192a8fb2ff694a4fb168dfa6ace62bcebb5774806f4495a"
+        },
+        {
+          "path": "integrations/developer-codemods/dependency-cruiser.config.cjs",
+          "target": "dependency-cruiser.config.cjs",
+          "bytes": 537,
+          "sha256": "039f59e27a17e6b3d26bda286a1bd89666adf46019a98f629a14412820e1d9ba"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/after.ts",
+          "target": "fixtures/after.ts",
+          "bytes": 139,
+          "sha256": "ff8936e778998ab472bc2e7a237729003c72ff8e9d59a8a5345c914c106e0f84"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/architecture/client/main.js",
+          "target": "fixtures/architecture/client/main.js",
+          "bytes": 81,
+          "sha256": "b5a956d58a26345ccc4dd2567af26b031df4fcaf9413252e14c5b676600b9ddd"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/architecture/server/private.js",
+          "target": "fixtures/architecture/server/private.js",
+          "bytes": 32,
+          "sha256": "8098785988f13c3a013e20aa53453804fbddb9a04515872b6ac0019b5d5f726b"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/architecture/shared/label.js",
+          "target": "fixtures/architecture/shared/label.js",
+          "bytes": 52,
+          "sha256": "363931d46c436985f20a093e23a6228fb89aebf08e87a4b3a7da033225fa3857"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/before.ts",
+          "target": "fixtures/before.ts",
+          "bytes": 145,
+          "sha256": "90d7751c2edd5c9fa84185a6b581dd1395fd52038879138418b0415a8e89647c"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/console-after.ts",
+          "target": "fixtures/console-after.ts",
+          "bytes": 81,
+          "sha256": "df838dc6667ae3d87c89f57291edb8ed823bc4aa5fcf1d3730f09d19d7c3bf8d"
+        },
+        {
+          "path": "integrations/developer-codemods/fixtures/console-before.ts",
+          "target": "fixtures/console-before.ts",
+          "bytes": 81,
+          "sha256": "3856322f438cc1af677558f1d8abe39cb5b4602ebf52d68693b31f91da413776"
+        },
+        {
+          "path": "integrations/developer-codemods/openrewrite/allowed-artifacts.json",
+          "target": "openrewrite/allowed-artifacts.json",
+          "bytes": 674,
+          "sha256": "63adcece43572c67acc4640a40ddca3e50c71929aa345cf36e72e0cb1fd22725"
+        },
+        {
+          "path": "integrations/developer-codemods/openrewrite/pom.xml",
+          "target": "openrewrite/pom.xml",
+          "bytes": 1012,
+          "sha256": "189be7b6b2bc84851744a8293327b1f2717fbb2463dc8713a4fe32a215320dfe"
+        },
+        {
+          "path": "integrations/developer-codemods/openrewrite/rewrite.yml",
+          "target": "openrewrite/rewrite.yml",
+          "bytes": 270,
+          "sha256": "329254f90fed1d7b78ec1e11cd98530b4d692666fbae67fb572243302971cebf"
+        },
+        {
+          "path": "integrations/developer-codemods/openrewrite/src/main/java/legacy/inventory/Label.java",
+          "target": "openrewrite/src/main/java/legacy/inventory/Label.java",
+          "bytes": 163,
+          "sha256": "63a6418ad8f3318eceb5c57537a9404a4b8197454e4a01958ccbe31d565f1adb"
+        },
+        {
+          "path": "integrations/developer-codemods/openrewrite/src/test/java/fixture/LabelBehavior.java",
+          "target": "openrewrite/src/test/java/fixture/LabelBehavior.java",
+          "bytes": 515,
+          "sha256": "e6c23cdcffc40af202f035452e3b73009eea317031660208c96305d8d2a9f4f8"
+        },
+        {
+          "path": "integrations/developer-codemods/openrewrite/verify.py",
+          "target": "openrewrite/verify.py",
+          "bytes": 1639,
+          "sha256": "66c41c8893cc782169af0ed4e2196f3ce2374f19c022f8395050883fb1a85a41"
+        },
+        {
+          "path": "integrations/developer-codemods/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 28935,
+          "sha256": "5e2fdfdc61de716c46932b289212c06257e79627aa64f43cf8c64a87725565ac"
+        },
+        {
+          "path": "integrations/developer-codemods/package.json",
+          "target": "package.json",
+          "bytes": 471,
+          "sha256": "f11b0cff81241526e1b01dd22b4630840a9472b388eaefebf1dab74c88a6b032"
+        },
+        {
+          "path": "integrations/developer-codemods/php/composer.json",
+          "target": "php/composer.json",
+          "bytes": 235,
+          "sha256": "b30d7a7de9c9dd553db32536cf6604bdaa187e8638da64de2bf781557d65f0c5"
+        },
+        {
+          "path": "integrations/developer-codemods/php/fixtures/before.php",
+          "target": "php/fixtures/before.php",
+          "bytes": 86,
+          "sha256": "a336e4515c7617ea7c4cd0c6b2f08399d8d8ec97f6d0ccbe515d1b416f8a7ca3"
+        },
+        {
+          "path": "integrations/developer-codemods/php/rector.php",
+          "target": "php/rector.php",
+          "bytes": 280,
+          "sha256": "3464e4d295507b726e837ea16d118dece7fdfd9326823c70e60892bbd4d304a9"
+        },
+        {
+          "path": "integrations/developer-codemods/php/test-refactor.php",
+          "target": "php/test-refactor.php",
+          "bytes": 754,
+          "sha256": "b737109e55c4e1c8cfa54c562b0c5799aaa0478ff7b1076f8f386c3b237a4e2c"
+        },
+        {
+          "path": "integrations/developer-codemods/python/import_migration.py",
+          "target": "python/import_migration.py",
+          "bytes": 943,
+          "sha256": "02b9fc0b48a5eae4b7e86c46bd35432c7333e45802f41e7b3a81849b7ebbb60d"
+        },
+        {
+          "path": "integrations/developer-codemods/python/requirements.lock.txt",
+          "target": "python/requirements.lock.txt",
+          "bytes": 496,
+          "sha256": "ba15654e9abd4d7d5b1aec058c2ef9139e8b8311ad3006966b3df6f3b21271d1"
+        },
+        {
+          "path": "integrations/developer-codemods/python/requirements.txt",
+          "target": "python/requirements.txt",
+          "bytes": 29,
+          "sha256": "5b3c204fb0cf6d9b050921edda2e3d0ee44a0fef52598b98d0b8b7558179e4ce"
+        },
+        {
+          "path": "integrations/developer-codemods/python/test_import_migration.py",
+          "target": "python/test_import_migration.py",
+          "bytes": 987,
+          "sha256": "3449ad318fb27b72b192059aabf39fd999a9628665f21dfac75efb7bd33863ca"
+        },
+        {
+          "path": "integrations/developer-codemods/python/test_template_update.py",
+          "target": "python/test_template_update.py",
+          "bytes": 1684,
+          "sha256": "0278612255f5f23d59afdf7b8d23ec4fcdbc216b7fae1f8404c6280445b7456f"
+        },
+        {
+          "path": "integrations/developer-codemods/tests/codemods.test.mjs",
+          "target": "tests/codemods.test.mjs",
+          "bytes": 2864,
+          "sha256": "9f3ffc0b137ac8fa8d3aeb52cde076fc70f69f31e6bc75769d8f6890f0641d04"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/developer-codemods/integration.json",
+        "target": "integration.json",
+        "bytes": 3528,
+        "sha256": "0a83f52c828775fbd91be70e5feaa32335f641ba69b8027f28ab41fa6b24da14"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "document-pipeline",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Invoices, PDF templates, email and spreadsheet exports",
+      "summary": "One validated invoice model drives pdfme templates, React Email, ExcelJS and PapaParse; bounded Gotenberg and trusted Typst adapters provide conversion alternatives.",
+      "languages": [
+        "typescript",
+        "typst"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "platforms": [
+        "node",
+        "browser"
+      ],
+      "resources": [
+        "pdfme",
+        "gotenberg",
+        "typst",
+        "react-email",
+        "exceljs",
+        "papaparse"
+      ],
+      "tags": [
+        "pdf",
+        "documents",
+        "invoice",
+        "email",
+        "xlsx",
+        "csv",
+        "conversion",
+        "templates"
+      ],
+      "files": [
+        {
+          "path": "integrations/document-pipeline/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 5545,
+          "sha256": "2bb4a299b3dcbb11f83426810c86d8461d4205c2fa0aad35c23f9954648b57a3"
+        },
+        {
+          "path": "integrations/document-pipeline/fixtures/invoice.json",
+          "target": "fixtures/invoice.json",
+          "bytes": 444,
+          "sha256": "ff1f8e2fa089d5c566e901ff0859720ac904895832d96ac4d321dcab222fb994"
+        },
+        {
+          "path": "integrations/document-pipeline/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 278234,
+          "sha256": "d533f4d8e330ef41a807567e7a0728d10ca592ed959ff77f34ab91d0cea00350"
+        },
+        {
+          "path": "integrations/document-pipeline/package.json",
+          "target": "package.json",
+          "bytes": 894,
+          "sha256": "7afec340fb14233a780f0129cfc2f8312eca2724ffd6007796d680782ee33578"
+        },
+        {
+          "path": "integrations/document-pipeline/src/designer.ts",
+          "target": "src/designer.ts",
+          "bytes": 1128,
+          "sha256": "33f5c6b54ac66d92ab9c092ffa569390782a4ec7413580719c8cc16b95cdaf39"
+        },
+        {
+          "path": "integrations/document-pipeline/src/email.tsx",
+          "target": "src/email.tsx",
+          "bytes": 2015,
+          "sha256": "d597da89476aac557f8866f93d2f3d82598280f9c4485e4e0cdea6cae63fed4c"
+        },
+        {
+          "path": "integrations/document-pipeline/src/gotenberg.ts",
+          "target": "src/gotenberg.ts",
+          "bytes": 3422,
+          "sha256": "ea7d3154ae42c8a5b3bf3ff1d6f64c55b251903b6b031ca3e73e3270a462273c"
+        },
+        {
+          "path": "integrations/document-pipeline/src/invoice.ts",
+          "target": "src/invoice.ts",
+          "bytes": 3125,
+          "sha256": "cd808d31cb978d1a0357f66a0163ac35179605afec8055c9cc586f202015f123"
+        },
+        {
+          "path": "integrations/document-pipeline/src/invoice.typ",
+          "target": "src/invoice.typ",
+          "bytes": 701,
+          "sha256": "9c00db5c7058206abb3e07386e3d8c5eb94c6fddde4cd28ed79109bf8e5132d0"
+        },
+        {
+          "path": "integrations/document-pipeline/src/pdf.ts",
+          "target": "src/pdf.ts",
+          "bytes": 1879,
+          "sha256": "7f50c48ba1522ae6f1428074d7bc09321f1c4e9aafaf58b9273dfb244f308592"
+        },
+        {
+          "path": "integrations/document-pipeline/src/spreadsheet.ts",
+          "target": "src/spreadsheet.ts",
+          "bytes": 3604,
+          "sha256": "85105e18341d1a84dd3daaf55cf6109a3da9271ee46e07bec456d47357bb662c"
+        },
+        {
+          "path": "integrations/document-pipeline/src/typst.ts",
+          "target": "src/typst.ts",
+          "bytes": 2815,
+          "sha256": "f541b462d9f7d2844ebec92edb37009ff59b2f7c9a46292c662c8144453fceeb"
+        },
+        {
+          "path": "integrations/document-pipeline/tests/documents.test.mjs",
+          "target": "tests/documents.test.mjs",
+          "bytes": 5841,
+          "sha256": "fb32c046fba6e30bedacd62acada8b99a5099c9480bed9a00c8fe9ed4dc037a8"
+        },
+        {
+          "path": "integrations/document-pipeline/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/invoice.ts",
+        "src/pdf.ts",
+        "src/designer.ts",
+        "src/email.tsx",
+        "src/spreadsheet.ts",
+        "src/gotenberg.ts",
+        "src/typst.ts",
+        "src/invoice.typ"
+      ],
+      "compatibility": {
+        "reactMajors": [
+          18,
+          19
+        ]
+      },
+      "verification": {
+        "level": "tested",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and six tests including real pdfme PDF generation, React Email rendering, ExcelJS reload and PapaParse round trips.",
+          "Node 24.19.0; mocked Gotenberg HTTP boundary and controlled executable Typst argument/JSON/cleanup fixtures; neither external converter was run."
+        ],
+        "notes": [
+          "Browser PDF designer interactions, a live Gotenberg service and a real Typst compiler were not exercised.",
+          "The invoice uses integer minor units; tax rules, fonts/assets, legal invoice requirements, visual output and email-client acceptance remain application-specific.",
+          "React 18 fits peer ranges but was not executed; server conversion and spreadsheet modules must remain outside browser bundles."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/document-pipeline/integration.json",
+        "target": "integration.json",
+        "bytes": 2269,
+        "sha256": "3945e86f9af30e4733b45d3e37d7180e98619e1a4799d92619dbd5466bf77490"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "durable-jobs",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "PostgreSQL jobs and persistent webhook inbox",
+      "summary": "Explicit pg-boss worker lifecycle and a PostgreSQL webhook inbox with byte-identity deduplication, expiring lease tokens, retries and dead states.",
+      "languages": [
+        "typescript",
+        "sql"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "platforms": [
+        "node",
+        "postgresql"
+      ],
+      "resources": [
+        "pg-boss"
+      ],
+      "tags": [
+        "jobs",
+        "queue",
+        "webhooks",
+        "idempotency",
+        "postgresql",
+        "retry",
+        "leases"
+      ],
+      "files": [
+        {
+          "path": "integrations/durable-jobs/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 5226,
+          "sha256": "0b30ea83f7202bf77f23bc9c8b5db3921b610258916a1c31d1b3e26288933c87"
+        },
+        {
+          "path": "integrations/durable-jobs/fixtures/webhook.json",
+          "target": "fixtures/webhook.json",
+          "bytes": 113,
+          "sha256": "7cdc47743d7101f0aecaa295ba88ddca11cbfd0bc49691c94a09bd83888674f6"
+        },
+        {
+          "path": "integrations/durable-jobs/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 23949,
+          "sha256": "a9d0ec4bae8df500ee736a6c98cc25817599865e6c8f73e8a200f3a49b132871"
+        },
+        {
+          "path": "integrations/durable-jobs/package.json",
+          "target": "package.json",
+          "bytes": 515,
+          "sha256": "e468dbc7bd64fd8e67806e811a21001613dfbd05f6f8659132ec99f45ec7eaeb"
+        },
+        {
+          "path": "integrations/durable-jobs/src/inbox.sql",
+          "target": "src/inbox.sql",
+          "bytes": 1134,
+          "sha256": "2b3ad83186922ab479129340cb6350d30529dd35262afafd67c0a1f4f5460694"
+        },
+        {
+          "path": "integrations/durable-jobs/src/inbox.ts",
+          "target": "src/inbox.ts",
+          "bytes": 6972,
+          "sha256": "fcdd1c623c54de57abaa6a152bb5c1d9dc40d967bc945b09c0be29e002a47cc3"
+        },
+        {
+          "path": "integrations/durable-jobs/src/jobs.ts",
+          "target": "src/jobs.ts",
+          "bytes": 3373,
+          "sha256": "f7a4f35b41a7a5859d3d2d158e3c6308bbd313aac24def7b0ca93f9157f6d714"
+        },
+        {
+          "path": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "target": "tests/inbox.test.mjs",
+          "bytes": 4134,
+          "sha256": "256675dec3251ba0c01cbc8bf05c429a892ed6712142d380586ac16ac641762e"
+        },
+        {
+          "path": "integrations/durable-jobs/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/jobs.ts",
+        "src/inbox.ts",
+        "src/inbox.sql"
+      ],
+      "verification": {
+        "level": "experimental",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0 + PGlite 0.5.8; TypeScript build and five tests executing PostgreSQL inbox SQL for uniqueness, collision, lease, retry/dead-state and completion behavior, plus actual pg-boss import/lifecycle guards."
+        ],
+        "notes": [
+          "PGlite tests do not establish external PostgreSQL concurrency/failover or pg-boss worker execution; no external database or queue was started.",
+          "Apply inbox.sql deliberately and supply verified provider signatures/tenant identity before intake; handlers still need provider-side idempotency for external effects."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/durable-jobs/integration.json",
+        "target": "integration.json",
+        "bytes": 1637,
+        "sha256": "276774ee42b5c9c024718ddf2d9b94d17a19aee950f73e51b5466b1981d61953"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "native-acceptance",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Native acceptance and snapshot profiles",
+      "summary": "Disposable Flutter inventory host with behavior assertions, Patrol and Maestro acceptance flows, plus Swift textual and iOS visual snapshot profiles with explicit native setup.",
+      "languages": [
+        "dart",
+        "swift",
+        "javascript",
+        "java",
+        "objective-c"
+      ],
+      "frameworks": [
+        "flutter",
+        "patrol",
+        "maestro",
+        "swiftui",
+        "xctest"
+      ],
+      "platforms": [
+        "android",
+        "ios",
+        "macos"
+      ],
+      "resources": [
+        "maestro",
+        "patrol",
+        "swift-snapshot-testing"
+      ],
+      "tags": [
+        "native",
+        "mobile",
+        "acceptance",
+        "accessibility",
+        "snapshot",
+        "flutter"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "flutter/create-fixture.mjs",
+        "flutter/lib/main.dart",
+        "flutter/patrol_test/inventory_test.dart",
+        "maestro/inventory.yaml",
+        "swift/Package.swift",
+        "swift/ios/InventoryRowSnapshotTests.swift"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [],
+        "commands": [
+          "node --check flutter/create-fixture.mjs",
+          "node flutter/create-fixture.mjs /tmp/genlib-native-fixture",
+          "swift test --package-path swift"
+        ],
+        "notes": [
+          "Flutter/Dart, Android/iOS emulators, Swift and Xcode are unavailable here. No native execution or device result is claimed.",
+          "After creating the new fixture, run flutter pub get and flutter test test/inventory_test.dart in that fixture. Patrol additionally requires the documented Android or Xcode host integration and a booted emulator.",
+          "Use Patrol package 4.10.0 and patrol_cli 4.8.0 with Flutter 3.32+/Dart 3.8+. Java 17+, Android SDK or macOS/Xcode are separate prerequisites.",
+          "The included Swift textual baseline is authored. The iOS visual baseline must be recorded and reviewed on a fixed simulator; missing baselines intentionally fail. Maestro clears only the disposable fixture app state."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/native-acceptance/.gitignore",
+          "target": ".gitignore",
+          "bytes": 69,
+          "sha256": "e27a92b2716c4bb819df425584cce5462fc1bb91f06665db8704f04fdb71ceb1"
+        },
+        {
+          "path": "integrations/native-acceptance/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 4193,
+          "sha256": "b97f2cfed870eeae6a2a1ed08dd8d98636420394e75d4bf134882ba03e358cd9"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/create-fixture.mjs",
+          "target": "flutter/create-fixture.mjs",
+          "bytes": 1723,
+          "sha256": "58486635b6ea0f244ffd0a30d836582bb30844623ab61172c2fc1bd0fc725d35"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/lib/main.dart",
+          "target": "flutter/lib/main.dart",
+          "bytes": 2254,
+          "sha256": "7539291f0366f58691e23a736918f9c1cf4ffef5b464601d36220a060c7b3039"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/native/MainActivityTest.java",
+          "target": "flutter/native/MainActivityTest.java",
+          "bytes": 933,
+          "sha256": "59980fe4f2c45b4a169541bb09b6c11cd079d502be8e7480fb5bf38088311889"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/native/Podfile.fragment.rb",
+          "target": "flutter/native/Podfile.fragment.rb",
+          "bytes": 164,
+          "sha256": "eadbd95c632fb09e76152159e9b43197e3383441fc1851736a8959e113b5439b"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/native/RunnerUITests.m",
+          "target": "flutter/native/RunnerUITests.m",
+          "bytes": 149,
+          "sha256": "a28ca1addc962afde007e280f958ea27cf02c3ff7e1e083408a1aa033db37058"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/native/android.gradle.kts",
+          "target": "flutter/native/android.gradle.kts",
+          "bytes": 429,
+          "sha256": "b5ddd28a44596502b0c322d6f9d85540b236f2cda2713aca3f32266b4d665625"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/patrol_test/inventory_test.dart",
+          "target": "flutter/patrol_test/inventory_test.dart",
+          "bytes": 727,
+          "sha256": "988ebfd349ce02e4e6a6fcee83c8dd53fa41eda9856ca0746ca968a098d7ff5c"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/pubspec.yaml",
+          "target": "flutter/pubspec.yaml",
+          "bytes": 407,
+          "sha256": "611d4d57a800f881619559cc10001705d6b6116253e3eb55e70768fbd48f50a5"
+        },
+        {
+          "path": "integrations/native-acceptance/flutter/test/inventory_test.dart",
+          "target": "flutter/test/inventory_test.dart",
+          "bytes": 991,
+          "sha256": "ca850606114bcfc0d9572564227c383d06668de9dd9cfbf87ff7ed1b3e95eceb"
+        },
+        {
+          "path": "integrations/native-acceptance/maestro/inventory.yaml",
+          "target": "maestro/inventory.yaml",
+          "bytes": 416,
+          "sha256": "b6f8a09bbbdd703b34958e1d397348b934685953d2cce72af73eabb875e5fc52"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/Package.swift",
+          "target": "swift/Package.swift",
+          "bytes": 662,
+          "sha256": "2dda1da765ba9b12b6849cb0e8fa704bf959cd77d6ed94c1a58898c1fc7794a9"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/Sources/InventoryPresentation/InventoryRow.swift",
+          "target": "swift/Sources/InventoryPresentation/InventoryRow.swift",
+          "bytes": 666,
+          "sha256": "121bff476d3a82e3b505f8f8773836058e8366f0e951cc5731bad19f79e76a41"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/Sources/InventoryPresentation/InventorySummary.swift",
+          "target": "swift/Sources/InventoryPresentation/InventorySummary.swift",
+          "bytes": 420,
+          "sha256": "ab0f0f6eeb8a4c5d0e53a5668887520af39931cd74f4c74089c8bb87b565c5b3"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/Tests/InventoryPresentationTests/InventorySummaryTests.swift",
+          "target": "swift/Tests/InventoryPresentationTests/InventorySummaryTests.swift",
+          "bytes": 322,
+          "sha256": "89dfc04aaf7531c7cb8ed2ba55c02868964b848b656b48d28a955fe44354af1b"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/Tests/InventoryPresentationTests/__Snapshots__/InventorySummaryTests/testSummary.summary.txt",
+          "target": "swift/Tests/InventoryPresentationTests/__Snapshots__/InventorySummaryTests/testSummary.summary.txt",
+          "bytes": 31,
+          "sha256": "1ed493a8d60c5aab43a018be388bfef0de5a33c10095f5c8e7005c507e8388a0"
+        },
+        {
+          "path": "integrations/native-acceptance/swift/ios/InventoryRowSnapshotTests.swift",
+          "target": "swift/ios/InventoryRowSnapshotTests.swift",
+          "bytes": 753,
+          "sha256": "a5f58e4b5fa9c15a85b42e0513d51ef8712d8a2fabc8dfa06cc173032b04317a"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/native-acceptance/integration.json",
+        "target": "integration.json",
+        "bytes": 2870,
+        "sha256": "cb34b6ab268dbf2b1513f5fd9be3faf23a5724eef8f5719828b05926a9c29167"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "native-persistence",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Native SQLite repositories and migrations",
+      "summary": "Original SQLDelight Kotlin/JVM+iOS and GRDB Swift repository profiles with transactions, parameterized queries and versioned SQLite migration fixtures.",
+      "languages": [
+        "kotlin",
+        "swift",
+        "sql",
+        "python"
+      ],
+      "frameworks": [
+        "sqldelight",
+        "grdb",
+        "kotlin-multiplatform",
+        "swift-package-manager"
+      ],
+      "platforms": [
+        "android",
+        "ios",
+        "macos",
+        "linux",
+        "windows"
+      ],
+      "resources": [
+        "sqldelight",
+        "grdb-swift"
+      ],
+      "tags": [
+        "native",
+        "sqlite",
+        "persistence",
+        "migration",
+        "transaction",
+        "kotlin",
+        "swift"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "kotlin/build.gradle.kts",
+        "kotlin/src/commonMain/kotlin/dev/genlib/inventory/InventoryRepository.kt",
+        "swift/Package.swift",
+        "swift/Sources/InventoryStore/InventoryStore.swift",
+        "tests/test_sql_profile.py"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [
+          "Linux x86_64, Python 3.12.14 / SQLite: 2 tests passed for the original schema, additive migration, constraints and transaction rollback."
+        ],
+        "commands": [
+          "python3 tests/test_sql_profile.py",
+          "gradle -p kotlin jvmTest",
+          "gradle -p kotlin verifySqlDelightMigration",
+          "swift test --package-path swift"
+        ],
+        "notes": [
+          "Python SQLite success does not establish Kotlin or Swift compilation. Gradle/Kotlin, Swift and Xcode were unavailable; native profiles are unexecuted.",
+          "SQLDelight 2.4.1 / Kotlin 2.4.21 and GRDB 7.11.1 / Swift 6.1+ are pinned source profiles. Select a compatible Gradle version and commit native dependency locks after verified resolution.",
+          "Kotlin/iOS compilation additionally requires macOS/Xcode: gradle -p kotlin compileKotlinIosSimulatorArm64.",
+          "The version-one schema database is an original Genlib fixture, not third-party data. Host owns database lifecycle, migrations, backups, encryption and concurrency."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/native-persistence/.gitignore",
+          "target": ".gitignore",
+          "bytes": 37,
+          "sha256": "85c1bb83e169e135255af754fe2c229bc1a5c3cf6dcf3b9aabe7b13bc378a86b"
+        },
+        {
+          "path": "integrations/native-persistence/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 2447,
+          "sha256": "47c6b95954bbf9a46ea85f6c51a122f0b570b916783a0aabc45cb186960c89cd"
+        },
+        {
+          "path": "integrations/native-persistence/fixtures/v1.sql",
+          "target": "fixtures/v1.sql",
+          "bytes": 211,
+          "sha256": "7b4839d4ce6cb5cc64713976a245bf0a079f1f5fd7a097ddd518bda6f50da608"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/build.gradle.kts",
+          "target": "kotlin/build.gradle.kts",
+          "bytes": 741,
+          "sha256": "ecc4a6bcb8b67e44104ffc07fcd09a02bf47b27229564c9db85db5bbb8ed434f"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/settings.gradle.kts",
+          "target": "kotlin/settings.gradle.kts",
+          "bytes": 245,
+          "sha256": "8ec0836ee86ce131b08f1516baa90d52e7332132783b7294931cc40431af7e48"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/commonMain/kotlin/dev/genlib/inventory/InventoryRepository.kt",
+          "target": "kotlin/src/commonMain/kotlin/dev/genlib/inventory/InventoryRepository.kt",
+          "bytes": 1055,
+          "sha256": "2ccc3ce9afaa2fdcdfb6831c871c485fd02189735fde51275876888ecfb67554"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/1.db",
+          "target": "kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/1.db",
+          "bytes": 12288,
+          "sha256": "8ad36d097cd2ac19978e32e6b4aea67dd100759b6bd8e60e09110ccd6a7d88ee"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/1.sqm",
+          "target": "kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/1.sqm",
+          "bytes": 65,
+          "sha256": "7d198df13a66576ff1a835c7b8eb57679f5dc4ed6dd16fe22982412a93fbda78"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/Item.sq",
+          "target": "kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/Item.sq",
+          "bytes": 497,
+          "sha256": "8c7ec13f05968278d78497cacaff3a613a163bf02e91b889232325eeda450dc5"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/iosMain/kotlin/dev/genlib/inventory/IosDatabase.kt",
+          "target": "kotlin/src/iosMain/kotlin/dev/genlib/inventory/IosDatabase.kt",
+          "bytes": 551,
+          "sha256": "dd2e37b7a872b9c428f638849d9920c0bb0ba1d64c2fed635c26ed2844d4ab6e"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/jvmMain/kotlin/dev/genlib/inventory/JvmDatabase.kt",
+          "target": "kotlin/src/jvmMain/kotlin/dev/genlib/inventory/JvmDatabase.kt",
+          "bytes": 569,
+          "sha256": "64f656d8d88248c5120d2de20025ac1b97cf241400e43136e0bb7b3861a75ac3"
+        },
+        {
+          "path": "integrations/native-persistence/kotlin/src/jvmTest/kotlin/dev/genlib/inventory/InventoryRepositoryTest.kt",
+          "target": "kotlin/src/jvmTest/kotlin/dev/genlib/inventory/InventoryRepositoryTest.kt",
+          "bytes": 990,
+          "sha256": "90ced0f972cc9ecc606ba9c3b44bdea770e095af0db2894e639d7293f2f58c4b"
+        },
+        {
+          "path": "integrations/native-persistence/swift/Package.swift",
+          "target": "swift/Package.swift",
+          "bytes": 614,
+          "sha256": "41c1888187b9e150e54e07ac2dd6cadce8ceb578a7a6db531480098305197072"
+        },
+        {
+          "path": "integrations/native-persistence/swift/Sources/InventoryStore/InventoryStore.swift",
+          "target": "swift/Sources/InventoryStore/InventoryStore.swift",
+          "bytes": 2393,
+          "sha256": "0fda076bad401b70602674897776635d9d5d93a54038f654c5cecedb27b9d65f"
+        },
+        {
+          "path": "integrations/native-persistence/swift/Tests/InventoryStoreTests/InventoryStoreTests.swift",
+          "target": "swift/Tests/InventoryStoreTests/InventoryStoreTests.swift",
+          "bytes": 1741,
+          "sha256": "cf19154d515c4beb139c79d6ff3c7f2720a9b2b6ebe7bb8b00399f2e624dc43f"
+        },
+        {
+          "path": "integrations/native-persistence/tests/test_sql_profile.py",
+          "target": "tests/test_sql_profile.py",
+          "bytes": 1445,
+          "sha256": "7744c8a4716a2a86a9d533522fd73b1e2eedc065e073f3d9dabe5f836fff7473"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/native-persistence/integration.json",
+        "target": "integration.json",
+        "bytes": 2968,
+        "sha256": "a95d61eab5a0c176f911bd5db12f26d43a78ba925ab15e9c7fdff1668272685b"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "observability-harness",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Telemetry and disposable database tests",
+      "summary": "Node/Python OpenTelemetry wrappers with real span/redaction tests, plus explicit Collector and PostgreSQL Testcontainers profiles for transaction and rollback acceptance.",
+      "languages": [
+        "javascript",
+        "python",
+        "sql"
+      ],
+      "frameworks": [
+        "node",
+        "opentelemetry",
+        "testcontainers",
+        "postgresql",
+        "docker"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "resources": [
+        "opentelemetry-js",
+        "opentelemetry-python",
+        "opentelemetry-collector",
+        "testcontainers-node",
+        "testcontainers-python"
+      ],
+      "tags": [
+        "observability",
+        "tracing",
+        "redaction",
+        "testcontainers",
+        "integration-testing",
+        "postgresql"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "node/telemetry.mjs",
+        "python/telemetry.py",
+        "collector/config.yaml",
+        "collector/compose.yaml",
+        "node/postgres.mjs",
+        "tests/containers/postgres.test.mjs",
+        "python/test_containers.py"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [
+          "Linux x86_64, Node 24.19.0 / OpenTelemetry SDK 0.223.0: 2 real SDK span/correlation/attribute-filter tests passed using an in-memory exporter and explicit deterministic sampler.",
+          "Linux x86_64, Python 3.12.14 / OpenTelemetry SDK 1.45.1: 1 real SDK context/attribute/exception test passed using an in-memory exporter and deterministic sampler."
+        ],
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test",
+          "python -m pip install -r python/requirements.lock.txt",
+          "python -m unittest discover -s python -p test_telemetry.py -v"
+        ],
+        "notes": [
+          "Docker, Collector validation and real PostgreSQL/Testcontainers execution were unavailable and remain unexecuted. Explicit container gates fail without a daemon instead of skipping.",
+          "For Docker: npm run test:containers; for Python provision python/requirements-containers.txt then python -m pytest python/test_containers.py. Collector commands are in CONTRACT.md.",
+          "Default official PostgreSQL image is postgres:18.6-alpine3.24; receiving CI may select an approved immutable digest. No production database URL is accepted by these fixture tests.",
+          "Telemetry tests prove wrapper behavior only. The host reviews trusted exporters, production sampling, allowed attribute values, instrumentation additions and backend retention."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/observability-harness/.gitignore",
+          "target": ".gitignore",
+          "bytes": 49,
+          "sha256": "6ea84c2a2a08d09b146c4d51de76426f98a7fa160141ca4f2281c894706f3869"
+        },
+        {
+          "path": "integrations/observability-harness/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 4146,
+          "sha256": "99ab4fdad6566b935656f98d5d87844bcee5c875a6b5b5f3fa965951e7811cc0"
+        },
+        {
+          "path": "integrations/observability-harness/collector/compose.yaml",
+          "target": "collector/compose.yaml",
+          "bytes": 296,
+          "sha256": "6fd523861fdca2a29e52a458354236bb9667b3732e07d592f7fa05fa3d187fcc"
+        },
+        {
+          "path": "integrations/observability-harness/collector/config.yaml",
+          "target": "collector/config.yaml",
+          "bytes": 961,
+          "sha256": "defa37b18763794068f05214a438c11f2abd70f9759b51a90f84fd7f1154b6af"
+        },
+        {
+          "path": "integrations/observability-harness/fixtures/postgres.sql",
+          "target": "fixtures/postgres.sql",
+          "bytes": 148,
+          "sha256": "20565daf6843792c448b12fcbda3759a2a7519a462a6abdeaa9084c092f137f2"
+        },
+        {
+          "path": "integrations/observability-harness/node/postgres.mjs",
+          "target": "node/postgres.mjs",
+          "bytes": 736,
+          "sha256": "cc0e41cc17a5aea8715429b807e5e87eca525d003985544ee256da0271f5c8b4"
+        },
+        {
+          "path": "integrations/observability-harness/node/telemetry.mjs",
+          "target": "node/telemetry.mjs",
+          "bytes": 2856,
+          "sha256": "63f08a8a0bf8ab595289f1af7aff496cddccc60bd6ef5e052ea4ef4ed6760704"
+        },
+        {
+          "path": "integrations/observability-harness/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 103713,
+          "sha256": "9ad1f02402db6048e803a4bc3a6fcb3288fcd7afc2a923b7273e973827776974"
+        },
+        {
+          "path": "integrations/observability-harness/package.json",
+          "target": "package.json",
+          "bytes": 646,
+          "sha256": "2922e1686a13fa5af6186f8e557b49785782f123042c443358eb31ce710459f9"
+        },
+        {
+          "path": "integrations/observability-harness/python/requirements-containers.txt",
+          "target": "python/requirements-containers.txt",
+          "bytes": 70,
+          "sha256": "ff1c03ed2752e21f40080f87c34f3886b642b7a9c65869da5cad54c053698f6f"
+        },
+        {
+          "path": "integrations/observability-harness/python/requirements.lock.txt",
+          "target": "python/requirements.lock.txt",
+          "bytes": 565,
+          "sha256": "ea88b37a87e9bd7c622d0b1e23fc4bda71997735014bb8c60693374b5e858c00"
+        },
+        {
+          "path": "integrations/observability-harness/python/requirements.txt",
+          "target": "python/requirements.txt",
+          "bytes": 73,
+          "sha256": "01172138b8783497883e2599bb41fecb8bdd523c3bcdb3bbe0a1798fcdf3b3b9"
+        },
+        {
+          "path": "integrations/observability-harness/python/telemetry.py",
+          "target": "python/telemetry.py",
+          "bytes": 1616,
+          "sha256": "fd6e68277ea372c0eece5b017665a82f2788695fa36f96d77350fe63f82f8894"
+        },
+        {
+          "path": "integrations/observability-harness/python/test_containers.py",
+          "target": "python/test_containers.py",
+          "bytes": 1117,
+          "sha256": "a73ef3172fd92cc03a34292c6d9e3b59c9e8162cf6eb8e04d1d685873c9bdf5f"
+        },
+        {
+          "path": "integrations/observability-harness/python/test_telemetry.py",
+          "target": "python/test_telemetry.py",
+          "bytes": 1451,
+          "sha256": "9e6710ae921a632cce3a67717709db242496e51ddc12ba9eca82bd281168c5ea"
+        },
+        {
+          "path": "integrations/observability-harness/tests/containers/postgres.test.mjs",
+          "target": "tests/containers/postgres.test.mjs",
+          "bytes": 1284,
+          "sha256": "ac2b4098449f90508f90b5d4a8cd3be6c609862b52d06097767ae8c25d90150b"
+        },
+        {
+          "path": "integrations/observability-harness/tests/telemetry.test.mjs",
+          "target": "tests/telemetry.test.mjs",
+          "bytes": 1839,
+          "sha256": "04a12856d0e09f7f86bcefad1e3e66cd5731222665caa2743cda2b9c49895884"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/observability-harness/integration.json",
+        "target": "integration.json",
+        "bytes": 3068,
+        "sha256": "e9e4477abf231f2a50fc5ad2a5cf643da697959a24e006c169b012406f59d3e6"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "resumable-files",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Resumable uploads and ZIP exports",
+      "summary": "Uppy Dashboard and headless tus adapters with scoped resume, refreshed credentials, tusd ownership hooks, and bounded ZIP export.",
+      "languages": [
+        "typescript"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "platforms": [
+        "browser",
+        "node"
+      ],
+      "resources": [
+        "uppy",
+        "tus-js-client",
+        "tusd",
+        "zip-js"
+      ],
+      "tags": [
+        "uploads",
+        "resumable",
+        "files",
+        "archive",
+        "authorization",
+        "tus"
+      ],
+      "files": [
+        {
+          "path": "integrations/resumable-files/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 5596,
+          "sha256": "2764c405540f58ef149f037b5291babc8bc552f66ba40b46c0e74123803d608c"
+        },
+        {
+          "path": "integrations/resumable-files/fixtures/archive.json",
+          "target": "fixtures/archive.json",
+          "bytes": 175,
+          "sha256": "49b9ae97b13b6e1627b4b4c7f64c364fd0ce5a0e409bbf45fb1d7dad0cbfda47"
+        },
+        {
+          "path": "integrations/resumable-files/fixtures/tusd-hook.json",
+          "target": "fixtures/tusd-hook.json",
+          "bytes": 304,
+          "sha256": "90baf1e738776643aaf39292a7f4342178785c1a0a3ba82673e28b98f35ace98"
+        },
+        {
+          "path": "integrations/resumable-files/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 29338,
+          "sha256": "42bd6ebb36d2516b3055d442890ff04e014d6f4064bbdeef28075c231835ea91"
+        },
+        {
+          "path": "integrations/resumable-files/package.json",
+          "target": "package.json",
+          "bytes": 555,
+          "sha256": "c12d36101cfc55d98bc50058b9c0648ee80784b80d41a1c9a79271f06218ef73"
+        },
+        {
+          "path": "integrations/resumable-files/src/archive.ts",
+          "target": "src/archive.ts",
+          "bytes": 3443,
+          "sha256": "210a6ac40f10012d7a217a3ea5b02e1cccdf49b78513f19703f480616d4702b9"
+        },
+        {
+          "path": "integrations/resumable-files/src/policy.ts",
+          "target": "src/policy.ts",
+          "bytes": 2726,
+          "sha256": "3dd89daa50b3922454a6a362c791e19ee9b9543c202f28245d1cdc048a7b66f5"
+        },
+        {
+          "path": "integrations/resumable-files/src/tus-upload.ts",
+          "target": "src/tus-upload.ts",
+          "bytes": 2887,
+          "sha256": "3828bdaed36d59316fc6021f122281a280c4421ea5b5525becc4fc8fdd72cae5"
+        },
+        {
+          "path": "integrations/resumable-files/src/tusd-hooks.server.ts",
+          "target": "src/tusd-hooks.server.ts",
+          "bytes": 3780,
+          "sha256": "bc22f848d52dce779426bef330e56a1c179503c18a7ddf0e01b44d08a60d714a"
+        },
+        {
+          "path": "integrations/resumable-files/src/uppy.ts",
+          "target": "src/uppy.ts",
+          "bytes": 2013,
+          "sha256": "8fc0412f7eda15ed2833398c4e276c6bd892ad1dacc4c41986bc866761964165"
+        },
+        {
+          "path": "integrations/resumable-files/tests/files.test.mjs",
+          "target": "tests/files.test.mjs",
+          "bytes": 7833,
+          "sha256": "bd00168baadddc1c3827fc5b9920140472aeed6ae8824a3a2924c12f80b411ba"
+        },
+        {
+          "path": "integrations/resumable-files/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/uppy.ts",
+        "src/tus-upload.ts",
+        "src/tusd-hooks.server.ts",
+        "src/archive.ts"
+      ],
+      "verification": {
+        "level": "tested",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0; TypeScript build and six tests including a real tus-js-client transfer against a local HTTP fixture, zip.js round trips, and tusd hook adapter checks."
+        ],
+        "notes": [
+          "Uppy Dashboard browser interactions and a deployed tusd/auth gateway/storage backend were not exercised.",
+          "The host must authenticate every upload resource request and persist quota/ownership/completion state; MIME and fingerprint checks are client hints."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/resumable-files/integration.json",
+        "target": "integration.json",
+        "bytes": 1646,
+        "sha256": "e7978c21671f32f495a2eb5b506685379441add4878a15a95ac08103ae2bf781"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "shared-rust-core",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Shared Rust domain core and UniFFI bindings",
+      "summary": "Deterministic validated inventory transitions with a common conformance fixture, real Python FFI tests and reproducible Swift/Kotlin/Python binding generation.",
+      "languages": [
+        "rust",
+        "python",
+        "swift",
+        "kotlin"
+      ],
+      "frameworks": [
+        "uniffi",
+        "cargo"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows",
+        "android",
+        "ios"
+      ],
+      "resources": [
+        "uniffi"
+      ],
+      "tags": [
+        "native",
+        "ffi",
+        "shared-core",
+        "rust",
+        "conformance",
+        "codegen"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "Cargo.toml",
+        "src/lib.rs",
+        "fixtures/conformance.json",
+        "bindings/generate.py",
+        "bindings/test_python.py",
+        "bindings/InventoryCoreTest.swift",
+        "bindings/InventoryCoreTest.kt"
+      ],
+      "verification": {
+        "level": "experimental",
+        "profiles": [
+          "Linux x86_64, Rust 1.99.0 / UniFFI 0.32.2: 2 Cargo conformance/error tests passed.",
+          "Linux x86_64, Python 3.12.14: generated binding and real shared-library conformance/error checks passed.",
+          "Linux x86_64, UniFFI 0.32.2: Swift and Kotlin binding generation completed with the configured module/package names."
+        ],
+        "commands": [
+          "cargo test --locked",
+          "python3 bindings/generate.py python",
+          "python3 bindings/test_python.py",
+          "python3 bindings/generate.py swift",
+          "python3 bindings/generate.py kotlin"
+        ],
+        "notes": [
+          "Swift/Kotlin host tests, mobile ABIs, Apple cross-compilation and release linking are unexecuted; binding generation alone does not validate those runtimes.",
+          "UniFFI is MPL-2.0. Generated bindings and linked runtime artifacts retain their applicable upstream terms; the Apache-2.0 manifest covers only the original delivered glue/config/fixtures.",
+          "Generated binding/runtime trees and build products are excluded. The receiving app packages architecture-specific libraries and owns state persistence, authorization and synchronization."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/shared-rust-core/.gitignore",
+          "target": ".gitignore",
+          "bytes": 32,
+          "sha256": "8dd8d62e5297ab4b336745d0f4ab246990c77ce2783e3e4bd7a0fe9f525133b1"
+        },
+        {
+          "path": "integrations/shared-rust-core/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 2462,
+          "sha256": "e2ef7dbf92fd153607812116a419d4d0fe710ed2a05f03320cf29781c74a0fa8"
+        },
+        {
+          "path": "integrations/shared-rust-core/Cargo.lock",
+          "target": "Cargo.lock",
+          "bytes": 17603,
+          "sha256": "31d97193a08cd2cf52afa31bfe076dd5b7f135a44fb034dcc19b7da87388d70d"
+        },
+        {
+          "path": "integrations/shared-rust-core/Cargo.toml",
+          "target": "Cargo.toml",
+          "bytes": 403,
+          "sha256": "9225ed58c0b32cbae7d8ce5a53e14a431464d7d1efd4216709d84f2d0e277295"
+        },
+        {
+          "path": "integrations/shared-rust-core/bindings/InventoryCoreTest.kt",
+          "target": "bindings/InventoryCoreTest.kt",
+          "bytes": 659,
+          "sha256": "2c1c473b7aaa810406be5d0b52cd456d9524cd313ade9e2a273e32006156ce73"
+        },
+        {
+          "path": "integrations/shared-rust-core/bindings/InventoryCoreTest.swift",
+          "target": "bindings/InventoryCoreTest.swift",
+          "bytes": 626,
+          "sha256": "a0f66db94443cba12d5e5df4134880974dfb92140cb089afafebf1670c4972de"
+        },
+        {
+          "path": "integrations/shared-rust-core/bindings/generate.py",
+          "target": "bindings/generate.py",
+          "bytes": 1554,
+          "sha256": "b483de89c035e00f32a52640fd3d8f991e66620042139c256e7a3768601c5fe3"
+        },
+        {
+          "path": "integrations/shared-rust-core/bindings/test_python.py",
+          "target": "bindings/test_python.py",
+          "bytes": 1066,
+          "sha256": "db81c49baeb01dd69bda0b8d7771e80d740112a25ccf87b7419cb200f8daccb3"
+        },
+        {
+          "path": "integrations/shared-rust-core/bindings/uniffi-bindgen.rs",
+          "target": "bindings/uniffi-bindgen.rs",
+          "bytes": 84,
+          "sha256": "28353ce56a1b2ad7fa03ee1adfb7d1589319932634bb4c13905c831b57739138"
+        },
+        {
+          "path": "integrations/shared-rust-core/fixtures/conformance.json",
+          "target": "fixtures/conformance.json",
+          "bytes": 442,
+          "sha256": "d9eb3efef7ab460fc331d5eeda30caa7a88ad0b90d8e23ce4074e37f93665472"
+        },
+        {
+          "path": "integrations/shared-rust-core/src/lib.rs",
+          "target": "src/lib.rs",
+          "bytes": 2829,
+          "sha256": "7b1fdd05c08ea1f6e240ad4ebe1e62297ed709e0bdd0b0ad2f034d0737c9f349"
+        },
+        {
+          "path": "integrations/shared-rust-core/tests/conformance.rs",
+          "target": "tests/conformance.rs",
+          "bytes": 1179,
+          "sha256": "834dfd45d8f1f30dc18d95313def82e17b7bfff3c624256af2adb4c2008a3ad3"
+        },
+        {
+          "path": "integrations/shared-rust-core/uniffi.toml",
+          "target": "uniffi.toml",
+          "bytes": 202,
+          "sha256": "acadb2c33d8c012b60ed8be78b5446a7311933b536607ea8d1c1ee0a1615cc05"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/shared-rust-core/integration.json",
+        "target": "integration.json",
+        "bytes": 2510,
+        "sha256": "57878aa62605bb3cda719bac15060d654de44da3efd66f5354307a6085ad1b81"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "typed-backend-services",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Typed backend services and SQL repositories",
+      "summary": "Generated Protobuf/Connect TypeScript service and clients with real local protocol tests, plus a generated sqlc Go SQLite repository with transaction and cancellation tests.",
+      "languages": [
+        "typescript",
+        "go",
+        "protobuf",
+        "sql",
+        "javascript"
+      ],
+      "frameworks": [
+        "connect-rpc",
+        "node",
+        "sqlc",
+        "sqlite"
+      ],
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "resources": [
+        "connect-rpc",
+        "sqlc"
+      ],
+      "tags": [
+        "rpc",
+        "protobuf",
+        "typed-backend",
+        "sql",
+        "transaction",
+        "codegen"
+      ],
+      "entrypoints": [
+        "CONTRACT.md",
+        "proto/genlib/inventory/v1/inventory.proto",
+        "connect/server.ts",
+        "connect/client.ts",
+        "connect/client-node.ts",
+        "go/sqlc.yaml",
+        "go/repository.go"
+      ],
+      "verification": {
+        "level": "tested",
+        "profiles": [
+          "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3, Buf 1.73.0, Connect 2.2.0: proto lint, descriptor generation/typecheck and 2 real local HTTP protocol tests passed.",
+          "Linux x86_64, Go 1.27.2 / sqlc 1.31.1 / modernc SQLite 1.39.1: query generation and repository transaction, missing-row and cancellation test passed."
+        ],
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm run lint:proto",
+          "npm test",
+          "go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.31.1",
+          "sqlc generate -f go/sqlc.yaml",
+          "go -C go test ./..."
+        ],
+        "notes": [
+          "Tested profiles are independent Node and Go runtimes. The injected repository is the integration boundary; the examples do not claim to share process memory.",
+          "Generated Protobuf and SQL query code is excluded from delivered files; commands regenerate it using pinned tools. Retain upstream generator/runtime notices.",
+          "The browser client source typechecks but no browser/CORS deployment was exercised. Production auth, database lifecycle and trusted breaking-change baselines remain receiving-service gates."
+        ]
+      },
+      "files": [
+        {
+          "path": "integrations/typed-backend-services/.gitignore",
+          "target": ".gitignore",
+          "bytes": 57,
+          "sha256": "344a348e1b7e91d22475388ca1bdb8eac59b9163746966c0edd2c4891499456d"
+        },
+        {
+          "path": "integrations/typed-backend-services/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 2816,
+          "sha256": "f5482f2d37d56a918146637a2d066d7a6e603695ab95f7a53798c2113d4227d0"
+        },
+        {
+          "path": "integrations/typed-backend-services/buf.gen.yaml",
+          "target": "buf.gen.yaml",
+          "bytes": 92,
+          "sha256": "26496b5439b89d16b052baea6e9d52d75456d18b759a135914ff15255d4e8f18"
+        },
+        {
+          "path": "integrations/typed-backend-services/buf.yaml",
+          "target": "buf.yaml",
+          "bytes": 93,
+          "sha256": "bda68586bbdf808b33c348d4c11029efaedf23a94b5e078208337606e24cd1ce"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect/client-node.ts",
+          "target": "connect/client-node.ts",
+          "bytes": 636,
+          "sha256": "ff1b0b788e0d9548551b2450cf0aa7df14e2dd321de838c42a252cb2ae983666"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect/client.ts",
+          "target": "connect/client.ts",
+          "bytes": 758,
+          "sha256": "693e78d0a6abbba59d73fa9ab3bea698ecd2d6f42beed53cae43cabec9ccc5b6"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect/repository.ts",
+          "target": "connect/repository.ts",
+          "bytes": 1397,
+          "sha256": "587890c4435bf80329cd4eb7a5b63dc1af2216563df85fcf3f3fa9c56e00af5e"
+        },
+        {
+          "path": "integrations/typed-backend-services/connect/server.ts",
+          "target": "connect/server.ts",
+          "bytes": 1739,
+          "sha256": "583c627eb7dee78cdec9aba116c02c45daa626db31266ee1bca7309ae7a494a1"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/go.mod",
+          "target": "go/go.mod",
+          "bytes": 589,
+          "sha256": "4542e7ea68cb64c504020342179d6f3ee965184b7a02db2915c785bce9e33d4c"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/go.sum",
+          "target": "go/go.sum",
+          "bytes": 4085,
+          "sha256": "527011059ffc4f7040c9a7d445a9cbfa8d3aaab2b25387826a67ce94ee5ed796"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/queries.sql",
+          "target": "go/queries.sql",
+          "bytes": 271,
+          "sha256": "ac8885d7bf88f294abcb5b85a6c1d365a31ff5515643a2e1d4c1d700373a7319"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/repository.go",
+          "target": "go/repository.go",
+          "bytes": 1206,
+          "sha256": "cfd1dee342fe9a801a607f0a66583b66e9c2a7998425e9c553f6c73e82e8168b"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/repository_test.go",
+          "target": "go/repository_test.go",
+          "bytes": 1127,
+          "sha256": "723f486a2e06728222b6d01a476f4aebb2bfa2f59f5caed5fc241168f397eb6a"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/schema.sql",
+          "target": "go/schema.sql",
+          "bytes": 160,
+          "sha256": "22552a2e1735a7e14b0a732701b7b4e87dfea2293b3c0d55b4ba944afdb87b48"
+        },
+        {
+          "path": "integrations/typed-backend-services/go/sqlc.yaml",
+          "target": "go/sqlc.yaml",
+          "bytes": 216,
+          "sha256": "336f21bdd5c48298ad10686c7c0ffec3c907566ceff2db8df6cfa613a0e5d39c"
+        },
+        {
+          "path": "integrations/typed-backend-services/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 10915,
+          "sha256": "3e09650c4b61c0683831734ad4effe0e546935ac3032c4b2581692661fe6ba86"
+        },
+        {
+          "path": "integrations/typed-backend-services/package.json",
+          "target": "package.json",
+          "bytes": 715,
+          "sha256": "46a0a33cabc5ec7ed04d04f5c4cac619a89fbb825baf0de302dcfd47f2479435"
+        },
+        {
+          "path": "integrations/typed-backend-services/proto/genlib/inventory/v1/inventory.proto",
+          "target": "proto/genlib/inventory/v1/inventory.proto",
+          "bytes": 697,
+          "sha256": "ec5e0934f0972aeeb536938de5c1463965946ec20dd64171753bb650c060a292"
+        },
+        {
+          "path": "integrations/typed-backend-services/tests/connect.test.mjs",
+          "target": "tests/connect.test.mjs",
+          "bytes": 2091,
+          "sha256": "6e29e3f85d26387c3c06835f75dba28e432ad07f46dad0989eace40a9787e783"
+        },
+        {
+          "path": "integrations/typed-backend-services/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 341,
+          "sha256": "42cfce95669344944b9f7e25d6a1e7ab55639bd1897e77160acf2a85399f3161"
+        }
+      ],
+      "manifest": {
+        "path": "integrations/typed-backend-services/integration.json",
+        "target": "integration.json",
+        "bytes": 2649,
+        "sha256": "9eeaf0d51221c15020722320c924a6f67c588d9ecfe57b6b2b88c6fa939821eb"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "web-calendar-files",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Calendar export and controlled file trees",
+      "summary": "React Big Calendar with explicit timed/all-day event rules, stable iCalendar generation, and React Arborist mutations that preserve identity and prevent cycles.",
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "platforms": [
+        "browser",
+        "node"
+      ],
+      "resources": [
+        "react-big-calendar",
+        "ical-generator",
+        "react-arborist"
+      ],
+      "tags": [
+        "calendar",
+        "scheduling",
+        "icalendar",
+        "files",
+        "tree",
+        "drag-drop"
+      ],
+      "files": [
+        {
+          "path": "integrations/web-calendar-files/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 4864,
+          "sha256": "3d0df5eea67324a2273c2aaeb25e1d77c7d8940b67321e5d28967fb855677a40"
+        },
+        {
+          "path": "integrations/web-calendar-files/fixtures/events.json",
+          "target": "fixtures/events.json",
+          "bytes": 435,
+          "sha256": "f244684641e5b61784a5d287311f873bad233c9fa3bc60859ea3c8aeb8e40192"
+        },
+        {
+          "path": "integrations/web-calendar-files/fixtures/files.json",
+          "target": "fixtures/files.json",
+          "bytes": 330,
+          "sha256": "bbdec7917ba671209e13ccf1f0f07c4b6652ca629223cc4abdb5a7e707b9464a"
+        },
+        {
+          "path": "integrations/web-calendar-files/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 35852,
+          "sha256": "b1455f6c1997d99f45c09b44f6f7a059200d70dd03c2bd91358dd28b05a18860"
+        },
+        {
+          "path": "integrations/web-calendar-files/package.json",
+          "target": "package.json",
+          "bytes": 806,
+          "sha256": "f4d974207e19fe9eea04ad76353decad8c299d16c9aa6bb3ef9d9bf425f39eba"
+        },
+        {
+          "path": "integrations/web-calendar-files/src/FileTree.tsx",
+          "target": "src/FileTree.tsx",
+          "bytes": 2972,
+          "sha256": "94293fa1d53c45cfcfe456423a4fac77a8f72926995e7493435e0923ad3074fe"
+        },
+        {
+          "path": "integrations/web-calendar-files/src/Scheduler.tsx",
+          "target": "src/Scheduler.tsx",
+          "bytes": 2169,
+          "sha256": "be76d7c5f8a7d0cdb3ee265e6d7d66333f727ae0a18f0681ec0289b4418dc76c"
+        },
+        {
+          "path": "integrations/web-calendar-files/src/events.ts",
+          "target": "src/events.ts",
+          "bytes": 2611,
+          "sha256": "983c4a3e612a68f21e64ce1fd452802e5eb079170f38b671ae427cb29592d37c"
+        },
+        {
+          "path": "integrations/web-calendar-files/src/ical.ts",
+          "target": "src/ical.ts",
+          "bytes": 1226,
+          "sha256": "45b5696fff79f81da0bf42dca3438178477b2d5f32b41e803f505c465ee70623"
+        },
+        {
+          "path": "integrations/web-calendar-files/src/styles.css",
+          "target": "src/styles.css",
+          "bytes": 395,
+          "sha256": "175b07064e05ad4a7b3a34c61f733a643043f90005c3ee045f0d83c2de247ac8"
+        },
+        {
+          "path": "integrations/web-calendar-files/src/tree-model.ts",
+          "target": "src/tree-model.ts",
+          "bytes": 4372,
+          "sha256": "8424056b7ccf70bac23f67b599c47ca409cea5b3d3663bdbe4536c5833d7db56"
+        },
+        {
+          "path": "integrations/web-calendar-files/tests/calendar-files.test.mjs",
+          "target": "tests/calendar-files.test.mjs",
+          "bytes": 3028,
+          "sha256": "e29db20fd9966d25fe8dcd2d6683199d71fc96ece4da68139e1e0b96ab023607"
+        },
+        {
+          "path": "integrations/web-calendar-files/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/Scheduler.tsx",
+        "src/events.ts",
+        "src/ical.ts",
+        "src/FileTree.tsx",
+        "src/tree-model.ts"
+      ],
+      "compatibility": {
+        "reactMajors": [
+          18,
+          19
+        ]
+      },
+      "verification": {
+        "level": "tested",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and four tests covering real ical-generator output across DST/all-day cases and Arborist move/index/tree invariants."
+        ],
+        "notes": [
+          "React 18 is peer-compatible but unexecuted; browser calendar/tree keyboard, drag/drop and calendar-client import were not tested.",
+          "The calendar displays timed events in the browser local zone; recurrence expansion, remote calendar sync, availability checks and atomic persistence are application responsibilities."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/web-calendar-files/integration.json",
+        "target": "integration.json",
+        "bytes": 1888,
+        "sha256": "c1fdfcbd0d4959b91302b12f2ee09e18c36e73d503b4276995b80d0248e5304c"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "web-data-workbench",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Editable data tables, search and time series",
+      "summary": "Shared versioned row edits and query contracts across TanStack Table, Tabulator and Glide, plus MiniSearch indexing and uPlot with semantic fallbacks.",
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "platforms": [
+        "browser",
+        "node"
+      ],
+      "resources": [
+        "tanstack-table",
+        "tabulator",
+        "glide-data-grid",
+        "minisearch",
+        "uplot"
+      ],
+      "tags": [
+        "data-table",
+        "grid",
+        "search",
+        "charts",
+        "editing",
+        "pagination",
+        "react18"
+      ],
+      "files": [
+        {
+          "path": "integrations/web-data-workbench/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 5094,
+          "sha256": "f6d2e0fc8196da2839c1a6afa01eed1e5e60eefbb1e771b0fbed75b6454bd179"
+        },
+        {
+          "path": "integrations/web-data-workbench/fixtures/inventory.json",
+          "target": "fixtures/inventory.json",
+          "bytes": 346,
+          "sha256": "9f9f1b5285b5df5180dbe4b8f7498dc2b031be21040e3a0d37d92cbdc0d1c532"
+        },
+        {
+          "path": "integrations/web-data-workbench/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 58188,
+          "sha256": "b7d938b9526326da709ceddc180542d2e43903b79af1498b0dcf27bba222833d"
+        },
+        {
+          "path": "integrations/web-data-workbench/package.json",
+          "target": "package.json",
+          "bytes": 901,
+          "sha256": "3c97f93309afb7149006de29e7727934d8d85f9fbb6cdf8e7887fd9790558184"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/GlideGrid.tsx",
+          "target": "src/GlideGrid.tsx",
+          "bytes": 2242,
+          "sha256": "b15090d0ef3b4fc3b01a1b2aec6d503ef2392b08425b949a42262752b52bd139"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/TanStackTable.tsx",
+          "target": "src/TanStackTable.tsx",
+          "bytes": 2811,
+          "sha256": "ae539c8d2fa4a7aef29c8bba18ba742ab303267965ed7fc6194f423ca6ed2089"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/TimeSeriesChart.tsx",
+          "target": "src/TimeSeriesChart.tsx",
+          "bytes": 2018,
+          "sha256": "346046c7d799a4bba41791c6368da1ee2430bee785a3aac27b34594b9f923717"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/model.ts",
+          "target": "src/model.ts",
+          "bytes": 4022,
+          "sha256": "d7cd699b617cad8cfaaeb80f00ce1d5fd7ea4febef768d972f841406e785e088"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/search.ts",
+          "target": "src/search.ts",
+          "bytes": 1346,
+          "sha256": "7a5a1793902299e5ff5c8d9e7faf9b17b9a54b1172cef2d00b1c522b157851df"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/series.ts",
+          "target": "src/series.ts",
+          "bytes": 1103,
+          "sha256": "90940d6cc85554ca0d1740deb414223bcd18fad284920401f687297be4ac16ff"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/styles.css",
+          "target": "src/styles.css",
+          "bytes": 513,
+          "sha256": "18ccc982d3efccddadb84e117730714937f06677203dbe1d06f1f864159d2baf"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/tabulator.ts",
+          "target": "src/tabulator.ts",
+          "bytes": 1941,
+          "sha256": "7e5125f15848fc35e75818dffe09e54316b7f6a9b766704b7b4ffc29c7d9698d"
+        },
+        {
+          "path": "integrations/web-data-workbench/src/useDataSource.ts",
+          "target": "src/useDataSource.ts",
+          "bytes": 1396,
+          "sha256": "e707d5fc84a58335e46d0b8af845bf5abe6a59bdc8d6dd3bfeb798f3e8d9653f"
+        },
+        {
+          "path": "integrations/web-data-workbench/tests/workbench.test.mjs",
+          "target": "tests/workbench.test.mjs",
+          "bytes": 3499,
+          "sha256": "2661c419fa166e01da9a21c5a1bc67b3c3e46f96c5531cecbb17b27eb79ce1ef"
+        },
+        {
+          "path": "integrations/web-data-workbench/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/model.ts",
+        "src/TanStackTable.tsx",
+        "src/tabulator.ts",
+        "src/GlideGrid.tsx",
+        "src/search.ts",
+        "src/TimeSeriesChart.tsx",
+        "src/useDataSource.ts"
+      ],
+      "compatibility": {
+        "reactMajors": [
+          18
+        ]
+      },
+      "verification": {
+        "level": "tested",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0 + React/ReactDOM 18.3.1; TypeScript build and five tests covering versioned edit batches, query validation, real MiniSearch updates, aligned time series and real TanStack v9 server rendering."
+        ],
+        "notes": [
+          "Stable Glide 6.0.3 limits this combined pack to React 18; React 19 is unsupported by this profile.",
+          "Tabulator/Glide browser editing, uPlot canvas/resize and device/accessibility acceptance were not exercised; semantic previews are bounded and need server pagination for full datasets."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/web-data-workbench/integration.json",
+        "target": "integration.json",
+        "bytes": 2031,
+        "sha256": "623109fd04f4645788cb60d22bce5b074bed135a280ad156557dad04846e998b"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "web-forms-editor",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "title": "Schema forms, page editing and input primitives",
+      "summary": "JSON Forms with schema validation, Puck registered blocks and revision-safe drafts, Radix/React Aria dialog variants, and phone/masked inputs.",
+      "languages": [
+        "typescript",
+        "css"
+      ],
+      "frameworks": [
+        "react"
+      ],
+      "platforms": [
+        "browser",
+        "node"
+      ],
+      "resources": [
+        "json-forms",
+        "puckeditor-core",
+        "radix-primitives",
+        "react-aria",
+        "libphonenumber-js",
+        "imask"
+      ],
+      "tags": [
+        "forms",
+        "schema",
+        "page-editor",
+        "drafts",
+        "accessibility",
+        "phone",
+        "mask"
+      ],
+      "files": [
+        {
+          "path": "integrations/web-forms-editor/CONTRACT.md",
+          "target": "CONTRACT.md",
+          "bytes": 5891,
+          "sha256": "d1a79ffe747d6841a5a115bf14416674305eab11d9a6c9ff4f2d6233c39489f0"
+        },
+        {
+          "path": "integrations/web-forms-editor/fixtures/contact.schema.json",
+          "target": "fixtures/contact.schema.json",
+          "bytes": 553,
+          "sha256": "3f99522f27e9f18e5d618c06867870628c257a87b48fb749e82cdd27c6829253"
+        },
+        {
+          "path": "integrations/web-forms-editor/fixtures/contact.ui.json",
+          "target": "fixtures/contact.ui.json",
+          "bytes": 458,
+          "sha256": "5cd91bbf629107938592c472c976ce4aa9efc8d84cca31507bfed97dcdf3ad65"
+        },
+        {
+          "path": "integrations/web-forms-editor/fixtures/page.json",
+          "target": "fixtures/page.json",
+          "bytes": 496,
+          "sha256": "841908b66a4f171f6924a54c0c82b3faa0bc0c3e380c132ee4e4051aab9c8546"
+        },
+        {
+          "path": "integrations/web-forms-editor/package-lock.json",
+          "target": "package-lock.json",
+          "bytes": 84178,
+          "sha256": "c98a5ecf5c3c73781b7ca3ad971c4d8a26b5ea82641d4fde974936fa1de6e154"
+        },
+        {
+          "path": "integrations/web-forms-editor/package.json",
+          "target": "package.json",
+          "bytes": 905,
+          "sha256": "b45e74094842c99f276400813d55aba098dbaafdcc37d801c4d1a5a3ae105d20"
+        },
+        {
+          "path": "integrations/web-forms-editor/src/ContactInput.tsx",
+          "target": "src/ContactInput.tsx",
+          "bytes": 2856,
+          "sha256": "2714cb39264de9a2af8f1ce3fbef8acf1a9acaaff6479e6efcc5b5b99af6e2cd"
+        },
+        {
+          "path": "integrations/web-forms-editor/src/PageEditor.tsx",
+          "target": "src/PageEditor.tsx",
+          "bytes": 4455,
+          "sha256": "df95355957357ad4d0da77d8a1ea1dbd6e90f0cf613c935fb2a0cce62edecc4f"
+        },
+        {
+          "path": "integrations/web-forms-editor/src/Primitives.tsx",
+          "target": "src/Primitives.tsx",
+          "bytes": 1606,
+          "sha256": "58e2a05312f146c9efef21ff3368b133b63184fbcce03988cde1c55f416dda0b"
+        },
+        {
+          "path": "integrations/web-forms-editor/src/SchemaForm.tsx",
+          "target": "src/SchemaForm.tsx",
+          "bytes": 2943,
+          "sha256": "d5007a5a960cb12009dc33259810888977f5ed8070bb0fd39939c4aa46901799"
+        },
+        {
+          "path": "integrations/web-forms-editor/src/documents.ts",
+          "target": "src/documents.ts",
+          "bytes": 6327,
+          "sha256": "892d090fcde7ee470e0bcf521f1c3ae2aa09cf5d55f430f228ffd5b7985a4615"
+        },
+        {
+          "path": "integrations/web-forms-editor/src/styles.css",
+          "target": "src/styles.css",
+          "bytes": 1265,
+          "sha256": "9803fe6947ebc688a7638deace33740c9b7df638815af2bd960a3cce5d7eccb7"
+        },
+        {
+          "path": "integrations/web-forms-editor/tests/forms-editor.test.mjs",
+          "target": "tests/forms-editor.test.mjs",
+          "bytes": 5655,
+          "sha256": "363f884f39837e5f48739780631f7e74838c47999595dde1fb565951f7da8918"
+        },
+        {
+          "path": "integrations/web-forms-editor/tsconfig.json",
+          "target": "tsconfig.json",
+          "bytes": 452,
+          "sha256": "184724fc08dbf41e336bf8b3d6ece8cac2242c04f92815729f045c5dbe463c5e"
+        }
+      ],
+      "entrypoints": [
+        "src/SchemaForm.tsx",
+        "src/PageEditor.tsx",
+        "src/documents.ts",
+        "src/Primitives.tsx",
+        "src/ContactInput.tsx"
+      ],
+      "compatibility": {
+        "reactMajors": [
+          18,
+          19
+        ]
+      },
+      "verification": {
+        "level": "tested",
+        "commands": [
+          "npm ci --ignore-scripts",
+          "npm test"
+        ],
+        "profiles": [
+          "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and six tests covering real JSON Forms/AJV and Puck server rendering, draft conflicts, phone parsing and dialog trigger markup."
+        ],
+        "notes": [
+          "React 18 is within upstream peer ranges but was not executed in this pack; no browser drag/drop, mask events, focus, keyboard or screen-reader acceptance was run.",
+          "Persistence, revision enforcement, publication authorization and custom block/schema validation belong to the receiving application."
+        ]
+      },
+      "manifest": {
+        "path": "integrations/web-forms-editor/integration.json",
+        "target": "integration.json",
+        "bytes": 2001,
+        "sha256": "20003340a7a2e31a9e795c73ed7392b7e8195d1fbb4cc0715f37597e23a22a33"
+      }
+    }
+  ]
+}

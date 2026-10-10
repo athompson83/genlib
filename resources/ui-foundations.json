@@ -57,8 +57,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -126,8 +126,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -193,8 +193,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -265,11 +265,14 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/best-practices/ui-libraries.md"
+        "guide": "docs/best-practices/ui-libraries.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -284,7 +287,13 @@
         "npm install radix-ui",
         "import { Dialog } from \"radix-ui\";",
         "Docs: https://www.radix-ui.com/primitives/docs/overview/introduction"
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "base-ui",
@@ -335,8 +344,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -402,11 +411,14 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/best-practices/ui-libraries.md"
+        "guide": "docs/best-practices/ui-libraries.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -420,7 +432,13 @@
       "quickstart": [
         "npm install react-aria-components",
         "Docs: https://react-spectrum.adobe.com/react-aria/getting-started.html"
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "headless-ui",
@@ -480,8 +498,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -552,8 +570,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -627,8 +645,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -692,8 +710,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "mobile-app"
@@ -763,8 +781,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -834,8 +852,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -901,8 +919,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -972,8 +990,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -1101,8 +1119,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -1164,11 +1182,14 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/best-practices/ui-libraries.md"
+        "guide": "docs/best-practices/ui-libraries.md",
+        "integrations": [
+          "web-data-workbench"
+        ]
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -1183,7 +1204,13 @@
         "npm install @tanstack/react-table",
         "Or use Genlib data-table: node \"$GENLIB_ROOT/bin/genlib.mjs\" plan data-table --target \"$APP_ROOT\"",
         "Docs: https://tanstack.com/table/latest"
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-data-workbench/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "storefront-ui",
@@ -1235,8 +1262,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app",

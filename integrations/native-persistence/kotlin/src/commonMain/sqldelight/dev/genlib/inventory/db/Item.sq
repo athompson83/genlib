@@ -1,0 +1,21 @@
+CREATE TABLE item (
+  id TEXT NOT NULL PRIMARY KEY,
+  title TEXT NOT NULL CHECK(length(title) BETWEEN 1 AND 200),
+  completed INTEGER AS Boolean NOT NULL DEFAULT 0,
+  archived INTEGER AS Boolean NOT NULL DEFAULT 0
+);
+
+listActive:
+SELECT * FROM item WHERE archived = 0 ORDER BY id;
+
+findById:
+SELECT * FROM item WHERE id = ?;
+
+insertItem:
+INSERT INTO item(id, title) VALUES (?, ?);
+
+setCompleted:
+UPDATE item SET completed = ? WHERE id = ?;
+
+archiveItem:
+UPDATE item SET archived = 1 WHERE id = ?;

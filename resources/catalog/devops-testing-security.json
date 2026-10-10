@@ -1999,11 +1999,20 @@
       ],
       "genlib": {
         "module": "structured-logger",
-        "guide": "docs/resources/devops-testing-security.md"
+        "guide": "docs/resources/devops-testing-security.md",
+        "integrations": [
+          "observability-harness"
+        ]
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/observability-harness/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "opentelemetry-python",
@@ -2057,11 +2066,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/devops-testing-security.md"
+        "guide": "docs/resources/devops-testing-security.md",
+        "integrations": [
+          "observability-harness"
+        ]
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/observability-harness/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "opentelemetry-collector",
@@ -2111,11 +2129,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/devops-testing-security.md"
+        "guide": "docs/resources/devops-testing-security.md",
+        "integrations": [
+          "observability-harness"
+        ]
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/observability-harness/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "prometheus",
@@ -3956,11 +3983,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/devops-testing-security.md"
+        "guide": "docs/resources/devops-testing-security.md",
+        "integrations": [
+          "observability-harness"
+        ]
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/observability-harness/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "testcontainers-go",
@@ -4064,11 +4100,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/devops-testing-security.md"
+        "guide": "docs/resources/devops-testing-security.md",
+        "integrations": [
+          "observability-harness"
+        ]
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/observability-harness/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "faker-js",

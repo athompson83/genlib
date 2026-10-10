@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "email": { "type": "string", "format": "email" },
+    "business": { "type": "boolean" },
+    "company": { "type": "string", "minLength": 1 },
+    "contacts": { "type": "array", "maxItems": 5, "items": { "type": "string", "format": "email" } }
+  },
+  "required": ["name", "email"],
+  "if": { "properties": { "business": { "const": true } }, "required": ["business"] },
+  "then": { "required": ["company"] },
+  "additionalProperties": false
+}

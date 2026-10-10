@@ -1,0 +1,17 @@
+{
+  "scope": "Allowlisted OpenRewrite core recipe artifacts selected by this profile. This is not a complete transitive tool/parser dependency inventory; external recipe jars are excluded.",
+  "artifacts": [
+    "org.openrewrite:rewrite-core",
+    "org.openrewrite:rewrite-java",
+    "org.openrewrite:rewrite-maven",
+    "org.openrewrite:rewrite-xml"
+  ],
+  "recipe": "org.openrewrite.java.ChangePackage",
+  "version": "8.90.4",
+  "restricted": "No MSAL/proprietary artifacts or recipe bundles. This allowlist is not a license classifier.",
+  "tool": {
+    "artifact": "org.openrewrite.maven:rewrite-maven-plugin",
+    "version": "6.46.1",
+    "license": "Apache-2.0"
+  }
+}

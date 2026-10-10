@@ -52,13 +52,24 @@ Promote to `tested` only after the relevant tests and TypeScript build pass, the
 
 For published modules, advance the version when changing delivered source or its integration contract. Keep a released version's content stable. Each checkout exposes one selected version per ID; previous catalogs remain reproducible through their Git revisions. No consumer operation silently replaces a customized installed version.
 
+## Add or change an integration pack
+
+Use `integrations/<id>/integration.json`, `CONTRACT.md`, original source/configuration, pinned optional dependencies and meaningful fixtures. The [integration format and adoption guide](docs/integrations.md) defines manifest fields, resource bindings and safe file limits. Keep dependencies isolated from the zero-dependency CLI and identify their exact license scope. Declare React peer majors explicitly; native/desktop/service profiles must name their runtime requirements.
+
+Start at `experimental`; promote only the exercised scope and record the actual environments in `verification.profiles`. Include reproducible commands for remaining acceptance checks. Generators, containers and package scripts run only in the deliberate development/receiving-app workflow. The installer must never execute them.
+
+For the direct MCP package, run `npm ci --ignore-scripts --prefix packages/genlib-mcp` and `npm test --prefix packages/genlib-mcp`. Keep stdio/HTTP protocol tests, project scoping, readonly defaults and write opt-in intact. [The MCP guide](docs/mcp-server.md) documents connection and deployment boundaries.
+
 ## Regenerate derived files
 
 Edit authored source and canonical instructions, then run:
 
 ```sh
 npm run registry:build
+npm run integrations:build
 npm run skills:sync
+npm run docs:sync
+npm run index:build
 npm run check
 ```
 
@@ -67,7 +78,9 @@ Commit the relevant generated files with the authored changes:
 | Authoritative input | Generated output |
 | --- | --- |
 | Module manifests, contracts, source, `LICENSE`, and `NOTICE` | `registry/catalog.json` and `registry/manifests/` |
+| Integration manifests, contracts and declared files | `registry/integrations.json` |
 | `skills/genlib-use/` | `.agents/skills/genlib-use/` and `.claude/skills/genlib-use/` |
+| Source catalogs and documentation sections | Generated count blocks and `registry/search-index.jsonl` |
 
 Do not hand-edit generated hashes, catalog entries, or skill mirrors. Registry and skill check modes report drift without writing. Skill sync rejects unexpected content in its dedicated mirror directories; inspect such content before resolving a conflict so unrelated work is not lost.
 
@@ -84,6 +97,8 @@ Changes to the installer require tests for the affected safety and recovery beha
 A proposed change should state the problem, resulting behavior, affected modules and versions, compatibility or migration implications, and verification performed. Keep work scoped and preserve parallel contributors' changes.
 
 If claiming a cost benefit, measure total model cost, context use, elapsed time, repair attempts, and accepted feature behavior against a normal library-aware build process. Include curation and maintenance effort. Copied byte counts alone are not evidence of token savings.
+
+Run the offline [retrieval evaluation](docs/retrieval-evaluation.md) when changing ranking or adoption paths. Use [catalog health](docs/catalog-health.md) for deliberately selected exact-version advisory/license/lifecycle enrichment; preserve query time, provenance and unknown/error states. New or corrected resource records need source verification (`--file` and optionally `--ids`), with blocked responses reported separately.
 
 ## Documentation is part of every change
 

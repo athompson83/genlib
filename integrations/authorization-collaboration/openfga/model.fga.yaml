@@ -1,0 +1,31 @@
+name: Inventory document access
+model_file: ./model.fga
+tuples:
+  - user: user:alice
+    relation: owner
+    object: document:inventory
+  - user: user:bob
+    relation: viewer
+    object: document:inventory
+tests:
+  - name: owner can read and edit
+    check:
+      - user: user:alice
+        object: document:inventory
+        assertions:
+          viewer: true
+          editor: true
+  - name: viewer cannot edit
+    check:
+      - user: user:bob
+        object: document:inventory
+        assertions:
+          viewer: true
+          editor: false
+  - name: unknown principal denied
+    check:
+      - user: user:mallory
+        object: document:inventory
+        assertions:
+          viewer: false
+          editor: false

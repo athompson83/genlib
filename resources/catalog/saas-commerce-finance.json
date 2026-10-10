@@ -1210,11 +1210,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/saas-commerce-finance.md"
+        "guide": "docs/resources/saas-commerce-finance.md",
+        "integrations": [
+          "authorization-collaboration"
+        ]
       },
       "install": [
         "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/authorization-collaboration/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "simplewebauthn",
@@ -1824,8 +1833,8 @@
       "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": "https://github.com/medusajs/medusa/blob/HEAD/LICENSE",
-        "scope": "MIT except Enterprise Edition materials listed in ENTERPRISE-LICENSE.md. npm packages declare \"SEE LICENSE IN LICENSE\"."
+        "url": "https://github.com/medusajs/medusa/blob/develop/LICENSE",
+        "scope": "MIT applies only to the identified Medusa core package/files. Enterprise Edition materials and hosted offerings retain separate terms; registry SEE LICENSE IN LICENSE metadata is not blanket permission."
       },
       "homepage": "https://medusajs.com",
       "repository": "https://github.com/medusajs/medusa",
@@ -1834,7 +1843,8 @@
       "useWhen": "Use instead of hand-building cart, checkout, order and inventory modules for a custom storefront.",
       "cautions": [
         "Avoid Enterprise Edition materials without a commercial agreement.",
-        "v1 and v2 architectures differ substantially."
+        "v1 and v2 architectures differ substantially.",
+        "Use only reviewed MIT core files/packages; exclude Enterprise Edition materials unless separately authorized."
       ],
       "tags": [
         "ecommerce",
@@ -1855,15 +1865,28 @@
         {
           "url": "https://docs.medusajs.com",
           "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/medusajs/medusa",
+          "title": "Medusa core and Enterprise license boundaries"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/saas-commerce-finance.md"
+        "guide": "docs/resources/saas-commerce-finance.md",
+        "integrations": [
+          "commerce-storefront"
+        ]
       },
       "install": [
         "Scaffold with the official create-medusa-app command, commit the lockfile and pin @medusajs/* versions together."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/commerce-storefront/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "vendure",
@@ -3183,11 +3206,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/saas-commerce-finance.md"
+        "guide": "docs/resources/saas-commerce-finance.md",
+        "integrations": [
+          "document-pipeline"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/document-pipeline/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "mjml",

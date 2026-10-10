@@ -2,7 +2,7 @@
 
 Records in [resources/catalog/backend-api.json](../../resources/catalog/backend-api.json) cover server frameworks, persistence, queues, API contracts, HTTP clients and search for API backends, SaaS products and web apps. Choose by the project's existing language and runtime first, then by the smallest tool that removes the hand-written work: stay inside one ecosystem (for example FastAPI + SQLAlchemy/SQLModel + Alembic + Celery, or Fastify/Hono + Drizzle/Prisma + BullMQ), prefer PostgreSQL unless a constraint says otherwise, and prefer Valkey (BSD) over Redis when license obligations matter. Records marked `service` are run as separate processes; `license-review` records (Redis, MongoDB) need an explicit license decision before adoption. Auth, payments and email live in the SaaS shard; observability, containers and testing in the DevOps shard; vector databases in the AI shard.
 
-Every record has `verification: "partial"`: on 2026-10-10 the repository, homepage/docs links and npm/PyPI/crates license metadata were checked automatically with `scripts/verify-resources.mjs`. The code was not reviewed, built or tested in Genlib. Pin the reviewed version, keep upstream notices, and test the real integration.
+Every record has `verification: "partial"`: on 2026-10-10 the repository, homepage/docs links and npm/PyPI/crates license metadata were checked automatically with `scripts/verify-resources.mjs`. Catalog link/license checks do not establish runtime integration; the pack contracts below identify the actual tested profiles. Pin the reviewed version, keep upstream notices, and test the real integration.
 
 Inspect a record for cautions, packages and install notes: `node tools/resources.mjs inspect <id> --json`.
 
@@ -181,3 +181,10 @@ Inspect a record for cautions, packages and install notes: `node tools/resources
 - MinIO: its open-source repository states it is no longer maintained; `seaweedfs` is listed as a self-hosted S3-compatible alternative.
 - ioredis: maintained on a best-effort basis upstream; `node-redis` is listed (BullMQ still depends on ioredis).
 - tRPC is catalogued in the frontend-web shard (`trpc`).
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [API contracts and generated clients](../../integrations/api-contracts/CONTRACT.md): `openapi-typescript`, `orval`.
+- [Typed backend services and SQL repositories](../../integrations/typed-backend-services/CONTRACT.md): `connect-rpc`, `sqlc`.

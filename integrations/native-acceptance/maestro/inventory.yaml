@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: Apache-2.0
+appId: ${APP_ID}
+name: Inventory creation and completion
+---
+- launchApp:
+    clearState: true
+- assertVisible: "0 completed"
+- tapOn: "Item title"
+- inputText: "Ship integration"
+- tapOn: "Add item"
+- assertVisible: "Ship integration"
+- assertVisible: "0 completed"
+- tapOn: "Mark Ship integration complete"
+- assertVisible: "1 completed"
+- takeScreenshot: inventory-completed

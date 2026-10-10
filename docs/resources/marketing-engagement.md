@@ -2,7 +2,7 @@
 
 Newsletters and email templates (MJML, React Email), ESP and transactional email SDKs, marketing automation (Mautic, Listmonk), CRM clients (HubSpot, Salesforce, Pipedrive and self-hosted CRMs), web and mobile push, lead-capture forms and landing pages, reviews and social proof, and referral or affiliate programs.
 
-Every record here was checked against its registry or repository on 2026-10-10: the package or repository exists, is not deprecated, and its license comes from registry metadata or the LICENSE file. Popularity is the registry's own number (monthly downloads, total downloads, importers or GitHub stars) and is only comparable within one ecosystem. Records marked `license-review` are copyleft, commercial or have no declared license; decide before embedding them. Platform terms change often: prefer official APIs, keep keys and user tokens on the server, and honor consent and unsubscribe laws.
+Imported registry and repository metadata is a starting point for source selection. A reachable package does not establish current provider availability, integration readiness or rights to every product feature. Lifecycle and license-scope corrections reviewed on 2026-10-10 are documented in [the integration expansion guide](integration-expansion.md); retired service wrappers are retained only for migration discovery and excluded from ordinary recommendations. Review the exact record and current provider terms before adoption.
 
 ## Find and install
 
@@ -140,3 +140,13 @@ Total: 971 records in `resources/catalog/marketing-engagement*.json`.
 | swift | `appreview` | MIT |
 | any | `brand24`, `podium`, `reputology`, `trustpilot-service` | n/a |
 
+
+## Product license scope
+
+The MIT [Unlayer React wrapper](https://github.com/unlayer/react-email-editor) embeds an editor/service governed by a [separate agreement](https://unlayer.com/terms). SurveyJS's MIT Form Library renderer does not license commercial Creator, Dashboard or PDF Generator features; consult [the official product explanation](https://surveyjs.io/try/angular). Medusa provider packages require review of the specific MIT core files and exclusion of separately licensed Enterprise materials.
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Schema forms, page editing and input primitives](../../integrations/web-forms-editor/CONTRACT.md): `puckeditor-core`.

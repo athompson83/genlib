@@ -12401,7 +12401,7 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "MIT",
@@ -12411,9 +12411,10 @@
       "homepage": null,
       "repository": "https://github.com/peaksandpies/universal-analytics",
       "docs": "https://www.npmjs.com/package/universal-analytics",
-      "summary": "A node module for Google's Universal Analytics tracking",
-      "useWhen": "Use to send or query analytics (google analytics) from JavaScript instead of writing a tracking client.",
+      "summary": "Historical Universal Analytics integration; the provider service shut down on 2024-07-01. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Universal Analytics integration. Migrate to Google Analytics 4 using its current documented APIs and data model.",
       "cautions": [
+        "Universal Analytics shut down on 2024-07-01; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -12422,7 +12423,8 @@
         "google-analytics",
         "javascript",
         "npm",
-        "ga4"
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -12439,6 +12441,10 @@
         {
           "url": "https://github.com/peaksandpies/universal-analytics",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://developers.google.com/analytics/legacy/universal-analytics",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -12460,7 +12466,22 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 13380327
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://developers.google.com/analytics/legacy/universal-analytics",
+        "replacement": "Migrate to Google Analytics 4 using its current documented APIs and data model."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://developers.google.com/analytics/legacy/universal-analytics"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://developers.google.com/analytics/legacy/universal-analytics"
+      ]
     },
     {
       "id": "next-third-parties",
@@ -19191,8 +19212,8 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "url": "https://github.com/medusajs/medusa/blob/develop/LICENSE",
+        "scope": "MIT applies only to the identified Medusa core package/files. Enterprise Edition materials and hosted offerings retain separate terms; registry SEE LICENSE IN LICENSE metadata is not blanket permission."
       },
       "homepage": "https://github.com/medusajs/medusa#readme",
       "repository": "https://github.com/medusajs/medusa/tree/HEAD/packages/modules/providers/analytics-posthog",
@@ -19200,7 +19221,8 @@
       "summary": "Posthog analytics provider for Medusa",
       "useWhen": "Use to send or query analytics (posthog) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
+        "Use only reviewed MIT core files/packages; exclude Enterprise Edition materials unless separately authorized."
       ],
       "tags": [
         "marketing",
@@ -19225,6 +19247,10 @@
         {
           "url": "https://github.com/medusajs/medusa/tree/HEAD/packages/modules/providers/analytics-posthog",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://github.com/medusajs/medusa",
+          "title": "Medusa core and Enterprise license boundaries"
         }
       ],
       "genlib": {
@@ -19261,8 +19287,8 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "url": "https://github.com/medusajs/medusa/blob/develop/LICENSE",
+        "scope": "MIT applies only to the identified Medusa core package/files. Enterprise Edition materials and hosted offerings retain separate terms; registry SEE LICENSE IN LICENSE metadata is not blanket permission."
       },
       "homepage": "https://github.com/medusajs/medusa#readme",
       "repository": "https://github.com/medusajs/medusa/tree/HEAD/packages/modules/analytics",
@@ -19270,7 +19296,8 @@
       "summary": "Medusa Analytics module",
       "useWhen": "Use to send or query analytics (web analytics) from TypeScript/JavaScript instead of writing a tracking client.",
       "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
+        "Use only reviewed MIT core files/packages; exclude Enterprise Edition materials unless separately authorized."
       ],
       "tags": [
         "marketing",
@@ -19294,6 +19321,10 @@
         {
           "url": "https://github.com/medusajs/medusa/tree/HEAD/packages/modules/analytics",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://github.com/medusajs/medusa",
+          "title": "Medusa core and Enterprise license boundaries"
         }
       ],
       "genlib": {
@@ -28824,7 +28855,7 @@
         "php"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "partial",
       "license": {
         "id": "LGPL-3.0+",
@@ -28834,9 +28865,10 @@
       "homepage": null,
       "repository": "https://github.com/thelia-modules/GoogleUniversalAnalytics",
       "docs": null,
-      "summary": "Google Universal Analytics integration for ecommerce tracking",
-      "useWhen": "Use to send or query analytics (general) from PHP instead of writing a tracking client.",
+      "summary": "Historical Universal Analytics integration; the provider service shut down on 2024-07-01. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Universal Analytics integration. Migrate to Google Analytics 4 using its current documented APIs and data model.",
       "cautions": [
+        "Universal Analytics shut down on 2024-07-01; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -28844,7 +28876,9 @@
         "analytics",
         "general",
         "php",
-        "packagist"
+        "packagist",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -28861,6 +28895,10 @@
         {
           "url": "https://github.com/thelia-modules/GoogleUniversalAnalytics",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://developers.google.com/analytics/legacy/universal-analytics",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -28882,7 +28920,22 @@
       "popularity": {
         "metric": "packagist-downloads-total",
         "value": 30940
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://developers.google.com/analytics/legacy/universal-analytics",
+        "replacement": "Migrate to Google Analytics 4 using its current documented APIs and data model."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://developers.google.com/analytics/legacy/universal-analytics"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://developers.google.com/analytics/legacy/universal-analytics"
+      ]
     },
     {
       "id": "codeart-matomotracking",
@@ -33738,7 +33791,7 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "MIT",
@@ -33748,9 +33801,10 @@
       "homepage": null,
       "repository": "https://github.com/danwilson/google-analytics-plugin",
       "docs": "https://www.npmjs.com/package/cordova-plugin-google-analytics",
-      "summary": "Google Universal Analytics Plugin",
-      "useWhen": "Use to send or query analytics (google analytics) from TypeScript/JavaScript instead of writing a tracking client.",
+      "summary": "Historical Universal Analytics integration; the provider service shut down on 2024-07-01. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Universal Analytics integration. Migrate to Google Analytics 4 using its current documented APIs and data model.",
       "cautions": [
+        "Universal Analytics shut down on 2024-07-01; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -33759,8 +33813,9 @@
         "google-analytics",
         "typescript",
         "npm",
-        "ga4",
-        "cordova"
+        "cordova",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -33777,6 +33832,10 @@
         {
           "url": "https://github.com/danwilson/google-analytics-plugin",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://developers.google.com/analytics/legacy/universal-analytics",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -33798,7 +33857,22 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 7716
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://developers.google.com/analytics/legacy/universal-analytics",
+        "replacement": "Migrate to Google Analytics 4 using its current documented APIs and data model."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://developers.google.com/analytics/legacy/universal-analytics"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://developers.google.com/analytics/legacy/universal-analytics"
+      ]
     },
     {
       "id": "countly-sdk-react-native-bridge",
@@ -44391,7 +44465,7 @@
         "ruby"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "MIT",
@@ -44401,9 +44475,10 @@
       "homepage": "https://github.com/saiqulhaq/firebase_dynamic_link",
       "repository": "https://github.com/saiqulhaq/firebase_dynamic_link",
       "docs": null,
-      "summary": "Create deep link for web and mobile app using Firebase Dynamic Links service",
-      "useWhen": "Use for campaign attribution and UTM handling (deep linking) in Ruby instead of custom parsing.",
+      "summary": "Historical Firebase Dynamic Links integration; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -44412,7 +44487,9 @@
         "deep-linking",
         "ruby",
         "gem",
-        "deep-links"
+        "deep-links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -44428,6 +44505,10 @@
         {
           "url": "https://github.com/saiqulhaq/firebase_dynamic_link",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -44449,7 +44530,22 @@
       "popularity": {
         "metric": "gem-downloads-total",
         "value": 1096250
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "react-native-branch",
@@ -44530,7 +44626,7 @@
         "dotnet"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "MIT AND Apache-2.0",
@@ -44540,9 +44636,10 @@
       "homepage": "https://aka.ms/android-libraries",
       "repository": null,
       "docs": "https://aka.ms/android-libraries",
-      "summary": ".NET for Android and MAUI bindings for the Android Java library 'com.google.firebase:firebase-dynamic-links'.",
-      "useWhen": "Use for campaign attribution and UTM handling (deep linking) in C#/.NET instead of custom parsing.",
+      "summary": "Historical Firebase Dynamic Links integration; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -44551,7 +44648,9 @@
         "deep-linking",
         "csharp",
         "nuget",
-        "deep-links"
+        "deep-links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -44563,6 +44662,10 @@
         {
           "url": "https://www.nuget.org/packages/Xamarin.Firebase.Dynamic.Links",
           "title": "nuget registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -44584,7 +44687,22 @@
       "popularity": {
         "metric": "nuget-total-downloads",
         "value": 869881
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "dub-analytics",
@@ -44663,7 +44781,7 @@
         "php"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "MIT",
@@ -44673,9 +44791,10 @@
       "homepage": null,
       "repository": "https://github.com/yedincisenol/dynamic-links",
       "docs": null,
-      "summary": "Firebase Dynamic Links for Php and Laravel",
-      "useWhen": "Use for campaign attribution and UTM handling (deep linking) in PHP instead of custom parsing.",
+      "summary": "Historical Firebase Dynamic Links integration; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -44684,7 +44803,9 @@
         "deep-linking",
         "php",
         "packagist",
-        "deep-links"
+        "deep-links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -44700,6 +44821,10 @@
         {
           "url": "https://github.com/yedincisenol/dynamic-links",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -44721,7 +44846,22 @@
       "popularity": {
         "metric": "packagist-downloads-total",
         "value": 745868
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "appsflyerxamarinbindingandroid",
@@ -45009,7 +45149,7 @@
         "dotnet"
       ],
       "kind": "package",
-      "integrationMode": "license-review",
+      "integrationMode": "reference",
       "verification": "partial",
       "license": {
         "id": "non-standard",
@@ -45019,9 +45159,10 @@
       "homepage": "https://github.com/AdamEssenmacher/GoogleApisForiOSComponents",
       "repository": "https://github.com/AdamEssenmacher/GoogleApisForiOSComponents",
       "docs": "https://github.com/AdamEssenmacher/GoogleApisForiOSComponents",
-      "summary": "C# bindings for Firebase APIs Dynamic Links iOS Library",
-      "useWhen": "Use for campaign attribution and UTM handling (deep linking) in C#/.NET instead of custom parsing.",
+      "summary": "Historical Firebase Dynamic Links iOS bindings; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; reachable wrapper code does not make the service usable.",
         "non-standard: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
@@ -45031,7 +45172,9 @@
         "deep-linking",
         "csharp",
         "nuget",
-        "deep-links"
+        "deep-links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -45047,6 +45190,10 @@
         {
           "url": "https://github.com/AdamEssenmacher/GoogleApisForiOSComponents",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -45068,7 +45215,22 @@
       "popularity": {
         "metric": "nuget-total-downloads",
         "value": 228447
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "sourcebuster",
@@ -45499,7 +45661,7 @@
         "elixir"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "Apache-2.0",
@@ -45509,9 +45671,10 @@
       "homepage": "https://firebase.google.com/docs/dynamic-links/",
       "repository": "https://github.com/googleapis/elixir-google-api",
       "docs": "https://hexdocs.pm/google_api_firebase_dynamic_links",
-      "summary": "Firebase Dynamic Links API client library. Programmatically creates and manages Firebase Dynamic Links.",
-      "useWhen": "Use for campaign attribution and UTM handling (deep linking) in Elixir instead of custom parsing.",
+      "summary": "Historical Firebase Dynamic Links integration; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -45520,7 +45683,9 @@
         "deep-linking",
         "elixir",
         "hex",
-        "deep-links"
+        "deep-links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -45536,6 +45701,10 @@
         {
           "url": "https://github.com/googleapis/elixir-google-api",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -45557,7 +45726,22 @@
       "popularity": {
         "metric": "hex-downloads-total",
         "value": 93711
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "airbridge-react-native-sdk",
@@ -46120,7 +46304,7 @@
         "ruby"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "Apache-2.0",
@@ -46130,9 +46314,10 @@
       "homepage": "https://github.com/google/google-api-ruby-client",
       "repository": "https://github.com/googleapis/google-api-ruby-client",
       "docs": null,
-      "summary": "This is the simple REST client for Firebase Dynamic Links API V1. Simple REST clients are Ruby client libraries that provide access to Google services via their HTTP REST API endpoints. These...",
-      "useWhen": "Use for campaign attribution and UTM handling (deep linking) in Ruby instead of custom parsing.",
+      "summary": "Historical Firebase Dynamic Links integration; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; a reachable package repository does not make the retired service usable.",
         "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
       ],
       "tags": [
@@ -46141,7 +46326,9 @@
         "deep-linking",
         "ruby",
         "gem",
-        "deep-links"
+        "deep-links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -46157,6 +46344,10 @@
         {
           "url": "https://github.com/googleapis/google-api-ruby-client",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -46178,7 +46369,22 @@
       "popularity": {
         "metric": "gem-downloads-total",
         "value": 30884
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "com-adjust-sdk",

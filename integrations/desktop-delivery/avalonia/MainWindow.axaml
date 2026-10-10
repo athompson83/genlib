@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="GenlibInventory.MainWindow" Title="Inventory label" Width="640" Height="460">
+  <StackPanel Margin="32" Spacing="16">
+    <TextBlock Text="Inventory label" FontSize="28" />
+    <TextBox Name="TitleInput" Watermark="Item title" MaxLength="200" />
+    <Button Name="NormalizeButton" Content="Normalize title" />
+    <TextBlock Name="Result" TextWrapping="Wrap" />
+    <Button Name="UpdateButton" Content="Check for updates" />
+    <TextBlock Name="UpdateStatus" TextWrapping="Wrap" />
+  </StackPanel>
+</Window>

@@ -19,7 +19,7 @@ async function project(t, files) {
 
 test('loads every source catalog and reports counts', async () => {
   const counts = sourceCounts(await loadSources());
-  for (const type of ['module', 'recipe', 'language-example', 'template', 'tool', 'resource']) assert.ok(counts[type] > 0, type);
+  for (const type of ['module', 'integration', 'recipe', 'language-example', 'template', 'tool', 'resource']) assert.ok(counts[type] > 0, type);
 });
 
 test('query terms stem plurals and add reviewed synonyms without duplicating words', () => {
