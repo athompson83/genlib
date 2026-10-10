@@ -3,7 +3,133 @@
   "reviewedAt": "2026-10-10",
   "items": [
     {
-      "id": "sitemap-generator-pypi-2",
+      "id": "wordpress-seo",
+      "name": "wordpress-seo",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://yoast.com/wordpress/plugins/seo/",
+      "repository": "https://github.com/Yoast/wordpress-seo",
+      "docs": null,
+      "summary": "Yoast SEO for WordPress",
+      "useWhen": "Use instead of hand-writing cms plugin (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "cms-plugin",
+        "javascript",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Yoast/wordpress-seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 2005
+      }
+    },
+    {
+      "id": "slug-go",
+      "name": "github.com/gosimple/slug",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MPL-2.0",
+        "url": null,
+        "scope": "MPL-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/gosimple/slug",
+      "docs": "https://pkg.go.dev/github.com/gosimple/slug",
+      "summary": "Generate URL-friendly slugs from Unicode strings with language-specific rules.",
+      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "slug",
+        "go",
+        "url"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/gosimple/slug",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/gosimple/slug",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/gosimple/slug"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 1920
+      }
+    },
+    {
+      "id": "sitemap-generator-pypi",
       "name": "sitemap-generator",
       "category": "seo",
       "platforms": [
@@ -72,7 +198,7 @@
       }
     },
     {
-      "id": "v2-go",
+      "id": "colly",
       "name": "github.com/gocolly/colly/v2",
       "category": "seo",
       "platforms": [
@@ -141,7 +267,7 @@
       }
     },
     {
-      "id": "django-linkcheck-pypi",
+      "id": "django-linkcheck",
       "name": "django-linkcheck",
       "category": "seo",
       "platforms": [
@@ -211,7 +337,7 @@
       }
     },
     {
-      "id": "flask-sitemapper-pypi",
+      "id": "flask-sitemapper",
       "name": "flask-sitemapper",
       "category": "seo",
       "platforms": [
@@ -280,7 +406,65 @@
       }
     },
     {
-      "id": "astro-noindex-npm",
+      "id": "python-seo-analyzer",
+      "name": "python-seo-analyzer",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": null,
+        "scope": "BSD-2-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sethblack/python-seo-analyzer",
+      "docs": null,
+      "summary": "An SEO tool that analyzes the structure of a site, crawls the site, count words in the body of the site and warns of any technical SEO issues.",
+      "useWhen": "Use instead of hand-writing audit (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "audit",
+        "python",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sethblack/python-seo-analyzer",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1485
+      }
+    },
+    {
+      "id": "astro-noindex",
       "name": "astro-noindex",
       "category": "seo",
       "platforms": [
@@ -295,9 +479,9 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://velohost.co.uk/plugins/astro-noindex/",
+      "homepage": null,
       "repository": "https://github.com/velohost/astro-noindex",
-      "docs": "https://velohost.co.uk/plugins/astro-noindex/",
+      "docs": null,
       "summary": "Automatically injects noindex for non-production Astro builds",
       "useWhen": "Use instead of hand-writing robots txt (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
       "cautions": [
@@ -349,7 +533,65 @@
       }
     },
     {
-      "id": "consilioweb-payload-seo-analyzer-npm",
+      "id": "nuxt-seo",
+      "name": "nuxt-seo",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://nuxtseo.com",
+      "repository": "https://github.com/harlan-zw/nuxt-seo",
+      "docs": null,
+      "summary": "Fully equipped Technical SEO & AEO for busy Nuxters.",
+      "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "meta-tags",
+        "typescript",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/harlan-zw/nuxt-seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1449
+      }
+    },
+    {
+      "id": "consilioweb-payload-seo-analyzer",
       "name": "@consilioweb/payload-seo-analyzer",
       "category": "seo",
       "platforms": [
@@ -420,7 +662,7 @@
       }
     },
     {
-      "id": "seo-analyzer-npm",
+      "id": "seo-analyzer",
       "name": "seo-analyzer",
       "category": "seo",
       "platforms": [
@@ -494,7 +736,7 @@
       }
     },
     {
-      "id": "focus-reactive-payload-plugin-seo-npm",
+      "id": "focus-reactive-payload-plugin-seo",
       "name": "@focus-reactive/payload-plugin-seo",
       "category": "seo",
       "platforms": [
@@ -567,7 +809,7 @@
       }
     },
     {
-      "id": "vahor-next-broken-links-npm",
+      "id": "vahor-next-broken-links",
       "name": "@vahor/next-broken-links",
       "category": "seo",
       "platforms": [
@@ -638,7 +880,7 @@
       }
     },
     {
-      "id": "feedkit-swift",
+      "id": "feedkit",
       "name": "FeedKit",
       "category": "seo",
       "platforms": [
@@ -706,7 +948,7 @@
       }
     },
     {
-      "id": "wagtail-robots-pypi",
+      "id": "wagtail-robots",
       "name": "wagtail-robots",
       "category": "seo",
       "platforms": [
@@ -776,7 +1018,7 @@
       }
     },
     {
-      "id": "houtini-seo-audit-console-npm",
+      "id": "houtini-seo-audit-console",
       "name": "@houtini/seo-audit-console",
       "category": "seo",
       "platforms": [
@@ -845,7 +1087,7 @@
       }
     },
     {
-      "id": "seo-crawl-audit-npm",
+      "id": "seo-crawl-audit",
       "name": "seo-crawl-audit",
       "category": "seo",
       "platforms": [
@@ -915,7 +1157,7 @@
       }
     },
     {
-      "id": "isiahw1-mcp-server-bing-webmaster-npm",
+      "id": "isiahw1-mcp-server-bing-webmaster",
       "name": "@isiahw1/mcp-server-bing-webmaster",
       "category": "seo",
       "platforms": [
@@ -984,7 +1226,126 @@
       }
     },
     {
-      "id": "django-canonical-domain-pypi",
+      "id": "lighthouse-ci-action",
+      "name": "lighthouse-ci-action",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/treosh/lighthouse-ci-action",
+      "docs": null,
+      "summary": "Audit URLs using Lighthouse and test performance with Lighthouse CI.",
+      "useWhen": "Use instead of hand-writing audit (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "audit",
+        "javascript",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/treosh/lighthouse-ci-action",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1292
+      }
+    },
+    {
+      "id": "linkinator-github",
+      "name": "linkinator",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/JustinBeckwith/linkinator",
+      "docs": null,
+      "summary": "Broken link checker that crawls websites and validates links. Find broken links, dead links, and invalid URLs in websites, documentation, and local files. Perfect for SEO audits and CI/CD.",
+      "useWhen": "Use instead of hand-writing link checker (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checker",
+        "typescript",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/JustinBeckwith/linkinator",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "quickstart": [
+        "npx linkinator https://example.com"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1273
+      }
+    },
+    {
+      "id": "django-canonical-domain",
       "name": "django_canonical_domain",
       "category": "seo",
       "platforms": [
@@ -1054,7 +1415,7 @@
       }
     },
     {
-      "id": "astro-link-validator-npm",
+      "id": "astro-link-validator",
       "name": "astro-link-validator",
       "category": "seo",
       "platforms": [
@@ -1124,7 +1485,7 @@
       }
     },
     {
-      "id": "eleventy-plugin-broken-links-npm",
+      "id": "eleventy-plugin-broken-links",
       "name": "eleventy-plugin-broken-links",
       "category": "seo",
       "platforms": [
@@ -1194,7 +1555,65 @@
       }
     },
     {
-      "id": "gatsby-plugin-wpgraphql-seo-npm",
+      "id": "linkchecker-github",
+      "name": "linkchecker",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "partial",
+      "license": {
+        "id": "LGPL-2.1",
+        "url": null,
+        "scope": "LGPL-2.1: dynamic linking as a dependency is usually fine; modifications to the library must be shared."
+      },
+      "homepage": "https://linkchecker.github.io/linkchecker/",
+      "repository": "https://github.com/linkchecker/linkchecker",
+      "docs": null,
+      "summary": "check links in web documents or full websites",
+      "useWhen": "Use instead of hand-writing link checker (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checker",
+        "python",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/linkchecker/linkchecker",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1077
+      }
+    },
+    {
+      "id": "gatsby-plugin-wpgraphql-seo",
       "name": "gatsby-plugin-wpgraphql-seo",
       "category": "seo",
       "platforms": [
@@ -1263,7 +1682,7 @@
       }
     },
     {
-      "id": "bing-webmaster-tools-pypi",
+      "id": "bing-webmaster-tools",
       "name": "bing-webmaster-tools",
       "category": "seo",
       "platforms": [
@@ -1333,7 +1752,7 @@
       }
     },
     {
-      "id": "mcp-google-search-console-pypi",
+      "id": "mcp-google-search-console",
       "name": "mcp-google-search-console",
       "category": "seo",
       "platforms": [
@@ -1403,7 +1822,7 @@
       }
     },
     {
-      "id": "com-rometools-rome-maven",
+      "id": "com-rometools-rome",
       "name": "com.rometools:rome",
       "category": "seo",
       "platforms": [
@@ -1473,7 +1892,65 @@
       }
     },
     {
-      "id": "django-check-seo-pypi",
+      "id": "siteone-crawler",
+      "name": "siteone-crawler",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "rust"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://crawler.siteone.io/",
+      "repository": "https://github.com/janreges/siteone-crawler",
+      "docs": null,
+      "summary": "SiteOne Crawler is a cross-platform website crawler and analyzer for SEO, security, accessibility, and performance optimizationideal for developers, DevOps, QA engineers, and consultants. Supports Win",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Rust projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "rust",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/janreges/siteone-crawler",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "rust"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 938
+      }
+    },
+    {
+      "id": "django-check-seo",
       "name": "django-check-seo",
       "category": "seo",
       "platforms": [
@@ -1543,7 +2020,7 @@
       }
     },
     {
-      "id": "flyewi-eleventy-plugin-redirects-npm",
+      "id": "flyewi-eleventy-plugin-redirects",
       "name": "@flyewi/eleventy-plugin-redirects",
       "category": "seo",
       "platforms": [
@@ -1612,7 +2089,7 @@
       }
     },
     {
-      "id": "double-great-alt-text-npm",
+      "id": "double-great-alt-text",
       "name": "@double-great/alt-text",
       "category": "seo",
       "platforms": [
@@ -1682,7 +2159,7 @@
       }
     },
     {
-      "id": "djangocms-page-sitemap-pypi",
+      "id": "djangocms-page-sitemap",
       "name": "djangocms-page-sitemap",
       "category": "seo",
       "platforms": [
@@ -1751,7 +2228,7 @@
       }
     },
     {
-      "id": "double-great-remark-lint-alt-text-npm",
+      "id": "double-great-remark-lint-alt-text",
       "name": "@double-great/remark-lint-alt-text",
       "category": "seo",
       "platforms": [
@@ -1821,7 +2298,7 @@
       }
     },
     {
-      "id": "pelican-seo-pypi",
+      "id": "pelican-seo",
       "name": "pelican-seo",
       "category": "seo",
       "platforms": [
@@ -1890,7 +2367,69 @@
       }
     },
     {
-      "id": "strapi-plugin-redirect-urls-npm",
+      "id": "seonaut",
+      "name": "seonaut",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://seonaut.org",
+      "repository": "https://github.com/StJudeWasHere/seonaut",
+      "docs": null,
+      "summary": "Open source SEO audit tool.",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "go",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/StJudeWasHere/seonaut",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/StJudeWasHere/seonaut && cd seonaut && docker compose -f docker-compose.yml up -d",
+        "Docs: https://seonaut.org"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 805
+      }
+    },
+    {
+      "id": "strapi-plugin-redirect-urls",
       "name": "strapi-plugin-redirect-urls",
       "category": "seo",
       "platforms": [
@@ -1959,7 +2498,7 @@
       }
     },
     {
-      "id": "sanity-plugin-redirects-npm",
+      "id": "sanity-plugin-redirects",
       "name": "sanity-plugin-redirects",
       "category": "seo",
       "platforms": [
@@ -2028,7 +2567,7 @@
       }
     },
     {
-      "id": "meta-tags-parser-pypi",
+      "id": "meta-tags-parser",
       "name": "meta-tags-parser",
       "category": "seo",
       "platforms": [
@@ -2099,7 +2638,7 @@
       }
     },
     {
-      "id": "is-crawler-pypi",
+      "id": "is-crawler",
       "name": "is-crawler",
       "category": "seo",
       "platforms": [
@@ -2169,7 +2708,7 @@
       }
     },
     {
-      "id": "seoslug-pypi",
+      "id": "seoslug",
       "name": "seoslug",
       "category": "seo",
       "platforms": [
@@ -2238,7 +2777,7 @@
       }
     },
     {
-      "id": "serpex-pypi",
+      "id": "serpex",
       "name": "serpex",
       "category": "seo",
       "platforms": [
@@ -2307,7 +2846,7 @@
       }
     },
     {
-      "id": "mongez-react-helmet-npm",
+      "id": "mongez-react-helmet",
       "name": "@mongez/react-helmet",
       "category": "seo",
       "platforms": [
@@ -2377,7 +2916,7 @@
       }
     },
     {
-      "id": "django-redirects-pypi",
+      "id": "django-redirects",
       "name": "django-redirects",
       "category": "seo",
       "platforms": [
@@ -2446,7 +2985,7 @@
       }
     },
     {
-      "id": "lacspace-site-verify-npm",
+      "id": "lacspace-site-verify",
       "name": "@lacspace/site-verify",
       "category": "seo",
       "platforms": [
@@ -2516,7 +3055,7 @@
       }
     },
     {
-      "id": "sitemap-mcp-server-pypi",
+      "id": "sitemap-mcp-server",
       "name": "sitemap-mcp-server",
       "category": "seo",
       "platforms": [
@@ -2585,7 +3124,7 @@
       }
     },
     {
-      "id": "airbyte-source-google-search-console-pypi",
+      "id": "airbyte-source-google-search-console",
       "name": "airbyte-source-google-search-console",
       "category": "seo",
       "platforms": [
@@ -2606,6 +3145,7 @@
       "summary": "Source implementation for Google Search Console.",
       "useWhen": "Use instead of hand-writing search console (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
       "cautions": [
+        "The registry declares the license as \"Elv2\"; confirm it matches LicenseRef-Other-or-Proprietary before use.",
         "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
       ],
       "tags": [
@@ -2655,7 +3195,7 @@
       }
     },
     {
-      "id": "astro-canonical-npm",
+      "id": "astro-canonical",
       "name": "astro-canonical",
       "category": "seo",
       "platforms": [
@@ -2724,7 +3264,7 @@
       }
     },
     {
-      "id": "sluggi-pypi-2",
+      "id": "sluggi-pypi",
       "name": "sluggi",
       "category": "seo",
       "platforms": [
@@ -2793,7 +3333,65 @@
       }
     },
     {
-      "id": "pydantic2-schemaorg-pypi",
+      "id": "the-seo-framework",
+      "name": "the-seo-framework",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://theseoframework.com/",
+      "repository": "https://github.com/sybrew/the-seo-framework",
+      "docs": null,
+      "summary": "The SEO Framework plugin for WordPress",
+      "useWhen": "Use instead of hand-writing cms plugin (meta tags, sitemaps, structured data, crawling or audits) in PHP projects.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "cms-plugin",
+        "php",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sybrew/the-seo-framework",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 483
+      }
+    },
+    {
+      "id": "pydantic2-schemaorg",
       "name": "pydantic2-schemaorg",
       "category": "seo",
       "platforms": [
@@ -2864,7 +3462,7 @@
       }
     },
     {
-      "id": "mkdocs-advanced-seo-pypi",
+      "id": "mkdocs-advanced-seo",
       "name": "mkdocs-advanced-seo",
       "category": "seo",
       "platforms": [
@@ -2935,7 +3533,7 @@
       }
     },
     {
-      "id": "robotstxt-pypi",
+      "id": "robotstxt",
       "name": "robotstxt",
       "category": "seo",
       "platforms": [
@@ -3004,7 +3602,7 @@
       }
     },
     {
-      "id": "collective-behavior-seo-pypi",
+      "id": "collective-behavior-seo",
       "name": "collective.behavior.seo",
       "category": "seo",
       "platforms": [
@@ -3073,77 +3671,7 @@
       }
     },
     {
-      "id": "giant-redirect-import-pypi",
-      "name": "giant-redirect-import",
-      "category": "seo",
-      "platforms": [
-        "server",
-        "python"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/giantmade/giant-redirect-import",
-      "docs": null,
-      "summary": "Reusable package which adds an option to bulk import redirects from a csv file",
-      "useWhen": "Use instead of hand-writing redirects (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "seo",
-        "redirects",
-        "python",
-        "pypi",
-        "django",
-        "csv"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pypi.org/project/giant-redirect-import/",
-          "title": "pypi registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/giantmade/giant-redirect-import",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "pypi",
-          "name": "giant-redirect-import"
-        }
-      ],
-      "languages": [
-        "python"
-      ],
-      "popularity": {
-        "metric": "pypi-downloads-month",
-        "value": 415
-      }
-    },
-    {
-      "id": "go-opengraph-go",
+      "id": "go-opengraph",
       "name": "github.com/dyatlov/go-opengraph",
       "category": "seo",
       "platforms": [
@@ -3212,7 +3740,7 @@
       }
     },
     {
-      "id": "django-cs-robots-pypi",
+      "id": "django-cs-robots",
       "name": "django-cs-robots",
       "category": "seo",
       "platforms": [
@@ -3282,7 +3810,7 @@
       }
     },
     {
-      "id": "com-github-jsonld-java-jsonld-java-maven",
+      "id": "com-github-jsonld-java-jsonld-java",
       "name": "com.github.jsonld-java:jsonld-java",
       "category": "seo",
       "platforms": [
@@ -3351,7 +3879,7 @@
       }
     },
     {
-      "id": "image-sitemap-pypi",
+      "id": "image-sitemap",
       "name": "image-sitemap",
       "category": "seo",
       "platforms": [
@@ -3420,7 +3948,7 @@
       }
     },
     {
-      "id": "serpkite-pypi",
+      "id": "serpkite",
       "name": "serpkite",
       "category": "seo",
       "platforms": [
@@ -3437,7 +3965,7 @@
       },
       "homepage": "https://serpkite.com",
       "repository": "https://github.com/serpkite/serpkite-python",
-      "docs": "https://serpkite.com/docs/sdks/python",
+      "docs": null,
       "summary": "Official Python SDK for SerpKite, the Google search API built for AI agents: clean JSON or Markdown results.",
       "useWhen": "Use instead of hand-writing serp (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
       "cautions": [
@@ -3489,7 +4017,7 @@
       }
     },
     {
-      "id": "com-github-slugify-slugify-maven",
+      "id": "com-github-slugify-slugify",
       "name": "com.github.slugify:slugify",
       "category": "seo",
       "platforms": [
@@ -3557,7 +4085,127 @@
       }
     },
     {
-      "id": "purell-go",
+      "id": "htmltest",
+      "name": "htmltest",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/wjdp/htmltest",
+      "docs": null,
+      "summary": "white_check_mark: Test generated HTML for problems",
+      "useWhen": "Use instead of hand-writing link checker (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checker",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/wjdp/htmltest",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "wjdp/htmltest"
+        }
+      ],
+      "quickstart": [
+        "docker pull wjdp/htmltest"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 378
+      }
+    },
+    {
+      "id": "python-sitemap",
+      "name": "python-sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/c4software/python-sitemap",
+      "docs": null,
+      "summary": "Mini website crawler to make sitemap from a website.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/c4software/python-sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 376
+      }
+    },
+    {
+      "id": "purell",
       "name": "github.com/PuerkitoBio/purell",
       "category": "seo",
       "platforms": [
@@ -3625,7 +4273,7 @@
       }
     },
     {
-      "id": "robotstxt-go-2",
+      "id": "robotstxt-go",
       "name": "github.com/temoto/robotstxt",
       "category": "seo",
       "platforms": [
@@ -3694,7 +4342,7 @@
       }
     },
     {
-      "id": "json-gold-go",
+      "id": "json-gold",
       "name": "github.com/piprate/json-gold",
       "category": "seo",
       "platforms": [
@@ -3763,7 +4411,7 @@
       }
     },
     {
-      "id": "sitemapy-pypi",
+      "id": "sitemapy",
       "name": "sitemapy",
       "category": "seo",
       "platforms": [
@@ -3832,7 +4480,7 @@
       }
     },
     {
-      "id": "com-github-crawler-commons-crawler-commons-maven",
+      "id": "com-github-crawler-commons-crawler-commons",
       "name": "com.github.crawler-commons:crawler-commons",
       "category": "seo",
       "platforms": [
@@ -3901,7 +4549,7 @@
       }
     },
     {
-      "id": "com-norconex-collectors-norconex-collector-http-maven",
+      "id": "com-norconex-collectors-norconex-collector-http",
       "name": "com.norconex.collectors:norconex-collector-http",
       "category": "seo",
       "platforms": [
@@ -3969,7 +4617,7 @@
       }
     },
     {
-      "id": "com-norconex-crawler-nx-crawler-web-maven",
+      "id": "com-norconex-crawler-nx-crawler-web",
       "name": "com.norconex.crawler:nx-crawler-web",
       "category": "seo",
       "platforms": [
@@ -4037,7 +4685,7 @@
       }
     },
     {
-      "id": "opengraph-swift",
+      "id": "opengraph",
       "name": "OpenGraph",
       "category": "seo",
       "platforms": [
@@ -4104,7 +4752,7 @@
       }
     },
     {
-      "id": "com-apptasticsoftware-rssreader-maven",
+      "id": "com-apptasticsoftware-rssreader",
       "name": "com.apptasticsoftware:rssreader",
       "category": "seo",
       "platforms": [
@@ -4173,7 +4821,65 @@
       }
     },
     {
-      "id": "com-apicatalog-titanium-json-ld-maven",
+      "id": "gflare-tk",
+      "name": "gflare-tk",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://greenflare.io",
+      "repository": "https://github.com/beb7/gflare-tk",
+      "docs": null,
+      "summary": "Open-Source Python Based SEO Web Crawler",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "python",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/beb7/gflare-tk",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 198
+      }
+    },
+    {
+      "id": "com-apicatalog-titanium-json-ld",
       "name": "com.apicatalog:titanium-json-ld",
       "category": "seo",
       "platforms": [
@@ -4242,7 +4948,7 @@
       }
     },
     {
-      "id": "seo-pub-2",
+      "id": "seo-pub",
       "name": "seo",
       "category": "seo",
       "platforms": [
@@ -4310,7 +5016,7 @@
       }
     },
     {
-      "id": "tagkit-swift",
+      "id": "tagkit",
       "name": "TagKit",
       "category": "seo",
       "platforms": [
@@ -4377,7 +5083,7 @@
       }
     },
     {
-      "id": "metadata-fetch-pub",
+      "id": "metadata-fetch",
       "name": "metadata_fetch",
       "category": "seo",
       "platforms": [
@@ -4447,7 +5153,7 @@
       }
     },
     {
-      "id": "syndikit-swift",
+      "id": "syndikit",
       "name": "SyndiKit",
       "category": "seo",
       "platforms": [
@@ -4515,7 +5221,7 @@
       }
     },
     {
-      "id": "dart-rss-pub",
+      "id": "dart-rss",
       "name": "dart_rss",
       "category": "seo",
       "platforms": [
@@ -4584,7 +5290,7 @@
       }
     },
     {
-      "id": "seo-go-2",
+      "id": "seo-go",
       "name": "github.com/qor/seo",
       "category": "seo",
       "platforms": [
@@ -4652,7 +5358,7 @@
       }
     },
     {
-      "id": "jsonld-go-2",
+      "id": "jsonld-go",
       "name": "github.com/go-ap/jsonld",
       "category": "seo",
       "platforms": [
@@ -4720,7 +5426,7 @@
       }
     },
     {
-      "id": "sitemap-go-4",
+      "id": "sitemap-go",
       "name": "github.com/snabb/sitemap",
       "category": "seo",
       "platforms": [
@@ -4788,7 +5494,7 @@
       }
     },
     {
-      "id": "sitemap-go-5",
+      "id": "sitemap-go-2",
       "name": "github.com/denisbakhtin/sitemap",
       "category": "seo",
       "platforms": [
@@ -4856,7 +5562,7 @@
       }
     },
     {
-      "id": "katana-go",
+      "id": "katana",
       "name": "github.com/projectdiscovery/katana",
       "category": "seo",
       "platforms": [
@@ -4928,7 +5634,7 @@
       }
     },
     {
-      "id": "go-sitemap-go",
+      "id": "go-sitemap",
       "name": "github.com/yterajima/go-sitemap",
       "category": "seo",
       "platforms": [
@@ -4996,7 +5702,7 @@
       }
     },
     {
-      "id": "linkcheck-pub",
+      "id": "linkcheck",
       "name": "linkcheck",
       "category": "seo",
       "platforms": [
@@ -5065,7 +5771,7 @@
       }
     },
     {
-      "id": "rss-dart-pub",
+      "id": "rss-dart",
       "name": "rss_dart",
       "category": "seo",
       "platforms": [
@@ -5134,7 +5840,7 @@
       }
     },
     {
-      "id": "v2-go-14",
+      "id": "opengraph-go",
       "name": "github.com/otiai10/opengraph/v2",
       "category": "seo",
       "platforms": [
@@ -5204,7 +5910,7 @@
       }
     },
     {
-      "id": "crawlerdetect-go-2",
+      "id": "crawlerdetect-go",
       "name": "github.com/x-way/crawlerdetect",
       "category": "seo",
       "platforms": [
@@ -5274,7 +5980,7 @@
       }
     },
     {
-      "id": "microdata-go",
+      "id": "microdata",
       "name": "github.com/astappiev/microdata",
       "category": "seo",
       "platforms": [
@@ -5344,7 +6050,7 @@
       }
     },
     {
-      "id": "crawler-user-agents-go-2",
+      "id": "crawler-user-agents-go",
       "name": "github.com/monperrus/crawler-user-agents",
       "category": "seo",
       "platforms": [
@@ -5414,7 +6120,7 @@
       }
     },
     {
-      "id": "sherlock-go",
+      "id": "sherlock",
       "name": "github.com/benpate/sherlock",
       "category": "seo",
       "platforms": [
@@ -5486,7 +6192,7 @@
       }
     },
     {
-      "id": "sitemap-generator-go-2",
+      "id": "sitemap-generator-go",
       "name": "github.com/sabloger/sitemap-generator",
       "category": "seo",
       "platforms": [
@@ -5554,7 +6260,7 @@
       }
     },
     {
-      "id": "sitemap-go-6",
+      "id": "sitemap-go-3",
       "name": "github.com/StudioSol/sitemap",
       "category": "seo",
       "platforms": [
@@ -5622,7 +6328,7 @@
       }
     },
     {
-      "id": "teseo-go",
+      "id": "teseo",
       "name": "github.com/indaco/teseo",
       "category": "seo",
       "platforms": [
@@ -5693,7 +6399,495 @@
       }
     },
     {
-      "id": "hakrawler-go",
+      "id": "accuranker",
+      "name": "AccuRanker",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.accuranker.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Fast and accurate SERP rank tracking tool for SEO professionals.",
+      "useWhen": "Use instead of hand-writing serp tracking (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "serp-tracking",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.accuranker.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "ahrefs",
+      "name": "Ahrefs",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://ahrefs.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Comprehensive SEO tool for keyword research, backlink analysis, and competitor monitoring.",
+      "useWhen": "Use instead of hand-writing keyword research (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "keyword-research",
+        "service",
+        "awesome-marketing",
+        "link-building"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://ahrefs.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "brightlocal",
+      "name": "BrightLocal",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.brightlocal.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Local SEO platform for improving local search visibility and managing citations.",
+      "useWhen": "Use instead of hand-writing local seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "local-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.brightlocal.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "buzzstream",
+      "name": "BuzzStream",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.buzzstream.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Outreach platform that helps with link building and managing relationships with influencers.",
+      "useWhen": "Use instead of hand-writing link building (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-building",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.buzzstream.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "clearscope",
+      "name": "Clearscope",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.clearscope.io",
+      "repository": null,
+      "docs": null,
+      "summary": "Content optimization platform that helps improve content relevance and SEO.",
+      "useWhen": "Use instead of hand-writing on page seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "on-page-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.clearscope.io",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "deepcrawl",
+      "name": "DeepCrawl",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.deepcrawl.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Cloud-based SEO tool for website audits and technical SEO analysis.",
+      "useWhen": "Use instead of hand-writing technical seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "technical-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.deepcrawl.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "google-pagespeed-insights",
+      "name": "Google PageSpeed Insights",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://developers.google.com/speed/pagespeed/insights/",
+      "repository": null,
+      "docs": null,
+      "summary": "Tool that analyzes a page’s content and provides suggestions for speeding up your site.",
+      "useWhen": "Use instead of hand-writing technical seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "technical-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://developers.google.com/speed/pagespeed/insights/",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "google-search-console",
+      "name": "Google Search Console",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://search.google.com/search-console",
+      "repository": null,
+      "docs": null,
+      "summary": "Free tool by Google that helps monitor and maintain your site's presence in Google Search results.",
+      "useWhen": "Use instead of hand-writing seo analytics (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-analytics",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://search.google.com/search-console",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "gtmetrix",
+      "name": "GTmetrix",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://gtmetrix.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Performance analysis tool that provides insights into how well your site loads and helps identify where improvements can be made.",
+      "useWhen": "Use instead of hand-writing technical seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "technical-seo",
+        "service",
+        "awesome-marketing",
+        "link-bot-protected-403"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://gtmetrix.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "hakrawler",
       "name": "github.com/hakluke/hakrawler",
       "category": "seo",
       "platforms": [
@@ -5765,7 +6959,331 @@
       }
     },
     {
-      "id": "v2-go-21",
+      "id": "keywordtool-io",
+      "name": "KeywordTool.io",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://keywordtool.io",
+      "repository": null,
+      "docs": null,
+      "summary": "Tool for finding long-tail keywords for SEO, PPC, and content creation.",
+      "useWhen": "Use instead of hand-writing keyword research (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "keyword-research",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://keywordtool.io",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "majestic",
+      "name": "Majestic",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://majestic.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Backlink analysis tool that provides comprehensive link intelligence data.",
+      "useWhen": "Use instead of hand-writing link building (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-building",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://majestic.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "marketmuse",
+      "name": "MarketMuse",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.marketmuse.com",
+      "repository": null,
+      "docs": null,
+      "summary": "AI-driven platform for content research and on-page SEO optimization.",
+      "useWhen": "Use instead of hand-writing on page seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "on-page-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.marketmuse.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "moz",
+      "name": "Moz",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://moz.com",
+      "repository": null,
+      "docs": null,
+      "summary": "SEO software offering keyword research, link building, and site audits.",
+      "useWhen": "Use instead of hand-writing keyword research (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "keyword-research",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://moz.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "moz-link-explorer",
+      "name": "Moz Link Explorer",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://moz.com/link-explorer",
+      "repository": null,
+      "docs": null,
+      "summary": "Tool for analyzing backlinks, finding link-building opportunities, and tracking your site's link profile.",
+      "useWhen": "Use instead of hand-writing link building (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-building",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://moz.com/link-explorer",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "moz-local",
+      "name": "Moz Local",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://moz.com/products/local",
+      "repository": null,
+      "docs": null,
+      "summary": "Tool to manage and improve your local business listings across the web.",
+      "useWhen": "Use instead of hand-writing local seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "local-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://moz.com/products/local",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "muffet-go",
       "name": "github.com/raviqqe/muffet/v2",
       "category": "seo",
       "platforms": [
@@ -5837,6 +7355,929 @@
         "metric": "go-imported-by",
         "value": 0
       }
+    },
+    {
+      "id": "onranko",
+      "name": "OnRanko",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://onranko.com/",
+      "repository": null,
+      "docs": null,
+      "summary": "Harness AI-driven agents to supercharge your SEO, boost rankings, and maximize visibility.",
+      "useWhen": "Use instead of hand-writing seo analytics (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-analytics",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://onranko.com/",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "pitchbox",
+      "name": "Pitchbox",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://pitchbox.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Outreach and link building software that automates the process of connecting with influencers.",
+      "useWhen": "Use instead of hand-writing link building (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-building",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pitchbox.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "rank-math",
+      "name": "Rank Math",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://rankmath.com",
+      "repository": null,
+      "docs": null,
+      "summary": "SEO plugin for WordPress that offers SEO suggestions while you write.",
+      "useWhen": "Use instead of hand-writing on page seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "on-page-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://rankmath.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "screaming-frog",
+      "name": "Screaming Frog",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.screamingfrog.co.uk/seo-spider/",
+      "repository": null,
+      "docs": null,
+      "summary": "Website crawler that helps improve onsite SEO by analyzing website elements.",
+      "useWhen": "Use instead of hand-writing technical seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "technical-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.screamingfrog.co.uk/seo-spider/",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "se-ranking",
+      "name": "SE Ranking",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://seranking.com",
+      "repository": null,
+      "docs": null,
+      "summary": "All-in-one SEO software that includes SERP tracking and competitor analysis.",
+      "useWhen": "Use instead of hand-writing serp tracking (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "serp-tracking",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://seranking.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "semrush",
+      "name": "SEMrush",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.semrush.com",
+      "repository": null,
+      "docs": null,
+      "summary": "All-in-one marketing toolkit for SEO, PPC, and content marketing.",
+      "useWhen": "Use instead of hand-writing keyword research (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "keyword-research",
+        "service",
+        "awesome-marketing",
+        "ppc-management"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.semrush.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "semrush-position-tracking",
+      "name": "SEMrush Position Tracking",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.semrush.com/position-tracking/",
+      "repository": null,
+      "docs": null,
+      "summary": "Tracks daily changes in rankings for any domain across multiple devices.",
+      "useWhen": "Use instead of hand-writing serp tracking (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "serp-tracking",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.semrush.com/position-tracking/",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "serplux",
+      "name": "Serplux",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.serplux.com",
+      "repository": null,
+      "docs": null,
+      "summary": "All-in-one marketing toolkit for SEO, PPC, and content marketing.",
+      "useWhen": "Use instead of hand-writing keyword research (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "keyword-research",
+        "service",
+        "awesome-marketing",
+        "on-page-seo",
+        "serp-tracking"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.serplux.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "serpwatcher",
+      "name": "SERPWatcher",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://mangools.com/serpwatcher",
+      "repository": null,
+      "docs": null,
+      "summary": "Rank tracking tool designed to monitor SEO progress and performance.",
+      "useWhen": "Use instead of hand-writing serp tracking (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "serp-tracking",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://mangools.com/serpwatcher",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "sitebulb",
+      "name": "Sitebulb",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://sitebulb.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Desktop-based website audit tool for technical SEO with visual representations.",
+      "useWhen": "Use instead of hand-writing technical seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "technical-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://sitebulb.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "spyfu",
+      "name": "SpyFu",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.spyfu.com",
+      "repository": null,
+      "docs": null,
+      "summary": "SEO and PPC competitor research tool for discovering every keyword a competitor has bought on Google Ads.",
+      "useWhen": "Use instead of hand-writing seo analytics (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-analytics",
+        "service",
+        "awesome-marketing",
+        "competitor-analysis"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.spyfu.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "surferseo",
+      "name": "SurferSEO",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://surferseo.com",
+      "repository": null,
+      "docs": null,
+      "summary": "On-page SEO tool for optimizing content based on top-performing pages.",
+      "useWhen": "Use instead of hand-writing on page seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "on-page-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://surferseo.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "synup",
+      "name": "Synup",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://synup.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Comprehensive local marketing platform for managing business listings, reviews, and SEO.",
+      "useWhen": "Use instead of hand-writing local seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "local-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://synup.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "ubersuggest",
+      "name": "Ubersuggest",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://neilpatel.com/ubersuggest/",
+      "repository": null,
+      "docs": null,
+      "summary": "Free tool for generating new keyword ideas and analyzing SEO metrics.",
+      "useWhen": "Use instead of hand-writing keyword research (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "keyword-research",
+        "service",
+        "awesome-marketing",
+        "link-bot-protected-403"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://neilpatel.com/ubersuggest/",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "whitespark",
+      "name": "Whitespark",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://whitespark.ca",
+      "repository": null,
+      "docs": null,
+      "summary": "Tools and services to help businesses rank better in local search results.",
+      "useWhen": "Use instead of hand-writing local seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "local-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://whitespark.ca",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "yext",
+      "name": "Yext",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.yext.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Manages business listings and information across multiple directories to improve local SEO.",
+      "useWhen": "Use instead of hand-writing local seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "local-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.yext.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "yoast-seo",
+      "name": "Yoast SEO",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://yoast.com",
+      "repository": null,
+      "docs": null,
+      "summary": "WordPress plugin for optimizing on-page SEO elements.",
+      "useWhen": "Use instead of hand-writing on page seo (meta tags, sitemaps, structured data, crawling or audits) in any projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "on-page-seo",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://yoast.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
     }
   ]
 }

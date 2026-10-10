@@ -18,19 +18,19 @@ node "$GENLIB_ROOT/tools/resources.mjs" inspect <id> --json   # license, caution
 | --- | ---: |
 | typescript | 475 |
 | python | 91 |
-| go | 35 |
+| go | 38 |
 | rust | 39 |
-| java | 43 |
+| java | 44 |
 | kotlin | 4 |
-| csharp | 44 |
+| csharp | 45 |
 | ruby | 60 |
 | php | 94 |
 | dart | 34 |
 | swift | 21 |
 | elixir | 29 |
-| any | 38 |
+| any | 43 |
 
-Total: 1007 records in `resources/catalog/marketing-analytics*.json`.
+Total: 1017 records in `resources/catalog/marketing-analytics*.json`.
 
 ## Advertising
 
@@ -38,7 +38,7 @@ Total: 1007 records in `resources/catalog/marketing-analytics*.json`.
 | --- | --- | --- |
 | typescript | `mux-mux-data-google-ima`, `google-ads-node`, `google-ads-api`, `react-native-google-mobile-ads` | Apache-2.0, MIT |
 | python | `google-ads` (review), `facebook-business` (review), `googleads`, `bingads` | Apache-2.0, MIT, n/a |
-| go | `v20`, `prebid-server`, `v3-go-4`, `v3-go-5` | Apache-2.0, MIT |
+| go | `openrtb`, `prebid-server`, `openrtb-go`, `prebid-server-go` | Apache-2.0, MIT |
 | rust | `librashader-capi` (review), `google-doubleclicksearch2`, `google-doubleclickbidmanager1`, `graphannis-capi` | Apache-2.0, MIT, MPL-2.0 OR GPL-3.0-only |
 | java | `com-google-apis-google-api-services-dfareporting`, `com-google-apis-google-api-services-displayvideo`, `com-facebook-business-sdk-facebook-java-business-sdk`, `com-applovin-applovin-sdk` | Apache-2.0, AppLovin Corporation SDK EULA, Facebook Platform License |
 | csharp | `google-ads-googleads-nuget`, `microsoft-bingads-sdk` (review), `plugin-admob`, `soenneker-google-ads-client` | Apache-2.0, MIT, non-standard |
@@ -47,7 +47,7 @@ Total: 1007 records in `resources/catalog/marketing-analytics*.json`.
 | dart | `google-mobile-ads`, `unity-ads-plugin`, `stack-appodeal-flutter`, `gma-mediation-unity` | Apache-2.0, MIT |
 | swift | `prebid-mobile-ios` | Apache-2.0 |
 | elixir | `google-ads-hex`, `google-api-display-video`, `open-rtb-ecto`, `google-api-dfa-reporting` | Apache-2.0, MIT |
-| any | `openrtb` (review), `openrtb2-x` (review), `adthrive`, `adyoulike` | n/a |
+| any | `openrtb-github` (review), `openrtb2-x` (review), `adthrive`, `adyoulike` | n/a |
 
 ## Analytics
 
@@ -101,14 +101,15 @@ Total: 1007 records in `resources/catalog/marketing-analytics*.json`.
 | --- | --- | --- |
 | typescript | `firebase-remote-config`, `openfeature-server-sdk`, `statsig-js-client`, `launchdarkly-node-server-sdk` | Apache-2.0, ISC |
 | python | `launchdarkly-server-sdk-pypi`, `statsig-python-core`, `statsig-pypi`, `openfeature-sdk` | Apache-2.0, ISC |
-| go | `go-sdk-go-3`, `go-feature-flag-go`, `v9-go`, `v4-go-8` | Apache-2.0, MIT |
+| go | `flipt`, `go-feature-flag`, `flagd`, `go-sdk` | Apache-2.0, MIT |
 | rust | `statsig`, `launchdarkly-server-sdk-evaluation`, `statsig-rust`, `launchdarkly-server-sdk-crates` | Apache-2.0, ISC |
-| java | `io-getunleash-unleash-client-java-maven`, `dev-openfeature-sdk-maven`, `com-launchdarkly-launchdarkly-android-client-sdk-maven`, `com-optimizely-ab-core-api-maven` | Apache-2.0 |
-| kotlin | `com-statsig-serversdk-maven`, `io-growthbook-sdk-growthbook-maven` | ISC, MIT |
+| java | `wasabi`, `io-getunleash-unleash-client-java`, `dev-openfeature-sdk`, `com-launchdarkly-launchdarkly-android-client-sdk` | Apache-2.0 |
+| kotlin | `com-statsig-serversdk`, `io-growthbook-sdk-growthbook` | ISC, MIT |
 | csharp | `launchdarkly-serversdk`, `unleash-client`, `openfeature`, `configcat-client` | Apache-2.0, MIT |
 | ruby | `flipper`, `flipper-ui`, `unleash-gem`, `launchdarkly-server-sdk` | Apache-2.0, MIT |
 | php | `laravel-pennant`, `launchdarkly-server-sdk-packagist`, `flagception-flagception`, `growthbook-growthbook-packagist` | Apache-2.0, MIT |
-| dart | `flagsmith-pub-2`, `growthbook-sdk-flutter-pub`, `launchdarkly-flutter-client-sdk-pub`, `unleash-proxy-client-flutter-pub` | Apache-2.0, BSD-3-Clause, MIT |
-| swift | `featureflags-swift`, `realflags-swift`, `ios-client-sdk-swift`, `statsig-kit-swift` | Apache-2.0, ISC, MIT |
+| dart | `flagsmith-pub`, `growthbook-sdk-flutter`, `launchdarkly-flutter-client-sdk`, `unleash-proxy-client-flutter` | Apache-2.0, BSD-3-Clause, MIT |
+| swift | `featureflags`, `realflags`, `ios-client-sdk`, `statsig-kit` | Apache-2.0, ISC, MIT |
 | elixir | `fun-with-flags`, `launchdarkly-server-sdk-hex`, `unleash-fresha`, `unleash-hex` | Apache-2.0, MIT |
+| any | `google-optimize`, `optimal-ux`, `optimizely`, `unbounce` | n/a |
 

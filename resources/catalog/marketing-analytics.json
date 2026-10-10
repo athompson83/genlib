@@ -8364,7 +8364,7 @@
       }
     },
     {
-      "id": "v20",
+      "id": "openrtb",
       "name": "github.com/prebid/openrtb/v20",
       "category": "advertising",
       "platforms": [
@@ -8572,7 +8572,7 @@
       }
     },
     {
-      "id": "openrtb",
+      "id": "openrtb-github",
       "name": "openrtb",
       "category": "advertising",
       "platforms": [
@@ -9719,7 +9719,75 @@
       }
     },
     {
-      "id": "v3-go-4",
+      "id": "openrtb-go",
+      "name": "github.com/bsm/openrtb/v3",
+      "category": "advertising",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/bsm/openrtb",
+      "docs": "https://pkg.go.dev/github.com/bsm/openrtb/v3",
+      "summary": "OpenRTB 2.5 parser and generator with optional validation for Go.",
+      "useWhen": "Use to call ad platform APIs (openrtb) from Go instead of hand-written HTTP clients.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "advertising",
+        "openrtb",
+        "go",
+        "programmatic"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "ecommerce",
+        "saas"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/bsm/openrtb/v3",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/bsm/openrtb",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/bsm/openrtb/v3"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 4
+      }
+    },
+    {
+      "id": "prebid-server-go",
       "name": "github.com/prebid/prebid-server/v3",
       "category": "advertising",
       "platforms": [
@@ -9778,74 +9846,6 @@
         {
           "ecosystem": "go",
           "name": "github.com/prebid/prebid-server/v3"
-        }
-      ],
-      "languages": [
-        "go"
-      ],
-      "popularity": {
-        "metric": "go-imported-by",
-        "value": 4
-      }
-    },
-    {
-      "id": "v3-go-5",
-      "name": "github.com/bsm/openrtb/v3",
-      "category": "advertising",
-      "platforms": [
-        "server",
-        "go"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/bsm/openrtb",
-      "docs": "https://pkg.go.dev/github.com/bsm/openrtb/v3",
-      "summary": "OpenRTB 2.5 parser and generator with optional validation for Go.",
-      "useWhen": "Use to call ad platform APIs (openrtb) from Go instead of hand-written HTTP clients.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "advertising",
-        "openrtb",
-        "go",
-        "programmatic"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "ecommerce",
-        "saas"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pkg.go.dev/github.com/bsm/openrtb/v3",
-          "title": "go registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/bsm/openrtb",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "go",
-          "name": "github.com/bsm/openrtb/v3"
         }
       ],
       "languages": [
@@ -41471,7 +41471,7 @@
       }
     },
     {
-      "id": "v3-go-3",
+      "id": "analytics-go",
       "name": "github.com/segmentio/analytics-go/v3",
       "category": "analytics",
       "platforms": [
@@ -42032,7 +42032,7 @@
       }
     },
     {
-      "id": "v4-go-5",
+      "id": "analytics-go-go",
       "name": "github.com/rudderlabs/analytics-go/v4",
       "category": "analytics",
       "platforms": [
@@ -42314,7 +42314,7 @@
       }
     },
     {
-      "id": "analytics-go",
+      "id": "analytics-go-go-2",
       "name": "github.com/amplitude/analytics-go",
       "category": "analytics",
       "platforms": [
@@ -42805,6 +42805,76 @@
       }
     },
     {
+      "id": "analytics-go-go-3",
+      "name": "github.com/ory/analytics-go/v5",
+      "category": "analytics",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ory/analytics-go",
+      "docs": "https://pkg.go.dev/github.com/ory/analytics-go/v5",
+      "summary": "Ory-maintained fork of the Segment analytics client for Go.",
+      "useWhen": "Use to send or query analytics (cdp) from Go instead of writing a tracking client.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "analytics",
+        "cdp",
+        "go",
+        "segment",
+        "events"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "data-analytics",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/ory/analytics-go/v5",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ory/analytics-go",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/ory/analytics-go/v5"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 7
+      }
+    },
+    {
       "id": "snowplow-golang-analytics-sdk",
       "name": "github.com/snowplow/snowplow-golang-analytics-sdk",
       "category": "analytics",
@@ -42875,77 +42945,7 @@
       }
     },
     {
-      "id": "v5-go-2",
-      "name": "github.com/ory/analytics-go/v5",
-      "category": "analytics",
-      "platforms": [
-        "server",
-        "go"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/ory/analytics-go",
-      "docs": "https://pkg.go.dev/github.com/ory/analytics-go/v5",
-      "summary": "Ory-maintained fork of the Segment analytics client for Go.",
-      "useWhen": "Use to send or query analytics (cdp) from Go instead of writing a tracking client.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "analytics",
-        "cdp",
-        "go",
-        "segment",
-        "events"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "data-analytics",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pkg.go.dev/github.com/ory/analytics-go/v5",
-          "title": "go registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/ory/analytics-go",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-analytics.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "go",
-          "name": "github.com/ory/analytics-go/v5"
-        }
-      ],
-      "languages": [
-        "go"
-      ],
-      "popularity": {
-        "metric": "go-imported-by",
-        "value": 7
-      }
-    },
-    {
-      "id": "core-go-2",
+      "id": "go-core",
       "name": "github.com/tom-draper/api-analytics/analytics/go/core",
       "category": "analytics",
       "platforms": [
@@ -43014,7 +43014,7 @@
       }
     },
     {
-      "id": "v2-go-16",
+      "id": "pirsch-go-sdk",
       "name": "github.com/pirsch-analytics/pirsch-go-sdk/v2",
       "category": "analytics",
       "platforms": [
@@ -43085,7 +43085,7 @@
       }
     },
     {
-      "id": "v3-go-7",
+      "id": "snowplow-golang-tracker",
       "name": "github.com/snowplow/snowplow-golang-tracker/v3",
       "category": "analytics",
       "platforms": [
@@ -61377,7 +61377,7 @@
       }
     },
     {
-      "id": "innocraft-php-experiments-packagist",
+      "id": "innocraft-php-experiments",
       "name": "innocraft/php-experiments",
       "category": "experimentation",
       "platforms": [
@@ -61445,7 +61445,7 @@
       }
     },
     {
-      "id": "launchdarkly-mcp-server-npm",
+      "id": "launchdarkly-mcp-server",
       "name": "@launchdarkly/mcp-server",
       "category": "experimentation",
       "platforms": [
@@ -61514,7 +61514,7 @@
       }
     },
     {
-      "id": "configcat-hex-2",
+      "id": "configcat-hex",
       "name": "configcat",
       "category": "experimentation",
       "platforms": [
@@ -61582,7 +61582,7 @@
       }
     },
     {
-      "id": "statsig-next-npm",
+      "id": "statsig-next",
       "name": "@statsig/next",
       "category": "experimentation",
       "platforms": [

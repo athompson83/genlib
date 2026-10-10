@@ -11643,7 +11643,7 @@
       }
     },
     {
-      "id": "v3-go-9",
+      "id": "go-salesforce",
       "name": "github.com/k-capehart/go-salesforce/v3",
       "category": "crm",
       "platforms": [
@@ -35389,7 +35389,7 @@
       }
     },
     {
-      "id": "v2-go-4",
+      "id": "go-simple-mail",
       "name": "github.com/xhit/go-simple-mail/v2",
       "category": "email-marketing",
       "platforms": [
@@ -35733,7 +35733,7 @@
       }
     },
     {
-      "id": "v4-go-2",
+      "id": "mailgun-go",
       "name": "github.com/mailgun/mailgun-go/v4",
       "category": "email-marketing",
       "platforms": [
@@ -36217,7 +36217,7 @@
       }
     },
     {
-      "id": "v2-go-10",
+      "id": "resend-go",
       "name": "github.com/resend/resend-go/v2",
       "category": "email-marketing",
       "platforms": [
@@ -36424,7 +36424,7 @@
       }
     },
     {
-      "id": "v3-go-2",
+      "id": "mailyak",
       "name": "github.com/domodwyer/mailyak/v3",
       "category": "email-marketing",
       "platforms": [
@@ -37045,7 +37045,7 @@
       }
     },
     {
-      "id": "v4-go-4",
+      "id": "mailjet-apiv3-go",
       "name": "github.com/mailjet/mailjet-apiv3-go/v4",
       "category": "email-marketing",
       "platforms": [
@@ -37525,7 +37525,7 @@
       }
     },
     {
-      "id": "v5-go",
+      "id": "mailgun-go-go",
       "name": "github.com/mailgun/mailgun-go/v5",
       "category": "email-marketing",
       "platforms": [
@@ -37869,75 +37869,7 @@
       }
     },
     {
-      "id": "gochimp3",
-      "name": "github.com/hanzoai/gochimp3",
-      "category": "email-marketing",
-      "platforms": [
-        "server",
-        "go"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/hanzoai/gochimp3",
-      "docs": "https://pkg.go.dev/github.com/hanzoai/gochimp3",
-      "summary": "Go client for the Mailchimp API v3.",
-      "useWhen": "Use for newsletters, templates or ESP APIs (esp sdk) from Go instead of building email delivery and templating.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "email-marketing",
-        "esp-sdk",
-        "go",
-        "mailchimp"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pkg.go.dev/github.com/hanzoai/gochimp3",
-          "title": "go registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/hanzoai/gochimp3",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-engagement.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "go",
-          "name": "github.com/hanzoai/gochimp3"
-        }
-      ],
-      "languages": [
-        "go"
-      ],
-      "popularity": {
-        "metric": "go-imported-by",
-        "value": 10
-      }
-    },
-    {
-      "id": "v2-go-15",
+      "id": "go-smtp-mock",
       "name": "github.com/mocktools/go-smtp-mock/v2",
       "category": "email-marketing",
       "platforms": [
@@ -37995,6 +37927,74 @@
         {
           "ecosystem": "go",
           "name": "github.com/mocktools/go-smtp-mock/v2"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 10
+      }
+    },
+    {
+      "id": "gochimp3",
+      "name": "github.com/hanzoai/gochimp3",
+      "category": "email-marketing",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/hanzoai/gochimp3",
+      "docs": "https://pkg.go.dev/github.com/hanzoai/gochimp3",
+      "summary": "Go client for the Mailchimp API v3.",
+      "useWhen": "Use for newsletters, templates or ESP APIs (esp sdk) from Go instead of building email delivery and templating.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "email-marketing",
+        "esp-sdk",
+        "go",
+        "mailchimp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/hanzoai/gochimp3",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/hanzoai/gochimp3",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/hanzoai/gochimp3"
         }
       ],
       "languages": [
@@ -38217,6 +38217,75 @@
       }
     },
     {
+      "id": "go-customerio",
+      "name": "github.com/customerio/go-customerio/v3",
+      "category": "email-marketing",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/customerio/go-customerio",
+      "docs": "https://pkg.go.dev/github.com/customerio/go-customerio/v3",
+      "summary": "Official Customer.io Go client for tracking and transactional API.",
+      "useWhen": "Use for newsletters, templates or ESP APIs (esp sdk) from Go instead of building email delivery and templating.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "email-marketing",
+        "esp-sdk",
+        "go",
+        "customer.io",
+        "messaging"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/customerio/go-customerio/v3",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/customerio/go-customerio",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/customerio/go-customerio/v3"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 2
+      }
+    },
+    {
       "id": "go-listmonk",
       "name": "github.com/Exayn/go-listmonk",
       "category": "email-marketing",
@@ -38355,7 +38424,7 @@
       }
     },
     {
-      "id": "v2-go-17",
+      "id": "smtppool",
       "name": "github.com/knadh/smtppool/v2",
       "category": "email-marketing",
       "platforms": [
@@ -38413,75 +38482,6 @@
         {
           "ecosystem": "go",
           "name": "github.com/knadh/smtppool/v2"
-        }
-      ],
-      "languages": [
-        "go"
-      ],
-      "popularity": {
-        "metric": "go-imported-by",
-        "value": 2
-      }
-    },
-    {
-      "id": "v3-go-8",
-      "name": "github.com/customerio/go-customerio/v3",
-      "category": "email-marketing",
-      "platforms": [
-        "server",
-        "go"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/customerio/go-customerio",
-      "docs": "https://pkg.go.dev/github.com/customerio/go-customerio/v3",
-      "summary": "Official Customer.io Go client for tracking and transactional API.",
-      "useWhen": "Use for newsletters, templates or ESP APIs (esp sdk) from Go instead of building email delivery and templating.",
-      "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
-      ],
-      "tags": [
-        "marketing",
-        "email-marketing",
-        "esp-sdk",
-        "go",
-        "customer.io",
-        "messaging"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pkg.go.dev/github.com/customerio/go-customerio/v3",
-          "title": "go registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/customerio/go-customerio",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-engagement.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "go",
-          "name": "github.com/customerio/go-customerio/v3"
         }
       ],
       "languages": [
@@ -60039,7 +60039,7 @@
       }
     },
     {
-      "id": "web-push-ex-hex",
+      "id": "web-push-ex",
       "name": "web_push_ex",
       "category": "push",
       "platforms": [
@@ -60107,7 +60107,7 @@
       }
     },
     {
-      "id": "onesignal-onesignal-vue3-npm",
+      "id": "onesignal-onesignal-vue3",
       "name": "@onesignal/onesignal-vue3",
       "category": "push",
       "platforms": [
@@ -60175,7 +60175,7 @@
       }
     },
     {
-      "id": "onesignal-rust-api-crates",
+      "id": "onesignal-rust-api",
       "name": "onesignal-rust-api",
       "category": "push",
       "platforms": [
@@ -60240,7 +60240,7 @@
       }
     },
     {
-      "id": "webpush-pypi-2",
+      "id": "webpush-pypi",
       "name": "webpush",
       "category": "push",
       "platforms": [
@@ -60309,7 +60309,7 @@
       }
     },
     {
-      "id": "apns-h2-crates",
+      "id": "apns-h2",
       "name": "apns-h2",
       "category": "push",
       "platforms": [

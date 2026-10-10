@@ -2173,7 +2173,7 @@
         "web"
       ],
       "kind": "application",
-      "integrationMode": "package",
+      "integrationMode": "license-review",
       "verification": "partial",
       "license": {
         "id": "AGPL-3.0-only",
@@ -2211,6 +2211,16 @@
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "grafana/grafana"
+        }
+      ],
+      "quickstart": [
+        "docker run -d -p 3000:3000 --name=grafana grafana/grafana:latest   # pin a version tag in production",
+        "Docs: https://grafana.com/docs/grafana/latest/"
       ]
     },
     {
