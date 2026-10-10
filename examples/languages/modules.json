@@ -5335,6 +5335,857 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "python-base-encodings",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/base_encodings.py"
+      ],
+      "tests": [
+        "python/test_base_encodings.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-base-encodings",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/baseenc/baseenc.go"
+      ],
+      "tests": [
+        "go/baseenc/baseenc_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-base-encodings",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/base_encodings.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-base-encodings",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/BaseEncodings.java"
+      ],
+      "tests": [
+        "java/BaseEncodingsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-base-encodings",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/BaseEncodings.kt"
+      ],
+      "tests": [
+        "kotlin/BaseEncodingsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-base-encodings",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/BaseEncodings.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-base-encodings",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/base_encodings.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-base-encodings",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/BaseEncodings.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-vcard",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/vcard.py"
+      ],
+      "tests": [
+        "python/test_vcard.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-vcard",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/vcard/vcard.go"
+      ],
+      "tests": [
+        "go/vcard/vcard_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-vcard",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/vcard.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-vcard",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/VCard.java"
+      ],
+      "tests": [
+        "java/VCardTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-vcard",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/VCard.kt"
+      ],
+      "tests": [
+        "kotlin/VCardTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-vcard",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/VCard.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-vcard",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/vcard.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-vcard",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/VCard.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-hashing",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/hashing.py"
+      ],
+      "tests": [
+        "python/test_hashing.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-hashing",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/hashing/hashing.go"
+      ],
+      "tests": [
+        "go/hashing/hashing_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-hashing",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/hashing.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-hashing",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Hashing.java"
+      ],
+      "tests": [
+        "java/HashingTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-hashing",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Hashing.kt"
+      ],
+      "tests": [
+        "kotlin/HashingTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-hashing",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Hashing.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-hashing",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/hashing.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-hashing",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Hashing.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-feature-flags",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/feature_flags.py"
+      ],
+      "tests": [
+        "python/test_feature_flags.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-feature-flags",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/featureflags/featureflags.go"
+      ],
+      "tests": [
+        "go/featureflags/featureflags_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-feature-flags",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/feature_flags.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-feature-flags",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/FeatureFlags.java"
+      ],
+      "tests": [
+        "java/FeatureFlagsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-feature-flags",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/FeatureFlags.kt"
+      ],
+      "tests": [
+        "kotlin/FeatureFlagsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-feature-flags",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/FeatureFlags.cs",
+        "csharp/Genlib.Validation/Hashing.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-feature-flags",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/feature_flags.dart",
+        "dart/lib/hashing.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-feature-flags",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/FeatureFlags.swift",
+        "swift/Sources/GenlibSwift/Hashing.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-human-units",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/human_units.py"
+      ],
+      "tests": [
+        "python/test_human_units.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-human-units",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/humanunits/humanunits.go"
+      ],
+      "tests": [
+        "go/humanunits/humanunits_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-human-units",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/human_units.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-human-units",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/HumanUnits.java"
+      ],
+      "tests": [
+        "java/HumanUnitsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-human-units",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/HumanUnits.kt"
+      ],
+      "tests": [
+        "kotlin/HumanUnitsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-human-units",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/HumanUnits.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-human-units",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/human_units.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-human-units",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/HumanUnits.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-line-diff",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/line_diff.py"
+      ],
+      "tests": [
+        "python/test_line_diff.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-line-diff",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/linediff/linediff.go"
+      ],
+      "tests": [
+        "go/linediff/linediff_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-line-diff",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/line_diff.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-line-diff",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/LineDiff.java"
+      ],
+      "tests": [
+        "java/LineDiffTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-line-diff",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/LineDiff.kt"
+      ],
+      "tests": [
+        "kotlin/LineDiffTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-line-diff",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/LineDiff.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-line-diff",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/line_diff.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-line-diff",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/LineDiff.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-password-policy",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/password_policy.py"
+      ],
+      "tests": [
+        "python/test_password_policy.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-password-policy",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/passwordpolicy/passwordpolicy.go"
+      ],
+      "tests": [
+        "go/passwordpolicy/passwordpolicy_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-password-policy",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/password_policy.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-password-policy",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/PasswordPolicy.java"
+      ],
+      "tests": [
+        "java/PasswordPolicyTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-password-policy",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/PasswordPolicy.kt"
+      ],
+      "tests": [
+        "kotlin/PasswordPolicyTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-password-policy",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/PasswordPolicy.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-password-policy",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/password_policy.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-password-policy",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/PasswordPolicy.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-text-sanitize",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/text_sanitize.py"
+      ],
+      "tests": [
+        "python/test_text_sanitize.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-text-sanitize",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/textsanitize/textsanitize.go"
+      ],
+      "tests": [
+        "go/textsanitize/textsanitize_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-text-sanitize",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/text_sanitize.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-text-sanitize",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TextSanitize.java"
+      ],
+      "tests": [
+        "java/TextSanitizeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-text-sanitize",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TextSanitize.kt"
+      ],
+      "tests": [
+        "kotlin/TextSanitizeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-text-sanitize",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TextSanitize.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-text-sanitize",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/text_sanitize.dart"
+      ],
+      "tests": [
+        "dart/test/wave7_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-text-sanitize",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TextSanitize.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave7Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }

@@ -223,6 +223,30 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 **rrule**
 - `expandRRule(dtstart, rule, limit)` expands DAILY, WEEKLY, MONTHLY and YEARLY rules with INTERVAL, COUNT, UNTIL, BYDAY (including ordinals such as `2TU` and `-1FR` in MONTHLY), BYMONTHDAY and BYMONTH, in UTC, skipping dates that do not exist (31 April, 29 February) and matching python-dateutil on the test vectors. Other parts (BYSETPOS, BYHOUR, WKST, EXDATE) are rejected; convert local times to UTC around daylight-saving changes yourself.
 
+**base-encodings**
+- `base32Encode`/`base32Decode` (RFC 4648 standard and extended-hex alphabets, padded or not), `base58Encode`/`base58Decode` (Bitcoin alphabet, leading zero bytes as "1") and unpadded `base64UrlEncode`/`base64UrlDecode`. Decoders are strict: they reject wrong padding, unknown characters and non-canonical trailing bits, so one value has one encoding.
+
+**vcard**
+- `buildVcard(contact)` writes RFC 6350 vCard 4.0 (FN, N, ORG, TITLE, EMAIL, TEL, ADR, URL, NOTE, UID) with text escaping, TYPE parameters and 75-octet folding. Serve it as `text/vcard; charset=utf-8` with a `.vcf` file name.
+
+**hashing**
+- `crc32`, `fnv1a32`, `fnv1a64`, `murmur3_32` and `jumpHash` (Lamping and Veach) for checksums, sharding and stable bucketing. They are not cryptographic: use HMAC or a password hash for anything an attacker can influence.
+
+**feature-flags**
+- `evaluateFlag(flag, userId)` applies disabled, deny, allow and a sticky percentage rollout (FNV-1a bucket of `key:userId` out of 10,000), then picks a weighted variant. The same user always gets the same answer, raising the percentage only adds users, and the result carries the reason and bucket for logs and experiment analysis.
+
+**human-units**
+- `formatBytes` (SI kB or IEC KiB, integer rounding, 64-bit safe), `parseBytes`, `formatDuration` ("1h 2m") and `relativeTime` ("3 minutes ago", "in 2 days"; English only, localize with Intl or ICU for other languages).
+
+**line-diff**
+- `diffLines` returns equal/removed/added lines from a deterministic LCS walk; `unifiedDiff` writes text identical to GNU `diff -u` (hunks, three lines of context, "No newline at end of file"). Inputs are limited to 4,000,000 line pairs; use a streaming diff for huge files.
+
+**password-policy**
+- `checkPassword` reports too-short, too-long (code points), control-characters, blocklisted, contains-context and repetitive (aaaa, 1234, dcba) with no composition rules, following NIST SP 800-63B. Use a large breached-password list as the blocklist, allow spaces and emoji, never truncate, and rate-limit attempts.
+
+**text-sanitize**
+- `sanitizeText` normalizes newlines and removes control, bidirectional-override and invisible characters (keeping the zero-width joiners emoji and some scripts need), `findBidiControls` reports Trojan Source characters (CVE-2021-42574) in code or reviews, and `normalizeWhitespace` collapses runs of whitespace.
+
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 
 Learn any implementation's API without opening it: `genlib outline <capability> --language <lang>` lists its signatures and one-line docs.
