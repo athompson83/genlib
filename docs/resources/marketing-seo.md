@@ -16,20 +16,20 @@ node "$GENLIB_ROOT/tools/resources.mjs" inspect <id> --json   # license, caution
 
 | Language | Records |
 | --- | ---: |
-| typescript | 449 |
-| python | 151 |
-| go | 41 |
-| rust | 52 |
+| typescript | 453 |
+| python | 154 |
+| go | 43 |
+| rust | 53 |
 | java | 14 |
 | csharp | 42 |
 | ruby | 54 |
-| php | 107 |
+| php | 108 |
 | dart | 11 |
 | swift | 10 |
 | elixir | 26 |
-| any | 27 |
+| any | 60 |
 
-Total: 984 records in `resources/catalog/marketing-seo*.json`.
+Total: 1028 records in `resources/catalog/marketing-seo*.json`.
 
 ## Ai optimization
 
@@ -37,7 +37,7 @@ Total: 984 records in `resources/catalog/marketing-seo*.json`.
 | --- | --- | --- |
 | typescript | `natural`, `keyword-extractor` (review), `starlight-llms-txt`, `usenotra-geo` | MIT |
 | python | `markdownify`, `sentence-transformers-pypi`, `html2text` (review), `firecrawl-py` | Apache-2.0, GPL-3.0-or-later, MIT |
-| go | `v2-go-9`, `lingua-go` | Apache-2.0, MIT |
+| go | `html-to-markdown`, `lingua-go` | Apache-2.0, MIT |
 | rust | `rake`, `yake-rust`, `actix-block-ai-crawling` (review), `rust-readability` (review) | AGPL-3.0, Apache-2.0, GPL-3.0-or-later, MIT |
 | php | `donatello-za-rake-php-plus`, `passionweb-ai-seo-helper` (review), `stolt-llms-txt-php`, `mikestecker-craft-readability` | GPL-3.0, MIT |
 | any | `llms-txt-github`, `gtm-engineer-skills`, `awesome-generative-engine-optimization` (review) | Apache-2.0, MIT, n/a |
@@ -48,7 +48,7 @@ Total: 984 records in `resources/catalog/marketing-seo*.json`.
 | --- | --- | --- |
 | typescript | `satori`, `vercel-og`, `remotion-npm` (review), `remotion-player` (review) | MPL-2.0, SEE LICENSE IN LICENSE.md |
 | python | `feedparser`, `htmldate`, `trafilatura`, `emoji` | Apache-2.0, BSD, BSD-2-Clause |
-| go | `gofeed`, `feeds`, `go-rss`, `v2-go-12` | BSD-3-Clause, MIT, Unlicense |
+| go | `gofeed`, `feeds`, `go-rss`, `go-readability` | BSD-3-Clause, MIT, Unlicense |
 | rust | `takumi`, `leptos-next-metadata`, `oembed-rs`, `url-preview` | MIT, MIT OR Apache-2.0 |
 | java | `eu-michael-simons-java-oembed` | BSD-3-Clause |
 | csharp | `dawoe-oembedpickerpropertyeditor`, `oembed-nuget`, `urlpreview`, `umbraco-cms` | MIT |
@@ -64,7 +64,7 @@ Total: 984 records in `resources/catalog/marketing-seo*.json`.
 | --- | --- | --- |
 | typescript | `qrcode`, `qrcode-react`, `qrcode-terminal` (review), `toqr` | Apache-2.0, ISC, MIT |
 | python | `qrcode-pypi` (review), `segno`, `python-barcode`, `types-qrcode` | Apache-2.0, BSD, BSD OR LicenseRef-Other, MIT |
-| go | `go-qrcode`, `barcode-go`, `v2-go-5`, `gozxing` | Apache-2.0 AND MIT, BSD-3-Clause, MIT |
+| go | `go-qrcode`, `barcode-go`, `xurls`, `gozxing` | Apache-2.0 AND MIT, BSD-3-Clause, MIT |
 | rust | `qrcode-crates`, `qrcodegen`, `qrcode-generator-crates`, `rqrr` | Apache-2.0, MIT, MIT OR Apache-2.0 |
 | java | `com-google-zxing-core`, `io-nayuki-qrcodegen` | Apache-2.0, MIT |
 | csharp | `net-codecrete-qrcodegenerator`, `skiasharp-qrcode`, `barcode` (review) | MIT, non-standard |
@@ -80,14 +80,14 @@ Total: 984 records in `resources/catalog/marketing-seo*.json`.
 | --- | --- | --- |
 | typescript | `web-vitals`, `slugify`, `github-slugger`, `sindresorhus-slugify` | Apache-2.0, ISC, MIT |
 | python | `python-slugify`, `courlan`, `protego`, `url-normalize` | Apache-2.0, BSD-3-Clause, MIT |
-| go | `slug-go-2`, `v2-go`, `go-opengraph-go`, `purell-go` | Apache-2.0, BSD-3-Clause, MIT, MPL-2.0 |
+| go | `muffet`, `slug-go`, `colly`, `seonaut` | Apache-2.0, MIT, MPL-2.0 |
 | rust | `slug`, `rss-crates`, `feed-rs`, `spider` | Apache-2.0, MIT |
-| java | `com-google-apis-google-api-services-pagespeedonline`, `com-google-apis-google-api-services-searchconsole`, `edu-uci-ics-crawler4j`, `com-rometools-rome-maven` | Apache-2.0 |
+| java | `com-google-apis-google-api-services-pagespeedonline`, `com-google-apis-google-api-services-searchconsole`, `edu-uci-ics-crawler4j`, `com-rometools-rome` | Apache-2.0 |
 | csharp | `schema-net`, `codehollow-feedreader`, `seochecker` (review), `cloudscribe-web-sitemap` | Apache-2.0, MIT, non-standard |
 | ruby | `babosa`, `friendly-id`, `sitemap-generator`, `webrobots` | BSD-2-Clause, MIT |
 | php | `spatie-image-optimizer`, `cocur-slugify`, `laminas-laminas-feed`, `spatie-robots-txt` | BSD-3-Clause, MIT |
-| dart | `seo-pub-2`, `metadata-fetch-pub`, `dart-rss-pub`, `linkcheck-pub` | BSD-3-Clause, MIT |
-| swift | `plot-swift`, `feedkit-swift`, `opengraph-swift` (review), `tagkit-swift` | MIT, NOASSERTION |
+| dart | `seo-pub`, `metadata-fetch`, `dart-rss`, `linkcheck` | BSD-3-Clause, MIT |
+| swift | `plot`, `feedkit`, `opengraph` (review), `tagkit` | MIT, NOASSERTION |
 | elixir | `slugify-hex`, `slugger`, `sitemapper`, `ecto-autoslug-field` | MIT |
-| any | `schemaorg` | Apache-2.0 |
+| any | `schemaorg`, `htmltest`, `accuranker`, `ahrefs` | Apache-2.0, MIT, n/a |
 

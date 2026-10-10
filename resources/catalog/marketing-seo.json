@@ -8889,7 +8889,7 @@
       }
     },
     {
-      "id": "v2-go-9",
+      "id": "html-to-markdown",
       "name": "github.com/JohannesKaufmann/html-to-markdown/v2",
       "category": "ai-optimization",
       "platforms": [
@@ -17298,7 +17298,7 @@
       }
     },
     {
-      "id": "v2-go-12",
+      "id": "go-readability",
       "name": "codeberg.org/readeck/go-readability/v2",
       "category": "content",
       "platforms": [
@@ -27970,7 +27970,7 @@
       }
     },
     {
-      "id": "v2-go-5",
+      "id": "xurls",
       "name": "mvdan.cc/xurls/v2",
       "category": "links-qr",
       "platforms": [
@@ -28239,7 +28239,7 @@
       }
     },
     {
-      "id": "v2-go-11",
+      "id": "go-qrcode-go",
       "name": "github.com/yeqown/go-qrcode/v2",
       "category": "links-qr",
       "platforms": [
@@ -60183,6 +60183,74 @@
       }
     },
     {
+      "id": "muffet",
+      "name": "muffet",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://raviqqe.com/muffet",
+      "repository": "https://github.com/raviqqe/muffet",
+      "docs": null,
+      "summary": "Fast website link checker in Go",
+      "useWhen": "Use instead of hand-writing link checker (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checker",
+        "go",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/raviqqe/muffet",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "raviqqe/muffet"
+        }
+      ],
+      "quickstart": [
+        "docker pull raviqqe/muffet",
+        "Docs: https://raviqqe.com/muffet"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 2614
+      }
+    },
+    {
       "id": "sanity-plugin-seo-pane",
       "name": "sanity-plugin-seo-pane",
       "category": "seo",
@@ -60926,7 +60994,7 @@
       }
     },
     {
-      "id": "daffodil-seo-npm",
+      "id": "daffodil-seo",
       "name": "@daffodil/seo",
       "category": "seo",
       "platforms": [
@@ -60995,7 +61063,7 @@
       }
     },
     {
-      "id": "datasette-block-robots-pypi",
+      "id": "datasette-block-robots",
       "name": "datasette-block-robots",
       "category": "seo",
       "platforms": [
@@ -61065,7 +61133,7 @@
       }
     },
     {
-      "id": "plot-swift",
+      "id": "plot",
       "name": "Plot",
       "category": "seo",
       "platforms": [
@@ -61133,7 +61201,7 @@
       }
     },
     {
-      "id": "payload-bites-broken-link-checker-npm",
+      "id": "payload-bites-broken-link-checker",
       "name": "@payload-bites/broken-link-checker",
       "category": "seo",
       "platforms": [
@@ -61146,14 +61214,15 @@
       "license": {
         "id": null,
         "url": null,
-        "scope": "No license declared in registry metadata; check the repository before use."
+        "scope": "The registry declares no license for this package; confirm the license in the repository before use."
       },
-      "homepage": "https://github.com/rilrom/payload-bites/blob/main/packages/broken-link-checker#readme",
+      "homepage": null,
       "repository": "https://github.com/rilrom/payload-bites",
-      "docs": "https://github.com/rilrom/payload-bites/blob/main/packages/broken-link-checker#readme",
+      "docs": null,
       "summary": "broken links are a thing of the past",
       "useWhen": "Use instead of hand-writing link checking (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
       "cautions": [
+        "The registry declares no license for this package; confirm the license in the repository before use.",
         "No license declared in registry metadata; check the repository before use."
       ],
       "tags": [
@@ -61201,74 +61270,6 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 2011
-      }
-    },
-    {
-      "id": "slug-go-2",
-      "name": "github.com/gosimple/slug",
-      "category": "seo",
-      "platforms": [
-        "server",
-        "go"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MPL-2.0",
-        "url": null,
-        "scope": "MPL-2.0 (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/gosimple/slug",
-      "docs": "https://pkg.go.dev/github.com/gosimple/slug",
-      "summary": "Generate URL-friendly slugs from Unicode strings with language-specific rules.",
-      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
-      "cautions": [
-        "Pin the version and review the changelog before upgrading."
-      ],
-      "tags": [
-        "marketing",
-        "seo",
-        "slug",
-        "go",
-        "url"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://pkg.go.dev/github.com/gosimple/slug",
-          "title": "go registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/gosimple/slug",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/marketing-seo.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "go",
-          "name": "github.com/gosimple/slug"
-        }
-      ],
-      "languages": [
-        "go"
-      ],
-      "popularity": {
-        "metric": "go-imported-by",
-        "value": 1920
       }
     }
   ]

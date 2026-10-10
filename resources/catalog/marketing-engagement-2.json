@@ -3,7 +3,143 @@
   "reviewedAt": "2026-10-10",
   "items": [
     {
-      "id": "rich2k-pusher-beams-packagist",
+      "id": "apprise",
+      "name": "apprise",
+      "category": "push",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": null,
+        "scope": "BSD-2-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://hub.docker.com/r/caronc/apprise",
+      "repository": "https://github.com/caronc/apprise",
+      "docs": null,
+      "summary": "Apprise - Push Notifications that work with just about every platform!",
+      "useWhen": "Use to send web or mobile push notifications (notification router) from Python instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "notification-router",
+        "python",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/caronc/apprise",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "caronc/apprise"
+        }
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/caronc/apprise && cd apprise && docker compose -f docker-compose.yml up -d",
+        "Docs: https://hub.docker.com/r/caronc/apprise"
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 17556
+      }
+    },
+    {
+      "id": "server",
+      "name": "server",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://gotify.net",
+      "repository": "https://github.com/gotify/server",
+      "docs": null,
+      "summary": "A simple server for sending and receiving messages in real-time per WebSocket. (Includes a sleek web-ui)",
+      "useWhen": "Use to send web or mobile push notifications (push notifications) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-notifications",
+        "go",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gotify/server",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "gotify/server"
+        }
+      ],
+      "quickstart": [
+        "docker pull gotify/server",
+        "Docs: https://gotify.net"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 16045
+      }
+    },
+    {
+      "id": "rich2k-pusher-beams",
       "name": "rich2k/pusher-beams",
       "category": "push",
       "platforms": [
@@ -71,7 +207,7 @@
       }
     },
     {
-      "id": "symfony-novu-notifier-packagist",
+      "id": "symfony-novu-notifier",
       "name": "symfony/novu-notifier",
       "category": "push",
       "platforms": [
@@ -139,7 +275,7 @@
       }
     },
     {
-      "id": "atomic-web-push-crates",
+      "id": "atomic-web-push",
       "name": "atomic_web_push",
       "category": "push",
       "platforms": [
@@ -209,7 +345,74 @@
       }
     },
     {
-      "id": "apple-apns-crates",
+      "id": "gorush",
+      "name": "gorush",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/appleboy/gorush",
+      "docs": null,
+      "summary": "A push notification server written in Go (Golang).",
+      "useWhen": "Use to send web or mobile push notifications (mobile push) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "mobile-push",
+        "go",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/appleboy/gorush",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "appleboy/gorush"
+        }
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/appleboy/gorush && cd gorush && docker compose -f docker-compose.yml up -d"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 8781
+      }
+    },
+    {
+      "id": "apple-apns",
       "name": "apple-apns",
       "category": "push",
       "platforms": [
@@ -225,7 +428,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://github.com/jakelee8/apple-apns",
-      "repository": "https://github.com/jakelee8/apple-apns",
+      "repository": null,
       "docs": "https://docs.rs/apple-apns",
       "summary": "Rust client for Apple Push Notification service",
       "useWhen": "Use to send web or mobile push notifications (push notifications) from Rust instead of raw provider protocols.",
@@ -249,10 +452,6 @@
         {
           "url": "https://crates.io/crates/apple-apns",
           "title": "crates registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/jakelee8/apple-apns",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -277,7 +476,7 @@
       }
     },
     {
-      "id": "pushx-hex",
+      "id": "pushx",
       "name": "pushx",
       "category": "push",
       "platforms": [
@@ -347,7 +546,7 @@
       }
     },
     {
-      "id": "kalyke-apns-pypi",
+      "id": "kalyke-apns",
       "name": "kalyke-apns",
       "category": "push",
       "platforms": [
@@ -416,7 +615,7 @@
       }
     },
     {
-      "id": "firebase-messaging-pub-2",
+      "id": "firebase-messaging-pub",
       "name": "firebase_messaging",
       "category": "push",
       "platforms": [
@@ -485,7 +684,7 @@
       }
     },
     {
-      "id": "awesome-notifications-pub",
+      "id": "awesome-notifications",
       "name": "awesome_notifications",
       "category": "push",
       "platforms": [
@@ -553,7 +752,7 @@
       }
     },
     {
-      "id": "com-eatthepath-pushy-maven",
+      "id": "com-eatthepath-pushy",
       "name": "com.eatthepath:pushy",
       "category": "push",
       "platforms": [
@@ -622,7 +821,7 @@
       }
     },
     {
-      "id": "onesignal-flutter-pub",
+      "id": "onesignal-flutter",
       "name": "onesignal_flutter",
       "category": "push",
       "platforms": [
@@ -691,7 +890,7 @@
       }
     },
     {
-      "id": "apnswift-swift",
+      "id": "apnswift",
       "name": "APNSwift",
       "category": "push",
       "platforms": [
@@ -758,7 +957,7 @@
       }
     },
     {
-      "id": "v4-go",
+      "id": "firebase-google-com-go",
       "name": "firebase.google.com/go/v4",
       "category": "push",
       "platforms": [
@@ -826,7 +1025,7 @@
       }
     },
     {
-      "id": "com-onesignal-onesignal-maven",
+      "id": "com-onesignal-onesignal",
       "name": "com.onesignal:OneSignal",
       "category": "push",
       "platforms": [
@@ -896,7 +1095,7 @@
       }
     },
     {
-      "id": "com-google-firebase-firebase-admin-maven",
+      "id": "com-google-firebase-firebase-admin",
       "name": "com.google.firebase:firebase-admin",
       "category": "push",
       "platforms": [
@@ -965,7 +1164,7 @@
       }
     },
     {
-      "id": "onesignal-ios-sdk-swift",
+      "id": "onesignal-ios-sdk",
       "name": "OneSignal-iOS-SDK",
       "category": "push",
       "platforms": [
@@ -1033,7 +1232,7 @@
       }
     },
     {
-      "id": "ios-library-swift",
+      "id": "ios-library",
       "name": "ios-library",
       "category": "push",
       "platforms": [
@@ -1100,7 +1299,7 @@
       }
     },
     {
-      "id": "apns2-go-2",
+      "id": "apns2-go",
       "name": "github.com/sideshow/apns2",
       "category": "push",
       "platforms": [
@@ -1168,7 +1367,7 @@
       }
     },
     {
-      "id": "nl-martijndwars-web-push-maven",
+      "id": "nl-martijndwars-web-push",
       "name": "nl.martijndwars:web-push",
       "category": "push",
       "platforms": [
@@ -1237,7 +1436,7 @@
       }
     },
     {
-      "id": "webpush-go-go",
+      "id": "webpush-go",
       "name": "github.com/SherClockHolmes/webpush-go",
       "category": "push",
       "platforms": [
@@ -1305,7 +1504,7 @@
       }
     },
     {
-      "id": "intercom-flutter-pub",
+      "id": "intercom-flutter",
       "name": "intercom_flutter",
       "category": "push",
       "platforms": [
@@ -1374,7 +1573,7 @@
       }
     },
     {
-      "id": "push-pub",
+      "id": "push",
       "name": "push",
       "category": "push",
       "platforms": [
@@ -1443,7 +1642,7 @@
       }
     },
     {
-      "id": "fcm-swift-2",
+      "id": "fcm-swift",
       "name": "FCM",
       "category": "push",
       "platforms": [
@@ -1511,7 +1710,7 @@
       }
     },
     {
-      "id": "apns-swift",
+      "id": "apns",
       "name": "apns",
       "category": "push",
       "platforms": [
@@ -1655,7 +1854,7 @@
       }
     },
     {
-      "id": "com-urbanairship-android-urbanairship-core-maven",
+      "id": "com-urbanairship-android-urbanairship-core",
       "name": "com.urbanairship.android:urbanairship-core",
       "category": "push",
       "platforms": [
@@ -1725,7 +1924,7 @@
       }
     },
     {
-      "id": "go-fcm-go",
+      "id": "go-fcm",
       "name": "github.com/appleboy/go-fcm",
       "category": "push",
       "platforms": [
@@ -1793,7 +1992,7 @@
       }
     },
     {
-      "id": "swift-webpush-swift",
+      "id": "swift-webpush",
       "name": "swift-webpush",
       "category": "push",
       "platforms": [
@@ -1862,7 +2061,7 @@
       }
     },
     {
-      "id": "pusher-beams-pub",
+      "id": "pusher-beams",
       "name": "pusher_beams",
       "category": "push",
       "platforms": [
@@ -1930,7 +2129,7 @@
       }
     },
     {
-      "id": "com-urbanairship-java-client-maven",
+      "id": "com-urbanairship-java-client",
       "name": "com.urbanairship:java-client",
       "category": "push",
       "platforms": [
@@ -1999,7 +2198,7 @@
       }
     },
     {
-      "id": "onesignal-xcframework-swift",
+      "id": "onesignal-xcframework",
       "name": "OneSignal-XCFramework",
       "category": "push",
       "platforms": [
@@ -2067,7 +2266,7 @@
       }
     },
     {
-      "id": "com-interaso-webpush-maven",
+      "id": "com-interaso-webpush",
       "name": "com.interaso:webpush",
       "category": "push",
       "platforms": [
@@ -2137,7 +2336,7 @@
       }
     },
     {
-      "id": "firebase-admin-sdk-pub",
+      "id": "firebase-admin-sdk",
       "name": "firebase_admin_sdk",
       "category": "push",
       "platforms": [
@@ -2206,7 +2405,7 @@
       }
     },
     {
-      "id": "airship-flutter-pub",
+      "id": "airship-flutter",
       "name": "airship_flutter",
       "category": "push",
       "platforms": [
@@ -2274,7 +2473,7 @@
       }
     },
     {
-      "id": "v2-go-20",
+      "id": "onesignal-go-api",
       "name": "github.com/OneSignal/onesignal-go-api/v2",
       "category": "push",
       "platforms": [
@@ -2343,7 +2542,7 @@
       }
     },
     {
-      "id": "expo-store-review-npm",
+      "id": "expo-store-review",
       "name": "expo-store-review",
       "category": "reviews",
       "platforms": [
@@ -2412,7 +2611,7 @@
       }
     },
     {
-      "id": "spryker-feature-product-rating-reviews-packagist",
+      "id": "spryker-feature-product-rating-reviews",
       "name": "spryker-feature/product-rating-reviews",
       "category": "reviews",
       "platforms": [
@@ -2480,7 +2679,7 @@
       }
     },
     {
-      "id": "plugin-storereview-nuget",
+      "id": "plugin-storereview",
       "name": "Plugin.StoreReview",
       "category": "reviews",
       "platforms": [
@@ -2549,7 +2748,7 @@
       }
     },
     {
-      "id": "react-native-in-app-review-npm",
+      "id": "react-native-in-app-review",
       "name": "react-native-in-app-review",
       "category": "reviews",
       "platforms": [
@@ -2618,7 +2817,7 @@
       }
     },
     {
-      "id": "trustpilot-module-reviews-packagist",
+      "id": "trustpilot-module-reviews",
       "name": "trustpilot/module-reviews",
       "category": "reviews",
       "platforms": [
@@ -2686,7 +2885,7 @@
       }
     },
     {
-      "id": "codebyray-laravel-review-rateable-packagist",
+      "id": "codebyray-laravel-review-rateable",
       "name": "codebyray/laravel-review-rateable",
       "category": "reviews",
       "platforms": [
@@ -2754,7 +2953,7 @@
       }
     },
     {
-      "id": "featurebase-js-npm",
+      "id": "featurebase-js",
       "name": "featurebase-js",
       "category": "reviews",
       "platforms": [
@@ -2770,7 +2969,7 @@
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
       "homepage": "https://featurebase.app",
-      "repository": "https://github.com/FeaturebaseHQ/sdk/tree/HEAD/client",
+      "repository": null,
       "docs": "https://featurebase.app",
       "summary": "Typed client SDK for Featurebase — messenger, changelog widget, feedback widget, and surveys.",
       "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
@@ -2794,10 +2993,6 @@
         {
           "url": "https://www.npmjs.com/package/featurebase-js",
           "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/FeaturebaseHQ/sdk/tree/HEAD/client",
-          "title": "Upstream repository"
         }
       ],
       "genlib": {
@@ -2822,7 +3017,7 @@
       }
     },
     {
-      "id": "react-native-store-review-npm",
+      "id": "react-native-store-review",
       "name": "react-native-store-review",
       "category": "reviews",
       "platforms": [
@@ -2891,7 +3086,7 @@
       }
     },
     {
-      "id": "smastrom-react-rating-npm",
+      "id": "smastrom-react-rating",
       "name": "@smastrom/react-rating",
       "category": "reviews",
       "platforms": [
@@ -2960,7 +3155,7 @@
       }
     },
     {
-      "id": "usersnap-browser-npm",
+      "id": "usersnap-browser",
       "name": "@usersnap/browser",
       "category": "reviews",
       "platforms": [
@@ -3025,7 +3220,7 @@
       }
     },
     {
-      "id": "turnto-social-commerce-packagist",
+      "id": "turnto-social-commerce",
       "name": "turnto/social-commerce",
       "category": "reviews",
       "platforms": [
@@ -3093,7 +3288,7 @@
       }
     },
     {
-      "id": "zreviewtender-gem",
+      "id": "zreviewtender",
       "name": "ZReviewTender",
       "category": "reviews",
       "platforms": [
@@ -3110,7 +3305,7 @@
       },
       "homepage": "https://github.com/ZhgChgLi/ZReviewTender",
       "repository": "https://github.com/ZhgChgLi/ZReviewTender",
-      "docs": "https://www.rubydoc.info/gems/ZReviewTender/1.4.0",
+      "docs": null,
       "summary": "ZReviewTender - App Reviews Automatic Bot",
       "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
       "cautions": [
@@ -3162,7 +3357,7 @@
       }
     },
     {
-      "id": "react-star-ratings-npm",
+      "id": "react-star-ratings",
       "name": "react-star-ratings",
       "category": "reviews",
       "platforms": [
@@ -3232,7 +3427,7 @@
       }
     },
     {
-      "id": "plugin-maui-apprating-nuget",
+      "id": "plugin-maui-apprating",
       "name": "Plugin.Maui.AppRating",
       "category": "reviews",
       "platforms": [
@@ -3301,7 +3496,7 @@
       }
     },
     {
-      "id": "react-native-star-rating-widget-npm",
+      "id": "react-native-star-rating-widget",
       "name": "react-native-star-rating-widget",
       "category": "reviews",
       "platforms": [
@@ -3370,7 +3565,7 @@
       }
     },
     {
-      "id": "trustpilot-pypi",
+      "id": "trustpilot",
       "name": "trustpilot",
       "category": "reviews",
       "platforms": [
@@ -3438,7 +3633,7 @@
       }
     },
     {
-      "id": "graphem-trustpilot-packagist",
+      "id": "graphem-trustpilot",
       "name": "graphem/trustpilot",
       "category": "reviews",
       "platforms": [
@@ -3506,7 +3701,7 @@
       }
     },
     {
-      "id": "trustpilot-npm-2",
+      "id": "trustpilot-npm",
       "name": "trustpilot",
       "category": "reviews",
       "platforms": [
@@ -3574,7 +3769,7 @@
       }
     },
     {
-      "id": "dynamic-silverstripe-elemental-testimonials-packagist",
+      "id": "dynamic-silverstripe-elemental-testimonials",
       "name": "dynamic/silverstripe-elemental-testimonials",
       "category": "reviews",
       "platforms": [
@@ -3642,7 +3837,7 @@
       }
     },
     {
-      "id": "angular-star-rating-npm",
+      "id": "angular-star-rating",
       "name": "angular-star-rating",
       "category": "reviews",
       "platforms": [
@@ -3711,7 +3906,7 @@
       }
     },
     {
-      "id": "react-google-reviews-npm",
+      "id": "react-google-reviews",
       "name": "react-google-reviews",
       "category": "reviews",
       "platforms": [
@@ -3780,7 +3975,7 @@
       }
     },
     {
-      "id": "yelp-fusion-rs-crates",
+      "id": "yelp-fusion-rs",
       "name": "yelp-fusion-rs",
       "category": "reviews",
       "platforms": [
@@ -3848,7 +4043,7 @@
       }
     },
     {
-      "id": "yelpapi-pypi",
+      "id": "yelpapi",
       "name": "yelpapi",
       "category": "reviews",
       "platforms": [
@@ -3917,7 +4112,75 @@
       }
     },
     {
-      "id": "in-app-review-pub",
+      "id": "fider",
+      "name": "fider",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://fider.io",
+      "repository": "https://github.com/getfider/fider",
+      "docs": null,
+      "summary": "Open platform to collect and prioritize feedback",
+      "useWhen": "Use to collect or show reviews and social proof (feedback board) instead of a custom implementation.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "feedback-board",
+        "go",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/getfider/fider",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "getfider/fider"
+        }
+      ],
+      "quickstart": [
+        "git clone --depth 1 https://github.com/getfider/fider && cd fider && docker compose -f docker-compose.yml up -d",
+        "Docs: https://fider.io"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 4572
+      }
+    },
+    {
+      "id": "in-app-review",
       "name": "in_app_review",
       "category": "reviews",
       "platforms": [
@@ -3986,7 +4249,123 @@
       }
     },
     {
-      "id": "appreview-swift",
+      "id": "logchimp",
+      "name": "logchimp",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://logchimp.app",
+      "repository": "https://github.com/logchimp/logchimp",
+      "docs": null,
+      "summary": "Open Source Canny, ProductBoard, UserJot Alternative. Track your customers feedback to build better products with LogChimp. Star to support our work!",
+      "useWhen": "Use to collect or show reviews and social proof (feedback board) instead of a custom implementation.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "feedback-board",
+        "typescript",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/logchimp/logchimp",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1133
+      }
+    },
+    {
+      "id": "clearflask",
+      "name": "clearflask",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://clearflask.com",
+      "repository": "https://github.com/clearflask/clearflask",
+      "docs": null,
+      "summary": "Listen to your users during product development with ClearFlask",
+      "useWhen": "Use to collect or show reviews and social proof (feedback board) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "feedback-board",
+        "java",
+        "github"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/clearflask/clearflask",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 451
+      }
+    },
+    {
+      "id": "appreview",
       "name": "AppReview",
       "category": "reviews",
       "platforms": [
@@ -4054,7 +4433,7 @@
       }
     },
     {
-      "id": "io-github-sergeimikhailovskii-in-app-review-kmp-android-maven",
+      "id": "io-github-sergeimikhailovskii-in-app-review-kmp-android",
       "name": "io.github.sergeimikhailovskii:in-app-review-kmp-android",
       "category": "reviews",
       "platforms": [
@@ -4123,6 +4502,277 @@
         "metric": "github-stars",
         "value": 94
       }
+    },
+    {
+      "id": "brand24",
+      "name": "Brand24",
+      "category": "reviews",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://brand24.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Online reputation management tool that monitors your brand's mentions across social media, blogs, and forums.",
+      "useWhen": "Use to collect or show reviews and social proof (reputation management) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "reputation-management",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://brand24.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "podium",
+      "name": "Podium",
+      "category": "reviews",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.podium.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Interaction management platform that helps businesses manage customer reviews, messaging, and payments.",
+      "useWhen": "Use to collect or show reviews and social proof (reputation management) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "reputation-management",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.podium.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "reputology",
+      "name": "Reputology",
+      "category": "reviews",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.reputology.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Review monitoring and management platform designed to help businesses track and respond to online reviews.",
+      "useWhen": "Use to collect or show reviews and social proof (reputation management) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "reputation-management",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.reputology.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "trustpilot-service",
+      "name": "Trustpilot",
+      "category": "reviews",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.trustpilot.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Consumer review website that allows businesses to build and manage their online reputation through customer reviews.",
+      "useWhen": "Use to collect or show reviews and social proof (reputation management) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "reputation-management",
+        "service",
+        "awesome-marketing",
+        "link-bot-protected-403"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.trustpilot.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
+    },
+    {
+      "id": "yotpo",
+      "name": "Yotpo",
+      "category": "reviews",
+      "platforms": [
+        "web"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "verified",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "Hosted service; review its terms, pricing and data processing before use. No source to copy."
+      },
+      "homepage": "https://www.yotpo.com",
+      "repository": null,
+      "docs": null,
+      "summary": "Customer content marketing platform that helps brands leverage reviews, photos, and Q&A to build trust and drive sales.",
+      "useWhen": "Use to collect or show reviews and social proof (reputation management) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "reputation-management",
+        "service",
+        "awesome-marketing"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.yotpo.com",
+          "title": "Official site"
+        },
+        {
+          "url": "https://github.com/marketingtoolslist/awesome-marketing",
+          "title": "Listed in marketingtoolslist/awesome-marketing"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Sign up, create a server-side API key and follow the official setup guide."
+      ]
     }
   ]
 }

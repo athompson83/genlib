@@ -16,11 +16,11 @@ node "$GENLIB_ROOT/tools/resources.mjs" inspect <id> --json   # license, caution
 
 | Language | Records |
 | --- | ---: |
-| typescript | 302 |
-| python | 91 |
-| go | 47 |
+| typescript | 303 |
+| python | 92 |
+| go | 50 |
 | rust | 36 |
-| java | 28 |
+| java | 29 |
 | kotlin | 2 |
 | csharp | 70 |
 | ruby | 93 |
@@ -28,9 +28,9 @@ node "$GENLIB_ROOT/tools/resources.mjs" inspect <id> --json   # license, caution
 | dart | 17 |
 | swift | 15 |
 | elixir | 30 |
-| any | 73 |
+| any | 78 |
 
-Total: 960 records in `resources/catalog/marketing-engagement*.json`.
+Total: 971 records in `resources/catalog/marketing-engagement*.json`.
 
 ## Affiliate
 
@@ -112,28 +112,31 @@ Total: 960 records in `resources/catalog/marketing-engagement*.json`.
 | --- | --- | --- |
 | typescript | `firebase-messaging`, `web-push-npm`, `expo-notifications`, `capacitor-push-notifications` | Apache-2.0, MIT, MPL-2.0 |
 | python | `firebase-admin`, `pywebpush`, `aioapns`, `knockapi` | Apache-2.0, MPL-2.0 |
-| go | `v4-go`, `apns2-go-2`, `webpush-go-go`, `gorush-go` | Apache-2.0, MIT |
+| go | `server`, `gorush`, `firebase-google-com-go`, `apns2-go` | Apache-2.0, MIT |
 | rust | `web-push-crates`, `a2`, `google-fcm1`, `web-push-native` | Apache-2.0, MIT, MIT OR Apache-2.0 |
-| java | `com-eatthepath-pushy-maven`, `com-onesignal-onesignal-maven`, `com-google-firebase-firebase-admin-maven`, `nl-martijndwars-web-push-maven` | Apache-2.0, MIT |
-| kotlin | `com-interaso-webpush-maven` | MIT |
+| java | `com-eatthepath-pushy`, `com-onesignal-onesignal`, `com-google-firebase-firebase-admin`, `nl-martijndwars-web-push` | Apache-2.0, MIT |
+| kotlin | `com-interaso-webpush` | MIT |
 | csharp | `webpush-nuget`, `lib-net-http-webpush`, `dotapns`, `corepush` | Apache-2.0, MIT, MPL-2.0 |
 | ruby | `fcm`, `webpush`, `apnotic`, `rpush` | MIT |
 | php | `minishlink-web-push`, `laravel-notification-channels-fcm`, `laravel-notification-channels-webpush`, `berkayk-onesignal-laravel` | MIT |
-| dart | `firebase-messaging-pub-2`, `awesome-notifications-pub`, `onesignal-flutter-pub`, `intercom-flutter-pub` | Apache-2.0, BSD-3-Clause, MIT |
-| swift | `apnswift-swift`, `onesignal-ios-sdk-swift`, `ios-library-swift`, `fcm-swift-2` | Apache-2.0, MIT |
+| dart | `firebase-messaging-pub`, `awesome-notifications`, `onesignal-flutter`, `intercom-flutter` | Apache-2.0, BSD-3-Clause, MIT |
+| swift | `apnswift`, `onesignal-ios-sdk`, `ios-library`, `fcm-swift` | Apache-2.0, MIT |
 | elixir | `pigeon`, `knock`, `google-api-fcm`, `apns4erl` | Apache-2.0, MIT |
 
 ## Reviews
 
 | Language | Top picks (most used first) | License |
 | --- | --- | --- |
-| typescript | `expo-store-review-npm`, `react-native-in-app-review-npm`, `featurebase-js-npm`, `react-native-store-review-npm` | MIT |
-| python | `trustpilot-pypi`, `yelpapi-pypi` | BSD, MIT |
-| rust | `yelp-fusion-rs-crates` | MIT |
-| kotlin | `io-github-sergeimikhailovskii-in-app-review-kmp-android-maven` | Apache-2.0 |
-| csharp | `plugin-storereview-nuget`, `plugin-maui-apprating-nuget` | MIT |
-| ruby | `zreviewtender-gem` | MIT |
-| php | `spryker-feature-product-rating-reviews-packagist` (review), `trustpilot-module-reviews-packagist` (review), `codebyray-laravel-review-rateable-packagist`, `turnto-social-commerce-packagist` (review) | MIT, OSL-3.0, proprietary |
-| dart | `in-app-review-pub` | MIT |
-| swift | `appreview-swift` | MIT |
+| typescript | `expo-store-review`, `react-native-in-app-review`, `featurebase-js`, `react-native-store-review` | MIT |
+| python | `trustpilot`, `yelpapi` | BSD, MIT |
+| go | `fider` (review) | AGPL-3.0 |
+| rust | `yelp-fusion-rs` | MIT |
+| java | `clearflask` | Apache-2.0 |
+| kotlin | `io-github-sergeimikhailovskii-in-app-review-kmp-android` | Apache-2.0 |
+| csharp | `plugin-storereview`, `plugin-maui-apprating` | MIT |
+| ruby | `zreviewtender` | MIT |
+| php | `spryker-feature-product-rating-reviews` (review), `trustpilot-module-reviews` (review), `codebyray-laravel-review-rateable`, `turnto-social-commerce` (review) | MIT, OSL-3.0, proprietary |
+| dart | `in-app-review` | MIT |
+| swift | `appreview` | MIT |
+| any | `brand24`, `podium`, `reputology`, `trustpilot-service` | n/a |
 
