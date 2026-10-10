@@ -27,8 +27,8 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 600 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 6054 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar and chat/messaging in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 449 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 7296 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging and popular open-source tools with the products they replace, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 481 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -220,13 +220,15 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/marketing-seo.json`](resources/catalog/marketing-seo.json) | 900 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo, content, links-qr, ai-optimization |
 | [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
+| [`catalog/open-source-tools-2.json`](resources/catalog/open-source-tools-2.json) | 342 | [open-source-tools.md](docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
+| [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 900 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
 | [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/scheduling-calendar.json`](resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **6054** | | |
+| **Total** | **7296** | | |
 <!-- genlib:catalog:end -->
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).

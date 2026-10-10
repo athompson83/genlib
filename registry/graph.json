@@ -208,6 +208,13 @@
    "query": "ai-browser-agents"
   },
   {
+   "id": "category:ai-local",
+   "kind": "category",
+   "label": "ai-local",
+   "count": 89,
+   "query": "ai-local"
+  },
+  {
    "id": "category:ai-optimization",
    "kind": "category",
    "label": "ai-optimization",
@@ -285,6 +292,13 @@
    "query": "auth"
   },
   {
+   "id": "category:auth-identity",
+   "kind": "category",
+   "label": "auth-identity",
+   "count": 33,
+   "query": "auth-identity"
+  },
+  {
    "id": "category:auth-protocol",
    "kind": "category",
    "label": "auth-protocol",
@@ -297,6 +311,13 @@
    "label": "authorization",
    "count": 4,
    "query": "authorization"
+  },
+  {
+   "id": "category:automation",
+   "kind": "category",
+   "label": "automation",
+   "count": 37,
+   "query": "automation"
   },
   {
    "id": "category:baas",
@@ -313,6 +334,13 @@
    "query": "background-jobs"
   },
   {
+   "id": "category:backup",
+   "kind": "category",
+   "label": "backup",
+   "count": 17,
+   "query": "backup"
+  },
+  {
    "id": "category:badge",
    "kind": "category",
    "label": "badge",
@@ -323,7 +351,7 @@
    "id": "category:bi-analytics",
    "kind": "category",
    "label": "bi-analytics",
-   "count": 29,
+   "count": 40,
    "query": "bi-analytics"
   },
   {
@@ -509,6 +537,13 @@
    "query": "cms"
   },
   {
+   "id": "category:cms-sites",
+   "kind": "category",
+   "label": "cms-sites",
+   "count": 50,
+   "query": "cms-sites"
+  },
+  {
    "id": "category:code-intelligence",
    "kind": "category",
    "label": "code-intelligence",
@@ -542,6 +577,13 @@
    "label": "commerce-ui",
    "count": 1,
    "query": "commerce-ui"
+  },
+  {
+   "id": "category:communication",
+   "kind": "category",
+   "label": "communication",
+   "count": 32,
+   "query": "communication"
   },
   {
    "id": "category:component-docs",
@@ -642,11 +684,32 @@
    "query": "crm"
   },
   {
+   "id": "category:crm-erp",
+   "kind": "category",
+   "label": "crm-erp",
+   "count": 24,
+   "query": "crm-erp"
+  },
+  {
    "id": "category:crypto",
    "kind": "category",
    "label": "crypto",
    "count": 6,
    "query": "crypto"
+  },
+  {
+   "id": "category:curated-list",
+   "kind": "category",
+   "label": "curated-list",
+   "count": 27,
+   "query": "curated-list"
+  },
+  {
+   "id": "category:customer-support",
+   "kind": "category",
+   "label": "customer-support",
+   "count": 7,
+   "query": "customer-support"
   },
   {
    "id": "category:data-apps",
@@ -712,6 +775,13 @@
    "query": "database-driver"
   },
   {
+   "id": "category:databases",
+   "kind": "category",
+   "label": "databases",
+   "count": 131,
+   "query": "databases"
+  },
+  {
    "id": "category:dataframes",
    "kind": "category",
    "label": "dataframes",
@@ -738,6 +808,13 @@
    "label": "deploy",
    "count": 2,
    "query": "deploy"
+  },
+  {
+   "id": "category:design",
+   "kind": "category",
+   "label": "design",
+   "count": 11,
+   "query": "design"
   },
   {
    "id": "category:design-inspiration",
@@ -796,6 +873,13 @@
    "query": "desktop-update"
   },
   {
+   "id": "category:dev-tools",
+   "kind": "category",
+   "label": "dev-tools",
+   "count": 107,
+   "query": "dev-tools"
+  },
+  {
    "id": "category:diagrams",
    "kind": "category",
    "label": "diagrams",
@@ -852,6 +936,13 @@
    "query": "e-signature"
   },
   {
+   "id": "category:ecommerce",
+   "kind": "category",
+   "label": "ecommerce",
+   "count": 31,
+   "query": "ecommerce"
+  },
+  {
    "id": "category:email",
    "kind": "category",
    "label": "email",
@@ -864,6 +955,13 @@
    "label": "email-marketing",
    "count": 401,
    "query": "email-marketing"
+  },
+  {
+   "id": "category:email-servers",
+   "kind": "category",
+   "label": "email-servers",
+   "count": 30,
+   "query": "email-servers"
   },
   {
    "id": "category:embedded-analytics",
@@ -941,6 +1039,13 @@
    "label": "forms-landing",
    "count": 84,
    "query": "forms-landing"
+  },
+  {
+   "id": "category:forms-surveys",
+   "kind": "category",
+   "label": "forms-surveys",
+   "count": 24,
+   "query": "forms-surveys"
   },
   {
    "id": "category:framework",
@@ -1146,10 +1251,17 @@
    "query": "invoicing"
   },
   {
+   "id": "category:iot",
+   "kind": "category",
+   "label": "iot",
+   "count": 12,
+   "query": "iot"
+  },
+  {
    "id": "category:learning",
    "kind": "category",
    "label": "learning",
-   "count": 6,
+   "count": 8,
    "query": "learning"
   },
   {
@@ -1195,6 +1307,13 @@
    "query": "logging"
   },
   {
+   "id": "category:low-code",
+   "kind": "category",
+   "label": "low-code",
+   "count": 13,
+   "query": "low-code"
+  },
+  {
    "id": "category:machine-learning",
    "kind": "category",
    "label": "machine-learning",
@@ -1228,6 +1347,13 @@
    "label": "mcp",
    "count": 4,
    "query": "mcp"
+  },
+  {
+   "id": "category:media",
+   "kind": "category",
+   "label": "media",
+   "count": 86,
+   "query": "media"
   },
   {
    "id": "category:media-application",
@@ -1352,7 +1478,7 @@
    "id": "category:monitoring",
    "kind": "category",
    "label": "monitoring",
-   "count": 1,
+   "count": 41,
    "query": "monitoring"
   },
   {
@@ -1361,6 +1487,13 @@
    "label": "monorepo",
    "count": 2,
    "query": "monorepo"
+  },
+  {
+   "id": "category:networking",
+   "kind": "category",
+   "label": "networking",
+   "count": 31,
+   "query": "networking"
   },
   {
    "id": "category:notebooks",
@@ -1419,6 +1552,13 @@
    "query": "paas"
   },
   {
+   "id": "category:paas-devops",
+   "kind": "category",
+   "label": "paas-devops",
+   "count": 62,
+   "query": "paas-devops"
+  },
+  {
    "id": "category:package-management",
    "kind": "category",
    "label": "package-management",
@@ -1459,6 +1599,20 @@
    "label": "product-analytics",
    "count": 1,
    "query": "product-analytics"
+  },
+  {
+   "id": "category:productivity-docs",
+   "kind": "category",
+   "label": "productivity-docs",
+   "count": 113,
+   "query": "productivity-docs"
+  },
+  {
+   "id": "category:project-management",
+   "kind": "category",
+   "label": "project-management",
+   "count": 40,
+   "query": "project-management"
   },
   {
    "id": "category:prompt-optimization",
@@ -1576,7 +1730,7 @@
    "id": "category:search",
    "kind": "category",
    "label": "search",
-   "count": 3,
+   "count": 54,
    "query": "search"
   },
   {
@@ -1590,7 +1744,7 @@
    "id": "category:security",
    "kind": "category",
    "label": "security",
-   "count": 14,
+   "count": 59,
    "query": "security"
   },
   {
@@ -1662,6 +1816,13 @@
    "label": "state",
    "count": 6,
    "query": "state"
+  },
+  {
+   "id": "category:storage-files",
+   "kind": "category",
+   "label": "storage-files",
+   "count": 85,
+   "query": "storage-files"
   },
   {
    "id": "category:streaming-server",
@@ -1858,6 +2019,13 @@
    "label": "web-servers",
    "count": 3,
    "query": "web-servers"
+  },
+  {
+   "id": "category:web-utilities",
+   "kind": "category",
+   "label": "web-utilities",
+   "count": 1,
+   "query": "web-utilities"
   },
   {
    "id": "category:word",
@@ -2217,6 +2385,13 @@
    "file": "docs/resources/mobile-desktop-cli-game.md"
   },
   {
+   "id": "doc:docs/resources/open-source-tools.md",
+   "kind": "doc",
+   "label": "docs/resources/open-source-tools.md",
+   "count": 32,
+   "file": "docs/resources/open-source-tools.md"
+  },
+  {
    "id": "doc:docs/resources/readme-tools.md",
    "kind": "doc",
    "label": "docs/resources/readme-tools.md",
@@ -2398,6 +2573,13 @@
    "file": "docs/resources/mobile-desktop-cli-game.md"
   },
   {
+   "id": "guide:docs/resources/open-source-tools.md",
+   "kind": "guide",
+   "label": "open-source-tools",
+   "count": 1242,
+   "file": "docs/resources/open-source-tools.md"
+  },
+  {
    "id": "guide:docs/resources/readme-tools.md",
    "kind": "guide",
    "label": "readme-tools",
@@ -2436,84 +2618,84 @@
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 307,
+   "count": 354,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 178,
+   "count": 194,
    "query": "dart"
   },
   {
    "id": "language:elixir",
    "kind": "language",
    "label": "elixir",
-   "count": 145,
+   "count": 158,
    "query": "elixir"
   },
   {
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 365,
+   "count": 556,
    "query": "go"
   },
   {
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 211,
+   "count": 275,
    "query": "java"
   },
   {
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 75,
+   "count": 85,
    "query": "kotlin"
   },
   {
    "id": "language:php",
    "kind": "language",
    "label": "php",
-   "count": 540,
+   "count": 663,
    "query": "php"
   },
   {
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 777,
+   "count": 960,
    "query": "python"
   },
   {
    "id": "language:ruby",
    "kind": "language",
    "label": "ruby",
-   "count": 307,
+   "count": 349,
    "query": "ruby"
   },
   {
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 310,
+   "count": 389,
    "query": "rust"
   },
   {
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 136,
+   "count": 142,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 2461,
+   "count": 2798,
    "query": "typescript"
   },
   {
@@ -2541,7 +2723,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 449,
+   "count": 481,
    "query": "--type doc"
   },
   {
@@ -2576,7 +2758,7 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 6054,
+   "count": 7296,
    "query": "--type resource"
   },
   {
@@ -3737,6 +3919,66 @@
    "weight": 1
   },
   {
+   "source": "category:ai-local",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 44
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:ai-local",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 20
+  },
+  {
    "source": "category:ai-optimization",
    "target": "language:go",
    "relation": "in-language",
@@ -3935,6 +4177,66 @@
    "weight": 3
   },
   {
+   "source": "category:auth-identity",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:auth-identity",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
    "source": "category:auth-protocol",
    "target": "language:python",
    "relation": "in-language",
@@ -3977,6 +4279,48 @@
    "weight": 3
   },
   {
+   "source": "category:automation",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:automation",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 9
+  },
+  {
+   "source": "category:automation",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:automation",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:automation",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 12
+  },
+  {
+   "source": "category:automation",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:automation",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
    "source": "category:baas",
    "target": "language:typescript",
    "relation": "in-language",
@@ -4013,6 +4357,36 @@
    "weight": 3
   },
   {
+   "source": "category:backup",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:backup",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:backup",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:backup",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:backup",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:bi-analytics",
    "target": "language:csharp",
    "relation": "in-language",
@@ -4028,7 +4402,7 @@
    "source": "category:bi-analytics",
    "target": "language:go",
    "relation": "in-language",
-   "weight": 1
+   "weight": 2
   },
   {
    "source": "category:bi-analytics",
@@ -4040,13 +4414,13 @@
    "source": "category:bi-analytics",
    "target": "language:php",
    "relation": "in-language",
-   "weight": 1
+   "weight": 2
   },
   {
    "source": "category:bi-analytics",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 12
+   "weight": 15
   },
   {
    "source": "category:bi-analytics",
@@ -4056,9 +4430,15 @@
   },
   {
    "source": "category:bi-analytics",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:bi-analytics",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 8
+   "weight": 13
   },
   {
    "source": "category:bi-dashboards",
@@ -4721,6 +5101,42 @@
    "weight": 1
   },
   {
+   "source": "category:cms-sites",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:cms-sites",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:cms-sites",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 21
+  },
+  {
+   "source": "category:cms-sites",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:cms-sites",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:cms-sites",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 14
+  },
+  {
    "source": "category:cms",
    "target": "language:typescript",
    "relation": "in-language",
@@ -4773,6 +5189,66 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 2
+  },
+  {
+   "source": "category:communication",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:communication",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:communication",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:communication",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:communication",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:communication",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:communication",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:communication",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:communication",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:communication",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 12
   },
   {
    "source": "category:component-docs",
@@ -4931,6 +5407,48 @@
    "weight": 3
   },
   {
+   "source": "category:crm-erp",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:crm-erp",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:crm-erp",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:crm-erp",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:crm-erp",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
+   "source": "category:crm-erp",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:crm-erp",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
    "source": "category:crm",
    "target": "language:csharp",
    "relation": "in-language",
@@ -5003,6 +5521,90 @@
    "weight": 3
   },
   {
+   "source": "category:curated-list",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:curated-list",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:customer-support",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:customer-support",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:customer-support",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:data-apps",
    "target": "language:python",
    "relation": "in-language",
@@ -5063,6 +5665,78 @@
    "weight": 3
   },
   {
+   "source": "category:databases",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:databases",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:databases",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:databases",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 16
+  },
+  {
+   "source": "category:databases",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 21
+  },
+  {
+   "source": "category:databases",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:databases",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:databases",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:databases",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:databases",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
+   "source": "category:databases",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:databases",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 28
+  },
+  {
    "source": "category:dataframes",
    "target": "language:python",
    "relation": "in-language",
@@ -5111,6 +5785,18 @@
    "weight": 6
   },
   {
+   "source": "category:design",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:design",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
    "source": "category:desktop-framework",
    "target": "language:csharp",
    "relation": "in-language",
@@ -5145,6 +5831,72 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 20
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 9
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 18
+  },
+  {
+   "source": "category:dev-tools",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 31
   },
   {
    "source": "category:diagrams",
@@ -5199,6 +5951,48 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 3
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 9
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:ecommerce",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 10
   },
   {
    "source": "category:email-marketing",
@@ -5265,6 +6059,54 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 126
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:email-servers",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 7
   },
   {
    "source": "category:email",
@@ -5501,6 +6343,48 @@
    "weight": 53
   },
   {
+   "source": "category:forms-surveys",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:forms-surveys",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:forms-surveys",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:forms-surveys",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:forms-surveys",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:forms-surveys",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:forms-surveys",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
    "source": "category:forms",
    "target": "language:typescript",
    "relation": "in-language",
@@ -5723,6 +6607,42 @@
    "weight": 1
   },
   {
+   "source": "category:iot",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:iot",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:iot",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:iot",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:learning",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:learning",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:ledger",
    "target": "language:python",
    "relation": "in-language",
@@ -5885,6 +6805,30 @@
    "weight": 2
   },
   {
+   "source": "category:low-code",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:low-code",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:low-code",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:low-code",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 8
+  },
+  {
    "source": "category:machine-learning",
    "target": "language:python",
    "relation": "in-language",
@@ -5973,6 +6917,72 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:media",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:media",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:media",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:media",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:media",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:media",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:media",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
+   "source": "category:media",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:media",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:media",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:media",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 20
   },
   {
    "source": "category:meta-framework",
@@ -6125,10 +7135,100 @@
    "weight": 3
   },
   {
+   "source": "category:monitoring",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 7
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:monitoring",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
    "source": "category:monorepo",
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 2
+  },
+  {
+   "source": "category:networking",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:networking",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:networking",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:networking",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:networking",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 9
   },
   {
    "source": "category:notebooks",
@@ -6251,6 +7351,42 @@
    "weight": 5
   },
   {
+   "source": "category:paas-devops",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 20
+  },
+  {
+   "source": "category:paas-devops",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:paas-devops",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:paas-devops",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:paas-devops",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:paas-devops",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 17
+  },
+  {
    "source": "category:package-management",
    "target": "language:typescript",
    "relation": "in-language",
@@ -6309,6 +7445,96 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 11
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 13
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:productivity-docs",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 50
+  },
+  {
+   "source": "category:project-management",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:project-management",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:project-management",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:project-management",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:project-management",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:project-management",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 16
   },
   {
    "source": "category:protocol-server",
@@ -6635,6 +7861,66 @@
    "weight": 2
   },
   {
+   "source": "category:search",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:search",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:search",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:search",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:search",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:search",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 9
+  },
+  {
+   "source": "category:search",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:search",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 6
+  },
+  {
+   "source": "category:search",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:search",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 12
+  },
+  {
    "source": "category:secrets",
    "target": "language:go",
    "relation": "in-language",
@@ -6642,21 +7928,57 @@
   },
   {
    "source": "category:security",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:security",
+   "target": "language:elixir",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:security",
    "target": "language:go",
    "relation": "in-language",
-   "weight": 4
+   "weight": 17
+  },
+  {
+   "source": "category:security",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:security",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 3
   },
   {
    "source": "category:security",
    "target": "language:python",
    "relation": "in-language",
+   "weight": 10
+  },
+  {
+   "source": "category:security",
+   "target": "language:ruby",
+   "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:security",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 5
   },
   {
    "source": "category:security",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 1
+   "weight": 8
   },
   {
    "source": "category:seo",
@@ -6915,6 +8237,60 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 6
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 23
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 15
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 5
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:ruby",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 4
+  },
+  {
+   "source": "category:storage-files",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 24
   },
   {
    "source": "category:structured-output",
@@ -7223,6 +8599,12 @@
    "weight": 1
   },
   {
+   "source": "category:web-utilities",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:word",
    "target": "language:python",
    "relation": "in-language",
@@ -7262,7 +8644,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 449
+   "weight": 481
   },
   {
    "source": "genlib",
@@ -7292,7 +8674,7 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 6054
+   "weight": 7296
   },
   {
    "source": "genlib",
@@ -8603,6 +9985,180 @@
    "weight": 5
   },
   {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:ai-local",
+   "relation": "has-category",
+   "weight": 89
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:auth-identity",
+   "relation": "has-category",
+   "weight": 33
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:automation",
+   "relation": "has-category",
+   "weight": 37
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:backup",
+   "relation": "has-category",
+   "weight": 17
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:bi-analytics",
+   "relation": "has-category",
+   "weight": 11
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:cms-sites",
+   "relation": "has-category",
+   "weight": 50
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:communication",
+   "relation": "has-category",
+   "weight": 32
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:crm-erp",
+   "relation": "has-category",
+   "weight": 24
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:curated-list",
+   "relation": "has-category",
+   "weight": 27
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:customer-support",
+   "relation": "has-category",
+   "weight": 7
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:databases",
+   "relation": "has-category",
+   "weight": 131
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:design",
+   "relation": "has-category",
+   "weight": 11
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:dev-tools",
+   "relation": "has-category",
+   "weight": 107
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:ecommerce",
+   "relation": "has-category",
+   "weight": 31
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:email-servers",
+   "relation": "has-category",
+   "weight": 30
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:forms-surveys",
+   "relation": "has-category",
+   "weight": 24
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:iot",
+   "relation": "has-category",
+   "weight": 12
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:learning",
+   "relation": "has-category",
+   "weight": 2
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:low-code",
+   "relation": "has-category",
+   "weight": 13
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:media",
+   "relation": "has-category",
+   "weight": 86
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:monitoring",
+   "relation": "has-category",
+   "weight": 40
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:networking",
+   "relation": "has-category",
+   "weight": 31
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:paas-devops",
+   "relation": "has-category",
+   "weight": 62
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:productivity-docs",
+   "relation": "has-category",
+   "weight": 113
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:project-management",
+   "relation": "has-category",
+   "weight": 40
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:search",
+   "relation": "has-category",
+   "weight": 51
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:security",
+   "relation": "has-category",
+   "weight": 45
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:storage-files",
+   "relation": "has-category",
+   "weight": 85
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:web-utilities",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
    "source": "guide:docs/resources/readme-tools.md",
    "target": "category:badge",
    "relation": "has-category",
@@ -9402,6 +10958,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/resources/open-source-tools.md",
+   "relation": "section-of",
+   "weight": 32
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/resources/readme-tools.md",
    "relation": "section-of",
    "weight": 6
@@ -9618,6 +11180,12 @@
   },
   {
    "source": "type:resource",
+   "target": "guide:docs/resources/open-source-tools.md",
+   "relation": "grouped-by",
+   "weight": 1242
+  },
+  {
+   "source": "type:resource",
    "target": "guide:docs/resources/readme-tools.md",
    "relation": "grouped-by",
    "weight": 55
@@ -9650,73 +11218,73 @@
    "source": "type:resource",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 274
+   "weight": 321
   },
   {
    "source": "type:resource",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 151
+   "weight": 167
   },
   {
    "source": "type:resource",
    "target": "language:elixir",
    "relation": "serves",
-   "weight": 145
+   "weight": 158
   },
   {
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 329
+   "weight": 520
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 178
+   "weight": 242
   },
   {
    "source": "type:resource",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 42
+   "weight": 52
   },
   {
    "source": "type:resource",
    "target": "language:php",
    "relation": "serves",
-   "weight": 540
+   "weight": 663
   },
   {
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 741
+   "weight": 924
   },
   {
    "source": "type:resource",
    "target": "language:ruby",
    "relation": "serves",
-   "weight": 307
+   "weight": 349
   },
   {
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 277
+   "weight": 356
   },
   {
    "source": "type:resource",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 107
+   "weight": 113
   },
   {
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 2384
+   "weight": 2721
   }
  ]
 }
