@@ -35,8 +35,8 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 600 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 7296 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging and popular open-source tools with the products they replace, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 481 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 8904 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools and educator tools, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 530 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -68,7 +68,7 @@ flowchart LR
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
   Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
-  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools)"]
+  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education)"]
   Find --> D["Doc sections<br/>(exact line ranges)"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
   Index["registry/search-index.jsonl"] -.-> Jev
@@ -215,10 +215,13 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`ui-foundations.json`](resources/ui-foundations.json) | 18 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
 | [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 91 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
 | [`catalog/backend-api.json`](resources/catalog/backend-api.json) | 95 | [backend-api.md](docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
+| [`catalog/business-tools.json`](resources/catalog/business-tools.json) | 868 | [business-tools.md](docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
 | [`catalog/chat-messaging.json`](resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
 | [`catalog/dashboards.json`](resources/catalog/dashboards.json) | 801 | [dashboards.md](docs/resources/dashboards.md) | chart-library, admin-template, observability, terminal-dashboard, realtime-kpi |
 | [`catalog/data-docs-office.json`](resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
 | [`catalog/devops-testing-security.json`](resources/catalog/devops-testing-security.json) | 116 | [devops-testing-security.md](docs/resources/devops-testing-security.md) | testing, security, code-quality, observability, logging |
+| [`catalog/education.json`](resources/catalog/education.json) | 380 | [education.md](docs/resources/education.md) | interactive-learning, accessibility-reading, assessment-quiz, writing-tools, lms |
+| [`catalog/finance-accounting.json`](resources/catalog/finance-accounting.json) | 360 | [finance-accounting.md](docs/resources/finance-accounting.md) | payments-billing, money-libraries, banking-ledger, market-data-quant, crypto-finance |
 | [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
 | [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
@@ -236,7 +239,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **7296** | | |
+| **Total** | **8904** | | |
 <!-- genlib:catalog:end -->
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).

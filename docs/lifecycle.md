@@ -34,6 +34,9 @@ Every result names its type, verification level and the exact next command. Modu
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
 | | `chat-messaging` catalog (Mattermost, Rocket.Chat, Zulip, Chatwoot, Matrix, SimpleX, Socket.IO, bot SDKs) | resources | Team chat, live support, real-time messaging and bots in each language |
 | | `open-source-tools` catalog (Ollama, Open WebUI, Stirling-PDF, AppFlowy, Penpot, n8n, Coolify, Uptime Kuma and 1,200+ more) | resources | Self-hostable alternatives to proprietary products; search `<product> alternative` |
+| | `finance-accounting` catalog (Firefly III, Actual Budget, GnuCash, Ghostfolio, OpenBB, Stripe/QuickBooks/Xero SDKs, money types) | resources | Budgeting, accounting, ledgers, payments and market data in each language |
+| | `business-tools` catalog (Superset, Metabase, Supabase, Coolify, NocoDB, Dub, Ghost, CRM/ERP/helpdesk, business-service SDKs) | resources | Run the business without building internal tools; search `<product> alternative` |
+| | `education` catalog (Moodle, Canvas LMS, Open edX, Frappe LMS, ClassroomIO, Chamilo, Excalidraw, reveal.js, LanguageTool, H5P) | resources | LMS, whiteboards, slides, writing, assessment and LTI 1.3 integration in each language |
 | 8. Operate | `structured-logger` | module | JSON-lines logs with key redaction, child loggers and request IDs |
 | | `health-checks` | module | `/healthz` liveness and `/readyz` readiness with per-check timeouts |
 | 9. Other languages | Every capability, plus `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | capabilities, language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |
