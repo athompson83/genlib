@@ -6,11 +6,13 @@ import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
+import { jevPacket } from '../lib/jev.mjs';
 
 const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
-    'find <task words> [--type capability|module|recipe|language-example|template|tool|skill|mcp|cli|api|resource] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
+    'find <task words> [--type capability|module|recipe|language-example|template|tool|skill|mcp|cli|api|resource|doc] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
+    'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--json]   # bounded yes/no decision packet for Jev',
     'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
     'detect --target <existing-project> [--json]',
     'skill find <words> [--harness claude|codex|both] [--limit 8] [--json]',
@@ -52,7 +54,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -118,6 +120,11 @@ try {
   } else if (command === 'detect') {
     invariant(options.target && positional.length === 0, 'INVALID_OPTION', 'detect requires --target and no positional arguments.');
     result = await detectProject(options.target);
+  } else if (command === 'jev') {
+    invariant(positional.length > 0, 'INVALID_OPTION', 'Provide the task, for example: jev add passkey login to a Go API.');
+    invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
+    const profile = options.target ? await detectProject(options.target) : undefined;
+    result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8) });
   } else if (command === 'find' || command === 'catalog') {
     const sources = await loadSources();
     if (command === 'catalog') {

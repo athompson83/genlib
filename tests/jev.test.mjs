@@ -1,0 +1,75 @@
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import { spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { findInSources, loadSources, queryLanguage, queryTerms } from '../lib/discover.mjs';
+import { JEV_LIMITS, jevPacket } from '../lib/jev.mjs';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const run = (...args) => spawnSync(process.execPath, [root + 'bin/genlib.mjs', ...args], { encoding: 'utf8' });
+const sources = await loadSources();
+
+test('packet asks one independent yes/no question per candidate inside the decision envelope', () => {
+  const packet = jevPacket(sources, 'add passkey login to a Go API');
+  assert.equal(packet.schema, 'genlib.jev/v1');
+  assert.ok(packet.state.candidates.length >= 1 && packet.state.candidates.length <= JEV_LIMITS.candidates);
+  assert.equal(packet.questions.length, packet.state.candidates.length);
+  assert.ok(packet.questions.every(question => question.kind === 'yes_no' && packet.next[question.ref]?.length > 0));
+  assert.ok(packet.limits.characters <= JEV_LIMITS.stateChars);
+  assert.equal(packet.decision.type, 'independent-membership');
+  assert.equal(packet.decision.threshold, 0.8);
+  // The named language selects the Go implementation of the passkey capability.
+  const passkeys = packet.state.candidates.find(candidate => candidate.id === 'webauthn-passkeys');
+  assert.ok(passkeys, JSON.stringify(packet.state.candidates.map(candidate => candidate.id)));
+  assert.match(packet.next[passkeys.ref][0], /language-modules\.mjs add go-webauthn-passkeys/);
+});
+
+test('oversized tasks are clipped and limits are enforced', () => {
+  const packet = jevPacket(sources, 'pdf form '.repeat(600), { limit: 3 });
+  assert.ok(packet.state.task.length <= JEV_LIMITS.taskChars);
+  assert.ok(packet.state.candidates.length <= 3);
+  assert.throws(() => jevPacket(sources, 'pdf', { limit: 9 }), /Limit must be/);
+  assert.throws(() => jevPacket(sources, '   '), /Provide the task/);
+});
+
+test('an unmatched task returns no candidates and a discovery escape path', () => {
+  const packet = jevPacket(sources, 'qqqzzz xxyyzz');
+  assert.equal(packet.state.candidates.length, 0);
+  assert.match(packet.escape, /catalog/);
+});
+
+test('stopwords, short substrings and language words do not distort search', () => {
+  assert.deepEqual(queryTerms('how to add a capability').words, ['capability']);
+  assert.equal(queryLanguage('saml login in C#'), 'csharp');
+  assert.equal(queryLanguage('flutter push notifications'), 'dart');
+  assert.equal(findInSources(sources, 'nonexistent zz').results.length, 0);
+  assert.equal(findInSources(sources, 'how to add a capability').results[0].id, 'docs/capabilities.md#adding-a-capability');
+});
+
+test('documentation sections are searchable with an exact line range to read', () => {
+  const hit = findInSources(sources, 'adding a capability', { type: 'doc' }).results[0];
+  assert.equal(hit.file, 'docs/capabilities.md');
+  assert.ok(hit.lines[0] <= hit.lines[1]);
+  assert.match(hit.next[0], new RegExp(`^sed -n '${hit.lines[0]},${hit.lines[1]}p'`));
+  const text = readFileSync(root + hit.file, 'utf8').split('\n');
+  assert.match(text[hit.lines[0] - 1], /^#+ Adding a capability/);
+});
+
+test('jev CLI returns the packet and rejects bad options', () => {
+  const ok = run('jev', 'verify', 'stripe', 'webhook', '--limit', '4', '--json');
+  assert.equal(ok.status, 0, ok.stderr);
+  const packet = JSON.parse(ok.stdout);
+  assert.ok(packet.state.candidates.some(candidate => candidate.id === 'webhook-verification'));
+  assert.equal(run('jev', '--json').status, 1);
+  assert.equal(run('jev', 'pdf', '--limit', '20').status, 1);
+});
+
+test('the committed search index is current and covers every source type', () => {
+  const check = spawnSync(process.execPath, [root + 'scripts/build-search-index.mjs', '--check'], { encoding: 'utf8' });
+  assert.equal(check.status, 0, 'Run npm run index:build: ' + check.stdout);
+  const lines = readFileSync(root + 'registry/search-index.jsonl', 'utf8').trim().split('\n').map(line => JSON.parse(line));
+  const types = new Set(lines.map(line => line.type));
+  for (const type of ['capability', 'module', 'recipe', 'language-example', 'template', 'tool', 'skill', 'mcp', 'cli', 'api', 'resource', 'doc']) assert.ok(types.has(type), type);
+  assert.ok(lines.every(line => line.ref === `${line.type}:${line.id}` && line.next && line.title));
+});

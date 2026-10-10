@@ -2,7 +2,7 @@
 import { loadProjectTypes, loadResources, quickstartFor, searchResources } from '../lib/resources.mjs';
 
 const HELP = `Usage:
-  node tools/resources.mjs search <query> [--platform web|mobile|desktop] [--category value] [--mode reference|selective-copy|package|service|license-review] [--license MIT] [--project <type>] [--limit 5] [--json]
+  node tools/resources.mjs search <query> [--platform web|mobile|desktop] [--category value] [--mode reference|selective-copy|package|service|license-review] [--license MIT] [--project <type>] [--language python|go|...] [--limit 5] [--json]
   node tools/resources.mjs types [--json]
   node tools/resources.mjs inspect <resource-id> [--json]
   node tools/resources.mjs validate [--json]
@@ -23,7 +23,7 @@ try {
       const key = arg.slice(2);
       if (Object.hasOwn(options, key)) throw new Error('Duplicate option: ' + arg);
       if (key === 'json') { options.json = true; continue; }
-      if (command !== 'search' || !['platform', 'category', 'mode', 'license', 'project', 'limit'].includes(key)) throw new Error('Unknown option: ' + arg);
+      if (command !== 'search' || !['platform', 'category', 'mode', 'license', 'project', 'language', 'limit'].includes(key)) throw new Error('Unknown option: ' + arg);
       const value = args[++index];
       if (!value || value.startsWith('--')) throw new Error('Missing value for ' + arg);
       options[key] = key === 'limit' ? (/^\d+$/.test(value) ? Number(value) : NaN) : value;
