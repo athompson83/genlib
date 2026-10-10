@@ -2582,7 +2582,7 @@
    "id": "doc:docs/install-indexes.md",
    "kind": "doc",
    "label": "docs/install-indexes.md",
-   "count": 5,
+   "count": 7,
    "file": "docs/install-indexes.md"
   },
   {
@@ -3033,6 +3033,20 @@
    "file": "docs/resources/ui-index-sources.md"
   },
   {
+   "id": "language:angular",
+   "kind": "language",
+   "label": "angular",
+   "count": 1,
+   "query": "angular"
+  },
+  {
+   "id": "language:apex",
+   "kind": "language",
+   "label": "apex",
+   "count": 132,
+   "query": "apex"
+  },
+  {
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
@@ -3045,6 +3059,13 @@
    "label": "dart",
    "count": 264,
    "query": "dart"
+  },
+  {
+   "id": "language:dockerfile",
+   "kind": "language",
+   "label": "dockerfile",
+   "count": 7,
+   "query": "dockerfile"
   },
   {
    "id": "language:elixir",
@@ -3061,17 +3082,66 @@
    "query": "go"
   },
   {
+   "id": "language:gradle",
+   "kind": "language",
+   "label": "gradle",
+   "count": 37,
+   "query": "gradle"
+  },
+  {
+   "id": "language:groovy",
+   "kind": "language",
+   "label": "groovy",
+   "count": 53,
+   "query": "groovy"
+  },
+  {
+   "id": "language:hcl",
+   "kind": "language",
+   "label": "hcl",
+   "count": 7,
+   "query": "hcl"
+  },
+  {
+   "id": "language:html",
+   "kind": "language",
+   "label": "html",
+   "count": 132,
+   "query": "html"
+  },
+  {
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 418,
+   "count": 2809,
    "query": "java"
+  },
+  {
+   "id": "language:javascript",
+   "kind": "language",
+   "label": "javascript",
+   "count": 144,
+   "query": "javascript"
+  },
+  {
+   "id": "language:jenkinsfile",
+   "kind": "language",
+   "label": "jenkinsfile",
+   "count": 14,
+   "query": "jenkinsfile"
+  },
+  {
+   "id": "language:json",
+   "kind": "language",
+   "label": "json",
+   "count": 3,
+   "query": "json"
   },
   {
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 143,
+   "count": 187,
    "query": "kotlin"
   },
   {
@@ -3082,10 +3152,17 @@
    "query": "php"
   },
   {
+   "id": "language:properties",
+   "kind": "language",
+   "label": "properties",
+   "count": 52,
+   "query": "properties"
+  },
+  {
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1325,
+   "count": 1422,
    "query": "python"
   },
   {
@@ -3103,6 +3180,13 @@
    "query": "rust"
   },
   {
+   "id": "language:scala",
+   "kind": "language",
+   "label": "scala",
+   "count": 1,
+   "query": "scala"
+  },
+  {
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
@@ -3113,8 +3197,22 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3214,
+   "count": 3226,
    "query": "typescript"
+  },
+  {
+   "id": "language:xml",
+   "kind": "language",
+   "label": "xml",
+   "count": 126,
+   "query": "xml"
+  },
+  {
+   "id": "language:yaml",
+   "kind": "language",
+   "label": "yaml",
+   "count": 87,
+   "query": "yaml"
   },
   {
    "id": "type:api",
@@ -3141,7 +3239,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 539,
+   "count": 541,
    "query": "--type doc"
   },
   {
@@ -3185,6 +3283,20 @@
    "label": "skill",
    "count": 1066,
    "query": "--type skill"
+  },
+  {
+   "id": "type:starter",
+   "kind": "type",
+   "label": "starter",
+   "count": 2818,
+   "query": "--type starter"
+  },
+  {
+   "id": "type:task",
+   "kind": "type",
+   "label": "task",
+   "count": 4234,
+   "query": "--type task"
   },
   {
    "id": "type:template",
@@ -11420,7 +11532,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 539
+   "weight": 541
   },
   {
    "source": "genlib",
@@ -11457,6 +11569,18 @@
    "target": "type:skill",
    "relation": "contains",
    "weight": 1066
+  },
+  {
+   "source": "genlib",
+   "target": "type:starter",
+   "relation": "contains",
+   "weight": 2818
+  },
+  {
+   "source": "genlib",
+   "target": "type:task",
+   "relation": "contains",
+   "weight": 4234
   },
   {
    "source": "genlib",
@@ -13922,7 +14046,7 @@
    "source": "type:doc",
    "target": "doc:docs/install-indexes.md",
    "relation": "section-of",
-   "weight": 5
+   "weight": 7
   },
   {
    "source": "type:doc",
@@ -14439,6 +14563,114 @@
    "target": "language:typescript",
    "relation": "serves",
    "weight": 3116
+  },
+  {
+   "source": "type:starter",
+   "target": "language:angular",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:task",
+   "target": "language:apex",
+   "relation": "serves",
+   "weight": 132
+  },
+  {
+   "source": "type:task",
+   "target": "language:dockerfile",
+   "relation": "serves",
+   "weight": 7
+  },
+  {
+   "source": "type:task",
+   "target": "language:gradle",
+   "relation": "serves",
+   "weight": 37
+  },
+  {
+   "source": "type:task",
+   "target": "language:groovy",
+   "relation": "serves",
+   "weight": 53
+  },
+  {
+   "source": "type:task",
+   "target": "language:hcl",
+   "relation": "serves",
+   "weight": 7
+  },
+  {
+   "source": "type:task",
+   "target": "language:html",
+   "relation": "serves",
+   "weight": 132
+  },
+  {
+   "source": "type:task",
+   "target": "language:java",
+   "relation": "serves",
+   "weight": 2391
+  },
+  {
+   "source": "type:task",
+   "target": "language:javascript",
+   "relation": "serves",
+   "weight": 144
+  },
+  {
+   "source": "type:task",
+   "target": "language:jenkinsfile",
+   "relation": "serves",
+   "weight": 14
+  },
+  {
+   "source": "type:task",
+   "target": "language:json",
+   "relation": "serves",
+   "weight": 3
+  },
+  {
+   "source": "type:task",
+   "target": "language:kotlin",
+   "relation": "serves",
+   "weight": 44
+  },
+  {
+   "source": "type:task",
+   "target": "language:properties",
+   "relation": "serves",
+   "weight": 52
+  },
+  {
+   "source": "type:task",
+   "target": "language:python",
+   "relation": "serves",
+   "weight": 97
+  },
+  {
+   "source": "type:task",
+   "target": "language:scala",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:task",
+   "target": "language:typescript",
+   "relation": "serves",
+   "weight": 12
+  },
+  {
+   "source": "type:task",
+   "target": "language:xml",
+   "relation": "serves",
+   "weight": 126
+  },
+  {
+   "source": "type:task",
+   "target": "language:yaml",
+   "relation": "serves",
+   "weight": 87
   }
  ]
 }
