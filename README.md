@@ -18,7 +18,7 @@ One command searches everything below and returns each result's exact next step.
 | Source | Count | What it is |
 | --- | ---: | --- |
 | [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
-| [Task recipes](#recipes-language-examples-and-templates) | 10 | Single-file TypeScript sources copied with one command |
+| [Task recipes](#recipes-language-examples-and-templates) | 36 | Single-file TypeScript sources copied with one command |
 | [Language examples](#recipes-language-examples-and-templates) | 14 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
@@ -117,7 +117,7 @@ The React modules need the app's existing React 18 or 19 and a TSX build; `app-s
 
 ## Recipes, language examples and templates
 
-- **Task recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export with formula-injection guards, upload preflight, locale formatting, UI primitives and theme variants. Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
+- **Task recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. New recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
 - **Language examples** ([`examples/languages`](examples/languages/README.md)): pagination, identifier validation, config, HTTP client and safe logging across eight languages, installed with `node tools/language-modules.mjs`.
 - **Templates** ([`templates/index.json`](templates/index.json)), all opt-in and merged by hand:
 

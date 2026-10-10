@@ -22,6 +22,7 @@ Every result names its type, verification level and the exact next command. Modu
 | | UI resources (`tools/resources.mjs`) | resources | Reviewed external libraries with license scope |
 | 5. Build features | `notification-preferences` | module | Preference UI, domain validation and a revision-checked handler |
 | | `storefront-cart`, `storefront-catalog`, `invoice-totals`, `csv-export`, `upload-preflight` | recipes | Commerce math, exports and upload checks |
+| | `money-minor-units`, `slugify-and-unique-slug`, `cursor-pagination`, `date-ranges-and-business-days`, `csv-parse`, `async-pool`, `lru-cache-with-ttl`, `semver-compare-and-range`, `state-machine-typed`, `idempotency-key-store`, `outbox-pattern-in-memory`, `token-budget-truncation` and more | recipes | Tested single-file utilities that agents otherwise regenerate in every project (see `resources/agent-recipes.json`) |
 | 6. Integrate services | `common-api-clients` | module | Bounded server clients for GitHub, Stripe, Resend, Supabase, Graph, Calendar, OpenAI, Anthropic, Saleor, Steel |
 | | `http-resilience` | module | Retries with backoff and jitter limited to idempotent requests, `Retry-After`, timeouts, circuit breaker |
 | | `webhook-verification` | module | GitHub, Stripe and Standard Webhooks signature checks with Web Crypto on the raw body |
