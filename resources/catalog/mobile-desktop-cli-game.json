@@ -1,0 +1,4187 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "category": "mobile-framework",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/facebook/react-native/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://reactnative.dev",
+      "repository": "https://github.com/facebook/react-native",
+      "docs": "https://reactnative.dev/docs/getting-started",
+      "summary": "Framework for building native iOS and Android apps with React and JavaScript/TypeScript.",
+      "useWhen": "Use instead of maintaining separate Swift and Kotlin codebases when a team already works in React. Start from Expo unless you need a bare native setup.",
+      "cautions": [
+        "Native module compatibility varies across New Architecture versions; check each dependency.",
+        "Upgrades between minor versions can require native project changes."
+      ],
+      "tags": [
+        "react-native",
+        "mobile",
+        "ios",
+        "android",
+        "react"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/facebook/react-native",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "expo",
+      "name": "Expo",
+      "category": "mobile-framework",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/expo/expo/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://expo.dev",
+      "repository": "https://github.com/expo/expo",
+      "docs": "https://docs.expo.dev",
+      "summary": "React Native framework and SDK with managed native modules, config plugins and build tooling.",
+      "useWhen": "Use instead of hand-configuring Xcode/Gradle projects and writing common native modules (camera, notifications, file system) for a React Native app.",
+      "cautions": [
+        "EAS Build/Submit/Update are paid hosted services beyond the free tier; the SDK itself is MIT.",
+        "Keep all expo-* packages on the SDK version the project targets."
+      ],
+      "tags": [
+        "expo",
+        "react-native",
+        "mobile",
+        "sdk"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "expo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/expo/expo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Create with `npx create-expo-app@latest` and use `npx expo install` so native packages match the SDK."
+      ]
+    },
+    {
+      "id": "expo-router",
+      "name": "Expo Router",
+      "category": "mobile-navigation",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/expo/expo/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://docs.expo.dev/router/introduction/",
+      "repository": "https://github.com/expo/expo",
+      "docs": "https://docs.expo.dev/router/introduction/",
+      "summary": "File-based router for Expo and React Native apps built on React Navigation, with deep linking.",
+      "useWhen": "Use instead of hand-writing navigator trees and deep-link URL mapping in an Expo app.",
+      "cautions": [
+        "Version is tied to the Expo SDK; install with `npx expo install`.",
+        "Typed routes and web output depend on the configured bundler."
+      ],
+      "tags": [
+        "routing",
+        "navigation",
+        "expo",
+        "deep-linking"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "expo-router"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/expo/expo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-navigation",
+      "name": "React Navigation",
+      "category": "mobile-navigation",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/react-navigation/react-navigation/blob/HEAD/packages/native/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://reactnavigation.org",
+      "repository": "https://github.com/react-navigation/react-navigation",
+      "docs": "https://reactnavigation.org/docs/getting-started",
+      "summary": "Stack, tab and drawer navigation library for React Native apps.",
+      "useWhen": "Use instead of hand-building screen stacks, tab bars, back handling and navigation state persistence in React Native.",
+      "cautions": [
+        "Requires peer native packages (screens, safe-area-context); match their versions.",
+        "Major versions change the API; follow the upgrade guide."
+      ],
+      "tags": [
+        "navigation",
+        "react-native",
+        "routing",
+        "tabs"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@react-navigation/native"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/react-navigation/react-navigation",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nativewind",
+      "name": "NativeWind",
+      "category": "mobile-ui",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nativewind/nativewind/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.nativewind.dev",
+      "repository": "https://github.com/nativewind/nativewind",
+      "docs": "https://www.nativewind.dev",
+      "summary": "Tailwind CSS utility classes for React Native components.",
+      "useWhen": "Use instead of hand-writing StyleSheet objects and responsive/dark-mode style logic when the team already uses Tailwind tokens.",
+      "cautions": [
+        "Pin the NativeWind and Tailwind CSS versions together; supported Tailwind majors differ by release.",
+        "Requires Babel/Metro configuration."
+      ],
+      "tags": [
+        "tailwind",
+        "styling",
+        "react-native",
+        "ui"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nativewind"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nativewind/nativewind",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tamagui",
+      "name": "Tamagui",
+      "category": "mobile-ui",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tamagui/tamagui/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://tamagui.dev",
+      "repository": "https://github.com/tamagui/tamagui",
+      "docs": "https://tamagui.dev/docs/intro/introduction",
+      "summary": "Universal UI kit and optimizing style compiler for React Native and web.",
+      "useWhen": "Use instead of building a shared design-token system and component set separately for React Native and React web.",
+      "cautions": [
+        "The optimizing compiler adds bundler configuration; it is optional.",
+        "Large API surface; adopt components incrementally."
+      ],
+      "tags": [
+        "ui-kit",
+        "react-native",
+        "design-tokens",
+        "universal"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tamagui"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tamagui/tamagui",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gluestack-ui",
+      "name": "gluestack-ui",
+      "category": "mobile-ui",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/gluestack/gluestack-ui/blob/HEAD/packages/gluestack-ui/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://gluestack.io",
+      "repository": "https://github.com/gluestack/gluestack-ui",
+      "docs": "https://gluestack.io/ui/docs/home/overview/introduction",
+      "summary": "Copy-paste accessible React Native and web components styled with NativeWind/Tailwind.",
+      "useWhen": "Use instead of hand-writing accessible buttons, inputs, modals and menus for a React Native + NativeWind app.",
+      "cautions": [
+        "Components are copied into the project by the CLI; you own updates afterwards.",
+        "Older @gluestack-ui/themed packages use a different (ISC) package and API."
+      ],
+      "tags": [
+        "components",
+        "react-native",
+        "nativewind",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@gluestack-ui/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/gluestack/gluestack-ui",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-native-reanimated",
+      "name": "React Native Reanimated",
+      "category": "mobile-animation",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/software-mansion/react-native-reanimated/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://docs.swmansion.com/react-native-reanimated/",
+      "repository": "https://github.com/software-mansion/react-native-reanimated",
+      "docs": "https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started",
+      "summary": "UI-thread animation library for React Native with shared values, layout animations and worklets.",
+      "useWhen": "Use instead of hand-writing Animated API code that drops frames when the JS thread is busy.",
+      "cautions": [
+        "Versions are tied to React Native architecture; check the compatibility table.",
+        "Respect reduced-motion settings for accessibility."
+      ],
+      "tags": [
+        "animation",
+        "react-native",
+        "gestures",
+        "performance"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-reanimated"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/software-mansion/react-native-reanimated",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-native-gesture-handler",
+      "name": "React Native Gesture Handler",
+      "category": "mobile-input",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/software-mansion/react-native-gesture-handler/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://docs.swmansion.com/react-native-gesture-handler/",
+      "repository": "https://github.com/software-mansion/react-native-gesture-handler",
+      "docs": "https://docs.swmansion.com/react-native-gesture-handler/docs/",
+      "summary": "Native-driven gesture system (pan, pinch, swipe, long-press) for React Native.",
+      "useWhen": "Use instead of hand-writing PanResponder gesture logic and conflict resolution between nested scrollables.",
+      "cautions": [
+        "Wrap the app root in GestureHandlerRootView.",
+        "Pair with Reanimated for UI-thread gesture animations."
+      ],
+      "tags": [
+        "gestures",
+        "touch",
+        "react-native",
+        "input"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-gesture-handler"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/software-mansion/react-native-gesture-handler",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-native-mmkv",
+      "name": "react-native-mmkv",
+      "category": "mobile-storage",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mrousavy/react-native-mmkv/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mrousavy/react-native-mmkv",
+      "docs": "https://github.com/mrousavy/react-native-mmkv#readme",
+      "summary": "Fast synchronous key-value storage for React Native backed by Tencent MMKV.",
+      "useWhen": "Use instead of AsyncStorage wrappers and hand-written caching for settings, flags and small persisted state.",
+      "cautions": [
+        "Not a secure store for secrets or tokens; use the platform Keychain/Keystore.",
+        "Recent majors require the New Architecture."
+      ],
+      "tags": [
+        "storage",
+        "key-value",
+        "react-native",
+        "persistence"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-mmkv"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mrousavy/react-native-mmkv",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "flash-list",
+      "name": "FlashList",
+      "category": "mobile-ui",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Shopify/flash-list/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://shopify.github.io/flash-list/",
+      "repository": "https://github.com/Shopify/flash-list",
+      "docs": "https://shopify.github.io/flash-list/docs/",
+      "summary": "High-performance recycling list component for React Native from Shopify.",
+      "useWhen": "Use instead of tuning FlatList windowing by hand for long, heterogeneous feeds.",
+      "cautions": [
+        "v2 targets the New Architecture; v1 APIs (estimatedItemSize) differ.",
+        "Keep item components pure to benefit from recycling."
+      ],
+      "tags": [
+        "list",
+        "virtualization",
+        "react-native",
+        "performance"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@shopify/flash-list"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Shopify/flash-list",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "category": "mobile-framework",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/flutter/flutter/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://flutter.dev",
+      "repository": "https://github.com/flutter/flutter",
+      "docs": "https://docs.flutter.dev",
+      "summary": "Google UI toolkit for building natively compiled mobile, desktop and web apps from one Dart codebase.",
+      "useWhen": "Use instead of maintaining separate native UI codebases when pixel-consistent cross-platform UI is the goal.",
+      "cautions": [
+        "Platform-specific features need plugins or platform channels.",
+        "Pin the Flutter SDK version (e.g. via FVM or CI config)."
+      ],
+      "tags": [
+        "flutter",
+        "dart",
+        "mobile",
+        "cross-platform"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/flutter/flutter",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install the Flutter SDK from docs.flutter.dev and pin the SDK version in CI."
+      ]
+    },
+    {
+      "id": "riverpod",
+      "name": "Riverpod",
+      "category": "mobile-state",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rrousselGit/riverpod/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://riverpod.dev",
+      "repository": "https://github.com/rrousselGit/riverpod",
+      "docs": "https://riverpod.dev/docs/introduction/getting_started",
+      "summary": "Compile-safe reactive state management and dependency injection for Dart and Flutter.",
+      "useWhen": "Use instead of hand-written InheritedWidget/ChangeNotifier plumbing for app state, caching and async loading.",
+      "cautions": [
+        "Code generation (riverpod_generator) is optional but changes the style; pick one per project.",
+        "Major versions changed provider APIs."
+      ],
+      "tags": [
+        "state-management",
+        "flutter",
+        "dart",
+        "dependency-injection"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "flutter_riverpod"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rrousselGit/riverpod",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `flutter pub add flutter_riverpod` and commit pubspec.lock."
+      ]
+    },
+    {
+      "id": "flutter-bloc",
+      "name": "Bloc",
+      "category": "mobile-state",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/felangel/bloc/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://bloclibrary.dev",
+      "repository": "https://github.com/felangel/bloc",
+      "docs": "https://bloclibrary.dev/getting-started/",
+      "summary": "Predictable event-driven state management (Bloc/Cubit) for Dart and Flutter.",
+      "useWhen": "Use instead of ad-hoc setState and stream controllers when business logic needs testable, explicit state transitions.",
+      "cautions": [
+        "More boilerplate than Riverpod for simple state; use Cubit for small cases."
+      ],
+      "tags": [
+        "state-management",
+        "flutter",
+        "dart",
+        "bloc"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "flutter_bloc"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/felangel/bloc",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `flutter pub add flutter_bloc` and commit pubspec.lock."
+      ]
+    },
+    {
+      "id": "go-router",
+      "name": "go_router",
+      "category": "mobile-navigation",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/flutter/packages/blob/HEAD/packages/go_router/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://pub.dev/packages/go_router",
+      "repository": "https://github.com/flutter/packages",
+      "docs": "https://pub.dev/documentation/go_router/latest/",
+      "summary": "Declarative URL-based router for Flutter maintained by the Flutter team.",
+      "useWhen": "Use instead of hand-writing Navigator 2.0 Router delegates, deep links and redirect guards.",
+      "cautions": [
+        "The Flutter team describes it as feature-complete; new routing features may be limited.",
+        "Test redirects for auth state changes."
+      ],
+      "tags": [
+        "routing",
+        "navigation",
+        "flutter",
+        "deep-linking"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "go_router"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/flutter/packages",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `flutter pub add go_router` and commit pubspec.lock."
+      ]
+    },
+    {
+      "id": "dio",
+      "name": "dio",
+      "category": "mobile-networking",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cfug/dio/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://pub.dev/packages/dio",
+      "repository": "https://github.com/cfug/dio",
+      "docs": "https://pub.dev/documentation/dio/latest/",
+      "summary": "HTTP client for Dart with interceptors, cancellation, form data and timeouts.",
+      "useWhen": "Use instead of hand-writing retry/auth interceptors, multipart uploads and timeout handling on top of package:http.",
+      "cautions": [
+        "Never log full request headers in interceptors; they carry tokens."
+      ],
+      "tags": [
+        "http",
+        "networking",
+        "dart",
+        "flutter"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "dio"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cfug/dio",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `flutter pub add dio` (or `dart pub add dio`) and commit pubspec.lock."
+      ]
+    },
+    {
+      "id": "capacitor",
+      "name": "Capacitor",
+      "category": "mobile-framework",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ionic-team/capacitor/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://capacitorjs.com",
+      "repository": "https://github.com/ionic-team/capacitor",
+      "docs": "https://capacitorjs.com/docs",
+      "summary": "Native runtime that ships an existing web app to iOS and Android with a plugin API.",
+      "useWhen": "Use instead of rewriting a working web app natively or hand-writing WebView bridges for camera, files and push.",
+      "cautions": [
+        "WebView performance limits heavy animation and long lists.",
+        "Commit the generated ios/android projects and keep plugins on the same major."
+      ],
+      "tags": [
+        "capacitor",
+        "hybrid",
+        "webview",
+        "mobile"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@capacitor/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ionic-team/capacitor",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ionic-framework",
+      "name": "Ionic Framework",
+      "category": "mobile-ui",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ionic-team/ionic-framework/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://ionicframework.com",
+      "repository": "https://github.com/ionic-team/ionic-framework",
+      "docs": "https://ionicframework.com/docs",
+      "summary": "Mobile-styled web component library with React, Angular and Vue bindings.",
+      "useWhen": "Use instead of hand-building iOS/Material-styled tabs, sheets and lists for a hybrid (Capacitor) app.",
+      "cautions": [
+        "Adaptive styling looks native-like but is still web UI; test on devices."
+      ],
+      "tags": [
+        "ionic",
+        "web-components",
+        "hybrid",
+        "mobile-ui"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@ionic/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ionic-team/ionic-framework",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "kotlin-multiplatform",
+      "name": "Kotlin Multiplatform",
+      "category": "mobile-framework",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "desktop",
+        "server",
+        "web"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/JetBrains/kotlin/blob/HEAD/license/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream project; this record is a reference."
+      },
+      "homepage": "https://kotlinlang.org/docs/multiplatform.html",
+      "repository": "https://github.com/JetBrains/kotlin",
+      "docs": "https://kotlinlang.org/docs/multiplatform.html",
+      "summary": "Kotlin technology for sharing business logic (and optionally UI) across Android, iOS, desktop and server.",
+      "useWhen": "Use instead of duplicating networking, persistence and domain logic in Swift and Kotlin while keeping native UIs.",
+      "cautions": [
+        "iOS interop goes through Objective-C headers; check Swift ergonomics.",
+        "Pin Kotlin and Gradle plugin versions together."
+      ],
+      "tags": [
+        "kotlin",
+        "multiplatform",
+        "shared-code",
+        "android",
+        "ios"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/JetBrains/kotlin",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Generate a project with the official KMP wizard and pin Kotlin/Gradle plugin versions."
+      ]
+    },
+    {
+      "id": "compose-multiplatform",
+      "name": "Compose Multiplatform",
+      "category": "mobile-framework",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "desktop",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/JetBrains/compose-multiplatform/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.jetbrains.com/compose-multiplatform/",
+      "repository": "https://github.com/JetBrains/compose-multiplatform",
+      "docs": "https://kotlinlang.org/docs/multiplatform/compose-multiplatform.html",
+      "summary": "JetBrains declarative UI framework that brings Jetpack Compose to iOS, desktop and web.",
+      "useWhen": "Use instead of writing separate SwiftUI and Compose screens when a Kotlin team wants shared UI.",
+      "cautions": [
+        "iOS and web targets mature at different rates; check stability per target."
+      ],
+      "tags": [
+        "compose",
+        "kotlin",
+        "declarative-ui",
+        "multiplatform"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "org.jetbrains.compose:compose-gradle-plugin"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/JetBrains/compose-multiplatform",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Apply the org.jetbrains.compose Gradle plugin with a pinned version."
+      ]
+    },
+    {
+      "id": "jetpack-compose-samples",
+      "name": "Jetpack Compose samples",
+      "category": "mobile-reference",
+      "platforms": [
+        "mobile",
+        "android"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/android/compose-samples/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream project; this record is a reference."
+      },
+      "homepage": "https://developer.android.com/develop/ui/compose",
+      "repository": "https://github.com/android/compose-samples",
+      "docs": "https://developer.android.com/develop/ui/compose/documentation",
+      "summary": "Official Android sample apps demonstrating Jetpack Compose UI patterns.",
+      "useWhen": "Use as a reference instead of inventing Compose architecture, theming and navigation patterns from scratch.",
+      "cautions": [
+        "Samples demonstrate patterns; copy selectively and keep Apache-2.0 notices."
+      ],
+      "tags": [
+        "jetpack-compose",
+        "android",
+        "kotlin",
+        "samples"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/android/compose-samples",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Reference only; consult the docs for the version in use."
+      ]
+    },
+    {
+      "id": "swiftui-docs",
+      "name": "SwiftUI documentation",
+      "category": "mobile-reference",
+      "platforms": [
+        "mobile",
+        "ios",
+        "desktop"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://developer.apple.com/terms/",
+        "scope": "Apple developer documentation under Apple terms; reference only, not redistributable code."
+      },
+      "homepage": "https://developer.apple.com/xcode/swiftui/",
+      "repository": null,
+      "docs": "https://developer.apple.com/documentation/swiftui",
+      "summary": "Apple reference documentation and tutorials for building SwiftUI apps on iOS, macOS and other Apple platforms.",
+      "useWhen": "Use as the authoritative API reference instead of guessing SwiftUI APIs or availability per OS version.",
+      "cautions": [
+        "Check minimum OS availability annotations for each API."
+      ],
+      "tags": [
+        "swiftui",
+        "ios",
+        "swift",
+        "apple",
+        "reference"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://developer.apple.com/documentation/swiftui",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Reference only; consult the docs for the version in use."
+      ]
+    },
+    {
+      "id": "fastlane",
+      "name": "fastlane",
+      "category": "mobile-release",
+      "platforms": [
+        "mobile",
+        "ios",
+        "android",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fastlane/fastlane/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://fastlane.tools",
+      "repository": "https://github.com/fastlane/fastlane",
+      "docs": "https://docs.fastlane.tools",
+      "summary": "Automation tool for building, signing, screenshotting and releasing iOS and Android apps.",
+      "useWhen": "Use instead of hand-written shell scripts for code signing, TestFlight/Play uploads and store metadata.",
+      "cautions": [
+        "Keep App Store Connect API keys and signing material in CI secrets, never in the repo.",
+        "Pin the version with a Gemfile/Bundler."
+      ],
+      "tags": [
+        "release",
+        "code-signing",
+        "ci",
+        "app-store"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "gem",
+          "name": "fastlane"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fastlane/fastlane",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add to a Gemfile, run with `bundle exec fastlane`, and commit Gemfile.lock."
+      ]
+    },
+    {
+      "id": "electron",
+      "name": "Electron",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/electron/electron/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.electronjs.org",
+      "repository": "https://github.com/electron/electron",
+      "docs": "https://www.electronjs.org/docs/latest",
+      "summary": "Framework for cross-platform desktop apps with Chromium and Node.js.",
+      "useWhen": "Use instead of separate native desktop codebases when the app is a web UI that needs OS integration.",
+      "cautions": [
+        "Enable contextIsolation and sandbox; never expose Node APIs to remote content.",
+        "Large bundle size; ship security updates promptly."
+      ],
+      "tags": [
+        "electron",
+        "desktop",
+        "chromium",
+        "node"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "electron"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/electron/electron",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "electron-builder",
+      "name": "electron-builder",
+      "category": "desktop-packaging",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/electron-userland/electron-builder/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.electron.build",
+      "repository": "https://github.com/electron-userland/electron-builder",
+      "docs": "https://www.electron.build",
+      "summary": "Packaging and installer builder for Electron apps (dmg, NSIS, AppImage, snap) with signing support.",
+      "useWhen": "Use instead of hand-scripting installers, code signing and notarization for Electron releases.",
+      "cautions": [
+        "Signing/notarization credentials belong in CI secrets.",
+        "Choose either electron-builder or Electron Forge, not both."
+      ],
+      "tags": [
+        "packaging",
+        "installer",
+        "electron",
+        "code-signing"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "electron-builder"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/electron-userland/electron-builder",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "electron-forge",
+      "name": "Electron Forge",
+      "category": "desktop-packaging",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/electron/forge/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.electronforge.io",
+      "repository": "https://github.com/electron/forge",
+      "docs": "https://www.electronforge.io",
+      "summary": "Official Electron toolchain for scaffolding, packaging and publishing desktop apps.",
+      "useWhen": "Use instead of assembling bundler, packager and publisher scripts by hand for a new Electron app.",
+      "cautions": [
+        "Plugin/maker versions must match the Forge major."
+      ],
+      "tags": [
+        "electron",
+        "packaging",
+        "scaffolding",
+        "publishing"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@electron-forge/cli"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/electron/forge",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "electron-updater",
+      "name": "electron-updater",
+      "category": "desktop-update",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/electron-userland/electron-builder/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.electron.build/features/auto-update",
+      "repository": "https://github.com/electron-userland/electron-builder",
+      "docs": "https://www.electron.build/features/auto-update",
+      "summary": "Auto-update module for Electron apps packaged with electron-builder.",
+      "useWhen": "Use instead of hand-writing update download, signature verification and restart logic for Electron.",
+      "cautions": [
+        "Serve updates over HTTPS and keep apps signed so updates verify.",
+        "Test update paths from the previous release before shipping."
+      ],
+      "tags": [
+        "auto-update",
+        "electron",
+        "release",
+        "desktop"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "electron-updater"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/electron-userland/electron-builder",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tauri",
+      "name": "Tauri",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0 OR MIT",
+        "url": "https://github.com/tauri-apps/tauri/blob/HEAD/LICENSE-MIT",
+        "scope": "Apache-2.0 OR MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://tauri.app",
+      "repository": "https://github.com/tauri-apps/tauri",
+      "docs": "https://v2.tauri.app/start/",
+      "summary": "Rust-based framework for small, secure desktop and mobile apps with a web frontend and system WebView.",
+      "useWhen": "Use instead of Electron when bundle size and memory matter, or instead of hand-writing native shells around a web UI.",
+      "cautions": [
+        "UI renders in the OS WebView, so test each platform engine.",
+        "Grant capabilities/permissions narrowly in tauri config."
+      ],
+      "tags": [
+        "tauri",
+        "rust",
+        "desktop",
+        "webview"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "tauri"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@tauri-apps/api"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tauri-apps/tauri",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tauri-plugins",
+      "name": "Tauri plugins workspace",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0 OR MIT",
+        "url": "https://github.com/tauri-apps/plugins-workspace/blob/HEAD/LICENSE_MIT",
+        "scope": "Apache-2.0 OR MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://v2.tauri.app/plugin/",
+      "repository": "https://github.com/tauri-apps/plugins-workspace",
+      "docs": "https://v2.tauri.app/plugin/",
+      "summary": "Official Tauri plugins for file system, updater, store, notifications, dialogs, shell and more.",
+      "useWhen": "Use instead of hand-writing Rust commands for common OS features like auto-update, dialogs and persisted settings in a Tauri app.",
+      "cautions": [
+        "Each plugin needs explicit capability permissions; grant the minimum.",
+        "Keep plugin versions aligned with the Tauri major."
+      ],
+      "tags": [
+        "tauri",
+        "plugins",
+        "updater",
+        "filesystem"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tauri-apps/plugin-fs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tauri-apps/plugins-workspace",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "wails",
+      "name": "Wails",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/wailsapp/wails/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://wails.io",
+      "repository": "https://github.com/wailsapp/wails",
+      "docs": "https://wails.io/docs/introduction",
+      "summary": "Go framework for desktop apps with a web frontend rendered in the system WebView.",
+      "useWhen": "Use instead of Electron when the backend is Go and you want generated TypeScript bindings to Go methods.",
+      "cautions": [
+        "v3 is in development with a different API; pin v2 or v3 deliberately."
+      ],
+      "tags": [
+        "go",
+        "desktop",
+        "webview",
+        "bindings"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/wailsapp/wails/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/wailsapp/wails",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install the wails CLI with a pinned version and commit go.sum."
+      ]
+    },
+    {
+      "id": "neutralinojs",
+      "name": "Neutralinojs",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/neutralinojs/neutralinojs/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://neutralino.js.org",
+      "repository": "https://github.com/neutralinojs/neutralinojs",
+      "docs": "https://neutralino.js.org/docs/",
+      "summary": "Lightweight cross-platform desktop runtime using the OS WebView and a small native binary.",
+      "useWhen": "Use instead of Electron for small utility apps where a tiny download matters and Node APIs are not needed.",
+      "cautions": [
+        "Smaller ecosystem; native extensions run as separate processes.",
+        "Restrict the native API allowlist."
+      ],
+      "tags": [
+        "desktop",
+        "webview",
+        "lightweight",
+        "javascript"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@neutralinojs/neu"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/neutralinojs/neutralinojs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "avalonia",
+      "name": "Avalonia UI",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/AvaloniaUI/Avalonia/blob/HEAD/licence.md",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://avaloniaui.net",
+      "repository": "https://github.com/AvaloniaUI/Avalonia",
+      "docs": "https://docs.avaloniaui.net",
+      "summary": "Cross-platform XAML-based .NET UI framework for Windows, macOS, Linux, mobile and WebAssembly.",
+      "useWhen": "Use instead of WPF-only code when a .NET desktop app must also run on macOS and Linux.",
+      "cautions": [
+        "Some add-ons (e.g. Accelerate tooling) are commercial; the core is MIT."
+      ],
+      "tags": [
+        "dotnet",
+        "xaml",
+        "csharp",
+        "desktop"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Avalonia"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/AvaloniaUI/Avalonia",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add via `dotnet add package Avalonia` with a pinned version."
+      ]
+    },
+    {
+      "id": "dotnet-maui",
+      "name": ".NET MAUI",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dotnet/maui/blob/HEAD/LICENSE.txt",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://dotnet.microsoft.com/apps/maui",
+      "repository": "https://github.com/dotnet/maui",
+      "docs": "https://learn.microsoft.com/dotnet/maui/",
+      "summary": "Microsoft cross-platform .NET UI framework for Android, iOS, macOS and Windows.",
+      "useWhen": "Use instead of separate Xamarin/native projects when a C# team targets mobile and Windows/macOS together.",
+      "cautions": [
+        "No official Linux desktop target.",
+        "Workload versions are tied to the .NET SDK; pin via global.json."
+      ],
+      "tags": [
+        "dotnet",
+        "csharp",
+        "xaml",
+        "cross-platform"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Microsoft.Maui.Controls"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dotnet/maui",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with `dotnet workload install maui` and pin the SDK in global.json."
+      ]
+    },
+    {
+      "id": "slint",
+      "name": "Slint",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+        "url": "https://github.com/slint-ui/slint/blob/master/LICENSE.md",
+        "scope": "Triple-licensed: GPLv3, a royalty-free license for desktop/mobile/web apps with attribution conditions, or a paid commercial license (needed for many embedded uses). Review before shipping."
+      },
+      "homepage": "https://slint.dev",
+      "repository": "https://github.com/slint-ui/slint",
+      "docs": "https://docs.slint.dev",
+      "summary": "Declarative native UI toolkit for Rust, C++, JavaScript and Python apps, including embedded devices.",
+      "useWhen": "Use instead of hand-drawing native widgets when a Rust/C++ app needs a lightweight declarative GUI.",
+      "cautions": [
+        "Confirm which license option applies before distribution."
+      ],
+      "tags": [
+        "rust",
+        "cpp",
+        "gui",
+        "embedded",
+        "declarative-ui"
+      ],
+      "projectTypes": [
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "slint"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/slint-ui/slint",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "egui",
+      "name": "egui",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/emilk/egui/blob/HEAD/LICENSE-MIT",
+        "scope": "MIT OR Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.egui.rs",
+      "repository": "https://github.com/emilk/egui",
+      "docs": "https://docs.rs/egui",
+      "summary": "Immediate-mode GUI library for Rust with the eframe app framework for native and web.",
+      "useWhen": "Use instead of building widget toolkits by hand for Rust tools, debug panels and in-game editors.",
+      "cautions": [
+        "Immediate-mode redraws suit tools more than highly styled consumer apps.",
+        "Accessibility support is improving; verify for your use case."
+      ],
+      "tags": [
+        "rust",
+        "gui",
+        "immediate-mode",
+        "tools"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "egui"
+        },
+        {
+          "ecosystem": "crates",
+          "name": "eframe"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/emilk/egui",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "iced",
+      "name": "Iced",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/iced-rs/iced/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://iced.rs",
+      "repository": "https://github.com/iced-rs/iced",
+      "docs": "https://docs.rs/iced",
+      "summary": "Cross-platform Elm-inspired GUI library for Rust.",
+      "useWhen": "Use instead of hand-written retained-mode UI state handling in a Rust desktop app.",
+      "cautions": [
+        "Pre-1.0: APIs change between minor versions."
+      ],
+      "tags": [
+        "rust",
+        "gui",
+        "elm-architecture",
+        "desktop"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "iced"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/iced-rs/iced",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "fyne",
+      "name": "Fyne",
+      "category": "desktop-framework",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/fyne-io/fyne/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://fyne.io",
+      "repository": "https://github.com/fyne-io/fyne",
+      "docs": "https://docs.fyne.io",
+      "summary": "Cross-platform GUI toolkit for Go apps on desktop and mobile.",
+      "useWhen": "Use instead of binding native GUI toolkits by hand when a Go app needs a simple desktop UI.",
+      "cautions": [
+        "Requires CGO and a C toolchain for builds.",
+        "Material-inspired look rather than native widgets."
+      ],
+      "tags": [
+        "go",
+        "gui",
+        "desktop",
+        "cross-platform"
+      ],
+      "projectTypes": [
+        "desktop-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "fyne.io/fyne/v2"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fyne-io/fyne",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `go get fyne.io/fyne/v2@<version>` and commit go.sum."
+      ]
+    },
+    {
+      "id": "commander",
+      "name": "Commander.js",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tj/commander.js/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tj/commander.js",
+      "docs": "https://github.com/tj/commander.js#readme",
+      "summary": "Complete command-line argument parser and subcommand framework for Node.js.",
+      "useWhen": "Use instead of hand-parsing process.argv, help text and subcommands in a Node CLI.",
+      "cautions": [
+        "Major versions change defaults (e.g. option value storage); read the changelog when upgrading."
+      ],
+      "tags": [
+        "cli",
+        "argument-parsing",
+        "node",
+        "subcommands"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "commander"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tj/commander.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "yargs",
+      "name": "yargs",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/yargs/yargs/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://yargs.js.org",
+      "repository": "https://github.com/yargs/yargs",
+      "docs": "https://yargs.js.org/docs/",
+      "summary": "Node.js argument parser with commands, validation, completion and generated help.",
+      "useWhen": "Use instead of hand-written argv parsing, option validation and shell completion scripts.",
+      "cautions": [
+        "ESM-first in recent majors; check import style."
+      ],
+      "tags": [
+        "cli",
+        "argument-parsing",
+        "node",
+        "completion"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "yargs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/yargs/yargs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "oclif",
+      "name": "oclif",
+      "category": "cli-framework",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/oclif/core/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://oclif.io",
+      "repository": "https://github.com/oclif/core",
+      "docs": "https://oclif.io/docs/introduction",
+      "summary": "Framework for building large, plugin-capable TypeScript CLIs (from Salesforce/Heroku).",
+      "useWhen": "Use instead of building command discovery, plugins, help and auto-update plumbing for a multi-command CLI.",
+      "cautions": [
+        "Heavier than Commander for single-command tools."
+      ],
+      "tags": [
+        "cli",
+        "framework",
+        "typescript",
+        "plugins"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@oclif/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/oclif/core",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "clack-prompts",
+      "name": "Clack prompts",
+      "category": "cli-prompts",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/bombshell-dev/clack/blob/HEAD/packages/prompts/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://bomb.sh/docs/clack/basics/getting-started/",
+      "repository": "https://github.com/bombshell-dev/clack",
+      "docs": "https://bomb.sh/docs/clack/basics/getting-started/",
+      "summary": "Styled interactive prompts (text, select, confirm, spinner) for Node CLIs.",
+      "useWhen": "Use instead of hand-writing readline prompt loops and spinners for setup wizards.",
+      "cautions": [
+        "Always provide non-interactive flags for CI; detect TTY before prompting."
+      ],
+      "tags": [
+        "cli",
+        "prompts",
+        "interactive",
+        "node"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@clack/prompts"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bombshell-dev/clack",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "inquirer",
+      "name": "Inquirer.js",
+      "category": "cli-prompts",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/SBoudrias/Inquirer.js/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/SBoudrias/Inquirer.js",
+      "docs": "https://github.com/SBoudrias/Inquirer.js#readme",
+      "summary": "Collection of interactive command-line prompts for Node.js.",
+      "useWhen": "Use instead of hand-writing list, checkbox, password and editor prompts with readline.",
+      "cautions": [
+        "Use the modern @inquirer/prompts package; the legacy inquirer API differs.",
+        "Provide flags for non-interactive use."
+      ],
+      "tags": [
+        "cli",
+        "prompts",
+        "interactive",
+        "node"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@inquirer/prompts"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SBoudrias/Inquirer.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ink",
+      "name": "Ink",
+      "category": "cli-tui",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vadimdemedes/ink/blob/HEAD/license",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/vadimdemedes/ink",
+      "docs": "https://github.com/vadimdemedes/ink#readme",
+      "summary": "React renderer for building interactive terminal UIs with components and Flexbox layout.",
+      "useWhen": "Use instead of hand-managing ANSI cursor movement and redraws for rich interactive terminal apps.",
+      "cautions": [
+        "Requires a TTY for interactive features; handle piped output."
+      ],
+      "tags": [
+        "tui",
+        "react",
+        "terminal",
+        "node"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ink"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vadimdemedes/ink",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "chalk",
+      "name": "chalk",
+      "category": "cli-output",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/chalk/chalk/blob/HEAD/license",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/chalk/chalk",
+      "docs": "https://github.com/chalk/chalk#readme",
+      "summary": "Terminal string styling with automatic color-support detection.",
+      "useWhen": "Use instead of hand-writing ANSI escape codes and NO_COLOR/TTY detection.",
+      "cautions": [
+        "ESM-only since v5; use picocolors for the smallest dependency footprint."
+      ],
+      "tags": [
+        "cli",
+        "colors",
+        "ansi",
+        "terminal"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "chalk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chalk/chalk",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "picocolors",
+      "name": "picocolors",
+      "category": "cli-output",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "ISC",
+        "url": "https://github.com/alexeyraspopov/picocolors/blob/HEAD/LICENSE",
+        "scope": "ISC for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/alexeyraspopov/picocolors",
+      "docs": "https://github.com/alexeyraspopov/picocolors#readme",
+      "summary": "Tiny, fast terminal color formatting library with no dependencies.",
+      "useWhen": "Use instead of hand-written ANSI color helpers when dependency size matters.",
+      "cautions": [
+        "Minimal API: no 256/truecolor helpers."
+      ],
+      "tags": [
+        "cli",
+        "colors",
+        "ansi",
+        "lightweight"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "picocolors"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/alexeyraspopov/picocolors",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ora",
+      "name": "ora",
+      "category": "cli-output",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sindresorhus/ora/blob/HEAD/license",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sindresorhus/ora",
+      "docs": "https://github.com/sindresorhus/ora#readme",
+      "summary": "Elegant terminal spinner for long-running Node CLI tasks.",
+      "useWhen": "Use instead of hand-writing spinner frames, cursor hiding and success/failure symbols.",
+      "cautions": [
+        "ESM-only; disable spinners when output is not a TTY."
+      ],
+      "tags": [
+        "cli",
+        "spinner",
+        "progress",
+        "terminal"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ora"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sindresorhus/ora",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cac",
+      "name": "cac",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cacjs/cac/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/cacjs/cac",
+      "docs": "https://github.com/cacjs/cac#readme",
+      "summary": "Small, dependency-free framework for building Node.js command-line apps.",
+      "useWhen": "Use instead of hand-written argv parsing when a lightweight alternative to Commander is preferred.",
+      "cautions": [
+        "Smaller feature set than yargs (no built-in completion)."
+      ],
+      "tags": [
+        "cli",
+        "argument-parsing",
+        "node",
+        "lightweight"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "cac"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cacjs/cac",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "citty",
+      "name": "citty",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/unjs/citty/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/unjs/citty",
+      "docs": "https://github.com/unjs/citty#readme",
+      "summary": "Elegant, typed CLI builder from UnJS with lazy subcommands.",
+      "useWhen": "Use instead of hand-written argv parsing and help output in TypeScript CLIs.",
+      "cautions": [
+        "Pre-1.0; pin the version."
+      ],
+      "tags": [
+        "cli",
+        "argument-parsing",
+        "typescript",
+        "unjs"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "citty"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/unjs/citty",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "node-sea",
+      "name": "Node.js single executable applications",
+      "category": "cli-distribution",
+      "platforms": [
+        "cli",
+        "desktop"
+      ],
+      "kind": "reference",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nodejs/node/blob/HEAD/LICENSE",
+        "scope": "Node.js core is MIT with bundled third-party notices."
+      },
+      "homepage": "https://nodejs.org/api/single-executable-applications.html",
+      "repository": "https://github.com/nodejs/node",
+      "docs": "https://nodejs.org/api/single-executable-applications.html",
+      "summary": "Official Node.js feature for packaging a bundled script into a single standalone executable.",
+      "useWhen": "Use instead of the archived pkg tool or hand-rolled launchers when shipping a Node CLI as one binary.",
+      "cautions": [
+        "Bundle to a single script first (e.g. with esbuild); native addons need extra handling.",
+        "Sign the resulting binary on macOS/Windows."
+      ],
+      "tags": [
+        "node",
+        "distribution",
+        "single-executable",
+        "packaging"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nodejs/node",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Follow the Node docs for the exact Node version you ship; it is built into Node, no package install."
+      ]
+    },
+    {
+      "id": "click",
+      "name": "Click",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/pallets/click/blob/HEAD/LICENSE.txt",
+        "scope": "BSD-3-Clause for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://click.palletsprojects.com",
+      "repository": "https://github.com/pallets/click",
+      "docs": "https://click.palletsprojects.com",
+      "summary": "Composable Python package for building command-line interfaces with decorators.",
+      "useWhen": "Use instead of hand-written argparse subcommand trees, prompts and help formatting.",
+      "cautions": [
+        "Test commands with click.testing.CliRunner."
+      ],
+      "tags": [
+        "python",
+        "cli",
+        "argument-parsing",
+        "decorators"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "click"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pallets/click",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add to pyproject dependencies with a pinned version and commit the lockfile."
+      ]
+    },
+    {
+      "id": "typer",
+      "name": "Typer",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fastapi/typer/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://typer.tiangolo.com",
+      "repository": "https://github.com/fastapi/typer",
+      "docs": "https://typer.tiangolo.com",
+      "summary": "Build Python CLIs from type-hinted functions, built on Click.",
+      "useWhen": "Use instead of hand-declaring argparse options when function type hints can define the CLI.",
+      "cautions": [
+        "Pre-1.0; pin the version."
+      ],
+      "tags": [
+        "python",
+        "cli",
+        "type-hints",
+        "click"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "typer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fastapi/typer",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add to pyproject dependencies with a pinned version and commit the lockfile."
+      ]
+    },
+    {
+      "id": "rich",
+      "name": "Rich",
+      "category": "cli-output",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Textualize/rich/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://rich.readthedocs.io",
+      "repository": "https://github.com/Textualize/rich",
+      "docs": "https://rich.readthedocs.io/en/latest/",
+      "summary": "Python library for rich terminal output: tables, progress bars, syntax highlighting and tracebacks.",
+      "useWhen": "Use instead of hand-formatting tables, progress bars and colored logs in Python CLIs.",
+      "cautions": [
+        "Respect NO_COLOR and non-TTY output for logs piped to files."
+      ],
+      "tags": [
+        "python",
+        "terminal",
+        "tables",
+        "progress"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "rich"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Textualize/rich",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add to pyproject dependencies with a pinned version and commit the lockfile."
+      ]
+    },
+    {
+      "id": "textual",
+      "name": "Textual",
+      "category": "cli-tui",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Textualize/textual/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://textual.textualize.io",
+      "repository": "https://github.com/Textualize/textual",
+      "docs": "https://textual.textualize.io/guide/",
+      "summary": "Python framework for building full terminal user interfaces with widgets and CSS-like styling.",
+      "useWhen": "Use instead of hand-written curses code for interactive Python terminal apps.",
+      "cautions": [
+        "Async event model; test with the built-in pilot testing API."
+      ],
+      "tags": [
+        "python",
+        "tui",
+        "terminal",
+        "widgets"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "textual"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Textualize/textual",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add to pyproject dependencies with a pinned version and commit the lockfile."
+      ]
+    },
+    {
+      "id": "questionary",
+      "name": "questionary",
+      "category": "cli-prompts",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tmbo/questionary/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tmbo/questionary",
+      "docs": "https://questionary.readthedocs.io",
+      "summary": "Python library for interactive command-line prompts (select, checkbox, confirm, text).",
+      "useWhen": "Use instead of hand-written input() loops and menu rendering in Python CLIs.",
+      "cautions": [
+        "Provide flags for non-interactive/CI use."
+      ],
+      "tags": [
+        "python",
+        "prompts",
+        "interactive",
+        "cli"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "questionary"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tmbo/questionary",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add to pyproject dependencies with a pinned version and commit the lockfile."
+      ]
+    },
+    {
+      "id": "cobra",
+      "name": "Cobra",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/spf13/cobra/blob/HEAD/LICENSE.txt",
+        "scope": "Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://cobra.dev",
+      "repository": "https://github.com/spf13/cobra",
+      "docs": "https://pkg.go.dev/github.com/spf13/cobra",
+      "summary": "Go library for modern CLI applications with subcommands, flags and shell completion.",
+      "useWhen": "Use instead of hand-wiring the flag package into subcommand trees, help and completion in Go.",
+      "cautions": [
+        "Keep business logic out of command constructors so it stays testable."
+      ],
+      "tags": [
+        "go",
+        "cli",
+        "subcommands",
+        "completion"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/spf13/cobra"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/spf13/cobra",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `go get github.com/spf13/cobra@<version>` and commit go.sum."
+      ]
+    },
+    {
+      "id": "viper",
+      "name": "Viper",
+      "category": "cli-config",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/spf13/viper/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/spf13/viper",
+      "docs": "https://pkg.go.dev/github.com/spf13/viper",
+      "summary": "Go configuration library merging files, environment variables, flags and defaults.",
+      "useWhen": "Use instead of hand-writing config precedence across YAML/TOML files, env vars and flags in Go.",
+      "cautions": [
+        "Global instance is convenient but hurts testability; prefer viper.New().",
+        "Validate config after loading."
+      ],
+      "tags": [
+        "go",
+        "config",
+        "environment",
+        "cli"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/spf13/viper"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/spf13/viper",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `go get github.com/spf13/viper@<version>` and commit go.sum."
+      ]
+    },
+    {
+      "id": "bubbletea",
+      "name": "Bubble Tea",
+      "category": "cli-tui",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/charmbracelet/bubbletea/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://charm.land",
+      "repository": "https://github.com/charmbracelet/bubbletea",
+      "docs": "https://pkg.go.dev/github.com/charmbracelet/bubbletea",
+      "summary": "Elm-architecture framework for building terminal user interfaces in Go.",
+      "useWhen": "Use instead of hand-managing raw terminal mode, input events and redraws for interactive Go CLIs.",
+      "cautions": [
+        "Pair with Bubbles components and Lip Gloss styling rather than reimplementing them."
+      ],
+      "tags": [
+        "go",
+        "tui",
+        "terminal",
+        "elm-architecture"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/charmbracelet/bubbletea"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/charmbracelet/bubbletea",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `go get` at a pinned version and commit go.sum."
+      ]
+    },
+    {
+      "id": "lipgloss",
+      "name": "Lip Gloss",
+      "category": "cli-output",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/charmbracelet/lipgloss/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://charm.land",
+      "repository": "https://github.com/charmbracelet/lipgloss",
+      "docs": "https://pkg.go.dev/github.com/charmbracelet/lipgloss",
+      "summary": "Style definitions for terminal layouts in Go: colors, borders, padding and alignment.",
+      "useWhen": "Use instead of hand-writing ANSI styling and box layout math in Go terminal output.",
+      "cautions": [
+        "Adaptive colors depend on terminal background detection; test light and dark themes."
+      ],
+      "tags": [
+        "go",
+        "terminal",
+        "styling",
+        "layout"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/charmbracelet/lipgloss"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/charmbracelet/lipgloss",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `go get` at a pinned version and commit go.sum."
+      ]
+    },
+    {
+      "id": "urfave-cli",
+      "name": "urfave/cli",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/urfave/cli/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://cli.urfave.org",
+      "repository": "https://github.com/urfave/cli",
+      "docs": "https://cli.urfave.org",
+      "summary": "Declarative, simple package for building command-line apps in Go.",
+      "useWhen": "Use instead of hand-wiring flag parsing and subcommands when Cobra is heavier than needed.",
+      "cautions": [
+        "v3 changes import path and APIs from v2; pick one deliberately."
+      ],
+      "tags": [
+        "go",
+        "cli",
+        "argument-parsing",
+        "flags"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/urfave/cli/v3"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/urfave/cli",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `go get github.com/urfave/cli/v3@<version>` and commit go.sum."
+      ]
+    },
+    {
+      "id": "goreleaser",
+      "name": "GoReleaser",
+      "category": "cli-distribution",
+      "platforms": [
+        "cli",
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/goreleaser/goreleaser/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://goreleaser.com",
+      "repository": "https://github.com/goreleaser/goreleaser",
+      "docs": "https://goreleaser.com/intro/",
+      "summary": "Release automation that cross-compiles, archives, signs and publishes binaries (Go, Rust, Zig and more).",
+      "useWhen": "Use instead of hand-written release scripts for cross-platform builds, checksums, Homebrew taps and GitHub releases.",
+      "cautions": [
+        "GoReleaser Pro features are commercial; the OSS edition is MIT.",
+        "Keep signing keys and tokens in CI secrets."
+      ],
+      "tags": [
+        "release",
+        "distribution",
+        "cross-compile",
+        "go"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "github-action",
+          "name": "goreleaser/goreleaser-action"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/goreleaser/goreleaser",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Run via the goreleaser/goreleaser-action with a pinned version and a committed .goreleaser.yaml."
+      ]
+    },
+    {
+      "id": "clap",
+      "name": "clap",
+      "category": "cli-args",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/clap-rs/clap/blob/HEAD/LICENSE-MIT",
+        "scope": "MIT OR Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/clap-rs/clap",
+      "docs": "https://docs.rs/clap",
+      "summary": "Full-featured command-line argument parser for Rust with derive macros.",
+      "useWhen": "Use instead of hand-parsing std::env::args, help text and shell completions in Rust.",
+      "cautions": [
+        "Enable only needed features to limit compile time."
+      ],
+      "tags": [
+        "rust",
+        "cli",
+        "argument-parsing",
+        "derive"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "clap"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/clap-rs/clap",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `cargo add clap --features derive` and commit Cargo.lock for binaries."
+      ]
+    },
+    {
+      "id": "ratatui",
+      "name": "Ratatui",
+      "category": "cli-tui",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ratatui/ratatui/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://ratatui.rs",
+      "repository": "https://github.com/ratatui/ratatui",
+      "docs": "https://docs.rs/ratatui",
+      "summary": "Rust library for building rich terminal user interfaces and dashboards.",
+      "useWhen": "Use instead of hand-drawing terminal widgets, layouts and buffers in Rust.",
+      "cautions": [
+        "Restore the terminal on panic; use the provided init/restore helpers."
+      ],
+      "tags": [
+        "rust",
+        "tui",
+        "terminal",
+        "widgets"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "ratatui"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ratatui/ratatui",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `cargo add ratatui` and commit Cargo.lock for binaries."
+      ]
+    },
+    {
+      "id": "indicatif",
+      "name": "indicatif",
+      "category": "cli-output",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/console-rs/indicatif/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": null,
+      "repository": "https://github.com/console-rs/indicatif",
+      "docs": "https://docs.rs/indicatif",
+      "summary": "Progress bars and spinners for Rust command-line applications.",
+      "useWhen": "Use instead of hand-writing progress rendering, ETA and multi-bar coordination in Rust CLIs.",
+      "cautions": [
+        "Hide progress output when stderr is not a terminal."
+      ],
+      "tags": [
+        "rust",
+        "progress",
+        "spinner",
+        "terminal"
+      ],
+      "projectTypes": [
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "indicatif"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/console-rs/indicatif",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `cargo add indicatif` and commit Cargo.lock for binaries."
+      ]
+    },
+    {
+      "id": "cargo-dist",
+      "name": "dist (cargo-dist)",
+      "category": "cli-distribution",
+      "platforms": [
+        "cli",
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/axodotdev/cargo-dist/blob/HEAD/LICENSE-MIT",
+        "scope": "MIT OR Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://axodotdev.github.io/cargo-dist/",
+      "repository": "https://github.com/axodotdev/cargo-dist",
+      "docs": "https://axodotdev.github.io/cargo-dist/book/",
+      "summary": "Release tool that builds, packages and publishes Rust (and other) binaries with installers and CI config.",
+      "useWhen": "Use instead of hand-writing GitHub Actions matrices, archives and shell/PowerShell installers for Rust CLI releases.",
+      "cautions": [
+        "Generated CI workflows are regenerated by the tool; avoid hand edits."
+      ],
+      "tags": [
+        "rust",
+        "release",
+        "distribution",
+        "installers"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/axodotdev/cargo-dist",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install the dist CLI at a pinned version, run `dist init`, and commit the generated config."
+      ]
+    },
+    {
+      "id": "godot",
+      "name": "Godot Engine",
+      "category": "game-engine",
+      "platforms": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/godotengine/godot/blob/HEAD/LICENSE.txt",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://godotengine.org",
+      "repository": "https://github.com/godotengine/godot",
+      "docs": "https://docs.godotengine.org/en/stable/",
+      "summary": "Free, open-source 2D and 3D game engine with an integrated editor, GDScript and C#.",
+      "useWhen": "Use instead of writing a custom engine, scene graph, editor and export pipeline for a 2D/3D game.",
+      "cautions": [
+        "Console exports require third-party porting arrangements.",
+        "Pin the engine version per project; scenes are not always forward-compatible."
+      ],
+      "tags": [
+        "game-engine",
+        "2d",
+        "3d",
+        "gdscript"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/godotengine/godot",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Download the pinned editor release from godotengine.org and record the version in the project."
+      ]
+    },
+    {
+      "id": "phaser",
+      "name": "Phaser",
+      "category": "game-engine",
+      "platforms": [
+        "web",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/phaserjs/phaser/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://phaser.io",
+      "repository": "https://github.com/phaserjs/phaser",
+      "docs": "https://docs.phaser.io",
+      "summary": "HTML5 2D game framework for Canvas and WebGL browser games.",
+      "useWhen": "Use instead of hand-writing a game loop, sprite rendering, input, tweens and arcade physics for browser games.",
+      "cautions": [
+        "Major versions (3 vs 4) differ; follow docs for the installed version."
+      ],
+      "tags": [
+        "game",
+        "2d",
+        "html5",
+        "webgl"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "phaser"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/phaserjs/phaser",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pixijs",
+      "name": "PixiJS",
+      "category": "game-rendering",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pixijs/pixijs/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://pixijs.com",
+      "repository": "https://github.com/pixijs/pixijs",
+      "docs": "https://pixijs.com/8.x/guides",
+      "summary": "Fast 2D WebGL/WebGPU rendering engine for interactive graphics and games.",
+      "useWhen": "Use instead of hand-writing WebGL sprite batching and scene graphs for 2D interactive content.",
+      "cautions": [
+        "Renderer only: add your own physics, audio and game structure.",
+        "v8 APIs differ from v7."
+      ],
+      "tags": [
+        "2d",
+        "webgl",
+        "webgpu",
+        "rendering"
+      ],
+      "projectTypes": [
+        "game",
+        "media-creative"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pixi.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pixijs/pixijs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "babylonjs",
+      "name": "Babylon.js",
+      "category": "game-engine",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/BabylonJS/Babylon.js/blob/HEAD/license.md",
+        "scope": "Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.babylonjs.com",
+      "repository": "https://github.com/BabylonJS/Babylon.js",
+      "docs": "https://doc.babylonjs.com",
+      "summary": "Full-featured 3D game and rendering engine for the web with WebGL/WebGPU, physics and XR.",
+      "useWhen": "Use instead of assembling a 3D engine (scene, materials, physics, input, XR) by hand for browser games.",
+      "cautions": [
+        "Import from @babylonjs/* modules to tree-shake; the full bundle is large."
+      ],
+      "tags": [
+        "3d",
+        "webgl",
+        "webgpu",
+        "game-engine"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@babylonjs/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/BabylonJS/Babylon.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "playcanvas",
+      "name": "PlayCanvas Engine",
+      "category": "game-engine",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/playcanvas/engine/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://playcanvas.com",
+      "repository": "https://github.com/playcanvas/engine",
+      "docs": "https://developer.playcanvas.com",
+      "summary": "Open-source WebGL/WebGPU 3D game engine; the hosted editor is a separate service.",
+      "useWhen": "Use instead of building a 3D runtime with entity-component structure, physics and asset loading for the web.",
+      "cautions": [
+        "The PlayCanvas cloud editor has paid plans; the engine is MIT."
+      ],
+      "tags": [
+        "3d",
+        "webgl",
+        "game-engine",
+        "ecs"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "playcanvas"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/playcanvas/engine",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "bevy",
+      "name": "Bevy",
+      "category": "game-engine",
+      "platforms": [
+        "desktop",
+        "web",
+        "mobile"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/bevyengine/bevy/blob/HEAD/LICENSE-MIT",
+        "scope": "MIT OR Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://bevy.org",
+      "repository": "https://github.com/bevyengine/bevy",
+      "docs": "https://docs.rs/bevy",
+      "summary": "Data-driven ECS game engine written in Rust.",
+      "useWhen": "Use instead of writing a custom ECS, renderer and asset pipeline for a Rust game.",
+      "cautions": [
+        "Pre-1.0: breaking changes every release; follow migration guides.",
+        "No visual editor yet."
+      ],
+      "tags": [
+        "rust",
+        "ecs",
+        "game-engine",
+        "3d"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "bevy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bevyengine/bevy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Add with `cargo add bevy` at a pinned version and commit Cargo.lock."
+      ]
+    },
+    {
+      "id": "raylib",
+      "name": "raylib",
+      "category": "game-engine",
+      "platforms": [
+        "desktop",
+        "web",
+        "mobile"
+      ],
+      "kind": "source-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Zlib",
+        "url": "https://github.com/raysan5/raylib/blob/HEAD/LICENSE",
+        "scope": "Zlib for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://www.raylib.com",
+      "repository": "https://github.com/raysan5/raylib",
+      "docs": "https://www.raylib.com/cheatsheet/cheatsheet.html",
+      "summary": "Simple C library for videogame programming with bindings for many languages.",
+      "useWhen": "Use instead of hand-wiring OpenGL, windowing, input and audio for small games and prototypes.",
+      "cautions": [
+        "Language bindings are community-maintained with varying quality."
+      ],
+      "tags": [
+        "c",
+        "game",
+        "opengl",
+        "bindings"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/raysan5/raylib",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Use a pinned release or package-manager build (vcpkg, Homebrew) and record the version."
+      ]
+    },
+    {
+      "id": "love2d",
+      "name": "LÖVE",
+      "category": "game-engine",
+      "platforms": [
+        "desktop",
+        "mobile"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Zlib",
+        "url": "https://github.com/love2d/love/blob/HEAD/license.txt",
+        "scope": "Zlib for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://love2d.org",
+      "repository": "https://github.com/love2d/love",
+      "docs": "https://love2d.org/wiki/Main_Page",
+      "summary": "Framework for making 2D games in Lua.",
+      "useWhen": "Use instead of writing windowing, graphics, audio and input layers by hand for a Lua 2D game.",
+      "cautions": [
+        "Bundled libraries carry their own licenses; include notices when distributing."
+      ],
+      "tags": [
+        "lua",
+        "2d",
+        "game",
+        "framework"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/love2d/love",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Download a pinned LÖVE release and record the version in the project."
+      ]
+    },
+    {
+      "id": "kaplay",
+      "name": "KAPLAY",
+      "category": "game-engine",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/kaplayjs/kaplay/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://kaplayjs.com",
+      "repository": "https://github.com/kaplayjs/kaplay",
+      "docs": "https://kaplayjs.com/docs/",
+      "summary": "Beginner-friendly JavaScript/TypeScript game library, the maintained fork of Kaboom.js.",
+      "useWhen": "Use instead of hand-writing sprites, collisions and scenes for quick browser games and game jams; use it in place of the unmaintained Kaboom.",
+      "cautions": [
+        "Version numbers jump (3001.x); pin exactly."
+      ],
+      "tags": [
+        "game",
+        "2d",
+        "javascript",
+        "kaboom"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "kaplay"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kaplayjs/kaplay",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "matter-js",
+      "name": "Matter.js",
+      "category": "game-physics",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/liabru/matter-js/blob/HEAD/LICENSE",
+        "scope": "MIT for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://brm.io/matter-js/",
+      "repository": "https://github.com/liabru/matter-js",
+      "docs": "https://brm.io/matter-js/docs/",
+      "summary": "2D rigid-body physics engine for the web.",
+      "useWhen": "Use instead of hand-writing collision detection and rigid-body integration for 2D browser games.",
+      "cautions": [
+        "Release cadence is slow; consider Rapier for heavier simulations."
+      ],
+      "tags": [
+        "physics",
+        "2d",
+        "javascript",
+        "collision"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "matter-js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/liabru/matter-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rapier",
+      "name": "Rapier",
+      "category": "game-physics",
+      "platforms": [
+        "web",
+        "desktop",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/dimforge/rapier/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://rapier.rs",
+      "repository": "https://github.com/dimforge/rapier",
+      "docs": "https://rapier.rs/docs/",
+      "summary": "2D and 3D physics engine written in Rust with official JavaScript (WASM) bindings.",
+      "useWhen": "Use instead of hand-writing collision, joints and rigid-body simulation for Rust or JavaScript games.",
+      "cautions": [
+        "Use the -compat npm packages if your bundler cannot load WASM directly."
+      ],
+      "tags": [
+        "physics",
+        "rust",
+        "wasm",
+        "3d",
+        "2d"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "rapier3d"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@dimforge/rapier3d"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dimforge/rapier",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "excalibur",
+      "name": "Excalibur.js",
+      "category": "game-engine",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": "https://github.com/excaliburjs/Excalibur/blob/HEAD/LICENSE.md",
+        "scope": "BSD-2-Clause for the upstream code; check bundled third-party notices."
+      },
+      "homepage": "https://excaliburjs.com",
+      "repository": "https://github.com/excaliburjs/Excalibur",
+      "docs": "https://excaliburjs.com/docs/",
+      "summary": "TypeScript-first 2D game engine for the web.",
+      "useWhen": "Use instead of building actors, scenes, collisions and input for a TypeScript browser game by hand.",
+      "cautions": [
+        "Pre-1.0; pin the version."
+      ],
+      "tags": [
+        "typescript",
+        "2d",
+        "game-engine",
+        "web"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "excalibur"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/excaliburjs/Excalibur",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "defold",
+      "name": "Defold",
+      "category": "game-engine",
+      "platforms": [
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "LicenseRef-Defold-License",
+        "url": "https://github.com/defold/defold/blob/HEAD/LICENSE.txt",
+        "scope": "Defold License 1.0: Apache-2.0-style terms plus a condition that you do not sell or commercialise the engine or derivatives as a game engine product. Games made with it are unaffected; review before redistributing a modified engine."
+      },
+      "homepage": "https://defold.com",
+      "repository": "https://github.com/defold/defold",
+      "docs": "https://defold.com/manuals/introduction/",
+      "summary": "Free cross-platform 2D/3D game engine with a Lua scripting editor, stewarded by the Defold Foundation.",
+      "useWhen": "Use instead of building a lightweight engine and export pipeline for mobile and web 2D games.",
+      "cautions": [
+        "Not an OSI license; check terms before engine-level modifications."
+      ],
+      "tags": [
+        "game-engine",
+        "lua",
+        "2d",
+        "mobile"
+      ],
+      "projectTypes": [
+        "game"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/defold/defold",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/mobile-desktop-cli-game.md"
+      },
+      "install": [
+        "Download a pinned editor release from defold.com and record the version."
+      ]
+    }
+  ]
+}

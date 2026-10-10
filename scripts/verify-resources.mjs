@@ -39,7 +39,7 @@ async function registryLicense({ ecosystem, name }) {
 }
 
 // Loose comparison: registries spell licenses differently (e.g. "MIT License", "Apache Software License").
-const tokens = value => new Set(String(value).toLowerCase().replace(/software|license|licence|version|the/g, ' ').match(/[a-z]+|\d+(?:\.\d+)?/g) ?? []);
+const tokens = value => new Set(String(value).toLowerCase().replace(/\b(software|license|licence|version|the)\b/g, ' ').match(/[a-z]+|\d+(?:\.\d+)?/g) ?? []);
 function licenseMatches(recorded, declared) {
   if (!recorded || !declared) return null;
   const a = tokens(recorded), b = tokens(declared);
