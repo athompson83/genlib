@@ -3,20 +3,28 @@
 //! The capability modules below are independent, tested examples.
 
 pub mod calculator;
+pub mod check_digits;
 pub mod cron_next;
 pub mod csv_safe;
+pub mod email_address;
 pub mod form_schema;
 pub mod geo;
+pub mod geometry;
 pub mod ics_events;
 pub mod ids;
+pub mod iso_duration;
 pub mod money;
 pub mod oidc_pkce;
+pub mod polyline;
 pub mod recovery_codes;
 pub mod retry_backoff;
+pub mod safe_redirect;
 pub mod semver;
 pub mod seo_files;
 pub mod signed_cursors;
+pub mod signed_urls;
 pub mod structured_data;
+pub mod tile_math;
 pub mod token_bucket;
 pub mod totp;
 pub mod utm_links;
