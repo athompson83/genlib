@@ -18,10 +18,15 @@ test('every registered language example is discoverable and its files exist',()=
 test('safe plan and copy without overwrites',()=>{
  const dir=mkdtempSync(join(tmpdir(),'genlib-modules-'));
  try{
-  const plan=JSON.parse(run('plan','python-pagination','--target',dir));
+  const plan=JSON.parse(run('plan','python-pagination','--target',dir,'--json'));
   assert.equal(plan.files.length,1);assert.equal(existsSync(join(dir,'genlib/python/pagination.py')),false);
-  const added=JSON.parse(run('add','python-pagination','--target',dir));
+  const added=JSON.parse(run('add','python-pagination','--target',dir,'--json'));
   assert.equal(readFileSync(added.files[0].destination).length>0,true);
+  // Text mode: flat copy into a chosen folder, with the API and the command that runs the copied tests.
+  const text=run('add','python-rrule','--target',dir,'--with-tests','--into','app','--flat');
+  assert.match(text,/app\/rrule\.py/);assert.match(text,/def expand_rrule\(/);assert.match(text,/# test: cd .*app && python3 -m unittest test_rrule/);
+  assert.ok(existsSync(join(dir,'app/test_rrule.py')));
+  assert.notEqual(spawnSync(process.execPath,['tools/language-modules.mjs','add','python-rrule','--target',dir,'--into','../escape']).status,0);
   assert.notEqual(spawnSync(process.execPath,['tools/language-modules.mjs','add','python-pagination','--target',dir]).status,0);
  }finally{rmSync(dir,{recursive:true,force:true})}
 });

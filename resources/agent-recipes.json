@@ -1927,6 +1927,227 @@
         "monthly",
         "yearly"
       ]
+    },
+    {
+      "id": "base-encodings",
+      "kind": "source-example",
+      "path": "examples/recipes/base-encodings.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "base32",
+        "base58",
+        "base64url",
+        "base64 url safe",
+        "rfc 4648",
+        "binary to text encoding",
+        "decode base32",
+        "bitcoin alphabet",
+        "totp secret encoding",
+        "short ids encoding"
+      ],
+      "checks": [
+        "Decoders are strict: padding, length and non-canonical trailing bits are rejected",
+        "Encoding is not encryption; never treat it as a secret",
+        "base58 uses the Bitcoin alphabet with one '1' per leading zero byte"
+      ],
+      "variants": [
+        "base32",
+        "base32hex",
+        "base58",
+        "base64url"
+      ]
+    },
+    {
+      "id": "vcard-contacts",
+      "kind": "source-example",
+      "path": "examples/recipes/vcard.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "vcard",
+        "vcf",
+        "contact card",
+        "save contact",
+        "address book export",
+        "rfc 6350",
+        "vcard 4.0",
+        "download contact",
+        "business card"
+      ],
+      "checks": [
+        "Serve as text/vcard; charset=utf-8 with a .vcf filename",
+        "Lines are CRLF and folded at 75 octets without splitting UTF-8",
+        "Control characters, invalid emails, phones, URLs and TYPE values throw"
+      ],
+      "variants": [
+        "person",
+        "organization"
+      ]
+    },
+    {
+      "id": "non-crypto-hashing",
+      "kind": "source-example",
+      "path": "examples/recipes/hashing.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "crc32",
+        "checksum",
+        "fnv-1a",
+        "fnv1a",
+        "murmurhash",
+        "murmur3",
+        "jump consistent hash",
+        "consistent hashing",
+        "sharding",
+        "hash bucket",
+        "non-cryptographic hash"
+      ],
+      "checks": [
+        "Never use for passwords, MACs or signatures; use Web Crypto or node:crypto",
+        "fnv1a64 and jumpHash use BigInt for 64-bit math",
+        "Strings are hashed as UTF-8 bytes"
+      ],
+      "variants": [
+        "crc32",
+        "fnv1a32",
+        "fnv1a64",
+        "murmur3",
+        "jump-hash"
+      ]
+    },
+    {
+      "id": "feature-flag-evaluation",
+      "kind": "source-example",
+      "path": "examples/recipes/feature-flags.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "feature flag evaluation",
+        "deterministic feature flag",
+        "flag bucketing",
+        "percentage rollout",
+        "kill switch",
+        "allow list deny list",
+        "weighted variants",
+        "experiment assignment",
+        "cross-language flag"
+      ],
+      "checks": [
+        "Flags are not authorization; enforce permissions separately",
+        "Raising rolloutPercent only adds users; lowering it removes them",
+        "Keep variant weights frozen while an experiment runs"
+      ],
+      "variants": [
+        "rollout",
+        "allow-deny",
+        "variants"
+      ]
+    },
+    {
+      "id": "human-readable-units",
+      "kind": "source-example",
+      "path": "examples/recipes/human-units.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "human readable bytes",
+        "format file size",
+        "parse file size",
+        "kib mib",
+        "kb mb gb",
+        "format duration",
+        "relative time",
+        "time ago",
+        "humanize"
+      ],
+      "checks": [
+        "SI (kB = 1000) and IEC (KiB = 1024) are distinct; pick one per product",
+        "parseBytes returns a BigInt and throws above 2^63-1",
+        "English only; use Intl.RelativeTimeFormat for localized UI"
+      ],
+      "variants": [
+        "bytes",
+        "parse-bytes",
+        "duration",
+        "relative-time"
+      ]
+    },
+    {
+      "id": "unified-line-diff",
+      "kind": "source-example",
+      "path": "examples/recipes/line-diff.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "unified diff",
+        "gnu diff",
+        "diff -u",
+        "line diff",
+        "lcs diff",
+        "patch output",
+        "no newline at end of file",
+        "compare files",
+        "text changes"
+      ],
+      "checks": [
+        "Inputs above 4,000,000 line pairs throw; bound sizes first",
+        "Escape lines before rendering as HTML",
+        "Output is a valid unified diff (patch reproduces the new text); same format as GNU diff -u, which may pick a different alignment of equal size"
+      ],
+      "variants": [
+        "ops",
+        "unified"
+      ]
+    },
+    {
+      "id": "nist-password-policy",
+      "kind": "source-example",
+      "path": "examples/recipes/nist-password-policy.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "nist password policy",
+        "sp 800-63b",
+        "password check",
+        "breached password blocklist",
+        "minimum password length",
+        "repetitive password",
+        "sequential characters",
+        "context specific words",
+        "no composition requirements"
+      ],
+      "checks": [
+        "Check a large breached-password list as the blocklist on the server",
+        "Allow spaces and emoji and never truncate",
+        "Rate-limit attempts and hash with Argon2id, scrypt or bcrypt"
+      ],
+      "variants": [
+        "defaults",
+        "custom-length",
+        "blocklist-context"
+      ]
+    },
+    {
+      "id": "text-sanitize-bidi",
+      "kind": "source-example",
+      "path": "examples/recipes/text-sanitize.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "sanitize text",
+        "strip control characters",
+        "bidi controls",
+        "trojan source",
+        "cve-2021-42574",
+        "zero width characters",
+        "normalize whitespace",
+        "invisible characters",
+        "unicode cleanup"
+      ],
+      "checks": [
+        "Keeps ZWJ/ZWNJ for emoji and Indic/Persian text",
+        "Not HTML escaping; still escape output for its context",
+        "Lengths count code points"
+      ],
+      "variants": [
+        "sanitize",
+        "find-bidi",
+        "normalize-whitespace"
+      ]
     }
   ]
 }

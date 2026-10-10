@@ -22,6 +22,8 @@ claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 ```
 
+Text output from the CLI and the MCP tools names this checkout's real path in place of `"$GENLIB_ROOT"`, so a printed command runs as is; set the `GENLIB_ROOT` environment variable to keep the placeholder (the token report and generated indexes do).
+
 | Tool | Returns |
 | --- | --- |
 | `genlib_quick` | The best match, only its acting commands and up to 3 alternative refs (cheapest call) |

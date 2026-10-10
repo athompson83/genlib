@@ -14,7 +14,8 @@ Use `find <task>` to compare options (compact text; add `--json` for full record
 
 - [Agent access](docs/agent-access.md): CLI, MCP server, search index, graph and Obsidian export
 - [Token budget](docs/token-budget.md): measured output sizes of each path and the budgets tests enforce
-- [Capabilities](docs/capabilities.md): one task, tested code in 9 languages (auth, MFA, passkeys, PDF, DOCX, forms, SEO, CSV, money, cursors, calendar invites, IDs, retries, rate limits, semver, cron, contrast, geo, webhook signatures, check digits, signed URLs, polylines, map tiles, email validation, ISO durations, polygon geometry, safe redirects, SSRF/IP checks, HTTP Range, content negotiation, ETags, cookies, URL normalization, fuzzy matching, recurring events)
+- [Benchmarks](docs/benchmarks.md): measured agent runs with and without Genlib and with Jev, graded by hidden tests
+- [Capabilities](docs/capabilities.md): one task, tested code in 9 languages (auth, MFA, passkeys, PDF, DOCX, forms, SEO, CSV, money, cursors, calendar invites, IDs, retries, rate limits, semver, cron, contrast, geo, webhook signatures, check digits, signed URLs, polylines, map tiles, email validation, ISO durations, polygon geometry, safe redirects, SSRF/IP checks, HTTP Range, content negotiation, ETags, cookies, URL normalization, fuzzy matching, recurring events, base32/58/64url, vCard, hashes, feature flags, human-readable units, unified diffs, password policy, text sanitizing)
 - [Jev guide](docs/jev.md): bounded decision packets and the search index
 - [Resource catalogs](docs/resources/README.md): verified packages, apps and services in 12 languages
 - [Install indexes](docs/install-indexes.md): ranked skills, MCP servers, CLIs, APIs, project starters (`genlib starter find`) and refactoring/workflow recipes (`genlib task find`), each one pinned command

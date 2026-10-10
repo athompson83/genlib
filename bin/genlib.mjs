@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { fileURLToPath } from 'node:url';
 import { inspectModule, loadCatalog, searchCatalog } from '../lib/catalog.mjs';
 import { installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
 import { detectProject, findInSources, loadSources, sourceCounts } from '../lib/discover.mjs';
@@ -196,7 +197,9 @@ try {
       }
     }
   }
-  process.stdout.write((text !== undefined && !options.json ? text : JSON.stringify(result, null, options.json ? 0 : 2)) + '\n');
+  // Text output names this checkout's real path so commands run as printed; set GENLIB_ROOT to keep the placeholder.
+  const shown = text !== undefined && !options.json && !process.env.GENLIB_ROOT ? text.replaceAll('"$GENLIB_ROOT"', JSON.stringify(fileURLToPath(new URL('..', import.meta.url)).replace(/\/$/, ''))) : text;
+  process.stdout.write((shown !== undefined && !options.json ? shown : JSON.stringify(result, null, options.json ? 0 : 2)) + '\n');
 } catch (error) {
   process.stderr.write(JSON.stringify({ error: error.message, code: error.code || 'ERROR' }) + '\n');
   process.exitCode = 1;

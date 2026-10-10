@@ -10,13 +10,13 @@ The baseline column is what the same step costs without the compact path: the fu
 | Compare options | `find verify stripe webhook` | 1,219 | ~305 | find --json (8 full records) | 5,726 | 4.7× |
 | Pick code for a task | `quick passkey login --language go` | 331 | ~83 | find --json (8 full records) | 6,290 | 19.0× |
 | Compare options | `find passkey login --language go` | 2,115 | ~529 | find --json (8 full records) | 6,290 | 3.0× |
-| Pick code for a task | `quick csv export --language python` | 416 | ~104 | find --json (8 full records) | 5,909 | 14.2× |
-| Compare options | `find csv export --language python` | 1,864 | ~466 | find --json (8 full records) | 5,909 | 3.2× |
+| Pick code for a task | `quick csv export --language python` | 423 | ~106 | find --json (8 full records) | 5,916 | 14.0× |
+| Compare options | `find csv export --language python` | 1,871 | ~468 | find --json (8 full records) | 5,916 | 3.2× |
 | Learn an API | `outline totp --language go` | 1,446 | ~362 | read its source files | 6,589 | 4.6× |
 | Learn an API | `outline saml-sso --language typescript` | 472 | ~118 | read its source files | 3,711 | 7.9× |
 | Learn an API | `outline money --language java` | 1,046 | ~262 | read its source files | 5,464 | 5.2× |
 | Learn an API | `outline webhook-verification` | 4,364 | ~1,091 | read its source files | 15,416 | 3.5× |
-| Load the skill | `skills/genlib-use/SKILL.md` | 4,927 | ~1,232 | - | - | - |
+| Load the skill | `skills/genlib-use/SKILL.md` | 4,996 | ~1,249 | - | - | - |
 | Register MCP tools | `tools/list` | 4,083 | ~1,021 | - | - | - |
 | Decision packet | `jev add passkey login to a Go API` | 7,388 | ~1,847 | - | - | - |
 

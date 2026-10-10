@@ -168,7 +168,9 @@ async function handle(request) {
       const value = await call(params?.name, params?.arguments ?? {});
       // Brief tools return compact text for the model alongside the structured result.
       const { result, text } = value?.text !== undefined && value.result ? value : { result: value, text: JSON.stringify(value) };
-      return reply({ content: [{ type: 'text', text }], structuredContent: result, isError: false });
+      // Name this checkout's real path in the text so commands run as printed (structuredContent keeps the placeholder).
+      const shown = process.env.GENLIB_ROOT ? text : text.replaceAll('"$GENLIB_ROOT"', JSON.stringify(ROOT.replace(/\/$/, '')));
+      return reply({ content: [{ type: 'text', text: shown }], structuredContent: result, isError: false });
     } catch (error) {
       return reply({ content: [{ type: 'text', text: JSON.stringify({ error: error.message, code: error.code ?? 'ERROR' }) }], isError: true });
     }

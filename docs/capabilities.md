@@ -17,7 +17,7 @@ node "$GENLIB_ROOT"/bin/genlib.mjs capability list --json
 node "$GENLIB_ROOT"/bin/genlib.mjs capability inspect oidc-pkce --language kotlin --json
 ```
 
-Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes, or `tools/language-modules.mjs add <id> --with-tests` for the other languages. Both refuse to overwrite existing files. Run the copied tests inside the consuming project.
+Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes, or `tools/language-modules.mjs add <id> --with-tests` (Python adds `--flat`; `--into <dir>` chooses the folder) for the other languages, which prints the copied paths, the public signatures and the test command. Both refuse to overwrite existing files. Run the copied tests inside the consuming project.
 
 <!-- genlib:capabilities:start -->
 | Capability | Tier | TS | Py | Go | Rust | Java | Kotlin | C# | Dart | Swift | Guide |
@@ -58,6 +58,14 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `url-normalize` URL normalization (RFC 3986) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `string-similarity` String similarity: Levenshtein, Damerau, Jaro-Winkler | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `rrule` Recurring events: RFC 5545 RRULE expansion | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `base-encodings` Base32, Base58 and Base64url encoding | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `vcard` vCard 4.0 contact export (.vcf) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `hashing` Non-cryptographic hashing and jump consistent hashing | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `feature-flags` Feature flags: deterministic rollout and A/B variants | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `human-units` Human-readable bytes, durations and relative times | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `line-diff` Line diff and unified diff output | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `password-policy` Password policy checks (NIST SP 800-63B) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `text-sanitize` Text sanitizing and Trojan Source (bidi) detection | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
@@ -222,6 +230,30 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 
 **rrule**
 - `expandRRule(dtstart, rule, limit)` expands DAILY, WEEKLY, MONTHLY and YEARLY rules with INTERVAL, COUNT, UNTIL, BYDAY (including ordinals such as `2TU` and `-1FR` in MONTHLY), BYMONTHDAY and BYMONTH, in UTC, skipping dates that do not exist (31 April, 29 February) and matching python-dateutil on the test vectors. Other parts (BYSETPOS, BYHOUR, WKST, EXDATE) are rejected; convert local times to UTC around daylight-saving changes yourself.
+
+**base-encodings**
+- `base32Encode`/`base32Decode` (RFC 4648 standard and extended-hex alphabets, padded or not), `base58Encode`/`base58Decode` (Bitcoin alphabet, leading zero bytes as "1") and unpadded `base64UrlEncode`/`base64UrlDecode`. Decoders are strict: they reject wrong padding, unknown characters and non-canonical trailing bits, so one value has one encoding.
+
+**vcard**
+- `buildVcard(contact)` writes RFC 6350 vCard 4.0 (FN, N, ORG, TITLE, EMAIL, TEL, ADR, URL, NOTE, UID) with text escaping, TYPE parameters and 75-octet folding. Serve it as `text/vcard; charset=utf-8` with a `.vcf` file name.
+
+**hashing**
+- `crc32`, `fnv1a32`, `fnv1a64`, `murmur3_32` and `jumpHash` (Lamping and Veach) for checksums, sharding and stable bucketing. They are not cryptographic: use HMAC or a password hash for anything an attacker can influence.
+
+**feature-flags**
+- `evaluateFlag(flag, userId)` applies disabled, deny, allow and a sticky percentage rollout (FNV-1a bucket of `key:userId` out of 10,000), then picks a weighted variant. The same user always gets the same answer, raising the percentage only adds users, and the result carries the reason and bucket for logs and experiment analysis.
+
+**human-units**
+- `formatBytes` (SI kB or IEC KiB, integer rounding, 64-bit safe), `parseBytes`, `formatDuration` ("1h 2m") and `relativeTime` ("3 minutes ago", "in 2 days"; English only, localize with Intl or ICU for other languages).
+
+**line-diff**
+- `diffLines` returns equal/removed/added lines from a deterministic LCS walk; `unifiedDiff` writes a valid unified diff in the GNU `diff -u` format (hunks, three lines of context, "No newline at end of file") that `patch` applies to reproduce the new text, checked on 4,000 random pairs. GNU diff may choose a different alignment of the same size (about a quarter of random inputs), so do not compare its bytes with GNU output. Inputs are limited to 4,000,000 line pairs; use a streaming diff for huge files.
+
+**password-policy**
+- `checkPassword` reports too-short, too-long (code points), control-characters, blocklisted, contains-context and repetitive (aaaa, 1234, dcba) with no composition rules, following NIST SP 800-63B. Use a large breached-password list as the blocklist, allow spaces and emoji, never truncate, and rate-limit attempts.
+
+**text-sanitize**
+- `sanitizeText` normalizes newlines and removes control, bidirectional-override and invisible characters (keeping the zero-width joiners emoji and some scripts need), `findBidiControls` reports Trojan Source characters (CVE-2021-42574) in code or reviews, and `normalizeWhitespace` collapses runs of whitespace.
 
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 

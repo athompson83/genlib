@@ -2394,6 +2394,538 @@
       }
     },
     {
+      "id": "base-encodings",
+      "title": "Base32, Base58 and Base64url encoding",
+      "tier": "pure",
+      "summary": "RFC 4648 base32 (standard and extended-hex alphabets, padded or not), Bitcoin-alphabet base58 and unpadded base64url, with strict decoders that reject bad characters, padding and non-canonical bits.",
+      "terms": [
+        "base32",
+        "base58",
+        "base64url",
+        "base64 url safe",
+        "encode bytes",
+        "decode",
+        "rfc 4648",
+        "short id",
+        "bitcoin address",
+        "binary to text"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "base-encodings",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-base-encodings",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-base-encodings",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-base-encodings",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-base-encodings",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-base-encodings",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-base-encodings",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-base-encodings",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-base-encodings",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "vcard",
+      "title": "vCard 4.0 contact export (.vcf)",
+      "tier": "pure",
+      "summary": "RFC 6350 vCard 4.0 with name, organization, emails, phones, address, URLs and notes: text escaping, TYPE parameters, validation and 75-octet folding that never splits UTF-8, for \"add to contacts\" downloads and QR codes.",
+      "terms": [
+        "vcard",
+        "vcf",
+        "contact card",
+        "add to contacts",
+        "export contacts",
+        "rfc 6350",
+        "business card",
+        "contact qr code",
+        "address book"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "vcard-contacts",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-vcard",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-vcard",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-vcard",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-vcard",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-vcard",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-vcard",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-vcard",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-vcard",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "hashing",
+      "title": "Non-cryptographic hashing and jump consistent hashing",
+      "tier": "pure",
+      "summary": "CRC-32 (IEEE), FNV-1a 32/64, MurmurHash3 x86_32 and Google jump consistent hash for checksums, sharding, cache keys and bucketing. Not for passwords, MACs or signatures.",
+      "terms": [
+        "crc32",
+        "checksum",
+        "fnv",
+        "fnv-1a",
+        "murmurhash",
+        "murmur3",
+        "consistent hashing",
+        "jump hash",
+        "sharding",
+        "hash function",
+        "bucketing",
+        "partitioning"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "non-crypto-hashing",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-hashing",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-hashing",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-hashing",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-hashing",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-hashing",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-hashing",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-hashing",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-hashing",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "feature-flags",
+      "title": "Feature flags: deterministic rollout and A/B variants",
+      "tier": "pure",
+      "summary": "Evaluate a flag for a user with enable/disable, deny and allow lists, sticky percentage rollout (FNV-1a buckets out of 10,000) and weighted A/B variants, returning the reason and bucket for logging.",
+      "terms": [
+        "feature flag",
+        "feature toggle",
+        "percentage rollout",
+        "gradual rollout",
+        "canary",
+        "a/b test",
+        "ab testing",
+        "experiment",
+        "variant",
+        "split test",
+        "kill switch"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "feature-flag-evaluation",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-feature-flags",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-feature-flags",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-feature-flags",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-feature-flags",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-feature-flags",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-feature-flags",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-feature-flags",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-feature-flags",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "human-units",
+      "title": "Human-readable bytes, durations and relative times",
+      "tier": "pure",
+      "summary": "Format and parse byte sizes in SI (kB) or IEC (KiB) units with integer rounding, compact durations (\"1h 2m\") and relative times (\"3 minutes ago\", \"in 2 days\").",
+      "terms": [
+        "format bytes",
+        "file size",
+        "human readable",
+        "kib",
+        "parse size",
+        "time ago",
+        "relative time",
+        "humanize",
+        "duration format",
+        "pretty print",
+        "timeago"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "human-readable-units",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-human-units",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-human-units",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-human-units",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-human-units",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-human-units",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-human-units",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-human-units",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-human-units",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "line-diff",
+      "title": "Line diff and unified diff output",
+      "tier": "pure",
+      "summary": "Deterministic LCS line diff and unified diff in the GNU diff -u format that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
+      "terms": [
+        "diff",
+        "unified diff",
+        "line diff",
+        "compare text",
+        "text diff",
+        "patch",
+        "changes",
+        "lcs",
+        "diff -u",
+        "show changes",
+        "version compare"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "unified-line-diff",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-line-diff",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-line-diff",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-line-diff",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-line-diff",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-line-diff",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-line-diff",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-line-diff",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-line-diff",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "password-policy",
+      "title": "Password policy checks (NIST SP 800-63B)",
+      "tier": "pure",
+      "summary": "Length limits in code points, control-character, blocklist (breached passwords), user-context and repetitive/sequential checks with stable failure codes and no composition rules, as NIST SP 800-63B recommends.",
+      "terms": [
+        "password policy",
+        "password validation",
+        "password rules",
+        "nist 800-63b",
+        "breached password",
+        "weak password",
+        "password strength",
+        "signup",
+        "blocklist"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "nist-password-policy",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-password-policy",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-password-policy",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-password-policy",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-password-policy",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-password-policy",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-password-policy",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-password-policy",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-password-policy",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "text-sanitize",
+      "title": "Text sanitizing and Trojan Source (bidi) detection",
+      "tier": "pure",
+      "summary": "Normalize newlines, strip control, bidirectional-override and invisible characters from user or model text while keeping emoji joiners, truncate by code points, collapse whitespace, and report bidi controls (CVE-2021-42574).",
+      "terms": [
+        "sanitize text",
+        "strip control characters",
+        "trojan source",
+        "bidi",
+        "bidirectional",
+        "zero width",
+        "invisible characters",
+        "unicode safety",
+        "normalize whitespace",
+        "user input",
+        "prompt injection"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "text-sanitize-bidi",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-text-sanitize",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-text-sanitize",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-text-sanitize",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-text-sanitize",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-text-sanitize",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-text-sanitize",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-text-sanitize",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-text-sanitize",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",
