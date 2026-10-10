@@ -39,7 +39,7 @@ After selection, run the candidate's `next` commands in order, under the task's 
 
 ## What the shortlist searches
 
-`jev` and `find` rank the same entries. There are 12 source types, and every one can be filtered with `--type`:
+`jev` and `find` rank the same entries. There are 14 source types, and every one can be filtered with `--type`:
 
 | Type | What it is | `next` command |
 | --- | --- | --- |
@@ -51,6 +51,8 @@ After selection, run the candidate's `next` commands in order, under the task's 
 | `tool` | Repository map, AST graph, task context and diagrams | The tool's command |
 | `skill` | Commit-pinned agent skills | `npx skills add <pinned url>` |
 | `mcp` / `cli` / `api` | Ranked install indexes | `claude/codex mcp add`, `brew install`, SDK or typed client |
+| `starter` | Ranked project templates and boilerplates | `npx degit <repo>#<sha>`, `cookiecutter --checkout <sha>`, `npx create-…@<version>`, `dotnet new install` |
+| `task` | OpenRewrite recipes and workflow templates | Pinned `mvn … rewrite-maven-plugin:run` / Gradle init script, or download a workflow to import |
 | `resource` | Link- and license-checked external libraries, services and apps | The exact install command, then `inspect` |
 | `doc` | Each section (H1 to H3) of README, AGENTS, CONTRIBUTING and `docs/` | `sed -n '<start>,<end>p' <file>`, which reads only that section |
 

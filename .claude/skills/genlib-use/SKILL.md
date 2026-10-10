@@ -25,7 +25,7 @@ description: Find, plan, and install reusable Genlib code while coding an applic
   ],
   "routing": [
     "Protocols and formats (SSO/OIDC, SAML, JWT, TOTP, recovery codes, passkeys, password hashing, PDF, DOCX, HTML sanitizing, forms, calculators, SEO files, JSON-LD, UTM, CSV, money, signed pagination cursors, .ics invites, UUIDv7/ULID, retry backoff, rate limiting, semver ranges, cron schedules, WCAG contrast, geo distance, webhook signatures) are capabilities with tested code in 9 languages. Never hand-write them.",
-    "Agent skills: genlib skill find <need>. MCP servers, CLIs, APIs: genlib mcp|cli|api find <need>. External libraries, apps and services in 12 languages (incl. '<product> alternative'): find returns verified install commands; see references/resources.md.",
+    "Agent skills: genlib skill find <need>. MCP servers, CLIs, APIs, project starters, refactoring/workflow recipes: genlib mcp|cli|api|starter|task find <need>. External libraries, apps and services in 12 languages (incl. '<product> alternative'): find returns verified install commands; see references/resources.md.",
     "Code navigation in the app: references/repository-intelligence.md. Exact commands and conflicts: references/cli.md."
   ],
   "modules": [

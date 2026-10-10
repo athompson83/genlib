@@ -40,6 +40,8 @@ Every result names its type, verification level and the exact next command. Modu
 | | `business-tools` catalog (Superset, Metabase, Supabase, Coolify, NocoDB, Dub, Ghost, CRM/ERP/helpdesk, business-service SDKs) | resources | Run the business without building internal tools; search `<product> alternative` |
 | | `education` catalog (Moodle, Canvas LMS, Open edX, Frappe LMS, ClassroomIO, Chamilo, Excalidraw, reveal.js, LanguageTool, H5P) | resources | LMS, whiteboards, slides, writing, assessment and LTI 1.3 integration in each language |
 | | `ai-learning` catalog (browser-use, OpenViking, Flowise, Fabric, Firecrawl MCP, TheAlgorithms, System Design Primer, developer-roadmap, public-apis, build-your-own-x) | resources | Agent tooling and learning references; LangChain, Transformers, Whisper and Kubernetes live in the AI and DevOps catalogs |
+| | `starter` index (2,818 project templates and boilerplates: Open SaaS, Next.js SaaS Starter, create-t3-app, cookiecutter-django, Ignite, dotnet new packs) | starters | Start a new project from a pinned, popular template in its language |
+| | `task` index (OpenRewrite migrations and fixes, n8n and Activepieces workflows) | task recipes | Upgrade frameworks, fix code at scale and automate workflows with one pinned command |
 | 8. Operate | `structured-logger` | module | JSON-lines logs with key redaction, child loggers and request IDs |
 | | `health-checks` | module | `/healthz` liveness and `/readyz` readiness with per-check timeouts |
 | 9. Other languages | Every capability, plus `*-pagination`, `*-identifier-validation`, Python/Go HTTP, config and logging | capabilities, language examples | Same patterns for Python, Go, Rust, Java, Kotlin, C#, Dart, Swift |

@@ -70,7 +70,7 @@ flowchart LR
   Find --> R["Recipes and<br/>language examples"]
   Find --> T["Templates"]
   Find --> N["Navigation tools"]
-  Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
+  Find --> S["Skills · MCP servers<br/>CLIs · APIs<br/>starters · task recipes"]
   Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning)"]
   Find --> D["Doc sections<br/>(exact line ranges)"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
@@ -124,7 +124,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `genlib-mcp` (`bin/genlib-mcp.mjs`) | MCP server exposing quick, find, outline, jev, capability, inspect, read_doc and catalog as tools |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
 | `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
-| `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
+| `skill\|mcp\|cli\|api\|starter\|task find <words>` / `… inspect <id>` | Search the ranked install indexes (compact text, `--json` for records) and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
 | `catalog` | Counts and a short overview of every source |
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
@@ -267,7 +267,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 
 ## Install indexes: skills, MCP servers, CLIs and APIs
 
-Four ranked indexes (1,066 agent skills, 3,642 MCP servers, 1,500 CLIs and 2,526 APIs) give agents the shortest install path for widely used tools, ranked by real usage data:
+Six ranked indexes (1,066 agent skills, 3,642 MCP servers, 1,500 CLIs, 2,526 APIs, 2,818 project starters and 4,234 task recipes) give agents the shortest install path for widely used tools, ranked by real usage data:
 
 | Index | Ranked by | Example |
 | --- | --- | --- |
@@ -275,8 +275,10 @@ Four ranked indexes (1,066 agent skills, 3,642 MCP servers, 1,500 CLIs and 2,526
 | [MCP servers](resources/mcp-servers.json) | Monthly npm/PyPI downloads (official MCP Registry) | `genlib mcp find github --client both` → `claude mcp add …` and `codex mcp add …` |
 | [CLIs](resources/clis.json) | Homebrew install requests (365 days) | `genlib cli find json` → `brew install jq` |
 | [APIs](resources/apis.json) | Provider popularity (Tranco), OpenAPI Directory specs | `genlib api find payments` → official SDK, or `npx openapi-typescript <spec>` |
+| [Project starters](resources/starters.json) | GitHub stars, registry downloads | `genlib starter find next.js saas` → `npx degit <owner>/<repo>#<sha> my-app` |
+| [Task recipes](resources/task-recipes.json) | OpenRewrite recipe graph, n8n views | `genlib task find junit 4 to 5` → `mvn … rewrite-maven-plugin:6.46.1:run -Drewrite.activeRecipes=…` |
 
-Each record carries the exact commands, with versions and commits pinned where the ecosystem allows. `genlib find` searches all four together with everything else (`--type skill|mcp|cli|api`). Skills, MCP servers and CLIs run with the agent's permissions, so review them first. See the [install indexes guide](docs/install-indexes.md) and the [skill library guide](docs/skill-library.md).
+Each record carries the exact commands, with versions and commits pinned where the ecosystem allows. `genlib find` searches all six together with everything else (`--type skill|mcp|cli|api|starter|task`). Skills, MCP servers, CLIs, starters and recipes run or copy code with the agent's permissions, so review them first. See the [install indexes guide](docs/install-indexes.md) and the [skill library guide](docs/skill-library.md).
 
 ## Find code without reading the whole repository
 
