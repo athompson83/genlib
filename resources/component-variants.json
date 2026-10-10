@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "principles": [
+    "Data-driven props and adapters",
+    "Design tokens and CSS variables",
+    "Keyboard and screen-reader support",
+    "Server-side authorization for data and actions",
+    "No automatic provider calls or unreviewed third-party source copying"
+  ],
+  "families": [
+    {
+      "id": "product-catalog",
+      "variants": [
+        "grid",
+        "list",
+        "compact",
+        "featured",
+        "category",
+        "search-results"
+      ],
+      "data": [
+        "products",
+        "filters",
+        "sorting",
+        "pagination",
+        "currency",
+        "availability"
+      ],
+      "source": "examples/storefront/catalog.ts",
+      "status": "logic-example"
+    },
+    {
+      "id": "shopping-cart",
+      "variants": [
+        "drawer",
+        "page",
+        "mini-cart",
+        "sticky-summary",
+        "mobile-sheet"
+      ],
+      "data": [
+        "cartLines",
+        "prices",
+        "discounts",
+        "stock",
+        "shipping"
+      ],
+      "source": "examples/storefront/cart.ts",
+      "status": "logic-example"
+    },
+    {
+      "id": "product-card",
+      "variants": [
+        "vertical",
+        "horizontal",
+        "minimal",
+        "image-led",
+        "quick-add",
+        "comparison"
+      ],
+      "data": [
+        "product",
+        "price",
+        "image",
+        "variants",
+        "stock"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "checkout",
+      "variants": [
+        "single-page",
+        "multistep",
+        "guest",
+        "express",
+        "subscription"
+      ],
+      "data": [
+        "shipping",
+        "tax",
+        "payment",
+        "consent"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "data-table",
+      "variants": [
+        "compact",
+        "comfortable",
+        "striped",
+        "sortable",
+        "filterable",
+        "editable",
+        "virtualized"
+      ],
+      "data": [
+        "rows",
+        "columns",
+        "selection",
+        "sorting",
+        "pagination"
+      ],
+      "source": "modules/data-table",
+      "status": "existing-module"
+    },
+    {
+      "id": "menu",
+      "variants": [
+        "accordion",
+        "sidebar",
+        "mega-menu",
+        "tree",
+        "nested",
+        "context",
+        "command"
+      ],
+      "data": [
+        "items",
+        "permissions",
+        "activePath"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "popup",
+      "variants": [
+        "modal",
+        "alert-dialog",
+        "popover",
+        "tooltip",
+        "toast",
+        "drawer",
+        "bottom-sheet"
+      ],
+      "data": [
+        "title",
+        "content",
+        "actions",
+        "dismissPolicy"
+      ],
+      "source": "examples/ui/Primitives.tsx",
+      "status": "structural-example"
+    },
+    {
+      "id": "info-box",
+      "variants": [
+        "neutral",
+        "success",
+        "warning",
+        "error",
+        "inline",
+        "dismissible"
+      ],
+      "data": [
+        "title",
+        "message",
+        "actions"
+      ],
+      "source": "examples/ui/Primitives.tsx",
+      "status": "structural-example"
+    },
+    {
+      "id": "legal-consent",
+      "variants": [
+        "checkbox",
+        "scroll-to-accept",
+        "versioned",
+        "multiple-consents",
+        "guardian-consent"
+      ],
+      "data": [
+        "documentVersion",
+        "userId",
+        "timestamp",
+        "consentRecord"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "invoice",
+      "variants": [
+        "standard",
+        "itemized",
+        "subscription",
+        "credit-note",
+        "estimate",
+        "print"
+      ],
+      "data": [
+        "lines",
+        "currency",
+        "tax",
+        "recipient"
+      ],
+      "source": "examples/storefront/invoice.ts",
+      "status": "logic-example"
+    },
+    {
+      "id": "export",
+      "variants": [
+        "csv",
+        "json",
+        "xlsx",
+        "pdf",
+        "print",
+        "batch"
+      ],
+      "data": [
+        "columns",
+        "rows",
+        "format",
+        "locale"
+      ],
+      "source": "examples/utilities/export.ts",
+      "status": "csv-example"
+    },
+    {
+      "id": "formatting",
+      "variants": [
+        "currency",
+        "date",
+        "number",
+        "relative-time",
+        "phone",
+        "address",
+        "markdown"
+      ],
+      "data": [
+        "locale",
+        "timezone",
+        "currency"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "file-manager",
+      "variants": [
+        "grid",
+        "list",
+        "tree",
+        "recent",
+        "search",
+        "bulk-actions"
+      ],
+      "data": [
+        "files",
+        "permissions",
+        "metadata"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "uploader",
+      "variants": [
+        "single",
+        "multiple",
+        "drag-drop",
+        "image",
+        "chunked",
+        "resumable"
+      ],
+      "data": [
+        "files",
+        "limits",
+        "progress",
+        "uploadToken"
+      ],
+      "source": "examples/utilities/files.ts",
+      "status": "metadata-example"
+    },
+    {
+      "id": "downloader",
+      "variants": [
+        "direct",
+        "signed-url",
+        "batch",
+        "streaming",
+        "archive"
+      ],
+      "data": [
+        "resource",
+        "authorization",
+        "expiry"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "header",
+      "variants": [
+        "simple",
+        "sticky",
+        "responsive",
+        "commerce",
+        "dashboard",
+        "mobile"
+      ],
+      "data": [
+        "brand",
+        "navigation",
+        "actions"
+      ],
+      "source": "examples/ui/Primitives.tsx",
+      "status": "structural-example"
+    },
+    {
+      "id": "footer",
+      "variants": [
+        "minimal",
+        "columns",
+        "legal",
+        "newsletter",
+        "commerce",
+        "app-shell"
+      ],
+      "data": [
+        "links",
+        "copyright",
+        "social"
+      ],
+      "source": "examples/ui/Primitives.tsx",
+      "status": "structural-example"
+    },
+    {
+      "id": "scrolling",
+      "variants": [
+        "native",
+        "horizontal",
+        "infinite",
+        "virtualized",
+        "snap",
+        "custom-themed"
+      ],
+      "data": [
+        "items",
+        "viewport",
+        "loading"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "forms",
+      "variants": [
+        "inline",
+        "stacked",
+        "wizard",
+        "autosave",
+        "validated",
+        "dynamic-schema"
+      ],
+      "data": [
+        "schema",
+        "values",
+        "errors",
+        "submit"
+      ],
+      "source": "modules/validated-form",
+      "status": "existing-module"
+    },
+    {
+      "id": "navigation",
+      "variants": [
+        "tabs",
+        "breadcrumbs",
+        "sidebar",
+        "bottom-tabs",
+        "stepper",
+        "pagination"
+      ],
+      "data": [
+        "routes",
+        "permissions",
+        "active"
+      ],
+      "status": "design-spec"
+    },
+    {
+      "id": "notifications",
+      "variants": [
+        "toast",
+        "banner",
+        "inbox",
+        "preferences",
+        "badge"
+      ],
+      "data": [
+        "messages",
+        "severity",
+        "readState"
+      ],
+      "source": "modules/notification-preferences",
+      "status": "existing-module"
+    }
+  ]
+}

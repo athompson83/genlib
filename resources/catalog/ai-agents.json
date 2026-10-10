@@ -1,0 +1,5066 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "anthropic-sdk-typescript",
+      "name": "Anthropic TypeScript SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server",
+        "cli",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/anthropics/anthropic-sdk-typescript/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/anthropics/anthropic-sdk-typescript",
+      "docs": "https://docs.anthropic.com/en/api/client-sdks",
+      "summary": "Official typed client for the Claude Messages API with streaming, tool use, batches and token counting.",
+      "useWhen": "Use instead of hand-writing fetch calls, SSE parsing, retries and request types for Claude. Its prompt caching and token-counting endpoints cut repeated-context spend.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "anthropic",
+        "claude",
+        "llm",
+        "typescript",
+        "sdk",
+        "tool-use"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@anthropic-ai/sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anthropics/anthropic-sdk-typescript",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "anthropic-sdk-python",
+      "name": "Anthropic Python SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/anthropics/anthropic-sdk-python/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/anthropics/anthropic-sdk-python",
+      "docs": "https://docs.anthropic.com/en/api/client-sdks",
+      "summary": "Official sync/async Python client for the Claude API with streaming, tool use, batches and token counting.",
+      "useWhen": "Use instead of hand-writing HTTP, retry and streaming code for Claude in Python. Use prompt caching and the Batches API to reduce token cost.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "anthropic",
+        "claude",
+        "llm",
+        "python",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "anthropic"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anthropics/anthropic-sdk-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "anthropic-sdk-go",
+      "name": "Anthropic Go SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/anthropics/anthropic-sdk-go/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/anthropics/anthropic-sdk-go",
+      "docs": "https://docs.anthropic.com/en/api/client-sdks",
+      "summary": "Official Go client for the Claude API.",
+      "useWhen": "Use instead of hand-writing Claude HTTP clients, streaming decoders and request structs in Go services.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Pin the module version; pre-1.0 releases may change APIs."
+      ],
+      "tags": [
+        "anthropic",
+        "claude",
+        "go",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/anthropics/anthropic-sdk-go"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anthropics/anthropic-sdk-go",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Add with go get and commit go.sum; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openai-node",
+      "name": "OpenAI Node/TypeScript SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server",
+        "cli",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/openai/openai-node/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/openai-node",
+      "docs": "https://platform.openai.com/docs/libraries",
+      "summary": "Official TypeScript client for OpenAI Responses, Chat Completions, embeddings, files and realtime APIs.",
+      "useWhen": "Use instead of hand-writing OpenAI REST calls, streaming parsers and request types; many OpenAI-compatible servers (vLLM, Ollama, LM Studio) accept it via baseURL.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "openai",
+        "llm",
+        "typescript",
+        "sdk",
+        "embeddings"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "openai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/openai-node",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openai-python",
+      "name": "OpenAI Python SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/openai/openai-python/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/openai-python",
+      "docs": "https://platform.openai.com/docs/libraries",
+      "summary": "Official Python client for OpenAI APIs with typed responses, streaming and structured outputs.",
+      "useWhen": "Use instead of hand-writing OpenAI HTTP code in Python; reuse it for OpenAI-compatible local servers by changing base_url.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "openai",
+        "llm",
+        "python",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "openai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/openai-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openai-go",
+      "name": "OpenAI Go SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/openai/openai-go/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/openai-go",
+      "docs": "https://platform.openai.com/docs/libraries",
+      "summary": "Official Go client for the OpenAI API.",
+      "useWhen": "Use instead of hand-writing OpenAI request structs and streaming decoders in Go.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Check the module major version path (/v2, /v3) when upgrading."
+      ],
+      "tags": [
+        "openai",
+        "go",
+        "sdk",
+        "llm"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/openai/openai-go"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/openai-go",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Add with go get and commit go.sum; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "google-genai-python",
+      "name": "Google Gen AI Python SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/googleapis/python-genai/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/googleapis/python-genai",
+      "docs": "https://googleapis.github.io/python-genai/",
+      "summary": "Official unified Python SDK for Gemini through the Gemini Developer API and Vertex AI.",
+      "useWhen": "Use instead of hand-writing Gemini REST calls or the deprecated google-generativeai package; supports context caching to reduce repeated-prompt tokens.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Vertex AI and Developer API differ in auth, quotas and data terms; choose explicitly."
+      ],
+      "tags": [
+        "gemini",
+        "google",
+        "llm",
+        "python",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "google-genai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/googleapis/python-genai",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "google-genai-js",
+      "name": "Google Gen AI JavaScript SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/googleapis/js-genai/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/googleapis/js-genai",
+      "docs": "https://googleapis.github.io/js-genai/",
+      "summary": "Official TypeScript/JavaScript SDK for Gemini via the Developer API and Vertex AI.",
+      "useWhen": "Use instead of hand-writing Gemini fetch code and types in Node or edge runtimes.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Browser use exposes keys; proxy through a server or use ephemeral tokens."
+      ],
+      "tags": [
+        "gemini",
+        "google",
+        "typescript",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@google/genai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/googleapis/js-genai",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mistral-python",
+      "name": "Mistral Python SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/mistralai/client-python/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mistralai/client-python",
+      "docs": "https://docs.mistral.ai/",
+      "summary": "Official Python client for Mistral chat, embeddings, OCR and agents APIs.",
+      "useWhen": "Use instead of hand-writing Mistral API calls and streaming code in Python.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "mistral",
+        "llm",
+        "python",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mistralai/client-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi mistralai (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mistral-typescript",
+      "name": "Mistral TypeScript SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/mistralai/client-ts/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mistralai/client-ts",
+      "docs": "https://docs.mistral.ai/",
+      "summary": "Official TypeScript client for Mistral APIs.",
+      "useWhen": "Use instead of hand-writing Mistral fetch calls and types in Node services.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "mistral",
+        "llm",
+        "typescript",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mistralai/mistralai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mistralai/client-ts",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cohere-python",
+      "name": "Cohere Python SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cohere-ai/cohere-python/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/cohere-ai/cohere-python",
+      "docs": "https://docs.cohere.com/",
+      "summary": "Official Python client for Cohere chat, embed and rerank APIs.",
+      "useWhen": "Use instead of hand-writing Cohere API calls; its hosted rerank endpoint trims RAG context to the most relevant chunks before generation.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "cohere",
+        "rerank",
+        "embeddings",
+        "python",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "cohere"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cohere-ai/cohere-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "cohere-typescript",
+      "name": "Cohere TypeScript SDK",
+      "category": "model-sdk",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cohere-ai/cohere-typescript/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/cohere-ai/cohere-typescript",
+      "docs": "https://docs.cohere.com/",
+      "summary": "Official TypeScript client for Cohere chat, embed and rerank APIs.",
+      "useWhen": "Use instead of hand-writing Cohere fetch code and types in Node services.",
+      "cautions": [
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "cohere",
+        "rerank",
+        "typescript",
+        "sdk"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cohere-ai/cohere-typescript",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: npm cohere-ai (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "claude-agent-sdk-python",
+      "name": "Claude Agent SDK (Python)",
+      "category": "agent-framework",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/anthropics/claude-agent-sdk-python/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/anthropics/claude-agent-sdk-python",
+      "docs": "https://docs.anthropic.com/en/docs/claude-code/sdk",
+      "summary": "Programmatic access to the Claude Code agent loop, tools, permissions, hooks and MCP servers from Python.",
+      "useWhen": "Use instead of hand-building an agent loop with file, shell and MCP tools plus context compaction. The TypeScript package (@anthropic-ai/claude-agent-sdk) ships under Anthropic commercial terms; review before bundling.",
+      "cautions": [
+        "Agent tools can edit files and run commands; set permission modes and allowed tools explicitly.",
+        "Requires the Claude Code CLI runtime and an Anthropic API key or supported cloud provider."
+      ],
+      "tags": [
+        "claude",
+        "agent",
+        "mcp",
+        "tools",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "claude-agent-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/anthropics/claude-agent-sdk-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mcp-typescript-sdk",
+      "name": "MCP TypeScript SDK",
+      "category": "mcp",
+      "platforms": [
+        "server",
+        "cli",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/modelcontextprotocol/typescript-sdk/blob/HEAD/LICENSE",
+        "scope": "npm metadata declares MIT; the repository LICENSE is transitioning to Apache-2.0 for new contributions. Re-check the pinned version."
+      },
+      "homepage": "https://modelcontextprotocol.io",
+      "repository": "https://github.com/modelcontextprotocol/typescript-sdk",
+      "docs": "https://modelcontextprotocol.io/docs/sdk",
+      "summary": "Official TypeScript SDK for building Model Context Protocol servers and clients over stdio and Streamable HTTP.",
+      "useWhen": "Use instead of hand-implementing JSON-RPC, MCP capability negotiation and transports when exposing tools or resources to agents.",
+      "cautions": [
+        "Validate tool inputs and enforce authorization in each tool handler; MCP does not grant safety.",
+        "Remote servers need OAuth and origin checks per the current spec."
+      ],
+      "tags": [
+        "mcp",
+        "model-context-protocol",
+        "tools",
+        "typescript",
+        "json-rpc"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@modelcontextprotocol/sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/modelcontextprotocol/typescript-sdk",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mcp-python-sdk",
+      "name": "MCP Python SDK",
+      "category": "mcp",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/modelcontextprotocol/python-sdk/blob/HEAD/LICENSE",
+        "scope": "MIT per registry; the MCP project is moving new contributions to Apache-2.0. Re-check the pinned version."
+      },
+      "homepage": "https://modelcontextprotocol.io",
+      "repository": "https://github.com/modelcontextprotocol/python-sdk",
+      "docs": "https://modelcontextprotocol.io/docs/sdk",
+      "summary": "Official Python SDK (including FastMCP) for building MCP servers and clients.",
+      "useWhen": "Use instead of hand-writing MCP JSON-RPC handlers and transports in Python; decorators turn functions into typed tools.",
+      "cautions": [
+        "Validate inputs and enforce authorization in every tool.",
+        "Keep tool descriptions short; they are sent to the model on each turn and cost tokens."
+      ],
+      "tags": [
+        "mcp",
+        "model-context-protocol",
+        "python",
+        "fastmcp",
+        "tools"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mcp"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/modelcontextprotocol/python-sdk",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mcp-reference-servers",
+      "name": "MCP reference servers",
+      "category": "mcp",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/modelcontextprotocol/servers/blob/HEAD/LICENSE",
+        "scope": "MIT per repository LICENSE; individual servers may note other terms and the project is moving to Apache-2.0."
+      },
+      "homepage": null,
+      "repository": "https://github.com/modelcontextprotocol/servers",
+      "docs": "https://modelcontextprotocol.io/examples",
+      "summary": "Reference MCP server implementations (filesystem, git, fetch, memory, time and more) maintained by the MCP project.",
+      "useWhen": "Use as the starting point instead of writing common MCP servers from scratch; copy the pattern or run the published server packages.",
+      "cautions": [
+        "Reference servers are examples; review sandboxing and path restrictions before production use.",
+        "Many third-party servers were moved out; verify a server is still listed before relying on it."
+      ],
+      "tags": [
+        "mcp",
+        "servers",
+        "reference",
+        "tools"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/modelcontextprotocol/servers",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mcp-inspector",
+      "name": "MCP Inspector",
+      "category": "mcp",
+      "platforms": [
+        "cli",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/modelcontextprotocol/inspector/blob/HEAD/LICENSE",
+        "scope": "Repository is transitioning from MIT to Apache-2.0; older contributions remain MIT. npm metadata defers to the LICENSE file."
+      },
+      "homepage": null,
+      "repository": "https://github.com/modelcontextprotocol/inspector",
+      "docs": "https://modelcontextprotocol.io/docs/tools/inspector",
+      "summary": "Interactive developer tool for testing and debugging MCP servers.",
+      "useWhen": "Use instead of hand-writing ad-hoc test clients to exercise MCP tools, resources and prompts during development.",
+      "cautions": [
+        "Runs a local proxy; do not expose it on public interfaces.",
+        "Development tool only; not a substitute for automated tests."
+      ],
+      "tags": [
+        "mcp",
+        "debugging",
+        "devtools",
+        "testing"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/modelcontextprotocol/inspector",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: npm @modelcontextprotocol/inspector (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Run with npx at a pinned version during development; do not add as a runtime dependency."
+      ]
+    },
+    {
+      "id": "openai-agents-python",
+      "name": "OpenAI Agents SDK (Python)",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/openai/openai-agents-python/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/openai-agents-python",
+      "docs": "https://openai.github.io/openai-agents-python/",
+      "summary": "Lightweight agent framework with tools, handoffs, guardrails, sessions and tracing.",
+      "useWhen": "Use instead of hand-writing a tool-calling loop, multi-agent handoffs and run tracing in Python.",
+      "cautions": [
+        "Tracing exports to OpenAI by default; disable or redirect for local-only data.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "agents",
+        "openai",
+        "handoffs",
+        "python",
+        "tracing"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "openai-agents"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/openai-agents-python",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openai-agents-js",
+      "name": "OpenAI Agents SDK (TypeScript)",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/openai/openai-agents-js/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/openai-agents-js",
+      "docs": "https://openai.github.io/openai-agents-js/",
+      "summary": "TypeScript agent framework with tools, handoffs, guardrails, realtime voice agents and tracing.",
+      "useWhen": "Use instead of hand-writing an agent loop, handoffs and tracing in Node.",
+      "cautions": [
+        "Tracing exports to OpenAI by default; configure for local-only data.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "agents",
+        "openai",
+        "typescript",
+        "voice"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@openai/agents"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/openai-agents-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vercel-ai-sdk",
+      "name": "Vercel AI SDK",
+      "category": "llm-abstraction",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/vercel/ai/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://ai-sdk.dev",
+      "repository": "https://github.com/vercel/ai",
+      "docs": "https://ai-sdk.dev/docs",
+      "summary": "Provider-agnostic TypeScript toolkit for text generation, streaming UI, tool calling and structured output.",
+      "useWhen": "Use instead of hand-writing per-provider adapters, streaming chat UI hooks and schema-validated object generation in TypeScript apps.",
+      "cautions": [
+        "Major versions change APIs; pin and follow migration guides.",
+        "Provider packages are versioned separately; keep them aligned."
+      ],
+      "tags": [
+        "llm",
+        "typescript",
+        "streaming",
+        "react",
+        "providers",
+        "structured-output"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vercel/ai",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "litellm",
+      "name": "LiteLLM",
+      "category": "llm-abstraction",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/BerriAI/litellm/blob/HEAD/LICENSE",
+        "scope": "MIT outside the enterprise/ directory; enterprise features use a separate commercial license."
+      },
+      "homepage": null,
+      "repository": "https://github.com/BerriAI/litellm",
+      "docs": "https://docs.litellm.ai/",
+      "summary": "Python SDK and proxy that call 100+ LLM providers through an OpenAI-compatible interface with budgets and fallbacks.",
+      "useWhen": "Use instead of hand-writing provider adapters, fallback routing, spend tracking and caching; its response cache avoids paying for repeated prompts.",
+      "cautions": [
+        "Do not use enterprise/ code without a license.",
+        "Pin versions; releases are frequent."
+      ],
+      "tags": [
+        "llm",
+        "gateway",
+        "proxy",
+        "python",
+        "routing",
+        "cost"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "litellm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/BerriAI/litellm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "langchain-python",
+      "name": "LangChain (Python)",
+      "category": "llm-abstraction",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/langchain-ai/langchain/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/langchain-ai/langchain",
+      "docs": "https://python.langchain.com/",
+      "summary": "Framework of model, retriever, tool and agent integrations for Python LLM apps.",
+      "useWhen": "Use instead of hand-writing integrations for many model providers, vector stores and document loaders; prefer direct SDKs for simple single-provider calls.",
+      "cautions": [
+        "Large dependency surface; install only needed integration packages.",
+        "Abstractions change between minor versions; pin."
+      ],
+      "tags": [
+        "llm",
+        "framework",
+        "rag",
+        "python",
+        "integrations"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "langchain"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/langchain-ai/langchain",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "langchain-js",
+      "name": "LangChain.js",
+      "category": "llm-abstraction",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/langchain-ai/langchainjs/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/langchain-ai/langchainjs",
+      "docs": "https://js.langchain.com/",
+      "summary": "TypeScript framework of model, retriever, tool and agent integrations.",
+      "useWhen": "Use instead of hand-writing many provider and vector store integrations in TypeScript; skip it for single-provider calls.",
+      "cautions": [
+        "Install scoped @langchain/* packages only as needed.",
+        "Pin versions; APIs evolve quickly."
+      ],
+      "tags": [
+        "llm",
+        "framework",
+        "typescript",
+        "rag"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "langchain"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/langchain-ai/langchainjs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "langgraph-python",
+      "name": "LangGraph (Python)",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/langchain-ai/langgraph/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/langchain-ai/langgraph",
+      "docs": "https://langchain-ai.github.io/langgraph/",
+      "summary": "Low-level library for stateful, durable agent graphs with checkpoints and human-in-the-loop.",
+      "useWhen": "Use instead of hand-writing checkpointed agent state machines, interrupts and resumable runs.",
+      "cautions": [
+        "LangGraph Platform/Cloud is a separate commercial service.",
+        "Keep one orchestration runtime; do not layer it over another agent framework."
+      ],
+      "tags": [
+        "agents",
+        "graph",
+        "state",
+        "checkpoint",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "langgraph"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/langchain-ai/langgraph",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "langgraph-js",
+      "name": "LangGraph.js",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/langchain-ai/langgraphjs/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/langchain-ai/langgraphjs",
+      "docs": "https://langchain-ai.github.io/langgraphjs/",
+      "summary": "TypeScript library for stateful, checkpointed agent graphs.",
+      "useWhen": "Use instead of hand-writing durable agent state machines and interrupt/resume logic in Node.",
+      "cautions": [
+        "Hosted platform features are commercial.",
+        "Pin with matching @langchain/core."
+      ],
+      "tags": [
+        "agents",
+        "graph",
+        "typescript",
+        "state"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@langchain/langgraph"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/langchain-ai/langgraphjs",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "llamaindex",
+      "name": "LlamaIndex",
+      "category": "rag-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/run-llama/llama_index/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/run-llama/llama_index",
+      "docs": "https://docs.llamaindex.ai/",
+      "summary": "Python data framework for ingestion, indexing, retrieval and agent workflows over private data.",
+      "useWhen": "Use instead of hand-writing chunking, indexing, retrieval and query pipelines for RAG over documents.",
+      "cautions": [
+        "LlamaCloud/LlamaParse are separate paid services.",
+        "Install only the integration packages you need."
+      ],
+      "tags": [
+        "rag",
+        "retrieval",
+        "indexing",
+        "python",
+        "agents"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "llama-index"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/run-llama/llama_index",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "haystack",
+      "name": "Haystack",
+      "category": "rag-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/deepset-ai/haystack/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://haystack.deepset.ai",
+      "repository": "https://github.com/deepset-ai/haystack",
+      "docs": "https://docs.haystack.deepset.ai/",
+      "summary": "Python framework for composable RAG, search and agent pipelines.",
+      "useWhen": "Use instead of hand-wiring retrieval, ranking and generation pipelines with explicit, serializable components.",
+      "cautions": [
+        "deepset Cloud/Studio is a separate commercial offering.",
+        "Pin haystack-ai 2.x; 1.x (farm-haystack) is a different API."
+      ],
+      "tags": [
+        "rag",
+        "pipelines",
+        "search",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "docs-knowledge"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "haystack-ai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/deepset-ai/haystack",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dspy",
+      "name": "DSPy",
+      "category": "prompt-optimization",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/stanfordnlp/dspy/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://dspy.ai",
+      "repository": "https://github.com/stanfordnlp/dspy",
+      "docs": "https://dspy.ai",
+      "summary": "Framework for programming LLM pipelines with signatures and optimizers instead of hand-tuned prompts.",
+      "useWhen": "Use instead of manually iterating prompt strings; optimizers compile shorter, measured prompts and few-shot sets against your metric.",
+      "cautions": [
+        "Optimization runs make many paid model calls; set budgets.",
+        "Needs a labelled dev set and metric to be meaningful."
+      ],
+      "tags": [
+        "prompts",
+        "optimization",
+        "python",
+        "pipelines"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/stanfordnlp/dspy",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi dspy (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pydantic-ai",
+      "name": "Pydantic AI",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pydantic/pydantic-ai/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://ai.pydantic.dev",
+      "repository": "https://github.com/pydantic/pydantic-ai",
+      "docs": "https://ai.pydantic.dev",
+      "summary": "Type-safe Python agent framework with validated structured outputs, tools and dependency injection.",
+      "useWhen": "Use instead of hand-writing tool-calling loops and output validation/retry logic around Pydantic models.",
+      "cautions": [
+        "Logfire integration is optional and sends telemetry when enabled.",
+        "Pin; the API is still evolving."
+      ],
+      "tags": [
+        "agents",
+        "pydantic",
+        "structured-output",
+        "python",
+        "typed"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pydantic-ai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pydantic/pydantic-ai",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mastra",
+      "name": "Mastra",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/mastra-ai/mastra/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 outside directories named ee/, which use a separate enterprise license."
+      },
+      "homepage": "https://mastra.ai",
+      "repository": "https://github.com/mastra-ai/mastra",
+      "docs": "https://mastra.ai/docs",
+      "summary": "TypeScript framework for agents, workflows, memory, RAG and evals.",
+      "useWhen": "Use instead of hand-writing TypeScript agent workflows, memory storage and tool wiring.",
+      "cautions": [
+        "Avoid ee/ code without an enterprise license.",
+        "Fast-moving; pin all @mastra/* packages together."
+      ],
+      "tags": [
+        "agents",
+        "workflows",
+        "typescript",
+        "memory",
+        "rag"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mastra/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mastra-ai/mastra",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/crewAIInc/crewAI/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/crewAIInc/crewAI",
+      "docs": "https://docs.crewai.com/",
+      "summary": "Python framework for role-based multi-agent crews and event-driven flows.",
+      "useWhen": "Use instead of hand-writing role-based multi-agent coordination when measured need justifies multiple agents.",
+      "cautions": [
+        "Collects anonymous telemetry by default; set CREWAI_DISABLE_TELEMETRY or OTEL_SDK_DISABLED.",
+        "Multi-agent runs multiply token spend; start with one agent."
+      ],
+      "tags": [
+        "agents",
+        "multi-agent",
+        "python",
+        "workflows"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/crewAIInc/crewAI",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi crewai (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "autogen",
+      "name": "AutoGen",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/autogen/blob/HEAD/LICENSE",
+        "scope": "Code MIT; documentation CC-BY-4.0."
+      },
+      "homepage": null,
+      "repository": "https://github.com/microsoft/autogen",
+      "docs": "https://microsoft.github.io/autogen/",
+      "summary": "Microsoft framework for event-driven multi-agent applications.",
+      "useWhen": "Use for existing AutoGen deployments; for new work prefer Microsoft Agent Framework, its successor.",
+      "cautions": [
+        "Microsoft has placed AutoGen in maintenance mode in favor of Microsoft Agent Framework.",
+        "Multi-agent conversations multiply token spend."
+      ],
+      "tags": [
+        "agents",
+        "multi-agent",
+        "microsoft",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "autogen-agentchat"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/autogen",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "microsoft-agent-framework",
+      "name": "Microsoft Agent Framework",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/agent-framework/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/microsoft/agent-framework",
+      "docs": "https://learn.microsoft.com/en-us/agent-framework/",
+      "summary": "Python and .NET framework for agents and graph workflows, successor to AutoGen and Semantic Kernel agents.",
+      "useWhen": "Use instead of hand-writing agent loops and multi-step workflows in Python or .NET stacks.",
+      "cautions": [
+        "Newer project; pin and expect API changes.",
+        "Azure integrations bill separately."
+      ],
+      "tags": [
+        "agents",
+        "workflows",
+        "dotnet",
+        "python",
+        "microsoft"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "agent-framework"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/agent-framework",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "semantic-kernel",
+      "name": "Semantic Kernel",
+      "category": "llm-abstraction",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/semantic-kernel/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/microsoft/semantic-kernel",
+      "docs": "https://learn.microsoft.com/en-us/semantic-kernel/",
+      "summary": "Microsoft SDK for integrating LLMs with plugins and planners in C#, Python and Java.",
+      "useWhen": "Use instead of hand-writing provider abstraction and function-calling plumbing in .NET or Java enterprise apps.",
+      "cautions": [
+        "Agent features are converging into Microsoft Agent Framework; check the roadmap.",
+        "Pin per-language package versions."
+      ],
+      "tags": [
+        "llm",
+        "dotnet",
+        "csharp",
+        "java",
+        "python",
+        "plugins"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Microsoft.SemanticKernel"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "semantic-kernel"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/semantic-kernel",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "smolagents",
+      "name": "smolagents",
+      "category": "agent-framework",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/huggingface/smolagents/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/huggingface/smolagents",
+      "docs": "https://huggingface.co/docs/smolagents",
+      "summary": "Minimal Hugging Face library for code-writing and tool-calling agents.",
+      "useWhen": "Use instead of hand-writing a small agent loop; code agents often need fewer steps and tokens than JSON tool calling.",
+      "cautions": [
+        "Code agents execute generated Python; run them in a sandbox (E2B, Docker) without broad credentials."
+      ],
+      "tags": [
+        "agents",
+        "huggingface",
+        "python",
+        "code-agent"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/huggingface/smolagents",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi smolagents (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "langchaingo",
+      "name": "LangChainGo",
+      "category": "llm-abstraction",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tmc/langchaingo/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tmc/langchaingo",
+      "docs": "https://tmc.github.io/langchaingo/docs/",
+      "summary": "Community Go port of LangChain with model, embedding, vector store and chain integrations.",
+      "useWhen": "Use instead of hand-writing multi-provider LLM and vector store adapters in Go.",
+      "cautions": [
+        "Community-maintained, not an official LangChain project.",
+        "Pre-1.0; pin the version."
+      ],
+      "tags": [
+        "llm",
+        "go",
+        "framework",
+        "rag"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/tmc/langchaingo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tmc/langchaingo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Add with go get and commit go.sum; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rig",
+      "name": "Rig",
+      "category": "llm-abstraction",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/0xPlaygrounds/rig/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://rig.rs",
+      "repository": "https://github.com/0xPlaygrounds/rig",
+      "docs": "https://docs.rs/rig-core",
+      "summary": "Rust library for building portable LLM applications with providers, embeddings and vector stores.",
+      "useWhen": "Use instead of hand-writing provider clients, tool calling and RAG plumbing in Rust.",
+      "cautions": [
+        "Pre-1.0 API; pin the crate version."
+      ],
+      "tags": [
+        "llm",
+        "rust",
+        "agents",
+        "rag"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "rig-core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/0xPlaygrounds/rig",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Add with cargo add and commit Cargo.lock; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "async-openai",
+      "name": "async-openai",
+      "category": "model-sdk",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/64bit/async-openai/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/64bit/async-openai",
+      "docs": "https://docs.rs/async-openai",
+      "summary": "Unofficial async Rust client for the OpenAI API.",
+      "useWhen": "Use instead of hand-writing OpenAI request types and SSE streaming in Rust.",
+      "cautions": [
+        "Community-maintained; lags new API features.",
+        "Keep API keys server-side or in a secret store; never ship them to browsers or mobile bundles."
+      ],
+      "tags": [
+        "openai",
+        "rust",
+        "sdk",
+        "async"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "async-openai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/64bit/async-openai",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Add with cargo add and commit Cargo.lock; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "instructor",
+      "name": "Instructor",
+      "category": "structured-output",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/567-labs/instructor/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://python.useinstructor.com",
+      "repository": "https://github.com/567-labs/instructor",
+      "docs": "https://python.useinstructor.com",
+      "summary": "Structured, validated LLM outputs from Pydantic models with automatic retries across providers.",
+      "useWhen": "Use instead of hand-writing JSON parsing, schema prompts and validation-retry loops for extraction.",
+      "cautions": [
+        "Retries add paid calls; cap max_retries."
+      ],
+      "tags": [
+        "structured-output",
+        "pydantic",
+        "extraction",
+        "python",
+        "validation"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "instructor"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/567-labs/instructor",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "outlines",
+      "name": "Outlines",
+      "category": "structured-output",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/dottxt-ai/outlines/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/dottxt-ai/outlines",
+      "docs": "https://dottxt-ai.github.io/outlines/",
+      "summary": "Constrained generation that guarantees outputs match JSON Schema, regex or grammars.",
+      "useWhen": "Use instead of retry-until-valid parsing with local models; constrained decoding removes invalid outputs and wasted retries.",
+      "cautions": [
+        "Full guarantees need logit access (local/transformers/vLLM); hosted APIs get weaker support."
+      ],
+      "tags": [
+        "structured-output",
+        "constrained-decoding",
+        "json-schema",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "outlines"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dottxt-ai/outlines",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "baml",
+      "name": "BAML",
+      "category": "structured-output",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/BoundaryML/baml/blob/HEAD/LICENSE",
+        "scope": "Repository LICENSE is Apache-2.0; the npm package metadata declares MIT. Confirm for the pinned version."
+      },
+      "homepage": "https://boundaryml.com",
+      "repository": "https://github.com/BoundaryML/baml",
+      "docs": "https://docs.boundaryml.com",
+      "summary": "Typed prompt DSL that generates clients for Python, TypeScript, Go and Ruby with schema-aligned parsing.",
+      "useWhen": "Use instead of hand-writing prompt templates, output schemas and lenient JSON parsers per language; compact schema rendering saves prompt tokens.",
+      "cautions": [
+        "Generated client code must be regenerated, not hand-edited.",
+        "Adds a code generation step to builds."
+      ],
+      "tags": [
+        "structured-output",
+        "prompts",
+        "codegen",
+        "typescript",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/BoundaryML/baml",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi baml-py and npm @boundaryml/baml (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "guidance",
+      "name": "Guidance",
+      "category": "structured-output",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/guidance-ai/guidance/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/guidance-ai/guidance",
+      "docs": null,
+      "summary": "Library for interleaving generation, control flow and grammar constraints in prompts.",
+      "useWhen": "Use instead of multi-call prompt chains when constrained, templated generation can be done in one pass with local models.",
+      "cautions": [
+        "Most powerful with local models; hosted API support is limited."
+      ],
+      "tags": [
+        "structured-output",
+        "constrained-decoding",
+        "prompts",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/guidance-ai/guidance",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi guidance (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "json-repair",
+      "name": "json_repair",
+      "category": "structured-output",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mangiucugna/json_repair/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mangiucugna/json_repair",
+      "docs": null,
+      "summary": "Repairs malformed JSON emitted by LLMs (missing quotes, trailing commas, truncation).",
+      "useWhen": "Use instead of hand-written regex fixes or re-prompting when a model returns almost-valid JSON; avoids a paid retry.",
+      "cautions": [
+        "Repair can guess wrong; validate the result against a schema."
+      ],
+      "tags": [
+        "json",
+        "parsing",
+        "structured-output",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "json-repair"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mangiucugna/json_repair",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pgvector",
+      "name": "pgvector",
+      "category": "vector-database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "source-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "PostgreSQL",
+        "url": "https://github.com/pgvector/pgvector/blob/HEAD/LICENSE",
+        "scope": "PostgreSQL License for the extension; client libraries (pgvector-node, pgvector-python) are separately MIT."
+      },
+      "homepage": null,
+      "repository": "https://github.com/pgvector/pgvector",
+      "docs": null,
+      "summary": "Postgres extension for vector similarity search with HNSW and IVFFlat indexes.",
+      "useWhen": "Use instead of running a separate vector database when Postgres already holds the data; keeps embeddings, filters and row-level security in one store.",
+      "cautions": [
+        "Build HNSW indexes after bulk load and tune ef_search for recall.",
+        "Managed Postgres hosts may pin an older extension version."
+      ],
+      "tags": [
+        "vector",
+        "postgres",
+        "embeddings",
+        "search",
+        "sql"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "pgvector/pgvector"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pgvector/pgvector",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Enable with CREATE EXTENSION vector in a migration; pin the extension and client versions."
+      ]
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "category": "vector-database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/qdrant/qdrant/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://qdrant.tech",
+      "repository": "https://github.com/qdrant/qdrant",
+      "docs": "https://qdrant.tech/documentation/",
+      "summary": "Rust vector search engine with payload filtering, quantization and hybrid search.",
+      "useWhen": "Use instead of hand-rolling ANN search and metadata filtering at scale; quantization cuts memory for large embedding sets.",
+      "cautions": [
+        "Qdrant Cloud is a paid service; self-hosted needs backups and auth (API key) configured."
+      ],
+      "tags": [
+        "vector",
+        "search",
+        "rust",
+        "embeddings",
+        "hybrid-search"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "qdrant-client"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@qdrant/js-client-rest"
+        },
+        {
+          "ecosystem": "docker",
+          "name": "qdrant/qdrant"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/qdrant/qdrant",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "chroma",
+      "name": "Chroma",
+      "category": "vector-database",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/chroma-core/chroma/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://www.trychroma.com",
+      "repository": "https://github.com/chroma-core/chroma",
+      "docs": "https://docs.trychroma.com",
+      "summary": "Open-source embedding database that runs embedded, as a server or in the cloud.",
+      "useWhen": "Use instead of hand-writing local embedding storage and similarity search for prototypes and desktop agents.",
+      "cautions": [
+        "Default embedding function downloads a model; set one explicitly for local-only or reproducible runs.",
+        "Chroma Cloud is a paid service."
+      ],
+      "tags": [
+        "vector",
+        "embeddings",
+        "python",
+        "typescript",
+        "local"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "chromadb"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "chromadb"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chroma-core/chroma",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "weaviate",
+      "name": "Weaviate",
+      "category": "vector-database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/weaviate/weaviate/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause for the library code."
+      },
+      "homepage": "https://weaviate.io",
+      "repository": "https://github.com/weaviate/weaviate",
+      "docs": "https://weaviate.io/developers/weaviate",
+      "summary": "Go vector database with hybrid search, multi-tenancy and module-based vectorizers.",
+      "useWhen": "Use instead of building hybrid keyword-plus-vector search and tenant isolation yourself.",
+      "cautions": [
+        "Vectorizer modules may send data to external model APIs; disable for local-only data.",
+        "Weaviate Cloud is a paid service."
+      ],
+      "tags": [
+        "vector",
+        "hybrid-search",
+        "go",
+        "multi-tenant"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "weaviate-client"
+        },
+        {
+          "ecosystem": "docker",
+          "name": "semitechnologies/weaviate"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/weaviate/weaviate",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "milvus",
+      "name": "Milvus",
+      "category": "vector-database",
+      "platforms": [
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/milvus-io/milvus/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/milvus-io/milvus",
+      "docs": null,
+      "summary": "Distributed vector database for billion-scale similarity search, with Milvus Lite for local use.",
+      "useWhen": "Use instead of sharding ANN indexes yourself when vector counts reach hundreds of millions.",
+      "cautions": [
+        "Distributed deployment has many components (etcd, object storage); start with Lite or standalone.",
+        "Zilliz Cloud is a paid service."
+      ],
+      "tags": [
+        "vector",
+        "search",
+        "distributed",
+        "scale"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pymilvus"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/milvus-io/milvus",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lancedb",
+      "name": "LanceDB",
+      "category": "vector-database",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/lancedb/lancedb/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://lancedb.com",
+      "repository": "https://github.com/lancedb/lancedb",
+      "docs": "https://lancedb.github.io/lancedb/",
+      "summary": "Embedded, serverless vector database on the Lance columnar format with full-text and hybrid search.",
+      "useWhen": "Use instead of running a vector server for local or desktop agents; stores embeddings on disk or object storage with zero ops.",
+      "cautions": [
+        "LanceDB Cloud/Enterprise are paid services.",
+        "Pin the Lance format version across writers."
+      ],
+      "tags": [
+        "vector",
+        "embedded",
+        "local",
+        "python",
+        "typescript",
+        "rust"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics",
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "lancedb"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@lancedb/lancedb"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lancedb/lancedb",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "faiss",
+      "name": "FAISS",
+      "category": "vector-database",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/facebookresearch/faiss/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/facebookresearch/faiss",
+      "docs": "https://faiss.ai",
+      "summary": "Meta library for efficient similarity search and clustering of dense vectors on CPU and GPU.",
+      "useWhen": "Use instead of hand-writing ANN indexes or brute-force cosine search in Python/C++.",
+      "cautions": [
+        "Library, not a database: persistence, filtering and updates are your responsibility.",
+        "faiss-cpu on PyPI is a community wheel; GPU builds come from conda."
+      ],
+      "tags": [
+        "vector",
+        "ann",
+        "cpp",
+        "python",
+        "gpu"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "faiss-cpu"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/facebookresearch/faiss",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sqlite-vec",
+      "name": "sqlite-vec",
+      "category": "vector-database",
+      "platforms": [
+        "server",
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT OR Apache-2.0",
+        "url": "https://github.com/asg017/sqlite-vec/blob/HEAD/LICENSE",
+        "scope": "MIT OR Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/asg017/sqlite-vec",
+      "docs": "https://alexgarcia.xyz/sqlite-vec/",
+      "summary": "Small dependency-free SQLite extension for vector search that runs anywhere SQLite runs.",
+      "useWhen": "Use instead of adding a vector server to local-first, desktop or mobile apps; keeps embeddings in the existing SQLite file.",
+      "cautions": [
+        "Brute-force/limited indexing; not for very large corpora.",
+        "Pre-1.0; pin the version."
+      ],
+      "tags": [
+        "vector",
+        "sqlite",
+        "local-first",
+        "embedded",
+        "mobile"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "desktop-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sqlite-vec"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "sqlite-vec"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/asg017/sqlite-vec",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sentence-transformers",
+      "name": "Sentence Transformers",
+      "category": "embeddings",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/UKPLab/sentence-transformers/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://sbert.net",
+      "repository": "https://github.com/UKPLab/sentence-transformers",
+      "docs": "https://sbert.net",
+      "summary": "Python library for local text embeddings, cross-encoder rerankers and fine-tuning.",
+      "useWhen": "Use instead of paying per-token embedding APIs or hand-writing pooling code; cross-encoder reranking trims RAG context to fewer, better chunks.",
+      "cautions": [
+        "Each model has its own license; check before commercial use.",
+        "Large models need a GPU for throughput."
+      ],
+      "tags": [
+        "embeddings",
+        "rerank",
+        "local",
+        "python",
+        "huggingface"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sentence-transformers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/UKPLab/sentence-transformers",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "flagembedding",
+      "name": "FlagEmbedding (BGE)",
+      "category": "embeddings",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/FlagOpen/FlagEmbedding/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/FlagOpen/FlagEmbedding",
+      "docs": null,
+      "summary": "BAAI toolkit for BGE embedding and reranker models, including multilingual BGE-M3.",
+      "useWhen": "Use instead of building retrieval models yourself; BGE rerankers cut retrieved context before generation.",
+      "cautions": [
+        "Model weights have their own licenses; verify per model.",
+        "Heavy dependencies (torch); isolate in a worker."
+      ],
+      "tags": [
+        "embeddings",
+        "rerank",
+        "bge",
+        "multilingual",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/FlagOpen/FlagEmbedding",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi FlagEmbedding (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "fastembed",
+      "name": "FastEmbed",
+      "category": "embeddings",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/qdrant/fastembed/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/qdrant/fastembed",
+      "docs": "https://qdrant.github.io/fastembed/",
+      "summary": "Lightweight ONNX-based embedding and reranking library without PyTorch.",
+      "useWhen": "Use instead of installing torch just to embed text locally; small CPU footprint for dense, sparse and late-interaction embeddings.",
+      "cautions": [
+        "Downloads models on first use; pre-cache for offline/local-only deployments.",
+        "Model licenses vary."
+      ],
+      "tags": [
+        "embeddings",
+        "onnx",
+        "local",
+        "python",
+        "sparse"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "fastembed"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/qdrant/fastembed",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "unstructured",
+      "name": "Unstructured",
+      "category": "document-ingestion",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/Unstructured-IO/unstructured/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Unstructured-IO/unstructured",
+      "docs": "https://docs.unstructured.io/open-source/introduction/overview",
+      "summary": "Partitions PDFs, Office files, HTML, email and images into typed elements for RAG.",
+      "useWhen": "Use instead of writing per-format parsers and chunkers; element types enable smarter chunking that sends fewer irrelevant tokens.",
+      "cautions": [
+        "Many formats need system packages (poppler, tesseract, libreoffice).",
+        "The hosted Unstructured platform is a separate paid service."
+      ],
+      "tags": [
+        "ingestion",
+        "pdf",
+        "parsing",
+        "chunking",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "docs-knowledge",
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "unstructured"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Unstructured-IO/unstructured",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "docling",
+      "name": "Docling",
+      "category": "document-ingestion",
+      "platforms": [
+        "server",
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/docling-project/docling/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/docling-project/docling",
+      "docs": "https://docling-project.github.io/docling/",
+      "summary": "Converts PDF, DOCX, PPTX, HTML and images into structured Markdown/JSON with layout and table understanding, locally.",
+      "useWhen": "Use instead of hand-writing PDF layout and table extraction or paying hosted parsers; clean Markdown is far cheaper to feed to a model than raw text dumps.",
+      "cautions": [
+        "Downloads layout/OCR models; pre-cache for offline use.",
+        "Large PDFs are CPU-heavy; run in a worker."
+      ],
+      "tags": [
+        "ingestion",
+        "pdf",
+        "markdown",
+        "tables",
+        "ocr",
+        "local"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "docs-knowledge",
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "docling"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/docling-project/docling",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "markitdown",
+      "name": "MarkItDown",
+      "category": "document-ingestion",
+      "platforms": [
+        "server",
+        "cli",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/markitdown/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/microsoft/markitdown",
+      "docs": null,
+      "summary": "Microsoft utility that converts Office files, PDFs, HTML and more into Markdown for LLMs; includes an MCP server.",
+      "useWhen": "Use instead of hand-writing format converters; Markdown output keeps structure with far fewer tokens than HTML or XML.",
+      "cautions": [
+        "Optional plugins/LLM image description send data to providers; keep disabled for local-only data.",
+        "PDF fidelity is basic compared with Docling."
+      ],
+      "tags": [
+        "ingestion",
+        "markdown",
+        "office",
+        "pdf",
+        "mcp",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "docs-knowledge",
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "markitdown"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/markitdown",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "marker",
+      "name": "Marker",
+      "category": "document-ingestion",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/datalab-to/marker/blob/HEAD/LICENSE",
+        "scope": "Code is Apache-2.0 per the current LICENSE and registry (earlier releases were GPL-3.0); model weights use a separate license with commercial revenue limits."
+      },
+      "homepage": null,
+      "repository": "https://github.com/datalab-to/marker",
+      "docs": null,
+      "summary": "Self-hosted PDF/document-to-Markdown converter with OCR, tables and equations; an open alternative to hosted parsers like LlamaParse.",
+      "useWhen": "Use instead of paying a hosted parser for high-fidelity PDF-to-Markdown when weight and code licenses fit your use.",
+      "cautions": [
+        "Model weight license restricts some commercial use; review before shipping. Older releases were GPL-3.0.",
+        "GPU recommended for throughput."
+      ],
+      "tags": [
+        "ingestion",
+        "pdf",
+        "markdown",
+        "ocr",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "docs-knowledge",
+        "office-documents"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "marker-pdf"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/datalab-to/marker",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "chonkie",
+      "name": "Chonkie",
+      "category": "document-ingestion",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/chonkie-inc/chonkie/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/chonkie-inc/chonkie",
+      "docs": "https://docs.chonkie.ai",
+      "summary": "Lightweight chunking library with token, sentence, recursive, semantic and late chunkers.",
+      "useWhen": "Use instead of hand-writing chunkers; token-aware chunk sizes keep retrieval payloads within budget.",
+      "cautions": [
+        "Semantic chunkers need an embedding model; choose a local one for local-only data."
+      ],
+      "tags": [
+        "chunking",
+        "rag",
+        "tokens",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chonkie-inc/chonkie",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi chonkie (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tiktoken",
+      "name": "tiktoken",
+      "category": "tokens-context",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/openai/tiktoken/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/tiktoken",
+      "docs": null,
+      "summary": "Fast BPE tokenizer for OpenAI models.",
+      "useWhen": "Use instead of character-count estimates to budget prompts, truncate history and chunk documents by real token counts.",
+      "cautions": [
+        "Counts are exact only for OpenAI encodings; other providers tokenize differently (use their count endpoints)."
+      ],
+      "tags": [
+        "tokens",
+        "tokenizer",
+        "openai",
+        "python",
+        "token-budget"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/tiktoken",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi tiktoken (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "js-tiktoken",
+      "name": "js-tiktoken",
+      "category": "tokens-context",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dqbd/tiktoken/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/dqbd/tiktoken",
+      "docs": null,
+      "summary": "Pure JavaScript port of tiktoken that runs in browsers, Node and edge runtimes.",
+      "useWhen": "Use instead of guessing token counts in TypeScript; enforce context budgets before sending a request.",
+      "cautions": [
+        "Ranks files are large; load only needed encodings.",
+        "Not exact for non-OpenAI models."
+      ],
+      "tags": [
+        "tokens",
+        "tokenizer",
+        "javascript",
+        "edge",
+        "token-budget"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "js-tiktoken"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dqbd/tiktoken",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gpt-tokenizer",
+      "name": "gpt-tokenizer",
+      "category": "tokens-context",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/niieani/gpt-tokenizer/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/niieani/gpt-tokenizer",
+      "docs": null,
+      "summary": "Fast pure-TypeScript tokenizer for OpenAI encodings with chat token counting and isWithinTokenLimit.",
+      "useWhen": "Use instead of hand-written token estimators; cheap within-limit checks avoid over-budget calls.",
+      "cautions": [
+        "OpenAI encodings only."
+      ],
+      "tags": [
+        "tokens",
+        "tokenizer",
+        "typescript",
+        "token-budget"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "gpt-tokenizer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/niieani/gpt-tokenizer",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "hf-tokenizers",
+      "name": "Hugging Face Tokenizers",
+      "category": "tokens-context",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/huggingface/tokenizers/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/huggingface/tokenizers",
+      "docs": "https://huggingface.co/docs/tokenizers",
+      "summary": "Rust-backed fast tokenizers with Python and Node bindings for open models.",
+      "useWhen": "Use instead of approximations when counting or truncating tokens for open-weight models.",
+      "cautions": [
+        "Load the exact tokenizer for the model you call."
+      ],
+      "tags": [
+        "tokens",
+        "tokenizer",
+        "rust",
+        "python",
+        "huggingface"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "tokenizers"
+        },
+        {
+          "ecosystem": "crates",
+          "name": "tokenizers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/huggingface/tokenizers",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "repomix",
+      "name": "Repomix",
+      "category": "tokens-context",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/yamadashy/repomix/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://repomix.com",
+      "repository": "https://github.com/yamadashy/repomix",
+      "docs": "https://repomix.com/guide/",
+      "summary": "Packs a repository into one AI-friendly file with token counts, ignore rules, comment stripping and Tree-sitter compression.",
+      "useWhen": "Use instead of hand-assembling code context; --compress keeps signatures only, cutting tokens sharply, and token reports show what to exclude.",
+      "cautions": [
+        "Packed output can include secrets; it runs Secretlint, but review before sharing.",
+        "Prefer targeted retrieval over packing whole repositories for every task."
+      ],
+      "tags": [
+        "context",
+        "tokens",
+        "repository",
+        "cli",
+        "token-reduction",
+        "mcp"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "repomix"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/yamadashy/repomix",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Run with npx at a pinned version or install as a dev dependency."
+      ]
+    },
+    {
+      "id": "llmlingua",
+      "name": "LLMLingua",
+      "category": "tokens-context",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/LLMLingua/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/microsoft/LLMLingua",
+      "docs": null,
+      "summary": "Microsoft prompt compression (LLMLingua, LongLLMLingua, LLMLingua-2) using small models to drop low-information tokens.",
+      "useWhen": "Use instead of naive truncation to compress long RAG context or transcripts, often by several times, before calling an expensive model.",
+      "cautions": [
+        "Compression is lossy; evaluate answer quality on your data.",
+        "Requires a local compressor model (torch)."
+      ],
+      "tags": [
+        "compression",
+        "tokens",
+        "rag",
+        "python",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "llmlingua"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/LLMLingua",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "promptfoo",
+      "name": "promptfoo",
+      "category": "evals",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/promptfoo/promptfoo/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://www.promptfoo.dev",
+      "repository": "https://github.com/promptfoo/promptfoo",
+      "docs": "https://www.promptfoo.dev/docs/intro/",
+      "summary": "CLI and library for prompt/model evals, regression tests and LLM red teaming with declarative configs.",
+      "useWhen": "Use instead of hand-writing eval harnesses; compare prompts and models on cost and tokens to pick the cheapest passing option.",
+      "cautions": [
+        "Evals against real providers cost money; mark them explicit and keep CI on fakes or caches.",
+        "Telemetry is on by default; set PROMPTFOO_DISABLE_TELEMETRY=1."
+      ],
+      "tags": [
+        "evals",
+        "testing",
+        "red-team",
+        "cli",
+        "regression"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "testing-qa",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "promptfoo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/promptfoo/promptfoo",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ragas",
+      "name": "Ragas",
+      "category": "evals",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/explodinggradients/ragas/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/explodinggradients/ragas",
+      "docs": "https://docs.ragas.io",
+      "summary": "Evaluation toolkit for RAG and agent pipelines with faithfulness, relevance and context metrics.",
+      "useWhen": "Use instead of inventing RAG quality metrics; context precision/recall shows when you can retrieve fewer chunks.",
+      "cautions": [
+        "LLM-judged metrics cost tokens and are noisy; fix judge model and seeds."
+      ],
+      "tags": [
+        "evals",
+        "rag",
+        "metrics",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "testing-qa"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/explodinggradients/ragas",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi ragas (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "deepeval",
+      "name": "DeepEval",
+      "category": "evals",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/confident-ai/deepeval/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/confident-ai/deepeval",
+      "docs": "https://deepeval.com/docs/getting-started",
+      "summary": "Pytest-style LLM evaluation framework with G-Eval, RAG, agent and safety metrics.",
+      "useWhen": "Use instead of hand-writing LLM unit tests and judge prompts in Python test suites.",
+      "cautions": [
+        "Confident AI platform is a separate paid service; opt out of telemetry if required.",
+        "Judge metrics cost tokens."
+      ],
+      "tags": [
+        "evals",
+        "pytest",
+        "testing",
+        "python",
+        "metrics"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "deepeval"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/confident-ai/deepeval",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openai-evals",
+      "name": "OpenAI Evals",
+      "category": "evals",
+      "platforms": [
+        "server"
+      ],
+      "kind": "source-library",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/openai/evals/blob/HEAD/LICENSE",
+        "scope": "MIT for framework code; contributed eval datasets may carry their own terms."
+      },
+      "homepage": null,
+      "repository": "https://github.com/openai/evals",
+      "docs": null,
+      "summary": "Framework and registry of benchmarks for evaluating LLMs and LLM systems.",
+      "useWhen": "Use as a reference for eval design and existing benchmark tasks rather than writing eval patterns from scratch.",
+      "cautions": [
+        "Low recent activity; OpenAI now offers hosted evals in its platform.",
+        "Some datasets require Git LFS."
+      ],
+      "tags": [
+        "evals",
+        "benchmarks",
+        "reference",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "testing-qa"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/openai/evals",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "inspect-ai",
+      "name": "Inspect",
+      "category": "evals",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/UKGovernmentBEIS/inspect_ai/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://inspect.aisi.org.uk",
+      "repository": "https://github.com/UKGovernmentBEIS/inspect_ai",
+      "docs": "https://inspect.aisi.org.uk",
+      "summary": "UK AI Security Institute framework for LLM and agent evaluations with sandboxed tool use and a log viewer.",
+      "useWhen": "Use instead of building agentic eval harnesses with sandboxes and transcript logging yourself.",
+      "cautions": [
+        "Agent evals execute tools; use the provided Docker sandboxes.",
+        "Calls are billed per token by the provider; use deterministic fakes in ordinary tests."
+      ],
+      "tags": [
+        "evals",
+        "agents",
+        "sandbox",
+        "python",
+        "safety"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "testing-qa"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "inspect-ai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/UKGovernmentBEIS/inspect_ai",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "langfuse",
+      "name": "Langfuse",
+      "category": "observability",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/langfuse/langfuse/blob/HEAD/LICENSE",
+        "scope": "MIT except ee/ directories, which require a commercial license."
+      },
+      "homepage": "https://langfuse.com",
+      "repository": "https://github.com/langfuse/langfuse",
+      "docs": "https://langfuse.com/docs",
+      "summary": "Open-source LLM engineering platform for tracing, prompt management, evals and cost/token analytics.",
+      "useWhen": "Use instead of hand-building LLM trace storage and token/cost dashboards; per-trace token usage shows where to cut context.",
+      "cautions": [
+        "Self-hosting needs Postgres, ClickHouse, Redis and object storage.",
+        "Traces contain prompts; apply retention and keep local-only data out of cloud instances."
+      ],
+      "tags": [
+        "observability",
+        "tracing",
+        "cost",
+        "prompts",
+        "opentelemetry"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "langfuse"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "langfuse"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/langfuse/langfuse",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "arize-phoenix",
+      "name": "Arize Phoenix",
+      "category": "observability",
+      "platforms": [
+        "server",
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "Elastic-2.0",
+        "url": "https://github.com/Arize-ai/phoenix/blob/HEAD/LICENSE",
+        "scope": "Elastic License 2.0 (source-available): free to self-host, but providing it as a managed service and circumventing license keys is prohibited."
+      },
+      "homepage": "https://phoenix.arize.com",
+      "repository": "https://github.com/Arize-ai/phoenix",
+      "docs": "https://arize.com/docs/phoenix",
+      "summary": "OpenTelemetry-based LLM tracing, evaluation and dataset experimentation app.",
+      "useWhen": "Use instead of building local trace viewers and eval experiment tracking for LLM apps.",
+      "cautions": [
+        "Not OSI open source; review Elastic-2.0 before embedding in a hosted product."
+      ],
+      "tags": [
+        "observability",
+        "tracing",
+        "evals",
+        "opentelemetry",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "arize-phoenix"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Arize-ai/phoenix",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "helicone",
+      "name": "Helicone",
+      "category": "observability",
+      "platforms": [
+        "server",
+        "web"
+      ],
+      "kind": "application",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/Helicone/helicone/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the open-source platform; Helicone Cloud is a paid hosted service."
+      },
+      "homepage": "https://www.helicone.ai",
+      "repository": "https://github.com/Helicone/helicone",
+      "docs": "https://docs.helicone.ai",
+      "summary": "Open-source LLM observability gateway with request logging, caching, cost tracking and rate limits.",
+      "useWhen": "Use instead of hand-writing a logging proxy; its response cache and cost views reduce repeated-prompt spend.",
+      "cautions": [
+        "Proxying routes prompts through Helicone; self-host for sensitive data.",
+        "Self-hosting has multiple services (ClickHouse, Postgres)."
+      ],
+      "tags": [
+        "observability",
+        "gateway",
+        "caching",
+        "cost"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "devops-infra"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Helicone/helicone",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "openllmetry",
+      "name": "OpenLLMetry",
+      "category": "observability",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/traceloop/openllmetry/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/traceloop/openllmetry",
+      "docs": "https://www.traceloop.com/docs/openllmetry/introduction",
+      "summary": "OpenTelemetry instrumentations for LLM providers, vector DBs and frameworks.",
+      "useWhen": "Use instead of hand-instrumenting LLM calls; emits standard OTel spans with token usage to any backend.",
+      "cautions": [
+        "Spans may include prompt content; disable content tracing for sensitive data."
+      ],
+      "tags": [
+        "observability",
+        "opentelemetry",
+        "tracing",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "traceloop-sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/traceloop/openllmetry",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "local-inference",
+      "platforms": [
+        "desktop",
+        "server",
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ollama/ollama/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://ollama.com",
+      "repository": "https://github.com/ollama/ollama",
+      "docs": "https://docs.ollama.com",
+      "summary": "Runs open-weight models locally with a REST and OpenAI-compatible API; official Python/JS clients.",
+      "useWhen": "Use instead of hand-packaging llama.cpp builds; offload cheap tasks (classification, summarization, embeddings) to local models at zero token cost.",
+      "cautions": [
+        "Model licenses vary (Llama, Gemma, Qwen); check per model.",
+        "Bind to localhost; the API has no auth by default."
+      ],
+      "tags": [
+        "local",
+        "inference",
+        "llm",
+        "openai-compatible",
+        "embeddings"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "ollama"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ollama"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ollama/ollama",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "llama-cpp",
+      "name": "llama.cpp",
+      "category": "local-inference",
+      "platforms": [
+        "desktop",
+        "server",
+        "cli",
+        "mobile"
+      ],
+      "kind": "source-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ggml-org/llama.cpp/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ggml-org/llama.cpp",
+      "docs": null,
+      "summary": "C/C++ LLM inference with GGUF quantization, an OpenAI-compatible server and grammar-constrained output.",
+      "useWhen": "Use instead of writing inference code; quantized models and GBNF grammars give cheap, valid local outputs on CPU, Metal, CUDA or Vulkan.",
+      "cautions": [
+        "Rapid releases; pin a build tag.",
+        "Model weight licenses apply separately."
+      ],
+      "tags": [
+        "local",
+        "inference",
+        "gguf",
+        "quantization",
+        "cpp"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "desktop-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ggml-org/llama.cpp",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Use a pinned release binary or build from a pinned tag; verify checksums."
+      ]
+    },
+    {
+      "id": "vllm",
+      "name": "vLLM",
+      "category": "local-inference",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/vllm-project/vllm/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/vllm-project/vllm",
+      "docs": "https://docs.vllm.ai",
+      "summary": "High-throughput LLM serving engine with PagedAttention, prefix caching and an OpenAI-compatible server.",
+      "useWhen": "Use instead of hand-built GPU serving; automatic prefix caching reuses shared prompt prefixes across requests.",
+      "cautions": [
+        "Requires supported GPUs/accelerators and matching CUDA/torch versions.",
+        "Expose behind auth; the server key option is minimal."
+      ],
+      "tags": [
+        "inference",
+        "serving",
+        "gpu",
+        "openai-compatible",
+        "prefix-caching"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "devops-infra"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "vllm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vllm-project/vllm",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lm-studio",
+      "name": "LM Studio",
+      "category": "local-inference",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://lmstudio.ai/app-terms",
+        "scope": "The desktop app is proprietary freeware under LM Studio terms; the lmstudio-js SDK is MIT."
+      },
+      "homepage": "https://lmstudio.ai",
+      "repository": "https://github.com/lmstudio-ai/lmstudio-js",
+      "docs": "https://lmstudio.ai/docs",
+      "summary": "Desktop application for discovering and running local models with an OpenAI-compatible server and SDKs.",
+      "useWhen": "Use as the end-user local model host instead of asking users to compile runtimes; point an OpenAI-compatible client at its local server.",
+      "cautions": [
+        "App is not open source; check terms for commercial/workplace use.",
+        "Users must install it; detect availability rather than assuming it."
+      ],
+      "tags": [
+        "local",
+        "desktop",
+        "inference",
+        "openai-compatible"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@lmstudio/sdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lmstudio-ai/lmstudio-js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "transformers",
+      "name": "Hugging Face Transformers",
+      "category": "local-inference",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/huggingface/transformers/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/huggingface/transformers",
+      "docs": "https://huggingface.co/docs/transformers",
+      "summary": "Model-definition library for text, vision, audio and multimodal models in PyTorch.",
+      "useWhen": "Use instead of implementing model architectures; run small local classifiers or extractors to avoid paid API calls.",
+      "cautions": [
+        "Model licenses vary; trust_remote_code executes downloaded code, so avoid it.",
+        "Heavy install; isolate in a worker."
+      ],
+      "tags": [
+        "models",
+        "inference",
+        "huggingface",
+        "python",
+        "pytorch"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "data-analytics"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "transformers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/huggingface/transformers",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "transformers-js",
+      "name": "Transformers.js",
+      "category": "local-inference",
+      "platforms": [
+        "web",
+        "server",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/huggingface/transformers.js/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/huggingface/transformers.js",
+      "docs": "https://huggingface.co/docs/transformers.js",
+      "summary": "Runs Hugging Face models in the browser and Node via ONNX Runtime and WebGPU.",
+      "useWhen": "Use instead of server round-trips for embeddings, classification or speech in the browser; keeps data on device.",
+      "cautions": [
+        "Model downloads are large; cache and show progress.",
+        "WebGPU support varies by browser."
+      ],
+      "tags": [
+        "browser",
+        "inference",
+        "onnx",
+        "webgpu",
+        "embeddings"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@huggingface/transformers"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/huggingface/transformers.js",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "onnxruntime",
+      "name": "ONNX Runtime",
+      "category": "local-inference",
+      "platforms": [
+        "server",
+        "desktop",
+        "mobile",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/onnxruntime/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://onnxruntime.ai",
+      "repository": "https://github.com/microsoft/onnxruntime",
+      "docs": "https://onnxruntime.ai/docs/",
+      "summary": "Cross-platform inference accelerator for ONNX models on CPU, GPU, NPU, mobile and web.",
+      "useWhen": "Use instead of shipping PyTorch for inference; small, fast runtimes for embeddings and classifiers in any language.",
+      "cautions": [
+        "Execution providers (CUDA, DirectML, CoreML) need matching drivers and builds."
+      ],
+      "tags": [
+        "inference",
+        "onnx",
+        "cross-platform",
+        "mobile",
+        "csharp"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "desktop-app",
+        "mobile-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "onnxruntime"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "onnxruntime-node"
+        },
+        {
+          "ecosystem": "nuget",
+          "name": "Microsoft.ML.OnnxRuntime"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/onnxruntime",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mlx",
+      "name": "MLX",
+      "category": "local-inference",
+      "platforms": [
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ml-explore/mlx/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ml-explore/mlx",
+      "docs": "https://ml-explore.github.io/mlx/",
+      "summary": "Apple array framework for machine learning on Apple silicon; mlx-lm runs and fine-tunes LLMs.",
+      "useWhen": "Use instead of CPU-only inference on Macs; run local models efficiently on Apple silicon unified memory.",
+      "cautions": [
+        "Apple silicon only.",
+        "Use mlx-lm for LLM workflows; model licenses apply."
+      ],
+      "tags": [
+        "apple-silicon",
+        "inference",
+        "macos",
+        "python",
+        "swift"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "desktop-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mlx"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "mlx-lm"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ml-explore/mlx",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "guardrails-ai",
+      "name": "Guardrails AI",
+      "category": "guardrails",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/guardrails-ai/guardrails/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/guardrails-ai/guardrails",
+      "docs": "https://www.guardrailsai.com/docs",
+      "summary": "Python framework of input/output validators (hub) for LLM responses with re-ask and structured output.",
+      "useWhen": "Use instead of hand-writing output validators for PII, toxicity, format and competitor mentions.",
+      "cautions": [
+        "Validators supplement, not replace, enforced authorization.",
+        "Hub validators are separate packages with their own licenses; review each."
+      ],
+      "tags": [
+        "guardrails",
+        "validation",
+        "safety",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "guardrails-ai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/guardrails-ai/guardrails",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nemo-guardrails",
+      "name": "NeMo Guardrails",
+      "category": "guardrails",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/NVIDIA/NeMo-Guardrails/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/NVIDIA/NeMo-Guardrails",
+      "docs": "https://docs.nvidia.com/nemo/guardrails/",
+      "summary": "NVIDIA toolkit for programmable rails (topical, jailbreak, fact-check) around conversational LLM apps.",
+      "useWhen": "Use instead of hand-coding dialogue policies and jailbreak/topic checks around a chatbot.",
+      "cautions": [
+        "Rails add extra model calls and latency; measure cost.",
+        "Not a security boundary on its own."
+      ],
+      "tags": [
+        "guardrails",
+        "safety",
+        "jailbreak",
+        "python",
+        "colang"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "security"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "nemoguardrails"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/NVIDIA/NeMo-Guardrails",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "presidio",
+      "name": "Microsoft Presidio",
+      "category": "guardrails",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/presidio/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/microsoft/presidio",
+      "docs": "https://microsoft.github.io/presidio/",
+      "summary": "PII detection and anonymization for text, images and structured data.",
+      "useWhen": "Use instead of hand-written PII regexes to redact data before prompts, logs or embeddings leave local systems.",
+      "cautions": [
+        "Detection is probabilistic; record coverage gaps rather than claiming full protection.",
+        "Tune recognizers per language and locale."
+      ],
+      "tags": [
+        "pii",
+        "privacy",
+        "redaction",
+        "anonymization",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "security",
+        "data-analytics",
+        "legal-compliance"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "presidio-analyzer"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "presidio-anonymizer"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/microsoft/presidio",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "llm-guard",
+      "name": "LLM Guard",
+      "category": "guardrails",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/protectai/llm-guard/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/protectai/llm-guard",
+      "docs": "https://protectai.github.io/llm-guard/",
+      "summary": "Input/output scanners for prompt injection, PII, secrets and toxicity in LLM apps.",
+      "useWhen": "Use instead of writing prompt-injection and secret scanners yourself for LLM inputs and outputs.",
+      "cautions": [
+        "Scanners use local models and add latency.",
+        "Classifier results are signals, not authorization."
+      ],
+      "tags": [
+        "guardrails",
+        "prompt-injection",
+        "pii",
+        "security",
+        "python"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "security"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/protectai/llm-guard",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Package: pypi llm-guard (registry metadata does not state the license; confirm against the upstream LICENSE).",
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tree-sitter",
+      "name": "Tree-sitter",
+      "category": "code-intelligence",
+      "platforms": [
+        "server",
+        "cli",
+        "desktop",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tree-sitter/tree-sitter/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://tree-sitter.github.io/tree-sitter/",
+      "repository": "https://github.com/tree-sitter/tree-sitter",
+      "docs": "https://tree-sitter.github.io/tree-sitter/",
+      "summary": "Incremental parser generator with grammars for most languages and bindings for C, Rust, JS/WASM, Python and Go.",
+      "useWhen": "Use instead of regex code parsing; extract symbols and signatures so agents read outlines rather than whole files, saving tokens.",
+      "cautions": [
+        "Grammars are separate packages with their own versions and licenses.",
+        "Native bindings need a compiler; WASM avoids it."
+      ],
+      "tags": [
+        "parsing",
+        "ast",
+        "code-intelligence",
+        "rust",
+        "wasm",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "tree-sitter"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "web-tree-sitter"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "tree-sitter"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tree-sitter/tree-sitter",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ast-grep",
+      "name": "ast-grep",
+      "category": "code-intelligence",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ast-grep/ast-grep/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": "https://ast-grep.github.io",
+      "repository": "https://github.com/ast-grep/ast-grep",
+      "docs": "https://ast-grep.github.io/guide/introduction.html",
+      "summary": "Tree-sitter based structural code search, lint and rewrite CLI with Node/Python APIs.",
+      "useWhen": "Use instead of reading many files or fragile regex edits; precise structural matches return only relevant code to the agent.",
+      "cautions": [
+        "Rewrites change code in bulk; review diffs and run tests."
+      ],
+      "tags": [
+        "code-search",
+        "refactoring",
+        "ast",
+        "rust",
+        "cli",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@ast-grep/cli"
+        },
+        {
+          "ecosystem": "crates",
+          "name": "ast-grep"
+        },
+        {
+          "ecosystem": "pypi",
+          "name": "ast-grep-cli"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ast-grep/ast-grep",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "graphify",
+      "name": "Graphify",
+      "category": "code-intelligence",
+      "platforms": [
+        "cli",
+        "desktop"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/Graphify-Labs/graphify/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://graphify.com",
+      "repository": "https://github.com/Graphify-Labs/graphify",
+      "docs": "https://docs.graphify.com",
+      "summary": "Agent skill/CLI that maps a project (code via local tree-sitter, plus docs and media) into a queryable knowledge graph.",
+      "useWhen": "Use instead of repeated grep-and-read passes; agents query graph.json and GRAPH_REPORT.md rather than re-reading files, cutting context tokens.",
+      "cautions": [
+        "Code mapping is local, but docs/PDF/media passes call your model or API key; keep local-only data out.",
+        "Young project with a commercial platform alongside; pin the CLI version."
+      ],
+      "tags": [
+        "knowledge-graph",
+        "code-intelligence",
+        "tree-sitter",
+        "mcp",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "graphifyy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Graphify-Labs/graphify",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install the CLI with uv tool or pipx at a pinned version."
+      ]
+    },
+    {
+      "id": "serena",
+      "name": "Serena",
+      "category": "code-intelligence",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "application",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/oraios/serena/blob/HEAD/LICENSE",
+        "scope": "MIT for the library code."
+      },
+      "homepage": null,
+      "repository": "https://github.com/oraios/serena",
+      "docs": null,
+      "summary": "MCP coding-agent toolkit providing language-server-backed semantic symbol search and editing.",
+      "useWhen": "Use instead of whole-file reads; symbol-level retrieval and edits let agents work with far fewer context tokens.",
+      "cautions": [
+        "Language servers must be installed per language.",
+        "Edit tools change files; scope the project and review diffs."
+      ],
+      "tags": [
+        "mcp",
+        "lsp",
+        "code-intelligence",
+        "agents",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/oraios/serena",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Run with uvx from a pinned git tag; review its MCP tool list before enabling."
+      ]
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "category": "code-intelligence",
+      "platforms": [
+        "cli"
+      ],
+      "kind": "application",
+      "integrationMode": "reference",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/Aider-AI/aider/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 for the library code."
+      },
+      "homepage": "https://aider.chat",
+      "repository": "https://github.com/Aider-AI/aider",
+      "docs": "https://aider.chat/docs/",
+      "summary": "Terminal AI pair programmer known for its tree-sitter repository map and edit formats.",
+      "useWhen": "Use as a reference for repo-map ranking and diff edit formats instead of designing agent code-context strategies from scratch.",
+      "cautions": [
+        "Reference design; do not overlap it with Genisys runtime orchestration.",
+        "Sends code to the configured model provider."
+      ],
+      "tags": [
+        "coding-agent",
+        "repo-map",
+        "reference",
+        "python",
+        "token-reduction"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "aider-chat"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Aider-AI/aider",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    }
+  ]
+}

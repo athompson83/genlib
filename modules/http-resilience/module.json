@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "http-resilience",
+  "version": "0.1.0",
+  "title": "HTTP resilience",
+  "description": "Runtime-neutral TypeScript retry with exponential backoff and full jitter, AbortSignal-aware timeouts, an idempotency-safe Fetch retry wrapper that honors Retry-After, and an in-process circuit breaker.",
+  "kind": "utility",
+  "tags": ["http", "fetch", "retry", "backoff", "jitter", "timeout", "abort", "retry-after", "idempotency", "circuit-breaker", "resilience", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/http-resilience"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and the Fetch standard (Request, Response, Headers, ReadableStream), AbortController/AbortSignal, DOMException, and setTimeout: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers, and Hono handlers on those runtimes.",
+      "Written against Web Platform APIs only; also loads in modern browsers, but the repository tests run on Node.js only and the module is declared for server use.",
+      "No runtime packages, environment reads, timers, or network activity occur at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/retry.ts", "target": "http-resilience/retry.ts" },
+    { "source": "files/fetch-retry.ts", "target": "http-resilience/fetch-retry.ts" },
+    { "source": "files/circuit-breaker.ts", "target": "http-resilience/circuit-breaker.ts" }
+  ],
+  "exports": [
+    { "name": "retry", "from": "http-resilience/retry.ts" },
+    { "name": "withTimeout", "from": "http-resilience/retry.ts" },
+    { "name": "backoffDelay", "from": "http-resilience/retry.ts" },
+    { "name": "fetchWithRetry", "from": "http-resilience/fetch-retry.ts" },
+    { "name": "parseRetryAfter", "from": "http-resilience/fetch-retry.ts" },
+    { "name": "isRetryableRequest", "from": "http-resilience/fetch-retry.ts" },
+    { "name": "createCircuitBreaker", "from": "http-resilience/circuit-breaker.ts" },
+    { "name": "CircuitOpenError", "from": "http-resilience/circuit-breaker.ts" }
+  ],
+  "configuration": [
+    "retry: attempts (1–20, total including the first call), baseDelayMs, maxDelayMs (0–3600000), jitter \"full\" (default) or \"none\", optional shouldRetry(error, attempt) returning boolean or { delayMs }, signal, and injectable sleep/random.",
+    "withTimeout(fn, ms, signal?): ms 1–3600000; fn receives the combined signal.",
+    "fetchWithRetry(fetch, input, init, options): attempts default 3, baseDelayMs, maxDelayMs, jitter, optional attemptTimeoutMs, signal (defaults to init.signal), injectable sleep/random/now.",
+    "createCircuitBreaker: failureThreshold (1–1000 consecutive counted failures), resetAfterMs (1–86400000), optional clock and isFailure(error)."
+  ],
+  "capabilities": [
+    "exponential-backoff-full-jitter", "abortable-retry", "abort-signal-timeout",
+    "idempotency-aware-fetch-retry", "retry-after-parsing", "response-body-discard", "circuit-breaker"
+  ],
+  "limitations": [
+    "fetchWithRetry retries only GET/HEAD/OPTIONS/PUT/DELETE or requests carrying an Idempotency-Key header; supplying that header is the caller's assertion that the server deduplicates. PUT/DELETE are idempotent by HTTP semantics, not by every server's implementation.",
+    "ReadableStream request bodies are never replayed (sent once). Request inputs are cloned per attempt, which buffers their body in memory.",
+    "Retry-After values above maxDelayMs are capped, not obeyed; the request is retried sooner than the server asked. Lower attempts or treat the response as final if that is unacceptable.",
+    "Network-error detection treats TypeError and TimeoutError as retryable; non-standard Fetch implementations that throw other error types are not retried.",
+    "withTimeout stops waiting on abort but cannot stop work that ignores its signal.",
+    "The circuit breaker is in-process state only; it is not shared across processes, isolates, or serverless instances. Retries add load; combine with server-side rate limits and budgets.",
+    "Tests use injected sleep/clock/random and a fake Fetch boundary; no live network calls were made."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/http-resilience.test.mjs"]
+  },
+  "contract": "CONTRACT.md"
+}

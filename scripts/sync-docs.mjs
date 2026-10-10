@@ -1,0 +1,78 @@
+#!/usr/bin/env node
+// Regenerates the marked count and catalog blocks in README.md and docs/resources/README.md
+// from the real catalogs, so documentation cannot drift. `--check` fails instead of writing.
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { loadSources, sourceCounts } from '../lib/discover.mjs';
+import { loadProjectTypes } from '../lib/resources.mjs';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const check = process.argv.includes('--check');
+if (process.argv.slice(2).some(arg => arg !== '--check')) throw new Error('Usage: node scripts/sync-docs.mjs [--check]');
+
+const sources = await loadSources(root);
+const counts = sourceCounts(sources);
+const types = await loadProjectTypes(root);
+
+// Group resources by the catalog file that holds them.
+const catalogs = [];
+for (const path of ['resources/attachments.json', 'resources/ui-foundations.json']) catalogs.push(path);
+const { readdirSync } = await import('node:fs');
+for (const name of readdirSync(root + 'resources/catalog').sort()) catalogs.push('resources/catalog/' + name);
+const rows = catalogs.map(path => {
+  const items = JSON.parse(readFileSync(root + path, 'utf8')).items;
+  const guides = [...new Set(items.map(item => item.genlib.guide))];
+  const categories = Object.entries(items.reduce((map, item) => ({ ...map, [item.category]: (map[item.category] ?? 0) + 1 }), {}))
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 5).map(([name]) => name);
+  return { path, count: items.length, guide: guides.length === 1 ? guides[0] : null, categories };
+});
+
+const link = (target, from) => {
+  const depth = from.split('/').length - 1;
+  return '../'.repeat(depth) + target;
+};
+const sourcesBlock = from => [
+  '| Source | Count | What it is |',
+  '| --- | ---: | --- |',
+  `| [Modules](#modules) | ${counts.module} | Original, versioned, hash-verified source installed with \`plan\` / \`add\` / \`verify\` |`,
+  `| [Task recipes](#recipes-language-examples-and-templates) | ${counts.recipe} | Single-file TypeScript sources copied with one command |`,
+  `| [Language examples](#recipes-language-examples-and-templates) | ${counts['language-example']} | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |`,
+  `| [Project templates](#recipes-language-examples-and-templates) | ${counts.template} | Project, GitHub, docs, ship/release and UI-selection starters |`,
+  `| [Code-navigation tools](#find-code-without-reading-the-whole-repository) | ${counts.tool} | Repository map, AST graph, task context and Mermaid diagram |`,
+  `| [Agent skills](#agent-skills) | ${counts.skill} | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |`,
+  `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and references across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
+].join('\n');
+const catalogBlock = from => [
+  '| Catalog | Records | Guide | Main categories |',
+  '| --- | ---: | --- | --- |',
+  ...rows.map(row => `| [\`${row.path.replace('resources/', '')}\`](${link(row.path, from)}) | ${row.count} | ${row.guide ? `[${row.guide.split('/').at(-1)}](${link(row.guide, from)})` : 'several'} | ${row.categories.join(', ')} |`),
+  `| **Total** | **${counts.resource}** | | |`,
+].join('\n');
+const perType = Object.fromEntries(types.map(type => [type.id, 0]));
+for (const item of sources.resources) for (const type of item.projectTypes ?? []) perType[type]++;
+const typesBlock = [
+  '| Project type | Records | Covers |',
+  '| --- | ---: | --- |',
+  ...types.map(type => `| \`${type.id}\` | ${perType[type.id]} | ${type.summary} |`),
+].join('\n');
+
+const files = {
+  'README.md': { sources: sourcesBlock('README.md'), catalog: catalogBlock('README.md') },
+  'docs/resources/README.md': { catalog: catalogBlock('docs/resources/README.md'), types: typesBlock },
+};
+const stale = [];
+for (const [file, blocks] of Object.entries(files)) {
+  const original = readFileSync(root + file, 'utf8');
+  let text = original;
+  for (const [name, body] of Object.entries(blocks)) {
+    const pattern = new RegExp(`(<!-- genlib:${name}:start -->)[\\s\\S]*?(<!-- genlib:${name}:end -->)`);
+    if (!pattern.test(text)) throw new Error(`${file} is missing the genlib:${name} markers.`);
+    text = text.replace(pattern, `$1\n${body}\n$2`);
+  }
+  if (text !== original) {
+    stale.push(file);
+    if (!check) writeFileSync(root + file, text);
+  }
+}
+process.stdout.write(JSON.stringify({ mode: check ? 'check' : 'sync', counts, stale }, null, 2) + '\n');
+if (check && stale.length) process.exitCode = 1;

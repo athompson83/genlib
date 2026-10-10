@@ -1,0 +1,72 @@
+name: Release
+
+# Adoption required: read templates/ship/README.md in Genlib first.
+# Runs the same real ci:verify script as the CI starter on a version tag, then
+# publishes a GitHub release with generated notes. It never deploys.
+"on":
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify release
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the tagged revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Require the version tag to match package.json
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+          if (typeof pkg.scripts?.['ci:verify'] !== 'string' || !pkg.scripts['ci:verify'].trim()) {
+            throw new Error('Configure a real ci:verify package script before adopting this release starter.');
+          }
+          if (process.env.TAG !== 'v' + pkg.version) {
+            throw new Error(`Tag ${process.env.TAG} does not match package.json version ${pkg.version}.`);
+          }
+          NODE
+
+      - name: Install the locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify the release revision
+        run: npm run ci:verify
+
+  publish:
+    name: Publish GitHub release
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Create the release with generated notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          prerelease=""
+          case "$TAG" in *-*) prerelease="--prerelease" ;; esac
+          gh release create "$TAG" --verify-tag --generate-notes --title "$TAG" $prerelease

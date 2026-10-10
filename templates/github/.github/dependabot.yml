@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+# Replace/add ecosystems and directories for the actual dependency manifests.
+# Do not add unknown labels, reviewers, private-registry credentials, blanket
+# ignores, or automatic merging. Alerts/security updates are separate settings.

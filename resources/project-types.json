@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "description": "Project types Genisys users build. Resource records tag the types they serve so agents can filter before reading.",
+  "types": [
+    { "id": "web-app", "title": "Web application", "summary": "Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components." },
+    { "id": "marketing-site", "title": "Marketing or content site", "summary": "Landing pages, blogs, static sites, SEO, analytics and CMS-backed content." },
+    { "id": "mobile-app", "title": "Mobile application", "summary": "iOS/Android via native, React Native/Expo, Flutter or Capacitor." },
+    { "id": "desktop-app", "title": "Desktop application", "summary": "Electron, Tauri or native desktop apps, packaging, auto-update and OS integration." },
+    { "id": "api-backend", "title": "API or backend service", "summary": "HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs." },
+    { "id": "cli-tool", "title": "Command-line tool", "summary": "Argument parsing, prompts, output formatting, config files and distribution." },
+    { "id": "ai-agent", "title": "AI agent or LLM application", "summary": "Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization." },
+    { "id": "data-analytics", "title": "Data and analytics", "summary": "Data loading, transformation, SQL engines, notebooks, charts and dashboards." },
+    { "id": "ecommerce", "title": "E-commerce", "summary": "Catalog, cart, checkout, payments, tax, inventory and storefront platforms." },
+    { "id": "saas", "title": "SaaS product", "summary": "Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit." },
+    { "id": "realtime-collab", "title": "Realtime and collaboration", "summary": "WebSockets, presence, CRDT/collaborative editing, chat and notifications." },
+    { "id": "devops-infra", "title": "DevOps and infrastructure", "summary": "CI/CD, containers, infrastructure as code, observability, secrets and deployment." },
+    { "id": "testing-qa", "title": "Testing and QA", "summary": "Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures." },
+    { "id": "docs-knowledge", "title": "Documentation and knowledge base", "summary": "Docs sites, API references, diagrams, search and markdown tooling." },
+    { "id": "browser-automation", "title": "Browser and computer automation", "summary": "Headless browsers, scraping within terms, workflow automation and RPA." },
+    { "id": "office-documents", "title": "Office documents", "summary": "PDF, Word, spreadsheet and presentation generation, parsing and conversion." },
+    { "id": "media-creative", "title": "Image, video and audio", "summary": "Image processing, video editing/transcoding, audio, 3D and creative tooling." },
+    { "id": "finance-accounting", "title": "Finance and accounting", "summary": "Money math, ledgers, invoicing, accounting APIs and financial data." },
+    { "id": "legal-compliance", "title": "Legal and compliance", "summary": "Contracts, e-signature, privacy, consent, accessibility and policy tooling." },
+    { "id": "game", "title": "Game or interactive experience", "summary": "Game engines, 2D/3D rendering, physics, input and asset pipelines." },
+    { "id": "security", "title": "Security", "summary": "Crypto, secrets scanning, dependency auditing, auth hardening and threat checks." }
+  ]
+}

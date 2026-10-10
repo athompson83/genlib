@@ -1,0 +1,5262 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "react",
+      "name": "React",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/facebook/react/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://react.dev",
+      "repository": "https://github.com/facebook/react",
+      "docs": "https://react.dev/reference/react",
+      "summary": "Component-based UI library for building interactive web interfaces.",
+      "useWhen": "Use instead of hand-writing DOM diffing, component lifecycles and UI state wiring for interactive apps.",
+      "cautions": [
+        "Pair with a framework (Next.js, React Router) for routing, data loading and SSR rather than assembling it yourself.",
+        "Server Components require a supporting framework and bundler."
+      ],
+      "tags": [
+        "react",
+        "ui",
+        "components",
+        "spa",
+        "typescript"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "react-dom"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/facebook/react",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://react.dev/reference/react",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "category": "meta-framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vercel/next.js/blob/canary/license.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://nextjs.org",
+      "repository": "https://github.com/vercel/next.js",
+      "docs": "https://nextjs.org/docs",
+      "summary": "React framework with file-based routing, server rendering, Server Components and API routes.",
+      "useWhen": "Use instead of hand-assembling React SSR, routing, code splitting and bundler configuration.",
+      "cautions": [
+        "App Router and Pages Router differ; follow the docs for the router the project uses.",
+        "Some features (ISR, image optimization, middleware) behave differently when self-hosted versus on Vercel."
+      ],
+      "tags": [
+        "react",
+        "ssr",
+        "ssg",
+        "routing",
+        "meta-framework",
+        "fullstack"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "next"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vercel/next.js",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nextjs.org/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vue",
+      "name": "Vue",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vuejs/core/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://vuejs.org",
+      "repository": "https://github.com/vuejs/core",
+      "docs": "https://vuejs.org/guide/introduction.html",
+      "summary": "Progressive framework for building reactive web user interfaces with single-file components.",
+      "useWhen": "Use instead of hand-writing reactive data binding and component rendering for interactive pages and SPAs.",
+      "cautions": [
+        "Prefer the Composition API and Vue 3; Vue 2 is end of life."
+      ],
+      "tags": [
+        "vue",
+        "ui",
+        "reactivity",
+        "spa",
+        "components"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vue"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vuejs/core",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://vuejs.org/guide/introduction.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nuxt",
+      "name": "Nuxt",
+      "category": "meta-framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/nuxt/nuxt/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://nuxt.com",
+      "repository": "https://github.com/nuxt/nuxt",
+      "docs": "https://nuxt.com/docs",
+      "summary": "Vue meta-framework with file-based routing, server rendering, static generation and server routes.",
+      "useWhen": "Use instead of hand-assembling Vue SSR, routing, data fetching and deployment presets.",
+      "cautions": [
+        "Auto-imports hide where symbols come from; keep TypeScript checks on.",
+        "Check module compatibility with the Nuxt major version in use."
+      ],
+      "tags": [
+        "vue",
+        "ssr",
+        "ssg",
+        "routing",
+        "meta-framework"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nuxt"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nuxt/nuxt",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nuxt.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "svelte",
+      "name": "Svelte",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sveltejs/svelte/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://svelte.dev",
+      "repository": "https://github.com/sveltejs/svelte",
+      "docs": "https://svelte.dev/docs/svelte/overview",
+      "summary": "Compiler-based UI framework that turns components into small, efficient JavaScript.",
+      "useWhen": "Use instead of hand-writing DOM updates and reactive state for lightweight interactive UIs.",
+      "cautions": [
+        "Svelte 5 runes replace Svelte 4 reactivity syntax; do not mix examples from both."
+      ],
+      "tags": [
+        "svelte",
+        "compiler",
+        "ui",
+        "reactivity",
+        "components"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "svelte"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sveltejs/svelte",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://svelte.dev/docs/svelte/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sveltekit",
+      "name": "SvelteKit",
+      "category": "meta-framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sveltejs/kit/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://svelte.dev/docs/kit",
+      "repository": "https://github.com/sveltejs/kit",
+      "docs": "https://svelte.dev/docs/kit/introduction",
+      "summary": "Svelte application framework with file-based routing, SSR, form actions and deployment adapters.",
+      "useWhen": "Use instead of hand-assembling Svelte routing, server rendering, data loading and form handling.",
+      "cautions": [
+        "Choose the deployment adapter early; platform features differ by adapter."
+      ],
+      "tags": [
+        "svelte",
+        "ssr",
+        "routing",
+        "meta-framework",
+        "fullstack"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@sveltejs/kit"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sveltejs/kit",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://svelte.dev/docs/kit/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "solid",
+      "name": "SolidJS",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/solidjs/solid/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://www.solidjs.com",
+      "repository": "https://github.com/solidjs/solid",
+      "docs": "https://docs.solidjs.com",
+      "summary": "Reactive UI library with fine-grained signals and JSX, without a virtual DOM.",
+      "useWhen": "Use instead of hand-writing fine-grained reactive DOM updates when performance matters.",
+      "cautions": [
+        "JSX looks like React but components run once; destructuring props breaks reactivity."
+      ],
+      "tags": [
+        "solid",
+        "signals",
+        "jsx",
+        "reactivity",
+        "ui"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "solid-js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/solidjs/solid",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.solidjs.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/angular/angular/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://angular.dev",
+      "repository": "https://github.com/angular/angular",
+      "docs": "https://angular.dev/overview",
+      "summary": "Full-featured TypeScript web framework with routing, forms, HTTP client and dependency injection.",
+      "useWhen": "Use instead of assembling separate routing, forms, DI and HTTP layers for large structured web apps.",
+      "cautions": [
+        "Follow the version-specific update guide; majors ship roughly twice a year.",
+        "Prefer signals and standalone components in new code."
+      ],
+      "tags": [
+        "angular",
+        "typescript",
+        "framework",
+        "spa",
+        "enterprise"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@angular/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/angular/angular",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://angular.dev/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "astro",
+      "name": "Astro",
+      "category": "meta-framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/withastro/astro/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://astro.build",
+      "repository": "https://github.com/withastro/astro",
+      "docs": "https://docs.astro.build",
+      "summary": "Content-focused web framework that ships zero JavaScript by default with optional islands of interactivity.",
+      "useWhen": "Use instead of hand-building a static site generator, Markdown/MDX pipeline and partial hydration for content sites.",
+      "cautions": [
+        "Interactive islands need an explicit client directive; components are static otherwise."
+      ],
+      "tags": [
+        "astro",
+        "ssg",
+        "content",
+        "islands",
+        "markdown",
+        "seo"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "docs-knowledge",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "astro"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/withastro/astro",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.astro.build",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-router",
+      "name": "React Router",
+      "category": "routing",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/remix-run/react-router/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://reactrouter.com",
+      "repository": "https://github.com/remix-run/react-router",
+      "docs": "https://reactrouter.com/home",
+      "summary": "Routing library and framework for React (successor of Remix) with loaders, actions and SSR.",
+      "useWhen": "Use instead of hand-writing URL matching, nested layouts, data loaders and form mutations in React apps.",
+      "cautions": [
+        "v7 merges Remix into React Router; pick declarative, data or framework mode deliberately."
+      ],
+      "tags": [
+        "react",
+        "routing",
+        "remix",
+        "ssr",
+        "loaders"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-router"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/remix-run/react-router",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://reactrouter.com/home",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tanstack-router",
+      "name": "TanStack Router",
+      "category": "routing",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TanStack/router/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://tanstack.com/router",
+      "repository": "https://github.com/TanStack/router",
+      "docs": "https://tanstack.com/router/latest/docs/framework/react/overview",
+      "summary": "Fully type-safe router for React with typed search params, loaders and caching.",
+      "useWhen": "Use instead of hand-writing typed route params, search-param parsing and route-level data loading.",
+      "cautions": [
+        "File-based routing relies on a code-generation plugin; commit or regenerate the route tree consistently."
+      ],
+      "tags": [
+        "react",
+        "routing",
+        "typescript",
+        "type-safe",
+        "search-params"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tanstack/react-router"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TanStack/router",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tanstack.com/router/latest/docs/framework/react/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vue-router",
+      "name": "Vue Router",
+      "category": "routing",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vuejs/router/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://router.vuejs.org",
+      "repository": "https://github.com/vuejs/router",
+      "docs": "https://router.vuejs.org/guide/",
+      "summary": "Official client-side router for Vue with nested routes, guards and lazy loading.",
+      "useWhen": "Use instead of hand-writing history handling, route matching and navigation guards in Vue SPAs.",
+      "cautions": [
+        "Navigation guards are not security; enforce authorization on the server."
+      ],
+      "tags": [
+        "vue",
+        "routing",
+        "spa",
+        "navigation"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vue-router"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vuejs/router",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://router.vuejs.org/guide/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "qwik",
+      "name": "Qwik",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/QwikDev/qwik/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://qwik.dev",
+      "repository": "https://github.com/QwikDev/qwik",
+      "docs": "https://qwik.dev/docs/",
+      "summary": "Resumable web framework that delays JavaScript execution until interaction.",
+      "useWhen": "Use instead of hand-optimizing hydration and code splitting for fast-loading interactive pages.",
+      "cautions": [
+        "Smaller ecosystem than React/Vue; check library compatibility before committing.",
+        "Package names change between v1 and v2; follow the docs for the installed major."
+      ],
+      "tags": [
+        "qwik",
+        "resumability",
+        "performance",
+        "ssr"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@builder.io/qwik"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/QwikDev/qwik",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://qwik.dev/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "preact",
+      "name": "Preact",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/preactjs/preact/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://preactjs.com",
+      "repository": "https://github.com/preactjs/preact",
+      "docs": "https://preactjs.com/guide/v10/getting-started",
+      "summary": "Fast 3 kB alternative to React with the same modern API.",
+      "useWhen": "Use instead of shipping full React when bundle size matters, such as widgets and embedded UIs.",
+      "cautions": [
+        "React library compatibility goes through preact/compat and is not guaranteed for every package."
+      ],
+      "tags": [
+        "preact",
+        "react-compatible",
+        "lightweight",
+        "widgets"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "preact"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/preactjs/preact",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://preactjs.com/guide/v10/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lit",
+      "name": "Lit",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/lit/lit/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://lit.dev",
+      "repository": "https://github.com/lit/lit",
+      "docs": "https://lit.dev/docs/",
+      "summary": "Simple library for building fast, lightweight standards-based web components.",
+      "useWhen": "Use instead of hand-writing custom element boilerplate, reactive properties and template rendering for web components.",
+      "cautions": [
+        "Shadow DOM isolates styles; plan theming via CSS custom properties or parts."
+      ],
+      "tags": [
+        "web-components",
+        "custom-elements",
+        "lit",
+        "shadow-dom"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lit"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lit/lit",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://lit.dev/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "htmx",
+      "name": "htmx",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "0BSD",
+        "url": "https://github.com/bigskysoftware/htmx/blob/master/LICENSE",
+        "scope": "0BSD for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://htmx.org",
+      "repository": "https://github.com/bigskysoftware/htmx",
+      "docs": "https://htmx.org/docs/",
+      "summary": "Adds AJAX, CSS transitions, WebSockets and SSE to HTML through attributes, driven by server-rendered fragments.",
+      "useWhen": "Use instead of writing a client-side SPA or custom fetch/DOM-swap scripts for server-rendered apps in any backend language.",
+      "cautions": [
+        "Server endpoints must return HTML fragments and enforce CSRF protection.",
+        "Escape user content in fragments; htmx swaps HTML as-is."
+      ],
+      "tags": [
+        "htmx",
+        "hypermedia",
+        "server-rendered",
+        "ajax",
+        "python",
+        "go"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "htmx.org"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/bigskysoftware/htmx",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://htmx.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "alpinejs",
+      "name": "Alpine.js",
+      "category": "framework",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/alpinejs/alpine/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://alpinejs.dev",
+      "repository": "https://github.com/alpinejs/alpine",
+      "docs": "https://alpinejs.dev/start-here",
+      "summary": "Lightweight framework for adding reactive behavior directly in HTML markup.",
+      "useWhen": "Use instead of hand-writing vanilla JS for dropdowns, toggles, tabs and small interactive widgets on server-rendered pages.",
+      "cautions": [
+        "Inline expressions need unsafe-eval unless the CSP build is used."
+      ],
+      "tags": [
+        "alpine",
+        "lightweight",
+        "server-rendered",
+        "interactivity"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "alpinejs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/alpinejs/alpine",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://alpinejs.dev/start-here",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vite",
+      "name": "Vite",
+      "category": "build-tool",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vitejs/vite/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://vite.dev",
+      "repository": "https://github.com/vitejs/vite",
+      "docs": "https://vite.dev/guide/",
+      "summary": "Fast frontend dev server and production bundler with native ES modules and hot module replacement.",
+      "useWhen": "Use instead of hand-configuring webpack, dev servers and HMR for new web frontends.",
+      "cautions": [
+        "Only VITE_-prefixed env vars reach client code; never prefix secrets."
+      ],
+      "tags": [
+        "bundler",
+        "dev-server",
+        "hmr",
+        "build",
+        "vite"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vite"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vitejs/vite",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://vite.dev/guide/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "esbuild",
+      "name": "esbuild",
+      "category": "build-tool",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/evanw/esbuild/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://esbuild.github.io",
+      "repository": "https://github.com/evanw/esbuild",
+      "docs": "https://esbuild.github.io/api/",
+      "summary": "Extremely fast JavaScript and TypeScript bundler and minifier written in Go.",
+      "useWhen": "Use instead of writing custom bundling, transpiling or minifying scripts for libraries, CLIs and simple apps.",
+      "cautions": [
+        "Does not type-check TypeScript; run tsc separately."
+      ],
+      "tags": [
+        "bundler",
+        "minifier",
+        "typescript",
+        "go",
+        "build"
+      ],
+      "projectTypes": [
+        "web-app",
+        "cli-tool"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "esbuild"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/evanw/esbuild",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://esbuild.github.io/api/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rspack",
+      "name": "Rspack",
+      "category": "build-tool",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/web-infra-dev/rspack/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://rspack.rs",
+      "repository": "https://github.com/web-infra-dev/rspack",
+      "docs": "https://rspack.rs/guide/start/introduction",
+      "summary": "Rust-based bundler largely compatible with the webpack API and loaders.",
+      "useWhen": "Use instead of hand-tuning slow webpack builds when migrating an existing webpack configuration.",
+      "cautions": [
+        "Not every webpack plugin is supported; check the compatibility list."
+      ],
+      "tags": [
+        "bundler",
+        "webpack",
+        "rust",
+        "build"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@rspack/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/web-infra-dev/rspack",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://rspack.rs/guide/start/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "swc",
+      "name": "SWC",
+      "category": "build-tool",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/swc-project/swc/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://swc.rs",
+      "repository": "https://github.com/swc-project/swc",
+      "docs": "https://swc.rs/docs/getting-started",
+      "summary": "Rust-based platform for fast JavaScript/TypeScript compilation and minification.",
+      "useWhen": "Use instead of slower Babel transpilation pipelines when only standard syntax transforms are needed.",
+      "cautions": [
+        "Plugin ABI is tied to swc_core versions; pin compatible versions."
+      ],
+      "tags": [
+        "compiler",
+        "transpiler",
+        "rust",
+        "typescript",
+        "build"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@swc/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/swc-project/swc",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://swc.rs/docs/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "babel",
+      "name": "Babel",
+      "category": "build-tool",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/babel/babel/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://babeljs.io",
+      "repository": "https://github.com/babel/babel",
+      "docs": "https://babeljs.io/docs/",
+      "summary": "JavaScript compiler for syntax transforms, polyfills and custom code transforms via plugins.",
+      "useWhen": "Use instead of writing custom AST transforms or downleveling code by hand when a plugin ecosystem is needed.",
+      "cautions": [
+        "Slower than esbuild/SWC; prefer those unless a Babel-only plugin is required."
+      ],
+      "tags": [
+        "compiler",
+        "transpiler",
+        "ast",
+        "plugins",
+        "build"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@babel/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/babel/babel",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://babeljs.io/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "rollup",
+      "name": "Rollup",
+      "category": "build-tool",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rollup/rollup/blob/master/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://rollupjs.org",
+      "repository": "https://github.com/rollup/rollup",
+      "docs": "https://rollupjs.org/introduction/",
+      "summary": "ES module bundler focused on libraries with tree shaking and multiple output formats.",
+      "useWhen": "Use instead of hand-writing library build scripts that emit ESM and CommonJS bundles.",
+      "cautions": [
+        "Needs plugins for CommonJS, Node resolution and TypeScript."
+      ],
+      "tags": [
+        "bundler",
+        "library",
+        "esm",
+        "tree-shaking"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "rollup"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rollup/rollup",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://rollupjs.org/introduction/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "zustand",
+      "name": "Zustand",
+      "category": "state",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pmndrs/zustand/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://zustand.docs.pmnd.rs",
+      "repository": "https://github.com/pmndrs/zustand",
+      "docs": "https://zustand.docs.pmnd.rs/learn/getting-started/introduction",
+      "summary": "Small, hook-based global state store for React.",
+      "useWhen": "Use instead of hand-writing React context plus reducers for shared client state.",
+      "cautions": [
+        "Use selectors to avoid re-rendering on unrelated changes.",
+        "Keep server data in a cache like TanStack Query instead of the store."
+      ],
+      "tags": [
+        "react",
+        "state",
+        "store",
+        "hooks"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "zustand"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pmndrs/zustand",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://zustand.docs.pmnd.rs/learn/getting-started/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "redux-toolkit",
+      "name": "Redux Toolkit",
+      "category": "state",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/reduxjs/redux-toolkit/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://redux-toolkit.js.org",
+      "repository": "https://github.com/reduxjs/redux-toolkit",
+      "docs": "https://redux-toolkit.js.org/introduction/getting-started",
+      "summary": "Official, batteries-included toolset for Redux state management, including RTK Query for data fetching.",
+      "useWhen": "Use instead of hand-writing Redux boilerplate, immutable updates and API caching layers.",
+      "cautions": [
+        "Heavier than needed for small apps; consider Zustand or Jotai first."
+      ],
+      "tags": [
+        "redux",
+        "state",
+        "react",
+        "rtk-query",
+        "devtools"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@reduxjs/toolkit"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "react-redux"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/reduxjs/redux-toolkit",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://redux-toolkit.js.org/introduction/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "jotai",
+      "name": "Jotai",
+      "category": "state",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pmndrs/jotai/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://jotai.org",
+      "repository": "https://github.com/pmndrs/jotai",
+      "docs": "https://jotai.org/docs/introduction",
+      "summary": "Primitive, atom-based state management for React.",
+      "useWhen": "Use instead of hand-writing many fine-grained contexts for derived and shared React state.",
+      "cautions": [
+        "Atoms defined inside components are recreated each render; define them at module scope or memoize."
+      ],
+      "tags": [
+        "react",
+        "state",
+        "atoms",
+        "derived-state"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "jotai"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pmndrs/jotai",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://jotai.org/docs/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pinia",
+      "name": "Pinia",
+      "category": "state",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vuejs/pinia/blob/v3/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://pinia.vuejs.org",
+      "repository": "https://github.com/vuejs/pinia",
+      "docs": "https://pinia.vuejs.org/introduction.html",
+      "summary": "Official intuitive, type-safe store for Vue.",
+      "useWhen": "Use instead of hand-writing shared reactive stores or Vuex boilerplate in Vue apps.",
+      "cautions": [
+        "With SSR, create stores per request to avoid cross-request state leaks."
+      ],
+      "tags": [
+        "vue",
+        "state",
+        "store",
+        "typescript"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "pinia"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vuejs/pinia",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://pinia.vuejs.org/introduction.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "xstate",
+      "name": "XState",
+      "category": "state",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/statelyai/xstate/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://stately.ai",
+      "repository": "https://github.com/statelyai/xstate",
+      "docs": "https://stately.ai/docs",
+      "summary": "State machines, statecharts and actors for JavaScript and TypeScript.",
+      "useWhen": "Use instead of hand-writing tangled boolean flags for multi-step flows, wizards and complex UI logic.",
+      "cautions": [
+        "v5 APIs differ substantially from v4; do not mix examples."
+      ],
+      "tags": [
+        "state-machine",
+        "statecharts",
+        "actors",
+        "workflow"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "xstate"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/statelyai/xstate",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://stately.ai/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "mobx",
+      "name": "MobX",
+      "category": "state",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/mobxjs/mobx/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://mobx.js.org",
+      "repository": "https://github.com/mobxjs/mobx",
+      "docs": "https://mobx.js.org/README.html",
+      "summary": "Transparent reactive state management based on observables.",
+      "useWhen": "Use instead of hand-writing subscription and change-propagation logic for complex domain models.",
+      "cautions": [
+        "Implicit reactivity can obscure update paths; keep actions explicit."
+      ],
+      "tags": [
+        "state",
+        "observables",
+        "reactivity",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "mobx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mobxjs/mobx",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://mobx.js.org/README.html",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tanstack-query",
+      "name": "TanStack Query",
+      "category": "data-fetching",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TanStack/query/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://tanstack.com/query",
+      "repository": "https://github.com/TanStack/query",
+      "docs": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "summary": "Async server-state management with caching, deduplication, background refetching and mutations.",
+      "useWhen": "Use instead of hand-writing fetch caching, loading/error state, retries and cache invalidation in components.",
+      "cautions": [
+        "Query keys must include every variable the fetch depends on."
+      ],
+      "tags": [
+        "data-fetching",
+        "cache",
+        "react",
+        "vue",
+        "server-state"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tanstack/react-query"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TanStack/query",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "swr",
+      "name": "SWR",
+      "category": "data-fetching",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vercel/swr/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://swr.vercel.app",
+      "repository": "https://github.com/vercel/swr",
+      "docs": "https://swr.vercel.app/docs/getting-started",
+      "summary": "React hooks for data fetching with stale-while-revalidate caching.",
+      "useWhen": "Use instead of hand-writing fetch-on-mount, caching and revalidation hooks in React.",
+      "cautions": [
+        "Mutation and invalidation features are lighter than TanStack Query."
+      ],
+      "tags": [
+        "data-fetching",
+        "cache",
+        "react",
+        "hooks"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "swr"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vercel/swr",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://swr.vercel.app/docs/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "apollo-client",
+      "name": "Apollo Client",
+      "category": "data-fetching",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/apollographql/apollo-client/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://www.apollographql.com/docs/react",
+      "repository": "https://github.com/apollographql/apollo-client",
+      "docs": "https://www.apollographql.com/docs/react/get-started",
+      "summary": "GraphQL client with a normalized cache and React integration.",
+      "useWhen": "Use instead of hand-writing GraphQL request, caching and cache-normalization logic.",
+      "cautions": [
+        "Normalized cache needs type policies for IDs and pagination.",
+        "Major versions change import paths; follow the migration guide."
+      ],
+      "tags": [
+        "graphql",
+        "data-fetching",
+        "cache",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@apollo/client"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/apollographql/apollo-client",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.apollographql.com/docs/react/get-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "urql",
+      "name": "urql",
+      "category": "data-fetching",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/urql-graphql/urql/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://nearform.com/open-source/urql/",
+      "repository": "https://github.com/urql-graphql/urql",
+      "docs": "https://nearform.com/open-source/urql/docs/",
+      "summary": "Lightweight, extensible GraphQL client with document caching and optional normalized cache.",
+      "useWhen": "Use instead of hand-writing GraphQL fetching and caching when Apollo is heavier than needed.",
+      "cautions": [
+        "Default document cache invalidates by typename; add Graphcache for normalized updates."
+      ],
+      "tags": [
+        "graphql",
+        "data-fetching",
+        "cache",
+        "react",
+        "svelte"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "urql"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@urql/core"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/urql-graphql/urql",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://nearform.com/open-source/urql/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "trpc",
+      "name": "tRPC",
+      "category": "data-fetching",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/trpc/trpc/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://trpc.io",
+      "repository": "https://github.com/trpc/trpc",
+      "docs": "https://trpc.io/docs",
+      "summary": "End-to-end type-safe APIs between a TypeScript server and client without code generation.",
+      "useWhen": "Use instead of hand-writing REST clients and duplicated request/response types in TypeScript monorepos.",
+      "cautions": [
+        "Requires a TypeScript server and client sharing types; not for public multi-language APIs.",
+        "Still validate inputs and authorize every procedure."
+      ],
+      "tags": [
+        "rpc",
+        "typescript",
+        "type-safe",
+        "api-client"
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@trpc/client"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@trpc/server"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/trpc/trpc",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://trpc.io/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-hook-form",
+      "name": "React Hook Form",
+      "category": "forms",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/react-hook-form/react-hook-form/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://react-hook-form.com",
+      "repository": "https://github.com/react-hook-form/react-hook-form",
+      "docs": "https://react-hook-form.com/get-started",
+      "summary": "Performant React form library based on uncontrolled inputs and hooks.",
+      "useWhen": "Use instead of hand-writing form state, dirty/touched tracking, validation and error display in React.",
+      "cautions": [
+        "Controlled UI-library inputs need the Controller wrapper.",
+        "Validate again on the server."
+      ],
+      "tags": [
+        "forms",
+        "react",
+        "validation",
+        "hooks"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-hook-form"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/react-hook-form/react-hook-form",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://react-hook-form.com/get-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "validated-form",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "formik",
+      "name": "Formik",
+      "category": "forms",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/jaredpalmer/formik/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://formik.org",
+      "repository": "https://github.com/jaredpalmer/formik",
+      "docs": "https://formik.org/docs/overview",
+      "summary": "Form state and validation helpers for React.",
+      "useWhen": "Use instead of hand-writing form state handling when maintaining existing Formik-based React apps.",
+      "cautions": [
+        "Release activity is low; prefer React Hook Form or TanStack Form for new projects."
+      ],
+      "tags": [
+        "forms",
+        "react",
+        "validation"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "formik"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jaredpalmer/formik",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://formik.org/docs/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "validated-form",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tanstack-form",
+      "name": "TanStack Form",
+      "category": "forms",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TanStack/form/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://tanstack.com/form",
+      "repository": "https://github.com/TanStack/form",
+      "docs": "https://tanstack.com/form/latest/docs/overview",
+      "summary": "Headless, type-safe form state management for React, Vue, Angular, Solid and Svelte.",
+      "useWhen": "Use instead of hand-writing typed field state, async validation and submission handling across frameworks.",
+      "cautions": [
+        "API is newer and still evolving; pin the version."
+      ],
+      "tags": [
+        "forms",
+        "typescript",
+        "headless",
+        "validation"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tanstack/react-form"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TanStack/form",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tanstack.com/form/latest/docs/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "validated-form",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "zod",
+      "name": "Zod",
+      "category": "validation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/colinhacks/zod/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://zod.dev",
+      "repository": "https://github.com/colinhacks/zod",
+      "docs": "https://zod.dev/api",
+      "summary": "TypeScript-first schema validation with static type inference.",
+      "useWhen": "Use instead of hand-writing input validation and duplicate TypeScript types for forms, API payloads and config.",
+      "cautions": [
+        "Validate on the server even when the client validates.",
+        "Zod 4 changed some APIs; check which major the project uses."
+      ],
+      "tags": [
+        "validation",
+        "schema",
+        "typescript",
+        "forms"
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "zod"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/colinhacks/zod",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://zod.dev/api",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "validated-form",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "valibot",
+      "name": "Valibot",
+      "category": "validation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/open-circle/valibot/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://valibot.dev",
+      "repository": "https://github.com/open-circle/valibot",
+      "docs": "https://valibot.dev/guides/introduction/",
+      "summary": "Modular, tree-shakable schema validation library with TypeScript inference.",
+      "useWhen": "Use instead of hand-writing validation when bundle size matters more than Zod compatibility.",
+      "cautions": [
+        "Functional pipe API differs from Zod; do not mix examples."
+      ],
+      "tags": [
+        "validation",
+        "schema",
+        "typescript",
+        "bundle-size"
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "valibot"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/open-circle/valibot",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://valibot.dev/guides/introduction/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "validated-form",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "yup",
+      "name": "Yup",
+      "category": "validation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/jquense/yup/blob/master/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jquense/yup",
+      "docs": "https://github.com/jquense/yup#readme",
+      "summary": "Schema builder for runtime value parsing and validation.",
+      "useWhen": "Use instead of hand-writing validation rules, especially in existing Formik-based forms.",
+      "cautions": [
+        "Type inference is weaker than Zod or Valibot."
+      ],
+      "tags": [
+        "validation",
+        "schema",
+        "forms"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "yup"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/jquense/yup",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/jquense/yup#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "validated-form",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tailwindcss",
+      "name": "Tailwind CSS",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/tailwindlabs/tailwindcss/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://tailwindcss.com",
+      "repository": "https://github.com/tailwindlabs/tailwindcss",
+      "docs": "https://tailwindcss.com/docs",
+      "summary": "Utility-first CSS framework with design tokens and on-demand generated styles.",
+      "useWhen": "Use instead of hand-writing large custom stylesheets, spacing scales and responsive utilities.",
+      "cautions": [
+        "v4 moves configuration into CSS (@theme); v3 tailwind.config.js examples differ.",
+        "Do not build class names dynamically by string concatenation."
+      ],
+      "tags": [
+        "css",
+        "utility-first",
+        "design-tokens",
+        "responsive"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tailwindcss"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/tailwindlabs/tailwindcss",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tailwindcss.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "theme-tokens",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "styled-components",
+      "name": "styled-components",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/styled-components/styled-components/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://styled-components.com",
+      "repository": "https://github.com/styled-components/styled-components",
+      "docs": "https://styled-components.com/docs",
+      "summary": "CSS-in-JS library using tagged template literals to style React components.",
+      "useWhen": "Use instead of hand-writing scoped component styles when maintaining existing styled-components codebases.",
+      "cautions": [
+        "Maintainers announced maintenance mode; prefer zero-runtime options for new work.",
+        "Runtime CSS-in-JS conflicts with React Server Components."
+      ],
+      "tags": [
+        "css-in-js",
+        "react",
+        "styling"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "styled-components"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/styled-components/styled-components",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://styled-components.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "emotion",
+      "name": "Emotion",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/emotion-js/emotion/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://emotion.sh",
+      "repository": "https://github.com/emotion-js/emotion",
+      "docs": "https://emotion.sh/docs/introduction",
+      "summary": "Performant CSS-in-JS library with css prop and styled API.",
+      "useWhen": "Use instead of hand-writing dynamic component styles where runtime theming is required, e.g. with MUI.",
+      "cautions": [
+        "Runtime styles do not work in React Server Components."
+      ],
+      "tags": [
+        "css-in-js",
+        "react",
+        "styling",
+        "theming"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@emotion/react"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@emotion/styled"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/emotion-js/emotion",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://emotion.sh/docs/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vanilla-extract",
+      "name": "vanilla-extract",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vanilla-extract-css/vanilla-extract/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://vanilla-extract.style",
+      "repository": "https://github.com/vanilla-extract-css/vanilla-extract",
+      "docs": "https://vanilla-extract.style/documentation/getting-started/",
+      "summary": "Zero-runtime, type-safe stylesheets written in TypeScript.",
+      "useWhen": "Use instead of hand-writing CSS modules plus typed theme contracts.",
+      "cautions": [
+        "Requires a bundler plugin for each build tool."
+      ],
+      "tags": [
+        "css",
+        "zero-runtime",
+        "typescript",
+        "theming"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@vanilla-extract/css"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vanilla-extract-css/vanilla-extract",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://vanilla-extract.style/documentation/getting-started/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "theme-tokens",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "panda-css",
+      "name": "Panda CSS",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/chakra-ui/panda/blob/v2/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://panda-css.com",
+      "repository": "https://github.com/chakra-ui/panda",
+      "docs": "https://panda-css.com/docs/overview/getting-started",
+      "summary": "Build-time CSS-in-JS with design tokens, recipes and type-safe style props.",
+      "useWhen": "Use instead of hand-writing token systems and variant styles with runtime CSS-in-JS.",
+      "cautions": [
+        "Styles must be statically analyzable; dynamic values need tokens or CSS variables."
+      ],
+      "tags": [
+        "css",
+        "zero-runtime",
+        "design-tokens",
+        "recipes"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@pandacss/dev"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chakra-ui/panda",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://panda-css.com/docs/overview/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "theme-tokens",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "unocss",
+      "name": "UnoCSS",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/unocss/unocss/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://unocss.dev",
+      "repository": "https://github.com/unocss/unocss",
+      "docs": "https://unocss.dev/guide/",
+      "summary": "Instant on-demand atomic CSS engine with configurable presets.",
+      "useWhen": "Use instead of hand-writing utility classes when a customizable, preset-driven atomic CSS engine is preferred.",
+      "cautions": [
+        "Preset choice determines available utilities; document it for contributors."
+      ],
+      "tags": [
+        "css",
+        "atomic-css",
+        "utility-first",
+        "vite"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "unocss"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/unocss/unocss",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://unocss.dev/guide/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sass",
+      "name": "Sass",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sass/dart-sass/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://sass-lang.com",
+      "repository": "https://github.com/sass/dart-sass",
+      "docs": "https://sass-lang.com/documentation/",
+      "summary": "Mature CSS preprocessor with variables, mixins, nesting and modules.",
+      "useWhen": "Use instead of hand-maintaining repetitive CSS when a preprocessor is part of the stack.",
+      "cautions": [
+        "Use the modern module system (@use); @import is deprecated."
+      ],
+      "tags": [
+        "css",
+        "preprocessor",
+        "scss"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sass"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sass/dart-sass",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://sass-lang.com/documentation/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "postcss",
+      "name": "PostCSS",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/postcss/postcss/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://postcss.org",
+      "repository": "https://github.com/postcss/postcss",
+      "docs": "https://postcss.org/docs/",
+      "summary": "Tool for transforming CSS with JavaScript plugins, including autoprefixing and CSS Modules.",
+      "useWhen": "Use instead of hand-writing vendor prefixes or custom CSS transformation scripts.",
+      "cautions": [
+        "Each plugin is a separate dependency to review and pin."
+      ],
+      "tags": [
+        "css",
+        "postcss",
+        "autoprefixer",
+        "css-modules"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "postcss"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/postcss/postcss",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://postcss.org/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "clsx",
+      "name": "clsx",
+      "category": "utility",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/lukeed/clsx/blob/master/license",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": null,
+      "repository": "https://github.com/lukeed/clsx",
+      "docs": "https://github.com/lukeed/clsx#readme",
+      "summary": "Tiny utility for constructing conditional className strings.",
+      "useWhen": "Use instead of hand-writing className concatenation and conditional class logic.",
+      "cautions": [
+        "Does not resolve conflicting Tailwind classes; combine with tailwind-merge if needed."
+      ],
+      "tags": [
+        "classnames",
+        "css",
+        "utility",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "clsx"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lukeed/clsx",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/lukeed/clsx#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tailwind-merge",
+      "name": "tailwind-merge",
+      "category": "styling",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dcastil/tailwind-merge/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": null,
+      "repository": "https://github.com/dcastil/tailwind-merge",
+      "docs": "https://github.com/dcastil/tailwind-merge#readme",
+      "summary": "Merges Tailwind CSS class strings while resolving conflicting utilities.",
+      "useWhen": "Use instead of hand-writing logic to override Tailwind classes passed into components.",
+      "cautions": [
+        "Major versions track Tailwind majors; match them."
+      ],
+      "tags": [
+        "tailwind",
+        "classnames",
+        "css",
+        "utility"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tailwind-merge"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dcastil/tailwind-merge",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/dcastil/tailwind-merge#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "chakra-ui",
+      "name": "Chakra UI",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://chakra-ui.com",
+      "repository": "https://github.com/chakra-ui/chakra-ui",
+      "docs": "https://chakra-ui.com/docs/get-started/installation",
+      "summary": "Accessible React component library with themeable design tokens.",
+      "useWhen": "Use instead of hand-building accessible buttons, modals, menus and form controls in React.",
+      "cautions": [
+        "v3 rewrote the API on Ark UI and Panda; v2 examples do not apply."
+      ],
+      "tags": [
+        "react",
+        "components",
+        "accessibility",
+        "design-system"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@chakra-ui/react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chakra-ui/chakra-ui",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://chakra-ui.com/docs/get-started/installation",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ant-design",
+      "name": "Ant Design",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ant-design/ant-design/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://ant.design",
+      "repository": "https://github.com/ant-design/ant-design",
+      "docs": "https://ant.design/docs/react/introduce",
+      "summary": "Enterprise-grade React UI library with rich data entry and display components.",
+      "useWhen": "Use instead of hand-building admin dashboards, complex forms, tables and date pickers in React.",
+      "cautions": [
+        "Large bundle and opinionated look; customize via the token theme system."
+      ],
+      "tags": [
+        "react",
+        "components",
+        "enterprise",
+        "admin"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "antd"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ant-design/ant-design",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://ant.design/docs/react/introduce",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vuetify",
+      "name": "Vuetify",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/vuetifyjs/vuetify/blob/master/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://vuetifyjs.com",
+      "repository": "https://github.com/vuetifyjs/vuetify",
+      "docs": "https://vuetifyjs.com/en/getting-started/installation/",
+      "summary": "Material Design component framework for Vue.",
+      "useWhen": "Use instead of hand-building Material-styled Vue components and layouts.",
+      "cautions": [
+        "Vuetify 3 targets Vue 3; v2 examples do not apply."
+      ],
+      "tags": [
+        "vue",
+        "components",
+        "material-design"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vuetify"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vuetifyjs/vuetify",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://vuetifyjs.com/en/getting-started/installation/",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "quasar",
+      "name": "Quasar",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/quasarframework/quasar/blob/dev/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://quasar.dev",
+      "repository": "https://github.com/quasarframework/quasar",
+      "docs": "https://quasar.dev/start/pick-quasar-flavour",
+      "summary": "Vue-based framework and component library targeting SPA, SSR, PWA and hybrid apps from one codebase.",
+      "useWhen": "Use instead of hand-assembling a Vue component set plus build targets for web and PWA.",
+      "cautions": [
+        "The Quasar CLI is opinionated; integrating into an existing Vite app uses the plugin route."
+      ],
+      "tags": [
+        "vue",
+        "components",
+        "pwa",
+        "ssr"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "quasar"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/quasarframework/quasar",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://quasar.dev/start/pick-quasar-flavour",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "angular-material",
+      "name": "Angular Material",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/angular/components/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://material.angular.dev",
+      "repository": "https://github.com/angular/components",
+      "docs": "https://material.angular.dev/guide/getting-started",
+      "summary": "Official Material Design components and Component Dev Kit for Angular.",
+      "useWhen": "Use instead of hand-building accessible Angular components, overlays and drag-drop primitives.",
+      "cautions": [
+        "Keep its version aligned with the Angular core major."
+      ],
+      "tags": [
+        "angular",
+        "components",
+        "material-design",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@angular/material"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@angular/cdk"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/angular/components",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://material.angular.dev/guide/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "daisyui",
+      "name": "daisyUI",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/saadeghi/daisyui/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://daisyui.com",
+      "repository": "https://github.com/saadeghi/daisyui",
+      "docs": "https://daisyui.com/docs/install/",
+      "summary": "Tailwind CSS plugin adding semantic component classes and themes.",
+      "useWhen": "Use instead of hand-writing long Tailwind class lists for common components in any framework.",
+      "cautions": [
+        "CSS-only; interactive behavior and accessibility (focus traps, ARIA) remain your job."
+      ],
+      "tags": [
+        "tailwind",
+        "components",
+        "css",
+        "themes"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "daisyui"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/saadeghi/daisyui",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://daisyui.com/docs/install/",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ark-ui",
+      "name": "Ark UI",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/chakra-ui/ark/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://ark-ui.com",
+      "repository": "https://github.com/chakra-ui/ark",
+      "docs": "https://ark-ui.com/docs",
+      "summary": "Headless, accessible components built on state machines for React, Vue, Solid and Svelte.",
+      "useWhen": "Use instead of hand-writing accessible headless component behavior across multiple frameworks.",
+      "cautions": [
+        "Unstyled; pair with Panda, Tailwind or your own styles."
+      ],
+      "tags": [
+        "headless",
+        "components",
+        "accessibility",
+        "react",
+        "vue",
+        "solid"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@ark-ui/react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/chakra-ui/ark",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://ark-ui.com/docs",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "park-ui",
+      "name": "Park UI",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/cschroeter/park-ui/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://park-ui.com",
+      "repository": "https://github.com/cschroeter/park-ui",
+      "docs": "https://park-ui.com/docs/introduction",
+      "summary": "Styled copy-in components built on Ark UI with Panda CSS or Tailwind.",
+      "useWhen": "Use instead of hand-styling Ark UI primitives; copy only the components you need.",
+      "cautions": [
+        "Copied components become your code to maintain and update."
+      ],
+      "tags": [
+        "components",
+        "ark-ui",
+        "panda",
+        "copy-paste"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/cschroeter/park-ui",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://park-ui.com/docs/introduction",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Copy only the needed components, keep the upstream license notice and record the source commit."
+      ]
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/skeletonlabs/skeleton/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://www.skeleton.dev",
+      "repository": "https://github.com/skeletonlabs/skeleton",
+      "docs": "https://www.skeleton.dev/docs/get-started/introduction",
+      "summary": "Adaptive design system and UI toolkit built on Tailwind CSS for Svelte and React.",
+      "useWhen": "Use instead of hand-building themed Tailwind components in Svelte or React apps.",
+      "cautions": [
+        "Major versions changed architecture; follow the docs for the installed version."
+      ],
+      "tags": [
+        "svelte",
+        "tailwind",
+        "components",
+        "design-system"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@skeletonlabs/skeleton"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/skeletonlabs/skeleton",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.skeleton.dev/docs/get-started/introduction",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "flowbite",
+      "name": "Flowbite",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/themesberg/flowbite/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://flowbite.com",
+      "repository": "https://github.com/themesberg/flowbite",
+      "docs": "https://flowbite.com/docs/getting-started/introduction/",
+      "summary": "Open-source Tailwind CSS component library with interactive JavaScript components.",
+      "useWhen": "Use instead of hand-writing Tailwind modals, dropdowns, navbars and form components.",
+      "cautions": [
+        "Flowbite Pro blocks and Figma kits are commercial and separately licensed."
+      ],
+      "tags": [
+        "tailwind",
+        "components",
+        "css"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "flowbite"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/themesberg/flowbite",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://flowbite.com/docs/getting-started/introduction/",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "bits-ui",
+      "name": "Bits UI",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/huntabyte/bits-ui/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://bits-ui.com",
+      "repository": "https://github.com/huntabyte/bits-ui",
+      "docs": "https://bits-ui.com/docs/introduction",
+      "summary": "Headless, accessible component primitives for Svelte.",
+      "useWhen": "Use instead of hand-writing accessible dialogs, menus, selects and popovers in Svelte.",
+      "cautions": [
+        "Unstyled; shadcn-svelte provides styled copies."
+      ],
+      "tags": [
+        "svelte",
+        "headless",
+        "components",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "bits-ui"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/huntabyte/bits-ui",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://bits-ui.com/docs/introduction",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "melt-ui",
+      "name": "Melt UI",
+      "category": "components",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/melt-ui/melt-ui/blob/develop/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://melt-ui.com",
+      "repository": "https://github.com/melt-ui/melt-ui",
+      "docs": "https://melt-ui.com/docs/introduction",
+      "summary": "Headless builder library for accessible Svelte components.",
+      "useWhen": "Use instead of hand-writing ARIA behavior for custom-styled Svelte components.",
+      "cautions": [
+        "Check Svelte 5 support status for the package version in use."
+      ],
+      "tags": [
+        "svelte",
+        "headless",
+        "builders",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@melt-ui/svelte"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/melt-ui/melt-ui",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://melt-ui.com/docs/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "motion",
+      "name": "Motion (formerly Framer Motion)",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/motiondivision/motion/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://motion.dev",
+      "repository": "https://github.com/motiondivision/motion",
+      "docs": "https://motion.dev/docs",
+      "summary": "Production-ready animation library for React, JavaScript and Vue with gestures and layout animations.",
+      "useWhen": "Use instead of hand-writing animation loops, spring physics, gesture handling and exit animations.",
+      "cautions": [
+        "Respect prefers-reduced-motion.",
+        "Motion+ premium components are separately licensed."
+      ],
+      "tags": [
+        "animation",
+        "react",
+        "gestures",
+        "transitions"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "motion"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "framer-motion"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/motiondivision/motion",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://motion.dev/docs",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/al-husayn/awesome-ui-resources",
+          "title": "Also listed in Awesome UI Resources"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "gsap",
+      "name": "GSAP",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GSAP Standard License",
+        "url": "https://github.com/greensock/GSAP/blob/master/README.md",
+        "scope": "GSAP Standard \"no charge\" license, not OSI open source; free for commercial use but review the restrictions before shipping."
+      },
+      "homepage": "https://gsap.com",
+      "repository": "https://github.com/greensock/GSAP",
+      "docs": "https://gsap.com/docs/v3/",
+      "summary": "High-performance JavaScript animation library with timelines and scroll-driven effects.",
+      "useWhen": "Use instead of hand-writing timeline sequencing and scroll-triggered animation code.",
+      "cautions": [
+        "Not an OSI license; review the GSAP Standard License terms (no-charge, with restrictions on competing tools).",
+        "Respect prefers-reduced-motion."
+      ],
+      "tags": [
+        "animation",
+        "timeline",
+        "scroll",
+        "svg"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "gsap"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/greensock/GSAP",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://gsap.com/docs/v3/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Review the license terms before adding; then install with the project package manager, commit the lockfile and pin the reviewed version."
+      ]
+    },
+    {
+      "id": "auto-animate",
+      "name": "AutoAnimate",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/formkit/auto-animate/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://auto-animate.formkit.com",
+      "repository": "https://github.com/formkit/auto-animate",
+      "docs": "https://auto-animate.formkit.com/#usage",
+      "summary": "Zero-config drop-in animation for elements being added, removed or moved.",
+      "useWhen": "Use instead of hand-writing list enter/leave/reorder transitions.",
+      "cautions": [
+        "Limited control over choreography; use Motion for complex sequences."
+      ],
+      "tags": [
+        "animation",
+        "transitions",
+        "lists",
+        "react",
+        "vue"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@formkit/auto-animate"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/formkit/auto-animate",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://auto-animate.formkit.com/#usage",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lottie-web",
+      "name": "lottie-web",
+      "category": "animation",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/airbnb/lottie-web/blob/master/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://airbnb.io/lottie/",
+      "repository": "https://github.com/airbnb/lottie-web",
+      "docs": "https://airbnb.io/lottie/#/web",
+      "summary": "Renders After Effects animations exported as Lottie JSON in the browser.",
+      "useWhen": "Use instead of hand-recreating designer-made motion graphics in CSS or canvas.",
+      "cautions": [
+        "Release activity is slow; the expressions feature evaluates code from animation files, so load only trusted JSON."
+      ],
+      "tags": [
+        "animation",
+        "lottie",
+        "after-effects",
+        "svg"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lottie-web"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/airbnb/lottie-web",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://airbnb.io/lottie/#/web",
+          "title": "Official documentation"
+        },
+        {
+          "url": "https://github.com/brandonhimpfen/awesome-ui-components",
+          "title": "Also listed in Awesome UI Components"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "date-fns",
+      "name": "date-fns",
+      "category": "dates",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/date-fns/date-fns/blob/main/pkgs/core/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://date-fns.org",
+      "repository": "https://github.com/date-fns/date-fns",
+      "docs": "https://date-fns.org/docs/Getting-Started",
+      "summary": "Modular, immutable date utility functions for JavaScript.",
+      "useWhen": "Use instead of hand-writing date formatting, parsing, arithmetic and comparisons.",
+      "cautions": [
+        "Timezone support needs @date-fns/tz or date-fns-tz."
+      ],
+      "tags": [
+        "dates",
+        "time",
+        "formatting",
+        "utility"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "date-fns"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/date-fns/date-fns",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://date-fns.org/docs/Getting-Started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dayjs",
+      "name": "Day.js",
+      "category": "dates",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/iamkun/dayjs/blob/dev/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://day.js.org",
+      "repository": "https://github.com/iamkun/dayjs",
+      "docs": "https://day.js.org/docs/en/installation/installation",
+      "summary": "Tiny Moment.js-compatible date library with plugins.",
+      "useWhen": "Use instead of hand-writing date formatting and relative time, or as a small Moment.js replacement.",
+      "cautions": [
+        "Timezone, relative time and custom parsing need explicit plugins."
+      ],
+      "tags": [
+        "dates",
+        "time",
+        "formatting",
+        "moment"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "dayjs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/iamkun/dayjs",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://day.js.org/docs/en/installation/installation",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "luxon",
+      "name": "Luxon",
+      "category": "dates",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/moment/luxon/blob/master/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://moment.github.io/luxon/",
+      "repository": "https://github.com/moment/luxon",
+      "docs": "https://moment.github.io/luxon/#/",
+      "summary": "Immutable date and time library with first-class time zone and Intl support.",
+      "useWhen": "Use instead of hand-writing timezone conversion, durations and intervals.",
+      "cautions": [
+        "Relies on the runtime Intl data for zones and locales."
+      ],
+      "tags": [
+        "dates",
+        "time",
+        "timezone",
+        "intl"
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "luxon"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/moment/luxon",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://moment.github.io/luxon/#/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "i18next",
+      "name": "i18next",
+      "category": "i18n",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/i18next/i18next/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://www.i18next.com",
+      "repository": "https://github.com/i18next/i18next",
+      "docs": "https://www.i18next.com/overview/getting-started",
+      "summary": "Internationalization framework with plurals, interpolation, namespaces and framework bindings.",
+      "useWhen": "Use instead of hand-writing translation lookup, pluralization and language detection.",
+      "cautions": [
+        "Escape interpolated values unless the rendering layer already escapes them.",
+        "The Locize service is optional and paid."
+      ],
+      "tags": [
+        "i18n",
+        "translation",
+        "localization",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "i18next"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "react-i18next"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/i18next/i18next",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://www.i18next.com/overview/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "formatjs",
+      "name": "FormatJS",
+      "category": "i18n",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/formatjs/formatjs/blob/main/packages/intl/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://formatjs.github.io",
+      "repository": "https://github.com/formatjs/formatjs",
+      "docs": "https://formatjs.github.io/docs/getting-started/installation",
+      "summary": "ICU MessageFormat internationalization libraries built on the Intl APIs.",
+      "useWhen": "Use instead of hand-writing message formatting, plural rules and number/date localization.",
+      "cautions": [
+        "Precompile messages to reduce runtime parser size.",
+        "The react-intl binding is BSD-3-Clause while @formatjs/intl is MIT; record both if you add react-intl."
+      ],
+      "tags": [
+        "i18n",
+        "icu",
+        "intl",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@formatjs/intl"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/formatjs/formatjs",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://formatjs.github.io/docs/getting-started/installation",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "vue-i18n",
+      "name": "Vue I18n",
+      "category": "i18n",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/intlify/vue-i18n/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://vue-i18n.intlify.dev",
+      "repository": "https://github.com/intlify/vue-i18n",
+      "docs": "https://vue-i18n.intlify.dev/guide/introduction",
+      "summary": "Internationalization plugin for Vue with message formatting and pluralization.",
+      "useWhen": "Use instead of hand-writing translation lookup and locale switching in Vue apps.",
+      "cautions": [
+        "Avoid v-html with translated strings containing user data."
+      ],
+      "tags": [
+        "i18n",
+        "vue",
+        "translation",
+        "localization"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "vue-i18n"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/intlify/vue-i18n",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://vue-i18n.intlify.dev/guide/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lodash-es",
+      "name": "lodash-es",
+      "category": "utility",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/lodash/lodash/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://lodash.com",
+      "repository": "https://github.com/lodash/lodash",
+      "docs": "https://lodash.com/docs/",
+      "summary": "ES module build of Lodash utility functions for arrays, objects and functions.",
+      "useWhen": "Use instead of hand-writing deep clone, debounce, throttle, groupBy and similar utilities.",
+      "cautions": [
+        "Prefer native methods where equivalent; import per-function for tree shaking."
+      ],
+      "tags": [
+        "utility",
+        "debounce",
+        "collections",
+        "esm"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lodash-es"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/lodash/lodash",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://lodash.com/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "ramda",
+      "name": "Ramda",
+      "category": "utility",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ramda/ramda/blob/master/LICENSE.txt",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://ramdajs.com",
+      "repository": "https://github.com/ramda/ramda",
+      "docs": "https://ramdajs.com/docs/",
+      "summary": "Practical functional programming library with auto-curried, immutable utilities.",
+      "useWhen": "Use instead of hand-writing curried data-transformation helpers in functional-style code.",
+      "cautions": [
+        "TypeScript types are maintained separately (types/ramda) and can be awkward."
+      ],
+      "tags": [
+        "utility",
+        "functional",
+        "immutable",
+        "curry"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ramda"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ramda/ramda",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://ramdajs.com/docs/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "nanoid",
+      "name": "Nano ID",
+      "category": "utility",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ai/nanoid/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ai/nanoid",
+      "docs": "https://github.com/ai/nanoid#readme",
+      "summary": "Tiny, secure, URL-friendly unique string ID generator.",
+      "useWhen": "Use instead of hand-writing random ID generation with Math.random.",
+      "cautions": [
+        "v4+ is ESM-only; use v3 for CommonJS-only environments."
+      ],
+      "tags": [
+        "id",
+        "uuid",
+        "random",
+        "utility"
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nanoid"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ai/nanoid",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/ai/nanoid#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tiptap",
+      "name": "Tiptap",
+      "category": "rich-text",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ueberdosis/tiptap/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://tiptap.dev",
+      "repository": "https://github.com/ueberdosis/tiptap",
+      "docs": "https://tiptap.dev/docs/editor/getting-started/overview",
+      "summary": "Headless rich-text editor framework built on ProseMirror with extensions.",
+      "useWhen": "Use instead of hand-building a contenteditable editor, toolbar commands and document schema.",
+      "cautions": [
+        "Some Pro extensions and cloud collaboration features are commercial.",
+        "Sanitize stored HTML before rendering it elsewhere."
+      ],
+      "tags": [
+        "editor",
+        "rich-text",
+        "prosemirror",
+        "wysiwyg"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tiptap/core"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@tiptap/react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ueberdosis/tiptap",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tiptap.dev/docs/editor/getting-started/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "lexical",
+      "name": "Lexical",
+      "category": "rich-text",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/facebook/lexical/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://lexical.dev",
+      "repository": "https://github.com/facebook/lexical",
+      "docs": "https://lexical.dev/docs/intro",
+      "summary": "Extensible text editor framework from Meta focused on reliability and performance.",
+      "useWhen": "Use instead of hand-building rich-text editing with custom nodes and plugins.",
+      "cautions": [
+        "Pre-1.0 versioning; APIs can change between minor releases."
+      ],
+      "tags": [
+        "editor",
+        "rich-text",
+        "react",
+        "wysiwyg"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "lexical"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@lexical/react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/facebook/lexical",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://lexical.dev/docs/intro",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "prosemirror",
+      "name": "ProseMirror",
+      "category": "rich-text",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ProseMirror/prosemirror/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://prosemirror.net",
+      "repository": "https://github.com/ProseMirror/prosemirror",
+      "docs": "https://prosemirror.net/docs/guide/",
+      "summary": "Toolkit for building schema-based rich-text editors with collaborative editing support.",
+      "useWhen": "Use instead of hand-writing document models, transactions and contenteditable handling for custom editors.",
+      "cautions": [
+        "Low-level; Tiptap is a faster start for typical editors."
+      ],
+      "tags": [
+        "editor",
+        "rich-text",
+        "schema",
+        "collaboration"
+      ],
+      "projectTypes": [
+        "web-app",
+        "realtime-collab"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "prosemirror-state"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "prosemirror-view"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "prosemirror-model"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ProseMirror/prosemirror",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://prosemirror.net/docs/guide/",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "slate",
+      "name": "Slate",
+      "category": "rich-text",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ianstormtaylor/slate/blob/main/License.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://docs.slatejs.org",
+      "repository": "https://github.com/ianstormtaylor/slate",
+      "docs": "https://docs.slatejs.org",
+      "summary": "Customizable framework for building rich-text editors in React.",
+      "useWhen": "Use instead of hand-building nested-document editing on contenteditable in React.",
+      "cautions": [
+        "Still in beta versioning; expect breaking changes and mobile/IME edge cases."
+      ],
+      "tags": [
+        "editor",
+        "rich-text",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "slate"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "slate-react"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ianstormtaylor/slate",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.slatejs.org",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "quill",
+      "name": "Quill",
+      "category": "rich-text",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/slab/quill/blob/main/LICENSE",
+        "scope": "BSD-3-Clause for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://quilljs.com",
+      "repository": "https://github.com/slab/quill",
+      "docs": "https://quilljs.com/docs/quickstart",
+      "summary": "Modern WYSIWYG editor with a stable API and Delta document format.",
+      "useWhen": "Use instead of hand-building a simple drop-in rich-text editor with toolbar.",
+      "cautions": [
+        "Use Quill 2; older React wrappers may target Quill 1."
+      ],
+      "tags": [
+        "editor",
+        "rich-text",
+        "wysiwyg"
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "quill"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/slab/quill",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://quilljs.com/docs/quickstart",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "dnd-kit",
+      "name": "dnd kit",
+      "category": "drag-and-drop",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/clauderic/dnd-kit/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://dndkit.com",
+      "repository": "https://github.com/clauderic/dnd-kit",
+      "docs": "https://docs.dndkit.com",
+      "summary": "Lightweight, accessible drag-and-drop toolkit for React.",
+      "useWhen": "Use instead of hand-writing pointer/keyboard drag handling, sortable lists and drop zones.",
+      "cautions": [
+        "Provide keyboard instructions and announcements for accessibility."
+      ],
+      "tags": [
+        "drag-and-drop",
+        "sortable",
+        "react",
+        "accessibility"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@dnd-kit/core"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@dnd-kit/sortable"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/clauderic/dnd-kit",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://docs.dndkit.com",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sortablejs",
+      "name": "SortableJS",
+      "category": "drag-and-drop",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/SortableJS/Sortable/blob/master/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://sortablejs.github.io/Sortable/",
+      "repository": "https://github.com/SortableJS/Sortable",
+      "docs": "https://github.com/SortableJS/Sortable#readme",
+      "summary": "Framework-agnostic library for reorderable drag-and-drop lists.",
+      "useWhen": "Use instead of hand-writing sortable list and cross-list drag behavior in vanilla JS or any framework.",
+      "cautions": [
+        "It mutates the DOM directly; sync state carefully with React/Vue."
+      ],
+      "tags": [
+        "drag-and-drop",
+        "sortable",
+        "vanilla-js"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sortablejs"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SortableJS/Sortable",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/SortableJS/Sortable#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "pragmatic-drag-and-drop",
+      "name": "Pragmatic drag and drop",
+      "category": "drag-and-drop",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/atlassian/pragmatic-drag-and-drop/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://atlassian.design/components/pragmatic-drag-and-drop",
+      "repository": "https://github.com/atlassian/pragmatic-drag-and-drop",
+      "docs": "https://atlassian.design/components/pragmatic-drag-and-drop/about",
+      "summary": "Framework-agnostic, performant drag-and-drop built on the native HTML5 API, from Atlassian.",
+      "useWhen": "Use instead of hand-writing native drag events, drop targets and auto-scroll for boards and trees.",
+      "cautions": [
+        "Native DnD has limited touch support; add accessible non-drag alternatives."
+      ],
+      "tags": [
+        "drag-and-drop",
+        "kanban",
+        "vanilla-js",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@atlaskit/pragmatic-drag-and-drop"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/atlassian/pragmatic-drag-and-drop",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://atlassian.design/components/pragmatic-drag-and-drop/about",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "tanstack-virtual",
+      "name": "TanStack Virtual",
+      "category": "virtualization",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/TanStack/virtual/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://tanstack.com/virtual",
+      "repository": "https://github.com/TanStack/virtual",
+      "docs": "https://tanstack.com/virtual/latest/docs/introduction",
+      "summary": "Headless virtualization for long lists and grids in React, Vue, Solid, Svelte and Angular.",
+      "useWhen": "Use instead of hand-writing windowing and scroll math for rendering thousands of rows.",
+      "cautions": [
+        "Dynamic row heights need measureElement; browser find-in-page will not see unrendered rows."
+      ],
+      "tags": [
+        "virtualization",
+        "lists",
+        "performance",
+        "headless"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@tanstack/react-virtual"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/TanStack/virtual",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://tanstack.com/virtual/latest/docs/introduction",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": "data-table",
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "sonner",
+      "name": "Sonner",
+      "category": "notifications",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/emilkowalski/sonner/blob/main/LICENSE.md",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://sonner.emilkowal.ski",
+      "repository": "https://github.com/emilkowalski/sonner",
+      "docs": "https://sonner.emilkowal.ski/getting-started",
+      "summary": "Opinionated toast notification component for React.",
+      "useWhen": "Use instead of hand-writing toast queues, stacking, timers and dismiss animations.",
+      "cautions": [
+        "Do not rely on toasts for critical errors; they disappear and may be missed by screen readers."
+      ],
+      "tags": [
+        "toast",
+        "notifications",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sonner"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/emilkowalski/sonner",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://sonner.emilkowal.ski/getting-started",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-hot-toast",
+      "name": "react-hot-toast",
+      "category": "notifications",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/timolins/react-hot-toast/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://react-hot-toast.com",
+      "repository": "https://github.com/timolins/react-hot-toast",
+      "docs": "https://react-hot-toast.com/docs",
+      "summary": "Lightweight, customizable toast notifications for React.",
+      "useWhen": "Use instead of hand-writing toast state, positioning and promise-based loading toasts.",
+      "cautions": [
+        "Keep important messages persistent and accessible elsewhere."
+      ],
+      "tags": [
+        "toast",
+        "notifications",
+        "react"
+      ],
+      "projectTypes": [
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-hot-toast"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/timolins/react-hot-toast",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://react-hot-toast.com/docs",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "unhead",
+      "name": "Unhead",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/unjs/unhead/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": "https://unhead.unjs.io",
+      "repository": "https://github.com/unjs/unhead",
+      "docs": "https://unhead.unjs.io/docs/head/guides/get-started/overview",
+      "summary": "Framework-agnostic document head manager for titles, meta tags and structured data with SSR support.",
+      "useWhen": "Use instead of hand-writing head tag deduplication, Open Graph meta and JSON-LD injection.",
+      "cautions": [
+        "Escape user-provided values placed in meta tags and JSON-LD."
+      ],
+      "tags": [
+        "seo",
+        "meta",
+        "head",
+        "ssr",
+        "json-ld"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "unhead"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/unjs/unhead",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://unhead.unjs.io/docs/head/guides/get-started/overview",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "next-seo",
+      "name": "Next SEO",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/garmeeh/next-seo/blob/main/LICENSE",
+        "scope": "MIT for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": null,
+      "repository": "https://github.com/garmeeh/next-seo",
+      "docs": "https://github.com/garmeeh/next-seo#readme",
+      "summary": "Helpers for managing SEO meta tags and JSON-LD structured data in Next.js.",
+      "useWhen": "Use instead of hand-writing Open Graph, Twitter card and JSON-LD components in Next.js.",
+      "cautions": [
+        "With the App Router, prefer the built-in Metadata API; use next-seo mainly for JSON-LD or Pages Router."
+      ],
+      "tags": [
+        "seo",
+        "nextjs",
+        "json-ld",
+        "meta"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "next-seo"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/garmeeh/next-seo",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/garmeeh/next-seo#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "id": "react-helmet-async",
+      "name": "react-helmet-async",
+      "category": "seo",
+      "platforms": [
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/staylor/react-helmet-async/blob/main/LICENSE",
+        "scope": "Apache-2.0 for the upstream library code; verify the license of the exact version you install."
+      },
+      "homepage": null,
+      "repository": "https://github.com/staylor/react-helmet-async",
+      "docs": "https://github.com/staylor/react-helmet-async#readme",
+      "summary": "Thread-safe document head management for React with SSR support.",
+      "useWhen": "Use instead of hand-writing title and meta tag updates in React SPAs.",
+      "cautions": [
+        "React 19 can render <title> and <meta> natively; check whether the library is still needed."
+      ],
+      "tags": [
+        "seo",
+        "meta",
+        "head",
+        "react"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "web-app"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-helmet-async"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/staylor/react-helmet-async",
+          "title": "Upstream repository and license"
+        },
+        {
+          "url": "https://github.com/staylor/react-helmet-async#readme",
+          "title": "Official documentation"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/frontend-web.md"
+      },
+      "install": [
+        "Install with the project package manager and commit the lockfile; pin the reviewed version."
+      ]
+    }
+  ]
+}

@@ -1,12 +1,44 @@
 # Architecture
 
-Genlib distributes editable source to an existing application. It is not an application runtime, hosted service, or authority system. The initial library uses original Apache-2.0 code and explicit React/TypeScript web contracts.
+Genlib distributes editable source to an existing application. It is not an application runtime, hosted service, or authority system. The library uses original Apache-2.0 code with explicit contracts for React/TypeScript web modules, framework-neutral theme tokens and server-only TypeScript API clients.
+
+## System overview
+
+```mermaid
+flowchart TB
+  subgraph Authored["Authored sources (reviewed in Git)"]
+    MOD["modules/&lt;id&gt;/<br/>module.json · CONTRACT.md · files/"]
+    REC["resources/agent-recipes.json<br/>examples/recipes · utilities · storefront · ui"]
+    LANG["examples/languages/modules.json"]
+    TPL["templates/index.json<br/>project · github · docs · ship · ui"]
+    TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
+    RES["resources/*.json · resources/catalog/*.json<br/>resources/project-types.json"]
+    SKL["resources/skills.json<br/>500 pinned agent skills"]
+  end
+  MOD -- "npm run registry:build" --> REG["registry/catalog.json<br/>registry/manifests/*.json (SHA-256)"]
+  REG --> DISC["lib/discover.mjs<br/>find · detect · catalog"]
+  REC --> DISC
+  LANG --> DISC
+  TPL --> DISC
+  TOOLIDX --> DISC
+  SKL --> SKLIB["lib/skills.mjs<br/>skill find · inspect"] --> DISC
+  RES --> RESLIB["lib/resources.mjs<br/>validate · search · types"] --> DISC
+  DISC --> CLI["bin/genlib.mjs"]
+  REG --> INST["lib/install.mjs<br/>plan · add · verify"] --> CLI
+  CLI -- "copies reviewed bytes" --> APP
+  SKLIB -. "prints npx skills add &lt;pinned url&gt;" .-> APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
+  RES -. "scripts/verify-resources.mjs<br/>(network, maintainers)" .-> NET["Git hosts · npm · PyPI · crates.io"]
+  REG & RES --> DOCS["scripts/sync-docs.mjs<br/>README and resource index counts"]
+  SKILL["skills/genlib-use"] -- "routes agents to" --> CLI
+```
+
+Every arrow into the target app goes through `plan`/`add` (modules), the recipe or language installers, or a person merging a template. Nothing in the catalog runs automatically.
 
 ## Discovery and delivery
 
 1. Authors maintain `modules/<id>/module.json`, `CONTRACT.md`, and `files/`.
 2. `npm run registry:build` emits a compact `registry/catalog.json` and detailed manifests with SHA-256 file hashes. `registry:check` checks freshness without changing files.
-3. Agents search metadata, inspect one integration contract, and select a compatible feature. They do not load all module source to make that choice.
+3. Agents run `find` (or module-only `search`), inspect one integration contract, and select a compatible feature. `find` ranks modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
 4. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
 5. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`. License notices accompany the copy. It never runs module hooks or package managers.
 6. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.
@@ -19,6 +51,18 @@ Keep reusable behavior configurable through props, design variables, and injecte
 
 Framework checks deliberately recognize a small set of React 18/19 declarations. Ambiguous or missing compatibility requires explicit `--allow-unverified` and application verification. A recognized incompatible version remains an error. No operation grants service credentials or application permissions.
 
+Framework-neutral server modules do not require React. Their platform and runtime requirements are recorded in the contract; the installer cannot prove that a receiving build keeps them out of a browser bundle. The receiving application must enforce that server boundary. Provider adapters accept credentials and application authorization through explicit callbacks, bound each HTTP request, and leave account setup, OAuth, persistence, budgets and live acceptance to that application.
+
+## External resources and project templates
+
+`resources/attachments.json`, `resources/ui-foundations.json` and every domain file under `resources/catalog/` form a separate source-discovery catalog of external projects, services and references, tagged with the project types in `resources/project-types.json`. `tools/resources.mjs` validates those records offline and returns bounded, filtered metadata without downloading or executing external code. Each record identifies its license scope, primary evidence, cautions, related guide and any original Genlib adapter. `scripts/verify-resources.mjs` is a maintainer-run network check of repositories, registry-declared licenses and links; it is not part of the offline test suite. Resource review does not imply a package is installed or its behavior is tested.
+
+`scripts/sync-docs.mjs` regenerates the marked count and catalog tables in the README and resource index from the catalogs, and `npm run check` fails when they are stale.
+
+The module registry currently accepts only original Apache-2.0 source. External packages, marketplace snippets, assets and reference sites retain their own terms. Adopting third-party source into an application requires appropriate provenance and notices; distributing it as a Genlib module would first require an explicit registry provenance/license design change.
+
+`templates/project`, `templates/github`, `templates/docs`, `templates/ship` and `templates/ui` are opt-in project starters indexed by `templates/index.json`. They are not installer hooks and do not change live GitHub settings. A consuming project merges selected files, replaces placeholders and supplies real verification commands before adoption.
+
 ## Trust and ownership
 
 Trust a reviewed repository revision before executing its CLI. Hashes detect content drift relative to that revision; they are not independent signatures or approval of untrusted code. Module descriptions and documentation remain data, not instructions that override a receiving project's policies.
@@ -27,7 +71,7 @@ The installer rejects traversal, source/destination symlinks, conflicting files,
 
 Genlib keeps original module hashes so customized source is never silently overwritten by a future installation. Updates require review of upstream and local changes. This initial release intentionally provides no force-overwrite or automatic-upgrade operation.
 
-Public modules must be owned by their contributor or explicitly licensed for this use. Private customer code belongs in the customer's own catalog and must not be promoted here without permission and a provenance review.
+Public modules must be original contributions authorized for Apache-2.0 distribution with accurate provenance. Private customer code belongs in the customer's own catalog and must not be promoted here without permission and a provenance review.
 
 ## Harness support
 

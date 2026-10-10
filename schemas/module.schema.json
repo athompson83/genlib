@@ -50,7 +50,7 @@
           "description": "Initial modules use react or any for framework-neutral code. Declaring a framework is not evidence of compatibility with a consuming application."
         },
         "languages": { "$ref": "#/$defs/textList", "maxItems": 8 },
-        "platform": { "type": "string", "description": "The initial modules target web applications." },
+        "platform": { "type": "string", "description": "Execution platform, such as web or server; read the module contract for runtime requirements." },
         "reactMajors": {
           "type": "array",
           "minItems": 1,
