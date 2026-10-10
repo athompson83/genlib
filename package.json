@@ -13,7 +13,8 @@
     "node": ">=22"
   },
   "bin": {
-    "genlib": "bin/genlib.mjs"
+    "genlib": "bin/genlib.mjs",
+    "genlib-mcp": "bin/genlib-mcp.mjs"
   },
   "files": [
     "bin",
@@ -42,12 +43,16 @@
     "skills:install": "node scripts/install-skills.mjs",
     "resources": "node tools/resources.mjs",
     "resources:check": "node tools/resources.mjs validate --json",
-    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm run docs:check && npm run index:check && npm test",
+    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm run docs:check && npm run index:check && npm run graph:check && npm test",
     "docs:sync": "node scripts/sync-docs.mjs",
     "docs:check": "node scripts/sync-docs.mjs --check",
     "index:build": "node scripts/build-search-index.mjs",
     "index:check": "node scripts/build-search-index.mjs --check",
-    "resources:verify": "node scripts/verify-resources.mjs"
+    "resources:verify": "node scripts/verify-resources.mjs",
+    "graph:build": "node scripts/build-graph.mjs",
+    "graph:check": "node scripts/build-graph.mjs --check",
+    "obsidian:export": "node scripts/export-obsidian.mjs",
+    "mcp": "node bin/genlib-mcp.mjs"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

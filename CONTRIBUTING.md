@@ -87,4 +87,4 @@ If claiming a cost benefit, measure total model cost, context use, elapsed time,
 
 ## Documentation is part of every change
 
-Update the README, the diagrams (README and `docs/architecture.md`), the affected docs and guides, and the Jev guide and search index (`docs/jev.md`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.
+Update the README, the diagrams (README and `docs/architecture.md`), the affected docs and guides, and the Jev guide, search index and navigation graph (`docs/jev.md`, `docs/agent-access.md`, `npm run index:build`, `npm run graph:build`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.
