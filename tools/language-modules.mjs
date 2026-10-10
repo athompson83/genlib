@@ -10,7 +10,10 @@ const selected=catalog.modules.find(m=>m.id===id);
 const arg=name=>{const i=flags.indexOf(name);return i<0?null:flags[i+1]};
 const digest=s=>createHash('sha256').update(s).digest('hex');
 const safePath=p=>{if(!p||isAbsolute(p)||p.split(/[\\/]/).some(x=>x==='..'||x==='.'||x===''))throw Error('Unsafe path: '+p);return p};
-const sourcePath=p=>join(root,'examples/languages',safePath(p));
+// Modules live under examples/languages by default; base "cookbook" selects examples/cookbook.
+const BASES={languages:'examples/languages',cookbook:'examples/cookbook'};
+const base=m=>{const b=BASES[m?.base??'languages'];if(!b)throw Error('Unknown module base');return b};
+const sourcePath=p=>join(root,base(selected),safePath(p));
 const checkSource=p=>{const src=sourcePath(p);if(lstatSync(src).isSymbolicLink())throw Error('Source symlink rejected');return src};
 const within=(base,path)=>path===base||path.startsWith(base+sep);
 function destination(target,rel){
@@ -30,7 +33,7 @@ function destination(target,rel){
  return output;
 }
 try{
- if(cmd==='list'){console.log(JSON.stringify(catalog.modules.map(({id,language,runtime,status})=>({id,language,runtime,status})),null,2));}
+ if(cmd==='list'){console.log(JSON.stringify(catalog.modules.map(({id,language,runtime,status,base})=>({id,language,runtime,status,...(base?{base}:{})})),null,2));}
  else if(cmd==='inspect'){if(!selected)throw Error('Unknown module');console.log(JSON.stringify(selected,null,2));}
  else if(cmd==='plan'||cmd==='add'){
   if(!selected)throw Error('Unknown module');
