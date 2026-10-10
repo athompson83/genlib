@@ -19,13 +19,15 @@ test('quick prints only the best match, its acting commands and an outline hint'
   assert.doesNotMatch(text, /inspect|Read docs/);
   assert.ok(bytes(text) <= 600, 'quick budget: ' + bytes(text));
   const json = JSON.parse(cli('quick', 'verify', 'stripe', 'webhook', '--json'));
-  assert.equal(json.best, 'module:webhook-verification');
+  // Both are Genlib's tested code for this task: the 9-language capability or the TypeScript module.
+  assert.match(json.best, /^(?:capability:webhook-signature|module:webhook-verification)$/);
+  assert.ok(json.alternatives.some(ref => /webhook-(?:signature|verification)$/.test(ref)));
   assert.ok(json.alternatives.length <= 3);
 });
 
 test('find text output stays compact while --json keeps full records', () => {
   const text = cli('find', 'verify', 'stripe', 'webhook');
-  assert.match(text, /^1\. module:webhook-verification /);
+  assert.match(text, /^1\. (?:capability:webhook-signature|module:webhook-verification) /);
   assert.ok(bytes(text) <= 2000, 'find budget: ' + bytes(text));
   const full = JSON.parse(cli('find', 'verify', 'stripe', 'webhook', '--json'));
   assert.ok(full.results[0].summary.length > 0);
