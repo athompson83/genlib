@@ -7,7 +7,7 @@ import { invariant } from '../lib/safety.mjs';
 const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
-    'find <task words> [--type module|recipe|language-example|template|resource] [--target <project>] [--limit 8] [--json]',
+    'find <task words> [--type module|recipe|language-example|template|tool|resource] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
     'detect --target <existing-project> [--json]',
     'catalog [--json]',
     'list [--json]',
@@ -23,7 +23,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -43,7 +43,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result;
   const supported = {
-    help: [], '--help': [], list: ['json'], find: ['type', 'target', 'limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], find: ['type', 'project', 'target', 'limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -69,7 +69,7 @@ try {
       invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
       const profile = options.target ? await detectProject(options.target) : undefined;
       result = findInSources(sources, positional.join(' '), {
-        type: options.type, limit: Number(options.limit ?? 8), target: profile?.target, profile,
+        type: options.type, project: options.project, limit: Number(options.limit ?? 8), target: profile?.target, profile,
       });
       if (profile) result.project = { languages: profile.languages, frameworks: profile.frameworks, reactMajor: profile.reactMajor };
     }

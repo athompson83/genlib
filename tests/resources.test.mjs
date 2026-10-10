@@ -52,3 +52,28 @@ test('resource CLI is usable without dependencies and rejects ambiguous flags', 
     assert.notEqual(run(...args).status, 0);
   }
 });
+
+test('domain catalogs load from resources/catalog with project types and package identities', async () => {
+  const { items, catalogs } = await loadResources();
+  assert.ok(catalogs.some(entry => entry.path === 'resources/ui-foundations.json'));
+  const original = items[0];
+  assert.doesNotThrow(() => validateResource({ ...original, projectTypes: ['web-app'], packages: [{ ecosystem: 'npm', name: 'zod' }] }));
+  assert.throws(() => validateResource({ ...original, projectTypes: [] }));
+  assert.throws(() => validateResource({ ...original, projectTypes: ['Not An Id'] }));
+  assert.throws(() => validateResource({ ...original, packages: [{ ecosystem: 'curl-pipe-sh', name: 'x' }] }));
+  assert.throws(() => validateResource({ ...original, packages: [{ ecosystem: 'npm', name: '' }] }));
+  const tagged = items.filter(item => item.projectTypes);
+  for (const type of new Set(tagged.flatMap(item => item.projectTypes))) {
+    const result = searchResources(items, '', { project: type, limit: 50 });
+    assert.ok(result.length > 0 && result.every(item => item.projectTypes.includes(type)), type);
+  }
+});
+
+test('the types command lists every Genisys project type with resource counts', () => {
+  const result = spawnSync(process.execPath, ['tools/resources.mjs', 'types', '--json'], { cwd: root, encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const { types } = JSON.parse(result.stdout);
+  assert.ok(types.length >= 20);
+  assert.ok(types.every(type => typeof type.resources === 'number' && type.summary.length > 0));
+  assert.ok(types.some(type => type.id === 'ai-agent'));
+});
