@@ -17,9 +17,10 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
+| [Capabilities](#capabilities-one-task-every-language) | 13 | SSO, MFA, auth, PDF, document, form and calculator tasks mapped to tested code in 9 languages |
 | [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
-| [Task recipes](#recipes-language-examples-and-templates) | 36 | Single-file TypeScript sources copied with one command |
-| [Language examples](#recipes-language-examples-and-templates) | 14 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [Task recipes](#recipes-language-examples-and-templates) | 41 | Single-file TypeScript sources copied with one command |
+| [Language examples](#recipes-language-examples-and-templates) | 71 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
 | [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 500 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
@@ -33,6 +34,7 @@ One command searches everything below and returns each result's exact next step.
 
 - [How it works](#how-it-works)
 - [Quick start](#quick-start)
+- [Capabilities: one task, every language](#capabilities-one-task-every-language)
 - [Modules](#modules)
 - [Recipes, language examples and templates](#recipes-language-examples-and-templates)
 - [Resource catalog](#resource-catalog)
@@ -49,6 +51,7 @@ One command searches everything below and returns each result's exact next step.
 ```mermaid
 flowchart LR
   Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Find["genlib find<br/>(+ detect --target)"]
+  Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
   Find --> M["Modules"]
   Find --> R["Recipes and<br/>language examples"]
   Find --> T["Templates"]
@@ -56,6 +59,7 @@ flowchart LR
   Find --> S["Skills · MCP servers<br/>CLIs · APIs"]
   Find --> X["Resource catalog"]
   M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
+  C --> Lang["pick the detected<br/>language's code"] --> Copy
   R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
   T --> Merge["read guide, merge<br/>selected files"] --> App
   N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
@@ -92,6 +96,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | Command | Purpose |
 | --- | --- |
 | `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
+| `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
 | `skill\|mcp\|cli\|api find <words>` / `… inspect <id>` | Search the ranked install indexes and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
 | `catalog` | Counts and a short overview of every source |
@@ -100,6 +105,39 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
 
 `add` writes `.genlib/lock.json` with versions, origin and original hashes, and copies license notices. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
+
+## Capabilities: one task, every language
+
+Common application tasks such as SSO login, MFA codes, password hashing, passkeys, PDF filling and parsing, Word documents, rich-text sanitizing, form validation and calculators are mapped to tested code in TypeScript, Python, Go, Rust, Java, Kotlin, C#, Dart and Swift ([`resources/capabilities.json`](resources/capabilities.json)).
+
+- **Pure** capabilities are original standard-library code, tested against the published RFC vectors in every language.
+- **Library** capabilities wrap each language's maintained library, pinned to an exact version. Their guides record the library, license and test result per language, and say what to do where no responsible library exists.
+
+```sh
+# Detects the app's language and prints the single copy command for it
+node "$GENLIB_ROOT/bin/genlib.mjs" find sso login pkce --target "$APP_ROOT" --json
+node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --language python --json
+```
+
+<!-- genlib:capabilities:start -->
+| Capability | Tier | TS | Py | Go | Rust | Java | Kotlin | C# | Dart | Swift | Guide |
+| --- | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | --- |
+| `totp` TOTP / HOTP MFA codes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `oidc-pkce` SSO login request: OAuth 2.0 / OIDC authorization code + PKCE | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `recovery-codes` MFA recovery (backup) codes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `calculator` Safe calculator and loan / interest math | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `form-schema` Form schema validation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `oidc-token-verification` OIDC ID token / JWT verification | library | - | - | - | - | - | - | - | - | - | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
+| `saml-sso` SAML 2.0 SSO (service provider) | library | - | - | - | - | - | - | - | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
+| `webauthn-passkeys` WebAuthn passkeys | library | - | - | - | - | - | - | - | - | - | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
+| `password-hashing` Password hashing (Argon2id / bcrypt / scrypt) | library | - | - | - | - | - | - | - | - | - | [password-hashing.md](docs/cookbook/password-hashing.md) |
+| `pdf-form-filling` PDF form filling | library | - | - | - | - | - | - | - | - | - | [pdf-form-filling.md](docs/cookbook/pdf-form-filling.md) |
+| `pdf-text-extraction` PDF parsing and text extraction | library | - | - | - | - | - | - | - | - | - | [pdf-text-extraction.md](docs/cookbook/pdf-text-extraction.md) |
+| `docx-documents` Word (DOCX) document editing | library | yes | yes | yes | yes | yes | yes | yes | yes | - | [docx-documents.md](docs/cookbook/docx-documents.md) |
+| `rich-text-sanitization` Rich text / HTML sanitization | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [rich-text-sanitization.md](docs/cookbook/rich-text-sanitization.md) |
+<!-- genlib:capabilities:end -->
+
+`yes` means the code ran its tests here, `compiles` means it built but its test was not run here, and `-` means unavailable. [docs/capabilities.md](docs/capabilities.md) explains the tiers and how to add a capability.
 
 ## Modules
 
@@ -126,7 +164,7 @@ The React modules need the app's existing React 18 or 19 and a TSX build; `app-s
 ## Recipes, language examples and templates
 
 - **Task recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. New recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
-- **Language examples** ([`examples/languages`](examples/languages/README.md)): pagination, identifier validation, config, HTTP client and safe logging across eight languages, installed with `node tools/language-modules.mjs`.
+- **Language examples** ([`examples/languages`](examples/languages/README.md) and [`examples/cookbook`](examples/cookbook)): pagination, identifier validation, config, HTTP client, safe logging and the [capabilities](#capabilities-one-task-every-language) across eight languages, installed with `node tools/language-modules.mjs`.
 - **Templates** ([`templates/index.json`](templates/index.json)), all opt-in and merged by hand:
 
 | Template | Contents |

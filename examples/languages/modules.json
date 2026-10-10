@@ -722,6 +722,337 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "typescript-docx-documents",
+      "base": "cookbook",
+      "language": "typescript",
+      "runtime": "TypeScript (Node 22.18+)",
+      "files": [
+        "docx-documents/typescript/docx-documents.ts",
+        "docx-documents/typescript/package-lock.json",
+        "docx-documents/typescript/package.json"
+      ],
+      "tests": [
+        "docx-documents/typescript/docx-documents.test.ts"
+      ],
+      "verification": "cookbook: yes (npm test, 1 test; also tsc --noEmit --strict)",
+      "status": "example",
+      "library": "docx 9.9.0 (create + patchDocument), mammoth 1.13.0 (text) (MIT; BSD-2-Clause)",
+      "tested": true,
+      "dependencies": [
+        "npm install docx@9.9.0 mammoth@1.13.0"
+      ]
+    },
+    {
+      "id": "python-docx-documents",
+      "base": "cookbook",
+      "language": "python",
+      "runtime": "Python 3.9+",
+      "files": [
+        "docx-documents/python/docx_documents.py",
+        "docx-documents/python/requirements.txt"
+      ],
+      "tests": [
+        "docx-documents/python/test_docx_documents.py"
+      ],
+      "verification": "cookbook: yes (python -m unittest -v, 2 tests, Python 3.13)",
+      "status": "example",
+      "library": "python-docx 1.2.0 (MIT)",
+      "tested": true,
+      "dependencies": [
+        "pip install python-docx==1.2.0"
+      ]
+    },
+    {
+      "id": "go-docx-documents",
+      "base": "cookbook",
+      "language": "go",
+      "runtime": "Go 1.24",
+      "files": [
+        "docx-documents/go/docxdocs.go",
+        "docx-documents/go/go.mod",
+        "docx-documents/go/go.sum"
+      ],
+      "tests": [
+        "docx-documents/go/docxdocs_test.go"
+      ],
+      "verification": "cookbook: yes (go vet ./... && go test ./..., go1.24.7)",
+      "status": "example",
+      "library": "github.com/gomutex/godocx v0.1.5 (create), github.com/lukasjarosch/go-docx v0.5.0 (placeholders); text via archive/zip + encoding/xml read-only scan (MIT; MIT)",
+      "tested": true,
+      "dependencies": [
+        "go get github.com/gomutex/godocx@v0.1.5 github.com/lukasjarosch/go-docx@v0.5.0"
+      ]
+    },
+    {
+      "id": "rust-docx-documents",
+      "base": "cookbook",
+      "language": "rust",
+      "runtime": "Rust",
+      "files": [
+        "docx-documents/rust/Cargo.lock",
+        "docx-documents/rust/Cargo.toml",
+        "docx-documents/rust/src/lib.rs"
+      ],
+      "tests": [],
+      "verification": "cookbook: yes (cargo test, 2 tests, cargo 1.97)",
+      "status": "example",
+      "library": "docx-rs 0.4.22 (MIT)",
+      "tested": true,
+      "dependencies": [
+        "cargo add docx-rs@=0.4.22"
+      ]
+    },
+    {
+      "id": "java-docx-documents",
+      "base": "cookbook",
+      "language": "java",
+      "runtime": "Java 17+",
+      "files": [
+        "docx-documents/java/pom.xml",
+        "docx-documents/java/src/main/java/dev/genlib/cookbook/docx/DocxDocuments.java"
+      ],
+      "tests": [
+        "docx-documents/java/src/test/java/dev/genlib/cookbook/docx/DocxDocumentsTest.java"
+      ],
+      "verification": "cookbook: yes (mvn test, 2 tests, JDK 21)",
+      "status": "example",
+      "library": "Apache POI poi-ooxml 5.5.1 (XWPF) (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "kotlin-docx-documents",
+      "base": "cookbook",
+      "language": "kotlin",
+      "runtime": "Kotlin (JVM)",
+      "files": [
+        "docx-documents/kotlin/pom.xml",
+        "docx-documents/kotlin/src/main/kotlin/dev/genlib/cookbook/docx/DocxDocuments.kt"
+      ],
+      "tests": [
+        "docx-documents/kotlin/src/test/kotlin/dev/genlib/cookbook/docx/DocxDocumentsTest.kt"
+      ],
+      "verification": "cookbook: yes (mvn test, Kotlin 2.2.20, 2 tests)",
+      "status": "example",
+      "library": "Apache POI poi-ooxml 5.5.1 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "csharp-docx-documents",
+      "base": "cookbook",
+      "language": "csharp",
+      "runtime": "C# (.NET 8)",
+      "files": [
+        "docx-documents/csharp/DocxDocuments.cs",
+        "docx-documents/csharp/DocxDocuments.csproj"
+      ],
+      "tests": [
+        "docx-documents/csharp/DocxDocumentsTests.cs"
+      ],
+      "verification": "cookbook: yes (dotnet test, 2 tests, SDK 8.0.425)",
+      "status": "example",
+      "library": "DocumentFormat.OpenXml 3.5.1 (Open XML SDK) (MIT)",
+      "tested": true,
+      "dependencies": [
+        "dotnet add package DocumentFormat.OpenXml --version 3.5.1"
+      ]
+    },
+    {
+      "id": "dart-docx-documents",
+      "base": "cookbook",
+      "language": "dart",
+      "runtime": "Dart 3.5+",
+      "files": [
+        "docx-documents/dart/lib/docx_documents.dart",
+        "docx-documents/dart/pubspec.lock",
+        "docx-documents/dart/pubspec.yaml"
+      ],
+      "tests": [
+        "docx-documents/dart/test/docx_documents_test.dart"
+      ],
+      "verification": "cookbook: yes (dart test, 2 tests, Dart 3.13.5; dart analyze clean)",
+      "status": "example",
+      "library": "docx_creator 1.4.0 (MIT (package LICENSE; pub.dev shows \"unknown\", repository root is Apache-2.0: license-review))",
+      "tested": true,
+      "dependencies": [
+        "dart pub add docx_creator:1.4.0"
+      ]
+    },
+    {
+      "id": "typescript-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "typescript",
+      "runtime": "TypeScript (Node 22.18+)",
+      "files": [
+        "rich-text-sanitization/typescript/editor.browser.ts",
+        "rich-text-sanitization/typescript/package-lock.json",
+        "rich-text-sanitization/typescript/package.json",
+        "rich-text-sanitization/typescript/sanitize.ts"
+      ],
+      "tests": [
+        "rich-text-sanitization/typescript/sanitize.test.ts"
+      ],
+      "verification": "cookbook: yes (npm test, 2 tests; tsc --noEmit --strict incl. the Tiptap snippet)",
+      "status": "example",
+      "library": "dompurify 3.4.16 on jsdom 30.1.2 (Apache-2.0 OR MPL-2.0; MIT)",
+      "tested": true,
+      "dependencies": [
+        "npm install dompurify@3.4.16 jsdom@30.1.2"
+      ]
+    },
+    {
+      "id": "python-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "python",
+      "runtime": "Python 3.9+",
+      "files": [
+        "rich-text-sanitization/python/requirements.txt",
+        "rich-text-sanitization/python/sanitize.py"
+      ],
+      "tests": [
+        "rich-text-sanitization/python/test_sanitize.py"
+      ],
+      "verification": "cookbook: yes (python -m unittest -v, 2 tests, Python 3.13)",
+      "status": "example",
+      "library": "nh3 0.3.7 (bindings to Rust ammonia) (MIT)",
+      "tested": true,
+      "dependencies": [
+        "pip install nh3==0.3.7"
+      ]
+    },
+    {
+      "id": "go-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "go",
+      "runtime": "Go 1.24",
+      "files": [
+        "rich-text-sanitization/go/go.mod",
+        "rich-text-sanitization/go/go.sum",
+        "rich-text-sanitization/go/sanitize.go"
+      ],
+      "tests": [
+        "rich-text-sanitization/go/sanitize_test.go"
+      ],
+      "verification": "cookbook: yes (go vet ./... && go test ./..., go1.24.7)",
+      "status": "example",
+      "library": "github.com/microcosm-cc/bluemonday v1.0.27 (BSD-3-Clause)",
+      "tested": true,
+      "dependencies": [
+        "go get github.com/microcosm-cc/bluemonday@v1.0.27"
+      ]
+    },
+    {
+      "id": "rust-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "rust",
+      "runtime": "Rust",
+      "files": [
+        "rich-text-sanitization/rust/Cargo.lock",
+        "rich-text-sanitization/rust/Cargo.toml",
+        "rich-text-sanitization/rust/src/lib.rs"
+      ],
+      "tests": [],
+      "verification": "cookbook: yes (cargo test, 2 tests, cargo 1.97)",
+      "status": "example",
+      "library": "ammonia 4.2.1 (MIT OR Apache-2.0)",
+      "tested": true,
+      "dependencies": [
+        "cargo add ammonia@=4.2.1"
+      ]
+    },
+    {
+      "id": "java-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "java",
+      "runtime": "Java 17+",
+      "files": [
+        "rich-text-sanitization/java/pom.xml",
+        "rich-text-sanitization/java/src/main/java/dev/genlib/cookbook/sanitize/EditorHtmlSanitizer.java"
+      ],
+      "tests": [
+        "rich-text-sanitization/java/src/test/java/dev/genlib/cookbook/sanitize/EditorHtmlSanitizerTest.java"
+      ],
+      "verification": "cookbook: yes (mvn test, 2 tests, JDK 21)",
+      "status": "example",
+      "library": "OWASP Java HTML Sanitizer 20260924.2 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "kotlin-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "kotlin",
+      "runtime": "Kotlin (JVM)",
+      "files": [
+        "rich-text-sanitization/kotlin/pom.xml",
+        "rich-text-sanitization/kotlin/src/main/kotlin/dev/genlib/cookbook/sanitize/EditorHtmlSanitizer.kt"
+      ],
+      "tests": [
+        "rich-text-sanitization/kotlin/src/test/kotlin/dev/genlib/cookbook/sanitize/EditorHtmlSanitizerTest.kt"
+      ],
+      "verification": "cookbook: yes (mvn test, Kotlin 2.2.20, 2 tests)",
+      "status": "example",
+      "library": "OWASP Java HTML Sanitizer 20260924.2 (Apache-2.0)",
+      "tested": true
+    },
+    {
+      "id": "csharp-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "csharp",
+      "runtime": "C# (.NET 8)",
+      "files": [
+        "rich-text-sanitization/csharp/EditorHtmlSanitizer.cs",
+        "rich-text-sanitization/csharp/EditorHtmlSanitizer.csproj"
+      ],
+      "tests": [
+        "rich-text-sanitization/csharp/EditorHtmlSanitizerTests.cs"
+      ],
+      "verification": "cookbook: yes (dotnet test, 16 test cases, SDK 8.0.425)",
+      "status": "example",
+      "library": "HtmlSanitizer (mganss) 9.2.1039 on AngleSharp 1.7.2 (MIT)",
+      "tested": true,
+      "dependencies": [
+        "dotnet add package HtmlSanitizer --version 9.2.1039"
+      ]
+    },
+    {
+      "id": "dart-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "dart",
+      "runtime": "Dart 3.5+",
+      "files": [
+        "rich-text-sanitization/dart/lib/sanitize.dart",
+        "rich-text-sanitization/dart/pubspec.lock",
+        "rich-text-sanitization/dart/pubspec.yaml"
+      ],
+      "tests": [
+        "rich-text-sanitization/dart/test/sanitize_test.dart"
+      ],
+      "verification": "cookbook: yes (dart test, 2 tests, Dart 3.13.5) - fixed, broader allowlist, see notes",
+      "status": "example",
+      "library": "sanitize_html 2.2.0 (publisher google.dev) (Apache-2.0)",
+      "tested": true,
+      "dependencies": [
+        "dart pub add sanitize_html:2.2.0"
+      ]
+    },
+    {
+      "id": "swift-rich-text-sanitization",
+      "base": "cookbook",
+      "language": "swift",
+      "runtime": "Swift 5.9+ (Linux and Apple)",
+      "files": [
+        "rich-text-sanitization/swift/Package.resolved",
+        "rich-text-sanitization/swift/Package.swift",
+        "rich-text-sanitization/swift/Sources/RichTextSanitization/EditorHtmlSanitizer.swift"
+      ],
+      "tests": [
+        "rich-text-sanitization/swift/Tests/RichTextSanitizationTests/EditorHtmlSanitizerTests.swift"
+      ],
+      "verification": "cookbook: yes (swift test, 2 tests, Swift 6.2 on Linux)",
+      "status": "example",
+      "library": "SwiftSoup 2.14.1 (Whitelist + Cleaner) (MIT)",
+      "tested": true
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "name": "genlib-cookbook-docx-documents",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "test": "node --test docx-documents.test.ts"
+  },
+  "dependencies": {
+    "docx": "9.9.0",
+    "mammoth": "1.13.0"
+  }
+}

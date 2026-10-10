@@ -5,11 +5,13 @@ import { detectProject, findInSources, loadSources, sourceCounts } from '../lib/
 import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
+import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
 
 const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
-    'find <task words> [--type module|recipe|language-example|template|tool|resource] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
+    'find <task words> [--type capability|module|recipe|language-example|template|tool|skill|mcp|cli|api|resource] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
+    'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
     'detect --target <existing-project> [--json]',
     'skill find <words> [--harness claude|codex|both] [--limit 8] [--json]',
     'skill inspect <id> [--harness claude|codex|both] [--json]',
@@ -30,7 +32,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -50,7 +52,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result;
   const supported = {
-    help: [], '--help': [], list: ['json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -74,6 +76,27 @@ try {
       result = { ...entry, install: installFor(command, entry, client) };
     } else {
       invariant(false, 'INVALID_OPTION', `Use ${command} find <words> or ${command} inspect <id>.`);
+    }
+  } else if (command === 'capability') {
+    const [action, ...words] = positional;
+    const index = await loadCapabilities();
+    const language = options.language;
+    invariant(language === undefined || LANGUAGES.includes(language), 'INVALID_OPTION', 'Language must be one of: ' + LANGUAGES.join(', '));
+    if (action === 'list') {
+      invariant(words.length === 0 && !language, 'INVALID_OPTION', 'capability list takes no arguments.');
+      result = { capabilities: index.capabilities.map(item => ({ id: item.id, title: item.title, tier: item.tier, ...coverage(item), guide: item.guide })), languages: LANGUAGES, review: index.review };
+    } else if (action === 'inspect') {
+      invariant(words.length === 1, 'INVALID_OPTION', 'Provide exactly one capability ID.');
+      const item = index.capabilities.find(entry => entry.id === words[0]);
+      invariant(item, 'NOT_FOUND', 'No capability named ' + words[0] + '. Run capability list first.');
+      const languages = language ? [language] : LANGUAGES;
+      const implementations = Object.fromEntries(languages.map(name => {
+        const impl = item.implementations[name] ?? { kind: 'unavailable', note: 'Not indexed.' };
+        return [name, { ...impl, commands: commandsFor(impl) }];
+      }));
+      result = { ...item, ...coverage(item), implementations, review: index.review };
+    } else {
+      invariant(false, 'INVALID_OPTION', 'Use capability list or capability inspect <id> [--language <name>].');
     }
   } else if (command === 'skill') {
     const [action, ...words] = positional;
