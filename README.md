@@ -94,7 +94,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" find searchable table --target "$APP_ROOT" --
 node "$GENLIB_ROOT/bin/genlib.mjs" detect --target "$APP_ROOT" --json
 ```
 
-`find` ranks modules, task recipes, language examples, templates and external resources together. With `--target` it detects the project's stack from its manifests, marks each result `compatible` or `review`, hides known mismatches, and fills the target into each result's `next` commands. Module-only search remains available:
+`find` ranks modules, task recipes, language examples, templates, code-navigation tools (repository map, AST graph, diagram) and external resources together. Module results list their installed files and exports so an agent opens only the entry points it needs. With `--target` it detects the project's stack from its manifests, marks each result `compatible` or `review`, hides known mismatches, and fills the target into each result's `next` commands. Module-only search remains available:
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" search table --framework react --limit 5 --json

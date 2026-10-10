@@ -19,7 +19,7 @@ async function project(t, files) {
 
 test('loads every source catalog and reports counts', async () => {
   const counts = sourceCounts(await loadSources());
-  for (const type of ['module', 'recipe', 'language-example', 'template', 'resource']) assert.ok(counts[type] > 0, type);
+  for (const type of ['module', 'recipe', 'language-example', 'template', 'tool', 'resource']) assert.ok(counts[type] > 0, type);
 });
 
 test('query terms stem plurals and add reviewed synonyms without duplicating words', () => {
@@ -104,4 +104,24 @@ test('CLI exposes find, detect and catalog with strict options', async t => {
   assert.equal(run('find', '--json').status, 1);
   assert.equal(run('find', 'table', '--framework', 'react').status, 1);
   assert.equal(run('find', 'table', '--limit', 'many').status, 1);
+});
+
+test('code-location tasks reach the repository map, AST graph and diagram tools', async () => {
+  const sources = await loadSources();
+  const located = findInSources(sources, 'where is the code for this task in the codebase');
+  assert.equal(located.results[0].type, 'tool');
+  assert.equal(located.results[0].id, 'repo-context');
+  assert.ok(located.results[0].next.some(command => command.includes('tools/repo-context.mjs')));
+  const diagram = findInSources(sources, 'architecture diagram', { type: 'tool' });
+  assert.equal(diagram.results[0].id, 'repo-diagram');
+});
+
+test('module results list installed files, exports and module dependencies', async () => {
+  const sources = await loadSources();
+  const webhook = findInSources(sources, 'webhook signature', { type: 'module' }).results[0];
+  assert.equal(webhook.id, 'webhook-verification');
+  assert.ok(webhook.installs.includes('webhook-verification/providers.ts'));
+  assert.ok(webhook.exports.includes('verifyStripeWebhook'));
+  const table = findInSources(sources, 'data table', { type: 'module' }).results[0];
+  assert.deepEqual(table.dependencies, ['theme-tokens']);
 });

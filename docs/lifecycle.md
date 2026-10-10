@@ -6,13 +6,16 @@ This map tells a coding agent which Genlib asset covers each stage of building a
 node "$GENLIB_ROOT/bin/genlib.mjs" find <task words> --target "$APP_ROOT" --limit 5 --json
 ```
 
+`find` also returns Genlib's code-navigation tools for "where is the code for X" tasks. They index the repository they run in, fail closed on a stale commit, and point to a few candidate files, import edges and tests. Graphify-style semantic graphs remain an optional Genisys adapter rather than a bundled dependency.
+
 Every result names its type, verification level and the exact next command. Modules install through `plan`/`add`/`verify`; templates are merged by hand after reading their guide.
 
 | Stage | Genlib asset | Type | What it saves |
 | --- | --- | --- | --- |
 | 1. Create the repository | `project-starter` (`templates/project`) | template | Strict NodeNext `tsconfig`, runtime pin, `ci:verify` script layout, `.env.example` |
 | | `github-starter` (`templates/github`) | template | `.gitignore`, `.gitattributes`, `.editorconfig`, CODEOWNERS, PR/issue forms, Dependabot |
-| 2. Detect and plan | `genlib detect`, `genlib find` | CLI | Stack detection from manifests; one ranked search across all sources |
+| 2. Detect and plan | `genlib detect`, `genlib find` | CLI | Stack detection from manifests; one ranked search across all sources. Module results list their installed files and exports |
+| | `repo-context`, `repo-map`, `repo-ast-graph`, `repo-diagram` | tools | Commit-bound map, AST import graph and Mermaid diagram so an agent opens only the files a task touches instead of reading the repository |
 | 3. Configure | `env-config` | module | Typed, fail-fast environment validation with secret redaction and `.env.example` rendering |
 | 4. Build the interface | `theme-tokens`, `app-shell`, `data-table`, `validated-form` | modules | Tokens, accessible layout, table, form state (React 18/19) |
 | | `ui-primitives`, `theme-variants`, `formatting` | recipes | Structural UI, theme/density variants, locale formatting |

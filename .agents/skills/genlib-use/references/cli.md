@@ -18,6 +18,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
   "find": [
     "find searches modules, task recipes, cross-language examples, project templates and reviewed external resources in one ranked list. Each result carries type, verification and the exact next commands to run.",
     "With --target, find detects the project's languages and frameworks from its top-level manifests, labels each result fit compatible or review, and hides known mismatches (reported as hiddenIncompatible). Use --type to narrow to one source type, which also shows mismatches.",
+    "Module results include installs (paths under src/genlib), exports and dependencies: read the contract, then open only the listed entry files. For locating code inside the current repository, find returns tool results (repo-context, repo-map, repo-ast-graph, repo-diagram) whose next commands build and query the commit-bound map and graph.",
     "fit is advisory. plan remains the enforcing compatibility and conflict check for modules; recipes and language examples have their own plan commands in next."
   ],
   "installation": [
