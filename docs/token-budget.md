@@ -16,8 +16,8 @@ The baseline column is what the same step costs without the compact path: the fu
 | Learn an API | `outline saml-sso --language typescript` | 472 | ~118 | read its source files | 3,711 | 7.9× |
 | Learn an API | `outline money --language java` | 1,046 | ~262 | read its source files | 5,464 | 5.2× |
 | Learn an API | `outline webhook-verification` | 4,364 | ~1,091 | read its source files | 15,416 | 3.5× |
-| Load the skill | `skills/genlib-use/SKILL.md` | 4,996 | ~1,249 | - | - | - |
-| Register MCP tools | `tools/list` | 4,115 | ~1,029 | - | - | - |
+| Load the skill | `skills/genlib-use/SKILL.md` | 5,000 | ~1,250 | - | - | - |
+| Register MCP tools | `tools/list` | 4,251 | ~1,063 | - | - | - |
 | Decision packet | `jev add passkey login to a Go API` | 7,388 | ~1,847 | - | - | - |
 
 ## Budgets enforced by tests
