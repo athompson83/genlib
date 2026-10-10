@@ -11,6 +11,16 @@ import 'src/checks.dart';
 import 'totp_test.dart' show runTotpTests;
 import 'wave4_test.dart'
     show runCronNextTests, runGeoTests, runIdsTests, runRetryBackoffTests, runSemverTests, runTokenBucketTests, runWcagContrastTests, runWebhookSignatureTests;
+import 'wave5_test.dart'
+    show
+        runCheckDigitsTests,
+        runEmailAddressTests,
+        runGeometryTests,
+        runIsoDurationTests,
+        runPolylineTests,
+        runSafeRedirectTests,
+        runSignedUrlsTests,
+        runTileMathTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -35,5 +45,13 @@ void main() {
   runWcagContrastTests(c);
   runGeoTests(c);
   runWebhookSignatureTests(c);
+  runCheckDigitsTests(c);
+  runSignedUrlsTests(c);
+  runPolylineTests(c);
+  runTileMathTests(c);
+  runEmailAddressTests(c);
+  runIsoDurationTests(c);
+  runGeometryTests(c);
+  runSafeRedirectTests(c);
   c.finish();
 }

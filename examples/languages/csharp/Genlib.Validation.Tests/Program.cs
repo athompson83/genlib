@@ -482,5 +482,189 @@ WhFails("webhook missing v1", WebhookErrorKind.Malformed, "t=1790000000", whBody
 Throws<ArgumentException>("webhook empty secret sign", () => WebhookSignature.SignWebhook("", whT, whBody));
 Throws<ArgumentException>("webhook empty secret verify", () => WebhookSignature.VerifyWebhook(whHeader, whBody, "", whT));
 
+// Wave 5 capability checks; every vector comes from the shared wave 5 reference vectors.
+bool Near(double a, double b, double eps) => Math.Abs(a - b) <= eps;
+
+// 21. Check digits
+foreach (var (s, e) in new[] { ("4539 1488 0343 6467", true), ("79927398713", true), ("79927398710", false), ("0", false), ("4539-1488-0343-6468", false), ("12a4", false), ("", false) })
+    Eq($"luhn '{s}'", e, CheckDigits.LuhnValid(s));
+Eq("luhn check digit 7992739871", "3", CheckDigits.LuhnCheckDigit("7992739871"));
+Eq("luhn check digit 453914880343646", "7", CheckDigits.LuhnCheckDigit("453914880343646"));
+Throws<FormatException>("luhn check digit non-digit", () => CheckDigits.LuhnCheckDigit("12a"));
+Throws<FormatException>("luhn check digit empty", () => CheckDigits.LuhnCheckDigit(""));
+foreach (var (s, e) in new[] { ("GB82 WEST 1234 5698 7654 32", true), ("DE89 3704 0044 0532 0130 00", true), ("gb82west12345698765432", true),
+    ("GB82 WEST 1234 5698 7654 33", false), ("GB82-WEST", false), ("NO9386011117947", true), ("XX00", false) })
+    Eq($"iban '{s}'", e, CheckDigits.IbanValid(s));
+Eq("iban format gb", "GB82 WEST 1234 5698 7654 32", CheckDigits.IbanFormat("gb82west12345698765432"));
+Eq("iban format no", "NO93 8601 1117 947", CheckDigits.IbanFormat("NO9386011117947"));
+Throws<FormatException>("iban format invalid", () => CheckDigits.IbanFormat("GB82 WEST 1234 5698 7654 33"));
+foreach (var (s, e) in new[] { ("4006381333931", true), ("036000291452", true), ("96385074", true), ("10614141000415", true), ("4006381333932", false), ("12345", false) })
+    Eq($"gtin '{s}'", e, CheckDigits.GtinValid(s));
+foreach (var (s, e) in new[] { ("0-306-40615-2", true), ("0-8044-2957-X", true), ("0-306-40615-3", false), ("030640615", false) })
+    Eq($"isbn10 '{s}'", e, CheckDigits.Isbn10Valid(s));
+foreach (var (s, e) in new[] { ("978-0-306-40615-7", true), ("979-10-90636-07-1", true), ("978-0-306-40615-8", false), ("4006381333931", false) })
+    Eq($"isbn13 '{s}'", e, CheckDigits.Isbn13Valid(s));
+Eq("isbn10 to 13 a", "9780306406157", CheckDigits.Isbn10To13("0-306-40615-2"));
+Eq("isbn10 to 13 X", "9780804429573", CheckDigits.Isbn10To13("080442957X"));
+Throws<FormatException>("isbn10 to 13 invalid", () => CheckDigits.Isbn10To13("0-306-40615-3"));
+
+// 22. Signed URLs
+const string suSecret = "url-signing-secret";
+var suCases = new (string Target, long Expires, string Signed)[] {
+    ("/files/report.pdf?user=42", 1790000000, "/files/report.pdf?user=42&expires=1790000000&signature=OBOJTlNq3AuDbND_6J4njKkDIXDMxhx0l0PmWaRbfaU"),
+    ("/download/a%20b.zip", 1790003600, "/download/a%20b.zip?expires=1790003600&signature=SafK5ZH-apLeaJ-c1dhzp-kyiS3doOR7ywgvr8WDJOo"),
+};
+void SuFails(string name, SignedUrlErrorKind kind, string signed, string secret, long now, string prefix) =>
+    Throws<SignedUrlException>(name, () => SignedUrls.VerifyUrl(signed, secret, now), e => e.Kind == kind && e.Message.StartsWith(prefix));
+foreach (var (target, expires, signed) in suCases) {
+    Eq($"sign {target}", signed, SignedUrls.SignUrl(target, suSecret, expires));
+    bool ok = true;
+    try { SignedUrls.VerifyUrl(signed, suSecret, expires); } catch (SignedUrlException) { ok = false; }
+    Check($"verify {target} at expires", ok);
+    SuFails($"expired {target}", SignedUrlErrorKind.Expired, signed, suSecret, expires + 1, "expired");
+    SuFails($"path changed {target}", SignedUrlErrorKind.BadSignature, "/x" + signed[1..], suSecret, expires, "bad signature");
+    SuFails($"other secret {target}", SignedUrlErrorKind.BadSignature, signed, suSecret + "x", expires, "bad signature");
+    SuFails($"signature char changed {target}", SignedUrlErrorKind.BadSignature, signed[..^1] + (signed[^1] == 'A' ? "B" : "A"), suSecret, expires, "bad signature");
+    int at = signed.LastIndexOf("&signature=", StringComparison.Ordinal);
+    SuFails($"signature removed {target}", SignedUrlErrorKind.Malformed, signed[..at], suSecret, expires, "malformed");
+    SuFails($"duplicate expires {target}", SignedUrlErrorKind.Malformed, signed[..at] + "&expires=1" + signed[at..], suSecret, expires, "malformed");
+    SuFails($"non-decimal expires {target}", SignedUrlErrorKind.Malformed, signed.Replace($"expires={expires}", $"expires={expires}x"), suSecret, expires, "malformed");
+}
+SuFails("short signature", SignedUrlErrorKind.Malformed, "/a?expires=1&signature=abc", suSecret, 0, "malformed");
+Throws<ArgumentException>("sign empty secret", () => SignedUrls.SignUrl("/a", "", 1));
+Throws<ArgumentException>("sign existing expires", () => SignedUrls.SignUrl("/a?expires=5", suSecret, 1));
+Throws<ArgumentException>("sign existing signature", () => SignedUrls.SignUrl("/a?x=1&signature", suSecret, 1));
+Throws<ArgumentException>("sign fragment", () => SignedUrls.SignUrl("/a#b", suSecret, 1));
+Throws<ArgumentException>("sign absolute", () => SignedUrls.SignUrl("https://ex.com/a", suSecret, 1));
+Throws<ArgumentException>("verify empty secret", () => SignedUrls.VerifyUrl(suCases[0].Signed, "", 0));
+
+// 23. Polyline
+var plGoogle = new[] { (38.5, -120.2), (40.7, -120.95), (43.252, -126.453) };
+var plP6 = new[] { (47.6062, -122.3321), (47.6205, -122.3493) };
+Eq("polyline google", "_p~iF~ps|U_ulLnnqC_mqNvxq`@", Polyline.EncodePolyline(plGoogle));
+Eq("polyline precision 6", "ozsxyAf{pihFw|Z~q`@", Polyline.EncodePolyline(plP6, 6));
+Eq("polyline empty encode", "", Polyline.EncodePolyline(Array.Empty<(double, double)>()));
+Eq("polyline empty decode", 0, Polyline.DecodePolyline("").Count);
+foreach (var (pts, text, precision) in new[] { (plGoogle, "_p~iF~ps|U_ulLnnqC_mqNvxq`@", 5), (plP6, "ozsxyAf{pihFw|Z~q`@", 6) }) {
+    var decoded = Polyline.DecodePolyline(text, precision);
+    var rt = Polyline.DecodePolyline(Polyline.EncodePolyline(pts, precision), precision);
+    double eps = 0.5 * Math.Pow(10, -precision) + 1e-12;
+    bool ok = decoded.Count == pts.Length && rt.Count == pts.Length;
+    for (int i = 0; ok && i < pts.Length; i++)
+        ok = Near(decoded[i].Lat, pts[i].Item1, eps) && Near(decoded[i].Lon, pts[i].Item2, eps) && Near(rt[i].Lat, pts[i].Item1, eps) && Near(rt[i].Lon, pts[i].Item2, eps);
+    Check($"polyline decode/round trip {text}", ok);
+}
+Eq("polyline halves round away from zero", "A@CB", Polyline.EncodePolyline(new[] { (0.5, -0.5), (2.5, -2.5) }, 0));
+Throws<FormatException>("polyline bad char", () => Polyline.DecodePolyline("_p~iF ps|U"));
+Throws<FormatException>("polyline truncated chunk", () => Polyline.DecodePolyline("_p~iF~ps|"));
+Throws<FormatException>("polyline lat without lon", () => Polyline.DecodePolyline("_p~iF"));
+Throws<ArgumentOutOfRangeException>("polyline lat 91", () => Polyline.EncodePolyline(new[] { (91.0, 0.0) }));
+Throws<ArgumentOutOfRangeException>("polyline precision 11", () => Polyline.EncodePolyline(plGoogle, 11));
+
+// 24. Tile math
+foreach (var (lon, lat, z, x, y) in new[] { (-122.4194, 37.7749, 12, 655, 1583), (0.0, 0.0, 0, 0, 0), (2.3522, 48.8566, 15, 16598, 11273), (179.9999, -89.9, 3, 7, 7), (-180.0, 85.1, 2, 0, 0) })
+    Eq($"tile {lon},{lat} z{z}", (x, y), TileMath.LonLatToTile(lon, lat, z));
+foreach (var (x, y, z, e) in new[] {
+    (0, 0, 0, new[] { -180.0, -85.0511287798066, 180.0, 85.0511287798066 }),
+    (655, 1583, 12, new[] { -122.431640625, 37.718590325588146, -122.34375, 37.78808138412046 }),
+    (1, 1, 1, new[] { 0.0, -85.0511287798066, 180.0, 0.0 }) }) {
+    var b = TileMath.TileBounds(x, y, z);
+    Check($"bounds {x}/{y}/{z}", Near(b.West, e[0], 1e-9) && Near(b.South, e[1], 1e-9) && Near(b.East, e[2], 1e-9) && Near(b.North, e[3], 1e-9));
+}
+foreach (var (x, y, z, key) in new[] { (3, 5, 3, "213"), (655, 1583, 12, "023010203333"), (0, 0, 1, "0") }) {
+    Eq($"quadkey {x}/{y}/{z}", key, TileMath.TileToQuadkey(x, y, z));
+    Eq($"quadkey round trip {key}", (x, y, z), TileMath.QuadkeyToTile(key));
+}
+Eq("quadkey empty is zoom 0", (0, 0, 0), TileMath.QuadkeyToTile(""));
+foreach (var (lon, lat, x, y) in new[] { (0.0, 0.0, 0.0, -7.081154551613622e-10), (-122.4194, 37.7749, -13627665.271218073, 4547675.354340557), (180.0, 85.05112877980659, 20037508.342789244, 20037508.342789244) }) {
+    var m = TileMath.LonLatToMercator(lon, lat);
+    Check($"mercator {lon},{lat}", Near(m.X, x, 1e-6) && Near(m.Y, y, 1e-6));
+}
+Throws<ArgumentOutOfRangeException>("tile zoom 25", () => TileMath.LonLatToTile(0, 0, 25));
+Throws<ArgumentOutOfRangeException>("tile zoom -1", () => TileMath.LonLatToTile(0, 0, -1));
+Throws<ArgumentOutOfRangeException>("tile lon NaN", () => TileMath.LonLatToTile(double.NaN, 0, 1));
+Throws<ArgumentOutOfRangeException>("tile lon 181", () => TileMath.LonLatToTile(181, 0, 1));
+Throws<ArgumentOutOfRangeException>("bounds x out of range", () => TileMath.TileBounds(2, 0, 1));
+Throws<ArgumentOutOfRangeException>("bounds y negative", () => TileMath.TileBounds(0, -1, 1));
+Throws<FormatException>("quadkey digit 4", () => TileMath.QuadkeyToTile("0124"));
+Throws<ArgumentOutOfRangeException>("mercator lat 86", () => TileMath.LonLatToMercator(0, 86));
+
+// 25. Email address
+string a63 = new('a', 63);
+foreach (var (s, e) in new[] {
+    ("user@example.com", true), ("first.last+tag@sub.Example.CO.uk", true), ("o'brien@example.ie", true), ("a@b", true),
+    ("user@-example.com", false), ("user@example-.com", false), ("user@exa_mple.com", false), ("user example@example.com", false),
+    ("user@@example.com", false), ("@example.com", false), ("user@", false), ("user@example..com", false), ("user.@example.com", true),
+    ("ünïcode@example.com", false), (new string('x', 64) + "@example.com", true), (new string('x', 65) + "@example.com", false),
+    ($"u@{a63}.{a63}.{a63}." + new string('b', 59), true), ($"u@{a63}.{a63}.{a63}." + new string('b', 61), false), ("user@" + new string('a', 64) + ".com", false) })
+    Eq($"email '{(s.Length > 40 ? s[..40] + "...(" + s.Length + ")" : s)}'", e, EmailAddress.EmailValid(s));
+Eq("email trailing newline rejected", false, EmailAddress.EmailValid("user@example.com\n"));
+Eq("email normalize", "Mixed.Case@example.com", EmailAddress.EmailNormalize("  Mixed.Case@Example.COM "));
+Throws<FormatException>("email normalize invalid", () => EmailAddress.EmailNormalize("not an email"));
+
+// 26. ISO 8601 durations
+foreach (var (s, e) in new[] {
+    ("P1Y2M3DT4H5M6S", new DurationParts(Years: 1, Months: 2, Days: 3, Hours: 4, Minutes: 5, Milliseconds: 6000)),
+    ("PT1H30M", new DurationParts(Hours: 1, Minutes: 30)), ("P2W", new DurationParts(Weeks: 2)), ("PT0.5S", new DurationParts(Milliseconds: 500)),
+    ("PT36H", new DurationParts(Hours: 36)), ("P0D", new DurationParts()), ("PT1.250S", new DurationParts(Milliseconds: 1250)) })
+    Eq($"duration parse {s}", e, IsoDuration.ParseDuration(s));
+foreach (var bad in new[] { "P", "PT", "1D", "P1H", "PT1D", "P-1D", "PT1.2345S", "P1.5D", "p1d", "P1DT", "" })
+    Throws<FormatException>($"duration invalid '{bad}'", () => IsoDuration.ParseDuration(bad));
+Throws<FormatException>("duration overflow", () => IsoDuration.ParseDuration("P99999999999999999999D"));
+foreach (var (s, e) in new[] { ("PT1H30M", 5400000L), ("P2W", 1209600000L), ("P1DT0.5S", 86400500L), ("PT36H", 129600000L) })
+    Eq($"duration ms {s}", e, IsoDuration.DurationMilliseconds(IsoDuration.ParseDuration(s)));
+foreach (var s in new[] { "P1Y", "P1M" })
+    Throws<ArgumentException>($"duration not exact {s}", () => IsoDuration.DurationMilliseconds(IsoDuration.ParseDuration(s)), ex => ex is not ArgumentOutOfRangeException);
+Throws<ArgumentOutOfRangeException>("duration ms overflow", () => IsoDuration.DurationMilliseconds(IsoDuration.ParseDuration("P9999999999999999W")));
+foreach (var (n, e) in new[] { (0L, "PT0S"), (5400000L, "PT1H30M"), (90061001L, "P1DT1H1M1.001S"), (500L, "PT0.5S"), (129600000L, "P1DT12H"), (1209600000L, "P14D") })
+    Eq($"duration format {n}", e, IsoDuration.FormatDuration(n));
+Eq("duration format trims zeros", "PT1.25S", IsoDuration.FormatDuration(1250));
+Throws<ArgumentOutOfRangeException>("duration format negative", () => IsoDuration.FormatDuration(-1));
+
+// 27. Geometry
+var square = new[] { (0.0, 0.0), (4.0, 0.0), (4.0, 4.0), (0.0, 4.0) };
+var concave = new[] { (0.0, 0.0), (6.0, 0.0), (6.0, 6.0), (3.0, 3.0), (0.0, 6.0) };
+foreach (var (ring, p, e) in new[] {
+    (square, (2.0, 2.0), true), (square, (5.0, 2.0), false), (square, (4.0, 2.0), true), (square, (0.0, 0.0), true),
+    (square, (2.0, 4.000001), false), (concave, (3.0, 4.0), false), (concave, (3.0, 2.0), true), (concave, (1.0, 5.0), true), (concave, (3.0, 3.0), true) })
+    Eq($"pip {ring.Length} {p}", e, Geometry.PointInPolygon(p, ring));
+Eq("pip closed ring", true, Geometry.PointInPolygon((2.0, 2.0), square.Append(square[0]).ToArray()));
+Eq("area square", 16.0, Geometry.SignedArea(square));
+Eq("area reversed", -16.0, Geometry.SignedArea(square.Reverse().ToArray()));
+Eq("area concave", 27.0, Geometry.SignedArea(concave));
+var cSq = Geometry.Centroid(square); var cCc = Geometry.Centroid(concave);
+Check("centroid square", Near(cSq.X, 2.0, 1e-9) && Near(cSq.Y, 2.0, 1e-9));
+Check("centroid concave", Near(cCc.X, 3.0, 1e-9) && Near(cCc.Y, 2.3333333333333335, 1e-9));
+Throws<ArgumentException>("centroid zero area", () => Geometry.Centroid(new[] { (0.0, 0.0), (1.0, 1.0), (2.0, 2.0) }));
+Throws<ArgumentException>("ring too short", () => Geometry.SignedArea(new[] { (0.0, 0.0), (1.0, 1.0) }));
+var gLine = new[] { (0.0, 0.0), (1.0, 0.1), (2.0, -0.1), (3.0, 5.0), (4.0, 6.0), (5.0, 7.0), (6.0, 8.1), (7.0, 9.0), (8.0, 9.0), (9.0, 9.0) };
+foreach (var (pts, tol, e) in new[] {
+    (gLine, 1.0, new[] { (0.0, 0.0), (2.0, -0.1), (3.0, 5.0), (7.0, 9.0), (9.0, 9.0) }),
+    (gLine, 0.05, new[] { (0.0, 0.0), (1.0, 0.1), (2.0, -0.1), (3.0, 5.0), (6.0, 8.1), (7.0, 9.0), (9.0, 9.0) }),
+    (new[] { (0.0, 0.0), (5.0, 5.0) }, 1.0, new[] { (0.0, 0.0), (5.0, 5.0) }) }) {
+    var got = Geometry.Simplify(pts, tol);
+    Check($"simplify {pts.Length} tol {tol}", got.Count == e.Length && got.Zip(e).All(z => z.First == z.Second));
+}
+Throws<ArgumentOutOfRangeException>("simplify negative tolerance", () => Geometry.Simplify(gLine, -1));
+foreach (var (ring, e) in new[] {
+    (new[] { (0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0) }, 12391399902.070992),
+    (new[] { (-0.13, 51.5), (-0.12, 51.5), (-0.12, 51.51), (-0.13, 51.51) }, 771337.3090775362) })
+    Check($"ring area {e}", Math.Abs((Geometry.RingAreaSquareMeters(ring) - e) / e) <= 1e-9);
+
+// 28. Safe redirect
+var srAllowed = new[] { "https://app.example.com", "https://accounts.example.com:8443" };
+foreach (var (target, e) in new[] {
+    ("/dashboard?tab=1#top", "/dashboard?tab=1#top"), ("//evil.com/x", "/"), ("/\\evil.com", "/"),
+    ("https://app.example.com/settings", "https://app.example.com/settings"), ("HTTPS://APP.EXAMPLE.COM:443/a", "HTTPS://APP.EXAMPLE.COM:443/a"),
+    ("https://app.example.com.evil.com/", "/"), ("https://user@app.example.com/", "/"), ("http://app.example.com/", "/"),
+    ("https://accounts.example.com:8443/login", "https://accounts.example.com:8443/login"), ("https://accounts.example.com/login", "/"),
+    ("javascript:alert(1)", "/"), ("/ok path", "/"), ("dashboard", "/"), ("", "/"), ("/\t/evil.com", "/"), ("https://app.example.com:99999/", "/") })
+    Eq($"redirect '{target}'", e, SafeRedirects.SafeRedirect(target, srAllowed));
+Eq("redirect custom fallback", "/home", SafeRedirects.SafeRedirect("//evil.com", srAllowed, "/home"));
+Eq("redirect too long", "/", SafeRedirects.SafeRedirect("/" + new string('a', 2048), srAllowed));
+Eq("redirect DEL", "/", SafeRedirects.SafeRedirect("/a\u007Fb", srAllowed));
+Eq("redirect null", "/", SafeRedirects.SafeRedirect(null, srAllowed));
+Eq("redirect double dot host", "/", SafeRedirects.SafeRedirect("https://app..example.com/", new[] { "https://app..example.com" }));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;

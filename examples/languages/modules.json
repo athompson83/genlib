@@ -1110,7 +1110,7 @@
       "tests": [
         "pdf-form-filling/go/pdfforms_test.go"
       ],
-      "verification": "cookbook: yes (go vet ./... && go test ./..., 4 tests). pdfcpu v0.16 needs Go \u2265 1.26, which GOTOOLCHAIN=auto downloaded (local Go was 1.24.7). Fixture created with pdfcpu's JSON Create",
+      "verification": "cookbook: yes (go vet ./... && go test ./..., 4 tests). pdfcpu v0.16 needs Go ≥ 1.26, which GOTOOLCHAIN=auto downloaded (local Go was 1.24.7). Fixture created with pdfcpu's JSON Create",
       "status": "example",
       "library": "github.com/pdfcpu/pdfcpu v0.16.1 (JSON export/fill) (Apache-2.0)",
       "tested": true,
@@ -1265,7 +1265,7 @@
       "tests": [
         "pdf-text-extraction/go/pdftext_test.go"
       ],
-      "verification": "cookbook: yes (go vet ./... && go test ./..., 2 tests). Fixture made with pdfcpu v0.16.1 (Apache-2.0, test-only), which is why the module needs Go \u2265 1.26 (the toolchain was auto-downloaded)",
+      "verification": "cookbook: yes (go vet ./... && go test ./..., 2 tests). Fixture made with pdfcpu v0.16.1 (Apache-2.0, test-only), which is why the module needs Go ≥ 1.26 (the toolchain was auto-downloaded)",
       "status": "example",
       "library": "github.com/ledongthuc/pdf v0.0.0-20260907135840-6c8c28e0e8a0 (BSD-3-Clause)",
       "tested": true,
@@ -3621,6 +3621,857 @@
       ],
       "tests": [
         "swift/Sources/GenlibSwiftChecks/Wave4Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-check-digits",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/check_digits.py"
+      ],
+      "tests": [
+        "python/test_check_digits.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-signed-urls",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/signed_urls.py"
+      ],
+      "tests": [
+        "python/test_signed_urls.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-polyline",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/polyline.py"
+      ],
+      "tests": [
+        "python/test_polyline.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-tile-math",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/tile_math.py"
+      ],
+      "tests": [
+        "python/test_tile_math.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-email-address",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/email_address.py"
+      ],
+      "tests": [
+        "python/test_email_address.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-iso-duration",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/iso_duration.py"
+      ],
+      "tests": [
+        "python/test_iso_duration.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-geometry",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/geometry.py"
+      ],
+      "tests": [
+        "python/test_geometry.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-safe-redirect",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/safe_redirect.py"
+      ],
+      "tests": [
+        "python/test_safe_redirect.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-check-digits",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/checkdigits/checkdigits.go"
+      ],
+      "tests": [
+        "go/checkdigits/checkdigits_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-signed-urls",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/signedurls/signedurls.go"
+      ],
+      "tests": [
+        "go/signedurls/signedurls_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-polyline",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/polyline/polyline.go"
+      ],
+      "tests": [
+        "go/polyline/polyline_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-tile-math",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/tilemath/tilemath.go"
+      ],
+      "tests": [
+        "go/tilemath/tilemath_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-email-address",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/emailaddress/emailaddress.go"
+      ],
+      "tests": [
+        "go/emailaddress/emailaddress_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-iso-duration",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/isoduration/isoduration.go"
+      ],
+      "tests": [
+        "go/isoduration/isoduration_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-geometry",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/geometry/geometry.go"
+      ],
+      "tests": [
+        "go/geometry/geometry_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-safe-redirect",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/saferedirect/saferedirect.go"
+      ],
+      "tests": [
+        "go/saferedirect/saferedirect_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-check-digits",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/check_digits.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-signed-urls",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/signed_urls.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-polyline",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/polyline.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-tile-math",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/tile_math.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-email-address",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/email_address.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-iso-duration",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/iso_duration.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-geometry",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/geometry.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-safe-redirect",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/safe_redirect.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-check-digits",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/CheckDigits.java"
+      ],
+      "tests": [
+        "java/CheckDigitsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-signed-urls",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/SignedUrls.java"
+      ],
+      "tests": [
+        "java/SignedUrlsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-polyline",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Polyline.java"
+      ],
+      "tests": [
+        "java/PolylineTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-tile-math",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TileMath.java"
+      ],
+      "tests": [
+        "java/TileMathTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-email-address",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/EmailAddress.java"
+      ],
+      "tests": [
+        "java/EmailAddressTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-iso-duration",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/IsoDuration.java"
+      ],
+      "tests": [
+        "java/IsoDurationTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-geometry",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Geometry.java"
+      ],
+      "tests": [
+        "java/GeometryTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-safe-redirect",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/SafeRedirect.java"
+      ],
+      "tests": [
+        "java/SafeRedirectTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-check-digits",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/CheckDigits.kt"
+      ],
+      "tests": [
+        "kotlin/CheckDigitsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-signed-urls",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/SignedUrls.kt"
+      ],
+      "tests": [
+        "kotlin/SignedUrlsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-polyline",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Polyline.kt"
+      ],
+      "tests": [
+        "kotlin/PolylineTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-tile-math",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TileMath.kt"
+      ],
+      "tests": [
+        "kotlin/TileMathTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-email-address",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/EmailAddress.kt"
+      ],
+      "tests": [
+        "kotlin/EmailAddressTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-iso-duration",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/IsoDuration.kt"
+      ],
+      "tests": [
+        "kotlin/IsoDurationTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-geometry",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Geometry.kt"
+      ],
+      "tests": [
+        "kotlin/GeometryTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-safe-redirect",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/SafeRedirect.kt"
+      ],
+      "tests": [
+        "kotlin/SafeRedirectTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-check-digits",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/CheckDigits.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-signed-urls",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/SignedUrls.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-polyline",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Polyline.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-tile-math",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TileMath.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-email-address",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/EmailAddress.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-iso-duration",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/IsoDuration.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-geometry",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Geometry.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-safe-redirect",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/SafeRedirect.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-check-digits",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/check_digits.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-signed-urls",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/signed_urls.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-polyline",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/polyline.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-tile-math",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/tile_math.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-email-address",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/email_address.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-iso-duration",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/iso_duration.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-geometry",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/geometry.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-safe-redirect",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/safe_redirect.dart"
+      ],
+      "tests": [
+        "dart/test/wave5_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-check-digits",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/CheckDigits.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-signed-urls",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/SignedUrls.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-polyline",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Polyline.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-tile-math",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TileMath.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-email-address",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/EmailAddress.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-iso-duration",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/IsoDuration.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-geometry",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Geometry.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-safe-redirect",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/SafeRedirect.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave5Checks.swift"
       ],
       "verification": "CI swift run",
       "status": "example"
