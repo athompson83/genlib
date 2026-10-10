@@ -1500,6 +1500,223 @@
         "verify",
         "secret-rotation"
       ]
+    },
+    {
+      "id": "check-digits",
+      "kind": "source-example",
+      "path": "examples/recipes/check-digits.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "check digit",
+        "luhn",
+        "credit card number",
+        "iban",
+        "bank account",
+        "gtin",
+        "ean",
+        "upc",
+        "barcode",
+        "isbn",
+        "mod 97"
+      ],
+      "checks": [
+        "A valid check digit proves only the typing, not that the card, account or product exists",
+        "Strip spaces and hyphens before storing; store the canonical digits",
+        "Never log full card numbers; use a PCI-compliant processor for payments"
+      ],
+      "variants": [
+        "luhn",
+        "iban",
+        "gtin",
+        "isbn"
+      ]
+    },
+    {
+      "id": "signed-urls",
+      "kind": "source-example",
+      "path": "examples/recipes/signed-urls.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "signed url",
+        "presigned url",
+        "expiring link",
+        "download link",
+        "hmac sha256",
+        "url signature",
+        "temporary link",
+        "share link",
+        "link expiry"
+      ],
+      "checks": [
+        "A signed URL is a bearer credential until it expires: keep expiries short and use HTTPS",
+        "Keep the secret server-side; rotate by verifying against old and new secrets",
+        "Verify before serving and return the same error for bad and expired signatures to clients"
+      ],
+      "variants": [
+        "sign",
+        "verify",
+        "expiry"
+      ]
+    },
+    {
+      "id": "polyline-encoding",
+      "kind": "source-example",
+      "path": "examples/recipes/polyline.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "polyline",
+        "encoded polyline",
+        "google polyline",
+        "route geometry",
+        "directions",
+        "osrm",
+        "valhalla",
+        "decode polyline",
+        "map route"
+      ],
+      "checks": [
+        "Match the provider's precision (Google 5, OSRM/Valhalla often 6)",
+        "Points are [lat, lon] here, unlike GeoJSON [lon, lat]",
+        "Round trips are exact only to half a unit of the chosen precision"
+      ],
+      "variants": [
+        "encode",
+        "decode",
+        "precision-6"
+      ]
+    },
+    {
+      "id": "web-map-tiles",
+      "kind": "source-example",
+      "path": "examples/recipes/tile-math.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "map tiles",
+        "slippy map",
+        "tile coordinates",
+        "web mercator",
+        "epsg 3857",
+        "quadkey",
+        "tile bounds",
+        "zoom level",
+        "xyz tiles",
+        "mercator meters"
+      ],
+      "checks": [
+        "Web Mercator stops at about +/-85.05 degrees latitude",
+        "XYZ counts y from the north; TMS flips y",
+        "Bing quadkeys encode x/y/zoom as base-4 digits"
+      ],
+      "variants": [
+        "tiles",
+        "bounds",
+        "quadkey",
+        "mercator"
+      ]
+    },
+    {
+      "id": "email-address-validation",
+      "kind": "source-example",
+      "path": "examples/recipes/email-address.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "email",
+        "email validation",
+        "validate email",
+        "email address",
+        "input type email",
+        "whatwg email",
+        "normalize email",
+        "signup form"
+      ],
+      "checks": [
+        "Syntax only: confirm ownership with a single-use link sent to the address",
+        "Matches browser <input type=email> rules, so a@b is accepted",
+        "Lowercase only the domain; the local part may be case-sensitive"
+      ],
+      "variants": [
+        "validate",
+        "normalize"
+      ]
+    },
+    {
+      "id": "iso-8601-durations",
+      "kind": "source-example",
+      "path": "examples/recipes/iso-duration.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "iso 8601 duration",
+        "duration",
+        "parse duration",
+        "pt1h30m",
+        "format duration",
+        "video length",
+        "timeout setting",
+        "schema.org duration"
+      ],
+      "checks": [
+        "Years and months have no exact length; apply them to a calendar date",
+        "Weeks are 7 days and days are 24 hours (no DST)",
+        "Fractions are allowed only on seconds, up to milliseconds"
+      ],
+      "variants": [
+        "parse",
+        "milliseconds",
+        "format"
+      ]
+    },
+    {
+      "id": "geometry-polygons",
+      "kind": "source-example",
+      "path": "examples/recipes/geometry.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "geometry",
+        "point in polygon",
+        "polygon area",
+        "centroid",
+        "douglas peucker",
+        "simplify line",
+        "geofence",
+        "shoelace",
+        "ring area",
+        "geojson polygon"
+      ],
+      "checks": [
+        "Planar math on degrees suits hit tests and small shapes, not large areas",
+        "Use ringAreaSquareMeters for real-world areas (spherical approximation)",
+        "Points on an edge or vertex count as inside"
+      ],
+      "variants": [
+        "point-in-polygon",
+        "area",
+        "simplify"
+      ]
+    },
+    {
+      "id": "safe-redirects",
+      "kind": "source-example",
+      "path": "examples/recipes/safe-redirect.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "open redirect",
+        "safe redirect",
+        "redirect validation",
+        "return url",
+        "next parameter",
+        "returnto",
+        "login redirect",
+        "allowed origins"
+      ],
+      "checks": [
+        "Redirect only to the returned value, never the raw parameter",
+        "Reject protocol-relative, backslash and userinfo URLs",
+        "Allow exact origins; never match by prefix or substring"
+      ],
+      "variants": [
+        "path",
+        "allowed-origin"
+      ]
     }
   ]
 }

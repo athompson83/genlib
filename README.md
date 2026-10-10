@@ -25,10 +25,10 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 28 | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks and more, mapped to tested code in 9 languages |
-| [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
-| [Task recipes](#recipes-language-examples-and-templates) | 53 | Single-file TypeScript sources copied with one command |
-| [Language examples](#recipes-language-examples-and-templates) | 241 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [Capabilities](#capabilities-one-task-every-language) | 36 (319 implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects and more, each with tested code in up to 9 languages (the count in brackets is the total of tested implementations) |
+| [Modules](#modules) | 13 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 61 | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |
+| [Language examples](#recipes-language-examples-and-templates) | 305 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
@@ -37,8 +37,8 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 8933 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 544 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 9754 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 570 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -62,33 +62,63 @@ One command searches everything below and returns each result's exact next step.
 
 ## How it works
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/readme-flow-dark.svg">
+  <img alt="How an agent task flows through genlib quick, find, outline and source to tested code in the app" src="docs/diagrams/readme-flow-light.svg">
+</picture>
+
+<details>
+<summary>Diagram source (Mermaid: edit this, then run <code>npm run diagrams:render</code>)</summary>
+
 ```mermaid
 flowchart LR
-  Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Quick["genlib quick<br/>best match + its commands"]
-  Quick --> Find["genlib find<br/>(+ detect --target)"]
-  Quick -.-> Outline["genlib outline<br/>signatures, not source"] -.-> App
-  X -.-> Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"] -.-> App
-  Find --> C["Capabilities<br/>(SSO, MFA, PDF, docs…)"]
-  Find --> M["Modules"]
-  Find --> R["Recipes and<br/>language examples"]
-  Find --> T["Templates"]
-  Find --> N["Navigation tools"]
-  Find --> S["Skills · MCP servers<br/>CLIs · APIs<br/>starters · task recipes"]
-  Find --> X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning)"]
-  Find --> D["Doc sections<br/>(exact line ranges)"]
-  Jev["genlib jev<br/>≤8 candidates, yes/no each"] -.-> Find
-  Index["registry/search-index.jsonl"] -.-> Jev
-  MCP["genlib MCP server<br/>genlib_quick · genlib_find · genlib_outline · genlib_jev"] -.-> Find
-  Graph["registry/graph.json<br/>+ Obsidian export"] -.-> Find
-  M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
-  C --> Lang["pick the detected<br/>language's code"] --> Copy
-  R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
-  T --> Merge["read guide, merge<br/>selected files"] --> App
-  N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
-  S --> SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"] --> App
-  X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
-  D --> Section["sed -n start,end p"] --> App
+  Task["Agent task<br/>e.g. 'rate-limit the login API'"]
+  Quick["genlib quick<br/>best match + its commands"]
+  Find["genlib find<br/>(+ detect --target)"]
+  Outline["genlib outline<br/>signatures, not source"]
+  Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"]
+  Jev["genlib jev<br/>≤8 candidates, yes/no each"]
+  Index["registry/search-index.jsonl"]
+  MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Graph["registry/graph.json<br/>+ Obsidian export"]
+  C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
+  M["Modules"]
+  R["Recipes and<br/>language examples"]
+  T["Templates"]
+  N["Navigation tools"]
+  S["Skills · MCP servers<br/>CLIs · APIs<br/>starters · task recipes"]
+  X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning,<br/>diagrams, mapping and navigation)"]
+  D["Doc sections<br/>(exact line ranges)"]
+  Inspect["inspect contract"]
+  Plan["plan<br/>(no writes)"]
+  Add["add<br/>copy + .genlib/lock.json"]
+  Verify["verify hashes"]
+  Lang["pick the detected<br/>language's code"]
+  Copy["recipe-install / language-modules<br/>plan + add"]
+  Merge["read guide, merge<br/>selected files"]
+  Context["repo-context:<br/>5 files, imports, tests"]
+  SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"]
+  Adopt["inspect record:<br/>license, links, cautions"]
+  Section["sed -n start,end p"]
+  App["Adapt to the app<br/>and run its tests"]
+  Task --> Quick --> Find
+  Quick -.-> Outline -.-> App
+  Find --> C & M & R & T & N & S & X & D
+  X -.-> Source -.-> App
+  Index -.-> Jev -.-> Find
+  MCP -.-> Find
+  Graph -.-> Find
+  M --> Inspect --> Plan --> Add --> Verify --> App
+  C --> Lang --> Copy
+  R --> Copy --> App
+  T --> Merge --> App
+  N --> Context --> App
+  S --> SkillAdd --> App
+  X --> Adopt --> App
+  D --> Section --> App
 ```
+
+</details>
 
 - **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 200 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets.
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
@@ -173,6 +203,14 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `wcag-contrast` WCAG color contrast | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `geo` Geo distance, geohash and bounding boxes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `webhook-signature` Webhook signing and verification (HMAC-SHA256, t/v1 header) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `check-digits` Check digits: Luhn, IBAN, GTIN/EAN/UPC and ISBN | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `signed-urls` Signed, expiring URLs (HMAC-SHA256) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `polyline` Encoded polylines (Google polyline algorithm) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `tile-math` Web map tile math: slippy tiles, quadkeys, Web Mercator | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `email-address` Email address validation and normalization | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `iso-duration` ISO 8601 durations | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `geometry` Polygon geometry: point in polygon, area, centroid, simplification | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `safe-redirect` Safe redirects (open-redirect guard) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
@@ -209,7 +247,7 @@ The React modules need the app's existing React 18 or 19 and a TSX build; `app-s
 
 ## Recipes, language examples and templates
 
-- **Task recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. New recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
+- **TypeScript recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. New recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
 - **Language examples** ([`examples/languages`](examples/languages/README.md) and [`examples/cookbook`](examples/cookbook)): pagination, identifier validation, config, HTTP client, safe logging and the [capabilities](#capabilities-one-task-every-language) across eight languages, installed with `node tools/language-modules.mjs`.
 - **Templates** ([`templates/index.json`](templates/index.json)), all opt-in and merged by hand:
 
@@ -238,7 +276,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`attachments.json`](resources/attachments.json) | 25 | [attachment-review.md](docs/resources/attachment-review.md) | animation, ui-components, design-inspiration, design-prompts, design-system-files |
 | [`ui-foundations.json`](resources/ui-foundations.json) | 18 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
 | [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 91 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
-| [`catalog/ai-learning.json`](resources/catalog/ai-learning.json) | 29 | [ai-learning.md](docs/resources/ai-learning.md) | learning, engineering-guides, agent-frameworks, ai-apps, desktop-apps |
+| [`catalog/ai-learning.json`](resources/catalog/ai-learning.json) | 36 | [ai-learning.md](docs/resources/ai-learning.md) | learning, engineering-guides, diagram-tools, agent-frameworks, ai-apps |
 | [`catalog/backend-api.json`](resources/catalog/backend-api.json) | 95 | [backend-api.md](docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
 | [`catalog/business-tools.json`](resources/catalog/business-tools.json) | 868 | [business-tools.md](docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
 | [`catalog/chat-messaging.json`](resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
@@ -248,6 +286,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/education.json`](resources/catalog/education.json) | 380 | [education.md](docs/resources/education.md) | interactive-learning, accessibility-reading, assessment-quiz, writing-tools, lms |
 | [`catalog/finance-accounting.json`](resources/catalog/finance-accounting.json) | 360 | [finance-accounting.md](docs/resources/finance-accounting.md) | payments-billing, money-libraries, banking-ledger, market-data-quant, crypto-finance |
 | [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
+| [`catalog/mapping-navigation.json`](resources/catalog/mapping-navigation.json) | 814 | [mapping-navigation.md](docs/resources/mapping-navigation.md) | geo-processing-libraries, location-sdks-apis, web-map-libraries, osm-data-tools, geocoding-search |
 | [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
 | [`catalog/marketing-engagement-2.json`](resources/catalog/marketing-engagement-2.json) | 71 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | push, reviews |
@@ -264,7 +303,7 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **8933** | | |
+| **Total** | **9754** | | |
 <!-- genlib:catalog:end -->
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).

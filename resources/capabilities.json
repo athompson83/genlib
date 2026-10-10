@@ -1319,6 +1319,542 @@
       }
     },
     {
+      "id": "check-digits",
+      "title": "Check digits: Luhn, IBAN, GTIN/EAN/UPC and ISBN",
+      "tier": "pure",
+      "summary": "Luhn validation and check-digit generation for card and account numbers, ISO 13616 IBAN mod-97 validation and formatting, GTIN-8/12/13/14 (EAN, UPC) and ISBN-10/13 validation with ISBN-10 to 13 conversion.",
+      "terms": [
+        "luhn",
+        "credit card number",
+        "card validation",
+        "validate credit card",
+        "iban",
+        "validate iban",
+        "iban validation",
+        "bank account",
+        "validate isbn",
+        "validate barcode",
+        "check digit",
+        "checksum",
+        "gtin",
+        "ean",
+        "upc",
+        "barcode",
+        "isbn",
+        "mod 97"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "check-digits",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-check-digits",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-check-digits",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-check-digits",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-check-digits",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-check-digits",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-check-digits",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-check-digits",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-check-digits",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "signed-urls",
+      "title": "Signed, expiring URLs (HMAC-SHA256)",
+      "tier": "pure",
+      "summary": "Sign a path and query with an expiry and an HMAC-SHA256 signature for private downloads or one-click links, and verify in constant time with distinct malformed, bad signature and expired errors.",
+      "terms": [
+        "signed url",
+        "presigned url",
+        "expiring link",
+        "download link",
+        "secure link",
+        "hmac",
+        "magic link",
+        "temporary url",
+        "private file"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "signed-urls",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-signed-urls",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-signed-urls",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-signed-urls",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-signed-urls",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-signed-urls",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-signed-urls",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-signed-urls",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-signed-urls",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "polyline",
+      "title": "Encoded polylines (Google polyline algorithm)",
+      "tier": "pure",
+      "summary": "Encode and decode routes in the Google encoded polyline format at precision 5 or 6 (OSRM, Valhalla, Google Directions, Mapbox), with strict decoding.",
+      "terms": [
+        "polyline",
+        "encoded polyline",
+        "route geometry",
+        "directions",
+        "osrm",
+        "valhalla",
+        "google maps",
+        "mapbox",
+        "path encoding",
+        "navigation"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "polyline-encoding",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-polyline",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-polyline",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-polyline",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-polyline",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-polyline",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-polyline",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-polyline",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-polyline",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "tile-math",
+      "title": "Web map tile math: slippy tiles, quadkeys, Web Mercator",
+      "tier": "pure",
+      "summary": "Longitude/latitude to XYZ tile at a zoom, tile bounds, Bing quadkeys and EPSG:3857 meters for tile servers, caches, MapLibre, Leaflet and OpenLayers.",
+      "terms": [
+        "map tiles",
+        "slippy map",
+        "xyz tiles",
+        "tile coordinates",
+        "quadkey",
+        "web mercator",
+        "epsg 3857",
+        "zoom level",
+        "tile server",
+        "maplibre",
+        "leaflet",
+        "openlayers",
+        "mapping"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "web-map-tiles",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-tile-math",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-tile-math",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-tile-math",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-tile-math",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-tile-math",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-tile-math",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-tile-math",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-tile-math",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "email-address",
+      "title": "Email address validation and normalization",
+      "tier": "pure",
+      "summary": "The WHATWG HTML valid e-mail address rule with RFC length limits, and normalization that trims and lowercases the domain only. Syntax only: confirm ownership by sending a message.",
+      "terms": [
+        "email validation",
+        "validate email",
+        "email address",
+        "email regex",
+        "email format",
+        "normalize email",
+        "signup form",
+        "contact form"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "email-address-validation",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-email-address",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-email-address",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-email-address",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-email-address",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-email-address",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-email-address",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-email-address",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-email-address",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "iso-duration",
+      "title": "ISO 8601 durations",
+      "tier": "pure",
+      "summary": "Strict parsing of ISO 8601 durations (P1DT2H30M, PT0.5S, P2W) into parts, exact milliseconds for day-and-time durations, and canonical formatting.",
+      "terms": [
+        "iso 8601",
+        "duration",
+        "iso duration",
+        "pt1h",
+        "time span",
+        "youtube duration",
+        "schema org duration",
+        "timeout",
+        "interval"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "iso-8601-durations",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-iso-duration",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-iso-duration",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-iso-duration",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-iso-duration",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-iso-duration",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-iso-duration",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-iso-duration",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-iso-duration",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "geometry",
+      "title": "Polygon geometry: point in polygon, area, centroid, simplification",
+      "tier": "pure",
+      "summary": "Point-in-polygon with boundary handling, signed shoelace area and centroid, Douglas-Peucker line simplification and spherical polygon area in square meters (the Turf/Mapbox formula), for geofences and map shapes.",
+      "terms": [
+        "point in polygon",
+        "geofence",
+        "polygon area",
+        "centroid",
+        "douglas peucker",
+        "simplify line",
+        "geometry",
+        "geojson",
+        "area",
+        "turf",
+        "mapping",
+        "gis"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "geometry-polygons",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-geometry",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-geometry",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-geometry",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-geometry",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-geometry",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-geometry",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-geometry",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-geometry",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "safe-redirect",
+      "title": "Safe redirects (open-redirect guard)",
+      "tier": "pure",
+      "summary": "Accept a returnTo or next parameter only when it is a same-site path or an absolute http(s) URL whose origin is on an allow-list; rejects protocol-relative, backslash, control-character, userinfo and javascript: tricks.",
+      "terms": [
+        "open redirect",
+        "redirect",
+        "return url",
+        "returnto",
+        "next parameter",
+        "login redirect",
+        "callback url",
+        "allowlist",
+        "security"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "safe-redirects",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-safe-redirect",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-safe-redirect",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-safe-redirect",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-safe-redirect",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-safe-redirect",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-safe-redirect",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-safe-redirect",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-safe-redirect",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

@@ -14,6 +14,9 @@ if (process.argv.slice(2).some(arg => arg !== '--check')) throw new Error('Usage
 const sources = await loadSources(root);
 const counts = sourceCounts(sources);
 const types = await loadProjectTypes(root);
+// Tested implementations behind the capabilities (one per capability and language that has code).
+const capabilityImplementations = JSON.parse(readFileSync(root + 'resources/capabilities.json', 'utf8')).capabilities
+  .reduce((sum, capability) => sum + Object.values(capability.implementations).filter(item => item.kind !== 'unavailable').length, 0);
 
 // Group resources by the catalog file that holds them.
 const catalogs = [];
@@ -35,9 +38,9 @@ const link = (target, from) => {
 const sourcesBlock = from => [
   '| Source | Count | What it is |',
   '| --- | ---: | --- |',
-  `| [Capabilities](#capabilities-one-task-every-language) | ${counts.capability} | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks and more, mapped to tested code in ${LANGUAGES.length} languages |`,
-  `| [Modules](#modules) | ${counts.module} | Original, versioned, hash-verified source installed with \`plan\` / \`add\` / \`verify\` |`,
-  `| [Task recipes](#recipes-language-examples-and-templates) | ${counts.recipe} | Single-file TypeScript sources copied with one command |`,
+  `| [Capabilities](#capabilities-one-task-every-language) | ${counts.capability} (${capabilityImplementations} implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects and more, each with tested code in up to ${LANGUAGES.length} languages (the count in brackets is the total of tested implementations) |`,
+  `| [Modules](#modules) | ${counts.module} | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with \`plan\` / \`add\` / \`verify\` |`,
+  `| [TypeScript recipes](#recipes-language-examples-and-templates) | ${counts.recipe} | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |`,
   `| [Language examples](#recipes-language-examples-and-templates) | ${counts['language-example']} | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |`,
   `| [Project templates](#recipes-language-examples-and-templates) | ${counts.template} | Project, GitHub, docs, ship/release and UI-selection starters |`,
   `| [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.starter} | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |`,
@@ -47,7 +50,7 @@ const sourcesBlock = from => [
   `| [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.mcp} | Top MCP servers by downloads plus hosted servers, wired with one \`claude mcp add\` / \`codex mcp add\` |`,
   `| [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.cli} | Top Homebrew CLIs by install requests, one \`brew install\` each |`,
   `| [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.api} | Top OpenAPI-described APIs with official SDK or one-command typed client |`,
-  `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, in 12 languages) across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
+  `| [External resources](#resource-catalog) | ${counts.resource} | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across ${types.length} [project types](${link('resources/project-types.json', from)}) |`,
   `| [Documentation sections](#jev-and-the-search-index) | ${counts.doc} | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |`,
 ].join('\n');
 const catalogBlock = from => [

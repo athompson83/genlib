@@ -4,52 +4,88 @@ Genlib distributes editable source to an existing application. It is not an appl
 
 ## System overview
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/architecture-dark.svg">
+  <img alt="Genlib system diagram: authored sources, libraries, CLI, MCP server, search index and graph" src="diagrams/architecture-light.svg">
+</picture>
+
+<details>
+<summary>Diagram source (Mermaid: edit this, then run <code>npm run diagrams:render</code>)</summary>
+
 ```mermaid
 flowchart TB
   subgraph Authored["Authored sources (reviewed in Git)"]
-    MOD["modules/&lt;id&gt;/<br/>module.json · CONTRACT.md · files/"]
-    REC["resources/agent-recipes.json<br/>examples/recipes · utilities · storefront · ui"]
-    LANG["examples/languages/modules.json<br/>examples/languages · examples/cookbook"]
+    MOD["modules/{id}/<br/>module.json · CONTRACT.md · files/"]
+    REC["resources/agent-recipes.json<br/>examples/recipes · utilities<br/>storefront · ui"]
+    LANG["examples/languages/modules.json<br/>examples/languages<br/>examples/cookbook"]
     CAP["resources/capabilities.json<br/>task → code in 9 languages"]
     TPL["templates/index.json<br/>project · github · docs · ship · ui"]
-    TOOLIDX["tools/index.json<br/>repo-map · AST graph · context · diagram"]
-    RES["resources/*.json · resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning)<br/>resources/project-types.json"]
+    TOOLIDX["tools/index.json<br/>repo-map · AST graph<br/>context · diagram"]
+    RES["resources/*.json<br/>resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning,<br/>mapping-navigation)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>1,066 pinned agent skills"]
-    IDX["resources/mcp-servers.json · clis.json · apis.json<br/>starters.json · task-recipes.json<br/>ranked install indexes"]
+    IDX["resources/mcp-servers.json<br/>clis.json · apis.json<br/>starters.json · task-recipes.json<br/>ranked install indexes"]
   end
-  MOD -- "npm run registry:build" --> REG["registry/catalog.json<br/>registry/manifests/*.json (SHA-256)"]
-  REG --> DISC["lib/discover.mjs<br/>find · detect · catalog"]
+  REG["registry/catalog.json<br/>registry/manifests/*.json<br/>(SHA-256)"]
+  DISC["lib/discover.mjs<br/>find · detect · catalog"]
+  CAPLIB["lib/capabilities.mjs<br/>capability list · inspect"]
+  SKLIB["lib/skills.mjs<br/>skill find · inspect"]
+  IDXLIB["lib/indexes.mjs<br/>mcp · cli · api · starter · task<br/>find · inspect"]
+  RESLIB["lib/resources.mjs<br/>validate · search · types"]
+  DOCS_MD["README · AGENTS · docs/**/*.md"]
+  DOCIDX["lib/docs-index.mjs<br/>sections + line ranges"]
+  JEV["lib/jev.mjs<br/>bounded yes/no packet"]
+  SIDX["registry/search-index.jsonl"]
+  BRIEF["lib/brief.mjs<br/>quick · compact find"]
+  CLI["bin/genlib.mjs"]
+  OUTL["lib/outline.mjs<br/>signatures, not source"]
+  SRC["lib/source.mjs<br/>sparse pinned fetch<br/>+ resources/equivalents.json"]
+  MCPS["bin/genlib-mcp.mjs<br/>MCP tools"]
+  TOK["docs/token-budget.md<br/>measured output sizes"]
+  INST["lib/install.mjs<br/>plan · add · verify"]
+  APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
+  NET["Git hosts · npm<br/>PyPI · crates.io"]
+  DOCS["scripts/sync-docs.mjs<br/>README and resource counts"]
+  DIAG["scripts/diagrams.mjs<br/>Agentic Mermaid SVGs"]
+  JEVX["Genisys Jev and<br/>other harnesses"]
+  GRAPH["registry/graph.json<br/>navigation graph"]
+  VAULT["Obsidian vault<br/>(generated notes only)"]
+  SKILL["skills/genlib-use"]
+  MOD -- "npm run registry:build" --> REG
+  REG --> DISC
   REC --> DISC
   LANG --> DISC
-  CAP --> CAPLIB["lib/capabilities.mjs<br/>capability list · inspect"] --> DISC
+  CAP --> CAPLIB --> DISC
   LANG -. "language-modules add" .-> CAPLIB
   TPL --> DISC
   TOOLIDX --> DISC
-  SKL --> SKLIB["lib/skills.mjs<br/>skill find · inspect"] --> DISC
-  IDX --> IDXLIB["lib/indexes.mjs<br/>mcp · cli · api · starter · task<br/>find · inspect"] --> DISC
-  RES --> RESLIB["lib/resources.mjs<br/>validate · search · types"] --> DISC
-  DOCS_MD["README · AGENTS · docs/**/*.md"] --> DOCIDX["lib/docs-index.mjs<br/>sections + line ranges"] --> DISC
-  DISC --> JEV["lib/jev.mjs<br/>bounded yes/no packet"] --> CLI
-  DISC -- "npm run index:build" --> SIDX["registry/search-index.jsonl"]
-  DISC --> BRIEF["lib/brief.mjs<br/>quick · compact find"] --> CLI["bin/genlib.mjs"]
-  CAP & LANG & REC & REG --> OUTL["lib/outline.mjs<br/>signatures, not source"] --> CLI
+  SKL --> SKLIB --> DISC
+  IDX --> IDXLIB --> DISC
+  RES --> RESLIB --> DISC
+  DOCS_MD --> DOCIDX --> DISC
+  DISC --> JEV --> CLI
+  DISC -- "npm run index:build" --> SIDX
+  DISC --> BRIEF --> CLI
+  CAP & LANG & REC & REG --> OUTL --> CLI
   OUTL & BRIEF --> MCPS
-  RES & SKL & IDX --> SRC["lib/source.mjs<br/>sparse pinned fetch<br/>+ resources/equivalents.json"] --> CLI
+  RES & SKL & IDX --> SRC --> CLI
   SRC --> MCPS
-  CLI -- "npm run tokens:report" --> TOK["docs/token-budget.md<br/>measured output sizes"]
-  REG --> INST["lib/install.mjs<br/>plan · add · verify"] --> CLI
+  CLI -- "npm run tokens:report" --> TOK
+  REG --> INST --> CLI
   CLI -- "copies reviewed bytes" --> APP
-  SKLIB -. "prints npx skills add &lt;pinned url&gt;" .-> APP
-  IDXLIB -. "prints claude/codex mcp add, brew install, SDK or client generator" .-> APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
-  RES -. "scripts/verify-resources.mjs<br/>(network, maintainers)" .-> NET["Git hosts · npm · PyPI · crates.io"]
-  REG & RES --> DOCS["scripts/sync-docs.mjs<br/>README and resource index counts"]
-  SIDX -. "grep / own retrieval" .-> JEVX["Genisys Jev and other harnesses"]
-  DISC --> MCPS["bin/genlib-mcp.mjs<br/>MCP tools"] -. "stdio JSON-RPC" .-> JEVX
-  DISC -- "npm run graph:build" --> GRAPH["registry/graph.json<br/>navigation graph"]
-  DISC -- "export-obsidian.mjs" --> VAULT["Obsidian vault<br/>(generated notes only)"]
+  SKLIB -. "npx skills add (pinned)" .-> APP
+  IDXLIB -. "mcp add · brew · SDK" .-> APP
+  RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
+  REG & RES --> DOCS
+  DOCS_MD -. "npm run diagrams:render" .-> DIAG
+  SIDX -. "grep / own retrieval" .-> JEVX
+  DISC --> MCPS -. "stdio JSON-RPC" .-> JEVX
+  DISC -- "npm run graph:build" --> GRAPH
+  DISC -- "export-obsidian.mjs" --> VAULT
   JEV -. "genlib jev --json" .-> JEVX
-  SKILL["skills/genlib-use"] -- "routes agents to" --> CLI
+  SKILL -- "routes agents to" --> CLI
 ```
+
+</details>
 
 Every arrow into the target app goes through `plan`/`add` (modules), the recipe or language installers, or a person merging a template. Nothing in the catalog runs automatically.
 
@@ -94,7 +130,8 @@ The capability index (`resources/capabilities.json`) maps common tasks to tested
 - `finance-accounting.json` (budgeting, accounting, ledgers, payments, money types, market data)
 - `business-tools.json` (BI, BaaS, PaaS, CRM, ERP, helpdesk, documents and business-service SDKs)
 - `education.json` (LMSs with their SCORM/LTI/H5P/xAPI support, whiteboards, slides, writing, assessment)
-- `ai-learning.json` (agent frameworks and tools such as browser-use, OpenViking, Flowise and Fabric, plus learning references such as TheAlgorithms and System Design Primer)
+- `ai-learning.json` (agent frameworks and tools such as browser-use, OpenViking, Flowise and Fabric, plus learning references such as TheAlgorithms and System Design Primer, and diagram tools for agents such as Agentic Mermaid and drawio-skill)
+- `mapping-navigation.json` (map libraries, mobile SDKs, navigation apps, routing, tile and geo servers, geocoding, OpenStreetMap tooling, geo-processing libraries and desktop GIS, plus the tools, APIs and live data feeds used by God's Eye View)
 
 Each has a guide under `docs/resources/`.
 

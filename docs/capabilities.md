@@ -42,6 +42,14 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `wcag-contrast` WCAG color contrast | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `geo` Geo distance, geohash and bounding boxes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `webhook-signature` Webhook signing and verification (HMAC-SHA256, t/v1 header) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `check-digits` Check digits: Luhn, IBAN, GTIN/EAN/UPC and ISBN | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `signed-urls` Signed, expiring URLs (HMAC-SHA256) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `polyline` Encoded polylines (Google polyline algorithm) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `tile-math` Web map tile math: slippy tiles, quadkeys, Web Mercator | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `email-address` Email address validation and normalization | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `iso-duration` ISO 8601 durations | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `geometry` Polygon geometry: point in polygon, area, centroid, simplification | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `safe-redirect` Safe redirects (open-redirect guard) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
@@ -153,6 +161,34 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 **webhook-signature**
 - `signWebhook` writes a `t=<seconds>,v1=<hex HMAC-SHA256 of "t.body">` header. `verifyWebhook` accepts any matching `v1` (so secrets can rotate), compares in constant time and rejects timestamps outside the tolerance (300 s by default).
 - Verify the exact raw body bytes before parsing JSON. Errors are `malformed`, `bad signature` or `expired`.
+
+**check-digits**
+- `luhnValid` and `luhnCheckDigit` for card and account numbers, `ibanValid` and `ibanFormat` (ISO 13616 mod 97, computed without big integers), `gtinValid` for GTIN-8/12/13/14 (EAN, UPC), and `isbn10Valid`, `isbn13Valid` and `isbn10To13`.
+- Validators return false instead of throwing. A valid check digit proves the number is well formed, not that the card, account or book exists.
+
+**signed-urls**
+- `signUrl(path?query, secret, expires)` appends `expires=<seconds>&signature=<base64url HMAC-SHA256>`. `verifyUrl` checks it in constant time and returns `malformed`, `bad signature` or `expired` (valid through the expiry second).
+- Sign the exact path and query the server will see. Keep the secret on the server and rotate it by accepting the old one for one expiry window.
+
+**polyline**
+- `encodePolyline` and `decodePolyline` for the Google encoded polyline algorithm at precision 5 (Google, Mapbox) or 6 (OSRM, Valhalla). Points are `(lat, lon)` in that order; decoding rejects bad characters and truncated input.
+
+**tile-math**
+- `lonLatToTile`, `tileBounds`, `tileToQuadkey`, `quadkeyToTile` and `lonLatToMercator` for XYZ (slippy-map) tiles and EPSG:3857, zoom 0 to 24. Latitudes are clamped to the Web Mercator limit of ±85.0511°.
+
+**email-address**
+- `emailValid` applies the WHATWG HTML "valid e-mail address" rule plus the 254/64-character limits, so `a@b` and `user.@example.com` pass, as they do in browsers. `emailNormalize` trims and lowercases only the domain.
+- This checks syntax only. Prove ownership with a confirmation email; never lowercase or strip the local part.
+
+**iso-duration**
+- `parseDuration` (ISO 8601 `PnYnMnWnDTnHnMnS`, fractions only on seconds, at most 3 digits), `durationMilliseconds` (refuses years and months, whose length depends on the calendar) and `formatDuration`.
+
+**geometry**
+- `pointInPolygon` (points on an edge count as inside), `signedArea` (counter-clockwise positive), `centroid`, `simplify` (Douglas-Peucker) and `ringAreaSquareMeters` (spherical approximation used by Turf and Mapbox).
+- Planar functions treat longitude and latitude as x and y: fine for geofences and small shapes; project first for large areas or areas near the poles.
+
+**safe-redirect**
+- `safeRedirect(target, allowedOrigins, fallback)` accepts a same-site path (not `//` or containing `\`) or an absolute http(s) URL whose origin exactly matches an allowed origin. Everything else, including `javascript:`, userinfo (`user@host`) and control characters, returns the fallback.
 
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 

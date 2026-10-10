@@ -1,65 +1,98 @@
 {
- "schemaVersion": 1,
- "review": "Curated: Genlib code that covers the same need as an external project, so an agent can reuse tested code before fetching the original. An equivalent covers part of a project, not all of it.",
- "equivalents": {
-  "resource:svix": [
-   "capability:webhook-signature",
-   "module:webhook-verification"
-  ],
-  "resource:typescript-svix": [
-   "capability:webhook-signature",
-   "module:webhook-verification"
-  ],
-  "resource:python-svix": [
-   "capability:webhook-signature",
-   "module:webhook-verification"
-  ],
-  "resource:trigger-dev": [
-   "capability:retry-backoff",
-   "capability:cron-next",
-   "capability:token-bucket"
-  ],
-  "resource:croner": [
-   "capability:cron-next"
-  ],
-  "resource:node-cron": [
-   "capability:cron-next"
-  ],
-  "resource:csv-parse": [
-   "capability:csv-safe"
-  ],
-  "resource:papaparse": [
-   "capability:csv-safe"
-  ],
-  "resource:dinero-js": [
-   "capability:money"
-  ],
-  "resource:ics": [
-   "capability:ics-events"
-  ],
-  "resource:ical-generator": [
-   "capability:ics-events"
-  ],
-  "resource:microsoft-rest-api-guidelines": [
-   "capability:signed-cursors",
-   "capability:retry-backoff",
-   "module:http-resilience"
-  ],
-  "resource:pocketbase": [
-   "module:env-config",
-   "module:rate-limit",
-   "capability:password-hashing"
-  ],
-  "resource:pocketbase-go": [
-   "module:env-config",
-   "module:rate-limit",
-   "capability:password-hashing"
-  ],
-  "resource:billionmail": [
-   "capability:utm-links"
-  ],
-  "resource:google-engineering-practices": [
-   "template:github-starter"
-  ]
- }
+  "schemaVersion": 1,
+  "review": "Curated: Genlib code that covers the same need as an external project, so an agent can reuse tested code before fetching the original. An equivalent covers part of a project, not all of it.",
+  "equivalents": {
+    "resource:svix": [
+      "capability:webhook-signature",
+      "module:webhook-verification"
+    ],
+    "resource:typescript-svix": [
+      "capability:webhook-signature",
+      "module:webhook-verification"
+    ],
+    "resource:python-svix": [
+      "capability:webhook-signature",
+      "module:webhook-verification"
+    ],
+    "resource:trigger-dev": [
+      "capability:retry-backoff",
+      "capability:cron-next",
+      "capability:token-bucket"
+    ],
+    "resource:croner": [
+      "capability:cron-next"
+    ],
+    "resource:node-cron": [
+      "capability:cron-next"
+    ],
+    "resource:csv-parse": [
+      "capability:csv-safe"
+    ],
+    "resource:papaparse": [
+      "capability:csv-safe"
+    ],
+    "resource:dinero-js": [
+      "capability:money"
+    ],
+    "resource:ics": [
+      "capability:ics-events"
+    ],
+    "resource:ical-generator": [
+      "capability:ics-events"
+    ],
+    "resource:microsoft-rest-api-guidelines": [
+      "capability:signed-cursors",
+      "capability:retry-backoff",
+      "module:http-resilience"
+    ],
+    "resource:pocketbase": [
+      "module:env-config",
+      "module:rate-limit",
+      "capability:password-hashing"
+    ],
+    "resource:pocketbase-go": [
+      "module:env-config",
+      "module:rate-limit",
+      "capability:password-hashing"
+    ],
+    "resource:billionmail": [
+      "capability:utm-links"
+    ],
+    "resource:google-engineering-practices": [
+      "template:github-starter"
+    ],
+    "resource:mapbox-polyline": [
+      "capability:polyline"
+    ],
+    "resource:polyline": [
+      "capability:polyline"
+    ],
+    "resource:mercantile": [
+      "capability:tile-math"
+    ],
+    "resource:mapbox-sphericalmercator": [
+      "capability:tile-math"
+    ],
+    "resource:geolib": [
+      "capability:geo"
+    ],
+    "resource:ngeohash": [
+      "capability:geo"
+    ],
+    "resource:geohash": [
+      "capability:geo"
+    ],
+    "resource:simplify-js": [
+      "capability:geometry"
+    ],
+    "resource:robust-point-in-polygon": [
+      "capability:geometry"
+    ],
+    "resource:ibantools": [
+      "capability:check-digits"
+    ],
+    "resource:email-validator": [
+      "capability:email-address"
+    ]
+  }
 }

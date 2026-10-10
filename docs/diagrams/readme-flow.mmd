@@ -1,0 +1,45 @@
+flowchart LR
+  Task["Agent task<br/>e.g. 'rate-limit the login API'"]
+  Quick["genlib quick<br/>best match + its commands"]
+  Find["genlib find<br/>(+ detect --target)"]
+  Outline["genlib outline<br/>signatures, not source"]
+  Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"]
+  Jev["genlib jev<br/>≤8 candidates, yes/no each"]
+  Index["registry/search-index.jsonl"]
+  MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Graph["registry/graph.json<br/>+ Obsidian export"]
+  C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
+  M["Modules"]
+  R["Recipes and<br/>language examples"]
+  T["Templates"]
+  N["Navigation tools"]
+  S["Skills · MCP servers<br/>CLIs · APIs<br/>starters · task recipes"]
+  X["Resource catalog<br/>(incl. marketing, social,<br/>dashboards, scheduling, chat,<br/>open-source tools, finance,<br/>business, education,<br/>AI agents and learning,<br/>diagrams, mapping and navigation)"]
+  D["Doc sections<br/>(exact line ranges)"]
+  Inspect["inspect contract"]
+  Plan["plan<br/>(no writes)"]
+  Add["add<br/>copy + .genlib/lock.json"]
+  Verify["verify hashes"]
+  Lang["pick the detected<br/>language's code"]
+  Copy["recipe-install / language-modules<br/>plan + add"]
+  Merge["read guide, merge<br/>selected files"]
+  Context["repo-context:<br/>5 files, imports, tests"]
+  SkillAdd["one command:<br/>npx skills add · claude/codex mcp add<br/>brew install · SDK or openapi-typescript"]
+  Adopt["inspect record:<br/>license, links, cautions"]
+  Section["sed -n start,end p"]
+  App["Adapt to the app<br/>and run its tests"]
+  Task --> Quick --> Find
+  Quick -.-> Outline -.-> App
+  Find --> C & M & R & T & N & S & X & D
+  X -.-> Source -.-> App
+  Index -.-> Jev -.-> Find
+  MCP -.-> Find
+  Graph -.-> Find
+  M --> Inspect --> Plan --> Add --> Verify --> App
+  C --> Lang --> Copy
+  R --> Copy --> App
+  T --> Merge --> App
+  N --> Context --> App
+  S --> SkillAdd --> App
+  X --> Adopt --> App
+  D --> Section --> App
