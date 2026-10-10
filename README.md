@@ -1,188 +1,237 @@
 # Genlib
 
-**A versioned source registry for reusable application features, with a coding skill for Claude Code, Codex, and other harnesses.**
+[![CI](https://github.com/athompson83/genlib/actions/workflows/ci.yml/badge.svg)](https://github.com/athompson83/genlib/actions/workflows/ci.yml)
+[![Repository map](https://github.com/athompson83/genlib/actions/workflows/repo-map.yml/badge.svg)](https://github.com/athompson83/genlib/actions/workflows/repo-map.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Node.js 22+](https://img.shields.io/badge/node-%E2%89%A522-339933.svg?logo=node.js&logoColor=white)](package.json)
+[![No runtime dependencies](https://img.shields.io/badge/CLI%20dependencies-0-brightgreen.svg)](bin/genlib.mjs)
 
-Genlib lets a coding agent search compact descriptions, inspect a feature's integration contract, and copy reviewed source into an application. The agent can then concentrate on the project's data, behavior, permissions, and appearance instead of generating the same implementation again. The installed source belongs in the receiving application's normal development workflow and remains editable.
-
-The library contains thirteen original Apache-2.0 modules, task recipes, cross-language examples, project-to-release templates, a local CLI with one `find` command across all of them, integrity and provenance records, a portable `genlib-use` skill, and a reviewed external-resource catalog with project templates. Genlib itself is usable independently of Genisys and requires no hosted service, model API, paid account or MCP server. Calling an optional provider client requires that provider's authorized configuration. Token savings are a goal to measure against completed, accepted features; this release does not claim a savings percentage.
-
-## Included modules
-
-All modules are version `0.1.0`. Their `tested` status means the repository's relevant behavior checks pass; it does not certify a consuming application's integration or live provider connection.
-
-| Module | Included behavior | Application responsibilities |
-| --- | --- | --- |
-| [`theme-tokens`](modules/theme-tokens/CONTRACT.md) | Framework-neutral light/dark CSS variables for colors, typography, spacing, and shape | Map variables to the Brand Kit or existing design system; import CSS explicitly |
-| [`app-shell`](modules/app-shell/CONTRACT.md) | React header, navigation, responsive menu, skip link, and main-content layout | Supply routes, active state, content, and access rules; adapt routing if needed |
-| [`data-table`](modules/data-table/CONTRACT.md) | Typed React table with client-side search, stable sorting, pagination, and empty states | Supply already-authorized rows, columns, stable IDs, and custom rendering; use a separate design for large server-queried datasets |
-| [`validated-form`](modules/validated-form/CONTRACT.md) | React form state, injected validation/submission, error summary, busy state, and duplicate-submit protection | Render fields, provide validators and submission adapters, and enforce validation and authorization on the server |
-| [`notification-preferences`](modules/notification-preferences/CONTRACT.md) | Preference form, strict TypeScript domain validation, Fetch client, and a Request/Response handler with revision conflicts | Configure types/channels, authenticated identity and tenant authorization, allowed origins, and durable atomic persistence; connect actual notification delivery separately |
-| [`common-api-clients`](modules/common-api-clients/CONTRACT.md) | Server-side HTTP transport and clients for GitHub, Stripe, Resend, Supabase, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor and Steel | Configure trusted credentials, endpoint/API versions, authorization, scopes, spending and live acceptance; install only into a server package |
-
-| [`env-config`](modules/env-config/CONTRACT.md) | Typed, fail-fast environment validation from any record (`process.env`, Workers `env`, `import.meta.env`), secret redaction and `.env.example` rendering | Declare every variable the app reads; load secrets from the platform's secret store |
-| [`structured-logger`](modules/structured-logger/CONTRACT.md) | JSON-lines logger with levels, child bindings, key-based redaction, bounded error serialization and request IDs | Choose the sink and retention; review the redaction list for the app's data |
-| [`http-resilience`](modules/http-resilience/CONTRACT.md) | Retry with exponential backoff and jitter for idempotent requests, `Retry-After`, timeouts and a circuit breaker | Decide which operations are idempotent and supply idempotency keys for writes |
-| [`rate-limit`](modules/rate-limit/CONTRACT.md) | Token-bucket and window limiters with a pluggable atomic store and standard 429/`RateLimit-*` headers | Derive trustworthy client keys; use a shared store (for example Redis) across instances |
-| [`webhook-verification`](modules/webhook-verification/CONTRACT.md) | Web Crypto signature checks for GitHub, Stripe and Standard Webhooks with timestamp tolerance, secret rotation and capped raw-body reads | Keep secrets server-side, verify before parsing, de-duplicate deliveries |
-| [`health-checks`](modules/health-checks/CONTRACT.md) | Fetch-standard `/healthz` liveness and `/readyz` readiness handlers with concurrent, time-limited checks | Supply real dependency checks and route them; keep details off public networks |
-| [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies applied to any `Response` | Tune the CSP to the app's actual script, style and connect sources |
-The seven server utilities use only web-standard APIs (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers, Hono and similar runtimes; repository tests run on Node.js.
-
-`app-shell`, `data-table`, and `validated-form` depend on `theme-tokens`; the installer resolves and copies that exact local dependency automatically. Import the CSS files described in each contract. Installing files does not edit the application's imports or connect its services.
-
-## Resources and best practices
-
-The [resource catalog](docs/resources/README.md) includes **25 resources from the ten uploaded images** and **18 additional UI foundations**. Each record carries primary-source links, license scope, platform fit, reuse guidance and review limits. The [attachment review](docs/resources/attachment-review.md) maps every image to the named resources. Source references are distinct from Genlib code and do not imply the external packages or services are installed.
+**Genlib is a reusable code library and resource catalog for coding agents.** Genisys agents and other harnesses (Claude Code, Codex) find a proven module, recipe, template or library here, then copy or adopt it instead of generating the same code again. That leaves model context for each project's real differences: its data, rules, permissions and design.
 
 ```sh
-node tools/resources.mjs search dropdown --platform web --mode package --limit 5 --json
-node tools/resources.mjs search icons --license MIT --limit 5 --json
-node tools/resources.mjs inspect mapcn --json
-node tools/resources.mjs inspect steel-browser --json
-node tools/resources.mjs validate --json
+node "$GENLIB_ROOT/bin/genlib.mjs" find verify stripe webhook --target "$APP_ROOT" --limit 5 --json
 ```
 
-| Section | Reusable contents |
-| --- | --- |
-| [GitHub setup and filtering](docs/best-practices/github-setup.md) | Folder conventions, Git ignores/attributes, partial/sparse checkout, search filters, ownership, dependency updates and path-aware CI |
-| [README and docs setup](docs/best-practices/readme-and-docs.md) | README, architecture, contributing/security, API reference, decision records, deployment/rollback and verification templates |
-| [Common APIs with code](docs/best-practices/common-apis.md) | Installable provider clients, required configuration, authorization boundaries, idempotency and local usage examples |
-| [Commerce and browser APIs](docs/best-practices/commerce-and-browser.md) | Saleor catalog queries and Steel session lifecycle with failure/recovery contracts |
-| [UI libraries](docs/best-practices/ui-libraries.md) | Sources for icons, buttons, navigation, menus, dropdowns, dialogs, forms, tables, maps, motion and platform-specific controls |
+One command searches everything below and returns each result's exact next step.
 
-| [Repository-to-release map](docs/lifecycle.md) | Which Genlib asset covers each stage from `git init` to a shipped release |
+<!-- genlib:sources:start -->
+| Source | Count | What it is |
+| --- | ---: | --- |
+| [Modules](#modules) | 13 | Original, versioned, hash-verified source installed with `plan` / `add` / `verify` |
+| [Task recipes](#recipes-language-examples-and-templates) | 10 | Single-file TypeScript sources copied with one command |
+| [Language examples](#recipes-language-examples-and-templates) | 14 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
+| [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
+| [External resources](#resource-catalog) | 850 | Link- and license-checked records for open-source libraries, services and references across 21 [project types](resources/project-types.json) |
+<!-- genlib:sources:end -->
 
-| Template set | Contents |
-| --- | --- |
-| [`templates/project`](templates/project/README.md) | Strict NodeNext `tsconfig`, runtime pin, reference `ci:verify` scripts, `.env.example` |
-| [`templates/github`](templates/github/README.md) | Git ignores/attributes, editorconfig, CODEOWNERS, PR/issue forms, Dependabot, path-aware CI |
-| [`templates/docs`](templates/docs/README.md) | README, architecture, contributing, security, API, decision record and runbooks |
-| [`templates/ship`](templates/ship/README.md) | Non-root Dockerfile, tag-driven GitHub release, GHCR image with SBOM/provenance, CodeQL, changelog |
+## Contents
 
-Templates live under [`templates/`](templates) and are inactive until deliberately adopted. They require project-specific values and actual verification commands; they do not modify repository settings or replace existing files. The Claude/Codex skill routes agents to these sources with small, filtered reads. See [the addition's verification record](docs/RESOURCE_UPDATE_VALIDATION.md).
+- [How it works](#how-it-works)
+- [Quick start](#quick-start)
+- [Modules](#modules)
+- [Recipes, language examples and templates](#recipes-language-examples-and-templates)
+- [Resource catalog](#resource-catalog)
+- [Find code without reading the whole repository](#find-code-without-reading-the-whole-repository)
+- [From new repository to shipped app](#from-new-repository-to-shipped-app)
+- [Claude Code and Codex skill](#claude-code-and-codex-skill)
+- [Safety model](#safety-model)
+- [Repository layout](#repository-layout)
+- [Develop and contribute](#develop-and-contribute)
 
-## Requirements and scope
+## How it works
 
-- **CLI:** Node.js **22 or later**, an existing local application directory, and a trusted Genlib checkout. The CLI uses Node built-ins and requires **no `npm install`**.
-- **React modules:** The target's existing **React 18 or 19**, TypeScript/TSX tooling, and a browser application. They do not supply a React installation or native mobile components.
-- **Theme tokens:** Framework-neutral CSS, usable without React.
-- **Notification server adapter:** Standard Fetch `Request`/`Response` APIs, tested with Node 22+. The receiving framework owns route registration and its authorization and database adapters.
-- **Common API clients:** TypeScript with Fetch, streams, AbortController and Web Crypto on a trusted Node 22+ server. No runtime packages or automatic credential discovery. These are explicit calls, not OAuth/SSO provisioning or native application adapters.
+```mermaid
+flowchart LR
+  Task["Agent task<br/>e.g. 'rate-limit the login API'"] --> Find["genlib find<br/>(+ detect --target)"]
+  Find --> M["Modules"]
+  Find --> R["Recipes and<br/>language examples"]
+  Find --> T["Templates"]
+  Find --> N["Navigation tools"]
+  Find --> X["Resource catalog"]
+  M --> Inspect["inspect contract"] --> Plan["plan<br/>(no writes)"] --> Add["add<br/>copy + .genlib/lock.json"] --> Verify["verify hashes"] --> App["Adapt to the app<br/>and run its tests"]
+  R --> Copy["recipe-install / language-modules<br/>plan + add"] --> App
+  T --> Merge["read guide, merge<br/>selected files"] --> App
+  N --> Context["repo-context:<br/>5 files, imports, tests"] --> App
+  X --> Adopt["inspect record:<br/>license, links, cautions"] --> App
+```
 
-This repository is currently consumed from source, not as a published npm package. Each checkout exposes one selected version per module. Pin the reviewed Git commit to reproduce that catalog and its source.
+- **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
+- **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
+- **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
+- **Verify in the app.** File hashes prove what was copied; the receiving app's own build and tests prove it works.
 
 ## Quick start
 
-The examples below use a POSIX shell. Replace the application path with an **existing application package directory outside the Genlib checkout**. In a monorepo, select the package that declares React, rather than automatically selecting the repository root. Use equivalent environment-variable syntax in PowerShell.
-
-### 1. Obtain a reviewed checkout
+Requirements: Node.js 22+ and Git. The CLI uses only Node built-ins, so you don't need `npm install` to use it.
 
 ```sh
 git clone https://github.com/athompson83/genlib.git
-cd genlib
-export GENLIB_ROOT="$PWD"
+export GENLIB_ROOT="$PWD/genlib"
 export APP_ROOT="/absolute/path/to/existing-application"
-git rev-parse HEAD
-```
 
-Review the checkout before executing its tools. For repeatable builds, check out the specific reviewed commit before continuing. A recorded hash identifies a baseline; it is not an independent signature or an approval of untrusted code.
-
-### 2. Find candidates for the task, then inspect one contract
-
-```sh
+# 1. Find candidates for the task across every source
 node "$GENLIB_ROOT/bin/genlib.mjs" find searchable table --target "$APP_ROOT" --limit 5 --json
-node "$GENLIB_ROOT/bin/genlib.mjs" detect --target "$APP_ROOT" --json
-```
 
-`find` ranks modules, task recipes, language examples, templates, code-navigation tools (repository map, AST graph, diagram) and external resources together. Module results list their installed files and exports so an agent opens only the entry points it needs. With `--target` it detects the project's stack from its manifests, marks each result `compatible` or `review`, hides known mismatches, and fills the target into each result's `next` commands. Module-only search remains available:
-
-```sh
-node "$GENLIB_ROOT/bin/genlib.mjs" search table --framework react --limit 5 --json
+# 2. Inspect one module contract, then plan without writing
 node "$GENLIB_ROOT/bin/genlib.mjs" inspect data-table --json
-```
-
-`search` returns concise matches. `inspect` returns the selected module's compatibility, exports, dependencies, limitations, and full contract in its `contract` field. It does not dump all source. Use `list --json` when you need the small catalog overview, and read implementation files only when integration requires them.
-
-### 3. Plan the exact file changes
-
-```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" plan data-table --target "$APP_ROOT" --json
-```
 
-Review the compatibility result, dependency modules, paths, and conflicts. `plan` writes nothing. The default source destination is `src/genlib`; use the same `--out relative/path` for `plan` and `add` if the project needs another supported source directory.
-
-### 4. Install and verify the baseline
-
-```sh
+# 3. Copy the reviewed source and record its baseline
 node "$GENLIB_ROOT/bin/genlib.mjs" add data-table --target "$APP_ROOT" --json
 node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 ```
 
-The installer copies source and license notices and writes `.genlib/lock.json` with module versions, manifest hashes, original file hashes, and the checkout's revision and modification status when Git metadata is available. It runs no package managers or module hooks and makes no network requests.
+| Command | Purpose |
+| --- | --- |
+| `find <words> [--target app] [--type …] [--project …]` | Rank modules, recipes, examples, templates, tools and resources for a task |
+| `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
+| `catalog` | Counts and a short overview of every source |
+| `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
+| `plan <id> --target app` / `add <id> --target app` | Show, then perform, the exact file copy (default `src/genlib`, or `--out`) |
+| `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
 
-Import the component and its CSS using the [data-table contract](modules/data-table/CONTRACT.md), then connect the project's data and Brand Kit. Run the receiving application's build and relevant behavior tests. `verify` compares files with the recorded baseline; it does **not** test application correctness. After deliberate customization it reports `drift`, identifies changed files, and exits with status 1. Preserve that baseline and review the intended changes instead of replacing its hashes to conceal them.
+`add` writes `.genlib/lock.json` with versions, origin and original hashes, and copies license notices. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
 
-Run `node "$GENLIB_ROOT/bin/genlib.mjs" help` for all commands. Output is JSON; `--json` selects compact output.
+## Modules
+
+All modules are original Apache-2.0 code, version `0.1.0`, with a contract and behavior tests. `tested` means this repository's checks pass. It doesn't certify a consuming app's integration or a live provider connection.
+
+| Module | What you get | The app still owns |
+| --- | --- | --- |
+| [`theme-tokens`](modules/theme-tokens/CONTRACT.md) | Framework-neutral light/dark CSS variables | Mapping to its brand and design system |
+| [`app-shell`](modules/app-shell/CONTRACT.md) | React header, navigation, responsive menu, skip link, main layout | Routes, active state, access rules |
+| [`data-table`](modules/data-table/CONTRACT.md) | Typed React table: search, stable sort, pagination, empty states | Authorized rows; server queries for large data |
+| [`validated-form`](modules/validated-form/CONTRACT.md) | React form state, injected validation/submission, error summary, duplicate-submit guard | Fields, validators, server-side validation |
+| [`notification-preferences`](modules/notification-preferences/CONTRACT.md) | Preference UI, domain validation, Fetch client, revision-checked handler | Identity, tenancy, durable atomic storage, delivery |
+| [`common-api-clients`](modules/common-api-clients/CONTRACT.md) | Bounded server clients for GitHub, Stripe, Resend, Supabase, Graph, Calendar, OpenAI, Anthropic, Saleor, Steel | Credentials, scopes, spending limits, live acceptance |
+| [`env-config`](modules/env-config/CONTRACT.md) | Typed fail-fast env validation, secret redaction, `.env.example` rendering | The variable list and secret store |
+| [`structured-logger`](modules/structured-logger/CONTRACT.md) | JSON-lines logs, child bindings, key redaction, request IDs | Sink, retention, extra redaction keys |
+| [`http-resilience`](modules/http-resilience/CONTRACT.md) | Backoff + jitter retries for idempotent requests, `Retry-After`, timeouts, circuit breaker | Which writes are idempotent; idempotency keys |
+| [`rate-limit`](modules/rate-limit/CONTRACT.md) | Token-bucket and window limiters, pluggable atomic store, 429 headers | Trusted client keys; a shared store across instances |
+| [`webhook-verification`](modules/webhook-verification/CONTRACT.md) | GitHub, Stripe and Standard Webhooks signatures with Web Crypto, rotation, capped raw body | Secrets, de-duplication of deliveries |
+| [`health-checks`](modules/health-checks/CONTRACT.md) | Fetch-standard `/healthz` and `/readyz` with concurrent, timed checks | Real dependency checks and routing |
+| [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies | A CSP matching its real sources |
+
+The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The seven server utilities use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
+
+## Recipes, language examples and templates
+
+- **Task recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export with formula-injection guards, upload preflight, locale formatting, UI primitives and theme variants. Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
+- **Language examples** ([`examples/languages`](examples/languages/README.md)): pagination, identifier validation, config, HTTP client and safe logging across eight languages, installed with `node tools/language-modules.mjs`.
+- **Templates** ([`templates/index.json`](templates/index.json)), all opt-in and merged by hand:
+
+| Template | Contents |
+| --- | --- |
+| [`templates/project`](templates/project/README.md) | Strict NodeNext `tsconfig`, runtime pin, `ci:verify` script layout, `.env.example` |
+| [`templates/github`](templates/github/README.md) | Git ignores/attributes, editorconfig, CODEOWNERS, PR/issue forms, Dependabot, path-aware CI |
+| [`templates/docs`](templates/docs/README.md) | README, architecture, contributing, security, API, decision record, deployment and verification runbooks |
+| [`templates/ship`](templates/ship/README.md) | Non-root Dockerfile, tag-driven GitHub release, GHCR image with SBOM/provenance, CodeQL, changelog |
+| [`templates/ui`](templates/ui/selection.json) | UI library selection record with license and accessibility checks |
+
+## Resource catalog
+
+Catalog records point agents at maintained open-source projects, services and references. Each record carries its license and scope, links, an integration mode, cautions and a `useWhen` line naming the hand-written work it replaces. Every record is tagged with the [Genisys project types](resources/project-types.json) it serves.
+
+```sh
+node tools/resources.mjs types --json                              # project types with record counts
+node tools/resources.mjs search queue --project api-backend --limit 5 --json
+node tools/resources.mjs inspect bullmq --json
+node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # network link/license check
+```
+
+<!-- genlib:catalog:start -->
+| Catalog | Records | Guide | Main categories |
+| --- | ---: | --- | --- |
+| [`attachments.json`](resources/attachments.json) | 25 | [attachment-review.md](docs/resources/attachment-review.md) | animation, ui-components, design-inspiration, design-prompts, design-system-files |
+| [`ui-foundations.json`](resources/ui-foundations.json) | 18 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
+| [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 91 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
+| [`catalog/backend-api.json`](resources/catalog/backend-api.json) | 95 | [backend-api.md](docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
+| [`catalog/data-docs-office.json`](resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
+| [`catalog/devops-testing-security.json`](resources/catalog/devops-testing-security.json) | 116 | [devops-testing-security.md](docs/resources/devops-testing-security.md) | testing, security, code-quality, observability, logging |
+| [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
+| [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
+| [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
+| [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
+| [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
+| [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
+| **Total** | **850** | | |
+<!-- genlib:catalog:end -->
+
+`verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).
+
+## Find code without reading the whole repository
+
+Genlib also ships navigation tools that index whichever repository they run in, so an agent opens a handful of files instead of scanning everything:
+
+```sh
+node "$GENLIB_ROOT/tools/repo-map.mjs" build      # commit-bound paths, symbols, imports, hashes
+node "$GENLIB_ROOT/tools/repo-ast.mjs" build      # AST import graph with a content-hash cache
+node "$GENLIB_ROOT/tools/repo-context.mjs" "stripe checkout"   # ≤5 files, related imports, likely tests
+node "$GENLIB_ROOT/tools/repo-diagram.mjs"        # Mermaid overview at docs/diagrams/repository.mmd
+```
+
+Artifacts refuse to load when their commit differs from `HEAD`. The [repository map workflow](.github/workflows/repo-map.yml) regenerates the map, graph and diagram for every push and publishes them as a short-lived artifact instead of committing them. Graphify-style semantic graphs are an optional Genisys adapter, not a bundled dependency. See [repository intelligence](docs/repository-intelligence.md), [AST indexing](docs/ast-indexing.md), [task context](docs/task-context.md) and the [diagram guide](docs/diagrams-guide.md).
+
+## From new repository to shipped app
+
+[`docs/lifecycle.md`](docs/lifecycle.md) maps every stage to a Genlib asset: scaffold, configure, build UI and features, integrate services, protect, operate, document, verify in CI, and ship.
 
 ## Claude Code and Codex skill
-
-Install the portable workflow into the application project:
 
 ```sh
 node "$GENLIB_ROOT/scripts/install-skills.mjs" --target "$APP_ROOT" --harness both
 ```
 
-| Harness | Installed project discovery path | Explicit invocation |
+| Harness | Discovery path | Invoke |
 | --- | --- | --- |
-| Codex | `.agents/skills/genlib-use/SKILL.md` | Mention `$genlib-use` in the task |
-| Claude Code | `.claude/skills/genlib-use/SKILL.md` | Invoke `/genlib-use` |
+| Claude Code | `.claude/skills/genlib-use/SKILL.md` | `/genlib-use` |
+| Codex | `.agents/skills/genlib-use/SKILL.md` | `$genlib-use` |
 
-Use `--harness codex` or `--harness claude` for a single harness. Complete supporting references travel with the skill. The installer preserves target `AGENTS.md`, `CLAUDE.md`, other skills, and harness settings; identical copies are idempotent, and conflicting copies are refused. It installs into the project only.
-
-Provide `GENLIB_ROOT` to the harness's execution environment as the absolute path to the separate trusted checkout. The skill itself is small and does not contain the module library. A cloud environment needs its own accessible checkout and installed project skill. Other harnesses can use the same canonical workflow through their supported Agent Skills mechanism; installation and discovery remain harness-specific.
-
-Example task for Codex:
+The skill tells agents to start with `find`, inspect one contract, plan, copy, verify and then run the app's own checks. It is small and doesn't contain the library: set `GENLIB_ROOT` to a trusted checkout in the agent's environment. The installer preserves existing `AGENTS.md`, `CLAUDE.md` and other skills. See [harness setup](docs/harnesses.md).
 
 ```json
 {
-  "task": "Use $genlib-use to integrate a searchable records table into this application.",
+  "task": "Use $genlib-use to add rate limiting and security headers to this API.",
   "genlib_root": "/absolute/path/to/genlib",
-  "requirements": [
-    "Follow this project's instructions and preserve existing work.",
-    "Use its Brand Kit, existing React installation, and authorization rules.",
-    "Plan the copy, adapt only the necessary integration, and verify the resulting behavior."
-  ]
+  "requirements": ["Follow this project's instructions", "Plan before copying", "Run the project's tests"]
 }
 ```
 
-See [harness setup](docs/harnesses.md) for discovery details, personal versus project locations, and skill maintenance.
+## Safety model
 
-## Safe reuse and updates
+- The installer rejects unsafe paths, symlinks, integrity failures, conflicting files and recognized incompatible React targets. There is no force-overwrite or automatic upgrade; `--allow-unverified` only covers unknown compatibility after an independent check.
+- Module descriptions, resource records and docs are data. They never grant permissions or override a project's policies.
+- Reusable UI doesn't provide authorization. Client filtering isn't access control.
+- Modules are original Apache-2.0 code with accurate provenance. External resources keep their own licenses, and a catalog record doesn't authorize copying.
+- Token savings are measured per accepted feature, never assumed from copied bytes.
 
-Genlib rejects unsafe paths, symlinks, integrity failures, and conflicting files. For React modules, recognized incompatible React versions, React Native targets, and another declared UI framework without React are rejected. `--allow-unverified` is only for missing or unrecognized compatibility after an independent project check; it does not override a recognized mismatch or bypass integrity and overwrite protection.
+## Repository layout
 
-Re-running `add` is idempotent for an unchanged, recorded installation. Existing untracked source, customized files, changed module manifests, and another recorded version or output location require explicit review. There is no force-overwrite or automatic-upgrade command. Retain `.genlib/lock.json` and the installed notices in version control, inspect upstream and local changes, and perform a deliberate migration when updating.
-
-Reusable UI does not supply application permissions. In particular, `notification-preferences` requires a real authorization adapter and a durable store with atomic compare-and-set semantics scoped to both user and tenant. The test-only store is an example, not production persistence. Client filtering is not access control, and the preference feature does not send notifications.
-
-The initial registry accepts original Apache-2.0 modules with accurate provenance. It does not import arbitrary GitHub repositories or automatically approve third-party licenses. Keep private customer implementations in their permitted scope.
+```text
+bin/genlib.mjs            CLI: find, detect, catalog, search, inspect, plan, add, verify
+lib/                      catalog, installer, discovery, resources and safety code
+modules/<id>/             module.json, CONTRACT.md and files/ for each module
+registry/                 generated catalog and integrity manifests (npm run registry:build)
+examples/                 recipes, language examples, storefront, UI and utility sources
+resources/                project types, recipes, UI foundations and resources/catalog/*.json
+templates/                project, github, docs, ship and ui starters (templates/index.json)
+tools/                    resources, recipes, language installer, repo map/AST/context/diagram (tools/index.json)
+scripts/                  registry build, skill sync/install, resource verifier
+skills/genlib-use/        canonical skill; .claude/ and .agents/ hold generated mirrors
+docs/                     architecture, lifecycle, best practices and per-domain resource guides
+tests/                    CLI safety, module behavior, discovery and catalog tests
+```
 
 ## Develop and contribute
 
-Development dependencies are for compiling and testing the modules. Maintainers can install them from the committed lockfile and run the complete checks:
-
 ```sh
-cd "$GENLIB_ROOT"
 npm ci --ignore-scripts
-npm run check
+npm run registry:build   # after editing modules
+npm run skills:sync      # after editing the canonical skill
+npm run check            # registry, skills, resources, TypeScript build and all tests
 ```
 
-`check` verifies generated registry freshness, skill mirrors and resource catalog bindings, compiles TypeScript, and runs the test suite. When modifying authored modules or the canonical skill, regenerate the relevant artifacts before checking:
+CI runs the checks on Node 22 and 24 with React 18 and 19, plus language lanes for Python, Go, Rust, Java, Kotlin, C#, Dart and Swift. See [CONTRIBUTING.md](CONTRIBUTING.md), the [module format](docs/module-format.md) and the [architecture](docs/architecture.md).
 
-```sh
-npm run registry:build
-npm run skills:sync
-npm run check
-```
-
-See [CONTRIBUTING.md](CONTRIBUTING.md), [module format](docs/module-format.md), and [architecture](docs/architecture.md). Source is licensed under [Apache-2.0](LICENSE); retain [NOTICE](NOTICE) and applicable attribution when redistributing it.
+README structure and badges follow practices from [Awesome README Tools](https://github.com/dhyeythumar/awesome-readme-tools), whose entries are part of the catalog. Source is licensed under [Apache-2.0](LICENSE); keep [NOTICE](NOTICE) when redistributing.

@@ -35,6 +35,10 @@ Every result names its type, verification level and the exact next command. Modu
 | 12. Ship | `ship-starter` (`templates/ship`) | template | Non-root Dockerfile, tag-driven release, GHCR image with SBOM/provenance, CodeQL, changelog |
 | | deployment runbook (`templates/docs/docs/runbooks/deployment.md`) | template | Release, acceptance and rollback procedure |
 
+## External resources at every stage
+
+When no module, recipe or template covers a need, the resource catalog usually names a maintained project for it, tagged by Genisys project type. Run `node tools/resources.mjs search <need> --project <type> --limit 5 --json`, or read the matching domain guide listed in the [resource index](resources/README.md): frontend, backend/API, AI agents, mobile/desktop/CLI/games, data/docs/office, DevOps/testing/security, SaaS/commerce/finance, media/automation, README tools and UI sources. Each record's `useWhen` says which hand-written work it replaces. Check `license-review` records before copying or embedding them.
+
 ## Runtime reach of the server modules
 
 The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.

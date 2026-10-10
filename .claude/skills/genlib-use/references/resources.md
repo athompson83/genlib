@@ -6,6 +6,12 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
 {
   "routing": [
     {
+      "need": "Any library, framework, service or tool for a project type (web, backend, AI agent, mobile, desktop, CLI, data, docs, office, media, automation, SaaS, commerce, finance, legal, DevOps, testing, security, games, README tooling)",
+      "search": "node \"$GENLIB_ROOT/tools/resources.mjs\" search <capability> --project <project-type> --limit 5 --json",
+      "types": "node \"$GENLIB_ROOT/tools/resources.mjs\" types --json",
+      "guides": "docs/resources/README.md lists one guide per domain (docs/resources/<domain>.md) with Need | Pick | Why | License tables; read only the relevant table."
+    },
+    {
       "need": "Repository code navigation, dependency graph, impact analysis or Mermaid diagrams",
       "guide": "docs/repository-intelligence.md",
       "dependencyGuide": "docs/dependency-navigation.md",
@@ -35,7 +41,8 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
     }
   ],
   "adoption": [
-    "Read the selected record's integrationMode, verification, license.scope, sources, genlib binding and cautions. Resource verification describes evidence review, not runtime testing.",
+    "Read the selected record's integrationMode, verification, license.scope, sources, genlib binding and cautions. Resource verification describes evidence review, not runtime testing: verified = hand-reviewed source claims; partial = repository, registry license and links checked automatically by scripts/verify-resources.mjs.",
+    "Prefer a record whose useWhen names the work you would otherwise write. Treat license-review records (copyleft, source-available, fair-code, custom terms) as needing a license decision before copying or embedding.",
     "Prefer the project's existing UI system. Pin any selected external release or commit, keep required notices, inspect transitive dependencies and test target compatibility.",
     "Do not copy galleries, paid component collections or prompt packs into a shared library without applicable redistribution rights. Check mixed licenses and external service terms at the selected item level.",
     "Use the ordinary source plan/add/verify workflow for common-api-clients. Keep its code and credentials in the trusted server. Configure real authorization, scopes, budgets and environment-specific acceptance checks.",

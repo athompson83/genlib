@@ -46,6 +46,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -93,6 +96,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -141,6 +147,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -194,6 +203,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -246,6 +258,9 @@
       },
       "install": [
         "Choose one design file on the official service, inspect its license and contents, and save a reviewed project-specific adaptation with attribution where required."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -301,6 +316,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -352,6 +370,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -401,6 +422,9 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -454,6 +478,9 @@
       },
       "install": [
         "Select an individual component through official access. Review its original source, exact license, dependencies and attribution before copying any permitted files."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -513,6 +540,9 @@
       },
       "install": [
         "Follow the official installation guide for the receiving stack. Select a reviewed CLI release and only the needed components; preserve the upstream license and resulting source diff."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -565,6 +595,10 @@
       },
       "install": [
         "Inspect the selected item's current license and the user's entitlement. Use it only within that grant; keep restricted source out of this public registry."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
       ]
     },
     {
@@ -617,6 +651,10 @@
       },
       "install": [
         "Select the component and reviewed source revision from official documentation, copy only necessary files with notices, and install target-approved peer dependencies explicitly."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
       ]
     },
     {
@@ -668,6 +706,10 @@
       },
       "install": [
         "Review the official animejs package and select an exact compatible release in the receiving project's lockfile. Genlib does not run the package manager."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
       ]
     },
     {
@@ -716,6 +758,10 @@
       },
       "install": [
         "Review one component at an exact upstream revision, resolve its MIT notice and peer dependencies, then copy it with attribution and application-specific verification."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
       ]
     },
     {
@@ -768,6 +814,10 @@
       },
       "install": [
         "Open the official resource and select a reference manually. No upstream content is installed by Genlib."
+      ],
+      "projectTypes": [
+        "web-app",
+        "marketing-site"
       ]
     },
     {
@@ -825,6 +875,9 @@
       },
       "install": [
         "Select one official registry component, inspect its source and attribution, and use a reviewed shadcn CLI version or manual copy. No package or install hook runs through this catalog."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -882,6 +935,9 @@
       },
       "install": [
         "Choose a reviewed component revision and compatible peers. Configure a licensed basemap/provider before testing the map with the application's intended commercial use."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -932,6 +988,9 @@
       },
       "install": [
         "Choose an individual element, save its source URL and author, inspect its code, and retain the required MIT notice when adding permitted code."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -989,6 +1048,9 @@
       },
       "install": [
         "Review an exact release of @samasante/liquid-glass and its React peer range. Add it through the receiving project's normal dependency workflow after choosing the cross-browser background strategy."
+      ],
+      "projectTypes": [
+        "web-app"
       ]
     },
     {
@@ -1040,6 +1102,10 @@
       },
       "install": [
         "Select the needed asset from the official collection, confirm its CC0 notice, and import only required optimized files with source metadata."
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app"
       ]
     },
     {
@@ -1090,6 +1156,10 @@
       },
       "install": [
         "Select and inspect the required icon download, confirm its license, optimize it, and record its source before adding it to the project's asset directory."
+      ],
+      "projectTypes": [
+        "web-app",
+        "mobile-app"
       ]
     },
     {
@@ -1148,6 +1218,11 @@
       },
       "install": [
         "Read the common-api-clients contract and install that original Genlib module through the normal plan/add flow. Configure the receiving server to call an authorized Saleor endpoint; Saleor itself remains an external service."
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "ecommerce"
       ]
     },
     {
@@ -1206,6 +1281,10 @@
       },
       "install": [
         "Select the exact Storefront UI or Alokai package needed for the project, confirm its current license and framework support, and use its official installation guide. No enterprise source is bundled here."
+      ],
+      "projectTypes": [
+        "web-app",
+        "ecommerce"
       ]
     },
     {
@@ -1267,6 +1346,11 @@
       },
       "install": [
         "Read the common-api-clients contract and install that original Genlib module through the normal plan/add flow. Connect it to an authorized Steel service; review upstream deployment and session-isolation settings separately."
+      ],
+      "projectTypes": [
+        "web-app",
+        "api-backend",
+        "browser-automation"
       ]
     },
     {
@@ -1323,6 +1407,9 @@
       },
       "install": [
         "Use as a design reference. Before using upstream code, assess its exact GPL obligations and dependencies in a separately scoped project; this catalog installs no Echo Music source or binaries."
+      ],
+      "projectTypes": [
+        "mobile-app"
       ]
     }
   ]
