@@ -1855,6 +1855,545 @@
       }
     },
     {
+      "id": "ip-cidr",
+      "title": "IP addresses, CIDR ranges and SSRF guard",
+      "tier": "pure",
+      "summary": "Strict IPv4/IPv6 parsing with RFC 5952 canonical text, CIDR membership, and a public-address check covering private, loopback, link-local (cloud metadata), CGNAT, multicast, documentation and IPv4-mapped/NAT64 ranges, for SSRF protection and allow-lists.",
+      "terms": [
+        "ssrf",
+        "ip address",
+        "ipv4",
+        "ipv6",
+        "cidr",
+        "subnet",
+        "private ip",
+        "is private ip",
+        "ip allowlist",
+        "ip whitelist",
+        "webhook url validation",
+        "metadata endpoint",
+        "169.254.169.254",
+        "rfc 5952"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "ip-cidr-ssrf-guard",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-ip-cidr",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-ip-cidr",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-ip-cidr",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-ip-cidr",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-ip-cidr",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-ip-cidr",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-ip-cidr",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-ip-cidr",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "http-range",
+      "title": "HTTP Range requests (byte ranges, 206 and 416)",
+      "tier": "pure",
+      "summary": "Parse a Range header against a file size into byte ranges, an unsatisfiable result (416 with Content-Range bytes */size) or none (serve the whole file), following RFC 9110, plus the Content-Range value.",
+      "terms": [
+        "range request",
+        "http range",
+        "byte range",
+        "partial content",
+        "206",
+        "416",
+        "content-range",
+        "video streaming",
+        "resumable download",
+        "seek"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "http-range-requests",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-http-range",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-http-range",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-http-range",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-http-range",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-http-range",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-http-range",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-http-range",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-http-range",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "content-negotiation",
+      "title": "Content negotiation: Accept and Accept-Language",
+      "tier": "pure",
+      "summary": "Choose the best response media type or language from Accept and Accept-Language headers with q-values, wildcards, most-specific matching and q=0 exclusions (RFC 9110, RFC 4647 basic filtering).",
+      "terms": [
+        "content negotiation",
+        "accept header",
+        "accept-language",
+        "q value",
+        "locale detection",
+        "language negotiation",
+        "i18n",
+        "media type",
+        "mime type",
+        "api versioning"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "content-negotiation",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-content-negotiation",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-content-negotiation",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-content-negotiation",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-content-negotiation",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-content-negotiation",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-content-negotiation",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-content-negotiation",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-content-negotiation",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "http-conditional",
+      "title": "ETags and conditional requests (304, 412)",
+      "tier": "pure",
+      "summary": "Entity-tag parsing and strong/weak comparison, and the RFC 9110 evaluation order of If-Match, If-Unmodified-Since, If-None-Match and If-Modified-Since giving 200, 304 Not Modified or 412 Precondition Failed for caching and optimistic concurrency.",
+      "terms": [
+        "etag",
+        "if-none-match",
+        "if-match",
+        "if-modified-since",
+        "304",
+        "not modified",
+        "412",
+        "precondition failed",
+        "conditional request",
+        "http caching",
+        "optimistic concurrency",
+        "lost update"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "http-conditional-requests",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-http-conditional",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-http-conditional",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-http-conditional",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-http-conditional",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-http-conditional",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-http-conditional",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-http-conditional",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-http-conditional",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "cookies",
+      "title": "Cookies: Set-Cookie and Cookie headers",
+      "tier": "pure",
+      "summary": "Serialize Set-Cookie with Max-Age, Expires, Domain, Path, Secure, HttpOnly, SameSite and Partitioned, enforcing token/octet rules, SameSite=None and __Secure-/__Host- prefix requirements; parse Cookie headers into ordered pairs.",
+      "terms": [
+        "cookie",
+        "set-cookie",
+        "session cookie",
+        "samesite",
+        "httponly",
+        "secure cookie",
+        "__host",
+        "parse cookies",
+        "cookie header",
+        "partitioned cookie",
+        "chips"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "cookies",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-cookies",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-cookies",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-cookies",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-cookies",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-cookies",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-cookies",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-cookies",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-cookies",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "url-normalize",
+      "title": "URL normalization (RFC 3986)",
+      "tier": "pure",
+      "summary": "Canonical http(s) URLs for caching, de-duplication and comparison: lowercase scheme and host, default ports removed, dot segments resolved, percent-encoding normalized, fragment dropped, IPv6 hosts canonicalized.",
+      "terms": [
+        "url normalization",
+        "normalize url",
+        "canonical url",
+        "remove dot segments",
+        "percent encoding",
+        "dedupe urls",
+        "crawler",
+        "url comparison",
+        "rfc 3986"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "url-normalization",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-url-normalize",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-url-normalize",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-url-normalize",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-url-normalize",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-url-normalize",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-url-normalize",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-url-normalize",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-url-normalize",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "string-similarity",
+      "title": "String similarity: Levenshtein, Damerau, Jaro-Winkler",
+      "tier": "pure",
+      "summary": "Edit distances (Levenshtein, optimal string alignment) and Jaro/Jaro-Winkler scores over Unicode code points, plus a normalized ratio, for fuzzy search, typo suggestions and duplicate detection.",
+      "terms": [
+        "levenshtein",
+        "edit distance",
+        "fuzzy match",
+        "fuzzy search",
+        "jaro winkler",
+        "damerau",
+        "string similarity",
+        "typo",
+        "did you mean",
+        "dedupe",
+        "record linkage"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "string-similarity",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-string-similarity",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-string-similarity",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-string-similarity",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-string-similarity",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-string-similarity",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-string-similarity",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-string-similarity",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-string-similarity",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "rrule",
+      "title": "Recurring events: RFC 5545 RRULE expansion",
+      "tier": "pure",
+      "summary": "Expand DAILY, WEEKLY, MONTHLY and YEARLY recurrence rules with INTERVAL, COUNT, UNTIL, BYDAY (including 2TU and -1FR), BYMONTHDAY and BYMONTH in UTC, skipping invalid dates like python-dateutil.",
+      "terms": [
+        "rrule",
+        "recurrence",
+        "recurring event",
+        "repeat event",
+        "rfc 5545",
+        "icalendar",
+        "every second tuesday",
+        "last friday",
+        "calendar",
+        "schedule",
+        "recurring meeting",
+        "recurring events",
+        "repeating events",
+        "recurring event rule"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "rrule-recurrence",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-rrule",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-rrule",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-rrule",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-rrule",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-rrule",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-rrule",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-rrule",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-rrule",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

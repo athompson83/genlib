@@ -4475,6 +4475,866 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "python-ip-cidr",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/ip_cidr.py"
+      ],
+      "tests": [
+        "python/test_ip_cidr.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-http-range",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/http_range.py"
+      ],
+      "tests": [
+        "python/test_http_range.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-content-negotiation",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/content_negotiation.py"
+      ],
+      "tests": [
+        "python/test_content_negotiation.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-http-conditional",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/http_conditional.py"
+      ],
+      "tests": [
+        "python/test_http_conditional.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-cookies",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/cookies.py"
+      ],
+      "tests": [
+        "python/test_cookies.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-url-normalize",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/url_normalize.py",
+        "python/ip_cidr.py"
+      ],
+      "tests": [
+        "python/test_url_normalize.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-string-similarity",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/string_similarity.py"
+      ],
+      "tests": [
+        "python/test_string_similarity.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-rrule",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/rrule.py"
+      ],
+      "tests": [
+        "python/test_rrule.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-ip-cidr",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/ipcidr/ipcidr.go"
+      ],
+      "tests": [
+        "go/ipcidr/ipcidr_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-http-range",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/httprange/httprange.go"
+      ],
+      "tests": [
+        "go/httprange/httprange_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-content-negotiation",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/negotiation/negotiation.go"
+      ],
+      "tests": [
+        "go/negotiation/negotiation_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-http-conditional",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/conditional/conditional.go"
+      ],
+      "tests": [
+        "go/conditional/conditional_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-cookies",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/cookies/cookies.go"
+      ],
+      "tests": [
+        "go/cookies/cookies_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-url-normalize",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/urlnormalize/urlnormalize.go",
+        "go/ipcidr/ipcidr.go"
+      ],
+      "tests": [
+        "go/urlnormalize/urlnormalize_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-string-similarity",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/similarity/similarity.go"
+      ],
+      "tests": [
+        "go/similarity/similarity_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-rrule",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/rrule/rrule.go"
+      ],
+      "tests": [
+        "go/rrule/rrule_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-ip-cidr",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/ip_cidr.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-http-range",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/http_range.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-content-negotiation",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/content_negotiation.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-http-conditional",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/http_conditional.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-cookies",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/cookies.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-url-normalize",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/url_normalize.rs",
+        "rust/src/ip_cidr.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-string-similarity",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/string_similarity.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-rrule",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/rrule.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-ip-cidr",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/IpCidr.java"
+      ],
+      "tests": [
+        "java/IpCidrTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-http-range",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/HttpRange.java"
+      ],
+      "tests": [
+        "java/HttpRangeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-content-negotiation",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/ContentNegotiation.java"
+      ],
+      "tests": [
+        "java/ContentNegotiationTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-http-conditional",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/HttpConditional.java"
+      ],
+      "tests": [
+        "java/HttpConditionalTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-cookies",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Cookies.java"
+      ],
+      "tests": [
+        "java/CookiesTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-url-normalize",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/UrlNormalize.java",
+        "java/IpCidr.java"
+      ],
+      "tests": [
+        "java/UrlNormalizeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-string-similarity",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/StringSimilarity.java"
+      ],
+      "tests": [
+        "java/StringSimilarityTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-rrule",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/RRule.java"
+      ],
+      "tests": [
+        "java/RRuleTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-ip-cidr",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/IpCidr.kt"
+      ],
+      "tests": [
+        "kotlin/IpCidrTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-http-range",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/HttpRange.kt"
+      ],
+      "tests": [
+        "kotlin/HttpRangeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-content-negotiation",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/ContentNegotiation.kt"
+      ],
+      "tests": [
+        "kotlin/ContentNegotiationTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-http-conditional",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/HttpConditional.kt"
+      ],
+      "tests": [
+        "kotlin/HttpConditionalTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-cookies",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Cookies.kt"
+      ],
+      "tests": [
+        "kotlin/CookiesTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-url-normalize",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/UrlNormalize.kt",
+        "kotlin/IpCidr.kt"
+      ],
+      "tests": [
+        "kotlin/UrlNormalizeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-string-similarity",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/StringSimilarity.kt"
+      ],
+      "tests": [
+        "kotlin/StringSimilarityTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-rrule",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/RRule.kt"
+      ],
+      "tests": [
+        "kotlin/RRuleTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-ip-cidr",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/IpCidr.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-http-range",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/HttpRange.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-content-negotiation",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/ContentNegotiation.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-http-conditional",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/HttpConditional.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-cookies",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Cookies.cs",
+        "csharp/Genlib.Validation/HttpConditional.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-url-normalize",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/UrlNormalize.cs",
+        "csharp/Genlib.Validation/IpCidr.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-string-similarity",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/StringSimilarity.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-rrule",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/RRule.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-ip-cidr",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/ip_cidr.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-http-range",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/http_range.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-content-negotiation",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/content_negotiation.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-http-conditional",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/http_conditional.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-cookies",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/cookies.dart",
+        "dart/lib/http_conditional.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-url-normalize",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/url_normalize.dart",
+        "dart/lib/ip_cidr.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-string-similarity",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/string_similarity.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-rrule",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/rrule.dart"
+      ],
+      "tests": [
+        "dart/test/wave6_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-ip-cidr",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/IpCidr.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-http-range",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/HttpRange.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-content-negotiation",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/ContentNegotiation.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-http-conditional",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/HttpConditional.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-cookies",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Cookies.swift",
+        "swift/Sources/GenlibSwift/HttpConditional.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-url-normalize",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/UrlNormalize.swift",
+        "swift/Sources/GenlibSwift/IpCidr.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-string-similarity",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/StringSimilarity.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-rrule",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/RRule.swift",
+        "swift/Sources/GenlibSwift/HttpConditional.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave6Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }
