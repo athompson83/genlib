@@ -3,7 +3,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/** Deterministic LCS line diff and GNU diff -u compatible unified output. */
+/**
+ * Deterministic LCS line diff and unified output: a valid unified diff (patch reproduces the new text);
+ * same format as GNU diff -u, which may pick a different alignment of equal size.
+ */
 public final class LineDiff {
     private static final long MAX_CELLS = 4_000_000L;
 
@@ -12,19 +15,22 @@ public final class LineDiff {
     /** One diff operation: kind is "=", "-" or "+". */
     public record Op(String kind, String line) {}
 
-    private record Lines(List<String> lines, boolean finalNewline) {}
+    /** A line without its LF; noEol marks the last line of a text that does not end in LF, so it only matches another such line. */
+    private record Line(String text, boolean noEol) {}
 
-    private record Row(String kind, String line, int a, int b) {}
+    private record LineOp(String kind, Line line) {}
 
-    private static Lines split(String t) {
-        if (t.isEmpty()) return new Lines(List.of(), true);
+    private static List<Line> split(String t) {
+        List<Line> out = new ArrayList<>();
+        if (t.isEmpty()) return out;
         boolean nl = t.endsWith("\n");
-        List<String> lines = new ArrayList<>(Arrays.asList(t.split("\n", -1)));
-        if (nl) lines.remove(lines.size() - 1);
-        return new Lines(lines, nl);
+        List<String> parts = new ArrayList<>(Arrays.asList(t.split("\n", -1)));
+        if (nl) parts.remove(parts.size() - 1);
+        for (int k = 0; k < parts.size(); k++) out.add(new Line(parts.get(k), !nl && k == parts.size() - 1));
+        return out;
     }
 
-    private static List<Op> ops(List<String> a, List<String> b) {
+    private static List<LineOp> ops(List<Line> a, List<Line> b) {
         int n = a.size();
         int m = b.size();
         if ((long) n * m > MAX_CELLS) throw new IllegalArgumentException("inputs too large to diff (lines(a) * lines(b) > 4,000,000)");
@@ -34,49 +40,30 @@ public final class LineDiff {
                 l[i][j] = a.get(i).equals(b.get(j)) ? l[i + 1][j + 1] + 1 : Math.max(l[i + 1][j], l[i][j + 1]);
             }
         }
-        List<Op> out = new ArrayList<>();
+        List<LineOp> out = new ArrayList<>();
         int i = 0;
         int j = 0;
         while (i < n || j < m) {
-            if (i < n && j < m && a.get(i).equals(b.get(j))) { out.add(new Op("=", a.get(i))); i++; j++; }
-            else if (j >= m || (i < n && l[i + 1][j] >= l[i][j + 1])) { out.add(new Op("-", a.get(i))); i++; }
-            else { out.add(new Op("+", b.get(j))); j++; }
+            if (i < n && j < m && a.get(i).equals(b.get(j))) { out.add(new LineOp("=", a.get(i))); i++; j++; }
+            else if (j >= m || (i < n && l[i + 1][j] >= l[i][j + 1])) { out.add(new LineOp("-", a.get(i))); i++; }
+            else { out.add(new LineOp("+", b.get(j))); j++; }
         }
         return out;
     }
 
     /** Line operations turning a into b; throws IllegalArgumentException when lines(a) * lines(b) > 4,000,000. */
     public static List<Op> diffLines(String a, String b) {
-        return ops(split(a).lines(), split(b).lines());
+        List<Op> out = new ArrayList<>();
+        for (LineOp op : ops(split(a), split(b))) out.add(new Op(op.kind(), op.line().text()));
+        return out;
     }
 
     public static String unifiedDiff(String a, String b) { return unifiedDiff(a, b, "a", "b", 3); }
 
-    /** GNU-style unified diff, or "" when the texts are equal. */
+    /** Valid unified diff (patch reproduces the new text), or "" when the texts are equal. */
     public static String unifiedDiff(String aText, String bText, String fromName, String toName, int context) {
         if (context < 0) throw new IllegalArgumentException("context must be non-negative");
-        Lines la = split(aText);
-        Lines lb = split(bText);
-        List<String> a = la.lines();
-        List<String> b = lb.lines();
-        List<Row> rows = new ArrayList<>();
-        int ai = 0;
-        int bi = 0;
-        for (Op op : ops(a, b)) {
-            switch (op.kind()) {
-                case "=" -> rows.add(new Row("=", op.line(), ai++, bi++));
-                case "-" -> rows.add(new Row("-", op.line(), ai++, -1));
-                default -> rows.add(new Row("+", op.line(), -1, bi++));
-            }
-        }
-        if (la.finalNewline() != lb.finalNewline() && !rows.isEmpty()) {
-            Row last = rows.get(rows.size() - 1);
-            if (last.kind().equals("=") && last.a() == a.size() - 1 && last.b() == b.size() - 1) {
-                rows.remove(rows.size() - 1);
-                rows.add(new Row("-", last.line(), last.a(), -1));
-                rows.add(new Row("+", last.line(), -1, last.b()));
-            }
-        }
+        List<LineOp> rows = ops(split(aText), split(bText));
         List<Integer> changes = new ArrayList<>();
         for (int k = 0; k < rows.size(); k++) if (!rows.get(k).kind().equals("=")) changes.add(k);
         if (changes.isEmpty()) return "";
@@ -93,34 +80,24 @@ public final class LineDiff {
         for (int[] h : hunks) {
             int s = Math.max(0, h[0] - context);
             int e = Math.min(rows.size() - 1, h[1] + context);
-            List<Row> seg = rows.subList(s, e + 1);
+            List<LineOp> seg = rows.subList(s, e + 1);
             int aBefore = 0;
             int bBefore = 0;
-            for (Row r : rows.subList(0, s)) { if (!r.kind().equals("+")) aBefore++; if (!r.kind().equals("-")) bBefore++; }
+            for (LineOp r : rows.subList(0, s)) { if (!r.kind().equals("+")) aBefore++; if (!r.kind().equals("-")) bBefore++; }
             int aCount = 0;
             int bCount = 0;
-            int aFirst = -1;
-            int bFirst = -1;
-            for (Row r : seg) {
-                if (!r.kind().equals("+")) { if (aCount++ == 0) aFirst = r.a(); }
-                if (!r.kind().equals("-")) { if (bCount++ == 0) bFirst = r.b(); }
-            }
-            out.append("@@ -").append(range(aCount, aFirst, aBefore)).append(" +").append(range(bCount, bFirst, bBefore)).append(" @@\n");
-            for (Row r : seg) {
-                out.append(r.kind().equals("=") ? " " : r.kind()).append(r.line()).append('\n');
-                boolean aSide = !r.kind().equals("+");
-                if (aSide && r.a() == a.size() - 1 && !la.finalNewline() && (r.kind().equals("-") || la.finalNewline() == lb.finalNewline())) {
-                    out.append("\\ No newline at end of file\n");
-                } else if (r.kind().equals("+") && r.b() == b.size() - 1 && !lb.finalNewline()) {
-                    out.append("\\ No newline at end of file\n");
-                }
+            for (LineOp r : seg) { if (!r.kind().equals("+")) aCount++; if (!r.kind().equals("-")) bCount++; }
+            out.append("@@ -").append(range(aCount, aBefore)).append(" +").append(range(bCount, bBefore)).append(" @@\n");
+            for (LineOp r : seg) {
+                out.append(r.kind().equals("=") ? " " : r.kind()).append(r.line().text()).append('\n');
+                if (r.line().noEol()) out.append("\\ No newline at end of file\n");
             }
         }
         return out.toString();
     }
 
-    private static String range(int count, int first, int before) {
+    private static String range(int count, int before) {
         if (count == 0) return before + ",0";
-        return count == 1 ? String.valueOf(first + 1) : (first + 1) + "," + count;
+        return count == 1 ? String.valueOf(before + 1) : (before + 1) + "," + count;
     }
 }

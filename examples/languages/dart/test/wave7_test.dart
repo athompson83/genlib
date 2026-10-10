@@ -188,11 +188,16 @@ void runLineDiffTests(Checks c) {
     ('x\n', '', '-x'),
     ('one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n', 'one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n', '=one|-two|+TWO|=three|=four|=five|=six|=seven|=eight|-nine|+NINE|=ten'),
     ('1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n', '1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n', '=1|=2|-3|+X|=4|=5|=6|=7|=8|=9|=10|=11|=12|=13|-14|+Y|=15|=16'),
-    ('a\nb\n', 'a\nb', '=a|=b'),
+    ('a\nb\n', 'a\nb', '=a|-b|+b'),
     ('a\nb', 'a\nc', '=a|-b|+c'),
     ('same\n', 'same\n', '=same'),
     ('a\nb\nc\nd\n', 'b\nc\nd\ne\n', '-a|=b|=c|=d|+e'),
     ('x\ny\n', 'y\nx\n', '-x|=y|+x'),
+    ('a\nb\nd\nd\ne\nc\nb', 'c\nd\nc\nd\nb\nb\na\nb\n', '-a|-b|-d|+c|=d|-e|=c|-b|+d|+b|+b|+a|+b'),
+    ('a\nd\nd\na\nb\na', 'b\na\nc\ne\na\na\na\n', '+b|=a|-d|-d|+c|+e|=a|-b|-a|+a|+a'),
+    ('x', 'x', '=x'),
+    ('x', 'x\n', '-x|+x'),
+    ('p\nq', 'q\np', '-p|-q|+q|+p'),
   ];
   for (final (a, b, expected) in ops) {
     c.eq('diff lines ${_show(a)} -> ${_show(b)}', expected, diffLines(a, b).map((o) => '${o.$1}${o.$2}').join('|'));
@@ -218,6 +223,16 @@ void runLineDiffTests(Checks c) {
         '--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n'),
     ('x\ny\n', 'y\nx\n',
         '--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n'),
+    ('a\nb\nd\nd\ne\nc\nb', 'c\nd\nc\nd\nb\nb\na\nb\n',
+        '--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n'),
+    ('a\nd\nd\na\nb\na', 'b\na\nc\ne\na\na\na\n',
+        '--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n'),
+    ('x', 'x',
+        ''),
+    ('x', 'x\n',
+        '--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n'),
+    ('p\nq', 'q\np',
+        '--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n'),
   ];
   for (final (a, b, expected) in unified) {
     c.eq('unified diff ${_show(a)} -> ${_show(b)}', expected, unifiedDiff(a, b, fromName: 'old.txt', toName: 'new.txt'));

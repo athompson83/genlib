@@ -2088,7 +2088,7 @@
       "checks": [
         "Inputs above 4,000,000 line pairs throw; bound sizes first",
         "Escape lines before rendering as HTML",
-        "Output matches GNU diff -u for the shared vectors"
+        "Output is a valid unified diff (patch reproduces the new text); same format as GNU diff -u, which may pick a different alignment of equal size"
       ],
       "variants": [
         "ops",

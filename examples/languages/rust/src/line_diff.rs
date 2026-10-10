@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 //! Deterministic line diff from a longest common subsequence table, rendered
-//! in the GNU `diff -u` unified format, including `\ No newline at end of
-//! file` markers. Inputs are limited to 4,000,000 line pairs (the table is
-//! quadratic).
+//! as a valid unified diff (patch reproduces the new text); same format as GNU
+//! `diff -u`, which may pick a different alignment of equal size. A last line
+//! without a trailing newline only matches another last line without one and
+//! is followed by `\ No newline at end of file`. Inputs are limited to
+//! 4,000,000 line pairs (the table is quadratic).
 
 use std::fmt;
 
@@ -22,19 +24,25 @@ impl std::error::Error for DiffError {}
 /// One diff line: `'='` unchanged, `'-'` removed or `'+'` added.
 pub type Op<'a> = (char, &'a str);
 
-fn split(t: &str) -> (Vec<&str>, bool) {
+/// A split line and whether it is the last line of a text without a final
+/// `\n`. Two lines are equal only if both fields are equal.
+type Line<'a> = (&'a str, bool);
+
+fn split(t: &str) -> Vec<Line<'_>> {
     if t.is_empty() {
-        return (vec![], true);
+        return vec![];
     }
     let nl = t.ends_with('\n');
-    let mut lines: Vec<&str> = t.split('\n').collect();
+    let mut lines: Vec<Line> = t.split('\n').map(|l| (l, false)).collect();
     if nl {
         lines.pop();
+    } else if let Some(last) = lines.last_mut() {
+        last.1 = true;
     }
-    (lines, nl)
+    lines
 }
 
-fn ops<'a>(a: &[&'a str], b: &[&'a str]) -> Result<Vec<Op<'a>>, DiffError> {
+fn ops<'a>(a: &[Line<'a>], b: &[Line<'a>]) -> Result<Vec<(char, Line<'a>)>, DiffError> {
     let (n, m) = (a.len(), b.len());
     if (n as u64) * (m as u64) > 4_000_000 {
         return Err(DiffError("input too large (lines(a) * lines(b) > 4,000,000)".into()));
@@ -64,15 +72,9 @@ fn ops<'a>(a: &[&'a str], b: &[&'a str]) -> Result<Vec<Op<'a>>, DiffError> {
 
 /// Splits both texts on `\n` (a final `\n` ends the last line; "" has no
 /// lines) and returns the operations, preferring removals before additions.
+/// A last line without `\n` only matches another such last line.
 pub fn diff_lines<'a>(a: &'a str, b: &'a str) -> Result<Vec<Op<'a>>, DiffError> {
-    ops(&split(a).0, &split(b).0)
-}
-
-struct Row<'a> {
-    kind: char,
-    line: &'a str,
-    ai: Option<usize>,
-    bi: Option<usize>,
+    Ok(ops(&split(a), &split(b))?.into_iter().map(|(k, (line, _))| (k, line)).collect())
 }
 
 fn range(before: usize, count: usize) -> String {
@@ -83,33 +85,14 @@ fn range(before: usize, count: usize) -> String {
     }
 }
 
-/// "" when the texts are equal, otherwise `--- from`, `+++ to` and hunks
-/// formatted like GNU `diff -u` with `context` lines around each change.
+/// "" when the texts are equal, otherwise `--- from`, `+++ to` and hunks with
+/// `context` lines around each change: a valid unified diff (patch reproduces
+/// the new text); same format as GNU `diff -u`, which may pick a different
+/// alignment of equal size.
 pub fn unified_diff(a: &str, b: &str, from_name: &str, to_name: &str, context: usize) -> Result<String, DiffError> {
-    let (x, anl) = split(a);
-    let (y, bnl) = split(b);
-    let (mut ai, mut bi) = (0, 0);
-    let mut rows: Vec<Row> = Vec::new();
-    for (kind, line) in ops(&x, &y)? {
-        let (ra, rb) = match kind {
-            '=' => (Some(ai), Some(bi)),
-            '-' => (Some(ai), None),
-            _ => (None, Some(bi)),
-        };
-        ai += usize::from(ra.is_some());
-        bi += usize::from(rb.is_some());
-        rows.push(Row { kind, line, ai: ra, bi: rb });
-    }
-    // A final common line that differs only by its trailing newline changes.
-    if let Some(last) = rows.last() {
-        if anl != bnl && last.kind == '=' && last.ai == x.len().checked_sub(1) && last.bi == y.len().checked_sub(1) {
-            let r = rows.pop().expect("last row");
-            rows.push(Row { kind: '-', line: r.line, ai: r.ai, bi: None });
-            rows.push(Row { kind: '+', line: r.line, ai: None, bi: r.bi });
-        }
-    }
+    let rows = ops(&split(a), &split(b))?;
     let context = context.min(rows.len()); // larger values cannot change the output
-    let changes: Vec<usize> = rows.iter().enumerate().filter(|(_, r)| r.kind != '=').map(|(k, _)| k).collect();
+    let changes: Vec<usize> = rows.iter().enumerate().filter(|(_, r)| r.0 != '=').map(|(k, _)| k).collect();
     let Some(&first) = changes.first() else { return Ok(String::new()) };
     let mut hunks = vec![(first, first)];
     for &k in &changes[1..] {
@@ -121,24 +104,21 @@ pub fn unified_diff(a: &str, b: &str, from_name: &str, to_name: &str, context: u
         }
     }
     let mut out = format!("--- {from_name}\n+++ {to_name}\n");
-    let (alast, blast) = (x.len().checked_sub(1), y.len().checked_sub(1));
     for (s, e) in hunks {
         let s = s.saturating_sub(context);
         let e = (e + context).min(rows.len() - 1);
-        let count = |rs: &[Row], skip: char| rs.iter().filter(|r| r.kind != skip).count();
+        let count = |rs: &[(char, Line)], skip: char| rs.iter().filter(|r| r.0 != skip).count();
         let seg = &rows[s..=e];
         out.push_str(&format!(
             "@@ -{} +{} @@\n",
             range(count(&rows[..s], '+'), count(seg, '+')),
             range(count(&rows[..s], '-'), count(seg, '-'))
         ));
-        for r in seg {
-            out.push(if r.kind == '=' { ' ' } else { r.kind });
-            out.push_str(r.line);
+        for &(kind, (line, no_eol)) in seg {
+            out.push(if kind == '=' { ' ' } else { kind });
+            out.push_str(line);
             out.push('\n');
-            let a_end = r.kind != '+' && r.ai == alast && !anl && (r.kind == '-' || anl == bnl);
-            let b_end = r.kind == '+' && r.bi == blast && !bnl;
-            if a_end || b_end {
+            if no_eol {
                 out.push_str("\\ No newline at end of file\n");
             }
         }
@@ -151,27 +131,22 @@ mod tests {
     use super::*;
 
     // ops are written as "=a|-b|+B" for compactness.
-    const CASES: [(&str, &str, &str, &str); 10] = [
+    const CASES: [(&str, &str, &str, &str); 15] = [
         ("a\nb\nc\n", "a\nB\nc\n", "=a|-b|+B|=c", "--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"),
         ("", "x\n", "+x", "--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n"),
         ("x\n", "", "-x", "--- old.txt\n+++ new.txt\n@@ -1 +0,0 @@\n-x\n"),
-        (
-            "one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n",
-            "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n",
-            "=one|-two|+TWO|=three|=four|=five|=six|=seven|=eight|-nine|+NINE|=ten",
-            "--- old.txt\n+++ new.txt\n@@ -1,10 +1,10 @@\n one\n-two\n+TWO\n three\n four\n five\n six\n seven\n eight\n-nine\n+NINE\n ten\n",
-        ),
-        (
-            "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n",
-            "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n",
-            "=1|=2|-3|+X|=4|=5|=6|=7|=8|=9|=10|=11|=12|=13|-14|+Y|=15|=16",
-            "--- old.txt\n+++ new.txt\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -11,6 +11,6 @@\n 11\n 12\n 13\n-14\n+Y\n 15\n 16\n",
-        ),
-        ("a\nb\n", "a\nb", "=a|=b", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"),
+        ("one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", "=one|-two|+TWO|=three|=four|=five|=six|=seven|=eight|-nine|+NINE|=ten", "--- old.txt\n+++ new.txt\n@@ -1,10 +1,10 @@\n one\n-two\n+TWO\n three\n four\n five\n six\n seven\n eight\n-nine\n+NINE\n ten\n"),
+        ("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", "=1|=2|-3|+X|=4|=5|=6|=7|=8|=9|=10|=11|=12|=13|-14|+Y|=15|=16", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,6 @@\n 1\n 2\n-3\n+X\n 4\n 5\n 6\n@@ -11,6 +11,6 @@\n 11\n 12\n 13\n-14\n+Y\n 15\n 16\n"),
+        ("a\nb\n", "a\nb", "=a|-b|+b", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n+b\n\\ No newline at end of file\n"),
         ("a\nb", "a\nc", "=a|-b|+c", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n a\n-b\n\\ No newline at end of file\n+c\n\\ No newline at end of file\n"),
         ("same\n", "same\n", "=same", ""),
         ("a\nb\nc\nd\n", "b\nc\nd\ne\n", "-a|=b|=c|=d|+e", "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"),
         ("x\ny\n", "y\nx\n", "-x|=y|+x", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"),
+        ("a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", "-a|-b|-d|+c|=d|-e|=c|-b|+d|+b|+b|+a|+b", "--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n"),
+        ("a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", "+b|=a|-d|-d|+c|+e|=a|-b|-a|+a|+a", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n"),
+        ("x", "x", "=x", ""),
+        ("x", "x\n", "-x|+x", "--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n"),
+        ("p\nq", "q\np", "-p|-q|+q|+p", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n"),
     ];
 
     #[test]

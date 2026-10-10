@@ -2730,7 +2730,7 @@
       "id": "line-diff",
       "title": "Line diff and unified diff output",
       "tier": "pure",
-      "summary": "Deterministic LCS line diff and unified diff text identical to GNU diff -u (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
+      "summary": "Deterministic LCS line diff and unified diff in the GNU diff -u format that patch applies exactly (hunks, context, \"No newline at end of file\"), for change previews, audit logs and patches.",
       "terms": [
         "diff",
         "unified diff",

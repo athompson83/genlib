@@ -247,7 +247,7 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - `formatBytes` (SI kB or IEC KiB, integer rounding, 64-bit safe), `parseBytes`, `formatDuration` ("1h 2m") and `relativeTime` ("3 minutes ago", "in 2 days"; English only, localize with Intl or ICU for other languages).
 
 **line-diff**
-- `diffLines` returns equal/removed/added lines from a deterministic LCS walk; `unifiedDiff` writes text identical to GNU `diff -u` (hunks, three lines of context, "No newline at end of file"). Inputs are limited to 4,000,000 line pairs; use a streaming diff for huge files.
+- `diffLines` returns equal/removed/added lines from a deterministic LCS walk; `unifiedDiff` writes a valid unified diff in the GNU `diff -u` format (hunks, three lines of context, "No newline at end of file") that `patch` applies to reproduce the new text, checked on 4,000 random pairs. GNU diff may choose a different alignment of the same size (about a quarter of random inputs), so do not compare its bytes with GNU output. Inputs are limited to 4,000,000 line pairs; use a streaming diff for huge files.
 
 **password-policy**
 - `checkPassword` reports too-short, too-long (code points), control-characters, blocklisted, contains-context and repetitive (aaaa, 1234, dcba) with no composition rules, following NIST SP 800-63B. Use a large breached-password list as the blocklist, allow spaces and emoji, never truncate, and rate-limit attempts.

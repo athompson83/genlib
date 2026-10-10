@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-// Deterministic line diff (LCS) and GNU `diff -u` compatible unified output. Lines split on "\n" only (a trailing "\n"
-// ends the last line; "\r" stays part of the line) and compare byte-for-byte, not by Swift's canonical String equality.
+// Deterministic line diff (LCS) and unified output: a valid unified diff (patch reproduces the new text); same format as
+// GNU diff -u, which may pick a different alignment of equal size. Lines split on "\n" only (a trailing "\n" ends the
+// last line; "\r" stays part of the line) and compare byte-for-byte, not by Swift's canonical String equality. The last
+// line of a text without a trailing "\n" only equals another last line without one.
 
 public enum LineDiffError: Error, Equatable {
     case invalidArgument(String)
@@ -16,24 +18,24 @@ public struct DiffOp: Equatable, CustomStringConvertible {
 public enum LineDiff {
     public static let maxCells = 4_000_000
 
-    private struct Lines {
-        var bytes: [[UInt8]]
-        var finalNewline: Bool
+    /// One line without its "\n"; noEol marks the last line of a text that does not end in "\n".
+    private struct Line: Equatable {
+        var bytes: [UInt8]
+        var noEol: Bool
     }
 
-    private static func split(_ text: String) -> Lines {
+    private static func split(_ text: String) -> [Line] {
         let b = Array(text.utf8)
-        if b.isEmpty { return Lines(bytes: [], finalNewline: true) }
-        var parts = b.split(separator: 0x0A, omittingEmptySubsequences: false).map(Array.init)
-        let nl = b.last == 0x0A
-        if nl { parts.removeLast() }
-        return Lines(bytes: parts, finalNewline: nl)
+        if b.isEmpty { return [] }
+        var parts = b.split(separator: 0x0A, omittingEmptySubsequences: false).map { Line(bytes: Array($0), noEol: false) }
+        if b.last == 0x0A { parts.removeLast() } else { parts[parts.count - 1].noEol = true }
+        return parts
     }
 
     private static func str(_ b: [UInt8]) -> String { String(decoding: b, as: UTF8.self) }
 
-    /// (op, line bytes) in order; throws when lines(a) * lines(b) exceeds maxCells.
-    private static func ops(_ a: [[UInt8]], _ b: [[UInt8]]) throws -> [(Character, [UInt8])] {
+    /// (op, line) in order; throws when lines(a) * lines(b) exceeds maxCells.
+    private static func ops(_ a: [Line], _ b: [Line]) throws -> [(Character, Line)] {
         let n = a.count, m = b.count
         guard n * m <= maxCells else { throw LineDiffError.invalidArgument("inputs too large to diff (\(n) x \(m) lines)") }
         var table = Array(repeating: Array(repeating: 0, count: m + 1), count: n + 1)
@@ -44,7 +46,7 @@ public enum LineDiff {
                 }
             }
         }
-        var out: [(Character, [UInt8])] = [], i = 0, j = 0
+        var out: [(Character, Line)] = [], i = 0, j = 0
         while i < n || j < m {
             if i < n && j < m && a[i] == b[j] { out.append(("=", a[i])); i += 1; j += 1 }
             else if j >= m || (i < n && table[i + 1][j] >= table[i][j + 1]) { out.append(("-", a[i])); i += 1 }
@@ -55,21 +57,22 @@ public enum LineDiff {
 
     /// Line operations from a to b ("=" kept, "-" removed, "+" added).
     public static func diffLines(_ a: String, _ b: String) throws -> [DiffOp] {
-        try ops(split(a).bytes, split(b).bytes).map { DiffOp(String($0.0), str($0.1)) }
+        try ops(split(a), split(b)).map { DiffOp(String($0.0), str($0.1.bytes)) }
     }
 
     private struct Row {
         var op: Character
-        var line: [UInt8]
+        var line: Line
         var ai: Int?
         var bi: Int?
     }
 
-    /// GNU-style unified diff; "" when the texts are identical.
+    /// Valid unified diff (patch reproduces the new text); same format as GNU diff -u, which may pick a different
+    /// alignment of equal size. "" when the texts are identical.
     public static func unifiedDiff(_ aText: String, _ bText: String, fromName: String = "a", toName: String = "b",
                                    context: Int = 3) throws -> String {
         guard context >= 0 else { throw LineDiffError.invalidArgument("context must be >= 0") }
-        let la = split(aText), lb = split(bText), a = la.bytes, b = lb.bytes
+        let a = split(aText), b = split(bText)
         var rows: [Row] = [], ai = 0, bi = 0
         for (op, line) in try ops(a, b) {
             switch op {
@@ -77,12 +80,6 @@ public enum LineDiff {
             case "-": rows.append(Row(op: op, line: line, ai: ai, bi: nil)); ai += 1
             default: rows.append(Row(op: op, line: line, ai: nil, bi: bi)); bi += 1
             }
-        }
-        // A last line that differs only by its trailing newline is shown as removed and re-added.
-        if la.finalNewline != lb.finalNewline, let last = rows.last, last.op == "=", last.ai == a.count - 1, last.bi == b.count - 1 {
-            rows.removeLast()
-            rows.append(Row(op: "-", line: last.line, ai: last.ai, bi: nil))
-            rows.append(Row(op: "+", line: last.line, ai: nil, bi: last.bi))
         }
         let changes = rows.indices.filter { rows[$0].op != "=" }
         guard let firstChange = changes.first else { return "" }
@@ -103,12 +100,8 @@ public enum LineDiff {
             }
             out += Array("@@ -\(range("+", { $0.ai })) +\(range("-", { $0.bi })) @@\n".utf8)
             for r in seg {
-                out += Array((r.op == "=" ? " " : String(r.op)).utf8) + r.line + [0x0A]
-                if r.op != "+", r.ai == a.count - 1, !la.finalNewline, r.op == "-" || lb.finalNewline == la.finalNewline {
-                    out += Array("\\ No newline at end of file\n".utf8)
-                } else if r.op == "+", r.bi == b.count - 1, !lb.finalNewline {
-                    out += Array("\\ No newline at end of file\n".utf8)
-                }
+                out += Array((r.op == "=" ? " " : String(r.op)).utf8) + r.line.bytes + [0x0A]
+                if r.line.noEol { out += Array("\\ No newline at end of file\n".utf8) }
             }
         }
         return str(out)

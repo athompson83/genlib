@@ -7,7 +7,7 @@
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -230,13 +230,18 @@ const DIFF_OPS = [
   ["x\n", "", [["-", "x"]]],
   ["one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", [["=", "one"], ["-", "two"], ["+", "TWO"], ["=", "three"], ["=", "four"], ["=", "five"], ["=", "six"], ["=", "seven"], ["=", "eight"], ["-", "nine"], ["+", "NINE"], ["=", "ten"]]],
   ["1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", [["=", "1"], ["=", "2"], ["-", "3"], ["+", "X"], ["=", "4"], ["=", "5"], ["=", "6"], ["=", "7"], ["=", "8"], ["=", "9"], ["=", "10"], ["=", "11"], ["=", "12"], ["=", "13"], ["-", "14"], ["+", "Y"], ["=", "15"], ["=", "16"]]],
-  ["a\nb\n", "a\nb", [["=", "a"], ["=", "b"]]],
+  ["a\nb\n", "a\nb", [["=", "a"], ["-", "b"], ["+", "b"]]],
   ["a\nb", "a\nc", [["=", "a"], ["-", "b"], ["+", "c"]]],
   ["same\n", "same\n", [["=", "same"]]],
   ["a\nb\nc\nd\n", "b\nc\nd\ne\n", [["-", "a"], ["=", "b"], ["=", "c"], ["=", "d"], ["+", "e"]]],
   ["x\ny\n", "y\nx\n", [["-", "x"], ["=", "y"], ["+", "x"]]],
+  ["a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", [["-", "a"], ["-", "b"], ["-", "d"], ["+", "c"], ["=", "d"], ["-", "e"], ["=", "c"], ["-", "b"], ["+", "d"], ["+", "b"], ["+", "b"], ["+", "a"], ["+", "b"]]],
+  ["a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", [["+", "b"], ["=", "a"], ["-", "d"], ["-", "d"], ["+", "c"], ["+", "e"], ["=", "a"], ["-", "b"], ["-", "a"], ["+", "a"], ["+", "a"]]],
+  ["x", "x", [["=", "x"]]],
+  ["x", "x\n", [["-", "x"], ["+", "x"]]],
+  ["p\nq", "q\np", [["-", "p"], ["-", "q"], ["+", "q"], ["+", "p"]]],
 ];
-// [a, b, expected] with fromName 'old.txt', toName 'new.txt', context 3 (checked against GNU diff -u)
+// [a, b, expected] with fromName 'old.txt', toName 'new.txt', context 3 (patch reproduces the new text; GNU diff -u format)
 const DIFF_UNIFIED = [
   ["a\nb\nc\n", "a\nB\nc\n", "--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n"],
   ["", "x\n", "--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n"],
@@ -248,6 +253,11 @@ const DIFF_UNIFIED = [
   ["same\n", "same\n", ""],
   ["a\nb\nc\nd\n", "b\nc\nd\ne\n", "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"],
   ["x\ny\n", "y\nx\n", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"],
+  ["a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", "--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n"],
+  ["a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", "--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n"],
+  ["x", "x", ""],
+  ["x", "x\n", "--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n"],
+  ["p\nq", "q\np", "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n"],
 ];
 const PASSWORD_CASES = [
   ["correct horse battery staple", {}, {"ok": true, "failures": []}],
@@ -370,12 +380,32 @@ test('human-readable units format and parse with integer rounding', async () => 
   for (const [delta, expected] of RELATIVE_TIME) assert.equal(m.relativeTime(delta), expected, String(delta));
 });
 
-test('line diff ops and GNU-compatible unified output', async () => {
+test('line diff ops and unified output in the GNU diff -u format', async () => {
   const { diffLines, unifiedDiff } = await load('line-diff');
   for (const [a, b, expected] of DIFF_OPS) assert.deepEqual(diffLines(a, b), expected, JSON.stringify([a, b]));
   for (const [a, b, expected] of DIFF_UNIFIED) assert.equal(unifiedDiff(a, b, 'old.txt', 'new.txt'), expected, JSON.stringify([a, b]));
   const big = 'x\n'.repeat(2001);
   assert.throws(() => diffLines(big, big.replace(/x/g, 'y')), RangeError);
+});
+
+// Regression: a final line without a newline must only match another final line without one, or the
+// patch loses its "No newline at end of file" marker. GNU patch must reproduce the new text exactly.
+test('unified diffs apply with patch and reproduce the new text', async t => {
+  try { execFileSync('patch', ['--version'], { stdio: 'ignore' }); } catch { t.skip('patch is not installed'); return; }
+  const { unifiedDiff } = await load('line-diff');
+  const dir = mkdtempSync(join(tmpdir(), 'genlib-diff-'));
+  let seed = 7;
+  const rand = n => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed % n; };
+  const text = () => { const lines = Array.from({ length: rand(9) }, () => 'abcde'[rand(5)]); return lines.join('\n') + (lines.length && rand(10) < 7 ? '\n' : ''); };
+  try {
+    for (let i = 0; i < 300; i++) {
+      const a = text(), b = text(), diff = unifiedDiff(a, b, 'old.txt', 'new.txt');
+      if (diff === '') { assert.equal(a, b); continue; }
+      writeFileSync(join(dir, 'old.txt'), a); writeFileSync(join(dir, 'p.diff'), diff);
+      execFileSync('patch', ['-s', '-o', join(dir, 'out.txt'), join(dir, 'old.txt'), join(dir, 'p.diff')], { stdio: 'pipe' });
+      assert.equal(readFileSync(join(dir, 'out.txt'), 'utf8'), b, JSON.stringify([a, b]));
+    }
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
 test('NIST password policy reports failures in order', async () => {

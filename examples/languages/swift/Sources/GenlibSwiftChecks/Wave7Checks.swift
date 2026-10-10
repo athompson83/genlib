@@ -144,11 +144,16 @@ private let diffOpVectors: [(String, String, [DiffOp])] = [
     ("x\n", "", [DiffOp("-", "x")]),
     ("one\ntwo\nthree\nfour\nfive\nsix\nseven\neight\nnine\nten\n", "one\nTWO\nthree\nfour\nfive\nsix\nseven\neight\nNINE\nten\n", [DiffOp("=", "one"), DiffOp("-", "two"), DiffOp("+", "TWO"), DiffOp("=", "three"), DiffOp("=", "four"), DiffOp("=", "five"), DiffOp("=", "six"), DiffOp("=", "seven"), DiffOp("=", "eight"), DiffOp("-", "nine"), DiffOp("+", "NINE"), DiffOp("=", "ten")]),
     ("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n", "1\n2\nX\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\nY\n15\n16\n", [DiffOp("=", "1"), DiffOp("=", "2"), DiffOp("-", "3"), DiffOp("+", "X"), DiffOp("=", "4"), DiffOp("=", "5"), DiffOp("=", "6"), DiffOp("=", "7"), DiffOp("=", "8"), DiffOp("=", "9"), DiffOp("=", "10"), DiffOp("=", "11"), DiffOp("=", "12"), DiffOp("=", "13"), DiffOp("-", "14"), DiffOp("+", "Y"), DiffOp("=", "15"), DiffOp("=", "16")]),
-    ("a\nb\n", "a\nb", [DiffOp("=", "a"), DiffOp("=", "b")]),
+    ("a\nb\n", "a\nb", [DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("+", "b")]),
     ("a\nb", "a\nc", [DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("+", "c")]),
     ("same\n", "same\n", [DiffOp("=", "same")]),
     ("a\nb\nc\nd\n", "b\nc\nd\ne\n", [DiffOp("-", "a"), DiffOp("=", "b"), DiffOp("=", "c"), DiffOp("=", "d"), DiffOp("+", "e")]),
     ("x\ny\n", "y\nx\n", [DiffOp("-", "x"), DiffOp("=", "y"), DiffOp("+", "x")]),
+    ("a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n", [DiffOp("-", "a"), DiffOp("-", "b"), DiffOp("-", "d"), DiffOp("+", "c"), DiffOp("=", "d"), DiffOp("-", "e"), DiffOp("=", "c"), DiffOp("-", "b"), DiffOp("+", "d"), DiffOp("+", "b"), DiffOp("+", "b"), DiffOp("+", "a"), DiffOp("+", "b")]),
+    ("a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n", [DiffOp("+", "b"), DiffOp("=", "a"), DiffOp("-", "d"), DiffOp("-", "d"), DiffOp("+", "c"), DiffOp("+", "e"), DiffOp("=", "a"), DiffOp("-", "b"), DiffOp("-", "a"), DiffOp("+", "a"), DiffOp("+", "a")]),
+    ("x", "x", [DiffOp("=", "x")]),
+    ("x", "x\n", [DiffOp("-", "x"), DiffOp("+", "x")]),
+    ("p\nq", "q\np", [DiffOp("-", "p"), DiffOp("-", "q"), DiffOp("+", "q"), DiffOp("+", "p")]),
 ]
 private let unifiedVectors: [(String, String, String)] = [
     ("a\nb\nc\n", "a\nB\nc\n",
@@ -171,6 +176,16 @@ private let unifiedVectors: [(String, String, String)] = [
      "--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n"),
     ("x\ny\n", "y\nx\n",
      "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n"),
+    ("a\nb\nd\nd\ne\nc\nb", "c\nd\nc\nd\nb\nb\na\nb\n",
+     "--- old.txt\n+++ new.txt\n@@ -1,7 +1,8 @@\n-a\n-b\n-d\n+c\n d\n-e\n c\n-b\n\\ No newline at end of file\n+d\n+b\n+b\n+a\n+b\n"),
+    ("a\nd\nd\na\nb\na", "b\na\nc\ne\na\na\na\n",
+     "--- old.txt\n+++ new.txt\n@@ -1,6 +1,7 @@\n+b\n a\n-d\n-d\n+c\n+e\n a\n-b\n-a\n\\ No newline at end of file\n+a\n+a\n"),
+    ("x", "x",
+     ""),
+    ("x", "x\n",
+     "--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n"),
+    ("p\nq", "q\np",
+     "--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-p\n-q\n\\ No newline at end of file\n+q\n+p\n\\ No newline at end of file\n"),
 ]
 
 private let passwordCases: [(String, PasswordOptions, PasswordCheck)] = [

@@ -41,12 +41,43 @@ OPS = [['a\nb\nc\n', 'a\nB\nc\n', [['=', 'a'], ['-', 'b'], ['+', 'B'], ['=', 'c'
    ['+', 'Y'],
    ['=', '15'],
    ['=', '16']]],
- ['a\nb\n', 'a\nb', [['=', 'a'], ['=', 'b']]],
+ ['a\nb\n', 'a\nb', [['=', 'a'], ['-', 'b'], ['+', 'b']]],
  ['a\nb', 'a\nc', [['=', 'a'], ['-', 'b'], ['+', 'c']]],
  ['same\n', 'same\n', [['=', 'same']]],
  ['a\nb\nc\nd\n', 'b\nc\nd\ne\n', [['-', 'a'], ['=', 'b'], ['=', 'c'], ['=', 'd'], ['+', 'e']]],
- ['x\ny\n', 'y\nx\n', [['-', 'x'], ['=', 'y'], ['+', 'x']]]]
-# unified diffs use from_name='old.txt', to_name='new.txt', context=3 (checked against GNU diff -u)
+ ['x\ny\n', 'y\nx\n', [['-', 'x'], ['=', 'y'], ['+', 'x']]],
+ ['a\nb\nd\nd\ne\nc\nb',
+  'c\nd\nc\nd\nb\nb\na\nb\n',
+  [['-', 'a'],
+   ['-', 'b'],
+   ['-', 'd'],
+   ['+', 'c'],
+   ['=', 'd'],
+   ['-', 'e'],
+   ['=', 'c'],
+   ['-', 'b'],
+   ['+', 'd'],
+   ['+', 'b'],
+   ['+', 'b'],
+   ['+', 'a'],
+   ['+', 'b']]],
+ ['a\nd\nd\na\nb\na',
+  'b\na\nc\ne\na\na\na\n',
+  [['+', 'b'],
+   ['=', 'a'],
+   ['-', 'd'],
+   ['-', 'd'],
+   ['+', 'c'],
+   ['+', 'e'],
+   ['=', 'a'],
+   ['-', 'b'],
+   ['-', 'a'],
+   ['+', 'a'],
+   ['+', 'a']]],
+ ['x', 'x', [['=', 'x']]],
+ ['x', 'x\n', [['-', 'x'], ['+', 'x']]],
+ ['p\nq', 'q\np', [['-', 'p'], ['-', 'q'], ['+', 'q'], ['+', 'p']]]]
+# unified diffs use from_name='old.txt', to_name='new.txt', context=3 (patch reproduces the new text; GNU diff -u format)
 UNIFIED = [['a\nb\nc\n', 'a\nB\nc\n', '--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@\n a\n-b\n+B\n c\n'],
  ['', 'x\n', '--- old.txt\n+++ new.txt\n@@ -0,0 +1 @@\n+x\n'],
  ['x\n', '', '--- old.txt\n+++ new.txt\n@@ -1 +0,0 @@\n-x\n'],
@@ -100,7 +131,56 @@ UNIFIED = [['a\nb\nc\n', 'a\nB\nc\n', '--- old.txt\n+++ new.txt\n@@ -1,3 +1,3 @@
   '\\ No newline at end of file\n'],
  ['same\n', 'same\n', ''],
  ['a\nb\nc\nd\n', 'b\nc\nd\ne\n', '--- old.txt\n+++ new.txt\n@@ -1,4 +1,4 @@\n-a\n b\n c\n d\n+e\n'],
- ['x\ny\n', 'y\nx\n', '--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n']]
+ ['x\ny\n', 'y\nx\n', '--- old.txt\n+++ new.txt\n@@ -1,2 +1,2 @@\n-x\n y\n+x\n'],
+ ['a\nb\nd\nd\ne\nc\nb',
+  'c\nd\nc\nd\nb\nb\na\nb\n',
+  '--- old.txt\n'
+  '+++ new.txt\n'
+  '@@ -1,7 +1,8 @@\n'
+  '-a\n'
+  '-b\n'
+  '-d\n'
+  '+c\n'
+  ' d\n'
+  '-e\n'
+  ' c\n'
+  '-b\n'
+  '\\ No newline at end of file\n'
+  '+d\n'
+  '+b\n'
+  '+b\n'
+  '+a\n'
+  '+b\n'],
+ ['a\nd\nd\na\nb\na',
+  'b\na\nc\ne\na\na\na\n',
+  '--- old.txt\n'
+  '+++ new.txt\n'
+  '@@ -1,6 +1,7 @@\n'
+  '+b\n'
+  ' a\n'
+  '-d\n'
+  '-d\n'
+  '+c\n'
+  '+e\n'
+  ' a\n'
+  '-b\n'
+  '-a\n'
+  '\\ No newline at end of file\n'
+  '+a\n'
+  '+a\n'],
+ ['x', 'x', ''],
+ ['x', 'x\n', '--- old.txt\n+++ new.txt\n@@ -1 +1 @@\n-x\n\\ No newline at end of file\n+x\n'],
+ ['p\nq',
+  'q\np',
+  '--- old.txt\n'
+  '+++ new.txt\n'
+  '@@ -1,2 +1,2 @@\n'
+  '-p\n'
+  '-q\n'
+  '\\ No newline at end of file\n'
+  '+q\n'
+  '+p\n'
+  '\\ No newline at end of file\n']]
 
 
 class LineDiffTest(unittest.TestCase):

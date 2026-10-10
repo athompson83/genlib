@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Package linediff computes a deterministic line diff from a longest common
-// subsequence table and renders it in the GNU "diff -u" unified format,
-// including "\ No newline at end of file" markers. Inputs are limited to
-// 4,000,000 line pairs (the table is quadratic).
+// subsequence table and renders it as a valid unified diff (patch reproduces
+// the new text); same format as GNU diff -u, which may pick a different
+// alignment of equal size. A last line without a trailing newline only
+// matches another last line without one, and is followed by
+// "\ No newline at end of file". Inputs are limited to 4,000,000 line pairs
+// (the table is quadratic).
 package linediff
 
 import (
@@ -17,19 +20,37 @@ type Op struct {
 	Kind, Line string
 }
 
-func split(t string) ([]string, bool) {
-	if t == "" {
-		return nil, true
-	}
-	lines := strings.Split(t, "\n")
-	nl := strings.HasSuffix(t, "\n")
-	if nl {
-		lines = lines[:len(lines)-1]
-	}
-	return lines, nl
+// line is one split line; noEOL marks the last line of a text that does not
+// end in "\n". Two lines are equal only if both fields are equal.
+type line struct {
+	text  string
+	noEOL bool
 }
 
-func ops(a, b []string) ([]Op, error) {
+type lineOp struct {
+	kind string
+	line line
+}
+
+func split(t string) []line {
+	if t == "" {
+		return nil
+	}
+	parts := strings.Split(t, "\n")
+	if strings.HasSuffix(t, "\n") {
+		parts = parts[:len(parts)-1]
+	}
+	lines := make([]line, len(parts))
+	for i, p := range parts {
+		lines[i] = line{text: p}
+	}
+	if !strings.HasSuffix(t, "\n") {
+		lines[len(lines)-1].noEOL = true
+	}
+	return lines
+}
+
+func ops(a, b []line) ([]lineOp, error) {
 	n, m := len(a), len(b)
 	if int64(n)*int64(m) > 4000000 {
 		return nil, errors.New("linediff: input too large (lines(a) * lines(b) > 4,000,000)")
@@ -50,19 +71,19 @@ func ops(a, b []string) ([]Op, error) {
 			}
 		}
 	}
-	out := make([]Op, 0, n+m)
+	out := make([]lineOp, 0, n+m)
 	i, j := 0, 0
 	for i < n || j < m {
 		switch {
 		case i < n && j < m && a[i] == b[j]:
-			out = append(out, Op{"=", a[i]})
+			out = append(out, lineOp{"=", a[i]})
 			i++
 			j++
 		case j >= m || i < n && L[i+1][j] >= L[i][j+1]:
-			out = append(out, Op{"-", a[i]})
+			out = append(out, lineOp{"-", a[i]})
 			i++
 		default:
-			out = append(out, Op{"+", b[j]})
+			out = append(out, lineOp{"+", b[j]})
 			j++
 		}
 	}
@@ -71,50 +92,30 @@ func ops(a, b []string) ([]Op, error) {
 
 // Lines splits both texts on "\n" (a final "\n" ends the last line; "" has no
 // lines) and returns the diff operations, preferring removals before
-// additions.
+// additions. A last line without "\n" only matches another such last line.
 func Lines(a, b string) ([]Op, error) {
-	x, _ := split(a)
-	y, _ := split(b)
-	return ops(x, y)
-}
-
-type row struct {
-	kind, line string
-	ai, bi     int // line index in a / b, or -1
+	diff, err := ops(split(a), split(b))
+	if err != nil {
+		return nil, err
+	}
+	out := make([]Op, len(diff))
+	for i, o := range diff {
+		out[i] = Op{o.kind, o.line.text}
+	}
+	return out, nil
 }
 
 // Unified returns "" when the texts are equal, otherwise "--- from", "+++ to"
-// and hunks formatted like GNU diff -u with context lines around each change.
+// and hunks with context lines around each change: a valid unified diff
+// (patch reproduces the new text); same format as GNU diff -u, which may pick
+// a different alignment of equal size.
 func Unified(a, b, fromName, toName string, context int) (string, error) {
 	if context < 0 {
 		return "", errors.New("linediff: context must be >= 0")
 	}
-	x, anl := split(a)
-	y, bnl := split(b)
-	diff, err := ops(x, y)
+	rows, err := ops(split(a), split(b))
 	if err != nil {
 		return "", err
-	}
-	rows := make([]row, 0, len(diff)+1)
-	ai, bi := 0, 0
-	for _, o := range diff {
-		switch o.Kind {
-		case "=":
-			rows = append(rows, row{"=", o.Line, ai, bi})
-			ai++
-			bi++
-		case "-":
-			rows = append(rows, row{"-", o.Line, ai, -1})
-			ai++
-		default:
-			rows = append(rows, row{"+", o.Line, -1, bi})
-			bi++
-		}
-	}
-	// A final common line that differs only by its trailing newline changes.
-	if k := len(rows) - 1; anl != bnl && k >= 0 && rows[k].kind == "=" && rows[k].ai == len(x)-1 && rows[k].bi == len(y)-1 {
-		r := rows[k]
-		rows = append(rows[:k], row{"-", r.line, r.ai, -1}, row{"+", r.line, -1, r.bi})
 	}
 	if context > len(rows) {
 		context = len(rows) // larger values cannot change the output
@@ -167,10 +168,8 @@ func Unified(a, b, fromName, toName string, context int) (string, error) {
 		}
 		out.WriteString("@@ -" + rng(aBefore, aCount) + " +" + rng(bBefore, bCount) + " @@\n")
 		for _, r := range rows[s : e+1] {
-			out.WriteString(map[string]string{"=": " ", "-": "-", "+": "+"}[r.kind] + r.line + "\n")
-			if r.kind != "+" && r.ai == len(x)-1 && !anl && (r.kind == "-" || anl == bnl) {
-				out.WriteString("\\ No newline at end of file\n")
-			} else if r.kind == "+" && r.bi == len(y)-1 && !bnl {
+			out.WriteString(map[string]string{"=": " ", "-": "-", "+": "+"}[r.kind] + r.line.text + "\n")
+			if r.line.noEOL {
 				out.WriteString("\\ No newline at end of file\n")
 			}
 		}

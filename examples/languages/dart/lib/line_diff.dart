@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-/// Deterministic LCS line diff and GNU `diff -u` compatible unified output.
+/// Deterministic LCS line diff and unified output: a valid unified diff (patch reproduces the new text); same format
+/// as GNU `diff -u`, which may pick a different alignment of equal size.
 library;
 
 import 'dart:math' as math;
@@ -11,18 +12,22 @@ const maxDiffCells = 4000000;
 /// One diff operation: [op] is `=` (unchanged), `-` (removed from a) or `+` (added in b).
 typedef DiffOp = (String op, String line);
 
-(List<String>, bool) _splitLines(String text) {
-  if (text.isEmpty) return (const <String>[], true);
+/// A line without its `\n`; `noEol` marks the last line of a text that does not end in `\n`, so it only equals
+/// another last line without `\n` (otherwise patch could not reproduce the new text).
+typedef _Line = (String text, bool noEol);
+
+List<_Line> _splitLines(String text) {
+  if (text.isEmpty) return const <_Line>[];
   final nl = text.endsWith('\n');
-  final lines = text.split('\n');
-  if (nl) lines.removeLast();
-  return (lines, nl);
+  final parts = text.split('\n');
+  if (nl) parts.removeLast();
+  return [for (var i = 0; i < parts.length; i++) (parts[i], !nl && i == parts.length - 1)];
 }
 
 /// Line-level diff of two texts split on `\n`. Throws [ArgumentError] above [maxDiffCells].
-List<DiffOp> diffLines(String a, String b) => _ops(_splitLines(a).$1, _splitLines(b).$1);
+List<DiffOp> diffLines(String a, String b) => [for (final (op, line) in _ops(_splitLines(a), _splitLines(b))) (op, line.$1)];
 
-List<DiffOp> _ops(List<String> a, List<String> b) {
+List<(String, _Line)> _ops(List<_Line> a, List<_Line> b) {
   final n = a.length, m = b.length;
   if (n * m > maxDiffCells) throw ArgumentError('inputs too large to diff');
   final l = List.generate(n + 1, (_) => Int32List(m + 1));
@@ -31,7 +36,7 @@ List<DiffOp> _ops(List<String> a, List<String> b) {
       l[i][j] = a[i] == b[j] ? l[i + 1][j + 1] + 1 : math.max(l[i + 1][j], l[i][j + 1]);
     }
   }
-  final ops = <DiffOp>[];
+  final ops = <(String, _Line)>[];
   var i = 0, j = 0;
   while (i < n || j < m) {
     if (i < n && j < m && a[i] == b[j]) {
@@ -46,18 +51,16 @@ List<DiffOp> _ops(List<String> a, List<String> b) {
   return ops;
 }
 
-typedef _Row = (String op, String line, int a, int b);
+typedef _Row = (String op, _Line line, int a, int b);
 
 /// Unified diff with [context] lines around each change, `''` when the texts are equal. Hunks whose changes are
 /// separated by at most 2*context unchanged lines merge; a missing final newline is marked
 /// `\ No newline at end of file`.
 String unifiedDiff(String a, String b, {String fromName = 'a', String toName = 'b', int context = 3}) {
   if (context < 0) throw RangeError.value(context, 'context', 'must not be negative');
-  final (al, anl) = _splitLines(a);
-  final (bl, bnl) = _splitLines(b);
   final rows = <_Row>[];
   var ai = 0, bi = 0;
-  for (final (op, line) in _ops(al, bl)) {
+  for (final (op, line) in _ops(_splitLines(a), _splitLines(b))) {
     if (op == '=') {
       rows.add((op, line, ai++, bi++));
     } else if (op == '-') {
@@ -65,11 +68,6 @@ String unifiedDiff(String a, String b, {String fromName = 'a', String toName = '
     } else {
       rows.add((op, line, -1, bi++));
     }
-  }
-  if (anl != bnl && rows.isNotEmpty && rows.last.$1 == '=' && rows.last.$3 == al.length - 1 && rows.last.$4 == bl.length - 1) {
-    final last = rows.removeLast();
-    rows.add(('-', last.$2, last.$3, -1));
-    rows.add(('+', last.$2, -1, last.$4));
   }
   final changes = [for (var k = 0; k < rows.length; k++) if (rows[k].$1 != '=') k];
   if (changes.isEmpty) return '';
@@ -93,13 +91,9 @@ String unifiedDiff(String a, String b, {String fromName = 'a', String toName = '
     final aRange = _range(aRows.length, aRows.isEmpty ? 0 : aRows.first.$3, before.where((r) => r.$1 != '+').length);
     final bRange = _range(bRows.length, bRows.isEmpty ? 0 : bRows.first.$4, before.where((r) => r.$1 != '-').length);
     out.write('@@ -$aRange +$bRange @@\n');
-    for (final (op, line, x, y) in seg) {
-      out.write('${op == '=' ? ' ' : op}$line\n');
-      if (op != '+' && x == al.length - 1 && !anl && (op == '-' || bnl == anl)) {
-        out.write('\\ No newline at end of file\n');
-      } else if (op == '+' && y == bl.length - 1 && !bnl) {
-        out.write('\\ No newline at end of file\n');
-      }
+    for (final (op, (text, noEol), _, _) in seg) {
+      out.write('${op == '=' ? ' ' : op}$text\n');
+      if (noEol) out.write('\\ No newline at end of file\n');
     }
   }
   return out.toString();
