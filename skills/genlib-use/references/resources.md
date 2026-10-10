@@ -6,6 +6,11 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
 {
   "routing": [
     {
+      "need": "SEO and AI optimization, analytics, marketing, social media, dashboards, scheduling and calendars, chat and messaging, finance and accounting, business tools (BI, CRM, ERP, helpdesk, e-invoicing, service SDKs), education (LMS, whiteboards, slides, writing, quizzes, LTI 1.3), or a self-hosted alternative to a proprietary product",
+      "search": "node \"$GENLIB_ROOT/bin/genlib.mjs\" quick <need> --language <lang>   (or '<product> alternative')",
+      "note": "Records are link- and license-checked packages and apps in 12 languages with exact install commands; check license-review records before embedding."
+    },
+    {
       "need": "Any library, framework, service or tool for a project type (web, backend, AI agent, mobile, desktop, CLI, data, docs, office, media, automation, SaaS, commerce, finance, legal, DevOps, testing, security, games, README tooling)",
       "search": "node \"$GENLIB_ROOT/tools/resources.mjs\" search <capability> --project <project-type> --limit 5 --json",
       "types": "node \"$GENLIB_ROOT/tools/resources.mjs\" types --json",
@@ -27,7 +32,10 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
       "need": "Common provider API, Saleor commerce catalog or Steel browser session",
       "inspect": "node \"$GENLIB_ROOT/bin/genlib.mjs\" inspect common-api-clients --json",
       "contract": "modules/common-api-clients/CONTRACT.md",
-      "guides": ["docs/best-practices/common-apis.md", "docs/best-practices/commerce-and-browser.md"]
+      "guides": [
+        "docs/best-practices/common-apis.md",
+        "docs/best-practices/commerce-and-browser.md"
+      ]
     },
     {
       "need": "GitHub folders, tracking filters, path-aware CI, repository hygiene or contribution setup",

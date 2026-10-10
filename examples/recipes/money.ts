@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Genlib recipe: money in integer minor units (parse, rate, allocate, format). Original source; copy and adapt.
-// Amounts are safe integers of the currency's minor unit (cents for USD, yen for JPY).
-// Intermediate arithmetic uses BigInt so rates and splits never go through binary floating point.
+// Amounts are safe integers of the currency's minor unit (cents for USD, yen for JPY), using a
+// pinned ISO 4217 exponent table. BigInt arithmetic keeps rates and splits off binary floating point.
 
 export type RoundingMode = "half-up" | "half-even" | "floor" | "ceil" | "truncate";
 
@@ -12,10 +12,41 @@ function assertMinor(minor: number): void {
   if (!Number.isSafeInteger(minor)) throw new RangeError("Amount must be a safe integer of minor units");
 }
 
-/** Minor-unit digits from the runtime's ICU data (USD 2, JPY 0, KWD 3). Pin your own table if ICU varies. */
+/** Pinned ISO 4217 minor-unit exponents; only these codes are accepted. Extend deliberately. */
+export const CURRENCY_EXPONENTS: Readonly<Record<string, number>> = Object.freeze(Object.fromEntries([
+  ...["USD", "EUR", "GBP", "CAD", "AUD", "CHF", "CNY", "INR", "MXN", "BRL", "SEK", "NOK", "DKK", "NZD", "SGD", "HKD", "ZAR"].map((c) => [c, 2]),
+  ...["JPY", "KRW", "VND", "CLP", "ISK"].map((c) => [c, 0]),
+  ...["BHD", "KWD", "JOD", "OMR", "TND"].map((c) => [c, 3]),
+]));
+const DECIMAL = /^(-)?(\d+)(?:\.(\d+))?$/;
+
+/** Minor-unit digits (USD 2, JPY 0, KWD 3) from the pinned table; unknown codes throw. */
 export function currencyExponent(currency: string): number {
   assertCurrency(currency);
-  return new Intl.NumberFormat("en", { style: "currency", currency }).resolvedOptions().maximumFractionDigits ?? 2;
+  const exp = CURRENCY_EXPONENTS[currency];
+  if (exp === undefined) throw new RangeError(`Unsupported currency: ${currency}`);
+  return exp;
+}
+
+/** Strict "-?DIGITS(.DIGITS)?" to minor units; more fraction digits than the currency allows is an error. */
+export function toMinor(amount: string, currency: string): number {
+  const exp = currencyExponent(currency);
+  const match = typeof amount === "string" ? DECIMAL.exec(amount) : null;
+  if (!match) throw new RangeError(`Invalid decimal amount: ${String(amount)}`);
+  const [, sign, whole = "0", frac = ""] = match;
+  if (frac.length > exp) throw new RangeError(`Too many decimal places for ${currency}`);
+  const result = Number((sign ? -1n : 1n) * BigInt(whole + frac.padEnd(exp, "0")));
+  assertMinor(result);
+  return result;
+}
+
+/** Plain decimal string with exactly the currency's fraction digits; no symbol or grouping. */
+export function formatMinor(minor: number, currency: string): string {
+  assertMinor(minor);
+  const exp = currencyExponent(currency);
+  const digits = BigInt(Math.abs(minor)).toString().padStart(exp + 1, "0");
+  const text = exp === 0 ? digits : `${digits.slice(0, -exp)}.${digits.slice(-exp)}`;
+  return minor < 0 ? `-${text}` : text;
 }
 
 /** Integer division of BigInts with an explicit rounding mode. */
@@ -55,11 +86,11 @@ export function parseMoney(text: string, currency: string, mode?: RoundingMode):
   return result;
 }
 
-/** Applies a decimal rate given as a string ("0.0825" tax, "1.5" multiplier) and rounds once. */
+/** Applies a decimal rate string ("0.0825" tax, "1.5" multiplier) on the exact product and rounds once. */
 export function applyRate(minor: number, rate: string, mode: RoundingMode = "half-even"): number {
   assertMinor(minor);
-  const match = /^(-)?(\d+)(?:\.(\d+))?$/.exec(rate.trim());
-  if (!match) throw new RangeError(`Invalid rate: ${rate}`);
+  const match = DECIMAL.exec(rate);
+  if (!match || (match[3] ?? "").length > 9) throw new RangeError(`Invalid rate (at most 9 fraction digits): ${rate}`);
   const [, sign, whole = "0", frac = ""] = match;
   const numerator = BigInt(minor) * BigInt(whole + frac) * (sign ? -1n : 1n);
   const result = Number(divideRounded(numerator, 10n ** BigInt(frac.length), mode));

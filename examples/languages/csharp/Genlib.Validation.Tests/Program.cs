@@ -206,5 +206,100 @@ Eq("utm strip vector 1", "https://ex.com/p?id=7&b=2#s", UtmLinks.StripTracking("
 Eq("utm strip vector 2", "https://ex.com/", UtmLinks.StripTracking("https://ex.com/?fbclid=1"));
 Eq("utm strip keeps encoding", "https://ex.com/?q=a%20b+c", UtmLinks.StripTracking("https://ex.com/?q=a%20b+c&msclkid=9&_hsenc=x"));
 
+// 9. CSV (RFC 4180, formula neutralization)
+var csvRows = new[] {
+    new[] { "id", "name", "note" }, new[] { "1", "Ada, Lovelace", "said \"hi\"" },
+    new[] { "2", "=SUM(A1)", "line1\nline2" }, new[] { "3", " padded", "-5" },
+};
+Eq("csv write vector", "id,name,note\r\n1,\"Ada, Lovelace\",\"said \"\"hi\"\"\"\r\n2,'=SUM(A1),\"line1\nline2\"\r\n3,\" padded\",'-5\r\n", CsvSafe.WriteCsv(csvRows));
+Eq("csv neutralize off", "=1\r\n", CsvSafe.WriteCsv(new[] { new[] { "=1" } }, false));
+Eq("csv empty rows", "", CsvSafe.WriteCsv(Array.Empty<string[]>()));
+string CsvShow(List<List<string>> rows) => string.Join("|", rows.Select(r => "[" + string.Join("¦", r) + "]"));
+Eq("csv parse vector", CsvShow(new() { new() { "a", "b" }, new() { "x,1", "say \"hi\"" }, new() { "multi\nline", "" } }),
+    CsvShow(CsvSafe.ParseCsv("a,b\r\n\"x,1\",\"say \"\"hi\"\"\"\n\"multi\nline\",\n")));
+Eq("csv parse BOM", "[a]", CsvShow(CsvSafe.ParseCsv("﻿a\n")));
+Eq("csv parse empty", 0, CsvSafe.ParseCsv("").Count);
+foreach (var bad in new[] { "a,\"b", "a\"b", "\"a\"x" }) Throws<FormatException>("csv parse error " + bad, () => CsvSafe.ParseCsv(bad));
+Eq("csv round trip", CsvShow(csvRows.Select(r => r.ToList()).ToList()), CsvShow(CsvSafe.ParseCsv(CsvSafe.WriteCsv(csvRows, false))));
+
+// 10. Money (minor units)
+Eq("toMinor 12.34 USD", 1234L, Money.ToMinor("12.34", "USD"));
+Eq("toMinor -0.5 USD", -50L, Money.ToMinor("-0.5", "USD"));
+Eq("toMinor 1000 JPY", 1000L, Money.ToMinor("1000", "JPY"));
+Eq("toMinor 1.234 BHD", 1234L, Money.ToMinor("1.234", "BHD"));
+Eq("toMinor 7 USD", 700L, Money.ToMinor("7", "USD"));
+foreach (var (amount, cur) in new[] { ("1.5", "JPY"), ("12.345", "USD"), ("1,000.00", "USD"), (".5", "USD"), ("12", "XXX"), ("12", "usd"), ("5.", "USD"), ("1e3", "USD"), (" 1", "USD"), ("+1", "USD") })
+    Throws<ArgumentException>($"toMinor error {amount} {cur}", () => Money.ToMinor(amount, cur));
+Throws<OverflowException>("toMinor overflow", () => Money.ToMinor("99999999999999999999", "USD"));
+Eq("format 1234 USD", "12.34", Money.FormatMinor(1234, "USD"));
+Eq("format -5 USD", "-0.05", Money.FormatMinor(-5, "USD"));
+Eq("format 500 JPY", "500", Money.FormatMinor(500, "JPY"));
+Eq("format 1 BHD", "0.001", Money.FormatMinor(1, "BHD"));
+Eq("format 0 EUR", "0.00", Money.FormatMinor(0, "EUR"));
+Eq("applyRate 1999 0.0825", 165L, Money.ApplyRate(1999, "0.0825"));
+Eq("applyRate 25 0.5", 12L, Money.ApplyRate(25, "0.5"));
+Eq("applyRate 35 0.5", 18L, Money.ApplyRate(35, "0.5"));
+Eq("applyRate -25 0.5", -12L, Money.ApplyRate(-25, "0.5"));
+Eq("applyRate 1000 1.07", 1070L, Money.ApplyRate(1000, "1.07"));
+Throws<ArgumentException>("applyRate 10 fraction digits", () => Money.ApplyRate(1, "0.0000000001"));
+Throws<OverflowException>("applyRate overflow", () => Money.ApplyRate(long.MaxValue, "2"));
+string Join(long[] a) => string.Join(",", a);
+Eq("allocate 100 [1,1,1]", "34,33,33", Join(Money.Allocate(100, new long[] { 1, 1, 1 })));
+Eq("allocate 5 [3,7]", "2,3", Join(Money.Allocate(5, new long[] { 3, 7 })));
+Eq("allocate -100 [1,1,1]", "-34,-33,-33", Join(Money.Allocate(-100, new long[] { 1, 1, 1 })));
+Eq("allocate 1000 [0,1]", "0,1000", Join(Money.Allocate(1000, new long[] { 0, 1 })));
+Eq("allocate 1 [3,7]", "0,1", Join(Money.Allocate(1, new long[] { 3, 7 })));
+Eq("allocate 1 [0,1,1]", "0,1,0", Join(Money.Allocate(1, new long[] { 0, 1, 1 })));
+Eq("allocate 10 [1,8]", "1,9", Join(Money.Allocate(10, new long[] { 1, 8 })));
+Throws<ArgumentException>("allocate empty", () => Money.Allocate(1, Array.Empty<long>()));
+Throws<ArgumentException>("allocate zero sum", () => Money.Allocate(1, new long[] { 0, 0 }));
+Throws<ArgumentException>("allocate negative ratio", () => Money.Allocate(1, new long[] { 2, -1 }));
+
+// 11. Signed cursors
+var cursorSecret = Ascii("0123456789abcdef0123456789abcdef");
+const string cursorVector = "djEKMTc5MDAwMDAwMAoyMDI2LTEwLTAxVDEyOjAwOjAwWgo0Mg.T2z74zcZhdSIFHTOhu4Wc0MNbTN2t71UXXeQpcLoUUc";
+Eq("cursor encode vector", cursorVector, SignedCursors.EncodeCursor(new[] { "2026-10-01T12:00:00Z", "42" }, cursorSecret, 1790000000));
+Eq("cursor decode vector", "2026-10-01T12:00:00Z|42", string.Join("|", SignedCursors.DecodeCursor(cursorVector, cursorSecret, 1789999999)));
+Throws<CursorException>("cursor expired", () => SignedCursors.DecodeCursor(cursorVector, cursorSecret, 1790000000), e => e.Kind == CursorErrorKind.Expired && e.Message.StartsWith("expired"));
+const string b64url = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+int lastCharBad = 0;
+foreach (char ch in b64url) {
+    if (ch == cursorVector[^1]) continue;
+    try { SignedCursors.DecodeCursor(cursorVector[..^1] + ch, cursorSecret, 0); }
+    catch (CursorException e) when (e.Kind == CursorErrorKind.BadSignature && e.Message.StartsWith("bad signature")) { lastCharBad++; }
+    catch (Exception) { }
+}
+Eq("cursor every last-char change is bad signature", 63, lastCharBad);
+Throws<CursorException>("cursor first sig char changed", () => SignedCursors.DecodeCursor(cursorVector.Replace(".T2z", ".U2z"), cursorSecret, 0), e => e.Kind == CursorErrorKind.BadSignature);
+Throws<CursorException>("cursor no dot", () => SignedCursors.DecodeCursor(cursorVector.Replace(".", ""), cursorSecret, 0), e => e.Kind == CursorErrorKind.Malformed && e.Message.StartsWith("malformed"));
+Throws<CursorException>("cursor padding", () => SignedCursors.DecodeCursor(cursorVector + "=", cursorSecret, 0), e => e.Kind == CursorErrorKind.Malformed);
+Throws<CursorException>("cursor empty sig", () => SignedCursors.DecodeCursor(cursorVector[..(cursorVector.IndexOf('.') + 1)], cursorSecret, 0), e => e.Kind == CursorErrorKind.Malformed);
+Throws<CursorException>("cursor bad char", () => SignedCursors.DecodeCursor("dj+K." + cursorVector.Split('.')[1], cursorSecret, 0), e => e.Kind == CursorErrorKind.Malformed);
+Throws<CursorException>("cursor other secret", () => SignedCursors.DecodeCursor(cursorVector, Ascii("fedcba9876543210fedcba9876543210"), 0), e => e.Kind == CursorErrorKind.BadSignature);
+Throws<ArgumentException>("cursor encode 31-byte secret", () => SignedCursors.EncodeCursor(new[] { "a" }, new byte[31], 1));
+Throws<ArgumentException>("cursor decode 31-byte secret", () => SignedCursors.DecodeCursor(cursorVector, new byte[31], 0));
+Throws<ArgumentException>("cursor no values", () => SignedCursors.EncodeCursor(Array.Empty<string>(), cursorSecret, 1));
+Throws<ArgumentException>("cursor 17 values", () => SignedCursors.EncodeCursor(Enumerable.Repeat("a", 17).ToArray(), cursorSecret, 1));
+Throws<ArgumentException>("cursor newline value", () => SignedCursors.EncodeCursor(new[] { "a\nb" }, cursorSecret, 1));
+Throws<ArgumentOutOfRangeException>("cursor expiresAt 0", () => SignedCursors.EncodeCursor(new[] { "a" }, cursorSecret, 0));
+
+// 12. ICS events
+var icsEvents = new[] {
+    new IcsEvent("evt-1@example.com", "2026-10-10T12:00:00Z", "2026-10-20T15:00:00Z", "2026-10-20T16:30:00Z", "Office hours; Q&A, live",
+        "Bring questions.\nRoom 4 \\ east wing. A folding test with café, then more words so the second line also runs past seventy-four octets and folds again.",
+        "Room 4, Main St.", "https://example.com/e/1"),
+    new IcsEvent("evt-2@example.com", "2026-10-10T12:00:00Z", "2026-12-24", "2026-12-25", "Holiday"),
+};
+string icsOut = IcsEvents.IcsCalendar(icsEvents, "-//Acme//Genlib//EN");
+Eq("ics vector", "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Acme//Genlib//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\nBEGIN:VEVENT\r\nUID:evt-1@example.com\r\nDTSTAMP:20261010T120000Z\r\nDTSTART:20261020T150000Z\r\nDTEND:20261020T163000Z\r\nSUMMARY:Office hours\\; Q&A\\, live\r\nDESCRIPTION:Bring questions.\\nRoom 4 \\\\ east wing. A folding test with caf\r\n é\\, then more words so the second line also runs past seventy-four octets\r\n  and folds again.\r\nLOCATION:Room 4\\, Main St.\r\nURL:https://example.com/e/1\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nUID:evt-2@example.com\r\nDTSTAMP:20261010T120000Z\r\nDTSTART;VALUE=DATE:20261224\r\nDTEND;VALUE=DATE:20261225\r\nSUMMARY:Holiday\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n", icsOut);
+Check("ics lines within 75 octets", icsOut.Split("\r\n").All(l => Encoding.UTF8.GetByteCount(l) <= 75));
+var baseEvent = icsEvents[0];
+Throws<ArgumentException>("ics end equals start", () => IcsEvents.IcsCalendar(new[] { baseEvent with { End = baseEvent.Start } }, "p"));
+Throws<ArgumentException>("ics date start utc end", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Start = "2026-10-20" } }, "p"));
+Throws<ArgumentException>("ics empty uid", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Uid = "" } }, "p"));
+Throws<ArgumentException>("ics ftp url", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Url = "ftp://x" } }, "p"));
+Throws<ArgumentException>("ics date dtstamp", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Dtstamp = "2026-10-10" } }, "p"));
+Throws<ArgumentException>("ics invalid month", () => IcsEvents.IcsCalendar(new[] { baseEvent with { Start = "2026-13-20T15:00:00Z" } }, "p"));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;

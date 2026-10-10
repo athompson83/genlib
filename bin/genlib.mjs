@@ -7,11 +7,18 @@ import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } fro
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
 import { jevPacket } from '../lib/jev.mjs';
+import { briefFind, formatBrief, formatQuick, quickPick } from '../lib/brief.mjs';
+import { formatOutline, outline } from '../lib/outline.mjs';
+
+// Languages a task can name: the nine capability languages plus the resource-only ones.
+const FIND_LANGUAGES = [...LANGUAGES, 'ruby', 'php', 'elixir'];
 
 const HELP = {
   name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
-    'find <task words> [--type capability|module|recipe|language-example|template|tool|skill|mcp|cli|api|resource|doc] [--project <project-type>] [--target <project>] [--limit 8] [--json]',
+    'quick <task words> [--language <name>] [--target <project>] [--type <source type>] [--json]   # best match: only its commands (cheapest)',
+    'find <task words> [--type capability|module|recipe|language-example|template|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
+    'outline <id|type:id> [--language <name>] [--json]   # signatures and doc lines only: call the code without reading its source',
     'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--json]   # bounded yes/no decision packet for Jev',
     'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
     'detect --target <existing-project> [--json]',
@@ -28,19 +35,19 @@ const HELP = {
     'add <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
     'verify --target <existing-project> [--json]',
   ],
-  start: 'Run find with the task first: it searches every Genlib source and returns the exact next command for each result.',
+  start: 'Run quick (or find) with the task first: it searches every Genlib source and returns the exact next command. Run outline <id> to learn the API without reading source.',
   behavior: 'Search metadata, read one contract, plan, copy reviewed source, then test the consuming app. No overwrite, install hooks, package installation, or network calls.',
 };
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -52,9 +59,9 @@ function argumentsFor(argv) {
 
 try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
-  let result;
+  let result, text;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -125,7 +132,11 @@ try {
     invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
     const profile = options.target ? await detectProject(options.target) : undefined;
     result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8) });
-  } else if (command === 'find' || command === 'catalog') {
+  } else if (command === 'outline') {
+    invariant(positional.length === 1, 'INVALID_OPTION', 'Provide exactly one reference, for example: outline totp --language go.');
+    result = await outline(undefined, positional[0], { language: options.language });
+    text = formatOutline(result);
+  } else if (command === 'find' || command === 'quick' || command === 'catalog') {
     const sources = await loadSources();
     if (command === 'catalog') {
       invariant(positional.length === 0, 'INVALID_OPTION', 'catalog takes no positional arguments.');
@@ -138,11 +149,17 @@ try {
     } else {
       invariant(positional.length > 0, 'INVALID_OPTION', 'Provide task words, for example: find verify stripe webhook.');
       invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
-      const profile = options.target ? await detectProject(options.target) : undefined;
+      invariant(options.language === undefined || FIND_LANGUAGES.includes(options.language), 'INVALID_OPTION', 'Language must be one of: ' + FIND_LANGUAGES.join(', '));
+      invariant(!options.brief || options.json, 'INVALID_OPTION', '--brief applies to --json output; text output is already brief.');
+      const detected = options.target ? await detectProject(options.target) : undefined;
+      // A named language acts like a detected project of that language.
+      const profile = detected ?? (options.language ? { languages: [options.language], frameworks: [] } : undefined);
       result = findInSources(sources, positional.join(' '), {
-        type: options.type, project: options.project, limit: Number(options.limit ?? 8), target: profile?.target, profile,
+        type: options.type, project: options.project, limit: command === 'quick' ? 4 : Number(options.limit ?? 8), target: detected?.target, profile,
       });
-      if (profile) result.project = { languages: profile.languages, frameworks: profile.frameworks, reactMajor: profile.reactMajor };
+      if (detected) result.project = { languages: detected.languages, frameworks: detected.frameworks, reactMajor: detected.reactMajor };
+      if (command === 'quick') { result = quickPick(result); text = formatQuick(result); }
+      else if (options.brief || !options.json) { result = briefFind(result); text = formatBrief(result); }
     }
   } else if (command === 'verify') {
     invariant(options.target && positional.length === 0, 'INVALID_OPTION', 'verify requires --target and no module ID.');
@@ -169,7 +186,7 @@ try {
       }
     }
   }
-  process.stdout.write(JSON.stringify(result, null, options.json ? 0 : 2) + '\n');
+  process.stdout.write((text !== undefined && !options.json ? text : JSON.stringify(result, null, options.json ? 0 : 2)) + '\n');
 } catch (error) {
   process.stderr.write(JSON.stringify({ error: error.message, code: error.code || 'ERROR' }) + '\n');
   process.exitCode = 1;

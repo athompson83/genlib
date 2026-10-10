@@ -31,12 +31,15 @@ test('MCP server initializes, lists tools and answers tool calls in order', asyn
     { id: 6, method: 'tools/call', params: { name: 'genlib_jev', arguments: { task: 'pdf form fill java', limit: 3 } } },
     { id: 7, method: 'tools/call', params: { name: 'genlib_inspect', arguments: { type: 'resource', id: 'no-such-thing' } } },
     { id: 8, method: 'nope' },
+    { id: 9, method: 'tools/call', params: { name: 'genlib_quick', arguments: { query: 'signed pagination cursor', language: 'kotlin' } } },
+    { id: 10, method: 'tools/call', params: { name: 'genlib_outline', arguments: { ref: 'ics-events', language: 'rust' } } },
+    { id: 11, method: 'tools/call', params: { name: 'genlib_find', arguments: { query: 'verify stripe webhook', limit: 2, detail: 'full' } } },
   ]);
-  assert.deepEqual(replies.map(reply => reply.id), [1, 2, 3, 4, 5, 6, 7, 8]);
+  assert.deepEqual(replies.map(reply => reply.id), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   assert.equal(replies[0].result.protocolVersion, '2025-06-18');
   assert.ok(replies[0].result.capabilities.tools);
   const names = replies[1].result.tools.map(tool => tool.name);
-  for (const name of ['genlib_find', 'genlib_jev', 'genlib_capability', 'genlib_inspect', 'genlib_read_doc', 'genlib_catalog']) assert.ok(names.includes(name), name);
+  for (const name of ['genlib_quick', 'genlib_find', 'genlib_outline', 'genlib_jev', 'genlib_capability', 'genlib_inspect', 'genlib_read_doc', 'genlib_catalog']) assert.ok(names.includes(name), name);
   assert.ok(replies[1].result.tools.every(tool => tool.inputSchema?.type === 'object'));
   assert.equal(replies[2].result.structuredContent.results[0].id, 'webhook-verification');
   assert.match(replies[3].result.structuredContent.implementations.go.commands[0], /add go-totp/);
@@ -44,6 +47,13 @@ test('MCP server initializes, lists tools and answers tool calls in order', asyn
   assert.ok(replies[5].result.structuredContent.questions.length >= 1);
   assert.equal(replies[6].result.isError, true);
   assert.equal(replies[7].error.code, -32601);
+  // Brief tools answer with compact text for the model and the structured result alongside it.
+  assert.equal(replies[8].result.structuredContent.best, 'capability:signed-cursors');
+  assert.match(replies[8].result.content[0].text, /add kotlin-signed-cursors/);
+  assert.ok(replies[8].result.content[0].text.length < 600);
+  assert.match(replies[9].result.content[0].text, /pub fn ics_calendar/);
+  assert.equal(replies[2].result.structuredContent.results[0].summary, undefined);
+  assert.ok(replies[10].result.structuredContent.results[0].summary.length > 0);
 });
 
 test('MCP server falls back to its newest protocol version and rejects malformed JSON', async () => {

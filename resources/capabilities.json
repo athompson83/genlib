@@ -535,6 +535,271 @@
       }
     },
     {
+      "id": "csv-safe",
+      "title": "CSV read/write (RFC 4180) with formula-injection protection",
+      "tier": "pure",
+      "summary": "Write RFC 4180 CSV with CRLF records and correct quoting, neutralizing cells that start with = + - @ so spreadsheets do not run them as formulas; parse quoted fields, embedded newlines and a BOM strictly. Standard library only.",
+      "terms": [
+        "csv",
+        "csv export",
+        "csv import",
+        "parse csv",
+        "rfc 4180",
+        "spreadsheet export",
+        "formula injection",
+        "csv injection",
+        "excel export",
+        "download csv"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "csv-safe",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-csv-safe",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-csv-safe",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-csv-safe",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-csv-safe",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-csv-safe",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-csv-safe",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-csv-safe",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-csv-safe",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "money",
+      "title": "Money in integer minor units: parse, format, rates and allocation",
+      "tier": "pure",
+      "summary": "ISO 4217 minor units without floating point: strict decimal parsing, plain formatting, tax or FX rates with banker's rounding, and largest-remainder allocation that always sums to the total. Standard library only.",
+      "terms": [
+        "money",
+        "currency",
+        "cents",
+        "minor units",
+        "decimal",
+        "iso 4217",
+        "rounding",
+        "bankers rounding",
+        "half even",
+        "tax",
+        "split payment",
+        "allocate",
+        "price"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "money-minor-units",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-money",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-money",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-money",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-money",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-money",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-money",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-money",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-money",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "signed-cursors",
+      "title": "Signed, expiring pagination cursors (HMAC-SHA256)",
+      "tier": "pure",
+      "summary": "Opaque base64url cursors carrying the last sort keys and an expiry, signed with HMAC-SHA256 and verified in constant time; errors distinguish malformed, bad signature and expired.",
+      "terms": [
+        "pagination",
+        "cursor",
+        "cursor pagination",
+        "keyset pagination",
+        "next page token",
+        "opaque cursor",
+        "signed token",
+        "hmac",
+        "infinite scroll"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "signed-cursors",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-signed-cursors",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-signed-cursors",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-signed-cursors",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-signed-cursors",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-signed-cursors",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-signed-cursors",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-signed-cursors",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-signed-cursors",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "ics-events",
+      "title": "Calendar invites: RFC 5545 .ics events",
+      "tier": "pure",
+      "summary": "VCALENDAR/VEVENT output with UTC or all-day dates, TEXT escaping and 75-octet line folding that never splits UTF-8 characters, for email invites and add-to-calendar links.",
+      "terms": [
+        "ics",
+        "ical",
+        "icalendar",
+        "calendar invite",
+        "add to calendar",
+        "vevent",
+        "rfc 5545",
+        "meeting invite",
+        "event export"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "ics-events",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-ics-events",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-ics-events",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-ics-events",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-ics-events",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-ics-events",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-ics-events",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-ics-events",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-ics-events",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

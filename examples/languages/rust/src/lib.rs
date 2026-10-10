@@ -3,10 +3,14 @@
 //! The capability modules below are independent, tested examples.
 
 pub mod calculator;
+pub mod csv_safe;
 pub mod form_schema;
+pub mod ics_events;
+pub mod money;
 pub mod oidc_pkce;
 pub mod recovery_codes;
 pub mod seo_files;
+pub mod signed_cursors;
 pub mod structured_data;
 pub mod totp;
 pub mod utm_links;

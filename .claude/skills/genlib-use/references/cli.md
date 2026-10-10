@@ -5,7 +5,9 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
 ```json
 {
   "commands": {
-    "find_for_task_first": "node \"$GENLIB_ROOT/bin/genlib.mjs\" find verify stripe webhook --target \"$APP_ROOT\" --limit 5 --json",
+    "quick_best_match_first": "node \"$GENLIB_ROOT/bin/genlib.mjs\" quick verify stripe webhook --target \"$APP_ROOT\"",
+    "find_for_options": "node \"$GENLIB_ROOT/bin/genlib.mjs\" find verify stripe webhook --target \"$APP_ROOT\" --limit 5",
+    "outline_signatures": "node \"$GENLIB_ROOT/bin/genlib.mjs\" outline totp --language go",
     "detect_target_stack": "node \"$GENLIB_ROOT/bin/genlib.mjs\" detect --target \"$APP_ROOT\" --json",
     "catalog_overview": "node \"$GENLIB_ROOT/bin/genlib.mjs\" catalog --json",
     "list_metadata": "node \"$GENLIB_ROOT/bin/genlib.mjs\" list --json",
@@ -16,6 +18,8 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "verify_installation": "node \"$GENLIB_ROOT/bin/genlib.mjs\" verify --target \"$APP_ROOT\" --json"
   },
   "find": [
+    "Output is sized for agents: quick prints the best match and only its acting commands; find prints one line plus commands per result. Add --json for full records (--json --brief for compact JSON). --language <name> prefers a language without a target.",
+    "outline <id|type:id> [--language] lists public signatures and one-line docs for a capability, module, recipe or language example, with measured sourceBytes and outlineBytes. Read source only for code you will change.",
     "find searches modules, task recipes, cross-language examples, project templates and reviewed external resources in one ranked list. Each result carries type, verification and the exact next commands to run.",
     "With --target, find detects the project's languages and frameworks from its top-level manifests, labels each result fit compatible or review, and hides known mismatches (reported as hiddenIncompatible). Use --type to narrow to one source type, which also shows mismatches.",
     "Module results include installs (paths under src/genlib), exports and dependencies: read the contract, then open only the listed entry files. For locating code inside the current repository, find returns tool results (repo-context, repo-map, repo-ast-graph, repo-diagram) whose next commands build and query the commit-bound map and graph.",
