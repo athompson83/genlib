@@ -22,6 +22,17 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - Keep API clients on the trusted server. Test transport errors, authorization, credential handling and external-effect uncertainty without sending live emails, creating sessions or making purchases as a test.
 - Project templates are opt-in. Preserve receiving-project files and configure real checks; never replace a required verification gate with a successful placeholder command.
 
+## Keep documentation current on every change
+
+Every change to this repository, however small, ships with its documentation in the same commit or PR. A change is not finished, and must not be merged, until all of the following are current:
+
+1. **README.md**: the source table, capability matrix and catalog counts (`npm run docs:sync` regenerates the marked blocks), plus any prose, command table or Contents entry the change affects.
+2. **Diagrams**: the Mermaid flow in README.md and the system diagram in `docs/architecture.md`. Add or rename nodes and arrows when a source, command, library, catalog or data flow changes. Update any other diagram that shows the changed area.
+3. **Docs**: the guide for the changed area (`docs/capabilities.md`, `docs/cookbook/<topic>.md`, `docs/resources/<catalog>.md`, `docs/install-indexes.md`, `docs/lifecycle.md` and the others listed in `docs/architecture.md`), this file's surface list, CONTRIBUTING.md and the `genlib-use` skill (then `npm run skills:sync` for its mirrors).
+4. **Jev guide and search index**: `docs/jev.md` and the generated search index that Jev and other agents use to find anything in this repository. Regenerate the index with its build script whenever any catalog, capability, module, recipe, template, tool, doc or command changes, and update the guide when the shape of candidates, questions or commands changes.
+
+Run `npm run check` before publishing; it fails when generated docs, counts, mirrors or the search index are stale. In the PR description, list which of the four areas changed, or say why one did not need to. Never hand-edit generated blocks or files; change their source and regenerate.
+
 ## Repository surfaces
 
 - `modules/`: authored source modules and their integration contracts.
@@ -36,6 +47,8 @@ Genlib is a source-code registry for applications built by Genisys and other cod
 - `resources/skills.json` and `lib/skills.mjs`: commit-pinned index of third-party agent skills (`genlib skill find|inspect`). Index and pin; never copy skill code into this repository without explicit approval, a redistributable license and its notices.
 - `resources/mcp-servers.json`, `clis.json`, `apis.json` and `lib/indexes.mjs`: ranked install indexes (`genlib mcp|cli|api find|inspect`). Regenerate from their documented ranking sources; never hand-edit ranks or install counts.
 - `lib/discover.mjs`: `genlib find`/`detect`/`catalog` over every source. Register new recipes, language examples, templates and navigation tools (`tools/index.json`) in their catalogs so `find` can reach them.
+- `lib/jev.mjs` (`genlib jev`), `lib/docs-index.mjs` and `scripts/build-search-index.mjs` (`npm run index:build`): Jev decision packets, documentation-section search and `registry/search-index.jsonl`. Keep the packet within Genisys' limits (8 candidates, 20,000 characters) and regenerate the index with every change; guide in `docs/jev.md`.
+- `resources/catalog/marketing-*.json` and `social-media.json`: SEO, AI-optimization, marketing and social media records generated on 2026-10-10 from verified registry research, with `languages` and `popularity` (the registry's own number, comparable only within one ecosystem). Edit or add records through `tools/resources.mjs validate` and `scripts/verify-resources.mjs`; refresh popularity only from the registry, never by hand. Their guides' top-pick tables must list existing record IDs.
 - `docs/best-practices/`: GitHub, README/docs, API and UI integration guidance.
 
 Genlib uses a deliberately narrow React/TypeScript web compatibility family, framework-neutral utilities built on web-standard APIs, and explicit server-side HTTPS API clients for Node 22+. Record unsupported stacks clearly rather than claiming universal compatibility. External resource metadata does not expand a module's runtime compatibility.

@@ -37,6 +37,7 @@ Every result names its type, verification level and the exact next command. Modu
 | 11. Verify in CI | `github-starter` workflow | template | Path-aware Node CI with a docs-only lane and a required `Verify` job |
 | 12. Ship | `ship-starter` (`templates/ship`) | template | Non-root Dockerfile, tag-driven release, GHCR image with SBOM/provenance, CodeQL, changelog |
 | | deployment runbook (`templates/docs/docs/runbooks/deployment.md`) | template | Release, acceptance and rollback procedure |
+| 13. Market and grow | `marketing-seo`, `marketing-analytics`, `marketing-engagement`, `social-media` catalogs | resources | SEO and AI-optimization tooling, analytics, attribution, experiments, email, CRM, ads, push, consent and social media in each language, with exact install commands |
 
 ## External resources at every stage
 

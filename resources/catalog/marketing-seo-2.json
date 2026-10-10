@@ -1,0 +1,5842 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "sitemap-generator-pypi-2",
+      "name": "sitemap-generator",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD",
+        "url": null,
+        "scope": "BSD (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Haikson/sitemap-generator",
+      "docs": null,
+      "summary": "web crawler and sitemap generator.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "pypi",
+        "crawler"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/sitemap-generator/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/Haikson/sitemap-generator",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sitemap-generator"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 1876
+      }
+    },
+    {
+      "id": "v2-go",
+      "name": "github.com/gocolly/colly/v2",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/gocolly/colly",
+      "docs": "https://pkg.go.dev/github.com/gocolly/colly/v2",
+      "summary": "Fast, elegant scraping and crawling framework for Go.",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "go",
+        "scraping",
+        "audit"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/gocolly/colly/v2",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/gocolly/colly",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/gocolly/colly/v2"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 1827
+      }
+    },
+    {
+      "id": "django-linkcheck-pypi",
+      "name": "django-linkcheck",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/DjangoAdminHackers/django-linkcheck",
+      "docs": null,
+      "summary": "A Django app that will analyze and report on links in any model that you register with it.",
+      "useWhen": "Use instead of hand-writing link check (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-check",
+        "python",
+        "pypi",
+        "broken-links",
+        "django"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/django-linkcheck/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/DjangoAdminHackers/django-linkcheck",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "django-linkcheck"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 1546
+      }
+    },
+    {
+      "id": "flask-sitemapper-pypi",
+      "name": "flask-sitemapper",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/h-janes/flask-sitemapper",
+      "docs": "https://github.com/h-janes/flask-sitemapper/wiki",
+      "summary": "Flask extension for generating XML sitemaps",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "pypi",
+        "flask"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/flask-sitemapper/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/h-janes/flask-sitemapper",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "flask-sitemapper"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 1526
+      }
+    },
+    {
+      "id": "astro-noindex-npm",
+      "name": "astro-noindex",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://velohost.co.uk/plugins/astro-noindex/",
+      "repository": "https://github.com/velohost/astro-noindex",
+      "docs": "https://velohost.co.uk/plugins/astro-noindex/",
+      "summary": "Automatically injects noindex for non-production Astro builds",
+      "useWhen": "Use instead of hand-writing robots txt (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots-txt",
+        "typescript",
+        "npm",
+        "astro"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/astro-noindex",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/velohost/astro-noindex",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "astro-noindex"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1458
+      }
+    },
+    {
+      "id": "consilioweb-payload-seo-analyzer-npm",
+      "name": "@consilioweb/payload-seo-analyzer",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/pOwn3d/payload-seo-analyzer",
+      "docs": "https://www.npmjs.com/package/@consilioweb/payload-seo-analyzer",
+      "summary": "Payload CMS SEO plugin — 50+ checks, dashboard, Lexical JSON support, Flesch FR/EN readability, i18n",
+      "useWhen": "Use instead of hand-writing seo audit (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-audit",
+        "typescript",
+        "npm",
+        "readability",
+        "nextjs",
+        "payload"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@consilioweb/payload-seo-analyzer",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/pOwn3d/payload-seo-analyzer",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@consilioweb/payload-seo-analyzer"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1444
+      }
+    },
+    {
+      "id": "seo-analyzer-npm",
+      "name": "seo-analyzer",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/maddevsio/seo-analyzer",
+      "docs": "https://www.npmjs.com/package/seo-analyzer",
+      "summary": "A library for analyze a HTML files to show all of the SEO defects",
+      "useWhen": "Use instead of hand-writing seo audit (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-audit",
+        "typescript",
+        "npm",
+        "nextjs",
+        "nuxt",
+        "svelte",
+        "vue",
+        "react",
+        "angular"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/seo-analyzer",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/maddevsio/seo-analyzer",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "seo-analyzer"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1436
+      }
+    },
+    {
+      "id": "focus-reactive-payload-plugin-seo-npm",
+      "name": "@focus-reactive/payload-plugin-seo",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/focusreactive/payload-plugins#readme",
+      "repository": "https://github.com/focusreactive/payload-plugins/tree/HEAD/packages/payload-plugin-seo",
+      "docs": "https://www.npmjs.com/package/@focus-reactive/payload-plugin-seo",
+      "summary": "Live SEO analysis for Payload CMS v3 + Next.js, powered by Yoast. Adds a real-time SEO drawer to the document editor — keyphrase optimization, on-page checks, readability, inclusive lang",
+      "useWhen": "Use instead of hand-writing seo audit (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-audit",
+        "typescript",
+        "npm",
+        "keywords",
+        "nlp",
+        "nextjs",
+        "react",
+        "payload"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@focus-reactive/payload-plugin-seo",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/focusreactive/payload-plugins/tree/HEAD/packages/payload-plugin-seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@focus-reactive/payload-plugin-seo"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1432
+      }
+    },
+    {
+      "id": "vahor-next-broken-links-npm",
+      "name": "@vahor/next-broken-links",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/Vahor/next-broken-links#readme",
+      "repository": "https://github.com/Vahor/next-broken-links/tree/HEAD/packages/next-broken-links",
+      "docs": "https://www.npmjs.com/package/@vahor/next-broken-links",
+      "summary": "A tool to find broken links in your Next.js project",
+      "useWhen": "Use instead of hand-writing link checking (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checking",
+        "typescript",
+        "npm",
+        "link-checker",
+        "nextjs",
+        "cli"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@vahor/next-broken-links",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/Vahor/next-broken-links/tree/HEAD/packages/next-broken-links",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@vahor/next-broken-links"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1380
+      }
+    },
+    {
+      "id": "feedkit-swift",
+      "name": "FeedKit",
+      "category": "seo",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/nmdias/FeedKit",
+      "docs": "https://swiftpackageindex.com/nmdias/FeedKit",
+      "summary": "FeedKit is a Swift library for Reading and Generating RSS, Atom, and JSON feeds.",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Swift projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "swift",
+        "rss"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/nmdias/FeedKit",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/nmdias/FeedKit"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/nmdias/FeedKit.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/nmdias/FeedKit"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1353
+      }
+    },
+    {
+      "id": "wagtail-robots-pypi",
+      "name": "wagtail-robots",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD",
+        "url": null,
+        "scope": "BSD (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/adrian-turjak/wagtail-robots/",
+      "repository": "https://github.com/adrian-turjak/wagtail-robots",
+      "docs": null,
+      "summary": "Robots.txt exclusion for Wagtail, complementing Sitemaps.",
+      "useWhen": "Use instead of hand-writing robots (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots",
+        "python",
+        "pypi",
+        "robots.txt",
+        "wagtail"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/wagtail-robots/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/adrian-turjak/wagtail-robots",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "wagtail-robots"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 1316
+      }
+    },
+    {
+      "id": "houtini-seo-audit-console-npm",
+      "name": "@houtini/seo-audit-console",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/houtini-ai/seo-audit",
+      "docs": "https://www.npmjs.com/package/@houtini/seo-audit-console",
+      "summary": "The complete technical SEO audit at conversation speed: Google Search Console history + a first-party crawl + on-demand DataForSEO, merged into one prioritised audit inside Claude - 99 checks...",
+      "useWhen": "Use instead of hand-writing indexing (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "indexing",
+        "typescript",
+        "npm",
+        "mcp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@houtini/seo-audit-console",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/houtini-ai/seo-audit",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@houtini/seo-audit-console"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1312
+      }
+    },
+    {
+      "id": "seo-crawl-audit-npm",
+      "name": "seo-crawl-audit",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/MelnixDev/seo-crawl-audit",
+      "docs": "https://www.npmjs.com/package/seo-crawl-audit",
+      "summary": "Free, open-source, local-first SEO crawler and regression audit tool.",
+      "useWhen": "Use instead of hand-writing seo audit (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-audit",
+        "javascript",
+        "npm",
+        "mcp",
+        "cli"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/seo-crawl-audit",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/MelnixDev/seo-crawl-audit",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "seo-crawl-audit"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1310
+      }
+    },
+    {
+      "id": "isiahw1-mcp-server-bing-webmaster-npm",
+      "name": "@isiahw1/mcp-server-bing-webmaster",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/isiahw1/mcp-server-bing-webmaster",
+      "docs": "https://www.npmjs.com/package/@isiahw1/mcp-server-bing-webmaster",
+      "summary": "MCP server for Bing Webmaster Tools integration",
+      "useWhen": "Use instead of hand-writing indexing (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "indexing",
+        "javascript",
+        "npm",
+        "mcp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@isiahw1/mcp-server-bing-webmaster",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/isiahw1/mcp-server-bing-webmaster",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@isiahw1/mcp-server-bing-webmaster"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1307
+      }
+    },
+    {
+      "id": "django-canonical-domain-pypi",
+      "name": "django_canonical_domain",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD",
+        "url": null,
+        "scope": "BSD (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/matthiask/django-canonical-domain/",
+      "repository": "https://github.com/matthiask/django-canonical-domain",
+      "docs": null,
+      "summary": "Canonical domain redirection for Django",
+      "useWhen": "Use instead of hand-writing canonical (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "canonical",
+        "python",
+        "pypi",
+        "redirects",
+        "django"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/django_canonical_domain/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/matthiask/django-canonical-domain",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "django_canonical_domain"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 1167
+      }
+    },
+    {
+      "id": "astro-link-validator-npm",
+      "name": "astro-link-validator",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/rodgtr1/astro-link-validator",
+      "docs": "https://www.npmjs.com/package/astro-link-validator",
+      "summary": "An Astro integration that validates links during build time",
+      "useWhen": "Use instead of hand-writing link checking (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checking",
+        "typescript",
+        "npm",
+        "link-checker",
+        "astro"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/astro-link-validator",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/rodgtr1/astro-link-validator",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "astro-link-validator"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1094
+      }
+    },
+    {
+      "id": "eleventy-plugin-broken-links-npm",
+      "name": "eleventy-plugin-broken-links",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/bradleyburgess/eleventy-plugin-broken-links",
+      "docs": "https://www.npmjs.com/package/eleventy-plugin-broken-links",
+      "summary": "An Eleventy plugin to check for broken external links",
+      "useWhen": "Use instead of hand-writing link checking (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checking",
+        "javascript",
+        "npm",
+        "link-checker",
+        "eleventy"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/eleventy-plugin-broken-links",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/bradleyburgess/eleventy-plugin-broken-links",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "eleventy-plugin-broken-links"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1093
+      }
+    },
+    {
+      "id": "gatsby-plugin-wpgraphql-seo-npm",
+      "name": "gatsby-plugin-wpgraphql-seo",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ashhitch/gatsby-plugin-wpgraphql-seo",
+      "docs": "https://www.npmjs.com/package/gatsby-plugin-wpgraphql-seo",
+      "summary": "A SEO component that brings data from Yoast in your Gatsby App with WpGraphQl.",
+      "useWhen": "Use instead of hand-writing seo audit (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-audit",
+        "typescript",
+        "npm",
+        "gatsby"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/gatsby-plugin-wpgraphql-seo",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ashhitch/gatsby-plugin-wpgraphql-seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "gatsby-plugin-wpgraphql-seo"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1056
+      }
+    },
+    {
+      "id": "bing-webmaster-tools-pypi",
+      "name": "bing-webmaster-tools",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/merj/bing-webmaster-tools",
+      "docs": null,
+      "summary": "Python wrapper for the Bing Webmaster Tools API",
+      "useWhen": "Use instead of hand-writing webmaster tools (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "webmaster-tools",
+        "python",
+        "pypi",
+        "bing",
+        "webmaster"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/bing-webmaster-tools/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/merj/bing-webmaster-tools",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "bing-webmaster-tools"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 1045
+      }
+    },
+    {
+      "id": "mcp-google-search-console-pypi",
+      "name": "mcp-google-search-console",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/acamolese/google-search-console-mcp",
+      "docs": "https://github.com/acamolese/google-search-console-mcp#readme",
+      "summary": "MCP server for Google Search Console: query performance data, inspect URLs, check indexing, and generate HTML SEO audit reports from Claude, Cursor, Zed, and any Model Context Protocol client.",
+      "useWhen": "Use instead of hand-writing search console (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "search-console",
+        "python",
+        "pypi",
+        "google-search-console",
+        "mcp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/mcp-google-search-console/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/acamolese/google-search-console-mcp",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mcp-google-search-console"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 986
+      }
+    },
+    {
+      "id": "com-rometools-rome-maven",
+      "name": "com.rometools:rome",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://rometools.github.io/rome",
+      "repository": "https://github.com/rometools/rome",
+      "docs": "https://javadoc.io/doc/com.rometools/rome",
+      "summary": "Java library for RSS and Atom feeds",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "java",
+        "maven",
+        "rss",
+        "atom"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.rometools/rome",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/rometools/rome",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.rometools:rome"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 953
+      }
+    },
+    {
+      "id": "django-check-seo-pypi",
+      "name": "django-check-seo",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/kapt-labs/django-check-seo",
+      "docs": null,
+      "summary": "Django Check SEO will check the SEO aspects of your site for you, and will provide advice in case of problems.",
+      "useWhen": "Use instead of hand-writing audit (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "audit",
+        "python",
+        "pypi",
+        "seo-audit",
+        "django"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/django-check-seo/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/kapt-labs/django-check-seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "django-check-seo"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 915
+      }
+    },
+    {
+      "id": "flyewi-eleventy-plugin-redirects-npm",
+      "name": "@flyewi/eleventy-plugin-redirects",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/flyewi/eleventy-plugin-redirects",
+      "docs": "https://www.npmjs.com/package/@flyewi/eleventy-plugin-redirects",
+      "summary": "Eleventy plugin that generates Netlify redirects, Apache .htaccess, and static HTML fallback pages from a single redirects config.",
+      "useWhen": "Use instead of hand-writing redirects (meta tags, sitemaps, structured data, crawling or audits) in JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "redirects",
+        "javascript",
+        "npm",
+        "eleventy"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@flyewi/eleventy-plugin-redirects",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/flyewi/eleventy-plugin-redirects",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@flyewi/eleventy-plugin-redirects"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 905
+      }
+    },
+    {
+      "id": "double-great-alt-text-npm",
+      "name": "@double-great/alt-text",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/double-great/alt-text",
+      "docs": "https://www.npmjs.com/package/@double-great/alt-text",
+      "summary": "Check for unhelpful alt text.",
+      "useWhen": "Use instead of hand-writing image seo (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "image-seo",
+        "typescript",
+        "npm",
+        "images",
+        "alt-text"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@double-great/alt-text",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/double-great/alt-text",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@double-great/alt-text"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 896
+      }
+    },
+    {
+      "id": "djangocms-page-sitemap-pypi",
+      "name": "djangocms-page-sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD",
+        "url": null,
+        "scope": "BSD (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/nephila/djangocms-page-sitemap",
+      "docs": "https://djangocms-page-sitemap.readthedocs.io/",
+      "summary": "django CMS page extension to handle sitemap customization",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "pypi",
+        "django-cms"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/djangocms-page-sitemap/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/nephila/djangocms-page-sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "djangocms-page-sitemap"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 893
+      }
+    },
+    {
+      "id": "double-great-remark-lint-alt-text-npm",
+      "name": "@double-great/remark-lint-alt-text",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/double-great/remark-lint-alt-text",
+      "docs": "https://www.npmjs.com/package/@double-great/remark-lint-alt-text",
+      "summary": "A remark-lint plugin that finds unhelpful or missing image alt text",
+      "useWhen": "Use instead of hand-writing image seo (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "image-seo",
+        "typescript",
+        "npm",
+        "images",
+        "alt-text"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@double-great/remark-lint-alt-text",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/double-great/remark-lint-alt-text",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@double-great/remark-lint-alt-text"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 887
+      }
+    },
+    {
+      "id": "pelican-seo-pypi",
+      "name": "pelican-seo",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": null,
+        "scope": "AGPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/pelican-plugins/seo",
+      "docs": null,
+      "summary": "Pelican plugin to improve search engine optimization (SEO)",
+      "useWhen": "Use instead of hand-writing audit (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "AGPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "audit",
+        "python",
+        "pypi",
+        "pelican"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/pelican-seo/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/pelican-plugins/seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pelican-seo"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 808
+      }
+    },
+    {
+      "id": "strapi-plugin-redirect-urls-npm",
+      "name": "strapi-plugin-redirect-urls",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/MoveoTech/strapi-plugin-redirect-urls",
+      "docs": "https://www.npmjs.com/package/strapi-plugin-redirect-urls",
+      "summary": "Manage URL redirects from within the Strapi admin panel",
+      "useWhen": "Use instead of hand-writing redirects (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "redirects",
+        "typescript",
+        "npm",
+        "strapi"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/strapi-plugin-redirect-urls",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/MoveoTech/strapi-plugin-redirect-urls",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "strapi-plugin-redirect-urls"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 775
+      }
+    },
+    {
+      "id": "sanity-plugin-redirects-npm",
+      "name": "sanity-plugin-redirects",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/yasingencnet/sanity-plugin-redirects",
+      "docs": "https://www.npmjs.com/package/sanity-plugin-redirects",
+      "summary": "Editor-managed 301/302 redirects for Sanity — a Studio plugin plus a zero-dependency matcher you apply in your own middleware, Worker or edge function.",
+      "useWhen": "Use instead of hand-writing redirects (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "redirects",
+        "typescript",
+        "npm",
+        "sanity"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/sanity-plugin-redirects",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/yasingencnet/sanity-plugin-redirects",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "sanity-plugin-redirects"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 772
+      }
+    },
+    {
+      "id": "meta-tags-parser-pypi",
+      "name": "meta-tags-parser",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/xfenix/meta-tags-parser",
+      "docs": "https://github.com/xfenix/meta-tags-parser",
+      "summary": "Fast and modern meta tags parser (og, twitter, title, description, etc) with snippet support",
+      "useWhen": "Use instead of hand-writing metadata (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "metadata",
+        "python",
+        "pypi",
+        "meta-tags",
+        "opengraph",
+        "twitter-cards"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/meta-tags-parser/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/xfenix/meta-tags-parser",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "meta-tags-parser"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 720
+      }
+    },
+    {
+      "id": "is-crawler-pypi",
+      "name": "is-crawler",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/tn3w/is-crawler",
+      "docs": null,
+      "summary": "Crawler detection from User-Agent strings in 50 ns. Zero deps, no regex, ReDoS-safe.",
+      "useWhen": "Use instead of hand-writing bot detection (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "bot-detection",
+        "python",
+        "pypi",
+        "crawler",
+        "user-agent"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/is-crawler/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/tn3w/is-crawler",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "is-crawler"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 627
+      }
+    },
+    {
+      "id": "seoslug-pypi",
+      "name": "seoslug",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/emiliano-go/seoslug",
+      "docs": "https://deepwiki.com/emiliano-go/seoslug/",
+      "summary": "Framework-agnostic canonical URL normalization and deterministic SEO payload generation",
+      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "slug",
+        "python",
+        "pypi",
+        "canonical"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/seoslug/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/emiliano-go/seoslug",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "seoslug"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 612
+      }
+    },
+    {
+      "id": "serpex-pypi",
+      "name": "serpex",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/divyeshradadiya/serpex-sdk-python",
+      "docs": "https://github.com/divyeshradadiya/serpex-sdk-python#readme",
+      "summary": "Official Python SDK for Serpex — web search API and extract API for AI agents: ranked web results, optionally with page content as markdown",
+      "useWhen": "Use instead of hand-writing serp (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "serp",
+        "python",
+        "pypi",
+        "search-api"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/serpex/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/divyeshradadiya/serpex-sdk-python",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "serpex"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 603
+      }
+    },
+    {
+      "id": "mongez-react-helmet-npm",
+      "name": "@mongez/react-helmet",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/hassanzohdy/mongez-react-helmet",
+      "docs": "https://www.npmjs.com/package/@mongez/react-helmet",
+      "summary": "Document manager for React: titles, descriptions, keywords, OG/Twitter meta, canonical URL, and attributes — declarative via , cleans up on unmount.",
+      "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "meta-tags",
+        "typescript",
+        "npm",
+        "canonical",
+        "react"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@mongez/react-helmet",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/hassanzohdy/mongez-react-helmet",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@mongez/react-helmet"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 585
+      }
+    },
+    {
+      "id": "django-redirects-pypi",
+      "name": "django-redirects",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/fabiocaccamo/django-redirects",
+      "docs": "https://github.com/fabiocaccamo/django-redirects#readme",
+      "summary": "django redirects as they should be, with full control.",
+      "useWhen": "Use instead of hand-writing redirects (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "redirects",
+        "python",
+        "pypi",
+        "django"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/django-redirects/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/fabiocaccamo/django-redirects",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "django-redirects"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 559
+      }
+    },
+    {
+      "id": "lacspace-site-verify-npm",
+      "name": "@lacspace/site-verify",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "SEE LICENSE IN LICENSE",
+        "url": null,
+        "scope": "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://developer.lacspace.com/packages/site-verify",
+      "repository": "https://github.com/lacspace/npm-packages/tree/HEAD/site-verify",
+      "docs": "https://developer.lacspace.com/packages/site-verify",
+      "summary": "Search-engine site verification — meta tags, Next.js verification metadata and file tokens for Google Search Console, Bing, Yandex, Baidu, Pinterest, Ahrefs, Facebook & more. Zero-dependency...",
+      "useWhen": "Use instead of hand-writing indexing (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "SEE LICENSE IN LICENSE: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "indexing",
+        "typescript",
+        "npm",
+        "nextjs",
+        "license-non-spdx-check-license"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@lacspace/site-verify",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/lacspace/npm-packages/tree/HEAD/site-verify",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@lacspace/site-verify"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 539
+      }
+    },
+    {
+      "id": "sitemap-mcp-server-pypi",
+      "name": "sitemap-mcp-server",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mugoosse/sitemap-mcp-server",
+      "docs": null,
+      "summary": "Sitemap MCP is a Model Context Protocol (MCP) server for fetching, parsing, analyzing, and visualizing website sitemaps",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "pypi",
+        "mcp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/sitemap-mcp-server/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/mugoosse/sitemap-mcp-server",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sitemap-mcp-server"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 534
+      }
+    },
+    {
+      "id": "airbyte-source-google-search-console-pypi",
+      "name": "airbyte-source-google-search-console",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "LicenseRef-Other-or-Proprietary",
+        "url": null,
+        "scope": "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": "https://airbyte.com",
+      "repository": "https://github.com/airbytehq/airbyte",
+      "docs": "https://docs.airbyte.com/integrations/sources/google-search-console",
+      "summary": "Source implementation for Google Search Console.",
+      "useWhen": "Use instead of hand-writing search console (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "LicenseRef-Other-or-Proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "search-console",
+        "python",
+        "pypi",
+        "google-search-console",
+        "airbyte"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/airbyte-source-google-search-console/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/airbytehq/airbyte",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "airbyte-source-google-search-console"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 514
+      }
+    },
+    {
+      "id": "astro-canonical-npm",
+      "name": "astro-canonical",
+      "category": "seo",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/velohost/astro-canonical",
+      "docs": "https://www.npmjs.com/package/astro-canonical",
+      "summary": "Build-time canonical URL validation for Astro. Enforces site origin and trailing slash rules and fails the build on SEO mistakes.",
+      "useWhen": "Use instead of hand-writing canonical (meta tags, sitemaps, structured data, crawling or audits) in TypeScript/JavaScript projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "canonical",
+        "typescript",
+        "npm",
+        "astro"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/astro-canonical",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/velohost/astro-canonical",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "astro-canonical"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 508
+      }
+    },
+    {
+      "id": "sluggi-pypi-2",
+      "name": "sluggi",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/blip-box/sluggi",
+      "docs": "https://github.com/blip-box/sluggi#readme",
+      "summary": "A modern, high-performance Python library for turning text into clean, URL-safe slugs.",
+      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "slug",
+        "python",
+        "pypi",
+        "url"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/sluggi/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/blip-box/sluggi",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sluggi"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 485
+      }
+    },
+    {
+      "id": "pydantic2-schemaorg-pypi",
+      "name": "pydantic2-schemaorg",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/blurry-dev/pydantic2-schemaorg",
+      "docs": "https://github.com/blurry-dev/pydantic2-schemaorg",
+      "summary": "Pydantic classes for Schema.org",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "python",
+        "pypi",
+        "schema.org",
+        "pydantic",
+        "json-ld"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/pydantic2-schemaorg/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/blurry-dev/pydantic2-schemaorg",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "pydantic2-schemaorg"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 475
+      }
+    },
+    {
+      "id": "mkdocs-advanced-seo-pypi",
+      "name": "mkdocs-advanced-seo",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://raineblog.dpdns.org/mkdocs-advanced-seo/",
+      "repository": "https://github.com/raineblog/mkdocs-advanced-seo",
+      "docs": "https://raineblog.dpdns.org/mkdocs-advanced-seo/",
+      "summary": "A comprehensive SEO plugin for MkDocs with Advanced Meta tags, Open Graph, Twitter Cards, JSON-LD, and more.",
+      "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "meta-tags",
+        "python",
+        "pypi",
+        "opengraph",
+        "twitter-cards",
+        "mkdocs"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/mkdocs-advanced-seo/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/raineblog/mkdocs-advanced-seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mkdocs-advanced-seo"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 445
+      }
+    },
+    {
+      "id": "robotstxt-pypi",
+      "name": "robotstxt",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/chrisevans77/robotstxt_package",
+      "docs": null,
+      "summary": "A Python package to check URL paths against robots directives a robots.txt file.",
+      "useWhen": "Use instead of hand-writing robots (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots",
+        "python",
+        "pypi",
+        "robots.txt"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/robotstxt/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/chrisevans77/robotstxt_package",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "robotstxt"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 426
+      }
+    },
+    {
+      "id": "collective-behavior-seo-pypi",
+      "name": "collective.behavior.seo",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-2.0",
+        "url": null,
+        "scope": "GPL-2.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/collective/collective.behavior.seo",
+      "docs": null,
+      "summary": "An add-on for Plone",
+      "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "GPL-2.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "meta-tags",
+        "python",
+        "pypi",
+        "plone"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/collective.behavior.seo/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/collective/collective.behavior.seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "collective.behavior.seo"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 424
+      }
+    },
+    {
+      "id": "giant-redirect-import-pypi",
+      "name": "giant-redirect-import",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/giantmade/giant-redirect-import",
+      "docs": null,
+      "summary": "Reusable package which adds an option to bulk import redirects from a csv file",
+      "useWhen": "Use instead of hand-writing redirects (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "redirects",
+        "python",
+        "pypi",
+        "django",
+        "csv"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/giant-redirect-import/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/giantmade/giant-redirect-import",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "giant-redirect-import"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 415
+      }
+    },
+    {
+      "id": "go-opengraph-go",
+      "name": "github.com/dyatlov/go-opengraph",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/dyatlov/go-opengraph",
+      "docs": "https://pkg.go.dev/github.com/dyatlov/go-opengraph",
+      "summary": "Open Graph protocol parser for Go.",
+      "useWhen": "Use instead of hand-writing open graph (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Last release May 2022; still widely imported."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "open-graph",
+        "go",
+        "opengraph",
+        "metadata"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/dyatlov/go-opengraph",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/dyatlov/go-opengraph",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/dyatlov/go-opengraph"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 410
+      }
+    },
+    {
+      "id": "django-cs-robots-pypi",
+      "name": "django-cs-robots",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jatsu/django-cs-robots",
+      "docs": null,
+      "summary": "A django app to change robots.txt from the admin panel without using the database.",
+      "useWhen": "Use instead of hand-writing robots (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots",
+        "python",
+        "pypi",
+        "robots.txt",
+        "django"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/django-cs-robots/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/jatsu/django-cs-robots",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "django-cs-robots"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 398
+      }
+    },
+    {
+      "id": "com-github-jsonld-java-jsonld-java-maven",
+      "name": "com.github.jsonld-java:jsonld-java",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/jsonld-java/jsonld-java",
+      "docs": "https://javadoc.io/doc/com.github.jsonld-java/jsonld-java",
+      "summary": "JSON-LD implementation for Java",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "java",
+        "maven",
+        "json-ld"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.github.jsonld-java/jsonld-java",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/jsonld-java/jsonld-java",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.github.jsonld-java:jsonld-java"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 389
+      }
+    },
+    {
+      "id": "image-sitemap-pypi",
+      "name": "image-sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/AndreiDrang/image_sitemap",
+      "docs": "https://github.com/AndreiDrang/image_sitemap",
+      "summary": "Library to generate XML sitemaps for websites and images. Boost SEO by indexing image URLs for better visibility on search engines.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "pypi",
+        "images"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/image-sitemap/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/AndreiDrang/image_sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "image-sitemap"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 382
+      }
+    },
+    {
+      "id": "serpkite-pypi",
+      "name": "serpkite",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://serpkite.com",
+      "repository": "https://github.com/serpkite/serpkite-python",
+      "docs": "https://serpkite.com/docs/sdks/python",
+      "summary": "Official Python SDK for SerpKite, the Google search API built for AI agents: clean JSON or Markdown results.",
+      "useWhen": "Use instead of hand-writing serp (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "serp",
+        "python",
+        "pypi",
+        "google-search"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/serpkite/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/serpkite/serpkite-python",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "serpkite"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 382
+      }
+    },
+    {
+      "id": "com-github-slugify-slugify-maven",
+      "name": "com.github.slugify:slugify",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/slugify/slugify",
+      "docs": "https://javadoc.io/doc/com.github.slugify/slugify",
+      "summary": "Small utility library for generating speaking URLs.",
+      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "slug",
+        "java",
+        "maven"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.github.slugify/slugify",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/slugify/slugify",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.github.slugify:slugify"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 379
+      }
+    },
+    {
+      "id": "purell-go",
+      "name": "github.com/PuerkitoBio/purell",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/PuerkitoBio/purell",
+      "docs": "https://pkg.go.dev/github.com/PuerkitoBio/purell",
+      "summary": "URL normalization library for Go (canonical URLs).",
+      "useWhen": "Use instead of hand-writing canonical (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "canonical",
+        "go",
+        "url-normalization"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/PuerkitoBio/purell",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/PuerkitoBio/purell",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/PuerkitoBio/purell"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 347
+      }
+    },
+    {
+      "id": "robotstxt-go-2",
+      "name": "github.com/temoto/robotstxt",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/temoto/robotstxt",
+      "docs": "https://pkg.go.dev/github.com/temoto/robotstxt",
+      "summary": "robots.txt exclusion protocol parser for Go.",
+      "useWhen": "Use instead of hand-writing robots (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Last release 2021; still the most imported robots.txt parser for Go."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots",
+        "go",
+        "robots.txt",
+        "parser"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/temoto/robotstxt",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/temoto/robotstxt",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/temoto/robotstxt"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 314
+      }
+    },
+    {
+      "id": "json-gold-go",
+      "name": "github.com/piprate/json-gold",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/piprate/json-gold",
+      "docs": "https://pkg.go.dev/github.com/piprate/json-gold",
+      "summary": "JSON-LD 1.1 processor and API implementation for Go.",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "go",
+        "json-ld",
+        "linked-data"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/piprate/json-gold",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/piprate/json-gold",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/piprate/json-gold"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 309
+      }
+    },
+    {
+      "id": "sitemapy-pypi",
+      "name": "sitemapy",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/Graham-Schmidt/sitemapy",
+      "docs": null,
+      "summary": "Python package that generates SEO-friendly XML sitemaps",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Python projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "python",
+        "pypi",
+        "xml"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/sitemapy/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/Graham-Schmidt/sitemapy",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "sitemapy"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 299
+      }
+    },
+    {
+      "id": "com-github-crawler-commons-crawler-commons-maven",
+      "name": "com.github.crawler-commons:crawler-commons",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/crawler-commons/crawler-commons",
+      "docs": "https://javadoc.io/doc/com.github.crawler-commons/crawler-commons",
+      "summary": "A set of reusable Java components that implement functionality common to any web crawler",
+      "useWhen": "Use instead of hand-writing robots txt (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "robots-txt",
+        "java",
+        "maven",
+        "sitemap"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.github.crawler-commons/crawler-commons",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/crawler-commons/crawler-commons",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.github.crawler-commons:crawler-commons"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 259
+      }
+    },
+    {
+      "id": "com-norconex-collectors-norconex-collector-http-maven",
+      "name": "com.norconex.collectors:norconex-collector-http",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://crawler.norconex.com",
+      "repository": "https://github.com/Norconex/collector-http",
+      "docs": "https://javadoc.io/doc/com.norconex.collectors/norconex-collector-http",
+      "summary": "Norconex Crawlers (or spiders) are flexible web and filesystem crawlers for collecting, parsing, and manipulating data from the web or filesystem to various data repositories such as search engines.",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "java",
+        "maven"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.norconex.collectors/norconex-collector-http",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/Norconex/collector-http",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.norconex.collectors:norconex-collector-http"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 205
+      }
+    },
+    {
+      "id": "com-norconex-crawler-nx-crawler-web-maven",
+      "name": "com.norconex.crawler:nx-crawler-web",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://crawler.norconex.com",
+      "repository": "https://github.com/Norconex/crawler",
+      "docs": "https://javadoc.io/doc/com.norconex.crawler/nx-crawler-web",
+      "summary": "Norconex Crawlers (or spiders) are flexible web and filesystem crawlers for collecting, parsing, and manipulating data from the web or filesystem to various data repositories such as search engines.",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "java",
+        "maven"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.norconex.crawler/nx-crawler-web",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/Norconex/crawler",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.norconex.crawler:nx-crawler-web"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 205
+      }
+    },
+    {
+      "id": "opengraph-swift",
+      "name": "OpenGraph",
+      "category": "seo",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "NOASSERTION",
+        "url": null,
+        "scope": "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/satoshi-takano/OpenGraph",
+      "docs": "https://swiftpackageindex.com/satoshi-takano/OpenGraph",
+      "summary": "A Swift wrapper for the Open Graph protocol (OGP).",
+      "useWhen": "Use instead of hand-writing open graph (meta tags, sitemaps, structured data, crawling or audits) in Swift projects.",
+      "cautions": [
+        "NOASSERTION: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "open-graph",
+        "swift"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/satoshi-takano/OpenGraph",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/satoshi-takano/OpenGraph"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/satoshi-takano/OpenGraph.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/satoshi-takano/OpenGraph"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 205
+      }
+    },
+    {
+      "id": "com-apptasticsoftware-rssreader-maven",
+      "name": "com.apptasticsoftware:rssreader",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/w3stling/rssreader",
+      "docs": "https://javadoc.io/doc/com.apptasticsoftware/rssreader",
+      "summary": "A simple Java library for reading RSS and Atom feeds",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "java",
+        "maven",
+        "rss"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.apptasticsoftware/rssreader",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/w3stling/rssreader",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.apptasticsoftware:rssreader"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 200
+      }
+    },
+    {
+      "id": "com-apicatalog-titanium-json-ld-maven",
+      "name": "com.apicatalog:titanium-json-ld",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://apicatalog.com",
+      "repository": "https://github.com/filip26/titanium-json-ld",
+      "docs": "https://javadoc.io/doc/com.apicatalog/titanium-json-ld",
+      "summary": "A JSON-LD 1.1 (JSON-based Serialization for Linked Data) Processor & API",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Java projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "java",
+        "maven",
+        "json-ld"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.apicatalog/titanium-json-ld",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/filip26/titanium-json-ld",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.apicatalog:titanium-json-ld"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 167
+      }
+    },
+    {
+      "id": "seo-pub-2",
+      "name": "seo",
+      "category": "seo",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/krokyze/flutter_seo",
+      "repository": "https://github.com/krokyze/flutter_seo",
+      "docs": "https://pub.dev/documentation/seo/latest/",
+      "summary": "Flutter package for enabling SEO (meta, body tag) support on Web.",
+      "useWhen": "Use instead of hand-writing seo toolkit (meta tags, sitemaps, structured data, crawling or audits) in Dart projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "seo-toolkit",
+        "dart",
+        "pub"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/seo",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/krokyze/flutter_seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "seo"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 142
+      }
+    },
+    {
+      "id": "tagkit-swift",
+      "name": "TagKit",
+      "category": "seo",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/danielsaidi/TagKit",
+      "docs": "https://swiftpackageindex.com/danielsaidi/TagKit",
+      "summary": "Tag items and slugify strings in Swift and SwiftUI.",
+      "useWhen": "Use instead of hand-writing slug (meta tags, sitemaps, structured data, crawling or audits) in Swift projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "slug",
+        "swift"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/danielsaidi/TagKit",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/danielsaidi/TagKit"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/danielsaidi/TagKit.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/danielsaidi/TagKit"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 107
+      }
+    },
+    {
+      "id": "metadata-fetch-pub",
+      "name": "metadata_fetch",
+      "category": "seo",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/jg-l/metadata_fetch",
+      "repository": "https://github.com/jg-l/metadata_fetch",
+      "docs": "https://pub.dev/documentation/metadata_fetch/latest/",
+      "summary": "A dart library for extracting metadata on web pages such as OpenGraph, Meta, Twitter Cards, and Structured Data (Json-LD)",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Dart projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "dart",
+        "pub",
+        "json-ld",
+        "schema-org"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/metadata_fetch",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/jg-l/metadata_fetch",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "metadata_fetch"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 106
+      }
+    },
+    {
+      "id": "syndikit-swift",
+      "name": "SyndiKit",
+      "category": "seo",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/brightdigit/SyndiKit",
+      "docs": "https://swiftpackageindex.com/brightdigit/SyndiKit",
+      "summary": "Swift Package for Decoding RSS Feeds.",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Swift projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "swift",
+        "rss"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/brightdigit/SyndiKit",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/brightdigit/SyndiKit"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/brightdigit/SyndiKit.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/brightdigit/SyndiKit"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 70
+      }
+    },
+    {
+      "id": "dart-rss-pub",
+      "name": "dart_rss",
+      "category": "seo",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/Flutter-Bounty-Hunters/dart-rss",
+      "repository": "https://github.com/Flutter-Bounty-Hunters/dart-rss",
+      "docs": "https://pub.dev/documentation/dart_rss/latest/",
+      "summary": "Dart parser for RSS1.0, RSS2.0, Atom feeds.",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Dart projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "dart",
+        "pub",
+        "rss"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/dart_rss",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/Flutter-Bounty-Hunters/dart-rss",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "dart_rss"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 49
+      }
+    },
+    {
+      "id": "seo-go-2",
+      "name": "github.com/qor/seo",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/qor/seo",
+      "docs": "https://pkg.go.dev/github.com/qor/seo",
+      "summary": "SEO meta tag management for QOR admin applications.",
+      "useWhen": "Use instead of hand-writing meta tags (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "meta-tags",
+        "go",
+        "qor"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/qor/seo",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/qor/seo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/qor/seo"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 44
+      }
+    },
+    {
+      "id": "jsonld-go-2",
+      "name": "github.com/go-ap/jsonld",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/go-ap/jsonld",
+      "docs": "https://pkg.go.dev/github.com/go-ap/jsonld",
+      "summary": "JSON-LD encoding and decoding for Go.",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "go",
+        "json-ld"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/go-ap/jsonld",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/go-ap/jsonld",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/go-ap/jsonld"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 26
+      }
+    },
+    {
+      "id": "sitemap-go-4",
+      "name": "github.com/snabb/sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/snabb/sitemap",
+      "docs": "https://pkg.go.dev/github.com/snabb/sitemap",
+      "summary": "Create XML sitemaps and sitemap indexes in Go.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "go",
+        "xml"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/snabb/sitemap",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/snabb/sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/snabb/sitemap"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 26
+      }
+    },
+    {
+      "id": "sitemap-go-5",
+      "name": "github.com/denisbakhtin/sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/denisbakhtin/sitemap",
+      "docs": "https://pkg.go.dev/github.com/denisbakhtin/sitemap",
+      "summary": "Structures and functions for website XML sitemap generation.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "go",
+        "xml"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/denisbakhtin/sitemap",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/denisbakhtin/sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/denisbakhtin/sitemap"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 21
+      }
+    },
+    {
+      "id": "katana-go",
+      "name": "github.com/projectdiscovery/katana",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/projectdiscovery/katana",
+      "docs": "https://pkg.go.dev/github.com/projectdiscovery/katana",
+      "summary": "Next-generation crawling and spidering framework with headless support.",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "go",
+        "headless"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/projectdiscovery/katana",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/projectdiscovery/katana",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/projectdiscovery/katana"
+        }
+      ],
+      "quickstart": [
+        "go install github.com/projectdiscovery/katana/cmd/katana@latest",
+        "Docs: https://pkg.go.dev/github.com/projectdiscovery/katana"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 17
+      }
+    },
+    {
+      "id": "go-sitemap-go",
+      "name": "github.com/yterajima/go-sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/yterajima/go-sitemap",
+      "docs": "https://pkg.go.dev/github.com/yterajima/go-sitemap",
+      "summary": "Sitemap XML parser for Go.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "go",
+        "parser"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/yterajima/go-sitemap",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/yterajima/go-sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/yterajima/go-sitemap"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 16
+      }
+    },
+    {
+      "id": "linkcheck-pub",
+      "name": "linkcheck",
+      "category": "seo",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/filiph/linkcheck",
+      "docs": "https://pub.dev/documentation/linkcheck/latest/",
+      "summary": "A very fast link-checker. Crawls sites and checks integrity of links both in HTML and in CSS.",
+      "useWhen": "Use instead of hand-writing link checking (meta tags, sitemaps, structured data, crawling or audits) in Dart projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-checking",
+        "dart",
+        "pub",
+        "link-checker"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/linkcheck",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/filiph/linkcheck",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "linkcheck"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 15
+      }
+    },
+    {
+      "id": "rss-dart-pub",
+      "name": "rss_dart",
+      "category": "seo",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/ubuntu-flutter-community/rss.dart",
+      "repository": "https://github.com/ubuntu-flutter-community/rss.dart",
+      "docs": "https://pub.dev/documentation/rss_dart/latest/",
+      "summary": "rss_dart is a rss parser for RSS1.0/RSS2.0/Atom. This library is forked from webfeed https://github.com/witochandra/webfeed and dart_rss.",
+      "useWhen": "Use instead of hand-writing feeds (meta tags, sitemaps, structured data, crawling or audits) in Dart projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "feeds",
+        "dart",
+        "pub",
+        "rss"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/rss_dart",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ubuntu-flutter-community/rss.dart",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "rss_dart"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 14
+      }
+    },
+    {
+      "id": "v2-go-14",
+      "name": "github.com/otiai10/opengraph/v2",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/otiai10/opengraph",
+      "docs": "https://pkg.go.dev/github.com/otiai10/opengraph/v2",
+      "summary": "Parse Open Graph Protocol metadata from web pages.",
+      "useWhen": "Use instead of hand-writing open graph (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "open-graph",
+        "go",
+        "opengraph",
+        "metadata",
+        "link-preview"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/otiai10/opengraph/v2",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/otiai10/opengraph",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/otiai10/opengraph/v2"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 13
+      }
+    },
+    {
+      "id": "crawlerdetect-go-2",
+      "name": "github.com/x-way/crawlerdetect",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/x-way/crawlerdetect",
+      "docs": "https://pkg.go.dev/github.com/x-way/crawlerdetect",
+      "summary": "Detect bots, crawlers and spiders from User-Agent strings.",
+      "useWhen": "Use instead of hand-writing bot detection (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "bot-detection",
+        "go",
+        "crawler",
+        "user-agent",
+        "bots"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/x-way/crawlerdetect",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/x-way/crawlerdetect",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/x-way/crawlerdetect"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 9
+      }
+    },
+    {
+      "id": "microdata-go",
+      "name": "github.com/astappiev/microdata",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-2-Clause",
+        "url": null,
+        "scope": "BSD-2-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/astappiev/microdata",
+      "docs": "https://pkg.go.dev/github.com/astappiev/microdata",
+      "summary": "Extract Microdata and JSON-LD structured data from HTML.",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "go",
+        "microdata",
+        "json-ld",
+        "schema.org"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/astappiev/microdata",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/astappiev/microdata",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/astappiev/microdata"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 6
+      }
+    },
+    {
+      "id": "crawler-user-agents-go-2",
+      "name": "github.com/monperrus/crawler-user-agents",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/monperrus/crawler-user-agents",
+      "docs": "https://pkg.go.dev/github.com/monperrus/crawler-user-agents",
+      "summary": "Maintained list of crawler and bot User-Agent patterns with a Go package.",
+      "useWhen": "Use instead of hand-writing bot detection (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "bot-detection",
+        "go",
+        "crawler",
+        "user-agent",
+        "ai-crawlers"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/monperrus/crawler-user-agents",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/monperrus/crawler-user-agents",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/monperrus/crawler-user-agents"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 3
+      }
+    },
+    {
+      "id": "sherlock-go",
+      "name": "github.com/benpate/sherlock",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/benpate/sherlock",
+      "docs": "https://pkg.go.dev/github.com/benpate/sherlock",
+      "summary": "Inspect a URL for available metadata: Open Graph, oEmbed, microformats, JSON-LD and ActivityStreams.",
+      "useWhen": "Use instead of hand-writing metadata (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "metadata",
+        "go",
+        "opengraph",
+        "oembed",
+        "microformats",
+        "json-ld",
+        "link-preview"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/benpate/sherlock",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/benpate/sherlock",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/benpate/sherlock"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 3
+      }
+    },
+    {
+      "id": "sitemap-generator-go-2",
+      "name": "github.com/sabloger/sitemap-generator",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sabloger/sitemap-generator",
+      "docs": "https://pkg.go.dev/github.com/sabloger/sitemap-generator",
+      "summary": "Sitemap and sitemap-index generator for Go.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "go",
+        "xml"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/sabloger/sitemap-generator",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/sabloger/sitemap-generator",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/sabloger/sitemap-generator"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 2
+      }
+    },
+    {
+      "id": "sitemap-go-6",
+      "name": "github.com/StudioSol/sitemap",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/StudioSol/sitemap",
+      "docs": "https://pkg.go.dev/github.com/StudioSol/sitemap",
+      "summary": "Generates sitemaps and index files based on the sitemaps.org protocol.",
+      "useWhen": "Use instead of hand-writing sitemap (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "sitemap",
+        "go",
+        "xml"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/StudioSol/sitemap",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/StudioSol/sitemap",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/StudioSol/sitemap"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 2
+      }
+    },
+    {
+      "id": "teseo-go",
+      "name": "github.com/indaco/teseo",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/indaco/teseo",
+      "docs": "https://pkg.go.dev/github.com/indaco/teseo",
+      "summary": "Go templ components for SEO: Schema.org JSON-LD, Open Graph and Twitter Cards.",
+      "useWhen": "Use instead of hand-writing structured data (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "structured-data",
+        "go",
+        "json-ld",
+        "schema.org",
+        "opengraph",
+        "templ"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/indaco/teseo",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/indaco/teseo",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/indaco/teseo"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 2
+      }
+    },
+    {
+      "id": "hakrawler-go",
+      "name": "github.com/hakluke/hakrawler",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "GPL-3.0",
+        "url": null,
+        "scope": "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/hakluke/hakrawler",
+      "docs": "https://pkg.go.dev/github.com/hakluke/hakrawler",
+      "summary": "Simple, fast web crawler for discovering URLs and JavaScript files.",
+      "useWhen": "Use instead of hand-writing crawler (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "GPL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "crawler",
+        "go",
+        "urls"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/hakluke/hakrawler",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/hakluke/hakrawler",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/hakluke/hakrawler"
+        }
+      ],
+      "quickstart": [
+        "go install github.com/hakluke/hakrawler@latest",
+        "Docs: https://pkg.go.dev/github.com/hakluke/hakrawler"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 0
+      }
+    },
+    {
+      "id": "v2-go-21",
+      "name": "github.com/raviqqe/muffet/v2",
+      "category": "seo",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/raviqqe/muffet",
+      "docs": "https://pkg.go.dev/github.com/raviqqe/muffet/v2",
+      "summary": "Fast website link checker written in Go.",
+      "useWhen": "Use instead of hand-writing link check (meta tags, sitemaps, structured data, crawling or audits) in Go projects.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "seo",
+        "link-check",
+        "go",
+        "broken-links",
+        "link-checker",
+        "cli"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/raviqqe/muffet/v2",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/raviqqe/muffet",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-seo.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/raviqqe/muffet/v2"
+        }
+      ],
+      "quickstart": [
+        "go install github.com/raviqqe/muffet/v2@latest",
+        "Docs: https://pkg.go.dev/github.com/raviqqe/muffet/v2"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 0
+      }
+    }
+  ]
+}

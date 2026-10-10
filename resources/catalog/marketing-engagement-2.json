@@ -1,0 +1,4128 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "rich2k-pusher-beams-packagist",
+      "name": "rich2k/pusher-beams",
+      "category": "push",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/Rich2k/pusher-beams",
+      "repository": "https://github.com/Rich2k/pusher-beams",
+      "docs": null,
+      "summary": "Pusher Beams is a push notification service from Pusher.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from PHP instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/rich2k/pusher-beams",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/Rich2k/pusher-beams",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "rich2k/pusher-beams"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 15256
+      }
+    },
+    {
+      "id": "symfony-novu-notifier-packagist",
+      "name": "symfony/novu-notifier",
+      "category": "push",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://symfony.com",
+      "repository": "https://github.com/symfony/novu-notifier",
+      "docs": null,
+      "summary": "Provides Novu integration for Symfony Notifier.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from PHP instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/symfony/novu-notifier",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/symfony/novu-notifier",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "symfony/novu-notifier"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 13251
+      }
+    },
+    {
+      "id": "atomic-web-push-crates",
+      "name": "atomic_web_push",
+      "category": "push",
+      "platforms": [
+        "server",
+        "rust"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/rabbitson87/atomic_web_push",
+      "repository": "https://github.com/rabbitson87/atomic_web_push",
+      "docs": "https://docs.rs/atomic_web_push",
+      "summary": "A library that eliminates potential risks (occasional crashes due to OpenSSL library's setenv conflicts in Linux environments) from the web push library",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Rust instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "rust",
+        "crates",
+        "web-push",
+        "apns"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://crates.io/crates/atomic_web_push",
+          "title": "crates registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/rabbitson87/atomic_web_push",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "atomic_web_push"
+        }
+      ],
+      "languages": [
+        "rust"
+      ],
+      "popularity": {
+        "metric": "crates-downloads-total",
+        "value": 13084
+      }
+    },
+    {
+      "id": "apple-apns-crates",
+      "name": "apple-apns",
+      "category": "push",
+      "platforms": [
+        "server",
+        "rust"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/jakelee8/apple-apns",
+      "repository": "https://github.com/jakelee8/apple-apns",
+      "docs": "https://docs.rs/apple-apns",
+      "summary": "Rust client for Apple Push Notification service",
+      "useWhen": "Use to send web or mobile push notifications (push notifications) from Rust instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-notifications",
+        "rust",
+        "crates"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://crates.io/crates/apple-apns",
+          "title": "crates registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/jakelee8/apple-apns",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "apple-apns"
+        }
+      ],
+      "languages": [
+        "rust"
+      ],
+      "popularity": {
+        "metric": "crates-downloads-total",
+        "value": 7801
+      }
+    },
+    {
+      "id": "pushx-hex",
+      "name": "pushx",
+      "category": "push",
+      "platforms": [
+        "server",
+        "elixir"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/cignosystems/pushx",
+      "docs": "https://hexdocs.pm/pushx",
+      "summary": "Push notifications for Elixir with one API for Apple APNS, Google FCM and standards-based Web Push (VAPID) — automatic retries, circuit breaker, dead-token cleanup, telemetry, FCM topics, a test...",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Elixir instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "elixir",
+        "hex",
+        "web-push",
+        "apns"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://hex.pm/packages/pushx",
+          "title": "hex registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/cignosystems/pushx",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "hex",
+          "name": "pushx"
+        }
+      ],
+      "languages": [
+        "elixir"
+      ],
+      "popularity": {
+        "metric": "hex-downloads-total",
+        "value": 6150
+      }
+    },
+    {
+      "id": "kalyke-apns-pypi",
+      "name": "kalyke-apns",
+      "category": "push",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/nnsnodnb/kalyke",
+      "docs": null,
+      "summary": "A library for interacting with APNs and VoIP using HTTP/2.",
+      "useWhen": "Use to send web or mobile push notifications (apns) from Python instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "apns",
+        "python",
+        "pypi",
+        "ios"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/kalyke-apns/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/nnsnodnb/kalyke",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "kalyke-apns"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 4076
+      }
+    },
+    {
+      "id": "firebase-messaging-pub-2",
+      "name": "firebase_messaging",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://firebase.google.com/docs/cloud-messaging",
+      "repository": "https://github.com/firebase/flutterfire",
+      "docs": "https://pub.dev/documentation/firebase_messaging/latest/",
+      "summary": "Flutter plugin for Firebase Cloud Messaging, a cross-platform messaging solution that lets you reliably deliver messages on Android and iOS.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "dart",
+        "pub",
+        "fcm"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/firebase_messaging",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/firebase/flutterfire",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "firebase_messaging"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 3950
+      }
+    },
+    {
+      "id": "awesome-notifications-pub",
+      "name": "awesome_notifications",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://discord.awesome-notifications.carda.me/",
+      "repository": "https://github.com/rafaelsetragni/awesome_notifications",
+      "docs": "https://pub.dev/documentation/awesome_notifications/latest/",
+      "summary": "A complete solution to create Local and Push Notifications, customizing buttons, images, sounds, emoticons and applying many different layouts for Flutter apps.",
+      "useWhen": "Use to send web or mobile push notifications (push notifications) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-notifications",
+        "dart",
+        "pub"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/awesome_notifications",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/rafaelsetragni/awesome_notifications",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "awesome_notifications"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 3441
+      }
+    },
+    {
+      "id": "com-eatthepath-pushy-maven",
+      "name": "com.eatthepath:pushy",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://pushy-apns.org/",
+      "repository": "https://github.com/jchambers/pushy",
+      "docs": "https://javadoc.io/doc/com.eatthepath/pushy",
+      "summary": "A Java library for sending APNs (iOS/macOS/Safari) push notifications",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Java instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "java",
+        "maven",
+        "apns"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.eatthepath/pushy",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/jchambers/pushy",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.eatthepath:pushy"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 1878
+      }
+    },
+    {
+      "id": "onesignal-flutter-pub",
+      "name": "onesignal_flutter",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/OneSignal/OneSignal-Flutter-SDK",
+      "repository": "https://github.com/OneSignal/OneSignal-Flutter-SDK",
+      "docs": "https://pub.dev/documentation/onesignal_flutter/latest/",
+      "summary": "OneSignal is a free push notification service for mobile apps. This plugin makes it easy to integrate your flutter app with OneSignal",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "dart",
+        "pub",
+        "onesignal"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/onesignal_flutter",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/OneSignal/OneSignal-Flutter-SDK",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "onesignal_flutter"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 954
+      }
+    },
+    {
+      "id": "apnswift-swift",
+      "name": "APNSwift",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/kylebrowning/APNSwift",
+      "docs": "https://swiftpackageindex.com/kylebrowning/APNSwift",
+      "summary": "HTTP/2 Apple Push Notification Service built with swift - send push notifications to iOS, iPadOS, tvOS, macOS, watchOS, visionOS, and Safari!",
+      "useWhen": "Use to send web or mobile push notifications (push notifications) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-notifications",
+        "swift"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/kylebrowning/APNSwift",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/kylebrowning/APNSwift"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/kylebrowning/APNSwift.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/kylebrowning/APNSwift"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 844
+      }
+    },
+    {
+      "id": "v4-go",
+      "name": "firebase.google.com/go/v4",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/firebase/firebase-admin-go",
+      "docs": "https://pkg.go.dev/firebase.google.com/go/v4",
+      "summary": "Official Firebase Admin SDK for Go including Cloud Messaging.",
+      "useWhen": "Use to send web or mobile push notifications (fcm) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "fcm",
+        "go",
+        "firebase"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/firebase.google.com/go/v4",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/firebase/firebase-admin-go",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "firebase.google.com/go/v4"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 668
+      }
+    },
+    {
+      "id": "com-onesignal-onesignal-maven",
+      "name": "com.onesignal:OneSignal",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/onesignal/onesignal-android-sdk",
+      "docs": "https://javadoc.io/doc/com.onesignal/OneSignal",
+      "summary": "OneSignal makes engaging customers simple and is the fastest, most reliable service to send push notifications, in-app messages, SMS, and emails. This plugin makes it easy to integrate your native...",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Java instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "java",
+        "maven",
+        "onesignal",
+        "android"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.onesignal/OneSignal",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/onesignal/onesignal-android-sdk",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.onesignal:OneSignal"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 631
+      }
+    },
+    {
+      "id": "com-google-firebase-firebase-admin-maven",
+      "name": "com.google.firebase:firebase-admin",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://firebase.google.com/docs/admin/setup",
+      "repository": "https://github.com/firebase/firebase-admin-java",
+      "docs": "https://javadoc.io/doc/com.google.firebase/firebase-admin",
+      "summary": "Firebase Admin Java SDK",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Java instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "java",
+        "maven",
+        "fcm"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.google.firebase/firebase-admin",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/firebase/firebase-admin-java",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.google.firebase:firebase-admin"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 620
+      }
+    },
+    {
+      "id": "onesignal-ios-sdk-swift",
+      "name": "OneSignal-iOS-SDK",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/OneSignal/OneSignal-iOS-SDK",
+      "docs": "https://swiftpackageindex.com/OneSignal/OneSignal-iOS-SDK",
+      "summary": "OneSignal makes engaging customers simple and is the fastest, most reliable service to send push notifications, in-app messages, SMS, and emails. This plugin makes it easy to integrate your native...",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "swift",
+        "onesignal"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/OneSignal/OneSignal-iOS-SDK",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/OneSignal/OneSignal-iOS-SDK"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/OneSignal/OneSignal-iOS-SDK.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/OneSignal/OneSignal-iOS-SDK"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 538
+      }
+    },
+    {
+      "id": "ios-library-swift",
+      "name": "ios-library",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/urbanairship/ios-library",
+      "docs": "https://swiftpackageindex.com/urbanairship/ios-library",
+      "summary": "Airship iOS SDK",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "swift"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/urbanairship/ios-library",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/urbanairship/ios-library"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/urbanairship/ios-library.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/urbanairship/ios-library"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 483
+      }
+    },
+    {
+      "id": "apns2-go-2",
+      "name": "github.com/sideshow/apns2",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/sideshow/apns2",
+      "docs": "https://pkg.go.dev/github.com/sideshow/apns2",
+      "summary": "Go package for Apple Push Notification service using the HTTP/2 API.",
+      "useWhen": "Use to send web or mobile push notifications (apns) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "apns",
+        "go",
+        "ios"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/sideshow/apns2",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/sideshow/apns2",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/sideshow/apns2"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 389
+      }
+    },
+    {
+      "id": "nl-martijndwars-web-push-maven",
+      "name": "nl.martijndwars:web-push",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/web-push-libs/webpush-java",
+      "docs": "https://javadoc.io/doc/nl.martijndwars/web-push",
+      "summary": "Web Push library for Java",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Java instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "java",
+        "maven",
+        "web-push"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/nl.martijndwars/web-push",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/web-push-libs/webpush-java",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "nl.martijndwars:web-push"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 357
+      }
+    },
+    {
+      "id": "webpush-go-go",
+      "name": "github.com/SherClockHolmes/webpush-go",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/SherClockHolmes/webpush-go",
+      "docs": "https://pkg.go.dev/github.com/SherClockHolmes/webpush-go",
+      "summary": "Web Push API encryption and sending with VAPID support.",
+      "useWhen": "Use to send web or mobile push notifications (web push) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "web-push",
+        "go",
+        "vapid"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/SherClockHolmes/webpush-go",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/SherClockHolmes/webpush-go",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/SherClockHolmes/webpush-go"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 217
+      }
+    },
+    {
+      "id": "intercom-flutter-pub",
+      "name": "intercom_flutter",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/v3rm0n/intercom_flutter",
+      "repository": "https://github.com/v3rm0n/intercom_flutter",
+      "docs": "https://pub.dev/documentation/intercom_flutter/latest/",
+      "summary": "Flutter plugin for Intercom integration. Provides in-app messaging and help-center Intercom services",
+      "useWhen": "Use to send web or mobile push notifications (in app messaging) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "in-app-messaging",
+        "dart",
+        "pub",
+        "in-app"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/intercom_flutter",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/v3rm0n/intercom_flutter",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "intercom_flutter"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 152
+      }
+    },
+    {
+      "id": "push-pub",
+      "name": "push",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://tlduck.com/",
+      "repository": "https://github.com/ben-xD/push",
+      "docs": "https://pub.dev/documentation/push/latest/",
+      "summary": "Push notifications in Flutter without firebase_messaging for Android, iOS and macOS.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "dart",
+        "pub",
+        "fcm"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/push",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ben-xD/push",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "push"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 141
+      }
+    },
+    {
+      "id": "fcm-swift-2",
+      "name": "FCM",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/MihaelIsaev/FCM",
+      "docs": "https://swiftpackageindex.com/MihaelIsaev/FCM",
+      "summary": "PushNotifications through FireBase for Vapor 3 and 4.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "swift",
+        "fcm"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/MihaelIsaev/FCM",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/MihaelIsaev/FCM"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/MihaelIsaev/FCM.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/MihaelIsaev/FCM"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 138
+      }
+    },
+    {
+      "id": "apns-swift",
+      "name": "apns",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/vapor/apns",
+      "docs": "https://swiftpackageindex.com/vapor/apns",
+      "summary": "Helpful extensions and abstractions for using APNSwift",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "swift",
+        "web-push",
+        "apns"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/vapor/apns",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/vapor/apns"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/vapor/apns.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/vapor/apns"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 126
+      }
+    },
+    {
+      "id": "gorush-go",
+      "name": "github.com/appleboy/gorush",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/appleboy/gorush",
+      "docs": "https://pkg.go.dev/github.com/appleboy/gorush",
+      "summary": "Push notification server for APNs, FCM and Huawei.",
+      "useWhen": "Use to send web or mobile push notifications (gateway) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "gateway",
+        "go",
+        "apns",
+        "fcm",
+        "huawei",
+        "server"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/appleboy/gorush",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/appleboy/gorush",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/appleboy/gorush"
+        }
+      ],
+      "quickstart": [
+        "go install github.com/appleboy/gorush@latest",
+        "Docs: https://pkg.go.dev/github.com/appleboy/gorush"
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 121
+      }
+    },
+    {
+      "id": "com-urbanairship-android-urbanairship-core-maven",
+      "name": "com.urbanairship.android:urbanairship-core",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/urbanairship/android-library",
+      "docs": "https://javadoc.io/doc/com.urbanairship.android/urbanairship-core",
+      "summary": "Airship Android SDK",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Java instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "java",
+        "maven",
+        "airship",
+        "android"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.urbanairship.android/urbanairship-core",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/urbanairship/android-library",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.urbanairship.android:urbanairship-core"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 116
+      }
+    },
+    {
+      "id": "go-fcm-go",
+      "name": "github.com/appleboy/go-fcm",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/appleboy/go-fcm",
+      "docs": "https://pkg.go.dev/github.com/appleboy/go-fcm",
+      "summary": "Firebase Cloud Messaging library for Go.",
+      "useWhen": "Use to send web or mobile push notifications (fcm) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "fcm",
+        "go",
+        "firebase"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/appleboy/go-fcm",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/appleboy/go-fcm",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/appleboy/go-fcm"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 87
+      }
+    },
+    {
+      "id": "swift-webpush-swift",
+      "name": "swift-webpush",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mochidev/swift-webpush",
+      "docs": "https://swiftpackageindex.com/mochidev/swift-webpush",
+      "summary": "WebPush server implementation in Swift",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "swift",
+        "web-push",
+        "apns"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mochidev/swift-webpush",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/mochidev/swift-webpush"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/mochidev/swift-webpush.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/mochidev/swift-webpush"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 52
+      }
+    },
+    {
+      "id": "pusher-beams-pub",
+      "name": "pusher_beams",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/pusher/push-notifications-flutter",
+      "docs": "https://pub.dev/documentation/pusher_beams/latest/",
+      "summary": "Official Flutter Plugin for Pusher Beams, receive notifications easily on your Flutter application with Pusher Beams.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "dart",
+        "pub"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/pusher_beams",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/pusher/push-notifications-flutter",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "pusher_beams"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 40
+      }
+    },
+    {
+      "id": "com-urbanairship-java-client-maven",
+      "name": "com.urbanairship:java-client",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/urbanairship/java-library",
+      "docs": "https://javadoc.io/doc/com.urbanairship/java-client",
+      "summary": "Java client library for the Urban Airship API",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Java instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "java",
+        "maven",
+        "airship"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.urbanairship/java-client",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/urbanairship/java-library",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.urbanairship:java-client"
+        }
+      ],
+      "languages": [
+        "java"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 37
+      }
+    },
+    {
+      "id": "onesignal-xcframework-swift",
+      "name": "OneSignal-XCFramework",
+      "category": "push",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/OneSignal/OneSignal-XCFramework",
+      "docs": "https://swiftpackageindex.com/OneSignal/OneSignal-XCFramework",
+      "summary": "OneSignal makes engaging customers simple and is the fastest, most reliable service to send push notifications, in-app messages, SMS, and emails. This repository hosts OneSignal's XCFramework to...",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Swift instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "swift",
+        "onesignal"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/OneSignal/OneSignal-XCFramework",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/OneSignal/OneSignal-XCFramework"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/OneSignal/OneSignal-XCFramework.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/OneSignal/OneSignal-XCFramework"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 33
+      }
+    },
+    {
+      "id": "com-interaso-webpush-maven",
+      "name": "com.interaso:webpush",
+      "category": "push",
+      "platforms": [
+        "server",
+        "jvm",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/interaso/webpush",
+      "docs": "https://javadoc.io/doc/com.interaso/webpush",
+      "summary": "Lightweight Kotlin library for sending web push notifications with zero external dependencies.",
+      "useWhen": "Use to send web or mobile push notifications (push transport) from Kotlin instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-transport",
+        "kotlin",
+        "maven",
+        "web-push"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/com.interaso/webpush",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/interaso/webpush",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "com.interaso:webpush"
+        }
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 30
+      }
+    },
+    {
+      "id": "firebase-admin-sdk-pub",
+      "name": "firebase_admin_sdk",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/firebase/firebase-admin-dart",
+      "docs": "https://pub.dev/documentation/firebase_admin_sdk/latest/",
+      "summary": "Firebase Admin SDK implementation for Dart - Firestore, Cloud Storage, Auth, and FCM",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "dart",
+        "pub",
+        "fcm"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/firebase_admin_sdk",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/firebase/firebase-admin-dart",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "firebase_admin_sdk"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 27
+      }
+    },
+    {
+      "id": "airship-flutter-pub",
+      "name": "airship_flutter",
+      "category": "push",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://www.airship.com/",
+      "repository": "https://github.com/urbanairship/airship-flutter",
+      "docs": "https://pub.dev/documentation/airship_flutter/latest/",
+      "summary": "Cross-platform plugin interface for the native Airship iOS and Android SDKs. Simplifies adding Airship to Flutter apps.",
+      "useWhen": "Use to send web or mobile push notifications (push sdk) from Dart instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "push-sdk",
+        "dart",
+        "pub"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/airship_flutter",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/urbanairship/airship-flutter",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "airship_flutter"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 17
+      }
+    },
+    {
+      "id": "v2-go-20",
+      "name": "github.com/OneSignal/onesignal-go-api/v2",
+      "category": "push",
+      "platforms": [
+        "server",
+        "go"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/OneSignal/onesignal-go-api",
+      "docs": "https://pkg.go.dev/github.com/OneSignal/onesignal-go-api/v2",
+      "summary": "Official OneSignal API client for Go.",
+      "useWhen": "Use to send web or mobile push notifications (onesignal) from Go instead of raw provider protocols.",
+      "cautions": [
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+      ],
+      "tags": [
+        "marketing",
+        "push",
+        "onesignal",
+        "go",
+        "email",
+        "sms"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pkg.go.dev/github.com/OneSignal/onesignal-go-api/v2",
+          "title": "go registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/OneSignal/onesignal-go-api",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/OneSignal/onesignal-go-api/v2"
+        }
+      ],
+      "languages": [
+        "go"
+      ],
+      "popularity": {
+        "metric": "go-imported-by",
+        "value": 0
+      }
+    },
+    {
+      "id": "expo-store-review-npm",
+      "name": "expo-store-review",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://docs.expo.dev/versions/latest/sdk/storereview/",
+      "repository": "https://github.com/expo/expo/tree/HEAD/packages/expo-store-review",
+      "docs": "https://docs.expo.dev/versions/latest/sdk/storereview/",
+      "summary": "Provides access to native APIs for in-app reviews.",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof",
+        "react-native"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/expo-store-review",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/expo/expo/tree/HEAD/packages/expo-store-review",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "expo-store-review"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 4796119
+      }
+    },
+    {
+      "id": "spryker-feature-product-rating-reviews-packagist",
+      "name": "spryker-feature/product-rating-reviews",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "proprietary",
+        "url": null,
+        "scope": "proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/spryker-feature/product-rating-reviews",
+      "docs": null,
+      "summary": "Product Rating & Reviews [feature]",
+      "useWhen": "Use to collect or show reviews and social proof (ratings) instead of a custom implementation.",
+      "cautions": [
+        "proprietary: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "ratings",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/spryker-feature/product-rating-reviews",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/spryker-feature/product-rating-reviews",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "spryker-feature/product-rating-reviews"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 1613582
+      }
+    },
+    {
+      "id": "plugin-storereview-nuget",
+      "name": "Plugin.StoreReview",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "dotnet"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/jamesmontemagno/StoreReviewPlugin",
+      "repository": "https://github.com/jamesmontemagno/StoreReviewPlugin",
+      "docs": "https://github.com/jamesmontemagno/StoreReviewPlugin",
+      "summary": "Easily request a review or open the store page for your app.",
+      "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "app-store-review",
+        "csharp",
+        "nuget",
+        "app-review"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.nuget.org/packages/Plugin.StoreReview",
+          "title": "nuget registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/jamesmontemagno/StoreReviewPlugin",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Plugin.StoreReview"
+        }
+      ],
+      "languages": [
+        "csharp"
+      ],
+      "popularity": {
+        "metric": "nuget-total-downloads",
+        "value": 1602595
+      }
+    },
+    {
+      "id": "react-native-in-app-review-npm",
+      "name": "react-native-in-app-review",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/MinaSamir11/react-native-in-app-review",
+      "docs": "https://www.npmjs.com/package/react-native-in-app-review",
+      "summary": "react native in app review, to rate on Play store, App Store, Generally, the in-app review flow (see figure 1 for play store, figure 2 for ios) can be triggered at any time throughout the user...",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof",
+        "react-native"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/react-native-in-app-review",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/MinaSamir11/react-native-in-app-review",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-in-app-review"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 1007054
+      }
+    },
+    {
+      "id": "trustpilot-module-reviews-packagist",
+      "name": "trustpilot/module-reviews",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "OSL-3.0",
+        "url": null,
+        "scope": "OSL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/trustpilot/plugin-magento2",
+      "docs": null,
+      "summary": "The Trustpilot Review extension makes it simple and easy for merchants to collect reviews from their customers to power their marketing efforts, increase sales conversion, build their online...",
+      "useWhen": "Use to collect or show reviews and social proof (social proof) instead of a custom implementation.",
+      "cautions": [
+        "OSL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "social-proof",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/trustpilot/module-reviews",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/trustpilot/plugin-magento2",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "trustpilot/module-reviews"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 981479
+      }
+    },
+    {
+      "id": "codebyray-laravel-review-rateable-packagist",
+      "name": "codebyray/laravel-review-rateable",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/codebyray/laravel-review-rateable",
+      "docs": null,
+      "summary": "Review & Rating system for Laravel 10, 11, 12 & 13",
+      "useWhen": "Use to collect or show reviews and social proof (ratings) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "ratings",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/codebyray/laravel-review-rateable",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/codebyray/laravel-review-rateable",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "codebyray/laravel-review-rateable"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 364421
+      }
+    },
+    {
+      "id": "featurebase-js-npm",
+      "name": "featurebase-js",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://featurebase.app",
+      "repository": "https://github.com/FeaturebaseHQ/sdk/tree/HEAD/client",
+      "docs": "https://featurebase.app",
+      "summary": "Typed client SDK for Featurebase — messenger, changelog widget, feedback widget, and surveys.",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "forms"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/featurebase-js",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/FeaturebaseHQ/sdk/tree/HEAD/client",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "featurebase-js"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 262334
+      }
+    },
+    {
+      "id": "react-native-store-review-npm",
+      "name": "react-native-store-review",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/oblador/react-native-store-review",
+      "docs": "https://www.npmjs.com/package/react-native-store-review",
+      "summary": "Rate on App Store or Google Play directly in your React Native app",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "javascript",
+        "npm",
+        "social-proof",
+        "react-native"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/react-native-store-review",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/oblador/react-native-store-review",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-store-review"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 212152
+      }
+    },
+    {
+      "id": "smastrom-react-rating-npm",
+      "name": "@smastrom/react-rating",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://reactrating.netlify.app/",
+      "repository": "https://github.com/smastrom/react-rating",
+      "docs": "https://reactrating.netlify.app/",
+      "summary": "Accessible, zero-dependency star rating component for React.",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof",
+        "react"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@smastrom/react-rating",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/smastrom/react-rating",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@smastrom/react-rating"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 187558
+      }
+    },
+    {
+      "id": "usersnap-browser-npm",
+      "name": "@usersnap/browser",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": null,
+      "docs": "https://www.npmjs.com/package/@usersnap/browser",
+      "summary": "Official Usersnap browser SDK for embedding feedback widgets, surveys and NPS collection.",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "affiliate",
+        "referral"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/@usersnap/browser",
+          "title": "npm registry record (license, versions, downloads)"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@usersnap/browser"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 154347
+      }
+    },
+    {
+      "id": "turnto-social-commerce-packagist",
+      "name": "turnto/social-commerce",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "OSL-3.0",
+        "url": null,
+        "scope": "OSL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/turnto/magento2-turnto-socialcommerce",
+      "docs": null,
+      "summary": "Social commerce platform to collect, manage, and display ratings and reviews to enhance your Magento store",
+      "useWhen": "Use to collect or show reviews and social proof (ratings) instead of a custom implementation.",
+      "cautions": [
+        "OSL-3.0: review obligations (copyleft, network use or commercial terms) before copying, embedding or distributing."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "ratings",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/turnto/social-commerce",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/turnto/magento2-turnto-socialcommerce",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "turnto/social-commerce"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 138063
+      }
+    },
+    {
+      "id": "zreviewtender-gem",
+      "name": "ZReviewTender",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "ruby"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/ZhgChgLi/ZReviewTender",
+      "repository": "https://github.com/ZhgChgLi/ZReviewTender",
+      "docs": "https://www.rubydoc.info/gems/ZReviewTender/1.4.0",
+      "summary": "ZReviewTender - App Reviews Automatic Bot",
+      "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "app-store-review",
+        "ruby",
+        "gem",
+        "app-review"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://rubygems.org/gems/ZReviewTender",
+          "title": "gem registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ZhgChgLi/ZReviewTender",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "gem",
+          "name": "ZReviewTender"
+        }
+      ],
+      "languages": [
+        "ruby"
+      ],
+      "popularity": {
+        "metric": "gem-downloads-total",
+        "value": 125874
+      }
+    },
+    {
+      "id": "react-star-ratings-npm",
+      "name": "react-star-ratings",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ekeric13/react-star-ratings",
+      "docs": "https://www.npmjs.com/package/react-star-ratings",
+      "summary": "A customizable star rating component for selecting x stars or visualizing x stars",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "javascript",
+        "npm",
+        "social-proof",
+        "react",
+        "no-release-4y"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/react-star-ratings",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ekeric13/react-star-ratings",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-star-ratings"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 118905
+      }
+    },
+    {
+      "id": "plugin-maui-apprating-nuget",
+      "name": "Plugin.Maui.AppRating",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "dotnet"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/FabriBertani/Plugin.Maui.AppRating",
+      "repository": "https://github.com/FabriBertani/Plugin.Maui.AppRating",
+      "docs": "https://github.com/FabriBertani/Plugin.Maui.AppRating",
+      "summary": "An easy way to quickly add store rating reviews to your .Net MAUI app.",
+      "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "app-store-review",
+        "csharp",
+        "nuget",
+        "app-review"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.nuget.org/packages/Plugin.Maui.AppRating",
+          "title": "nuget registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/FabriBertani/Plugin.Maui.AppRating",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Plugin.Maui.AppRating"
+        }
+      ],
+      "languages": [
+        "csharp"
+      ],
+      "popularity": {
+        "metric": "nuget-total-downloads",
+        "value": 83563
+      }
+    },
+    {
+      "id": "react-native-star-rating-widget-npm",
+      "name": "react-native-star-rating-widget",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/bviebahn/react-native-star-rating-widget",
+      "docs": "https://www.npmjs.com/package/react-native-star-rating-widget",
+      "summary": "A star rating widget for react native",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof",
+        "react-native"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/react-native-star-rating-widget",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/bviebahn/react-native-star-rating-widget",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-native-star-rating-widget"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 77431
+      }
+    },
+    {
+      "id": "trustpilot-pypi",
+      "name": "trustpilot",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/trustpilot/python-trustpilot",
+      "docs": null,
+      "summary": "Trustpilot API client including CLI tool",
+      "useWhen": "Use to collect or show reviews and social proof (trustpilot) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "trustpilot",
+        "python",
+        "pypi"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/trustpilot/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/trustpilot/python-trustpilot",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "trustpilot"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 59897
+      }
+    },
+    {
+      "id": "graphem-trustpilot-packagist",
+      "name": "graphem/trustpilot",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/graphem/trustpilot",
+      "docs": null,
+      "summary": "Simple PHP library for TrustPilot API",
+      "useWhen": "Use to collect or show reviews and social proof (social proof) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "social-proof",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/graphem/trustpilot",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/graphem/trustpilot",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "graphem/trustpilot"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 45901
+      }
+    },
+    {
+      "id": "trustpilot-npm-2",
+      "name": "trustpilot",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/trustpilot/node-trustpilot",
+      "docs": "https://www.npmjs.com/package/trustpilot",
+      "summary": "HTTP client for Trustpilot",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/trustpilot",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/trustpilot/node-trustpilot",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "trustpilot"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 41669
+      }
+    },
+    {
+      "id": "dynamic-silverstripe-elemental-testimonials-packagist",
+      "name": "dynamic/silverstripe-elemental-testimonials",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "php"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": null,
+        "scope": "BSD-3-Clause (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/dynamic/silverstripe-elemental-testimonials",
+      "docs": null,
+      "summary": "Testimonials element for Silverstripe Elemental",
+      "useWhen": "Use to collect or show reviews and social proof (social proof) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "social-proof",
+        "php",
+        "packagist"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://packagist.org/packages/dynamic/silverstripe-elemental-testimonials",
+          "title": "packagist registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/dynamic/silverstripe-elemental-testimonials",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "dynamic/silverstripe-elemental-testimonials"
+        }
+      ],
+      "languages": [
+        "php"
+      ],
+      "popularity": {
+        "metric": "packagist-downloads-total",
+        "value": 34237
+      }
+    },
+    {
+      "id": "angular-star-rating-npm",
+      "name": "angular-star-rating",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/BioPhoton/angular-star-rating",
+      "docs": "https://www.npmjs.com/package/angular-star-rating",
+      "summary": "Angular Star Rating is a fully featured and configurable Angular UI component.",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof",
+        "angular"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/angular-star-rating",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/BioPhoton/angular-star-rating",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "angular-star-rating"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 18003
+      }
+    },
+    {
+      "id": "react-google-reviews-npm",
+      "name": "react-google-reviews",
+      "category": "reviews",
+      "platforms": [
+        "node",
+        "web"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/ryanschiang/react-google-reviews",
+      "docs": "https://www.npmjs.com/package/react-google-reviews",
+      "summary": "A React component to easily display Google reviews using Google Places API or Google My Business API.",
+      "useWhen": "Use to collect or show reviews and social proof (reviews) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "typescript",
+        "npm",
+        "social-proof",
+        "react"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.npmjs.com/package/react-google-reviews",
+          "title": "npm registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/ryanschiang/react-google-reviews",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-google-reviews"
+        }
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-month",
+        "value": 15547
+      }
+    },
+    {
+      "id": "yelp-fusion-rs-crates",
+      "name": "yelp-fusion-rs",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "rust"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://www.toddgriffin.me/",
+      "repository": "https://github.com/goddtriffin/yelp-fusion-rs",
+      "docs": "https://docs.rs/yelp-fusion-rs",
+      "summary": "A Rust library for the Yelp Fusion API.",
+      "useWhen": "Use to collect or show reviews and social proof (social proof) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "social-proof",
+        "rust",
+        "crates"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://crates.io/crates/yelp-fusion-rs",
+          "title": "crates registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/goddtriffin/yelp-fusion-rs",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "yelp-fusion-rs"
+        }
+      ],
+      "languages": [
+        "rust"
+      ],
+      "popularity": {
+        "metric": "crates-downloads-total",
+        "value": 8138
+      }
+    },
+    {
+      "id": "yelpapi-pypi",
+      "name": "yelpapi",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "python"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "BSD",
+        "url": null,
+        "scope": "BSD (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/lanl/yelpapi",
+      "docs": null,
+      "summary": "yelpapi is a pure Python implementation of the Yelp Fusion API.",
+      "useWhen": "Use to collect or show reviews and social proof (yelp) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "yelp",
+        "python",
+        "pypi",
+        "fusion-api"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/yelpapi/",
+          "title": "pypi registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/lanl/yelpapi",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "yelpapi"
+        }
+      ],
+      "languages": [
+        "python"
+      ],
+      "popularity": {
+        "metric": "pypi-downloads-month",
+        "value": 6902
+      }
+    },
+    {
+      "id": "in-app-review-pub",
+      "name": "in_app_review",
+      "category": "reviews",
+      "platforms": [
+        "mobile",
+        "flutter"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": "https://github.com/britannio/in_app_review/tree/master/in_app_review",
+      "repository": "https://github.com/britannio/in_app_review",
+      "docs": "https://pub.dev/documentation/in_app_review/latest/",
+      "summary": "Flutter plugin for showing the In-App Review/System Rating pop up on Android, iOS and MacOS. It makes it easy for users to rate your app.",
+      "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "app-store-review",
+        "dart",
+        "pub",
+        "app-review"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pub.dev/packages/in_app_review",
+          "title": "pub registry record (license, versions, downloads)"
+        },
+        {
+          "url": "https://github.com/britannio/in_app_review",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "in_app_review"
+        }
+      ],
+      "languages": [
+        "dart"
+      ],
+      "popularity": {
+        "metric": "pub-likes",
+        "value": 2455
+      }
+    },
+    {
+      "id": "appreview-swift",
+      "name": "AppReview",
+      "category": "reviews",
+      "platforms": [
+        "ios",
+        "macos"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "MIT",
+        "url": null,
+        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/mezhevikin/AppReview",
+      "docs": "https://swiftpackageindex.com/mezhevikin/AppReview",
+      "summary": "⭐ A tiny library for iOS and macOS to request reviews on the App Store. This is a wrapper around the native SKStoreReviewController.",
+      "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "app-store-review",
+        "swift",
+        "app-review"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mezhevikin/AppReview",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/mezhevikin/AppReview"
+        }
+      ],
+      "quickstart": [
+        ".package(url: \"https://github.com/mezhevikin/AppReview.git\", from: \"<version>\")",
+        "Docs: https://swiftpackageindex.com/mezhevikin/AppReview"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 127
+      }
+    },
+    {
+      "id": "io-github-sergeimikhailovskii-in-app-review-kmp-android-maven",
+      "name": "io.github.sergeimikhailovskii:in-app-review-kmp-android",
+      "category": "reviews",
+      "platforms": [
+        "server",
+        "jvm",
+        "android"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": null,
+        "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
+      },
+      "homepage": null,
+      "repository": "https://github.com/SergeiMikhailovskii/kmp-app-review",
+      "docs": "https://javadoc.io/doc/io.github.sergeimikhailovskii/in-app-review-kmp-android",
+      "summary": "KMP implementation of in-app review",
+      "useWhen": "Use to collect or show reviews and social proof (app store review) instead of a custom implementation.",
+      "cautions": [
+        "Pin the version and review the changelog before upgrading."
+      ],
+      "tags": [
+        "marketing",
+        "reviews",
+        "app-store-review",
+        "kotlin",
+        "maven",
+        "app-review",
+        "kmp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "web-app"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://central.sonatype.com/artifact/io.github.sergeimikhailovskii/in-app-review-kmp-android",
+          "title": "Maven Central record"
+        },
+        {
+          "url": "https://github.com/SergeiMikhailovskii/kmp-app-review",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "install": [
+        "Install with the package command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "io.github.sergeimikhailovskii:in-app-review-kmp-android"
+        }
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "popularity": {
+        "metric": "github-stars",
+        "value": 94
+      }
+    }
+  ]
+}
