@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /// Strict ASCII application identifier policy. Not authentication or SQL sanitization.
 public enum IdentifierValidator {
     public static func isValid(_ value: String, maxLength: Int) -> Bool {

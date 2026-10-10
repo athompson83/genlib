@@ -58,21 +58,23 @@
       "files": [
         "csharp/Genlib.Validation/IdentifierValidator.cs"
       ],
-      "tests": [],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
       "verification": "CI dotnet run",
       "status": "example"
     },
     {
       "id": "swift-identifier-validation",
       "language": "swift",
-      "runtime": "Swift >=5.9",
+      "runtime": "Swift >=5.10 (SwiftPM)",
       "files": [
-        "swift/IdentifierValidator.swift"
+        "swift/Sources/GenlibSwift/IdentifierValidator.swift"
       ],
       "tests": [
-        "swift/IdentifierValidatorTests.swift"
+        "swift/Sources/GenlibSwiftChecks/IdentifierValidatorChecks.swift"
       ],
-      "verification": "CI swiftc",
+      "verification": "CI swift run",
       "status": "example"
     },
     {
@@ -177,6 +179,548 @@
         "go/safelog/safelog_test.go"
       ],
       "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "python-totp",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/totp.py"
+      ],
+      "tests": [
+        "python/test_totp.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-totp",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/totp/totp.go"
+      ],
+      "tests": [
+        "go/totp/totp_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-totp",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/totp.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-totp",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Totp.java"
+      ],
+      "tests": [
+        "java/TotpTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-totp",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Totp.kt"
+      ],
+      "tests": [
+        "kotlin/TotpTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-totp",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Totp.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-totp",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/totp.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/totp_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-totp",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Totp.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-oidc-pkce",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/oidc_pkce.py"
+      ],
+      "tests": [
+        "python/test_oidc_pkce.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-oidc-pkce",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/oidcpkce/oidcpkce.go"
+      ],
+      "tests": [
+        "go/oidcpkce/oidcpkce_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-oidc-pkce",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/oidc_pkce.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-oidc-pkce",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/OidcPkce.java"
+      ],
+      "tests": [
+        "java/OidcPkceTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-oidc-pkce",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/OidcPkce.kt"
+      ],
+      "tests": [
+        "kotlin/OidcPkceTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-oidc-pkce",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/OidcPkce.cs",
+        "csharp/Genlib.Validation/Totp.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-oidc-pkce",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/oidc_pkce.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/oidc_pkce_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-oidc-pkce",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/OidcPkce.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-recovery-codes",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/recovery_codes.py"
+      ],
+      "tests": [
+        "python/test_recovery_codes.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-recovery-codes",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/recoverycodes/recoverycodes.go"
+      ],
+      "tests": [
+        "go/recoverycodes/recoverycodes_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-recovery-codes",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/recovery_codes.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-recovery-codes",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/RecoveryCodes.java"
+      ],
+      "tests": [
+        "java/RecoveryCodesTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-recovery-codes",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/RecoveryCodes.kt"
+      ],
+      "tests": [
+        "kotlin/RecoveryCodesTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-recovery-codes",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/RecoveryCodes.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-recovery-codes",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/recovery_codes.dart",
+        "dart/lib/src/encoding.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/recovery_codes_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-recovery-codes",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/RecoveryCodes.swift",
+        "swift/Sources/GenlibSwift/Encoding.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-calculator",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/calculator.py"
+      ],
+      "tests": [
+        "python/test_calculator.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-calculator",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/calculator/calculator.go"
+      ],
+      "tests": [
+        "go/calculator/calculator_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-calculator",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/calculator.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-calculator",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Calculator.java"
+      ],
+      "tests": [
+        "java/CalculatorTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-calculator",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Calculator.kt"
+      ],
+      "tests": [
+        "kotlin/CalculatorTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-calculator",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Calculator.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-calculator",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/calculator.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/calculator_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-calculator",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Calculator.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "python-form-schema",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/form_schema.py"
+      ],
+      "tests": [
+        "python/test_form_schema.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-form-schema",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/formschema/formschema.go"
+      ],
+      "tests": [
+        "go/formschema/formschema_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-form-schema",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/form_schema.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-form-schema",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/FormSchema.java"
+      ],
+      "tests": [
+        "java/FormSchemaTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-form-schema",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/FormSchema.kt"
+      ],
+      "tests": [
+        "kotlin/FormSchemaTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-form-schema",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/FormSchema.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-form-schema",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/form_schema.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/form_schema_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-form-schema",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/FormSchema.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/CapabilityChecks.swift"
+      ],
+      "verification": "CI swift run",
       "status": "example"
     }
   ]
