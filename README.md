@@ -39,7 +39,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9805 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 654 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 669 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents

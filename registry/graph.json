@@ -805,6 +805,20 @@
    "query": "animation"
   },
   {
+   "id": "category:api-codegen",
+   "kind": "category",
+   "label": "api-codegen",
+   "count": 1,
+   "query": "api-codegen"
+  },
+  {
+   "id": "category:api-contracts",
+   "kind": "category",
+   "label": "api-contracts",
+   "count": 2,
+   "query": "api-contracts"
+  },
+  {
    "id": "category:api-docs",
    "kind": "category",
    "label": "api-docs",
@@ -812,11 +826,32 @@
    "query": "api-docs"
   },
   {
+   "id": "category:api-mocks",
+   "kind": "category",
+   "label": "api-mocks",
+   "count": 1,
+   "query": "api-mocks"
+  },
+  {
    "id": "category:api-spec",
    "kind": "category",
    "label": "api-spec",
    "count": 4,
    "query": "api-spec"
+  },
+  {
+   "id": "category:api-testing",
+   "kind": "category",
+   "label": "api-testing",
+   "count": 1,
+   "query": "api-testing"
+  },
+  {
+   "id": "category:archive-export",
+   "kind": "category",
+   "label": "archive-export",
+   "count": 1,
+   "query": "archive-export"
   },
   {
    "id": "category:assessment-quiz",
@@ -878,7 +913,7 @@
    "id": "category:authorization",
    "kind": "category",
    "label": "authorization",
-   "count": 4,
+   "count": 5,
    "query": "authorization"
   },
   {
@@ -1043,6 +1078,13 @@
    "query": "canvas"
   },
   {
+   "id": "category:catalog-maintenance",
+   "kind": "category",
+   "label": "catalog-maintenance",
+   "count": 3,
+   "query": "catalog-maintenance"
+  },
+  {
    "id": "category:chart-library",
    "kind": "category",
    "label": "chart-library",
@@ -1162,11 +1204,25 @@
    "query": "code-quality"
   },
   {
+   "id": "category:codemods",
+   "kind": "category",
+   "label": "codemods",
+   "count": 4,
+   "query": "codemods"
+  },
+  {
    "id": "category:coding-agent",
    "kind": "category",
    "label": "coding-agent",
    "count": 2,
    "query": "coding-agent"
+  },
+  {
+   "id": "category:collaboration",
+   "kind": "category",
+   "label": "collaboration",
+   "count": 1,
+   "query": "collaboration"
   },
   {
    "id": "category:color-tools",
@@ -1309,6 +1365,13 @@
    "query": "crm-erp"
   },
   {
+   "id": "category:cross-language",
+   "kind": "category",
+   "label": "cross-language",
+   "count": 1,
+   "query": "cross-language"
+  },
+  {
    "id": "category:crypto",
    "kind": "category",
    "label": "crypto",
@@ -1421,6 +1484,13 @@
    "query": "dependencies"
   },
   {
+   "id": "category:dependency-analysis",
+   "kind": "category",
+   "label": "dependency-analysis",
+   "count": 1,
+   "query": "dependency-analysis"
+  },
+  {
    "id": "category:deploy",
    "kind": "category",
    "label": "deploy",
@@ -1503,6 +1573,13 @@
    "label": "desktop-update",
    "count": 1,
    "query": "desktop-update"
+  },
+  {
+   "id": "category:desktop-updates",
+   "kind": "category",
+   "label": "desktop-updates",
+   "count": 1,
+   "query": "desktop-updates"
   },
   {
    "id": "category:dev-tools",
@@ -1869,6 +1946,13 @@
    "query": "http-client"
   },
   {
+   "id": "category:http-testing",
+   "kind": "category",
+   "label": "http-testing",
+   "count": 1,
+   "query": "http-testing"
+  },
+  {
    "id": "category:i18n",
    "kind": "category",
    "label": "i18n",
@@ -2135,11 +2219,25 @@
    "query": "marketing-automation"
   },
   {
+   "id": "category:masked-input",
+   "kind": "category",
+   "label": "masked-input",
+   "count": 1,
+   "query": "masked-input"
+  },
+  {
    "id": "category:mcp",
    "kind": "category",
    "label": "mcp",
    "count": 4,
    "query": "mcp"
+  },
+  {
+   "id": "category:mcp-integration",
+   "kind": "category",
+   "label": "mcp-integration",
+   "count": 1,
+   "query": "mcp-integration"
   },
   {
    "id": "category:media",
@@ -2296,6 +2394,20 @@
    "query": "monorepo"
   },
   {
+   "id": "category:native-persistence",
+   "kind": "category",
+   "label": "native-persistence",
+   "count": 2,
+   "query": "native-persistence"
+  },
+  {
+   "id": "category:native-testing",
+   "kind": "category",
+   "label": "native-testing",
+   "count": 3,
+   "query": "native-testing"
+  },
+  {
    "id": "category:navigation-apps",
    "kind": "category",
    "label": "navigation-apps",
@@ -2422,6 +2534,13 @@
    "query": "pdf"
   },
   {
+   "id": "category:pdf-generation",
+   "kind": "category",
+   "label": "pdf-generation",
+   "count": 1,
+   "query": "pdf-generation"
+  },
+  {
    "id": "category:personal-finance",
    "kind": "category",
    "label": "personal-finance",
@@ -2483,6 +2602,13 @@
    "label": "protocol-server",
    "count": 22,
    "query": "protocol-server"
+  },
+  {
+   "id": "category:public-data-api",
+   "kind": "category",
+   "label": "public-data-api",
+   "count": 8,
+   "query": "public-data-api"
   },
   {
    "id": "category:push",
@@ -2758,6 +2884,13 @@
    "query": "team-chat"
   },
   {
+   "id": "category:template-upgrades",
+   "kind": "category",
+   "label": "template-upgrades",
+   "count": 1,
+   "query": "template-upgrades"
+  },
+  {
    "id": "category:terminal-dashboard",
    "kind": "category",
    "label": "terminal-dashboard",
@@ -2840,6 +2973,13 @@
    "label": "transit-data",
    "count": 10,
    "query": "transit-data"
+  },
+  {
+   "id": "category:tree-navigation",
+   "kind": "category",
+   "label": "tree-navigation",
+   "count": 1,
+   "query": "tree-navigation"
   },
   {
    "id": "category:ui-components",
@@ -3006,14 +3146,14 @@
    "id": "doc:CONTRIBUTING.md",
    "kind": "doc",
    "label": "CONTRIBUTING.md",
-   "count": 9,
+   "count": 10,
    "file": "CONTRIBUTING.md"
   },
   {
    "id": "doc:docs/agent-access.md",
    "kind": "doc",
    "label": "docs/agent-access.md",
-   "count": 5,
+   "count": 6,
    "file": "docs/agent-access.md"
   },
   {
@@ -3034,7 +3174,7 @@
    "id": "doc:docs/architecture.md",
    "kind": "doc",
    "label": "docs/architecture.md",
-   "count": 9,
+   "count": 11,
    "file": "docs/architecture.md"
   },
   {
@@ -3048,7 +3188,7 @@
    "id": "doc:docs/benchmarks.md",
    "kind": "doc",
    "label": "docs/benchmarks.md",
-   "count": 8,
+   "count": 9,
    "file": "docs/benchmarks.md"
   },
   {
@@ -3083,15 +3223,22 @@
    "id": "doc:docs/best-practices/ui-libraries.md",
    "kind": "doc",
    "label": "docs/best-practices/ui-libraries.md",
-   "count": 14,
+   "count": 15,
    "file": "docs/best-practices/ui-libraries.md"
   },
   {
    "id": "doc:docs/capabilities.md",
    "kind": "doc",
    "label": "docs/capabilities.md",
-   "count": 78,
+   "count": 79,
    "file": "docs/capabilities.md"
+  },
+  {
+   "id": "doc:docs/catalog-health.md",
+   "kind": "doc",
+   "label": "docs/catalog-health.md",
+   "count": 8,
+   "file": "docs/catalog-health.md"
   },
   {
    "id": "doc:docs/component-variants.md",
@@ -3178,6 +3325,13 @@
    "file": "docs/diagrams-guide.md"
   },
   {
+   "id": "doc:docs/distribution.md",
+   "kind": "doc",
+   "label": "docs/distribution.md",
+   "count": 5,
+   "file": "docs/distribution.md"
+  },
+  {
    "id": "doc:docs/harnesses.md",
    "kind": "doc",
    "label": "docs/harnesses.md",
@@ -3192,11 +3346,39 @@
    "file": "docs/install-indexes.md"
   },
   {
+   "id": "doc:docs/integrations.md",
+   "kind": "doc",
+   "label": "docs/integrations.md",
+   "count": 7,
+   "file": "docs/integrations.md"
+  },
+  {
+   "id": "doc:docs/integrations/developer-native.md",
+   "kind": "doc",
+   "label": "docs/integrations/developer-native.md",
+   "count": 10,
+   "file": "docs/integrations/developer-native.md"
+  },
+  {
+   "id": "doc:docs/integrations/web.md",
+   "kind": "doc",
+   "label": "docs/integrations/web.md",
+   "count": 11,
+   "file": "docs/integrations/web.md"
+  },
+  {
    "id": "doc:docs/jev.md",
    "kind": "doc",
    "label": "docs/jev.md",
    "count": 9,
    "file": "docs/jev.md"
+  },
+  {
+   "id": "doc:docs/landscape.md",
+   "kind": "doc",
+   "label": "docs/landscape.md",
+   "count": 5,
+   "file": "docs/landscape.md"
   },
   {
    "id": "doc:docs/language-coverage.md",
@@ -3218,6 +3400,13 @@
    "label": "docs/lifecycle.md",
    "count": 4,
    "file": "docs/lifecycle.md"
+  },
+  {
+   "id": "doc:docs/mcp-server.md",
+   "kind": "doc",
+   "label": "docs/mcp-server.md",
+   "count": 8,
+   "file": "docs/mcp-server.md"
   },
   {
    "id": "doc:docs/module-format.md",
@@ -3258,7 +3447,7 @@
    "id": "doc:docs/resources/ai-agents.md",
    "kind": "doc",
    "label": "docs/resources/ai-agents.md",
-   "count": 19,
+   "count": 20,
    "file": "docs/resources/ai-agents.md"
   },
   {
@@ -3279,7 +3468,7 @@
    "id": "doc:docs/resources/backend-api.md",
    "kind": "doc",
    "label": "docs/resources/backend-api.md",
-   "count": 17,
+   "count": 18,
    "file": "docs/resources/backend-api.md"
   },
   {
@@ -3300,21 +3489,21 @@
    "id": "doc:docs/resources/dashboards.md",
    "kind": "doc",
    "label": "docs/resources/dashboards.md",
-   "count": 11,
+   "count": 12,
    "file": "docs/resources/dashboards.md"
   },
   {
    "id": "doc:docs/resources/data-docs-office.md",
    "kind": "doc",
    "label": "docs/resources/data-docs-office.md",
-   "count": 33,
+   "count": 34,
    "file": "docs/resources/data-docs-office.md"
   },
   {
    "id": "doc:docs/resources/devops-testing-security.md",
    "kind": "doc",
    "label": "docs/resources/devops-testing-security.md",
-   "count": 7,
+   "count": 8,
    "file": "docs/resources/devops-testing-security.md"
   },
   {
@@ -3339,6 +3528,13 @@
    "file": "docs/resources/frontend-web.md"
   },
   {
+   "id": "doc:docs/resources/integration-expansion.md",
+   "kind": "doc",
+   "label": "docs/resources/integration-expansion.md",
+   "count": 8,
+   "file": "docs/resources/integration-expansion.md"
+  },
+  {
    "id": "doc:docs/resources/mapping-navigation.md",
    "kind": "doc",
    "label": "docs/resources/mapping-navigation.md",
@@ -3349,14 +3545,14 @@
    "id": "doc:docs/resources/marketing-analytics.md",
    "kind": "doc",
    "label": "docs/resources/marketing-analytics.md",
-   "count": 8,
+   "count": 9,
    "file": "docs/resources/marketing-analytics.md"
   },
   {
    "id": "doc:docs/resources/marketing-engagement.md",
    "kind": "doc",
    "label": "docs/resources/marketing-engagement.md",
-   "count": 10,
+   "count": 12,
    "file": "docs/resources/marketing-engagement.md"
   },
   {
@@ -3377,7 +3573,7 @@
    "id": "doc:docs/resources/mobile-desktop-cli-game.md",
    "kind": "doc",
    "label": "docs/resources/mobile-desktop-cli-game.md",
-   "count": 19,
+   "count": 20,
    "file": "docs/resources/mobile-desktop-cli-game.md"
   },
   {
@@ -3405,7 +3601,7 @@
    "id": "doc:docs/resources/saas-commerce-finance.md",
    "kind": "doc",
    "label": "docs/resources/saas-commerce-finance.md",
-   "count": 25,
+   "count": 27,
    "file": "docs/resources/saas-commerce-finance.md"
   },
   {
@@ -3435,6 +3631,13 @@
    "label": "docs/retrieval-benchmark.md",
    "count": 1,
    "file": "docs/retrieval-benchmark.md"
+  },
+  {
+   "id": "doc:docs/retrieval-evaluation.md",
+   "kind": "doc",
+   "label": "docs/retrieval-evaluation.md",
+   "count": 5,
+   "file": "docs/retrieval-evaluation.md"
   },
   {
    "id": "doc:docs/reusable-commerce-ui.md",
@@ -3468,7 +3671,7 @@
    "id": "doc:README.md",
    "kind": "doc",
    "label": "README.md",
-   "count": 18,
+   "count": 21,
    "file": "README.md"
   },
   {
@@ -3483,6 +3686,13 @@
    "label": "docs/best-practices/ui-libraries",
    "count": 21,
    "file": "docs/best-practices/ui-libraries.md"
+  },
+  {
+   "id": "guide:docs/mcp-server.md",
+   "kind": "guide",
+   "label": "docs/mcp-server",
+   "count": 1,
+   "file": "docs/mcp-server.md"
   },
   {
    "id": "guide:docs/resources/ai-agents.md",
@@ -3567,6 +3777,13 @@
    "label": "frontend-web",
    "count": 84,
    "file": "docs/resources/frontend-web.md"
+  },
+  {
+   "id": "guide:docs/resources/integration-expansion.md",
+   "kind": "guide",
+   "label": "integration-expansion",
+   "count": 36,
+   "file": "docs/resources/integration-expansion.md"
   },
   {
    "id": "guide:docs/resources/mapping-navigation.md",
@@ -3667,17 +3884,24 @@
    "query": "apex"
   },
   {
+   "id": "language:cedar",
+   "kind": "language",
+   "label": "cedar",
+   "count": 1,
+   "query": "cedar"
+  },
+  {
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 606,
+   "count": 608,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 399,
+   "count": 402,
    "query": "dart"
   },
   {
@@ -3698,7 +3922,7 @@
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 816,
+   "count": 819,
    "query": "go"
   },
   {
@@ -3733,14 +3957,14 @@
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 2973,
+   "count": 2977,
    "query": "java"
   },
   {
    "id": "language:javascript",
    "kind": "language",
    "label": "javascript",
-   "count": 144,
+   "count": 154,
    "query": "javascript"
   },
   {
@@ -3761,15 +3985,22 @@
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 308,
+   "count": 313,
    "query": "kotlin"
   },
   {
    "id": "language:php",
    "kind": "language",
    "label": "php",
-   "count": 838,
+   "count": 840,
    "query": "php"
+  },
+  {
+   "id": "language:powershell",
+   "kind": "language",
+   "label": "powershell",
+   "count": 1,
+   "query": "powershell"
   },
   {
    "id": "language:properties",
@@ -3779,10 +4010,17 @@
    "query": "properties"
   },
   {
+   "id": "language:protobuf",
+   "kind": "language",
+   "label": "protobuf",
+   "count": 1,
+   "query": "protobuf"
+  },
+  {
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1677,
+   "count": 1686,
    "query": "python"
   },
   {
@@ -3796,7 +4034,7 @@
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 639,
+   "count": 647,
    "query": "rust"
   },
   {
@@ -3807,18 +4045,39 @@
    "query": "scala"
   },
   {
+   "id": "language:sql",
+   "kind": "language",
+   "label": "sql",
+   "count": 4,
+   "query": "sql"
+  },
+  {
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 334,
+   "count": 341,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3548,
+   "count": 3581,
    "query": "typescript"
+  },
+  {
+   "id": "language:typespec",
+   "kind": "language",
+   "label": "typespec",
+   "count": 1,
+   "query": "typespec"
+  },
+  {
+   "id": "language:typst",
+   "kind": "language",
+   "label": "typst",
+   "count": 1,
+   "query": "typst"
   },
   {
    "id": "language:xml",
@@ -3859,8 +4118,15 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 581,
+   "count": 669,
    "query": "--type doc"
+  },
+  {
+   "id": "type:integration",
+   "kind": "type",
+   "label": "integration",
+   "count": 16,
+   "query": "--type integration"
   },
   {
    "id": "type:language-example",
@@ -3880,7 +4146,7 @@
    "id": "type:module",
    "kind": "type",
    "label": "module",
-   "count": 13,
+   "count": 15,
    "query": "--type module"
   },
   {
@@ -3894,7 +4160,7 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 9678,
+   "count": 9715,
    "query": "--type resource"
   },
   {
@@ -3929,7 +4195,7 @@
    "id": "type:tool",
    "kind": "type",
    "label": "tool",
-   "count": 4,
+   "count": 6,
    "query": "--type tool"
   }
  ],
@@ -9311,8 +9577,32 @@
    "weight": 8
   },
   {
+   "source": "category:api-codegen",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:api-contracts",
+   "target": "language:go",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:api-contracts",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:api-docs",
    "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:api-mocks",
+   "target": "language:java",
    "relation": "in-language",
    "weight": 1
   },
@@ -9321,6 +9611,18 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 4
+  },
+  {
+   "source": "category:api-testing",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:archive-export",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
   },
   {
    "source": "category:assessment-quiz",
@@ -9553,6 +9855,12 @@
   {
    "source": "category:authorization",
    "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:authorization",
+   "target": "language:rust",
    "relation": "in-language",
    "weight": 1
   },
@@ -10319,6 +10627,12 @@
    "weight": 2
   },
   {
+   "source": "category:catalog-maintenance",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 3
+  },
+  {
    "source": "category:chart-library",
    "target": "language:csharp",
    "relation": "in-language",
@@ -10347,6 +10661,12 @@
    "target": "language:java",
    "relation": "in-language",
    "weight": 13
+  },
+  {
+   "source": "category:chart-library",
+   "target": "language:javascript",
+   "relation": "in-language",
+   "weight": 1
   },
   {
    "source": "category:chart-library",
@@ -10757,8 +11077,44 @@
    "weight": 7
   },
   {
+   "source": "category:codemods",
+   "target": "language:java",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:codemods",
+   "target": "language:php",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:codemods",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:codemods",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:coding-agent",
    "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:collaboration",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:collaboration",
+   "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
   },
@@ -11123,6 +11479,30 @@
    "weight": 31
   },
   {
+   "source": "category:cross-language",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:cross-language",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:cross-language",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:cross-language",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:crypto-finance",
    "target": "language:csharp",
    "relation": "in-language",
@@ -11447,6 +11827,18 @@
    "weight": 1
   },
   {
+   "source": "category:dependency-analysis",
+   "target": "language:javascript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:dependency-analysis",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:deploy",
    "target": "language:ruby",
    "relation": "in-language",
@@ -11545,6 +11937,18 @@
   {
    "source": "category:desktop-update",
    "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:desktop-updates",
+   "target": "language:csharp",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:desktop-updates",
+   "target": "language:rust",
    "relation": "in-language",
    "weight": 1
   },
@@ -12725,6 +13129,12 @@
    "weight": 4
   },
   {
+   "source": "category:http-testing",
+   "target": "language:rust",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:i18n",
    "target": "language:typescript",
    "relation": "in-language",
@@ -13415,6 +13825,18 @@
    "weight": 20
   },
   {
+   "source": "category:masked-input",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:mcp-integration",
+   "target": "language:javascript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:mcp",
    "target": "language:python",
    "relation": "in-language",
@@ -13823,6 +14245,36 @@
    "weight": 2
   },
   {
+   "source": "category:native-persistence",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:native-persistence",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:native-testing",
+   "target": "language:dart",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
+   "source": "category:native-testing",
+   "target": "language:kotlin",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:native-testing",
+   "target": "language:swift",
+   "relation": "in-language",
+   "weight": 2
+  },
+  {
    "source": "category:navigation-apps",
    "target": "language:dart",
    "relation": "in-language",
@@ -14207,6 +14659,12 @@
    "weight": 5
   },
   {
+   "source": "category:pdf-generation",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:pdf",
    "target": "language:python",
    "relation": "in-language",
@@ -14463,6 +14921,12 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
+  },
+  {
+   "source": "category:public-data-api",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 8
   },
   {
    "source": "category:push",
@@ -15341,6 +15805,12 @@
    "weight": 14
   },
   {
+   "source": "category:template-upgrades",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:terminal-dashboard",
    "target": "language:csharp",
    "relation": "in-language",
@@ -15546,6 +16016,12 @@
   },
   {
    "source": "category:transit-data",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
+   "source": "category:tree-navigation",
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 1
@@ -15782,7 +16258,13 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 581
+   "weight": 669
+  },
+  {
+   "source": "genlib",
+   "target": "type:integration",
+   "relation": "contains",
+   "weight": 16
   },
   {
    "source": "genlib",
@@ -15800,7 +16282,7 @@
    "source": "genlib",
    "target": "type:module",
    "relation": "contains",
-   "weight": 13
+   "weight": 15
   },
   {
    "source": "genlib",
@@ -15812,7 +16294,7 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 9678
+   "weight": 9715
   },
   {
    "source": "genlib",
@@ -15842,7 +16324,7 @@
    "source": "genlib",
    "target": "type:tool",
    "relation": "contains",
-   "weight": 4
+   "weight": 6
   },
   {
    "source": "guide:docs/best-practices/ui-libraries.md",
@@ -15873,6 +16355,12 @@
    "target": "category:ui-components",
    "relation": "has-category",
    "weight": 14
+  },
+  {
+   "source": "guide:docs/mcp-server.md",
+   "target": "category:mcp-integration",
+   "relation": "has-category",
+   "weight": 1
   },
   {
    "source": "guide:docs/resources/ai-agents.md",
@@ -16963,6 +17451,126 @@
   {
    "source": "guide:docs/resources/frontend-web.md",
    "target": "category:virtualization",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:api-codegen",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:api-contracts",
+   "relation": "has-category",
+   "weight": 2
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:api-mocks",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:api-testing",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:archive-export",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:authorization",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:catalog-maintenance",
+   "relation": "has-category",
+   "weight": 3
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:codemods",
+   "relation": "has-category",
+   "weight": 4
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:collaboration",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:cross-language",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:dependency-analysis",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:desktop-updates",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:http-testing",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:masked-input",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:native-persistence",
+   "relation": "has-category",
+   "weight": 2
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:native-testing",
+   "relation": "has-category",
+   "weight": 3
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:pdf-generation",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:public-data-api",
+   "relation": "has-category",
+   "weight": 8
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:template-upgrades",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/integration-expansion.md",
+   "target": "category:tree-navigation",
    "relation": "has-category",
    "weight": 1
   },
@@ -18614,13 +19222,13 @@
    "source": "type:doc",
    "target": "doc:CONTRIBUTING.md",
    "relation": "section-of",
-   "weight": 9
+   "weight": 10
   },
   {
    "source": "type:doc",
    "target": "doc:docs/agent-access.md",
    "relation": "section-of",
-   "weight": 5
+   "weight": 6
   },
   {
    "source": "type:doc",
@@ -18638,7 +19246,7 @@
    "source": "type:doc",
    "target": "doc:docs/architecture.md",
    "relation": "section-of",
-   "weight": 9
+   "weight": 11
   },
   {
    "source": "type:doc",
@@ -18650,7 +19258,7 @@
    "source": "type:doc",
    "target": "doc:docs/benchmarks.md",
    "relation": "section-of",
-   "weight": 8
+   "weight": 9
   },
   {
    "source": "type:doc",
@@ -18680,13 +19288,19 @@
    "source": "type:doc",
    "target": "doc:docs/best-practices/ui-libraries.md",
    "relation": "section-of",
-   "weight": 14
+   "weight": 15
   },
   {
    "source": "type:doc",
    "target": "doc:docs/capabilities.md",
    "relation": "section-of",
-   "weight": 5
+   "weight": 6
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/catalog-health.md",
+   "relation": "section-of",
+   "weight": 8
   },
   {
    "source": "type:doc",
@@ -18762,6 +19376,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/distribution.md",
+   "relation": "section-of",
+   "weight": 5
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/harnesses.md",
    "relation": "section-of",
    "weight": 4
@@ -18774,9 +19394,33 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/integrations.md",
+   "relation": "section-of",
+   "weight": 7
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/integrations/developer-native.md",
+   "relation": "section-of",
+   "weight": 10
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/integrations/web.md",
+   "relation": "section-of",
+   "weight": 11
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/jev.md",
    "relation": "section-of",
    "weight": 9
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/landscape.md",
+   "relation": "section-of",
+   "weight": 5
   },
   {
    "source": "type:doc",
@@ -18795,6 +19439,12 @@
    "target": "doc:docs/lifecycle.md",
    "relation": "section-of",
    "weight": 4
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/mcp-server.md",
+   "relation": "section-of",
+   "weight": 8
   },
   {
    "source": "type:doc",
@@ -18830,7 +19480,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/ai-agents.md",
    "relation": "section-of",
-   "weight": 19
+   "weight": 20
   },
   {
    "source": "type:doc",
@@ -18848,7 +19498,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/backend-api.md",
    "relation": "section-of",
-   "weight": 17
+   "weight": 18
   },
   {
    "source": "type:doc",
@@ -18866,19 +19516,19 @@
    "source": "type:doc",
    "target": "doc:docs/resources/dashboards.md",
    "relation": "section-of",
-   "weight": 11
+   "weight": 12
   },
   {
    "source": "type:doc",
    "target": "doc:docs/resources/data-docs-office.md",
    "relation": "section-of",
-   "weight": 33
+   "weight": 34
   },
   {
    "source": "type:doc",
    "target": "doc:docs/resources/devops-testing-security.md",
    "relation": "section-of",
-   "weight": 7
+   "weight": 8
   },
   {
    "source": "type:doc",
@@ -18900,6 +19550,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/resources/integration-expansion.md",
+   "relation": "section-of",
+   "weight": 8
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/resources/mapping-navigation.md",
    "relation": "section-of",
    "weight": 25
@@ -18908,13 +19564,13 @@
    "source": "type:doc",
    "target": "doc:docs/resources/marketing-analytics.md",
    "relation": "section-of",
-   "weight": 8
+   "weight": 9
   },
   {
    "source": "type:doc",
    "target": "doc:docs/resources/marketing-engagement.md",
    "relation": "section-of",
-   "weight": 10
+   "weight": 12
   },
   {
    "source": "type:doc",
@@ -18932,7 +19588,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/mobile-desktop-cli-game.md",
    "relation": "section-of",
-   "weight": 19
+   "weight": 20
   },
   {
    "source": "type:doc",
@@ -18956,7 +19612,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/saas-commerce-finance.md",
    "relation": "section-of",
-   "weight": 25
+   "weight": 27
   },
   {
    "source": "type:doc",
@@ -18981,6 +19637,12 @@
    "target": "doc:docs/retrieval-benchmark.md",
    "relation": "section-of",
    "weight": 1
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/retrieval-evaluation.md",
+   "relation": "section-of",
+   "weight": 5
   },
   {
    "source": "type:doc",
@@ -19010,7 +19672,109 @@
    "source": "type:doc",
    "target": "doc:README.md",
    "relation": "section-of",
-   "weight": 18
+   "weight": 21
+  },
+  {
+   "source": "type:integration",
+   "target": "language:cedar",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:csharp",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:dart",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:go",
+   "relation": "serves",
+   "weight": 2
+  },
+  {
+   "source": "type:integration",
+   "target": "language:java",
+   "relation": "serves",
+   "weight": 2
+  },
+  {
+   "source": "type:integration",
+   "target": "language:javascript",
+   "relation": "serves",
+   "weight": 7
+  },
+  {
+   "source": "type:integration",
+   "target": "language:kotlin",
+   "relation": "serves",
+   "weight": 2
+  },
+  {
+   "source": "type:integration",
+   "target": "language:php",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:powershell",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:protobuf",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:python",
+   "relation": "serves",
+   "weight": 5
+  },
+  {
+   "source": "type:integration",
+   "target": "language:rust",
+   "relation": "serves",
+   "weight": 3
+  },
+  {
+   "source": "type:integration",
+   "target": "language:sql",
+   "relation": "serves",
+   "weight": 4
+  },
+  {
+   "source": "type:integration",
+   "target": "language:swift",
+   "relation": "serves",
+   "weight": 3
+  },
+  {
+   "source": "type:integration",
+   "target": "language:typescript",
+   "relation": "serves",
+   "weight": 11
+  },
+  {
+   "source": "type:integration",
+   "target": "language:typespec",
+   "relation": "serves",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "language:typst",
+   "relation": "serves",
+   "weight": 1
   },
   {
    "source": "type:language-example",
@@ -19070,7 +19834,7 @@
    "source": "type:module",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 12
+   "weight": 14
   },
   {
    "source": "type:recipe",
@@ -19083,6 +19847,12 @@
    "target": "guide:docs/best-practices/ui-libraries.md",
    "relation": "grouped-by",
    "weight": 21
+  },
+  {
+   "source": "type:resource",
+   "target": "guide:docs/mcp-server.md",
+   "relation": "grouped-by",
+   "weight": 1
   },
   {
    "source": "type:resource",
@@ -19155,6 +19925,12 @@
    "target": "guide:docs/resources/frontend-web.md",
    "relation": "grouped-by",
    "weight": 84
+  },
+  {
+   "source": "type:resource",
+   "target": "guide:docs/resources/integration-expansion.md",
+   "relation": "grouped-by",
+   "weight": 36
   },
   {
    "source": "type:resource",
@@ -19232,13 +20008,13 @@
    "source": "type:resource",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 443
+   "weight": 444
   },
   {
    "source": "type:resource",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 242
+   "weight": 244
   },
   {
    "source": "type:resource",
@@ -19250,31 +20026,37 @@
    "source": "type:resource",
    "target": "language:go",
    "relation": "serves",
-   "weight": 650
+   "weight": 651
   },
   {
    "source": "type:resource",
    "target": "language:java",
    "relation": "serves",
-   "weight": 419
+   "weight": 421
+  },
+  {
+   "source": "type:resource",
+   "target": "language:javascript",
+   "relation": "serves",
+   "weight": 3
   },
   {
    "source": "type:resource",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 101
+   "weight": 104
   },
   {
    "source": "type:resource",
    "target": "language:php",
    "relation": "serves",
-   "weight": 838
+   "weight": 839
   },
   {
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 1414
+   "weight": 1418
   },
   {
    "source": "type:resource",
@@ -19286,19 +20068,19 @@
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 476
+   "weight": 481
   },
   {
    "source": "type:resource",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 175
+   "weight": 179
   },
   {
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 3334
+   "weight": 3354
   },
   {
    "source": "type:starter",
