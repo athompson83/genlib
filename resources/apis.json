@@ -948,7 +948,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -14249,11 +14250,15 @@
     "license": "Apache-2.0"
    },
    "install": [
-    "npm install googleapis@185.0.0   # official SDK",
-    "npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 https://api.apis.guru/v2/specs/googleapis.com/analytics/v3/openapi.json -o src/api/googleapis-com-analytics.ts   # typed client from the OpenAPI spec",
-    "uvx openapi-python-client@0.29.1 generate --url https://api.apis.guru/v2/specs/googleapis.com/analytics/v3/openapi.json   # Python client from the OpenAPI spec"
+    "# retired 2024-07-01: use the Google Analytics Data API v1 (GA4) for reports and the Admin API for configuration. Do not install; see https://support.google.com/analytics/answer/11583528"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2024-07-01",
+    "source": "https://support.google.com/analytics/answer/11583528",
+    "replacement": "use the Google Analytics Data API v1 (GA4) for reports and the Admin API for configuration"
+   }
   },
   {
    "id": "googleapis-com-analyticsadmin",
@@ -14315,11 +14320,15 @@
     "license": "Apache-2.0"
    },
    "install": [
-    "npm install googleapis@185.0.0   # official SDK",
-    "npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 https://api.apis.guru/v2/specs/googleapis.com/analyticsreporting/v4/openapi.json -o src/api/googleapis-com-analyticsreporting.ts   # typed client from the OpenAPI spec",
-    "uvx openapi-python-client@0.29.1 generate --url https://api.apis.guru/v2/specs/googleapis.com/analyticsreporting/v4/openapi.json   # Python client from the OpenAPI spec"
+    "# retired 2024-07-01: use the Google Analytics Data API v1 (GA4) for reports and the Admin API for configuration. Do not install; see https://support.google.com/analytics/answer/11583528"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2024-07-01",
+    "source": "https://support.google.com/analytics/answer/11583528",
+    "replacement": "use the Google Analytics Data API v1 (GA4) for reports and the Admin API for configuration"
+   }
   },
   {
    "id": "googleapis-com-androiddeviceprovisioning",
@@ -19742,7 +19751,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19781,7 +19791,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19803,7 +19814,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19825,7 +19837,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19847,7 +19860,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19862,10 +19876,16 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-LocalSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-localsearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-localsearch.json -o src/api/microsoft-com-cognitiveservices-localsearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-LocalSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-localsearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-localsearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-newssearch",
@@ -19886,7 +19906,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19925,7 +19946,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19947,7 +19969,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {
@@ -19969,7 +19992,8 @@
     "status": "retired",
     "date": "2025-08-11",
     "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
-    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+    "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
    }
   },
   {

@@ -230,3 +230,34 @@ test('the emitted install command matches the project framework, and quick keeps
     assert.ok(brief.next.some(step => / plan data-table /.test(step)) && !brief.next.some(step => / add data-table /.test(step)));
   }
 });
+
+// 2026-10-11 audit R2-04 and R2-06: inspect paths used raw records, and alias suppression dropped classifications.
+test('every entry point applies the same lifecycle and alias rules, and canonical records keep alias classifications', async () => {
+  const sources = await loadSources();
+  const { resolveResource } = await import('../lib/discover.mjs');
+  const lifecycle = JSON.parse(await fs.readFile(new URL('../resources/api-lifecycle.json', import.meta.url), 'utf8'));
+  for (const id of lifecycle.groups.flatMap(group => group.resourceIds ?? [])) {
+    const record = resolveResource(sources, id);
+    assert.equal(record.lifecycle.status, 'retired', id);
+    assert.ok(record.quickstart.every(step => !/^(npm|pip|bundle|dotnet|composer|dart) /.test(step)), id);
+  }
+  const cli = spawnSync(process.execPath, [fileURLToPath(new URL('../tools/resources.mjs', import.meta.url)), 'inspect', 'firebase-dynamic-links', '--json'], { encoding: 'utf8' });
+  assert.equal(JSON.parse(cli.stdout).lifecycle.status, 'retired');
+  const knock = resolveResource(sources, 'knocklabs-node');
+  assert.equal(knock.canonical, 'knocklabs-node-npm');
+  assert.equal(knock.integrationMode, 'license-review');
+  for (const id of ['googleapis-com-analytics', 'googleapis-com-analyticsreporting', 'microsoft-com-cognitiveservices-localsearch']) {
+    assert.equal(sources.api.find(api => api.id === id).lifecycle.status, 'retired', id);
+  }
+  // Canonical records carry the project types and platforms of their aliases.
+  for (const [alias, canonical] of sources.resourceAliases) {
+    const merged = sources.resources.find(item => item.id === canonical);
+    const raw = sources.resources.find(item => item.id === alias);
+    for (const type of raw.projectTypes ?? []) assert.ok(merged.projectTypes.includes(type), `${canonical} lost ${type} from ${alias}`);
+    for (const platform of raw.platforms ?? []) assert.ok(merged.platforms.includes(platform), `${canonical} lost ${platform} from ${alias}`);
+  }
+  for (const [query, project, id] of [['sentence transformers', 'ai-agent', 'sentence-transformers-pypi'], ['phoenix', 'api-backend', 'phoenix-hex'], ['discord.js', 'web-app', 'discord-js-npm']]) {
+    const hits = findInSources(sources, query, { project, type: 'resource', limit: 3 }).results;
+    assert.ok(hits.some(hit => hit.id === id || sources.resourceAliases.get(id) === hit.id || sources.resourceAliases.get(hit.id) === id), `${query} in ${project}`);
+  }
+});

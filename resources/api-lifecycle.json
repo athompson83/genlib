@@ -18,8 +18,10 @@
         "microsoft-com-cognitiveservices-autosuggest",
         "microsoft-com-cognitiveservices-spellcheck",
         "microsoft-com-cognitiveservices-customsearch",
-        "microsoft-com-cognitiveservices-customimagesearch"
-      ]
+        "microsoft-com-cognitiveservices-customimagesearch",
+        "microsoft-com-cognitiveservices-localsearch"
+      ],
+      "note": "Local Search is listed as a Bing Search API family member; the notice retires Bing Search APIs as a whole (inferred for this member)."
     },
     {
       "status": "retired",
@@ -55,6 +57,16 @@
       "replacement": "Google points to the open-source Snapshot Debugger, archived in September 2023 and unmaintained",
       "ids": [
         "googleapis-com-clouddebugger"
+      ]
+    },
+    {
+      "status": "retired",
+      "date": "2024-07-01",
+      "source": "https://support.google.com/analytics/answer/11583528",
+      "replacement": "use the Google Analytics Data API v1 (GA4) for reports and the Admin API for configuration",
+      "ids": [
+        "googleapis-com-analytics",
+        "googleapis-com-analyticsreporting"
       ]
     }
   ]

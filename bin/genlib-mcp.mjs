@@ -6,7 +6,7 @@
 //   codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
-import { detectProject, findInSources, loadSources, resolveEntry, sourceCounts, SOURCE_TYPES } from '../lib/discover.mjs';
+import { detectProject, findInSources, loadSources, resolveEntry, resolveResource, sourceCounts, SOURCE_TYPES } from '../lib/discover.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { LANGUAGES, commandsFor, coverage } from '../lib/capabilities.mjs';
 import { installFor } from '../lib/indexes.mjs';
@@ -132,7 +132,7 @@ async function call(name, args = {}) {
     const { type, id } = args;
     const pick = (list, label) => { const found = list.find(entry => entry.id === id); invariant(found, 'NOT_FOUND', `No ${label} named ${id}`); return found; };
     if (type === 'module') return inspectModule(all.context, id);
-    if (type === 'resource') { const item = pick(all.resources, 'resource'); return { ...item, quickstart: quickstartFor(item) }; }
+    if (type === 'resource') { const item = resolveResource(all, id); invariant(item, 'NOT_FOUND', `No resource named ${id}`); return item; }
     if (type === 'skill') { const item = pick(all.skills, 'skill'); return { ...item, install: installCommand(item, args.client ?? 'both') }; }
     if (type === 'api' && typeof args.language === 'string') { const item = pick(all.api, type); return { ...item, install: resolveEntry(all, 'api', id, { languages: [args.language], frameworks: [] }).next.filter(step => !step.includes(' inspect ')) }; }
     if (['mcp', 'cli', 'api', 'starter', 'task'].includes(type)) { const item = pick(all[type], type); return { ...item, install: installFor(type, item, args.client ?? 'both', typeof args.language === 'string' ? [args.language] : undefined) }; }
