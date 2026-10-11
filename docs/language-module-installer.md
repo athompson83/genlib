@@ -13,6 +13,15 @@ Add `--with-tests` to copy test files where listed. Files are copied into `genli
 
 **Dependency manifests.** A manifest that already exists at the destination is kept, never overwritten: the copy skips it and reports its lines to merge (`# kept existing requirements.txt; add: nh3==0.3.7`; `skipped[].merge` in `--json`). The manifest can be the receiving app's own `requirements.txt`, `go.mod` or `package.json`, or one from an earlier cookbook copy. Any other existing file still stops the copy before anything is written. Install commands are plain shell commands. `# deps:` lists the runtime ones and `# test deps:` the ones only the tests need.
 
+**Dependency and test steps run where the files land** (`lib/language-layout.mjs`, shared with `genlib quick` and `capability inspect`). A manifest-relative command runs in the folder of the copied manifest:
+
+- `npm ci` becomes `cd genlib/oidc-token-verification/typescript && npm ci`;
+- `pip install -r requirements.txt` after a flat copy becomes `cd python && pip install -r requirements.txt`.
+
+A package-add command (`npm install docx@9.9.0`, `pip install pypdf==6.20.0`, `go get`) adds to the app's own manifest at the root. When the app's manifest was kept, the merge lines are reported and the install runs at the root. A copied `go.mod` makes the copy its own module, so its tests run as `cd <that folder> && go test ./...`.
+
+`--json` lists the ordered `steps`: copy, then dependencies (with `cwd`), then test (`argv`, `cwd`). Capability copy commands follow the same order. For a module with dependencies, the copy omits `--run-tests`, and the tests run as the last step, once the dependencies are installed.
+
 **Output.** The default output is compact text:
 
 - the copied paths;

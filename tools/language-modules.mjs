@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {outlineSource} from '../lib/outline.mjs';
+import {copyLayout,scopedDependencies} from '../lib/language-layout.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(readFileSync(join(root,'examples/languages/modules.json'),'utf8'));
 // The capability a language module implements may name a known limit; the copy output repeats it.
@@ -47,11 +48,8 @@ try{
   // without --into, copies straight into the target. Folders below the shared one are kept, so a test that reads
   // ../fixtures still finds its fixture after a flat copy.
   const flat=flags.includes('--flat');const into=arg('--into')??(flat?'.':'genlib');
-  const prefix=into==='.'?'':safePath(into.replace(/\/+$/,''))+'/';
-  const paths=[...selected.files,...(includeTests?selected.tests:[])];
-  const dirs=paths.map(p=>p.split('/').slice(0,-1));
-  let common=dirs[0]??[];for(const d of dirs){let i=0;while(i<common.length&&i<d.length&&common[i]===d[i])i++;common=common.slice(0,i);}
-  const rel=path=>prefix+(flat?path.split('/').slice(common.length).join('/'):path);
+  if(into!=='.')safePath(into.replace(/\/+$/,''));
+  const layout=copyLayout(selected,{flat,into,includeTests});const paths=layout.paths,rel=layout.rel;
   if(flat&&new Set(paths.map(rel)).size!==paths.length)throw Error('--flat would overwrite: two files share a name');
   // A dependency manifest that already exists in the target (the app's own requirements.txt, or one from an earlier
   // copy) is not overwritten: it is skipped and its lines are reported for merging. Any other existing file stops the copy.
@@ -74,7 +72,9 @@ try{
   // Test entrypoints are the test modules only; fixtures and fixture generators are copied but not run.
   const isEntry=p=>selected.tests.includes(p.source)&&/(^|\/)(test_[^/]*\.py|[^/]*_test\.go|[^/]*\.test\.ts|[^/]*_test\.dart|[^/]*Tests?\.(java|kt|cs|swift)|Program\.cs|tests\/[^/]*\.rs)$|Checks?[^/]*\.swift$/.test(p.source);
   const entries=planned.filter(isEntry).map(p=>relative(base,p.destination));
-  const testCommand={python:t=>({cwd:join(base,dirname(t[0])),argv:['python3','-m','unittest',...t.map(x=>x.split('/').pop().replace(/\.py$/,''))]}),go:t=>({cwd:base,argv:['go','test','./'+dirname(t[0])]})}[entries.length?selected.language:'']?.(entries)??null;
+  // A copied go.mod makes the copy its own module: test it from that folder, not from the app root.
+  const goModule=layout.manifestName==='go.mod'&&planned.some(p=>p.source.endsWith('/go.mod'))?layout.manifestDir:null;
+  const testCommand={python:t=>({cwd:join(base,dirname(t[0])),argv:['python3','-m','unittest',...t.map(x=>x.split('/').pop().replace(/\.py$/,''))]}),go:t=>goModule?({cwd:join(base,goModule),argv:['go','test','./...']}):({cwd:base,argv:['go','test','./'+dirname(t[0])]})}[entries.length?selected.language:'']?.(entries)??null;
   // --run-tests runs the copied tests now (Python and Go, whose commands are known). Execution is separate from output,
   // so --json reports the same result and a failing run sets a non-zero exit status.
   let testRun=null;
@@ -89,8 +89,13 @@ try{
    }
   }
   // Repository evidence is what Genlib's own CI checked; testRun is what ran on this copy. They are reported separately.
-  const evidence={verification:selected.verification??'tested',dependencies:selected.dependencies??[],testDependencies:selected.testDependencies??[]};
-  if(flags.includes('--json')){console.log(JSON.stringify({operation:cmd,id,target:base,files:planned,skipped,tests:entries,testCommand,testRun,evidence},null,2));}
+  // Dependency steps run where the copied manifest is (cd genlib/.../python && pip install -r requirements.txt); when
+  // the app's own manifest was kept, they run at the root after merging the reported lines.
+  const manifestCopied=!skipped.some(s=>layout.manifestName&&s.source.endsWith('/'+layout.manifestName));
+  const deps=scopedDependencies(selected,layout,{manifestCopied});
+  const evidence={verification:selected.verification??'tested',dependencies:deps.map(d=>d.command),testDependencies:(selected.testDependencies??[]).map(c=>layout.manifestDir&&layout.manifestDir!=='.'&&manifestCopied&&/ -r /.test(c)?`cd ${layout.manifestDir} && ${c}`:c)};
+  const steps=[{kind:'copy',files:planned.map(p=>relative(base,p.destination))},...deps.map(d=>({kind:'dependencies',command:d.command,cwd:d.cwd})),...(testCommand?[{kind:'test',argv:testCommand.argv,cwd:relative(base,testCommand.cwd)||'.'}]:[])];
+  if(flags.includes('--json')){console.log(JSON.stringify({operation:cmd,id,target:base,files:planned,skipped,steps,tests:entries,testCommand,testRun,evidence},null,2));}
   else{
    // Compact text: what was copied, the public API and how to run the copied tests, so the agent need not read the source.
    const lines=[`${cmd==='add'?'added':'would add'} ${id} to ${base} (sha256 checked):`,...planned.map(p=>'  '+relative(base,p.destination))];

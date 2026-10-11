@@ -139,7 +139,7 @@ Agents reach everything through one ranking (`lib/discover.mjs`): rarity-weighte
 
 With a receiving project (`--target`, `--language` or a language named in the query), each result gets a `fit`. A known fit multiplies its score by 1.25, and known mismatches are hidden and counted. The rules:
 
-- A resource tagged for UI frameworks other than the project's does not fit. TableCraft is React-only and is hidden in a Svelte app.
+- A resource's frameworks come from what it installs: its `frameworkPackages` adapters (TanStack Table in a Svelte app emits `npm install @tanstack/svelte-table`), else framework names in its package names (`react-facebook-pixel` is React-only), else its tags. A library for another framework does not fit, and React modules do not fit non-JavaScript projects. `quick` keeps a `review` fit and offers `plan` instead of `add`.
 - Packages and copied source must match the app's language. Applications and services that run beside the app may be written in any language.
 - An API is shown with only the install steps for the project's language. For other languages it points at a same-provider SDK package from the catalog, such as `stripe-go-go`.
 - Package records that name the same single package (88 duplicates, such as `discord-js` and `discord-js-npm`) surface once, under a canonical record chosen by `canonicalPackages()`. The stricter integration mode wins, so a license-review flag is never dropped, then the more complete record. The canonical record lists its `aliases`, and an alias id still inspects.
