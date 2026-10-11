@@ -27,6 +27,8 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "integration_verify": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration verify --target \"$APP_ROOT\" --json"
   },
   "copy": [
+    "capability inspect <id> --language <lang> --json adds steps [{kind: copy|install|integrate|test|check, run, cwd, purpose}], verify (the acceptance step) and onFailure: run them in order and stop at the first failing step.",
+    "Projects that already use the shadcn CLI can copy a recipe or module with npx shadcn@4.21.4 add athompson83/genlib/<item> (registry.json); it copies files only, without Genlib's compatibility check or lock.",
     "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run, # tests cover: what those tests check and # repo evidence: how Genlib CI tested it. --run-tests (Python, Go) runs them in the same call and exits non-zero if they fail on this copy. An existing requirements.txt or other manifest is kept and its lines reported to merge. Do not re-read the copied source to check it; add tests only for what the task adds."
   ],
   "find": [

@@ -32,8 +32,11 @@ Every result names its type, verification level and the exact next command. Modu
 | | `sse`, `text-chunking`, `vector-math`, `circuit-breaker`, `business-days`, `natural-sort`, `file-signature`, `color` | capabilities | Streaming responses, RAG chunking and embedding search, fail-fast calls, working-day dates, human sort order, upload type checks and color spaces in 9 languages |
 | | `csv-safe`, `money`, `signed-cursors`, `ics-events` | capabilities | Injection-safe CSV import and export, money in minor units with exact rounding and allocation, tamper-proof pagination cursors, and calendar invites in 9 languages |
 | | `ids`, `retry-backoff`, `token-bucket`, `semver`, `cron-next`, `wcag-contrast`, `geo`, `webhook-signature` | capabilities | Sortable IDs, retries and rate limits, version ranges, cron schedules, accessible colors, location search and signed webhooks in 9 languages |
+| | `glob-match`, `dotenv`, `query-string`, `mime-types`, `data-uri`, `iso-week`, `topo-sort`, `link-header`, `content-disposition`, `cache-control` | capabilities | File globs, .env loading, query strings, MIME lookup, data URLs, ISO weeks, dependency order, pagination links, download filenames and HTTP caching in 9 languages |
+| | `punycode`, `base58`, `roman-numerals`, `dotted-path`, `template-render`, `ini-parse`, `pii-mask`, `password-generate`, `html-escape` | capabilities | Internationalized domains, Base58Check, numerals, nested-data paths, logic-less templates, INI config, PII masking for logs, CSPRNG passwords and HTML entities in 9 languages |
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
+| | `org-invitations` | module | Tenant invitations: hashed one-time tokens, single-use accept, revoke, expiry, Fetch adapter |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
 | | `chat-messaging` catalog (Mattermost, Rocket.Chat, Zulip, Chatwoot, Matrix, SimpleX, Socket.IO, bot SDKs) | resources | Team chat, live support, real-time messaging and bots in each language |
@@ -62,7 +65,7 @@ When no module, recipe or template covers a need, the resource catalog usually n
 
 ## Runtime reach of the server modules
 
-The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
+The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
 
 ## What Genlib does not cover yet
 

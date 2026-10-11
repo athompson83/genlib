@@ -32,7 +32,7 @@ Text output from the CLI and the MCP tools names this checkout's real path in pl
 | `genlib_source` | For an external record: a pinned, blob-less, sparse fetch of one folder (or a raw-file URL), the license note, and Genlib code that already covers the need |
 | `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)); `stdlibOnly: true` (or a task that forbids dependencies) keeps only candidates that need no install |
-| `genlib_capability` | Capability list, or one capability's copy commands for a language |
+| `genlib_capability` | Capability list, or one capability's copy commands for a language; with `language`, ordered `steps`, the acceptance step (`verify`) and `onFailure` guidance |
 | `genlib_inspect` | The full record for a result (any type, including `starter`, `task` and an integration pack's contract): license, links, cautions, install commands. Pass `language` to get only that language's API install steps |
 | `genlib_read_doc` | One documentation section by `file#anchor`, at most 400 lines |
 
@@ -68,3 +68,7 @@ It writes only inside the output folder, replaces only notes marked `generator: 
 ## Keeping them current
 
 The index and graph are generated and checked in CI. The MCP tools and CLI read the catalogs directly, and the Obsidian vault is regenerated on demand. Any change to a catalog, capability, command or doc follows the [documentation rule in AGENTS.md](../AGENTS.md#keep-documentation-current-on-every-change).
+
+## Other install routes
+
+The same recipes and modules install with the shadcn CLI from `registry.json` (`npx shadcn@4.21.4 add athompson83/genlib/<item>`), and the `genlib-use` skill installs with the Skills CLI or Microsoft APM. Resolved resources with a package carry a `docsLookup` for Context7. Exact commands, what each route checks, and what it does not: [distribution.md](distribution.md).

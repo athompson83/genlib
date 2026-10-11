@@ -66,6 +66,7 @@ Edit authored source and canonical instructions, then run:
 
 ```sh
 npm run registry:build
+npm run shadcn:build
 npm run integrations:build
 npm run skills:sync
 npm run docs:sync
@@ -80,10 +81,13 @@ Commit the relevant generated files with the authored changes:
 | --- | --- |
 | Module manifests, contracts, source, `LICENSE`, and `NOTICE` | `registry/catalog.json` and `registry/manifests/` |
 | Integration manifests, contracts and declared files | `registry/integrations.json` |
+| Recipe catalog and module manifests | `registry.json` (shadcn-format registry) |
 | `skills/genlib-use/` | `.agents/skills/genlib-use/` and `.claude/skills/genlib-use/` |
 | Source catalogs and documentation sections | Generated count blocks, `registry/search-index.jsonl` and `registry/graph.json` |
 
 When you add a capability, define it in `scripts/build-capabilities.mjs`, give it the everyday words people use for the need in `resources/capabilities-src/terms.json` (not only the standard's name), a one-sentence caveat in `caveats.json` when it has a limit users would otherwise discover after copying, add two or three task phrasings to the `tuning` set in `tests/fixtures/routing-queries.json`, then run `npm run capabilities:build` and `node scripts/routing-eval.mjs --misses`. Leave the `heldout` set alone: it measures ranking changes honestly only while nobody tunes against it.
+
+When you change a module's behavior, bump its version and add a `changelog` entry (mark breaking changes), and keep `verification.behaviors` and `verification.command` true to its tests ([module-format.md](docs/module-format.md)).
 
 When a new capability or module covers what an indexed external project does, add the pair to `resources/equivalents.json` (`type:id` of the record to `capability:`/`module:`/`template:` targets) so agents reuse the tested code first.
 

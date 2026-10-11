@@ -50,6 +50,7 @@ One command searches everything below and returns each result's exact next step.
 - [Modules](#modules)
 - [Integration packs](#integration-packs)
 - [Connect directly with MCP](#connect-directly-with-mcp)
+- [Install through shadcn, Skills, APM and Context7](#install-through-shadcn-skills-apm-and-context7)
 - [Recipes, language examples and templates](#recipes-language-examples-and-templates)
 - [Resource catalog](#resource-catalog)
 - [Install indexes: skills, MCP servers, CLIs and APIs](#install-indexes-skills-mcp-servers-clis-and-apis)
@@ -166,7 +167,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `outline <id> [--language go]` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib-mcp` (`bin/genlib-mcp.mjs`) | Dependency-free MCP server exposing quick, find, outline, source, jev, capability, inspect, read_doc and catalog as tools; the optional direct SDK server (`packages/genlib-mcp`, [mcp-server.md](docs/mcp-server.md)) adds scoped plans, installation and Streamable HTTP |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
-| `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language |
+| `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language; with `--language`, `--json` adds ordered `steps` (copy, install, integrate, test or check), the acceptance step and failure guidance |
 | `skill\|mcp\|cli\|api\|starter\|task find <words>` / `… inspect <id>` | Search the ranked install indexes (compact text, `--json` for records) and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
 | `catalog` | Counts and a short overview of every source |
@@ -282,7 +283,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 
 ## Modules
 
-All modules are original Apache-2.0 code, version `0.1.0`, with a contract and behavior tests. `tested` means this repository's checks pass. It doesn't certify a consuming app's integration or a live provider connection.
+All modules are original Apache-2.0 code with a contract and behavior tests (versions in `registry/catalog.json`). Manifests can list the behaviors their tests verify, the test command and environment, a changelog and a deprecation notice, all returned by `genlib inspect <id>`. `tested` means this repository's checks pass. It doesn't certify a consuming app's integration or a live provider connection.
 
 | Module | What you get | The app still owns |
 | --- | --- | --- |
@@ -300,8 +301,9 @@ All modules are original Apache-2.0 code, version `0.1.0`, with a contract and b
 | [`webhook-verification`](modules/webhook-verification/CONTRACT.md) | GitHub, Stripe and Standard Webhooks signatures with Web Crypto, rotation, capped raw body | Secrets, de-duplication of deliveries |
 | [`health-checks`](modules/health-checks/CONTRACT.md) | Fetch-standard `/healthz` and `/readyz` with concurrent, timed checks | Real dependency checks and routing |
 | [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies | A CSP matching its real sources |
+| [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership), authorization and role ceilings, sign-in, email delivery |
 
-The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The seven server utilities use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
+The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The eight server utilities use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
 
 ## Integration packs
 
@@ -325,6 +327,17 @@ node "$GENLIB_ROOT/packages/genlib-mcp/server.mjs" --project-root "$APP_ROOT"
 ```
 
 Use stdio for a local agent or Streamable HTTP for a private deployed service. The optional MCP package uses the official SDK with its own lockfile, while the core CLI remains dependency-free. See [connection instructions for Claude Code, Codex and Genisys](docs/mcp-server.md), including HTTP authentication, project scoping and protocol tests. This repository provides the server; it does not imply a hosted endpoint exists.
+
+## Install through shadcn, Skills, APM and Context7
+
+Genlib's CLI and MCP check fit and return checkable steps. Teams that already use other tools can reach the same code through them ([distribution.md](docs/distribution.md)):
+
+```bash
+npx shadcn@4.21.4 add athompson83/genlib/org-invitations   # any recipe or module, from registry.json
+npx skills@1.7.2 add athompson83/genlib --skill genlib-use # the agent skill (APM: athompson83/genlib/skills/genlib-use#<commit>)
+```
+
+After Genlib picks an external package, `tools/resources.mjs inspect <id>` returns a `docsLookup` with the two `ctx7` commands that fetch that library's version-specific docs from Context7. [landscape.md](docs/landscape.md) compares Genlib with shadcn, Bit, jsrepo, APM, Skills, Context7, AREX-Skill and CodeDistiller, and lists what was adopted from each.
 
 ## Recipes, language examples and templates
 

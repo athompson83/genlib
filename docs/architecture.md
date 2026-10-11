@@ -199,4 +199,6 @@ Public modules must be original contributions authorized for Apache-2.0 distribu
 
 Measure actual input/output/cached tokens, model cost, repair cycles, elapsed time, and accepted feature behavior against the existing library-aware build process. Include curation and maintenance effort. No model call or paid service is necessary to use Genlib itself.
 
+The [comparison protocol](benchmarks.md#comparison-protocol-not-yet-run) defines a four-arm measurement against an agent that already has upstream tools; it has not been run. [landscape.md](landscape.md) records what comparable projects do and what Genlib adopted, and [distribution.md](distribution.md) the verified shadcn, Skills, APM and Context7 routes.
+
 The [retrieval evaluation](retrieval-evaluation.md) measures task recall and serialized context size without making a model-token savings claim. The [catalog health workflow](catalog-health.md) inventories exact locked versions offline and optionally caches bounded upstream dependency/advisory/lifecycle metadata. Neither workflow adds network requests to normal discovery.

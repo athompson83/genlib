@@ -87,6 +87,27 @@ The first command explicitly queries endoflife.date's v1 product API. The second
 
 endoflife.date is a secondary, community-maintained source, and its v1 API is currently described as beta. Confirm consequential support dates with the linked product policy. Hosted-service retirement, such as Firebase Dynamic Links shutdown, requires the service provider's own announcement; a package release calendar is insufficient. See [endoflife.date source and API guidance](https://github.com/endoflife-date/endoflife.date).
 
+## Resource records: evidence by layer
+
+`tools/catalog-health.mjs` covers locked dependencies. `scripts/verify-resources.mjs` covers the external resource records, and reports each failure in the layer it belongs to:
+
+| Layer | Problem codes | Establishes |
+| --- | --- | --- |
+| `source` | `repository-missing` | The recorded repository exists (`git ls-remote`) |
+| `links` | `homepage-unreachable`, `docs-unreachable`, `quickstart-unreachable` | Links and quickstart URLs resolve. A 401, 403 or 429 is a review warning, never "reachable" |
+| `packages` | `package-missing`, `license-undeclared`, `license-mismatch` | The package exists, and its registry license matches the record (exact normalized comparison) |
+| `upstream` | `package-deprecated`, `repository-archived` (with `--archived`) | The package or repository is not deprecated, yanked, inactive or archived |
+| `install` | `install-unresolvable` (with `--install`) | Pinned `npm install x@1.2.3`, `npx x@1.2.3` and `pip install x==1.2.3` steps name versions the registry has |
+
+None of these layers establishes behavior. Tested Genlib code carries its own evidence (`genlib inspect <id>`: `verification.behaviors`, `command`, `environment`).
+
+`--sample N` checks a rotating, deterministic slice: day `d` covers records `d*N` to `d*N+N`, so a daily run walks the whole catalog (about 330 records a day covers roughly 9,800 records in a month). `--day D` replays a day. The scheduled [catalog-health workflow](../.github/workflows/catalog-health.yml) runs this daily and adds `--install` weekly. It uploads `catalog-health.json` as an artifact and never gates a pull request; a failing run lists records to fix or drop.
+
+```bash
+node scripts/verify-resources.mjs --sample 330 --archived --install   # today's slice, all layers
+node scripts/verify-resources.mjs --ids tanstack-table,zod             # targeted re-check after an edit
+```
+
 ## Tests and maintenance evidence
 
 ```sh

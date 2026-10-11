@@ -47,3 +47,15 @@ Dependencies refer only to other local registry modules, using objects such as `
 The default installation root is `src/genlib` inside an existing target directory. File targets are relative to that root. Cross-module imports must use paths relative to their final installed location. The installer does not rewrite source, run hooks, install packages, or configure external services.
 
 `verification.level` is `experimental` until meaningful behavior tests pass, then `tested`. `tested` describes this repository's checks, not production certification of every consuming application. The consumer must test the integrated feature.
+
+Optional maintenance evidence travels with the module, and `genlib inspect <id>` returns it:
+
+| Field | Meaning |
+| --- | --- |
+| `verification.behaviors` | The behaviors the tests verify, one line each (for example "exactly one of several concurrent accepts wins") |
+| `verification.command` | The exact command that runs those tests |
+| `verification.environment` | Tool names mapped to the versions the tests ran on (`{"node": "22", "typescript": "7.0.2"}`) |
+| `changelog` | `[{version, changes[]}]`, newest first; the first entry must be the current `version`. Mark breaking changes in the text |
+| `deprecated` | `{reason, replacement?}` with a replacement module id when one exists |
+
+The registry build rejects malformed evidence, a changelog that does not start at the current version, and a non-id replacement. Evidence describes this repository's tests, not the consuming application.

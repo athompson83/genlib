@@ -105,3 +105,27 @@ A wrong first pick costs turns, which dominate cost on small tasks. `scripts/rou
 ## Reproduce
 
 The prompts, hidden tests and measuring scripts were run from a scratch directory, not committed. To repeat: give each arm the same prompt in an empty project, keep acceptance tests outside the agent's reach, and measure written and read characters from the transcript, since per-message output token counts can be partial.
+
+## Comparison protocol (not yet run)
+
+The runs above compare Genlib with an agent working from memory. The more useful question is how much work Genlib removes for an agent that already has good tools. This protocol answers it; no results exist yet, and none should be quoted until it runs.
+
+**Arms** (same model, same task text, same receiving applications, same hidden acceptance tests):
+
+1. The coding agent with normal repository context.
+2. The agent with relevant upstream tools: Context7 for library docs, a source registry (the shadcn CLI) and a workflow skill such as obra/superpowers.
+3. The agent with Genlib (CLI or MCP and the `genlib-use` skill).
+4. Arm 2 plus Genlib.
+
+**Tasks:** recurring application features in existing apps rather than empty projects. Examples: tenant invitations (accept once, expiry, revocation, tenant boundary), entitlement checks, a notification inbox, CSV import with validation, a webhook receiver, MFA enrollment. Each task needs at least one non-TypeScript app.
+
+**Measures per task:**
+- accepted (hidden tests pass)
+- total model tokens and tool-call cost
+- elapsed time
+- repair attempts
+- human corrections
+
+Failed attempts stay in the totals. Report per-arm medians and the raw table. A small retrieval response counts only if the whole task still succeeds.
+
+**Reading the result:** arm 4 against arm 2 measures Genlib's added value; arm 3 against arm 1 repeats the earlier comparison. Record the model, versions, dates and every task's transcript location.
