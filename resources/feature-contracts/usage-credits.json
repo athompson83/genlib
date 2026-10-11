@@ -1,0 +1,99 @@
+{
+  "id": "usage-credits",
+  "title": "Usage-based billing with credits",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "usage-based billing with credits"
+  ],
+  "requirements": [
+    {
+      "id": "grants",
+      "text": "Credits are granted from purchase or plan events, once per idempotency key, optionally with an expiry"
+    },
+    {
+      "id": "idempotent-debits",
+      "text": "Each usage event debits once per key; retries never charge twice and a changed amount under the same key fails"
+    },
+    {
+      "id": "no-overdraw",
+      "text": "The balance never goes negative, including under concurrent debits"
+    },
+    {
+      "id": "holds",
+      "text": "Long-running work reserves credits, captures the amount used and returns the rest; abandoned holds expire"
+    },
+    {
+      "id": "expiry-order",
+      "text": "Expiring credits are spent first and forfeited after expiry"
+    },
+    {
+      "id": "ledger-history",
+      "text": "Every change is an append-only ledger entry the account admin can review"
+    },
+    {
+      "id": "metering-invoicing",
+      "text": "Usage is aggregated per billing period and reported to the billing provider for invoicing or top-ups"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:entitlements",
+      "status": "fixture-verified",
+      "fulfills": [
+        "grants",
+        "idempotent-debits",
+        "no-overdraw",
+        "holds",
+        "expiry-order"
+      ],
+      "evidence": [
+        {
+          "requirement": "grants",
+          "test": "tests/entitlements.test.mjs",
+          "name": "grants, debits and idempotency keys"
+        },
+        {
+          "requirement": "idempotent-debits",
+          "test": "tests/entitlements.test.mjs",
+          "name": "retries never charge twice and balances never go negative"
+        },
+        {
+          "requirement": "no-overdraw",
+          "test": "tests/entitlements.test.mjs",
+          "name": "concurrent debits cannot overdraw"
+        },
+        {
+          "requirement": "no-overdraw",
+          "test": "tests/entitlements.test.mjs",
+          "name": "a store that keeps losing the race surfaces a conflict"
+        },
+        {
+          "requirement": "holds",
+          "test": "tests/entitlements.test.mjs",
+          "name": "holds reserve credits, capture charges part and returns the rest"
+        },
+        {
+          "requirement": "expiry-order",
+          "test": "tests/entitlements.test.mjs",
+          "name": "expiring grants are consumed first and forfeited after expiry"
+        }
+      ],
+      "notes": "Concurrency is tested against the in-memory store only; there is no SQL credit store and no history API"
+    },
+    {
+      "ref": "resource:lago",
+      "status": "cataloged",
+      "fulfills": [
+        "metering-invoicing"
+      ],
+      "notes": "AGPL-3.0 self-hosted metering and billing"
+    },
+    {
+      "ref": "resource:openmeter",
+      "status": "cataloged",
+      "fulfills": [
+        "metering-invoicing"
+      ]
+    }
+  ]
+}

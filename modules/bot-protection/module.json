@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "bot-protection",
+  "version": "0.1.0",
+  "title": "Bot protection for forms",
+  "description": "Stop signup, login and contact-form spam: server-side Cloudflare Turnstile, hCaptcha and reCAPTCHA v2/v3 token checks (hostname, action, score, age, fail-closed), a privacy-friendly signed proof-of-work challenge with single-use replay protection, a honeypot with minimum fill time, one combined guard and a Fetch wrapper that hides which check failed.",
+  "kind": "feature",
+  "tags": ["captcha", "image captcha or bot protection", "bot protection", "spam protection", "turnstile", "hcaptcha", "recaptcha", "proof of work", "honeypot", "signup spam", "form spam", "contact form", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/bot-protection"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Web Crypto (crypto.subtle, crypto.getRandomValues), AbortSignal.timeout, btoa/atob and the Fetch Request/Response/FormData APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "solveChallenge in pow.ts also runs in browsers and Web Workers; the rest is server-only because it holds keys and the captcha secret.",
+      "No runtime packages, environment reads, timers or network activity at install or import time; siteverify calls use the fetch you inject."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/crypto.ts", "target": "bot-protection/crypto.ts" },
+    { "source": "files/verify.ts", "target": "bot-protection/verify.ts" },
+    { "source": "files/pow.ts", "target": "bot-protection/pow.ts" },
+    { "source": "files/honeypot.ts", "target": "bot-protection/honeypot.ts" },
+    { "source": "files/guard.ts", "target": "bot-protection/guard.ts" },
+    { "source": "files/memory-store.ts", "target": "bot-protection/memory-store.ts" },
+    { "source": "files/http.ts", "target": "bot-protection/http.ts" }
+  ],
+  "exports": [
+    { "name": "BotProtectionError", "from": "bot-protection/crypto.ts" },
+    { "name": "createCaptchaVerifier", "from": "bot-protection/verify.ts" },
+    { "name": "mapProviderError", "from": "bot-protection/verify.ts" },
+    { "name": "SITEVERIFY_URLS", "from": "bot-protection/verify.ts" },
+    { "name": "TOKEN_FIELDS", "from": "bot-protection/verify.ts" },
+    { "name": "createPow", "from": "bot-protection/pow.ts" },
+    { "name": "solveChallenge", "from": "bot-protection/pow.ts" },
+    { "name": "decodeSolution", "from": "bot-protection/pow.ts" },
+    { "name": "encodeSolution", "from": "bot-protection/pow.ts" },
+    { "name": "createHoneypot", "from": "bot-protection/honeypot.ts" },
+    { "name": "createBotGuard", "from": "bot-protection/guard.ts" },
+    { "name": "MemoryReplayStore", "from": "bot-protection/memory-store.ts" },
+    { "name": "createChallengeHandler", "from": "bot-protection/http.ts" },
+    { "name": "protect", "from": "bot-protection/http.ts" },
+    { "name": "parseFormBody", "from": "bot-protection/http.ts" }
+  ],
+  "configuration": [
+    "Keep the captcha secret, the proof-of-work key and the honeypot key (each at least 32 bytes, different from each other) in your server secret store and pass them in; the module never reads the environment.",
+    "Set expectedHostnames to the hosts that render the widget, expectedAction for Turnstile or reCAPTCHA v3, and minScore (default 0.5) for reCAPTCHA v3.",
+    "Leave failOpen off unless an outage of the captcha provider must never block signups; with it on, bots pass during every outage.",
+    "Create one guard per form with a server-chosen formId; mount createChallengeHandler with the same form ids and wrap each form's POST handler with protect().",
+    "Use MemoryReplayStore on a single server only; with several instances implement ReplayStore.consume atomically (Redis SET NX PX, a unique database key or a Durable Object).",
+    "Pick maxNumber for your audience: about 20,000 Web Crypto hashes per second were measured in Node 22, so the default 50,000 averages about 1.3 s; run solveChallenge in a Web Worker.",
+    "Pass clientIp only from a header your own proxy sets; never trust a client-supplied X-Forwarded-For."
+  ],
+  "capabilities": [
+    "captcha-token-verification",
+    "proof-of-work-challenge",
+    "honeypot-and-fill-time-check",
+    "replay-protection",
+    "form-bot-guard"
+  ],
+  "limitations": [
+    "Does not render captcha widgets or ship browser UI; add each provider's own script and widget, and call solveChallenge from your form code.",
+    "Provider behavior is tested with a fake fetch that follows the documented siteverify fields; no live Turnstile, hCaptcha or reCAPTCHA call was made, and providers can change error codes (unknown codes map to provider-error).",
+    "Proof of work raises the cost of bulk submissions but does not stop a determined bot with real compute; solve time varies widely by device and browser and was measured only in Node 22.",
+    "MemoryReplayStore lives in one process and is lost on restart; no SQL or Redis store is included.",
+    "The honeypot token is not single-use and the minimum fill time only stops naive scripts.",
+    "No rate limiting or account-level abuse detection; add rate limits (see the rate-limit module) on the same routes.",
+    "Production secret custody, provider configuration, accessibility of the chosen challenge and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/bot-protection.test.mjs"],
+    "command": "npm run build && node --test tests/bot-protection.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2" },
+    "behaviors": [
+      "Turnstile, hCaptcha and reCAPTCHA post form-encoded secret, response and remoteip to their documented siteverify URLs; only Turnstile gets idempotency_key",
+      "a wrong or missing hostname, a stale or future challenge_ts and an unparseable timestamp are refused for each provider",
+      "provider error codes map to stable reasons and unknown codes become provider-error",
+      "an action mismatch is refused for Turnstile and reCAPTCHA, and hCaptcha rejects expectedAction at configuration",
+      "a reCAPTCHA v3 score below minScore is refused; v2 replies without a score pass",
+      "network errors, non-2xx and unparseable replies give unavailable and fail closed by default; failOpen passes with failedOpen true",
+      "the secret never appears in results or thrown configuration errors",
+      "a proof-of-work challenge is issued, solved by solveChallenge and verified once; a replay, including 10 concurrent replays, succeeds exactly once",
+      "a tampered signature, another key, another form, a changed salt, a wrong number, malformed or missing solutions and expired challenges are refused without consuming the challenge",
+      "maxNumber outside 1,000 to 10,000,000 is refused",
+      "a filled honeypot, a too-fast submission, a token for another form, a forged or expired token are refused",
+      "the combined guard runs honeypot, proof of work and captcha in order and makes no siteverify call after a local failure",
+      "protect() returns the same 403 bot-check-failed for every failed check, passes urlencoded, multipart and JSON bodies to the handler intact, and returns 413, 400 or 415 for oversized, invalid or unsupported bodies",
+      "the challenge route issues no-store challenges only for configured forms and GET"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: captcha verification for Turnstile, hCaptcha and reCAPTCHA, proof-of-work challenge and solver, honeypot, combined guard, in-memory replay store and Fetch adapters."] }
+  ],
+  "contract": "CONTRACT.md"
+}

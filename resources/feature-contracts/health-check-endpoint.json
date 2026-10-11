@@ -1,0 +1,90 @@
+{
+  "id": "health-check-endpoint",
+  "title": "Health check endpoints",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "health check endpoint"
+  ],
+  "requirements": [
+    {
+      "id": "liveness",
+      "text": "A liveness endpoint answers 200 without running dependency checks"
+    },
+    {
+      "id": "readiness",
+      "text": "A readiness endpoint runs named dependency checks concurrently, each with its own timeout"
+    },
+    {
+      "id": "critical-vs-degraded",
+      "text": "A failing critical dependency returns 503; a failing non-critical one reports degraded with 200"
+    },
+    {
+      "id": "no-leak",
+      "text": "Responses do not leak error messages, connection strings or stack traces by default"
+    },
+    {
+      "id": "http-semantics",
+      "text": "Responses are no-store JSON; HEAD is supported and other methods get 405 with Allow"
+    },
+    {
+      "id": "detail-access",
+      "text": "Per-check detail is shown only to internal or authorized callers; public probes get status only"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:health-checks",
+      "status": "fixture-verified",
+      "fulfills": [
+        "liveness",
+        "readiness",
+        "critical-vs-degraded",
+        "no-leak",
+        "http-semantics"
+      ],
+      "evidence": [
+        {
+          "requirement": "liveness",
+          "test": "tests/health-checks.test.mjs",
+          "name": "liveness is 200, no-store JSON, and runs no checks"
+        },
+        {
+          "requirement": "readiness",
+          "test": "tests/health-checks.test.mjs",
+          "name": "readiness passes with per-check status, duration, and detail"
+        },
+        {
+          "requirement": "readiness",
+          "test": "tests/health-checks.test.mjs",
+          "name": "checks run concurrently and time out individually with an abort signal"
+        },
+        {
+          "requirement": "critical-vs-degraded",
+          "test": "tests/health-checks.test.mjs",
+          "name": "critical failure gives 503 without leaking the error message"
+        },
+        {
+          "requirement": "critical-vs-degraded",
+          "test": "tests/health-checks.test.mjs",
+          "name": "non-critical failure only degrades"
+        },
+        {
+          "requirement": "no-leak",
+          "test": "tests/health-checks.test.mjs",
+          "name": "critical failure gives 503 without leaking the error message"
+        },
+        {
+          "requirement": "http-semantics",
+          "test": "tests/health-checks.test.mjs",
+          "name": "HEAD has status and headers but no body; other methods get 405 with Allow"
+        },
+        {
+          "requirement": "http-semantics",
+          "test": "tests/health-checks.test.mjs",
+          "name": "liveness is 200, no-store JSON"
+        }
+      ]
+    }
+  ],
+  "notes": "detail-access is uncovered: the module always returns per-check status and only gates error text (exposeErrors); restricting detail to authorized callers is the app's routing."
+}

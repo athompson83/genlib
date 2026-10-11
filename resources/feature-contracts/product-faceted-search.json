@@ -1,0 +1,130 @@
+{
+  "id": "product-faceted-search",
+  "title": "Product search with facets",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "product search with facets"
+  ],
+  "requirements": [
+    {
+      "id": "text-relevance",
+      "text": "Text queries rank products by relevance with stemming and case/accent folding"
+    },
+    {
+      "id": "typo-tolerance",
+      "text": "Misspelled queries still find the intended products"
+    },
+    {
+      "id": "facet-counts",
+      "text": "Facet counts reflect the current query and filters"
+    },
+    {
+      "id": "filters",
+      "text": "Category, price-range and availability filters combine correctly; unknown filters are rejected"
+    },
+    {
+      "id": "sort-paging",
+      "text": "Results sort by relevance, price or date with stable pagination"
+    },
+    {
+      "id": "visibility",
+      "text": "Inactive, unpublished or other-tenant products never appear"
+    },
+    {
+      "id": "url-state",
+      "text": "Query, filters and sort are kept in a shareable URL and parsed defensively"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:site-search",
+      "status": "fixture-verified",
+      "fulfills": [
+        "text-relevance",
+        "facet-counts",
+        "filters",
+        "sort-paging",
+        "visibility"
+      ],
+      "evidence": [
+        {
+          "requirement": "text-relevance",
+          "test": "tests/site-search.test.mjs",
+          "name": "BM25 order and scores on a small known corpus"
+        },
+        {
+          "requirement": "text-relevance",
+          "test": "tests/site-search.test.mjs",
+          "name": "accent folding and stemming"
+        },
+        {
+          "requirement": "facet-counts",
+          "test": "tests/site-search.test.mjs",
+          "name": "facet counts over the filtered set"
+        },
+        {
+          "requirement": "facet-counts",
+          "test": "tests/site-search-sql.test.mjs",
+          "name": "facet counts are grouped counts over the filtered set"
+        },
+        {
+          "requirement": "filters",
+          "test": "tests/site-search.test.mjs",
+          "name": "keyword, range, date and boolean filters; undeclared filters and attributes are rejected"
+        },
+        {
+          "requirement": "sort-paging",
+          "test": "tests/site-search.test.mjs",
+          "name": "cursor paging returns every hit once, by relevance and by attribute"
+        },
+        {
+          "requirement": "visibility",
+          "test": "tests/site-search.test.mjs",
+          "name": "tenant isolation and per-document visibility"
+        }
+      ],
+      "notes": "No typo tolerance"
+    },
+    {
+      "ref": "recipe:storefront-catalog",
+      "status": "fixture-verified",
+      "fulfills": [
+        "visibility"
+      ],
+      "evidence": [
+        {
+          "requirement": "visibility",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        }
+      ],
+      "notes": "filterCatalog excludes inactive products and sorts by price in memory; no facets or relevance"
+    },
+    {
+      "ref": "recipe:url-query-state",
+      "status": "fixture-verified",
+      "fulfills": [
+        "url-state"
+      ],
+      "evidence": [
+        {
+          "requirement": "url-state",
+          "test": "tests/recipes.test.mjs",
+          "name": "typed URL query state parses leniently and serializes canonically"
+        }
+      ]
+    },
+    {
+      "ref": "resource:typesense",
+      "status": "cataloged",
+      "fulfills": [
+        "typo-tolerance",
+        "facet-counts"
+      ]
+    }
+  ],
+  "missing": [
+    "typo-tolerance"
+  ],
+  "notes": "Typo tolerance needs an external engine such as Typesense or Meilisearch, or pg_trgm in the application."
+}

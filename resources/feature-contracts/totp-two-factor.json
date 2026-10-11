@@ -1,0 +1,95 @@
+{
+  "id": "totp-two-factor",
+  "title": "Two-factor authentication with an authenticator app",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "two-factor authentication with an authenticator app"
+  ],
+  "requirements": [
+    {
+      "id": "secret-provisioning",
+      "text": "Enrollment generates a CSPRNG secret (at least 160 bits) and an otpauth:// URI for the QR code"
+    },
+    {
+      "id": "confirm-enrollment",
+      "text": "2FA becomes required only after the user submits a valid code for the new secret"
+    },
+    {
+      "id": "code-verification",
+      "text": "Codes are verified per RFC 6238 with a small clock-skew window; malformed codes fail"
+    },
+    {
+      "id": "replay-protection",
+      "text": "An accepted time step or recovery code cannot be used again"
+    },
+    {
+      "id": "attempt-limits",
+      "text": "Failed verification attempts are rate limited or locked out per account"
+    },
+    {
+      "id": "secret-protection",
+      "text": "The secret is encrypted at rest and never shown again after enrollment"
+    },
+    {
+      "id": "recovery-codes",
+      "text": "One-time recovery codes are generated randomly and stored only as keyed hashes"
+    },
+    {
+      "id": "step-up",
+      "text": "Disabling 2FA or regenerating recovery codes requires recent re-authentication"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:totp",
+      "status": "fixture-verified",
+      "fulfills": [
+        "secret-provisioning",
+        "code-verification"
+      ],
+      "evidence": [
+        {
+          "requirement": "secret-provisioning",
+          "test": "tests/capabilities.test.mjs",
+          "name": "totp: verify window, base32, otpauth URI and secret generation"
+        },
+        {
+          "requirement": "code-verification",
+          "test": "tests/capabilities.test.mjs",
+          "name": "totp: RFC 6238 Appendix B vectors"
+        },
+        {
+          "requirement": "code-verification",
+          "test": "tests/capabilities.test.mjs",
+          "name": "totp: verify window, base32, otpauth URI and secret generation"
+        }
+      ]
+    },
+    {
+      "ref": "capability:recovery-codes",
+      "status": "fixture-verified",
+      "fulfills": [
+        "recovery-codes"
+      ],
+      "evidence": [
+        {
+          "requirement": "recovery-codes",
+          "test": "tests/capabilities.test.mjs",
+          "name": "recovery-codes: normalize, hash, generate and find"
+        }
+      ],
+      "notes": "Generates, hashes and matches; removing a used code is the app's work"
+    },
+    {
+      "ref": "skill:two-factor-authentication-best-practices",
+      "status": "cataloged",
+      "fulfills": [
+        "confirm-enrollment",
+        "code-verification",
+        "recovery-codes"
+      ],
+      "notes": "Better Auth twoFactor plugin guidance"
+    }
+  ],
+  "notes": "Enrollment state, replay tracking, lockout, encrypted secret storage and step-up are not in Genlib. rate-limit is a generic building block for attempt limits."
+}

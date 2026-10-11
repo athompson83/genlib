@@ -26,7 +26,7 @@ One command searches everything below and returns each result's exact next step.
 | Source | Count | What it is |
 | --- | ---: | --- |
 | [Capabilities](#capabilities-one-task-every-language) | 91 (814 implementations, 812 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
-| [Modules](#modules) | 23 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
+| [Modules](#modules) | 29 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
 | [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
 | [TypeScript recipes](#recipes-language-examples-and-templates) | 114 | 110 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
 | [Language examples](#recipes-language-examples-and-templates) | 745 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
@@ -39,7 +39,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9805 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 678 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 704 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -101,6 +101,8 @@ flowchart LR
   Add["add<br/>copy + .genlib/lock.json"]
   Verify["verify hashes"]
   Receipt["receipt · adopted<br/>update · remove"]
+  Coverage["genlib coverage<br/>feature contracts:<br/>requirements + evidence"]
+  RegistryIn["genlib registry<br/>shadcn-format items<br/>plan · add · verify"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -120,6 +122,8 @@ flowchart LR
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
   Add -.-> Receipt -.-> App
+  Quick -.-> Coverage -.-> App
+  RegistryIn --> Receipt
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App
@@ -136,7 +140,8 @@ flowchart LR
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
 - **Verify in the app.** File hashes prove what was copied; the receiving app's own build and tests prove it works.
-- **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match ([docs/gaps.md](docs/gaps.md) lists the common tasks still served only by external projects).
+- **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match.
+- **Count requirements, not search hits.** `genlib coverage <task>` reports, per requirement of a feature, whether a named repository test exercises it, and what the app still has to build. [docs/gaps.md](docs/gaps.md) summarizes 65 common tasks; the app records its own acceptance with `adopted --accepts`.
 
 ## Quick start
 
@@ -177,9 +182,11 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
 | `plan <id> --target app` / `add <id> --target app` | Show, then perform, the exact file copy (default `src/genlib`, or `--out`) |
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
-| `adopted <id> --target app [--test]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command |
+| `adopted <id> --target app [--test cmd] [--accepts contract#req,...]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command; `--accepts` records which feature requirements that command exercised |
 | `update <id> --target app [--write] [--conflict rej\|inline]` | Three-way merge of a newer module version into locally edited files (base from the locked commit); dry run unless `--write`, conflicts reported per file |
 | `remove <id> --target app [--dry-run]` | Roll back an install: deletes unedited files, keeps edited ones, refuses while a dependent module is installed |
+| `coverage <task words>` / `coverage --list` `[--target app]` | Which requirements of an app feature Genlib code fulfills (`test`, `install`, `plan`, `catalog` or `app` per requirement) and what is left to build; see [coverage.md](docs/coverage.md) |
+| `registry plan\|add shadcn:<name>\|<https URL> --target app [--sha256 hex]` / `registry verify\|update\|remove` | Adopt a shadcn-format registry item and its dependencies with alias mapping, conflict checks, a lock, receipts and drift checks; `update` three-way merges the registry's new version onto local edits; fetches over https ([distribution.md](docs/distribution.md#adopting-shadcn-format-items-into-an-app-genlib-registry)) |
 | `schema [quick\|steps\|plan\|receipt\|update]` | JSON Schemas for the agent-facing `--json` outputs |
 | `integration list` / `integration inspect <id>` | Discover a complete optional integration profile and read its contract |
 | `integration plan\|add <id> --target app` | Plan/copy a pack, defaulting to `genlib/integrations/<id>` |
@@ -323,6 +330,12 @@ All modules are original Apache-2.0 code with a contract and behavior tests (ver
 | [`csv-import`](modules/csv-import/CONTRACT.md) | CSV import flow: delimiter detection, column-mapping suggestions, typed row validation, idempotent commit with per-row errors, formula-safe error export, Fetch adapter | Its fields, the row writer, a store, upload limits |
 | [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership; a PostgreSQL schema and SQL store are included and tested under PGlite), authorization and role ceilings, sign-in, email delivery |
 | [`comments`](modules/comments/CONTRACT.md) | Threaded comments on any resource: replies to a depth limit, @mentions, edit window, soft delete that keeps replies, reactions, flags that hide at a threshold, moderation, cursor paging, PostgreSQL schema and SQL store, Fetch adapter | Authorization per resource, sign-in, rate limits, notifications for mentions, rendering |
+| [`site-search`](modules/site-search/CONTRACT.md) | Full-text search with declared filters and facets: safe query parser (words, phrases, exclusions, prefix), in-memory BM25 or PostgreSQL tsvector store, escaped highlights, keyset paging | Which records to index and who may see them |
+| [`email-outbox`](modules/email-outbox/CONTRACT.md) | Transactional email: idempotent enqueue, header-injection and suppression checks, leased dispatch with backoff and dead letters, Resend and Postmark transports, bounce events, SKIP LOCKED SQL claim | Templates, provider credentials, the webhook secret |
+| [`web-push`](modules/web-push/CONTRACT.md) | Web Push with Web Crypto only: RFC 8291 encryption (matches the RFC example byte for byte), VAPID, subscriptions removed on 404/410, service worker snippet | VAPID keys, notification content, live push-service acceptance |
+| [`bot-protection`](modules/bot-protection/CONTRACT.md) | Turnstile, hCaptcha and reCAPTCHA verification (fail-closed), a stateless proof-of-work challenge with replay protection, a signed honeypot timer, a `protect()` wrapper | Provider keys, the widget UI, rate limits |
+| [`chat`](modules/chat/CONTRACT.md) | Direct and group conversations: idempotent sends, gap-free ordering under concurrency, edit window, soft delete, read markers, unread counts, blocking, PostgreSQL store | Real-time delivery (SSE or WebSocket), attachments, retention |
+| [`qr-code`](modules/qr-code/CONTRACT.md) | QR code generation (ISO/IEC 18004, all versions and levels) to SVG or terminal text; matrices match an independent encoder byte for byte | The visible link or text next to the code |
 | [`rbac`](modules/rbac/CONTRACT.md) | Role-based access control: roles with inheritance, wildcard and deny permissions, tenant-wide or per-resource assignments with expiry, fail-closed checks, anti-escalation, last-owner protection, PostgreSQL store, `requirePermission` wrapper | Its role table, sign-in, the first owner of each tenant |
 | [`password-reset`](modules/password-reset/CONTRACT.md) | Forgot-password flow: identical responses for unknown accounts, hash-only one-time tokens bound to the account email, single use, revoke other links and sessions, PostgreSQL store, no-referrer Fetch adapter | Its user lookup, password hashing and policy, email delivery, rate limits |
 | [`short-links`](modules/short-links/CONTRACT.md) | URL shortener: validated destinations, unbiased random codes, custom slugs, expiry and click limits enforced atomically, click stats, PostgreSQL store, redirect and management handlers | Its short domain, authorization, abuse and bot filtering |

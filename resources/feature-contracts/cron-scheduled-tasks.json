@@ -1,0 +1,75 @@
+{
+  "id": "cron-scheduled-tasks",
+  "title": "Cron scheduled tasks",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "cron scheduled tasks"
+  ],
+  "requirements": [
+    {
+      "id": "parse-validate",
+      "text": "Cron expressions are parsed and invalid expressions are rejected when the schedule is saved"
+    },
+    {
+      "id": "next-run",
+      "text": "The next run time is computed correctly, including the day-of-month/day-of-week rule and leap days"
+    },
+    {
+      "id": "timezone",
+      "text": "Schedules are evaluated in a configured IANA time zone and stay correct across DST changes"
+    },
+    {
+      "id": "single-execution",
+      "text": "Each occurrence runs once even with several application instances"
+    },
+    {
+      "id": "no-overlap",
+      "text": "A run that is still executing does not overlap the next occurrence unless allowed"
+    },
+    {
+      "id": "missed-runs",
+      "text": "Occurrences missed during downtime follow a declared catch-up or skip policy"
+    },
+    {
+      "id": "failure-handling",
+      "text": "Failed runs are retried or reported according to policy"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:cron-next",
+      "status": "fixture-verified",
+      "fulfills": [
+        "parse-validate",
+        "next-run"
+      ],
+      "evidence": [
+        {
+          "requirement": "parse-validate",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "cron-next: vectors including Vixie day rule and leap day"
+        },
+        {
+          "requirement": "next-run",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "cron-next: vectors including Vixie day rule and leap day"
+        }
+      ],
+      "notes": "UTC only"
+    },
+    {
+      "ref": "integration:durable-jobs",
+      "status": "install-supported",
+      "fulfills": [
+        "timezone",
+        "single-execution",
+        "failure-handling"
+      ],
+      "notes": "pg-boss schedule/unschedule with time zones and retries; scheduler execution is not exercised by the pack tests"
+    }
+  ],
+  "missing": [
+    "no-overlap",
+    "missed-runs"
+  ]
+}

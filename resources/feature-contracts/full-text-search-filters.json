@@ -1,0 +1,125 @@
+{
+  "id": "full-text-search-filters",
+  "title": "Full-text search with filters",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "full-text search with filters"
+  ],
+  "requirements": [
+    {
+      "id": "relevance-ranking",
+      "text": "Matches are ranked by relevance (BM25 or ts_rank) with configurable field weights"
+    },
+    {
+      "id": "query-syntax",
+      "text": "Queries support phrases, exclusions and prefix matching, with case/accent folding and stemming"
+    },
+    {
+      "id": "typed-filters",
+      "text": "Keyword, range, date and boolean filters narrow results; undeclared or malformed filters are rejected"
+    },
+    {
+      "id": "stable-paging",
+      "text": "Results page with a cursor that returns every hit exactly once in a stable order"
+    },
+    {
+      "id": "tenant-visibility",
+      "text": "Results are restricted to the caller's tenant and to documents the caller may see"
+    },
+    {
+      "id": "injection-safe",
+      "text": "User query and filter text is treated as data and cannot inject query operators or SQL"
+    },
+    {
+      "id": "index-freshness",
+      "text": "Updates and deletions are reflected in results, and concurrent upserts keep the newest write"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:site-search",
+      "status": "fixture-verified",
+      "fulfills": [
+        "relevance-ranking",
+        "query-syntax",
+        "typed-filters",
+        "stable-paging",
+        "tenant-visibility",
+        "injection-safe",
+        "index-freshness"
+      ],
+      "evidence": [
+        {
+          "requirement": "relevance-ranking",
+          "test": "tests/site-search.test.mjs",
+          "name": "BM25 order and scores on a small known corpus"
+        },
+        {
+          "requirement": "relevance-ranking",
+          "test": "tests/site-search.test.mjs",
+          "name": "field weights change the order"
+        },
+        {
+          "requirement": "query-syntax",
+          "test": "tests/site-search.test.mjs",
+          "name": "AND, phrase, exclusion and prefix"
+        },
+        {
+          "requirement": "query-syntax",
+          "test": "tests/site-search.test.mjs",
+          "name": "accent folding and stemming"
+        },
+        {
+          "requirement": "typed-filters",
+          "test": "tests/site-search.test.mjs",
+          "name": "keyword, range, date and boolean filters; undeclared filters and attributes are rejected"
+        },
+        {
+          "requirement": "stable-paging",
+          "test": "tests/site-search.test.mjs",
+          "name": "cursor paging returns every hit once, by relevance and by attribute"
+        },
+        {
+          "requirement": "stable-paging",
+          "test": "tests/site-search-sql.test.mjs",
+          "name": "keyset paging on (score, id) and (attribute, id) returns every hit once"
+        },
+        {
+          "requirement": "tenant-visibility",
+          "test": "tests/site-search.test.mjs",
+          "name": "tenant isolation and per-document visibility"
+        },
+        {
+          "requirement": "injection-safe",
+          "test": "tests/site-search.test.mjs",
+          "name": "injection-shaped input is treated as text"
+        },
+        {
+          "requirement": "injection-safe",
+          "test": "tests/site-search-sql.test.mjs",
+          "name": "tsquery text is built from escaped lexemes only"
+        },
+        {
+          "requirement": "index-freshness",
+          "test": "tests/site-search.test.mjs",
+          "name": "tenant isolation and per-document visibility"
+        },
+        {
+          "requirement": "index-freshness",
+          "test": "tests/site-search-sql.test.mjs",
+          "name": "concurrent upserts of one document leave one row with the newest write"
+        }
+      ],
+      "notes": "Memory store and PostgreSQL tsvector store; the memory-store visibility test also checks removal and reindexing"
+    },
+    {
+      "ref": "resource:paradedb",
+      "status": "cataloged",
+      "fulfills": [
+        "relevance-ranking",
+        "typed-filters"
+      ],
+      "notes": "PostgreSQL pg_search (BM25) extension; adoption, tenancy and authorization remain the application's work"
+    }
+  ]
+}

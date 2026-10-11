@@ -90,6 +90,21 @@
         }
       }
     },
+    "acceptance": {
+      "type": "array",
+      "description": "Requirement-level acceptance from genlib adopted --test <cmd> --accepts <contract>#<requirement>; exitCode 0 with used true counts as application-verified",
+      "items": {
+        "type": "object",
+        "required": ["at", "requirements", "command", "exitCode"],
+        "properties": {
+          "at": { "type": "string" },
+          "requirements": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+#[a-z0-9-]+$" } },
+          "command": { "type": "string" },
+          "exitCode": { "type": ["integer", "null"] },
+          "used": { "type": "boolean" }
+        }
+      }
+    },
     "checks": {
       "type": "array",
       "items": {

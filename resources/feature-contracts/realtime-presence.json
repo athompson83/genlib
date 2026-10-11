@@ -1,0 +1,105 @@
+{
+  "id": "realtime-presence",
+  "title": "Real-time presence with WebSockets",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "real-time presence with websockets"
+  ],
+  "requirements": [
+    {
+      "id": "join-leave-dedupe",
+      "text": "Joining and leaving a room emits one join and one leave per user, even with several tabs"
+    },
+    {
+      "id": "heartbeat-expiry",
+      "text": "Connections that stop heartbeating expire after a TTL and emit leave"
+    },
+    {
+      "id": "ordered-push",
+      "text": "Subscribers receive a snapshot and then ordered join/update/leave events pushed over a persistent connection"
+    },
+    {
+      "id": "websocket-transport",
+      "text": "The transport is a WebSocket that authenticates the upgrade and checks Origin"
+    },
+    {
+      "id": "room-authorization",
+      "text": "Rooms are tenant-scoped, joining requires authorization, and only the joining actor can heartbeat or leave its connection"
+    },
+    {
+      "id": "state-limits",
+      "text": "Presence state is size-limited JSON, updates are throttled, and rooms have a capacity"
+    },
+    {
+      "id": "multi-instance",
+      "text": "Presence is consistent across several server instances (shared store and pub/sub)"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:presence",
+      "status": "fixture-verified",
+      "fulfills": [
+        "join-leave-dedupe",
+        "heartbeat-expiry",
+        "ordered-push",
+        "room-authorization",
+        "state-limits"
+      ],
+      "evidence": [
+        {
+          "requirement": "join-leave-dedupe",
+          "test": "tests/presence.test.mjs",
+          "name": "several tabs of one user appear once"
+        },
+        {
+          "requirement": "heartbeat-expiry",
+          "test": "tests/presence.test.mjs",
+          "name": "connections expire after the TTL"
+        },
+        {
+          "requirement": "ordered-push",
+          "test": "tests/presence.test.mjs",
+          "name": "SSE stream: joins, sends a snapshot then ordered events"
+        },
+        {
+          "requirement": "room-authorization",
+          "test": "tests/presence.test.mjs",
+          "name": "rooms are tenant scoped and authorization is enforced"
+        },
+        {
+          "requirement": "room-authorization",
+          "test": "tests/presence.test.mjs",
+          "name": "a connection can be heartbeated or left only by the actor who joined it"
+        },
+        {
+          "requirement": "state-limits",
+          "test": "tests/presence.test.mjs",
+          "name": "state must be JSON within maxStateBytes"
+        },
+        {
+          "requirement": "state-limits",
+          "test": "tests/presence.test.mjs",
+          "name": "update events are coalesced per user"
+        },
+        {
+          "requirement": "state-limits",
+          "test": "tests/presence.test.mjs",
+          "name": "maxPerRoom refuses new connections with room-full"
+        }
+      ],
+      "notes": "Pushes over Server-Sent Events with HTTP heartbeats, not WebSockets; the memory store is per process and the Redis shape is documented only"
+    },
+    {
+      "ref": "resource:ws-npm",
+      "status": "cataloged",
+      "fulfills": [
+        "websocket-transport"
+      ]
+    }
+  ],
+  "missing": [
+    "websocket-transport",
+    "multi-instance"
+  ]
+}

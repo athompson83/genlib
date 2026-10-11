@@ -1,0 +1,57 @@
+{
+  "id": "audit-log",
+  "title": "Audit log of user actions",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "audit log of user actions"
+  ],
+  "requirements": [
+    {
+      "id": "record-actions",
+      "text": "Security-relevant and data-changing actions record actor, tenant, action, target, time, outcome and request id"
+    },
+    {
+      "id": "atomic-with-change",
+      "text": "The audit entry is written in the same transaction as the change it describes"
+    },
+    {
+      "id": "append-only",
+      "text": "Entries cannot be updated or deleted through the application, and tampering is detectable"
+    },
+    {
+      "id": "tenant-scoped-read",
+      "text": "Only authorized administrators of a tenant can read that tenant's entries"
+    },
+    {
+      "id": "redaction",
+      "text": "Secrets and sensitive personal data are redacted from recorded details"
+    },
+    {
+      "id": "query-export",
+      "text": "Entries can be filtered by actor, action and time range with pagination and exported"
+    },
+    {
+      "id": "retention",
+      "text": "A declared retention period is enforced"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "resource:pgmemento",
+      "status": "cataloged",
+      "fulfills": [
+        "atomic-with-change"
+      ],
+      "notes": "PostgreSQL trigger-based, transaction-scoped audit trail (LGPL-3.0)"
+    },
+    {
+      "ref": "resource:spatie-laravel-activitylog",
+      "status": "cataloged",
+      "fulfills": [
+        "record-actions"
+      ],
+      "notes": "Laravel only"
+    }
+  ],
+  "notes": "No Genlib audit log. Building blocks: structured-logger (key redaction, request ids) and the pii-mask capability, but a log stream is not a tenant-readable, append-only audit store."
+}

@@ -1,0 +1,90 @@
+{
+  "id": "security-headers",
+  "title": "Security headers and Content-Security-Policy",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "security headers and csp"
+  ],
+  "requirements": [
+    {
+      "id": "baseline-headers",
+      "text": "Responses carry conservative defaults: CSP, HSTS, nosniff, Referrer-Policy, Permissions-Policy, COOP and frame protection"
+    },
+    {
+      "id": "csp-nonce",
+      "text": "Inline scripts are allowed only by a fresh random per-request nonce"
+    },
+    {
+      "id": "report-only",
+      "text": "A CSP can be rolled out in report-only mode before it is enforced"
+    },
+    {
+      "id": "injection-safe",
+      "text": "Directive names and values are validated so header or directive injection is refused"
+    },
+    {
+      "id": "hsts-preload",
+      "text": "HSTS is configurable and preload is opt-in only with its prerequisites"
+    },
+    {
+      "id": "applied-safely",
+      "text": "Headers are applied without breaking bodies, status, redirects or explicitly set headers"
+    },
+    {
+      "id": "violation-reports",
+      "text": "CSP violation reports are accepted at a size-limited endpoint and recorded"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:security-headers",
+      "status": "fixture-verified",
+      "fulfills": [
+        "baseline-headers",
+        "csp-nonce",
+        "report-only",
+        "injection-safe",
+        "hsts-preload",
+        "applied-safely"
+      ],
+      "evidence": [
+        {
+          "requirement": "baseline-headers",
+          "test": "tests/security-headers.test.mjs",
+          "name": "defaults are conservative"
+        },
+        {
+          "requirement": "csp-nonce",
+          "test": "tests/security-headers.test.mjs",
+          "name": "nonce is random base64 and injected into script-src"
+        },
+        {
+          "requirement": "report-only",
+          "test": "tests/security-headers.test.mjs",
+          "name": "report-only moves CSP to the report-only header"
+        },
+        {
+          "requirement": "injection-safe",
+          "test": "tests/security-headers.test.mjs",
+          "name": "directive injection and unsafe values are rejected"
+        },
+        {
+          "requirement": "hsts-preload",
+          "test": "tests/security-headers.test.mjs",
+          "name": "HSTS is configurable and preload is opt-in with prerequisites"
+        },
+        {
+          "requirement": "applied-safely",
+          "test": "tests/security-headers.test.mjs",
+          "name": "withSecurityHeaders preserves body, status, and existing headers unless override"
+        },
+        {
+          "requirement": "applied-safely",
+          "test": "tests/security-headers.test.mjs",
+          "name": "withSecurityHeaders works on immutable redirect responses"
+        }
+      ]
+    }
+  ],
+  "notes": "violation-reports is uncovered: the module can emit a report directive but has no report-collection endpoint."
+}

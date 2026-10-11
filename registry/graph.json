@@ -3384,6 +3384,13 @@
    "file": "docs/cookbook/webauthn-passkeys.md"
   },
   {
+   "id": "doc:docs/coverage.md",
+   "kind": "doc",
+   "label": "docs/coverage.md",
+   "count": 5,
+   "file": "docs/coverage.md"
+  },
+  {
    "id": "doc:docs/cross-language-foundations.md",
    "kind": "doc",
    "label": "docs/cross-language-foundations.md",
@@ -3408,14 +3415,14 @@
    "id": "doc:docs/distribution.md",
    "kind": "doc",
    "label": "docs/distribution.md",
-   "count": 5,
+   "count": 6,
    "file": "docs/distribution.md"
   },
   {
    "id": "doc:docs/gaps.md",
    "kind": "doc",
    "label": "docs/gaps.md",
-   "count": 4,
+   "count": 5,
    "file": "docs/gaps.md"
   },
   {
@@ -3464,7 +3471,7 @@
    "id": "doc:docs/landscape.md",
    "kind": "doc",
    "label": "docs/landscape.md",
-   "count": 7,
+   "count": 12,
    "file": "docs/landscape.md"
   },
   {
@@ -3508,6 +3515,13 @@
    "label": "docs/multilanguage-modules.md",
    "count": 3,
    "file": "docs/multilanguage-modules.md"
+  },
+  {
+   "id": "doc:docs/providers/btst-kanban.md",
+   "kind": "doc",
+   "label": "docs/providers/btst-kanban.md",
+   "count": 14,
+   "file": "docs/providers/btst-kanban.md"
   },
   {
    "id": "doc:docs/repository-intelligence.md",
@@ -4149,7 +4163,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3609,
+   "count": 3615,
    "query": "typescript"
   },
   {
@@ -4205,7 +4219,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 678,
+   "count": 704,
    "query": "--type doc"
   },
   {
@@ -4233,7 +4247,7 @@
    "id": "type:module",
    "kind": "type",
    "label": "module",
-   "count": 23,
+   "count": 29,
    "query": "--type module"
   },
   {
@@ -16945,7 +16959,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 678
+   "weight": 704
   },
   {
    "source": "genlib",
@@ -16969,7 +16983,7 @@
    "source": "genlib",
    "target": "type:module",
    "relation": "contains",
-   "weight": 23
+   "weight": 29
   },
   {
    "source": "genlib",
@@ -20105,6 +20119,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/coverage.md",
+   "relation": "section-of",
+   "weight": 5
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/cross-language-foundations.md",
    "relation": "section-of",
    "weight": 2
@@ -20125,13 +20145,13 @@
    "source": "type:doc",
    "target": "doc:docs/distribution.md",
    "relation": "section-of",
-   "weight": 5
+   "weight": 6
   },
   {
    "source": "type:doc",
    "target": "doc:docs/gaps.md",
    "relation": "section-of",
-   "weight": 4
+   "weight": 5
   },
   {
    "source": "type:doc",
@@ -20173,7 +20193,7 @@
    "source": "type:doc",
    "target": "doc:docs/landscape.md",
    "relation": "section-of",
-   "weight": 7
+   "weight": 12
   },
   {
    "source": "type:doc",
@@ -20210,6 +20230,12 @@
    "target": "doc:docs/multilanguage-modules.md",
    "relation": "section-of",
    "weight": 3
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/providers/btst-kanban.md",
+   "relation": "section-of",
+   "weight": 14
   },
   {
    "source": "type:doc",
@@ -20587,7 +20613,7 @@
    "source": "type:module",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 22
+   "weight": 28
   },
   {
    "source": "type:recipe",

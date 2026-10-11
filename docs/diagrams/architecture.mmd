@@ -36,6 +36,10 @@ flowchart TB
   INST["lib/install.mjs<br/>plan · add · verify"]
   APP["Target app<br/>src/genlib/ · .genlib/lock.json<br/>.genlib/receipts/"]
   LIFE["lib/lifecycle.mjs<br/>adopted · update · remove<br/>+ schemas/*.schema.json"]
+  CONTRACTS["resources/feature-contracts/*.json<br/>requirements + evidence"]
+  COV["lib/coverage.mjs<br/>coverage · gap report"]
+  REGIN["lib/registry-adapter.mjs<br/>registry plan · add · verify"]
+  EXTREG["shadcn-format registries<br/>(https, pinned SHA-256)"]
   NET["Git hosts · npm<br/>PyPI · crates.io"]
   DOCS["scripts/sync-docs.mjs<br/>README and resource counts"]
   DIAG["scripts/diagrams.mjs<br/>Agentic Mermaid SVGs"]
@@ -74,6 +78,11 @@ flowchart TB
   CLI -- "copies reviewed bytes" --> APP
   INST --> LIFE --> CLI
   LIFE -- "receipts · 3-way merge · rollback" --> APP
+  CONTRACTS --> COV --> CLI
+  COV --> MCPS
+  APP -. "acceptance in receipts" .-> COV
+  EXTREG -. "fetch" .-> REGIN --> CLI
+  REGIN -- "providers-lock · receipts" --> APP
   SKLIB -. "npx skills add (pinned)" .-> APP
   IDXLIB -. "mcp add · brew · SDK" .-> APP
   RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET

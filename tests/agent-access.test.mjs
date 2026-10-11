@@ -39,7 +39,7 @@ test('MCP server initializes, lists tools and answers tool calls in order', asyn
   assert.equal(replies[0].result.protocolVersion, '2025-06-18');
   assert.ok(replies[0].result.capabilities.tools);
   const names = replies[1].result.tools.map(tool => tool.name);
-  for (const name of ['genlib_quick', 'genlib_find', 'genlib_outline', 'genlib_jev', 'genlib_capability', 'genlib_inspect', 'genlib_read_doc', 'genlib_catalog']) assert.ok(names.includes(name), name);
+  for (const name of ['genlib_quick', 'genlib_find', 'genlib_outline', 'genlib_jev', 'genlib_capability', 'genlib_coverage', 'genlib_inspect', 'genlib_read_doc', 'genlib_catalog']) assert.ok(names.includes(name), name);
   assert.ok(replies[1].result.tools.every(tool => tool.inputSchema?.type === 'object'));
   assert.match(replies[2].result.structuredContent.results[0].id, /^webhook-(?:verification|signature)$/);
   assert.match(replies[3].result.structuredContent.implementations.go.commands[0], /add go-totp/);

@@ -2369,6 +2369,102 @@
    }
   },
   {
+   "name": "bot-protection",
+   "type": "registry:item",
+   "title": "Bot protection for forms",
+   "description": "Stop signup, login and contact-form spam: server-side Cloudflare Turnstile, hCaptcha and reCAPTCHA v2/v3 token checks (hostname, action, score, age, fail-closed), a privacy-friendly signed proof-of-work challenge with single-use replay protection, a honeypot with minimum fill time, one combined guar",
+   "files": [
+    {
+     "path": "modules/bot-protection/files/crypto.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/crypto.ts"
+    },
+    {
+     "path": "modules/bot-protection/files/verify.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/verify.ts"
+    },
+    {
+     "path": "modules/bot-protection/files/pow.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/pow.ts"
+    },
+    {
+     "path": "modules/bot-protection/files/honeypot.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/honeypot.ts"
+    },
+    {
+     "path": "modules/bot-protection/files/guard.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/guard.ts"
+    },
+    {
+     "path": "modules/bot-protection/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/memory-store.ts"
+    },
+    {
+     "path": "modules/bot-protection/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bot-protection/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module bot-protection@0.1.0 (Apache-2.0). Configure: Keep the captcha secret, the proof-of-work key and the honeypot key (each at least 32 bytes, different from each other) in your server secret store and pass them in; the module never reads the environment. Set expectedHostnames to the hosts that render the widget, expectedAction for Turnstile or reCAPTCHA v3, and minScore (default 0.5) for reCAPTCHA v3. Leave failOpen off unless an outage of the captcha provider must never block signups; with it on, bots pass during every outage. Create one guard per form with a server-chosen formId; mount createChallengeHandler with the same form ids and wrap each form's POST handler with protect(). Use MemoryReplayStore on a single server only; with several instances implement ReplayStore.consume atomically (Redis SET NX PX, a unique database key or a Durable Object). Pick maxNumber for your audience: about 20,000 Web Crypto hashes per second were measured in Node 22, so the default 50,000 averages about 1.3 s; run solveChallenge in a Web Worker. Pass clientIp only from a header your own proxy sets; never trust a client-supplied X-Forwarded-For. Contract: https://github.com/athompson83/genlib/blob/main/modules/bot-protection/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "chat",
+   "type": "registry:item",
+   "title": "In-app chat",
+   "description": "Chat messages between users of a multi-tenant server app: idempotent direct conversations and groups with admin rules, idempotent sends with a gap-free per-conversation seq, edit window, soft delete, history paging, monotonic read positions, unread counts, an inbox ordered by last message, user bloc",
+   "files": [
+    {
+     "path": "modules/chat/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/chat/core.ts"
+    },
+    {
+     "path": "modules/chat/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/chat/memory-store.ts"
+    },
+    {
+     "path": "modules/chat/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/chat/http.ts"
+    },
+    {
+     "path": "modules/chat/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/chat/sql-store.ts"
+    },
+    {
+     "path": "modules/chat/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/chat/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module chat@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlChatStore with a query executor that has transaction(work); on other databases implement ChatStore with a unique direct_key, a unique (conversation_id, sender_id, client_id) and a seq counter incremented in the same transaction as the message insert. Implement authorize(actor, action, {tenantId, userId?}) from your own tenant membership: use (the actor may chat in the tenant) and reach (userId may be messaged or added there). Without it any signed-in user may use any tenant id. Implement authenticate(request) from your session or verified token, never from the request body. Pass onMessage to deliver new, edited and deleted messages to recipientIds, for example through one SSE stream per user; use a presence module room per conversation for typing indicators. Tune maxBody (4000), maxMembers (256) and editWindowMs (15 minutes). Mount createChatHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/chat/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "comments",
    "type": "registry:item",
    "title": "Threaded comments",
@@ -2550,6 +2646,54 @@
     "component"
    ],
    "docs": "Genlib module data-table@0.1.0 (Apache-2.0). Configure: rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className. Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering. Contract: https://github.com/athompson83/genlib/blob/main/modules/data-table/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "email-outbox",
+   "type": "registry:item",
+   "title": "Transactional email outbox",
+   "description": "Send transactional email reliably from a server app: idempotent enqueue with rendered templates, leased dispatch with retries, full-jitter backoff and dead-lettering, a bounce and complaint suppression list, Resend and Postmark Fetch transports, a PostgreSQL store and a delivery-event webhook adapte",
+   "files": [
+    {
+     "path": "modules/email-outbox/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-outbox/core.ts"
+    },
+    {
+     "path": "modules/email-outbox/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-outbox/memory-store.ts"
+    },
+    {
+     "path": "modules/email-outbox/files/transports.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-outbox/transports.ts"
+    },
+    {
+     "path": "modules/email-outbox/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-outbox/http.ts"
+    },
+    {
+     "path": "modules/email-outbox/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-outbox/sql-store.ts"
+    },
+    {
+     "path": "modules/email-outbox/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/email-outbox/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module email-outbox@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlEmailOutboxStore with your query executor; on other databases implement EmailOutboxStore with a unique key, an atomic claim (row locking or a conditional update) and conditional status transitions. Choose a transport: createResendTransport or createPostmarkTransport with the API key from your server secrets, or createConsoleTransport in development. Register templates as functions from data to {subject, text, html?}; escape any user data you put into html yourself. Pick an idempotency key per business event (for example order-receipt:<orderId>) and enqueue in the same transaction as the business change when your store shares the connection. Run dispatch({workerId}) on a schedule (every few seconds to a minute) with a unique workerId per process and a leaseMs above batch x transport timeout. Mount createEmailEventsHandler on your provider's webhook route with verify from the webhook-verification module (Resend signs with Standard Webhooks / Svix headers). Contract: https://github.com/athompson83/genlib/blob/main/modules/email-outbox/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",
@@ -2950,6 +3094,34 @@
    }
   },
   {
+   "name": "qr-code",
+   "type": "registry:item",
+   "title": "QR code generator",
+   "description": "Dependency-free TypeScript QR Code generation (ISO/IEC 18004, versions 1-40, levels L/M/Q/H) in numeric, alphanumeric or UTF-8 byte mode, with Reed-Solomon error correction, automatic mask selection, and renderers for compact SVG, terminal half-block text and a 0/1 matrix.",
+   "files": [
+    {
+     "path": "modules/qr-code/files/encode.ts",
+     "type": "registry:file",
+     "target": "~/genlib/qr-code/encode.ts"
+    },
+    {
+     "path": "modules/qr-code/files/render.ts",
+     "type": "registry:file",
+     "target": "~/genlib/qr-code/render.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module qr-code@0.1.0 (Apache-2.0). Configure: encodeQr(text | Uint8Array, { ecc = \"M\", minVersion = 1, maxVersion = 40, mask?, boostEcc = false, mode = \"auto\" }) returns { version, ecc, mask, mode, size, modules }. Strings are UTF-8 in byte mode with no ECI header; auto mode picks numeric, alphanumeric or byte, whichever single mode is shortest. toSvg(qr, { margin = 4, scale = 1, dark = \"#000\", light = \"#fff\", title = \"QR code\" }); colors must be hex or an allow-listed name. Pass a descriptive title. toTerminal(qr, { margin = 2, invert = false }); use invert: true on dark-background terminals. Never put secrets you would not show on screen into a QR code; a 2FA otpauth:// URI is a shared secret, so render it only on the authenticated enrollment page with cache-control: no-store. Contract: https://github.com/athompson83/genlib/blob/main/modules/qr-code/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "rate-limit",
    "type": "registry:item",
    "title": "Rate limit",
@@ -3092,6 +3264,49 @@
    }
   },
   {
+   "name": "site-search",
+   "type": "registry:item",
+   "title": "Site search with filters",
+   "description": "Full-text search with filters for a multi-tenant app's own records (products, articles, tickets): weighted fields, a safe query syntax (words, phrases, -exclusions, prefix* type-ahead), keyword, range and boolean filters, facets, highlights, keyset paging and per-document visibility, with an in-memo",
+   "files": [
+    {
+     "path": "modules/site-search/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/site-search/core.ts"
+    },
+    {
+     "path": "modules/site-search/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/site-search/memory-store.ts"
+    },
+    {
+     "path": "modules/site-search/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/site-search/http.ts"
+    },
+    {
+     "path": "modules/site-search/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/site-search/sql-store.ts"
+    },
+    {
+     "path": "modules/site-search/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/site-search/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module site-search@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlSearchStore(executor, { config: 'english' | 'simple' }); elsewhere implement SearchStore (upsert, remove, search) or use MemorySearchStore for small single-process datasets. Declare weighted text fields ({ title: 'A', body: 'C' }) and filterable attributes ({ category: 'keyword', price: 'number', publishedAt: 'date', inStock: 'boolean' }); keep the field order stable because the SQL store builds tsv in that order. Implement authorize(actor, action, tenantId) for search and index from your membership table; for search, return the actor's principals (groups, roles, user id) that document visibility lists are matched against. Index from your own write path (after a product, article or ticket is saved) and remove on delete; re-index everything after changing fields or weights. Implement authenticate(request) from your session or verified token, never from the request body. Mount createSearchHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/site-search/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "structured-logger",
    "type": "registry:item",
    "title": "Structured logger",
@@ -3170,6 +3385,59 @@
     "component"
    ],
    "docs": "Genlib module validated-form@0.1.0 (Apache-2.0). Configure: Required initialValues, formLabel, validate(values), onSubmit(values), and render-prop children. field(name, hintId) supplies IDs and accessibility attributes; setValue(name, value) keeps type conversion explicit. Optional fieldLabels, submitLabel, submittingLabel, successMessage, submissionErrorMessage, and className. Contract: https://github.com/athompson83/genlib/blob/main/modules/validated-form/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "web-push",
+   "type": "registry:item",
+   "title": "Web Push notifications",
+   "description": "Send Web Push notifications from your server with Web Crypto only: RFC 8291 aes128gcm payload encryption, VAPID (RFC 8292) signing and key generation, per-user subscriptions with endpoint allow-list and dedupe, TTL/urgency/topic headers, cleanup of expired subscriptions on 404/410, bounded-concurren",
+   "files": [
+    {
+     "path": "modules/web-push/files/crypto.ts",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/crypto.ts"
+    },
+    {
+     "path": "modules/web-push/files/push.ts",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/push.ts"
+    },
+    {
+     "path": "modules/web-push/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/memory-store.ts"
+    },
+    {
+     "path": "modules/web-push/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/http.ts"
+    },
+    {
+     "path": "modules/web-push/files/sw-snippet.ts",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/sw-snippet.ts"
+    },
+    {
+     "path": "modules/web-push/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/sql-store.ts"
+    },
+    {
+     "path": "modules/web-push/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/web-push/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module web-push@0.1.0 (Apache-2.0). Configure: Run generateVapidKeys() once, store the private key as a server secret and pass {publicKey, privateKey, subject} (a mailto: or https: contact) to createWebPush; rotating the keys invalidates every existing subscription. On PostgreSQL, apply schema.sql and use createSqlPushSubscriptionStore with your query executor; on other databases implement PushSubscriptionStore keyed by endpoint with an atomic failure counter. Pass the platform fetch; keep the default push service host allow-list unless you serve browsers with other push services, then set allowedHosts or allowAnyHttpsEndpoint. Implement authenticate(request) from your session or verified token and mount createWebPushHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Put serviceWorkerSnippet in your service worker file and subscribe in the page with pushManager.subscribe({userVisibleOnly: true, applicationServerKey}) using the key from GET {prefix}/vapid-public-key. Call send or sendMany from server jobs; retry rate-limited and server-error results after retryAfterSeconds with your queue. Contract: https://github.com/athompson83/genlib/blob/main/modules/web-push/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",

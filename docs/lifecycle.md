@@ -41,6 +41,7 @@ Every result names its type, verification level and the exact next command. Modu
 | | `csv-import` | module | CSV upload, column mapping, typed validation and idempotent commit with per-row errors |
 | | `org-invitations` | module | Tenant invitations: hashed one-time tokens, single-use accept, revoke, expiry, Fetch adapter |
 | | `comments` | module | Threaded comments with mentions, reactions, flags and moderation, plus a PostgreSQL schema and SQL store |
+| | `site-search`, `email-outbox`, `web-push`, `bot-protection`, `chat`, `qr-code` | modules | Full-text search with facets, a transactional email outbox, Web Push, captcha and proof-of-work bot checks, chat conversations and QR codes |
 | | `rbac`, `password-reset`, `short-links`, `presence` | modules | Role checks with anti-escalation, a forgot-password flow, a URL shortener and who-is-online presence, each with a store interface and tests |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
@@ -86,6 +87,8 @@ node "$GENLIB_ROOT/bin/genlib.mjs" remove org-invitations --target "$APP_ROOT" -
 - **remove** deletes files whose hashes still match the lock, keeps edited files (and lists them), removes the lock and receipt entries, and refuses while another installed module depends on this one.
 - **No match.** If the best result is an external record covering less than a third of the task's words, `quick` returns `noMatch` with `gh search repos`/`gh search code` commands instead of a weak pick. [gaps.md](gaps.md) lists the common tasks still covered only by external projects.
 
+**Registry items and acceptance.** Items adopted from shadcn-format registries with `genlib registry add` get the same receipts (`shadcn--<name>`), so `adopted` works on them too ([distribution.md](distribution.md#adopting-shadcn-format-items-into-an-app-genlib-registry)). `adopted <id> --test "<cmd>" --accepts <contract>#<requirement>,...` records which feature requirements that command exercised; [coverage.md](coverage.md) explains how they count.
+
 Schemas for receipts and update results are in `schemas/` (`genlib schema receipt`, `genlib schema update`).
 
 ## External resources at every stage
@@ -94,12 +97,12 @@ When no module, recipe or template covers a need, the resource catalog usually n
 
 ## Runtime reach of the server modules
 
-The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`, `entitlements`, `notification-inbox`, `csv-import`, `comments`, `rbac`, `password-reset`, `short-links`, `presence`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
+The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`, `entitlements`, `notification-inbox`, `csv-import`, `comments`, `rbac`, `password-reset`, `short-links`, `presence`, `site-search`, `email-outbox`, `web-push`, `bot-protection`, `chat`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
 
 ## What Genlib does not cover yet
 
 - Session management and user stores. The capabilities cover the protocol pieces (SSO request and token verification, SAML, MFA, passkeys, password hashing); use the framework's maintained session library or an identity provider for the rest.
-- Database migrations and background job queues. `org-invitations`, `comments`, `rbac`, `password-reset` and `short-links` ship a PostgreSQL schema and SQL store; other feature packages define store interfaces you implement.
+- Database migrations and background job queues. `org-invitations`, `comments`, `rbac`, `password-reset`, `short-links`, `site-search`, `email-outbox`, `web-push` and `chat` ship a PostgreSQL schema and SQL store; other feature packages define store interfaces you implement.
 - Native mobile or desktop UI. The React modules target the browser.
 - Platform-specific deployment (Vercel, Fly.io, AWS, app stores). Use the provider's documentation and the deployment runbook template.
 

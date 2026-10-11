@@ -1,0 +1,115 @@
+{
+  "id": "csv-import-mapping",
+  "title": "CSV import with column mapping",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "csv import with column mapping"
+  ],
+  "requirements": [
+    {
+      "id": "rfc4180-parse",
+      "text": "Parsing handles quotes, escaped quotes, embedded newlines, CRLF, BOM and common delimiters"
+    },
+    {
+      "id": "bounded-input",
+      "text": "Upload size, rows, columns and field lengths are capped"
+    },
+    {
+      "id": "column-mapping",
+      "text": "Headers map to fields with a suggested mapping; bad mappings and unmapped required fields are refused"
+    },
+    {
+      "id": "mapping-ui",
+      "text": "The user reviews and edits the mapping in an accessible UI before committing"
+    },
+    {
+      "id": "preview-validate",
+      "text": "A preview shows sample rows and per-row validation errors before anything is saved"
+    },
+    {
+      "id": "idempotent-commit",
+      "text": "Committing saves valid rows once, even when retried or run concurrently"
+    },
+    {
+      "id": "tenant-scope",
+      "text": "Imports are scoped to the uploading tenant and user"
+    },
+    {
+      "id": "error-report",
+      "text": "Row errors are downloadable as CSV with spreadsheet formulas neutralized"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:csv-import",
+      "status": "fixture-verified",
+      "fulfills": [
+        "rfc4180-parse",
+        "bounded-input",
+        "column-mapping",
+        "preview-validate",
+        "idempotent-commit",
+        "tenant-scope",
+        "error-report"
+      ],
+      "evidence": [
+        {
+          "requirement": "rfc4180-parse",
+          "test": "tests/csv-import.test.mjs",
+          "name": "parseCsv: RFC 4180 quotes, escaped quotes, embedded line breaks, CRLF and BOM"
+        },
+        {
+          "requirement": "rfc4180-parse",
+          "test": "tests/csv-import.test.mjs",
+          "name": "parseCsv: delimiter auto-detection"
+        },
+        {
+          "requirement": "bounded-input",
+          "test": "tests/csv-import.test.mjs",
+          "name": "parseCsv: byte, row, column and field caps"
+        },
+        {
+          "requirement": "column-mapping",
+          "test": "tests/csv-import.test.mjs",
+          "name": "suggestMapping: case, punctuation and accent insensitive"
+        },
+        {
+          "requirement": "column-mapping",
+          "test": "tests/csv-import.test.mjs",
+          "name": "validate rejects bad mappings and an unmapped required field"
+        },
+        {
+          "requirement": "preview-validate",
+          "test": "tests/csv-import.test.mjs",
+          "name": "preview stages rows, skips blank lines, suggests a mapping and returns a sample"
+        },
+        {
+          "requirement": "preview-validate",
+          "test": "tests/csv-import.test.mjs",
+          "name": "validate reports per-row errors"
+        },
+        {
+          "requirement": "idempotent-commit",
+          "test": "tests/csv-import.test.mjs",
+          "name": "commit saves valid rows once, is idempotent"
+        },
+        {
+          "requirement": "idempotent-commit",
+          "test": "tests/csv-import.test.mjs",
+          "name": "concurrent commits: one runs, the other gets commit-in-progress"
+        },
+        {
+          "requirement": "tenant-scope",
+          "test": "tests/csv-import.test.mjs",
+          "name": "imports are scoped to tenant and user"
+        },
+        {
+          "requirement": "error-report",
+          "test": "tests/csv-import.test.mjs",
+          "name": "exportErrors escapes formula-like cells"
+        }
+      ],
+      "notes": "Server only (no mapping UI); concurrency tested against the in-memory store"
+    }
+  ]
+}

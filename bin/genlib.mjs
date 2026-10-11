@@ -12,8 +12,12 @@ import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { integrationSummary, inspectIntegration, installIntegration, loadIntegrationCatalog, planIntegration, verifyIntegrations } from '../lib/integrations.mjs';
 import { checkAdoption, removeModule, updateModule } from '../lib/lifecycle.mjs';
+import { addRegistry, planRegistry, removeRegistry, resolveItems, updateRegistry, verifyRegistry } from '../lib/registry-adapter.mjs';
+import { acceptanceProblems, contractCoverage, coverageFor, formatCoverage, loadContracts } from '../lib/coverage.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
+
+const REPOSITORY_ROOT = fileURLToPath(new URL('..', import.meta.url));
 
 // Languages a task can name: the nine capability languages plus the resource-only ones.
 const FIND_LANGUAGES = [...LANGUAGES, 'ruby', 'php', 'elixir'];
@@ -46,7 +50,11 @@ const HELP = {
     'plan <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
     'add <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
     'verify --target <existing-project> [--json]',
-    'adopted <id> --target <existing-project> [--test "<command>"] [--json]   # copied, used (imported by app code) and verified (your test passes); updates the receipt',
+    'adopted <id> --target <existing-project> [--test "<command>"] [--accepts contract#req,...] [--json]   # copied, used and verified; --accepts records requirement-level acceptance',
+    'registry plan|add shadcn:<name>|<https item URL> --target <existing-project> [--style new-york-v4] [--sha256 <hex>] [--keep-existing] [--json]   # adopt a shadcn-format registry item with conflict checks, a lock and a receipt (fetches over https)',
+    'registry verify --target <existing-project> | registry remove <shadcn--name> --target <existing-project> [--dry-run]',
+    'registry update <shadcn--name> --target <existing-project> [--write] [--conflict rej|inline]   # three-way merge of the registry\'s current version onto your edits; dry run unless --write',
+    'coverage <task words> | coverage --list [--target <existing-project>] [--json]   # which requirements of a feature Genlib code fulfills, with evidence status',
     'update <id> --target <existing-project> [--write] [--conflict rej|inline] [--json]   # three-way merge onto your edits; dry run unless --write',
     'schema [quick|steps|plan|receipt|update|module]   # JSON Schema of an agent-facing output',
     'remove <id> --target <existing-project> [--dry-run] [--json]   # roll back: delete unmodified files, keep edited ones, drop the lock record',
@@ -58,13 +66,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -81,7 +89,7 @@ try {
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
-    schema: ['json'], adopted: ['target', 'test', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
+    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
@@ -222,8 +230,47 @@ try {
       : { schemas: names.map(name => ({ name, path: `schemas/${name}.schema.json` })) };
   } else if (command === 'adopted') {
     invariant(positional.length === 1 && options.target, 'INVALID_OPTION', 'Use adopted <id> --target <existing-project> [--test "<command>"].');
-    result = await checkAdoption(options.target, positional[0], { test: options.test });
+    const accepts = options.accepts ? options.accepts.split(',').map(key => key.trim()).filter(Boolean) : [];
+    if (accepts.length) {
+      const problems = acceptanceProblems(loadContracts(REPOSITORY_ROOT), positional[0], accepts);
+      invariant(!problems.length, 'INVALID_OPTION', problems.join(' '));
+    }
+    result = await checkAdoption(options.target, positional[0], { test: options.test, accepts });
     if (!['used', 'verified'].includes(result.status) || result.outcomes.verified === false) process.exitCode = 1;
+  } else if (command === 'registry') {
+    const [action, spec, ...rest] = positional;
+    invariant(['plan', 'add', 'verify', 'remove', 'update'].includes(action) && rest.length === 0 && options.target, 'INVALID_OPTION', 'Use registry plan|add <item> --target <app>, registry verify --target <app> or registry remove <id> --target <app>.');
+    if (action === 'verify') {
+      invariant(!spec, 'INVALID_OPTION', 'registry verify takes no item.');
+      result = await verifyRegistry(options.target);
+      if (result.status !== 'ok') process.exitCode = 1;
+    } else if (action === 'update') {
+      invariant(spec, 'INVALID_OPTION', 'registry update needs the artifact id, for example shadcn--button.');
+      result = await updateRegistry(options.target, spec, { write: options.write === true, conflict: options.conflict ?? 'rej' });
+      if (result.conflicts.length) process.exitCode = 1;
+    } else if (action === 'remove') {
+      invariant(spec, 'INVALID_OPTION', 'registry remove needs the artifact id, for example shadcn--button.');
+      result = await removeRegistry(options.target, spec, { dryRun: options['dry-run'] === true });
+    } else {
+      invariant(spec && options['dry-run'] === undefined, 'INVALID_OPTION', `registry ${action} needs one item: shadcn:<name> or an https URL.`);
+      const resolved = await resolveItems(spec, { style: options.style, sha256: options.sha256 });
+      if (action === 'plan') {
+        const { _writes, ...plan } = await planRegistry(options.target, resolved, { keepExisting: options['keep-existing'] === true });
+        result = { ...plan, writes: false };
+        if (plan.conflicts.length) process.exitCode = 1;
+      } else result = await addRegistry(options.target, resolved, { keepExisting: options['keep-existing'] === true });
+    }
+  } else if (command === 'coverage') {
+    if (options.list) {
+      invariant(positional.length === 0, 'INVALID_OPTION', 'coverage --list takes no task words.');
+      const rows = loadContracts(REPOSITORY_ROOT).map(contract => contractCoverage(contract, { target: options.target }));
+      result = { contracts: rows.map(({ contract, title, level, verified }) => ({ contract, title, level, verified })) };
+      text = rows.map(row => `${row.level.padEnd(10)} ${row.verified.padStart(5)}  ${row.contract}`).join('\n');
+    } else {
+      invariant(positional.length > 0, 'INVALID_OPTION', 'Use coverage <task words> or coverage --list.');
+      result = coverageFor(REPOSITORY_ROOT, positional.join(' '), { target: options.target });
+      text = formatCoverage(result);
+    }
   } else if (command === 'update' || command === 'remove') {
     invariant(positional.length === 1 && options.target, 'INVALID_OPTION', `Use ${command} <id> --target <existing-project>.`);
     const context = await loadCatalog();

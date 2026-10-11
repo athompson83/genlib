@@ -1,0 +1,90 @@
+{
+  "id": "invoice-tax-calculation",
+  "title": "Tax calculation for invoices",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "tax calculation for invoices"
+  ],
+  "requirements": [
+    {
+      "id": "line-totals",
+      "text": "Subtotals are computed from quantity times unit price in integer minor units, with overflow and invalid lines rejected"
+    },
+    {
+      "id": "exact-rounding",
+      "text": "Tax is computed from a rate with exact arithmetic and a declared rounding rule"
+    },
+    {
+      "id": "per-line-rates",
+      "text": "Lines can carry different rates or exemptions, and the invoice shows a breakdown per rate"
+    },
+    {
+      "id": "jurisdiction-rates",
+      "text": "The rate is determined from seller/buyer location and product tax category using a maintained source"
+    },
+    {
+      "id": "inclusive-exclusive",
+      "text": "Tax-inclusive and tax-exclusive prices are both supported, and discounts apply before tax"
+    },
+    {
+      "id": "reconciled-totals",
+      "text": "Per-line tax amounts reconcile exactly with the invoice tax total"
+    },
+    {
+      "id": "immutable-issued",
+      "text": "An issued invoice keeps the rates and amounts used; later rate changes do not alter it"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:invoice-totals",
+      "status": "fixture-verified",
+      "fulfills": [
+        "line-totals",
+        "exact-rounding"
+      ],
+      "evidence": [
+        {
+          "requirement": "line-totals",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        },
+        {
+          "requirement": "exact-rounding",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        }
+      ],
+      "notes": "One invoice-level basis-point rate with half-up bigint rounding; the test asserts totals and an exact large-value case"
+    },
+    {
+      "ref": "capability:money",
+      "status": "fixture-verified",
+      "fulfills": [
+        "exact-rounding"
+      ],
+      "evidence": [
+        {
+          "requirement": "exact-rounding",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "money: applyRate half-even and allocate vectors"
+        }
+      ]
+    },
+    {
+      "ref": "resource:avalara-avatax",
+      "status": "cataloged",
+      "fulfills": [
+        "jurisdiction-rates"
+      ]
+    }
+  ],
+  "missing": [
+    "per-line-rates",
+    "jurisdiction-rates",
+    "inclusive-exclusive",
+    "reconciled-totals",
+    "immutable-issued"
+  ],
+  "notes": "capability:money allocate() could distribute an invoice-level tax across lines without drift, but no Genlib code does that reconciliation."
+}

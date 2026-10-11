@@ -1,0 +1,96 @@
+{
+  "id": "env-config-validation",
+  "title": "Environment configuration validation",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "environment config validation"
+  ],
+  "requirements": [
+    {
+      "id": "fail-fast",
+      "text": "Configuration is validated once at startup and the process refuses to start when it is invalid"
+    },
+    {
+      "id": "typed-parsing",
+      "text": "Values parse strictly into typed fields (booleans, integers, URLs, enums) with defaults; malformed values are rejected"
+    },
+    {
+      "id": "all-problems",
+      "text": "Every missing or invalid key is reported together, by key name"
+    },
+    {
+      "id": "secrets-not-echoed",
+      "text": "Secret values never appear in errors, logs, serialization or inspection"
+    },
+    {
+      "id": "immutable-result",
+      "text": "The validated configuration is a frozen typed object"
+    },
+    {
+      "id": "documented-example",
+      "text": "A .env.example listing every variable is generated from the same schema"
+    },
+    {
+      "id": "client-exposure",
+      "text": "Only variables explicitly marked public can reach a browser bundle; server secrets cannot"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:env-config",
+      "status": "fixture-verified",
+      "fulfills": [
+        "fail-fast",
+        "typed-parsing",
+        "all-problems",
+        "secrets-not-echoed",
+        "immutable-result",
+        "documented-example"
+      ],
+      "evidence": [
+        {
+          "requirement": "fail-fast",
+          "test": "tests/env-config.test.mjs",
+          "name": "aggregates every problem by key in one ConfigError"
+        },
+        {
+          "requirement": "typed-parsing",
+          "test": "tests/env-config.test.mjs",
+          "name": "converts typed values and parses each field kind"
+        },
+        {
+          "requirement": "typed-parsing",
+          "test": "tests/env-config.test.mjs",
+          "name": "booleans accept true/false/1/0/yes/no/on/off case-insensitively and reject others"
+        },
+        {
+          "requirement": "typed-parsing",
+          "test": "tests/env-config.test.mjs",
+          "name": "numbers reject hex, empty-ish, and non-integer input"
+        },
+        {
+          "requirement": "all-problems",
+          "test": "tests/env-config.test.mjs",
+          "name": "aggregates every problem by key in one ConfigError"
+        },
+        {
+          "requirement": "secrets-not-echoed",
+          "test": "tests/env-config.test.mjs",
+          "name": "secret values never appear in errors, JSON, toString, inspection, describe, or examples"
+        },
+        {
+          "requirement": "immutable-result",
+          "test": "tests/env-config.test.mjs",
+          "name": "parses a valid source with defaults and returns a frozen object"
+        },
+        {
+          "requirement": "documented-example",
+          "test": "tests/env-config.test.mjs",
+          "name": "renders a .env.example and a structured description"
+        }
+      ],
+      "notes": "Throws ConfigError on invalid input; calling it at startup is the app's wiring"
+    }
+  ],
+  "notes": "client-exposure is uncovered: env-config has no public/server split for browser bundles."
+}

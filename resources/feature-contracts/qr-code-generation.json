@@ -1,0 +1,99 @@
+{
+  "id": "qr-code-generation",
+  "title": "QR code generation",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "qr code generation"
+  ],
+  "requirements": [
+    {
+      "id": "spec-encoding",
+      "text": "Data encodes to a valid ISO/IEC 18004 symbol (all versions and error-correction levels) that standard readers decode"
+    },
+    {
+      "id": "auto-version-mask",
+      "text": "The smallest fitting version and the lowest-penalty mask are chosen automatically"
+    },
+    {
+      "id": "too-long",
+      "text": "Data that cannot fit is refused with a clear error instead of a corrupt symbol"
+    },
+    {
+      "id": "scalable-output",
+      "text": "Output is a scalable SVG (or sized PNG) with a quiet zone of at least four modules"
+    },
+    {
+      "id": "safe-svg",
+      "text": "SVG output escapes caller text (title) and refuses unsafe color values"
+    },
+    {
+      "id": "accessible",
+      "text": "The rendered code has a text alternative, and the encoded link or text is also shown or available"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:qr-code",
+      "status": "fixture-verified",
+      "fulfills": [
+        "spec-encoding",
+        "auto-version-mask",
+        "too-long",
+        "scalable-output",
+        "safe-svg"
+      ],
+      "evidence": [
+        {
+          "requirement": "spec-encoding",
+          "test": "tests/qr-code.test.mjs",
+          "name": "matrix matches segno byte for byte"
+        },
+        {
+          "requirement": "spec-encoding",
+          "test": "tests/qr-code.test.mjs",
+          "name": "Reed-Solomon codewords for Annex I"
+        },
+        {
+          "requirement": "auto-version-mask",
+          "test": "tests/qr-code.test.mjs",
+          "name": "auto mask is the lowest-penalty mask"
+        },
+        {
+          "requirement": "too-long",
+          "test": "tests/qr-code.test.mjs",
+          "name": "too much data fails with too-long"
+        },
+        {
+          "requirement": "scalable-output",
+          "test": "tests/qr-code.test.mjs",
+          "name": "SVG has one merged path, viewBox and size"
+        },
+        {
+          "requirement": "safe-svg",
+          "test": "tests/qr-code.test.mjs",
+          "name": "SVG rejects unsafe colors and escapes the title"
+        }
+      ],
+      "notes": "Matrices match an independent encoder (segno 1.6.6) byte for byte; no physical reader scan was run. The SVG carries role=img and a title, but showing the encoded text is the app's job."
+    },
+    {
+      "ref": "resource:qrcodegen",
+      "status": "cataloged",
+      "fulfills": [
+        "spec-encoding",
+        "auto-version-mask",
+        "too-long"
+      ],
+      "notes": "External MIT QR encoder (Nayuki)"
+    },
+    {
+      "ref": "resource:react-qr-code",
+      "status": "cataloged",
+      "fulfills": [
+        "scalable-output"
+      ],
+      "notes": "External MIT React/React Native SVG renderer"
+    }
+  ],
+  "notes": "module:qr-code covers encoding and safe SVG output; the accessible requirement (text alternative plus the visible link) stays with the app."
+}

@@ -1,0 +1,101 @@
+{
+  "id": "url-slugs",
+  "title": "Slug generation for URLs",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "slug generation for urls"
+  ],
+  "requirements": [
+    {
+      "id": "normalize",
+      "text": "Titles become lowercase URL-safe slugs: accents transliterated, apostrophes joined, punctuation collapsed to one separator"
+    },
+    {
+      "id": "truncate",
+      "text": "Slugs are truncated to a maximum length at a word boundary"
+    },
+    {
+      "id": "fallback",
+      "text": "Input with no usable characters yields a configured fallback instead of an empty slug"
+    },
+    {
+      "id": "unique-suffix",
+      "text": "A taken slug gets the first free numeric suffix (post-2, post-3 ...)"
+    },
+    {
+      "id": "concurrent-unique",
+      "text": "Uniqueness holds under concurrent creation, enforced by a unique constraint scoped to the tenant/collection with retry"
+    },
+    {
+      "id": "reserved-words",
+      "text": "Slugs that collide with application routes or reserved words (admin, new, api) are refused"
+    },
+    {
+      "id": "rename-redirect",
+      "text": "When a slug changes, the old URL permanently redirects to the new one"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:slugify",
+      "status": "fixture-verified",
+      "fulfills": [
+        "normalize",
+        "truncate",
+        "unique-suffix"
+      ],
+      "evidence": [
+        {
+          "requirement": "normalize",
+          "test": "tests/wave8-capabilities.test.mjs",
+          "name": "portable slugify matches the shared vectors"
+        },
+        {
+          "requirement": "truncate",
+          "test": "tests/wave8-capabilities.test.mjs",
+          "name": "portable slugify matches the shared vectors"
+        },
+        {
+          "requirement": "unique-suffix",
+          "test": "tests/wave8-capabilities.test.mjs",
+          "name": "portable slugify matches the shared vectors"
+        }
+      ],
+      "notes": "Identical output in every language; can return an empty slug, so the caller supplies a fallback"
+    },
+    {
+      "ref": "recipe:slugify-and-unique-slug",
+      "status": "fixture-verified",
+      "fulfills": [
+        "normalize",
+        "truncate",
+        "fallback",
+        "unique-suffix"
+      ],
+      "evidence": [
+        {
+          "requirement": "normalize",
+          "test": "tests/recipes.test.mjs",
+          "name": "slugify and uniqueSlug"
+        },
+        {
+          "requirement": "truncate",
+          "test": "tests/recipes.test.mjs",
+          "name": "slugify and uniqueSlug"
+        },
+        {
+          "requirement": "fallback",
+          "test": "tests/recipes.test.mjs",
+          "name": "slugify and uniqueSlug"
+        },
+        {
+          "requirement": "unique-suffix",
+          "test": "tests/recipes.test.mjs",
+          "name": "slugify and uniqueSlug"
+        }
+      ],
+      "notes": "uniqueSlug checks a caller-supplied set or predicate; it does not guard against concurrent inserts"
+    }
+  ],
+  "notes": "Concurrency-safe uniqueness, reserved words and rename redirects are uncovered. module:short-links has reserved words and ON CONFLICT retry for short codes, not for title slugs."
+}

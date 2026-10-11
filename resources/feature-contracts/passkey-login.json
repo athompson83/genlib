@@ -1,0 +1,55 @@
+{
+  "id": "passkey-login",
+  "title": "Passkey (WebAuthn) login",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "passkey login"
+  ],
+  "requirements": [
+    {
+      "id": "registration",
+      "text": "The server issues registration options and verifies the attestation response (challenge, origin, RP ID), storing credential id, public key and sign count for the user"
+    },
+    {
+      "id": "authentication",
+      "text": "The server verifies the assertion signature against the stored key with challenge, origin, RP ID and user-verification checks"
+    },
+    {
+      "id": "challenge-single-use",
+      "text": "Challenges are stored server-side, expire and are consumed once"
+    },
+    {
+      "id": "clone-detection",
+      "text": "A sign-count regression is rejected or flagged as a possible cloned authenticator"
+    },
+    {
+      "id": "credential-ownership",
+      "text": "Credential ids are unique across accounts; users list and remove only their own passkeys and cannot remove their last sign-in method"
+    },
+    {
+      "id": "session",
+      "text": "Successful authentication creates a fresh session (no session fixation)"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:webauthn-passkeys",
+      "status": "install-supported",
+      "fulfills": [
+        "registration",
+        "authentication",
+        "clone-detection"
+      ],
+      "notes": "Wraps maintained WebAuthn libraries; recorded-ceremony tests run only in examples/cookbook per-language suites, not in tests/"
+    },
+    {
+      "ref": "resource:simplewebauthn",
+      "status": "cataloged",
+      "fulfills": [
+        "registration",
+        "authentication"
+      ]
+    }
+  ],
+  "notes": "Challenge storage, credential management and session creation are app work. language-modules tests cover installing the Python wrapper, not its behavior."
+}

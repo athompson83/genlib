@@ -1,0 +1,97 @@
+{
+  "id": "transactional-email",
+  "title": "Send transactional email",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "send transactional email"
+  ],
+  "requirements": [
+    {
+      "id": "durable-retries",
+      "text": "Messages are stored before sending and retried with backoff; they are marked dead after a maximum number of attempts"
+    },
+    {
+      "id": "idempotent",
+      "text": "One business event sends at most one email, including with concurrent dispatchers and provider retries"
+    },
+    {
+      "id": "input-safety",
+      "text": "Recipient addresses and headers are validated and header injection is refused"
+    },
+    {
+      "id": "suppression",
+      "text": "Hard bounces and complaints suppress later sends to that address"
+    },
+    {
+      "id": "delivery-events",
+      "text": "Provider webhooks are signature-verified before parsing, mapped to message status and safe to replay"
+    },
+    {
+      "id": "provider-transport",
+      "text": "Provider API calls use timeouts, pass an idempotency key and classify retryable versus permanent failures"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:email-outbox",
+      "status": "fixture-verified",
+      "fulfills": [
+        "durable-retries",
+        "idempotent",
+        "input-safety",
+        "suppression",
+        "delivery-events",
+        "provider-transport"
+      ],
+      "evidence": [
+        {
+          "requirement": "durable-retries",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "retry classification, full-jitter backoff with injected random, and dead after maxAttempts"
+        },
+        {
+          "requirement": "idempotent",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "enqueue renders, stores and is idempotent per key"
+        },
+        {
+          "requirement": "idempotent",
+          "test": "tests/email-outbox-sql.test.mjs",
+          "name": "concurrent dispatchers never send the same message twice"
+        },
+        {
+          "requirement": "input-safety",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "validation: addresses, header injection"
+        },
+        {
+          "requirement": "suppression",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "suppression list: checked at enqueue and again at send"
+        },
+        {
+          "requirement": "delivery-events",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "webhook adapter: signature before parsing, event mapping, replay"
+        },
+        {
+          "requirement": "provider-transport",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "Resend transport: request shape, Idempotency-Key header and status classification"
+        },
+        {
+          "requirement": "provider-transport",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "transport timeout aborts through AbortSignal"
+        }
+      ]
+    },
+    {
+      "ref": "resource:resend-node",
+      "status": "cataloged",
+      "fulfills": [
+        "provider-transport"
+      ]
+    }
+  ]
+}

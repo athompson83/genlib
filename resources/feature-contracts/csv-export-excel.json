@@ -1,0 +1,80 @@
+{
+  "id": "csv-export-excel",
+  "title": "CSV export safe for Excel",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "csv export safe for excel"
+  ],
+  "requirements": [
+    {
+      "id": "rfc4180-quoting",
+      "text": "Fields with commas, quotes or line breaks are quoted and records end with CRLF"
+    },
+    {
+      "id": "formula-neutralization",
+      "text": "Cells starting with =, +, -, @, tab or carriage return are neutralized so spreadsheets do not evaluate them"
+    },
+    {
+      "id": "excel-encoding",
+      "text": "The file is UTF-8 with a byte-order mark (or another declared encoding) so Excel shows non-ASCII text correctly"
+    },
+    {
+      "id": "download-headers",
+      "text": "The download is an attachment with a safe RFC 6266 filename, including non-ASCII names"
+    },
+    {
+      "id": "authorized-rows",
+      "text": "Exports include only rows the requester may see in their tenant and only explicitly selected columns"
+    },
+    {
+      "id": "bounded-export",
+      "text": "Large exports are bounded or streamed (or run as a background job) instead of exhausting memory"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:csv-safe",
+      "status": "fixture-verified",
+      "fulfills": [
+        "rfc4180-quoting",
+        "formula-neutralization"
+      ],
+      "evidence": [
+        {
+          "requirement": "rfc4180-quoting",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "csv-safe: writeCsv vector, neutralization and validation"
+        },
+        {
+          "requirement": "formula-neutralization",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "csv-safe: writeCsv vector, neutralization and validation"
+        }
+      ],
+      "notes": "Writes no byte-order mark"
+    },
+    {
+      "ref": "capability:content-disposition",
+      "status": "fixture-verified",
+      "fulfills": [
+        "download-headers"
+      ],
+      "evidence": [
+        {
+          "requirement": "download-headers",
+          "test": "tests/wave10-capabilities.test.mjs",
+          "name": "Content-Disposition builds and parses like the shared vectors"
+        }
+      ]
+    },
+    {
+      "ref": "recipe:csv-export",
+      "status": "install-supported",
+      "fulfills": [
+        "bounded-export"
+      ],
+      "notes": "exportCsv refuses more than maxRows; its test covers formula escaping, not the bound"
+    }
+  ],
+  "notes": "Row authorization is app work."
+}

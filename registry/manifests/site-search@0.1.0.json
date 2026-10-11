@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "id": "site-search",
+  "version": "0.1.0",
+  "title": "Site search with filters",
+  "description": "Full-text search with filters for a multi-tenant app's own records (products, articles, tickets): weighted fields, a safe query syntax (words, phrases, -exclusions, prefix* type-ahead), keyword, range and boolean filters, facets, highlights, keyset paging and per-document visibility, with an in-memory BM25 index, a PostgreSQL tsvector store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "search",
+    "full-text search",
+    "full-text search with filters",
+    "site search",
+    "search box",
+    "faceted search",
+    "filters",
+    "autocomplete",
+    "type-ahead",
+    "highlighting",
+    "multi-tenant",
+    "postgres",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/site-search"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, String.prototype.normalize, Unicode property escapes, btoa/atob and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "site-search/core.ts",
+      "path": "modules/site-search/files/core.ts",
+      "sha256": "3a7dc0c7c27a484d3857a7284ccbc4e89447716555f3406094b053b15fd93227",
+      "bytes": 24484
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "site-search/memory-store.ts",
+      "path": "modules/site-search/files/memory-store.ts",
+      "sha256": "69661a14a9f3de0b1e6b9eec65e172e147e928ff6aada1ecbdc6090d937a1be7",
+      "bytes": 14249
+    },
+    {
+      "source": "files/http.ts",
+      "target": "site-search/http.ts",
+      "path": "modules/site-search/files/http.ts",
+      "sha256": "3c62c69e4329926f0de235d710a92438738ca5d84da1bc668f9c15385c5d7df5",
+      "bytes": 7554
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "site-search/sql-store.ts",
+      "path": "modules/site-search/files/sql-store.ts",
+      "sha256": "963b5e395d0d0fb4bb6ace48626f0318e71b1cefcff9eb8b5b5b9383c9270863",
+      "bytes": 11819
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "site-search/schema.sql",
+      "path": "modules/site-search/files/schema.sql",
+      "sha256": "09b904c48933cec047c8a238fee2a04111ec64ba8a9092fdc6c00bcf130f1708",
+      "bytes": 1280
+    }
+  ],
+  "exports": [
+    {
+      "name": "createSearch",
+      "from": "site-search/core.ts"
+    },
+    {
+      "name": "SearchError",
+      "from": "site-search/core.ts"
+    },
+    {
+      "name": "parseQuery",
+      "from": "site-search/core.ts"
+    },
+    {
+      "name": "tokenize",
+      "from": "site-search/core.ts"
+    },
+    {
+      "name": "foldText",
+      "from": "site-search/core.ts"
+    },
+    {
+      "name": "renderHighlight",
+      "from": "site-search/core.ts"
+    },
+    {
+      "name": "MemorySearchStore",
+      "from": "site-search/memory-store.ts"
+    },
+    {
+      "name": "stem",
+      "from": "site-search/memory-store.ts"
+    },
+    {
+      "name": "createSearchHandler",
+      "from": "site-search/http.ts"
+    },
+    {
+      "name": "createSqlSearchStore",
+      "from": "site-search/sql-store.ts"
+    },
+    {
+      "name": "buildTsQuery",
+      "from": "site-search/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlSearchStore(executor, { config: 'english' | 'simple' }); elsewhere implement SearchStore (upsert, remove, search) or use MemorySearchStore for small single-process datasets.",
+    "Declare weighted text fields ({ title: 'A', body: 'C' }) and filterable attributes ({ category: 'keyword', price: 'number', publishedAt: 'date', inStock: 'boolean' }); keep the field order stable because the SQL store builds tsv in that order.",
+    "Implement authorize(actor, action, tenantId) for search and index from your membership table; for search, return the actor's principals (groups, roles, user id) that document visibility lists are matched against.",
+    "Index from your own write path (after a product, article or ticket is saved) and remove on delete; re-index everything after changing fields or weights.",
+    "Implement authenticate(request) from your session or verified token, never from the request body.",
+    "Mount createSearchHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "full-text-search",
+    "faceted-search",
+    "type-ahead-prefix-search",
+    "search-highlighting",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "The in-memory store uses Porter-lite English stemming and BM25; PostgreSQL uses its own text search configuration (Snowball stemming and stop words for english) and ts_rank_cd, so scores and some matches differ between stores.",
+    "PostgreSQL highlights come from ts_headline over the accent-folded text (Café is shown as Cafe); the in-memory store highlights the original text.",
+    "Prefix terms match the start of indexed words; with the english configuration a prefix is stemmed first and can miss inflected forms (runn* does not match running). The in-memory store expands a prefix to at most 100 vocabulary words.",
+    "Facets count keyword and boolean attributes over the full filtered set, including the facet's own filter (no disjunctive faceting, no numeric buckets). The total, facet and page queries run separately, without one snapshot.",
+    "A phrase can match across the boundary of two adjacent fields in the PostgreSQL tsvector. No typo tolerance, synonyms, language detection or vector search.",
+    "Cursors are positions, not snapshots: documents changed between pages can move. The SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, not on every hosted Postgres under parallel load.",
+    "No rate limiting; add request rate limits (see the rate-limit module) on the search route. Production database correctness, session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/site-search.test.mjs",
+      "tests/site-search-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/site-search.test.mjs tests/site-search-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "the tokenizer folds accents and case with offsets into the original text; Porter-lite stems plurals, -ing and -ed",
+      "the query parser produces words, phrases, exclusions and a prefix on the last word only, and rejects queries over 256 characters or 16 terms",
+      "words are ANDed; quoted phrases match in order; -word and -\"phrase\" exclude; prefix* matches word starts; exclusions alone filter",
+      "accent folding (creme matches Crème, CAFÉ matches café) and stemming (boot matches boots, train race matches training races) on both stores",
+      "BM25 scores on a known three-document corpus equal the formula with k1 1.2 and b 0.75",
+      "field weights change the order on both stores",
+      "keyword (any of), number and date ranges and boolean filters; undeclared filters fail with invalid-filter and undeclared attributes with invalid-attr",
+      "facet counts per keyword and boolean value over the filtered set, ordered by count then value",
+      "keyset cursor paging by relevance (including tied scores) and by number or date attribute returns every hit once; missing values sort last; a cursor from another sort is invalid-cursor",
+      "tenants are isolated, outside users are forbidden, and documents with a visibility list are seen only by matching principals",
+      "highlights wrap matches in caller markers around HTML-escaped text, or raw text with raw: true; markup-like text is indexed as words",
+      "injection-shaped queries and filter values are treated as text; the PostgreSQL table stays intact",
+      "HTTP adapter: GET with f.<attr> filters, ranges, facets, sort and cursor; PUT and DELETE; origin check; 401 when signed out; cache-control no-store",
+      "schema.sql applies with GIN indexes on tsv and attrs, and the SQL store passes the behaviors above on PostgreSQL",
+      "20 concurrent upserts of one document leave one row holding the newest write; an older write is ignored"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core with query parser, in-memory BM25 index, PostgreSQL schema and tsvector store, and Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/site-search/module.json",
+    "sha256": "f20fa0d68e541646250babfe38ce210652089206a0a80367a0f06191eb4f7b98"
+  },
+  "contractFile": {
+    "path": "modules/site-search/CONTRACT.md",
+    "sha256": "10c7f9cad6b852bda44d2af439befd16d26baa497c4dd34ba8f9c070a6e51d4c",
+    "bytes": 9993
+  }
+}

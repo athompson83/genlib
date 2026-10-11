@@ -1,0 +1,96 @@
+{
+  "id": "threaded-comments",
+  "title": "Comments with threaded replies",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "comments with threaded replies"
+  ],
+  "requirements": [
+    {
+      "id": "nested-replies",
+      "text": "Users post comments and replies on a resource; replies nest up to a depth limit"
+    },
+    {
+      "id": "parent-validation",
+      "text": "A reply's parent must belong to the same resource and tenant"
+    },
+    {
+      "id": "authorization-tenant",
+      "text": "Only authorized members can read or write a thread; other tenants see not-found"
+    },
+    {
+      "id": "edit-moderation",
+      "text": "Authors edit within a window, and moderators can edit, hide or remove"
+    },
+    {
+      "id": "soft-delete",
+      "text": "Deleting a comment that has replies keeps the thread readable"
+    },
+    {
+      "id": "paged-listing",
+      "text": "Threads list newest first with a cursor, reply previews and reply counts"
+    },
+    {
+      "id": "safe-content",
+      "text": "Bodies are validated and rich text passes through a sanitizer before storage"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:comments",
+      "status": "fixture-verified",
+      "fulfills": [
+        "nested-replies",
+        "parent-validation",
+        "authorization-tenant",
+        "edit-moderation",
+        "soft-delete",
+        "paged-listing",
+        "safe-content"
+      ],
+      "evidence": [
+        {
+          "requirement": "nested-replies",
+          "test": "tests/comments.test.mjs",
+          "name": "posting and threading: replies nest up to maxDepth and inherit the resource"
+        },
+        {
+          "requirement": "parent-validation",
+          "test": "tests/comments.test.mjs",
+          "name": "a parent on another resource, another tenant or unknown is refused with one code"
+        },
+        {
+          "requirement": "authorization-tenant",
+          "test": "tests/comments.test.mjs",
+          "name": "tenant isolation and authorization: other tenants see not-found"
+        },
+        {
+          "requirement": "edit-moderation",
+          "test": "tests/comments.test.mjs",
+          "name": "edit window: the author edits within it, then only a moderator may edit"
+        },
+        {
+          "requirement": "soft-delete",
+          "test": "tests/comments.test.mjs",
+          "name": "soft delete clears the body, keeps replies and the thread readable"
+        },
+        {
+          "requirement": "soft-delete",
+          "test": "tests/comments-sql.test.mjs",
+          "name": "soft delete clears the body and keeps replies on PostgreSQL"
+        },
+        {
+          "requirement": "paged-listing",
+          "test": "tests/comments.test.mjs",
+          "name": "list: newest first, opaque cursor, reply previews oldest first and reply counts"
+        },
+        {
+          "requirement": "safe-content",
+          "test": "tests/comments.test.mjs",
+          "name": "sanitize transforms stored rich text and empties are refused"
+        }
+      ],
+      "notes": "The sanitizer function is supplied by the application; the module applies it and refuses empty results"
+    }
+  ]
+}

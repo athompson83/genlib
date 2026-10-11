@@ -1,0 +1,54 @@
+{
+  "id": "pdf-form-filling",
+  "title": "Fill a PDF form",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "fill a pdf form"
+  ],
+  "requirements": [
+    {
+      "id": "list-fields",
+      "text": "AcroForm fields are listed with fully qualified names, kinds, current values and options"
+    },
+    {
+      "id": "validated-fill",
+      "text": "Text, checkbox, radio and choice fields are filled by name; unknown names and invalid options are refused before writing"
+    },
+    {
+      "id": "appearances-unicode",
+      "text": "Filled values render in every viewer (appearance streams generated), including non-Latin text with an embedded font"
+    },
+    {
+      "id": "flatten",
+      "text": "The output can be flattened so values can no longer be edited"
+    },
+    {
+      "id": "untrusted-input",
+      "text": "Uploaded PDFs are size-bounded and parsed in isolation; encrypted and XFA forms are refused clearly"
+    },
+    {
+      "id": "output-handling",
+      "text": "The original template is preserved and the filled output is stored and served only to authorized users"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:pdf-form-filling",
+      "status": "install-supported",
+      "fulfills": [
+        "list-fields",
+        "validated-fill",
+        "flatten"
+      ],
+      "notes": "Wraps maintained PDF libraries; per-language tests under examples/cookbook only. Radio groups and non-Latin fonts are documented, not tested; flatten is unavailable in some languages"
+    },
+    {
+      "ref": "resource:pypdf",
+      "status": "cataloged",
+      "fulfills": [
+        "list-fields",
+        "validated-fill"
+      ]
+    }
+  ]
+}

@@ -31,7 +31,7 @@ test('install writes a receipt; adopted separates copied, used and verified', as
 
   const copied = await checkAdoption(target, 'org-invitations');
   assert.equal(copied.status, 'copied', 'installed but nothing imports it yet');
-  assert.match(copied.next[0], /Import the module/);
+  assert.match(copied.next[0], /Import it from application code \(src\/genlib\/org-invitations\/\)/);
 
   await fs.mkdir(path.join(target, 'src/routes'), { recursive: true });
   await fs.writeFile(path.join(target, 'src/routes/invite.ts'), "import { createInvitations } from '../genlib/org-invitations/core.js';\nexport const x = createInvitations;\n");

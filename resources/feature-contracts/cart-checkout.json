@@ -1,0 +1,93 @@
+{
+  "id": "cart-checkout",
+  "title": "Shopping cart and checkout",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "shopping cart and checkout"
+  ],
+  "requirements": [
+    {
+      "id": "cart-operations",
+      "text": "Shoppers add, change and remove line items, and quantities are validated"
+    },
+    {
+      "id": "server-pricing",
+      "text": "Prices, totals, tax, shipping and inventory come from the server, never from client-supplied values"
+    },
+    {
+      "id": "cart-ownership",
+      "text": "A cart is bound to its session or customer; others cannot read or modify it"
+    },
+    {
+      "id": "currency-consistency",
+      "text": "Totals use integer minor units in one currency per cart"
+    },
+    {
+      "id": "inventory-concurrency",
+      "text": "Checkout cannot oversell stock under concurrent orders"
+    },
+    {
+      "id": "single-order",
+      "text": "Placing the order completes at most once; an uncertain payment outcome is reconciled rather than blindly retried"
+    },
+    {
+      "id": "verified-payment",
+      "text": "The order is marked paid only after a provider confirmation verified by signature over the raw body"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:storefront-cart",
+      "status": "fixture-verified",
+      "fulfills": [
+        "cart-operations",
+        "currency-consistency"
+      ],
+      "evidence": [
+        {
+          "requirement": "cart-operations",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        },
+        {
+          "requirement": "currency-consistency",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        }
+      ],
+      "notes": "Client-side cart state helpers only"
+    },
+    {
+      "ref": "integration:commerce-storefront",
+      "status": "install-supported",
+      "fulfills": [
+        "cart-operations",
+        "server-pricing",
+        "cart-ownership",
+        "single-order"
+      ],
+      "notes": "Medusa Store API adapter: backend totals, authorization callback before every operation, serialized completion and uncertain-outcome blocking; tests live in the pack, and no live backend or payment was run"
+    },
+    {
+      "ref": "module:webhook-verification",
+      "status": "fixture-verified",
+      "fulfills": [
+        "verified-payment"
+      ],
+      "evidence": [
+        {
+          "requirement": "verified-payment",
+          "test": "tests/webhook-verification.test.mjs",
+          "name": "Stripe-Signature: multiple v1, tolerance in both directions"
+        }
+      ],
+      "notes": "Verifies the provider signature; marking the order paid is the application's work"
+    }
+  ],
+  "missing": [
+    "server-pricing",
+    "cart-ownership",
+    "inventory-concurrency",
+    "single-order"
+  ]
+}

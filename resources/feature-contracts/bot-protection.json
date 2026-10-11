@@ -1,0 +1,130 @@
+{
+  "id": "bot-protection",
+  "title": "CAPTCHA and bot protection",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "image captcha or bot protection"
+  ],
+  "requirements": [
+    {
+      "id": "server-verification",
+      "text": "CAPTCHA tokens (Turnstile, hCaptcha, reCAPTCHA) are verified server-side against the provider siteverify endpoint"
+    },
+    {
+      "id": "token-binding",
+      "text": "Verification checks hostname, action, challenge age and (reCAPTCHA v3) score"
+    },
+    {
+      "id": "fail-closed",
+      "text": "Provider outages and malformed replies are refused by default; failing open is explicit"
+    },
+    {
+      "id": "replay-protection",
+      "text": "A solved challenge is accepted once, including under concurrent replays"
+    },
+    {
+      "id": "privacy-alternative",
+      "text": "A no-third-party option (honeypot with minimum fill time, proof of work) protects forms without image puzzles"
+    },
+    {
+      "id": "secret-hygiene",
+      "text": "The provider secret never appears in responses, errors or logs"
+    },
+    {
+      "id": "uniform-failure",
+      "text": "Every failed check gets the same response, so attackers cannot tell which check failed"
+    },
+    {
+      "id": "rate-limit",
+      "text": "Repeated attempts from one client or key are throttled with 429 and Retry-After"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:bot-protection",
+      "status": "fixture-verified",
+      "fulfills": [
+        "server-verification",
+        "token-binding",
+        "fail-closed",
+        "replay-protection",
+        "privacy-alternative",
+        "secret-hygiene",
+        "uniform-failure"
+      ],
+      "evidence": [
+        {
+          "requirement": "server-verification",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "success posts form-encoded secret, response and remoteip to the documented endpoint"
+        },
+        {
+          "requirement": "token-binding",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "wrong hostname, stale and future timestamps, and error codes are refused"
+        },
+        {
+          "requirement": "token-binding",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "action mismatch for Turnstile and reCAPTCHA"
+        },
+        {
+          "requirement": "token-binding",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "reCAPTCHA v3 low score is refused at the threshold"
+        },
+        {
+          "requirement": "fail-closed",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "network failure is fail-closed by default and passes only with failOpen"
+        },
+        {
+          "requirement": "replay-protection",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "PoW: concurrent replays of one solution succeed exactly once"
+        },
+        {
+          "requirement": "privacy-alternative",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "honeypot: a filled hidden field and a too-fast submission are bots"
+        },
+        {
+          "requirement": "privacy-alternative",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "PoW: issue, solve and verify"
+        },
+        {
+          "requirement": "secret-hygiene",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "the secret never appears in thrown configuration errors"
+        },
+        {
+          "requirement": "uniform-failure",
+          "test": "tests/bot-protection.test.mjs",
+          "name": "protect(): passes good submissions, hides the failing check"
+        }
+      ],
+      "notes": "Replay protection is tested for the proof-of-work challenge; provider tokens rely on the provider's single-use check"
+    },
+    {
+      "ref": "module:rate-limit",
+      "status": "fixture-verified",
+      "fulfills": [
+        "rate-limit"
+      ],
+      "evidence": [
+        {
+          "requirement": "rate-limit",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "concurrent requests on the memory store never exceed the limit"
+        },
+        {
+          "requirement": "rate-limit",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "rateLimitResponse builds a 429 with Retry-After and RateLimit headers"
+        }
+      ]
+    }
+  ],
+  "notes": "Genlib does not generate image CAPTCHAs; it verifies provider CAPTCHAs and offers honeypot and proof-of-work."
+}

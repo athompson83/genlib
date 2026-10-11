@@ -1,0 +1,85 @@
+{
+  "id": "calendar-booking",
+  "title": "Calendar booking with availability",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "calendar booking with availability"
+  ],
+  "requirements": [
+    {
+      "id": "availability-rules",
+      "text": "Hosts define recurring working hours in their time zone, with date exceptions"
+    },
+    {
+      "id": "free-slots",
+      "text": "Bookable slots are availability minus existing bookings and busy times, honoring duration and buffers"
+    },
+    {
+      "id": "no-double-booking",
+      "text": "Two concurrent bookings of the same slot cannot both succeed"
+    },
+    {
+      "id": "timezone-display",
+      "text": "Slots are stored in UTC and shown in the invitee's time zone, correct across DST"
+    },
+    {
+      "id": "booking-validation",
+      "text": "Bookings outside availability, inside the minimum notice or beyond the booking horizon are rejected on the server"
+    },
+    {
+      "id": "confirmation-invite",
+      "text": "A confirmed booking produces a calendar invite (iCalendar) for both parties"
+    },
+    {
+      "id": "cancel-reschedule",
+      "text": "Only the host or invitee can cancel or reschedule, and the freed slot becomes available again"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:interval-merge",
+      "status": "fixture-verified",
+      "fulfills": [
+        "free-slots"
+      ],
+      "evidence": [
+        {
+          "requirement": "free-slots",
+          "test": "tests/wave12-capabilities.test.mjs",
+          "name": "interval sets merge, intersect, subtract and query like the shared vectors"
+        }
+      ],
+      "notes": "Interval subtraction and gap finding over integer ranges; slot generation from rules, durations and buffers is the application's"
+    },
+    {
+      "ref": "capability:ics-events",
+      "status": "fixture-verified",
+      "fulfills": [
+        "confirmation-invite"
+      ],
+      "evidence": [
+        {
+          "requirement": "confirmation-invite",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "ics-events: calendar vector, folding and validation"
+        }
+      ]
+    },
+    {
+      "ref": "resource:easy-appointments",
+      "status": "cataloged",
+      "fulfills": [
+        "availability-rules",
+        "booking-validation"
+      ],
+      "notes": "Self-hosted appointment scheduler with working plans"
+    }
+  ],
+  "missing": [
+    "availability-rules",
+    "no-double-booking",
+    "timezone-display",
+    "booking-validation",
+    "cancel-reschedule"
+  ]
+}

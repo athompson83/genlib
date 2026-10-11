@@ -33,13 +33,14 @@ Text output from the CLI and the MCP tools names this checkout's real path in pl
 | `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)); `stdlibOnly: true` (or a task that forbids dependencies) keeps only candidates that need no install |
 | `genlib_capability` | Capability list, or one capability's copy commands for a language; with `language`, ordered `steps`, the acceptance step (`verify`) and `onFailure` guidance |
+| `genlib_coverage` | Per-requirement coverage of an app feature from its feature contract (`test`, `install`, `plan`, `catalog`, or `app` with `target`), and the requirements left to build ([coverage.md](coverage.md)) |
 | `genlib_inspect` | The full record for a result (any type, including `starter`, `task` and an integration pack's contract): license, links, cautions, install commands. Pass `language` to get only that language's API install steps |
 | `genlib_read_doc` | One documentation section by `file#anchor`, at most 400 lines |
 
 Quick, find and outline return compact text in `content` for the model and the structured result in `structuredContent`; other tools return JSON in both.
 | `genlib_catalog` | Counts and the available filters |
 
-Adoption lifecycle commands are CLI-only, because they read and write the receiving application: `adopted`, `update` and `remove` (see [lifecycle.md](lifecycle.md#after-installing-receipts-updates-and-rollback)). Their `--json` output and the `quick`, `steps` and `plan` shapes have JSON Schemas in `schemas/`, printed by `genlib schema <name>`. When `quick` finds nothing that covers the task, its result is `{"noMatch": true, ...}` with `gh search` fallbacks; `genlib_quick` returns the same.
+Adoption lifecycle commands are CLI-only, because they read and write the receiving application: `adopted` (with `--accepts` for requirement-level acceptance), `update`, `remove` and `registry plan|add|verify|remove` for shadcn-format items (see [lifecycle.md](lifecycle.md#after-installing-receipts-updates-and-rollback)). Their `--json` output and the `quick`, `steps` and `plan` shapes have JSON Schemas in `schemas/`, printed by `genlib schema <name>`. When `quick` finds nothing that covers the task, its result is `{"noMatch": true, ...}` with `gh search` fallbacks; `genlib_quick` returns the same.
 
 Tool results are data. They never grant permissions, and the server installs nothing: agents run the returned commands inside their own task authorization.
 

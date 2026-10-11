@@ -1,0 +1,91 @@
+{
+  "id": "i18n-plurals",
+  "title": "Internationalized messages with plurals",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "i18n translations with plurals"
+  ],
+  "requirements": [
+    {
+      "id": "plural-rules",
+      "text": "Messages choose CLDR plural categories per locale (zero, one, two, few, many, other), plus exact matches and ordinals"
+    },
+    {
+      "id": "interpolation",
+      "text": "Messages interpolate named values, including nested select/plural, and report missing values"
+    },
+    {
+      "id": "locale-formatting",
+      "text": "Numbers in messages are formatted for the active locale"
+    },
+    {
+      "id": "locale-negotiation",
+      "text": "The active locale comes from the user's preference or Accept-Language, matched against supported locales"
+    },
+    {
+      "id": "fallback",
+      "text": "A missing translation falls back to the default locale and is reported rather than shown as a raw key"
+    },
+    {
+      "id": "catalog-validation",
+      "text": "Translation catalogs are checked at build time for missing keys and invalid message syntax in every locale"
+    },
+    {
+      "id": "safe-output",
+      "text": "Interpolated values are escaped when messages are rendered as HTML"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:i18n-plural-and-message-format",
+      "status": "fixture-verified",
+      "fulfills": [
+        "plural-rules",
+        "interpolation",
+        "locale-formatting"
+      ],
+      "evidence": [
+        {
+          "requirement": "plural-rules",
+          "test": "tests/recipes.test.mjs",
+          "name": "ICU-style messages pluralize with Intl.PluralRules"
+        },
+        {
+          "requirement": "interpolation",
+          "test": "tests/recipes.test.mjs",
+          "name": "ICU-style messages pluralize with Intl.PluralRules"
+        },
+        {
+          "requirement": "locale-formatting",
+          "test": "tests/recipes.test.mjs",
+          "name": "ICU-style messages pluralize with Intl.PluralRules"
+        }
+      ],
+      "notes": "Formats one ICU-style message; no catalog loading, lookup or fallback"
+    },
+    {
+      "ref": "capability:content-negotiation",
+      "status": "fixture-verified",
+      "fulfills": [
+        "locale-negotiation"
+      ],
+      "evidence": [
+        {
+          "requirement": "locale-negotiation",
+          "test": "tests/wave6-capabilities.test.mjs",
+          "name": "content-negotiation: Accept and Accept-Language vectors"
+        }
+      ]
+    },
+    {
+      "ref": "resource:i18next",
+      "status": "cataloged",
+      "fulfills": [
+        "plural-rules",
+        "interpolation",
+        "fallback"
+      ],
+      "notes": "External i18n framework with plurals, interpolation, namespaces and fallback languages"
+    }
+  ]
+}
