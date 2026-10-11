@@ -65,6 +65,12 @@
     "The in-memory store is for tests and prototypes only. No rate limiting; add request limits (see the rate-limit module) to the upload route.",
     "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: POST {prefix}, POST {prefix}/{id}/validate|commit, GET {prefix}/{id}/errors.csv, DELETE {prefix}/{id}",
+    "upload is the raw text/csv body (not multipart), UTF-8 only; other types → 415",
+    "limits 5 MiB, 10,000 rows, 200 columns → 413; staged imports expire after 24 h",
+    "commit saves only valid rows and is repeat-safe; not-validated or commit-in-progress → 409"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/csv-import.test.mjs"],

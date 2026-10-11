@@ -10,7 +10,8 @@ import { execFileSync } from 'node:child_process';
 import { loadCatalog, REPOSITORY_ROOT } from '../lib/catalog.mjs';
 import { installModule } from '../lib/install.mjs';
 import { checkAdoption } from '../lib/lifecycle.mjs';
-import { acceptanceProblems, ciPacks, contractCoverage, findContract, formatCoverage, loadContracts, validateContracts } from '../lib/coverage.mjs';
+import { acceptanceProblems, ciPacks, contractCoverage, findContract, formatCoverage, loadContracts, refCoverage, validateContracts } from '../lib/coverage.mjs';
+import { coversLine } from '../lib/brief.mjs';
 import { loadSources, searchEntries } from '../lib/discover.mjs';
 
 const contracts = loadContracts(REPOSITORY_ROOT);
@@ -116,4 +117,19 @@ test('the CI pack list is read from the workflow matrix', () => {
   const packs = ciPacks(REPOSITORY_ROOT);
   assert.ok(packs.has('durable-jobs') && packs.has('commerce-storefront'));
   assert.ok(!packs.has('native-persistence'), 'non-Node packs run in other jobs and are not node:test evidence');
+});
+
+test('quick says what its pick verifiably covers of the asked feature, and nothing for another feature', () => {
+  const full = refCoverage(contracts, 'module:org-invitations', 'organization invitations');
+  assert.deepEqual(full, { contract: 'org-invitations', verified: '8/8', missing: [] });
+  assert.equal(coversLine(full), '8/8 of org-invitations verified by tests');
+  const part = refCoverage(contracts, 'capability:cron-next', 'cron scheduled tasks');
+  assert.equal(part.contract, 'cron-scheduled-tasks');
+  assert.ok(part.missing.length >= 1 && part.missing.includes('single-execution'));
+  assert.match(coversLine(part), /^\d\/7 of cron-scheduled-tasks verified by tests; app must add: /);
+  // Verified for outgoing webhook delivery, but the query asks for verifying an incoming Stripe webhook.
+  assert.equal(refCoverage(contracts, 'capability:webhook-signature', 'verify stripe webhook'), null);
+  assert.equal(refCoverage(contracts, 'resource:does-not-exist', 'anything'), null);
+  const quick = execFileSync(process.execPath, [CLI, 'quick', 'organization', 'invitations'], { encoding: 'utf8' });
+  assert.match(quick, /^# reuse direct: 8\/8 of org-invitations verified by tests$/m);
 });

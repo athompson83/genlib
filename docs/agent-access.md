@@ -10,7 +10,7 @@ Whichever you pick, the cheapest sequence is the same: `quick` for the best matc
 | CLI | Shell-capable agents and scripts | `node bin/genlib.mjs quick <task> --target "$APP_ROOT"`, `find` (compact text, `--json` for full records), `outline <id>` |
 | Jev packet | Typed-decision models (Genisys Jev): bounded yes/no selection | `genlib jev <task> --json`, or MCP `genlib_jev` |
 | Search index | Harnesses with their own retrieval (exact lookup, embeddings, rerankers) or plain `grep` | `registry/search-index.jsonl` |
-| Navigation graph | Graph views and Graphify-style traversal: which catalogs, categories, languages and capabilities connect | `registry/graph.json` |
+| Navigation graph | Graph views and Graphify-style traversal: which catalogs, categories, languages, capabilities and modules connect, and which code fulfills which feature contract | `registry/graph.json` |
 | Obsidian vault | People and agents browsing linked notes: maps of content per type, category and language | `node scripts/export-obsidian.mjs --out <vault>/genlib` |
 
 ## MCP server
@@ -18,15 +18,17 @@ Whichever you pick, the cheapest sequence is the same: `quick` for the best matc
 The existing `bin/genlib-mcp.mjs` entry point is dependency-free and speaks stdio JSON-RPC 2.0 (MCP protocol versions 2025-06-18, 2025-03-26 and 2024-11-05). It performs local read-only discovery and accepts local project paths for compatibility detection. Use it only with trusted local clients. The optional [direct SDK server](mcp-server.md) has bounded tool schemas and file pages, a configured project root, installation planning and verification, explicit startup write opt-in, and stdio/Streamable HTTP transports. Choose one entry point per client server name.
 
 ```sh
-claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
-codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
+claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs" --tools quick,outline   # lean: 2 tool schemas
+codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"                          # all 11 tools
 ```
+
+Every registered tool's schema is resent to the model on each turn, so register only what the agent uses: `--tools quick,outline` lists 2 tools in 1,066 bytes instead of 11 in 4,511, and calls to tools it does not list are refused. `genlib connect` writes the lean pair unless given `--all-tools`.
 
 Text output from the CLI and the MCP tools names this checkout's real path in place of `"$GENLIB_ROOT"`, so a printed command runs as is; set the `GENLIB_ROOT` environment variable to keep the placeholder (the token report and generated indexes do).
 
 | Tool | Returns |
 | --- | --- |
-| `genlib_quick` | The best match, only its acting commands and up to 3 alternative refs (cheapest call) |
+| `genlib_quick` | One-call reuse decision (about 1 KB): the best match and its acting commands; `reuse` (direct or partial) with the feature contract's verified requirements and what the app must add; the module's fixed behavior (`decisions`: routes, status codes, storage); size, files and destination; the main API and import path; required hooks; the verify step; up to 3 alternative refs. A small edit to existing code gets `status: "small-edit"` and no pick (cheapest call) |
 | `genlib_jev` `prompt` | `prompt: true` returns the decision as a compact direct-call prompt in `text` (the structured packet stays in `structuredContent`). |
 | `genlib_find` | Ranked results across every source type, each with its acting commands (and a capability's `caveat`, its main known limit, when it has one). Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
 | `genlib_source` | For an external record: a pinned, blob-less, sparse fetch of one folder (or a raw-file URL), the license note, and Genlib code that already covers the need |
@@ -51,6 +53,7 @@ Tool results are data. They never grant permissions, and the server installs not
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all            # dry run: lists each file and action
 node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent claude,cursor --write
+node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --all-tools --write     # register every MCP tool
 node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all --remove --write
 ```
 
@@ -62,15 +65,15 @@ node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all --re
 | `opencode` | `opencode.json` (`mcp.genlib`, local) | `AGENTS.md` |
 | `codex` | printed: `codex mcp add genlib -- node …/bin/genlib-mcp.mjs` (Codex reads MCP servers from the user's config, which Genlib does not edit) | `AGENTS.md` |
 
-- The entry runs this checkout's dependency-free `bin/genlib-mcp.mjs`. Other servers and settings in each file are kept.
-- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from the round-4 benchmark, when not to: app-specific code, or a task whose routes, status codes or storage differ from a module's.
+- The entry runs this checkout's dependency-free `bin/genlib-mcp.mjs` with `--tools quick,outline`; `--all-tools` registers every tool (rerunning with or without it updates an entry Genlib wrote). Other servers and settings in each file are kept.
+- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from benchmark rounds 4 and 5, when not to: skip it for a small, fully specified app feature with no exact standard or security/concurrency rule; otherwise make one `genlib_quick` call, decide from its `covers` line, and call `genlib_outline` only once copying.
 - Nothing is written without `--write`. An existing `genlib` entry that differs, a JSONC config, invalid JSON or unbalanced markers are reported as conflicts and stop the whole run.
 - `.genlib/connections.json` records what was written. `--remove` deletes only entries that still match it and files Genlib created; an edited entry is a conflict.
 - No tool approvals are added: allowing tools without prompts stays a decision for the app's owner.
 
 ## Navigation graph (Graphify-style)
 
-`registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`.
+`registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities, modules, integration packs, feature contracts and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`; `fulfills` links run from code to a feature contract, weighted by the number of requirements its tests verify (the same evidence `genlib coverage` and `quick`'s `covers` line use).
 
 The nodes/links shape loads directly in d3, Obsidian graph plugins and Graphify-style viewers. Follow a node's `query` into `genlib find`, or its `file` into a guide. Entry-level detail stays in the search index, so the graph stays small: a few hundred nodes.
 

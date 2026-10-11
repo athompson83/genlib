@@ -22,7 +22,8 @@
     },
     "status": {
       "enum": [
-        "no-match"
+        "no-match",
+        "small-edit"
       ]
     },
     "title": {
@@ -79,6 +80,88 @@
         "type": "string"
       },
       "description": "unreviewed search commands outside the catalog"
+    },
+    "reuse": {
+      "enum": [
+        "direct",
+        "partial"
+      ],
+      "description": "direct: tests verify every requirement of the asked feature; partial: the app must add some, or a caveat applies"
+    },
+    "covers": {
+      "type": "object",
+      "required": [
+        "contract",
+        "verified",
+        "missing"
+      ],
+      "properties": {
+        "contract": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "string",
+          "pattern": "^\\d+/\\d+$"
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "description": "Behavior the module fixes that a task may contradict (routes, status codes, storage)"
+    },
+    "size": {
+      "type": "object",
+      "required": [
+        "lines",
+        "files"
+      ],
+      "properties": {
+        "lines": {
+          "type": "integer"
+        },
+        "files": {
+          "type": "integer"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Where the copy lands in the app"
+    },
+    "importFrom": {
+      "type": "string",
+      "description": "App path of the file that exports the main API"
+    },
+    "api": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 3,
+      "description": "Main functions as name(parameter names)"
+    },
+    "hooks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Required fields of the options the app supplies"
+    },
+    "verify": {
+      "type": "string"
     }
   }
 }

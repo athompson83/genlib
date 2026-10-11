@@ -31,7 +31,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "registry_item_update": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry update shadcn--login-01 --target \"$APP_ROOT\" --json",
     "provider_check": "node \"$GENLIB_ROOT/bin/genlib.mjs\" provider check btst-kanban --target \"$APP_ROOT\"",
     "provider_adopt": "node \"$GENLIB_ROOT/bin/genlib.mjs\" provider adopt btst-kanban --from \"$SCRATCH\" --baseline \"$BASELINE\" --target \"$APP_ROOT\" --json",
-    "connect_agents": "node \"$GENLIB_ROOT/bin/genlib.mjs\" connect --target \"$APP_ROOT\" --agent claude,cursor --write",
+    "connect_agents": "node \"$GENLIB_ROOT/bin/genlib.mjs\" connect --target \"$APP_ROOT\" --agent claude,cursor --write   (registers genlib_quick and genlib_outline; --all-tools for every tool)",
     "provider_accept": "node \"$GENLIB_ROOT/bin/genlib.mjs\" adopted provider--btst-kanban --target \"$APP_ROOT\" --test \"sh '$GENLIB_ROOT/resources/providers/btst-kanban/accept.sh'\" --accepts kanban-board#boards,kanban-board#persistence",
     "output_schema": "node \"$GENLIB_ROOT/bin/genlib.mjs\" schema quick",
     "integration_list": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration list --json",
@@ -43,7 +43,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
   "copy": [
     "capability inspect <id> --language <lang> --json adds steps [{kind: copy|install|integrate|test|check, run, cwd, purpose}], verify (the acceptance step) and onFailure: run them in order and stop at the first failing step.",
     "Projects that already use the shadcn CLI can copy a recipe or module with npx shadcn@4.21.4 add athompson83/genlib/<item> (registry.json); it copies files only, without Genlib's compatibility check or lock.",
-    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run, # tests cover: what those tests check and # repo evidence: how Genlib CI tested it. --run-tests (Python, Go) runs them in the same call and exits non-zero if they fail on this copy. An existing requirements.txt or other manifest is kept and its lines reported to merge. Do not re-read the copied source to check it; add tests only for what the task adds."
+    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run, # tests cover: what those tests check and # repo evidence: how Genlib CI tested it. --run-tests (Python, Go) runs them in the same call and exits non-zero if they fail on this copy. An existing requirements.txt or other manifest is kept and its lines reported to merge. Copies are tracked in .genlib/lock.json: identical shared files are reused, edited ones conflict, and remove <id> keeps files another capability needs. Do not re-read the copied source to check it; add tests only for what the task adds."
   ],
   "find": [
     "Output is sized for agents: quick prints the best match and only its acting commands; find prints one line plus commands per result. Add --json for full records (--json --brief for compact JSON). --language <name> prefers a language without a target.",

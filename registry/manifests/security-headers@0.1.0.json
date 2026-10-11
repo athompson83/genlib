@@ -97,6 +97,12 @@
     "No CSP violation report collector, Report-To/Reporting-Endpoints management, CORS, COEP/CORP, or cookie attribute handling is included.",
     "withSecurityHeaders transfers the original body stream and returns Responses with a status outside 200-599 unchanged. Tests ran on Node.js 22 only; browser enforcement was not exercised."
   ],
+  "decisions": [
+    "default CSP default-src 'self' blocks inline scripts/styles and third-party resources",
+    "HSTS max-age=31536000; includeSubDomains by default; X-Frame-Options DENY; COOP same-origin",
+    "Referrer-Policy strict-origin-when-cross-origin; existing headers win unless override: true",
+    "no CORS, COEP/CORP or cookie attributes"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -106,7 +112,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/security-headers/module.json",
-    "sha256": "d228d317aaa906480221af79d90162296030f31540432933a607bb7545b30268"
+    "sha256": "fbe1776b578757c49458cda9d2b472732710ed32a291fa9eb8c24bb2344a35f5"
   },
   "contractFile": {
     "path": "modules/security-headers/CONTRACT.md",

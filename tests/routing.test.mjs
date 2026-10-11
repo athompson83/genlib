@@ -10,4 +10,7 @@ test('quick routes task phrasings to the right capability', async () => {
   assert.ok(report.tuning.top1 >= 0.95, 'tuning top-1 ' + report.tuning.top1);
   assert.ok(report.heldout.top1 >= 0.78, 'held-out top-1 ' + report.heldout.top1);
   assert.ok(report.heldout.top3 >= 0.85, 'held-out top-3 ' + report.heldout.top3);
+  // Negative cases: where reuse cannot help, quick answers no match, and the skip rule never turns away a feature task.
+  assert.equal(report.skip.correct, 1, 'skip misses: ' + report.skip.misses.map(miss => miss.query).join('; '));
+  assert.deepEqual(report.falseSkips, []);
 });

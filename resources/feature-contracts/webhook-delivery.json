@@ -37,6 +37,107 @@
   ],
   "implementations": [
     {
+      "ref": "module:webhook-delivery",
+      "status": "fixture-verified",
+      "fulfills": [
+        "signed-payload",
+        "retry-backoff-dead",
+        "durable-queue",
+        "attempt-timeout",
+        "stable-event-id",
+        "ssrf-guard",
+        "endpoint-authorization"
+      ],
+      "evidence": [
+        {
+          "requirement": "signed-payload",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "worker delivers the exact stored body with a signature verified by the webhook-verification module"
+        },
+        {
+          "requirement": "signed-payload",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "secret rotation signs with every active secret until the old one expires"
+        },
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "network errors, timeouts and non-2xx responses are retried with backoff and the same webhook-id, then dead"
+        },
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "manual replay of a dead delivery requeues it with the same webhook-id and a fresh attempt budget"
+        },
+        {
+          "requirement": "durable-queue",
+          "test": "tests/webhook-delivery-sql.test.mjs",
+          "name": "schema applies and delivery rows commit or roll back with the triggering change on the caller transaction"
+        },
+        {
+          "requirement": "durable-queue",
+          "test": "tests/webhook-delivery-sql.test.mjs",
+          "name": "claim holds until the lease expires, then another worker reclaims it; the stale worker cannot complete"
+        },
+        {
+          "requirement": "attempt-timeout",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "each attempt gets its own AbortSignal timeout; a hung endpoint is aborted and retried"
+        },
+        {
+          "requirement": "stable-event-id",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "enqueue creates one delivery per (event, endpoint), idempotent on the event id, filtered by event type"
+        },
+        {
+          "requirement": "stable-event-id",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "network errors, timeouts and non-2xx responses are retried with backoff and the same webhook-id, then dead"
+        },
+        {
+          "requirement": "ssrf-guard",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "isPublicIp and parseIp reject private, loopback, link-local, CGNAT, multicast, ULA, mapped and metadata ranges"
+        },
+        {
+          "requirement": "ssrf-guard",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "checkWebhookUrl requires https, refuses credentials, localhost names and non-canonical IPv4 forms"
+        },
+        {
+          "requirement": "ssrf-guard",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "registration refuses URLs that fail the SSRF guard, including hostnames resolving to private addresses"
+        },
+        {
+          "requirement": "ssrf-guard",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "send time re-resolves the host: a hostname rebound to a private address is blocked and not fetched"
+        },
+        {
+          "requirement": "ssrf-guard",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "redirects are not followed: fetch uses redirect manual and a 3xx is a failed attempt"
+        },
+        {
+          "requirement": "endpoint-authorization",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "endpoint CRUD and secret rotation call authorize(actor, tenantId, action) and refuse unauthorized actors"
+        },
+        {
+          "requirement": "endpoint-authorization",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "tenants cannot read, change, rotate, replay or receive another tenant"
+        },
+        {
+          "requirement": "endpoint-authorization",
+          "test": "tests/webhook-delivery.test.mjs",
+          "name": "HTTP adapter: create shows the secret once, list and get never do, rotate shows the new secret once"
+        }
+      ],
+      "notes": "The SSRF guard checks the resolved addresses at registration and at send time and passes them to fetch; closing the DNS-rebinding window needs a fetch that connects to those addresses (for example an undici Agent with a fixed lookup), which the app supplies. PGlite concurrency tests run on one connection."
+    },
+    {
       "ref": "capability:webhook-signature",
       "status": "fixture-verified",
       "fulfills": [
@@ -104,5 +205,5 @@
     "ssrf-guard",
     "endpoint-authorization"
   ],
-  "notes": "capability:ip-cidr classifies public addresses and could back an SSRF guard, but no Genlib code resolves and pins endpoint addresses."
+  "notes": "module:webhook-delivery covers signing, retries with backoff and dead letters, a transactional queue with leases, per-attempt timeouts, stable event ids, an SSRF guard and tenant-scoped endpoint management. The app supplies the transport that pins resolved addresses and its authorization rules."
 }

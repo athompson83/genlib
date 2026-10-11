@@ -170,6 +170,12 @@
     "The scoped repository handles single-table get/list/insert/update/delete by id; joins and raw SQL must add the tenant predicate themselves (RLS still applies to them).",
     "Tenant resolution trusts whatever session(request) and memberships(userId) return; session security, membership administration and tenant provisioning remain project responsibilities."
   ],
+  "decisions": [
+    "PostgreSQL RLS via transaction-local set_config('app.tenant_id'); tables get FORCE ROW LEVEL SECURITY",
+    "a tenant the user is not a member of → 404 not-found by default (hiddenStatus: 403 to change)",
+    "several memberships and no selector → 400 tenant-required; none → 403 no-tenant",
+    "tenant ids 1-128 chars of [A-Za-z0-9_.:-]; memberships are read on every request"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -220,7 +226,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/tenant-isolation/module.json",
-    "sha256": "8cea81e80cd0eb19ee3d14d414141fcec1eac3005bc191d6e2bc78c79ee61ae5"
+    "sha256": "c7fc8aa5bef18fb0b6a2da7b243741327a30353939f6a56df9be894c83c5f711"
   },
   "contractFile": {
     "path": "modules/tenant-isolation/CONTRACT.md",

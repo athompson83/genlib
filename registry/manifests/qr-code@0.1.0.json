@@ -106,6 +106,11 @@
     "No raster (PNG/canvas) output and no logo overlay; logos reduce error-correction headroom and are not supported.",
     "SVG colors are limited to hex values and a short name allow-list, so CSS variables and rgb() are rejected."
   ],
+  "decisions": [
+    "output is SVG, terminal text or a 0/1 matrix only; no PNG or canvas",
+    "default error correction M; auto mode picks one mode, no mixed segments or ECI",
+    "SVG quiet zone default 4 modules at scale 1; colors limited to hex or a few names"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -142,7 +147,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/qr-code/module.json",
-    "sha256": "ea6a1a296bb4306c5bd05f391084f873e0fb42855ab2f1ccfa3e90e260447d6a"
+    "sha256": "753543bbd63435ade1b66e81a0056604205107929188f11a5bf9ae795cd188ac"
   },
   "contractFile": {
     "path": "modules/qr-code/CONTRACT.md",

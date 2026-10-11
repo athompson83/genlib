@@ -128,6 +128,12 @@
     "No rate limiting beyond the per-tenant pending cap; add request rate limits (see the rate-limit module) on invite and accept routes.",
     "Production database correctness, session security, email deliverability and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: POST {prefix}, GET {prefix}?tenantId=, DELETE {prefix}/{id}, POST {prefix}/inspect, POST {prefix}/accept",
+    "accepting a used invite → 409 already-accepted; expired or revoked → 410; email mismatch → 403",
+    "token stored as SHA-256 hash; 7-day default ttl; re-inviting an email revokes the earlier link",
+    "failed email send revokes the invite → 502 delivery-failed; over 100 pending per tenant → 429"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -172,7 +178,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/org-invitations/module.json",
-    "sha256": "4777ea40c61bbd8b128935ada4d571647b6638f296908e9213c70a2f5fe486a2"
+    "sha256": "7d06605343d0b69195bf4552c3b35c386b9e88363686dcba91d3916ee6926eb9"
   },
   "contractFile": {
     "path": "modules/org-invitations/CONTRACT.md",

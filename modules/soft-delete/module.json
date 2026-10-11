@@ -132,6 +132,12 @@
     "The in-memory store is for tests and prototypes only and does not isolate concurrent transactions; the SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection, not on every hosted Postgres or under multi-connection load.",
     "Production database correctness, legal retention or erasure duties (a purge is not a GDPR erasure of backups), session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "rows get deleted_at and are hidden by default; children cascade by declared relations in one batch",
+    "routes: GET {prefix}?tenantId= (trash list), POST {prefix}/{trashId}/restore?tenantId=",
+    "30-day default retention, then purge; restore afterwards → 410 retention-expired",
+    "unique-value conflict or deleted parent on restore → 409; nothing is restored partially"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [

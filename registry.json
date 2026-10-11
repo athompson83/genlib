@@ -2830,6 +2830,59 @@
    }
   },
   {
+   "name": "email-signup",
+   "type": "registry:item",
+   "title": "User signup with email verification",
+   "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email,",
+   "files": [
+    {
+     "path": "modules/email-signup/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/core.ts"
+    },
+    {
+     "path": "modules/email-signup/files/password-policy.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/password-policy.ts"
+    },
+    {
+     "path": "modules/email-signup/files/scrypt-hasher.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/scrypt-hasher.ts"
+    },
+    {
+     "path": "modules/email-signup/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/memory-store.ts"
+    },
+    {
+     "path": "modules/email-signup/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/http.ts"
+    },
+    {
+     "path": "modules/email-signup/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/sql-store.ts"
+    },
+    {
+     "path": "modules/email-signup/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/email-signup/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module email-signup@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlEmailSignupStore with your query executor; elsewhere implement EmailSignupStore with a unique normalized-email index and single conditional statements for createAccount, markVerified, reserveSend and consumeToken, and an atomic issueToken that inserts the new link and revokes the other pending links that are not newer. If you already have a users table, implement EmailSignupStore against it instead of adding email_signup_accounts; keep the unique index on the normalized email. Implement sendEmail with your email provider and pass idempotencyKey to it; set baseUrl to the absolute https URL of the page that POSTs the token to /confirm. Pass onExistingAccount to email the owner when someone signs up with their address, and onVerified for post-verification work. Keep the default password policy (15 to 128 code points, blocklist) or pass createPasswordPolicy({ minLength: 8 }) when passwords are only one factor of MFA; add a breached-password check for production. Use the default scrypt hasher on Node.js 22+ or inject a PasswordHasher (Argon2id from a maintained library); verify sign-ins with the same hasher and rehash when needsRehash returns true. Mount createEmailSignupHandler under one prefix with exact allowedOrigins, a rateLimit(key) hook and a trusted clientIp(request); log serverError through onResult. Guard gated routes with createVerifiedGate or requireVerified. Contract: https://github.com/athompson83/genlib/blob/main/modules/email-signup/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "entitlements",
    "type": "registry:item",
    "title": "Plan entitlements and usage credits",
@@ -2879,6 +2932,59 @@
     "utility"
    ],
    "docs": "Genlib module env-config@0.1.0 (Apache-2.0). Configure: Declare a schema with str/num/bool/url/list/json/secret fields; chain .optional(), .secret(), .describe(text), and .example(text) as needed. Call defineConfig(schema).parse(source) once at startup with the runtime's environment record and let ConfigError stop the process; use safeParse for a result object instead. Use toExample() to generate or check a committed .env.example, and redact(config) or JSON.stringify(config) for safe startup logging. Contract: https://github.com/athompson83/genlib/blob/main/modules/env-config/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "file-uploads",
+   "type": "registry:item",
+   "title": "File upload with size and type checks",
+   "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an",
+   "files": [
+    {
+     "path": "modules/file-uploads/files/policy.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/policy.ts"
+    },
+    {
+     "path": "modules/file-uploads/files/client.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/client.ts"
+    },
+    {
+     "path": "modules/file-uploads/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/core.ts"
+    },
+    {
+     "path": "modules/file-uploads/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/memory-store.ts"
+    },
+    {
+     "path": "modules/file-uploads/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/http.ts"
+    },
+    {
+     "path": "modules/file-uploads/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/sql-store.ts"
+    },
+    {
+     "path": "modules/file-uploads/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/file-uploads/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module file-uploads@0.1.0 (Apache-2.0). Configure: Set policy.maxBytes and policy.allow (default png, jpeg, gif, webp, pdf); use the same policy object in preflight on the client and createFileUploads on the server. Implement BlobStore (put/get/delete) over your object storage (S3, R2, GCS, disk) keyed by the random storageKey; MemoryBlobStore is for tests. On PostgreSQL, apply schema.sql and use createSqlUploadMetadataStore with your query executor; elsewhere implement UploadMetadataStore with a single conditional quota reservation and conditional status change and delete. Pass authorize(user, tenantId, action) for upload, read and delete, and quotaBytes as a number or per-tenant function. Pass scanner(bytes, record) backed by your antivirus (for example a ClamAV daemon or a scanning service) and call scan(id) from a queue worker, or call recordScanResult(id, verdict) from your own pipeline. No antivirus engine is included. Mount createFileUploadHandler under one prefix with exact allowedOrigins and an authenticate(request) that reads your session; also cap the request body size at your proxy or platform. Contract: https://github.com/athompson83/genlib/blob/main/modules/file-uploads/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",
@@ -3327,6 +3433,49 @@
    }
   },
   {
+   "name": "scheduled-tasks",
+   "type": "registry:item",
+   "title": "Cron scheduled tasks for multi-instance apps",
+   "description": "Run cron jobs from a server app with several instances: five-field cron with names and macros, next runs in any IANA time zone with defined DST behavior, one execution per occurrence across instances, skip/queue/allow overlap policies with leases and heartbeats, catch-up policies for downtime, retri",
+   "files": [
+    {
+     "path": "modules/scheduled-tasks/files/cron.ts",
+     "type": "registry:file",
+     "target": "~/genlib/scheduled-tasks/cron.ts"
+    },
+    {
+     "path": "modules/scheduled-tasks/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/scheduled-tasks/core.ts"
+    },
+    {
+     "path": "modules/scheduled-tasks/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/scheduled-tasks/memory-store.ts"
+    },
+    {
+     "path": "modules/scheduled-tasks/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/scheduled-tasks/sql-store.ts"
+    },
+    {
+     "path": "modules/scheduled-tasks/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/scheduled-tasks/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module scheduled-tasks@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlSchedulerStore with your query executor; on other databases implement SchedulerStore with a unique (schedule_id, scheduled_for) key and single-statement conditional updates for materialize, claim, slot, heartbeat and finish, and a due-run query that returns at most one run per schedule. Register handlers by name in createScheduler({handlers}); saved schedules store only the name and JSON payload, never code. Give each process a unique instanceId and call tick() at least once per graceMs (default 60 s); a platform cron route that hits one instance per minute also works. Pick per schedule: timeZone (IANA, default UTC), overlap (skip, queue or allow), catchUp (none, latest or all with maxCatchUp), maxAttempts and retry delays, and a leaseMs above your handler's longest pause between heartbeats. Make handlers idempotent per (scheduleId, scheduledFor): a run whose worker crashes after committing effects is retried after its lease expires. Pass onFailure to alert when a run fails for good, and prune old rows from scheduled_task_runs on a schedule. Contract: https://github.com/athompson83/genlib/blob/main/modules/scheduled-tasks/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "security-headers",
    "type": "registry:item",
    "title": "Security headers",
@@ -3568,6 +3717,49 @@
    }
   },
   {
+   "name": "two-factor",
+   "type": "registry:item",
+   "title": "Two-factor authentication with an authenticator app (TOTP)",
+   "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery co",
+   "files": [
+    {
+     "path": "modules/two-factor/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/two-factor/core.ts"
+    },
+    {
+     "path": "modules/two-factor/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/two-factor/memory-store.ts"
+    },
+    {
+     "path": "modules/two-factor/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/two-factor/http.ts"
+    },
+    {
+     "path": "modules/two-factor/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/two-factor/sql-store.ts"
+    },
+    {
+     "path": "modules/two-factor/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/two-factor/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module two-factor@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlTwoFactorStore with your query executor; on other databases implement TwoFactorStore with single-statement conditional updates for activate, advanceStep, consumeRecoveryCode and registerAttempt. Generate a 32-byte AES key from a secret manager and pass it as encryption.keys[<id>] with currentKeyId; to rotate, add a new id, make it current, keep the old id until reencryptSecret has run for every user. Pass recoveryPepper: at least 32 random bytes from a secret manager, kept separate from the database. Set issuer to your product name (no colon); the account name is usually the user's email. After a password sign-in, check isEnabled(userId) and, when true, hold a second-factor-pending session until verify or verifyRecoveryCode succeeds. Pass authenticatedAt (when the user last proved their password) to disable and regenerateRecoveryCodes; re-prompt for the password when they refuse with reauthentication-required. Mount createTwoFactorHandler under one prefix with exact allowedOrigins, an authenticate hook that reports the session stage, a rateLimit(key) hook, a trusted clientIp(request) and an onVerified hook that upgrades the session. Contract: https://github.com/athompson83/genlib/blob/main/modules/two-factor/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "validated-form",
    "type": "registry:item",
    "title": "Validated form with submission handling",
@@ -3648,6 +3840,59 @@
     "feature"
    ],
    "docs": "Genlib module web-push@0.1.0 (Apache-2.0). Configure: Run generateVapidKeys() once, store the private key as a server secret and pass {publicKey, privateKey, subject} (a mailto: or https: contact) to createWebPush; rotating the keys invalidates every existing subscription. On PostgreSQL, apply schema.sql and use createSqlPushSubscriptionStore with your query executor; on other databases implement PushSubscriptionStore keyed by endpoint with an atomic failure counter. Pass the platform fetch; keep the default push service host allow-list unless you serve browsers with other push services, then set allowedHosts or allowAnyHttpsEndpoint. Implement authenticate(request) from your session or verified token and mount createWebPushHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Put serviceWorkerSnippet in your service worker file and subscribe in the page with pushManager.subscribe({userVisibleOnly: true, applicationServerKey}) using the key from GET {prefix}/vapid-public-key. Call send or sendMany from server jobs; retry rate-limited and server-error results after retryAfterSeconds with your queue. Contract: https://github.com/athompson83/genlib/blob/main/modules/web-push/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "webhook-delivery",
+   "type": "registry:item",
+   "title": "Outgoing webhook delivery with retries",
+   "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-",
+   "files": [
+    {
+     "path": "modules/webhook-delivery/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/core.ts"
+    },
+    {
+     "path": "modules/webhook-delivery/files/signing.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/signing.ts"
+    },
+    {
+     "path": "modules/webhook-delivery/files/ssrf.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/ssrf.ts"
+    },
+    {
+     "path": "modules/webhook-delivery/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/memory-store.ts"
+    },
+    {
+     "path": "modules/webhook-delivery/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/sql-store.ts"
+    },
+    {
+     "path": "modules/webhook-delivery/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/schema.sql"
+    },
+    {
+     "path": "modules/webhook-delivery/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-delivery/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module webhook-delivery@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlWebhookStore with your query executor; elsewhere implement WebhookDeliveryStore with a unique (endpoint_id, event_id), an atomic leased claim, lease renewal and completion fenced by the lease owner. Pass fetch (globalThis.fetch, or a pinning fetch that connects only to context.addresses), resolveHost (for example node:dns/promises lookup with {all: true}) and authorize(actor, tenantId, action) backed by your membership and role checks. Call enqueue({tenantId, eventId, type, data}, {tx}) with an executor bound to the transaction that makes the business change; use a stable eventId per business event. Run runOnce({workerId}) on a schedule with a unique workerId per process; keep leaseMs at least max(timeoutMs x ceil(limit / concurrency), timeoutMs + 1 s); each attempt renews the lease when it starts. Optionally pass a secretBox to encrypt stored secrets with your key management service. Mount createWebhookEndpointsHandler under one prefix with authenticate(request) from your session layer and exact allowedOrigins. Contract: https://github.com/athompson83/genlib/blob/main/modules/webhook-delivery/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",

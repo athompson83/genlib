@@ -10,7 +10,7 @@ import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } fro
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 import { LANGUAGES, commandsFor, coverage, stepsFor, loadCapabilities } from '../lib/capabilities.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
-import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
+import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick, withDetails } from '../lib/brief.mjs';
 import { integrationSummary, inspectIntegration, installIntegration, loadIntegrationCatalog, planIntegration, verifyIntegrations } from '../lib/integrations.mjs';
 import { checkAdoption, removeModule, updateModule } from '../lib/lifecycle.mjs';
 import { adoptStaged, checkProvider, loadProviders, planStaged, providerSummary } from '../lib/providers.mjs';
@@ -72,13 +72,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove', 'all-tools']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing' || name === 'ts-imports' || name === 'remove') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing' || name === 'ts-imports' || name === 'remove' || name === 'all-tools') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -95,7 +95,7 @@ try {
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'],
     add: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'], verify: ['target', 'json'],
-    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], connect: ['target', 'agent', 'write', 'remove', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
+    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], connect: ['target', 'agent', 'all-tools', 'write', 'remove', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
@@ -221,7 +221,7 @@ try {
         includeRetired: options['include-retired'] === true, licensePolicy: options['license-policy'] ?? 'any',
       });
       if (detected) result.project = { languages: detected.languages, frameworks: detected.frameworks, reactMajor: detected.reactMajor };
-      if (command === 'quick') { result = quickPick(result); text = formatQuick(result); }
+      if (command === 'quick') { result = await withDetails(quickPick(result, { contracts: loadContracts(REPOSITORY_ROOT) }), { outlineFn: (ref, language) => outline(REPOSITORY_ROOT, ref, { language }), moduleFn: id => JSON.parse(readFileSync(path.join(REPOSITORY_ROOT, 'modules', id, 'module.json'), 'utf8')) }); text = formatQuick(result); }
       else if (options.brief || !options.json) { result = briefFind(result); text = formatBrief(result); }
     }
   } else if (command === 'verify') {
@@ -267,9 +267,9 @@ try {
       } else result = await addRegistry(options.target, resolved, { keepExisting: options['keep-existing'] === true });
     }
   } else if (command === 'connect') {
-    invariant(positional.length === 0 && options.target, 'INVALID_OPTION', 'Use connect --target <app> [--agent claude,cursor,...|all] [--write] [--remove].');
+    invariant(positional.length === 0 && options.target, 'INVALID_OPTION', 'Use connect --target <app> [--agent claude,cursor,...|all] [--all-tools] [--write] [--remove].');
     const agents = String(options.agent ?? 'claude').split(',').map(item => item.trim()).filter(Boolean);
-    result = await connectAgents(path.resolve(REPOSITORY_ROOT), options.target, { targets: agents, write: options.write === true, remove: options.remove === true });
+    result = await connectAgents(path.resolve(REPOSITORY_ROOT), options.target, { targets: agents, write: options.write === true, remove: options.remove === true, allTools: options['all-tools'] === true });
     text = connectSummary(result);
     if (result.conflicts.length) process.exitCode = 1;
   } else if (command === 'provider') {

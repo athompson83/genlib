@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "id": "scheduled-tasks",
+  "version": "0.1.0",
+  "title": "Cron scheduled tasks for multi-instance apps",
+  "description": "Run cron jobs from a server app with several instances: five-field cron with names and macros, next runs in any IANA time zone with defined DST behavior, one execution per occurrence across instances, skip/queue/allow overlap policies with leases and heartbeats, catch-up policies for downtime, retries with backoff, an onFailure hook, run history and a PostgreSQL store.",
+  "kind": "feature",
+  "tags": [
+    "cron",
+    "scheduled tasks",
+    "cron jobs",
+    "scheduler",
+    "recurring jobs",
+    "time zone",
+    "dst",
+    "distributed lock",
+    "leases",
+    "retries",
+    "background jobs",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/scheduled-tasks"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Intl.DateTimeFormat with IANA time-zone data (full ICU), AbortController, structuredClone and crypto.randomUUID: Node.js 22+, Bun, Deno and Cloudflare Workers.",
+      "Framework-neutral core; call tick() from your own loop, platform cron route or worker every few seconds to a minute.",
+      "No runtime packages, environment reads, timers or network activity at install or import time; the optional heartbeat timer exists only while a handler runs."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/cron.ts",
+      "target": "scheduled-tasks/cron.ts",
+      "path": "modules/scheduled-tasks/files/cron.ts",
+      "sha256": "43a50b94b943b2da246285fbe15466eb482ad5ff87f6f9815dda32e27c76d56f",
+      "bytes": 12282
+    },
+    {
+      "source": "files/core.ts",
+      "target": "scheduled-tasks/core.ts",
+      "path": "modules/scheduled-tasks/files/core.ts",
+      "sha256": "4e3e6c254ea24a2c7c895555fbeb4441c0f48c23ec442da160e6322fd9064767",
+      "bytes": 24863
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "scheduled-tasks/memory-store.ts",
+      "path": "modules/scheduled-tasks/files/memory-store.ts",
+      "sha256": "e9da370e97a092ba508ede615a6b0c4e92a9b1cdc02383dae76d9a4795eb14d1",
+      "bytes": 6544
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "scheduled-tasks/sql-store.ts",
+      "path": "modules/scheduled-tasks/files/sql-store.ts",
+      "sha256": "9870f7f004e0dd8f2a4f306be2848dda81b8077235875bee1babbf90294028b3",
+      "bytes": 10474
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "scheduled-tasks/schema.sql",
+      "path": "modules/scheduled-tasks/files/schema.sql",
+      "sha256": "b9516b7e2c357c74ac2eaf680d07900ca3ebc9193e2c0a642400c422cb6dbf70",
+      "bytes": 1961
+    }
+  ],
+  "exports": [
+    {
+      "name": "parseCron",
+      "from": "scheduled-tasks/cron.ts"
+    },
+    {
+      "name": "nextOccurrence",
+      "from": "scheduled-tasks/cron.ts"
+    },
+    {
+      "name": "nextOccurrences",
+      "from": "scheduled-tasks/cron.ts"
+    },
+    {
+      "name": "latestOccurrences",
+      "from": "scheduled-tasks/cron.ts"
+    },
+    {
+      "name": "resolveTimeZone",
+      "from": "scheduled-tasks/cron.ts"
+    },
+    {
+      "name": "wallTimeToInstant",
+      "from": "scheduled-tasks/cron.ts"
+    },
+    {
+      "name": "createScheduler",
+      "from": "scheduled-tasks/core.ts"
+    },
+    {
+      "name": "SchedulerError",
+      "from": "scheduled-tasks/core.ts"
+    },
+    {
+      "name": "exponentialBackoff",
+      "from": "scheduled-tasks/core.ts"
+    },
+    {
+      "name": "MemorySchedulerStore",
+      "from": "scheduled-tasks/memory-store.ts"
+    },
+    {
+      "name": "MIN_LEASE_MS",
+      "from": "scheduled-tasks/core.ts"
+    },
+    {
+      "name": "createSqlSchedulerStore",
+      "from": "scheduled-tasks/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlSchedulerStore with your query executor; on other databases implement SchedulerStore with a unique (schedule_id, scheduled_for) key and single-statement conditional updates for materialize, claim, slot, heartbeat and finish, and a due-run query that returns at most one run per schedule.",
+    "Register handlers by name in createScheduler({handlers}); saved schedules store only the name and JSON payload, never code.",
+    "Give each process a unique instanceId and call tick() at least once per graceMs (default 60 s); a platform cron route that hits one instance per minute also works.",
+    "Pick per schedule: timeZone (IANA, default UTC), overlap (skip, queue or allow), catchUp (none, latest or all with maxCatchUp), maxAttempts and retry delays, and a leaseMs above your handler's longest pause between heartbeats.",
+    "Make handlers idempotent per (scheduleId, scheduledFor): a run whose worker crashes after committing effects is retried after its lease expires.",
+    "Pass onFailure to alert when a run fails for good, and prune old rows from scheduled_task_runs on a schedule."
+  ],
+  "capabilities": [
+    "cron-scheduled-tasks",
+    "cron-expression-validation",
+    "time-zone-aware-cron",
+    "single-execution-across-instances",
+    "overlap-prevention",
+    "missed-run-catch-up",
+    "scheduled-task-retries"
+  ],
+  "limitations": [
+    "Execution is at least once: a worker that crashes after its handler committed effects but before the run was marked finished has the run retried after the lease expires. Handlers must be idempotent per occurrence.",
+    "Supports five-field cron only: no seconds field, ?, L, W, # or @reboot. Schedules match wall-clock minutes, so a frequent schedule (for example */5) runs once per wall time and pauses during the repeated hour of a fall-back transition; use timeZone UTC for interval-style jobs.",
+    "The time-zone conversion assumes at most one offset change within 26 hours, which holds for current tz data. Results depend on the runtime's ICU time-zone data version.",
+    "The automatic heartbeat keeps a hung handler's lease alive indefinitely; there is no handler timeout. Watch the signal and enforce your own deadlines.",
+    "Under overlap queue a pending retry can run after a newer occurrence; skip records skipped occurrences in run history but does not alert.",
+    "The in-memory store is for tests and single-process prototypes. The SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, so contention across separate connections is not exercised there.",
+    "Production database correctness, tick hosting, handler idempotency and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "5-field cron only (no seconds, L, W, #); default time zone UTC; a DST-skipped time runs once after",
+    "default catch-up runs only the latest missed occurrence; overlap policy skip, queue or allow",
+    "failed runs retry 30 s doubling to 1 h, 3 attempts; 60 s lease; payload max 64 KiB",
+    "no HTTP routes; drive tick() from your own timer or platform cron"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/scheduled-tasks.test.mjs",
+      "tests/scheduled-tasks-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/scheduled-tasks.test.mjs tests/scheduled-tasks-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "parseCron accepts ranges, steps, lists, month and weekday names, Sunday as 0 or 7 and @macros, and rejects malformed fields, seconds, ?, L, W, # and @reboot",
+      "save rejects invalid cron, unknown time zones, unregistered handlers, bad options, non-JSON payloads or payloads over 64 KiB of UTF-8 and expressions that never match (0 0 30 2 *)",
+      "next runs follow the Vixie day-of-month OR day-of-week rule and leap days, including 2096 to 2104",
+      "America/New_York: a time in the spring-forward gap runs once at the end of the gap; a time repeated by fall-back runs once, at its first occurrence",
+      "three or four concurrent instances on one memory store and on PGlite run each occurrence exactly once; concurrent materializations of one occurrence insert one row",
+      "overlap skip records a skipped occurrence, queue defers it until the running occurrence finishes, allow runs both",
+      "due-run queries return one run per schedule, so a queue schedule with a backlog of more than 100 rows does not starve other schedules (memory store and PGlite)",
+      "the minimum lease is 3000 ms; with the automatic heartbeat every leaseMs/3, a handler lasting four leases executes once while another instance ticks",
+      "heartbeats extend the lease; after a crashed worker's lease expires another instance reclaims the run and the slot, and the stale worker's result is discarded",
+      "catchUp none skips missed occurrences, latest runs the most recent, all runs the most recent maxCatchUp oldest first; a month-long gap stays bounded",
+      "failed runs retry with exponential backoff up to maxAttempts, then fail with a truncated error and call onFailure once; a crash in the final attempt fails without re-running",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: time-zone aware cron engine, scheduler core with overlap, catch-up and retry policies, in-memory store, PostgreSQL schema and store."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/scheduled-tasks/module.json",
+    "sha256": "9f1e5374dee53c4a7cff770c152a4e068ff4c21fbb3188310fb808add6790beb"
+  },
+  "contractFile": {
+    "path": "modules/scheduled-tasks/CONTRACT.md",
+    "sha256": "70b08117090cca81c8e46faddadeeca8e295f9c8e2828fb48794ee818d84bbaf",
+    "bytes": 11317
+  }
+}

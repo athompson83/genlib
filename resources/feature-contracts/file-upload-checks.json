@@ -41,6 +41,93 @@
   ],
   "implementations": [
     {
+      "ref": "module:file-uploads",
+      "status": "fixture-verified",
+      "fulfills": [
+        "server-size-limit",
+        "content-sniffing",
+        "type-allowlist",
+        "safe-filename",
+        "client-preflight",
+        "authorization-quota",
+        "malware-scan",
+        "safe-serving"
+      ],
+      "evidence": [
+        {
+          "requirement": "server-size-limit",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "upload rejects a declared Content-Length over the limit with too-large before reading and cancels the stream"
+        },
+        {
+          "requirement": "server-size-limit",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "upload counts streamed bytes without Content-Length and stops reading at the limit with too-large"
+        },
+        {
+          "requirement": "content-sniffing",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "sniffType detects png, jpeg, gif, webp, pdf, zip and plain text from magic bytes, and flags svg and html markup"
+        },
+        {
+          "requirement": "type-allowlist",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "type allowlist: detected type must agree with the extension and the declared type; unlisted types are refused"
+        },
+        {
+          "requirement": "type-allowlist",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "svg and html are rejected by default even when renamed, and need allowActiveContent to be allowlisted"
+        },
+        {
+          "requirement": "safe-filename",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "sanitizeFilename strips traversal, control and bidi characters, renames Windows reserved names and caps the length"
+        },
+        {
+          "requirement": "safe-filename",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "upload stores bytes under a random storage key, never the original name"
+        },
+        {
+          "requirement": "client-preflight",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "preflight rejects oversize, empty, unlisted, mismatched and badly named files on File-like objects before upload"
+        },
+        {
+          "requirement": "authorization-quota",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "authorize gates uploads per tenant and an unauthorized user cannot read or delete another tenant's file"
+        },
+        {
+          "requirement": "authorization-quota",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "concurrent uploads cannot exceed the tenant quota and failed uploads release their reservation"
+        },
+        {
+          "requirement": "authorization-quota",
+          "test": "tests/file-uploads-sql.test.mjs",
+          "name": "concurrent uploads on PostgreSQL cannot exceed the tenant quota (atomic reservation)"
+        },
+        {
+          "requirement": "malware-scan",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "uploads start quarantined; only files the scanner marks clean are served; infected files are deleted"
+        },
+        {
+          "requirement": "malware-scan",
+          "test": "tests/file-uploads-sql.test.mjs",
+          "name": "conditional status changes and deletes on PostgreSQL: infected bytes are released once and stale verdicts change nothing"
+        },
+        {
+          "requirement": "safe-serving",
+          "test": "tests/file-uploads.test.mjs",
+          "name": "HTTP: download serves attachment with RFC 6266 filename*, nosniff, the stored detected type and a sandbox CSP"
+        }
+      ],
+      "notes": "No antivirus engine: scanning is an injected hook and files stay quarantined until a verdict. Bytes are held in memory up to maxBytes before BlobStore.put."
+    },
+    {
       "ref": "capability:file-signature",
       "status": "fixture-verified",
       "fulfills": [
@@ -85,5 +172,5 @@
       "notes": "tusd hooks reserve quota and check ownership; tested inside the pack, not in tests/"
     }
   ],
-  "notes": "Streaming size enforcement, allowlist policy, scanning and serving headers are app work. file-signature matchesExtension and mime-types are building blocks for the allowlist check."
+  "notes": "module:file-uploads covers streaming size limits, sniffing, allowlists, quotas, quarantine and safe serving. The app supplies the antivirus scanner and object storage behind the BlobStore interface."
 }

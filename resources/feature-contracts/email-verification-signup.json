@@ -41,6 +41,93 @@
   ],
   "implementations": [
     {
+      "ref": "module:email-signup",
+      "status": "fixture-verified",
+      "fulfills": [
+        "validated-email",
+        "unique-account",
+        "password-policy",
+        "password-storage",
+        "verification-token",
+        "verified-gate",
+        "resend-limits",
+        "verification-email"
+      ],
+      "evidence": [
+        {
+          "requirement": "validated-email",
+          "test": "tests/email-signup.test.mjs",
+          "name": "validated-email: addresses are validated and normalized before use and comparison"
+        },
+        {
+          "requirement": "unique-account",
+          "test": "tests/email-signup.test.mjs",
+          "name": "unique-account: four concurrent signups with the same normalized email create exactly one account"
+        },
+        {
+          "requirement": "unique-account",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "unique-account on PostgreSQL: four concurrent signups with the same normalized email create exactly one row"
+        },
+        {
+          "requirement": "password-policy",
+          "test": "tests/email-signup.test.mjs",
+          "name": "password-policy: NIST-style default (length in code points, blocklist, no composition rules) and an injected policy"
+        },
+        {
+          "requirement": "password-storage",
+          "test": "tests/email-signup.test.mjs",
+          "name": "password-storage: default scrypt hasher writes a salted PHC string (N>=2^15, r=8, p=1, 16-byte salt) and verifies in constant time"
+        },
+        {
+          "requirement": "verification-token",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verification-token: 256-bit random token in the link, stored only as SHA-256, expiring and single-use"
+        },
+        {
+          "requirement": "verification-token",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "verification-token on PostgreSQL: hash-only storage, expiry, single use; the account is verified once"
+        },
+        {
+          "requirement": "verified-gate",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verified-gate: unverified accounts are refused by requireVerified, assertVerified and the HTTP gate until confirmed"
+        },
+        {
+          "requirement": "verified-gate",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verified-gate: four concurrent confirms of one link verify the account exactly once"
+        },
+        {
+          "requirement": "verified-gate",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "verified-gate on PostgreSQL: four concurrent confirms of one link, exactly one wins"
+        },
+        {
+          "requirement": "resend-limits",
+          "test": "tests/email-signup.test.mjs",
+          "name": "resend-limits: cooldown and per-window cap on an injected clock, and each resend invalidates earlier links"
+        },
+        {
+          "requirement": "resend-limits",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "resend-limits on PostgreSQL: cooldown, window cap, concurrent resends bounded, earlier links revoked"
+        },
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verification-email: one idempotency key per token, retried with the same key; final failure revokes the link and is reported"
+        },
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "verification-email on PostgreSQL: failed delivery revokes the stored token and is reported server-side"
+        }
+      ],
+      "notes": "Send retries are in-process; queue the email through email-outbox for durability. PGlite concurrency tests run on one connection."
+    },
+    {
       "ref": "capability:email-address",
       "status": "fixture-verified",
       "fulfills": [
@@ -97,5 +184,5 @@
       "notes": "Delivers the message; building the verification link and token is the app's work"
     }
   ],
-  "notes": "No Genlib signup flow. Building blocks: password-reset shows the hashed single-use token pattern for a different purpose; rate-limit can bound resends; signed-urls signs expiring links but is not single-use."
+  "notes": "module:email-signup covers the whole flow: normalized unique accounts, scrypt storage, hash-only single-use links, a verified gate and limited resends. The app supplies sessions, sign-in and email transport; queue sends through email-outbox for durable retries."
 }

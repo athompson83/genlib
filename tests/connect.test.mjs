@@ -28,21 +28,21 @@ test('dry run writes nothing; --write adds entries and blocks next to existing s
   assert.equal(plan.write, false);
   assert.deepEqual(plan.conflicts, []);
   assert.equal(await exists(target, 'CLAUDE.md'), false, 'dry run writes nothing');
-  assert.match(plan.commands[0], /^codex mcp add genlib -- node ".*bin\/genlib-mcp\.mjs"$/, 'Codex is given a command, its user config is never edited');
+  assert.match(plan.commands[0], /^codex mcp add genlib -- node ".*bin\/genlib-mcp\.mjs" --tools quick,outline$/, 'Codex is given a command, its user config is never edited');
 
   const done = await connectAgents(GENLIB, target, { targets: ['all'], write: true });
   assert.equal(done.write, true);
   const mcp = JSON.parse(await read(target, '.mcp.json'));
   assert.deepEqual(mcp.mcpServers.other, { command: 'x' });
   assert.equal(mcp.extra, 1);
-  assert.deepEqual(mcp.mcpServers.genlib, { type: 'stdio', command: 'node', args: [path.join(GENLIB, 'bin/genlib-mcp.mjs')] });
+  assert.deepEqual(mcp.mcpServers.genlib, { type: 'stdio', command: 'node', args: [path.join(GENLIB, 'bin/genlib-mcp.mjs'), '--tools', 'quick,outline'] });
   assert.equal(JSON.parse(await read(target, '.vscode/mcp.json')).servers.genlib.type, 'stdio');
-  assert.deepEqual(JSON.parse(await read(target, 'opencode.json')).mcp.genlib.command, ['node', path.join(GENLIB, 'bin/genlib-mcp.mjs')]);
+  assert.deepEqual(JSON.parse(await read(target, 'opencode.json')).mcp.genlib.command, ['node', path.join(GENLIB, 'bin/genlib-mcp.mjs'), '--tools', 'quick,outline']);
   const agents = await read(target, 'AGENTS.md');
   assert.ok(agents.startsWith('# Rules\n\nUse pnpm.\n'));
   assert.ok(agents.includes(GUIDANCE));
   assert.match(await read(target, '.cursor/rules/genlib.mdc'), /^---\ndescription: /);
-  assert.ok((await read(target, 'CLAUDE.md')).includes('Do not use it for code that is specific to this app'), 'guidance says when not to use Genlib');
+  assert.ok((await read(target, 'CLAUDE.md')).includes('Default to writing the code yourself'), 'guidance says when not to use Genlib');
 
   const again = await connectAgents(GENLIB, target, { targets: ['all'] });
   assert.equal(again.changed, 0, 'a second run changes nothing');
@@ -106,5 +106,14 @@ test('the written .mcp.json starts a working Genlib MCP server', async t => {
   await new Promise(resolve => child.on('close', resolve));
   const replies = out.trim().split('\n').map(line => JSON.parse(line));
   const tools = replies.find(reply => reply.id === 2).result.tools.map(tool => tool.name);
-  assert.ok(tools.includes('genlib_quick') && tools.includes('genlib_outline'), tools.join(','));
+  assert.deepEqual(tools, ['genlib_quick', 'genlib_outline'], 'the lean default registers only quick and outline');
+});
+
+test('--all-tools registers every tool and replaces an entry Genlib wrote earlier', async t => {
+  const target = await app(t);
+  await connectAgents(GENLIB, target, { targets: ['claude'], write: true });
+  const full = await connectAgents(GENLIB, target, { targets: ['claude', 'codex'], write: true, allTools: true });
+  assert.deepEqual(full.conflicts, []);
+  assert.deepEqual(JSON.parse(await read(target, '.mcp.json')).mcpServers.genlib.args, [path.join(GENLIB, 'bin/genlib-mcp.mjs')]);
+  assert.match(full.commands[0], /genlib-mcp\.mjs"$/);
 });

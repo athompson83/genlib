@@ -145,6 +145,12 @@
     "No rate limiting or brute-force lockout; add request rate limits (see the rate-limit module) in front of API routes.",
     "No management HTTP routes; mount create, list and revoke behind your own signed-in API. Production secret custody, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "key format <appPrefix>_<live|test>_<12-char lookupId>_<43-char secret>; plaintext returned once",
+    "stored as HMAC-SHA-256 of the whole key under a server pepper, not plain SHA-256 or bcrypt",
+    "Authorization: Bearer only; invalid, revoked or expired → 401 invalid_token; missing scope → 403",
+    "no HTTP management routes: only the authenticateRequest helper"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -184,7 +190,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/api-keys/module.json",
-    "sha256": "3329c8fa4f4e45c100ac9437001e1f638e571b4df433f30dce8d8a769f766835"
+    "sha256": "65e891ed9db6e0881b730d2796931047fbcf85bc880ca01b4fd44895ae6762da"
   },
   "contractFile": {
     "path": "modules/api-keys/CONTRACT.md",

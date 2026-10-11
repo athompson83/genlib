@@ -6,12 +6,12 @@ Coverage is credited per requirement, never per search hit. Each contract lists 
 
 | Coverage | Tasks |
 | --- | ---: |
-| Full: every requirement fixture-verified | 16 |
-| Partial: some requirements fixture-verified | 41 |
+| Full: every requirement fixture-verified | 21 |
+| Partial: some requirements fixture-verified | 36 |
 | Unverified: only install, plan or catalog claims | 9 |
 | None: no implementation claims a requirement | 0 |
 
-The "Search returns" column is what `quick` picks for the task phrase (lexical routing): 59 tasks route to Genlib code and 7 to external records. Routing to Genlib code does not mean the feature is covered; compare it with the Verified column.
+The "Search returns" column is what `quick` picks for the task phrase (lexical routing): 60 tasks route to Genlib code and 6 to external records. Routing to Genlib code does not mean the feature is covered; compare it with the Verified column.
 
 ## Partial: build next
 
@@ -19,23 +19,18 @@ Genlib verifies some requirements. The listed ones are the remaining work, for t
 
 | Task | Contract | Verified | Not verified by Genlib | Search returns |
 | --- | --- | ---: | --- | --- |
-| user signup with email verification | `email-verification-signup` | 3/8 | unique-account, password-storage, verification-token, verified-gate, resend-limits | `skill:signup` |
-| two-factor authentication with an authenticator app | `totp-two-factor` | 3/8 | confirm-enrollment, replay-protection, attempt-limits, secret-protection, step-up | `capability:totp` |
 | subscription plans and feature limits | `plan-feature-limits` | 4/7 | billing-sync, race-safe-limits, server-enforced | `module:entitlements` |
 | usage-based billing with credits | `usage-credits` | 5/7 | ledger-history, metering-invoicing | `module:entitlements` |
 | stripe checkout and webhooks | `stripe-checkout` | 1/5 | create-session, idempotent-events, fulfillment, subscription-sync | `module:webhook-verification` |
 | in-app notification inbox | `notification-inbox` | 7/8 | ui | `module:notification-inbox` |
 | notification preferences per channel | `notification-preferences` | 5/7 | enforced-at-send, unsubscribe-link | `module:notification-preferences` |
 | web push notifications | `web-push` | 7/8 | permission-ux | `module:web-push` |
-| file upload with size and type checks | `file-upload-checks` | 2/8 | server-size-limit, type-allowlist, client-preflight, authorization-quota, malware-scan, safe-serving | `capability:file-signature` |
 | csv import with column mapping | `csv-import-mapping` | 7/8 | mapping-ui | `module:csv-import` |
 | csv export safe for excel | `csv-export-excel` | 3/6 | excel-encoding, authorized-rows, bounded-export | `capability:csv-safe` |
 | generate pdf invoices | `pdf-invoices` | 1/7 | required-fields, sequential-numbering, pdf-render, branding-locale, immutability, access-control | `resource:pdfmake` |
 | cursor pagination for an api | `api-cursor-pagination` | 5/7 | keyset-query, scope-binding | `capability:signed-cursors` |
 | rate limit an api by user | `per-user-rate-limit` | 5/7 | shared-store, trusted-identity | `capability:token-bucket` |
-| webhook delivery with retries and signatures | `webhook-delivery` | 3/7 | durable-queue, stable-event-id, ssrf-guard, endpoint-authorization | `module:webhook-verification` |
 | background job queue with retries | `background-job-queue` | 3/7 | durable-enqueue, payload-validation, bounded-concurrency-shutdown, observability | `integration:durable-jobs` |
-| cron scheduled tasks | `cron-scheduled-tasks` | 2/7 | timezone, single-execution, no-overlap, missed-runs, failure-handling | `capability:cron-next` |
 | feature flags with gradual rollout | `feature-flag-rollout` | 5/8 | runtime-config, tenant-targeting, audited-changes | `capability:feature-flags` |
 | a/b test assignment | `ab-test-assignment` | 3/7 | exposure-logging, anonymous-to-user, stable-on-change, analysis | `capability:feature-flags` |
 | activity feed | `activity-feed` | 4/7 | record-on-commit, permission-visibility, aggregation | `module:notification-inbox` |
@@ -83,15 +78,20 @@ Every requirement is exercised by a named repository test. The app still verifie
 
 | Task | Contract | Verified | Not verified by Genlib | Search returns |
 | --- | --- | ---: | --- | --- |
+| user signup with email verification | `email-verification-signup` | 8/8 | - | `module:email-signup` |
 | password reset by email link | `password-reset-email` | 7/7 | - | `module:password-reset` |
+| two-factor authentication with an authenticator app | `totp-two-factor` | 8/8 | - | `module:two-factor` |
 | invite teammates to an organization | `org-invitations` | 8/8 | - | `module:org-invitations` |
 | role-based access control checks | `rbac` | 6/6 | - | `module:rbac` |
 | audit log of user actions | `audit-log` | 7/7 | - | `module:audit-log` |
 | soft delete and restore records | `soft-delete-restore` | 7/7 | - | `module:soft-delete` |
 | multi-tenant data isolation | `multi-tenant-isolation` | 4/4 | - | `module:tenant-isolation` |
 | send transactional email | `transactional-email` | 6/6 | - | `module:email-outbox` |
+| file upload with size and type checks | `file-upload-checks` | 8/8 | - | `module:file-uploads` |
 | full-text search with filters | `full-text-search-filters` | 7/7 | - | `module:site-search` |
 | api key management with hashing | `api-key-management` | 7/7 | - | `module:api-keys` |
+| webhook delivery with retries and signatures | `webhook-delivery` | 7/7 | - | `module:webhook-delivery` |
+| cron scheduled tasks | `cron-scheduled-tasks` | 7/7 | - | `module:scheduled-tasks` |
 | comments with threaded replies | `threaded-comments` | 7/7 | - | `module:comments` |
 | money and currency formatting | `money-currency-formatting` | 6/6 | - | `capability:money` |
 | form validation with error messages | `form-validation` | 7/7 | - | `module:validated-form` |

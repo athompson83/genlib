@@ -100,6 +100,12 @@
     "No OpenTelemetry trace context, W3C traceparent parsing, or pretty-printing is included.",
     "Error stacks are omitted unless includeStack is true; stack text can still reveal file paths when enabled."
   ],
+  "decisions": [
+    "one JSON line per call: time, level, msg, then fields; default level info",
+    "redacts whole keys (password, token, cookie...); values and msg are not scanned",
+    "x-request-id reused only if it matches [A-Za-z0-9._:-]{1,128}, else a new UUID",
+    "stacks off by default; lines over 16,384 bytes replaced by a truncation marker"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -109,7 +115,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/structured-logger/module.json",
-    "sha256": "805b7b9f2162d40ff9e3a4905dba3906eb75bcda565f1b30444dda69b3470d58"
+    "sha256": "8f24573ddfc0a1d45f116a73d90c831344123a30e6d2e8ad4effddc8a086a26a"
   },
   "contractFile": {
     "path": "modules/structured-logger/CONTRACT.md",

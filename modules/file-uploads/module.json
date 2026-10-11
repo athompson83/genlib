@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "file-uploads",
+  "version": "0.1.0",
+  "title": "File upload with size and type checks",
+  "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
+  "kind": "feature",
+  "tags": ["file upload", "upload", "file size limit", "mime type", "content sniffing", "magic bytes", "quarantine", "malware scan", "quota", "content-disposition", "server", "security"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/file-uploads"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Web Crypto randomUUID, TextEncoder/TextDecoder, ReadableStream and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "client.ts and policy.ts are browser-safe (no Node APIs) and run in any modern browser for the upload preflight; core.ts, http.ts and the stores are server-only.",
+      "The upload body is the raw file (fetch PUT/POST with the File as body), not multipart/form-data.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/policy.ts", "target": "file-uploads/policy.ts" },
+    { "source": "files/client.ts", "target": "file-uploads/client.ts" },
+    { "source": "files/core.ts", "target": "file-uploads/core.ts" },
+    { "source": "files/memory-store.ts", "target": "file-uploads/memory-store.ts" },
+    { "source": "files/http.ts", "target": "file-uploads/http.ts" },
+    { "source": "files/sql-store.ts", "target": "file-uploads/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "file-uploads/schema.sql" }
+  ],
+  "exports": [
+    { "name": "sniffType", "from": "file-uploads/policy.ts" },
+    { "name": "sanitizeFilename", "from": "file-uploads/policy.ts" },
+    { "name": "checkType", "from": "file-uploads/policy.ts" },
+    { "name": "normalizePolicy", "from": "file-uploads/policy.ts" },
+    { "name": "UPLOAD_TYPES", "from": "file-uploads/policy.ts" },
+    { "name": "preflight", "from": "file-uploads/client.ts" },
+    { "name": "createFileUploads", "from": "file-uploads/core.ts" },
+    { "name": "FileUploadError", "from": "file-uploads/core.ts" },
+    { "name": "MemoryUploadMetadataStore", "from": "file-uploads/memory-store.ts" },
+    { "name": "MemoryBlobStore", "from": "file-uploads/memory-store.ts" },
+    { "name": "createFileUploadHandler", "from": "file-uploads/http.ts" },
+    { "name": "contentDisposition", "from": "file-uploads/http.ts" },
+    { "name": "servingHeaders", "from": "file-uploads/http.ts" },
+    { "name": "createSqlUploadMetadataStore", "from": "file-uploads/sql-store.ts" }
+  ],
+  "configuration": [
+    "Set policy.maxBytes and policy.allow (default png, jpeg, gif, webp, pdf); use the same policy object in preflight on the client and createFileUploads on the server.",
+    "Implement BlobStore (put/get/delete) over your object storage (S3, R2, GCS, disk) keyed by the random storageKey; MemoryBlobStore is for tests.",
+    "On PostgreSQL, apply schema.sql and use createSqlUploadMetadataStore with your query executor; elsewhere implement UploadMetadataStore with a single conditional quota reservation and conditional status change and delete.",
+    "Pass authorize(user, tenantId, action) for upload, read and delete, and quotaBytes as a number or per-tenant function.",
+    "Pass scanner(bytes, record) backed by your antivirus (for example a ClamAV daemon or a scanning service) and call scan(id) from a queue worker, or call recordScanResult(id, verdict) from your own pipeline. No antivirus engine is included.",
+    "Mount createFileUploadHandler under one prefix with exact allowedOrigins and an authenticate(request) that reads your session; also cap the request body size at your proxy or platform."
+  ],
+  "capabilities": [
+    "streaming-upload-size-limit",
+    "magic-byte-content-sniffing",
+    "upload-type-allowlist",
+    "safe-upload-filenames",
+    "browser-upload-preflight",
+    "per-tenant-upload-quota",
+    "upload-quarantine-until-scanned",
+    "safe-attachment-serving"
+  ],
+  "limitations": [
+    "No antivirus or malware engine is included; scanning is an injected hook, and without a scanner (or recordScanResult) every upload stays quarantined and is never served.",
+    "Accepted bytes are buffered in memory up to policy.maxBytes before they reach the BlobStore; it does not stream to object storage or support resumable or multipart/form-data uploads.",
+    "A single oversized chunk delivered by the runtime is already in memory when it is counted; cap request bodies at the proxy or platform too.",
+    "Without Content-Length the full maxBytes is reserved against the quota while reading, so near-full tenants may be refused uploads that would fit; send Content-Length.",
+    "Type detection covers png, jpeg, gif, webp, pdf, zip and a UTF-8 plain-text heuristic (plus svg/html recognition to refuse them); it does not validate the whole file structure, so re-encode images if you render them.",
+    "zip is detected as a container only; docx, xlsx and other zip-based formats are refused rather than identified.",
+    "If release or blob deletion fails after a metadata delete, quota or an orphaned blob may need reconciliation by a scheduled job.",
+    "The in-memory stores are single-process; the SQL store is tested on PostgreSQL semantics through PGlite, which runs as a single connection, not under real multi-connection contention.",
+    "Production storage, antivirus accuracy, proxy body limits and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "routes: POST {prefix}/tenants/{tenantId}/files?filename= (raw bytes, not multipart), GET|DELETE {prefix}/files/{id}",
+    "default allowlist png, jpeg, gif, webp, pdf; type sniffed from bytes; mismatch → 415",
+    "new files stay quarantined until scan() is clean; quarantined download → 409, infected → 410",
+    "too-large and quota-exceeded → 413; downloads always use Content-Disposition: attachment"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/file-uploads.test.mjs", "tests/file-uploads-sql.test.mjs"],
+    "command": "npm run build && node --test tests/file-uploads.test.mjs tests/file-uploads-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "behaviors": [
+      "a declared Content-Length over the limit is refused with too-large before any byte is read, and the stream is cancelled",
+      "without Content-Length, bytes are counted while streaming and the stream is cancelled at the limit with too-large (413 over HTTP)",
+      "the type is detected from magic bytes (png, jpeg, gif, webp, pdf, zip) and a UTF-8 text heuristic; svg and html markup is recognized",
+      "only allowlisted types are stored, and the detected type must agree with the extension and the declared Content-Type",
+      "svg and html are refused by default, also when renamed to .txt, and need allowActiveContent to be allowlisted",
+      "file names are sanitized (traversal, control and bidi characters, Windows reserved names, byte cap) and bytes are stored under a random key",
+      "preflight on File-like objects refuses empty, oversized, unlisted, mismatched and badly named files before upload",
+      "authorize gates upload, read and delete per tenant; another tenant's file reads as not found",
+      "concurrent uploads cannot exceed the tenant quota (memory store and PGlite), and failed uploads release their reservation",
+      "uploads start quarantined; only scanner-clean files are served; infected bytes are deleted and their quota released once",
+      "a failing or vague scanner leaves files quarantined; without a scanner nothing is served",
+      "downloads carry Content-Disposition attachment with an RFC 6266 filename*, nosniff, the stored detected type and CSP default-src 'none'; sandbox",
+      "HTTP adapter: 201 upload, 400, 401, 403 origin and tenant, 404, 405, 409 quarantined, 413, 415 and 204 delete",
+      "schema.sql applies and the SQL store keeps conditional status changes and deletes on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: policy and sniffing, browser preflight, core, in-memory stores, PostgreSQL schema and store, and Fetch adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

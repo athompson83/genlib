@@ -7,7 +7,7 @@ The kit behind round 4 in [docs/benchmarks.md](../../docs/benchmarks.md): four a
 | `fixtures/teamnotes` | Multi-tenant notes API, TypeScript run directly by Node 22 (type stripping, no build) |
 | `fixtures/pyaccounts` | Account service, Python standard library |
 | `tasks/*.md` | The task text each agent received as `TASK.md` (identical in every arm) |
-| `grading/` | Hidden acceptance tests: invitations (9), webhook (8), CSV import (10), TOTP (10, with an RFC 6238 oracle) |
+| `grading/` | Hidden acceptance tests: invitations (9), webhook (8), CSV import (10), TOTP (10, with an RFC 6238 oracle), outgoing webhooks (10: SSRF notations, DNS rebinding, redirects, retries, signatures) and scheduled digests (8: DST gap and overlap, overlapping ticks, catch-up, retries). The last two were checked against reference solutions before any agent ran. |
 | `grade.sh <task> <app-dir>` | Copies the hidden tests into a scratch copy of a finished run and prints the counts |
 | `measure.mjs <agents.tsv> <transcripts-dir>` | Turns, token usage, a cost index, written and read characters, time, test runs and tool calls from each run's JSONL transcript |
 | `results.json` | The 16 measured runs of round 4 |

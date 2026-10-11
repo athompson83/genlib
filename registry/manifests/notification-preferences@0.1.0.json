@@ -132,6 +132,12 @@
     "Schema changes require a project-owned data migration; existing records are validated against the exact current schema.",
     "Production database correctness, session security, delivery integration, and consuming application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "GET returns defaults with revision 0; PUT replaces the whole document, no PATCH",
+    "stale revision with different values → 409 with current snapshot; an identical PUT is unchanged",
+    "channels limited to email, push, inApp; omitted defaults are false; 1-32 types",
+    "PUT body JSON only (415 otherwise), max 16,384 bytes; adapter failures → 503"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -141,7 +147,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/notification-preferences/module.json",
-    "sha256": "03868c36329afe3a3d10e6a76686a7407bfa266544928e09438e0e010eac13e9"
+    "sha256": "5061c706fe94eb2d8a92f596d519c583d709f444e553193c75362f85995930ab"
   },
   "contractFile": {
     "path": "modules/notification-preferences/CONTRACT.md",
