@@ -3,7 +3,12 @@
 // compares registry-declared licenses with the recorded license, and checks that links resolve.
 // It downloads no packages and executes no upstream code. Not part of the offline test suite.
 // Also flags deprecated npm packages, inactive or yanked PyPI releases and, with --archived and a reachable
-// GitHub API, archived repositories.
+// GitHub API, archived repositories. With --install it confirms that pinned install steps (npm install x@1.2.3,
+// npx x@1.2.3, pip install x==1.2.3) name versions the registry actually has.
+// --sample N checks a rotating slice of N records chosen by the UTC day, so a daily run covers the whole catalog
+// over time (as shadcn's registry health checks do); --day D replays a given day. The report separates evidence
+// layers: source (repository exists), links, packages (exists, license), upstream (deprecated or archived) and
+// install. None of these establish behavior; tested Genlib code carries its own test evidence.
 import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { promisify } from 'node:util';
@@ -14,6 +19,9 @@ const args = process.argv.slice(2);
 const option = name => { const index = args.indexOf(name); return index < 0 ? undefined : args[index + 1]; };
 const fileFilter = option('--file');
 const concurrency = Number(option('--concurrency') ?? 8);
+const sample = option('--sample') === undefined ? undefined : Number(option('--sample'));
+const day = Number(option('--day') ?? Math.floor(Date.now() / 86_400_000));
+const checkInstall = args.includes('--install');
 const TIMEOUT = 20000;
 
 async function json(url) {
@@ -87,6 +95,25 @@ async function linkResolves(url) {
   } catch { return false; }
 }
 
+// npm install x@1.2.3 / npx -y x@1.2.3 / pip install x==1.2.3: does the registry have that exact version?
+const PINNED_NPM = /(?:npm (?:install|i)|npx(?: -y)?|pnpm add|yarn add|bunx?)\s+((?:@[\w.-]+\/)?[\w.-]+)@(\d+\.\d+\.\d+[\w.+-]*)/g;
+const PINNED_PIP = /pip3? install\s+([\w.-]+)==([\w.+-]+)/g;
+async function installProblems(item) {
+  const problems = [];
+  for (const step of item.quickstart ?? []) {
+    for (const [, name, version] of step.matchAll(PINNED_NPM)) {
+      try { await json('https://registry.npmjs.org/' + name.replace('/', '%2F') + '/' + version); } catch { problems.push(`install-unresolvable:npm:${name}@${version}`); }
+    }
+    for (const [, name, version] of step.matchAll(PINNED_PIP)) {
+      try { await json(`https://pypi.org/pypi/${encodeURIComponent(name)}/${encodeURIComponent(version)}/json`); } catch { problems.push(`install-unresolvable:pypi:${name}==${version}`); }
+    }
+  }
+  return problems;
+}
+
+const LAYERS = { source: /^repository-missing/, links: /-unreachable/, packages: /^(package-missing|license-)/, upstream: /^(package-deprecated|repository-archived)/, install: /^install-/ };
+const layerOf = problem => Object.keys(LAYERS).find(name => LAYERS[name].test(problem)) ?? 'other';
+
 async function verify(item) {
   const report = { id: item.id, problems: [] };
   report.repository = await repositoryExists(item.repository);
@@ -114,6 +141,7 @@ async function verify(item) {
       report.problems.push('package-missing:' + entry.name);
     }
   }
+  if (checkInstall) report.problems.push(...await installProblems(item));
   return report;
 }
 
@@ -122,7 +150,10 @@ const owner = new Map();
 for (const entry of catalog.catalogs) {
   for (const candidate of JSON.parse(readFileSync(new URL('../' + entry.path, import.meta.url), 'utf8')).items) owner.set(candidate.id, entry.path);
 }
-const selected = catalog.items.filter(item => !fileFilter || owner.get(item.id) === fileFilter);
+const filtered = catalog.items.filter(item => !fileFilter || owner.get(item.id) === fileFilter).sort((a, b) => a.id.localeCompare(b.id));
+// A rotating, deterministic slice: day d checks records [d*N, d*N+N) modulo the catalog size.
+const selected = sample === undefined ? filtered
+  : Array.from({ length: Math.min(sample, filtered.length) }, (_, index) => filtered[(day * sample + index) % filtered.length]);
 const reports = [];
 let cursor = 0;
 await Promise.all(Array.from({ length: concurrency }, async () => {
@@ -130,5 +161,14 @@ await Promise.all(Array.from({ length: concurrency }, async () => {
 }));
 reports.sort((a, b) => a.id.localeCompare(b.id));
 const failed = reports.filter(report => report.problems.length);
-process.stdout.write(JSON.stringify({ checked: reports.length, failed: failed.length, failures: failed, checkedAt: new Date().toISOString() }, null, 2) + '\n');
+const layers = {};
+for (const name of [...Object.keys(LAYERS), 'other']) layers[name] = new Set();
+for (const report of failed) for (const problem of report.problems) layers[layerOf(problem)].add(report.id);
+const summary = Object.fromEntries(Object.entries(layers).filter(([name, ids]) => ids.size || name !== 'other').map(([name, ids]) => [name, ids.size]));
+process.stdout.write(JSON.stringify({
+  checked: reports.length, ...(sample !== undefined ? { sample: { size: sample, day, catalog: filtered.length } } : {}),
+  failed: failed.length, failedByLayer: summary,
+  scope: 'Availability, identity, license, lifecycle' + (checkInstall ? ' and install resolvability' : '') + '; not behavior.',
+  failures: failed, checkedAt: new Date().toISOString(),
+}, null, 2) + '\n');
 if (failed.length) process.exitCode = 1;

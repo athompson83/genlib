@@ -1,0 +1,41 @@
+name: Catalog health
+# Continuing evidence for external resource records, separate from the test suite and never a PR gate.
+# Daily: a rotating sample (the whole catalog over about 30 days) checks that repositories exist, links resolve,
+# packages exist with the recorded license, and nothing is deprecated or archived.
+# Weekly: the same sample plus install resolvability (pinned npm/pip versions exist).
+# The JSON report is uploaded as an artifact; a failing run lists records to fix or drop. It measures
+# availability, identity and lifecycle, not behavior.
+on:
+  schedule:
+    - cron: '17 6 * * *'
+    - cron: '41 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      sample:
+        description: Records to check
+        default: '330'
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Check a rotating sample
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SAMPLE: ${{ inputs.sample || '330' }}
+          INSTALL: ${{ github.event.schedule == '41 7 * * 1' && '--install' || '' }}
+        run: node scripts/verify-resources.mjs --sample "$SAMPLE" --archived $INSTALL --concurrency 6 > catalog-health.json
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: catalog-health
+          path: catalog-health.json
+          retention-days: 30
