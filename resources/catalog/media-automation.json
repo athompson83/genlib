@@ -1568,6 +1568,12 @@
       },
       "install": [
         "Review the Remotion License, then install the remotion packages with npm and commit the lockfile."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "remotion"
+        }
       ]
     },
     {
@@ -4680,6 +4686,16 @@
       },
       "install": [
         "Use the MIT SDK (@mendable/firecrawl-js or firecrawl-py) against the hosted API, or review AGPL before self-hosting."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "firecrawl"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "firecrawl"
+        }
       ]
     },
     {
@@ -4914,6 +4930,12 @@
       },
       "install": [
         "Review the license; self-host the official Docker image pinned to a version, or use n8n Cloud."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "n8n"
+        }
       ]
     },
     {

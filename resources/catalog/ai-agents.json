@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "anthropic-sdk-typescript",
@@ -1523,6 +1523,12 @@
       "install": [
         "Package: pypi dspy (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "dspy"
+        }
       ]
     },
     {
@@ -1682,6 +1688,12 @@
       "install": [
         "Package: pypi crewai (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "crewai"
+        }
       ]
     },
     {
@@ -2270,6 +2282,12 @@
       "install": [
         "Package: pypi guidance (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "guidance"
+        }
       ]
     },
     {
@@ -2913,6 +2931,12 @@
       "install": [
         "Package: pypi FlagEmbedding (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "flagembedding"
+        }
       ]
     },
     {
@@ -3252,6 +3276,12 @@
       "install": [
         "Package: pypi chonkie (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "chonkie"
+        }
       ]
     },
     {
@@ -3301,6 +3331,12 @@
       "install": [
         "Package: pypi tiktoken (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "tiktoken"
+        }
       ]
     },
     {
@@ -4763,6 +4799,12 @@
       "install": [
         "Package: pypi llm-guard (registry metadata does not state the license; confirm against the upstream LICENSE).",
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "llm-guard"
+        }
       ]
     },
     {
@@ -5060,6 +5102,690 @@
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://claudecode.directory",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://claudecode.directory",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "claudecode-directory",
+      "name": "claudecode.directory",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Directory of over 140,000 Claude Code resources (skills, MCP servers, hooks, plugins, agents and commands) searchable by the task you want done.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://claudecode.directory"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://cultofclaude.com",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://cultofclaude.com",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "cult-of-claude",
+      "name": "Cult of Claude",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Index of over 32,000 Claude skills and 17,000 agents found on GitHub, each listed with its original source and install command.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://cultofclaude.com"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://claudemarketplace.net",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://claudemarketplace.net",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "claude-marketplace-net",
+      "name": "claudemarketplace.net",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Claude Code marketplace listing over 4,500 skills, 900 MCP servers, plugins and agent tools.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://claudemarketplace.net"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://claudemarketplaces.com",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://claudemarketplaces.com",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "claude-marketplaces-com",
+      "name": "claudemarketplaces.com",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Searchable Claude skill library that shows each skill's install command and what it actually does.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://claudemarketplaces.com"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://skillsplayground.com",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://skillsplayground.com",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "skills-playground",
+      "name": "Skills Playground",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Discovery site for Claude skills and MCP servers, searchable by use case.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://skillsplayground.com"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://skills.sh",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://skills.sh",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "skills-sh",
+      "name": "skills.sh",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Cross-agent skill directory and install-count leaderboard behind the npx skills CLI; Genlib's skill index is ranked from it.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://skills.sh"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "partial",
+      "homepage": "https://marketingskills.sh",
+      "repository": null,
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://marketingskills.sh",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "marketingskills-sh",
+      "name": "marketingskills.sh",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": null,
+        "url": null,
+        "scope": "No reusable source-code or asset license was established. The catalog links to the service for reference; each listed skill or server keeps its own license."
+      },
+      "summary": "Browse and install individual Claude marketing skills instead of a whole toolkit; good for niche workflows.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace"
+      ],
+      "quickstart": [
+        "Open: https://marketingskills.sh"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "verified",
+      "homepage": "https://openclaudia.com",
+      "repository": "https://github.com/OpenClaudia/openclaudia-skills",
+      "docs": null,
+      "cautions": [
+        "Directory listings are unreviewed third-party code: read SKILL.md, scripts and the license before installing, and pin the commit."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://openclaudia.com",
+          "title": "Directory home page"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "openclaudia",
+      "name": "OpenClaudia",
+      "category": "agent-skill-directory",
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/OpenClaudia/openclaudia-skills/blob/ad0d1e5820ed5368a0cff4080cef6c8fd25a34d1/LICENSE",
+        "scope": "MIT for the skills repository."
+      },
+      "summary": "Open-source marketing skill set for Claude Code (SEO, content, LinkedIn, email, competitor research, growth) with individual slash commands such as /seo-audit, /write-blog and /icp-builder.",
+      "useWhen": "Use to discover a skill, agent, hook or MCP server for a task Genlib's own indexes do not cover; prefer genlib skill find and genlib mcp find first, which return commit-pinned installs.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "agent-skills",
+        "mcp",
+        "directory",
+        "marketplace",
+        "marketing",
+        "seo",
+        "linkedin",
+        "icp",
+        "content"
+      ],
+      "quickstart": [
+        "node \"$GENLIB_ROOT\"/bin/genlib.mjs skill find openclaudia <need>   # 78 commit-pinned OpenClaudia skills",
+        "npx skills@1.7.2 add https://github.com/OpenClaudia/openclaudia-skills/tree/ad0d1e5820ed5368a0cff4080cef6c8fd25a34d1/skills/linkedin-content -a claude-code -a codex -y"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "verified",
+      "homepage": null,
+      "repository": "https://github.com/fablerlabs/claude-md-templates",
+      "docs": null,
+      "cautions": [],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/fablerlabs/claude-md-templates",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "claude-md-templates",
+      "name": "claude-md-templates (fablerlabs)",
+      "category": "agent-instructions",
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/fablerlabs/claude-md-templates/blob/3407dcae4fa7e45b67512b749eed999fd0e6ce88/LICENSE",
+        "scope": "MIT for the templates."
+      },
+      "summary": "CLAUDE.md and AGENTS.md starter templates and a field guide for giving coding agents persistent project instructions: stack, rules and workflows.",
+      "useWhen": "Use when a project has no agent instructions yet; Genlib's own templates (genlib find agents instructions) are opt-in starters too.",
+      "tags": [
+        "claude-md",
+        "agents-md",
+        "agent-instructions",
+        "templates",
+        "claude-code"
+      ],
+      "quickstart": [
+        "curl -fsSL https://raw.githubusercontent.com/fablerlabs/claude-md-templates/3407dcae4fa7e45b67512b749eed999fd0e6ce88/CLAUDE.starter.md -o CLAUDE.md   # then edit stack, rules and checks"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "verified",
+      "homepage": null,
+      "repository": "https://github.com/dykyi-roman/awesome-claude-code",
+      "docs": null,
+      "cautions": [],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dykyi-roman/awesome-claude-code",
+          "title": "Upstream repository"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "awesome-claude-code-dykyi-roman",
+      "name": "awesome-claude-code (dykyi-roman)",
+      "category": "agent-skill-directory",
+      "kind": "reference",
+      "integrationMode": "reference",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dykyi-roman/awesome-claude-code/blob/7e1fea8899b7994073951dfd1f6a10532ddbb867/LICENSE",
+        "scope": "MIT for the list text; linked projects keep their own licenses."
+      },
+      "summary": "Curated map of the Claude Code ecosystem: MCP servers, agents, memory, plugins, hooks and automation.",
+      "useWhen": "Use to survey options in an area before choosing; install anything you pick by its own pinned command.",
+      "tags": [
+        "claude-code",
+        "awesome-list",
+        "mcp",
+        "agents",
+        "plugins",
+        "memory"
+      ],
+      "quickstart": [
+        "Open: https://github.com/dykyi-roman/awesome-claude-code"
+      ]
+    },
+    {
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "verification": "verified",
+      "homepage": null,
+      "repository": "https://github.com/SWE-agent/mini-swe-agent",
+      "docs": "https://mini-swe-agent.com",
+      "cautions": [
+        "Runs model-chosen shell commands: use a container or sandbox without broad credentials.",
+        "Model calls are billed by the provider."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SWE-agent/mini-swe-agent",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "mini-swe-agent",
+      "name": "mini-swe-agent",
+      "category": "coding-agent",
+      "kind": "package",
+      "integrationMode": "package",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/SWE-agent/mini-swe-agent/blob/HEAD/LICENSE.md",
+        "scope": "MIT for the package."
+      },
+      "summary": "Minimal open-source agent that resolves GitHub issues and runs custom tasks with any model; the maintained successor to SWE-agent, matching its SWE-bench results with far less code.",
+      "useWhen": "Use to run an autonomous issue-fixing or benchmark agent in a sandbox. Prefer it over SWE-agent, which its authors have superseded.",
+      "tags": [
+        "coding-agent",
+        "swe-bench",
+        "github-issues",
+        "autonomous-agent",
+        "swe-agent"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "mini-swe-agent"
+        }
+      ],
+      "quickstart": [
+        "pip install mini-swe-agent==2.4.6",
+        "mini --help"
+      ]
+    },
+    {
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "verification": "verified",
+      "homepage": null,
+      "repository": "https://github.com/SWE-agent/SWE-agent",
+      "docs": null,
+      "cautions": [
+        "Superseded upstream: most development is on mini-swe-agent (resource:mini-swe-agent)."
+      ],
+      "projectTypes": [
+        "ai-agent"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/SWE-agent/SWE-agent",
+          "title": "Upstream repository (superseded notice in README)"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "swe-agent",
+      "name": "SWE-agent (superseded)",
+      "category": "coding-agent",
+      "kind": "application",
+      "integrationMode": "reference",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/SWE-agent/SWE-agent/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "summary": "Research agent that fixes issues in real GitHub repositories. Its authors now direct users to mini-swe-agent, which supersedes it.",
+      "useWhen": "Use only to reproduce published SWE-agent results; otherwise use resource:mini-swe-agent.",
+      "tags": [
+        "coding-agent",
+        "swe-bench",
+        "superseded"
+      ],
+      "quickstart": [
+        "Superseded: use resource:mini-swe-agent (pip install mini-swe-agent==2.4.6)"
+      ]
+    },
+    {
+      "platforms": [
+        "web"
+      ],
+      "verification": "verified",
+      "homepage": null,
+      "repository": "https://github.com/LearnPrompt/awesome-seedance",
+      "docs": null,
+      "cautions": [
+        "Prompt curation is CC BY 4.0: keep attribution when reusing case text.",
+        "Video generation is billed by the model provider."
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "media-creative"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/LearnPrompt/awesome-seedance",
+          "title": "Upstream repository and licenses"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/ai-agents.md"
+      },
+      "install": [
+        "Search the directory, then install the chosen item by its own pinned command after reading its source."
+      ],
+      "id": "awesome-seedance",
+      "name": "Awesome Seedance",
+      "category": "video-generation",
+      "kind": "source-library",
+      "integrationMode": "selective-copy",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/LearnPrompt/awesome-seedance/blob/ba442d393ad99c655167096bb41702dd81a14c4a/LICENSE",
+        "scope": "MIT for code; the case curation is CC BY 4.0 (attribute GoodCase.ai/LearnPrompt)."
+      },
+      "summary": "Verified Seedance 2.0/2.5 video prompt library: 466 cases checked against their original posts, 264 cross-model retests, 25 templates and 15 installable AI-video skills.",
+      "useWhen": "Use when writing Seedance video prompts; install the matching skill (genlib skill find seedance) rather than copying prompts by hand.",
+      "tags": [
+        "seedance",
+        "ai-video",
+        "prompts",
+        "video-generation",
+        "skills"
+      ],
+      "quickstart": [
+        "node \"$GENLIB_ROOT\"/bin/genlib.mjs skill find seedance <style>   # 15 commit-pinned Seedance skills"
       ]
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "facebook-php-business-sdk",
@@ -8097,7 +8097,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 1609
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "prebid.js"
+        }
+      ]
     },
     {
       "id": "revive-adserver",
@@ -37982,7 +37988,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 1206
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "swetrix"
+        }
+      ]
     },
     {
       "id": "swetrix-node",
@@ -53211,7 +53223,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 1937
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "c15t"
+        }
+      ]
     },
     {
       "id": "django-cookiebanner",
@@ -61650,6 +61668,64 @@
         "metric": "npm-downloads-month",
         "value": 220659
       }
+    },
+    {
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "verification": "verified",
+      "homepage": "https://getopen.so",
+      "repository": "https://github.com/OpenLabs-so/openanalytics",
+      "docs": null,
+      "cautions": [
+        "AGPL-3.0: review obligations before modifying and serving it.",
+        "Handles visitor data: document retention and honor consent rules even when cookieless."
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/OpenLabs-so/openanalytics",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "install": [
+        "Self-host from the pinned release; review the license and upgrade notes."
+      ],
+      "id": "openanalytics",
+      "name": "Open Analytics",
+      "category": "analytics",
+      "kind": "application",
+      "integrationMode": "license-review",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": "https://github.com/OpenLabs-so/openanalytics/blob/HEAD/LICENSE",
+        "scope": "AGPL-3.0: self-hosting is fine; a modified version served to users must offer its source."
+      },
+      "summary": "Cookieless, privacy-first web analytics: visitors, journeys, funnels, real-time activity, web vitals and Stripe-linked revenue, with an MCP server; self-hosted with Docker Compose (ClickHouse, PostgreSQL, Valkey).",
+      "useWhen": "Use for self-hosted product and web analytics with revenue attribution instead of Google Analytics.",
+      "tags": [
+        "analytics",
+        "web-analytics",
+        "privacy",
+        "funnels",
+        "stripe",
+        "google-analytics-alternative",
+        "mcp"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "saas",
+        "data-analytics",
+        "web-app"
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-analytics.md"
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT\"/bin/genlib.mjs source openanalytics   # pinned clone; its self-hosting guide runs docker compose pull && docker compose up -d"
+      ]
     }
   ]
 }

@@ -44,3 +44,7 @@ Run it from the project root. It writes the skill to `.agents/skills/<name>/` (C
 - Pinning to a commit means an install gets exactly the reviewed bytes. Updating to a newer upstream version is a deliberate change: re-review it, then change the commit.
 - Install skills a task needs instead of everything. Each installed skill's description costs context in every session.
 - Copying skill source into this repository isn't done yet. Redistributable skills could be copied later with their license files and hashes.
+
+## Adding a repository of skills
+
+`node scripts/index-skill-repo.mjs --repo <owner>/<repo> --dir <clone> --license <SPDX> [--prefix <p>] [--always-prefix]` adds every directory holding a `SKILL.md` as a curated record. Each record is pinned to the clone's commit, with name and description from the frontmatter and its file count and size. Ids that clash, or all ids with `--always-prefix`, get the prefix, and existing records are never changed. It reads only the local clone and runs no skill code. It was used for OpenClaudia's 78 marketing skills (`openclaudia-*`, MIT) and Awesome Seedance's 15 video skills (`seedance-*`, MIT).

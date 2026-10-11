@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { spawn, spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -93,4 +93,21 @@ test('Obsidian export writes linked notes and never replaces a user note', t => 
   const second = JSON.parse(run().stdout);
   assert.ok(second.written > 0);
   assert.equal(second.skippedUserNotes, 1);
+});
+
+test('every wikilink in an exported vault resolves to a note, including links from record text', t => {
+  const vault = mkdtempSync(path.join(tmpdir(), 'genlib-vault-links-'));
+  t.after(() => rmSync(vault, { recursive: true, force: true }));
+  // The API index holds a description with literal [[Demo]](url) text; it must not become a wikilink.
+  const run = spawnSync(process.execPath, [root + 'scripts/export-obsidian.mjs', '--out', vault, '--types', 'api,capability,doc'], { encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stderr);
+  const files = readdirSync(vault, { recursive: true }).filter(name => name.endsWith('.md'));
+  const notes = new Set(files.map(name => name.replace(/\.md$/, '')));
+  const bases = new Set(files.map(name => path.basename(name, '.md')));
+  const broken = [];
+  for (const name of files) for (const match of readFileSync(path.join(vault, name), 'utf8').matchAll(/\[\[([^\]|#]+)/g)) {
+    const target = match[1].trim();
+    if (!notes.has(target) && !bases.has(target)) broken.push(`${name} -> ${target}`);
+  }
+  assert.deepEqual(broken.slice(0, 5), []);
 });

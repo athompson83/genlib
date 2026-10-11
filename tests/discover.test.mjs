@@ -188,3 +188,19 @@ test('a package listed by several records surfaces once, under its strictest rec
   // A license-review flag is never lost to a duplicate without it.
   assert.equal(aliases.get('knocklabs-node'), 'knocklabs-node-npm');
 });
+
+test('sign-up-only services point at the vendor SDK or CLI, and every mapped id exists', async () => {
+  const sources = await loadSources();
+  const resources = new Set(sources.resources.map(resource => resource.id));
+  const clis = new Set(sources.cli.map(entry => entry.name));
+  for (const [service, refs] of Object.entries(sources.serviceSdks)) {
+    assert.ok(resources.has(service), service);
+    for (const ref of refs) { const [type, id] = ref.split(':'); assert.ok(type === 'resource' ? resources.has(id) : clis.has(id), ref); }
+  }
+  const mailchimp = findInSources(sources, 'mailchimp', { type: 'resource', limit: 3 }).results.find(result => result.id === 'mailchimp');
+  assert.ok(mailchimp.next.includes('# vendor SDK: resource:mailchimp-mailchimp-marketing'));
+  assert.ok(mailchimp.next.some(step => step.startsWith('npm install @mailchimp/mailchimp_marketing')));
+  // A link-only record with a repository gets a pinned clone step instead of nothing to run.
+  const kinetics = findInSources(sources, 'kinetics', { type: 'resource', limit: 3 }).results.find(result => result.id === 'kinetics');
+  assert.ok(kinetics.next.some(step => step.includes('genlib.mjs source kinetics')));
+});
