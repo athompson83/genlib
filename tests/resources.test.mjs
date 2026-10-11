@@ -87,11 +87,23 @@ test('every resource exposes a shortest-path quickstart, authored or derived fro
   const base = items[0];
   assert.deepEqual(quickstartFor({ ...base, quickstart: undefined, packages: [{ ecosystem: 'npm', name: 'zod' }, { ecosystem: 'pypi', name: 'httpx' }], docs: 'https://zod.dev' }),
     ['npm install zod', 'pip install httpx', 'Docs: https://zod.dev']);
-  assert.deepEqual(quickstartFor({ ...base, quickstart: ['npx shadcn@latest add button'] }), ['npx shadcn@latest add button']);
+  assert.deepEqual(quickstartFor({ ...base, quickstart: ['npx shadcn@4.21.4 add button'] }), ['npx shadcn@4.21.4 add button']);
   assert.match(quickstartFor({ ...base, quickstart: undefined, packages: undefined, integrationMode: 'service', docs: 'https://example.com/docs' })[0], /^Sign up/);
   assert.throws(() => validateResource({ ...base, quickstart: [] }));
   assert.throws(() => validateResource({ ...base, quickstart: ['x'.repeat(301)] }));
   assert.ok(searchResources(items, 'button', { limit: 3 }).every(item => item.quickstart.length > 0));
   const shadcn = items.find(item => item.id === 'shadcn-ui');
-  assert.ok(quickstartFor(shadcn).some(step => step.startsWith('npx shadcn@latest add')));
+  assert.ok(quickstartFor(shadcn).some(step => step.startsWith('npx shadcn@4.21.4 add')));
+});
+
+test('the pin gate covers go installs, suffixed image tags and the attachment map', async () => {
+  const { readFileSync } = await import('node:fs');
+  const script = readFileSync(new URL('../scripts/pin-quickstarts.mjs', import.meta.url), 'utf8');
+  assert.match(script, /go \(\?:install\|get\|run\)/);
+  assert.match(script, /latest\(\?:-\[\\w\.\]\+\)\?/);
+  const attachments = readFileSync(new URL('../resources/attachments.json', import.meta.url), 'utf8');
+  assert.doesNotMatch(attachments, /@latest\b/);
+  const { spawnSync } = await import('node:child_process');
+  const check = spawnSync(process.execPath, [new URL('../scripts/pin-quickstarts.mjs', import.meta.url).pathname, '--check'], { encoding: 'utf8' });
+  assert.equal(check.status, 0, check.stdout + check.stderr);
 });

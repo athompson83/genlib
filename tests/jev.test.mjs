@@ -117,3 +117,9 @@ test('candidates far below the best match are left out of the packet', () => {
   assert.ok(packet.state.candidates.length <= scores.filter(score => score >= scores[0] * 0.4).length);
   assert.equal(packet.state.candidates[0].id, findInSources(sources, 'sign and verify webhook signatures', { limit: 1 }).results[0].id);
 });
+
+test('a no-dependency Go packet leaves out language examples that wrap a library', () => {
+  const packet = jevPacket(sources, 'password hashing in go, no dependencies');
+  assert.ok(packet.state.constraints?.length);
+  assert.ok(!packet.state.candidates.some(candidate => candidate.id === 'go-password-hashing'), JSON.stringify(packet.state.candidates.map(candidate => candidate.id)));
+});
