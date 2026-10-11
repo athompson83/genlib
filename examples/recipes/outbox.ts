@@ -33,7 +33,8 @@ export class InMemoryOutbox<State, P = unknown> {
   }
 
   get state(): State { return structuredClone(this.#state); }
-  messages(): OutboxMessage<P>[] { return this.#messages.map((m) => ({ ...m })); }
+  /** Deep copies: mutating a returned message (or its payload) never changes the stored one. */
+  messages(): OutboxMessage<P>[] { return this.#messages.map((m) => structuredClone(m)); }
 
   /**
    * Runs `work` against a draft copy of state. Commit applies the draft and enqueues messages
@@ -69,7 +70,8 @@ export class InMemoryOutbox<State, P = unknown> {
       for (const message of due) {
         message.attempts++;
         try {
-          await publish({ ...message });
+          // A deep copy, so a publisher that mutates the payload cannot change what a retry sends.
+          await publish(structuredClone(message));
           message.status = "sent";
           delete message.lastError;
           report.sent++;

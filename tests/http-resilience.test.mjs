@@ -159,14 +159,43 @@ test("POST with Idempotency-Key is retried on network errors and 429", async () 
   assert.equal(isRetryableRequest(new Request("https://x.test", { method: "POST", headers: { "Idempotency-Key": "k" } })), true);
 });
 
-test("Request input with a body is cloned for each attempt", async () => {
+test("Request input with a body is cloned for each attempt only when declared replayable", async () => {
   const { sleep } = recordingSleep();
   const bodies = [];
   const fetch = async input => { bodies.push(await input.text()); return new Response(null, { status: bodies.length < 2 ? 503 : 200 }); };
-  const req = new Request("https://x.test", { method: "PUT", body: "payload" });
-  const res = await fetchWithRetry(fetch, req, undefined, { attempts: 3, baseDelayMs: 1, maxDelayMs: 1, sleep });
+  const req = () => new Request("https://x.test", { method: "PUT", body: "payload" });
+  const res = await fetchWithRetry(fetch, req(), undefined, { attempts: 3, baseDelayMs: 1, maxDelayMs: 1, sleep, replayRequestBody: true });
   assert.equal(res.status, 200);
   assert.deepEqual(bodies, ["payload", "payload"]);
+  // Without the declaration a Request body (possibly a one-shot stream) is sent once.
+  bodies.length = 0;
+  const once = await fetchWithRetry(fetch, req(), undefined, { attempts: 3, baseDelayMs: 1, maxDelayMs: 1, sleep });
+  assert.equal(once.status, 503);
+  assert.equal(bodies.length, 1);
+});
+
+test("a Request stream body is never replayed by default", async () => {
+  const { sleep } = recordingSleep();
+  const f = fakeFetch([new Response(null, { status: 503 })]);
+  const body = new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode("x")); c.close(); } });
+  const req = new Request("https://x.test", { method: "PUT", body, duplex: "half" });
+  const res = await fetchWithRetry(f.fetch, req, undefined, { attempts: 3, baseDelayMs: 1, maxDelayMs: 1, sleep });
+  assert.equal(res.status, 503);
+  assert.equal(f.calls.length, 1);
+});
+
+test("the signal carried by a Request input stops retries", async () => {
+  const controller = new AbortController();
+  const f = fakeFetch([new Response(null, { status: 503 }), new Response(null, { status: 200 })]);
+  const sleep = async () => { controller.abort(new Error("caller left")); throw new Error("caller left"); };
+  const req = new Request("https://x.test", { signal: controller.signal });
+  await assert.rejects(fetchWithRetry(f.fetch, req, undefined, { attempts: 3, baseDelayMs: 1, maxDelayMs: 1, sleep }), /caller left/);
+  assert.equal(f.calls.length, 1);
+  // An already-aborted Request signal sends nothing, even when options.signal is also given.
+  const aborted = new AbortController(); aborted.abort(new Error("gone"));
+  const g = fakeFetch([]);
+  await assert.rejects(fetchWithRetry(g.fetch, new Request("https://x.test", { signal: aborted.signal }), undefined, { baseDelayMs: 1, maxDelayMs: 1, signal: new AbortController().signal }), /gone/);
+  assert.equal(g.calls.length, 0);
 });
 
 test("stream request bodies are never replayed", async () => {

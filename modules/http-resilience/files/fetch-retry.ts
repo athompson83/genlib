@@ -12,8 +12,17 @@ export interface FetchRetryOptions extends BackoffOptions {
   attempts?: number;
   /** Optional per-attempt deadline in milliseconds; a timed-out attempt counts as retryable. */
   attemptTimeoutMs?: number;
-  /** Overall cancellation. Defaults to init.signal. Never retried. */
+  /**
+   * Overall cancellation. Combined with init.signal and, for a Request input, the Request's own
+   * signal: any of them aborting stops the call. Never retried.
+   */
   signal?: AbortSignal | undefined;
+  /**
+   * A Request input that carries a body is sent once unless this is true. Fetch cannot tell a
+   * buffered Request body from a one-shot stream, so the caller must say the body is replayable
+   * (each attempt then sends a clone). init.body replay is decided from its type instead.
+   */
+  replayRequestBody?: boolean;
   sleep?: SleepFn;
   /** Clock used to interpret HTTP-date Retry-After values. Default Date.now. */
   now?: () => number;
@@ -49,6 +58,19 @@ export function isRetryableRequest(input: RequestInfo | URL, init?: RequestInit)
   return typeof key === "string" && key.trim().length > 0;
 }
 
+/** One signal that aborts when any input aborts, keeping the first reason. */
+function anySignal(signals: Array<AbortSignal | null | undefined>): AbortSignal | undefined {
+  const present = [...new Set(signals.filter((item): item is AbortSignal => item instanceof AbortSignal))];
+  if (present.length <= 1) return present[0];
+  if (typeof AbortSignal.any === "function") return AbortSignal.any(present);
+  const controller = new AbortController();
+  for (const item of present) {
+    if (item.aborted) { controller.abort(abortReason(item)); break; }
+    item.addEventListener("abort", () => controller.abort(abortReason(item)), { once: true });
+  }
+  return controller.signal;
+}
+
 function isNetworkError(error: unknown): boolean {
   // Fetch reports network failures as TypeError; per-attempt deadlines abort with TimeoutError.
   return error instanceof TypeError || (error instanceof Error && error.name === "TimeoutError")
@@ -66,7 +88,8 @@ async function discard(response: Response): Promise<void> {
 /**
  * Sends `fetch(input, init)` and retries network errors and 408/425/429/500/502/503/504
  * responses for idempotent methods or requests carrying an Idempotency-Key header. Other
- * requests, and requests whose body is a one-shot stream, are sent exactly once.
+ * requests, requests whose body is a one-shot stream, and Request inputs with a body (unless
+ * `replayRequestBody` is set) are sent exactly once.
  * The last response is returned as-is (including a retryable status) once attempts run out.
  */
 export async function fetchWithRetry(
@@ -78,10 +101,13 @@ export async function fetchWithRetry(
   const attempts = options.attempts ?? 3;
   validateAttempts(attempts);
   validateBackoff(options);
-  const signal = options.signal ?? init?.signal ?? undefined;
+  const request = input instanceof Request ? input : undefined;
+  const signal = anySignal([options.signal, init?.signal, request?.signal]);
   const now = options.now ?? Date.now;
   const streamBody = typeof ReadableStream !== "undefined" && init?.body instanceof ReadableStream;
-  const replayable = !streamBody && isRetryableRequest(input, init);
+  // init.body replaces a Request's body, so the Request body only matters when init has none.
+  const oneShotRequestBody = request !== undefined && request.body !== null && init?.body === undefined && options.replayRequestBody !== true;
+  const replayable = !streamBody && !oneShotRequestBody && isRetryableRequest(input, init);
   const maxAttempts = replayable ? attempts : 1;
 
   const send = (attemptSignal: AbortSignal | undefined): Promise<Response> => {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "http-resilience",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "HTTP resilience",
   "description": "Runtime-neutral TypeScript retry with exponential backoff and full jitter, AbortSignal-aware timeouts, an idempotency-safe Fetch retry wrapper that honors Retry-After, and an in-process circuit breaker.",
   "kind": "utility",
@@ -52,8 +52,8 @@
       "source": "files/fetch-retry.ts",
       "target": "http-resilience/fetch-retry.ts",
       "path": "modules/http-resilience/files/fetch-retry.ts",
-      "sha256": "f9835208af96e89faad67ab8b41c0773b73f1fa74cfcf86b015d18775b33a0f4",
-      "bytes": 5314
+      "sha256": "94e4c9d358cb3f22e0f7d3fa59171129d83b14131afea07eb452f2d21cbe0de5",
+      "bytes": 6830
     },
     {
       "source": "files/circuit-breaker.ts",
@@ -130,11 +130,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/http-resilience/module.json",
-    "sha256": "5078b0ef9ff592df628853b788a68ede88767850ba5bfd977f982a8c72c31616"
+    "sha256": "9a30a0cc40f2f12e66e3c31e6f9fc706f307b9edb75c2d4190cdccef7d93d3e9"
   },
   "contractFile": {
     "path": "modules/http-resilience/CONTRACT.md",
-    "sha256": "c478d4961a0d04bdd58d1653c6749372eb64c8a8f2415657af4776b671970417",
-    "bytes": 5175
+    "sha256": "3811a66366dd9aecb50288efbfd572df678feceb2e8ba5ca648a9e2f8f486918",
+    "bytes": 5500
   }
 }
