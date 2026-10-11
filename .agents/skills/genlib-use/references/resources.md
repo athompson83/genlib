@@ -57,6 +57,7 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
     "Use the ordinary source plan/add/verify workflow for common-api-clients. Keep its code and credentials in the trusted server. Configure real authorization, scopes, budgets and environment-specific acceptance checks.",
     "Inspect existing project files before using GitHub/docs templates. Copy only selected missing files, merge intentional edits, replace explicit placeholders, and configure real verification commands before enabling CI.",
     "Keep the required CI gate present for all pull requests and use job-level classification for docs-only work. Unknown paths, source changes and missing diff history must get full checks.",
+    "APIs: genlib api find|inspect <need> --language <lang> returns only that language's install steps (Swagger 2.0 specs are converted before generation). A retired service shows one migration line instead of install steps; do not install it.",
     "Report actual files/code added and verification performed. A source catalog does not mean external packages were downloaded, services provisioned or live APIs tested."
   ]
 }
