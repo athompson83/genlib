@@ -27,6 +27,7 @@ Text output from the CLI and the MCP tools names this checkout's real path in pl
 | Tool | Returns |
 | --- | --- |
 | `genlib_quick` | The best match, only its acting commands and up to 3 alternative refs (cheapest call) |
+| `genlib_jev` `prompt` | `prompt: true` returns the decision as a compact direct-call prompt in `text` (the structured packet stays in `structuredContent`). |
 | `genlib_find` | Ranked results across every source type, each with its acting commands (and a capability's `caveat`, its main known limit, when it has one). Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
 | `genlib_source` | For an external record: a pinned, blob-less, sparse fetch of one folder (or a raw-file URL), the license note, and Genlib code that already covers the need |
 | `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |

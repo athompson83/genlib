@@ -7,7 +7,7 @@ import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
-import { jevPacket } from '../lib/jev.mjs';
+import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
@@ -22,7 +22,7 @@ const HELP = {
     'find <task words> [--type capability|module|recipe|language-example|template|starter|task|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
     'outline <id|type:id> [--language <name>] [--json]   # signatures and doc lines only: call the code without reading its source',
     'source <id|type:id> [--path <dir>] [--json]   # pinned sparse checkout or one raw file of an external project, its license, and Genlib equivalents',
-    'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--json]   # bounded yes/no decision packet for Jev',
+    'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--stdlib-only] [--prompt|--json]   # bounded yes/no decision packet for Jev; --prompt prints it as a compact direct-call prompt',
     'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
     'detect --target <existing-project> [--json]',
     'skill find <words> [--harness claude|codex|both] [--limit 8] [--json]',
@@ -46,13 +46,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -66,7 +66,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result, text;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -139,6 +139,7 @@ try {
     invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
     const profile = options.target ? await detectProject(options.target) : undefined;
     result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8), ...(options['stdlib-only'] ? { stdlibOnly: true } : {}) });
+    if (options.prompt) text = formatJevPrompt(result);
   } else if (command === 'outline') {
     invariant(positional.length === 1, 'INVALID_OPTION', 'Provide exactly one reference, for example: outline totp --language go.');
     result = await outline(undefined, positional[0], { language: options.language });

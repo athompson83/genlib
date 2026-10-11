@@ -7,7 +7,7 @@
 import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import { detectProject, findInSources, loadSources, sourceCounts, SOURCE_TYPES } from '../lib/discover.mjs';
-import { jevPacket } from '../lib/jev.mjs';
+import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { LANGUAGES, commandsFor, coverage } from '../lib/capabilities.mjs';
 import { installFor } from '../lib/indexes.mjs';
 import { installCommand } from '../lib/skills.mjs';
@@ -59,6 +59,7 @@ const TOOLS = [
       task: { type: 'string' }, type: { type: 'string', enum: SOURCE_TYPES }, target: TARGET,
       limit: { type: 'integer', minimum: 1, maximum: 8, default: 8 },
       stdlibOnly: { type: 'boolean', description: 'Keep only candidates that need no install. Implied when the task says "standard library only" or "no dependencies".' },
+      prompt: { type: 'boolean', description: 'Return the decision as a compact prompt for a direct model call (structured packet stays in structuredContent).' },
     }, required: ['task'] },
   },
   {
@@ -113,7 +114,8 @@ async function call(name, args = {}) {
   }
   if (name === 'genlib_jev') {
     const profile = await profileFor(args.target);
-    return jevPacket(all, String(args.task ?? ''), { type: args.type, target: profile?.target, profile, limit: args.limit ?? 8, ...(args.stdlibOnly === true ? { stdlibOnly: true } : {}) });
+    const packet = jevPacket(all, String(args.task ?? ''), { type: args.type, target: profile?.target, profile, limit: args.limit ?? 8, ...(args.stdlibOnly === true ? { stdlibOnly: true } : {}) });
+    return args.prompt === true ? { result: packet, text: formatJevPrompt(packet) } : packet;
   }
   if (name === 'genlib_capability') {
     if (!args.id) return { capabilities: all.capabilities.map(item => ({ id: item.id, title: item.title, tier: item.tier, ...coverage(item) })) };

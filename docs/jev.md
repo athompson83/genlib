@@ -71,6 +71,19 @@ Ranking is lexical, but it is not naive:
 
 Lexical matching can miss related wording. Every source therefore stays reachable through `find`, `--type`, `catalog` and the search index, and the escape path in each packet says so.
 
+## Keep the decision cheap
+
+The packet is small: in the measured runs a Jev decision read 650 to 2,300 tokens of packet and wrote under 200. Running that decision inside a full agent harness (system prompt, tool definitions, project instructions) cost about 75,000 tokens of fixed context per decision, more than the coding the selection saved on small tasks. Call the decision model directly with only the packet, no tools and no project context:
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" jev "<task words and constraints>" --target "$APP_ROOT" --prompt   # about 200-400 tokens to send
+node "$GENLIB_ROOT/bin/genlib.mjs" jev "<task words and constraints>" --target "$APP_ROOT" --json     # the same decision as structured data, with next commands
+```
+
+`--prompt` states the answer rule once instead of in every question (MCP: `prompt: true`). Candidates scoring below 40% of the best match are left out, so a clear task usually yields one or two candidates.
+
+After selection, let ordinary code finish the work before the coding model starts: run the selected copy command with `--run-tests` (Python and Go) or run its `# test:` command, and put the copied paths, the `# api:` lines, `# tests cover:` and the test result in the coding prompt. Every turn the coding agent spends re-reading copied code or re-running tests re-reads its whole context; in the measured runs each turn cost about as much as writing 900 tokens. Tell it to add tests only for requirements the listed tests do not cover.
+
 ## Over MCP
 
 MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`. After Jev selects a code candidate, `genlib outline <ref>` (MCP `genlib_outline`) gives its signatures without reading the source; for an external candidate, `genlib source <ref>` (MCP `genlib_source`) fetches only the needed folder at a pinned commit.

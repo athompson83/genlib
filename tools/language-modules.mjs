@@ -3,6 +3,7 @@ import {readFileSync,writeFileSync,mkdirSync,lstatSync,realpathSync,existsSync} 
 import {resolve,join,dirname,relative,isAbsolute,sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
 import {outlineSource} from '../lib/outline.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(readFileSync(join(root,'examples/languages/modules.json'),'utf8'));
@@ -63,10 +64,22 @@ try{
    const tests=planned.filter(p=>selected.tests.includes(p.source)).map(p=>relative(base,p.destination));
    const hint={python:t=>`cd ${join(base,dirname(t[0]))} && python3 -m unittest ${t.map(x=>x.split('/').pop().replace(/\.py$/,'')).join(' ')}`,go:t=>`cd ${base} && go test ./${dirname(t[0])}`};
    if(tests.length)lines.push('# test: '+(hint[selected.language]?.(tests)??'run '+tests.join(', ')+' with the project test runner'));
+   // Name what the copied tests already cover, so agents add tests only for what the task adds.
+   const names=[...new Set(planned.filter(p=>selected.tests.includes(p.source)).flatMap(p=>[...readFileSync(p.destination,'utf8').matchAll(/(?:def|func|fun|void|fn|test\()\s*['"]?(test[\w ]*)/gi)].map(m=>m[1].trim().replace(/^test_?/i,'')).filter(Boolean)))];
+   if(names.length)lines.push('# tests cover: '+(names.slice(0,10).join(', ')+(names.length>10?` (+${names.length-10} more)`:'')).slice(0,160));
+   // --run-tests runs the copied tests now (Python and Go, whose commands are known) and reports the outcome in one line, saving the agent a turn.
+   if(cmd==='add'&&flags.includes('--run-tests')&&tests.length){
+    const run=selected.language==='python'?spawnSync('python3',['-m','unittest',...tests.map(x=>x.split('/').pop().replace(/\.py$/,''))],{cwd:join(base,dirname(tests[0])),encoding:'utf8',timeout:120000,env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'}})
+     :selected.language==='go'?spawnSync('go',['test','./'+dirname(tests[0])],{cwd:base,encoding:'utf8',timeout:300000}):null;
+    if(!run)lines.push('# tests run: not supported for '+selected.language+'; use the # test command');
+    else{const out=(run.stdout+run.stderr).trim();const summary=selected.language==='python'?(out.match(/Ran \d+ tests? in [\d.]+s/)?.[0]??''):out.split('\n').filter(l=>/^(ok|FAIL)\b/.test(l)).join('; ');
+     if(run.status===0)lines.push('# tests run: passed'+(summary?' ('+summary+')':''));
+     else lines.push('# tests run: FAILED'+(run.error?' ('+run.error.message+')':''),...out.split('\n').slice(-15).map(l=>'  '+l));}
+   }
    // Agents in measured runs read the whole copied source to check it; say what is already verified instead.
    lines.push('# verified: '+(selected.verification??'tested')+' against shared vectors in every language; read the source only to change it.');
    const caveat=capabilityCaveat(id);if(caveat)lines.push('# caveat: '+caveat);
    console.log(lines.join('\n'));
   }
- }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests] [--into <dir>] [--flat] [--json]');
+ }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests] [--into <dir>] [--flat] [--run-tests] [--json]');
 }catch(e){console.error(e.message);process.exitCode=1}

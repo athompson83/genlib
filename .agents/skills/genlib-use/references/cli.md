@@ -8,9 +8,9 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "quick_best_match_first": "node \"$GENLIB_ROOT/bin/genlib.mjs\" quick verify stripe webhook --target \"$APP_ROOT\"",
     "find_for_options": "node \"$GENLIB_ROOT/bin/genlib.mjs\" find verify stripe webhook --target \"$APP_ROOT\" --limit 5",
     "outline_signatures": "node \"$GENLIB_ROOT/bin/genlib.mjs\" outline totp --language go",
-    "copy_capability_code": "node \"$GENLIB_ROOT/tools/language-modules.mjs\" add python-totp --target \"$APP_ROOT\" --with-tests --flat",
+    "copy_capability_code": "node \"$GENLIB_ROOT/tools/language-modules.mjs\" add python-totp --target \"$APP_ROOT\" --with-tests --flat --run-tests",
     "list_capabilities": "node \"$GENLIB_ROOT/bin/genlib.mjs\" capability list",
-    "decision_packet": "node \"$GENLIB_ROOT/bin/genlib.mjs\" jev \"expand recurring events, standard library only\" --target \"$APP_ROOT\" --json",
+    "decision_packet": "node \"$GENLIB_ROOT/bin/genlib.mjs\" jev \"expand recurring events, standard library only\" --target \"$APP_ROOT\" --prompt",
     "external_source_slice": "node \"$GENLIB_ROOT/bin/genlib.mjs\" source resource:pocketbase --path core",
     "detect_target_stack": "node \"$GENLIB_ROOT/bin/genlib.mjs\" detect --target \"$APP_ROOT\" --json",
     "catalog_overview": "node \"$GENLIB_ROOT/bin/genlib.mjs\" catalog --json",
@@ -22,7 +22,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "verify_installation": "node \"$GENLIB_ROOT/bin/genlib.mjs\" verify --target \"$APP_ROOT\" --json"
   },
   "copy": [
-    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run and # verified: how it was tested. Run that test; do not re-read the copied source to check it."
+    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run, # tests cover: what those tests check and # verified: how it was tested. --run-tests (Python, Go) runs them in the same call. Do not re-read the copied source to check it; add tests only for what the task adds."
   ],
   "find": [
     "Output is sized for agents: quick prints the best match and only its acting commands; find prints one line plus commands per result. Add --json for full records (--json --brief for compact JSON). --language <name> prefers a language without a target.",

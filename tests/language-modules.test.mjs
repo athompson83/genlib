@@ -26,6 +26,9 @@ test('safe plan and copy without overwrites',()=>{
   // --flat without --into copies straight into the target and says what is already verified.
   const flatDir=mkdtempSync(join(tmpdir(),'genlib-flat-'));
   try{const flatText=run('add','python-totp','--target',flatDir,'--with-tests','--flat');assert.ok(existsSync(join(flatDir,'totp.py'))&&existsSync(join(flatDir,'test_totp.py')));assert.match(flatText,/# verified: /);assert.doesNotMatch(flatText,/# caveat:/);const diffText=run('add','python-line-diff','--target',flatDir,'--flat');assert.match(diffText,/# caveat: .*GNU diff/);}finally{rmSync(flatDir,{recursive:true,force:true})}
+  // --run-tests copies and runs the tests in one call; the output names what they cover.
+  const runDir=mkdtempSync(join(tmpdir(),'genlib-lang-run-'));
+  try{const ran=run('add','python-totp','--target',runDir,'--with-tests','--flat','--run-tests');assert.match(ran,/^# tests cover: .*rfc4226_hotp/m);assert.match(ran,/^# tests run: passed \(Ran 5 tests/m);const java=run('add','java-totp','--target',runDir,'--with-tests','--run-tests');assert.match(java,/# tests run: not supported for java/);}finally{rmSync(runDir,{recursive:true,force:true})}
   const text=run('add','python-rrule','--target',dir,'--with-tests','--into','app','--flat');
   assert.match(text,/app\/rrule\.py/);assert.match(text,/def expand_rrule\(/);assert.match(text,/# test: cd .*app && python3 -m unittest test_rrule/);
   assert.ok(existsSync(join(dir,'app/test_rrule.py')));
