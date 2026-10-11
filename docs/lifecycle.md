@@ -36,7 +36,11 @@ Every result names its type, verification level and the exact next command. Modu
 | | `punycode`, `base58`, `roman-numerals`, `dotted-path`, `template-render`, `ini-parse`, `pii-mask`, `password-generate`, `html-escape` | capabilities | Internationalized domains, Base58Check, numerals, nested-data paths, logic-less templates, INI config, PII masking for logs, CSPRNG passwords and HTML entities in 9 languages |
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
+| | `entitlements` | module | Plan features and limits with status fallback, and an idempotent, overdraw-proof usage-credit ledger |
+| | `notification-inbox` | module | In-app inbox: idempotent publish, unread counts, mark read, archive, retention |
+| | `csv-import` | module | CSV upload, column mapping, typed validation and idempotent commit with per-row errors |
 | | `org-invitations` | module | Tenant invitations: hashed one-time tokens, single-use accept, revoke, expiry, Fetch adapter |
+| | `comments` | module | Threaded comments with mentions, reactions, flags and moderation, plus a PostgreSQL schema and SQL store |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
 | | `chat-messaging` catalog (Mattermost, Rocket.Chat, Zulip, Chatwoot, Matrix, SimpleX, Socket.IO, bot SDKs) | resources | Team chat, live support, real-time messaging and bots in each language |
@@ -59,18 +63,42 @@ Every result names its type, verification level and the exact next command. Modu
 | | deployment runbook (`templates/docs/docs/runbooks/deployment.md`) | template | Release, acceptance and rollback procedure |
 | 13. Market and grow | `marketing-seo`, `marketing-analytics`, `marketing-engagement`, `social-media` catalogs | resources | SEO and AI-optimization tooling, analytics, attribution, experiments, email, CRM, ads, push, consent and social media in each language, with exact install commands |
 
+## After installing: receipts, updates and rollback
+
+`add` writes `.genlib/receipts/<id>.json` next to the lock. The receipt records four outcomes, so a report can say exactly how far an adoption got:
+
+| Outcome | Set by | Meaning |
+| --- | --- | --- |
+| `found` | `add` | The module was selected and planned |
+| `copied` | `add` | Files were copied and hashed |
+| `used` | `adopted <id>` | Application code outside the installed folder imports the installed files, through a relative path or an alias such as `@/genlib/<id>/…` |
+| `verified` | `adopted <id> --test "<cmd>"` | The app's own test command exited 0 (its exit code and output tail are kept) |
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" adopted org-invitations --target "$APP_ROOT" --test "npm test" --json
+node "$GENLIB_ROOT/bin/genlib.mjs" update org-invitations --target "$APP_ROOT" --json            # dry run
+node "$GENLIB_ROOT/bin/genlib.mjs" update org-invitations --target "$APP_ROOT" --write --conflict rej
+node "$GENLIB_ROOT/bin/genlib.mjs" remove org-invitations --target "$APP_ROOT" --dry-run
+```
+
+- **update** works like Copier's update: the base is the file at the commit recorded in the lock (`git show`), the incoming file is this checkout's version, and local edits are merged with `git merge-file`. Unchanged files are replaced; edited files merge cleanly or are reported as conflicts, written to `<file>.genlib-conflict` (`--conflict rej`, the default) or as inline markers (`--conflict inline`). Nothing is written without `--write`. The base comes from the Genlib checkout's Git history; when the locked commit is not available there, an edited file is reported as a conflict (`installed original unavailable`) with the new version in its `.genlib-conflict` file, rather than merged against a guessed base. Package dependencies are not changed; `updateDependenciesFirst` names dependent modules whose versions moved.
+- **remove** deletes files whose hashes still match the lock, keeps edited files (and lists them), removes the lock and receipt entries, and refuses while another installed module depends on this one.
+- **No match.** If the best result is an external record covering less than a third of the task's words, `quick` returns `noMatch` with `gh search repos`/`gh search code` commands instead of a weak pick. [gaps.md](gaps.md) lists the common tasks still covered only by external projects.
+
+Schemas for receipts and update results are in `schemas/` (`genlib schema receipt`, `genlib schema update`).
+
 ## External resources at every stage
 
 When no module, recipe or template covers a need, the resource catalog usually names a maintained project for it, tagged by Genisys project type. Run `node tools/resources.mjs search <need> --project <type> --limit 5 --json`, or read the matching domain guide listed in the [resource index](resources/README.md): frontend, backend/API, AI agents, mobile/desktop/CLI/games, data/docs/office, DevOps/testing/security, SaaS/commerce/finance, media/automation, README tools and UI sources. Each record's `useWhen` says which hand-written work it replaces. Check `license-review` records before copying or embedding them.
 
 ## Runtime reach of the server modules
 
-The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
+The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`, `entitlements`, `notification-inbox`, `csv-import`, `comments`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
 
 ## What Genlib does not cover yet
 
 - Session management and user stores. The capabilities cover the protocol pieces (SSO request and token verification, SAML, MFA, passkeys, password hashing); use the framework's maintained session library or an identity provider for the rest.
-- Database schema, migrations and background job queues.
+- Database migrations and background job queues. `org-invitations` and `comments` ship a PostgreSQL schema and SQL store; other feature packages define store interfaces you implement.
 - Native mobile or desktop UI. The React modules target the browser.
 - Platform-specific deployment (Vercel, Fly.io, AWS, app stores). Use the provider's documentation and the deployment runbook template.
 

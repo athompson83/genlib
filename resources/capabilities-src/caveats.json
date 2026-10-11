@@ -22,5 +22,10 @@
  "template-render": "A logic-less Mustache subset: no partials, lambdas, delimiter changes or standalone-line whitespace rules; escaping is for HTML text and attribute values only.",
  "ini-parse": "INI has no single standard: this follows one documented dialect (no multi-line values or interpolation); check it against the files you must read.",
  "pii-mask": "Pattern-based masking for display and logs; it does not find every kind of personal data and is not a compliance control by itself.",
- "html-escape": "stripTags produces plain text and is not a sanitizer; use rich-text-sanitization before rendering user HTML."
+ "html-escape": "stripTags produces plain text and is not a sanitizer; use rich-text-sanitization before rendering user HTML.",
+ "bloom-filter": "False positives are expected at the configured rate and there are no deletions; use a set or a database index when you need exact answers.",
+ "stats-summary": "Percentiles use linear interpolation (numpy default); other definitions (nearest rank, Excel PERCENTILE.EXC) give slightly different values.",
+ "shell-quote": "POSIX sh rules only: not for Windows cmd.exe or PowerShell. Prefer passing an argument array to the process API over building a command string.",
+ "number-to-words": "US English only, without \"and\"; integers below 10^15.",
+ "text-wrap": "Counts code points, not display width: wide CJK characters and combined emoji take more columns than counted."
 }

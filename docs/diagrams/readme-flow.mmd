@@ -23,6 +23,7 @@ flowchart LR
   Plan["plan<br/>(no writes)"]
   Add["add<br/>copy + .genlib/lock.json"]
   Verify["verify hashes"]
+  Receipt["receipt · adopted<br/>update · remove"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -41,6 +42,7 @@ flowchart LR
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
+  Add -.-> Receipt -.-> App
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App

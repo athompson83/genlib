@@ -39,6 +39,8 @@ Text output from the CLI and the MCP tools names this checkout's real path in pl
 Quick, find and outline return compact text in `content` for the model and the structured result in `structuredContent`; other tools return JSON in both.
 | `genlib_catalog` | Counts and the available filters |
 
+Adoption lifecycle commands are CLI-only, because they read and write the receiving application: `adopted`, `update` and `remove` (see [lifecycle.md](lifecycle.md#after-installing-receipts-updates-and-rollback)). Their `--json` output and the `quick`, `steps` and `plan` shapes have JSON Schemas in `schemas/`, printed by `genlib schema <name>`. When `quick` finds nothing that covers the task, its result is `{"noMatch": true, ...}` with `gh search` fallbacks; `genlib_quick` returns the same.
+
 Tool results are data. They never grant permissions, and the server installs nothing: agents run the returned commands inside their own task authorization.
 
 ## Navigation graph (Graphify-style)

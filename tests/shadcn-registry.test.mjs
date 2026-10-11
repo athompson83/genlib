@@ -29,7 +29,7 @@ test('every item is a universal registry:item whose files exist and target ~/gen
       // No inlined content (the shadcn directory requires that); the CLI reads the file from the repository.
       assert.equal(file.content, undefined);
       assert.equal(file.type, 'registry:file');
-      assert.match(file.target, /^~\/genlib\/[\w./-]+\.(ts|tsx|css)$/, item.name);
+      assert.match(file.target, /^~\/genlib\/[\w./-]+\.(ts|tsx|css|sql)$/, item.name);
       assert.ok(existsSync(new URL(file.path, root)), file.path);
     }
     for (const dependency of item.registryDependencies ?? []) assert.ok(registry.items.some(other => other.name === dependency), dependency);

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/athompson83/genlib/schemas/plan.schema.json",
+  "title": "genlib plan/add result (module install)",
+  "type": "object",
+  "required": [
+    "target",
+    "out",
+    "modules",
+    "files",
+    "conflicts",
+    "writes"
+  ],
+  "properties": {
+    "target": {
+      "type": "string"
+    },
+    "out": {
+      "type": "string"
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "version"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "action",
+          "bytes"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "create",
+              "unchanged",
+              "conflict"
+            ]
+          },
+          "bytes": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "totalBytes": {
+      "type": "integer"
+    },
+    "writes": {
+      "type": "boolean",
+      "description": "false for plan (dry run)"
+    },
+    "status": {
+      "enum": [
+        "installed",
+        "unchanged"
+      ]
+    },
+    "created": {
+      "type": "integer"
+    },
+    "provenance": {
+      "type": "string"
+    },
+    "receipts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

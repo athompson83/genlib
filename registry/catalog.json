@@ -41,6 +41,36 @@
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
     },
     {
+      "id": "comments",
+      "version": "0.1.0",
+      "title": "Threaded comments",
+      "description": "Threaded comments for any resource in a multi-tenant app: post and reply with a depth limit, @mentions, edit window, soft delete, paginated lists with reply previews, emoji reactions, user flags with auto-hide and moderation, with injected authorization, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "comments",
+        "threaded replies",
+        "discussion",
+        "reactions",
+        "mentions",
+        "moderation",
+        "flagging",
+        "multi-tenant",
+        "collaboration",
+        "feedback",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/comments@0.1.0.json",
+      "sha256": "443c9c74d78c6bb2c56f0dce68e9bcb64ab7f71491e81efb5a0a94ba78142d5b"
+    },
+    {
       "id": "common-api-clients",
       "version": "0.1.0",
       "title": "Common API clients",
@@ -74,6 +104,37 @@
       "sha256": "cef23e9440766c4a392fa439e4dcbd7f65e3d29ee606b3c1362e27cc47a863db"
     },
     {
+      "id": "csv-import",
+      "version": "0.1.0",
+      "title": "CSV import pipeline",
+      "description": "Server-side CSV import for apps: upload, preview with suggested column mapping, per-row validation with typed parsers and in-file duplicate checks, idempotent commit through your own save function, and a formula-safe error report, with tenant/user scoping and a Fetch Request/Response adapter.",
+      "kind": "feature",
+      "tags": [
+        "csv import",
+        "bulk upload",
+        "spreadsheet import",
+        "data import",
+        "column mapping",
+        "csv",
+        "import",
+        "upload",
+        "validation",
+        "error report",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/csv-import@0.1.0.json",
+      "sha256": "ea0fbfff0a81d7d57d1b15a8c3babdd5c9f13e039f2b7808e9d21c92d79ea927"
+    },
+    {
       "id": "data-table",
       "version": "0.1.0",
       "title": "Searchable sortable data table",
@@ -98,6 +159,37 @@
       "verification": "tested",
       "manifest": "registry/manifests/data-table@0.1.0.json",
       "sha256": "1c4f9f90ce5a74a51e060dd2e9981ff5ac1582824daae75bde73f06b2187097f"
+    },
+    {
+      "id": "entitlements",
+      "version": "0.1.0",
+      "title": "Plan entitlements and usage credits",
+      "description": "Server-side plan features and limits with subscription-status fallback and grace, plus an append-only usage-credit ledger with idempotent grants and debits, expiring credits, holds and optimistic concurrency.",
+      "kind": "feature",
+      "tags": [
+        "entitlements",
+        "plans",
+        "pricing",
+        "subscriptions",
+        "feature gating",
+        "limits",
+        "quotas",
+        "credits",
+        "usage billing",
+        "metering",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/entitlements@0.1.0.json",
+      "sha256": "12dc37730fed72e2e6a882b7ce32bef93067be23dd9a2e7a206b0d32777d6e4d"
     },
     {
       "id": "env-config",
@@ -185,6 +277,35 @@
       "sha256": "b99d24938487ea004a6f9ffebd05e8fd7765082b03fc7f6583727c83ce2e0c17"
     },
     {
+      "id": "notification-inbox",
+      "version": "0.1.0",
+      "title": "Notification inbox",
+      "description": "Server-side in-app notification inbox (the bell menu): idempotent publish, newest-first cursor paging, unread counts, mark read, mark all read, archive and retention pruning, scoped to each user's own tenant, with injected persistence and a Fetch Request/Response adapter.",
+      "kind": "feature",
+      "tags": [
+        "notifications",
+        "inbox",
+        "bell",
+        "unread",
+        "activity feed",
+        "alerts",
+        "mark as read",
+        "multi-tenant",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/notification-inbox@0.1.0.json",
+      "sha256": "d69aaacbd31d12fb1b18ba0516034d889164ed3c839549279224bb2c4ba4f24a"
+    },
+    {
       "id": "notification-preferences",
       "version": "0.1.0",
       "title": "Notification preferences",
@@ -210,7 +331,7 @@
     },
     {
       "id": "org-invitations",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "title": "Organization invitations",
       "description": "Tenant invitations for multi-tenant apps: invite by email with a role, inspect, accept once, revoke and expire, with hashed one-time tokens, injected authorization and persistence, and a Fetch Request/Response adapter.",
       "kind": "feature",
@@ -235,8 +356,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/org-invitations@0.1.0.json",
-      "sha256": "cdc8313c3beb9f6429bd03140c687aad49f7431be132ac8fec9ecfb43913e7d5"
+      "manifest": "registry/manifests/org-invitations@0.2.0.json",
+      "sha256": "f0eac5d18ccda92385515eecf117bcdc40e41143b28d0732d31903a4e0851e6c"
     },
     {
       "id": "public-data-clients",

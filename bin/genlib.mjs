@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { inspectModule, loadCatalog, searchCatalog } from '../lib/catalog.mjs';
 import { installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
@@ -10,6 +11,7 @@ import { LANGUAGES, commandsFor, coverage, stepsFor, loadCapabilities } from '..
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { integrationSummary, inspectIntegration, installIntegration, loadIntegrationCatalog, planIntegration, verifyIntegrations } from '../lib/integrations.mjs';
+import { checkAdoption, removeModule, updateModule } from '../lib/lifecycle.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
 
@@ -44,6 +46,10 @@ const HELP = {
     'plan <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
     'add <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
     'verify --target <existing-project> [--json]',
+    'adopted <id> --target <existing-project> [--test "<command>"] [--json]   # copied, used (imported by app code) and verified (your test passes); updates the receipt',
+    'update <id> --target <existing-project> [--write] [--conflict rej|inline] [--json]   # three-way merge onto your edits; dry run unless --write',
+    'schema [quick|steps|plan|receipt|update|module]   # JSON Schema of an agent-facing output',
+    'remove <id> --target <existing-project> [--dry-run] [--json]   # roll back: delete unmodified files, keep edited ones, drop the lock record',
   ],
   start: 'Run quick (or find) with the task first: it searches every Genlib source and returns the exact next command. Run outline <id> to learn the API without reading source.',
   behavior: 'Search metadata, read one contract, plan, copy reviewed source, then test the consuming app. No overwrite, install hooks, package installation, or network calls.',
@@ -52,13 +58,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -75,6 +81,7 @@ try {
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
+    schema: ['json'], adopted: ['target', 'test', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
@@ -207,6 +214,23 @@ try {
     invariant(options.target && positional.length === 0, 'INVALID_OPTION', 'verify requires --target and no module ID.');
     result = await verifyInstallation(options.target);
     if (result.status === 'drift') process.exitCode = 1;
+  } else if (command === 'schema') {
+    const names = ['quick', 'steps', 'plan', 'receipt', 'update', 'module'];
+    invariant(positional.length <= 1 && (!positional[0] || names.includes(positional[0])), 'INVALID_OPTION', 'schema takes one of: ' + names.join(', '));
+    result = positional[0]
+      ? JSON.parse(readFileSync(new URL(`../schemas/${positional[0]}.schema.json`, import.meta.url), 'utf8'))
+      : { schemas: names.map(name => ({ name, path: `schemas/${name}.schema.json` })) };
+  } else if (command === 'adopted') {
+    invariant(positional.length === 1 && options.target, 'INVALID_OPTION', 'Use adopted <id> --target <existing-project> [--test "<command>"].');
+    result = await checkAdoption(options.target, positional[0], { test: options.test });
+    if (!['used', 'verified'].includes(result.status) || result.outcomes.verified === false) process.exitCode = 1;
+  } else if (command === 'update' || command === 'remove') {
+    invariant(positional.length === 1 && options.target, 'INVALID_OPTION', `Use ${command} <id> --target <existing-project>.`);
+    const context = await loadCatalog();
+    result = command === 'update'
+      ? await updateModule(context, options.target, positional[0], { write: options.write === true, conflict: options.conflict ?? 'rej' })
+      : await removeModule(context, options.target, positional[0], { dryRun: options['dry-run'] === true });
+    if (command === 'update' && result.conflicts.length) process.exitCode = 1;
   } else {
     const context = await loadCatalog();
     if (command === 'list') {

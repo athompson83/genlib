@@ -32,7 +32,7 @@ description: Find, plan, and install reusable Genlib code, modules and integrati
   ],
   "modules": [
     "For a versioned module: plan <id> --target <app>, review compatibility and file changes, then add. Never regenerate installed source in a response; never force conflicts, symlinks or integrity errors. Use --allow-unverified only with recorded independent evidence.",
-    "Run verify after installing. Customize through wrappers, props and theme overrides; never rewrite baseline hashes to hide edits."
+    "Then run verify and adopted <id> --test <app test>; update/remove: references/cli.md. Wrap edits; never rewrite baseline hashes."
   ],
   "boundaries": [
     "Genlib's web modules are a narrow React/TypeScript family plus framework-neutral utilities and server-side HTTPS clients for Node 22+. Resource metadata does not extend that compatibility.",

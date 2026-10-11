@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/athompson83/genlib/schemas/update.schema.json",
+  "title": "genlib update result",
+  "type": "object",
+  "required": [
+    "module",
+    "from",
+    "to",
+    "write",
+    "files",
+    "conflicts"
+  ],
+  "properties": {
+    "module": {
+      "type": "string"
+    },
+    "from": {
+      "type": "string"
+    },
+    "to": {
+      "type": "string"
+    },
+    "write": {
+      "type": "boolean"
+    },
+    "conflictMode": {
+      "enum": [
+        "rej",
+        "inline"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "action"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "create",
+              "restore",
+              "unchanged",
+              "replace",
+              "keep-local",
+              "merged",
+              "conflict",
+              "delete",
+              "already-missing",
+              "keep-removed-upstream"
+            ]
+          }
+        }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "updateDependenciesFirst": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "changelog": {
+      "type": "array"
+    },
+    "note": {
+      "type": "string"
+    }
+  }
+}

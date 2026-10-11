@@ -25,11 +25,11 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 81 (724 implementations, 722 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
-| [Modules](#modules) | 15 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
+| [Capabilities](#capabilities-one-task-every-language) | 91 (814 implementations, 812 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
+| [Modules](#modules) | 19 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
 | [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
-| [TypeScript recipes](#recipes-language-examples-and-templates) | 104 | 100 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
-| [Language examples](#recipes-language-examples-and-templates) | 665 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 114 | 110 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
+| [Language examples](#recipes-language-examples-and-templates) | 745 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
@@ -39,7 +39,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9805 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 669 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 678 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -100,6 +100,7 @@ flowchart LR
   Plan["plan<br/>(no writes)"]
   Add["add<br/>copy + .genlib/lock.json"]
   Verify["verify hashes"]
+  Receipt["receipt · adopted<br/>update · remove"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -118,6 +119,7 @@ flowchart LR
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
+  Add -.-> Receipt -.-> App
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App
@@ -134,6 +136,7 @@ flowchart LR
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
 - **Verify in the app.** File hashes prove what was copied; the receiving app's own build and tests prove it works.
+- **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match ([docs/gaps.md](docs/gaps.md) lists the common tasks still served only by external projects).
 
 ## Quick start
 
@@ -174,11 +177,15 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
 | `plan <id> --target app` / `add <id> --target app` | Show, then perform, the exact file copy (default `src/genlib`, or `--out`) |
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
+| `adopted <id> --target app [--test]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command |
+| `update <id> --target app [--write] [--conflict rej\|inline]` | Three-way merge of a newer module version into locally edited files (base from the locked commit); dry run unless `--write`, conflicts reported per file |
+| `remove <id> --target app [--dry-run]` | Roll back an install: deletes unedited files, keeps edited ones, refuses while a dependent module is installed |
+| `schema [quick\|steps\|plan\|receipt\|update]` | JSON Schemas for the agent-facing `--json` outputs |
 | `integration list` / `integration inspect <id>` | Discover a complete optional integration profile and read its contract |
 | `integration plan\|add <id> --target app` | Plan/copy a pack, defaulting to `genlib/integrations/<id>` |
 | `integration verify --target app` | Verify the separate pack baseline and recovery journal; exits nonzero for drift or an incomplete install |
 
-`add` writes `.genlib/lock.json` with versions, origin and original hashes, and copies license notices. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
+`add` writes `.genlib/lock.json` with versions, origin and original hashes, copies license notices, and writes an adoption receipt to `.genlib/receipts/<id>.json`. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
 
 ## Capabilities: one task, every language
 
@@ -269,6 +276,16 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `pii-mask` PII masking and redaction | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `password-generate` Password and passphrase generation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `html-escape` HTML escape, unescape and tag stripping | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `url-template` URI templates (RFC 6570) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `bloom-filter` Bloom filter | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `stats-summary` Descriptive statistics and percentiles | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `interval-merge` Interval merge, intersect and gaps | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `shell-quote` Shell quoting and splitting | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `number-to-words` Numbers to English words | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `pagination-window` Pagination page numbers | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `text-wrap` Text wrapping and truncation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `markdown-table` Markdown tables | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `ndjson` NDJSON / JSON Lines | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
@@ -301,9 +318,13 @@ All modules are original Apache-2.0 code with a contract and behavior tests (ver
 | [`webhook-verification`](modules/webhook-verification/CONTRACT.md) | GitHub, Stripe and Standard Webhooks signatures with Web Crypto, rotation, capped raw body | Secrets, de-duplication of deliveries |
 | [`health-checks`](modules/health-checks/CONTRACT.md) | Fetch-standard `/healthz` and `/readyz` with concurrent, timed checks | Real dependency checks and routing |
 | [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies | A CSP matching its real sources |
-| [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership), authorization and role ceilings, sign-in, email delivery |
+| [`entitlements`](modules/entitlements/CONTRACT.md) | Plan features and limits with subscription-status fallback, plus a usage-credit ledger: idempotent grants and debits, expiring credits, holds, no overdraw under concurrency | Its plans, billing-state sync, a store with conditional appends |
+| [`notification-inbox`](modules/notification-inbox/CONTRACT.md) | In-app notification inbox: idempotent publish, cursor paging, unread counts, mark read, archive, retention, safe links, Fetch adapter | Its store, sign-in, which events become notifications |
+| [`csv-import`](modules/csv-import/CONTRACT.md) | CSV import flow: delimiter detection, column-mapping suggestions, typed row validation, idempotent commit with per-row errors, formula-safe error export, Fetch adapter | Its fields, the row writer, a store, upload limits |
+| [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership; a PostgreSQL schema and SQL store are included and tested under PGlite), authorization and role ceilings, sign-in, email delivery |
+| [`comments`](modules/comments/CONTRACT.md) | Threaded comments on any resource: replies to a depth limit, @mentions, edit window, soft delete that keeps replies, reactions, flags that hide at a threshold, moderation, cursor paging, PostgreSQL schema and SQL store, Fetch adapter | Authorization per resource, sign-in, rate limits, notifications for mentions, rendering |
 
-The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The eight server utilities use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
+The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The server utilities and feature packages use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
 
 ## Integration packs
 
@@ -337,7 +358,7 @@ npx shadcn@4.21.4 add athompson83/genlib/org-invitations   # any recipe or modul
 npx skills@1.7.2 add athompson83/genlib --skill genlib-use # the agent skill (APM: athompson83/genlib/skills/genlib-use#<commit>)
 ```
 
-After Genlib picks an external package, `tools/resources.mjs inspect <id>` returns a `docsLookup` with the two `ctx7` commands that fetch that library's version-specific docs from Context7. [landscape.md](docs/landscape.md) compares Genlib with shadcn, Bit, jsrepo, APM, Skills, Context7, AREX-Skill and CodeDistiller, and lists what was adopted from each.
+After Genlib picks an external package, `tools/resources.mjs inspect <id>` returns a `docsLookup` with the two `ctx7` commands that fetch that library's version-specific docs from Context7. [landscape.md](docs/landscape.md) compares Genlib with shadcn, Bit, jsrepo, APM, Skills, Context7, AREX-Skill, CodeDistiller, Limitless Library, BTST, TanStack Intent, Copier and others, and lists what was adopted from each. When a selected npm package is installed in the app and ships TanStack Intent skills, `inspect` names the installed version and the matching `intent load` command.
 
 ## Recipes, language examples and templates
 

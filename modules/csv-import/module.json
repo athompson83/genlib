@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "csv-import",
+  "version": "0.1.0",
+  "title": "CSV import pipeline",
+  "description": "Server-side CSV import for apps: upload, preview with suggested column mapping, per-row validation with typed parsers and in-file duplicate checks, idempotent commit through your own save function, and a formula-safe error report, with tenant/user scoping and a Fetch Request/Response adapter.",
+  "kind": "feature",
+  "tags": ["csv import", "bulk upload", "spreadsheet import", "data import", "column mapping", "csv", "import", "upload", "validation", "error report", "multi-tenant", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/csv-import"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, crypto.randomUUID, structuredClone, TextEncoder/TextDecoder and the Fetch Request/Response and ReadableStream APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "csv-import/core.ts" },
+    { "source": "files/memory-store.ts", "target": "csv-import/memory-store.ts" },
+    { "source": "files/http.ts", "target": "csv-import/http.ts" }
+  ],
+  "exports": [
+    { "name": "createImporter", "from": "csv-import/core.ts" },
+    { "name": "ImportError", "from": "csv-import/core.ts" },
+    { "name": "parseCsv", "from": "csv-import/core.ts" },
+    { "name": "detectDelimiter", "from": "csv-import/core.ts" },
+    { "name": "suggestMapping", "from": "csv-import/core.ts" },
+    { "name": "parseValue", "from": "csv-import/core.ts" },
+    { "name": "toSafeCsv", "from": "csv-import/core.ts" },
+    { "name": "MemoryImportStore", "from": "csv-import/memory-store.ts" },
+    { "name": "createImportHandler", "from": "csv-import/http.ts" }
+  ],
+  "configuration": [
+    "Declare the importable fields: key, label, required, aliases, parse ('string', 'integer', 'decimal', 'boolean', 'date', 'email' or a custom function), unique and maxLength.",
+    "Implement ImportStore on your database with a conditional status update (UPDATE ... WHERE id = $1 AND status = $2) and a scheduled delete of expired imports.",
+    "Implement onRow(record, rowNumber) to save one record, idempotently keyed on importId and rowNumber, with your own unique constraints; throw to record a row failure.",
+    "Implement authenticate(request) from your session or verified token, returning tenantId and userId; never from the request body.",
+    "Set parser limits (maxBytes, maxRows, maxColumns, maxFieldLength) and the HTTP maxUploadBytes to what your app accepts.",
+    "Mount createImportHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "rfc4180-csv-parsing",
+    "delimiter-detection",
+    "header-mapping-suggestion",
+    "typed-row-validation",
+    "in-file-duplicate-detection",
+    "idempotent-import-commit",
+    "formula-safe-error-report",
+    "tenant-user-scoped-imports"
+  ],
+  "limitations": [
+    "Does not save records; onRow does, and cross-file or database uniqueness must be enforced there.",
+    "UTF-8 text only; no Excel (.xlsx), other encodings or streaming of files larger than the in-memory caps (default 5 MiB, 10,000 rows).",
+    "Dates must be ISO YYYY-MM-DD and decimals parse to JavaScript numbers; use a custom parser for local formats or exact money.",
+    "A process crash during commit leaves the import in committing; recover it from your store using the saved progress and your idempotent onRow.",
+    "The in-memory store is for tests and prototypes only. No rate limiting; add request limits (see the rate-limit module) to the upload route.",
+    "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/csv-import.test.mjs"],
+    "command": "npm run build && node --test tests/csv-import.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2" },
+    "behaviors": [
+      "RFC 4180 quotes, escaped quotes, embedded line breaks, CRLF/CR/LF and a UTF-8 BOM parse correctly; malformed quoting is rejected",
+      "the delimiter is detected among comma, semicolon, tab and pipe, ignoring quoted text",
+      "byte (UTF-8), row, column and field-length caps are enforced",
+      "column mapping is suggested case-, punctuation- and accent-insensitively with aliases, each header used once",
+      "integer, decimal, boolean, date, email and custom parsers accept valid and reject invalid values with distinct codes",
+      "missing required columns and empty required cells are reported; rows with extra cells are invalid",
+      "repeated values in unique fields are reported with the rows involved",
+      "a second commit returns the first result without calling onRow again; a concurrent commit gets commit-in-progress",
+      "a failed onRow records a row error without exposing its message and the commit continues",
+      "another user's or tenant's import id and expired imports read as not-found",
+      "the error report prefixes cells starting with = + - @ TAB or CR with an apostrophe",
+      "HTTP adapter: status codes, 401, origin check, media type, upload size cap, non-UTF-8 refusal and no-store headers"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: RFC 4180 parser, importer core, in-memory store and Fetch adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

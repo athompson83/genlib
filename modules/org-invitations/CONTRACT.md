@@ -1,4 +1,4 @@
-# Organization invitations · 0.1.0
+# Organization invitations · 0.2.0
 
 ## What installs
 
@@ -7,6 +7,7 @@ Three original Apache-2.0 TypeScript files under `org-invitations/`:
 - `core.ts`: `createInvitations` (invite, inspect, accept, revoke, list pending), `InvitationError` and the `InvitationStore` interface.
 - `memory-store.ts`: `MemoryInvitationStore`, a per-process reference store for tests and prototypes.
 - `http.ts`: `createInvitationHandler`, a server-only Fetch `Request`/`Response` adapter.
+- `schema.sql` and `sql-store.ts`: the PostgreSQL table and `createSqlInvitationStore(executor, { table?, onAccepted? })`, for any `query(text, params)` executor with `$1` placeholders (node-postgres, Neon, PGlite, or postgres.js through a small wrapper).
 
 There is no hidden database, email service or user system. The receiving application supplies those through four integration points.
 
@@ -18,7 +19,7 @@ Use it when users of a multi-tenant app (organizations, teams, workspaces) invit
 
 | Point | What the application supplies |
 | --- | --- |
-| `InvitationStore` | A table with a unique index on `token_hash` and an atomic conditional update. Create the membership row in the same transaction as the `pending` to `accepted` transition (or make membership creation idempotent and retry it). |
+| `InvitationStore` | On PostgreSQL: apply `schema.sql`, call `createSqlInvitationStore(db, { onAccepted })`, and insert the membership row in `onAccepted`, which runs inside the accepting transaction when the executor has `transaction`. Elsewhere: a table with a unique `token_hash` and an atomic conditional status update. |
 | `authorize(actor, action, {tenantId, role})` | Your membership check for `invite`, `revoke` and `list`, including role ceilings (an admin cannot invite an owner). Return `false` to deny. |
 | `authenticate(request)` | The signed-in user and their verified email, from your session or verified token. Never from the request body. |
 | `sendInvitation(invitation, token)` | Your email provider. Build the link from a trusted base URL and put the token in the fragment (`/join#token=...`) so it stays out of server logs and Referer headers. |
@@ -80,6 +81,8 @@ Signed-out callers get 401 (except on `inspect`). State-changing requests withou
 - forwarded links (email mismatch)
 - the pending cap
 - the HTTP adapter's status codes, origin check, minimal inspect response and failed-delivery revocation
+
+`tests/org-invitations-sql.test.mjs` runs the SQL store on PostgreSQL semantics through PGlite. It covers the schema, core behaviors, four concurrent accepts with one winner, and a membership insert that shares the accepting transaction (a failing insert rolls the accept back).
 
 In the receiving app, add the same cases against your real store, including two concurrent accepts against the database, and an authorization test for an ordinary member.
 

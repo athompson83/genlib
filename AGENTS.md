@@ -42,6 +42,8 @@ Run `npm run check` before publishing; it fails when generated docs, counts, mir
 - `packages/genlib-mcp/`: optional direct stdio/Streamable HTTP server and SDK-client tests; connection guide in `docs/mcp-server.md`.
 - `registry/`: generated compact catalog and integrity manifests.
 - `bin/` and `lib/`: deterministic discovery, planning, installation, and verification.
+- `lib/lifecycle.mjs` (`genlib adopted|update|remove`) and `schemas/*.schema.json` (`genlib schema`): adoption receipts in `.genlib/receipts/` (found, copied, used, verified), Copier-style three-way updates (dry run unless `--write`), rollback that keeps edited files, and JSON Schemas for agent-facing outputs. Change an output shape and its schema together; `tests/agent-outputs.test.mjs` and `tests/lifecycle.test.mjs` validate real outputs.
+- `scripts/gap-report.mjs` and `tests/fixtures/gap-tasks.json` (`node scripts/gap-report.mjs --write` → `docs/gaps.md`): which common application tasks route to Genlib code, only to external projects, or nowhere. Rerun after adding a module or capability; the external-only list is the feature-package queue.
 - `skills/genlib-use/`: canonical cross-harness skill; `.agents/skills/` and `.claude/skills/` are generated mirrors.
 - `tests/`: CLI safety, integration, and module behavior tests.
 - `resources/`: project types, task recipes, reviewed external sources (`resources/catalog/<domain>.json` with guides in `docs/resources/`), attachment mapping and UI-library selection metadata.

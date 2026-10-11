@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "org-invitations",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Organization invitations",
   "description": "Tenant invitations for multi-tenant apps: invite by email with a role, inspect, accept once, revoke and expire, with hashed one-time tokens, injected authorization and persistence, and a Fetch Request/Response adapter.",
   "kind": "feature",
@@ -26,7 +26,9 @@
   "files": [
     { "source": "files/core.ts", "target": "org-invitations/core.ts" },
     { "source": "files/memory-store.ts", "target": "org-invitations/memory-store.ts" },
-    { "source": "files/http.ts", "target": "org-invitations/http.ts" }
+    { "source": "files/http.ts", "target": "org-invitations/http.ts" },
+    { "source": "files/sql-store.ts", "target": "org-invitations/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "org-invitations/schema.sql" }
   ],
   "exports": [
     { "name": "createInvitations", "from": "org-invitations/core.ts" },
@@ -34,10 +36,11 @@
     { "name": "normalizeEmail", "from": "org-invitations/core.ts" },
     { "name": "hashToken", "from": "org-invitations/core.ts" },
     { "name": "MemoryInvitationStore", "from": "org-invitations/memory-store.ts" },
-    { "name": "createInvitationHandler", "from": "org-invitations/http.ts" }
+    { "name": "createInvitationHandler", "from": "org-invitations/http.ts" },
+    { "name": "createSqlInvitationStore", "from": "org-invitations/sql-store.ts" }
   ],
   "configuration": [
-    "Implement InvitationStore on your database: a unique index on token_hash and an atomic conditional status update (UPDATE ... WHERE id = $1 AND status = 'pending'); create the membership row in the same transaction as the accepted transition.",
+    "On PostgreSQL, apply schema.sql and use createSqlInvitationStore with your query executor, passing onAccepted to insert the membership row in the accepting transaction; on other databases implement InvitationStore with a unique token_hash and a conditional status update.",
     "Implement authorize(actor, action, {tenantId, role}) from your own membership table and enforce role ceilings there (who may invite whom).",
     "Declare the invitable roles; keep owner or billing roles out unless invitations should grant them.",
     "Implement authenticate(request) from your session or verified token; verifiedEmail must come from your identity provider.",
@@ -54,15 +57,15 @@
   "limitations": [
     "Does not create memberships, users or tenants; your store's accepted transition must do that atomically.",
     "Does not send email or render templates; failed delivery revokes the invitation so nothing is left pending.",
-    "The in-memory store is for tests and prototypes only.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, not on every hosted Postgres.",
     "No rate limiting beyond the per-tenant pending cap; add request rate limits (see the rate-limit module) on invite and accept routes.",
     "Production database correctness, session security, email deliverability and consuming-application acceptance remain project responsibilities."
   ],
   "verification": {
     "level": "tested",
-    "testFiles": ["tests/org-invitations.test.mjs"],
-    "command": "npm run build && node --test tests/org-invitations.test.mjs",
-    "environment": { "node": "22", "typescript": "7.0.2" },
+    "testFiles": ["tests/org-invitations.test.mjs", "tests/org-invitations-sql.test.mjs"],
+    "command": "npm run build && node --test tests/org-invitations.test.mjs tests/org-invitations-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
     "behaviors": [
       "invite returns a 256-bit token once and stores only its SHA-256 hash",
       "accept succeeds once; replays fail with already-accepted",
@@ -72,10 +75,14 @@
       "members, admins of another tenant and role ceilings are refused",
       "a different signed-in account cannot use a forwarded link (email-mismatch)",
       "pending invitations are capped per tenant",
-      "HTTP adapter: status codes, origin check, minimal inspect response, revoke and failed-delivery revocation"
+      "HTTP adapter: status codes, origin check, minimal inspect response, revoke and failed-delivery revocation",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL",
+      "four concurrent accepts against the database have exactly one winner",
+      "onAccepted inserts the membership in the accepting transaction; a failing insert rolls the accept back"
     ]
   },
   "changelog": [
+    { "version": "0.2.0", "changes": ["Add schema.sql (PostgreSQL) and createSqlInvitationStore with transactional onAccepted membership creation."] },
     { "version": "0.1.0", "changes": ["First release: core, in-memory store and Fetch adapter."] }
   ],
   "contract": "CONTRACT.md"

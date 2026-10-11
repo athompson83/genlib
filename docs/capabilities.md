@@ -95,6 +95,16 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `pii-mask` PII masking and redaction | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `password-generate` Password and passphrase generation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `html-escape` HTML escape, unescape and tag stripping | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `url-template` URI templates (RFC 6570) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `bloom-filter` Bloom filter | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `stats-summary` Descriptive statistics and percentiles | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `interval-merge` Interval merge, intersect and gaps | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `shell-quote` Shell quoting and splitting | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `number-to-words` Numbers to English words | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `pagination-window` Pagination page numbers | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `text-wrap` Text wrapping and truncation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `markdown-table` Markdown tables | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `ndjson` NDJSON / JSON Lines | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |
@@ -387,6 +397,36 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 
 **html-escape**
 - `escapeHtml` escapes `& < > " '`. `unescapeHtml` decodes numeric references, the windows-1252 C1 table and a fixed set of named entities, and requires the closing `;`. `stripTags` drops script and style contents, removes tags and unescapes the rest into plain text. It is not a sanitizer: use rich-text-sanitization before rendering user HTML. The TypeScript recipe also has the `html` tagged template and `safeUrl`.
+
+**url-template**
+- `expandTemplate(template, variables)` implements RFC 6570 levels 1 to 4: simple, reserved (`{+path}`), fragment (`{#x}`), label, path, path-style parameter, query and continuation expressions, `:n` prefixes and `*` explode for lists and ordered maps. Undefined, empty-list and empty-map values are skipped. Malformed templates and prefixes on lists or maps are errors. The tests include every RFC example.
+
+**bloom-filter**
+- `bloomSizeFor(n, p)` gives the bit count and hash count for `n` items at false-positive rate `p`. `BloomFilter` adds and tests items using FNV-1a 64-bit double hashing, so every language sets the same bits, and serializes to base64url. Filters built in one language can be read in another. `countEstimate` approximates how many items were added, and `union` merges two filters of the same size. There are no deletions.
+
+**stats-summary**
+- `summary(xs)` returns count, sum, min, max, mean, median, sample variance and standard deviation, and p25/p75/p90/p95/p99. `percentile(xs, q)` interpolates linearly between ranks, as numpy and R type 7 do. `histogram(xs, edges)` counts values per bucket, with the last edge inclusive, plus counts below and above the range. Mean and variance use the two-pass method, so large offsets (around 1e9) stay accurate.
+
+**interval-merge**
+- Half-open integer intervals `[start, end)`: `merge` joins overlapping and touching ones, and `intersect`, `subtract` and `gaps(xs, lo, hi)` return merged, sorted results. `total` is the covered length, `overlaps` treats touching intervals as not overlapping, and `contains` tests a point. Use them for free/busy slots, booking conflicts and coverage.
+
+**shell-quote**
+- `shellQuote(arg)` leaves safe words as they are and single-quotes everything else (`it's` becomes `'it'\''s'`). `shellJoin(args)` builds a command line. `shellSplit(line)` splits one with POSIX quoting (single quotes literal, double quotes with `\$ \` \" \\` escapes, backslash outside quotes, `#` comments at word start) and never expands `$`, `*` or `~`. Every quoted value splits back to itself. Prefer an argument array over a shell string when the process API allows it.
+
+**number-to-words**
+- `numberToWords(1234567)` gives "one million two hundred thirty-four thousand five hundred sixty-seven" (US style, no "and"). `ordinalWords(21)` gives "twenty-first" and `ordinalSuffix(112)` gives "112th". `moneyWords(12345, "dollar", "cent", 2)` gives "one hundred twenty-three dollars and forty-five cents", with the minor-unit exponent from the money capability.
+
+**pagination-window**
+- `pageCount(total, perPage)` (at least 1) and `pageOffset(page, perPage)` handle the arithmetic. `pageWindow(current, total, siblings, boundaries)` returns the numbers a pager shows, with gaps for ellipses (`1 … 9 10 11 … 20`), using the same algorithm as MUI's `usePagination`. Each language documents how it represents a gap.
+
+**text-wrap**
+- `wrapText(text, width)` fills lines greedily on spaces, keeps existing line breaks and blank lines, and breaks words longer than the width. `truncateText(text, max, ellipsis)` returns the text unchanged when it fits. Otherwise it cuts at the last space in the second half of the allowed length, or hard-cuts, and appends the ellipsis inside the limit. Lengths count code points.
+
+**markdown-table**
+- `markdownTable(headers, rows, align)` renders a GitHub table with columns padded to equal width (at least 3), `:--`, `--:` and `:-:` alignment markers, pipes and backslashes escaped, and newlines turned into `<br>`. Rows must match the header width.
+
+**ndjson**
+- `parseNdjson(text)` reads one JSON value per line, skips blank lines, accepts CRLF and reports the 1-based line of the first invalid value. `stringifyNdjson(values)` writes compact JSON with keys in insertion order and a newline after each value, byte-identical across the nine languages.
 
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 

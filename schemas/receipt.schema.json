@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/athompson83/genlib/schemas/receipt.schema.json",
+  "title": "genlib adoption receipt (.genlib/receipts/<id>.json)",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "module",
+    "version",
+    "manifestSha256",
+    "out",
+    "files",
+    "outcomes",
+    "checks"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "module": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "manifestSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source": {
+      "type": "object"
+    },
+    "out": {
+      "type": "string"
+    },
+    "installedAt": {
+      "type": "string"
+    },
+    "compatibility": {
+      "type": "object"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "outcomes": {
+      "type": "object",
+      "required": [
+        "found",
+        "copied",
+        "used",
+        "verified"
+      ],
+      "properties": {
+        "found": {
+          "type": "boolean"
+        },
+        "copied": {
+          "type": "boolean"
+        },
+        "used": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "verified": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "removed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "at",
+          "status"
+        ],
+        "properties": {
+          "at": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "copied",
+              "used",
+              "verified",
+              "incomplete",
+              "removed"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

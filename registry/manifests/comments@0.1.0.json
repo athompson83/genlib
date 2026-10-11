@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "id": "comments",
+  "version": "0.1.0",
+  "title": "Threaded comments",
+  "description": "Threaded comments for any resource in a multi-tenant app: post and reply with a depth limit, @mentions, edit window, soft delete, paginated lists with reply previews, emoji reactions, user flags with auto-hide and moderation, with injected authorization, a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "comments",
+    "threaded replies",
+    "discussion",
+    "reactions",
+    "mentions",
+    "moderation",
+    "flagging",
+    "multi-tenant",
+    "collaboration",
+    "feedback",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/comments"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, crypto.randomUUID, TextEncoder/TextDecoder, btoa/atob and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "comments/core.ts",
+      "path": "modules/comments/files/core.ts",
+      "sha256": "98be2967e614799c772051de397f368725d8af27b4c3fb3cb4437e2aac2bcb08",
+      "bytes": 23164
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "comments/memory-store.ts",
+      "path": "modules/comments/files/memory-store.ts",
+      "sha256": "ff77a97ac80410fdd9be26f2c1dcc35b2ca70833c39a7b6314c3cd1df6ab7276",
+      "bytes": 5183
+    },
+    {
+      "source": "files/http.ts",
+      "target": "comments/http.ts",
+      "path": "modules/comments/files/http.ts",
+      "sha256": "2dc529b9b58082676a4ce7c4599675eac1e182b7df735f574a382238dc6323ce",
+      "bytes": 6875
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "comments/sql-store.ts",
+      "path": "modules/comments/files/sql-store.ts",
+      "sha256": "950760816b18dd66668d7d9f4762f41545d88827ab0766dee5655244c51b11de",
+      "bytes": 8200
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "comments/schema.sql",
+      "path": "modules/comments/files/schema.sql",
+      "sha256": "4cdc7d26ccf9283d3a8164812a4125dd21492ae1e13b04c8ebd1cc7c452c7597",
+      "bytes": 2015
+    }
+  ],
+  "exports": [
+    {
+      "name": "createComments",
+      "from": "comments/core.ts"
+    },
+    {
+      "name": "CommentError",
+      "from": "comments/core.ts"
+    },
+    {
+      "name": "extractMentions",
+      "from": "comments/core.ts"
+    },
+    {
+      "name": "DEFAULT_REACTIONS",
+      "from": "comments/core.ts"
+    },
+    {
+      "name": "MemoryCommentStore",
+      "from": "comments/memory-store.ts"
+    },
+    {
+      "name": "createCommentHandler",
+      "from": "comments/http.ts"
+    },
+    {
+      "name": "createSqlCommentStore",
+      "from": "comments/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlCommentStore with your query executor; on other databases implement CommentStore with primary keys on (comment_id, user_id, emoji) and (comment_id, user_id) and an atomic flag counter.",
+    "Implement authorize(actor, action, {tenantId, resourceType, resourceId}) for read, post and moderate from your own membership and resource-access checks.",
+    "Implement authenticate(request) from your session or verified token, never from the request body.",
+    "Tune editWindowMs, maxDepth, maxBodyLength, flagThreshold, previewReplies and the reactions allow-list; pass sanitize only if you store rich text.",
+    "Resolve mentions to users and send notifications in your own code after post or edit; the module only extracts the handles.",
+    "Mount createCommentHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "threaded-comments",
+    "comment-mentions",
+    "comment-reactions",
+    "comment-flagging-and-moderation",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "Does not resolve @mentions to accounts, send notifications, render HTML or sanitize rich text; it stores plain text unless you pass sanitize.",
+    "No moderation queue listing, edit history or realtime delivery; build those on the store (schema.sql has a hidden-comments index).",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, not on every hosted Postgres under parallel load.",
+    "No rate limiting; add request rate limits (see the rate-limit module) on post, reaction and flag routes.",
+    "Production database correctness, session security, content policy and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/comments.test.mjs",
+      "tests/comments-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/comments.test.mjs tests/comments-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "replies nest to maxDepth; a deeper reply fails with too-deep",
+      "a parent on another resource, another tenant, unknown or deleted fails with invalid-parent",
+      "@mentions are extracted and deduplicated, and email addresses are not mentions",
+      "the author edits within the edit window; afterwards only a moderator may edit, and editedAt is kept",
+      "soft delete clears the body and mentions, keeps replies, and the thread still lists them",
+      "top-level comments list newest first with an opaque cursor; replies preview oldest first with replyCount",
+      "reactions toggle per user and emoji, report the actor's own, and refuse emoji outside the allow-list",
+      "each user flags once; a visible comment is hidden at the threshold, approved comments are not auto-hidden, and moderators approve or hide",
+      "ids from another tenant are not-found, and read-only or outside users are forbidden to post, react or moderate",
+      "HTTP adapter: every route, status codes, origin check, 401 when signed out and cache-control no-store",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL",
+      "50 concurrent reactions from 25 users and 10 concurrent removals end with exact counts",
+      "24 concurrent flags from 12 users record exactly 12 and hide exactly at the threshold"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/comments/module.json",
+    "sha256": "d35925f90f008a13faf5e3cd8f44e23509ac35d889c7190b431f8730537643d2"
+  },
+  "contractFile": {
+    "path": "modules/comments/CONTRACT.md",
+    "sha256": "d16cc85bfe4eb8f8ed500ddf3aa6cf4a0ef4f97ee95c4cdf1b2bd8e05f0caa1d",
+    "bytes": 7590
+  }
+}
