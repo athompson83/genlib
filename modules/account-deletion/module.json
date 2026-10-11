@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "id": "account-deletion",
+  "version": "0.1.0",
+  "title": "Account deletion with a grace period",
+  "description": "Self-service and admin account deletion for server apps: re-authenticated requests, a configurable grace period during which the account is disabled, cancel to restore access, session revocation through a hook, a declared delete/anonymize/retain data policy run by a leased, resumable, run-once worker, a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "account deletion",
+    "delete account",
+    "close account",
+    "grace period",
+    "right to erasure",
+    "gdpr",
+    "data retention",
+    "anonymization",
+    "privacy",
+    "authentication",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/account-deletion"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (randomUUID), TextDecoder and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter under one prefix and call runDue() from your scheduler or job queue.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "account-deletion/core.ts"
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "account-deletion/memory-store.ts"
+    },
+    {
+      "source": "files/http.ts",
+      "target": "account-deletion/http.ts"
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "account-deletion/sql-store.ts"
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "account-deletion/schema.sql"
+    }
+  ],
+  "exports": [
+    {
+      "name": "createAccountDeletion",
+      "from": "account-deletion/core.ts"
+    },
+    {
+      "name": "AccountDeletionError",
+      "from": "account-deletion/core.ts"
+    },
+    {
+      "name": "MemoryAccountDeletionStore",
+      "from": "account-deletion/memory-store.ts"
+    },
+    {
+      "name": "createAccountDeletionHandler",
+      "from": "account-deletion/http.ts"
+    },
+    {
+      "name": "publicView",
+      "from": "account-deletion/http.ts"
+    },
+    {
+      "name": "createSqlAccountDeletionStore",
+      "from": "account-deletion/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlAccountDeletionStore with your query executor; on other databases implement AccountDeletionStore with one live (pending, executing or completed) request per user and conditional, lease-checked claim, renew, step, complete and release statements.",
+    "Implement authorize(actor, 'request'|'cancel'|'read', {userId, self}) so owners (self) and the admins you choose are allowed.",
+    "Pass revokeSessions(userId) that revokes every session, refresh token and API token of the user.",
+    "Declare the data policy: one entry per data set with action delete, anonymize or retain, a reason, and an idempotent run(); put the account row itself last.",
+    "Set graceMs (default 30 days) and recentAuthMs (default 5 minutes); give actors authenticatedAt from your sign-in or re-authentication step.",
+    "Call isDisabled(userId) in sign-in and request authentication; for a disabled account offer only the cancel flow after verifying credentials.",
+    "Call runDue({limit}) periodically from a scheduler or the durable-jobs module; set leaseMs longer than one policy step takes.",
+    "Mount createAccountDeletionHandler under one prefix with exact allowedOrigins and your authenticate(request)."
+  ],
+  "capabilities": [
+    "account-deletion-request",
+    "re-authentication-check",
+    "deletion-grace-period",
+    "deletion-cancel",
+    "session-revocation-hook",
+    "declared-data-retention-policy",
+    "leased-run-once-execution",
+    "resumable-deletion-steps"
+  ],
+  "limitations": [
+    "Does not delete data, revoke sessions, verify passwords or store users itself; the application injects authorize, revokeSessions and the policy handlers.",
+    "Policy handlers must be idempotent: a crash after a handler finished but before its step was recorded runs that handler again on the retry.",
+    "A worker that keeps running after its lease expired is fenced: it renews its lease before each request and each handler and stops when renewal fails, but a handler call already in progress when the lease expires is not stopped. Set leaseMs well above the longest step.",
+    "Failed steps retry after retryDelayMs without a maximum; attempts and lastError are recorded for alerting, but there is no dead-letter state.",
+    "Request inserts the pending row before calling revokeSessions; if revocation throws, the row is discarded and revoke-failed is raised, but sessions revoked before the failure stay revoked.",
+    "isDisabled is a gate the application must call on sign-in and on authenticated requests; the module cannot block access paths it is not called from.",
+    "Deletion in backups, logs, search indexes, analytics and third-party processors is outside the module; declare and implement it as policy handlers or document it.",
+    "The in-memory store is for tests and prototypes only. The SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection: the concurrent runDue test proves the single conditional claim UPDATE gives each due account to one worker when statements interleave, not behavior under real multi-connection contention or on every hosted Postgres.",
+    "Legal retention periods, erasure obligations and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/account-deletion.test.mjs",
+      "tests/account-deletion-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/account-deletion.test.mjs tests/account-deletion-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "request requires authenticatedAt within recentAuthMs (missing, stale and future times are refused with reauth-required)",
+      "a request is scheduled graceMs later (including 0) and nothing runs before scheduledFor",
+      "isDisabled is true while pending or executing and after completion, false after cancel",
+      "cancel during the grace period restores access; after the period ends or once executing it fails with too-late",
+      "revokeSessions is called on request; when it throws, the request is discarded, nothing is scheduled and revoke-failed is raised",
+      "the policy runs in order: delete and anonymize handlers change the application data, retain entries keep it and are recorded as steps",
+      "the policy is validated: at least one entry, unique names, delete|anonymize|retain, a reason, and run() for delete and anonymize",
+      "only the owner (self) or an authorized admin can request, cancel or read; admins also need recent authentication",
+      "one live request per user: already-pending while open, already-deleted after completion, including a request whose read raced completion (enforced by the store/unique index, not only the read)",
+      "a failed step is released with its error and retried after retryDelayMs, skipping steps already recorded",
+      "a crashed worker's lease expires, the next run resumes from the recorded steps and the stale worker cannot record steps or complete",
+      "each worker renews its lease before every request and handler; a queued request whose lease expired and was taken by another worker is reported lost and never touched again (memory store and PostgreSQL)",
+      "completion is recorded with completedAt and attempts; later runs do nothing",
+      "two concurrent runDue calls execute each due account exactly once on PostgreSQL (single conditional UPDATE with FOR UPDATE SKIP LOCKED) and on the memory store",
+      "HTTP adapter: GET status, POST request 202, DELETE cancel, 401, re-auth 401, 403 origin and authorization, 409, 413, invalid JSON, no-store and no claim token in responses",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md"
+}

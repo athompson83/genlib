@@ -16,12 +16,19 @@ export class CircuitBreaker {
   private openedAt = 0;
   private inFlight = 0;
 
+  readonly failureThreshold: number;
+  readonly cooldownMs: number;
+  readonly halfOpenMax: number;
+
   /** Throws RangeError when failureThreshold < 1, cooldownMs < 0 or halfOpenMax < 1 (all integers). */
-  constructor(readonly failureThreshold = 5, readonly cooldownMs = 30000, readonly halfOpenMax = 1) {
+  constructor(failureThreshold = 5, cooldownMs = 30000, halfOpenMax = 1) {
     const limits: [string, number, number][] = [["failureThreshold", failureThreshold, 1], ["cooldownMs", cooldownMs, 0], ["halfOpenMax", halfOpenMax, 1]];
     for (const [name, value, low] of limits) {
       if (!Number.isSafeInteger(value) || value < low) throw new RangeError(`${name} must be an integer >= ${low}`);
     }
+    this.failureThreshold = failureThreshold;
+    this.cooldownMs = cooldownMs;
+    this.halfOpenMax = halfOpenMax;
   }
 
   /** "closed", "open" or "half_open" at now (an open circuit turns half_open once the cooldown has passed). */

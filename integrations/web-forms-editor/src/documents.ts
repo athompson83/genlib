@@ -55,7 +55,9 @@ export class DraftSession<T> {
   private listeners = new Set<() => void>();
   private pending?: Promise<DocumentEnvelope<T>>;
   private state: { document: DocumentEnvelope<T>; dirty: boolean; saving: boolean; error?: Error };
-  constructor(initial: DocumentEnvelope<T>, private readonly store: DocumentStore<T>) {
+  private readonly store: DocumentStore<T>;
+  constructor(initial: DocumentEnvelope<T>, store: DocumentStore<T>) {
+      this.store = store;
     this.state = { document: structuredClone(initial), dirty: false, saving: false };
   }
   getSnapshot = () => this.state;

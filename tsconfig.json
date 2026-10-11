@@ -13,7 +13,8 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": ".",
     "outDir": ".build",
-    "declaration": true
+    "declaration": true,
+    "erasableSyntaxOnly": true
   },
   "include": ["modules/**/*.ts", "modules/**/*.tsx"],
   "exclude": ["node_modules", ".build"]

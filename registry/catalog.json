@@ -16,6 +16,68 @@
   },
   "items": [
     {
+      "id": "account-deletion",
+      "version": "0.1.0",
+      "title": "Account deletion with a grace period",
+      "description": "Self-service and admin account deletion for server apps: re-authenticated requests, a configurable grace period during which the account is disabled, cancel to restore access, session revocation through a hook, a declared delete/anonymize/retain data policy run by a leased, resumable, run-once worker, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "account deletion",
+        "delete account",
+        "close account",
+        "grace period",
+        "right to erasure",
+        "gdpr",
+        "data retention",
+        "anonymization",
+        "privacy",
+        "authentication",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/account-deletion@0.1.0.json",
+      "sha256": "0c4c3f8c3f17bc409dc9ca8135a64f2c2d5408b58b3a89769f5aff2ac67adb36"
+    },
+    {
+      "id": "api-keys",
+      "version": "0.1.0",
+      "title": "API keys",
+      "description": "API key management for multi-tenant apps: CSPRNG keys with an identifiable non-secret prefix, shown once and stored only as an HMAC-SHA-256 under a server pepper, constant-time verification by lookup id, tenant and scope limits, revocation, expiry, throttled last-used writes and secret-free audit events, with injected authorization and persistence.",
+      "kind": "feature",
+      "tags": [
+        "api keys",
+        "api key management",
+        "personal access tokens",
+        "token hashing",
+        "hmac",
+        "bearer token",
+        "scopes",
+        "revocation",
+        "key rotation",
+        "multi-tenant",
+        "saas",
+        "server",
+        "authentication"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/api-keys@0.1.0.json",
+      "sha256": "4b9dbec4db792809d5622a8067037ca9d547982b20cccdace9f381eac33532a8"
+    },
+    {
       "id": "app-shell",
       "version": "0.1.0",
       "title": "Responsive application shell",
@@ -39,6 +101,41 @@
       "verification": "tested",
       "manifest": "registry/manifests/app-shell@0.1.0.json",
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
+    },
+    {
+      "id": "audit-log",
+      "version": "0.1.0",
+      "title": "Audit log",
+      "description": "Tenant-scoped, append-only audit log for multi-tenant apps: record who did what to which target, when, with what outcome and request id, in the same transaction as the change; per-tenant SHA-256 hash chain with tamper verification; redaction of secrets before hashing; admin-only filtered queries with keyset cursors; CSV and NDJSON export; and an enforced retention purge that keeps the chain verifiable.",
+      "kind": "feature",
+      "tags": [
+        "audit log",
+        "audit trail",
+        "activity log",
+        "user actions",
+        "compliance",
+        "soc 2",
+        "tamper evident",
+        "hash chain",
+        "append-only",
+        "redaction",
+        "csv export",
+        "retention",
+        "multi-tenant",
+        "saas",
+        "server",
+        "postgresql"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/audit-log@0.1.0.json",
+      "sha256": "3548a3f97f8d4b9ca29bce67f54ef6a8a4fb3eaa843bfdb241e7f66fdd6de9e8"
     },
     {
       "id": "bot-protection",
@@ -70,7 +167,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/bot-protection@0.1.0.json",
-      "sha256": "41a9980bcd6dd4209726d01e1c7f611b6d9588f1d4d4f76bb74b3ac72c029b57"
+      "sha256": "a8173709342b0064e0101e6ddf43e24c1781f2f9007651c757f5a4c34480a7c5"
     },
     {
       "id": "chat",
@@ -101,7 +198,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/chat@0.1.0.json",
-      "sha256": "f1ffb22551e1580919e61d5bd1cf7511c39bba8a8d93c9312a7ce1a560aefb2c"
+      "sha256": "8035b55812513b79573eee63c23336e66a6f2843a8c86fbc9af8574a884869b0"
     },
     {
       "id": "comments",
@@ -131,7 +228,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/comments@0.1.0.json",
-      "sha256": "443c9c74d78c6bb2c56f0dce68e9bcb64ab7f71491e81efb5a0a94ba78142d5b"
+      "sha256": "d5b220568610873d04d03f048551a11bbd92c52969e878e2ab4556feda3a82a4"
     },
     {
       "id": "common-api-clients",
@@ -195,7 +292,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/csv-import@0.1.0.json",
-      "sha256": "ea0fbfff0a81d7d57d1b15a8c3babdd5c9f13e039f2b7808e9d21c92d79ea927"
+      "sha256": "518a2c79e3e09fd78bbdc0eeb9b580385a3210b25b446f00c4514fb3b1506b68"
     },
     {
       "id": "data-table",
@@ -284,7 +381,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/entitlements@0.1.0.json",
-      "sha256": "12dc37730fed72e2e6a882b7ce32bef93067be23dd9a2e7a206b0d32777d6e4d"
+      "sha256": "abca2cccbfa53222e58092d41d8242288eea21bee1d4a3737a881f74041db623"
     },
     {
       "id": "env-config",
@@ -398,7 +495,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/notification-inbox@0.1.0.json",
-      "sha256": "d69aaacbd31d12fb1b18ba0516034d889164ed3c839549279224bb2c4ba4f24a"
+      "sha256": "df7d8c64b80b5a5fb11f9e37c7959600d9815115d5b5d08b8624ec9f3f17054a"
     },
     {
       "id": "notification-preferences",
@@ -452,7 +549,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/org-invitations@0.2.0.json",
-      "sha256": "f0eac5d18ccda92385515eecf117bcdc40e41143b28d0732d31903a4e0851e6c"
+      "sha256": "03f956f06d6b0898feb321b1f5df27ea61c41cef6778377fdaeccdf1f7179980"
     },
     {
       "id": "password-reset",
@@ -481,7 +578,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/password-reset@0.1.0.json",
-      "sha256": "a59f15a4acd12854f7feff36f2e3e08f3c2b97a22591c5eb7a3f68a0da59ed20"
+      "sha256": "c0fa68a4bd52af965bc7e9908fdc8bdd828de6835eed5385af7ae7da3b050381"
     },
     {
       "id": "presence",
@@ -513,7 +610,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/presence@0.1.0.json",
-      "sha256": "14c323d9c20bb11856399908a14d6ed03dea7d8b61b43aecf100b8453739243f"
+      "sha256": "2ad4276ddf4fe6fd3bc12dfc271a834ad874ebb040a2d0a6dee6c0d08572932e"
     },
     {
       "id": "public-data-clients",
@@ -638,7 +735,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/rbac@0.1.0.json",
-      "sha256": "29bc039de83ef8b11f49b0f321b534a447c3b02a3b75e39fc3ff3651c6d6530f"
+      "sha256": "d4a239c17e32fc7ebbf2e4e20f8971a91dc88a04c2a38313104034ae28561155"
     },
     {
       "id": "security-headers",
@@ -696,7 +793,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/short-links@0.1.0.json",
-      "sha256": "dfc019c6b312fb265e6b3040f54552ab63a1e05f93b12d57f346d12ae7880183"
+      "sha256": "45aca75bfababaf43789930b8ee74c08dd60685ab8538d04d414cb28c8a479c9"
     },
     {
       "id": "site-search",
@@ -731,6 +828,40 @@
       "sha256": "2750a8e07591b355b80ee674f3472cadaf62ee36577cd79f6e06e7c8a4d40271"
     },
     {
+      "id": "soft-delete",
+      "version": "0.1.0",
+      "title": "Soft delete and restore",
+      "description": "Soft delete, trash and restore layer for a multi-tenant app's own tables: deleted_at/deleted_by/delete_batch marks, cascade to declared child tables by batch id, restore within a retention window that reports unique conflicts, an idempotent purge job, PostgreSQL schema pattern with partial unique indexes and live views, and a trash API, with injected authorization and persistence.",
+      "kind": "feature",
+      "tags": [
+        "soft delete",
+        "trash",
+        "recycle bin",
+        "undo delete",
+        "restore",
+        "undelete",
+        "deleted_at",
+        "archive",
+        "retention",
+        "purge",
+        "cascade",
+        "partial unique index",
+        "multi-tenant",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/soft-delete@0.1.0.json",
+      "sha256": "ddd51744a31bf47026a6c0700188400dd34cd3ec28ecaaf2d98750b471f10eb6"
+    },
+    {
       "id": "structured-logger",
       "version": "0.1.0",
       "title": "Structured logger",
@@ -756,6 +887,36 @@
       "verification": "tested",
       "manifest": "registry/manifests/structured-logger@0.1.0.json",
       "sha256": "b39afee8d51142aa4043f57c4918bcf4e6eb231c8fc3f0f4ae5f8ea69c1efb70"
+    },
+    {
+      "id": "tenant-isolation",
+      "version": "0.1.1",
+      "title": "Tenant isolation",
+      "description": "Multi-tenant data isolation for SaaS apps: resolve the tenant from the verified session and membership (client-sent ids are only selectors), PostgreSQL row-level security with transaction-local tenant settings and a non-bypass role, a tenant-scoped repository, and a reusable cross-tenant test kit.",
+      "kind": "feature",
+      "tags": [
+        "multi-tenant",
+        "multi-tenancy",
+        "tenant isolation",
+        "row level security",
+        "rls",
+        "postgres",
+        "saas",
+        "organizations",
+        "workspaces",
+        "cross-tenant tests",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/tenant-isolation@0.1.1.json",
+      "sha256": "31a7453fc48be2167f726b57c7306e66b2040b1c483ee8477ba4316e2c73c376"
     },
     {
       "id": "theme-tokens",
@@ -831,7 +992,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/web-push@0.1.0.json",
-      "sha256": "9c90e5c626936a8782e2d43b3ed8bafd35fb5c0c56a52d9e2401e256a020114e"
+      "sha256": "6f9d9e89d0b44062d557caf1c4131241a22ea452867843685cf0b3eb2c97419e"
     },
     {
       "id": "webhook-verification",

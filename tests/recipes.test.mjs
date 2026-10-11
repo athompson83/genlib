@@ -21,6 +21,8 @@ after(() => rmSync(out, { recursive: true, force: true }));
 const compilerOptions = {
   strict: true, noUncheckedIndexedAccess: true, exactOptionalPropertyTypes: true, noImplicitReturns: true,
   noFallthroughCasesInSwitch: true, noUnusedLocals: true, noUnusedParameters: true, skipLibCheck: true,
+  // Recipes are copied into apps that may run TypeScript with Node's type stripping: erasable syntax only.
+  erasableSyntaxOnly: true,
   target: 'ES2022', module: 'NodeNext', moduleResolution: 'NodeNext', lib: ['ES2022', 'DOM', 'DOM.Iterable'],
   rootDir: recipeDir, outDir: out,
 };

@@ -20,7 +20,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" provider adopt btst-kanban --from "$SCRATCH" 
 | `prerequisites` | Checks Genlib runs offline against the app. A package's minimum, maximum or exact version is read from `node_modules/<pkg>/package.json` first, and otherwise from the lowest version the declared range allows. Other checks: Node version, paths that must exist, paths that must not exist (the files the scaffolder would write), and JSON settings such as `components.json` `tailwind.cssVariables`. A `files` check refuses a pattern in a config file (for example `cacheComponents: true` in `next.config.ts`). Paths the provider has already adopted count as its own, so `check` stays clean afterwards. Use `ifPresent` for packages the app may not have; failed `warning` items do not block |
 | `steps` | Ordered steps (`install`, `stage`, `adopt`, `edit`, `env`, `migrate`, `verify`) with exact commands. The harness runs them under the project's own permissions; Genlib runs none. `@latest` is refused |
 | `stage.mergeFiles` | Files the scaffolder edits rather than creates (the global stylesheet, the root layout). They are reported for a manual merge and never written |
-| `acceptance` | The feature contract and requirements to record with `adopted --accepts` |
+| `acceptance` | The feature contract and requirements to record with `adopted --accepts`, and optionally a `script` in `resources/providers/<id>/` that the app runs as its `--test` command against a started server |
 | `status` | `planned` until Genlib has run the profile end to end in a fixture app; then `install-supported`, then `fixture-verified` |
 
 ## Staged adoption
@@ -42,4 +42,4 @@ Adopted files are recorded in `.genlib/providers-lock.json` as `provider--<id>`,
 
 | Profile | Status | Notes |
 | --- | --- | --- |
-| [`btst-kanban`](providers/btst-kanban.md) | planned | Next.js App Router, React 19.2.6+, Tailwind 4.3.2+, shadcn with CSS variables, transactional database adapter. Run end to end on 2026-10-11: check, staged adoption, build, pages, API and authorization worked with the memory adapter; the stock Kysely adapter drops joined columns, so persistence is not yet established. Its `kanban-board` contract credits it at `plan-available` only |
+| [`btst-kanban`](providers/btst-kanban.md) | install-supported | Next.js App Router, React 19.2.6+, Tailwind 4.3.2+, shadcn with CSS variables, PostgreSQL through the stock `@btst/adapter-drizzle@3.0.0`. Run end to end on 2026-10-11: check, staged adoption, schema generation, migration, build and the shipped acceptance (`resources/providers/btst-kanban/accept.sh`: 18 API, 28 authorization, pages, PostgreSQL rows) all passed with no patches, and `adopted --accepts` made all seven `kanban-board` requirements application-verified in that app. Not fixture-verified: the run needs network installs and PostgreSQL, so it is not in repository CI. Avoid `@btst/adapter-kysely@3.0.0` (drops joined columns) |

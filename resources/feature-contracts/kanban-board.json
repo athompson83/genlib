@@ -13,8 +13,8 @@
     { "id": "routes-ui", "text": "The board list, new-board and board pages render server-side without console errors, with assignees resolved from the app's users" }
   ],
   "implementations": [
-    { "ref": "provider:btst-kanban", "status": "plan-available", "fulfills": ["boards", "columns-tasks", "move-ordering", "atomic-writes", "authorization", "persistence", "routes-ui"],
-      "notes": "Upstream BTST tests cover these (e2e/tests/smoke.kanban.spec.ts, plugins/kanban/__tests__/authorization.test.ts at v4.5.1), but Genlib has not run the profile end to end in an app, so nothing is credited above plan-available." }
+    { "ref": "provider:btst-kanban", "status": "install-supported", "fulfills": ["boards", "columns-tasks", "move-ordering", "atomic-writes", "authorization", "persistence", "routes-ui"],
+      "notes": "Run end to end on 2026-10-11 in a Next.js 16.4 fixture on PostgreSQL 16 through the stock Drizzle adapter: resources/providers/btst-kanban/accept.sh passed (API, authorization, browser and PostgreSQL checks) and genlib adopted recorded all seven requirements as application-verified in that app. Credited at install-supported, not fixture-verified, because the run needs network installs and PostgreSQL and is not part of repository CI." }
   ],
   "notes": "Genlib has no Kanban module of its own; the BTST provider profile (genlib provider check btst-kanban) is the adoption path."
 }

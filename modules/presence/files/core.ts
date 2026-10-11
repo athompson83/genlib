@@ -101,8 +101,10 @@ export type PresenceErrorCode =
   | "invalid-connection" | "invalid-state" | "state-too-large" | "bad-request";
 
 export class PresenceError extends Error {
-  constructor(readonly code: PresenceErrorCode, message: string) {
+  readonly code: PresenceErrorCode;
+  constructor(code: PresenceErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "PresenceError";
   }
 }

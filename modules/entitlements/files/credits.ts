@@ -24,7 +24,8 @@ export interface Balance { available: number; held: number; expiring: { amount: 
 
 export type CreditErrorCode = "insufficient" | "key-reused" | "unknown-hold" | "hold-closed" | "invalid" | "conflict";
 export class CreditError extends Error {
-  constructor(readonly code: CreditErrorCode, message: string) { super(message); this.name = "CreditError"; }
+  readonly code: CreditErrorCode;
+  constructor(code: CreditErrorCode, message: string) { super(message); this.code = code; this.name = "CreditError"; }
 }
 
 interface Lot { remaining: number; expiresAt: number }

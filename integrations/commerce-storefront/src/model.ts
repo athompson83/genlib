@@ -24,7 +24,9 @@ export interface StorefrontService {
 }
 export class StorefrontError extends Error {
   override name = 'StorefrontError';
-  constructor(message: string, readonly status: number | null, readonly uncertain = false) { super(message); }
+  readonly status: number | null;
+  readonly uncertain: boolean;
+  constructor(message: string, status: number | null, uncertain = false) { super(message); this.status = status; this.uncertain = uncertain; }
 }
 export function money(price: Price, locale = 'en-US'): string {
   if (!Number.isFinite(price.amount) || !/^[a-z]{3}$/iu.test(price.currency)) throw new Error('Invalid price.');

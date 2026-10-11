@@ -35,6 +35,112 @@
       "text": "Records past retention are permanently purged by an idempotent job"
     }
   ],
-  "implementations": [],
-  "notes": "No Genlib package covers this. comments soft-deletes a comment as a tombstone (body cleared, replies kept) with no restore; durable-jobs could run the purge."
+  "implementations": [
+    {
+      "ref": "module:soft-delete",
+      "status": "fixture-verified",
+      "fulfills": [
+        "soft-delete",
+        "hidden-by-default",
+        "restore",
+        "authorization",
+        "uniqueness",
+        "cascade",
+        "purge"
+      ],
+      "evidence": [
+        {
+          "requirement": "soft-delete",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "soft delete marks deleted_at, deleted_by and delete_batch instead of removing the row"
+        },
+        {
+          "requirement": "soft-delete",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "schema applies; delete marks rows and the live view hides them"
+        },
+        {
+          "requirement": "hidden-by-default",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "hidden by default: get, live lists, search and counts exclude soft-deleted records"
+        },
+        {
+          "requirement": "hidden-by-default",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "schema applies; delete marks rows and the live view hides them from counts and search"
+        },
+        {
+          "requirement": "restore",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "restore within the retention window brings the record back intact with its children"
+        },
+        {
+          "requirement": "restore",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "restore after the retention window is refused with retention-expired"
+        },
+        {
+          "requirement": "restore",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "cascade by batch: restore brings back exactly the children deleted with the parent"
+        },
+        {
+          "requirement": "authorization",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "authorization: delete, restore and the trash are authorized and never cross tenants"
+        },
+        {
+          "requirement": "authorization",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "trash handler: list, restore, conflict body, auth, origin check and no-store"
+        },
+        {
+          "requirement": "uniqueness",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "uniqueness: restore reports the conflict while a live row holds the unique value, then succeeds"
+        },
+        {
+          "requirement": "uniqueness",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "partial unique index: a restore reports the conflict and changes nothing, then succeeds"
+        },
+        {
+          "requirement": "uniqueness",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "an undeclared unique index violation on restore rolls back and reports conflict"
+        },
+        {
+          "requirement": "cascade",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "cascade: children follow the parent's delete and restore; children deleted earlier stay in the trash"
+        },
+        {
+          "requirement": "cascade",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "cascade by batch: restore brings back exactly the children deleted with the parent"
+        },
+        {
+          "requirement": "purge",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "purge: entries past retention are purged children first, and a second run purges nothing"
+        },
+        {
+          "requirement": "purge",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "purge removes expired rows children first under foreign keys, and a second run deletes 0"
+        },
+        {
+          "requirement": "purge",
+          "test": "tests/soft-delete.test.mjs",
+          "name": "purge: a failing entry is kept and reported while later entries are still purged"
+        },
+        {
+          "requirement": "purge",
+          "test": "tests/soft-delete-sql.test.mjs",
+          "name": "purge keeps and reports an entry blocked by a live child under the real foreign key"
+        }
+      ]
+    }
+  ],
+  "notes": "module:soft-delete covers every requirement for tables that follow its PostgreSQL pattern (deleted_at/deleted_by/delete_batch columns, partial unique indexes, live views). Hidden-by-default holds only for reads that use the live view, liveCondition() or a row-level security policy, and unique sets are per tenant. comments soft-deletes a comment as a tombstone (body cleared, replies kept) with no restore; durable-jobs can schedule purgeExpired."
 }

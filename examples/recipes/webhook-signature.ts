@@ -7,8 +7,10 @@
 export type WebhookErrorCode = "malformed" | "bad signature" | "expired";
 
 export class WebhookSignatureError extends Error {
-  constructor(readonly code: WebhookErrorCode, detail?: string) {
+  readonly code: WebhookErrorCode;
+  constructor(code: WebhookErrorCode, detail?: string) {
     super(detail ? `${code}: ${detail}` : code);
+    this.code = code;
     this.name = "WebhookSignatureError";
   }
 }

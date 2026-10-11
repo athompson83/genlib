@@ -1,6 +1,6 @@
-# Provider plan: BTST Kanban (profile written, not yet run end to end)
+# Provider: BTST Kanban (install-supported, run end to end on PostgreSQL)
 
-> Status: the profile is in `resources/providers/btst-kanban.json` (`genlib provider check btst-kanban --target app` checks the prerequisites below; see [providers.md](../providers.md)). This page is the research and plan for the first "upstream dependency + Genlib integration package" provider (phase 3 of the [integration blueprint](../landscape.md#integration-blueprint-one-adoption-process-over-many-providers)). Nothing below has been installed, scaffolded, migrated or built against an app; the "Not verified" list at the end is explicit. Facts were read on 2026-10-11 from the npm registry and the repository at tag v4.5.1.
+> Status: `install-supported`. The profile is in `resources/providers/btst-kanban.json` (`genlib provider check btst-kanban --target app` checks the prerequisites below; see [providers.md](../providers.md)) and its acceptance scripts are in `resources/providers/btst-kanban/`. This page is the research and the record of the end-to-end runs for the first "upstream dependency + Genlib integration package" provider (phase 3 of the [integration blueprint](../landscape.md#integration-blueprint-one-adoption-process-over-many-providers)). Facts were read on 2026-10-11 from the npm registry and the repository at tag v4.5.1. It is not `fixture-verified`: the run needs network installs and PostgreSQL and is not part of repository CI.
 
 ## End-to-end run (2026-10-11)
 
@@ -17,8 +17,12 @@ A fixture app was built with create-next-app 16.4.0 (next 16.4.0, React 19.3.0, 
 | Server authorization (`kanbanPermissions`, evaluation-only header identity) | 401 on all 14 operations anonymously; 403 on all 12 record operations for another user; client-supplied `ownerId` ignored. Collection reads carry no owner facts |
 | Kysely on file-backed PGlite, `transaction: true` | Migration created the three tables (via `@electric-sql/pglite-socket`, because the CLI needs a live PostgreSQL URL). Reads returned `columns: []`: `@btst/adapter-kysely@3.0.0` looks up `schema["kanbanColumn"]` where the key is `column`. A one-line local patch fixed it, and data then survived a restart; the stock package does not pass. `transaction: false` is refused with `ATOMIC_TRANSACTION_REQUIRED` and writes nothing. A duplicate board name returns HTTP 500 |
 | `genlib adopted` | Exposed two Genlib bugs, now fixed: provider route files never counted as used, and `--accepts` refused provider artifacts |
+| Drizzle on PostgreSQL 16, stock `@btst/adapter-drizzle@3.0.0`, drizzle-orm 0.45.2 | Fresh fixture: codegen `--adapter drizzle` in a scratch copy, adopt (13 create, 1 merge), `@btst/cli generate --orm=drizzle` for `kanban_board`/`kanban_column`/`kanban_task`, `drizzle-kit@0.31.10 generate` + `migrate`, build. No patches. `accept.sh` passed: 18 of 18 API, 28 of 28 authorization, 3 of 3 browser checks (Chromium via Playwright 1.56.1: no console errors, page errors or 5xx; the assignee's name resolved by `resolveUser` from the app's users), rows in PostgreSQL; a board created before a server restart read back after it. A duplicate board name still returns HTTP 500 |
+| `genlib adopted --accepts` (all seven `kanban-board` requirements) | Receipt `verified`; `genlib coverage kanban board with columns and tasks --target app` reports `full (7/7)` at `app` level |
 
-Status stays `planned`: the persistent path needs an unpatched adapter release (or a tested Prisma path) before the profile can claim acceptance.
+The acceptance first used the fixture's own scripts; the versions shipped in `resources/providers/btst-kanban/` fix one flaw found while porting them (the API check printed failures but exited 0) and were rerun to the same result. One finding from the run: `provider adopt` does not refuse when `check` fails, because the `next.config` fix is itself a later edit step; run `check` again after the edits.
+
+Status is `install-supported`: the profile has run end to end with a persistent adapter and no patches.
 
 ## Why Genlib wraps BTST instead of running its CLI
 
@@ -267,9 +271,8 @@ Prisma is the alternative that codegen wires completely. Not run by me.
 ## Not verified
 
 - GitHub stars/forks/issues/Release objects (API blocked); only tags/commits verified.
-- Any install, scaffold, migration, build or test run — nothing was executed against an app.
-- Whether `npm install` resolves the full peer set without `--legacy-peer-deps`.
-- Whether `@btst/adapter-kysely` `transaction: true` behaves correctly on SQLite or PGlite (only PostgreSQL is shown in docs);
-  whether a PGlite-backed Kysely/Drizzle instance works with BTST adapters.
-- Kanban `uploadImage` scope (generated as TODO; presumably task-description editor images).
+- Prisma, MongoDB, MySQL and SQLite adapters; Drizzle and Kysely were run on PostgreSQL only (Kysely also on PGlite).
+- A real session-based identity: the fixture's server auth read an evaluation-only header.
+- Kanban `uploadImage` (the fixture disabled it).
+- Repository CI: the end-to-end run is manual (network installs, PostgreSQL, Chromium).
 - Rendered docs site content beyond the repo's MDX source.

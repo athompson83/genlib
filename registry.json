@@ -2335,6 +2335,92 @@
    }
   },
   {
+   "name": "account-deletion",
+   "type": "registry:item",
+   "title": "Account deletion with a grace period",
+   "description": "Self-service and admin account deletion for server apps: re-authenticated requests, a configurable grace period during which the account is disabled, cancel to restore access, session revocation through a hook, a declared delete/anonymize/retain data policy run by a leased, resumable, run-once worke",
+   "files": [
+    {
+     "path": "modules/account-deletion/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/account-deletion/core.ts"
+    },
+    {
+     "path": "modules/account-deletion/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/account-deletion/memory-store.ts"
+    },
+    {
+     "path": "modules/account-deletion/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/account-deletion/http.ts"
+    },
+    {
+     "path": "modules/account-deletion/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/account-deletion/sql-store.ts"
+    },
+    {
+     "path": "modules/account-deletion/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/account-deletion/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module account-deletion@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlAccountDeletionStore with your query executor; on other databases implement AccountDeletionStore with one live (pending, executing or completed) request per user and conditional, lease-checked claim, renew, step, complete and release statements. Implement authorize(actor, 'request'|'cancel'|'read', {userId, self}) so owners (self) and the admins you choose are allowed. Pass revokeSessions(userId) that revokes every session, refresh token and API token of the user. Declare the data policy: one entry per data set with action delete, anonymize or retain, a reason, and an idempotent run(); put the account row itself last. Set graceMs (default 30 days) and recentAuthMs (default 5 minutes); give actors authenticatedAt from your sign-in or re-authentication step. Call isDisabled(userId) in sign-in and request authentication; for a disabled account offer only the cancel flow after verifying credentials. Call runDue({limit}) periodically from a scheduler or the durable-jobs module; set leaseMs longer than one policy step takes. Mount createAccountDeletionHandler under one prefix with exact allowedOrigins and your authenticate(request). Contract: https://github.com/athompson83/genlib/blob/main/modules/account-deletion/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "api-keys",
+   "type": "registry:item",
+   "title": "API keys",
+   "description": "API key management for multi-tenant apps: CSPRNG keys with an identifiable non-secret prefix, shown once and stored only as an HMAC-SHA-256 under a server pepper, constant-time verification by lookup id, tenant and scope limits, revocation, expiry, throttled last-used writes and secret-free audit ev",
+   "files": [
+    {
+     "path": "modules/api-keys/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/api-keys/core.ts"
+    },
+    {
+     "path": "modules/api-keys/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/api-keys/memory-store.ts"
+    },
+    {
+     "path": "modules/api-keys/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/api-keys/http.ts"
+    },
+    {
+     "path": "modules/api-keys/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/api-keys/sql-store.ts"
+    },
+    {
+     "path": "modules/api-keys/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/api-keys/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module api-keys@0.1.0 (Apache-2.0). Configure: Load a pepper of at least 32 random bytes from your secret store on the trusted server and pass it as pepper; never store it with the keys. On PostgreSQL, apply schema.sql and use createSqlApiKeyStore with your query executor; on other databases implement ApiKeyStore with a unique lookup id and conditional revoke and touchLastUsed writes. Implement authorize(actor, 'create'|'list'|'revoke', {tenantId}) and holderScopes(actor, tenantId) from your own membership and role tables. Pick an appPrefix (for example your product initials) so leaked keys are recognizable to secret scanners and support staff. Call authenticateRequest(keys, request, requiredScopes) at the top of each API route and return its response when ok is false. Optionally pass onAudit to write key.created, key.revoked, key.used and key.denied events to your audit log. Contract: https://github.com/athompson83/genlib/blob/main/modules/api-keys/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "app-shell",
    "type": "registry:item",
    "title": "Responsive application shell",
@@ -2362,6 +2448,49 @@
     "component"
    ],
    "docs": "Genlib module app-shell@0.1.0 (Apache-2.0). Configure: brand, items, activeItemId, navigationLabel, headerActions, sidebarFooter, children, className, onNavigate. Import theme and shell CSS once at the application root; map semantic tokens to the project's design system. Contract: https://github.com/athompson83/genlib/blob/main/modules/app-shell/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "audit-log",
+   "type": "registry:item",
+   "title": "Audit log",
+   "description": "Tenant-scoped, append-only audit log for multi-tenant apps: record who did what to which target, when, with what outcome and request id, in the same transaction as the change; per-tenant SHA-256 hash chain with tamper verification; redaction of secrets before hashing; admin-only filtered queries wit",
+   "files": [
+    {
+     "path": "modules/audit-log/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/audit-log/core.ts"
+    },
+    {
+     "path": "modules/audit-log/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/audit-log/memory-store.ts"
+    },
+    {
+     "path": "modules/audit-log/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/audit-log/sql-store.ts"
+    },
+    {
+     "path": "modules/audit-log/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/audit-log/schema.sql"
+    },
+    {
+     "path": "modules/audit-log/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/audit-log/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module audit-log@0.1.0 (Apache-2.0). Configure: On PostgreSQL, create the schema.sql objects as a dedicated owner role, then grant the application role only SELECT, INSERT on audit_log, SELECT on audit_log_heads and EXECUTE on audit_log_lock_head, and grant EXECUTE on audit_log_purge only to the retention job's role (see the header of schema.sql). Never give the application role UPDATE, DELETE, TRUNCATE, ALTER or ownership. Call audit.record(tx, entry) inside the same transaction as each security-relevant or data-changing action, passing that transaction's query executor; pass null to record on its own (failed logins, denied requests). Implement authorize(actor, 'read'|'export', {tenantId}) so only administrators of that tenant pass. Declare retentionMs (for example 365 days) and run audit.purgeExpired() from a scheduled job with the retention role. Optionally pass hmacKey (32+ random bytes from your secret store) so a database user cannot recompute hashes, and store audit.checkpoint(tenantId) outside the database periodically (and after each purge) to pass to verifyChain. Emails are masked by default (maskEmails: false keeps them); add your own sensitive keys with redactKeys and domain identifiers with redactPatterns. Mount createAuditLogHandler under one prefix with your authenticate(request). Contract: https://github.com/athompson83/genlib/blob/main/modules/audit-log/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",
@@ -3307,6 +3436,49 @@
    }
   },
   {
+   "name": "soft-delete",
+   "type": "registry:item",
+   "title": "Soft delete and restore",
+   "description": "Soft delete, trash and restore layer for a multi-tenant app's own tables: deleted_at/deleted_by/delete_batch marks, cascade to declared child tables by batch id, restore within a retention window that reports unique conflicts, an idempotent purge job, PostgreSQL schema pattern with partial unique in",
+   "files": [
+    {
+     "path": "modules/soft-delete/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/soft-delete/core.ts"
+    },
+    {
+     "path": "modules/soft-delete/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/soft-delete/memory-store.ts"
+    },
+    {
+     "path": "modules/soft-delete/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/soft-delete/http.ts"
+    },
+    {
+     "path": "modules/soft-delete/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/soft-delete/sql-store.ts"
+    },
+    {
+     "path": "modules/soft-delete/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/soft-delete/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module soft-delete@0.1.0 (Apache-2.0). Configure: Add deleted_at (bigint epoch ms), deleted_by and delete_batch columns to each soft-deletable table, replace its unique constraints with partial unique indexes WHERE deleted_at IS NULL, and keep plain (NO ACTION) foreign keys; schema.sql shows the pattern and creates the soft_delete_batches trash table. Declare entities: table -> { unique: column sets unique among live rows of a tenant, children: [{ entity, foreignKey }] }. Point default reads (lists, search, counts, exports) at a live view (liveViewSql) or add liveCondition() to every query; optionally add a row-level security policy that hides deleted rows. Implement authorize(actor, 'delete'|'restore'|'trash'|'read', { tenantId, entity }) from your own membership table. Call softDelete.remove from your own delete routes; mount createTrashHandler under one prefix with exact allowedOrigins and your authenticate(request). Run purgeExpired() from a trusted scheduler (for example the durable-jobs module) at least daily; set retentionMs (default 30 days) to your retention policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/soft-delete/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "structured-logger",
    "type": "registry:item",
    "title": "Structured logger",
@@ -3331,6 +3503,44 @@
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "tenant-isolation",
+   "type": "registry:item",
+   "title": "Tenant isolation",
+   "description": "Multi-tenant data isolation for SaaS apps: resolve the tenant from the verified session and membership (client-sent ids are only selectors), PostgreSQL row-level security with transaction-local tenant settings and a non-bypass role, a tenant-scoped repository, and a reusable cross-tenant test kit.",
+   "files": [
+    {
+     "path": "modules/tenant-isolation/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/tenant-isolation/core.ts"
+    },
+    {
+     "path": "modules/tenant-isolation/files/sql.ts",
+     "type": "registry:file",
+     "target": "~/genlib/tenant-isolation/sql.ts"
+    },
+    {
+     "path": "modules/tenant-isolation/files/test-kit.ts",
+     "type": "registry:file",
+     "target": "~/genlib/tenant-isolation/test-kit.ts"
+    },
+    {
+     "path": "modules/tenant-isolation/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/tenant-isolation/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module tenant-isolation@0.1.1 (Apache-2.0). Configure: Apply schema.sql (or appRoleSql() and tenantTableSql('your_table') for each tenant table) as the database owner; every tenant table needs a tenant_id column leading its indexes. Run application queries as a role that is neither superuser nor BYPASSRLS: log in as a member of app_user, or pass { role: 'app_user' } to withTenant and GRANT app_user to the login user. Supply session(request) from your verified session or token and memberships(userId) from your membership table; optionally a selector (headerSelector, pathSelector or subdomainSelector). On a connection pool, give the executor a transaction(work) that checks out one client for BEGIN ... COMMIT so set_config and SET LOCAL ROLE stay on that connection. Call assertTenantIsolation from your own test suite against each tenant table in a test database. Contract: https://github.com/athompson83/genlib/blob/main/modules/tenant-isolation/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.1",
     "verification": "tested"
    }
   },

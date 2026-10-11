@@ -2,16 +2,115 @@
   "id": "account-deletion",
   "title": "Account deletion with a grace period",
   "reviewed": "2026-10-11",
-  "tasks": ["account deletion with grace period"],
-  "requirements": [
-    { "id": "request", "text": "A signed-in user (re-authenticated) can request deletion of their account" },
-    { "id": "grace-period", "text": "Deletion is scheduled after a configurable grace period, during which the account is disabled" },
-    { "id": "cancel", "text": "The user can cancel during the grace period and regain access" },
-    { "id": "sessions", "text": "Existing sessions and tokens are revoked when deletion is requested" },
-    { "id": "dependent-data", "text": "Dependent data is deleted, anonymized or retained per a declared policy when the period ends" },
-    { "id": "authorization", "text": "Only the account owner (or an authorized admin) can request or cancel deletion" },
-    { "id": "idempotent-execution", "text": "The scheduled deletion runs once, survives retries and records completion" }
+  "tasks": [
+    "account deletion with grace period"
   ],
-  "implementations": [],
-  "notes": "No Genlib package covers this workflow. Building blocks elsewhere: password-reset revokes sessions through an injected hook; durable-jobs can run the scheduled deletion."
+  "requirements": [
+    {
+      "id": "request",
+      "text": "A signed-in user (re-authenticated) can request deletion of their account"
+    },
+    {
+      "id": "grace-period",
+      "text": "Deletion is scheduled after a configurable grace period, during which the account is disabled"
+    },
+    {
+      "id": "cancel",
+      "text": "The user can cancel during the grace period and regain access"
+    },
+    {
+      "id": "sessions",
+      "text": "Existing sessions and tokens are revoked when deletion is requested"
+    },
+    {
+      "id": "dependent-data",
+      "text": "Dependent data is deleted, anonymized or retained per a declared policy when the period ends"
+    },
+    {
+      "id": "authorization",
+      "text": "Only the account owner (or an authorized admin) can request or cancel deletion"
+    },
+    {
+      "id": "idempotent-execution",
+      "text": "The scheduled deletion runs once, survives retries and records completion"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:account-deletion",
+      "status": "fixture-verified",
+      "fulfills": [
+        "request",
+        "grace-period",
+        "cancel",
+        "sessions",
+        "dependent-data",
+        "authorization",
+        "idempotent-execution"
+      ],
+      "evidence": [
+        {
+          "requirement": "request",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "request requires a signed-in, recently re-authenticated owner"
+        },
+        {
+          "requirement": "grace-period",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "grace period: deletion is scheduled graceMs later and the account is disabled meanwhile"
+        },
+        {
+          "requirement": "cancel",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "cancel during the grace period restores access"
+        },
+        {
+          "requirement": "cancel",
+          "test": "tests/account-deletion-sql.test.mjs",
+          "name": "schema applies and the SQL store keeps request, cancel, grace and completion behavior"
+        },
+        {
+          "requirement": "sessions",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "sessions are revoked on request; a failed revocation schedules nothing"
+        },
+        {
+          "requirement": "dependent-data",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "dependent data is deleted, anonymized or retained per the declared policy"
+        },
+        {
+          "requirement": "authorization",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "authorization: only the owner or an authorized admin can request, cancel or read"
+        },
+        {
+          "requirement": "idempotent-execution",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "idempotent execution: runs once, retries resume after a failed step and completion is recorded"
+        },
+        {
+          "requirement": "idempotent-execution",
+          "test": "tests/account-deletion-sql.test.mjs",
+          "name": "two concurrent runDue calls claim and execute each due account exactly once"
+        },
+        {
+          "requirement": "idempotent-execution",
+          "test": "tests/account-deletion-sql.test.mjs",
+          "name": "a crashed run resumes after the lease expires and skips completed steps"
+        },
+        {
+          "requirement": "idempotent-execution",
+          "test": "tests/account-deletion.test.mjs",
+          "name": "lease renewal: a queued request whose lease expired is skipped"
+        },
+        {
+          "requirement": "idempotent-execution",
+          "test": "tests/account-deletion-sql.test.mjs",
+          "name": "lease renewal on PostgreSQL: a queued request whose lease expired is skipped"
+        }
+      ]
+    }
+  ],
+  "notes": "module:account-deletion covers the workflow with injected authorize, revokeSessions and policy handlers; tests use an in-memory store and PostgreSQL semantics through PGlite. PGlite is a single connection, so the concurrent runDue evidence proves the single conditional claim UPDATE when statements interleave, not behavior under real multi-connection contention; lease renewal before each request and handler is tested on both stores. The application still implements and tests each data handler against its real tables (including a second run), the sign-in gate (isDisabled) and deletion outside its database (backups, logs, processors). durable-jobs can schedule runDue."
 }

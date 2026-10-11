@@ -3268,7 +3268,7 @@
    "id": "doc:docs/benchmarks.md",
    "kind": "doc",
    "label": "docs/benchmarks.md",
-   "count": 9,
+   "count": 10,
    "file": "docs/benchmarks.md"
   },
   {
@@ -3422,7 +3422,7 @@
    "id": "doc:docs/gaps.md",
    "kind": "doc",
    "label": "docs/gaps.md",
-   "count": 5,
+   "count": 4,
    "file": "docs/gaps.md"
   },
   {
@@ -3506,7 +3506,7 @@
    "id": "doc:docs/module-format.md",
    "kind": "doc",
    "label": "docs/module-format.md",
-   "count": 3,
+   "count": 4,
    "file": "docs/module-format.md"
   },
   {
@@ -4170,7 +4170,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3616,
+   "count": 3621,
    "query": "typescript"
   },
   {
@@ -4226,7 +4226,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 709,
+   "count": 710,
    "query": "--type doc"
   },
   {
@@ -4254,7 +4254,7 @@
    "id": "type:module",
    "kind": "type",
    "label": "module",
-   "count": 29,
+   "count": 34,
    "query": "--type module"
   },
   {
@@ -16973,7 +16973,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 709
+   "weight": 710
   },
   {
    "source": "genlib",
@@ -16997,7 +16997,7 @@
    "source": "genlib",
    "target": "type:module",
    "relation": "contains",
-   "weight": 29
+   "weight": 34
   },
   {
    "source": "genlib",
@@ -20039,7 +20039,7 @@
    "source": "type:doc",
    "target": "doc:docs/benchmarks.md",
    "relation": "section-of",
-   "weight": 9
+   "weight": 10
   },
   {
    "source": "type:doc",
@@ -20171,7 +20171,7 @@
    "source": "type:doc",
    "target": "doc:docs/gaps.md",
    "relation": "section-of",
-   "weight": 5
+   "weight": 4
   },
   {
    "source": "type:doc",
@@ -20243,7 +20243,7 @@
    "source": "type:doc",
    "target": "doc:docs/module-format.md",
    "relation": "section-of",
-   "weight": 3
+   "weight": 4
   },
   {
    "source": "type:doc",
@@ -20639,7 +20639,7 @@
    "source": "type:module",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 28
+   "weight": 33
   },
   {
    "source": "type:provider",

@@ -38,7 +38,9 @@ export interface ProtectOptions {
 }
 
 class BodyError extends Error {
-  constructor(readonly status: number, readonly code: string) { super(code); }
+  readonly status: number;
+  readonly code: string;
+  constructor(status: number, code: string) { super(code); this.status = status; this.code = code; }
 }
 
 async function readBounded(request: Request, max: number): Promise<Uint8Array<ArrayBuffer>> {
