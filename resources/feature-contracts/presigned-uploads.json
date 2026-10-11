@@ -1,0 +1,50 @@
+{
+  "id": "presigned-uploads",
+  "title": "Presigned upload URLs for object storage",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "presigned upload urls for object storage"
+  ],
+  "requirements": [
+    {
+      "id": "server-issued",
+      "text": "The server issues a presigned upload URL only to an authorized user, for a server-generated key under that tenant's prefix"
+    },
+    {
+      "id": "constraints-bound",
+      "text": "The signature binds the content type and maximum size (for example a POST policy content-length-range)"
+    },
+    {
+      "id": "short-expiry",
+      "text": "URLs expire within minutes and allow writing exactly one object"
+    },
+    {
+      "id": "completion-check",
+      "text": "After upload the server confirms the object and checks size, type and checksum before marking the file ready"
+    },
+    {
+      "id": "private-storage",
+      "text": "Storage credentials never reach the client; the bucket is private and CORS allows only the app origin"
+    },
+    {
+      "id": "orphan-cleanup",
+      "text": "Abandoned uploads and pending file records are cleaned up"
+    },
+    {
+      "id": "authorized-download",
+      "text": "Downloads use short-lived presigned GET URLs issued after an authorization check"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "resource:pushduck",
+      "status": "cataloged",
+      "fulfills": [
+        "server-issued",
+        "private-storage"
+      ],
+      "notes": "Direct-to-S3 upload library with a server router"
+    }
+  ],
+  "notes": "No Genlib S3 presigning. signed-urls signs expiring HMAC URLs for the app's own server, not object-storage SigV4; resumable-files covers tus uploads instead."
+}

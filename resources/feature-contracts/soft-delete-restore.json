@@ -1,0 +1,40 @@
+{
+  "id": "soft-delete-restore",
+  "title": "Soft delete and restore records",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "soft delete and restore records"
+  ],
+  "requirements": [
+    {
+      "id": "soft-delete",
+      "text": "Deleting marks the record deleted (deleted_at, deleted_by) instead of removing the row"
+    },
+    {
+      "id": "hidden-by-default",
+      "text": "Default queries, search, counts and exports exclude soft-deleted records"
+    },
+    {
+      "id": "restore",
+      "text": "An authorized user can restore a record within the retention window, intact with its relationships"
+    },
+    {
+      "id": "authorization",
+      "text": "Deleting, restoring and viewing the trash are authorized and never cross tenants"
+    },
+    {
+      "id": "uniqueness",
+      "text": "Unique constraints account for deleted rows, so a restore either succeeds or reports the conflict"
+    },
+    {
+      "id": "cascade",
+      "text": "Dependent records follow the parent's delete and restore consistently"
+    },
+    {
+      "id": "purge",
+      "text": "Records past retention are permanently purged by an idempotent job"
+    }
+  ],
+  "implementations": [],
+  "notes": "No Genlib package covers this. comments soft-deletes a comment as a tombstone (body cleared, replies kept) with no restore; durable-jobs could run the purge."
+}

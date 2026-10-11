@@ -1,0 +1,55 @@
+{
+  "id": "qr-code-generation",
+  "title": "QR code generation",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "qr code generation"
+  ],
+  "requirements": [
+    {
+      "id": "spec-encoding",
+      "text": "Data encodes to a valid ISO/IEC 18004 symbol (all versions and error-correction levels) that standard readers decode"
+    },
+    {
+      "id": "auto-version-mask",
+      "text": "The smallest fitting version and the lowest-penalty mask are chosen automatically"
+    },
+    {
+      "id": "too-long",
+      "text": "Data that cannot fit is refused with a clear error instead of a corrupt symbol"
+    },
+    {
+      "id": "scalable-output",
+      "text": "Output is a scalable SVG (or sized PNG) with a quiet zone of at least four modules"
+    },
+    {
+      "id": "safe-svg",
+      "text": "SVG output escapes caller text (title) and refuses unsafe color values"
+    },
+    {
+      "id": "accessible",
+      "text": "The rendered code has a text alternative, and the encoded link or text is also shown or available"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "resource:qrcodegen",
+      "status": "cataloged",
+      "fulfills": [
+        "spec-encoding",
+        "auto-version-mask",
+        "too-long"
+      ],
+      "notes": "External MIT QR encoder (Nayuki)"
+    },
+    {
+      "ref": "resource:react-qr-code",
+      "status": "cataloged",
+      "fulfills": [
+        "scalable-output"
+      ],
+      "notes": "External MIT React/React Native SVG renderer"
+    }
+  ],
+  "notes": "module:qr-code is in progress (modules/qr-code/files and tests/qr-code.test.mjs exist) but is not yet in the catalogs; add it here once it is registered."
+}

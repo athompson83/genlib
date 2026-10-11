@@ -1,0 +1,110 @@
+{
+  "id": "structured-logging",
+  "title": "Structured logging with redaction",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "structured logging with redaction"
+  ],
+  "requirements": [
+    {
+      "id": "json-lines",
+      "text": "Each record is one JSON line with time, level and message, filtered by a configured level"
+    },
+    {
+      "id": "key-redaction",
+      "text": "Secret-bearing keys (passwords, tokens, authorization, cookies, API keys) are redacted at any depth, including headers and maps"
+    },
+    {
+      "id": "value-redaction",
+      "text": "Personal data inside free-text values (emails, card numbers) can be masked before it is written"
+    },
+    {
+      "id": "no-field-spoofing",
+      "text": "Caller fields cannot overwrite reserved keys such as time, level or msg"
+    },
+    {
+      "id": "request-correlation",
+      "text": "Records carry a request ID, reusing a well-formed incoming x-request-id or generating one"
+    },
+    {
+      "id": "errors-serialized",
+      "text": "Errors serialize with message, cause chain and optional stack, bounded in depth"
+    },
+    {
+      "id": "never-throws",
+      "text": "Logging is cycle-safe, size-bounded and never throws into the caller, even when the sink fails"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:structured-logger",
+      "status": "fixture-verified",
+      "fulfills": [
+        "json-lines",
+        "key-redaction",
+        "no-field-spoofing",
+        "request-correlation",
+        "errors-serialized",
+        "never-throws"
+      ],
+      "evidence": [
+        {
+          "requirement": "json-lines",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "writes one JSON line per record with time, level, msg first and filters by level"
+        },
+        {
+          "requirement": "key-redaction",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "redacts default and configured keys case-insensitively at any depth"
+        },
+        {
+          "requirement": "no-field-spoofing",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "reserved keys cannot be overwritten by fields"
+        },
+        {
+          "requirement": "request-correlation",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "withRequest reuses a well-formed x-request-id"
+        },
+        {
+          "requirement": "request-correlation",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "withRequest generates an ID when missing, malformed, or untrusted"
+        },
+        {
+          "requirement": "errors-serialized",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "serializes errors with bounded cause chains and optional stacks"
+        },
+        {
+          "requirement": "never-throws",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "is cycle-safe and bounds depth, arrays, keys, strings, and line size"
+        },
+        {
+          "requirement": "never-throws",
+          "test": "tests/structured-logger.test.mjs",
+          "name": "sink failures are swallowed"
+        }
+      ],
+      "notes": "Redaction is key-based; it does not scan string values"
+    },
+    {
+      "ref": "capability:pii-mask",
+      "status": "fixture-verified",
+      "fulfills": [
+        "value-redaction"
+      ],
+      "evidence": [
+        {
+          "requirement": "value-redaction",
+          "test": "tests/wave11-capabilities.test.mjs",
+          "name": "PII masking and redaction match the shared vectors"
+        }
+      ],
+      "notes": "Masks emails, phones and Luhn-valid cards in text; calling it before logging is the app's wiring"
+    }
+  ]
+}

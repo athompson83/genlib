@@ -1,0 +1,103 @@
+{
+  "id": "admin-data-tables",
+  "title": "Admin dashboard tables with sorting",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "admin dashboard tables with sorting"
+  ],
+  "requirements": [
+    {
+      "id": "column-sort",
+      "text": "Clicking a sortable column sorts ascending/descending, stably, numeric-aware and with nulls last"
+    },
+    {
+      "id": "sort-a11y",
+      "text": "Sort state is exposed accessibly (aria-sort, labelled sort buttons, announced result status)"
+    },
+    {
+      "id": "pagination",
+      "text": "Rows are paginated, and the page is clamped when the data or filter changes"
+    },
+    {
+      "id": "search-filter",
+      "text": "Users can search or filter rows, with distinct empty-dataset and no-match states"
+    },
+    {
+      "id": "escaped-cells",
+      "text": "Cell content is rendered as escaped text"
+    },
+    {
+      "id": "server-side",
+      "text": "Large datasets sort and paginate on the server, with sort keys allow-listed (no raw column names in SQL)"
+    },
+    {
+      "id": "admin-only",
+      "text": "The data endpoint behind the table refuses users without the admin permission with 401/403"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:data-table",
+      "status": "fixture-verified",
+      "fulfills": [
+        "column-sort",
+        "sort-a11y",
+        "pagination",
+        "search-filter",
+        "escaped-cells"
+      ],
+      "evidence": [
+        {
+          "requirement": "column-sort",
+          "test": "tests/web-modules.test.mjs",
+          "name": "table selection is immutable, stable, numeric-aware, case-insensitive, and null-last"
+        },
+        {
+          "requirement": "sort-a11y",
+          "test": "tests/web-modules.test.mjs",
+          "name": "table pagination, sorting, and searching update rows and accessible status together"
+        },
+        {
+          "requirement": "pagination",
+          "test": "tests/web-modules.test.mjs",
+          "name": "table clamps pages after data changes"
+        },
+        {
+          "requirement": "search-filter",
+          "test": "tests/web-modules.test.mjs",
+          "name": "table pagination, sorting, and searching update rows"
+        },
+        {
+          "requirement": "search-filter",
+          "test": "tests/web-modules.test.mjs",
+          "name": "distinguishes an empty dataset"
+        },
+        {
+          "requirement": "escaped-cells",
+          "test": "tests/web-modules.test.mjs",
+          "name": "table escapes caller text and safely handles invalid page sizes"
+        }
+      ],
+      "notes": "Client-side only: sorting and paging run over rows already in the browser"
+    },
+    {
+      "ref": "module:rbac",
+      "status": "fixture-verified",
+      "fulfills": [
+        "admin-only"
+      ],
+      "evidence": [
+        {
+          "requirement": "admin-only",
+          "test": "tests/rbac.test.mjs",
+          "name": "requirePermission wraps a handler"
+        }
+      ],
+      "notes": "Route guard for the table's data endpoint; wiring is the app's"
+    }
+  ],
+  "missing": [
+    "server-side"
+  ],
+  "notes": "Server-side sorting/pagination is uncovered; capability:signed-cursors and capability:pagination-window are building blocks."
+}

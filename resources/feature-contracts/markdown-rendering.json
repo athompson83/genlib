@@ -1,0 +1,55 @@
+{
+  "id": "markdown-rendering",
+  "title": "Markdown rendering with sanitization",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "markdown rendering with sanitization"
+  ],
+  "requirements": [
+    {
+      "id": "render-commonmark",
+      "text": "Markdown (CommonMark plus the tables/task lists the app supports) renders to HTML"
+    },
+    {
+      "id": "allowlist-sanitize",
+      "text": "Rendered HTML, including any raw HTML in the source, is sanitized with an allowlist on the trusted side before storage or display"
+    },
+    {
+      "id": "link-schemes",
+      "text": "Link and image URLs are limited to safe schemes (no javascript:, data:, vbscript:), including mixed-case and entity-encoded variants"
+    },
+    {
+      "id": "link-rel",
+      "text": "User links get rel=\"noopener noreferrer nofollow\" (or equivalent) to prevent tabnabbing and link spam"
+    },
+    {
+      "id": "code-escaped",
+      "text": "Code blocks and inline code are escaped, and syntax highlighting cannot reintroduce markup"
+    },
+    {
+      "id": "bounded-input",
+      "text": "Input size and nesting are bounded so pathological Markdown cannot exhaust CPU or memory"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:rich-text-sanitization",
+      "status": "install-supported",
+      "fulfills": [
+        "allowlist-sanitize",
+        "link-schemes",
+        "link-rel"
+      ],
+      "notes": "Allowlist sanitizers (DOMPurify, nh3, bluemonday ...) with a 15-payload XSS corpus in per-language suites under examples/cookbook; no tests/ test runs them. It sanitizes HTML, so it applies to the renderer output"
+    },
+    {
+      "ref": "resource:markdown-it",
+      "status": "cataloged",
+      "fulfills": [
+        "render-commonmark"
+      ],
+      "notes": "External CommonMark parser; pair it with the sanitizer"
+    }
+  ],
+  "notes": "Genlib has no Markdown-to-HTML renderer. recipe:markdown-to-plaintext-excerpt strips Markdown to text and recipe:html-escape-and-safe-template has a tested URL allow-list, but neither renders Markdown."
+}

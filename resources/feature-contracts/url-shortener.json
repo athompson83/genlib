@@ -1,0 +1,115 @@
+{
+  "id": "url-shortener",
+  "title": "URL shortener",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "url shortener"
+  ],
+  "requirements": [
+    {
+      "id": "unguessable-codes",
+      "text": "Generated codes are uniformly random from an unambiguous alphabet; custom slugs are validated and reserved words refused"
+    },
+    {
+      "id": "destination-validation",
+      "text": "Destinations must be http(s) URLs without credentials, and blocked hosts (including the short domain itself) are refused"
+    },
+    {
+      "id": "unique-codes",
+      "text": "Code collisions retry and give up cleanly; custom slugs are unique, also on the database"
+    },
+    {
+      "id": "redirect",
+      "text": "The redirect route returns 302 with private no-cache headers; unknown codes 404, expired or disabled links 410"
+    },
+    {
+      "id": "limits",
+      "text": "Expiry, disabling and click limits are enforced, with click limits exact under concurrent requests"
+    },
+    {
+      "id": "privacy-analytics",
+      "text": "Click counts and stats keep only coarse data (referrer host, country), not full referrer URLs"
+    },
+    {
+      "id": "authorization",
+      "text": "Links are tenant-isolated and only authorized members can create, change or read them"
+    },
+    {
+      "id": "management-api",
+      "text": "The management API authenticates, checks origin on writes, limits body size and maps errors"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:short-links",
+      "status": "fixture-verified",
+      "fulfills": [
+        "unguessable-codes",
+        "destination-validation",
+        "unique-codes",
+        "redirect",
+        "limits",
+        "privacy-analytics",
+        "authorization",
+        "management-api"
+      ],
+      "evidence": [
+        {
+          "requirement": "unguessable-codes",
+          "test": "tests/short-links.test.mjs",
+          "name": "rejection sampling: bytes at or above 228 are discarded"
+        },
+        {
+          "requirement": "unguessable-codes",
+          "test": "tests/short-links.test.mjs",
+          "name": "custom slugs: shape, reserved words and uniqueness"
+        },
+        {
+          "requirement": "destination-validation",
+          "test": "tests/short-links.test.mjs",
+          "name": "URL validation: schemes, credentials, blocked hosts and redirect loops"
+        },
+        {
+          "requirement": "unique-codes",
+          "test": "tests/short-links.test.mjs",
+          "name": "collisions retry, then fail with exhausted"
+        },
+        {
+          "requirement": "unique-codes",
+          "test": "tests/short-links-sql.test.mjs",
+          "name": "generated-code collisions use ON CONFLICT and retry"
+        },
+        {
+          "requirement": "redirect",
+          "test": "tests/short-links.test.mjs",
+          "name": "redirect handler: 302 headers, 404, 410 and methods"
+        },
+        {
+          "requirement": "limits",
+          "test": "tests/short-links.test.mjs",
+          "name": "resolve: counts clicks, expiry, disable and max clicks"
+        },
+        {
+          "requirement": "limits",
+          "test": "tests/short-links-sql.test.mjs",
+          "name": "20 concurrent resolves with maxClicks 5 give exactly 5 redirects"
+        },
+        {
+          "requirement": "privacy-analytics",
+          "test": "tests/short-links.test.mjs",
+          "name": "resolve: counts clicks, expiry, disable and max clicks"
+        },
+        {
+          "requirement": "authorization",
+          "test": "tests/short-links.test.mjs",
+          "name": "tenant isolation and authorization"
+        },
+        {
+          "requirement": "management-api",
+          "test": "tests/short-links.test.mjs",
+          "name": "management handler: routes, auth, origin check, no-store and error mapping"
+        }
+      ]
+    }
+  ]
+}

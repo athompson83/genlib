@@ -1,0 +1,124 @@
+{
+  "id": "org-invitations",
+  "title": "Invite teammates to an organization",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "invite teammates to an organization"
+  ],
+  "requirements": [
+    {
+      "id": "authorized-invite",
+      "text": "Only members allowed to invite can do so, and they cannot grant a role above their own"
+    },
+    {
+      "id": "token-security",
+      "text": "Invitation tokens are random, stored only as hashes and expire; revoked, expired and unknown tokens fail"
+    },
+    {
+      "id": "email-bound",
+      "text": "Accepting requires a signed-in user whose verified email matches the invitation"
+    },
+    {
+      "id": "single-accept",
+      "text": "An invitation is accepted once even under concurrent accepts, and membership is created in the same transaction"
+    },
+    {
+      "id": "revoke-rotate",
+      "text": "Admins can revoke invitations, and re-inviting an address rotates the link so only the newest works"
+    },
+    {
+      "id": "tenant-isolation",
+      "text": "Invitations cannot be listed, revoked or used across tenants"
+    },
+    {
+      "id": "invite-limits",
+      "text": "Pending invitations are capped per tenant"
+    },
+    {
+      "id": "delivery-failure",
+      "text": "A failed invitation email is reported and leaves no usable pending invitation"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:org-invitations",
+      "status": "fixture-verified",
+      "fulfills": [
+        "authorized-invite",
+        "token-security",
+        "email-bound",
+        "single-accept",
+        "revoke-rotate",
+        "tenant-isolation",
+        "invite-limits",
+        "delivery-failure"
+      ],
+      "evidence": [
+        {
+          "requirement": "authorized-invite",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "access boundaries: members, other tenants, role ceilings"
+        },
+        {
+          "requirement": "token-security",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "the token is stored only as a hash"
+        },
+        {
+          "requirement": "token-security",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "expired, revoked, unknown and malformed tokens fail"
+        },
+        {
+          "requirement": "email-bound",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "access boundaries: members, other tenants, role ceilings and email mismatch"
+        },
+        {
+          "requirement": "single-accept",
+          "test": "tests/org-invitations-sql.test.mjs",
+          "name": "concurrent accepts against the database: exactly one wins"
+        },
+        {
+          "requirement": "single-accept",
+          "test": "tests/org-invitations-sql.test.mjs",
+          "name": "onAccepted creates the membership in the accepting transaction"
+        },
+        {
+          "requirement": "revoke-rotate",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "re-inviting the same email rotates the link"
+        },
+        {
+          "requirement": "revoke-rotate",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "HTTP adapter: origin, forbidden, revoke"
+        },
+        {
+          "requirement": "tenant-isolation",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "access boundaries: members, other tenants"
+        },
+        {
+          "requirement": "invite-limits",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "pending invitations are capped per tenant"
+        },
+        {
+          "requirement": "delivery-failure",
+          "test": "tests/org-invitations.test.mjs",
+          "name": "bad input and failed delivery"
+        }
+      ]
+    },
+    {
+      "ref": "skill:organization-best-practices",
+      "status": "cataloged",
+      "fulfills": [
+        "authorized-invite",
+        "single-accept"
+      ],
+      "notes": "Better Auth organization plugin guidance"
+    }
+  ]
+}

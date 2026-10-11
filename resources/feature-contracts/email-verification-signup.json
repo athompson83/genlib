@@ -1,0 +1,101 @@
+{
+  "id": "email-verification-signup",
+  "title": "User signup with email verification",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "user signup with email verification"
+  ],
+  "requirements": [
+    {
+      "id": "validated-email",
+      "text": "The email address is validated and normalized before it is used or compared"
+    },
+    {
+      "id": "unique-account",
+      "text": "Concurrent signups with the same normalized email create exactly one account"
+    },
+    {
+      "id": "password-policy",
+      "text": "The chosen password is checked against a length and blocklist policy (NIST SP 800-63B), not composition rules"
+    },
+    {
+      "id": "password-storage",
+      "text": "The password is stored only as a slow salted hash (Argon2id, bcrypt or scrypt)"
+    },
+    {
+      "id": "verification-token",
+      "text": "The verification link carries a random, expiring, single-use token stored only as a hash"
+    },
+    {
+      "id": "verification-email",
+      "text": "The verification email is delivered through a retried, idempotent send path"
+    },
+    {
+      "id": "verified-gate",
+      "text": "Unverified accounts cannot use gated features until the link is confirmed, and confirming marks the account verified once"
+    },
+    {
+      "id": "resend-limits",
+      "text": "Resending verification is rate limited and invalidates earlier links"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:email-address",
+      "status": "fixture-verified",
+      "fulfills": [
+        "validated-email"
+      ],
+      "evidence": [
+        {
+          "requirement": "validated-email",
+          "test": "tests/wave5-capabilities.test.mjs",
+          "name": "email-address: WHATWG validity vectors and normalization"
+        }
+      ]
+    },
+    {
+      "ref": "capability:password-policy",
+      "status": "fixture-verified",
+      "fulfills": [
+        "password-policy"
+      ],
+      "evidence": [
+        {
+          "requirement": "password-policy",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "NIST password policy reports failures in order"
+        }
+      ]
+    },
+    {
+      "ref": "capability:password-hashing",
+      "status": "install-supported",
+      "fulfills": [
+        "password-storage"
+      ],
+      "notes": "Wraps argon2/bcryptjs; behavior tests run only in examples/cookbook per-language suites, not in tests/"
+    },
+    {
+      "ref": "module:email-outbox",
+      "status": "fixture-verified",
+      "fulfills": [
+        "verification-email"
+      ],
+      "evidence": [
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "enqueue renders, stores and is idempotent per key"
+        },
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "retry classification, full-jitter backoff"
+        }
+      ],
+      "notes": "Delivers the message; building the verification link and token is the app's work"
+    }
+  ],
+  "notes": "No Genlib signup flow. Building blocks: password-reset shows the hashed single-use token pattern for a different purpose; rate-limit can bound resends; signed-urls signs expiring links but is not single-use."
+}

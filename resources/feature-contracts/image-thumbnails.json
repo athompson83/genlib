@@ -1,0 +1,54 @@
+{
+  "id": "image-thumbnails",
+  "title": "Resize and thumbnail images",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "resize and thumbnail images"
+  ],
+  "requirements": [
+    {
+      "id": "decode-limits",
+      "text": "Inputs are checked by their bytes and refused above a pixel limit (decompression bombs) or in unsupported formats"
+    },
+    {
+      "id": "resize-fit",
+      "text": "Configured sizes are produced with the aspect ratio preserved (fit or cover) and no upscaling"
+    },
+    {
+      "id": "orientation-metadata",
+      "text": "EXIF orientation is applied, then metadata such as GPS is stripped"
+    },
+    {
+      "id": "web-formats",
+      "text": "Variants are encoded as web formats (WebP, AVIF or JPEG) at a set quality"
+    },
+    {
+      "id": "background-idempotent",
+      "text": "Variants are generated in a retried background job keyed by source and variant; originals are kept"
+    },
+    {
+      "id": "serving",
+      "text": "Variants are served with long-lived cache headers, and on-the-fly resizing is limited to allowlisted sizes or signed URLs"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "resource:sharp",
+      "status": "cataloged",
+      "fulfills": [
+        "resize-fit",
+        "orientation-metadata",
+        "web-formats"
+      ]
+    },
+    {
+      "ref": "resource:imgproxy",
+      "status": "cataloged",
+      "fulfills": [
+        "resize-fit",
+        "serving"
+      ]
+    }
+  ],
+  "notes": "No Genlib image processing. file-signature detects formats from bytes but enforces no pixel limit; durable-jobs could run the variant job."
+}

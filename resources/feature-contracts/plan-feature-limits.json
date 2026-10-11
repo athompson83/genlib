@@ -1,0 +1,74 @@
+{
+  "id": "plan-feature-limits",
+  "title": "Subscription plans and feature limits",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "subscription plans and feature limits"
+  ],
+  "requirements": [
+    {
+      "id": "plan-features",
+      "text": "Features are allowed per plan; unknown features and unknown plans deny"
+    },
+    {
+      "id": "numeric-limits",
+      "text": "Quantity limits (seats, projects) are checked against current usage; a limit the plan omits is zero"
+    },
+    {
+      "id": "status-fallback",
+      "text": "Canceled, unpaid and past-due-beyond-grace accounts fall back to a declared plan"
+    },
+    {
+      "id": "overrides",
+      "text": "Per-account negotiated overrides apply only while the account's own plan applies"
+    },
+    {
+      "id": "billing-sync",
+      "text": "Plan and status come from verified billing-provider events, never from the request"
+    },
+    {
+      "id": "race-safe-limits",
+      "text": "Concurrent creations cannot exceed a limit (usage counted and checked in the creating transaction)"
+    },
+    {
+      "id": "server-enforced",
+      "text": "Request handlers enforce the checks and return an upgrade-required response the UI can show"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:entitlements",
+      "status": "fixture-verified",
+      "fulfills": [
+        "plan-features",
+        "numeric-limits",
+        "status-fallback",
+        "overrides"
+      ],
+      "evidence": [
+        {
+          "requirement": "plan-features",
+          "test": "tests/entitlements.test.mjs",
+          "name": "features and limits follow the plan, overrides and subscription status"
+        },
+        {
+          "requirement": "numeric-limits",
+          "test": "tests/entitlements.test.mjs",
+          "name": "features and limits follow the plan, overrides and subscription status"
+        },
+        {
+          "requirement": "status-fallback",
+          "test": "tests/entitlements.test.mjs",
+          "name": "features and limits follow the plan, overrides and subscription status"
+        },
+        {
+          "requirement": "overrides",
+          "test": "tests/entitlements.test.mjs",
+          "name": "features and limits follow the plan, overrides and subscription status"
+        }
+      ],
+      "notes": "Pure decision functions: no HTTP guard, no provider sync, and the caller must count usage transactionally"
+    }
+  ],
+  "notes": "webhook-verification verifies provider signatures; the stripe-checkout contract tracks subscription sync."
+}

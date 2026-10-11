@@ -41,6 +41,69 @@
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
     },
     {
+      "id": "bot-protection",
+      "version": "0.1.0",
+      "title": "Bot protection for forms",
+      "description": "Stop signup, login and contact-form spam: server-side Cloudflare Turnstile, hCaptcha and reCAPTCHA v2/v3 token checks (hostname, action, score, age, fail-closed), a privacy-friendly signed proof-of-work challenge with single-use replay protection, a honeypot with minimum fill time, one combined guard and a Fetch wrapper that hides which check failed.",
+      "kind": "feature",
+      "tags": [
+        "captcha",
+        "image captcha or bot protection",
+        "bot protection",
+        "spam protection",
+        "turnstile",
+        "hcaptcha",
+        "recaptcha",
+        "proof of work",
+        "honeypot",
+        "signup spam",
+        "form spam",
+        "contact form",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/bot-protection@0.1.0.json",
+      "sha256": "41a9980bcd6dd4209726d01e1c7f611b6d9588f1d4d4f76bb74b3ac72c029b57"
+    },
+    {
+      "id": "chat",
+      "version": "0.1.0",
+      "title": "In-app chat",
+      "description": "Chat messages between users of a multi-tenant server app: idempotent direct conversations and groups with admin rules, idempotent sends with a gap-free per-conversation seq, edit window, soft delete, history paging, monotonic read positions, unread counts, an inbox ordered by last message, user blocking and an onMessage fan-out hook, with a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "chat",
+        "chat messages between users",
+        "messaging",
+        "direct messages",
+        "dm",
+        "group chat",
+        "inbox",
+        "conversations",
+        "unread count",
+        "read receipts",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/chat@0.1.0.json",
+      "sha256": "f1ffb22551e1580919e61d5bd1cf7511c39bba8a8d93c9312a7ce1a560aefb2c"
+    },
+    {
       "id": "comments",
       "version": "0.1.0",
       "title": "Threaded comments",
@@ -159,6 +222,38 @@
       "verification": "tested",
       "manifest": "registry/manifests/data-table@0.1.0.json",
       "sha256": "1c4f9f90ce5a74a51e060dd2e9981ff5ac1582824daae75bde73f06b2187097f"
+    },
+    {
+      "id": "email-outbox",
+      "version": "0.1.0",
+      "title": "Transactional email outbox",
+      "description": "Send transactional email reliably from a server app: idempotent enqueue with rendered templates, leased dispatch with retries, full-jitter backoff and dead-lettering, a bounce and complaint suppression list, Resend and Postmark Fetch transports, a PostgreSQL store and a delivery-event webhook adapter.",
+      "kind": "feature",
+      "tags": [
+        "email",
+        "send transactional email",
+        "transactional email",
+        "email queue",
+        "outbox",
+        "bounces",
+        "resend",
+        "postmark",
+        "notifications email",
+        "retries",
+        "idempotency",
+        "suppression list",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/email-outbox@0.1.0.json",
+      "sha256": "0c275b8115ff8a303bda136d2f3e7df233cf6161da542d34b36ab8e606346b22"
     },
     {
       "id": "entitlements",
@@ -455,6 +550,35 @@
       "sha256": "6aaa94bd356d330fe7b1df71df9db8692e76c5f77d5cb2018f376dd619c51338"
     },
     {
+      "id": "qr-code",
+      "version": "0.1.0",
+      "title": "QR code generator",
+      "description": "Dependency-free TypeScript QR Code generation (ISO/IEC 18004, versions 1-40, levels L/M/Q/H) in numeric, alphanumeric or UTF-8 byte mode, with Reed-Solomon error correction, automatic mask selection, and renderers for compact SVG, terminal half-block text and a 0/1 matrix.",
+      "kind": "utility",
+      "tags": [
+        "qr code",
+        "qr code generation",
+        "qr",
+        "barcode",
+        "svg qr",
+        "2fa qr",
+        "share link qr",
+        "totp qr",
+        "terminal qr",
+        "typescript"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "any",
+      "verification": "tested",
+      "manifest": "registry/manifests/qr-code@0.1.0.json",
+      "sha256": "3033a9423cde4d8fa0a81b1f178f733ec196d4666f85102e6d0f4a42422ceb29"
+    },
+    {
       "id": "rate-limit",
       "version": "0.1.0",
       "title": "Rate limit",
@@ -575,6 +699,38 @@
       "sha256": "dfc019c6b312fb265e6b3040f54552ab63a1e05f93b12d57f346d12ae7880183"
     },
     {
+      "id": "site-search",
+      "version": "0.1.0",
+      "title": "Site search with filters",
+      "description": "Full-text search with filters for a multi-tenant app's own records (products, articles, tickets): weighted fields, a safe query syntax (words, phrases, -exclusions, prefix* type-ahead), keyword, range and boolean filters, facets, highlights, keyset paging and per-document visibility, with an in-memory BM25 index, a PostgreSQL tsvector store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "search",
+        "full-text search",
+        "full-text search with filters",
+        "site search",
+        "search box",
+        "faceted search",
+        "filters",
+        "autocomplete",
+        "type-ahead",
+        "highlighting",
+        "multi-tenant",
+        "postgres",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/site-search@0.1.0.json",
+      "sha256": "2750a8e07591b355b80ee674f3472cadaf62ee36577cd79f6e06e7c8a4d40271"
+    },
+    {
       "id": "structured-logger",
       "version": "0.1.0",
       "title": "Structured logger",
@@ -648,6 +804,34 @@
       "verification": "tested",
       "manifest": "registry/manifests/validated-form@0.1.0.json",
       "sha256": "b2815d38c3fc74ad4635c31f54222809e52432662f14522e44ae92eb807153b7"
+    },
+    {
+      "id": "web-push",
+      "version": "0.1.0",
+      "title": "Web Push notifications",
+      "description": "Send Web Push notifications from your server with Web Crypto only: RFC 8291 aes128gcm payload encryption, VAPID (RFC 8292) signing and key generation, per-user subscriptions with endpoint allow-list and dedupe, TTL/urgency/topic headers, cleanup of expired subscriptions on 404/410, bounded-concurrency fan-out, a PostgreSQL store, a Fetch adapter and a same-origin service worker snippet.",
+      "kind": "feature",
+      "tags": [
+        "web push",
+        "web push notifications",
+        "push notifications",
+        "browser notifications",
+        "vapid",
+        "service worker",
+        "notify users",
+        "pwa",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/web-push@0.1.0.json",
+      "sha256": "9c90e5c626936a8782e2d43b3ed8bafd35fb5c0c56a52d9e2401e256a020114e"
     },
     {
       "id": "webhook-verification",

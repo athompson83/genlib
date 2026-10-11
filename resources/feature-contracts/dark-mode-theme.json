@@ -1,0 +1,62 @@
+{
+  "id": "dark-mode-theme",
+  "title": "Dark mode with theme tokens",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "dark mode theme tokens"
+  ],
+  "requirements": [
+    {
+      "id": "semantic-tokens",
+      "text": "Semantic color tokens have light and dark values, selectable by an attribute or class"
+    },
+    {
+      "id": "components-use-tokens",
+      "text": "Components reference only defined theme tokens, never hard-coded colors"
+    },
+    {
+      "id": "system-preference",
+      "text": "Without a saved choice, the theme follows prefers-color-scheme and updates when it changes"
+    },
+    {
+      "id": "persisted-no-flash",
+      "text": "A user's choice persists and is applied before first paint, without a flash of the wrong theme"
+    },
+    {
+      "id": "accessible-toggle",
+      "text": "The theme toggle is a labelled, keyboard-operable control that announces its state"
+    },
+    {
+      "id": "contrast-both",
+      "text": "Text and UI token pairs meet WCAG AA contrast in both themes"
+    },
+    {
+      "id": "native-controls",
+      "text": "color-scheme is set so native form controls and scrollbars match the theme"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:theme-tokens",
+      "status": "fixture-verified",
+      "fulfills": [
+        "semantic-tokens",
+        "components-use-tokens"
+      ],
+      "evidence": [
+        {
+          "requirement": "semantic-tokens",
+          "test": "tests/web-modules.test.mjs",
+          "name": "every web stylesheet variable resolves to a supplied semantic theme token"
+        },
+        {
+          "requirement": "components-use-tokens",
+          "test": "tests/web-modules.test.mjs",
+          "name": "every web stylesheet variable resolves to a supplied semantic theme token"
+        }
+      ],
+      "notes": "CSS variables with data-genlib-theme light/dark; its contract states there is no persistence, OS-theme listener or contrast certification"
+    }
+  ],
+  "notes": "capability:wcag-contrast can check token pairs, but no test applies it to the theme palettes."
+}

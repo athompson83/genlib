@@ -1,0 +1,66 @@
+{
+  "id": "pdf-invoices",
+  "title": "Generate PDF invoices",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "generate pdf invoices"
+  ],
+  "requirements": [
+    {
+      "id": "exact-money",
+      "text": "Amounts use integer minor units with currency precision; line, tax and grand totals are exact and consistent"
+    },
+    {
+      "id": "required-fields",
+      "text": "Invoices include seller and buyer details, number, issue and due dates, line items and tax breakdown, with jurisdiction-specific fields configurable"
+    },
+    {
+      "id": "sequential-numbering",
+      "text": "Invoice numbers are unique and sequential per tenant, even under concurrent issuing"
+    },
+    {
+      "id": "pdf-render",
+      "text": "A real PDF is produced with embedded fonts, and long item lists flow across pages with repeated headers"
+    },
+    {
+      "id": "branding-locale",
+      "text": "Layout, branding and locale formatting are customizable without changing the data model"
+    },
+    {
+      "id": "immutability",
+      "text": "An issued invoice is stored immutably; corrections are made by credit note"
+    },
+    {
+      "id": "access-control",
+      "text": "Only authorized members of the tenant can download an invoice"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:invoice-totals",
+      "status": "fixture-verified",
+      "fulfills": [
+        "exact-money"
+      ],
+      "evidence": [
+        {
+          "requirement": "exact-money",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        }
+      ],
+      "notes": "invoiceTotals: exact integer tax rounding; no PDF"
+    },
+    {
+      "ref": "integration:document-pipeline",
+      "status": "install-supported",
+      "fulfills": [
+        "exact-money",
+        "pdf-render",
+        "branding-locale"
+      ],
+      "notes": "pdfme invoice/report templates with multi-page and font checks; tested inside the pack (npm test there), not in tests/. Tax rules and jurisdiction fields are out of scope"
+    }
+  ],
+  "notes": "Numbering, archival and access control are app work."
+}

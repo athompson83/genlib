@@ -1,0 +1,52 @@
+{
+  "id": "rich-text-editor-sanitization",
+  "title": "Rich text editor content sanitization",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "rich text editor content sanitization"
+  ],
+  "requirements": [
+    {
+      "id": "server-allowlist",
+      "text": "Editor HTML is sanitized on the trusted server with an allowlist before it is stored or rendered; client-side cleaning is not relied on"
+    },
+    {
+      "id": "xss-corpus",
+      "text": "Scripts, event handlers, style attributes, iframes, SVG/MathML and mutation-XSS shapes are removed"
+    },
+    {
+      "id": "link-schemes",
+      "text": "Links keep only http, https and mailto (after URL decoding) and get a forced safe rel"
+    },
+    {
+      "id": "formatting-kept",
+      "text": "The formatting the editor emits (headings, lists, emphasis, links, code) survives sanitization"
+    },
+    {
+      "id": "json-documents",
+      "text": "When the editor stores JSON (ProseMirror/Lexical), the document is validated against the editor schema before it is rendered"
+    },
+    {
+      "id": "media-sources",
+      "text": "Images and embeds are limited to allowed hosts or the app's own uploads"
+    },
+    {
+      "id": "size-limit",
+      "text": "Saved content has a byte and nesting limit enforced by the server"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:rich-text-sanitization",
+      "status": "install-supported",
+      "fulfills": [
+        "server-allowlist",
+        "xss-corpus",
+        "link-schemes",
+        "formatting-kept"
+      ],
+      "notes": "Pinned allowlist sanitizers in 9 languages, each with an XSS-corpus and formatting test under examples/cookbook; no tests/ test runs the sanitizer itself. The allowlist drops img, so media handling is the app's policy"
+    }
+  ],
+  "notes": "The cookbook guide documents the Tiptap/Lexical JSON path (generateHTML then sanitize) but no code validates editor JSON."
+}

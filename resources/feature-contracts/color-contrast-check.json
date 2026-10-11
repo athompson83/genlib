@@ -1,0 +1,75 @@
+{
+  "id": "color-contrast-check",
+  "title": "Accessibility color contrast check",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "accessibility color contrast check"
+  ],
+  "requirements": [
+    {
+      "id": "contrast-ratio",
+      "text": "Relative luminance and contrast ratio are computed per WCAG 2.x"
+    },
+    {
+      "id": "thresholds",
+      "text": "Pass/fail is reported for AA and AAA, normal and large text, and the 3:1 non-text threshold"
+    },
+    {
+      "id": "alpha",
+      "text": "Semi-transparent foreground colors are composited over the background before measuring"
+    },
+    {
+      "id": "input-validation",
+      "text": "Invalid color strings are refused rather than measured as black"
+    },
+    {
+      "id": "css-formats",
+      "text": "Colors in rgb(), hsl(), oklch() and named forms are accepted, not just hex"
+    },
+    {
+      "id": "token-audit",
+      "text": "Every foreground/background token pair in each theme is checked automatically, failing the build on regressions"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:wcag-contrast",
+      "status": "fixture-verified",
+      "fulfills": [
+        "contrast-ratio",
+        "thresholds",
+        "alpha",
+        "input-validation"
+      ],
+      "evidence": [
+        {
+          "requirement": "contrast-ratio",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "wcag-contrast: ratio vectors and AA/AAA thresholds"
+        },
+        {
+          "requirement": "contrast-ratio",
+          "test": "tests/recipes.test.mjs",
+          "name": "WCAG contrast ratios and levels"
+        },
+        {
+          "requirement": "thresholds",
+          "test": "tests/recipes.test.mjs",
+          "name": "WCAG contrast ratios and levels"
+        },
+        {
+          "requirement": "alpha",
+          "test": "tests/recipes.test.mjs",
+          "name": "WCAG contrast ratios and levels"
+        },
+        {
+          "requirement": "input-validation",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "wcag-contrast: ratio vectors and AA/AAA thresholds"
+        }
+      ],
+      "notes": "Hex input only"
+    }
+  ],
+  "notes": "capability:color converts between hex, HSL and OKLCH values but does not parse CSS color functions; no tool audits theme token pairs."
+}

@@ -1,0 +1,99 @@
+{
+  "id": "form-validation",
+  "title": "Form validation with error messages",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "form validation with error messages"
+  ],
+  "requirements": [
+    {
+      "id": "blocks-invalid",
+      "text": "Invalid input blocks submission and shows a message next to each invalid field"
+    },
+    {
+      "id": "accessible-errors",
+      "text": "Errors are accessible: aria-invalid, aria-describedby to the message, and a focused error summary linking to fields"
+    },
+    {
+      "id": "errors-clear",
+      "text": "A field's error clears once the user corrects it"
+    },
+    {
+      "id": "server-validation",
+      "text": "The server validates the same rules independently, rejects unknown fields and returns stable error codes"
+    },
+    {
+      "id": "server-errors-mapped",
+      "text": "Field and form errors returned by the server are shown on the matching fields and can be corrected"
+    },
+    {
+      "id": "no-duplicate-submit",
+      "text": "Submission shows a busy state and duplicate submits are blocked"
+    },
+    {
+      "id": "safe-unexpected-errors",
+      "text": "Unexpected failures show a safe generic message without internal details and allow retry"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:validated-form",
+      "status": "fixture-verified",
+      "fulfills": [
+        "blocks-invalid",
+        "accessible-errors",
+        "errors-clear",
+        "server-errors-mapped",
+        "no-duplicate-submit",
+        "safe-unexpected-errors"
+      ],
+      "evidence": [
+        {
+          "requirement": "blocks-invalid",
+          "test": "tests/web-modules.test.mjs",
+          "name": "invalid form data blocks persistence and links summary errors to fields and hints"
+        },
+        {
+          "requirement": "accessible-errors",
+          "test": "tests/web-modules.test.mjs",
+          "name": "invalid form data blocks persistence and links summary errors to fields and hints"
+        },
+        {
+          "requirement": "errors-clear",
+          "test": "tests/web-modules.test.mjs",
+          "name": "invalid form data blocks persistence"
+        },
+        {
+          "requirement": "server-errors-mapped",
+          "test": "tests/web-modules.test.mjs",
+          "name": "explicit server field and form errors remain editable and can be corrected"
+        },
+        {
+          "requirement": "no-duplicate-submit",
+          "test": "tests/web-modules.test.mjs",
+          "name": "async validation and submission share one busy period and block same-tick duplicates"
+        },
+        {
+          "requirement": "safe-unexpected-errors",
+          "test": "tests/web-modules.test.mjs",
+          "name": "unexpected submission exceptions use a safe message and allow retry"
+        }
+      ]
+    },
+    {
+      "ref": "capability:form-schema",
+      "status": "fixture-verified",
+      "fulfills": [
+        "server-validation"
+      ],
+      "evidence": [
+        {
+          "requirement": "server-validation",
+          "test": "tests/capabilities.test.mjs",
+          "name": "form-schema: validation vectors"
+        }
+      ],
+      "notes": "Declarative server-side rules with stable codes and unknown-field rejection; sharing rules with the client form is the app's wiring"
+    }
+  ]
+}

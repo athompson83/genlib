@@ -1,0 +1,62 @@
+{
+  "id": "maps-with-markers",
+  "title": "Interactive maps with markers",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "maps with markers"
+  ],
+  "requirements": [
+    {
+      "id": "render-map",
+      "text": "An interactive map renders with pan, zoom and the tile provider attribution the provider requires"
+    },
+    {
+      "id": "place-markers",
+      "text": "Markers are placed from application data at validated latitude/longitude coordinates"
+    },
+    {
+      "id": "safe-popups",
+      "text": "Marker popups and tooltips render user-supplied text escaped, never as raw HTML"
+    },
+    {
+      "id": "clustering",
+      "text": "Large numbers of markers are clustered or virtualized so the map stays responsive"
+    },
+    {
+      "id": "fit-bounds",
+      "text": "The initial viewport fits the visible markers, with a sensible default when there are none"
+    },
+    {
+      "id": "accessible-markers",
+      "text": "Markers are reachable by keyboard and have accessible names; a list alternative exists"
+    },
+    {
+      "id": "scoped-data",
+      "text": "Only markers the viewer is authorized to see (tenant-scoped) are loaded, bounded by the viewport or a limit"
+    },
+    {
+      "id": "provider-keys",
+      "text": "Map provider keys are restricted (domain/usage) and no secret key reaches the browser"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "resource:mapcn",
+      "status": "cataloged",
+      "fulfills": [
+        "render-map",
+        "place-markers"
+      ],
+      "notes": "External MIT React map components for markers and routes; basemap and tile services have separate terms"
+    },
+    {
+      "ref": "resource:leaflet-markercluster",
+      "status": "cataloged",
+      "fulfills": [
+        "clustering"
+      ],
+      "notes": "External Leaflet marker clustering plugin"
+    }
+  ],
+  "notes": "No Genlib map component. Building blocks: capability:tile-math (tiles and Mercator), capability:geo (haversine, bounding box), html-escape recipe for popup text, module:rbac for scoping."
+}

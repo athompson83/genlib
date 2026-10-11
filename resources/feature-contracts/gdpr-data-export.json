@@ -1,0 +1,90 @@
+{
+  "id": "gdpr-data-export",
+  "title": "GDPR personal data export",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "gdpr data export for a user"
+  ],
+  "requirements": [
+    {
+      "id": "request-auth",
+      "text": "Only the signed-in data subject (recently re-authenticated) or an authorized admin can request an export, within their tenant"
+    },
+    {
+      "id": "completeness",
+      "text": "The export includes all personal data from every source in a declared data inventory (profile, content, activity, consents)"
+    },
+    {
+      "id": "third-party-exclusion",
+      "text": "Other people's personal data is excluded or redacted"
+    },
+    {
+      "id": "machine-readable",
+      "text": "The export is machine-readable (JSON or CSV), and CSV cells cannot run as spreadsheet formulas"
+    },
+    {
+      "id": "async-job",
+      "text": "Exports are built by a background job that survives retries and notifies the user when ready"
+    },
+    {
+      "id": "expiring-link",
+      "text": "The download is available only through a tamper-proof, expiring link or an authenticated route"
+    },
+    {
+      "id": "retention",
+      "text": "Generated archives are deleted after the download window"
+    },
+    {
+      "id": "audit-trail",
+      "text": "Requests and downloads are recorded for accountability"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:csv-safe",
+      "status": "fixture-verified",
+      "fulfills": [
+        "machine-readable"
+      ],
+      "evidence": [
+        {
+          "requirement": "machine-readable",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "csv-safe: writeCsv vector, neutralization and validation"
+        }
+      ],
+      "notes": "Formula-safe RFC 4180 CSV writer; assembling the export is the app's work"
+    },
+    {
+      "ref": "capability:signed-urls",
+      "status": "fixture-verified",
+      "fulfills": [
+        "expiring-link"
+      ],
+      "evidence": [
+        {
+          "requirement": "expiring-link",
+          "test": "tests/wave5-capabilities.test.mjs",
+          "name": "signed-urls: byte-exact vectors, expiry, tampering and malformed input"
+        }
+      ],
+      "notes": "HMAC-signed expiring URLs; the link is a bearer credential, so pair it with an authenticated route when needed"
+    },
+    {
+      "ref": "integration:durable-jobs",
+      "status": "install-supported",
+      "fulfills": [
+        "async-job"
+      ],
+      "notes": "pg-boss worker lifecycle and retries; export generation and notification are the app's handlers"
+    }
+  ],
+  "missing": [
+    "request-auth",
+    "completeness",
+    "third-party-exclusion",
+    "retention",
+    "audit-trail"
+  ],
+  "notes": "No Genlib package implements the export workflow or a data inventory; only formatting, link and job building blocks exist."
+}

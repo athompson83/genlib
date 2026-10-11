@@ -1,0 +1,89 @@
+{
+  "id": "file-upload-checks",
+  "title": "File upload with size and type checks",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "file upload with size and type checks"
+  ],
+  "requirements": [
+    {
+      "id": "server-size-limit",
+      "text": "The server enforces the size limit while streaming and rejects oversized bodies (413) without buffering them"
+    },
+    {
+      "id": "content-sniffing",
+      "text": "The server detects the type from the file's bytes, not only its extension or declared Content-Type"
+    },
+    {
+      "id": "type-allowlist",
+      "text": "Only allowlisted types are accepted, and the detected type must agree with the extension"
+    },
+    {
+      "id": "safe-filename",
+      "text": "Original filenames are sanitized and cannot traverse paths or use reserved names"
+    },
+    {
+      "id": "client-preflight",
+      "text": "The client rejects files over the size limit or outside the allowlist before uploading"
+    },
+    {
+      "id": "authorization-quota",
+      "text": "Only authorized users upload into their own tenant, within a quota"
+    },
+    {
+      "id": "malware-scan",
+      "text": "Files stay quarantined until scanned before they are served"
+    },
+    {
+      "id": "safe-serving",
+      "text": "Uploads are served as attachments with nosniff, or from a separate origin"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:file-signature",
+      "status": "fixture-verified",
+      "fulfills": [
+        "content-sniffing"
+      ],
+      "evidence": [
+        {
+          "requirement": "content-sniffing",
+          "test": "tests/wave9-capabilities.test.mjs",
+          "name": "file signatures match the shared vectors"
+        }
+      ]
+    },
+    {
+      "ref": "recipe:safe-filename-and-path-join",
+      "status": "fixture-verified",
+      "fulfills": [
+        "safe-filename"
+      ],
+      "evidence": [
+        {
+          "requirement": "safe-filename",
+          "test": "tests/recipes.test.mjs",
+          "name": "safe filenames and traversal-proof joins"
+        }
+      ]
+    },
+    {
+      "ref": "recipe:upload-preflight",
+      "status": "install-supported",
+      "fulfills": [
+        "client-preflight"
+      ],
+      "notes": "Metadata-only check; its test exercises the extension rejection but not the size limit"
+    },
+    {
+      "ref": "integration:resumable-files",
+      "status": "install-supported",
+      "fulfills": [
+        "authorization-quota"
+      ],
+      "notes": "tusd hooks reserve quota and check ownership; tested inside the pack, not in tests/"
+    }
+  ],
+  "notes": "Streaming size enforcement, allowlist policy, scanning and serving headers are app work. file-signature matchesExtension and mime-types are building blocks for the allowlist check."
+}

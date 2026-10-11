@@ -1,0 +1,73 @@
+{
+  "id": "social-metadata",
+  "title": "Open Graph and JSON-LD metadata",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "open graph and json-ld metadata"
+  ],
+  "requirements": [
+    {
+      "id": "basic-meta",
+      "text": "Each page has a title, description and absolute canonical URL"
+    },
+    {
+      "id": "open-graph",
+      "text": "Open Graph and Twitter card tags are emitted with absolute image and page URLs"
+    },
+    {
+      "id": "escaped-values",
+      "text": "Metadata values are HTML-escaped so user-supplied titles cannot inject markup"
+    },
+    {
+      "id": "json-ld-safe",
+      "text": "JSON-LD is serialized so it cannot break out of its script element (</script>, U+2028/2029)"
+    },
+    {
+      "id": "schema-valid",
+      "text": "JSON-LD uses schema.org types with the properties required for the intended rich result"
+    },
+    {
+      "id": "server-rendered",
+      "text": "Tags are present in the server-rendered HTML so crawlers see them without running JavaScript"
+    },
+    {
+      "id": "og-image",
+      "text": "Share images exist at the recommended size (about 1200x630) and are reachable without authentication"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:structured-data",
+      "status": "fixture-verified",
+      "fulfills": [
+        "basic-meta",
+        "open-graph",
+        "escaped-values",
+        "json-ld-safe"
+      ],
+      "evidence": [
+        {
+          "requirement": "basic-meta",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "structured-data: meta tag vectors and validation"
+        },
+        {
+          "requirement": "open-graph",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "structured-data: meta tag vectors and validation"
+        },
+        {
+          "requirement": "escaped-values",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "structured-data: meta tag vectors and validation"
+        },
+        {
+          "requirement": "json-ld-safe",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "structured-data: JSON-LD script vector and value rules"
+        }
+      ],
+      "notes": "Serializes any JSON-LD object; it does not validate schema.org types or properties"
+    }
+  ]
+}
