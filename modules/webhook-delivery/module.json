@@ -2,10 +2,23 @@
   "schemaVersion": 1,
   "id": "webhook-delivery",
   "version": "0.1.0",
-  "title": "Outgoing webhook delivery with retries and signatures",
+  "title": "Outgoing webhook delivery with retries",
   "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-lettering and manual replay, an SSRF guard checked at registration and send time, a PostgreSQL store and a Fetch management adapter.",
   "kind": "feature",
-  "tags": ["webhooks", "send webhooks", "outgoing webhooks", "webhook delivery", "webhook retries", "standard webhooks", "hmac signature", "secret rotation", "ssrf", "outbox", "multi-tenant", "server"],
+  "tags": [
+    "webhooks",
+    "send webhooks",
+    "outgoing webhooks",
+    "webhook delivery",
+    "webhook retries",
+    "standard webhooks",
+    "signed deliveries",
+    "secret rotation",
+    "ssrf",
+    "outbox",
+    "multi-tenant",
+    "server"
+  ],
   "license": "Apache-2.0",
   "source": {
     "type": "original",
@@ -13,8 +26,12 @@
     "path": "modules/webhook-delivery"
   },
   "compatibility": {
-    "frameworks": ["any"],
-    "languages": ["typescript"],
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
     "platform": "server",
     "notes": [
       "Requires a TypeScript build, Web Crypto (crypto.subtle HMAC, getRandomValues, randomUUID), AbortSignal.timeout, btoa/atob, structuredClone and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno and Next.js route handlers. The resolver must be injected (for example node:dns lookup), so edge runtimes without DNS need their own resolver.",
@@ -24,28 +41,88 @@
   },
   "dependencies": [],
   "files": [
-    { "source": "files/core.ts", "target": "webhook-delivery/core.ts" },
-    { "source": "files/signing.ts", "target": "webhook-delivery/signing.ts" },
-    { "source": "files/ssrf.ts", "target": "webhook-delivery/ssrf.ts" },
-    { "source": "files/memory-store.ts", "target": "webhook-delivery/memory-store.ts" },
-    { "source": "files/sql-store.ts", "target": "webhook-delivery/sql-store.ts" },
-    { "source": "files/schema.sql", "target": "webhook-delivery/schema.sql" },
-    { "source": "files/http.ts", "target": "webhook-delivery/http.ts" }
+    {
+      "source": "files/core.ts",
+      "target": "webhook-delivery/core.ts"
+    },
+    {
+      "source": "files/signing.ts",
+      "target": "webhook-delivery/signing.ts"
+    },
+    {
+      "source": "files/ssrf.ts",
+      "target": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "webhook-delivery/memory-store.ts"
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "webhook-delivery/sql-store.ts"
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "webhook-delivery/schema.sql"
+    },
+    {
+      "source": "files/http.ts",
+      "target": "webhook-delivery/http.ts"
+    }
   ],
   "exports": [
-    { "name": "createWebhookDelivery", "from": "webhook-delivery/core.ts" },
-    { "name": "WebhookDeliveryError", "from": "webhook-delivery/core.ts" },
-    { "name": "exponentialJitterBackoff", "from": "webhook-delivery/core.ts" },
-    { "name": "signWebhook", "from": "webhook-delivery/signing.ts" },
-    { "name": "generateWebhookSecret", "from": "webhook-delivery/signing.ts" },
-    { "name": "decodeWebhookSecret", "from": "webhook-delivery/signing.ts" },
-    { "name": "checkWebhookUrl", "from": "webhook-delivery/ssrf.ts" },
-    { "name": "guardWebhookUrl", "from": "webhook-delivery/ssrf.ts" },
-    { "name": "isPublicIp", "from": "webhook-delivery/ssrf.ts" },
-    { "name": "parseIp", "from": "webhook-delivery/ssrf.ts" },
-    { "name": "MemoryWebhookStore", "from": "webhook-delivery/memory-store.ts" },
-    { "name": "createSqlWebhookStore", "from": "webhook-delivery/sql-store.ts" },
-    { "name": "createWebhookEndpointsHandler", "from": "webhook-delivery/http.ts" }
+    {
+      "name": "createWebhookDelivery",
+      "from": "webhook-delivery/core.ts"
+    },
+    {
+      "name": "WebhookDeliveryError",
+      "from": "webhook-delivery/core.ts"
+    },
+    {
+      "name": "exponentialJitterBackoff",
+      "from": "webhook-delivery/core.ts"
+    },
+    {
+      "name": "signWebhook",
+      "from": "webhook-delivery/signing.ts"
+    },
+    {
+      "name": "generateWebhookSecret",
+      "from": "webhook-delivery/signing.ts"
+    },
+    {
+      "name": "decodeWebhookSecret",
+      "from": "webhook-delivery/signing.ts"
+    },
+    {
+      "name": "checkWebhookUrl",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "guardWebhookUrl",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "isPublicIp",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "parseIp",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "MemoryWebhookStore",
+      "from": "webhook-delivery/memory-store.ts"
+    },
+    {
+      "name": "createSqlWebhookStore",
+      "from": "webhook-delivery/sql-store.ts"
+    },
+    {
+      "name": "createWebhookEndpointsHandler",
+      "from": "webhook-delivery/http.ts"
+    }
   ],
   "configuration": [
     "On PostgreSQL, apply schema.sql and use createSqlWebhookStore with your query executor; elsewhere implement WebhookDeliveryStore with a unique (endpoint_id, event_id), an atomic leased claim, lease renewal and completion fenced by the lease owner.",
@@ -74,9 +151,16 @@
   ],
   "verification": {
     "level": "tested",
-    "testFiles": ["tests/webhook-delivery.test.mjs", "tests/webhook-delivery-sql.test.mjs"],
+    "testFiles": [
+      "tests/webhook-delivery.test.mjs",
+      "tests/webhook-delivery-sql.test.mjs"
+    ],
     "command": "npm run build && node --test tests/webhook-delivery.test.mjs tests/webhook-delivery-sql.test.mjs",
-    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
     "behaviors": [
       "signatures use Standard Webhooks headers and verify with the webhook-verification module's verifyStandardWebhook",
       "after rotation every active secret signs until the previous secret's grace period ends; endpoint views never contain secret values; a secretBox seals stored secrets",
@@ -97,7 +181,12 @@
     ]
   },
   "changelog": [
-    { "version": "0.1.0", "changes": ["First release: core delivery engine, Standard Webhooks signing, SSRF guard, in-memory store, PostgreSQL schema and store, and Fetch endpoint-management adapter."] }
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core delivery engine, Standard Webhooks signing, SSRF guard, in-memory store, PostgreSQL schema and store, and Fetch endpoint-management adapter."
+      ]
+    }
   ],
   "contract": "CONTRACT.md"
 }

@@ -1121,7 +1121,7 @@
     {
       "id": "webhook-delivery",
       "version": "0.1.0",
-      "title": "Outgoing webhook delivery with retries and signatures",
+      "title": "Outgoing webhook delivery with retries",
       "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-lettering and manual replay, an SSRF guard checked at registration and send time, a PostgreSQL store and a Fetch management adapter.",
       "kind": "feature",
       "tags": [
@@ -1131,7 +1131,7 @@
         "webhook delivery",
         "webhook retries",
         "standard webhooks",
-        "hmac signature",
+        "signed deliveries",
         "secret rotation",
         "ssrf",
         "outbox",
@@ -1147,7 +1147,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/webhook-delivery@0.1.0.json",
-      "sha256": "d261ab91f8335e5a3b23843b1806ee155c3ef1b1860068c6f8d7e829a175de2a"
+      "sha256": "bed142dc4fcc9c3f99cc2a5543699faf4201c6d8c1ecd142847db380d334b4d1"
     },
     {
       "id": "webhook-verification",

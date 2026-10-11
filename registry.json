@@ -3849,7 +3849,7 @@
   {
    "name": "webhook-delivery",
    "type": "registry:item",
-   "title": "Outgoing webhook delivery with retries and signatures",
+   "title": "Outgoing webhook delivery with retries",
    "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-",
    "files": [
     {

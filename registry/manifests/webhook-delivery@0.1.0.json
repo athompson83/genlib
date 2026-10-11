@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "webhook-delivery",
   "version": "0.1.0",
-  "title": "Outgoing webhook delivery with retries and signatures",
+  "title": "Outgoing webhook delivery with retries",
   "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-lettering and manual replay, an SSRF guard checked at registration and send time, a PostgreSQL store and a Fetch management adapter.",
   "kind": "feature",
   "tags": [
@@ -12,7 +12,7 @@
     "webhook delivery",
     "webhook retries",
     "standard webhooks",
-    "hmac signature",
+    "signed deliveries",
     "secret rotation",
     "ssrf",
     "outbox",
@@ -212,7 +212,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/webhook-delivery/module.json",
-    "sha256": "ed06d3be49d796befb91380599d28b65cefb2153f66743dcf9492982fa682e4b"
+    "sha256": "e63fc9cf2892ee7fc2749f4e136e6961bdc328bf1ac489833f229d7ce22897ec"
   },
   "contractFile": {
     "path": "modules/webhook-delivery/CONTRACT.md",

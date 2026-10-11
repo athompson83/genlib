@@ -6,8 +6,8 @@ The baseline column is what the same step costs without the compact path: the fu
 
 | Step | Command | Bytes | Tokens (est.) | Baseline | Baseline bytes | Ratio |
 | --- | --- | ---: | ---: | --- | ---: | ---: |
-| Pick code for a task | `quick verify stripe webhook` | 418 | ~105 | find --json (8 full records) | 7,908 | 18.9× |
-| Compare options | `find verify stripe webhook` | 1,166 | ~292 | find --json (8 full records) | 7,908 | 6.8× |
+| Pick code for a task | `quick verify stripe webhook` | 418 | ~105 | find --json (8 full records) | 7,173 | 17.2× |
+| Compare options | `find verify stripe webhook` | 1,202 | ~301 | find --json (8 full records) | 7,173 | 6.0× |
 | Pick code for a task | `quick passkey login --language go` | 343 | ~86 | find --json (8 full records) | 5,266 | 15.4× |
 | Compare options | `find passkey login --language go` | 1,199 | ~300 | find --json (8 full records) | 5,266 | 4.4× |
 | Pick code for a task | `quick csv export --language python` | 502 | ~126 | find --json (8 full records) | 2,702 | 5.4× |
