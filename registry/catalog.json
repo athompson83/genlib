@@ -16,6 +16,68 @@
   },
   "items": [
     {
+      "id": "account-deletion",
+      "version": "0.1.0",
+      "title": "Account deletion with a grace period",
+      "description": "Self-service and admin account deletion for server apps: re-authenticated requests, a configurable grace period during which the account is disabled, cancel to restore access, session revocation through a hook, a declared delete/anonymize/retain data policy run by a leased, resumable, run-once worker, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "account deletion",
+        "delete account",
+        "close account",
+        "grace period",
+        "right to erasure",
+        "gdpr",
+        "data retention",
+        "anonymization",
+        "privacy",
+        "authentication",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/account-deletion@0.1.0.json",
+      "sha256": "543ec1c570435759d2049b6d8383a292ff1f736d8221acb31f724423de74e20a"
+    },
+    {
+      "id": "api-keys",
+      "version": "0.1.0",
+      "title": "API keys",
+      "description": "API key management for multi-tenant apps: CSPRNG keys with an identifiable non-secret prefix, shown once and stored only as an HMAC-SHA-256 under a server pepper, constant-time verification by lookup id, tenant and scope limits, revocation, expiry, throttled last-used writes and secret-free audit events, with injected authorization and persistence.",
+      "kind": "feature",
+      "tags": [
+        "api keys",
+        "api key management",
+        "personal access tokens",
+        "token hashing",
+        "hmac",
+        "bearer token",
+        "scopes",
+        "revocation",
+        "key rotation",
+        "multi-tenant",
+        "saas",
+        "server",
+        "authentication"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/api-keys@0.1.0.json",
+      "sha256": "6b7e6c97681c2e58c0bab71ba91cd34cbcccc4f456c705fc46b4def27dfc1eee"
+    },
+    {
       "id": "app-shell",
       "version": "0.1.0",
       "title": "Responsive application shell",
@@ -39,6 +101,104 @@
       "verification": "tested",
       "manifest": "registry/manifests/app-shell@0.1.0.json",
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
+    },
+    {
+      "id": "audit-log",
+      "version": "0.1.0",
+      "title": "Audit log",
+      "description": "Tenant-scoped, append-only audit log for multi-tenant apps: record who did what to which target, when, with what outcome and request id, in the same transaction as the change; per-tenant SHA-256 hash chain with tamper verification; redaction of secrets before hashing; admin-only filtered queries with keyset cursors; CSV and NDJSON export; and an enforced retention purge that keeps the chain verifiable.",
+      "kind": "feature",
+      "tags": [
+        "audit log",
+        "audit trail",
+        "activity log",
+        "user actions",
+        "compliance",
+        "soc 2",
+        "tamper evident",
+        "hash chain",
+        "append-only",
+        "redaction",
+        "csv export",
+        "retention",
+        "multi-tenant",
+        "saas",
+        "server",
+        "postgresql"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/audit-log@0.1.0.json",
+      "sha256": "000631484bc81a3c9e1d1f7c842aa82a6341df836e274cfff6ea632706b90924"
+    },
+    {
+      "id": "bot-protection",
+      "version": "0.1.0",
+      "title": "Bot protection for forms",
+      "description": "Stop signup, login and contact-form spam: server-side Cloudflare Turnstile, hCaptcha and reCAPTCHA v2/v3 token checks (hostname, action, score, age, fail-closed), a privacy-friendly signed proof-of-work challenge with single-use replay protection, a honeypot with minimum fill time, one combined guard and a Fetch wrapper that hides which check failed.",
+      "kind": "feature",
+      "tags": [
+        "captcha",
+        "image captcha or bot protection",
+        "bot protection",
+        "spam protection",
+        "turnstile",
+        "hcaptcha",
+        "recaptcha",
+        "proof of work",
+        "honeypot",
+        "signup spam",
+        "form spam",
+        "contact form",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/bot-protection@0.1.0.json",
+      "sha256": "e2854785e6267cf8867da1fa6a93387f8a042438336878245098a1b411404dd7"
+    },
+    {
+      "id": "chat",
+      "version": "0.1.0",
+      "title": "In-app chat",
+      "description": "Chat messages between users of a multi-tenant server app: idempotent direct conversations and groups with admin rules, idempotent sends with a gap-free per-conversation seq, edit window, soft delete, history paging, monotonic read positions, unread counts, an inbox ordered by last message, user blocking and an onMessage fan-out hook, with a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "chat",
+        "chat messages between users",
+        "messaging",
+        "direct messages",
+        "dm",
+        "group chat",
+        "inbox",
+        "conversations",
+        "unread count",
+        "read receipts",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/chat@0.1.0.json",
+      "sha256": "5047dfcdb44b289817e85bfb101e3781462d9a271b638017e4fcd129bdd10501"
     },
     {
       "id": "comments",
@@ -68,7 +228,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/comments@0.1.0.json",
-      "sha256": "443c9c74d78c6bb2c56f0dce68e9bcb64ab7f71491e81efb5a0a94ba78142d5b"
+      "sha256": "3afcb9feafbd74ad7c728fea5b89770583a6afba79329234c3a4d1edd68d427a"
     },
     {
       "id": "common-api-clients",
@@ -101,7 +261,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/common-api-clients@0.1.0.json",
-      "sha256": "cef23e9440766c4a392fa439e4dcbd7f65e3d29ee606b3c1362e27cc47a863db"
+      "sha256": "31d70c16485b8d4802dbda9398b9c28d9a23256999ea6f6e25d2f648c5c3c850"
     },
     {
       "id": "csv-import",
@@ -132,7 +292,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/csv-import@0.1.0.json",
-      "sha256": "ea0fbfff0a81d7d57d1b15a8c3babdd5c9f13e039f2b7808e9d21c92d79ea927"
+      "sha256": "bda722c48cf10ce551c63180d3e2d6e51d643c93a5a1c409a7f750ef8b1741ed"
     },
     {
       "id": "data-table",
@@ -159,6 +319,67 @@
       "verification": "tested",
       "manifest": "registry/manifests/data-table@0.1.0.json",
       "sha256": "1c4f9f90ce5a74a51e060dd2e9981ff5ac1582824daae75bde73f06b2187097f"
+    },
+    {
+      "id": "email-outbox",
+      "version": "0.1.0",
+      "title": "Transactional email outbox",
+      "description": "Send transactional email reliably from a server app: idempotent enqueue with rendered templates, leased dispatch with retries, full-jitter backoff and dead-lettering, a bounce and complaint suppression list, Resend and Postmark Fetch transports, a PostgreSQL store and a delivery-event webhook adapter.",
+      "kind": "feature",
+      "tags": [
+        "email",
+        "send transactional email",
+        "transactional email",
+        "email queue",
+        "outbox",
+        "bounces",
+        "resend",
+        "postmark",
+        "notifications email",
+        "retries",
+        "idempotency",
+        "suppression list",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/email-outbox@0.1.0.json",
+      "sha256": "50134210f476f64c440dab706a8ab2a28609ba217f6930bec1bd9231106ab339"
+    },
+    {
+      "id": "email-signup",
+      "version": "0.1.0",
+      "title": "User signup with email verification",
+      "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "signup",
+        "sign up",
+        "registration",
+        "register",
+        "email verification",
+        "verify email",
+        "confirm email",
+        "authentication",
+        "password",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/email-signup@0.1.0.json",
+      "sha256": "0a09cc3cbfd1fe41ea89e1b83f499931864aeefdcc29e6dd3fdb975e99315f75"
     },
     {
       "id": "entitlements",
@@ -189,7 +410,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/entitlements@0.1.0.json",
-      "sha256": "12dc37730fed72e2e6a882b7ce32bef93067be23dd9a2e7a206b0d32777d6e4d"
+      "sha256": "121ab8183d45ace1923ce3acb4090e3022f2b5bc874675ac4258ccaa7b1ecf3a"
     },
     {
       "id": "env-config",
@@ -217,7 +438,38 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/env-config@0.1.0.json",
-      "sha256": "a4f249b72e5ccc587002e5929e95a6888f89a0346fe40ed4038098f1d5a83e5c"
+      "sha256": "a2a4f17395051ececce02a4b3fd6bdfa15c43b230a63156a0c26241d91d8c3bf"
+    },
+    {
+      "id": "file-uploads",
+      "version": "0.1.0",
+      "title": "File upload with size and type checks",
+      "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
+      "kind": "feature",
+      "tags": [
+        "file upload",
+        "upload",
+        "file size limit",
+        "mime type",
+        "content sniffing",
+        "magic bytes",
+        "quarantine",
+        "malware scan",
+        "quota",
+        "content-disposition",
+        "server",
+        "security"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/file-uploads@0.1.0.json",
+      "sha256": "bd5ae32327ad06e946469e036e85083962f52efa7d09fa1854788367df0b3490"
     },
     {
       "id": "health-checks",
@@ -243,7 +495,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/health-checks@0.1.0.json",
-      "sha256": "401d04ed257f41a8a8d82836538cce4611113f6957a0410a7eab2c5f19b71e07"
+      "sha256": "93dabc5ff1c723f27192c3268b0d17914cf158c7c810ca66c2f3d49b708bcfdc"
     },
     {
       "id": "http-resilience",
@@ -274,7 +526,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/http-resilience@0.2.0.json",
-      "sha256": "b99d24938487ea004a6f9ffebd05e8fd7765082b03fc7f6583727c83ce2e0c17"
+      "sha256": "109cf5a3f4797befb4f0794e96c1042d11e977f7b15409aa2760d522b841fdfc"
     },
     {
       "id": "notification-inbox",
@@ -303,7 +555,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/notification-inbox@0.1.0.json",
-      "sha256": "d69aaacbd31d12fb1b18ba0516034d889164ed3c839549279224bb2c4ba4f24a"
+      "sha256": "664dabd58d44e22b96ff463e1f3bb57bd1968c4623b4a206c5abf1b88f67e231"
     },
     {
       "id": "notification-preferences",
@@ -327,7 +579,7 @@
       "platform": "web",
       "verification": "tested",
       "manifest": "registry/manifests/notification-preferences@0.1.0.json",
-      "sha256": "45112a7d81ad45ba65fdf89868cf1f74b8fbc1e45f73f0f82134200dc5c8d8d1"
+      "sha256": "33e0281c14526eb25402446253c73e7ed3fb7af5d8c4ecbc6dd03eb51e9a9a7b"
     },
     {
       "id": "org-invitations",
@@ -357,7 +609,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/org-invitations@0.2.0.json",
-      "sha256": "f0eac5d18ccda92385515eecf117bcdc40e41143b28d0732d31903a4e0851e6c"
+      "sha256": "627dc252034ab3d51f3b4cde40d9a7f4541f296aa6e7bb369041b3b27d9fa704"
     },
     {
       "id": "password-reset",
@@ -386,7 +638,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/password-reset@0.1.0.json",
-      "sha256": "a59f15a4acd12854f7feff36f2e3e08f3c2b97a22591c5eb7a3f68a0da59ed20"
+      "sha256": "37e9e6313bc7e2013f7a2ee1b10094aa47684d06360f77fb8d08d1437290632d"
     },
     {
       "id": "presence",
@@ -418,7 +670,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/presence@0.1.0.json",
-      "sha256": "14c323d9c20bb11856399908a14d6ed03dea7d8b61b43aecf100b8453739243f"
+      "sha256": "1d4b3a70e777e53ae2efdc132d29aa9a78a4c3e73fa2974fff144b3a0e0a4ca4"
     },
     {
       "id": "public-data-clients",
@@ -452,7 +704,36 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/public-data-clients@0.1.0.json",
-      "sha256": "6aaa94bd356d330fe7b1df71df9db8692e76c5f77d5cb2018f376dd619c51338"
+      "sha256": "e18df230e56b9cf9e18604f945ef35158aeb59e26c2f32b94130a88b656f520d"
+    },
+    {
+      "id": "qr-code",
+      "version": "0.1.0",
+      "title": "QR code generator",
+      "description": "Dependency-free TypeScript QR Code generation (ISO/IEC 18004, versions 1-40, levels L/M/Q/H) in numeric, alphanumeric or UTF-8 byte mode, with Reed-Solomon error correction, automatic mask selection, and renderers for compact SVG, terminal half-block text and a 0/1 matrix.",
+      "kind": "utility",
+      "tags": [
+        "qr code",
+        "qr code generation",
+        "qr",
+        "barcode",
+        "svg qr",
+        "2fa qr",
+        "share link qr",
+        "totp qr",
+        "terminal qr",
+        "typescript"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "any",
+      "verification": "tested",
+      "manifest": "registry/manifests/qr-code@0.1.0.json",
+      "sha256": "372acef57ff842039994af263269c005126e8dc760c8fdb18ba733a4ce41365b"
     },
     {
       "id": "rate-limit",
@@ -483,7 +764,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/rate-limit@0.1.0.json",
-      "sha256": "3a703d7e67554f79872bac75fddd35c6dc37a74339b2c9f75c7a612da9fdeeff"
+      "sha256": "e5d49d826eabf46e37d8c870df0cdc228b8d9956caef8fe4315a04737b70bbae"
     },
     {
       "id": "rbac",
@@ -514,7 +795,38 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/rbac@0.1.0.json",
-      "sha256": "29bc039de83ef8b11f49b0f321b534a447c3b02a3b75e39fc3ff3651c6d6530f"
+      "sha256": "b8ae61b3d87b6ff8e8095359d1d203133eab156bd2b02539d8912cc5e656c25a"
+    },
+    {
+      "id": "scheduled-tasks",
+      "version": "0.1.0",
+      "title": "Cron scheduled tasks for multi-instance apps",
+      "description": "Run cron jobs from a server app with several instances: five-field cron with names and macros, next runs in any IANA time zone with defined DST behavior, one execution per occurrence across instances, skip/queue/allow overlap policies with leases and heartbeats, catch-up policies for downtime, retries with backoff, an onFailure hook, run history and a PostgreSQL store.",
+      "kind": "feature",
+      "tags": [
+        "cron",
+        "scheduled tasks",
+        "cron jobs",
+        "scheduler",
+        "recurring jobs",
+        "time zone",
+        "dst",
+        "distributed lock",
+        "leases",
+        "retries",
+        "background jobs",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/scheduled-tasks@0.1.0.json",
+      "sha256": "0edf24d53b322332b265703f48746e66a3109695442bad5369ed10e3b8fd8c14"
     },
     {
       "id": "security-headers",
@@ -542,7 +854,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/security-headers@0.1.0.json",
-      "sha256": "7ae05d3ae2f88ea3fa52383a3028295f9f2354fd8465a2b4a4e51620979fbd38"
+      "sha256": "79a83fb24eda505916cd08eded564e425b3db570e4cdeec4110284fcd351401e"
     },
     {
       "id": "short-links",
@@ -572,7 +884,73 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/short-links@0.1.0.json",
-      "sha256": "dfc019c6b312fb265e6b3040f54552ab63a1e05f93b12d57f346d12ae7880183"
+      "sha256": "2660ad6ac8a876fd7a5c72dc4af04bd6d2761a05feaf6bf6953f4c78c72bbaf3"
+    },
+    {
+      "id": "site-search",
+      "version": "0.1.0",
+      "title": "Site search with filters",
+      "description": "Full-text search with filters for a multi-tenant app's own records (products, articles, tickets): weighted fields, a safe query syntax (words, phrases, -exclusions, prefix* type-ahead), keyword, range and boolean filters, facets, highlights, keyset paging and per-document visibility, with an in-memory BM25 index, a PostgreSQL tsvector store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "search",
+        "full-text search",
+        "full-text search with filters",
+        "site search",
+        "search box",
+        "faceted search",
+        "filters",
+        "autocomplete",
+        "type-ahead",
+        "highlighting",
+        "multi-tenant",
+        "postgres",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/site-search@0.1.0.json",
+      "sha256": "080b30be9b68c60deefa5b1f9ab61dba388239b83e6d6c9b2b3f52b9f06e7233"
+    },
+    {
+      "id": "soft-delete",
+      "version": "0.1.0",
+      "title": "Soft delete and restore",
+      "description": "Soft delete, trash and restore layer for a multi-tenant app's own tables: deleted_at/deleted_by/delete_batch marks, cascade to declared child tables by batch id, restore within a retention window that reports unique conflicts, an idempotent purge job, PostgreSQL schema pattern with partial unique indexes and live views, and a trash API, with injected authorization and persistence.",
+      "kind": "feature",
+      "tags": [
+        "soft delete",
+        "trash",
+        "recycle bin",
+        "undo delete",
+        "restore",
+        "undelete",
+        "deleted_at",
+        "archive",
+        "retention",
+        "purge",
+        "cascade",
+        "partial unique index",
+        "multi-tenant",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/soft-delete@0.1.0.json",
+      "sha256": "6e80f1073f552c4da54b55964c78f83e8dec3111a232a7ffa52ac57b2d99b8d2"
     },
     {
       "id": "structured-logger",
@@ -599,7 +977,37 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/structured-logger@0.1.0.json",
-      "sha256": "b39afee8d51142aa4043f57c4918bcf4e6eb231c8fc3f0f4ae5f8ea69c1efb70"
+      "sha256": "a33f8a2bfdd4e5956fad313f49c149ab95b58f65f87739c0c8a96e68ad7423eb"
+    },
+    {
+      "id": "tenant-isolation",
+      "version": "0.1.1",
+      "title": "Tenant isolation",
+      "description": "Multi-tenant data isolation for SaaS apps: resolve the tenant from the verified session and membership (client-sent ids are only selectors), PostgreSQL row-level security with transaction-local tenant settings and a non-bypass role, a tenant-scoped repository, and a reusable cross-tenant test kit.",
+      "kind": "feature",
+      "tags": [
+        "multi-tenant",
+        "multi-tenancy",
+        "tenant isolation",
+        "row level security",
+        "rls",
+        "postgres",
+        "saas",
+        "organizations",
+        "workspaces",
+        "cross-tenant tests",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/tenant-isolation@0.1.1.json",
+      "sha256": "40627086b99398ffb0e1e31e6576e804560d66bb02047ea814650d76b0fc3f67"
     },
     {
       "id": "theme-tokens",
@@ -625,6 +1033,39 @@
       "sha256": "4cbe80aa9d584d8ebc55fabefba7d98d9ca32dd59a14d5c98d20ccaf4eb3633c"
     },
     {
+      "id": "two-factor",
+      "version": "0.1.0",
+      "title": "Two-factor authentication with an authenticator app (TOTP)",
+      "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "two-factor",
+        "2fa",
+        "mfa",
+        "totp",
+        "authenticator app",
+        "one-time password",
+        "otpauth",
+        "recovery codes",
+        "backup codes",
+        "step-up",
+        "authentication",
+        "login",
+        "security",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/two-factor@0.1.0.json",
+      "sha256": "1f6c2927676624ff2b7849a15366f74b17124d3c541cc5c9d4aec317e74b4043"
+    },
+    {
       "id": "validated-form",
       "version": "0.1.0",
       "title": "Validated form with submission handling",
@@ -648,6 +1089,65 @@
       "verification": "tested",
       "manifest": "registry/manifests/validated-form@0.1.0.json",
       "sha256": "b2815d38c3fc74ad4635c31f54222809e52432662f14522e44ae92eb807153b7"
+    },
+    {
+      "id": "web-push",
+      "version": "0.1.0",
+      "title": "Web Push notifications",
+      "description": "Send Web Push notifications from your server with Web Crypto only: RFC 8291 aes128gcm payload encryption, VAPID (RFC 8292) signing and key generation, per-user subscriptions with endpoint allow-list and dedupe, TTL/urgency/topic headers, cleanup of expired subscriptions on 404/410, bounded-concurrency fan-out, a PostgreSQL store, a Fetch adapter and a same-origin service worker snippet.",
+      "kind": "feature",
+      "tags": [
+        "web push",
+        "web push notifications",
+        "push notifications",
+        "browser notifications",
+        "vapid",
+        "service worker",
+        "notify users",
+        "pwa",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/web-push@0.1.0.json",
+      "sha256": "b0961bfc67e1d7eeb9f5db83aa468a68c77dad592d95f653c7b9971997c422c2"
+    },
+    {
+      "id": "webhook-delivery",
+      "version": "0.1.0",
+      "title": "Outgoing webhook delivery with retries",
+      "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-lettering and manual replay, an SSRF guard checked at registration and send time, a PostgreSQL store and a Fetch management adapter.",
+      "kind": "feature",
+      "tags": [
+        "webhooks",
+        "send webhooks",
+        "outgoing webhooks",
+        "webhook delivery",
+        "webhook retries",
+        "standard webhooks",
+        "signed deliveries",
+        "secret rotation",
+        "ssrf",
+        "outbox",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/webhook-delivery@0.1.0.json",
+      "sha256": "7c61b66ee59ddfdcdad1e607c1848f9b7eb75779ce8370a3c8492d38529e05be"
     },
     {
       "id": "webhook-verification",
@@ -676,7 +1176,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/webhook-verification@0.1.0.json",
-      "sha256": "395f4f71fae1e2885ec625180219357d21edd7c1bdeb73ac8c2e7eafffd72a04"
+      "sha256": "1bd959d75909214ef8c394cf75786bb00a975fb7a110af54bebe95bebb150976"
     }
   ]
 }

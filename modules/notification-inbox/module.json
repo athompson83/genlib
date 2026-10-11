@@ -60,6 +60,12 @@
     "No rate limiting; add request rate limits (see the rate-limit module) and cap publish volume in your own code.",
     "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix}, GET {prefix}/count, POST {prefix}/read, /read-all, /archive; no publish route",
+    "publish is server-side; a repeated dedupeKey returns the existing item within retention",
+    "list 1-50 per page (default 20); prune() keeps 90 days and 500 items per user",
+    "ids of other users are silently ignored (not 403 or 404)"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/notification-inbox.test.mjs"],

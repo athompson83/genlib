@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "chat",
+  "version": "0.1.0",
+  "title": "In-app chat",
+  "description": "Chat messages between users of a multi-tenant server app: idempotent direct conversations and groups with admin rules, idempotent sends with a gap-free per-conversation seq, edit window, soft delete, history paging, monotonic read positions, unread counts, an inbox ordered by last message, user blocking and an onMessage fan-out hook, with a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": ["chat", "chat messages between users", "messaging", "direct messages", "dm", "group chat", "inbox", "conversations", "unread count", "read receipts", "multi-tenant", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/chat"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, crypto.randomUUID, TextEncoder/TextDecoder, btoa/atob and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route. Realtime delivery (SSE or WebSocket) is the application's, through onMessage.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "chat/core.ts" },
+    { "source": "files/memory-store.ts", "target": "chat/memory-store.ts" },
+    { "source": "files/http.ts", "target": "chat/http.ts" },
+    { "source": "files/sql-store.ts", "target": "chat/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "chat/schema.sql" }
+  ],
+  "exports": [
+    { "name": "createChat", "from": "chat/core.ts" },
+    { "name": "ChatError", "from": "chat/core.ts" },
+    { "name": "directKey", "from": "chat/core.ts" },
+    { "name": "MemoryChatStore", "from": "chat/memory-store.ts" },
+    { "name": "createChatHandler", "from": "chat/http.ts" },
+    { "name": "createSqlChatStore", "from": "chat/sql-store.ts" }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlChatStore with a query executor that has transaction(work); on other databases implement ChatStore with a unique direct_key, a unique (conversation_id, sender_id, client_id) and a seq counter incremented in the same transaction as the message insert.",
+    "Implement authorize(actor, action, {tenantId, userId?}) from your own tenant membership: use (the actor may chat in the tenant) and reach (userId may be messaged or added there). Without it any signed-in user may use any tenant id.",
+    "Implement authenticate(request) from your session or verified token, never from the request body.",
+    "Pass onMessage to deliver new, edited and deleted messages to recipientIds, for example through one SSE stream per user; use a presence module room per conversation for typing indicators.",
+    "Tune maxBody (4000), maxMembers (256) and editWindowMs (15 minutes).",
+    "Mount createChatHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "direct-messages",
+    "group-conversations",
+    "idempotent-message-send",
+    "gap-free-message-sequence",
+    "read-positions-and-unread-counts",
+    "conversation-inbox",
+    "user-blocking",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "No realtime transport, push notifications, typing indicators, attachments, reactions, threads, search or end-to-end encryption; deliver events through onMessage and use a presence module for typing.",
+    "Bodies are plain text; the module never renders HTML or sanitizes rich text, and it does not moderate content.",
+    "Blocks are per user across all tenants and only affect direct conversations; group messages from a blocked user still arrive.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, so concurrency tests prove the statements and transactions are correct but not behavior under parallel connections on hosted Postgres.",
+    "Every send locks its conversation row, so very busy groups serialize their sends; unread counts are computed per request rather than cached.",
+    "No rate limiting or retention policy; add request rate limits (see the rate-limit module) on send routes and delete old messages in your own job.",
+    "Production database correctness, session security, content policy and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "routes: {prefix}/conversations[/{id}/messages|read|members], {prefix}/messages/{convId}/{seq}, /unread, /blocks",
+    "send needs a clientId; new message → 201, retry with same clientId → 200 created:false",
+    "15-min edit window, then 409 edit-window-closed; delete is soft (body null), deleted → 410",
+    "messages max 4,000 chars; groups max 256 members; blocked or not-member → 403"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/chat.test.mjs", "tests/chat-sql.test.mjs"],
+    "command": "npm run build && node --test tests/chat.test.mjs tests/chat-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "behaviors": [
+      "openDirect returns the same conversation for a pair from either side, and a separate one per tenant",
+      "only group admins add or remove members, members leave, the member cap holds, and the last admin leaving promotes the oldest member",
+      "non-members get not-found, and a removed member reads history only up to their removal and cannot send",
+      "send trims and length-checks plain text and is idempotent on (conversation, sender, clientId)",
+      "concurrent sends get gap-free, unique seq values and concurrent retries of one clientId store one message",
+      "the sender edits within the edit window; the sender or a group admin soft-deletes, leaving the seq with a null body",
+      "history pages by beforeSeq and afterSeq in ascending order with hasMore and a limit of 1 to 100",
+      "markRead never moves backward and is clamped to the latest message; unread counts skip own and deleted messages",
+      "the inbox lists conversations by last message (creation time when empty) with previews, unread counts and an opaque cursor",
+      "a block prevents opening and sending direct messages in both directions until the blocker unblocks",
+      "users outside a tenant cannot use, reach or read its conversations",
+      "onMessage receives new, edited and deleted messages with recipients, not idempotent replays, and its errors do not fail a send",
+      "HTTP adapter: every route, status codes, origin check, 401 when signed out, 413 for oversized bodies and cache-control no-store",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL",
+      "on PGlite, 20 concurrent sends get seq 1 to 20, 10 concurrent openDirect calls from both sides create one conversation, and 8 concurrent retries of one clientId store one message without burning a seq"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

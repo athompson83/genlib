@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "audit-log",
+  "version": "0.1.0",
+  "title": "Audit log",
+  "description": "Tenant-scoped, append-only audit log for multi-tenant apps: record who did what to which target, when, with what outcome and request id, in the same transaction as the change; per-tenant SHA-256 hash chain with tamper verification; redaction of secrets before hashing; admin-only filtered queries with keyset cursors; CSV and NDJSON export; and an enforced retention purge that keeps the chain verifiable.",
+  "kind": "feature",
+  "tags": [
+    "audit log",
+    "audit trail",
+    "activity log",
+    "user actions",
+    "compliance",
+    "soc 2",
+    "tamper evident",
+    "hash chain",
+    "append-only",
+    "redaction",
+    "csv export",
+    "retention",
+    "multi-tenant",
+    "saas",
+    "server",
+    "postgresql"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/audit-log"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (crypto.subtle digest/HMAC, randomUUID) plus the Fetch Request/Response and ReadableStream APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "The SQL store and schema target PostgreSQL 13+ with PL/pgSQL; other databases need their own AuditStore with equivalent append-only enforcement.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "audit-log/core.ts"
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "audit-log/memory-store.ts"
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "audit-log/sql-store.ts"
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "audit-log/schema.sql"
+    },
+    {
+      "source": "files/http.ts",
+      "target": "audit-log/http.ts"
+    }
+  ],
+  "exports": [
+    {
+      "name": "createAuditLog",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "AuditLogError",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "redactDetails",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "canonicalJson",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "hashInput",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "csvCell",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "GENESIS_HASH",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "DEFAULT_REDACT_KEYS",
+      "from": "audit-log/core.ts"
+    },
+    {
+      "name": "MemoryAuditStore",
+      "from": "audit-log/memory-store.ts"
+    },
+    {
+      "name": "createSqlAuditStore",
+      "from": "audit-log/sql-store.ts"
+    },
+    {
+      "name": "createAuditLogHandler",
+      "from": "audit-log/http.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, create the schema.sql objects as a dedicated owner role, then grant the application role only SELECT, INSERT on audit_log, SELECT on audit_log_heads and EXECUTE on audit_log_lock_head, and grant EXECUTE on audit_log_purge only to the retention job's role (see the header of schema.sql). Never give the application role UPDATE, DELETE, TRUNCATE, ALTER or ownership.",
+    "Call audit.record(tx, entry) inside the same transaction as each security-relevant or data-changing action, passing that transaction's query executor; pass null to record on its own (failed logins, denied requests).",
+    "Implement authorize(actor, 'read'|'export', {tenantId}) so only administrators of that tenant pass.",
+    "Declare retentionMs (for example 365 days) and run audit.purgeExpired() from a scheduled job with the retention role.",
+    "Optionally pass hmacKey (32+ random bytes from your secret store) so a database user cannot recompute hashes, and store audit.checkpoint(tenantId) outside the database periodically (and after each purge) to pass to verifyChain.",
+    "Emails are masked by default (maskEmails: false keeps them); add your own sensitive keys with redactKeys and domain identifiers with redactPatterns.",
+    "Mount createAuditLogHandler under one prefix with your authenticate(request)."
+  ],
+  "capabilities": [
+    "audit-entry-recording",
+    "transactional-audit-writes",
+    "append-only-enforcement",
+    "hash-chain-tamper-detection",
+    "secret-redaction",
+    "tenant-admin-read-authorization",
+    "filtered-keyset-queries",
+    "csv-ndjson-export",
+    "retention-purge"
+  ],
+  "limitations": [
+    "Without hmacKey the hashes are plain SHA-256, so someone with database write access can recompute a whole consistent chain; tamper evidence against that party needs hmacKey and/or checkpoints stored outside the database.",
+    "Append-only enforcement relies on triggers that only the table owner passes (head moves, anchor moves and deletions also need the purge flag set inside audit_log_purge); the owner role, a superuser or a role that can ALTER TABLE or disable triggers can still bypass them, so keep the application role off ownership and write grants. A rewritten anchor or a rolled-back tail with a matching head is only detected against an external checkpoint newer than the anchor.",
+    "The in-memory store ignores tx and so cannot commit entries atomically with a database change; it is for tests and prototypes only.",
+    "The SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection that serializes transactions; the head-row lock under real multi-connection contention is not exercised by these tests.",
+    "Appends for one tenant are serialized on that tenant's head row, which bounds per-tenant write throughput.",
+    "Redaction is key- and pattern-based: values of sensitive key names (passwords, tokens, secrets, authorization, cookies, API keys, SSN, CVV, card number, IBAN and keys containing password/secret/token/apikey/privatekey/authorization/cookie/credential), Luhn-valid card numbers, US SSNs in ddd-dd-dddd form, bearer tokens, JWTs and email addresses (masked by default) plus custom keys and patterns. Names, postal addresses, phone numbers, dates of birth and other identifiers in free text are not detected unless you add keys or patterns. Details larger than maxDetailsSize are replaced by a truncation marker.",
+    "A checkpoint older than the retention anchor cannot be proven after a purge and fails with checkpoint-purged; take a new checkpoint after each purge. Actor and target ids with lone UTF-16 surrogates are refused; in details they are replaced by U+FFFD before hashing.",
+    "Retention purges a contiguous oldest prefix of each tenant's chain by entry time; an entry with an earlier time recorded after a newer one is purged only once everything before it is expired. Legal holds and per-tenant retention periods are not built in.",
+    "verifyChain, checkpoint and purgeExpired are trusted-server operations without an actor check; recording does not authorize, so call it after your own authorization.",
+    "Production database correctness, role configuration, backup immutability, compliance mapping and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "routes: GET {prefix} (query) and GET {prefix}/export?format=csv|ndjson; read-only, no POST route",
+    "append in the caller's transaction; PostgreSQL triggers refuse UPDATE, DELETE and TRUNCATE",
+    "per-tenant SHA-256 (or HMAC) hash chain; secrets redacted and emails masked before hashing",
+    "query newest first by seq, limit 1-200 (default 50); retentionMs is required"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/audit-log.test.mjs",
+      "tests/audit-log-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/audit-log.test.mjs tests/audit-log-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "record stores tenant, actor id and type, action, target, time, outcome and request id, with seq 1, 2, 3 and prev_hash linking each entry to the previous one",
+      "the stored hash equals SHA-256 over the canonical JSON of the entry and the previous hash",
+      "invalid tenant, actor, action, target, outcome, request id and details are refused with typed error codes",
+      "values of sensitive keys (password, token, secret, authorization, cookie, apiKey, ssn and keys containing password, secret, token and similar) are replaced by [REDACTED] before hashing",
+      "Luhn-valid card numbers, US SSNs, bearer tokens and JWTs inside strings are replaced; emails are masked by default and kept with maskEmails false; custom keys and patterns are redacted",
+      "verifyChain detects an edited row (hash-mismatch), a deleted row (sequence-gap), reordered rows (broken-link), a removed tail, a rolled-back tail against an external checkpoint, a checkpoint older than a forged or real anchor (checkpoint-purged) and rows left at or below the anchor (purged-rows-present)",
+      "with hmacKey the chain verifies only with the same key",
+      "only tenant administrators can query or export; ordinary members and other tenants' administrators get forbidden",
+      "query filters by actor, action, action prefix and time range, newest first with keyset cursors and limit 1 to 200",
+      "CSV export prefixes cells starting with = + - @ tab or CR with an apostrophe and quotes commas, quotes and newlines; NDJSON export streams in pages",
+      "entries older than retentionMs are hidden from queries and removed by purgeExpired; the chain anchor moves so verifyChain still passes",
+      "25 concurrent records for one tenant on the memory store and 12 concurrent transactions on PostgreSQL form one valid chain",
+      "HTTP handler: query, CSV and NDJSON export with attachment headers, 401, 403, 400, 404, 405 and no-store",
+      "on PostgreSQL, an entry and the business row commit together and roll back together when the transaction throws or the entry is invalid",
+      "on PostgreSQL, UPDATE, DELETE and TRUNCATE on audit_log are refused; the head and the anchor cannot be moved directly; out-of-chain inserts are refused",
+      "on PostgreSQL, audit_log_purge removes the expired prefix, anchors the chain and its purge flag does not leak to later statements",
+      "on PostgreSQL with NOLOGIN non-superuser roles, the application role appends entries but cannot move the anchor, delete rows or call audit_log_purge even after set_config('audit_log.purging', 'on'); a role with direct UPDATE/DELETE grants is still refused by the owner check; a role granted EXECUTE on audit_log_purge purges",
+      "actor, target and filter ids with lone UTF-16 surrogates are refused; surrogates in details become U+FFFD, the jsonb insert succeeds and the chain verifies"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core with redaction (emails masked by default) and hash chain, in-memory store, PostgreSQL schema with owner-checked append-only triggers, a head-lock function and retention purge, SQL store and read-only Fetch handler."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md"
+}

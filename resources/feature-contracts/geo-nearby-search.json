@@ -1,0 +1,86 @@
+{
+  "id": "geo-nearby-search",
+  "title": "Geolocation distance and nearby search",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "geolocation distance and nearby search"
+  ],
+  "requirements": [
+    {
+      "id": "distance",
+      "text": "Great-circle distance between coordinates is computed in meters"
+    },
+    {
+      "id": "coordinate-validation",
+      "text": "Latitudes and longitudes outside valid ranges are rejected"
+    },
+    {
+      "id": "index-prefilter",
+      "text": "Nearby search narrows candidates with an index-friendly bounding box or geohash before exact distance checks"
+    },
+    {
+      "id": "edge-cases",
+      "text": "Searches near the poles and the antimeridian return correct results"
+    },
+    {
+      "id": "nearest-first",
+      "text": "Results within the radius are returned nearest first with a limit and pagination"
+    },
+    {
+      "id": "spatial-index",
+      "text": "Large datasets use a spatial index (for example PostGIS GiST) for radius queries"
+    },
+    {
+      "id": "location-privacy",
+      "text": "Exact locations of other users are not exposed; results reveal only rounded distance or area"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:geo",
+      "status": "fixture-verified",
+      "fulfills": [
+        "distance",
+        "coordinate-validation",
+        "index-prefilter",
+        "edge-cases"
+      ],
+      "evidence": [
+        {
+          "requirement": "distance",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "geo: haversine, geohash and bounding box vectors"
+        },
+        {
+          "requirement": "coordinate-validation",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "geo: haversine, geohash and bounding box vectors"
+        },
+        {
+          "requirement": "index-prefilter",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "geo: haversine, geohash and bounding box vectors"
+        },
+        {
+          "requirement": "edge-cases",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "geo: haversine, geohash and bounding box vectors"
+        }
+      ],
+      "notes": "Pure functions; the database query that uses the bounding box is the application's"
+    },
+    {
+      "ref": "resource:postgis",
+      "status": "cataloged",
+      "fulfills": [
+        "spatial-index",
+        "nearest-first"
+      ]
+    }
+  ],
+  "missing": [
+    "nearest-first",
+    "spatial-index",
+    "location-privacy"
+  ]
+}

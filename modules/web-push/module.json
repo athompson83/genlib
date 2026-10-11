@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "web-push",
+  "version": "0.1.0",
+  "title": "Web Push notifications",
+  "description": "Send Web Push notifications from your server with Web Crypto only: RFC 8291 aes128gcm payload encryption, VAPID (RFC 8292) signing and key generation, per-user subscriptions with endpoint allow-list and dedupe, TTL/urgency/topic headers, cleanup of expired subscriptions on 404/410, bounded-concurrency fan-out, a PostgreSQL store, a Fetch adapter and a same-origin service worker snippet.",
+  "kind": "feature",
+  "tags": ["web push", "web push notifications", "push notifications", "browser notifications", "vapid", "service worker", "notify users", "pwa", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/web-push"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Web Crypto (ECDH, ECDSA, HKDF and AES-GCM on P-256), TextEncoder, btoa/atob and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route. The service worker snippet is plain JavaScript for the browser.",
+      "No runtime packages (no web-push npm dependency), environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/crypto.ts", "target": "web-push/crypto.ts" },
+    { "source": "files/push.ts", "target": "web-push/push.ts" },
+    { "source": "files/memory-store.ts", "target": "web-push/memory-store.ts" },
+    { "source": "files/http.ts", "target": "web-push/http.ts" },
+    { "source": "files/sw-snippet.ts", "target": "web-push/sw-snippet.ts" },
+    { "source": "files/sql-store.ts", "target": "web-push/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "web-push/schema.sql" }
+  ],
+  "exports": [
+    { "name": "createWebPush", "from": "web-push/push.ts" },
+    { "name": "WebPushError", "from": "web-push/push.ts" },
+    { "name": "DEFAULT_PUSH_SERVICE_HOSTS", "from": "web-push/push.ts" },
+    { "name": "encryptPushPayload", "from": "web-push/crypto.ts" },
+    { "name": "generateVapidKeys", "from": "web-push/crypto.ts" },
+    { "name": "createVapidJwt", "from": "web-push/crypto.ts" },
+    { "name": "importVapidSigningKey", "from": "web-push/crypto.ts" },
+    { "name": "vapidAuthorization", "from": "web-push/crypto.ts" },
+    { "name": "MAX_PAYLOAD_BYTES", "from": "web-push/crypto.ts" },
+    { "name": "MemoryPushSubscriptionStore", "from": "web-push/memory-store.ts" },
+    { "name": "createWebPushHandler", "from": "web-push/http.ts" },
+    { "name": "serviceWorkerSnippet", "from": "web-push/sw-snippet.ts" },
+    { "name": "createSqlPushSubscriptionStore", "from": "web-push/sql-store.ts" }
+  ],
+  "configuration": [
+    "Run generateVapidKeys() once, store the private key as a server secret and pass {publicKey, privateKey, subject} (a mailto: or https: contact) to createWebPush; rotating the keys invalidates every existing subscription.",
+    "On PostgreSQL, apply schema.sql and use createSqlPushSubscriptionStore with your query executor; on other databases implement PushSubscriptionStore keyed by endpoint with an atomic failure counter.",
+    "Pass the platform fetch; keep the default push service host allow-list unless you serve browsers with other push services, then set allowedHosts or allowAnyHttpsEndpoint.",
+    "Implement authenticate(request) from your session or verified token and mount createWebPushHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy.",
+    "Put serviceWorkerSnippet in your service worker file and subscribe in the page with pushManager.subscribe({userVisibleOnly: true, applicationServerKey}) using the key from GET {prefix}/vapid-public-key.",
+    "Call send or sendMany from server jobs; retry rate-limited and server-error results after retryAfterSeconds with your queue."
+  ],
+  "capabilities": [
+    "web-push-encryption",
+    "vapid-signing",
+    "push-subscription-storage",
+    "push-delivery-status-handling",
+    "service-worker-notification-snippet"
+  ],
+  "limitations": [
+    "Writes one aes128gcm record, so payloads are limited to 3,993 bytes; send a short message and let the page fetch details. The legacy aesgcm encoding and GCM API keys are not supported.",
+    "Does not queue or retry; rate-limited (429), server-error (5xx) and network-error results are returned for your job runner to retry. Subscriptions are deleted only on 404/410; failure_count is recorded but never acted on.",
+    "Tested against RFC 8291/8292 vectors and fake push services, not against live FCM, Mozilla, Apple or Windows push services; those services and browser permission prompts need an in-app check.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, not on every hosted Postgres under parallel load.",
+    "No rate limiting on the subscription routes and no per-notification preferences; combine with the rate-limit and notification-preferences modules.",
+    "Production key custody, database correctness, session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "routes: GET {prefix}/vapid-public-key, POST|DELETE {prefix}/subscriptions; sending is server code only",
+    "payload max 3,993 bytes; default urgency normal; VAPID JWT expires after 12 h",
+    "endpoints limited to known push hosts (422 endpoint-not-allowed); 20 subscriptions per user",
+    "a 404 or 410 from the push service deletes the subscription"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/web-push.test.mjs", "tests/web-push-sql.test.mjs"],
+    "command": "npm run build && node --test tests/web-push.test.mjs tests/web-push-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "behaviors": [
+      "encryption reproduces the RFC 8291 Section 5 / Appendix A example header, ciphertext and body bytes exactly",
+      "an independent receiver-side decryptor recovers the plaintext; each message uses a fresh salt and ephemeral key",
+      "a 3,993-byte payload fills exactly 4,096 octets; larger payloads, wrong auth length and off-curve keys are refused",
+      "VAPID keys generate as 65/32 octets; the ES256 JWT has aud = push service origin, sub and exp, and its raw 64-byte r||s signature verifies with Web Crypto",
+      "VAPID lifetime is capped at 24 hours, the subject must be mailto: or https:, and a mismatched key pair is refused",
+      "subscriptions require https endpoints on allow-listed push hosts (or any https when configured), a valid P-256 p256dh and a 16-octet auth, and dedupe on endpoint",
+      "send posts TTL, Urgency, Topic, Content-Encoding aes128gcm and vapid t=, k= authorization, and the browser can decrypt the body",
+      "ttl, urgency, topic (1 to 32 base64url characters) and payload size are validated before any request is sent",
+      "201/202 are sent, 404/410 delete the subscription, 413 is too-large, 429 reports retry-after seconds or date, 400/401/403 are vapid-error, 5xx and network failures increment failure_count",
+      "sendMany dedupes users and never exceeds the configured concurrency",
+      "HTTP adapter: public key route, subscribe, owner-only unsubscribe, origin check, 401 when signed out, bounded bodies and cache-control no-store",
+      "service worker snippet shows notifications and opens or focuses same-origin URLs only, refusing cross-origin, javascript:, data: and scheme-changing URLs",
+      "schema.sql applies; upsert keeps created_at and resets failures; concurrent subscribes of one endpoint leave one row",
+      "a 410 from the push service deletes the row; six concurrent removals have one winner and 20 concurrent failures count exactly 20"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: RFC 8291 encryption, VAPID, subscriptions and delivery, in-memory and PostgreSQL stores, Fetch adapter and service worker snippet."] }
+  ],
+  "contract": "CONTRACT.md"
+}

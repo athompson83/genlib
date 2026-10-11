@@ -1,0 +1,105 @@
+{
+  "id": "web-push",
+  "title": "Web push notifications",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "web push notifications"
+  ],
+  "requirements": [
+    {
+      "id": "vapid",
+      "text": "Requests are authorized with VAPID (ES256 JWT, bounded expiry); the private key stays on the server"
+    },
+    {
+      "id": "encryption",
+      "text": "Payloads are encrypted per RFC 8291 (aes128gcm)"
+    },
+    {
+      "id": "subscribe-auth",
+      "text": "Subscribe and unsubscribe endpoints require a signed-in user and an allowed origin, and bind the subscription to that user"
+    },
+    {
+      "id": "endpoint-validation",
+      "text": "Subscription endpoints are validated against known push-service hosts and deduplicated"
+    },
+    {
+      "id": "send-options",
+      "text": "TTL, urgency, topic and payload size are validated before sending"
+    },
+    {
+      "id": "expired-cleanup",
+      "text": "Gone subscriptions (404/410) are deleted and 429 Retry-After is honored"
+    },
+    {
+      "id": "service-worker",
+      "text": "The service worker shows the notification and opens only same-origin URLs"
+    },
+    {
+      "id": "permission-ux",
+      "text": "Permission is requested only after a user gesture, and a denied permission is handled"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:web-push",
+      "status": "fixture-verified",
+      "fulfills": [
+        "vapid",
+        "encryption",
+        "subscribe-auth",
+        "endpoint-validation",
+        "send-options",
+        "expired-cleanup",
+        "service-worker"
+      ],
+      "evidence": [
+        {
+          "requirement": "vapid",
+          "test": "tests/web-push.test.mjs",
+          "name": "VAPID: key generation, ES256 JWT structure"
+        },
+        {
+          "requirement": "encryption",
+          "test": "tests/web-push.test.mjs",
+          "name": "RFC 8291 Section 5 / Appendix A example"
+        },
+        {
+          "requirement": "encryption",
+          "test": "tests/web-push.test.mjs",
+          "name": "encrypt -> decrypt round trip with fresh keys"
+        },
+        {
+          "requirement": "subscribe-auth",
+          "test": "tests/web-push.test.mjs",
+          "name": "HTTP routes: public key, subscribe, unsubscribe, origin check, auth"
+        },
+        {
+          "requirement": "endpoint-validation",
+          "test": "tests/web-push.test.mjs",
+          "name": "subscription validation, endpoint allow-list and dedupe on endpoint"
+        },
+        {
+          "requirement": "send-options",
+          "test": "tests/web-push.test.mjs",
+          "name": "topic, urgency, ttl and payload size are validated before anything is sent"
+        },
+        {
+          "requirement": "expired-cleanup",
+          "test": "tests/web-push.test.mjs",
+          "name": "push service statuses: 404/410 delete the subscription"
+        },
+        {
+          "requirement": "expired-cleanup",
+          "test": "tests/web-push-sql.test.mjs",
+          "name": "a 410 deletes the subscription row"
+        },
+        {
+          "requirement": "service-worker",
+          "test": "tests/web-push.test.mjs",
+          "name": "service worker snippet: shows notifications and only opens same-origin URLs"
+        }
+      ],
+      "notes": "The page-side permission prompt is documented in CONTRACT.md but not tested"
+    }
+  ]
+}

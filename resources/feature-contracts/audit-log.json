@@ -1,0 +1,158 @@
+{
+  "id": "audit-log",
+  "title": "Audit log of user actions",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "audit log of user actions"
+  ],
+  "requirements": [
+    {
+      "id": "record-actions",
+      "text": "Security-relevant and data-changing actions record actor, tenant, action, target, time, outcome and request id"
+    },
+    {
+      "id": "atomic-with-change",
+      "text": "The audit entry is written in the same transaction as the change it describes"
+    },
+    {
+      "id": "append-only",
+      "text": "Entries cannot be updated or deleted through the application, and tampering is detectable"
+    },
+    {
+      "id": "tenant-scoped-read",
+      "text": "Only authorized administrators of a tenant can read that tenant's entries"
+    },
+    {
+      "id": "redaction",
+      "text": "Secrets and sensitive personal data are redacted from recorded details"
+    },
+    {
+      "id": "query-export",
+      "text": "Entries can be filtered by actor, action and time range with pagination and exported"
+    },
+    {
+      "id": "retention",
+      "text": "A declared retention period is enforced"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:audit-log",
+      "status": "fixture-verified",
+      "fulfills": [
+        "record-actions",
+        "atomic-with-change",
+        "append-only",
+        "tenant-scoped-read",
+        "redaction",
+        "query-export",
+        "retention"
+      ],
+      "evidence": [
+        {
+          "requirement": "record-actions",
+          "test": "tests/audit-log.test.mjs",
+          "name": "record stores actor, tenant, action, target, time, outcome and request id"
+        },
+        {
+          "requirement": "atomic-with-change",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "atomic with the change: an entry commits and rolls back with the business row"
+        },
+        {
+          "requirement": "append-only",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "append-only: UPDATE, DELETE and TRUNCATE are refused"
+        },
+        {
+          "requirement": "append-only",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "tampering that bypasses the triggers is detected"
+        },
+        {
+          "requirement": "append-only",
+          "test": "tests/audit-log.test.mjs",
+          "name": "verifyChain detects an edited, deleted, inserted or reordered entry"
+        },
+        {
+          "requirement": "append-only",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "roles: the app role appends but cannot move the anchor or delete rows"
+        },
+        {
+          "requirement": "append-only",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "anchor tampering by a database owner is detected"
+        },
+        {
+          "requirement": "append-only",
+          "test": "tests/audit-log.test.mjs",
+          "name": "verifyChain never accepts a checkpoint older than the anchor"
+        },
+        {
+          "requirement": "tenant-scoped-read",
+          "test": "tests/audit-log.test.mjs",
+          "name": "tenant-scoped read: only tenant administrators can query or export"
+        },
+        {
+          "requirement": "tenant-scoped-read",
+          "test": "tests/audit-log.test.mjs",
+          "name": "HTTP handler: query, CSV and NDJSON export, 401, 403"
+        },
+        {
+          "requirement": "redaction",
+          "test": "tests/audit-log.test.mjs",
+          "name": "redaction removes secrets, card numbers, SSNs, bearer tokens and JWTs before hashing and masks emails by default"
+        },
+        {
+          "requirement": "redaction",
+          "test": "tests/audit-log.test.mjs",
+          "name": "emails are masked by default and kept only with maskEmails false"
+        },
+        {
+          "requirement": "query-export",
+          "test": "tests/audit-log.test.mjs",
+          "name": "query filters by actor, action, prefix and time range"
+        },
+        {
+          "requirement": "query-export",
+          "test": "tests/audit-log.test.mjs",
+          "name": "export: CSV neutralizes formula injection and NDJSON streams every page"
+        },
+        {
+          "requirement": "query-export",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "schema applies and the SQL store records, queries, exports and verifies"
+        },
+        {
+          "requirement": "retention",
+          "test": "tests/audit-log.test.mjs",
+          "name": "retention: entries past the declared period are hidden, purged"
+        },
+        {
+          "requirement": "retention",
+          "test": "tests/audit-log-sql.test.mjs",
+          "name": "retention purge through audit_log_purge keeps the chain verifiable"
+        }
+      ],
+      "notes": "Original Apache-2.0 module: record(tx, entry) on the caller's transaction, per-tenant hash chain, PostgreSQL append-only triggers that only the table owner passes, and a retention purge (tested on PGlite, including non-superuser roles). Redaction by default covers sensitive key names, Luhn-valid card numbers, US SSNs, bearer tokens, JWTs and email addresses; names, postal addresses and phone numbers in free text are not detected. Which actions get recorded, role grants and external checkpoints remain the application's job."
+    },
+    {
+      "ref": "resource:pgmemento",
+      "status": "cataloged",
+      "fulfills": [
+        "atomic-with-change"
+      ],
+      "notes": "PostgreSQL trigger-based, transaction-scoped audit trail (LGPL-3.0)"
+    },
+    {
+      "ref": "resource:spatie-laravel-activitylog",
+      "status": "cataloged",
+      "fulfills": [
+        "record-actions"
+      ],
+      "notes": "Laravel only"
+    }
+  ],
+  "notes": "module:audit-log covers every requirement with fixture tests. The application still chooses which security-relevant and data-changing actions call record(), creates the schema as a dedicated owner role with the grants in schema.sql, adds redaction keys or patterns for personal data beyond the defaults, and stores checkpoints outside the database (refreshed after each purge) for tamper evidence against database administrators. structured-logger remains the request/application log, not the audit store."
+}

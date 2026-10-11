@@ -1,0 +1,31 @@
+{
+  "id": "rbac",
+  "title": "Role-based access control checks",
+  "reviewed": "2026-10-11",
+  "tasks": ["role-based access control checks"],
+  "requirements": [
+    { "id": "role-definitions", "text": "Roles map to permissions, with inheritance validated when roles are defined" },
+    { "id": "deny-by-default", "text": "A check denies unless an unexpired assignment grants the permission; denies override allows" },
+    { "id": "tenant-scope", "text": "Assignments never cross tenants, and a resource-scoped role applies only to that resource" },
+    { "id": "guarded-changes", "text": "Granting or revoking roles needs a manage permission and cannot escalate the actor's own access" },
+    { "id": "last-owner", "text": "The last owner of a tenant cannot be removed, including under concurrent revokes" },
+    { "id": "route-guard", "text": "Request handlers can require a permission and return 401/403" }
+  ],
+  "implementations": [
+    {
+      "ref": "module:rbac",
+      "status": "fixture-verified",
+      "fulfills": ["role-definitions", "deny-by-default", "tenant-scope", "guarded-changes", "last-owner", "route-guard"],
+      "evidence": [
+        { "requirement": "role-definitions", "test": "tests/rbac.test.mjs", "name": "role definitions are validated at creation" },
+        { "requirement": "deny-by-default", "test": "tests/rbac.test.mjs", "name": "wildcards, inheritance and deny precedence" },
+        { "requirement": "deny-by-default", "test": "tests/rbac.test.mjs", "name": "expired assignments are ignored" },
+        { "requirement": "tenant-scope", "test": "tests/rbac.test.mjs", "name": "tenant isolation and resource scope" },
+        { "requirement": "guarded-changes", "test": "tests/rbac.test.mjs", "name": "grant and revoke need rbac:manage and cannot escalate" },
+        { "requirement": "last-owner", "test": "tests/rbac-sql.test.mjs", "name": "last-owner protection on PostgreSQL, including concurrent revokes" },
+        { "requirement": "route-guard", "test": "tests/rbac.test.mjs", "name": "requirePermission wraps a handler" }
+      ]
+    },
+    { "ref": "integration:authorization-collaboration", "status": "install-supported", "fulfills": ["deny-by-default", "route-guard"], "notes": "OpenFGA check adapter and Cedar policy: relationship/policy engines rather than a role table" }
+  ]
+}

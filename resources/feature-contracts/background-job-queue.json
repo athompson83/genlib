@@ -1,0 +1,123 @@
+{
+  "id": "background-job-queue",
+  "title": "Background job queue with retries",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "background job queue with retries"
+  ],
+  "requirements": [
+    {
+      "id": "durable-enqueue",
+      "text": "Enqueued jobs are persisted and survive process restarts"
+    },
+    {
+      "id": "retry-backoff-dead",
+      "text": "Failed jobs are retried with backoff up to a limit, then moved to a dead state for inspection or replay"
+    },
+    {
+      "id": "single-claim-lease",
+      "text": "A job is held by one worker at a time; a crashed worker's job is re-claimed after its lease expires"
+    },
+    {
+      "id": "idempotent-effects",
+      "text": "Handlers get a stable idempotency key so at-least-once execution does not repeat external effects"
+    },
+    {
+      "id": "payload-validation",
+      "text": "Job payloads are validated before the handler runs"
+    },
+    {
+      "id": "bounded-concurrency-shutdown",
+      "text": "Worker concurrency is bounded and shutdown waits for in-flight jobs"
+    },
+    {
+      "id": "observability",
+      "text": "Failures, queue depth, job age and dead jobs are visible to operators"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "integration:durable-jobs",
+      "status": "fixture-verified",
+      "fulfills": [
+        "retry-backoff-dead",
+        "single-claim-lease",
+        "idempotent-effects"
+      ],
+      "evidence": [
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "failed jobs respect retry availability and become dead at the attempt ceiling"
+        },
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "expired final attempt is dead-lettered"
+        },
+        {
+          "requirement": "single-claim-lease",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "claims are distinct and stale owners cannot complete or extend a replaced lease"
+        },
+        {
+          "requirement": "idempotent-effects",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "claims are distinct and stale owners cannot complete or extend a replaced lease"
+        }
+      ],
+      "notes": "PostgreSQL inbox (PostgresWebhookInbox) on in-process PGlite: delayed retry availability, attempt ceiling and dead state; FOR UPDATE SKIP LOCKED claim with lease expiry, re-claim and stale-owner rejection; the same idempotency key across re-claims. The retry delay is fixed per call (not exponential), dead-job replay is not tested, and honoring the key at the external provider is the application's work. The pg-boss runner path is not exercised"
+    },
+    {
+      "ref": "integration:durable-jobs",
+      "status": "install-supported",
+      "fulfills": [
+        "durable-enqueue",
+        "payload-validation",
+        "bounded-concurrency-shutdown"
+      ],
+      "notes": "pg-boss runner: payload parsing before the handler, worker concurrency limits and graceful stop are not exercised (the pack test only checks the runner refuses work before start); durable-enqueue is left here because the PGlite test recreates the adapter over the same in-memory database rather than restarting a process"
+    },
+    {
+      "ref": "recipe:outbox-pattern-in-memory",
+      "status": "fixture-verified",
+      "fulfills": [
+        "retry-backoff-dead"
+      ],
+      "evidence": [
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "tests/recipes.test.mjs",
+          "name": "outbox commits state and messages atomically and relays at least once"
+        }
+      ],
+      "notes": "In-memory relay only"
+    },
+    {
+      "ref": "recipe:idempotency-key-store",
+      "status": "fixture-verified",
+      "fulfills": [
+        "idempotent-effects"
+      ],
+      "evidence": [
+        {
+          "requirement": "idempotent-effects",
+          "test": "tests/recipes.test.mjs",
+          "name": "idempotency store runs once, replays, and reports conflicts"
+        }
+      ],
+      "notes": "In-memory store; a shared store is the application's work"
+    },
+    {
+      "ref": "resource:bullmq",
+      "status": "cataloged",
+      "fulfills": [
+        "durable-enqueue",
+        "retry-backoff-dead"
+      ]
+    }
+  ],
+  "missing": [
+    "observability"
+  ]
+}

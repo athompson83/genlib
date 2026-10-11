@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-import {readFileSync,writeFileSync,mkdirSync,lstatSync,realpathSync,existsSync} from 'node:fs';
-import {resolve,join,dirname,relative,isAbsolute,sep} from 'node:path';
+import {readFileSync,lstatSync,realpathSync,existsSync} from 'node:fs';
+import {resolve,join,dirname,relative,isAbsolute} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {outlineSource} from '../lib/outline.mjs';
 import {copyLayout,scopedDependencies} from '../lib/language-layout.mjs';
+import {installCopy,planCopy,readLock} from '../lib/install.mjs';
+import {removeModule} from '../lib/lifecycle.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const catalog=JSON.parse(readFileSync(join(root,'examples/languages/modules.json'),'utf8'));
 // The capability a language module implements may name a known limit; the copy output repeats it.
@@ -20,26 +22,20 @@ const BASES={languages:'examples/languages',cookbook:'examples/cookbook'};
 const base=m=>{const b=BASES[m?.base??'languages'];if(!b)throw Error('Unknown module base');return b};
 const sourcePath=p=>join(root,base(selected),safePath(p));
 const checkSource=p=>{const src=sourcePath(p);if(lstatSync(src).isSymbolicLink())throw Error('Source symlink rejected');return src};
-const within=(base,path)=>path===base||path.startsWith(base+sep);
-function destination(target,rel){
- const base=realpathSync(target);
- const parts=safePath(rel).split('/');
- let current=base;
- for(const part of parts.slice(0,-1)){
-  current=join(current,part);
-  if(existsSync(current)){
-   if(lstatSync(current).isSymbolicLink()||!lstatSync(current).isDirectory())throw Error('Unsafe target parent');
-   if(!within(base,realpathSync(current)))throw Error('Target escape');
-  }
- }
- const output=join(base,...parts);
- if(!within(base,output))throw Error('Target escape');
- if(existsSync(output))throw Error('Destination already exists: '+output);
- return output;
-}
+// The reviewed record plus the bytes of every file it lists: the lock's manifestSha256 for this capability, so a changed
+// example is recognized as a different version rather than silently mixed with an earlier copy.
+const recordDigest=m=>digest(JSON.stringify({kind:'language',id:m.id,base:base(m),files:m.files,tests:m.tests,sha256:[...m.files,...m.tests].map(p=>digest(readFileSync(checkSource(p))))}));
 try{
  if(cmd==='list'){console.log(JSON.stringify(catalog.modules.map(({id,language,runtime,status,base})=>({id,language,runtime,status,...(base?{base}:{})})),null,2));}
  else if(cmd==='inspect'){if(!selected)throw Error('Unknown module');console.log(JSON.stringify(selected,null,2));}
+ else if(cmd==='remove'){
+  // Roll back one copied capability: unedited files it alone owns are deleted, edited ones kept, shared ones kept for
+  // the capabilities that still depend on them. Same function as genlib remove.
+  const target=arg('--target');if(!target||!existsSync(target))throw Error('Existing target directory required');
+  if(!id||(await readLock(target)).modules[id]?.kind!=='language')throw Error(`${id} is not recorded as a language example in .genlib/lock.json`);
+  const result=await removeModule(null,target,id,{dryRun:flags.includes('--dry-run')});
+  console.log(flags.includes('--json')?JSON.stringify(result,null,2):[`${result.dryRun?'would remove':'removed'} ${id}:`,...result.files.map(f=>`  ${f.action} ${f.path}`)].join('\n'));
+ }
  else if(cmd==='plan'||cmd==='add'){
   if(!selected)throw Error('Unknown module');
   const target=arg('--target');if(!target||!existsSync(target)||!lstatSync(target).isDirectory())throw Error('Existing target directory required');
@@ -51,22 +47,20 @@ try{
   if(into!=='.')safePath(into.replace(/\/+$/,''));
   const layout=copyLayout(selected,{flat,into,includeTests});const paths=layout.paths,rel=layout.rel;
   if(flat&&new Set(paths.map(rel)).size!==paths.length)throw Error('--flat would overwrite: two files share a name');
-  // A dependency manifest that already exists in the target (the app's own requirements.txt, or one from an earlier
-  // copy) is not overwritten: it is skipped and its lines are reported for merging. Any other existing file stops the copy.
+  // Ownership follows the module installer (.genlib/lock.json): a file Genlib already installed with the same bytes is
+  // reused and records this capability as another owner; an untracked, edited or different existing file stops the copy.
+  // A dependency manifest that already exists (the app's own requirements.txt, or one from an earlier copy with other
+  // lines) is not overwritten: it is kept and its lines are reported for merging.
   const MANIFEST=/^(requirements(-dev)?\.txt|package(-lock)?\.json|go\.(mod|sum)|Cargo\.(toml|lock)|pom\.xml|.*\.csproj|pubspec\.(yaml|lock)|Package\.resolved|(build|settings)\.gradle\.kts|tsconfig\.json)$/;
+  const spec={kind:'language',id,manifestSha256:recordDigest(selected),out:into==='.'?'.':into.replace(/\/+$/,''),root,
+   files:paths.map(path=>({target:safePath(rel(path)),bytes:readFileSync(checkSource(path)),mergeable:MANIFEST.test(path.split('/').pop()),source:path}))};
+  const copy=cmd==='add'?await installCopy(target,spec):await planCopy(target,spec);
+  if(copy.conflicts.length)throw Error('Conflict: '+copy.conflicts.join(' '));
   const planned=[],skipped=[];
-  for(const path of paths){
-   const name=path.split('/').pop();let dest;
-   try{dest=destination(target,rel(path))}catch(e){
-    if(!MANIFEST.test(name)||!/^Destination already exists/.test(e.message))throw e;
-    const text=readFileSync(checkSource(path),'utf8');
-    skipped.push({source:path,destination:join(realpathSync(target),...rel(path).split('/')),reason:'exists',merge:/\.txt$/.test(name)?text.split('\n').map(l=>l.trim()).filter(l=>l&&!l.startsWith('#')):[]});continue;
-   }
-   planned.push({source:path,destination:dest,sha256:digest(readFileSync(checkSource(path)))});
-  }
-  if(cmd==='add'){
-   // Validate the entire plan before creating any destination.
-   for(const p of planned){mkdirSync(dirname(p.destination),{recursive:true});writeFileSync(p.destination,readFileSync(checkSource(p.source)),{flag:'wx',mode:0o644});}
+  for(const [index,file] of copy.files.entries()){
+   const path=paths[index],dest=join(copy.target,...file.path.split('/'));
+   if(file.action==='kept'){const name=path.split('/').pop(),text=readFileSync(checkSource(path),'utf8');skipped.push({source:path,destination:dest,reason:file.reason,merge:/\.txt$/.test(name)?text.split('\n').map(l=>l.trim()).filter(l=>l&&!l.startsWith('#')):[]});continue;}
+   planned.push({source:path,destination:dest,path:file.path,action:file.action,sha256:file.sha256});
   }
   const base=realpathSync(target);
   // Test entrypoints are the test modules only; fixtures and fixture generators are copied but not run.
@@ -95,10 +89,10 @@ try{
   const deps=scopedDependencies(selected,layout,{manifestCopied});
   const evidence={verification:selected.verification??'tested',dependencies:deps.map(d=>d.command),testDependencies:(selected.testDependencies??[]).map(c=>layout.manifestDir&&layout.manifestDir!=='.'&&manifestCopied&&/ -r /.test(c)?`cd ${layout.manifestDir} && ${c}`:c)};
   const steps=[{kind:'copy',files:planned.map(p=>relative(base,p.destination))},...deps.map(d=>({kind:'dependencies',command:d.command,cwd:d.cwd})),...(testCommand?[{kind:'test',argv:testCommand.argv,cwd:relative(base,testCommand.cwd)||'.'}]:[])];
-  if(flags.includes('--json')){console.log(JSON.stringify({operation:cmd,id,target:base,files:planned,skipped,steps,tests:entries,testCommand,testRun,evidence},null,2));}
+  if(flags.includes('--json')){console.log(JSON.stringify({operation:cmd,id,target:base,...(copy.status?{status:copy.status}:{}),files:planned,skipped,steps,tests:entries,testCommand,testRun,evidence,lock:copy.lock,...(copy.receipt?{receipt:copy.receipt}:{})},null,2));}
   else{
    // Compact text: what was copied, the public API and how to run the copied tests, so the agent need not read the source.
-   const lines=[`${cmd==='add'?'added':'would add'} ${id} to ${base} (sha256 checked):`,...planned.map(p=>'  '+relative(base,p.destination))];
+   const lines=[`${cmd==='add'?(copy.status==='unchanged'?'already installed':'added'):'would add'} ${id} to ${base} (sha256 checked):`,...planned.map(p=>'  '+relative(base,p.destination)+(p.action==='unchanged'?'  (shared, already installed)':''))];
    for(const s of skipped)lines.push(`# kept existing ${relative(base,s.destination)}`+(s.merge.length?'; add: '+s.merge.join(' '):'; merge its dependencies by hand'));
    const api=selected.files.flatMap(f=>{try{return outlineSource(readFileSync(checkSource(f),'utf8'),selected.language).map(e=>'  '+e.signature+(e.doc?'  // '+e.doc.slice(0,70):''))}catch{return[]}}).slice(0,12);
    if(api.length)lines.push('# api:',...api);
@@ -117,5 +111,5 @@ try{
    const caveat=capabilityCaveat(id);if(caveat)lines.push('# caveat: '+caveat);
    console.log(lines.join('\n'));
   }
- }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests] [--into <dir>] [--flat] [--run-tests] [--json]');
+ }else throw Error('Usage: list | inspect <id> | plan|add <id> --target <existing-directory> [--with-tests] [--into <dir>] [--flat] [--run-tests] [--json] | remove <id> --target <existing-directory> [--dry-run] [--json]');
 }catch(e){console.error(e.message);process.exitCode=1}

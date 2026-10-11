@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "email-outbox",
+  "version": "0.1.0",
+  "title": "Transactional email outbox",
+  "description": "Send transactional email reliably from a server app: idempotent enqueue with rendered templates, leased dispatch with retries, full-jitter backoff and dead-lettering, a bounce and complaint suppression list, Resend and Postmark Fetch transports, a PostgreSQL store and a delivery-event webhook adapter.",
+  "kind": "feature",
+  "tags": ["email", "send transactional email", "transactional email", "email queue", "outbox", "bounces", "resend", "postmark", "notifications email", "retries", "idempotency", "suppression list", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/email-outbox"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Web Crypto (crypto.subtle.digest, crypto.randomUUID), AbortSignal.timeout and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; run dispatch from your own scheduler, cron route or worker loop, and mount the webhook adapter on one route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "email-outbox/core.ts" },
+    { "source": "files/memory-store.ts", "target": "email-outbox/memory-store.ts" },
+    { "source": "files/transports.ts", "target": "email-outbox/transports.ts" },
+    { "source": "files/http.ts", "target": "email-outbox/http.ts" },
+    { "source": "files/sql-store.ts", "target": "email-outbox/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "email-outbox/schema.sql" }
+  ],
+  "exports": [
+    { "name": "createEmailOutbox", "from": "email-outbox/core.ts" },
+    { "name": "EmailOutboxError", "from": "email-outbox/core.ts" },
+    { "name": "fullJitterBackoff", "from": "email-outbox/core.ts" },
+    { "name": "isValidAddress", "from": "email-outbox/core.ts" },
+    { "name": "normalizeAddress", "from": "email-outbox/core.ts" },
+    { "name": "MemoryEmailOutboxStore", "from": "email-outbox/memory-store.ts" },
+    { "name": "createResendTransport", "from": "email-outbox/transports.ts" },
+    { "name": "createPostmarkTransport", "from": "email-outbox/transports.ts" },
+    { "name": "createConsoleTransport", "from": "email-outbox/transports.ts" },
+    { "name": "classifyStatus", "from": "email-outbox/transports.ts" },
+    { "name": "createEmailEventsHandler", "from": "email-outbox/http.ts" },
+    { "name": "createSqlEmailOutboxStore", "from": "email-outbox/sql-store.ts" }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlEmailOutboxStore with your query executor; on other databases implement EmailOutboxStore with a unique key, an atomic claim (row locking or a conditional update) and conditional status transitions.",
+    "Choose a transport: createResendTransport or createPostmarkTransport with the API key from your server secrets, or createConsoleTransport in development.",
+    "Register templates as functions from data to {subject, text, html?}; escape any user data you put into html yourself.",
+    "Pick an idempotency key per business event (for example order-receipt:<orderId>) and enqueue in the same transaction as the business change when your store shares the connection.",
+    "Run dispatch({workerId}) on a schedule (every few seconds to a minute) with a unique workerId per process and a leaseMs above batch x transport timeout.",
+    "Mount createEmailEventsHandler on your provider's webhook route with verify from the webhook-verification module (Resend signs with Standard Webhooks / Svix headers)."
+  ],
+  "capabilities": [
+    "transactional-email-outbox",
+    "idempotent-email-enqueue",
+    "email-retry-with-backoff",
+    "email-suppression-list",
+    "email-delivery-events"
+  ],
+  "limitations": [
+    "Delivery is at least once. Resend deduplicates retries by Idempotency-Key within its retention window; Postmark has no idempotency header, so an uncertain Postmark send (network error after the request left) can deliver a duplicate.",
+    "Does not schedule itself, render template languages, escape HTML, handle attachments, multiple recipients, cc/bcc or reply-to, or manage unsubscribe links and marketing consent.",
+    "Soft bounces change nothing; delivered/bounced/complained events are mapped only from Resend-style webhook JSON. Postmark webhooks need your own mapping to handleEvent.",
+    "Provider 4xx errors other than 408, 409 and 429 (including 401 for a bad API key) fail messages permanently.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, so FOR UPDATE SKIP LOCKED across separate connections is not exercised there.",
+    "Production database correctness, provider deliverability (SPF, DKIM, DMARC), API key custody and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "enqueue is idempotent per key; same key with a different payload fails key-reused",
+    "retries 429/408/409/5xx with full jitter (30 s base, 1 h cap); 6 attempts, then dead",
+    "hard bounces and complaints suppress the address; the events webhook expects Resend event JSON",
+    "webhook: bad signature → 400 invalid-signature; unknown message → 200 known:false; body cap 256 KiB"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/email-outbox.test.mjs", "tests/email-outbox-sql.test.mjs"],
+    "command": "npm run build && node --test tests/email-outbox.test.mjs tests/email-outbox-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "behaviors": [
+      "enqueue renders the template and is idempotent per key; the same key with a different payload fails with key-reused",
+      "addresses need one @, no CR/LF or whitespace and at most 254 characters; CR or LF in the subject, a tag or from fails with invalid-header",
+      "the suppression list (plus an optional suppress hook) is checked at enqueue and again at send, case-insensitively",
+      "dispatch sends with the message key as idempotency key, records the provider id and honours sendAt",
+      "429, 5xx and network errors reschedule with full-jitter exponential backoff from an injected random, honouring Retry-After",
+      "permanent 4xx results become failed; the last retryable attempt becomes dead",
+      "a crashed worker's lease is reclaimed after expiry, the stale worker cannot complete, and crash loops stop at maxAttempts",
+      "delivered, hard-bounce and complaint events update status, add suppressions and are idempotent on replay; soft bounces change nothing",
+      "cancel works only while queued",
+      "Resend and Postmark transports: request shape, Idempotency-Key header, status classification and AbortSignal timeout, against a fake fetch",
+      "webhook adapter verifies the raw body before parsing and returns 400 on bad signature, JSON or event, 413 on oversize and 405 on non-POST",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL",
+      "six concurrent dispatchers over 60 messages send each exactly once; five concurrent enqueues with one key insert one row"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core outbox, in-memory store, Resend/Postmark/console transports, PostgreSQL schema and store, and delivery-event webhook adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "stripe-checkout",
+  "title": "Stripe checkout and webhooks",
+  "reviewed": "2026-10-11",
+  "tasks": ["stripe checkout and webhooks"],
+  "requirements": [
+    { "id": "create-session", "text": "The server creates a Checkout Session for a price with success and cancel URLs" },
+    { "id": "verify-webhook", "text": "Webhook requests are verified against the Stripe-Signature header on the raw body, with timestamp tolerance" },
+    { "id": "idempotent-events", "text": "Each webhook event is processed once even when Stripe retries it" },
+    { "id": "fulfillment", "text": "checkout.session.completed fulfills the order or activates the subscription" },
+    { "id": "subscription-sync", "text": "Subscription status changes update the account's billing state" }
+  ],
+  "implementations": [
+    {
+      "ref": "module:webhook-verification",
+      "status": "fixture-verified",
+      "fulfills": ["verify-webhook"],
+      "evidence": [
+        { "requirement": "verify-webhook", "test": "tests/webhook-verification.test.mjs", "name": "Stripe-Signature: multiple v1, tolerance in both directions" }
+      ]
+    },
+    { "ref": "module:common-api-clients", "status": "install-supported", "fulfills": ["create-session"], "notes": "Bounded Stripe client; Checkout Session creation is not covered by a named repository test" },
+    { "ref": "module:entitlements", "status": "install-supported", "fulfills": ["subscription-sync"], "notes": "Maps subscription status to plan access; syncing from Stripe events is the app's work" }
+  ]
+}

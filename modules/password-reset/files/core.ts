@@ -74,8 +74,12 @@ export interface PasswordResetOptions {
 export type PasswordResetErrorCode = "invalid-token" | "weak-password" | "bad-request";
 
 export class PasswordResetError extends Error {
-  constructor(readonly code: PasswordResetErrorCode, message: string, readonly problems: readonly string[] = []) {
+  readonly code: PasswordResetErrorCode;
+  readonly problems: readonly string[];
+  constructor(code: PasswordResetErrorCode, message: string, problems: readonly string[] = []) {
     super(message);
+    this.code = code;
+    this.problems = problems;
     this.name = "PasswordResetError";
   }
 }

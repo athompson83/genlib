@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "id": "tenant-isolation",
+  "version": "0.1.1",
+  "title": "Tenant isolation",
+  "description": "Multi-tenant data isolation for SaaS apps: resolve the tenant from the verified session and membership (client-sent ids are only selectors), PostgreSQL row-level security with transaction-local tenant settings and a non-bypass role, a tenant-scoped repository, and a reusable cross-tenant test kit.",
+  "kind": "feature",
+  "tags": [
+    "multi-tenant",
+    "multi-tenancy",
+    "tenant isolation",
+    "row level security",
+    "rls",
+    "postgres",
+    "saas",
+    "organizations",
+    "workspaces",
+    "cross-tenant tests",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/tenant-isolation"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and the WHATWG URL and Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Database enforcement requires PostgreSQL 9.5+ (row-level security); the resolver and scoped repository work with any $1-placeholder executor, but other databases need their own enforcement.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "tenant-isolation/core.ts",
+      "path": "modules/tenant-isolation/files/core.ts",
+      "sha256": "675e0d320ecc4a4edcd12e193b6b23e4c2f402519b1871f8642a88e677d67d6d",
+      "bytes": 7681
+    },
+    {
+      "source": "files/sql.ts",
+      "target": "tenant-isolation/sql.ts",
+      "path": "modules/tenant-isolation/files/sql.ts",
+      "sha256": "0b9cb7642daa6a2f504f2f497fb3467d34060799496aaeea0c34d47281399067",
+      "bytes": 14747
+    },
+    {
+      "source": "files/test-kit.ts",
+      "target": "tenant-isolation/test-kit.ts",
+      "path": "modules/tenant-isolation/files/test-kit.ts",
+      "sha256": "5e4692a043c64244f14669708a450afed9192d93cd85046424342de023ba3ff0",
+      "bytes": 9398
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "tenant-isolation/schema.sql",
+      "path": "modules/tenant-isolation/files/schema.sql",
+      "sha256": "7aa5f1de6c71a3f1969831de96551b5353c4118a472bbeed1e589c8fb0419cdb",
+      "bytes": 1825
+    }
+  ],
+  "exports": [
+    {
+      "name": "resolveTenant",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "createTenantHandler",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "tenantErrorResponse",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "headerSelector",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "pathSelector",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "subdomainSelector",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "isTenantId",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "assertTenantId",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "TenantIsolationError",
+      "from": "tenant-isolation/core.ts"
+    },
+    {
+      "name": "withTenant",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "scoped",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "tenantTableSql",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "tenantPredicate",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "appRoleSql",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "inspectIsolation",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "assertIdentifier",
+      "from": "tenant-isolation/sql.ts"
+    },
+    {
+      "name": "assertTenantIsolation",
+      "from": "tenant-isolation/test-kit.ts"
+    },
+    {
+      "name": "TenantIsolationAssertionError",
+      "from": "tenant-isolation/test-kit.ts"
+    }
+  ],
+  "configuration": [
+    "Apply schema.sql (or appRoleSql() and tenantTableSql('your_table') for each tenant table) as the database owner; every tenant table needs a tenant_id column leading its indexes.",
+    "Run application queries as a role that is neither superuser nor BYPASSRLS: log in as a member of app_user, or pass { role: 'app_user' } to withTenant and GRANT app_user to the login user.",
+    "Supply session(request) from your verified session or token and memberships(userId) from your membership table; optionally a selector (headerSelector, pathSelector or subdomainSelector).",
+    "On a connection pool, give the executor a transaction(work) that checks out one client for BEGIN ... COMMIT so set_config and SET LOCAL ROLE stay on that connection.",
+    "Call assertTenantIsolation from your own test suite against each tenant table in a test database."
+  ],
+  "capabilities": [
+    "trusted-tenant-resolution",
+    "tenant-selectors",
+    "transaction-local-tenant-context",
+    "postgres-row-level-security",
+    "tenant-scoped-repository",
+    "isolation-self-check",
+    "cross-tenant-test-kit"
+  ],
+  "limitations": [
+    "Database enforcement is PostgreSQL row-level security only; MySQL, SQLite and document stores rely on the scoped repository alone, which is application-level filtering.",
+    "Superusers, BYPASSRLS roles and connections that skip withTenant's SET LOCAL ROLE bypass every policy; inspectIsolation and the test kit detect a bypassing role but cannot stop an app from using one.",
+    "inspectIsolation checks that every permissive policy references the tenant setting textually; it does not prove the expression is correct (for example `... OR true`), which only the test kit's behavior checks show.",
+    "The test kit's setting-lifetime check needs a dedicated connection (`client`); with only a pool it reports not-checked.",
+    "Tested on PostgreSQL semantics through PGlite 0.5.8, a single connection running as a superuser with SET LOCAL ROLE to a NOLOGIN role; pooled multi-connection behavior, LOGIN roles, PgBouncer transaction pooling and hosted Postgres were not exercised.",
+    "The BEGIN/COMMIT fallback in withTenant is only correct on a dedicated client; on a pool the executor must supply transaction().",
+    "Policies cover tables generated with tenantTableSql or schema.sql; views (unless security_invoker), SECURITY DEFINER functions, foreign keys into shared tables, sequences, large objects and storage buckets need their own review.",
+    "The scoped repository handles single-table get/list/insert/update/delete by id; joins and raw SQL must add the tenant predicate themselves (RLS still applies to them).",
+    "Tenant resolution trusts whatever session(request) and memberships(userId) return; session security, membership administration and tenant provisioning remain project responsibilities."
+  ],
+  "decisions": [
+    "PostgreSQL RLS via transaction-local set_config('app.tenant_id'); tables get FORCE ROW LEVEL SECURITY",
+    "a tenant the user is not a member of → 404 not-found by default (hiddenStatus: 403 to change)",
+    "several memberships and no selector → 400 tenant-required; none → 403 no-tenant",
+    "tenant ids 1-128 chars of [A-Za-z0-9_.:-]; memberships are read on every request"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/tenant-isolation.test.mjs",
+      "tests/tenant-isolation-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/tenant-isolation.test.mjs tests/tenant-isolation-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "a client-sent tenant id (header, path or subdomain) is honored only when it matches a membership of the verified session user; otherwise not-a-member (404 by default, 403 optional)",
+      "requests without a valid session are refused with 401 whatever tenant they name",
+      "malformed tenant selectors are refused before any lookup; a selector cannot override a verified session tenant claim",
+      "with no selector a single membership decides, several need a choice (400) and none is refused (403)",
+      "memberships are read on every request, so a revoked membership is refused at once",
+      "every scoped statement carries tenant_id = $n, and another tenant's id returns null, false or not-found",
+      "scoped inserts force the tenant column and refuse another tenant's value; updates cannot change the tenant or id columns; column names come only from an allowlist",
+      "withTenant runs set_config(app.tenant_id, id, true) and optional SET LOCAL ROLE inside one transaction and rolls back on error",
+      "generated SQL enables and forces RLS with one USING and WITH CHECK predicate that matches no row when the tenant is unset",
+      "on PostgreSQL as app_user an unscoped SELECT returns only the current tenant's rows",
+      "on PostgreSQL UPDATE and DELETE of another tenant's id affect 0 rows, and INSERT or UPDATE into another tenant fails the WITH CHECK policy",
+      "on PostgreSQL no tenant set returns 0 rows and the tenant setting and role do not outlive the transaction",
+      "the scoped repository still filters by tenant on a connection that bypasses RLS",
+      "inspectIsolation reports missing FORCE, roles that bypass RLS and permissive policies whose USING or WITH CHECK does not read the tenant setting (policies are OR-ed), matching the table's schema (default public)",
+      "assertTenantIsolation passes all 9 checks on RLS tables and reports each leak on an unprotected table, cleaning up its seeded rows",
+      "the test kit checks the tenant setting before and after commit on one dedicated client, fails a session-level (leaking) setting, and reports not-checked instead of passed when given only a pool",
+      "through the Fetch handler a user of tenant A gets 404 for tenant B's rows on read and delete, and B's row is unchanged"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.1",
+      "changes": [
+        "inspectIsolation flags permissive policies that do not read the tenant setting and matches pg_policies and pg_class by schema (new options { schema, setting }).",
+        "Test kit checks carry a status; the setting-lifetime check runs on one dedicated client (new client option) and is not-checked on a pool instead of passing trivially."
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: trusted tenant resolution and Fetch handler, PostgreSQL row-level security helpers and schema, scoped repository, isolation self-check and cross-tenant test kit."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/tenant-isolation/module.json",
+    "sha256": "c7fc8aa5bef18fb0b6a2da7b243741327a30353939f6a56df9be894c83c5f711"
+  },
+  "contractFile": {
+    "path": "modules/tenant-isolation/CONTRACT.md",
+    "sha256": "c36f3b88c076b25a8e80f0670b82fbd27e5138576d00a9fc887dd8baf1ccafd1",
+    "bytes": 8470
+  }
+}

@@ -92,8 +92,12 @@ export function buildAuthorizationUrl(request: AuthorizationRequest): string {
 
 /** Callback failure: `error` is the provider's OAuth error code, or state_mismatch / missing_code / invalid_callback. */
 export class OAuthCallbackError extends Error {
-  constructor(readonly error: string, readonly errorDescription?: string) {
+  readonly error: string;
+  readonly errorDescription: string | undefined;
+  constructor(error: string, errorDescription?: string) {
     super(errorDescription ? `${error}: ${errorDescription}` : error);
+    this.error = error;
+    this.errorDescription = errorDescription;
     this.name = "OAuthCallbackError";
   }
 }

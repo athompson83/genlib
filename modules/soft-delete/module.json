@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "soft-delete",
+  "version": "0.1.0",
+  "title": "Soft delete and restore",
+  "description": "Soft delete, trash and restore layer for a multi-tenant app's own tables: deleted_at/deleted_by/delete_batch marks, cascade to declared child tables by batch id, restore within a retention window that reports unique conflicts, an idempotent purge job, PostgreSQL schema pattern with partial unique indexes and live views, and a trash API, with injected authorization and persistence.",
+  "kind": "feature",
+  "tags": [
+    "soft delete",
+    "trash",
+    "recycle bin",
+    "undo delete",
+    "restore",
+    "undelete",
+    "deleted_at",
+    "archive",
+    "retention",
+    "purge",
+    "cascade",
+    "partial unique index",
+    "multi-tenant",
+    "saas",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/soft-delete"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (randomUUID) plus the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core over your own tables; the SQL store targets PostgreSQL through any query(text, params) executor that also offers transaction(work).",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "soft-delete/core.ts"
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "soft-delete/memory-store.ts"
+    },
+    {
+      "source": "files/http.ts",
+      "target": "soft-delete/http.ts"
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "soft-delete/sql-store.ts"
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "soft-delete/schema.sql"
+    }
+  ],
+  "exports": [
+    {
+      "name": "createSoftDelete",
+      "from": "soft-delete/core.ts"
+    },
+    {
+      "name": "SoftDeleteError",
+      "from": "soft-delete/core.ts"
+    },
+    {
+      "name": "DEFAULT_RETENTION_MS",
+      "from": "soft-delete/core.ts"
+    },
+    {
+      "name": "IDENTIFIER",
+      "from": "soft-delete/core.ts"
+    },
+    {
+      "name": "MemorySoftDeleteStore",
+      "from": "soft-delete/memory-store.ts"
+    },
+    {
+      "name": "createTrashHandler",
+      "from": "soft-delete/http.ts"
+    },
+    {
+      "name": "createSqlSoftDeleteStore",
+      "from": "soft-delete/sql-store.ts"
+    },
+    {
+      "name": "liveCondition",
+      "from": "soft-delete/sql-store.ts"
+    },
+    {
+      "name": "liveViewSql",
+      "from": "soft-delete/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "Add deleted_at (bigint epoch ms), deleted_by and delete_batch columns to each soft-deletable table, replace its unique constraints with partial unique indexes WHERE deleted_at IS NULL, and keep plain (NO ACTION) foreign keys; schema.sql shows the pattern and creates the soft_delete_batches trash table.",
+    "Declare entities: table -> { unique: column sets unique among live rows of a tenant, children: [{ entity, foreignKey }] }.",
+    "Point default reads (lists, search, counts, exports) at a live view (liveViewSql) or add liveCondition() to every query; optionally add a row-level security policy that hides deleted rows.",
+    "Implement authorize(actor, 'delete'|'restore'|'trash'|'read', { tenantId, entity }) from your own membership table.",
+    "Call softDelete.remove from your own delete routes; mount createTrashHandler under one prefix with exact allowedOrigins and your authenticate(request).",
+    "Run purgeExpired() from a trusted scheduler (for example the durable-jobs module) at least daily; set retentionMs (default 30 days) to your retention policy."
+  ],
+  "capabilities": [
+    "soft-delete-marks",
+    "hidden-by-default-views",
+    "trash-listing",
+    "restore-within-retention",
+    "cascade-by-delete-batch",
+    "restore-unique-conflict-reporting",
+    "idempotent-retention-purge",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "Only reads that go through the live view, liveCondition() or a row-level security policy hide deleted rows; a raw query against the base table still sees them, so review every query, search index and export job.",
+    "Unique column sets are scoped to one tenant; globally unique columns (such as a login email across tenants) need your own check before restore.",
+    "Cascade follows only declared child relations with single-column text-compatible foreign keys; many-to-many join tables, polymorphic references and files in object storage need their own handling.",
+    "Rows added under a parent after it was deleted are not part of its batch; purging that entry then fails on the foreign key and the job reports it in failed (and keeps the entry and its rows) until the app handles those rows, so live rows are never lost.",
+    "Purging an entry also permanently removes soft-deleted descendants that were deleted earlier on their own; their trash entries become unrestorable (not-found) and are cleared on the next run.",
+    "A failing entry has no backoff: each purgeExpired run retries it once (one rolled-back transaction) before paging past it to the rest; alert on a non-empty failed list.",
+    "Search indexes, caches and analytics copies outside the database are not updated; hook remove and restore to reindex.",
+    "The in-memory store is for tests and prototypes only and does not isolate concurrent transactions; the SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection, not on every hosted Postgres or under multi-connection load.",
+    "Production database correctness, legal retention or erasure duties (a purge is not a GDPR erasure of backups), session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "rows get deleted_at and are hidden by default; children cascade by declared relations in one batch",
+    "routes: GET {prefix}?tenantId= (trash list), POST {prefix}/{trashId}/restore?tenantId=",
+    "30-day default retention, then purge; restore afterwards → 410 retention-expired",
+    "unique-value conflict or deleted parent on restore → 409; nothing is restored partially"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/soft-delete.test.mjs",
+      "tests/soft-delete-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/soft-delete.test.mjs tests/soft-delete-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "remove marks deleted_at, deleted_by and delete_batch, keeps the row and opens one trash entry with its purge time",
+      "deleting a missing or other-tenant record is not-found; deleting twice is already-deleted",
+      "get, live lists, counts, search and exports exclude soft-deleted rows (live view and liveCondition on PostgreSQL)",
+      "restore within the retention window brings back the record and its cascaded children with unchanged data and foreign keys",
+      "restore at or after purgeAfter is refused with retention-expired",
+      "read-only members and other tenants are refused delete, restore and the trash; ids from another tenant are not-found",
+      "a deleted row does not block a new live row with the same unique value (partial unique index); restore then reports conflict with the conflicting rows and changes nothing",
+      "a unique index the configuration does not declare is still reported as conflict and rolled back on PostgreSQL",
+      "cascade marks live children through declared relations with the parent's batch id, including self-referencing trees",
+      "restore brings back exactly the rows of the batch; children deleted earlier on their own stay in the trash",
+      "a cascaded child cannot be restored on its own while its parent is in the trash (parent-deleted)",
+      "purgeExpired removes expired entries children first under plain foreign keys, leaves unexpired entries, and a second run purges nothing",
+      "a purge entry that fails (such as a foreign key held by a live child added under the deleted parent) is rolled back, kept in the trash and reported in failed with only its id, tenant, entity and error code, while later entries are still purged",
+      "trash lists newest first with keyset cursors, an entity filter and limit 1 to 100",
+      "trash handler: list, restore, 409 conflict body, 401, origin check, no-store and error mapping",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL trash schema and SQL store with live-view helpers, trash Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md"
+}

@@ -10,7 +10,9 @@ type Node = string | { arg: string; type?: string; options?: Map<string, Node[]>
 
 class Parser {
   i = 0;
-  constructor(readonly src: string) {}
+  readonly src: string;
+  constructor(src: string) {
+      this.src = src;}
   fail(message: string): never { throw new SyntaxError(`${message} at offset ${this.i} in message`); }
 
   nodes(nested: boolean): Node[] {

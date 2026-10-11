@@ -14,8 +14,12 @@ export type ImportErrorCode =
   | "already-committed" | "forbidden" | "bad-request" | "unsupported-media-type";
 
 export class ImportError extends Error {
-  constructor(readonly code: ImportErrorCode, message: string, readonly row?: number) {
+  readonly code: ImportErrorCode;
+  readonly row: number | undefined;
+  constructor(code: ImportErrorCode, message: string, row?: number) {
     super(message);
+    this.code = code;
+    this.row = row;
     this.name = "ImportError";
   }
 }

@@ -7,6 +7,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { loadSources, searchEntries } from '../lib/discover.mjs';
+import { loadContracts } from '../lib/coverage.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const check = process.argv.includes('--check');
@@ -55,6 +56,22 @@ for (const entry of entries) {
     if (entry.guide) link(capability, node(`doc:${entry.guide}`, 'doc', entry.guide, { file: entry.guide }), 'documented-by');
   }
   if (entry.type === 'doc') link(type, node(`doc:${entry.file}`, 'doc', entry.file, { file: entry.file }), 'section-of');
+  if (entry.type === 'module' || entry.type === 'integration') {
+    const code = node(`${entry.type}:${entry.id}`, entry.type, entry.id, { query: entry.id });
+    link(type, code, 'includes');
+  }
+}
+// Feature contracts and the code that fulfills them, so a lookup can answer "what covers this feature, and how
+// much of it is verified" from the graph alone. Edge weight is the number of requirements credited.
+const verified = new Set(['fixture-verified', 'application-verified']);
+for (const contract of loadContracts(root)) {
+  const id = node(`contract:${contract.id}`, 'contract', contract.id, { query: contract.tasks[0], requirements: contract.requirements.length });
+  link('genlib', id, 'contains');
+  for (const implementation of contract.implementations) {
+    if (!verified.has(implementation.status) || !nodes.has(implementation.ref)) continue;
+    const key = `${implementation.ref}|${id}|fulfills`;
+    links.set(key, { source: implementation.ref, target: id, relation: 'fulfills', weight: implementation.fulfills.length });
+  }
 }
 // Counts on non-entry nodes are occurrences; drop links whose target never became a node (filtered languages).
 const graph = {

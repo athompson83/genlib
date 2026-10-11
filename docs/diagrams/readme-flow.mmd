@@ -7,6 +7,7 @@ flowchart TB
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Connect["genlib connect<br/>MCP entry + guidance<br/>for the app's agents"]
   Harness["Harness profiles<br/>config · install · doctor"]
   Skill["Portable genlib-use skill"]
   Graph["registry/graph.json<br/>+ Obsidian export"]
@@ -26,6 +27,9 @@ flowchart TB
   Add["add<br/>copy + .genlib/lock.json"]
   Verify["verify hashes"]
   Receipt["receipt · adopted<br/>update · remove"]
+  Coverage["genlib coverage<br/>feature contracts:<br/>requirements + evidence"]
+  RegistryIn["genlib registry<br/>shadcn-format items<br/>plan · add · verify"]
+  Provider["genlib provider<br/>upstream features (BTST):<br/>check · staged adopt"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -44,10 +48,14 @@ flowchart TB
   Shadcn -.-> App
   X -.-> Source -.-> App
   Index -.-> Jev -.-> Find
+  Connect -.-> MCP
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
   Add -.-> Receipt -.-> App
+  Quick -.-> Coverage -.-> App
+  RegistryIn --> Receipt
+  Find --> Provider --> Receipt
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App

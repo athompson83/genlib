@@ -48,8 +48,12 @@ export function defineMachine<S extends string, E extends string>(config: Machin
 }
 
 export class TransitionError extends Error {
-  constructor(readonly from: string, readonly event: string) {
+  readonly from: string;
+  readonly event: string;
+  constructor(from: string, event: string) {
     super(`Event "${event}" is not allowed in state "${from}"`);
+    this.from = from;
+    this.event = event;
     this.name = "TransitionError";
   }
 }

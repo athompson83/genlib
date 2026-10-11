@@ -64752,6 +64752,93 @@
         "metric": "github-stars",
         "value": 2130
       }
+    },
+    {
+      "id": "zvec-grep",
+      "name": "zvec-grep (zg)",
+      "category": "dev-tools",
+      "platforms": [
+        "server",
+        "node"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "verified",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/zvec-ai/zvec-grep/blob/main/LICENSE",
+        "scope": "Apache-2.0 (LICENSE file); keep the license and NOTICE when redistributing."
+      },
+      "homepage": "https://github.com/zvec-ai/zvec-grep",
+      "repository": "https://github.com/zvec-ai/zvec-grep",
+      "docs": "https://github.com/zvec-ai/zvec-grep/tree/main/docs",
+      "summary": "Local-first workspace search for people and coding agents: one CLI and MCP server combining ripgrep, BM25 and vector retrieval with reciprocal rank fusion, symbol-aware code chunks and Markdown sections, and source-linked compact results",
+      "useWhen": "Use when an agent must answer where or why questions across an unfamiliar codebase or a folder of documents and the exact words are unknown; keep native grep for exact strings.",
+      "cautions": [
+        "Pin the version; 0.2.x released weekly in October 2026.",
+        "The index lives in .zvec-grep/ under the workspace; local embedding models (Potion/model2vec) are downloaded on first index, and remote embeddings send content only after explicit authorization.",
+        "The installer edits agent configuration files (MCP entries, instruction blocks, tool approvals); review its dry output before --yes."
+      ],
+      "tags": [
+        "open-source",
+        "dev-tools",
+        "code-search",
+        "semantic-search",
+        "hybrid-search",
+        "bm25",
+        "vector-search",
+        "rrf",
+        "mcp",
+        "agents",
+        "ripgrep",
+        "grep",
+        "cli",
+        "node"
+      ],
+      "projectTypes": [
+        "devops-infra",
+        "ai-agent",
+        "docs-knowledge"
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/zvec-ai/zvec-grep",
+          "title": "Upstream repository"
+        },
+        {
+          "url": "https://github.com/zvec-ai/zvec-grep/blob/main/docs/04-pipeline.md",
+          "title": "Retrieval pipeline"
+        },
+        {
+          "url": "https://github.com/zvec-ai/zvec-grep/tree/main/benchmarks",
+          "title": "Paired A/B agent benchmarks"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/open-source-tools.md"
+      },
+      "install": [
+        "Run the install command below, pin the version, then read the docs."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@zvec/zvec-grep"
+        }
+      ],
+      "quickstart": [
+        "npm install -g @zvec/zvec-grep@0.2.2"
+      ],
+      "languages": [
+        "typescript",
+        "rust"
+      ],
+      "popularity": {
+        "metric": "npm-downloads-last-month",
+        "value": 10457
+      }
     }
   ]
 }

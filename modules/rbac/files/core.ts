@@ -92,8 +92,10 @@ export type RbacErrorCode =
   | "invalid-resource" | "invalid-expiry" | "invalid-cursor" | "invalid-limit" | "bad-request";
 
 export class RbacError extends Error {
-  constructor(readonly code: RbacErrorCode, message: string) {
+  readonly code: RbacErrorCode;
+  constructor(code: RbacErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "RbacError";
   }
 }

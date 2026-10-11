@@ -33,7 +33,11 @@ test('safe plan and copy without overwrites',()=>{
   assert.match(text,/app\/rrule\.py/);assert.match(text,/def expand_rrule\(/);assert.match(text,/# test: cd .*app && python3 -m unittest test_rrule/);
   assert.ok(existsSync(join(dir,'app/test_rrule.py')));
   assert.notEqual(spawnSync(process.execPath,['tools/language-modules.mjs','add','python-rrule','--target',dir,'--into','../escape']).status,0);
+  // Adding the same capability again is idempotent (tracked in .genlib/lock.json); an edited copy is never overwritten.
+  assert.match(run('add','python-pagination','--target',dir),/^already installed python-pagination/);
+  writeFileSync(added.files[0].destination,'# edited\n');
   assert.notEqual(spawnSync(process.execPath,['tools/language-modules.mjs','add','python-pagination','--target',dir]).status,0);
+  assert.equal(readFileSync(added.files[0].destination,'utf8'),'# edited\n');
  }finally{rmSync(dir,{recursive:true,force:true})}
 });
 test('rejects symlinked target directories',()=>{
@@ -57,7 +61,11 @@ test('a failed test run exits non-zero, in text and JSON, and never prints the r
   const env={...process.env,PATH:empty};
   const text=spawnSync(process.execPath,['tools/language-modules.mjs','add','python-totp','--target',dir,'--with-tests','--flat','--run-tests'],{encoding:'utf8',env});
   assert.equal(text.status,1);assert.match(text.stdout,/# tests run: FAILED on this copy/);assert.doesNotMatch(text.stdout,/repo evidence/);
-  const json=spawnSync(process.execPath,['tools/language-modules.mjs','add','python-totp','--target',dir,'--with-tests','--into','j','--run-tests','--json'],{encoding:'utf8',env});
+  // A second location for the same capability is a lock conflict, so the JSON run uses its own target.
+  const jsonDir=mkdtempSync(join(tmpdir(),'genlib-fail-json-'));
+  let json;
+  try{json=spawnSync(process.execPath,['tools/language-modules.mjs','add','python-totp','--target',jsonDir,'--with-tests','--into','j','--run-tests','--json'],{encoding:'utf8',env});}
+  finally{rmSync(jsonDir,{recursive:true,force:true})}
   assert.equal(json.status,1);const result=JSON.parse(json.stdout);assert.equal(result.testRun.status,'failed');assert.deepEqual(result.tests,['j/python/test_totp.py']);
  }finally{rmSync(dir,{recursive:true,force:true});rmSync(empty,{recursive:true,force:true})}
 });

@@ -8,8 +8,10 @@
 export type CursorErrorCode = "malformed" | "bad signature" | "expired";
 
 export class CursorError extends Error {
-  constructor(readonly code: CursorErrorCode, detail?: string) {
+  readonly code: CursorErrorCode;
+  constructor(code: CursorErrorCode, detail?: string) {
     super(detail ? `${code}: ${detail}` : code);
+    this.code = code;
     this.name = "CursorError";
   }
 }

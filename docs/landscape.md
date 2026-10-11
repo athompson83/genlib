@@ -21,6 +21,7 @@ Help a coding agent choose an existing implementation that fits the application,
 | [anthropics/skills](https://github.com/anthropics/skills), [obra/superpowers](https://github.com/obra/superpowers) | Skills as procedures plus scripts; with/without-skill comparisons; a full engineering workflow | Indexed in the skill catalog. Their with/without comparison shapes the benchmark protocol |
 | [agentry](https://github.com/OpenTechIL/agentry) | Exact-commit lock, owned-entry manifest, drift checks | Matches Genlib's `.genlib/lock.json` (per-file hashes, `verify` reports drift) |
 | [qdrant/mcp-code-snippets](https://github.com/qdrant/mcp-code-snippets), [21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp) | Context-filtered snippet retrieval with broad fallback; hosted UI generation | Genlib keeps compatibility checks when it broadens a search: incompatible results are counted and hidden, never silently returned |
+| [zvec-grep](https://github.com/zvec-ai/zvec-grep) (`zg` 0.2.2, Apache-2.0) | Local workspace search for agents: ripgrep, BM25 and vector retrieval fused with reciprocal rank fusion (k=60), symbol-aware code chunks, one search-only MCP tool, `zg --install --target <agent>` that writes MCP entries and marked guidance blocks with when-not-to-use rules, and paired A/B agent benchmarks | `genlib connect` (project-scoped MCP entries plus a GENLIB_START/END guidance block, removal of only what it wrote) and the guidance's when-not rules. RRF over Genlib's lexical score and a character-trigram ranker lowered tuning-set top-1 from 97.7% to 93.0–96.9%, so it was not adopted; its gains come from a vector model, which Genlib's dependency-free CLI does not carry. zg itself is cataloged as `resource:zvec-grep` |
 
 ## Changes made from this review
 
@@ -53,8 +54,56 @@ Reviewed 2026-10-11. These projects center on what happens after code is found: 
 
 Not measured yet: manual repair per adoption, acceptance rate in real projects, time and model usage per task, and update effort over several upstream versions. Receipts now record the data needed for the first two; the [benchmark protocol](benchmarks.md#comparison-protocol-not-yet-run) covers the rest.
 
+## Integration blueprint: one adoption process over many providers
+
+Reviewed 2026-10-11 by the project owner, covering the 29 repositories from both comparisons. The conclusion: one Genlib catalog and adoption process, optional upstream providers, and original integration packages where the app still needs work. Each capability uses one of four delivery methods:
+
+| Method | Used for | Examples |
+| --- | --- | --- |
+| Native Genlib functionality | Selection, compatibility, planning, provenance and licenses, adoption evidence, update tracking, compact agent output, coverage reporting | `genlib` CLI and MCP, receipts, feature contracts |
+| Upstream dependency plus a Genlib integration package | Maintained implementations that need app-specific setup | BTST plugins, Convex components (Convex-only runtime semantics) |
+| Format and tool adapters | Translating another system's artifacts into a Genlib plan | shadcn registry items (done), jsrepo, Mason bricks, APM/Skills/PRPM/Agentry manifests |
+| Optional service connections | Functionality that lives in a hosted service | Context7 docs (private backend), 21st/Magic MCP (hosted, account-dependent) |
+
+### Done in this increment
+
+1. **Accurate coverage (phase 1).** `resources/feature-contracts/` gives each of the 65 common tasks its requirements and credits implementations per requirement, from `cataloged` up to `fixture-verified` (a named test, checked to exist) and `application-verified` (acceptance recorded in the app by `adopted --accepts`). `genlib coverage` and MCP `genlib_coverage` report it, and [gaps.md](gaps.md) now summarizes requirement coverage, with lexical routing as a separate column. The known false positives (account deletion, Stripe checkout, API keys, multi-tenant isolation) now show as partial or none.
+2. **One complete registry path (phase 2).** `genlib registry plan|add` resolves a shadcn-format item and its dependencies over https and records SHA-256s. It maps files to the app's aliases, rewrites registry imports, and detects conflicts and undeclared imports before writing. It records ownership in `.genlib/providers-lock.json` and writes receipts, and `adopted`, `registry verify` and `registry remove` work on the result. Tested offline with fixtures and run against ui.shadcn.com (`login-01` with six dependencies).
+
+### Measured: what the correction changed
+
+The routing-based gap report said 56 of 65 common tasks were covered by Genlib code. Counted per requirement, with a named repository test required for each one:
+
+| Coverage | Tasks |
+| --- | ---: |
+| Full: every requirement fixture-verified | 11 |
+| Partial | 41 |
+| Unverified: only install, plan or catalog claims | 9 |
+| None | 4 |
+
+Across all 65 contracts, 237 of 448 requirements (52.9%) are fixture-verified. Integration packs whose tests run only inside their own package (durable-jobs, commerce-storefront) count as `install-supported` until a repository test exercises the requirement, which is why background jobs and cron score low. The partial list in [gaps.md](gaps.md) is the work queue.
+
+### License and runtime boundaries
+
+These are the owner's findings. They are recorded as exclusions until each one is re-checked at the pinned commit:
+
+- Anthropic's document skills, and the PDF skill material bundled in Agent Codemode, carry restrictive terms. Do not import them as source.
+- AREX-Skill: each skill's own license governs.
+- Context7's crawler and API backend are private, and Magic MCP forwards to hosted 21st MCP. Both are service connections, not source.
+- Convex components run only in Convex's component runtime.
+- APM, Skills, Agentry and PRPM overlap on agent configuration, and shadcn, jsrepo, Copier and Mason overlap on generated files. Each managed file or block needs one owner, so adapters record ownership rather than letting tools overwrite each other.
+
+### Next, in order
+
+3. A substantial feature provider: BTST Kanban on Next.js App Router with a transactional adapter, accepted against named behaviors. The profile, prerequisite checks and staged adoption now exist ([providers.md](providers.md)). Fixture runs on 2026-10-11 found five profile corrections and two Genlib bugs, all fixed, then passed end to end on PostgreSQL through the stock Drizzle adapter (the stock Kysely adapter drops joined columns): all seven `kanban-board` requirements were recorded as application-verified in the fixture app, and the profile is `install-supported`. The research is in [providers/btst-kanban.md](providers/btst-kanban.md).
+4. Shared evidence and maintenance across modules, integration packs and provider artifacts. Registry items already have receipts, drift checks, removal and a three-way `registry update`; integration packs and external packages do not yet.
+5. More adapters (jsrepo, Mason, skill managers, starters, Convex profiles), each with a tested profile.
+6. Optional content-production workers (CodeDistiller, SkillFoundry, AREX-style), whose candidates count only after review and acceptance evidence.
+
+Success is measured at accepted completion against the same agent using upstream tools directly: accepted tasks, repair effort, time, model and tool cost, and effort after an update. That comparison is still the open item below.
+
 ## Still open
 
-- Running the comparison protocol in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run). Until then, Genlib's advantage over an agent that already has Context7, a source registry and a good workflow is unmeasured.
+- Extending the comparison protocol in [benchmarks.md](benchmarks.md#round-5-the-same-runs-after-the-round-4-fixes-2026-10-11) to larger features, other models and harder acceptance criteria. Round 4 measured Genlib arms 27–36% more expensive on application features, and round 5, after the fixes, 31–33%. For application features with a precise specification, the measured answer is that Genlib adds cost for an agent that already has Context7, a source registry and a good workflow; untested are larger features, weaker models and acceptance criteria that plain agents miss.
 - Building feature packages for the external-only tasks in [gaps.md](gaps.md).
 - Semantic API diffs between module versions (Bit's `bit api diff`). The changelog records breaking changes by hand today.

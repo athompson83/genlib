@@ -1,5 +1,5 @@
 {
- "about": "Task phrasings mapped to the capability that should rank first for a Python project. 'tuning' was written alongside the capability terms; 'heldout' was written by a separate agent that saw only capability titles, before ranking changes, and was scored only in aggregate. Used by tests/routing.test.mjs and scripts/routing-eval.mjs. The held-out misses were printed once on 2026-10-10 after wave 9; ranking changes made after that need a fresh held-out set to be measured honestly.",
+ "about": "Task phrasings mapped to the capability that should rank first for a Python project. 'tuning' was written alongside the capability terms; 'heldout' was written by a separate agent that saw only capability titles, before ranking changes, and was scored only in aggregate. Used by tests/routing.test.mjs and scripts/routing-eval.mjs. The held-out misses were printed once on 2026-10-10 after wave 9; ranking changes made after that need a fresh held-out set to be measured honestly. 'skip' lists tasks where reuse cannot help (small edits to existing code, app-specific changes): quick should answer no-match. It was written with the skip rule, so it is a tuning set, not held out.",
  "tuning": [
   [
    "two-factor authentication codes for login",
@@ -1156,7 +1156,7 @@
    "slugify"
   ],
   [
-   "convert 'Café Menu & Prices!' to cafe-menu-prices",
+   "convert 'Caf\u00e9 Menu & Prices!' to cafe-menu-prices",
    "slugify"
   ],
   [
@@ -1179,5 +1179,27 @@
    "PATCH endpoint that accepts JSON Pointer operations with test op",
    "json-patch"
   ]
+ ],
+ "skip": [
+  "rename the submit button label to Save",
+  "change the users table to sort by last name",
+  "fix the typo in the welcome email subject",
+  "add a description field to the project model",
+  "move the logout link into the user menu",
+  "increase the page size from 20 to 50",
+  "update the copyright year in the footer",
+  "add a phone number column to the customers list",
+  "change the primary button color to green",
+  "remove the unused legacy export endpoint",
+  "rename the variable userCount to activeUsers",
+  "show the author's name on each note",
+  "return 404 instead of 500 when a project is missing",
+  "make the sidebar collapsed by default",
+  "hide the beta badge for enterprise customers",
+  "reorder the settings tabs so billing comes first",
+  "change the default currency on the pricing page to euros",
+  "add a tooltip to the archive icon",
+  "log the order id when checkout fails",
+  "bump the session timeout from 30 to 60 minutes"
  ]
 }

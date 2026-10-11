@@ -51,6 +51,11 @@ flowchart TB
   INST["lib/install.mjs<br/>plan · add · verify"]
   APP["Target app<br/>src/genlib/ · .genlib/lock.json<br/>.genlib/receipts/"]
   LIFE["lib/lifecycle.mjs<br/>adopted · update · remove<br/>+ schemas/*.schema.json"]
+  CONTRACTS["resources/feature-contracts/*.json<br/>requirements + evidence"]
+  COV["lib/coverage.mjs<br/>coverage · gap report"]
+  REGIN["lib/registry-adapter.mjs<br/>registry plan · add · verify"]
+  EXTREG["shadcn-format registries<br/>(https, pinned SHA-256)"]
+  PROV["resources/providers/*.json<br/>lib/providers.mjs<br/>check · staged adopt"]
   NET["Git hosts · npm<br/>PyPI · crates.io"]
   DOCS["scripts/sync-docs.mjs<br/>README and resource counts"]
   DIAG["scripts/diagrams.mjs<br/>Agentic Mermaid SVGs"]
@@ -92,6 +97,14 @@ flowchart TB
   CLI -- "copies reviewed bytes" --> APP
   INST --> LIFE --> CLI
   LIFE -- "receipts · 3-way merge · rollback" --> APP
+  CONTRACTS --> COV --> CLI
+  COV --> MCPS
+  APP -. "acceptance in receipts" .-> COV
+  EXTREG -. "fetch" .-> REGIN --> CLI
+  REGIN -- "providers-lock · receipts" --> APP
+  PROV --> DISC
+  PROV --> CLI
+  PROV -- "prerequisite checks · new files only" --> APP
   SKLIB -. "npx skills add (pinned)" .-> APP
   IDXLIB -. "mcp add · brew · SDK" .-> APP
   RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
@@ -123,9 +136,10 @@ Every arrow into the target app goes through `plan`/`add` (modules), `integratio
 3. `npm run integrations:build` creates `registry/integrations.json` from pack manifests, contracts and source. Binding checks require canonical external resource IDs and resolvable Genlib module and pack references.
 4. Agents run `quick` (best match and its commands) or `find` (compact list; `--json` for full records), read `outline` signatures instead of source, inspect one module or integration contract, and select a compatible feature. Discovery applies the lifecycle and license policy (retired records hidden unless `--include-retired`; `--license-policy permissive`). `find` ranks capabilities, modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
 5. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
-6. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`; `integration add` copies a pack to `genlib/integrations/<id>` and records it in `.genlib/integrations-lock.json`. License notices accompany the copy. It never runs module hooks or package managers.
+6. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`; `integration add` copies a pack to `genlib/integrations/<id>` and records it in `.genlib/integrations-lock.json`. License notices accompany the copy. It never runs module hooks or package managers. The language-example and recipe installers record their copies in the same lock (`kind: language|recipe`) through `planCopy`/`installCopy`, so an identical shared file is reused and owned by every capability that needs it, while edited or untracked files still conflict.
 7. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.
 8. `add` also writes `.genlib/receipts/<id>.json`. `adopted <id>` marks it used when application code imports the installed files and verified when the app's own test command passes; `update <id>` three-way merges a newer version into local edits using the locked commit as the base (dry run unless `--write`); `remove <id>` rolls back unedited files. These live in `lib/lifecycle.mjs`, and their JSON shapes are in `schemas/`.
+9. `coverage <task>` reads `resources/feature-contracts/` and reports each requirement of a feature at its best evidence status, from `cataloged` to `fixture-verified` (a named repository test, checked by `npm run contracts:check`) and `application-verified` (acceptance recorded in the app's receipt by `adopted --accepts`). `registry plan|add` adopts shadcn-format registry items into the app with the same plan, conflict, lock and receipt rules, recorded in `.genlib/providers-lock.json`. `provider check|adopt` does the same for an upstream feature profile: offline prerequisite checks, then adoption of a scaffolder's output from a scratch copy, new files only ([providers.md](providers.md)).
 
 The core CLI uses Node.js built-ins and works from a trusted local clone without installing npm packages. Each optional integration and the MCP server has isolated pinned dependencies. They do not become core runtime dependencies.
 

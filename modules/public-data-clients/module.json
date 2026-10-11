@@ -185,6 +185,11 @@
     "HTTP metadata does not establish freshness once cached by the receiving application; revalidate according to provider headers and terms.",
     "Only injected mock-transport fixtures are exercised here. Live provider uptime, credentials, quotas, legal suitability and deployment acceptance remain application checks."
   ],
+  "decisions": [
+    "results are {notModified, data, meta}; a 304 gives data: null and caching is the app's job",
+    "retries off by default (max 2, only 429/502/503/504); 15 s total timeout; 1 MiB response cap",
+    "a provider 404 is a PublicDataError, not an empty record; redirects are refused"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [

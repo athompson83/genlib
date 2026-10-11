@@ -12,7 +12,8 @@
 export class NdjsonError extends SyntaxError {
   override name = "NdjsonError";
   /** Creates the error; `line` is the 1-based input line, when known. */
-  constructor(message: string, readonly line: number | null = null) { super(message); }
+  readonly line: number | null;
+  constructor(message: string, line: number | null = null) { super(message); this.line = line; }
 }
 
 export type JsonValue = null | boolean | number | string | JsonValue[] | { [key: string]: JsonValue } | Map<string, JsonValue>;

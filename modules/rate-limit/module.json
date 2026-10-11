@@ -54,6 +54,12 @@
     "Key derivation, authentication, and abuse/bot detection are out of scope. Rate limiting is not a DDoS defense on its own.",
     "Tests use an injected clock and the memory store only."
   ],
+  "decisions": [
+    "429 body {\"error\":\"rate_limited\"} with RateLimit-Limit/Remaining/Reset and Retry-After headers",
+    "memory store is a single-process LRU (10,000 keys); use a shared store across instances",
+    "denied requests consume nothing; fixed window can pass 2x limit across a boundary",
+    "store errors reject consume(); each route chooses fail open or closed"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/rate-limit.test.mjs"]

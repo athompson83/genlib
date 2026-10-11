@@ -1,0 +1,47 @@
+{
+  "id": "saml-sso",
+  "title": "Single sign-on with SAML",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "single sign-on with SAML"
+  ],
+  "requirements": [
+    {
+      "id": "authn-request",
+      "text": "The service provider builds an AuthnRequest, redirects to the IdP and stores the request id server-side"
+    },
+    {
+      "id": "signature",
+      "text": "The response or assertion signature is verified with the IdP certificate pinned from metadata (SHA-256 or stronger), never a certificate from the message"
+    },
+    {
+      "id": "conditions",
+      "text": "Issuer, audience, recipient/destination and NotBefore/NotOnOrAfter are validated with small clock skew"
+    },
+    {
+      "id": "replay",
+      "text": "InResponseTo must match a pending request that is then consumed; unsolicited and replayed assertions are refused"
+    },
+    {
+      "id": "tenant-config",
+      "text": "Each organization configures its own IdP (entity id, certificate, ACS) and only that IdP can sign users into it"
+    },
+    {
+      "id": "account-mapping",
+      "text": "The NameID maps to a user within that organization, with no account takeover by matching an email from another tenant"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:saml-sso",
+      "status": "install-supported",
+      "fulfills": [
+        "authn-request",
+        "signature",
+        "conditions"
+      ],
+      "notes": "Wraps node-saml and peers; behavior tests run only in examples/cookbook per-language suites. The wrapper checks InResponseTo against supplied pending ids; consuming them is the app's work"
+    }
+  ],
+  "notes": "Per-tenant IdP configuration, request-id storage and account mapping are not in Genlib."
+}

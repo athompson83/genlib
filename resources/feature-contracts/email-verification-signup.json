@@ -1,0 +1,188 @@
+{
+  "id": "email-verification-signup",
+  "title": "User signup with email verification",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "user signup with email verification"
+  ],
+  "requirements": [
+    {
+      "id": "validated-email",
+      "text": "The email address is validated and normalized before it is used or compared"
+    },
+    {
+      "id": "unique-account",
+      "text": "Concurrent signups with the same normalized email create exactly one account"
+    },
+    {
+      "id": "password-policy",
+      "text": "The chosen password is checked against a length and blocklist policy (NIST SP 800-63B), not composition rules"
+    },
+    {
+      "id": "password-storage",
+      "text": "The password is stored only as a slow salted hash (Argon2id, bcrypt or scrypt)"
+    },
+    {
+      "id": "verification-token",
+      "text": "The verification link carries a random, expiring, single-use token stored only as a hash"
+    },
+    {
+      "id": "verification-email",
+      "text": "The verification email is delivered through a retried, idempotent send path"
+    },
+    {
+      "id": "verified-gate",
+      "text": "Unverified accounts cannot use gated features until the link is confirmed, and confirming marks the account verified once"
+    },
+    {
+      "id": "resend-limits",
+      "text": "Resending verification is rate limited and invalidates earlier links"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:email-signup",
+      "status": "fixture-verified",
+      "fulfills": [
+        "validated-email",
+        "unique-account",
+        "password-policy",
+        "password-storage",
+        "verification-token",
+        "verified-gate",
+        "resend-limits",
+        "verification-email"
+      ],
+      "evidence": [
+        {
+          "requirement": "validated-email",
+          "test": "tests/email-signup.test.mjs",
+          "name": "validated-email: addresses are validated and normalized before use and comparison"
+        },
+        {
+          "requirement": "unique-account",
+          "test": "tests/email-signup.test.mjs",
+          "name": "unique-account: four concurrent signups with the same normalized email create exactly one account"
+        },
+        {
+          "requirement": "unique-account",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "unique-account on PostgreSQL: four concurrent signups with the same normalized email create exactly one row"
+        },
+        {
+          "requirement": "password-policy",
+          "test": "tests/email-signup.test.mjs",
+          "name": "password-policy: NIST-style default (length in code points, blocklist, no composition rules) and an injected policy"
+        },
+        {
+          "requirement": "password-storage",
+          "test": "tests/email-signup.test.mjs",
+          "name": "password-storage: default scrypt hasher writes a salted PHC string (N>=2^15, r=8, p=1, 16-byte salt) and verifies in constant time"
+        },
+        {
+          "requirement": "verification-token",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verification-token: 256-bit random token in the link, stored only as SHA-256, expiring and single-use"
+        },
+        {
+          "requirement": "verification-token",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "verification-token on PostgreSQL: hash-only storage, expiry, single use; the account is verified once"
+        },
+        {
+          "requirement": "verified-gate",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verified-gate: unverified accounts are refused by requireVerified, assertVerified and the HTTP gate until confirmed"
+        },
+        {
+          "requirement": "verified-gate",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verified-gate: four concurrent confirms of one link verify the account exactly once"
+        },
+        {
+          "requirement": "verified-gate",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "verified-gate on PostgreSQL: four concurrent confirms of one link, exactly one wins"
+        },
+        {
+          "requirement": "resend-limits",
+          "test": "tests/email-signup.test.mjs",
+          "name": "resend-limits: cooldown and per-window cap on an injected clock, and each resend invalidates earlier links"
+        },
+        {
+          "requirement": "resend-limits",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "resend-limits on PostgreSQL: cooldown, window cap, concurrent resends bounded, earlier links revoked"
+        },
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-signup.test.mjs",
+          "name": "verification-email: one idempotency key per token, retried with the same key; final failure revokes the link and is reported"
+        },
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-signup-sql.test.mjs",
+          "name": "verification-email on PostgreSQL: failed delivery revokes the stored token and is reported server-side"
+        }
+      ],
+      "notes": "Send retries are in-process; queue the email through email-outbox for durability. PGlite concurrency tests run on one connection."
+    },
+    {
+      "ref": "capability:email-address",
+      "status": "fixture-verified",
+      "fulfills": [
+        "validated-email"
+      ],
+      "evidence": [
+        {
+          "requirement": "validated-email",
+          "test": "tests/wave5-capabilities.test.mjs",
+          "name": "email-address: WHATWG validity vectors and normalization"
+        }
+      ]
+    },
+    {
+      "ref": "capability:password-policy",
+      "status": "fixture-verified",
+      "fulfills": [
+        "password-policy"
+      ],
+      "evidence": [
+        {
+          "requirement": "password-policy",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "NIST password policy reports failures in order"
+        }
+      ]
+    },
+    {
+      "ref": "capability:password-hashing",
+      "status": "install-supported",
+      "fulfills": [
+        "password-storage"
+      ],
+      "notes": "Wraps argon2/bcryptjs; behavior tests run only in examples/cookbook per-language suites, not in tests/"
+    },
+    {
+      "ref": "module:email-outbox",
+      "status": "fixture-verified",
+      "fulfills": [
+        "verification-email"
+      ],
+      "evidence": [
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "enqueue renders, stores and is idempotent per key"
+        },
+        {
+          "requirement": "verification-email",
+          "test": "tests/email-outbox.test.mjs",
+          "name": "retry classification, full-jitter backoff"
+        }
+      ],
+      "notes": "Delivers the message; building the verification link and token is the app's work"
+    }
+  ],
+  "notes": "module:email-signup covers the whole flow: normalized unique accounts, scrypt storage, hash-only single-use links, a verified gate and limited resends. The app supplies sessions, sign-in and email transport; queue sends through email-outbox for durable retries."
+}

@@ -52,6 +52,10 @@ for (const mode of ['legacy', { pin: '2026-07-28' }]) {
     const catalog = payload(await client.callTool({ name: 'genlib_catalog', arguments: {} }));
     assert.ok(catalog.counts.resource > 4700);
     assert.equal(catalog.access.installEnabled, false);
+    assert.equal(catalog.modules, undefined, 'summary catalog omits the module inventory');
+    const fullCatalog = payload(await client.callTool({ name: 'genlib_catalog', arguments: { detail: 'full' } }));
+    assert.ok(fullCatalog.modules.some(item => item.id === 'webhook-verification') && fullCatalog.integrations.length > 0);
+    assert.deepEqual(fullCatalog.access, catalog.access);
     const result = await client.callTool({ name: 'genlib_search', arguments: { query: 'webhook verification', type: 'module', limit: 2 } });
     assert.notEqual(result.isError, true, JSON.stringify(payload(result)));
     assert.ok(payload(result).results.some(item => item.id === 'webhook-verification'));
@@ -80,6 +84,14 @@ for (const mode of ['legacy', { pin: '2026-07-28' }]) {
     assert.ok(api.sourceBytes > api.outlineBytes);
     assert.match(signatures.content[0].text, /def parse_csv\(/);
     for (const compact of [brief, quick, signatures]) assert.ok(Buffer.byteLength(JSON.stringify(compact)) < LIMITS.responseBytes);
+    const decision = await client.callTool({ name: 'genlib_quick', arguments: { query: 'organization invitations' } });
+    assert.notEqual(decision.isError, true, JSON.stringify(payload(decision)));
+    assert.equal(payload(decision).best, 'module:org-invitations');
+    assert.equal(payload(decision).reuse, 'direct', 'quick carries feature-contract coverage like the core server');
+    assert.ok(payload(decision).api.some(signature => signature.startsWith('createInvitations(')));
+    assert.ok(payload(decision).size.lines > 0 && payload(decision).importFrom);
+    assert.match(decision.content[0].text, /# reuse direct/);
+    assert.match(decision.content[0].text, /# api: createInvitations\(/);
     const missing = payload(await client.callTool({ name: 'genlib_quick', arguments: { query: 'quuxzzqxy', type: 'module' } }));
     assert.equal(missing.status, 'no-match'); assert.equal(missing.best, null); assert.deepEqual(missing.next, []);
     for (const name of ['genlib_quick', 'genlib_find']) {

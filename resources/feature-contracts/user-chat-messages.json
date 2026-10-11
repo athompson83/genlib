@@ -1,0 +1,119 @@
+{
+  "id": "user-chat-messages",
+  "title": "Chat messages between users",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "chat messages between users"
+  ],
+  "requirements": [
+    {
+      "id": "direct-conversations",
+      "text": "Opening a direct conversation with the same user returns one conversation per pair and tenant"
+    },
+    {
+      "id": "membership-authorization",
+      "text": "Only members can read or send; outsiders and other tenants get not-found"
+    },
+    {
+      "id": "idempotent-ordered-send",
+      "text": "Sends are idempotent on a client id and get a gap-free per-conversation sequence under concurrency"
+    },
+    {
+      "id": "history-paging",
+      "text": "History pages backwards and forwards in order without gaps"
+    },
+    {
+      "id": "read-state",
+      "text": "Read positions are monotonic and unread counts skip own and deleted messages"
+    },
+    {
+      "id": "blocking",
+      "text": "A user can block another, preventing direct messages in both directions"
+    },
+    {
+      "id": "realtime-delivery",
+      "text": "New, edited and deleted messages are delivered to online recipients in real time"
+    },
+    {
+      "id": "input-limits",
+      "text": "Message bodies are validated plain text with size limits"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:chat",
+      "status": "fixture-verified",
+      "fulfills": [
+        "direct-conversations",
+        "membership-authorization",
+        "idempotent-ordered-send",
+        "history-paging",
+        "read-state",
+        "blocking",
+        "input-limits"
+      ],
+      "evidence": [
+        {
+          "requirement": "direct-conversations",
+          "test": "tests/chat.test.mjs",
+          "name": "openDirect is idempotent: the same pair gets one conversation"
+        },
+        {
+          "requirement": "direct-conversations",
+          "test": "tests/chat-sql.test.mjs",
+          "name": "SQL: direct conversations are idempotent, including concurrent opens"
+        },
+        {
+          "requirement": "membership-authorization",
+          "test": "tests/chat.test.mjs",
+          "name": "membership: non-members get not-found"
+        },
+        {
+          "requirement": "membership-authorization",
+          "test": "tests/chat.test.mjs",
+          "name": "tenant isolation: outside users cannot use, reach or read another tenant"
+        },
+        {
+          "requirement": "idempotent-ordered-send",
+          "test": "tests/chat.test.mjs",
+          "name": "idempotent on clientId, gap-free seq under concurrency"
+        },
+        {
+          "requirement": "idempotent-ordered-send",
+          "test": "tests/chat-sql.test.mjs",
+          "name": "SQL: 20 concurrent sends get seq 1..20"
+        },
+        {
+          "requirement": "history-paging",
+          "test": "tests/chat.test.mjs",
+          "name": "history pages by beforeSeq and afterSeq in ascending order with hasMore"
+        },
+        {
+          "requirement": "read-state",
+          "test": "tests/chat.test.mjs",
+          "name": "markRead is monotonic and clamped; unread counts skip own and deleted messages"
+        },
+        {
+          "requirement": "blocking",
+          "test": "tests/chat.test.mjs",
+          "name": "blocking prevents direct messages in both directions"
+        },
+        {
+          "requirement": "input-limits",
+          "test": "tests/chat.test.mjs",
+          "name": "send: trimmed plain text, idempotent on clientId"
+        },
+        {
+          "requirement": "input-limits",
+          "test": "tests/chat.test.mjs",
+          "name": "HTTP adapter: origin check, 401, 403, 404, 400, 405 and 413"
+        }
+      ],
+      "notes": "onMessage fan-out hook is tested, but the realtime transport (SSE/WebSocket/pub-sub) is the application's"
+    }
+  ],
+  "notes": "Building block for realtime-delivery: module:chat emits onMessage events with recipientIds; module:presence shows an SSE stream pattern.",
+  "missing": [
+    "realtime-delivery"
+  ]
+}

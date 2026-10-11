@@ -12,7 +12,8 @@ export interface CsvOptions {
 }
 
 export class CsvError extends Error {
-  constructor(message: string, readonly row: number) { super(`${message} (row ${row})`); this.name = "CsvError"; }
+  readonly row: number;
+  constructor(message: string, row: number) { super(`${message} (row ${row})`); this.row = row; this.name = "CsvError"; }
 }
 
 /** Returns rows of fields. Handles "", embedded delimiters/newlines, CRLF/LF/CR and a UTF-8 BOM. */

@@ -21,6 +21,8 @@ after(() => rmSync(out, { recursive: true, force: true }));
 const compilerOptions = {
   strict: true, noUncheckedIndexedAccess: true, exactOptionalPropertyTypes: true, noImplicitReturns: true,
   noFallthroughCasesInSwitch: true, noUnusedLocals: true, noUnusedParameters: true, skipLibCheck: true,
+  // Recipes are copied into apps that may run TypeScript with Node's type stripping: erasable syntax only.
+  erasableSyntaxOnly: true,
   target: 'ES2022', module: 'NodeNext', moduleResolution: 'NodeNext', lib: ['ES2022', 'DOM', 'DOM.Iterable'],
   rootDir: recipeDir, outDir: out,
 };
@@ -49,7 +51,7 @@ test('every recipe file is registered, licensed, focused and installable', () =>
   }
   const plan = spawnSync(process.execPath, ['tools/recipe-install.mjs', 'plan', 'money-minor-units', '--target', out], { cwd: root, encoding: 'utf8' });
   assert.equal(plan.status, 0, plan.stderr);
-  assert.match(JSON.parse(plan.stdout).destination, /genlib\/examples\/recipes\/money\.ts$/);
+  assert.match(JSON.parse(plan.stdout).destination, /genlib\/money\.ts$/);
 });
 
 test('agent-recipes find routes common phrasings to the new recipes', () => {

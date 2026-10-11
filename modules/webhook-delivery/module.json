@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "id": "webhook-delivery",
+  "version": "0.1.0",
+  "title": "Outgoing webhook delivery with retries",
+  "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-lettering and manual replay, an SSRF guard checked at registration and send time, a PostgreSQL store and a Fetch management adapter.",
+  "kind": "feature",
+  "tags": [
+    "webhooks",
+    "send webhooks",
+    "outgoing webhooks",
+    "webhook delivery",
+    "webhook retries",
+    "standard webhooks",
+    "signed deliveries",
+    "secret rotation",
+    "ssrf",
+    "outbox",
+    "multi-tenant",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/webhook-delivery"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Web Crypto (crypto.subtle HMAC, getRandomValues, randomUUID), AbortSignal.timeout, btoa/atob, structuredClone and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno and Next.js route handlers. The resolver must be injected (for example node:dns lookup), so edge runtimes without DNS need their own resolver.",
+      "Framework-neutral core; run runOnce from your own scheduler or worker loop and mount the management adapter on one catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "webhook-delivery/core.ts"
+    },
+    {
+      "source": "files/signing.ts",
+      "target": "webhook-delivery/signing.ts"
+    },
+    {
+      "source": "files/ssrf.ts",
+      "target": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "webhook-delivery/memory-store.ts"
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "webhook-delivery/sql-store.ts"
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "webhook-delivery/schema.sql"
+    },
+    {
+      "source": "files/http.ts",
+      "target": "webhook-delivery/http.ts"
+    }
+  ],
+  "exports": [
+    {
+      "name": "createWebhookDelivery",
+      "from": "webhook-delivery/core.ts"
+    },
+    {
+      "name": "WebhookDeliveryError",
+      "from": "webhook-delivery/core.ts"
+    },
+    {
+      "name": "exponentialJitterBackoff",
+      "from": "webhook-delivery/core.ts"
+    },
+    {
+      "name": "signWebhook",
+      "from": "webhook-delivery/signing.ts"
+    },
+    {
+      "name": "generateWebhookSecret",
+      "from": "webhook-delivery/signing.ts"
+    },
+    {
+      "name": "decodeWebhookSecret",
+      "from": "webhook-delivery/signing.ts"
+    },
+    {
+      "name": "checkWebhookUrl",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "guardWebhookUrl",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "isPublicIp",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "parseIp",
+      "from": "webhook-delivery/ssrf.ts"
+    },
+    {
+      "name": "MemoryWebhookStore",
+      "from": "webhook-delivery/memory-store.ts"
+    },
+    {
+      "name": "createSqlWebhookStore",
+      "from": "webhook-delivery/sql-store.ts"
+    },
+    {
+      "name": "createWebhookEndpointsHandler",
+      "from": "webhook-delivery/http.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlWebhookStore with your query executor; elsewhere implement WebhookDeliveryStore with a unique (endpoint_id, event_id), an atomic leased claim, lease renewal and completion fenced by the lease owner.",
+    "Pass fetch (globalThis.fetch, or a pinning fetch that connects only to context.addresses), resolveHost (for example node:dns/promises lookup with {all: true}) and authorize(actor, tenantId, action) backed by your membership and role checks.",
+    "Call enqueue({tenantId, eventId, type, data}, {tx}) with an executor bound to the transaction that makes the business change; use a stable eventId per business event.",
+    "Run runOnce({workerId}) on a schedule with a unique workerId per process; keep leaseMs at least max(timeoutMs x ceil(limit / concurrency), timeoutMs + 1 s); each attempt renews the lease when it starts.",
+    "Optionally pass a secretBox to encrypt stored secrets with your key management service.",
+    "Mount createWebhookEndpointsHandler under one prefix with authenticate(request) from your session layer and exact allowedOrigins."
+  ],
+  "capabilities": [
+    "outgoing-webhook-delivery",
+    "standard-webhooks-signing",
+    "webhook-secret-rotation",
+    "webhook-retry-with-backoff",
+    "webhook-ssrf-guard",
+    "tenant-scoped-webhook-endpoints"
+  ],
+  "limitations": [
+    "Delivery is at least once: a worker that crashes after the receiver accepted a request sends it again after the lease expires, with the same webhook-id, so receivers must deduplicate.",
+    "The SSRF guard checks the addresses the injected resolver returns; the default global fetch resolves the hostname again, so a DNS rebinding between check and connect is closed only by a fetch that connects to context.addresses (for example an undici Agent with a pinned lookup). Proxies configured in the runtime bypass the address check.",
+    "Secrets are stored in plaintext unless a secretBox is supplied; anyone with table read access can sign webhooks.",
+    "The endpoint-per-tenant limit is checked before insert and is not atomic under concurrent creates.",
+    "Event types match exactly (no wildcards); asymmetric v1a signatures, Retry-After, automatic endpoint disabling after repeated failures and row pruning are not implemented.",
+    "The in-memory store ignores the tx argument and is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, so FOR UPDATE SKIP LOCKED across separate connections is not exercised there.",
+    "Production database correctness, secret custody, receiver behavior and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "Standard Webhooks signing: webhook-id/timestamp/signature, v1 HMAC of id.timestamp.body, whsec_ secrets",
+    "10 attempts, backoff 30 s doubling to 6 h with jitter; 10 s timeout; redirects not followed",
+    "https only; private, loopback and metadata addresses refused at registration and before each send",
+    "routes under {prefix}/{tenant}/endpoints and /deliveries; payload max 256 KiB; rotation grace 24 h"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/webhook-delivery.test.mjs",
+      "tests/webhook-delivery-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/webhook-delivery.test.mjs tests/webhook-delivery-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "signatures use Standard Webhooks headers and verify with the webhook-verification module's verifyStandardWebhook",
+      "after rotation every active secret signs until the previous secret's grace period ends; endpoint views never contain secret values; a secretBox seals stored secrets",
+      "network errors, timeouts and non-2xx responses retry with exponential backoff and jitter from an injected random, then become dead after maxAttempts",
+      "manual replay requeues a dead or succeeded delivery with the same webhook-id and a fresh attempt budget",
+      "enqueue writes one delivery per (event, endpoint), idempotent on the event id and filtered by event type and tenant",
+      "each attempt has its own AbortSignal timeout (the default AbortSignal.timeout aborts with TimeoutError) and a fetch that ignores the signal still releases the worker",
+      "response bodies are read up to maxResponseBytes and the stream is cancelled",
+      "the SSRF guard refuses http, URL credentials, localhost and metadata names, decimal, octal, hex and shortened IPv4 forms and private, loopback, link-local, CGNAT, multicast, ULA, IPv4-mapped and documentation addresses at registration and at send time",
+      "fetch uses redirect manual and a 3xx response is a failed attempt",
+      "endpoint CRUD, secret rotation, delivery reads and replay require authorize(actor, tenantId, action) to return true; other tenants get not-found and never receive deliveries",
+      "a crashed worker's lease is reclaimed after expiry, the stale worker's complete is refused while the new owner's attempt is in flight, and crash loops stop at maxAttempts",
+      "each attempt renews the lease when it starts, so a slow lane never lets another worker resend its last item; an item reclaimed before its turn is skipped",
+      "runOnce honours limit and concurrency and refuses a lease shorter than the batch can take",
+      "HTTP adapter: secret shown only on create and rotate, 401 without a user, 403 for unauthorized actors and bad origins, 404 across tenants, 400 for refused URLs, 409 for non-replayable deliveries",
+      "on PostgreSQL, delivery rows roll back with the caller's transaction and commit with it, and survive a restart",
+      "four concurrent workers over 40 deliveries send each exactly once on PGlite; concurrent rotations never lose a secret"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core delivery engine, Standard Webhooks signing, SSRF guard, in-memory store, PostgreSQL schema and store, and Fetch endpoint-management adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md"
+}

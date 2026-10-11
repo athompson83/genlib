@@ -26,7 +26,7 @@ One command searches everything below and returns each result's exact next step.
 | Source | Count | What it is |
 | --- | ---: | --- |
 | [Capabilities](#capabilities-one-task-every-language) | 91 (814 implementations, 812 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
-| [Modules](#modules) | 23 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
+| [Modules](#modules) | 39 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
 | [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
 | [TypeScript recipes](#recipes-language-examples-and-templates) | 114 | 110 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
 | [Language examples](#recipes-language-examples-and-templates) | 745 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
@@ -34,12 +34,12 @@ One command searches everything below and returns each result's exact next step.
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
 | [Developer tools](#find-code-without-reading-the-whole-repository) | 7 | Repository map, AST graph, task context, Mermaid diagram, dependency health and retrieval evaluation |
-| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1159 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
+| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1160 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 9805 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 692 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 9806 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 728 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -84,6 +84,7 @@ flowchart TB
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Connect["genlib connect<br/>MCP entry + guidance<br/>for the app's agents"]
   Harness["Harness profiles<br/>config · install · doctor"]
   Skill["Portable genlib-use skill"]
   Graph["registry/graph.json<br/>+ Obsidian export"]
@@ -103,6 +104,9 @@ flowchart TB
   Add["add<br/>copy + .genlib/lock.json"]
   Verify["verify hashes"]
   Receipt["receipt · adopted<br/>update · remove"]
+  Coverage["genlib coverage<br/>feature contracts:<br/>requirements + evidence"]
+  RegistryIn["genlib registry<br/>shadcn-format items<br/>plan · add · verify"]
+  Provider["genlib provider<br/>upstream features (BTST):<br/>check · staged adopt"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -121,10 +125,14 @@ flowchart TB
   Shadcn -.-> App
   X -.-> Source -.-> App
   Index -.-> Jev -.-> Find
+  Connect -.-> MCP
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
   Add -.-> Receipt -.-> App
+  Quick -.-> Coverage -.-> App
+  RegistryIn --> Receipt
+  Find --> Provider --> Receipt
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App
@@ -136,12 +144,13 @@ flowchart TB
 
 </details>
 
-- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 400 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib and with Jev selecting the code: when Genlib has the code, agents write 75–94% fewer tokens and the task-dependent cost falls 5–27% (three rounds); when a requirement is one Genlib cannot meet (byte-identical GNU diff) copying costs more, and capability caveats now let a model decline before copying. `node scripts/routing-eval.mjs` measures how often one `quick` call lands on the right capability: 81% top-1 and 88% top-3 on 166 held-out task phrasings (61% and 75% before the stemming, term and prior changes measured in [docs/benchmarks.md](docs/benchmarks.md)).
+- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 400 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib. On algorithm-sized tasks with an exact standard, agents that reused Genlib's code wrote 75–94% fewer tokens and cost 5–16% less (rounds 1–3). On ordinary application features with a precise spec, Genlib arms cost 27–36% more (rounds 4–5), mostly extra decision turns, so the guidance now says to skip Genlib there and `quick` decides in one call. Every change to what agents read must pass that economic check (AGENTS.md). `node scripts/routing-eval.mjs` measures how often one `quick` call lands on the right capability: 81% top-1 and 88% top-3 on 166 held-out task phrasings (61% and 75% before the stemming, term and prior changes measured in [docs/benchmarks.md](docs/benchmarks.md)).
 - **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
 - **Verify in the app.** File hashes prove what was copied; the receiving app's own build and tests prove it works.
-- **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match ([docs/gaps.md](docs/gaps.md) lists the common tasks still served only by external projects).
+- **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match.
+- **Count requirements, not search hits.** `genlib coverage <task>` reports, per requirement of a feature, whether a named repository test exercises it, and what the app still has to build. [docs/gaps.md](docs/gaps.md) summarizes 65 common tasks; the app records its own acceptance with `adopted --accepts`.
 
 ## Quick start
 
@@ -169,7 +178,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | Command | Purpose |
 | --- | --- |
 | `harness list\|config\|install\|doctor` | Generate native client configuration, install the portable skill and verify real local MCP calls; [all profiles](docs/harnesses.md) |
-| `quick <words> [--target app] [--language go]` | The best match and only its install or copy commands, plus up to 3 alternative refs (cheapest call) |
+| `quick <words> [--target app] [--language go]` | One-call reuse decision: the best match and its install or copy commands, then `# reuse direct\|partial` (requirements its tests verify, what the app must add), `# fixed` (routes, status codes and storage a task may contradict), `# size` and destination, `# api` with the import path, `# needs` (hooks the app supplies) and `# then` (verify step); `# skip` for a small edit to existing code (cheapest call) |
 | `find <words> [--target app] [--language …] [--type …] [--project …] [--license-policy permissive] [--include-retired]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON. Retired records are hidden unless asked for |
 | `integration list\|inspect\|plan\|add\|verify` | Integration packs: inspect the contract, plan without writes, copy to `genlib/integrations/<id>` with an integrity lock, verify |
 | `source <id> [--path dir]` | Pinned, minimal fetch of an external project's original source (sparse checkout of one folder, or one raw file), its license, and Genlib code that already covers the need |
@@ -183,9 +192,13 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
 | `plan <id> --target app` / `add <id> --target app` | Show, then perform, the exact file copy (default `src/genlib`, or `--out`) |
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
-| `adopted <id> --target app [--test]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command |
+| `adopted <id> --target app [--test cmd] [--accepts contract#req,...]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command; `--accepts` records which feature requirements that command exercised |
 | `update <id> --target app [--write] [--conflict rej\|inline]` | Three-way merge of a newer module version into locally edited files (base from the locked commit); dry run unless `--write`, conflicts reported per file |
 | `remove <id> --target app [--dry-run]` | Roll back an install: deletes unedited files, keeps edited ones, refuses while a dependent module is installed |
+| `connect --target app [--agent claude,cursor,vscode,opencode,codex\|all] [--all-tools] [--write] [--remove]` | Wires Genlib into the app's coding agents: a `genlib` MCP entry (only `genlib_quick` and `genlib_outline` unless `--all-tools`, since every registered tool schema is resent each turn) in each project config (`.mcp.json`, `.cursor/mcp.json`, `.vscode/mcp.json`, `opencode.json`) and a short when-to-use / when-not guidance block in `CLAUDE.md`, `AGENTS.md`, `.cursor/rules` or Copilot instructions. App files only, dry run unless `--write`, conflicts never overwritten, `--remove` deletes only what Genlib wrote; Codex gets the exact `codex mcp add` command ([agent-access.md](docs/agent-access.md#connect-an-apps-agents)) |
+| `provider check\|inspect\|plan\|adopt <id> [--target app] [--from scratch --baseline pristine]` | Upstream feature profiles (BTST Kanban): check the app's prerequisites, get the pinned steps, then adopt the scaffolder's output from a scratch copy without overwriting anything and run the shipped acceptance ([providers.md](docs/providers.md)) |
+| `coverage <task words>` / `coverage --list` `[--target app]` | Which requirements of an app feature Genlib code fulfills (`test`, `install`, `plan`, `catalog` or `app` per requirement) and what is left to build; see [coverage.md](docs/coverage.md) |
+| `registry plan\|add shadcn:<name>\|<https URL> --target app [--sha256 hex]` / `registry verify\|update\|remove` | Adopt a shadcn-format registry item and its dependencies with alias mapping, conflict checks, a lock, receipts and drift checks; `update` three-way merges the registry's new version onto local edits; fetches over https ([distribution.md](docs/distribution.md#adopting-shadcn-format-items-into-an-app-genlib-registry)) |
 | `schema [quick\|steps\|plan\|receipt\|update]` | JSON Schemas for the agent-facing `--json` outputs |
 | `integration list` / `integration inspect <id>` | Discover a complete optional integration profile and read its contract |
 | `integration plan\|add <id> --target app` | Plan/copy a pack, defaulting to `genlib/integrations/<id>` |
@@ -329,12 +342,28 @@ All modules are original Apache-2.0 code with a contract and behavior tests (ver
 | [`csv-import`](modules/csv-import/CONTRACT.md) | CSV import flow: delimiter detection, column-mapping suggestions, typed row validation, idempotent commit with per-row errors, formula-safe error export, Fetch adapter | Its fields, the row writer, a store, upload limits |
 | [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership; a PostgreSQL schema and SQL store are included and tested under PGlite), authorization and role ceilings, sign-in, email delivery |
 | [`comments`](modules/comments/CONTRACT.md) | Threaded comments on any resource: replies to a depth limit, @mentions, edit window, soft delete that keeps replies, reactions, flags that hide at a threshold, moderation, cursor paging, PostgreSQL schema and SQL store, Fetch adapter | Authorization per resource, sign-in, rate limits, notifications for mentions, rendering |
+| [`site-search`](modules/site-search/CONTRACT.md) | Full-text search with declared filters and facets: safe query parser (words, phrases, exclusions, prefix), in-memory BM25 or PostgreSQL tsvector store, escaped highlights, keyset paging | Which records to index and who may see them |
+| [`email-outbox`](modules/email-outbox/CONTRACT.md) | Transactional email: idempotent enqueue, header-injection and suppression checks, leased dispatch with backoff and dead letters, Resend and Postmark transports, bounce events, SKIP LOCKED SQL claim | Templates, provider credentials, the webhook secret |
+| [`web-push`](modules/web-push/CONTRACT.md) | Web Push with Web Crypto only: RFC 8291 encryption (matches the RFC example byte for byte), VAPID, subscriptions removed on 404/410, service worker snippet | VAPID keys, notification content, live push-service acceptance |
+| [`bot-protection`](modules/bot-protection/CONTRACT.md) | Turnstile, hCaptcha and reCAPTCHA verification (fail-closed), a stateless proof-of-work challenge with replay protection, a signed honeypot timer, a `protect()` wrapper | Provider keys, the widget UI, rate limits |
+| [`chat`](modules/chat/CONTRACT.md) | Direct and group conversations: idempotent sends, gap-free ordering under concurrency, edit window, soft delete, read markers, unread counts, blocking, PostgreSQL store | Real-time delivery (SSE or WebSocket), attachments, retention |
+| [`qr-code`](modules/qr-code/CONTRACT.md) | QR code generation (ISO/IEC 18004, all versions and levels) to SVG or terminal text; matrices match an independent encoder byte for byte | The visible link or text next to the code |
 | [`rbac`](modules/rbac/CONTRACT.md) | Role-based access control: roles with inheritance, wildcard and deny permissions, tenant-wide or per-resource assignments with expiry, fail-closed checks, anti-escalation, last-owner protection, PostgreSQL store, `requirePermission` wrapper | Its role table, sign-in, the first owner of each tenant |
 | [`password-reset`](modules/password-reset/CONTRACT.md) | Forgot-password flow: identical responses for unknown accounts, hash-only one-time tokens bound to the account email, single use, revoke other links and sessions, PostgreSQL store, no-referrer Fetch adapter | Its user lookup, password hashing and policy, email delivery, rate limits |
 | [`short-links`](modules/short-links/CONTRACT.md) | URL shortener: validated destinations, unbiased random codes, custom slugs, expiry and click limits enforced atomically, click stats, PostgreSQL store, redirect and management handlers | Its short domain, authorization, abuse and bot filtering |
 | [`presence`](modules/presence/CONTRACT.md) | Who is online: multi-tab grouping, TTL expiry, small JSON state (cursors, typing), ordered join/update/leave events, SSE adapter | A shared store and pub/sub when it runs on several instances |
+| [`soft-delete`](modules/soft-delete/CONTRACT.md) | Soft delete and restore for the app's own tables: delete batches that cascade to declared children, live views and partial unique indexes, restore that reports unique conflicts, retention, idempotent purge, PostgreSQL store, trash handler | Which tables and relations, reads through the live view, legal erasure |
+| [`api-keys`](modules/api-keys/CONTRACT.md) | API keys: CSPRNG keys with a non-secret prefix, shown once, HMAC-SHA-256 at rest, constant-time verify, tenant scopes no wider than the creator's, revoke and expiry on the next request, throttled last-used, audit events without secrets, PostgreSQL store | The pepper, management routes, rate limits |
+| [`account-deletion`](modules/account-deletion/CONTRACT.md) | Account deletion with a grace period: re-authenticated request, account disabled meanwhile, cancel, sessions revoked, a declared delete/anonymize/retain policy run once by leased workers that resume after a crash, PostgreSQL store, Fetch handler | Its data handlers (idempotent), session revocation, backups and processors |
+| [`tenant-isolation`](modules/tenant-isolation/CONTRACT.md) | Multi-tenant isolation: tenant resolved from the session (a client value only selects), transaction-local tenant setting, forced row-level security with an app role, scoped repository, and a cross-tenant test kit for the app's own tables | PostgreSQL roles and pooling, joins and raw SQL |
+| [`audit-log`](modules/audit-log/CONTRACT.md) | Audit log: entries written in the caller's transaction, per-tenant hash chain with tamper detection, append-only triggers, redaction before hashing, admin-only tenant queries, CSV and NDJSON export, retention purge that keeps the chain verifiable | Which actions it records, an HMAC key or external checkpoints, database role grants |
+| [`email-signup`](modules/email-signup/CONTRACT.md) | Signup with email verification: normalized addresses, one account per email under concurrency, NIST-style password policy, scrypt hashes (Node.js), hash-only single-use expiring links, a verified gate, rate-limited resends that revoke older links, enumeration-safe responses, PostgreSQL store | Sign-in and sessions, email transport (queue it through `email-outbox`) |
+| [`two-factor`](modules/two-factor/CONTRACT.md) | TOTP two-factor login: 160-bit secrets and otpauth URIs, enrollment that takes effect only after a valid code, RFC 6238 checks with replay protection, per-account lockout, AES-GCM encrypted secrets with key rotation, peppered one-time recovery codes, step-up for disable and regenerate, PostgreSQL store | Sign-in and sessions, QR rendering (`qr-code`), the encryption key and pepper |
+| [`file-uploads`](modules/file-uploads/CONTRACT.md) | File uploads: size limits enforced while streaming, type detection from bytes against an allowlist and the extension, safe names and random keys, a browser preflight, atomic per-tenant quotas, quarantine until scanned, attachment serving with nosniff and a sandbox CSP, PostgreSQL store | Object storage behind `BlobStore`, the antivirus scanner |
+| [`webhook-delivery`](modules/webhook-delivery/CONTRACT.md) | Outgoing webhooks: Standard Webhooks signatures with secret rotation, enqueue in the caller's transaction, leased workers with backoff, dead letters and replay, per-attempt timeouts, stable event ids, an SSRF guard checked at registration and before every send, tenant-scoped endpoints, PostgreSQL store | A fetch that pins resolved addresses, authorization rules |
+| [`scheduled-tasks`](modules/scheduled-tasks/CONTRACT.md) | Cron jobs for several instances: 5-field cron in any IANA zone across DST, one run per occurrence, skip/queue/allow overlap with leases and heartbeats, catch-up policies, retries and failure hooks, PostgreSQL store | Calling `tick()` from its own timer or platform cron, idempotent handlers |
 
-The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The server utilities and feature packages use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
+The React modules need the app's existing React 18 or 19 and a TSX build; all module TypeScript is erasable syntax, and `add --ts-imports` makes copied relative imports end in `.ts` for apps that run TypeScript without a build (Node type stripping); `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The server utilities and feature packages use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
 
 ## Integration packs
 
@@ -372,7 +401,7 @@ After Genlib picks an external package, `tools/resources.mjs inspect <id>` retur
 
 ## Recipes, language examples and templates
 
-- **TypeScript recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. Recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs), and the storefront and utility sources in [`tests/source-examples.test.mjs`](tests/source-examples.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
+- **TypeScript recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. Recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs), and the storefront and utility sources in [`tests/source-examples.test.mjs`](tests/source-examples.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`; it lands as `genlib/<file>.ts`, or in the folder `--into <dir>` names.
 - **Language examples** ([`examples/languages`](examples/languages/README.md) and [`examples/cookbook`](examples/cookbook)): pagination, identifier validation, config, HTTP client, safe logging and the [capabilities](#capabilities-one-task-every-language) across eight languages, installed with `node tools/language-modules.mjs`.
 - **Templates** ([`templates/index.json`](templates/index.json)), all opt-in and merged by hand:
 
@@ -422,14 +451,14 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
 | [`catalog/open-source-tools-2.json`](resources/catalog/open-source-tools-2.json) | 343 | [open-source-tools.md](docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
-| [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 900 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
+| [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 901 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
 | [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/scheduling-calendar.json`](resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 795 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **9805** | | |
+| **Total** | **9806** | | |
 <!-- genlib:catalog:end -->
 
 `verified` and `partial` describe upstream source review, independently of lifecycle and integration readiness. Network verification checks repositories, links and available package license declarations; blocked pages and unsupported ecosystem checks remain unresolved review items. The selected integration packs have their own runtime/fixture evidence. Retired services are hidden by default and can be included for migration lookup with `--include-retired`. Copyleft, source-available and commercial feature boundaries stay explicit. See the [resource index](docs/resources/README.md), [expansion review](docs/resources/integration-expansion.md) and [dependency health workflow](docs/catalog-health.md).
@@ -468,7 +497,7 @@ Every path is sized for an agent's context. Measured on this checkout ([docs/tok
 
 - `quick` returns the best match and its commands in about 200 bytes, 5 to 25 times less than the full JSON records.
 - `outline` returns signatures and one-line docs at 3 to 8 times less than reading the source.
-- The `genlib-use` skill is under 5 KB, and the MCP tool list under 4.5 KB.
+- The `genlib-use` skill is under 5 KB, and the MCP tool list under 4.5 KB; the lean pair `genlib connect` registers (`quick`, `outline`) lists in about 1 KB, which matters because tool schemas are resent every turn.
 
 `tests/token-budget.test.mjs` fails when a compact path grows past its budget. [llms.txt](llms.txt) gives agents that land on the repository the cheapest path in a few lines.
 

@@ -1,0 +1,116 @@
+{
+  "id": "api-key-management",
+  "title": "API key management with hashing",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "api key management with hashing"
+  ],
+  "requirements": [
+    {
+      "id": "generate",
+      "text": "Keys are generated from a CSPRNG with enough entropy and an identifiable, non-secret prefix"
+    },
+    {
+      "id": "show-once-hash-at-rest",
+      "text": "The full key is shown once at creation; only a hash (or HMAC) of it is stored"
+    },
+    {
+      "id": "verify-constant-time",
+      "text": "Requests are authenticated by looking up the prefix and comparing the hash in constant time"
+    },
+    {
+      "id": "scoped-tenant",
+      "text": "Each key belongs to one tenant and carries scopes; a request is limited to them"
+    },
+    {
+      "id": "revoke-expire",
+      "text": "Revoked or expired keys are rejected immediately on the next request"
+    },
+    {
+      "id": "managed-by-authorized",
+      "text": "Only authorized members can create, list or revoke keys, and cannot mint a key with more access than they hold"
+    },
+    {
+      "id": "audit-last-used",
+      "text": "Creation, revocation and last-used time are recorded without logging the secret"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:api-keys",
+      "status": "fixture-verified",
+      "fulfills": [
+        "generate",
+        "show-once-hash-at-rest",
+        "verify-constant-time",
+        "scoped-tenant",
+        "revoke-expire",
+        "managed-by-authorized",
+        "audit-last-used"
+      ],
+      "evidence": [
+        {
+          "requirement": "generate",
+          "test": "tests/api-keys.test.mjs",
+          "name": "generate: CSPRNG keys with an identifiable non-secret prefix"
+        },
+        {
+          "requirement": "generate",
+          "test": "tests/api-keys.test.mjs",
+          "name": "rejection sampling: bytes at or above 248 are discarded"
+        },
+        {
+          "requirement": "show-once-hash-at-rest",
+          "test": "tests/api-keys.test.mjs",
+          "name": "show once, hash at rest: only the HMAC-SHA-256 under the pepper is stored"
+        },
+        {
+          "requirement": "show-once-hash-at-rest",
+          "test": "tests/api-keys-sql.test.mjs",
+          "name": "the row holds only the HMAC of the key, never the key"
+        },
+        {
+          "requirement": "verify-constant-time",
+          "test": "tests/api-keys.test.mjs",
+          "name": "verify: looks up by the lookup id and compares digests in constant time"
+        },
+        {
+          "requirement": "scoped-tenant",
+          "test": "tests/api-keys.test.mjs",
+          "name": "scoped tenant: a key authenticates as its one tenant and is limited to its scopes"
+        },
+        {
+          "requirement": "scoped-tenant",
+          "test": "tests/api-keys.test.mjs",
+          "name": "authenticateRequest: Bearer header, 401 and 403 mapping"
+        },
+        {
+          "requirement": "revoke-expire",
+          "test": "tests/api-keys.test.mjs",
+          "name": "revoke and expire: rejected on the very next request"
+        },
+        {
+          "requirement": "revoke-expire",
+          "test": "tests/api-keys-sql.test.mjs",
+          "name": "a revoke on PostgreSQL takes effect on the next verify"
+        },
+        {
+          "requirement": "managed-by-authorized",
+          "test": "tests/api-keys.test.mjs",
+          "name": "managed by authorized members, who cannot mint more access than they hold"
+        },
+        {
+          "requirement": "audit-last-used",
+          "test": "tests/api-keys.test.mjs",
+          "name": "audit and last used: events carry ids and prefixes only"
+        },
+        {
+          "requirement": "audit-last-used",
+          "test": "tests/api-keys-sql.test.mjs",
+          "name": "last-used writes on PostgreSQL are throttled to one per interval"
+        }
+      ]
+    }
+  ],
+  "notes": "module:api-keys covers every requirement in fixture tests (memory store and PostgreSQL via PGlite): HMAC-SHA-256 under a server pepper at rest, constant-time digest comparison with equal HMAC work for unknown lookup ids, and secret-free audit events. Not covered: pepper rotation, wildcard scopes, rate limiting and equalized database lookup timing. Related building blocks: capability:recovery-codes, module:webhook-verification, module:rbac."
+}

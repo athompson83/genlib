@@ -71,11 +71,11 @@ See the [official Codex MCP documentation](https://developers.openai.com/codex/m
 
 | Tool | Result and access |
 |---|---|
-| `genlib_quick` | One selected match, caveats and exact next commands; compact text plus structured metadata |
+| `genlib_quick` | The same one-call reuse decision as the dependency-free server: one selected match, exact next commands, `reuse` (feature-contract coverage), fixed routes/codes, size, `api` with import path, hooks and caveats; compact text plus structured metadata |
 | `genlib_find` | Compact ranked alternatives by default; `detail: "full"` returns the full search result |
 | `genlib_outline` | Public signatures and short documentation for one catalog-resolved reference; no arbitrary file paths |
 | `genlib_search` | Ranked metadata across every source type, with optional source type, license policy, retired-resource override and project fit |
-| `genlib_catalog` | Counts, compact module/pack lists and this server's enabled access |
+| `genlib_catalog` | Counts and this server's enabled access; `detail: "full"` adds compact module/pack lists |
 | `genlib_inspect` | One selected contract, resource record, capability or index entry |
 | `genlib_read_file` | A page of a manifest-declared module/pack file or a search-indexed documentation section |
 | `genlib_jev` | Bounded independent yes/no questions and candidate metadata; no model or provider call |

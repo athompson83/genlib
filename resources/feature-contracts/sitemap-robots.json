@@ -1,0 +1,64 @@
+{
+  "id": "sitemap-robots",
+  "title": "sitemap.xml and robots.txt",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "sitemap and robots.txt"
+  ],
+  "requirements": [
+    {
+      "id": "sitemap-xml",
+      "text": "sitemap.xml lists absolute, XML-escaped URLs with validated lastmod, changefreq and priority"
+    },
+    {
+      "id": "sitemap-index",
+      "text": "Sites beyond 50,000 URLs (or 50 MB) are split into several sitemaps under a sitemap index"
+    },
+    {
+      "id": "robots-rules",
+      "text": "robots.txt has per-user-agent allow/disallow rules and references the sitemap by absolute URL"
+    },
+    {
+      "id": "robots-injection",
+      "text": "Rule values containing newlines or invalid paths are refused, so directives cannot be injected"
+    },
+    {
+      "id": "public-only",
+      "text": "Only public, canonical, indexable pages are listed; private, tenant-only and noindex pages are excluded"
+    },
+    {
+      "id": "served-correctly",
+      "text": "Both files are served at the site root with the right content type, and non-production environments disallow crawling"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:seo-files",
+      "status": "fixture-verified",
+      "fulfills": [
+        "sitemap-xml",
+        "robots-rules",
+        "robots-injection"
+      ],
+      "evidence": [
+        {
+          "requirement": "sitemap-xml",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "seo-files: sitemap.xml vector, escaping and validation"
+        },
+        {
+          "requirement": "robots-rules",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "seo-files: robots.txt vectors, AI crawler groups and validation"
+        },
+        {
+          "requirement": "robots-injection",
+          "test": "tests/marketing-capabilities.test.mjs",
+          "name": "seo-files: robots.txt vectors, AI crawler groups and validation"
+        }
+      ],
+      "notes": "Refuses more than 50,000 entries but does not build a sitemap index"
+    }
+  ],
+  "notes": "Choosing which URLs are public and serving the files per environment are the app's routing."
+}

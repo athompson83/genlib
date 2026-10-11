@@ -1,0 +1,108 @@
+{
+  "id": "per-user-rate-limit",
+  "title": "Rate limit an API by user",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "rate limit an api by user"
+  ],
+  "requirements": [
+    {
+      "id": "per-user-keys",
+      "text": "Each authenticated user (or API key) has an independent quota; one user's traffic never consumes another's"
+    },
+    {
+      "id": "limit-enforced",
+      "text": "Requests within the configured limit and window are allowed, further requests are denied, and the quota refills or resets on schedule"
+    },
+    {
+      "id": "http-429",
+      "text": "Denied requests get 429 with Retry-After and rate-limit headers, without running the handler"
+    },
+    {
+      "id": "atomic-concurrency",
+      "text": "Concurrent requests for one key never exceed the limit"
+    },
+    {
+      "id": "bounded-state",
+      "text": "Limiter state is bounded and idle keys expire"
+    },
+    {
+      "id": "shared-store",
+      "text": "Counts are shared across server instances and survive restarts (for example Redis or the database)"
+    },
+    {
+      "id": "trusted-identity",
+      "text": "The key comes from the authenticated identity on the server, never from client-controlled headers such as X-Forwarded-For"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:rate-limit",
+      "status": "fixture-verified",
+      "fulfills": [
+        "per-user-keys",
+        "limit-enforced",
+        "http-429",
+        "atomic-concurrency",
+        "bounded-state"
+      ],
+      "evidence": [
+        {
+          "requirement": "per-user-keys",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "keys are isolated"
+        },
+        {
+          "requirement": "limit-enforced",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "token bucket allows capacity, denies the next, and refills over injected time"
+        },
+        {
+          "requirement": "limit-enforced",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "fixed window allows limit per window and resets at the boundary"
+        },
+        {
+          "requirement": "limit-enforced",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "sliding window counts the trailing window exactly"
+        },
+        {
+          "requirement": "http-429",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "rateLimitResponse builds a 429 with Retry-After and RateLimit headers"
+        },
+        {
+          "requirement": "atomic-concurrency",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "concurrent requests on the memory store never exceed the limit"
+        },
+        {
+          "requirement": "bounded-state",
+          "test": "tests/rate-limit.test.mjs",
+          "name": "memory store is bounded with LRU eviction and expires state"
+        }
+      ],
+      "notes": "Only the single-process memory store is implemented and tested; a shared store must implement the documented atomic update contract"
+    },
+    {
+      "ref": "capability:token-bucket",
+      "status": "fixture-verified",
+      "fulfills": [
+        "limit-enforced"
+      ],
+      "evidence": [
+        {
+          "requirement": "limit-enforced",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "token-bucket: vector sequence with injected clock"
+        }
+      ]
+    }
+  ],
+  "missing": [
+    "shared-store",
+    "trusted-identity"
+  ],
+  "notes": "Key derivation from the session is documented in the rate-limit CONTRACT.md but is the application's code; no shared (Redis/SQL) store ships."
+}

@@ -93,8 +93,10 @@ export type ShortLinkErrorCode =
   | "bad-request" | "too-large";
 
 export class ShortLinkError extends Error {
-  constructor(readonly code: ShortLinkErrorCode, message: string) {
+  readonly code: ShortLinkErrorCode;
+  constructor(code: ShortLinkErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "ShortLinkError";
   }
 }

@@ -1,0 +1,128 @@
+{
+  "id": "feature-flag-rollout",
+  "title": "Feature flags with gradual rollout",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "feature flags with gradual rollout"
+  ],
+  "requirements": [
+    {
+      "id": "sticky-bucketing",
+      "text": "A user gets the same result for a flag on every evaluation (deterministic hashing of flag key and user)"
+    },
+    {
+      "id": "monotonic-rollout",
+      "text": "Raising the rollout percentage only adds users; nobody already enabled is dropped"
+    },
+    {
+      "id": "targeting-kill-switch",
+      "text": "Allow and deny lists override the percentage, and disabling a flag turns it off for everyone"
+    },
+    {
+      "id": "config-validation",
+      "text": "Invalid flag keys, percentages and variant weights are rejected"
+    },
+    {
+      "id": "explainable",
+      "text": "Each evaluation reports the reason (and bucket) so decisions can be logged and debugged"
+    },
+    {
+      "id": "runtime-config",
+      "text": "Flag changes take effect without a deploy, from a server-side store the client cannot alter"
+    },
+    {
+      "id": "tenant-targeting",
+      "text": "Flags can be rolled out per tenant or organization as well as per user"
+    },
+    {
+      "id": "audited-changes",
+      "text": "Only authorized users can change flags, and changes are recorded"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:feature-flags",
+      "status": "fixture-verified",
+      "fulfills": [
+        "sticky-bucketing",
+        "monotonic-rollout",
+        "targeting-kill-switch",
+        "config-validation",
+        "explainable"
+      ],
+      "evidence": [
+        {
+          "requirement": "sticky-bucketing",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        },
+        {
+          "requirement": "monotonic-rollout",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        },
+        {
+          "requirement": "targeting-kill-switch",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        },
+        {
+          "requirement": "config-validation",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        },
+        {
+          "requirement": "explainable",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        }
+      ]
+    },
+    {
+      "ref": "recipe:feature-flag-percentage-rollout",
+      "status": "fixture-verified",
+      "fulfills": [
+        "sticky-bucketing",
+        "monotonic-rollout",
+        "targeting-kill-switch",
+        "config-validation"
+      ],
+      "evidence": [
+        {
+          "requirement": "sticky-bucketing",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        },
+        {
+          "requirement": "monotonic-rollout",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        },
+        {
+          "requirement": "targeting-kill-switch",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        },
+        {
+          "requirement": "config-validation",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        }
+      ]
+    },
+    {
+      "ref": "resource:unleash",
+      "status": "cataloged",
+      "fulfills": [
+        "runtime-config"
+      ],
+      "notes": "Self-hosted flag server with gradual rollout strategies"
+    }
+  ],
+  "missing": [
+    "runtime-config",
+    "tenant-targeting",
+    "audited-changes"
+  ],
+  "notes": "Genlib evaluates flags in pure functions; storage, admin UI and change audit are the application's work."
+}

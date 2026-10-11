@@ -45,8 +45,8 @@
       "source": "files/core.ts",
       "target": "rbac/core.ts",
       "path": "modules/rbac/files/core.ts",
-      "sha256": "0184e2c86932fddead28b8c07c151ebc2148ae900c54090328e18801676835a5",
-      "bytes": 20604
+      "sha256": "1bf89319953187d0169388634af9cc1a7e85610101df5dbde9e39367e6629318",
+      "bytes": 20649
     },
     {
       "source": "files/memory-store.ts",
@@ -135,6 +135,12 @@
     "The in-memory store is for tests and prototypes only. The SQL store is tested on PostgreSQL semantics through PGlite, which is one connection, so the concurrency tests interleave statements rather than running them in parallel; the FOR UPDATE row locking under real parallel transactions is not exercised.",
     "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix}/me/permissions, GET|POST|DELETE {prefix}/assignments (DELETE takes a JSON body)",
+    "deny rules beat allows; checks need concrete permissions, wildcards → invalid-permission",
+    "escalation → 403; revoking the last owner → 409 last-owner; an existing grant → 200, not 201",
+    "assignments apply only in their tenant; bodies JSON up to 4 KB"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -176,7 +182,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/rbac/module.json",
-    "sha256": "13ecab3ac31efdd8b51349aac59cd1810a64908021940e9c6f04065dcbaf0edc"
+    "sha256": "16b65485c4f04ddfa79d7cbee3d35b0f3691419b691c5c98c419eb56a9930868"
   },
   "contractFile": {
     "path": "modules/rbac/CONTRACT.md",

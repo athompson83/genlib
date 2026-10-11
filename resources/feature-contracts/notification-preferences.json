@@ -1,0 +1,89 @@
+{
+  "id": "notification-preferences",
+  "title": "Notification preferences per channel",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "notification preferences per channel"
+  ],
+  "requirements": [
+    {
+      "id": "declared-schema",
+      "text": "Notification types and their allowed channels are declared; unknown types and channels are rejected and defaults apply"
+    },
+    {
+      "id": "identity-scoped",
+      "text": "Preferences are read and saved only for the server-resolved user and tenant"
+    },
+    {
+      "id": "concurrency",
+      "text": "Concurrent edits cannot silently overwrite each other; identical retries are harmless"
+    },
+    {
+      "id": "input-validation",
+      "text": "Malformed structure, identity fields, wrong content type and oversized bodies are refused without writing"
+    },
+    {
+      "id": "ui",
+      "text": "An accessible form edits each type and channel and announces the save result"
+    },
+    {
+      "id": "enforced-at-send",
+      "text": "Every sender checks the preference before using a channel, while mandatory security notices still go out"
+    },
+    {
+      "id": "unsubscribe-link",
+      "text": "Emails carry a one-click unsubscribe that updates the matching preference"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:notification-preferences",
+      "status": "fixture-verified",
+      "fulfills": [
+        "declared-schema",
+        "identity-scoped",
+        "concurrency",
+        "input-validation",
+        "ui"
+      ],
+      "evidence": [
+        {
+          "requirement": "declared-schema",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "schemas reject duplicate, unsafe, and undeclared configuration"
+        },
+        {
+          "requirement": "identity-scoped",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "authenticated GET and PUT persist preferences only for the server-resolved identity"
+        },
+        {
+          "requirement": "identity-scoped",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "missing/denied origins and identities never reach persistence"
+        },
+        {
+          "requirement": "concurrency",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "simultaneous differing updates from one revision permit only one saved result"
+        },
+        {
+          "requirement": "concurrency",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "identical retries do not increment revision"
+        },
+        {
+          "requirement": "input-validation",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "invalid preference structure, identity fields, content type, and oversized JSON do not write"
+        },
+        {
+          "requirement": "ui",
+          "test": "tests/notification-preferences.test.mjs",
+          "name": "React form saves the selected channel, disables in-flight edits, and announces success"
+        }
+      ],
+      "notes": "No production store; enforcement at send time and unsubscribe links are out of scope"
+    }
+  ]
+}

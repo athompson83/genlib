@@ -1,0 +1,102 @@
+{
+  "id": "notification-inbox",
+  "title": "In-app notification inbox",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "in-app notification inbox"
+  ],
+  "requirements": [
+    {
+      "id": "server-publish",
+      "text": "Notifications are created only by trusted server code, never through a public endpoint"
+    },
+    {
+      "id": "paged-list",
+      "text": "The inbox lists newest first with cursor pages that have no gaps or repeats"
+    },
+    {
+      "id": "read-state",
+      "text": "Unread counts, mark read, mark all read and archive work"
+    },
+    {
+      "id": "isolation",
+      "text": "Users see and change only their own notifications within their tenant"
+    },
+    {
+      "id": "dedupe",
+      "text": "A repeated event for the same recipient does not create a duplicate notification"
+    },
+    {
+      "id": "safe-content",
+      "text": "Links, titles and attached data are validated so notifications cannot carry unsafe links or unbounded data"
+    },
+    {
+      "id": "retention",
+      "text": "Items past retention and beyond a per-user cap are pruned"
+    },
+    {
+      "id": "ui",
+      "text": "A bell or inbox UI shows the unread badge and items and is keyboard accessible"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:notification-inbox",
+      "status": "fixture-verified",
+      "fulfills": [
+        "server-publish",
+        "paged-list",
+        "read-state",
+        "isolation",
+        "dedupe",
+        "safe-content",
+        "retention"
+      ],
+      "evidence": [
+        {
+          "requirement": "server-publish",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "HTTP adapter: 401, origin check, publish not exposed"
+        },
+        {
+          "requirement": "paged-list",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "publish and list: newest first, opaque cursor pages without gaps or repeats"
+        },
+        {
+          "requirement": "read-state",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "unread counts, markRead, markAllRead with before, and archive"
+        },
+        {
+          "requirement": "isolation",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "isolation: another user"
+        },
+        {
+          "requirement": "dedupe",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "a repeated dedupeKey returns the existing item"
+        },
+        {
+          "requirement": "safe-content",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "publish validation: unsafe links, titles and data are rejected"
+        },
+        {
+          "requirement": "retention",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "prune drops items past retention and the oldest beyond maxPerUser"
+        }
+      ],
+      "notes": "Server only: no UI and no SQL store (the SQL shape is documented)"
+    },
+    {
+      "ref": "resource:novu-react-npm",
+      "status": "cataloged",
+      "fulfills": [
+        "ui"
+      ]
+    }
+  ]
+}

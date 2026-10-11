@@ -57,6 +57,12 @@
     "The circuit breaker is in-process state only; it is not shared across processes, isolates, or serverless instances. Retries add load; combine with server-side rate limits and budgets.",
     "Tests use injected sleep/clock/random and a fake Fetch boundary; no live network calls were made."
   ],
+  "decisions": [
+    "fetchWithRetry retries network errors and 408, 425, 429, 500, 502, 503, 504",
+    "POST and PATCH are retried only with an Idempotency-Key header; otherwise sent once",
+    "full-jitter exponential backoff; Retry-After honored but capped at maxDelayMs; attempts 1-20",
+    "circuit breaker state is per process; half-open allows one trial call"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/http-resilience.test.mjs"],

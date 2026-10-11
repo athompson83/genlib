@@ -1,0 +1,74 @@
+{
+  "id": "timezone-date-formatting",
+  "title": "Timezone-aware date formatting",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "timezone-aware date formatting"
+  ],
+  "requirements": [
+    {
+      "id": "explicit-zone",
+      "text": "Instants are formatted in an explicit IANA time zone (the user's preference), never the server's zone"
+    },
+    {
+      "id": "locale-format",
+      "text": "Formats follow the user's locale"
+    },
+    {
+      "id": "dst-correct",
+      "text": "Offsets and wall times are correct across DST transitions, and ambiguous or skipped local times are handled when parsing"
+    },
+    {
+      "id": "date-only-stable",
+      "text": "Date-only values (due dates, birthdays) never shift by a day across time zones"
+    },
+    {
+      "id": "invalid-input",
+      "text": "Invalid dates and unknown time zones are rejected"
+    },
+    {
+      "id": "utc-storage",
+      "text": "Instants are stored in UTC and exchanged as ISO 8601 with an offset"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:formatting",
+      "status": "install-supported",
+      "fulfills": [
+        "explicit-zone",
+        "locale-format",
+        "invalid-input"
+      ],
+      "notes": "formatDate(value, locale, timeZone) via Intl; tests/source-examples.test.mjs compiles it but only exercises formatMoney"
+    },
+    {
+      "ref": "recipe:date-ranges-and-business-days",
+      "status": "fixture-verified",
+      "fulfills": [
+        "date-only-stable"
+      ],
+      "evidence": [
+        {
+          "requirement": "date-only-stable",
+          "test": "tests/recipes.test.mjs",
+          "name": "date ranges and business days are UTC-safe"
+        }
+      ]
+    },
+    {
+      "ref": "resource:luxon-npm",
+      "status": "cataloged",
+      "fulfills": [
+        "dst-correct"
+      ]
+    }
+  ],
+  "missing": [
+    "explicit-zone",
+    "locale-format",
+    "dst-correct",
+    "invalid-input",
+    "utc-storage"
+  ]
+}

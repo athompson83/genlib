@@ -47,8 +47,8 @@
       "source": "files/core.ts",
       "target": "presence/core.ts",
       "path": "modules/presence/files/core.ts",
-      "sha256": "8ed6843f0d704a6590c09960024f033b86671627eb66a6d74443d5dbc1f59052",
-      "bytes": 20262
+      "sha256": "7d3a640757af16fa0faf27527bab34578df22af60d12246a3acbdfd6f63223a2",
+      "bytes": 20311
     },
     {
       "source": "files/memory-store.ts",
@@ -116,6 +116,11 @@
     "No rate limiting; add request rate limits (see the rate-limit module) on heartbeat and stream routes.",
     "Session security, production load behavior and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "transport is SSE GET {prefix}/stream plus POST {prefix}/heartbeat and /leave; no WebSocket",
+    "connections expire 30 s after the last heartbeat; 500 connections per room, then 409 room-full",
+    "state is JSON up to 1,024 bytes (413 state-too-large); updates throttled to one per 100 ms per user"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -153,7 +158,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/presence/module.json",
-    "sha256": "a42bf6fdf3ee2bd044a74b866f08666eaed4daa1aadf498ca8d23c54f9bad3a1"
+    "sha256": "d0399f8879caa79749badc20d19985dec59471bcec77190be1af4089fd5bac57"
   },
   "contractFile": {
     "path": "modules/presence/CONTRACT.md",

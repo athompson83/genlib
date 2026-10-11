@@ -1,0 +1,198 @@
+{
+  "id": "btst-kanban",
+  "title": "BTST Kanban board for Next.js App Router",
+  "summary": "Full-stack Kanban (boards, columns, tasks with priority and assignee, drag ordering) from the MIT BTST plugin @btst/stack 4.5.1, adopted with prerequisite checks, a scratch-copy scaffold and conflict-free file adoption instead of the scaffolder's overwrite defaults.",
+  "license": "MIT",
+  "status": "install-supported",
+  "upstream": {
+    "repository": "https://github.com/better-stack-ai/better-stack",
+    "version": "4.5.1",
+    "tag": "v4.5.1",
+    "commit": "f38a969374f221995acac2382b5462529e583c2b",
+    "packages": [
+      "@btst/stack@4.5.1",
+      "@btst/codegen@4.5.1",
+      "@btst/adapter-drizzle@3.0.0",
+      "@btst/cli@3.0.0"
+    ],
+    "research": "docs/providers/btst-kanban.md"
+  },
+  "tags": [
+    "kanban",
+    "kanban board",
+    "task board",
+    "project board",
+    "boards columns tasks",
+    "trello alternative",
+    "btst",
+    "better stack",
+    "nextjs",
+    "full-stack feature"
+  ],
+  "frameworks": [
+    "next-app-router"
+  ],
+  "prerequisites": [
+    {
+      "id": "node",
+      "text": "Node.js 22 or later",
+      "node": "22.0.0"
+    },
+    {
+      "id": "next",
+      "text": "Next.js 15 or later",
+      "package": "next",
+      "min": "15.0.0"
+    },
+    {
+      "id": "app-router",
+      "text": "An App Router app/ directory",
+      "path": "app"
+    },
+    {
+      "id": "react",
+      "text": "React 19.2.6 or later",
+      "package": "react",
+      "min": "19.2.6"
+    },
+    {
+      "id": "react-dom",
+      "text": "React DOM 19.2.6 or later",
+      "package": "react-dom",
+      "min": "19.2.6"
+    },
+    {
+      "id": "tailwind",
+      "text": "Tailwind CSS 4.3.2 or later",
+      "package": "tailwindcss",
+      "min": "4.3.2"
+    },
+    {
+      "id": "shadcn-css-variables",
+      "text": "shadcn/ui initialized with CSS variables",
+      "json": "components.json",
+      "key": "tailwind.cssVariables",
+      "equals": true
+    },
+    {
+      "id": "react-query",
+      "text": "@tanstack/react-query is not already on another version (the tested cohort pins 5.102.0; 5.104 changes hydration)",
+      "package": "@tanstack/react-query",
+      "exact": "5.102.0",
+      "ifPresent": true
+    },
+    {
+      "id": "better-auth",
+      "text": "better-auth, if the app already uses it, is the exact version the BTST adapters require (1.7.6)",
+      "package": "better-auth",
+      "exact": "1.7.6",
+      "ifPresent": true
+    },
+    {
+      "id": "next-cache-components",
+      "text": "next.config does not enable cacheComponents or partialPrefetching (create-next-app 16.4 turns both on; BTST's route segment config cannot build with them)",
+      "files": [
+        "next.config.ts",
+        "next.config.mjs",
+        "next.config.js"
+      ],
+      "forbid": "(cacheComponents|partialPrefetching)\\s*:\\s*true"
+    },
+    {
+      "id": "free-paths",
+      "text": "None of the paths the scaffolder writes exist yet",
+      "absent": [
+        "app/api/data",
+        "app/(request)/pages",
+        "app/(static)/pages",
+        "app/pages",
+        "lib/stack.ts",
+        "lib/stack-client.tsx",
+        "lib/stack-client.server.ts",
+        "lib/query-client.ts",
+        "app/sitemap.ts",
+        "components/navbar.tsx",
+        "components/mode-toggle.tsx"
+      ]
+    },
+    {
+      "id": "sonner",
+      "text": "A sonner Toaster component (shadcn add sonner) for notifications",
+      "path": "components/ui/sonner.tsx",
+      "severity": "warning"
+    }
+  ],
+  "steps": [
+    {
+      "kind": "install",
+      "purpose": "Install the tested version set exactly, with every required @btst/stack peer in the same command; Genlib never runs the package manager.",
+      "run": "npm install --save-exact @btst/stack@4.5.1 @btst/yar@1.3.2 @tanstack/react-query@5.102.0 @tanstack/query-core@5.102.0 next-themes@0.4.6 better-auth@1.7.6 @better-auth/core@1.7.6 @better-auth/utils@0.4.2 @better-fetch/fetch@1.3.2 better-call@1.4.0 zod@4.6.6 ai@5.0.273 @ai-sdk/react@2.0.276 clsx@2.1.1 cmdk@1.1.1 katex@0.19.0 date-fns@4.4.0 rehype-raw@7.0.0 remark-gfm@4.0.1 remark-math@6.0.0 highlight.js@11.12.0 rehype-katex@7.0.1 react-markdown@10.1.0 tailwind-merge@3.7.0 react-hook-form@7.90.0 rehype-highlight@7.0.2 @hookform/resolvers@5.9.1 @radix-ui/react-slot@1.4.0 react-error-boundary@4.1.2 @radix-ui/react-label@2.1.16 @radix-ui/react-dialog@1.2.0 @radix-ui/react-switch@1.3.8 @tailwindcss/typography@0.5.20 @btst/adapter-drizzle@3.0.0 drizzle-orm@0.45.2 pg@8.23.1 && npm install --save-dev --save-exact drizzle-kit@0.31.10 @types/pg@8.15.6",
+      "note": "Resolved without --legacy-peer-deps on 2026-10-11 (npm 10.9.4, Node 22.22.0) because all peers are listed exactly; leaving them to npm picks zod 3 and fails on better-call's zod 4 peer. Drizzle is the tested persistent adapter: @btst/adapter-kysely@3.0.0 drops joined columns. For an evaluation without a database, use @btst/adapter-memory@3.0.0 instead of the Drizzle packages."
+    },
+    {
+      "kind": "stage",
+      "purpose": "Scaffold in a scratch copy of the app, never in place: the scaffolder's --yes overwrites files.",
+      "run": "cp -R \"$APP_ROOT\" \"$SCRATCH\" && cp -R \"$APP_ROOT\" \"$BASELINE\" && cd \"$SCRATCH\" && npx @btst/codegen@4.5.1 init --framework nextjs --adapter drizzle --plugins kanban --skip-install --yes"
+    },
+    {
+      "kind": "adopt",
+      "purpose": "Adopt only new files; identical files are kept; differing files stop the adoption; the global CSS and root layout are reported for a manual merge.",
+      "run": "node \"$GENLIB_ROOT\"/bin/genlib.mjs provider adopt btst-kanban --from \"$SCRATCH\" --baseline \"$BASELINE\" --target \"$APP_ROOT\""
+    },
+    {
+      "kind": "edit",
+      "purpose": "In lib/stack.ts replace `const drizzleDb = {} as never` with `drizzle(new Pool({ connectionString: process.env.DATABASE_URL }), { schema })` (drizzle-orm/node-postgres, schema from ./db/schema), pinned on globalThis so route and page bundles share one pool; keep transaction: true; pass auth: a createServerAuth instance whose rules come from kanbanPermissions (@btst/stack/plugins/kanban/permissions) or defineAuthorization. Without server authorization the API accepts writes from anyone."
+    },
+    {
+      "kind": "edit",
+      "purpose": "In app/pages/client-layout.tsx implement resolveUser and searchUsers from your user store, and implement or disable uploadImage."
+    },
+    {
+      "kind": "edit",
+      "purpose": "If next.config sets cacheComponents or partialPrefetching to true (create-next-app 16.4 does), set both to false; the build otherwise fails on BTST's dynamic route segment config."
+    },
+    {
+      "kind": "env",
+      "purpose": "Set BTST_SITE_URL, BTST_API_URL and DATABASE_URL (production builds fail closed without trusted origins)."
+    },
+    {
+      "kind": "migrate",
+      "purpose": "Generate the Drizzle schema for kanban_board, kanban_column and kanban_task, then generate and apply SQL with drizzle-kit (a drizzle.config.ts with dialect postgresql, schema ./lib/db/schema.ts, dbCredentials.url from DATABASE_URL). Review drizzle/*.sql before migrate.",
+      "run": "mkdir -p lib/db && npx @btst/cli@3.0.0 generate --config=lib/stack.ts --orm=drizzle --output=lib/db/schema.ts --yes && npx drizzle-kit generate && npx drizzle-kit migrate"
+    },
+    {
+      "kind": "verify",
+      "purpose": "Type-check and build, start the server, then run the shipped acceptance from the app (resources/providers/btst-kanban/accept.sh: 18 API checks, 28 authorization checks, 3 browser checks that need playwright resolvable from the app or PLAYWRIGHT_DIR, and with DATABASE_URL a PostgreSQL row check) and record it with genlib adopted --accepts.",
+      "run": "npx tsc --noEmit && npm run build"
+    }
+  ],
+  "stage": {
+    "mergeFiles": [
+      "app/layout.tsx",
+      "src/app/layout.tsx",
+      "app/globals.css",
+      "src/app/globals.css"
+    ]
+  },
+  "acceptance": {
+    "contract": "kanban-board",
+    "requirements": [
+      "boards",
+      "columns-tasks",
+      "move-ordering",
+      "atomic-writes",
+      "authorization",
+      "persistence",
+      "routes-ui"
+    ],
+    "script": "resources/providers/btst-kanban/accept.sh"
+  },
+  "limits": [
+    "Run end to end on 2026-10-11 in a create-next-app 16.4.0 fixture (next 16.4.0, React 19.3.0, Tailwind 4.3.3) with PostgreSQL 16 through the stock @btst/adapter-drizzle@3.0.0 and drizzle-orm 0.45.2: check, staged plan (13 new files, 1 merge: app/globals.css), adopt, schema generation, drizzle-kit migration, build and acceptance all passed with no patches; genlib adopted recorded all 7 kanban-board requirements as application-verified.",
+    "Acceptance (resources/providers/btst-kanban/accept.sh): 18 of 18 API checks (boards, columns, tasks at every priority, moves, reorders, two concurrent moves, cascading delete), 28 of 28 authorization checks (401 anonymously on all 14 operations, 403 for another user on all 12 record operations, client ownerId ignored), 3 of 3 browser checks in Chromium through Playwright 1.56.1 (list, new-board and board pages with no console errors, page errors or 5xx, and the assignee's name resolved by resolveUser from the app's users), rows present in PostgreSQL, and a board read back after a server restart.",
+    "Authorization in the fixture used an evaluation-only header identity; an app must resolve identity from its real session. Collection reads carry no owner facts, so a permissive collection rule lists other users' board names.",
+    "@btst/adapter-kysely@3.0.0 drops joined columns (selectAllJoins looks up schema[\"kanbanColumn\"] where the key is \"column\"); do not use it until a fixed release is pinned. Prisma was not tried.",
+    "A duplicate board name returns HTTP 500 (unique slug violation) on PostgreSQL rather than a 4xx, with Drizzle as with Kysely.",
+    "Not fixture-verified: the end-to-end run needs network installs and PostgreSQL, so it is not part of repository CI. Every BTST plugin is marked Preview upstream; versions are pinned exactly."
+  ]
+}

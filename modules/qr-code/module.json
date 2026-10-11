@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "qr-code",
+  "version": "0.1.0",
+  "title": "QR code generator",
+  "description": "Dependency-free TypeScript QR Code generation (ISO/IEC 18004, versions 1-40, levels L/M/Q/H) in numeric, alphanumeric or UTF-8 byte mode, with Reed-Solomon error correction, automatic mask selection, and renderers for compact SVG, terminal half-block text and a 0/1 matrix.",
+  "kind": "utility",
+  "tags": ["qr code", "qr code generation", "qr", "barcode", "svg qr", "2fa qr", "share link qr", "totp qr", "terminal qr", "typescript"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/qr-code"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "any",
+    "notes": [
+      "Requires a TypeScript build and TextEncoder only: browsers, Node.js 22+, Bun, Deno, Cloudflare Workers, React Native with a TextEncoder polyfill.",
+      "Pure functions: no runtime packages, environment reads, timers, DOM access or network activity at install, import or call time.",
+      "The SVG renderer returns a string; insert it as markup or an image data URL. Tested on Node.js 22 only."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/encode.ts", "target": "qr-code/encode.ts" },
+    { "source": "files/render.ts", "target": "qr-code/render.ts" }
+  ],
+  "exports": [
+    { "name": "encodeQr", "from": "qr-code/encode.ts" },
+    { "name": "QrError", "from": "qr-code/encode.ts" },
+    { "name": "QrCode", "from": "qr-code/encode.ts" },
+    { "name": "QrOptions", "from": "qr-code/encode.ts" },
+    { "name": "toSvg", "from": "qr-code/render.ts" },
+    { "name": "toTerminal", "from": "qr-code/render.ts" },
+    { "name": "toMatrixString", "from": "qr-code/render.ts" }
+  ],
+  "configuration": [
+    "encodeQr(text | Uint8Array, { ecc = \"M\", minVersion = 1, maxVersion = 40, mask?, boostEcc = false, mode = \"auto\" }) returns { version, ecc, mask, mode, size, modules }.",
+    "Strings are UTF-8 in byte mode with no ECI header; auto mode picks numeric, alphanumeric or byte, whichever single mode is shortest.",
+    "toSvg(qr, { margin = 4, scale = 1, dark = \"#000\", light = \"#fff\", title = \"QR code\" }); colors must be hex or an allow-listed name. Pass a descriptive title.",
+    "toTerminal(qr, { margin = 2, invert = false }); use invert: true on dark-background terminals.",
+    "Never put secrets you would not show on screen into a QR code; a 2FA otpauth:// URI is a shared secret, so render it only on the authenticated enrollment page with cache-control: no-store."
+  ],
+  "capabilities": [
+    "qr-code-generation", "qr-numeric-alphanumeric-byte-modes", "reed-solomon-error-correction",
+    "qr-mask-penalty-selection", "svg-qr-rendering", "terminal-qr-rendering"
+  ],
+  "limitations": [
+    "One segment per symbol: no mixed-mode segmentation, Kanji mode, ECI headers, Structured Append, Micro QR or rMQR. Mixed text uses byte mode, which can need a larger version than an optimal segmenting encoder.",
+    "No decoder or scanner. Conformance evidence is matrix equality with segno 1.6.6 (one documented padding fix) for 41 committed fixtures (plus 5,449 random comparisons run once during development, not in the test suite), not a scan by physical readers.",
+    "Mask choice follows segno's reading of the penalty rules (evaluated before format information is drawn; rule 3 occurrences do not share modules). Encoders that read the rules differently may pick another mask; every mask produces a valid symbol.",
+    "No raster (PNG/canvas) output and no logo overlay; logos reduce error-correction headroom and are not supported.",
+    "SVG colors are limited to hex values and a short name allow-list, so CSS variables and rgb() are rejected."
+  ],
+  "decisions": [
+    "output is SVG, terminal text or a 0/1 matrix only; no PNG or canvas",
+    "default error correction M; auto mode picks one mode, no mixed segments or ECI",
+    "SVG quiet zone default 4 modules at scale 1; colors limited to hex or a few names"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/qr-code.test.mjs"],
+    "command": "npm run build && node --test tests/qr-code.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "oracle": "segno 1.6.6 (BSD-3-Clause), fixtures only" },
+    "behaviors": [
+      "41 symbols match segno 1.6.6 module for module across numeric, alphanumeric and UTF-8 byte modes, all four levels and versions 1, 2, 3, 4, 6, 7, 10, 14, 22, 27, 36 and 40",
+      "forced masks 0-7 reproduce segno's matrices, and segno's automatic mask choice is reproduced in every auto-mask fixture",
+      "auto mode picks the same single mode as segno for every fixture",
+      "block counts and data codewords for all 40 versions × 4 levels and alignment positions for all 40 versions match segno's tables",
+      "Reed-Solomon codewords for the Annex I example 01234567 at 1-M equal the standard's",
+      "format information for all 32 level/mask pairs equals an independent BCH(15,5) computation and the standard's table",
+      "version information is 0x07C94 for version 7 and matches BCH(18,6) through version 40",
+      "data that exceeds maxVersion, 7089 characters or 2953 bytes fails with too-long; exact capacity still fits",
+      "invalid levels, versions, masks, modes and inputs fail with invalid-option or invalid-input",
+      "SVG output has one merged-run path covering every dark module, correct viewBox and size, rejects unsafe colors and escapes the title",
+      "terminal output uses half blocks, two module rows per line, with margin and invert options"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["Initial QR Code encoder with SVG, terminal and matrix renderers."] }
+  ],
+  "contract": "CONTRACT.md"
+}
