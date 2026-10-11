@@ -53,13 +53,27 @@
     },
     {
       "ref": "integration:document-pipeline",
+      "status": "fixture-verified",
+      "fulfills": [
+        "exact-money"
+      ],
+      "evidence": [
+        {
+          "requirement": "exact-money",
+          "test": "integrations/document-pipeline/tests/documents.test.mjs",
+          "name": "one invoice model validates totals, safe integers, currencies and dates"
+        }
+      ],
+      "notes": "validateInvoice: nonnegative safe-integer minor units, currency minor digits, exact line totals and a grand total that must equal subtotal + tax + shipping - discount. Tax is supplied by the caller, not computed"
+    },
+    {
+      "ref": "integration:document-pipeline",
       "status": "install-supported",
       "fulfills": [
-        "exact-money",
         "pdf-render",
         "branding-locale"
       ],
-      "notes": "pdfme invoice/report templates with multi-page and font checks; tested inside the pack (npm test there), not in tests/. Tax rules and jurisdiction fields are out of scope"
+      "notes": "pdfme templates. Pagination and embedded fonts are tested on the report factory and branding/locale on the estimate and report variants, not on the invoice factory; repeated table headers are not asserted. Tax rules and jurisdiction fields are out of scope"
     }
   ],
   "notes": "Numbering, archival and access control are app work."

@@ -1,0 +1,48 @@
+{
+  "id": "btst-kanban",
+  "title": "BTST Kanban board for Next.js App Router",
+  "summary": "Full-stack Kanban (boards, columns, tasks with priority and assignee, drag ordering) from the MIT BTST plugin @btst/stack 4.5.1, adopted with prerequisite checks, a scratch-copy scaffold and conflict-free file adoption instead of the scaffolder's overwrite defaults.",
+  "license": "MIT",
+  "status": "planned",
+  "upstream": {
+    "repository": "https://github.com/better-stack-ai/better-stack",
+    "version": "4.5.1",
+    "tag": "v4.5.1",
+    "commit": "f38a969374f221995acac2382b5462529e583c2b",
+    "packages": ["@btst/stack@4.5.1", "@btst/codegen@4.5.1", "@btst/adapter-kysely@3.0.0", "@btst/cli@3.0.0"],
+    "research": "docs/providers/btst-kanban.md"
+  },
+  "tags": ["kanban", "kanban board", "task board", "project board", "boards columns tasks", "trello alternative", "btst", "better stack", "nextjs", "full-stack feature"],
+  "frameworks": ["next-app-router"],
+  "prerequisites": [
+    { "id": "node", "text": "Node.js 22 or later", "node": "22.0.0" },
+    { "id": "next", "text": "Next.js 15 or later", "package": "next", "min": "15.0.0" },
+    { "id": "app-router", "text": "An App Router app/ directory", "path": "app" },
+    { "id": "react", "text": "React 19.2.6 or later", "package": "react", "min": "19.2.6" },
+    { "id": "react-dom", "text": "React DOM 19.2.6 or later", "package": "react-dom", "min": "19.2.6" },
+    { "id": "tailwind", "text": "Tailwind CSS 4.3.2 or later", "package": "tailwindcss", "min": "4.3.2" },
+    { "id": "shadcn-css-variables", "text": "shadcn/ui initialized with CSS variables", "json": "components.json", "key": "tailwind.cssVariables", "equals": true },
+    { "id": "react-query", "text": "@tanstack/react-query is not already on another version (the tested cohort pins 5.102.0; 5.104 changes hydration)", "package": "@tanstack/react-query", "exact": "5.102.0", "ifPresent": true },
+    { "id": "better-auth", "text": "better-auth, if the app already uses it, is the exact version the BTST adapters require (1.7.6)", "package": "better-auth", "exact": "1.7.6", "ifPresent": true },
+    { "id": "free-paths", "text": "None of the paths the scaffolder writes exist yet", "absent": ["app/api/data", "app/(request)/pages", "app/(static)/pages", "app/pages", "lib/stack.ts", "lib/stack-client.tsx", "lib/stack-client.server.ts", "lib/query-client.ts"] },
+    { "id": "sonner", "text": "A sonner Toaster component (shadcn add sonner) for notifications", "path": "components/ui/sonner.tsx", "severity": "warning" }
+  ],
+  "steps": [
+    { "kind": "install", "purpose": "Install the tested version set exactly; Genlib never runs the package manager.", "run": "npm install --save-exact @btst/stack@4.5.1 @btst/yar@1.3.2 @btst/adapter-kysely@3.0.0 @tanstack/react-query@5.102.0 @tanstack/query-core@5.102.0 next-themes@0.4.6 better-auth@1.7.6 @better-auth/core@1.7.6 @better-auth/utils@0.4.2 @better-fetch/fetch@1.3.2 better-call@1.4.0 kysely@0.29.6 pg", "note": "Add the remaining required @btst/stack peers listed in docs/providers/btst-kanban.md. Whether npm resolves them without --legacy-peer-deps is not verified." },
+    { "kind": "stage", "purpose": "Scaffold in a scratch copy of the app, never in place: the scaffolder's --yes overwrites files.", "run": "cp -R \"$APP_ROOT\" \"$SCRATCH\" && cp -R \"$APP_ROOT\" \"$BASELINE\" && cd \"$SCRATCH\" && npx @btst/codegen@4.5.1 init --framework nextjs --adapter kysely --plugins kanban --skip-install --yes" },
+    { "kind": "adopt", "purpose": "Adopt only new files; identical files are kept; differing files stop the adoption; the global CSS and root layout are reported for a manual merge.", "run": "node \"$GENLIB_ROOT\"/bin/genlib.mjs provider adopt btst-kanban --from \"$SCRATCH\" --baseline \"$BASELINE\" --target \"$APP_ROOT\"" },
+    { "kind": "edit", "purpose": "In lib/stack.ts replace `const kyselyDb = {} as never` with a real Kysely instance on PostgreSQL, keep transaction: true, and add server authorization with kanbanPermissions from @btst/stack/plugins/kanban/permissions. Without server authorization the API accepts writes from anyone." },
+    { "kind": "edit", "purpose": "In app/pages/client-layout.tsx implement resolveUser and searchUsers from your user store, and implement or disable uploadImage." },
+    { "kind": "env", "purpose": "Set BTST_SITE_URL, BTST_API_URL and DATABASE_URL (production builds fail closed without trusted origins)." },
+    { "kind": "migrate", "purpose": "Create the kanbanBoard, kanbanColumn and kanbanTask tables. Review the SQL first with --output.", "run": "npx @btst/cli@3.0.0 migrate --config=lib/stack.ts --database-url=\"$DATABASE_URL\"" },
+    { "kind": "verify", "purpose": "Type-check and build, then check the API and pages (adapted from upstream e2e/tests/smoke.kanban.spec.ts) and record acceptance.", "run": "npx tsc --noEmit && npm run build" }
+  ],
+  "stage": { "mergeFiles": ["app/layout.tsx", "src/app/layout.tsx", "app/globals.css", "src/app/globals.css"] },
+  "acceptance": { "contract": "kanban-board", "requirements": ["boards", "columns-tasks", "move-ordering", "atomic-writes", "authorization", "persistence", "routes-ui"] },
+  "limits": [
+    "Not yet run end to end against an app by Genlib: status stays planned until a fixture app passes the acceptance steps.",
+    "Every BTST plugin is marked Preview upstream; versions are pinned exactly.",
+    "Kanban-only installs still pull the full @btst/stack peer set (AI and markdown packages).",
+    "The memory adapter is for evaluation only; persistent writes need an adapter with transaction: true."
+  ]
+}
