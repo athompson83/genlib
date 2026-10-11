@@ -34,7 +34,7 @@ One command searches everything below and returns each result's exact next step.
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
 | [Developer tools](#find-code-without-reading-the-whole-repository) | 6 | Repository map, AST graph, task context, Mermaid diagram, dependency health and retrieval evaluation |
-| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1159 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
+| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1160 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
