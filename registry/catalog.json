@@ -353,6 +353,35 @@
       "sha256": "0c275b8115ff8a303bda136d2f3e7df233cf6161da542d34b36ab8e606346b22"
     },
     {
+      "id": "email-signup",
+      "version": "0.1.0",
+      "title": "User signup with email verification",
+      "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "signup",
+        "sign up",
+        "registration",
+        "register",
+        "email verification",
+        "verify email",
+        "confirm email",
+        "authentication",
+        "password",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/email-signup@0.1.0.json",
+      "sha256": "af11d5801c032c2c79aa446617551e63c5b2818235a8ec8bd1ab5f8229d83ccf"
+    },
+    {
       "id": "entitlements",
       "version": "0.1.0",
       "title": "Plan entitlements and usage credits",
@@ -410,6 +439,37 @@
       "verification": "tested",
       "manifest": "registry/manifests/env-config@0.1.0.json",
       "sha256": "a4f249b72e5ccc587002e5929e95a6888f89a0346fe40ed4038098f1d5a83e5c"
+    },
+    {
+      "id": "file-uploads",
+      "version": "0.1.0",
+      "title": "File upload with size and type checks",
+      "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
+      "kind": "feature",
+      "tags": [
+        "file upload",
+        "upload",
+        "file size limit",
+        "mime type",
+        "content sniffing",
+        "magic bytes",
+        "quarantine",
+        "malware scan",
+        "quota",
+        "content-disposition",
+        "server",
+        "security"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/file-uploads@0.1.0.json",
+      "sha256": "6b4691eca644dda49ec584dcb56f4bcf0225f2487fb0c4494bde66ee34f9d7ba"
     },
     {
       "id": "health-checks",
@@ -738,6 +798,37 @@
       "sha256": "d4a239c17e32fc7ebbf2e4e20f8971a91dc88a04c2a38313104034ae28561155"
     },
     {
+      "id": "scheduled-tasks",
+      "version": "0.1.0",
+      "title": "Cron scheduled tasks for multi-instance apps",
+      "description": "Run cron jobs from a server app with several instances: five-field cron with names and macros, next runs in any IANA time zone with defined DST behavior, one execution per occurrence across instances, skip/queue/allow overlap policies with leases and heartbeats, catch-up policies for downtime, retries with backoff, an onFailure hook, run history and a PostgreSQL store.",
+      "kind": "feature",
+      "tags": [
+        "cron",
+        "scheduled tasks",
+        "cron jobs",
+        "scheduler",
+        "recurring jobs",
+        "time zone",
+        "dst",
+        "distributed lock",
+        "leases",
+        "retries",
+        "background jobs",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/scheduled-tasks@0.1.0.json",
+      "sha256": "0b33b2efaf52acdaa786b85b86f3b679c36c934c0831e637d8bec2a34f416cee"
+    },
+    {
       "id": "security-headers",
       "version": "0.1.0",
       "title": "Security headers",
@@ -942,6 +1033,39 @@
       "sha256": "4cbe80aa9d584d8ebc55fabefba7d98d9ca32dd59a14d5c98d20ccaf4eb3633c"
     },
     {
+      "id": "two-factor",
+      "version": "0.1.0",
+      "title": "Two-factor authentication with an authenticator app (TOTP)",
+      "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "two-factor",
+        "2fa",
+        "mfa",
+        "totp",
+        "authenticator app",
+        "one-time password",
+        "otpauth",
+        "recovery codes",
+        "backup codes",
+        "step-up",
+        "authentication",
+        "login",
+        "security",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/two-factor@0.1.0.json",
+      "sha256": "50d67289267c4b45a8af23faa8cfecb44fbb7e53d6edee988ae9b559f1092a5c"
+    },
+    {
       "id": "validated-form",
       "version": "0.1.0",
       "title": "Validated form with submission handling",
@@ -993,6 +1117,37 @@
       "verification": "tested",
       "manifest": "registry/manifests/web-push@0.1.0.json",
       "sha256": "6f9d9e89d0b44062d557caf1c4131241a22ea452867843685cf0b3eb2c97419e"
+    },
+    {
+      "id": "webhook-delivery",
+      "version": "0.1.0",
+      "title": "Outgoing webhook delivery with retries and signatures",
+      "description": "Send webhooks from a multi-tenant server app: tenant-scoped endpoint management behind an authorize hook, Standard Webhooks signatures with secret rotation, a durable delivery queue written on the caller's transaction, a leased worker with per-attempt timeouts, exponential backoff with jitter, dead-lettering and manual replay, an SSRF guard checked at registration and send time, a PostgreSQL store and a Fetch management adapter.",
+      "kind": "feature",
+      "tags": [
+        "webhooks",
+        "send webhooks",
+        "outgoing webhooks",
+        "webhook delivery",
+        "webhook retries",
+        "standard webhooks",
+        "hmac signature",
+        "secret rotation",
+        "ssrf",
+        "outbox",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/webhook-delivery@0.1.0.json",
+      "sha256": "d261ab91f8335e5a3b23843b1806ee155c3ef1b1860068c6f8d7e829a175de2a"
     },
     {
       "id": "webhook-verification",

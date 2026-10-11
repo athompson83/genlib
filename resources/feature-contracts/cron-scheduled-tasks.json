@@ -37,6 +37,127 @@
   ],
   "implementations": [
     {
+      "ref": "module:scheduled-tasks",
+      "status": "fixture-verified",
+      "fulfills": [
+        "parse-validate",
+        "next-run",
+        "timezone",
+        "single-execution",
+        "no-overlap",
+        "missed-runs",
+        "failure-handling"
+      ],
+      "evidence": [
+        {
+          "requirement": "parse-validate",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "parseCron accepts ranges, steps, lists, names, Sunday as 0 or 7, and @macros"
+        },
+        {
+          "requirement": "parse-validate",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "parseCron rejects malformed expressions with the failing field"
+        },
+        {
+          "requirement": "parse-validate",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "saving a schedule rejects invalid cron, unknown zones, unknown handlers and never-matching dates"
+        },
+        {
+          "requirement": "next-run",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "nextOccurrence follows the Vixie day-of-month OR day-of-week rule and leap days in UTC"
+        },
+        {
+          "requirement": "timezone",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "America/New_York spring forward: a time in the skipped hour runs once at the next valid instant"
+        },
+        {
+          "requirement": "timezone",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "America/New_York fall back: an ambiguous time runs once, at its first occurrence"
+        },
+        {
+          "requirement": "timezone",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "schedules are evaluated in an IANA zone with Intl, including offsets and day boundaries"
+        },
+        {
+          "requirement": "single-execution",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "three concurrent instances on one store run each occurrence exactly once"
+        },
+        {
+          "requirement": "single-execution",
+          "test": "tests/scheduled-tasks-sql.test.mjs",
+          "name": "three concurrent instances on PGlite run each occurrence exactly once"
+        },
+        {
+          "requirement": "single-execution",
+          "test": "tests/scheduled-tasks-sql.test.mjs",
+          "name": "the unique (schedule_id, scheduled_for) claim rejects a second materialization of one occurrence"
+        },
+        {
+          "requirement": "no-overlap",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "overlap skip: an occurrence due while the previous run holds a live lease is skipped and recorded"
+        },
+        {
+          "requirement": "no-overlap",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "overlap queue: the next occurrence waits until the running one finishes, then runs"
+        },
+        {
+          "requirement": "no-overlap",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "lease heartbeat keeps a long run owned"
+        },
+        {
+          "requirement": "no-overlap",
+          "test": "tests/scheduled-tasks-sql.test.mjs",
+          "name": "overlap skip and queue hold a slot on PostgreSQL"
+        },
+        {
+          "requirement": "missed-runs",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "catchUp none skips occurrences missed during downtime but runs an on-time one"
+        },
+        {
+          "requirement": "missed-runs",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "catchUp latest runs only the most recent missed occurrence"
+        },
+        {
+          "requirement": "missed-runs",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "catchUp all runs missed occurrences oldest first, capped to the most recent maxCatchUp"
+        },
+        {
+          "requirement": "missed-runs",
+          "test": "tests/scheduled-tasks-sql.test.mjs",
+          "name": "catch-up policies after downtime on PostgreSQL: none, latest and all with a cap"
+        },
+        {
+          "requirement": "failure-handling",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "failed runs retry with exponential backoff up to maxAttempts, then call onFailure with history"
+        },
+        {
+          "requirement": "failure-handling",
+          "test": "tests/scheduled-tasks.test.mjs",
+          "name": "a crash during the final attempt fails the run without executing again"
+        },
+        {
+          "requirement": "failure-handling",
+          "test": "tests/scheduled-tasks-sql.test.mjs",
+          "name": "schema applies and the SQL store keeps schedules, history, retries and onFailure"
+        }
+      ],
+      "notes": "At-least-once execution: a crash after the handler's work but before the run is marked finished runs it again, so handlers must be idempotent. A repeated fall-back wall time runs once; use UTC for interval-style jobs. PGlite concurrency tests run on one connection."
+    },
+    {
       "ref": "capability:cron-next",
       "status": "fixture-verified",
       "fulfills": [
@@ -71,5 +192,6 @@
   "missing": [
     "no-overlap",
     "missed-runs"
-  ]
+  ],
+  "notes": "module:scheduled-tasks covers parsing, next runs in an IANA zone across DST, one run per occurrence across instances, overlap policies with leases, catch-up policies and retries. The app calls tick() from its own interval or platform cron, and handlers must be idempotent."
 }

@@ -48,6 +48,8 @@ node "$GENLIB_ROOT/bin/genlib.mjs" coverage role-based access control checks --t
 
 The text output is one line per requirement with its best status (`app`, `test`, `install`, `plan`, `catalog` or `-`) and the implementation that provides it, then the requirements Genlib does not verify, which are the work left for the app. MCP clients call `genlib_coverage` with `task` (and optionally `target`).
 
+`quick` (and `genlib_quick`) prints the same evidence for its pick in one line, `# covers: 7/8 of notification-inbox verified by tests; app must add: ui`, but only when the query's own contract is one the pick has tested evidence for, so a capability verified for another feature says nothing. `registry/graph.json` carries the same claims as `fulfills` links from code to contracts.
+
 ## Recording acceptance in the app
 
 A passing test suite does not show which feature requirements it exercised. Name them:

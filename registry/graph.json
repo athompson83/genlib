@@ -3216,6 +3216,534 @@
    "query": "writing-tools"
   },
   {
+   "id": "contract:ab-test-assignment",
+   "kind": "contract",
+   "label": "ab-test-assignment",
+   "count": 1,
+   "query": "a/b test assignment",
+   "requirements": 7
+  },
+  {
+   "id": "contract:account-deletion",
+   "kind": "contract",
+   "label": "account-deletion",
+   "count": 1,
+   "query": "account deletion with grace period",
+   "requirements": 7
+  },
+  {
+   "id": "contract:activity-feed",
+   "kind": "contract",
+   "label": "activity-feed",
+   "count": 1,
+   "query": "activity feed",
+   "requirements": 7
+  },
+  {
+   "id": "contract:admin-data-tables",
+   "kind": "contract",
+   "label": "admin-data-tables",
+   "count": 1,
+   "query": "admin dashboard tables with sorting",
+   "requirements": 7
+  },
+  {
+   "id": "contract:api-cursor-pagination",
+   "kind": "contract",
+   "label": "api-cursor-pagination",
+   "count": 1,
+   "query": "cursor pagination for an api",
+   "requirements": 7
+  },
+  {
+   "id": "contract:api-key-management",
+   "kind": "contract",
+   "label": "api-key-management",
+   "count": 1,
+   "query": "api key management with hashing",
+   "requirements": 7
+  },
+  {
+   "id": "contract:audit-log",
+   "kind": "contract",
+   "label": "audit-log",
+   "count": 1,
+   "query": "audit log of user actions",
+   "requirements": 7
+  },
+  {
+   "id": "contract:background-job-queue",
+   "kind": "contract",
+   "label": "background-job-queue",
+   "count": 1,
+   "query": "background job queue with retries",
+   "requirements": 7
+  },
+  {
+   "id": "contract:bot-protection",
+   "kind": "contract",
+   "label": "bot-protection",
+   "count": 1,
+   "query": "image captcha or bot protection",
+   "requirements": 8
+  },
+  {
+   "id": "contract:calendar-booking",
+   "kind": "contract",
+   "label": "calendar-booking",
+   "count": 1,
+   "query": "calendar booking with availability",
+   "requirements": 7
+  },
+  {
+   "id": "contract:cart-checkout",
+   "kind": "contract",
+   "label": "cart-checkout",
+   "count": 1,
+   "query": "shopping cart and checkout",
+   "requirements": 7
+  },
+  {
+   "id": "contract:color-contrast-check",
+   "kind": "contract",
+   "label": "color-contrast-check",
+   "count": 1,
+   "query": "accessibility color contrast check",
+   "requirements": 6
+  },
+  {
+   "id": "contract:cron-scheduled-tasks",
+   "kind": "contract",
+   "label": "cron-scheduled-tasks",
+   "count": 1,
+   "query": "cron scheduled tasks",
+   "requirements": 7
+  },
+  {
+   "id": "contract:csv-export-excel",
+   "kind": "contract",
+   "label": "csv-export-excel",
+   "count": 1,
+   "query": "csv export safe for excel",
+   "requirements": 6
+  },
+  {
+   "id": "contract:csv-import-mapping",
+   "kind": "contract",
+   "label": "csv-import-mapping",
+   "count": 1,
+   "query": "csv import with column mapping",
+   "requirements": 8
+  },
+  {
+   "id": "contract:dark-mode-theme",
+   "kind": "contract",
+   "label": "dark-mode-theme",
+   "count": 1,
+   "query": "dark mode theme tokens",
+   "requirements": 7
+  },
+  {
+   "id": "contract:email-verification-signup",
+   "kind": "contract",
+   "label": "email-verification-signup",
+   "count": 1,
+   "query": "user signup with email verification",
+   "requirements": 8
+  },
+  {
+   "id": "contract:env-config-validation",
+   "kind": "contract",
+   "label": "env-config-validation",
+   "count": 1,
+   "query": "environment config validation",
+   "requirements": 7
+  },
+  {
+   "id": "contract:feature-flag-rollout",
+   "kind": "contract",
+   "label": "feature-flag-rollout",
+   "count": 1,
+   "query": "feature flags with gradual rollout",
+   "requirements": 8
+  },
+  {
+   "id": "contract:file-upload-checks",
+   "kind": "contract",
+   "label": "file-upload-checks",
+   "count": 1,
+   "query": "file upload with size and type checks",
+   "requirements": 8
+  },
+  {
+   "id": "contract:form-validation",
+   "kind": "contract",
+   "label": "form-validation",
+   "count": 1,
+   "query": "form validation with error messages",
+   "requirements": 7
+  },
+  {
+   "id": "contract:full-text-search-filters",
+   "kind": "contract",
+   "label": "full-text-search-filters",
+   "count": 1,
+   "query": "full-text search with filters",
+   "requirements": 7
+  },
+  {
+   "id": "contract:gdpr-data-export",
+   "kind": "contract",
+   "label": "gdpr-data-export",
+   "count": 1,
+   "query": "gdpr data export for a user",
+   "requirements": 8
+  },
+  {
+   "id": "contract:geo-nearby-search",
+   "kind": "contract",
+   "label": "geo-nearby-search",
+   "count": 1,
+   "query": "geolocation distance and nearby search",
+   "requirements": 7
+  },
+  {
+   "id": "contract:health-check-endpoint",
+   "kind": "contract",
+   "label": "health-check-endpoint",
+   "count": 1,
+   "query": "health check endpoint",
+   "requirements": 6
+  },
+  {
+   "id": "contract:i18n-plurals",
+   "kind": "contract",
+   "label": "i18n-plurals",
+   "count": 1,
+   "query": "i18n translations with plurals",
+   "requirements": 7
+  },
+  {
+   "id": "contract:image-thumbnails",
+   "kind": "contract",
+   "label": "image-thumbnails",
+   "count": 1,
+   "query": "resize and thumbnail images",
+   "requirements": 6
+  },
+  {
+   "id": "contract:invoice-tax-calculation",
+   "kind": "contract",
+   "label": "invoice-tax-calculation",
+   "count": 1,
+   "query": "tax calculation for invoices",
+   "requirements": 7
+  },
+  {
+   "id": "contract:kanban-board",
+   "kind": "contract",
+   "label": "kanban-board",
+   "count": 1,
+   "query": "kanban board with columns and tasks",
+   "requirements": 7
+  },
+  {
+   "id": "contract:maps-with-markers",
+   "kind": "contract",
+   "label": "maps-with-markers",
+   "count": 1,
+   "query": "maps with markers",
+   "requirements": 8
+  },
+  {
+   "id": "contract:markdown-rendering",
+   "kind": "contract",
+   "label": "markdown-rendering",
+   "count": 1,
+   "query": "markdown rendering with sanitization",
+   "requirements": 6
+  },
+  {
+   "id": "contract:money-currency-formatting",
+   "kind": "contract",
+   "label": "money-currency-formatting",
+   "count": 1,
+   "query": "money and currency formatting",
+   "requirements": 6
+  },
+  {
+   "id": "contract:multi-tenant-isolation",
+   "kind": "contract",
+   "label": "multi-tenant-isolation",
+   "count": 1,
+   "query": "multi-tenant data isolation",
+   "requirements": 4
+  },
+  {
+   "id": "contract:notification-inbox",
+   "kind": "contract",
+   "label": "notification-inbox",
+   "count": 1,
+   "query": "in-app notification inbox",
+   "requirements": 8
+  },
+  {
+   "id": "contract:notification-preferences",
+   "kind": "contract",
+   "label": "notification-preferences",
+   "count": 1,
+   "query": "notification preferences per channel",
+   "requirements": 7
+  },
+  {
+   "id": "contract:org-invitations",
+   "kind": "contract",
+   "label": "org-invitations",
+   "count": 1,
+   "query": "invite teammates to an organization",
+   "requirements": 8
+  },
+  {
+   "id": "contract:passkey-login",
+   "kind": "contract",
+   "label": "passkey-login",
+   "count": 1,
+   "query": "passkey login",
+   "requirements": 6
+  },
+  {
+   "id": "contract:password-reset-email",
+   "kind": "contract",
+   "label": "password-reset-email",
+   "count": 1,
+   "query": "password reset by email link",
+   "requirements": 7
+  },
+  {
+   "id": "contract:pdf-form-filling",
+   "kind": "contract",
+   "label": "pdf-form-filling",
+   "count": 1,
+   "query": "fill a pdf form",
+   "requirements": 6
+  },
+  {
+   "id": "contract:pdf-invoices",
+   "kind": "contract",
+   "label": "pdf-invoices",
+   "count": 1,
+   "query": "generate pdf invoices",
+   "requirements": 7
+  },
+  {
+   "id": "contract:per-user-rate-limit",
+   "kind": "contract",
+   "label": "per-user-rate-limit",
+   "count": 1,
+   "query": "rate limit an api by user",
+   "requirements": 7
+  },
+  {
+   "id": "contract:plan-feature-limits",
+   "kind": "contract",
+   "label": "plan-feature-limits",
+   "count": 1,
+   "query": "subscription plans and feature limits",
+   "requirements": 7
+  },
+  {
+   "id": "contract:presigned-uploads",
+   "kind": "contract",
+   "label": "presigned-uploads",
+   "count": 1,
+   "query": "presigned upload urls for object storage",
+   "requirements": 7
+  },
+  {
+   "id": "contract:product-faceted-search",
+   "kind": "contract",
+   "label": "product-faceted-search",
+   "count": 1,
+   "query": "product search with facets",
+   "requirements": 7
+  },
+  {
+   "id": "contract:qr-code-generation",
+   "kind": "contract",
+   "label": "qr-code-generation",
+   "count": 1,
+   "query": "qr code generation",
+   "requirements": 6
+  },
+  {
+   "id": "contract:rbac",
+   "kind": "contract",
+   "label": "rbac",
+   "count": 1,
+   "query": "role-based access control checks",
+   "requirements": 6
+  },
+  {
+   "id": "contract:realtime-presence",
+   "kind": "contract",
+   "label": "realtime-presence",
+   "count": 1,
+   "query": "real-time presence with websockets",
+   "requirements": 7
+  },
+  {
+   "id": "contract:recurring-events-rrule",
+   "kind": "contract",
+   "label": "recurring-events-rrule",
+   "count": 1,
+   "query": "recurring events with rrule",
+   "requirements": 6
+  },
+  {
+   "id": "contract:rich-text-editor-sanitization",
+   "kind": "contract",
+   "label": "rich-text-editor-sanitization",
+   "count": 1,
+   "query": "rich text editor content sanitization",
+   "requirements": 7
+  },
+  {
+   "id": "contract:saml-sso",
+   "kind": "contract",
+   "label": "saml-sso",
+   "count": 1,
+   "query": "single sign-on with SAML",
+   "requirements": 6
+  },
+  {
+   "id": "contract:security-headers",
+   "kind": "contract",
+   "label": "security-headers",
+   "count": 1,
+   "query": "security headers and csp",
+   "requirements": 7
+  },
+  {
+   "id": "contract:sitemap-robots",
+   "kind": "contract",
+   "label": "sitemap-robots",
+   "count": 1,
+   "query": "sitemap and robots.txt",
+   "requirements": 6
+  },
+  {
+   "id": "contract:social-metadata",
+   "kind": "contract",
+   "label": "social-metadata",
+   "count": 1,
+   "query": "open graph and json-ld metadata",
+   "requirements": 7
+  },
+  {
+   "id": "contract:soft-delete-restore",
+   "kind": "contract",
+   "label": "soft-delete-restore",
+   "count": 1,
+   "query": "soft delete and restore records",
+   "requirements": 7
+  },
+  {
+   "id": "contract:stripe-checkout",
+   "kind": "contract",
+   "label": "stripe-checkout",
+   "count": 1,
+   "query": "stripe checkout and webhooks",
+   "requirements": 5
+  },
+  {
+   "id": "contract:structured-logging",
+   "kind": "contract",
+   "label": "structured-logging",
+   "count": 1,
+   "query": "structured logging with redaction",
+   "requirements": 7
+  },
+  {
+   "id": "contract:threaded-comments",
+   "kind": "contract",
+   "label": "threaded-comments",
+   "count": 1,
+   "query": "comments with threaded replies",
+   "requirements": 7
+  },
+  {
+   "id": "contract:timezone-date-formatting",
+   "kind": "contract",
+   "label": "timezone-date-formatting",
+   "count": 1,
+   "query": "timezone-aware date formatting",
+   "requirements": 6
+  },
+  {
+   "id": "contract:totp-two-factor",
+   "kind": "contract",
+   "label": "totp-two-factor",
+   "count": 1,
+   "query": "two-factor authentication with an authenticator app",
+   "requirements": 8
+  },
+  {
+   "id": "contract:transactional-email",
+   "kind": "contract",
+   "label": "transactional-email",
+   "count": 1,
+   "query": "send transactional email",
+   "requirements": 6
+  },
+  {
+   "id": "contract:url-shortener",
+   "kind": "contract",
+   "label": "url-shortener",
+   "count": 1,
+   "query": "url shortener",
+   "requirements": 8
+  },
+  {
+   "id": "contract:url-slugs",
+   "kind": "contract",
+   "label": "url-slugs",
+   "count": 1,
+   "query": "slug generation for urls",
+   "requirements": 7
+  },
+  {
+   "id": "contract:usage-credits",
+   "kind": "contract",
+   "label": "usage-credits",
+   "count": 1,
+   "query": "usage-based billing with credits",
+   "requirements": 7
+  },
+  {
+   "id": "contract:user-chat-messages",
+   "kind": "contract",
+   "label": "user-chat-messages",
+   "count": 1,
+   "query": "chat messages between users",
+   "requirements": 8
+  },
+  {
+   "id": "contract:web-push",
+   "kind": "contract",
+   "label": "web-push",
+   "count": 1,
+   "query": "web push notifications",
+   "requirements": 8
+  },
+  {
+   "id": "contract:webhook-delivery",
+   "kind": "contract",
+   "label": "webhook-delivery",
+   "count": 1,
+   "query": "webhook delivery with retries and signatures",
+   "requirements": 7
+  },
+  {
    "id": "doc:AGENTS.md",
    "kind": "doc",
    "label": "AGENTS.md",
@@ -3978,6 +4506,118 @@
    "file": "docs/resources/ui-index-sources.md"
   },
   {
+   "id": "integration:api-contracts",
+   "kind": "integration",
+   "label": "api-contracts",
+   "count": 1,
+   "query": "api-contracts"
+  },
+  {
+   "id": "integration:authorization-collaboration",
+   "kind": "integration",
+   "label": "authorization-collaboration",
+   "count": 1,
+   "query": "authorization-collaboration"
+  },
+  {
+   "id": "integration:commerce-storefront",
+   "kind": "integration",
+   "label": "commerce-storefront",
+   "count": 1,
+   "query": "commerce-storefront"
+  },
+  {
+   "id": "integration:desktop-delivery",
+   "kind": "integration",
+   "label": "desktop-delivery",
+   "count": 1,
+   "query": "desktop-delivery"
+  },
+  {
+   "id": "integration:developer-codemods",
+   "kind": "integration",
+   "label": "developer-codemods",
+   "count": 1,
+   "query": "developer-codemods"
+  },
+  {
+   "id": "integration:document-pipeline",
+   "kind": "integration",
+   "label": "document-pipeline",
+   "count": 1,
+   "query": "document-pipeline"
+  },
+  {
+   "id": "integration:durable-jobs",
+   "kind": "integration",
+   "label": "durable-jobs",
+   "count": 1,
+   "query": "durable-jobs"
+  },
+  {
+   "id": "integration:native-acceptance",
+   "kind": "integration",
+   "label": "native-acceptance",
+   "count": 1,
+   "query": "native-acceptance"
+  },
+  {
+   "id": "integration:native-persistence",
+   "kind": "integration",
+   "label": "native-persistence",
+   "count": 1,
+   "query": "native-persistence"
+  },
+  {
+   "id": "integration:observability-harness",
+   "kind": "integration",
+   "label": "observability-harness",
+   "count": 1,
+   "query": "observability-harness"
+  },
+  {
+   "id": "integration:resumable-files",
+   "kind": "integration",
+   "label": "resumable-files",
+   "count": 1,
+   "query": "resumable-files"
+  },
+  {
+   "id": "integration:shared-rust-core",
+   "kind": "integration",
+   "label": "shared-rust-core",
+   "count": 1,
+   "query": "shared-rust-core"
+  },
+  {
+   "id": "integration:typed-backend-services",
+   "kind": "integration",
+   "label": "typed-backend-services",
+   "count": 1,
+   "query": "typed-backend-services"
+  },
+  {
+   "id": "integration:web-calendar-files",
+   "kind": "integration",
+   "label": "web-calendar-files",
+   "count": 1,
+   "query": "web-calendar-files"
+  },
+  {
+   "id": "integration:web-data-workbench",
+   "kind": "integration",
+   "label": "web-data-workbench",
+   "count": 1,
+   "query": "web-data-workbench"
+  },
+  {
+   "id": "integration:web-forms-editor",
+   "kind": "integration",
+   "label": "web-forms-editor",
+   "count": 1,
+   "query": "web-forms-editor"
+  },
+  {
    "id": "language:angular",
    "kind": "language",
    "label": "angular",
@@ -4170,7 +4810,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3622,
+   "count": 3627,
    "query": "typescript"
   },
   {
@@ -4200,6 +4840,279 @@
    "label": "yaml",
    "count": 87,
    "query": "yaml"
+  },
+  {
+   "id": "module:account-deletion",
+   "kind": "module",
+   "label": "account-deletion",
+   "count": 1,
+   "query": "account-deletion"
+  },
+  {
+   "id": "module:api-keys",
+   "kind": "module",
+   "label": "api-keys",
+   "count": 1,
+   "query": "api-keys"
+  },
+  {
+   "id": "module:app-shell",
+   "kind": "module",
+   "label": "app-shell",
+   "count": 1,
+   "query": "app-shell"
+  },
+  {
+   "id": "module:audit-log",
+   "kind": "module",
+   "label": "audit-log",
+   "count": 1,
+   "query": "audit-log"
+  },
+  {
+   "id": "module:bot-protection",
+   "kind": "module",
+   "label": "bot-protection",
+   "count": 1,
+   "query": "bot-protection"
+  },
+  {
+   "id": "module:chat",
+   "kind": "module",
+   "label": "chat",
+   "count": 1,
+   "query": "chat"
+  },
+  {
+   "id": "module:comments",
+   "kind": "module",
+   "label": "comments",
+   "count": 1,
+   "query": "comments"
+  },
+  {
+   "id": "module:common-api-clients",
+   "kind": "module",
+   "label": "common-api-clients",
+   "count": 1,
+   "query": "common-api-clients"
+  },
+  {
+   "id": "module:csv-import",
+   "kind": "module",
+   "label": "csv-import",
+   "count": 1,
+   "query": "csv-import"
+  },
+  {
+   "id": "module:data-table",
+   "kind": "module",
+   "label": "data-table",
+   "count": 1,
+   "query": "data-table"
+  },
+  {
+   "id": "module:email-outbox",
+   "kind": "module",
+   "label": "email-outbox",
+   "count": 1,
+   "query": "email-outbox"
+  },
+  {
+   "id": "module:email-signup",
+   "kind": "module",
+   "label": "email-signup",
+   "count": 1,
+   "query": "email-signup"
+  },
+  {
+   "id": "module:entitlements",
+   "kind": "module",
+   "label": "entitlements",
+   "count": 1,
+   "query": "entitlements"
+  },
+  {
+   "id": "module:env-config",
+   "kind": "module",
+   "label": "env-config",
+   "count": 1,
+   "query": "env-config"
+  },
+  {
+   "id": "module:file-uploads",
+   "kind": "module",
+   "label": "file-uploads",
+   "count": 1,
+   "query": "file-uploads"
+  },
+  {
+   "id": "module:health-checks",
+   "kind": "module",
+   "label": "health-checks",
+   "count": 1,
+   "query": "health-checks"
+  },
+  {
+   "id": "module:http-resilience",
+   "kind": "module",
+   "label": "http-resilience",
+   "count": 1,
+   "query": "http-resilience"
+  },
+  {
+   "id": "module:notification-inbox",
+   "kind": "module",
+   "label": "notification-inbox",
+   "count": 1,
+   "query": "notification-inbox"
+  },
+  {
+   "id": "module:notification-preferences",
+   "kind": "module",
+   "label": "notification-preferences",
+   "count": 1,
+   "query": "notification-preferences"
+  },
+  {
+   "id": "module:org-invitations",
+   "kind": "module",
+   "label": "org-invitations",
+   "count": 1,
+   "query": "org-invitations"
+  },
+  {
+   "id": "module:password-reset",
+   "kind": "module",
+   "label": "password-reset",
+   "count": 1,
+   "query": "password-reset"
+  },
+  {
+   "id": "module:presence",
+   "kind": "module",
+   "label": "presence",
+   "count": 1,
+   "query": "presence"
+  },
+  {
+   "id": "module:public-data-clients",
+   "kind": "module",
+   "label": "public-data-clients",
+   "count": 1,
+   "query": "public-data-clients"
+  },
+  {
+   "id": "module:qr-code",
+   "kind": "module",
+   "label": "qr-code",
+   "count": 1,
+   "query": "qr-code"
+  },
+  {
+   "id": "module:rate-limit",
+   "kind": "module",
+   "label": "rate-limit",
+   "count": 1,
+   "query": "rate-limit"
+  },
+  {
+   "id": "module:rbac",
+   "kind": "module",
+   "label": "rbac",
+   "count": 1,
+   "query": "rbac"
+  },
+  {
+   "id": "module:scheduled-tasks",
+   "kind": "module",
+   "label": "scheduled-tasks",
+   "count": 1,
+   "query": "scheduled-tasks"
+  },
+  {
+   "id": "module:security-headers",
+   "kind": "module",
+   "label": "security-headers",
+   "count": 1,
+   "query": "security-headers"
+  },
+  {
+   "id": "module:short-links",
+   "kind": "module",
+   "label": "short-links",
+   "count": 1,
+   "query": "short-links"
+  },
+  {
+   "id": "module:site-search",
+   "kind": "module",
+   "label": "site-search",
+   "count": 1,
+   "query": "site-search"
+  },
+  {
+   "id": "module:soft-delete",
+   "kind": "module",
+   "label": "soft-delete",
+   "count": 1,
+   "query": "soft-delete"
+  },
+  {
+   "id": "module:structured-logger",
+   "kind": "module",
+   "label": "structured-logger",
+   "count": 1,
+   "query": "structured-logger"
+  },
+  {
+   "id": "module:tenant-isolation",
+   "kind": "module",
+   "label": "tenant-isolation",
+   "count": 1,
+   "query": "tenant-isolation"
+  },
+  {
+   "id": "module:theme-tokens",
+   "kind": "module",
+   "label": "theme-tokens",
+   "count": 1,
+   "query": "theme-tokens"
+  },
+  {
+   "id": "module:two-factor",
+   "kind": "module",
+   "label": "two-factor",
+   "count": 1,
+   "query": "two-factor"
+  },
+  {
+   "id": "module:validated-form",
+   "kind": "module",
+   "label": "validated-form",
+   "count": 1,
+   "query": "validated-form"
+  },
+  {
+   "id": "module:web-push",
+   "kind": "module",
+   "label": "web-push",
+   "count": 1,
+   "query": "web-push"
+  },
+  {
+   "id": "module:webhook-delivery",
+   "kind": "module",
+   "label": "webhook-delivery",
+   "count": 1,
+   "query": "webhook-delivery"
+  },
+  {
+   "id": "module:webhook-verification",
+   "kind": "module",
+   "label": "webhook-verification",
+   "count": 1,
+   "query": "webhook-verification"
   },
   {
    "id": "type:api",
@@ -4254,7 +5167,7 @@
    "id": "type:module",
    "kind": "type",
    "label": "module",
-   "count": 34,
+   "count": 39,
    "query": "--type module"
   },
   {
@@ -4857,6 +5770,12 @@
   },
   {
    "source": "capability:content-disposition",
+   "target": "contract:csv-export-excel",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:content-disposition",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -4917,6 +5836,12 @@
   },
   {
    "source": "capability:content-negotiation",
+   "target": "contract:i18n-plurals",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:content-negotiation",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -5037,6 +5962,12 @@
   },
   {
    "source": "capability:cron-next",
+   "target": "contract:cron-scheduled-tasks",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "capability:cron-next",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -5093,6 +6024,18 @@
    "source": "capability:cron-next",
    "target": "language:typescript",
    "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:csv-safe",
+   "target": "contract:csv-export-excel",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "capability:csv-safe",
+   "target": "contract:gdpr-data-export",
+   "relation": "fulfills",
    "weight": 1
   },
   {
@@ -5391,6 +6334,12 @@
   },
   {
    "source": "capability:email-address",
+   "target": "contract:email-verification-signup",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:email-address",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -5451,6 +6400,18 @@
   },
   {
    "source": "capability:feature-flags",
+   "target": "contract:ab-test-assignment",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "capability:feature-flags",
+   "target": "contract:feature-flag-rollout",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "capability:feature-flags",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -5511,6 +6472,12 @@
   },
   {
    "source": "capability:file-signature",
+   "target": "contract:file-upload-checks",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:file-signature",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -5571,6 +6538,12 @@
   },
   {
    "source": "capability:form-schema",
+   "target": "contract:form-validation",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:form-schema",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -5631,6 +6604,12 @@
   },
   {
    "source": "capability:geo",
+   "target": "contract:geo-nearby-search",
+   "relation": "fulfills",
+   "weight": 4
+  },
+  {
+   "source": "capability:geo",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -6111,6 +7090,12 @@
   },
   {
    "source": "capability:ics-events",
+   "target": "contract:calendar-booking",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:ics-events",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -6291,6 +7276,12 @@
   },
   {
    "source": "capability:interval-merge",
+   "target": "contract:calendar-booking",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:interval-merge",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -6651,6 +7642,12 @@
   },
   {
    "source": "capability:link-header",
+   "target": "contract:api-cursor-pagination",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:link-header",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -6828,6 +7825,18 @@
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
+  },
+  {
+   "source": "capability:money",
+   "target": "contract:invoice-tax-calculation",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:money",
+   "target": "contract:money-currency-formatting",
+   "relation": "fulfills",
+   "weight": 4
   },
   {
    "source": "capability:money",
@@ -7371,6 +8380,12 @@
   },
   {
    "source": "capability:password-policy",
+   "target": "contract:email-verification-signup",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-policy",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -7545,6 +8560,12 @@
   },
   {
    "source": "capability:pii-mask",
+   "target": "contract:structured-logging",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -7781,6 +8802,12 @@
    "source": "capability:query-string",
    "target": "language:typescript",
    "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:recovery-codes",
+   "target": "contract:totp-two-factor",
+   "relation": "fulfills",
    "weight": 1
   },
   {
@@ -8025,6 +9052,12 @@
   },
   {
    "source": "capability:rrule",
+   "target": "contract:recurring-events-rrule",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "capability:rrule",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -8253,6 +9286,12 @@
   },
   {
    "source": "capability:seo-files",
+   "target": "contract:sitemap-robots",
+   "relation": "fulfills",
+   "weight": 3
+  },
+  {
+   "source": "capability:seo-files",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -8373,6 +9412,12 @@
   },
   {
    "source": "capability:signed-cursors",
+   "target": "contract:api-cursor-pagination",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "capability:signed-cursors",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -8433,6 +9478,12 @@
   },
   {
    "source": "capability:signed-urls",
+   "target": "contract:gdpr-data-export",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:signed-urls",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -8493,6 +9544,12 @@
   },
   {
    "source": "capability:slugify",
+   "target": "contract:url-slugs",
+   "relation": "fulfills",
+   "weight": 3
+  },
+  {
+   "source": "capability:slugify",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -8733,6 +9790,12 @@
   },
   {
    "source": "capability:structured-data",
+   "target": "contract:social-metadata",
+   "relation": "fulfills",
+   "weight": 4
+  },
+  {
+   "source": "capability:structured-data",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -9093,6 +10156,12 @@
   },
   {
    "source": "capability:token-bucket",
+   "target": "contract:per-user-rate-limit",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "capability:token-bucket",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -9213,6 +10282,12 @@
   },
   {
    "source": "capability:totp",
+   "target": "contract:totp-two-factor",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "capability:totp",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
    "weight": 1
@@ -9570,6 +10645,12 @@
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
+  },
+  {
+   "source": "capability:wcag-contrast",
+   "target": "contract:color-contrast-check",
+   "relation": "fulfills",
+   "weight": 4
   },
   {
    "source": "capability:wcag-contrast",
@@ -9683,6 +10764,12 @@
    "source": "capability:webauthn-passkeys",
    "target": "language:typescript",
    "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:webhook-signature",
+   "target": "contract:webhook-delivery",
+   "relation": "fulfills",
    "weight": 1
   },
   {
@@ -16953,6 +18040,402 @@
   },
   {
    "source": "genlib",
+   "target": "contract:ab-test-assignment",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:account-deletion",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:activity-feed",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:admin-data-tables",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:api-cursor-pagination",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:api-key-management",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:audit-log",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:background-job-queue",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:bot-protection",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:calendar-booking",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:cart-checkout",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:color-contrast-check",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:cron-scheduled-tasks",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:csv-export-excel",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:csv-import-mapping",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:dark-mode-theme",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:email-verification-signup",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:env-config-validation",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:feature-flag-rollout",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:file-upload-checks",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:form-validation",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:full-text-search-filters",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:gdpr-data-export",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:geo-nearby-search",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:health-check-endpoint",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:i18n-plurals",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:image-thumbnails",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:invoice-tax-calculation",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:kanban-board",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:maps-with-markers",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:markdown-rendering",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:money-currency-formatting",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:multi-tenant-isolation",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:notification-inbox",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:notification-preferences",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:org-invitations",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:passkey-login",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:password-reset-email",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:pdf-form-filling",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:pdf-invoices",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:per-user-rate-limit",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:plan-feature-limits",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:presigned-uploads",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:product-faceted-search",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:qr-code-generation",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:rbac",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:realtime-presence",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:recurring-events-rrule",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:rich-text-editor-sanitization",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:saml-sso",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:security-headers",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:sitemap-robots",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:social-metadata",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:soft-delete-restore",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:stripe-checkout",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:structured-logging",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:threaded-comments",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:timezone-date-formatting",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:totp-two-factor",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:transactional-email",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:url-shortener",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:url-slugs",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:usage-credits",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:user-chat-messages",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:web-push",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
+   "target": "contract:webhook-delivery",
+   "relation": "contains",
+   "weight": 1
+  },
+  {
+   "source": "genlib",
    "target": "type:api",
    "relation": "contains",
    "weight": 2526
@@ -16997,7 +18480,7 @@
    "source": "genlib",
    "target": "type:module",
    "relation": "contains",
-   "weight": 34
+   "weight": 39
   },
   {
    "source": "genlib",
@@ -19394,6 +20877,282 @@
    "weight": 4
   },
   {
+   "source": "integration:commerce-storefront",
+   "target": "contract:cart-checkout",
+   "relation": "fulfills",
+   "weight": 3
+  },
+  {
+   "source": "integration:document-pipeline",
+   "target": "contract:pdf-invoices",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "integration:durable-jobs",
+   "target": "contract:background-job-queue",
+   "relation": "fulfills",
+   "weight": 3
+  },
+  {
+   "source": "module:account-deletion",
+   "target": "contract:account-deletion",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:api-keys",
+   "target": "contract:api-key-management",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:audit-log",
+   "target": "contract:audit-log",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:bot-protection",
+   "target": "contract:bot-protection",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:chat",
+   "target": "contract:user-chat-messages",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:comments",
+   "target": "contract:threaded-comments",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:csv-import",
+   "target": "contract:csv-import-mapping",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:data-table",
+   "target": "contract:admin-data-tables",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:email-outbox",
+   "target": "contract:email-verification-signup",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "module:email-outbox",
+   "target": "contract:transactional-email",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
+   "source": "module:email-signup",
+   "target": "contract:email-verification-signup",
+   "relation": "fulfills",
+   "weight": 8
+  },
+  {
+   "source": "module:entitlements",
+   "target": "contract:plan-feature-limits",
+   "relation": "fulfills",
+   "weight": 4
+  },
+  {
+   "source": "module:entitlements",
+   "target": "contract:usage-credits",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:env-config",
+   "target": "contract:env-config-validation",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
+   "source": "module:file-uploads",
+   "target": "contract:file-upload-checks",
+   "relation": "fulfills",
+   "weight": 8
+  },
+  {
+   "source": "module:health-checks",
+   "target": "contract:health-check-endpoint",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:http-resilience",
+   "target": "contract:webhook-delivery",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "module:notification-inbox",
+   "target": "contract:activity-feed",
+   "relation": "fulfills",
+   "weight": 4
+  },
+  {
+   "source": "module:notification-inbox",
+   "target": "contract:notification-inbox",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:notification-preferences",
+   "target": "contract:notification-preferences",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:org-invitations",
+   "target": "contract:org-invitations",
+   "relation": "fulfills",
+   "weight": 8
+  },
+  {
+   "source": "module:password-reset",
+   "target": "contract:password-reset-email",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:presence",
+   "target": "contract:realtime-presence",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:qr-code",
+   "target": "contract:qr-code-generation",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:rate-limit",
+   "target": "contract:bot-protection",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "module:rate-limit",
+   "target": "contract:per-user-rate-limit",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:rbac",
+   "target": "contract:admin-data-tables",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "module:rbac",
+   "target": "contract:rbac",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
+   "source": "module:scheduled-tasks",
+   "target": "contract:cron-scheduled-tasks",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:security-headers",
+   "target": "contract:security-headers",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
+   "source": "module:short-links",
+   "target": "contract:url-shortener",
+   "relation": "fulfills",
+   "weight": 8
+  },
+  {
+   "source": "module:site-search",
+   "target": "contract:full-text-search-filters",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:site-search",
+   "target": "contract:product-faceted-search",
+   "relation": "fulfills",
+   "weight": 5
+  },
+  {
+   "source": "module:soft-delete",
+   "target": "contract:soft-delete-restore",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:structured-logger",
+   "target": "contract:structured-logging",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
+   "source": "module:tenant-isolation",
+   "target": "contract:multi-tenant-isolation",
+   "relation": "fulfills",
+   "weight": 4
+  },
+  {
+   "source": "module:theme-tokens",
+   "target": "contract:dark-mode-theme",
+   "relation": "fulfills",
+   "weight": 2
+  },
+  {
+   "source": "module:two-factor",
+   "target": "contract:totp-two-factor",
+   "relation": "fulfills",
+   "weight": 8
+  },
+  {
+   "source": "module:validated-form",
+   "target": "contract:form-validation",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
+   "source": "module:web-push",
+   "target": "contract:web-push",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:webhook-delivery",
+   "target": "contract:webhook-delivery",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:webhook-verification",
+   "target": "contract:cart-checkout",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
+   "source": "module:webhook-verification",
+   "target": "contract:stripe-checkout",
+   "relation": "fulfills",
+   "weight": 1
+  },
+  {
    "source": "type:capability",
    "target": "capability:base-encodings",
    "relation": "includes",
@@ -20481,6 +22240,102 @@
   },
   {
    "source": "type:integration",
+   "target": "integration:api-contracts",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:authorization-collaboration",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:commerce-storefront",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:desktop-delivery",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:developer-codemods",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:document-pipeline",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:durable-jobs",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:native-acceptance",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:native-persistence",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:observability-harness",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:resumable-files",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:shared-rust-core",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:typed-backend-services",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:web-calendar-files",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:web-data-workbench",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
+   "target": "integration:web-forms-editor",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:integration",
    "target": "language:cedar",
    "relation": "serves",
    "weight": 1
@@ -20639,7 +22494,241 @@
    "source": "type:module",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 33
+   "weight": 38
+  },
+  {
+   "source": "type:module",
+   "target": "module:account-deletion",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:api-keys",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:app-shell",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:audit-log",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:bot-protection",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:chat",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:comments",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:common-api-clients",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:csv-import",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:data-table",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:email-outbox",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:email-signup",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:entitlements",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:env-config",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:file-uploads",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:health-checks",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:http-resilience",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:notification-inbox",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:notification-preferences",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:org-invitations",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:password-reset",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:presence",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:public-data-clients",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:qr-code",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:rate-limit",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:rbac",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:scheduled-tasks",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:security-headers",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:short-links",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:site-search",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:soft-delete",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:structured-logger",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:tenant-isolation",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:theme-tokens",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:two-factor",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:validated-form",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:web-push",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:webhook-delivery",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:webhook-verification",
+   "relation": "includes",
+   "weight": 1
   },
   {
    "source": "type:provider",

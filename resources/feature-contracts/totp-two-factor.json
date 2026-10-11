@@ -41,6 +41,128 @@
   ],
   "implementations": [
     {
+      "ref": "module:two-factor",
+      "status": "fixture-verified",
+      "fulfills": [
+        "secret-provisioning",
+        "confirm-enrollment",
+        "code-verification",
+        "replay-protection",
+        "attempt-limits",
+        "secret-protection",
+        "recovery-codes",
+        "step-up"
+      ],
+      "evidence": [
+        {
+          "requirement": "secret-provisioning",
+          "test": "tests/two-factor.test.mjs",
+          "name": "secret provisioning: 160-bit CSPRNG secret in base32 and an otpauth URI with encoded issuer and label"
+        },
+        {
+          "requirement": "confirm-enrollment",
+          "test": "tests/two-factor.test.mjs",
+          "name": "confirm enrollment: 2FA is required only after a valid code for the pending secret"
+        },
+        {
+          "requirement": "confirm-enrollment",
+          "test": "tests/two-factor.test.mjs",
+          "name": "confirm enrollment: the pending secret expires and a new enrollment replaces the old pending secret"
+        },
+        {
+          "requirement": "confirm-enrollment",
+          "test": "tests/two-factor-sql.test.mjs",
+          "name": "sql: schema applies; enrollment confirms only with a valid code before expiry; secret stored as ciphertext"
+        },
+        {
+          "requirement": "code-verification",
+          "test": "tests/two-factor.test.mjs",
+          "name": "totp matches the RFC 6238 Appendix B SHA-1 vectors (8 digits) and their 6-digit truncations"
+        },
+        {
+          "requirement": "code-verification",
+          "test": "tests/two-factor.test.mjs",
+          "name": "code verification: accepts the current step and one step of skew either way, rejects two steps"
+        },
+        {
+          "requirement": "code-verification",
+          "test": "tests/two-factor.test.mjs",
+          "name": "code verification: malformed codes fail; spaces inside a code are tolerated"
+        },
+        {
+          "requirement": "replay-protection",
+          "test": "tests/two-factor.test.mjs",
+          "name": "replay protection: an accepted time step cannot be used again, nor an earlier step in the window"
+        },
+        {
+          "requirement": "replay-protection",
+          "test": "tests/two-factor.test.mjs",
+          "name": "replay protection: of four concurrent verifies of one code exactly one wins (memory store)"
+        },
+        {
+          "requirement": "replay-protection",
+          "test": "tests/two-factor-sql.test.mjs",
+          "name": "sql: of four concurrent verifies of one code exactly one wins, and the step cannot be replayed"
+        },
+        {
+          "requirement": "replay-protection",
+          "test": "tests/two-factor-sql.test.mjs",
+          "name": "sql: recovery codes are single use under concurrency and regeneration replaces all of them"
+        },
+        {
+          "requirement": "attempt-limits",
+          "test": "tests/two-factor.test.mjs",
+          "name": "attempt limits: five failures per 15 minutes lock the account, even for a correct code, until the window passes"
+        },
+        {
+          "requirement": "attempt-limits",
+          "test": "tests/two-factor.test.mjs",
+          "name": "attempt limits: the recovery-code path shares the same per-account limit"
+        },
+        {
+          "requirement": "attempt-limits",
+          "test": "tests/two-factor.test.mjs",
+          "name": "attempt limits: concurrent wrong guesses cannot exceed the limit"
+        },
+        {
+          "requirement": "attempt-limits",
+          "test": "tests/two-factor-sql.test.mjs",
+          "name": "sql: attempt limit is atomic under concurrency, shared with recovery codes, and resets after the window"
+        },
+        {
+          "requirement": "secret-protection",
+          "test": "tests/two-factor.test.mjs",
+          "name": "secret protection: AES-256-GCM ciphertext with key id; plaintext never stored or returned after confirmation"
+        },
+        {
+          "requirement": "secret-protection",
+          "test": "tests/two-factor.test.mjs",
+          "name": "secret protection: old keys still decrypt after rotation and reencryptSecret moves the row to the current key"
+        },
+        {
+          "requirement": "recovery-codes",
+          "test": "tests/two-factor.test.mjs",
+          "name": "recovery codes: random, stored only as HMAC-SHA-256 with the pepper, single use, case and dash insensitive"
+        },
+        {
+          "requirement": "recovery-codes",
+          "test": "tests/two-factor.test.mjs",
+          "name": "recovery codes: concurrent uses of one code, exactly one wins"
+        },
+        {
+          "requirement": "step-up",
+          "test": "tests/two-factor.test.mjs",
+          "name": "step-up: disabling and regenerating require re-authentication within 10 minutes and are refused otherwise"
+        },
+        {
+          "requirement": "step-up",
+          "test": "tests/two-factor-sql.test.mjs",
+          "name": "sql: disable requires recent re-authentication and deletes the secret and codes"
+        }
+      ],
+      "notes": "TOTP only; render the otpauth URI with the qr-code module. Call disable and regenerateRecoveryCodes only from fully signed-in sessions (the HTTP adapter enforces the session stage)."
+    },
+    {
       "ref": "capability:totp",
       "status": "fixture-verified",
       "fulfills": [
@@ -91,5 +213,5 @@
       "notes": "Better Auth twoFactor plugin guidance"
     }
   ],
-  "notes": "Enrollment state, replay tracking, lockout, encrypted secret storage and step-up are not in Genlib. rate-limit is a generic building block for attempt limits."
+  "notes": "module:two-factor covers enrollment, RFC 6238 verification, replay protection, lockout, encrypted secrets, recovery codes and step-up. The app supplies sign-in, sessions and QR rendering (qr-code module)."
 }

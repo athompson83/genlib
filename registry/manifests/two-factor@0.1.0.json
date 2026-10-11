@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "id": "two-factor",
+  "version": "0.1.0",
+  "title": "Two-factor authentication with an authenticator app (TOTP)",
+  "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "two-factor",
+    "2fa",
+    "mfa",
+    "totp",
+    "authenticator app",
+    "one-time password",
+    "otpauth",
+    "recovery codes",
+    "backup codes",
+    "step-up",
+    "authentication",
+    "login",
+    "security",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/two-factor"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (crypto.subtle HMAC SHA-1/SHA-256 and AES-GCM, getRandomValues), TextEncoder/TextDecoder, btoa/atob and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "two-factor/core.ts",
+      "path": "modules/two-factor/files/core.ts",
+      "sha256": "39743205ba108a01acc5ec5558f779d183b3da557c16905cc3d483d65828eab5",
+      "bytes": 22596
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "two-factor/memory-store.ts",
+      "path": "modules/two-factor/files/memory-store.ts",
+      "sha256": "e8b0062f5584adaa042bf35fdaa0d424521494b4affc2f64dc8476b5bfc5cc5f",
+      "bytes": 4507
+    },
+    {
+      "source": "files/http.ts",
+      "target": "two-factor/http.ts",
+      "path": "modules/two-factor/files/http.ts",
+      "sha256": "1f248efe7ba7f8c6a75a452b258c853045c9e904b9cb48d5ce5d52d32d4b7bc6",
+      "bytes": 9106
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "two-factor/sql-store.ts",
+      "path": "modules/two-factor/files/sql-store.ts",
+      "sha256": "8178f70000ab07220bae3b5a795367c5ef40bf5c057bea6a13a522803a6b10af",
+      "bytes": 6541
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "two-factor/schema.sql",
+      "path": "modules/two-factor/files/schema.sql",
+      "sha256": "87a80df9df05011d79125564a5271a0038b0f3c3620d6c88902a8996329368d8",
+      "bytes": 1233
+    }
+  ],
+  "exports": [
+    {
+      "name": "createTwoFactor",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "TwoFactorError",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "totpCode",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "base32Encode",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "base32Decode",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "buildOtpauthUri",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "hashRecoveryCode",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "normalizeRecoveryCode",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "constantTimeEqual",
+      "from": "two-factor/core.ts"
+    },
+    {
+      "name": "MemoryTwoFactorStore",
+      "from": "two-factor/memory-store.ts"
+    },
+    {
+      "name": "createTwoFactorHandler",
+      "from": "two-factor/http.ts"
+    },
+    {
+      "name": "createSqlTwoFactorStore",
+      "from": "two-factor/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlTwoFactorStore with your query executor; on other databases implement TwoFactorStore with single-statement conditional updates for activate, advanceStep, consumeRecoveryCode and registerAttempt.",
+    "Generate a 32-byte AES key from a secret manager and pass it as encryption.keys[<id>] with currentKeyId; to rotate, add a new id, make it current, keep the old id until reencryptSecret has run for every user.",
+    "Pass recoveryPepper: at least 32 random bytes from a secret manager, kept separate from the database.",
+    "Set issuer to your product name (no colon); the account name is usually the user's email.",
+    "After a password sign-in, check isEnabled(userId) and, when true, hold a second-factor-pending session until verify or verifyRecoveryCode succeeds.",
+    "Pass authenticatedAt (when the user last proved their password) to disable and regenerateRecoveryCodes; re-prompt for the password when they refuse with reauthentication-required.",
+    "Mount createTwoFactorHandler under one prefix with exact allowedOrigins, an authenticate hook that reports the session stage, a rateLimit(key) hook, a trusted clientIp(request) and an onVerified hook that upgrades the session."
+  ],
+  "capabilities": [
+    "totp-two-factor",
+    "authenticator-app-enrollment",
+    "totp-replay-protection",
+    "two-factor-attempt-limits",
+    "encrypted-totp-secrets",
+    "recovery-codes",
+    "step-up-reauthentication"
+  ],
+  "limitations": [
+    "TOTP only (SHA-1, 6 digits, 30 seconds, the settings every major authenticator app supports); no SMS, email codes, WebAuthn or passkeys.",
+    "Does not render the QR code (see the qr-code module), store users, manage sessions or verify passwords; the application supplies the session stage and authenticatedAt.",
+    "The attempt limit is a fixed window per account (default 5 per 15 minutes); a legitimate user can be locked out by someone who knows their password. Add IP limits through the rateLimit hook.",
+    "Comparisons are constant time in JavaScript, but HMAC and AES run in the platform's Web Crypto; recovery-code hashes are looked up by database equality, which is safe because they are keyed HMACs.",
+    "Keys and pepper are application-supplied; losing the encryption key makes every enrolled secret unreadable (users then sign in with recovery codes and re-enroll).",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs as a single connection, not on every hosted Postgres or under real multi-connection contention.",
+    "Production database correctness, key management, session handling and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/two-factor.test.mjs",
+      "tests/two-factor-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/two-factor.test.mjs tests/two-factor-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "totpCode matches the RFC 6238 Appendix B SHA-1 vectors (8 digits and 6-digit truncations); base32 matches RFC 4648",
+      "enrollment creates a 160-bit CSPRNG secret in base32 and an otpauth URI with percent-encoded issuer and label",
+      "an accountName with a colon is refused with bad-request (JSON 400 over HTTP); user ids containing a colon enroll through the adapter with a colon-free label",
+      "2FA is enabled only after a valid code for the pending secret; the pending secret expires and a restart replaces it",
+      "verification accepts one step of clock skew either way, rejects two, and fails malformed codes",
+      "an accepted time step (including the confirming one) and earlier steps cannot be reused; exactly one of four concurrent verifies wins (memory and PGlite)",
+      "five attempts per account per 15 minutes, shared by recovery codes, atomic under concurrency, reset after the window or a success",
+      "secrets are stored as AES-256-GCM ciphertext with a key id and user-bound AAD; old keys decrypt after rotation and reencryptSecret moves rows to the current key; the secret is never returned after confirmation",
+      "recovery codes are random, stored only as HMAC-SHA-256 with the pepper, single use under concurrency, and regenerate replaces all",
+      "disable and regenerateRecoveryCodes refuse without re-authentication in the last 10 minutes",
+      "HTTP adapter: enroll, confirm, verify, recovery, regenerate and disable routes; origin check, 401 from authenticate, 403 for settings routes from a second-factor-pending session, 429 from the rateLimit hook and lockout with retry-after, bounded body and cache-control no-store",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/two-factor/module.json",
+    "sha256": "5c5a0592a9c1032aa914937b566d7c20827c4783f23068d91c7504fcf7a52bd5"
+  },
+  "contractFile": {
+    "path": "modules/two-factor/CONTRACT.md",
+    "sha256": "fe0045025186f5691e97e5b1ca4e79779bc7ef132b4e81ddddbf999dbae3c078",
+    "bytes": 10432
+  }
+}
