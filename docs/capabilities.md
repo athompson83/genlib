@@ -76,6 +76,16 @@ Copying takes one command: `tools/recipe-install.mjs add` for TypeScript recipes
 | `natural-sort` Natural sort order (file2 before file10) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `file-signature` File type detection from magic bytes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `color` Color conversion: hex, RGB, HSL and OKLCH | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `glob-match` Glob pattern matching for file paths | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `dotenv` .env file parsing | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `query-string` URL query string parse and build | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `mime-types` MIME type lookup by file extension | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `data-uri` data: URLs (RFC 2397) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `iso-week` ISO 8601 week dates | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `topo-sort` Topological sort and dependency order | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `link-header` HTTP Link header (pagination links) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `content-disposition` Content-Disposition header for downloads | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
+| `cache-control` Cache-Control header parse and build | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](../docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](../docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](../docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](../docs/cookbook/webauthn-passkeys.md) |

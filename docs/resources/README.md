@@ -27,7 +27,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/ai-agents.json`](../../resources/catalog/ai-agents.json) | 104 | [ai-agents.md](../../docs/resources/ai-agents.md) | model-sdk, agent-framework, agent-skill-directory, local-inference, vector-database |
 | [`catalog/ai-learning.json`](../../resources/catalog/ai-learning.json) | 36 | [ai-learning.md](../../docs/resources/ai-learning.md) | learning, engineering-guides, diagram-tools, agent-frameworks, ai-apps |
 | [`catalog/backend-api.json`](../../resources/catalog/backend-api.json) | 95 | [backend-api.md](../../docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
-| [`catalog/business-tools.json`](../../resources/catalog/business-tools.json) | 868 | [business-tools.md](../../docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
+| [`catalog/business-tools.json`](../../resources/catalog/business-tools.json) | 867 | [business-tools.md](../../docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
 | [`catalog/chat-messaging.json`](../../resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](../../docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
 | [`catalog/dashboards.json`](../../resources/catalog/dashboards.json) | 801 | [dashboards.md](../../docs/resources/dashboards.md) | chart-library, admin-template, observability, terminal-dashboard, realtime-kpi |
 | [`catalog/data-docs-office.json`](../../resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](../../docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
@@ -49,10 +49,10 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/readme-tools.json`](../../resources/catalog/readme-tools.json) | 55 | [readme-tools.md](../../docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](../../resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](../../docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/scheduling-calendar.json`](../../resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](../../docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
-| [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 796 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
+| [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 795 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **9770** | | |
+| **Total** | **9768** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -64,23 +64,23 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 <!-- genlib:types:start -->
 | Project type | Records | Covers |
 | --- | ---: | --- |
-| `web-app` | 5614 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
-| `marketing-site` | 3982 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
+| `web-app` | 5613 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
+| `marketing-site` | 3981 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
 | `mobile-app` | 1351 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
 | `desktop-app` | 119 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
-| `api-backend` | 1507 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
+| `api-backend` | 1506 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
 | `cli-tool` | 177 | Argument parsing, prompts, output formatting, config files and distribution. |
 | `ai-agent` | 298 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
 | `data-analytics` | 2011 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 774 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
-| `saas` | 6108 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
+| `saas` | 6106 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
 | `realtime-collab` | 297 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
 | `devops-infra` | 937 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
 | `testing-qa` | 156 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
 | `docs-knowledge` | 432 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 25 | Headless browsers, scraping within terms, workflow automation and RPA. |
 | `office-documents` | 556 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
-| `media-creative` | 949 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
+| `media-creative` | 948 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
 | `finance-accounting` | 418 | Money math, ledgers, invoicing, accounting APIs and financial data. |
 | `legal-compliance` | 120 | Contracts, e-signature, privacy, consent, accessibility and policy tooling. |
 | `game` | 30 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
