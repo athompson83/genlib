@@ -1,5 +1,5 @@
 {
- "about": "Task phrasings mapped to the capability that should rank first for a Python project. 'tuning' was written alongside the capability terms; 'heldout' was written by a separate agent that saw only capability titles, before ranking changes, and was scored only in aggregate. Used by tests/routing.test.mjs and scripts/routing-eval.mjs.",
+ "about": "Task phrasings mapped to the capability that should rank first for a Python project. 'tuning' was written alongside the capability terms; 'heldout' was written by a separate agent that saw only capability titles, before ranking changes, and was scored only in aggregate. Used by tests/routing.test.mjs and scripts/routing-eval.mjs. The held-out misses were printed once on 2026-10-10 after wave 9; ranking changes made after that need a fresh held-out set to be measured honestly.",
  "tuning": [
   [
    "two-factor authentication codes for login",
@@ -216,6 +216,70 @@
   [
    "rate limit api",
    "token-bucket"
+  ],
+  [
+   "stream chatgpt responses to the browser as they arrive",
+   "sse"
+  ],
+  [
+   "parse an event-stream response from an api",
+   "sse"
+  ],
+  [
+   "split long documents into pieces for embeddings",
+   "text-chunking"
+  ],
+  [
+   "chunk text with overlap for retrieval",
+   "text-chunking"
+  ],
+  [
+   "find the most similar embeddings to a query",
+   "vector-math"
+  ],
+  [
+   "cosine similarity between two vectors",
+   "vector-math"
+  ],
+  [
+   "stop calling a failing downstream service for a while",
+   "circuit-breaker"
+  ],
+  [
+   "circuit breaker around an http client",
+   "circuit-breaker"
+  ],
+  [
+   "due date five working days from today excluding holidays",
+   "business-days"
+  ],
+  [
+   "count weekdays between two dates",
+   "business-days"
+  ],
+  [
+   "sort filenames so that file10 comes after file9",
+   "natural-sort"
+  ],
+  [
+   "human friendly alphanumeric ordering",
+   "natural-sort"
+  ],
+  [
+   "check an uploaded file is really a png",
+   "file-signature"
+  ],
+  [
+   "detect file type from magic bytes",
+   "file-signature"
+  ],
+  [
+   "convert hex color to hsl",
+   "color"
+  ],
+  [
+   "generate a palette in oklch",
+   "color"
   ]
  ],
  "heldout": [

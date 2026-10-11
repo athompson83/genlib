@@ -41,6 +41,16 @@ import 'wave7_test.dart'
         runTextSanitizeTests,
         runVCardTests;
 import 'wave8_test.dart' show runJsonPatchTests, runLineDiffTests, runSlugifyTests;
+import 'wave9_test.dart'
+    show
+        runBusinessDaysTests,
+        runCircuitBreakerTests,
+        runColorConvertTests,
+        runFileSignatureTests,
+        runNaturalSortTests,
+        runSseTests,
+        runTextChunkingTests,
+        runVectorMathTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -91,5 +101,13 @@ void main() {
   runTextSanitizeTests(c);
   runSlugifyTests(c);
   runJsonPatchTests(c);
+  runSseTests(c);
+  runTextChunkingTests(c);
+  runVectorMathTests(c);
+  runCircuitBreakerTests(c);
+  runBusinessDaysTests(c);
+  runNaturalSortTests(c);
+  runFileSignatureTests(c);
+  runColorConvertTests(c);
   c.finish();
 }

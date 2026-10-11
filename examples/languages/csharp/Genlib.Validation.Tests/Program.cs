@@ -1354,5 +1354,387 @@ Check("json equal 1 == 1.0", JsonPatch.DeepEqual(J("1"), J("1.0")) && !JsonPatch
 Eq("canonical non-integer and control", "[1.5,\"\\u001f\\b\"]", JsonPatch.Canonical(J("[1.5,\"\\u001F\\b\"]")));
 Eq("canonical code point key order", "{\"～\":2,\"😀\":1}", JsonPatch.Canonical(J("{\"😀\":1,\"～\":2}")));
 
+// 47-54. Wave 9 capabilities (caps10 vectors): SSE, text chunking, vector math, circuit breaker, business days,
+// natural sort, file signatures and color conversion. Literals are generated from the shared vectors.json.
+string W9Events(IEnumerable<SseEvent> evs) => string.Join("\u241E", evs.Select(e => e.Event + "\u241F" + e.Data + "\u241F" + e.Id));
+void W9Near(string name, double expected, double actual, double tol = 1e-9) {
+    bool ok = Math.Abs(expected - actual) <= tol;
+    if (!ok) Console.Error.WriteLine($"  expected <{expected:R}> got <{actual:R}>");
+    Check(name, ok);
+}
+
+// 47. Server-sent events
+{ var p = new SseParser(); Eq("sse parse 0 data: YHOO\\ndata: +2\\ndata: 10\\n\\n", "message\u241FYHOO\n+2\n10\u241F", W9Events(p.Feed("data: YHOO\ndata: +2\ndata: 10\n\n"))); Eq("sse parse 0 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 1 : test stream\\n\\ndata: first event\\nid: ...", "message\u241Ffirst event\u241F1\u241Emessage\u241Fsecond event\u241F", W9Events(p.Feed(": test stream\n\ndata: first event\nid: 1\n\ndata:second event\nid\n\ndata:  third event\n"))); Eq("sse parse 1 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 2 data\\n\\ndata\\ndata\\n\\ndata:", "message\u241F\u241F\u241Emessage\u241F\n\u241F", W9Events(p.Feed("data\n\ndata\ndata\n\ndata:"))); Eq("sse parse 2 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 3 data:test\\n\\ndata: test\\n\\n", "message\u241Ftest\u241F\u241Emessage\u241Ftest\u241F", W9Events(p.Feed("data:test\n\ndata: test\n\n"))); Eq("sse parse 3 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 4 event: add\\ndata: 73857293\\n\\nevent: rem...", "add\u241F73857293\u241F\u241Eremove\u241F2153\u241F\u241Eadd\u241F113411\u241F", W9Events(p.Feed("event: add\ndata: 73857293\n\nevent: remove\ndata: 2153\n\nevent: add\ndata: 113411\n\n"))); Eq("sse parse 4 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 5 <BOM>data: bom\\n\\n", "message\u241Fbom\u241F", W9Events(p.Feed("\uFEFFdata: bom\n\n"))); Eq("sse parse 5 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 6 data: a\\r\\ndata: b\\r\\rdata: c\\n\\n", "message\u241Fa\nb\u241F\u241Emessage\u241Fc\u241F", W9Events(p.Feed("data: a\r\ndata: b\r\rdata: c\n\n"))); Eq("sse parse 6 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 7 id: 7\\ndata: x\\n\\ndata: y\\n\\nid\\ndata: z...", "message\u241Fx\u241F7\u241Emessage\u241Fy\u241F7\u241Emessage\u241Fz\u241F", W9Events(p.Feed("id: 7\ndata: x\n\ndata: y\n\nid\ndata: z\n\n"))); Eq("sse parse 7 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 8 id: a\\0b\\ndata: nul\\n\\n", "message\u241Fnul\u241F", W9Events(p.Feed("id: a\u0000b\ndata: nul\n\n"))); Eq("sse parse 8 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 9 retry: 1500\\ndata: r\\n\\nretry: x\\ndata: ...", "message\u241Fr\u241F\u241Emessage\u241Fs\u241F", W9Events(p.Feed("retry: 1500\ndata: r\n\nretry: x\ndata: s\n\n"))); Eq("sse parse 9 retry", (long?)1500, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 10 event\\ndata: e\\n\\n", "message\u241Fe\u241F", W9Events(p.Feed("event\ndata: e\n\n"))); Eq("sse parse 10 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 11 unknown: q\\ndata: u\\n\\n", "message\u241Fu\u241F", W9Events(p.Feed("unknown: q\ndata: u\n\n"))); Eq("sse parse 11 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 12 :\\n:comment\\ndata: ok\\n\\n", "message\u241Fok\u241F", W9Events(p.Feed(":\n:comment\ndata: ok\n\n"))); Eq("sse parse 12 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); Eq("sse parse 13 data: no blank line at end", "", W9Events(p.Feed("data: no blank line at end"))); Eq("sse parse 13 retry", (long?)null, p.Retry); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "data: YHO", "O\ndata: +2\n", "data", ": 10\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 0", "message\u241FYHOO\n+2\n10\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { ": te", "st stream\n\ndata: first event\nid: 1\n\ndata:s", "econd event\nid\n\ndata: ", " third event\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 1", "message\u241Ffirst event\u241F1\u241Emessage\u241Fsecond event\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "da", "ta\n\nda", "ta\ndata", "\n\ndata:" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 2", "message\u241F\u241F\u241Emessage\u241F\n\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "data", ":t", "est\n\nd", "ata: test\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 3", "message\u241Ftest\u241F\u241Emessage\u241Ftest\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "event: add\ndata: 73857293\n\nevent", ": remove\ndata: 21", "53\n\nevent: a", "dd\ndata: 113411\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 4", "add\u241F73857293\u241F\u241Eremove\u241F2153\u241F\u241Eadd\u241F113411\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "\uFEFFd", "at", "a: bo", "m\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 5", "message\u241Fbom\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "d", "ata: a", "\r\ndata: b\r\rdata: ", "c\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 6", "message\u241Fa\nb\u241F\u241Emessage\u241Fc\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "id: 7\ndata: ", "x\n\ndat", "a: y\n\nid\n", "data: z\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 7", "message\u241Fx\u241F7\u241Emessage\u241Fy\u241F7\u241Emessage\u241Fz\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "id:", " a\u0000", "b\ndata:", " nul\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 8", "message\u241Fnul\u241F", W9Events(all)); }
+{ var p = new SseParser(); var all = new List<SseEvent>(); foreach (var ch in new string[] { "r", "etry: 15", "00\ndata: r\n\nretry: x", "\ndata: s\n\n" }) all.AddRange(p.Feed(ch)); Eq("sse chunked 9", "message\u241Fr\u241F\u241Emessage\u241Fs\u241F", W9Events(all)); }
+Eq("sse parseSse one-shot", "message\u241FYHOO\n+2\n10\u241F", W9Events(Sse.Parse("data: YHOO\ndata: +2\ndata: 10\n\n")));
+Eq("sse format 0", "data: hello\n\n", Sse.Format("hello", null, null, null));
+Eq("sse format 1", "event: update\nid: 42\ndata: a\ndata: b\ndata: c\n\n", Sse.Format("a\nb\r\nc", "update", "42", null));
+Eq("sse format 2", "retry: 3000\ndata: \n\n", Sse.Format("", null, null, 3000));
+Eq("sse format 3", "event: json\nid: \ndata: {\"x\":1}\n\n", Sse.Format("{\"x\":1}", "json", "", null));
+Throws<ArgumentException>("sse format invalid 0", () => Sse.Format("x", "a\nb", null, null));
+Throws<ArgumentException>("sse format invalid 1", () => Sse.Format("x", null, "a\rb", null));
+Throws<ArgumentException>("sse format invalid 2", () => Sse.Format("x", null, "a\u0000", null));
+Throws<ArgumentException>("sse format invalid 3", () => Sse.Format("x", null, null, -1));
+Eq("sse comment ", ":\n\n", Sse.FormatComment(""));
+Eq("sse comment ping", ": ping\n\n", Sse.FormatComment("ping"));
+Throws<ArgumentException>("sse comment line break", () => Sse.FormatComment("a\nb"));
+
+// 48. Text chunking (code points)
+foreach (var (text, max, overlap, expected) in new (string, int, int, string[])[] {
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 60, 0, new string[] { "First paragraph. It has two sentences.", "Second paragraph is a bit longer and keeps going.", "Another sentence here! And a question?\n\nThird." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 40, 15, new string[] { "First paragraph. It has two sentences.", "Second paragraph is a bit longer and", "bit longer and keeps going.", "keeps going. Another sentence here!", "And a question?\n\nThird." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 10, 0, new string[] { "First para", "graph. It", "has two se", "ntences.", "Second", "paragraph", "is a bit", "longer", "and keeps", "going.", "Another", "sentence", "here! And", "a question", "?\n\nThird." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 10, 4, new string[] { "First para", "paragraph.", "aph. It", "It has", "has two se", "sentences.", "ces.", ".\n\nSecond", "paragraph", "is a bit", "longer", "and keeps", "going.", "Another", "sentence", "here! And", "And a ques", "question?", "on?", "n?\n\nThird." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 4, 0, new string[] { "Firs", "t pa", "ragr", "aph.", "It", "has", "two", "sent", "ence", "s.", "Seco", "nd p", "arag", "raph", "is", "a", "bit", "long", "er", "and", "keep", "s go", "ing.", "Ano", "ther", "sen", "tenc", "e he", "re!", "And", "a qu", "esti", "on?", "Thi", "rd." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 9, 4, new string[] { "First par", "paragraph", "raph. It", "It has", "has two s", "sentences", "nces.", "Second", "paragraph", "raph is", "is a", "a bit", "longer", "and", "keeps", "going.", "Another", "sentence", "here!", "And a que", "question?", "ion?", "?\n\nThird." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 1, 0, new string[] { "F", "i", "r", "s", "t", "p", "a", "r", "a", "g", "r", "a", "p", "h", ".", "I", "t", "h", "a", "s", "t", "w", "o", "s", "e", "n", "t", "e", "n", "c", "e", "s", ".", "S", "e", "c", "o", "n", "d", "p", "a", "r", "a", "g", "r", "a", "p", "h", "i", "s", "a", "b", "i", "t", "l", "o", "n", "g", "e", "r", "a", "n", "d", "k", "e", "e", "p", "s", "g", "o", "i", "n", "g", ".", "A", "n", "o", "t", "h", "e", "r", "s", "e", "n", "t", "e", "n", "c", "e", "h", "e", "r", "e", "!", "A", "n", "d", "a", "q", "u", "e", "s", "t", "i", "o", "n", "?", "T", "h", "i", "r", "d", "." }),
+    ("First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird.", 200, 50, new string[] { "First paragraph. It has two sentences.\n\nSecond paragraph is a bit longer and keeps going. Another sentence here! And a question?\n\nThird." }),
+    ("abcdefghij", 60, 0, new string[] { "abcdefghij" }),
+    ("abcdefghij", 40, 15, new string[] { "abcdefghij" }),
+    ("abcdefghij", 10, 0, new string[] { "abcdefghij" }),
+    ("abcdefghij", 10, 4, new string[] { "abcdefghij" }),
+    ("abcdefghij", 4, 0, new string[] { "abcd", "efgh", "ij" }),
+    ("abcdefghij", 9, 4, new string[] { "abcdefghi", "fghij" }),
+    ("abcdefghij", 1, 0, new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" }),
+    ("abcdefghij", 200, 50, new string[] { "abcdefghij" }),
+    ("one two three four five", 60, 0, new string[] { "one two three four five" }),
+    ("one two three four five", 40, 15, new string[] { "one two three four five" }),
+    ("one two three four five", 10, 0, new string[] { "one two", "three", "four five" }),
+    ("one two three four five", 10, 4, new string[] { "one two", "two three", "four five" }),
+    ("one two three four five", 4, 0, new string[] { "one", "two", "thre", "e fo", "ur", "five" }),
+    ("one two three four five", 9, 4, new string[] { "one two", "three", "four five" }),
+    ("one two three four five", 1, 0, new string[] { "o", "n", "e", "t", "w", "o", "t", "h", "r", "e", "e", "f", "o", "u", "r", "f", "i", "v", "e" }),
+    ("one two three four five", 200, 50, new string[] { "one two three four five" }),
+    ("A. B. C.", 60, 0, new string[] { "A. B. C." }),
+    ("A. B. C.", 40, 15, new string[] { "A. B. C." }),
+    ("A. B. C.", 10, 0, new string[] { "A. B. C." }),
+    ("A. B. C.", 10, 4, new string[] { "A. B. C." }),
+    ("A. B. C.", 4, 0, new string[] { "A.", "B.", "C." }),
+    ("A. B. C.", 9, 4, new string[] { "A. B. C." }),
+    ("A. B. C.", 1, 0, new string[] { "A", ".", "B", ".", "C", "." }),
+    ("A. B. C.", 200, 50, new string[] { "A. B. C." }),
+    ("  \n\n  ", 60, 0, new string[] {  }),
+    ("  \n\n  ", 40, 15, new string[] {  }),
+    ("  \n\n  ", 10, 0, new string[] {  }),
+    ("  \n\n  ", 10, 4, new string[] {  }),
+    ("  \n\n  ", 4, 0, new string[] {  }),
+    ("  \n\n  ", 9, 4, new string[] {  }),
+    ("  \n\n  ", 1, 0, new string[] {  }),
+    ("  \n\n  ", 200, 50, new string[] {  }),
+    ("", 60, 0, new string[] {  }),
+    ("", 40, 15, new string[] {  }),
+    ("", 10, 0, new string[] {  }),
+    ("", 10, 4, new string[] {  }),
+    ("", 4, 0, new string[] {  }),
+    ("", 9, 4, new string[] {  }),
+    ("", 1, 0, new string[] {  }),
+    ("", 200, 50, new string[] {  }),
+    ("Line one\nLine two\nLine three\nLine four", 60, 0, new string[] { "Line one\nLine two\nLine three\nLine four" }),
+    ("Line one\nLine two\nLine three\nLine four", 40, 15, new string[] { "Line one\nLine two\nLine three\nLine four" }),
+    ("Line one\nLine two\nLine three\nLine four", 10, 0, new string[] { "Line one", "Line two", "Line", "three", "Line four" }),
+    ("Line one\nLine two\nLine three\nLine four", 10, 4, new string[] { "Line one", "Line two", "Line", "three", "Line four" }),
+    ("Line one\nLine two\nLine three\nLine four", 4, 0, new string[] { "Line", "one", "Line", "two", "Line", "thr", "ee\nL", "ine", "four" }),
+    ("Line one\nLine two\nLine three\nLine four", 9, 4, new string[] { "Line one", "Line two", "Line", "three", "Line four" }),
+    ("Line one\nLine two\nLine three\nLine four", 1, 0, new string[] { "L", "i", "n", "e", "o", "n", "e", "L", "i", "n", "e", "t", "w", "o", "L", "i", "n", "e", "t", "h", "r", "e", "e", "L", "i", "n", "e", "f", "o", "u", "r" }),
+    ("Line one\nLine two\nLine three\nLine four", 200, 50, new string[] { "Line one\nLine two\nLine three\nLine four" }),
+    ("Short.", 60, 0, new string[] { "Short." }),
+    ("Short.", 40, 15, new string[] { "Short." }),
+    ("Short.", 10, 0, new string[] { "Short." }),
+    ("Short.", 10, 4, new string[] { "Short." }),
+    ("Short.", 4, 0, new string[] { "Shor", "t." }),
+    ("Short.", 9, 4, new string[] { "Short." }),
+    ("Short.", 1, 0, new string[] { "S", "h", "o", "r", "t", "." }),
+    ("Short.", 200, 50, new string[] { "Short." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 60, 0, new string[] { "Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 40, 15, new string[] { "Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 10, 0, new string[] { "Caf\u00E9", "na\u00EFve", "r\u00E9sum\u00E9 \u2014", "\u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002", "End." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 10, 4, new string[] { "Caf\u00E9", "na\u00EFve", "r\u00E9sum\u00E9 \u2014", "\u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002", "End." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 4, 0, new string[] { "Caf\u00E9", "na\u00EF", "ve r", "\u00E9sum", "\u00E9 \u2014", "\u65E5\u672C\u8A9E\u306E", "\u30C6\u30AD\u30B9\u30C8", "\u3002", "End." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 9, 4, new string[] { "Caf\u00E9", "na\u00EFve", "r\u00E9sum\u00E9 \u2014", "\u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9", "\u306E\u30C6\u30AD\u30B9\u30C8\u3002", "\u30B9\u30C8\u3002 End." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 1, 0, new string[] { "C", "a", "f", "\u00E9", "n", "a", "\u00EF", "v", "e", "r", "\u00E9", "s", "u", "m", "\u00E9", "\u2014", "\u65E5", "\u672C", "\u8A9E", "\u306E", "\u30C6", "\u30AD", "\u30B9", "\u30C8", "\u3002", "E", "n", "d", "." }),
+    ("Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End.", 200, 50, new string[] { "Caf\u00E9 na\u00EFve r\u00E9sum\u00E9 \u2014 \u65E5\u672C\u8A9E\u306E\u30C6\u30AD\u30B9\u30C8\u3002 End." }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 60, 0, new string[] { "xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 40, 15, new string[] { "xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 10, 0, new string[] { "xxxxxxxxxx", "xxxxxxxxxx", "xxxxx", "yyyyy" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 10, 4, new string[] { "xxxxxxxxxx", "xxxxxxxxxx", "xxxxxxxxxx", "xxxxxxx", "xxx yyyyy" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 4, 0, new string[] { "xxxx", "xxxx", "xxxx", "xxxx", "xxxx", "xxxx", "x yy", "yyy" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 9, 4, new string[] { "xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx", "xxxxxxxxx", "xxxxx", "xxx yyyyy" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 1, 0, new string[] { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "y", "y", "y", "y", "y" }),
+    ("xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy", 200, 50, new string[] { "xxxxxxxxxxxxxxxxxxxxxxxxx yyyyy" }),
+    ("Mr. Smith went. Then? Yes! Done.", 60, 0, new string[] { "Mr. Smith went. Then? Yes! Done." }),
+    ("Mr. Smith went. Then? Yes! Done.", 40, 15, new string[] { "Mr. Smith went. Then? Yes! Done." }),
+    ("Mr. Smith went. Then? Yes! Done.", 10, 0, new string[] { "Mr. Smith", "went.", "Then?", "Yes! Done." }),
+    ("Mr. Smith went. Then? Yes! Done.", 10, 4, new string[] { "Mr. Smith", "went.", "Then?", "Yes! Done." }),
+    ("Mr. Smith went. Then? Yes! Done.", 4, 0, new string[] { "Mr.", "Smit", "h we", "nt.", "Then", "? Ye", "s! D", "one." }),
+    ("Mr. Smith went. Then? Yes! Done.", 9, 4, new string[] { "Mr.", "Smith", "went.", "Then?", "Yes!", "Done." }),
+    ("Mr. Smith went. Then? Yes! Done.", 1, 0, new string[] { "M", "r", ".", "S", "m", "i", "t", "h", "w", "e", "n", "t", ".", "T", "h", "e", "n", "?", "Y", "e", "s", "!", "D", "o", "n", "e", "." }),
+    ("Mr. Smith went. Then? Yes! Done.", 200, 50, new string[] { "Mr. Smith went. Then? Yes! Done." }),
+})
+    Eq($"chunk text max={max} overlap={overlap} {(text.Length > 30 ? text[..30] : text).Replace("\n", "\\n")}", string.Join("\u241E", expected), string.Join("\u241E", TextChunking.ChunkText(text, max, overlap)));
+Throws<ArgumentOutOfRangeException>("chunk text invalid max=0 overlap=0", () => TextChunking.ChunkText("x", 0, 0));
+Throws<ArgumentOutOfRangeException>("chunk text invalid max=5 overlap=5", () => TextChunking.ChunkText("x", 5, 5));
+Throws<ArgumentOutOfRangeException>("chunk text invalid max=5 overlap=-1", () => TextChunking.ChunkText("x", 5, -1));
+Throws<ArgumentOutOfRangeException>("chunk text invalid max=-3 overlap=0", () => TextChunking.ChunkText("x", -3, 0));
+
+// 49. Vector math
+W9Near("vector dot 0", 32, VectorMath.Dot(new double[] { 1, 2, 3 }, new double[] { 4, 5, 6 })); W9Near("vector cosine 0", 0.9746318461970762, VectorMath.Cosine(new double[] { 1, 2, 3 }, new double[] { 4, 5, 6 }));
+W9Near("vector dot 1", 0, VectorMath.Dot(new double[] { 1, 0 }, new double[] { 0, 1 })); W9Near("vector cosine 1", 0.0, VectorMath.Cosine(new double[] { 1, 0 }, new double[] { 0, 1 }));
+W9Near("vector dot 2", -2, VectorMath.Dot(new double[] { 1, 1 }, new double[] { -1, -1 })); W9Near("vector cosine 2", -0.9999999999999998, VectorMath.Cosine(new double[] { 1, 1 }, new double[] { -1, -1 }));
+W9Near("vector dot 3", 0, VectorMath.Dot(new double[] { 0, 0 }, new double[] { 1, 2 })); W9Near("vector cosine 3", 0.0, VectorMath.Cosine(new double[] { 0, 0 }, new double[] { 1, 2 }));
+W9Near("vector dot 4", 25, VectorMath.Dot(new double[] { 3, 4 }, new double[] { 3, 4 })); W9Near("vector cosine 4", 1.0, VectorMath.Cosine(new double[] { 3, 4 }, new double[] { 3, 4 }));
+W9Near("vector dot 5", -1.375, VectorMath.Dot(new double[] { 0.5, -1.5, 2 }, new double[] { 2, 0.25, -1 })); W9Near("vector cosine 5", -0.23969749850222494, VectorMath.Cosine(new double[] { 0.5, -1.5, 2 }, new double[] { 2, 0.25, -1 }));
+W9Near("vector norm 0", 5.0, VectorMath.Norm(new double[] { 3, 4 }));
+W9Near("vector norm 1", 0.0, VectorMath.Norm(new double[] { 0, 0, 0 }));
+W9Near("vector norm 2", 2.0, VectorMath.Norm(new double[] { 1, 1, 1, 1 }));
+W9Near("vector norm 3", 2.5, VectorMath.Norm(new double[] { -2.5 }));
+{ var n = VectorMath.Normalize(new double[] { 3, 4 }); var e = new double[] { 0.6, 0.8 }; Check("vector normalize 0", n.Length == e.Length && n.Zip(e).All(p => Math.Abs(p.First - p.Second) <= 1e-9)); }
+{ var n = VectorMath.Normalize(new double[] { 0, 5 }); var e = new double[] { 0.0, 1.0 }; Check("vector normalize 1", n.Length == e.Length && n.Zip(e).All(p => Math.Abs(p.First - p.Second) <= 1e-9)); }
+{ var n = VectorMath.Normalize(new double[] { 1, 1, 1, 1 }); var e = new double[] { 0.5, 0.5, 0.5, 0.5 }; Check("vector normalize 2", n.Length == e.Length && n.Zip(e).All(p => Math.Abs(p.First - p.Second) <= 1e-9)); }
+{ var r = VectorMath.TopK(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 0); var e = new (int, double)[] {  }; Check("vector topK 0", r.Count == e.Length && r.Zip(e).All(p => p.First.Index == p.Second.Item1 && Math.Abs(p.First.Score - p.Second.Item2) <= 1e-9)); }
+{ var r = VectorMath.TopK(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 1); var e = new (int, double)[] { (0, 1.0) }; Check("vector topK 1", r.Count == e.Length && r.Zip(e).All(p => p.First.Index == p.Second.Item1 && Math.Abs(p.First.Score - p.Second.Item2) <= 1e-9)); }
+{ var r = VectorMath.TopK(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 3); var e = new (int, double)[] { (0, 1.0), (1, 0.9949371890224981), (3, 0.7071067811865476) }; Check("vector topK 2", r.Count == e.Length && r.Zip(e).All(p => p.First.Index == p.Second.Item1 && Math.Abs(p.First.Score - p.Second.Item2) <= 1e-9)); }
+{ var r = VectorMath.TopK(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 10); var e = new (int, double)[] { (0, 1.0), (1, 0.9949371890224981), (3, 0.7071067811865476), (2, 0.0), (4, -1.0) }; Check("vector topK 3", r.Count == e.Length && r.Zip(e).All(p => p.First.Index == p.Second.Item1 && Math.Abs(p.First.Score - p.Second.Item2) <= 1e-9)); }
+{ var r = VectorMath.TopK(new double[] { 0.2, 0.5, 0.1 }, new double[][] { new double[] { 0.1, 0.4, 0.2 }, new double[] { 0.9, 0.1, 0.0 }, new double[] { 0.2, 0.5, 0.1 }, new double[] { 0.0, 0.0, 1.0 }, new double[] { 0.3, 0.3, 0.3 }, new double[] { 0.21, 0.49, 0.12 } }, 3); var e = new (int, double)[] { (2, 1.0), (5, 0.9990003934498585), (0, 0.956182887467515) }; Check("vector topK 4", r.Count == e.Length && r.Zip(e).All(p => p.First.Index == p.Second.Item1 && Math.Abs(p.First.Score - p.Second.Item2) <= 1e-9)); }
+Eq("vector mmr 0", "0,1,4", string.Join(",", VectorMath.Mmr(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 3, 0.5)));
+Eq("vector mmr 1", "0,1,3", string.Join(",", VectorMath.Mmr(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 3, 1.0)));
+Eq("vector mmr 2", "0,4,2", string.Join(",", VectorMath.Mmr(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 3, 0.0)));
+Eq("vector mmr 3", "0,1,3,2,4", string.Join(",", VectorMath.Mmr(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 }, new double[] { 0.99, 0.1 }, new double[] { 0, 1 }, new double[] { 0.7, 0.7 }, new double[] { -1, 0 } }, 5, 0.7)));
+Eq("vector mmr 4", "2,0,1", string.Join(",", VectorMath.Mmr(new double[] { 0.2, 0.5, 0.1 }, new double[][] { new double[] { 0.1, 0.4, 0.2 }, new double[] { 0.9, 0.1, 0.0 }, new double[] { 0.2, 0.5, 0.1 }, new double[] { 0.0, 0.0, 1.0 }, new double[] { 0.3, 0.3, 0.3 }, new double[] { 0.21, 0.49, 0.12 } }, 3, 0.5)));
+Eq("vector mmr 5", "2,3,1,4", string.Join(",", VectorMath.Mmr(new double[] { 0.2, 0.5, 0.1 }, new double[][] { new double[] { 0.1, 0.4, 0.2 }, new double[] { 0.9, 0.1, 0.0 }, new double[] { 0.2, 0.5, 0.1 }, new double[] { 0.0, 0.0, 1.0 }, new double[] { 0.3, 0.3, 0.3 }, new double[] { 0.21, 0.49, 0.12 } }, 4, 0.3)));
+// invalid: length mismatch: cosine([1,2],[1,2,3]); empty: dot([],[]); normalize([0,0]); top_k k=-1; mmr lambda=1.5
+Throws<ArgumentException>("vector invalid length mismatch", () => VectorMath.Cosine(new double[] { 1, 2 }, new double[] { 1, 2, 3 }));
+Throws<ArgumentException>("vector invalid empty", () => VectorMath.Dot(Array.Empty<double>(), Array.Empty<double>()));
+Throws<ArgumentException>("vector invalid normalize zero", () => VectorMath.Normalize(new double[] { 0, 0 }));
+Throws<ArgumentOutOfRangeException>("vector invalid topK k=-1", () => VectorMath.TopK(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 } }, -1));
+Throws<ArgumentOutOfRangeException>("vector invalid mmr lambda=1.5", () => VectorMath.Mmr(new double[] { 1, 0 }, new double[][] { new double[] { 1, 0 } }, 1, 1.5));
+
+// 50. Circuit breaker
+{
+    var cb = new CircuitBreaker(2, 1000, 1);
+    Eq("breaker 0.0 allow@0", true, cb.Allow(0));
+    cb.RecordFailure(0);
+    Eq("breaker 0.2 state@0", "closed", cb.State(0));
+    cb.RecordFailure(10);
+    Eq("breaker 0.4 state@10", "open", cb.State(10));
+    Eq("breaker 0.5 allow@500", false, cb.Allow(500));
+    Eq("breaker 0.6 retry_after@500", 510L, cb.RetryAfterMs(500));
+    Eq("breaker 0.7 state@1010", "half_open", cb.State(1010));
+    Eq("breaker 0.8 allow@1010", true, cb.Allow(1010));
+    Eq("breaker 0.9 allow@1011", false, cb.Allow(1011));
+    cb.RecordSuccess(1020);
+    Eq("breaker 0.11 state@1020", "closed", cb.State(1020));
+    Eq("breaker 0.12 allow@1021", true, cb.Allow(1021));
+}
+{
+    var cb = new CircuitBreaker(3, 500, 2);
+    cb.RecordFailure(0);
+    cb.RecordSuccess(1);
+    cb.RecordFailure(2);
+    cb.RecordFailure(3);
+    Eq("breaker 1.4 state@3", "closed", cb.State(3));
+    cb.RecordFailure(4);
+    Eq("breaker 1.6 state@4", "open", cb.State(4));
+    Eq("breaker 1.7 state@503", "open", cb.State(503));
+    Eq("breaker 1.8 allow@504", true, cb.Allow(504));
+    Eq("breaker 1.9 allow@505", true, cb.Allow(505));
+    Eq("breaker 1.10 allow@506", false, cb.Allow(506));
+    cb.RecordFailure(507);
+    Eq("breaker 1.12 state@507", "open", cb.State(507));
+    Eq("breaker 1.13 retry_after@600", 407L, cb.RetryAfterMs(600));
+    Eq("breaker 1.14 state@1007", "half_open", cb.State(1007));
+    Eq("breaker 1.15 allow@1008", true, cb.Allow(1008));
+    cb.RecordSuccess(1009);
+    Eq("breaker 1.17 state@1009", "closed", cb.State(1009));
+}
+{
+    var cb = new CircuitBreaker(1, 0, 1);
+    cb.RecordFailure(5);
+    Eq("breaker 2.1 state@5", "half_open", cb.State(5));
+    Eq("breaker 2.2 allow@5", true, cb.Allow(5));
+    Eq("breaker 2.3 allow@5", false, cb.Allow(5));
+    cb.RecordFailure(6);
+    Eq("breaker 2.5 state@6", "half_open", cb.State(6));
+    Eq("breaker 2.6 allow@6", true, cb.Allow(6));
+}
+Throws<ArgumentOutOfRangeException>("breaker invalid 0,1000,1", () => new CircuitBreaker(0, 1000, 1));
+Throws<ArgumentOutOfRangeException>("breaker invalid 1,-1,1", () => new CircuitBreaker(1, -1, 1));
+Throws<ArgumentOutOfRangeException>("breaker invalid 1,1000,0", () => new CircuitBreaker(1, 1000, 0));
+
+// 51. Business days
+Eq("business is 2026-10-10 SA/SU", false, BusinessDays.IsBusinessDay("2026-10-10", new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business is 2026-10-12 SA/SU", true, BusinessDays.IsBusinessDay("2026-10-12", new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business is 2026-12-25 SA/SU", false, BusinessDays.IsBusinessDay("2026-12-25", new string[] { "2026-12-25", "2026-12-28", "2027-01-01" }, new string[] { "SA", "SU" }));
+Eq("business is 2026-10-16 FR/SA", false, BusinessDays.IsBusinessDay("2026-10-16", new string[] {  }, new string[] { "FR", "SA" }));
+Eq("business add 2026-10-09 1 SA/SU", "2026-10-12", BusinessDays.AddBusinessDays("2026-10-09", 1, new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business add 2026-10-12 -1 SA/SU", "2026-10-09", BusinessDays.AddBusinessDays("2026-10-12", -1, new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business add 2026-10-10 0 SA/SU", "2026-10-12", BusinessDays.AddBusinessDays("2026-10-10", 0, new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business add 2026-10-12 0 SA/SU", "2026-10-12", BusinessDays.AddBusinessDays("2026-10-12", 0, new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business add 2026-12-23 3 SA/SU", "2026-12-30", BusinessDays.AddBusinessDays("2026-12-23", 3, new string[] { "2026-12-25", "2026-12-28", "2027-01-01" }, new string[] { "SA", "SU" }));
+Eq("business add 2026-12-31 -5 SA/SU", "2026-12-22", BusinessDays.AddBusinessDays("2026-12-31", -5, new string[] { "2026-12-25", "2026-12-28", "2027-01-01" }, new string[] { "SA", "SU" }));
+Eq("business add 2028-02-28 1 SA/SU", "2028-02-29", BusinessDays.AddBusinessDays("2028-02-28", 1, new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business add 2026-10-14 10 FR/SA", "2026-10-28", BusinessDays.AddBusinessDays("2026-10-14", 10, new string[] {  }, new string[] { "FR", "SA" }));
+Eq("business add 2026-01-01 260 SA/SU", "2026-12-31", BusinessDays.AddBusinessDays("2026-01-01", 260, new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business add 2026-10-11 0 ", "2026-10-11", BusinessDays.AddBusinessDays("2026-10-11", 0, new string[] {  }, new string[] {  }));
+Eq("business between 2026-10-01 2026-11-01 SA/SU", 21, BusinessDays.BusinessDaysBetween("2026-10-01", "2026-11-01", new string[] { "2026-10-12" }, new string[] { "SA", "SU" }));
+Eq("business between 2026-11-01 2026-10-01 SA/SU", -22, BusinessDays.BusinessDaysBetween("2026-11-01", "2026-10-01", new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business between 2026-10-12 2026-10-12 SA/SU", 0, BusinessDays.BusinessDaysBetween("2026-10-12", "2026-10-12", new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business between 2026-12-21 2027-01-04 SA/SU", 7, BusinessDays.BusinessDaysBetween("2026-12-21", "2027-01-04", new string[] { "2026-12-25", "2026-12-28", "2027-01-01" }, new string[] { "SA", "SU" }));
+Eq("business between 2026-01-01 2027-01-01 SA/SU", 261, BusinessDays.BusinessDaysBetween("2026-01-01", "2027-01-01", new string[] {  }, new string[] { "SA", "SU" }));
+Eq("business between 2026-10-01 2026-10-31 FR/SA", 21, BusinessDays.BusinessDaysBetween("2026-10-01", "2026-10-31", new string[] {  }, new string[] { "FR", "SA" }));
+Eq("business between 2026-10-10 2026-10-12 SA/SU", 0, BusinessDays.BusinessDaysBetween("2026-10-10", "2026-10-12", new string[] { "2026-10-11" }, new string[] { "SA", "SU" }));
+Throws<FormatException>("business invalid 2026-02-30 1", () => BusinessDays.AddBusinessDays("2026-02-30", 1));
+Throws<FormatException>("business invalid 2026-1-01 1", () => BusinessDays.AddBusinessDays("2026-1-01", 1));
+Throws<ArgumentOutOfRangeException>("business invalid 2026-01-01 100001", () => BusinessDays.AddBusinessDays("2026-01-01", 100001));
+Eq("business default weekend", false, BusinessDays.IsBusinessDay("2026-10-10"));
+Throws<ArgumentException>("business all-week weekend", () => BusinessDays.IsBusinessDay("2026-10-10", null, new[] { "MO", "TU", "WE", "TH", "FR", "SA", "SU" }));
+Throws<ArgumentException>("business bad weekend day", () => BusinessDays.IsBusinessDay("2026-10-10", null, new[] { "XX" }));
+
+// 52. Natural sort
+Eq("natural sort 0", string.Join("\u241E", new string[] { "", "9", "10", "A", "a", "b", "file1", "File1.txt", "file1.txt", "file01.txt", "file2.txt", "file10.txt", "x02y1", "x2y9", "x2y10" }), string.Join("\u241E", NaturalSort.Sort(new string[] { "file10.txt", "file2.txt", "File1.txt", "file1.txt", "file01.txt", "a", "A", "b", "10", "9", "x2y10", "x2y9", "x02y1", "", "file1" })));
+Eq("natural sort 1", string.Join("\u241E", new string[] { "v1.2.0", "v1.2.10", "v1.9.9", "v1.10.0", "v10.0" }), string.Join("\u241E", NaturalSort.Sort(new string[] { "v1.10.0", "v1.2.0", "v1.9.9", "v10.0", "v1.2.10" })));
+Eq("natural sort 2", string.Join("\u241E", new string[] { "img1.png", "IMG2.png", "img10.png", "img12.png" }), string.Join("\u241E", NaturalSort.Sort(new string[] { "img12.png", "img10.png", "IMG2.png", "img1.png" })));
+Eq("natural sort 3", string.Join("\u241E", new string[] { "a", "a0", "a00", "a000", "a1", "a01" }), string.Join("\u241E", NaturalSort.Sort(new string[] { "a0", "a00", "a000", "a", "a1", "a01" })));
+Eq("natural sort 4", string.Join("\u241E", new string[] { "1x", "_x", "a", "Z", "z", "\u00C4" }), string.Join("\u241E", NaturalSort.Sort(new string[] { "\u00C4", "Z", "a", "z", "_x", "1x" })));
+Eq("natural compare a2 a10", -1, NaturalSort.Compare("a2", "a10")); Eq("natural compare reversed a2", 1, NaturalSort.Compare("a10", "a2"));
+Eq("natural compare a10 a2", 1, NaturalSort.Compare("a10", "a2")); Eq("natural compare reversed a10", -1, NaturalSort.Compare("a2", "a10"));
+Eq("natural compare abc ABC", 1, NaturalSort.Compare("abc", "ABC")); Eq("natural compare reversed abc", -1, NaturalSort.Compare("ABC", "abc"));
+Eq("natural compare x01 x1", 1, NaturalSort.Compare("x01", "x1")); Eq("natural compare reversed x01", -1, NaturalSort.Compare("x1", "x01"));
+Eq("natural compare x1 x1", 0, NaturalSort.Compare("x1", "x1")); Eq("natural compare reversed x1", 0, NaturalSort.Compare("x1", "x1"));
+Eq("natural compare  a", -1, NaturalSort.Compare("", "a")); Eq("natural compare reversed ", 1, NaturalSort.Compare("a", ""));
+Eq("natural compare a 1", 1, NaturalSort.Compare("a", "1")); Eq("natural compare reversed a", -1, NaturalSort.Compare("1", "a"));
+Eq("natural compare 99999999999999999999 100000000000000000000", -1, NaturalSort.Compare("99999999999999999999", "100000000000000000000")); Eq("natural compare reversed 99999999999999999999", 1, NaturalSort.Compare("100000000000000000000", "99999999999999999999"));
+Eq("natural compare astral by code point", -1, NaturalSort.Compare("\uFF5E", "\U0001F600"));
+
+// 53. File signatures
+Eq("file signature detect png", ((string, string)?)("image/png", "png"), FileSignature.DetectFileType(Convert.FromHexString("89504e470d0a1a0a0000000d49484452")));
+Eq("file signature detect jpg", ((string, string)?)("image/jpeg", "jpg"), FileSignature.DetectFileType(Convert.FromHexString("ffd8ffe000104a464946")));
+Eq("file signature detect gif", ((string, string)?)("image/gif", "gif"), FileSignature.DetectFileType(Convert.FromHexString("4749463839610100")));
+Eq("file signature detect webp", ((string, string)?)("image/webp", "webp"), FileSignature.DetectFileType(Convert.FromHexString("52494646240000005745425056503820")));
+Eq("file signature detect wav", ((string, string)?)("audio/wav", "wav"), FileSignature.DetectFileType(Convert.FromHexString("524946462400000057415645666d7420")));
+Eq("file signature detect avi", ((string, string)?)("video/x-msvideo", "avi"), FileSignature.DetectFileType(Convert.FromHexString("5249464624000000415649204c495354")));
+Eq("file signature detect bmp", ((string, string)?)("image/bmp", "bmp"), FileSignature.DetectFileType(Convert.FromHexString("424d0000000000000000000000000000")));
+Eq("file signature detect ico", ((string, string)?)("image/x-icon", "ico"), FileSignature.DetectFileType(Convert.FromHexString("000001000100")));
+Eq("file signature detect tif", ((string, string)?)("image/tiff", "tif"), FileSignature.DetectFileType(Convert.FromHexString("49492a000800")));
+Eq("file signature detect tif-be", ((string, string)?)("image/tiff", "tif"), FileSignature.DetectFileType(Convert.FromHexString("4d4d002a0008")));
+Eq("file signature detect pdf", ((string, string)?)("application/pdf", "pdf"), FileSignature.DetectFileType(Convert.FromHexString("255044462d312e370a")));
+Eq("file signature detect zip", ((string, string)?)("application/zip", "zip"), FileSignature.DetectFileType(Convert.FromHexString("504b03041400")));
+Eq("file signature detect zip-empty", ((string, string)?)("application/zip", "zip"), FileSignature.DetectFileType(Convert.FromHexString("504b0506000000000000000000000000000000000000")));
+Eq("file signature detect gz", ((string, string)?)("application/gzip", "gz"), FileSignature.DetectFileType(Convert.FromHexString("1f8b0800")));
+Eq("file signature detect 7z", ((string, string)?)("application/x-7z-compressed", "7z"), FileSignature.DetectFileType(Convert.FromHexString("377abcaf271c0004")));
+Eq("file signature detect rar", ((string, string)?)("application/vnd.rar", "rar"), FileSignature.DetectFileType(Convert.FromHexString("526172211a070100")));
+Eq("file signature detect sqlite", ((string, string)?)("application/vnd.sqlite3", "sqlite"), FileSignature.DetectFileType(Convert.FromHexString("53514c69746520666f726d61742033001000")));
+Eq("file signature detect wasm", ((string, string)?)("application/wasm", "wasm"), FileSignature.DetectFileType(Convert.FromHexString("0061736d01000000")));
+Eq("file signature detect ogg", ((string, string)?)("audio/ogg", "ogg"), FileSignature.DetectFileType(Convert.FromHexString("4f6767530002")));
+Eq("file signature detect flac", ((string, string)?)("audio/flac", "flac"), FileSignature.DetectFileType(Convert.FromHexString("664c614300000022")));
+Eq("file signature detect mp3-id3", ((string, string)?)("audio/mpeg", "mp3"), FileSignature.DetectFileType(Convert.FromHexString("494433040000")));
+Eq("file signature detect mp3-frame", ((string, string)?)("audio/mpeg", "mp3"), FileSignature.DetectFileType(Convert.FromHexString("fffb9064")));
+Eq("file signature detect webm", ((string, string)?)("video/webm", "webm"), FileSignature.DetectFileType(Convert.FromHexString("1a45dfa39f4286")));
+Eq("file signature detect mp4", ((string, string)?)("video/mp4", "mp4"), FileSignature.DetectFileType(Convert.FromHexString("000000206674797069736f6d00000200")));
+Eq("file signature detect mov", ((string, string)?)("video/quicktime", "mov"), FileSignature.DetectFileType(Convert.FromHexString("00000014667479707174202000000000")));
+Eq("file signature detect heic", ((string, string)?)("image/heic", "heic"), FileSignature.DetectFileType(Convert.FromHexString("00000018667479706865696300000000")));
+Eq("file signature detect avif", ((string, string)?)("image/avif", "avif"), FileSignature.DetectFileType(Convert.FromHexString("0000001c667479706176696600000000")));
+Eq("file signature detect m4a", ((string, string)?)("audio/mp4", "m4a"), FileSignature.DetectFileType(Convert.FromHexString("00000020667479704d34412000000000")));
+Eq("file signature detect woff", ((string, string)?)("font/woff", "woff"), FileSignature.DetectFileType(Convert.FromHexString("774f464600010000")));
+Eq("file signature detect woff2", ((string, string)?)("font/woff2", "woff2"), FileSignature.DetectFileType(Convert.FromHexString("774f463200010000")));
+Eq("file signature detect text", ((string, string)?)null, FileSignature.DetectFileType(Convert.FromHexString("68656c6c6f20776f726c64")));
+Eq("file signature detect empty", ((string, string)?)null, FileSignature.DetectFileType(Convert.FromHexString("")));
+Eq("file signature detect short-png", ((string, string)?)null, FileSignature.DetectFileType(Convert.FromHexString("89504e47")));
+Eq("file signature detect bm-short", ((string, string)?)null, FileSignature.DetectFileType(Convert.FromHexString("424d0000")));
+Eq("file signature detect ff-not-mp3", ((string, string)?)null, FileSignature.DetectFileType(Convert.FromHexString("ffe10000")));
+Eq("file signature detect html", ((string, string)?)null, FileSignature.DetectFileType(Convert.FromHexString("3c21444f43545950452068746d6c3e")));
+Eq("file signature extension a.png 89504e47", true, FileSignature.MatchesExtension(Convert.FromHexString("89504e470d0a1a0a0000000d49484452"), "a.png"));
+Eq("file signature extension a.PNG 89504e47", true, FileSignature.MatchesExtension(Convert.FromHexString("89504e470d0a1a0a0000000d49484452"), "a.PNG"));
+Eq("file signature extension a.jpg 89504e47", false, FileSignature.MatchesExtension(Convert.FromHexString("89504e470d0a1a0a0000000d49484452"), "a.jpg"));
+Eq("file signature extension photo.jpeg ffd8ffe0", true, FileSignature.MatchesExtension(Convert.FromHexString("ffd8ffe000104a464946"), "photo.jpeg"));
+Eq("file signature extension report.docx 504b0304", true, FileSignature.MatchesExtension(Convert.FromHexString("504b03041400"), "report.docx"));
+Eq("file signature extension x.xlsx 504b0304", true, FileSignature.MatchesExtension(Convert.FromHexString("504b03041400"), "x.xlsx"));
+Eq("file signature extension x.pdf.exe 25504446", false, FileSignature.MatchesExtension(Convert.FromHexString("255044462d312e370a"), "x.pdf.exe"));
+Eq("file signature extension IMG_1.HEIF 00000018", true, FileSignature.MatchesExtension(Convert.FromHexString("00000018667479706865696300000000"), "IMG_1.HEIF"));
+Eq("file signature extension a.txt 68656c6c", false, FileSignature.MatchesExtension(Convert.FromHexString("68656c6c6f20776f726c64"), "a.txt"));
+Eq("file signature extension noext 89504e47", false, FileSignature.MatchesExtension(Convert.FromHexString("89504e470d0a1a0a0000000d49484452"), "noext"));
+Eq("file signature extension scan.tiff 49492a00", true, FileSignature.MatchesExtension(Convert.FromHexString("49492a000800"), "scan.tiff"));
+Eq("file signature extension song.mp3 49443304", true, FileSignature.MatchesExtension(Convert.FromHexString("494433040000"), "song.mp3"));
+Eq("file signature extension a.tar.gz 1f8b0800", true, FileSignature.MatchesExtension(Convert.FromHexString("1f8b0800"), "a.tar.gz"));
+
+// 54. Color conversion
+{ var c = ColorConvert.ParseHex("#000"); W9Near("color parse #000 r", 0.0, c.R, 1e-6); W9Near("color parse #000 g", 0.0, c.G, 1e-6); W9Near("color parse #000 b", 0.0, c.B, 1e-6); W9Near("color parse #000 a", 1.0, c.A, 1e-6); Eq("color hex round trip #000", "#000000", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#fff"); W9Near("color parse #fff r", 1.0, c.R, 1e-6); W9Near("color parse #fff g", 1.0, c.G, 1e-6); W9Near("color parse #fff b", 1.0, c.B, 1e-6); W9Near("color parse #fff a", 1.0, c.A, 1e-6); Eq("color hex round trip #fff", "#ffffff", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#f00"); W9Near("color parse #f00 r", 1.0, c.R, 1e-6); W9Near("color parse #f00 g", 0.0, c.G, 1e-6); W9Near("color parse #f00 b", 0.0, c.B, 1e-6); W9Near("color parse #f00 a", 1.0, c.A, 1e-6); Eq("color hex round trip #f00", "#ff0000", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#0f8"); W9Near("color parse #0f8 r", 0.0, c.R, 1e-6); W9Near("color parse #0f8 g", 1.0, c.G, 1e-6); W9Near("color parse #0f8 b", 0.5333333333333333, c.B, 1e-6); W9Near("color parse #0f8 a", 1.0, c.A, 1e-6); Eq("color hex round trip #0f8", "#00ff88", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#336699"); W9Near("color parse #336699 r", 0.2, c.R, 1e-6); W9Near("color parse #336699 g", 0.4, c.G, 1e-6); W9Near("color parse #336699 b", 0.6, c.B, 1e-6); W9Near("color parse #336699 a", 1.0, c.A, 1e-6); Eq("color hex round trip #336699", "#336699", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#336699cc"); W9Near("color parse #336699cc r", 0.2, c.R, 1e-6); W9Near("color parse #336699cc g", 0.4, c.G, 1e-6); W9Near("color parse #336699cc b", 0.6, c.B, 1e-6); W9Near("color parse #336699cc a", 0.8, c.A, 1e-6); Eq("color hex round trip #336699cc", "#336699cc", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#ABCDEF"); W9Near("color parse #ABCDEF r", 0.6705882352941176, c.R, 1e-6); W9Near("color parse #ABCDEF g", 0.803921568627451, c.G, 1e-6); W9Near("color parse #ABCDEF b", 0.9372549019607843, c.B, 1e-6); W9Near("color parse #ABCDEF a", 1.0, c.A, 1e-6); Eq("color hex round trip #ABCDEF", "#abcdef", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#12345678"); W9Near("color parse #12345678 r", 0.07058823529411765, c.R, 1e-6); W9Near("color parse #12345678 g", 0.20392156862745098, c.G, 1e-6); W9Near("color parse #12345678 b", 0.33725490196078434, c.B, 1e-6); W9Near("color parse #12345678 a", 0.47058823529411764, c.A, 1e-6); Eq("color hex round trip #12345678", "#12345678", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#7f7f7f"); W9Near("color parse #7f7f7f r", 0.4980392156862745, c.R, 1e-6); W9Near("color parse #7f7f7f g", 0.4980392156862745, c.G, 1e-6); W9Near("color parse #7f7f7f b", 0.4980392156862745, c.B, 1e-6); W9Near("color parse #7f7f7f a", 1.0, c.A, 1e-6); Eq("color hex round trip #7f7f7f", "#7f7f7f", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+{ var c = ColorConvert.ParseHex("#808080"); W9Near("color parse #808080 r", 0.5019607843137255, c.R, 1e-6); W9Near("color parse #808080 g", 0.5019607843137255, c.G, 1e-6); W9Near("color parse #808080 b", 0.5019607843137255, c.B, 1e-6); W9Near("color parse #808080 a", 1.0, c.A, 1e-6); Eq("color hex round trip #808080", "#808080", ColorConvert.ToHex(c.R, c.G, c.B, c.A)); }
+Throws<FormatException>("color hex invalid 336699", () => ColorConvert.ParseHex("336699"));
+Throws<FormatException>("color hex invalid #12", () => ColorConvert.ParseHex("#12"));
+Throws<FormatException>("color hex invalid #12345", () => ColorConvert.ParseHex("#12345"));
+Throws<FormatException>("color hex invalid #1234567", () => ColorConvert.ParseHex("#1234567"));
+Throws<FormatException>("color hex invalid #ggg", () => ColorConvert.ParseHex("#ggg"));
+Throws<FormatException>("color hex invalid #", () => ColorConvert.ParseHex("#"));
+Throws<FormatException>("color hex invalid rgb(1,2,3)", () => ColorConvert.ParseHex("rgb(1,2,3)"));
+Throws<FormatException>("color hex invalid #3366999", () => ColorConvert.ParseHex("#3366999"));
+Eq("color toHex 0.5/0.5/0.5", "#808080", ColorConvert.ToHex(0.5, 0.5, 0.5));
+Eq("color toHex 1.2/-0.1/0.5", "#ff0080", ColorConvert.ToHex(1.2, -0.1, 0.5));
+Eq("color toHex 0.001/0.999/0.5", "#00ff80", ColorConvert.ToHex(0.001, 0.999, 0.5));
+Eq("color toHex 0.2/0.4/0.6/0.5", "#33669980", ColorConvert.ToHex(0.2, 0.4, 0.6, 0.5));
+Eq("color toHex 0.2/0.4/0.6/1.0", "#336699", ColorConvert.ToHex(0.2, 0.4, 0.6, 1.0));
+Eq("color toHex 0.00196078431372549/0.0058823529411764705/0.00980392156862745", "#010203", ColorConvert.ToHex(0.00196078431372549, 0.0058823529411764705, 0.00980392156862745));
+{ var c = ColorConvert.ParseHex("#000"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #000 h", 0.0, x.H, 1e-6); W9Near("color hsl #000 s", 0.0, x.S, 1e-6); W9Near("color hsl #000 l", 0.0, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#fff"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #fff h", 0.0, x.H, 1e-6); W9Near("color hsl #fff s", 0.0, x.S, 1e-6); W9Near("color hsl #fff l", 1.0, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#f00"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #f00 h", 0.0, x.H, 1e-6); W9Near("color hsl #f00 s", 1.0, x.S, 1e-6); W9Near("color hsl #f00 l", 0.5, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#0f0"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #0f0 h", 120.0, x.H, 1e-6); W9Near("color hsl #0f0 s", 1.0, x.S, 1e-6); W9Near("color hsl #0f0 l", 0.5, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#00f"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #00f h", 240.0, x.H, 1e-6); W9Near("color hsl #00f s", 1.0, x.S, 1e-6); W9Near("color hsl #00f l", 0.5, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#336699"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #336699 h", 210.0, x.H, 1e-6); W9Near("color hsl #336699 s", 0.49999999999999994, x.S, 1e-6); W9Near("color hsl #336699 l", 0.4, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#ff8000"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #ff8000 h", 30.11764705882353, x.H, 1e-6); W9Near("color hsl #ff8000 s", 1.0, x.S, 1e-6); W9Near("color hsl #ff8000 l", 0.5, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#808080"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #808080 h", 0.0, x.H, 1e-6); W9Near("color hsl #808080 s", 0.0, x.S, 1e-6); W9Near("color hsl #808080 l", 0.5019607843137255, x.L, 1e-6); }
+{ var c = ColorConvert.ParseHex("#c0ffee"); var x = ColorConvert.RgbToHsl(c.R, c.G, c.B); W9Near("color hsl #c0ffee h", 163.80952380952382, x.H, 1e-6); W9Near("color hsl #c0ffee s", 1.0, x.S, 1e-6); W9Near("color hsl #c0ffee l", 0.8764705882352941, x.L, 1e-6); }
+{ var x = ColorConvert.HslToRgb(0, 1, 0.5); W9Near("color hslToRgb 0 r", 1.0, x.R, 1e-6); W9Near("color hslToRgb 0 g", 0.0, x.G, 1e-6); W9Near("color hslToRgb 0 b", 0.0, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(120, 1, 0.5); W9Near("color hslToRgb 120 r", 0.0, x.R, 1e-6); W9Near("color hslToRgb 120 g", 1.0, x.G, 1e-6); W9Near("color hslToRgb 120 b", 0.0, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(240, 1, 0.5); W9Near("color hslToRgb 240 r", 0.0, x.R, 1e-6); W9Near("color hslToRgb 240 g", 0.0, x.G, 1e-6); W9Near("color hslToRgb 240 b", 1.0, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(210, 0.5, 0.4); W9Near("color hslToRgb 210 r", 0.2, x.R, 1e-6); W9Near("color hslToRgb 210 g", 0.4, x.G, 1e-6); W9Near("color hslToRgb 210 b", 0.6000000000000001, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(360, 1, 0.5); W9Near("color hslToRgb 360 r", 1.0, x.R, 1e-6); W9Near("color hslToRgb 360 g", 0.0, x.G, 1e-6); W9Near("color hslToRgb 360 b", 0.0, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(-30, 1, 0.5); W9Near("color hslToRgb -30 r", 1.0, x.R, 1e-6); W9Near("color hslToRgb -30 g", 0.0, x.G, 1e-6); W9Near("color hslToRgb -30 b", 0.5, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(90, 0, 0.3); W9Near("color hslToRgb 90 r", 0.3, x.R, 1e-6); W9Near("color hslToRgb 90 g", 0.3, x.G, 1e-6); W9Near("color hslToRgb 90 b", 0.3, x.B, 1e-6); }
+{ var x = ColorConvert.HslToRgb(30, 1, 0.75); W9Near("color hslToRgb 30 r", 1.0, x.R, 1e-6); W9Near("color hslToRgb 30 g", 0.75, x.G, 1e-6); W9Near("color hslToRgb 30 b", 0.5, x.B, 1e-6); }
+{ var c = ColorConvert.ParseHex("#000"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #000 L", 0.0, x.L, 1e-6); W9Near("color oklch #000 C", 0.0, x.C, 1e-6); W9Near("color oklch #000 h", 0.0, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#fff"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #fff L", 0.9999999934735462, x.L, 1e-6); W9Near("color oklch #fff C", 3.727399553519285e-08, x.C, 1e-6); W9Near("color oklch #fff h", 0.0, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#f00"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #f00 L", 0.6279553606145516, x.L, 1e-6); W9Near("color oklch #f00 C", 0.2576833077361567, x.C, 1e-6); W9Near("color oklch #f00 h", 29.233885192342633, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#0f0"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #0f0 L", 0.8664396115356694, x.L, 1e-6); W9Near("color oklch #0f0 C", 0.2948272403370166, x.C, 1e-6); W9Near("color oklch #0f0 h", 142.49533888780996, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#00f"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #00f L", 0.4520137183853429, x.L, 1e-6); W9Near("color oklch #00f C", 0.31321437166460114, x.C, 1e-6); W9Near("color oklch #00f h", 264.052020638055, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#336699"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #336699 L", 0.49931445292373877, x.L, 1e-6); W9Near("color oklch #336699 C", 0.09866435965710138, x.C, 1e-6); W9Near("color oklch #336699 h", 250.43305370947127, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#808080"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #808080 L", 0.5998708017071177, x.L, 1e-6); W9Near("color oklch #808080 C", 2.2359581629199253e-08, x.C, 1e-6); W9Near("color oklch #808080 h", 0.0, x.H, 1e-6); }
+{ var c = ColorConvert.ParseHex("#ff8000"); var x = ColorConvert.RgbToOklch(c.R, c.G, c.B); W9Near("color oklch #ff8000 L", 0.7318948427227374, x.L, 1e-6); W9Near("color oklch #ff8000 C", 0.1858032156306402, x.C, 1e-6); W9Near("color oklch #ff8000 h", 52.984679593971286, x.H, 1e-6); }
+{ var x = ColorConvert.OklchToRgb(0.627955, 0.257683, 29.2339); W9Near("color oklchToRgb 0.627955 r", 0.9999989995226538, x.R, 1e-6); W9Near("color oklchToRgb 0.627955 g", 2.4989239385060646e-06, x.G, 1e-6); W9Near("color oklchToRgb 0.627955 b", -3.5938127559420605e-08, x.B, 1e-6); }
+{ var x = ColorConvert.OklchToRgb(0.7, 0.1, 200); W9Near("color oklchToRgb 0.7 r", 0.25183094033414793, x.R, 1e-6); W9Near("color oklchToRgb 0.7 g", 0.6942495954401551, x.G, 1e-6); W9Near("color oklchToRgb 0.7 b", 0.7170636897415913, x.B, 1e-6); }
+{ var x = ColorConvert.OklchToRgb(0.5, 0.4, 150); W9Near("color oklchToRgb 0.5 r", -2.5595884674002214, x.R, 1e-6); W9Near("color oklchToRgb 0.5 g", 0.5687880047974224, x.G, 1e-6); W9Near("color oklchToRgb 0.5 b", -0.8622713129274896, x.B, 1e-6); }
+{ var x = ColorConvert.OklchToRgb(1, 0, 0); W9Near("color oklchToRgb 1 r", 0.9999999999999999, x.R, 1e-6); W9Near("color oklchToRgb 1 g", 0.9999999999999999, x.G, 1e-6); W9Near("color oklchToRgb 1 b", 0.9999999999999999, x.B, 1e-6); }
+{ var x = ColorConvert.OklchToRgb(0, 0, 0); W9Near("color oklchToRgb 0 r", 0.0, x.R, 1e-6); W9Near("color oklchToRgb 0 g", 0.0, x.G, 1e-6); W9Near("color oklchToRgb 0 b", 0.0, x.B, 1e-6); }
+Eq("color inGamut 0.25183094033414793", true, ColorConvert.InGamut(0.25183094033414793, 0.6942495954401551, 0.7170636897415913));
+Eq("color inGamut -2.5595884674002214", false, ColorConvert.InGamut(-2.5595884674002214, 0.5687880047974224, -0.8622713129274896));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;
