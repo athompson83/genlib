@@ -20,6 +20,8 @@ For project detection, planning, and verification, add `--project-root /absolute
 
 ## Claude Code and other stdio clients
 
+Generate an exact native fragment for the receiving host with `node bin/genlib.mjs harness config <host> --target /absolute/path/to/app --raw`. Profiles include OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode, Claude, Codex, Cline and Roo. `generic` emits connection values for other MCP hosts. Ollama delegates to an MCP-capable host. The [harness guide](harnesses.md) covers their different schemas, locations and skill setup; `harness config` without `--raw` includes that metadata and setup commands.
+
 From the receiving project's directory:
 
 ```sh
@@ -69,6 +71,9 @@ See the [official Codex MCP documentation](https://developers.openai.com/codex/m
 
 | Tool | Result and access |
 |---|---|
+| `genlib_quick` | One selected match, caveats and exact next commands; compact text plus structured metadata |
+| `genlib_find` | Compact ranked alternatives by default; `detail: "full"` returns the full search result |
+| `genlib_outline` | Public signatures and short documentation for one catalog-resolved reference; no arbitrary file paths |
 | `genlib_search` | Ranked metadata across every source type, with optional source type, license policy, retired-resource override and project fit |
 | `genlib_catalog` | Counts, compact module/pack lists and this server's enabled access |
 | `genlib_inspect` | One selected contract, resource record, capability or index entry |
@@ -79,7 +84,7 @@ See the [official Codex MCP documentation](https://developers.openai.com/codex/m
 | `genlib_verify_installation` | Missing/modified/unchanged status against the recorded baseline, or incomplete integration recovery evidence |
 | `genlib_install` | Source-copy operation, registered only when the server starts with `--allow-install` |
 
-Resources `genlib://catalog` and `genlib://guide/mcp` expose the compact catalog and this guide. Inspection returns metadata and contracts; source text is read separately. `genlib_read_file` uses character offsets and `nextOffset`, with at most 40,000 characters per page. Tool responses and HTTP request bodies are bounded to 128 KiB; stdio frames are bounded to 256 KiB. All tool input schemas reject unknown fields.
+Resources `genlib://catalog` and `genlib://guide/mcp` expose the compact catalog and this guide. Inspection returns metadata and contracts; source text is read separately. `genlib_read_file` uses character offsets and `nextOffset`, with at most 40,000 characters per page. Tool responses and HTTP request bodies are bounded to 128 KiB; stdio frames are bounded to 256 KiB. All tool input schemas reject unknown fields. `genlib_quick` and `genlib_find` accept a language preference or relative `project`; detected project requirements take precedence. They share CLI ranking and caveats. `genlib_outline` accepts `ref` and optional `language` and resolves only known sources.
 
 Example tool arguments, in order:
 
@@ -153,6 +158,7 @@ The transport follows the [official MCP transport specification](https://modelco
 ```sh
 npm ci --ignore-scripts --prefix packages/genlib-mcp
 npm test --prefix packages/genlib-mcp
+node bin/genlib.mjs harness doctor --target /absolute/path/to/app
 ```
 
-Tests launch real SDK clients over stdio and HTTP. They check protocol negotiation, tool discovery and execution, readonly defaults, bounded declared-file reads, installation planning and drift detection, target scoping, bearer authentication, host/origin rejection and request-size limits. They use temporary local projects, no live API credentials, and no provider operations.
+Tests launch real SDK clients over stdio and HTTP. They check protocol negotiation, compact quick/find/outline behavior, tool discovery and execution, readonly defaults, bounded declared-file reads, installation planning and drift detection, target scoping, bearer authentication, host/origin rejection and request-size limits. They use temporary local projects, no live API credentials, and no provider operations. `harness doctor` independently starts a read-only local stdio server, checks discovery and real calls, and closes it. Use `--mode discovery` for the dependency-free server; this does not test a remote HTTP endpoint or a named host application's UI.

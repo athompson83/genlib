@@ -95,7 +95,9 @@ When a new capability or module covers what an indexed external project does, ad
 
 Do not hand-edit generated hashes, catalog entries, or skill mirrors. Registry and skill check modes report drift without writing. Skill sync rejects unexpected content in its dedicated mirror directories; inspect such content before resolving a conflict so unrelated work is not lost.
 
-When changing the skill, preserve standard `name` and `description` YAML frontmatter and the complete supporting references. Format example agent prompts as JSON. The copied skill must locate a separate Genlib checkout through `GENLIB_ROOT` and must remain usable outside this repository.
+When changing the skill, preserve standard `name` and `description` YAML frontmatter and the complete supporting references. Format example agent prompts as JSON. The copied skill must prefer an available MCP connection without requiring a local checkout, and locate a separate reviewed checkout through `GENLIB_ROOT` for CLI fallback. It must remain usable outside this repository.
+
+Harness profiles live in `lib/harnesses.mjs`. Add primary-source configuration and skill-path evidence with a checked date; do not infer a native MCP loader from a model runtime. Test native schemas, idempotent safe skill copying and explicit authority choices with `node --test tests/harnesses.test.mjs tests/skills.test.mjs tests/harness-doctor.test.mjs`, then run the optional MCP package suite. Configuration generation emits fragments for merging and must not replace settings. Keep actual named-client acceptance separate from a successful local protocol doctor. The profile guide is [docs/harnesses.md](docs/harnesses.md).
 
 ## Preserve installer guarantees
 

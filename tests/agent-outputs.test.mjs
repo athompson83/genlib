@@ -11,6 +11,8 @@ import { quickPick } from '../lib/brief.mjs';
 import { stepsFor } from '../lib/capabilities.mjs';
 import { loadCatalog, REPOSITORY_ROOT } from '../lib/catalog.mjs';
 import { planInstall } from '../lib/install.mjs';
+import { harnessConfiguration, listHarnesses } from '../lib/harnesses.mjs';
+import { doctorHarness } from '../lib/harness-doctor.mjs';
 
 const schema = name => JSON.parse(readFileSync(new URL(`../schemas/${name}.schema.json`, import.meta.url), 'utf8'));
 // The JSON Schema subset the schemas use: type (incl. arrays of types), required, properties, items, enum, const, pattern, minItems.
@@ -29,6 +31,17 @@ function validate(value, s, at = '$') {
   return errors;
 }
 const sources = await loadSources();
+
+test('native harness descriptors and measured doctor evidence match their published schemas', async () => {
+  for (const { id } of listHarnesses()) {
+    const descriptor = await harnessConfiguration({ harness: id });
+    assert.deepEqual(validate(descriptor, schema('harness-config')), [], id);
+    const remote = await harnessConfiguration({ harness: id, transport: 'http', url: 'https://genlib.example/mcp' });
+    assert.deepEqual(validate(remote, schema('harness-config')), [], id + ' HTTP');
+  }
+  const report = await doctorHarness({ mode: 'discovery' });
+  assert.deepEqual(validate(report, schema('harness-doctor')), []);
+});
 
 test('quick results, including no-match, match schemas/quick.schema.json', () => {
   for (const query of ['verify stripe webhook', 'totp in go', 'quantum teleportation flux capacitor zzqx', 'blockchain nft minting']) {

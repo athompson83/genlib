@@ -43,6 +43,9 @@ flowchart TB
   GRAPH["registry/graph.json<br/>navigation graph"]
   VAULT["Obsidian vault<br/>(generated notes only)"]
   SKILL["skills/genlib-use"]
+  HARN["lib/harnesses.mjs<br/>native configuration profiles"]
+  SKINSTALL["install-skills.mjs<br/>scoped safe skill copy"]
+  DOCTOR["harness-doctor.mjs<br/>read-only protocol checks"]
   MOD -- "npm run registry:build" --> REG
   INTEG -- "npm run integrations:build" --> INTREG --> DISC
   INTREG --> INTLIB --> CLI
@@ -86,3 +89,9 @@ flowchart TB
   DISC -- "export-obsidian.mjs" --> VAULT
   JEV -. "genlib jev --json" .-> JEVX
   SKILL -- "routes agents to" --> CLI
+  HARN --> CLI
+  HARN -- "native MCP configuration" --> JEVX
+  HARN --> SKINSTALL
+  SKILL --> SKINSTALL --> JEVX
+  CLI --> DOCTOR -. "local stdio smoke calls" .-> SDKMCP
+  DOCTOR -. "discovery smoke calls" .-> MCPS

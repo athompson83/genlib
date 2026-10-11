@@ -3422,7 +3422,7 @@
    "id": "doc:docs/harnesses.md",
    "kind": "doc",
    "label": "docs/harnesses.md",
-   "count": 4,
+   "count": 18,
    "file": "docs/harnesses.md"
   },
   {
@@ -4205,7 +4205,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 678,
+   "count": 692,
    "query": "--type doc"
   },
   {
@@ -4282,7 +4282,7 @@
    "id": "type:tool",
    "kind": "type",
    "label": "tool",
-   "count": 6,
+   "count": 7,
    "query": "--type tool"
   }
  ],
@@ -16945,7 +16945,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 678
+   "weight": 692
   },
   {
    "source": "genlib",
@@ -17011,7 +17011,7 @@
    "source": "genlib",
    "target": "type:tool",
    "relation": "contains",
-   "weight": 6
+   "weight": 7
   },
   {
    "source": "guide:docs/best-practices/ui-libraries.md",
@@ -20137,7 +20137,7 @@
    "source": "type:doc",
    "target": "doc:docs/harnesses.md",
    "relation": "section-of",
-   "weight": 4
+   "weight": 18
   },
   {
    "source": "type:doc",

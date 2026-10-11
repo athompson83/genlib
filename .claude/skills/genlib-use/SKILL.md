@@ -14,19 +14,19 @@ description: Find, plan, and install reusable Genlib code, modules and integrati
   ],
   "preflight": [
     "Know the app directory, its languages, frameworks, design system and check commands; look for an existing implementation first.",
-    "Resolve GENLIB_ROOT to a trusted Genlib checkout separate from the app (record its commit). Without one, read references/bootstrap.md; never invent a path or pipe remote scripts."
+    "Discover the connected Genlib MCP tools first, including any host-added name prefix. MCP discovery needs no local checkout. Otherwise resolve GENLIB_ROOT to a trusted checkout separate from the app and record its commit; read references/bootstrap.md if missing."
   ],
   "cheapest_path": [
+    "MCP first: call genlib_quick for one match, genlib_find for options, and genlib_outline for signatures. Use each connected tool's schema: SDK tools accept relative project, while the legacy discovery server accepts target. If only genlib_search is available, search with limit 5. Read references/integrations-mcp.md for scoped plan/copy/verify.",
     "1. node $GENLIB_ROOT/bin/genlib.mjs quick <task words> --target <app>  -> the best match and only its commands; if its # caveat conflicts with the task, do not copy it. find <task> --limit 5 gives options; --json adds records.",
     "2. node $GENLIB_ROOT/bin/genlib.mjs outline <id> [--language <lang>]  -> signatures and one-line docs. Call the code from it.",
     "3. Run the returned command. Its output lists copied paths, the API and a test command and says what is verified: run that test instead of re-reading the copied source, then the app's own checks.",
     "External project you must read? genlib source <id> [--path dir] fetches one folder at a pinned commit and names Genlib code that already does the job; never clone whole repositories into context.",
-    "MCP: claude/codex mcp add genlib -- node $GENLIB_ROOT/bin/genlib-mcp.mjs (genlib_quick, genlib_find, genlib_outline match the CLI).",
     "Decision models (Genisys Jev): genlib jev <task> --target <app> --json (8 candidates, yes/no each; --stdlib-only keeps install-free code). Own retrieval: registry/search-index.jsonl. Selections grant no authority.",
     "Integration packs (multi-file and native profiles: integration inspect|plan|add|verify), --include-retired, --license-policy and capability steps: references/cli.md. Connected genlib_search tools: references/integrations-mcp.md."
   ],
   "routing": [
-    "Protocols, formats and utilities are capabilities with tested code in 9 languages; never hand-write them: SSO/OIDC, SAML, JWT, TOTP, recovery codes, passkeys, passwords, PDF, DOCX, HTML/bidi sanitizing, forms, calculators, SEO files, JSON-LD, UTM, CSV, money, signed cursors/URLs, .ics, vCard, UUIDv7/ULID, retry, rate limits, semver, cron, RRULE, ISO durations, WCAG contrast, geo, polylines, map tiles, polygons, webhook signatures, check digits, email, safe redirects, SSRF/IP-CIDR, HTTP Range, Accept, ETags, cookies, URL normalizing, fuzzy match, base32/58, hashes, feature flags, byte sizes, diffs, slugs, JSON Patch, SSE, RAG chunking, cosine/MMR, circuit breakers, business days, natural sort, magic bytes, OKLCH. genlib capability list names all.",
+    "Search capabilities before writing protocols, document formats, identity/security, UI, commerce, data, math, scheduling, HTTP, maps, accessibility or text utilities. genlib capability list names tested implementations in 9 languages; inspect the selected language's contract and caveats.",
     "Agent skills: genlib skill find <need>. MCP servers, CLIs, APIs, project starters, refactoring/workflow recipes: genlib mcp|cli|api|starter|task find <need>. External libraries, apps and services in 12 languages (incl. '<product> alternative'): find returns verified install commands; see references/resources.md.",
     "Code navigation in the app: references/repository-intelligence.md. Exact commands and conflicts: references/cli.md."
   ],

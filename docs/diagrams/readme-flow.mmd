@@ -1,4 +1,4 @@
-flowchart LR
+flowchart TB
   Task["Agent task<br/>e.g. 'rate-limit the login API'"]
   Quick["genlib quick<br/>best match + its commands"]
   Find["genlib find<br/>(+ detect --target)"]
@@ -7,6 +7,8 @@ flowchart LR
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Harness["Harness profiles<br/>config · install · doctor"]
+  Skill["Portable genlib-use skill"]
   Graph["registry/graph.json<br/>+ Obsidian export"]
   C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
   M["Modules"]
@@ -32,6 +34,9 @@ flowchart LR
   Adopt["inspect record:<br/>license, links, cautions"]
   Section["sed -n start,end p"]
   App["Adapt to the app<br/>and run its tests"]
+  Harness -. "native configuration" .-> MCP
+  Harness -- "safe copy" --> Skill
+  Skill -. "MCP or CLI" .-> Quick
   Task --> Quick --> Find
   Quick -.-> Outline -.-> App
   Find --> C & M & P & R & T & N & S & X & D

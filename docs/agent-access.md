@@ -15,14 +15,16 @@ Whichever you pick, the cheapest sequence is the same: `quick` for the best matc
 
 ## MCP server
 
-The existing `bin/genlib-mcp.mjs` entry point is dependency-free and speaks stdio JSON-RPC 2.0 (MCP protocol versions 2025-06-18, 2025-03-26 and 2024-11-05). It performs local read-only discovery and accepts local project paths for compatibility detection. Use it only with trusted local clients. The optional [direct SDK server](mcp-server.md) has bounded tool schemas and file pages, a configured project root, installation planning and verification, explicit startup write opt-in, and stdio/Streamable HTTP transports. Choose one entry point per client server name.
+For OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode and other clients, run `genlib harness config <host>` to generate the correct native settings fragment. `harness install <host> --target <app>` installs the portable skill, and `harness doctor` checks real local MCP calls. The Ollama profile uses OpenCode as the MCP host. See [harness setup](harnesses.md) for all profiles and the distinction between documented configuration, tested protocol behavior and acceptance in a particular application.
+
+The existing `bin/genlib-mcp.mjs` entry point is dependency-free and speaks stdio JSON-RPC 2.0 (MCP protocol versions 2025-06-18, 2025-03-26 and 2024-11-05). It performs local read-only discovery and accepts local project paths for compatibility detection. Use it only with trusted local clients. The optional [direct SDK server](mcp-server.md) includes the same compact quick/find/outline workflow plus bounded schemas and file pages, a configured project root, installation planning and verification, explicit startup write opt-in, and stdio/Streamable HTTP. Its project argument is relative `project`, not absolute `target`; use the connected tool schema. Choose one entry point per client server name. The table below describes the dependency-free server.
 
 ```sh
 claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 ```
 
-Text output from the CLI and the MCP tools names this checkout's real path in place of `"$GENLIB_ROOT"`, so a printed command runs as is; set the `GENLIB_ROOT` environment variable to keep the placeholder (the token report and generated indexes do).
+Text output from the CLI and the dependency-free MCP tools names this checkout's real path in place of `"$GENLIB_ROOT"`, so a printed command runs as is; set the `GENLIB_ROOT` environment variable to keep the placeholder (the token report and generated indexes do). SDK tools retain placeholders: a remote caller may not have that server filesystem. Use the scoped SDK installation tools or a separately reviewed local checkout.
 
 | Tool | Returns |
 | --- | --- |

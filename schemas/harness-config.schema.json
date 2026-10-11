@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Genlib native harness configuration descriptor",
+  "type": "object",
+  "required": ["schemaVersion", "requestedHarness", "harness", "mode", "transport", "format", "locations", "config", "content", "setup", "access", "sources", "validation"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "requestedHarness": {"type": "string"},
+    "harness": {"type": "string"},
+    "runtime": {"const": "ollama"},
+    "mode": {"enum": ["sdk", "discovery"]},
+    "transport": {"enum": ["stdio", "http"]},
+    "format": {"enum": ["json", "toml", "yaml"]},
+    "locations": {
+      "type": "object", "required": ["project", "user"],
+      "properties": {"project": {"type": ["string", "null"]}, "user": {"type": ["string", "null"]}}
+    },
+    "config": {"type": "object", "description": "The host-specific fragment, checked by native-profile contract tests."},
+    "content": {"type": "string", "description": "The same fragment serialized in the receiving host's native format."},
+    "setup": {
+      "type": "array", "items": {
+        "type": "object", "required": ["command", "args"],
+        "properties": {"command": {"type": "string"}, "args": {"type": "array", "items": {"type": "string"}}}
+      }
+    },
+    "access": {
+      "type": "object", "required": ["installEnabled", "projectOperations"],
+      "properties": {
+        "installEnabled": {"enum": [true, false, "server-controlled"]},
+        "projectOperations": {"enum": [true, false, "server-controlled", "unscoped-read-only"]}
+      }
+    },
+    "sources": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "validation": {
+      "type": "object", "required": ["documentationChecked", "harnessAcceptance"],
+      "properties": {"documentationChecked": {"type": "string"}, "harnessAcceptance": {"const": "not-run"}}
+    }
+  }
+}
