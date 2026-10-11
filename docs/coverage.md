@@ -36,7 +36,7 @@ Requirements describe what a reviewer would require of the feature in a real mul
 
 A contract is **full** when every requirement is at least fixture-verified, **partial** when some are, **unverified** when only lower statuses claim requirements, and **none** otherwise.
 
-`npm run contracts:check` (part of `npm run check`) rejects a contract whose references are not in the catalogs, whose fixture-verified claims lack evidence, or whose evidence names a test file or test title that does not exist. It also requires a contract for every task in `tests/fixtures/gap-tasks.json`.
+`npm run contracts:check` (part of `npm run check`) rejects a contract whose references are not in the catalogs, whose fixture-verified claims lack evidence, or whose evidence names a test file CI does not run or a test title that does not exist. It also requires a contract for every task in `tests/fixtures/gap-tasks.json`.
 
 ## Commands
 
@@ -64,7 +64,7 @@ The keys must be requirements the module claims in its contract. The receipt rec
 
 1. List 3 to 8 observable requirements, including authorization, idempotency, concurrency and input validation where the feature has them.
 2. For each implementation, credit only what it does. Open the test file, confirm the test exercises the requirement, and cite a substring of its title.
-3. Capabilities tested only in per-language suites under `examples/`, and integration packs tested only inside their own packages, are `install-supported` until a repository test exercises the requirement.
+3. Evidence must be a test CI runs: `tests/*.test.mjs`, or `integrations/<pack>/tests/*.test.mjs` for a pack in the `node-packs` matrix of `.github/workflows/integration-profiles.yml` (the validator reads the matrix, so a pack dropped from CI stops counting). Capabilities tested only in per-language suites under `examples/` stay `install-supported` until a test in one of those places exercises the requirement.
 4. Leave uncovered requirements uncovered, and name the existing building blocks in `notes`.
 5. Run `npm run contracts:check` and `node scripts/gap-report.mjs --write`.
 
