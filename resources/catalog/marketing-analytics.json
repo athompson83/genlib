@@ -35944,7 +35944,7 @@
       "license": {
         "id": "MIT",
         "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
+        "scope": "MIT covers only the Docker Compose files in this repository (checked in its LICENSE). The container image they run, ghcr.io/plausible/community-edition, is Plausible Analytics under AGPL-3.0 (plausible/analytics LICENSE.md): self-hosting it unmodified is fine, but a modified version served to users must offer its source."
       },
       "homepage": null,
       "repository": "https://github.com/plausible/community-edition",
@@ -35952,7 +35952,8 @@
       "summary": "Example Docker Compose setup for hosting Plausible Community Edition",
       "useWhen": "Use to send or query analytics (web analytics) from any instead of writing a tracking client.",
       "cautions": [
-        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention."
+        "Handles personal data: honor consent (GDPR/CCPA), keep API keys server-side and document data retention.",
+        "Two licenses: the Compose setup is MIT, the Plausible server image it runs is AGPL-3.0."
       ],
       "tags": [
         "marketing",

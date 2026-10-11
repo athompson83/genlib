@@ -142,6 +142,7 @@ With a receiving project (`--target`, `--language` or a language named in the qu
 - A resource tagged for UI frameworks other than the project's does not fit. TableCraft is React-only and is hidden in a Svelte app.
 - Packages and copied source must match the app's language. Applications and services that run beside the app may be written in any language.
 - An API is shown with only the install steps for the project's language. For other languages it points at a same-provider SDK package from the catalog, such as `stripe-go-go`.
+- Package records that name the same single package (88 duplicates, such as `discord-js` and `discord-js-npm`) surface once, under a canonical record chosen by `canonicalPackages()`. The stricter integration mode wins, so a license-review flag is never dropped, then the more complete record. The canonical record lists its `aliases`, and an alias id still inspects.
 - MCP servers are matched by server name and repository rather than the shared `io.github` namespace. One published by the vendor named in the query gets a 1.5× boost. `scripts/routing-eval.mjs` measures how often one `quick` call picks the right capability on 220 task phrasings, 166 of them held out from tuning, and `tests/routing.test.mjs` keeps it from regressing. The paths are:
 - **CLI:** `bin/genlib.mjs`.
 - **MCP server:** `bin/genlib-mcp.mjs`.
