@@ -66,7 +66,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result, text;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -82,13 +82,13 @@ try {
     if (action === 'find') {
       invariant(words.length > 0, 'INVALID_OPTION', `Provide words, for example: ${command} find github.`);
       invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
-      result = { [INDEXES[command].key]: searchIndex(command, index, words.join(' '), { limit: Number(options.limit ?? 8), client }), ranking: index.ranking };
+      result = { [INDEXES[command].key]: searchIndex(command, index, words.join(' '), { limit: Number(options.limit ?? 8), client, ...(options.language ? { languages: [options.language] } : {}) }), ranking: index.ranking };
       text = formatIndexHits(command, result[INDEXES[command].key]);
     } else if (action === 'inspect') {
       invariant(words.length === 1, 'INVALID_OPTION', `Provide exactly one ${INDEXES[command].label} ID.`);
       const entry = index.entries.find(item => item.id === words[0]);
       invariant(entry, 'NOT_FOUND', `No ${INDEXES[command].label} named ${words[0]}. Run ${command} find first.`);
-      result = { ...entry, install: installFor(command, entry, client) };
+      result = { ...entry, install: installFor(command, entry, client, options.language ? [options.language] : undefined) };
     } else {
       invariant(false, 'INVALID_OPTION', `Use ${command} find <words> or ${command} inspect <id>.`);
     }
