@@ -1,0 +1,78 @@
+{
+  "id": "activity-feed",
+  "title": "Activity feed",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "activity feed"
+  ],
+  "requirements": [
+    {
+      "id": "record-on-commit",
+      "text": "Activities (actor, action, target, tenant, time) are recorded when the underlying change commits"
+    },
+    {
+      "id": "idempotent-record",
+      "text": "Retried recording of the same event does not create duplicate entries"
+    },
+    {
+      "id": "permission-visibility",
+      "text": "Viewers see only activities on objects they are currently allowed to see"
+    },
+    {
+      "id": "paged-newest-first",
+      "text": "The feed lists newest first with cursor pages that have no gaps or repeats"
+    },
+    {
+      "id": "aggregation",
+      "text": "Similar consecutive activities are grouped (for example \"Ana and 3 others commented\")"
+    },
+    {
+      "id": "retention",
+      "text": "Old entries are pruned according to a retention policy"
+    },
+    {
+      "id": "safe-rendering",
+      "text": "Entry text is rendered as text and links are validated"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:notification-inbox",
+      "status": "fixture-verified",
+      "fulfills": [
+        "idempotent-record",
+        "paged-newest-first",
+        "retention",
+        "safe-rendering"
+      ],
+      "evidence": [
+        {
+          "requirement": "idempotent-record",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "a repeated dedupeKey returns the existing item"
+        },
+        {
+          "requirement": "paged-newest-first",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "publish and list: newest first, opaque cursor pages without gaps or repeats"
+        },
+        {
+          "requirement": "retention",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "prune drops items past retention and the oldest beyond maxPerUser"
+        },
+        {
+          "requirement": "safe-rendering",
+          "test": "tests/notification-inbox.test.mjs",
+          "name": "publish validation: unsafe links, titles and data are rejected"
+        }
+      ],
+      "notes": "A per-recipient inbox: usable as a fan-out-on-write personal feed, but it does not check object permissions at read time or aggregate entries"
+    }
+  ],
+  "missing": [
+    "record-on-commit",
+    "permission-visibility",
+    "aggregation"
+  ]
+}

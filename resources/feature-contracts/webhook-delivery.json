@@ -1,0 +1,108 @@
+{
+  "id": "webhook-delivery",
+  "title": "Outgoing webhook delivery with retries and signatures",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "webhook delivery with retries and signatures"
+  ],
+  "requirements": [
+    {
+      "id": "signed-payload",
+      "text": "Each delivery is signed with an HMAC over a timestamp and the exact body using the endpoint's secret"
+    },
+    {
+      "id": "retry-backoff-dead",
+      "text": "Failed deliveries (network errors, timeouts, non-2xx) are retried with exponential backoff, then marked dead after a maximum and can be replayed manually"
+    },
+    {
+      "id": "durable-queue",
+      "text": "Pending deliveries are persisted in the same transaction as the triggering change and survive process restarts"
+    },
+    {
+      "id": "attempt-timeout",
+      "text": "Each attempt has a timeout so a slow endpoint cannot hold a worker"
+    },
+    {
+      "id": "stable-event-id",
+      "text": "Every delivery carries a unique event id that stays the same across retries so receivers can deduplicate"
+    },
+    {
+      "id": "ssrf-guard",
+      "text": "Endpoint URLs must be HTTPS and resolve to public addresses; redirects to internal hosts are not followed"
+    },
+    {
+      "id": "endpoint-authorization",
+      "text": "Only authorized tenant members can register endpoints and view or rotate their secrets"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:webhook-signature",
+      "status": "fixture-verified",
+      "fulfills": [
+        "signed-payload"
+      ],
+      "evidence": [
+        {
+          "requirement": "signed-payload",
+          "test": "tests/wave4-capabilities.test.mjs",
+          "name": "webhook-signature: Stripe-style header vector and verification failures"
+        }
+      ]
+    },
+    {
+      "ref": "recipe:outbox-pattern-in-memory",
+      "status": "fixture-verified",
+      "fulfills": [
+        "retry-backoff-dead"
+      ],
+      "evidence": [
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "tests/recipes.test.mjs",
+          "name": "outbox commits state and messages atomically and relays at least once"
+        }
+      ],
+      "notes": "In-memory outbox: retry with backoff, dead state and revive are tested; it is not durable across restarts"
+    },
+    {
+      "ref": "module:http-resilience",
+      "status": "fixture-verified",
+      "fulfills": [
+        "attempt-timeout"
+      ],
+      "evidence": [
+        {
+          "requirement": "attempt-timeout",
+          "test": "tests/http-resilience.test.mjs",
+          "name": "attemptTimeoutMs times out a hung attempt and retries it"
+        }
+      ]
+    },
+    {
+      "ref": "integration:durable-jobs",
+      "status": "install-supported",
+      "fulfills": [
+        "durable-queue",
+        "retry-backoff-dead"
+      ],
+      "notes": "pg-boss queue with retries and a dead-letter queue; enqueuing in the same transaction as the change is the application's work"
+    },
+    {
+      "ref": "resource:svix",
+      "status": "cataloged",
+      "fulfills": [
+        "signed-payload",
+        "retry-backoff-dead"
+      ],
+      "notes": "External webhook-sending service/server"
+    }
+  ],
+  "missing": [
+    "durable-queue",
+    "stable-event-id",
+    "ssrf-guard",
+    "endpoint-authorization"
+  ],
+  "notes": "capability:ip-cidr classifies public addresses and could back an SSRF guard, but no Genlib code resolves and pins endpoint addresses."
+}

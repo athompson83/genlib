@@ -1,0 +1,122 @@
+{
+  "id": "money-currency-formatting",
+  "title": "Money and currency formatting",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "money and currency formatting"
+  ],
+  "requirements": [
+    {
+      "id": "minor-units",
+      "text": "Amounts are integer minor units using each currency's ISO 4217 exponent (JPY 0, USD 2, KWD/BHD 3)"
+    },
+    {
+      "id": "strict-parse",
+      "text": "User-entered amounts are parsed strictly without floating point; malformed or over-precise input is rejected"
+    },
+    {
+      "id": "locale-display",
+      "text": "Display is locale-aware: symbol, grouping and decimal separators"
+    },
+    {
+      "id": "explicit-rounding",
+      "text": "Rate and conversion results use an explicit rounding mode such as half-even"
+    },
+    {
+      "id": "allocation",
+      "text": "Splitting an amount into parts always sums exactly to the total"
+    },
+    {
+      "id": "currency-mismatch",
+      "text": "Combining amounts in different currencies is refused"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:money",
+      "status": "fixture-verified",
+      "fulfills": [
+        "minor-units",
+        "strict-parse",
+        "explicit-rounding",
+        "allocation"
+      ],
+      "evidence": [
+        {
+          "requirement": "minor-units",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "money: toMinor and formatMinor with the pinned exponent table"
+        },
+        {
+          "requirement": "strict-parse",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "money: toMinor and formatMinor with the pinned exponent table"
+        },
+        {
+          "requirement": "explicit-rounding",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "money: applyRate half-even and allocate vectors"
+        },
+        {
+          "requirement": "allocation",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "money: applyRate half-even and allocate vectors"
+        }
+      ],
+      "notes": "formatMinor is plain decimal, not locale formatting"
+    },
+    {
+      "ref": "recipe:money-minor-units",
+      "status": "fixture-verified",
+      "fulfills": [
+        "minor-units",
+        "strict-parse",
+        "locale-display",
+        "explicit-rounding",
+        "allocation"
+      ],
+      "evidence": [
+        {
+          "requirement": "minor-units",
+          "test": "tests/recipes.test.mjs",
+          "name": "money: parse, round, rate, allocate and format without floats"
+        },
+        {
+          "requirement": "strict-parse",
+          "test": "tests/recipes.test.mjs",
+          "name": "money: parse, round, rate, allocate and format without floats"
+        },
+        {
+          "requirement": "locale-display",
+          "test": "tests/recipes.test.mjs",
+          "name": "money: parse, round, rate, allocate and format without floats"
+        },
+        {
+          "requirement": "explicit-rounding",
+          "test": "tests/recipes.test.mjs",
+          "name": "money: parse, round, rate, allocate and format without floats"
+        },
+        {
+          "requirement": "allocation",
+          "test": "tests/recipes.test.mjs",
+          "name": "money: parse, round, rate, allocate and format without floats"
+        }
+      ]
+    },
+    {
+      "ref": "recipe:storefront-cart",
+      "status": "fixture-verified",
+      "fulfills": [
+        "currency-mismatch"
+      ],
+      "evidence": [
+        {
+          "requirement": "currency-mismatch",
+          "test": "tests/source-examples.test.mjs",
+          "name": "storefront and utility sources compile strictly and behave"
+        }
+      ],
+      "notes": "cartSubtotal refuses mixed currencies; a cart helper rather than a money type"
+    }
+  ]
+}

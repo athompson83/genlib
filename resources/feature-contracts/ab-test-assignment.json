@@ -1,0 +1,102 @@
+{
+  "id": "ab-test-assignment",
+  "title": "A/B test assignment",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "a/b test assignment"
+  ],
+  "requirements": [
+    {
+      "id": "deterministic-assignment",
+      "text": "A subject gets the same variant for an experiment on every visit and device that shares its id"
+    },
+    {
+      "id": "weighted-variants",
+      "text": "Variant weights are honored, and a zero-weight variant is never assigned"
+    },
+    {
+      "id": "experiment-independence",
+      "text": "Assignments in different experiments are independent (hashing is salted by the experiment)"
+    },
+    {
+      "id": "exposure-logging",
+      "text": "An exposure event is recorded once per subject when the variant is actually shown"
+    },
+    {
+      "id": "anonymous-to-user",
+      "text": "A subject keeps its variant when an anonymous visitor signs in"
+    },
+    {
+      "id": "stable-on-change",
+      "text": "Changing traffic allocation does not silently reassign subjects already in the experiment"
+    },
+    {
+      "id": "analysis",
+      "text": "Conversion metrics are attributed per variant with a statistical significance check"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:feature-flag-percentage-rollout",
+      "status": "fixture-verified",
+      "fulfills": [
+        "deterministic-assignment",
+        "weighted-variants",
+        "experiment-independence"
+      ],
+      "evidence": [
+        {
+          "requirement": "deterministic-assignment",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        },
+        {
+          "requirement": "weighted-variants",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        },
+        {
+          "requirement": "experiment-independence",
+          "test": "tests/recipes.test.mjs",
+          "name": "feature flags bucket deterministically and roll out monotonically"
+        }
+      ],
+      "notes": "chooseVariant: distribution, zero weight and salting are asserted"
+    },
+    {
+      "ref": "capability:feature-flags",
+      "status": "fixture-verified",
+      "fulfills": [
+        "deterministic-assignment",
+        "weighted-variants"
+      ],
+      "evidence": [
+        {
+          "requirement": "deterministic-assignment",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        },
+        {
+          "requirement": "weighted-variants",
+          "test": "tests/wave7-capabilities.test.mjs",
+          "name": "feature flags evaluate deterministically and only add users as the rollout grows"
+        }
+      ]
+    },
+    {
+      "ref": "resource:growthbook",
+      "status": "cataloged",
+      "fulfills": [
+        "exposure-logging",
+        "analysis"
+      ],
+      "notes": "Warehouse-native experimentation with statistics"
+    }
+  ],
+  "missing": [
+    "exposure-logging",
+    "anonymous-to-user",
+    "stable-on-change",
+    "analysis"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "recurring-events-rrule",
+  "title": "Recurring events with RRULE",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "recurring events with rrule"
+  ],
+  "requirements": [
+    {
+      "id": "expand-rules",
+      "text": "RRULEs (FREQ, INTERVAL, COUNT, UNTIL, BYDAY, BYMONTHDAY, BYMONTH) expand to the correct occurrences"
+    },
+    {
+      "id": "reject-invalid",
+      "text": "Invalid or unsupported rules are rejected, and expansion is bounded"
+    },
+    {
+      "id": "timezone-wall-clock",
+      "text": "Occurrences keep their wall-clock time in the event's time zone across DST changes"
+    },
+    {
+      "id": "exceptions",
+      "text": "EXDATE/RDATE and single-occurrence overrides are applied"
+    },
+    {
+      "id": "window-query",
+      "text": "Occurrences can be listed for a date window without expanding the whole series"
+    },
+    {
+      "id": "series-edits",
+      "text": "Editing \"this and following\" splits the series without changing past occurrences"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "capability:rrule",
+      "status": "fixture-verified",
+      "fulfills": [
+        "expand-rules",
+        "reject-invalid"
+      ],
+      "evidence": [
+        {
+          "requirement": "expand-rules",
+          "test": "tests/wave6-capabilities.test.mjs",
+          "name": "rrule: expansion vectors, invalid rules and limits"
+        },
+        {
+          "requirement": "reject-invalid",
+          "test": "tests/wave6-capabilities.test.mjs",
+          "name": "rrule: expansion vectors, invalid rules and limits"
+        }
+      ],
+      "notes": "UTC only, bounded by a count limit"
+    },
+    {
+      "ref": "resource:recurring-ical-events",
+      "status": "cataloged",
+      "fulfills": [
+        "exceptions",
+        "window-query"
+      ]
+    }
+  ],
+  "missing": [
+    "timezone-wall-clock",
+    "exceptions",
+    "window-query",
+    "series-edits"
+  ]
+}

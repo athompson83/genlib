@@ -1,0 +1,112 @@
+{
+  "id": "api-cursor-pagination",
+  "title": "Cursor pagination for an API",
+  "reviewed": "2026-10-11",
+  "tasks": [
+    "cursor pagination for an api"
+  ],
+  "requirements": [
+    {
+      "id": "opaque-cursor",
+      "text": "The next-page cursor is opaque and encodes the last sort keys, not an offset"
+    },
+    {
+      "id": "exactly-once",
+      "text": "Walking every page returns each item exactly once, using a unique tie-breaker for repeated sort values"
+    },
+    {
+      "id": "tamper-proof",
+      "text": "Cursors are integrity-protected and expire; tampered, expired or malformed cursors are rejected with a distinguishable error"
+    },
+    {
+      "id": "limit-clamp",
+      "text": "The page size is validated and clamped to a server maximum"
+    },
+    {
+      "id": "end-signal",
+      "text": "Responses signal whether more pages exist (null next cursor or a rel=next link) so clients stop correctly"
+    },
+    {
+      "id": "keyset-query",
+      "text": "The database query seeks by the cursor keys on an index (keyset), not OFFSET scanning"
+    },
+    {
+      "id": "scope-binding",
+      "text": "A cursor cannot be replayed against a different tenant, filter or sort to read data outside the original query"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "recipe:cursor-pagination",
+      "status": "fixture-verified",
+      "fulfills": [
+        "opaque-cursor",
+        "exactly-once",
+        "limit-clamp",
+        "end-signal"
+      ],
+      "evidence": [
+        {
+          "requirement": "opaque-cursor",
+          "test": "tests/recipes.test.mjs",
+          "name": "cursor pagination walks every item exactly once with opaque cursors"
+        },
+        {
+          "requirement": "exactly-once",
+          "test": "tests/recipes.test.mjs",
+          "name": "cursor pagination walks every item exactly once with opaque cursors"
+        },
+        {
+          "requirement": "limit-clamp",
+          "test": "tests/recipes.test.mjs",
+          "name": "cursor pagination walks every item exactly once with opaque cursors"
+        },
+        {
+          "requirement": "end-signal",
+          "test": "tests/recipes.test.mjs",
+          "name": "cursor pagination walks every item exactly once with opaque cursors"
+        }
+      ],
+      "notes": "paginate() works over an in-memory array; the SQL keyset query is the application's work"
+    },
+    {
+      "ref": "capability:signed-cursors",
+      "status": "fixture-verified",
+      "fulfills": [
+        "opaque-cursor",
+        "tamper-proof"
+      ],
+      "evidence": [
+        {
+          "requirement": "opaque-cursor",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "signed-cursors: vector token, expiry, tampering and secrets"
+        },
+        {
+          "requirement": "tamper-proof",
+          "test": "tests/core-capabilities.test.mjs",
+          "name": "signed-cursors: vector token, expiry, tampering and secrets"
+        }
+      ]
+    },
+    {
+      "ref": "capability:link-header",
+      "status": "fixture-verified",
+      "fulfills": [
+        "end-signal"
+      ],
+      "evidence": [
+        {
+          "requirement": "end-signal",
+          "test": "tests/wave10-capabilities.test.mjs",
+          "name": "Link headers parse, find and format like the shared vectors"
+        }
+      ]
+    }
+  ],
+  "missing": [
+    "keyset-query",
+    "scope-binding"
+  ],
+  "notes": "No Genlib code issues the keyset SQL or binds a cursor to its tenant/filter; signed-cursors could carry those values if the application includes them."
+}
