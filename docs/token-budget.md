@@ -17,7 +17,7 @@ The baseline column is what the same step costs without the compact path: the fu
 | Learn an API | `outline money --language java` | 1,046 | ~262 | read its source files | 5,464 | 5.2× |
 | Learn an API | `outline webhook-verification` | 4,364 | ~1,091 | read its source files | 15,416 | 3.5× |
 | Load the skill | `skills/genlib-use/SKILL.md` | 4,993 | ~1,248 | - | - | - |
-| Register MCP tools | `tools/list` | 4,886 | ~1,222 | - | - | - |
+| Register MCP tools | `tools/list` | 4,480 | ~1,120 | - | - | - |
 | Decision packet | `jev add passkey login to a Go API` | 2,591 | ~648 | - | - | - |
 
 ## Budgets enforced by tests
