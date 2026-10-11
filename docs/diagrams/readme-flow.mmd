@@ -26,6 +26,7 @@ flowchart LR
   Receipt["receipt · adopted<br/>update · remove"]
   Coverage["genlib coverage<br/>feature contracts:<br/>requirements + evidence"]
   RegistryIn["genlib registry<br/>shadcn-format items<br/>plan · add · verify"]
+  Provider["genlib provider<br/>upstream features (BTST):<br/>check · staged adopt"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -47,6 +48,7 @@ flowchart LR
   Add -.-> Receipt -.-> App
   Quick -.-> Coverage -.-> App
   RegistryIn --> Receipt
+  Find --> Provider --> Receipt
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App
