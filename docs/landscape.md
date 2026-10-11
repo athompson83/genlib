@@ -21,6 +21,7 @@ Help a coding agent choose an existing implementation that fits the application,
 | [anthropics/skills](https://github.com/anthropics/skills), [obra/superpowers](https://github.com/obra/superpowers) | Skills as procedures plus scripts; with/without-skill comparisons; a full engineering workflow | Indexed in the skill catalog. Their with/without comparison shapes the benchmark protocol |
 | [agentry](https://github.com/OpenTechIL/agentry) | Exact-commit lock, owned-entry manifest, drift checks | Matches Genlib's `.genlib/lock.json` (per-file hashes, `verify` reports drift) |
 | [qdrant/mcp-code-snippets](https://github.com/qdrant/mcp-code-snippets), [21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp) | Context-filtered snippet retrieval with broad fallback; hosted UI generation | Genlib keeps compatibility checks when it broadens a search: incompatible results are counted and hidden, never silently returned |
+| [zvec-grep](https://github.com/zvec-ai/zvec-grep) (`zg` 0.2.2, Apache-2.0) | Local workspace search for agents: ripgrep, BM25 and vector retrieval fused with reciprocal rank fusion (k=60), symbol-aware code chunks, one search-only MCP tool, `zg --install --target <agent>` that writes MCP entries and marked guidance blocks with when-not-to-use rules, and paired A/B agent benchmarks | `genlib connect` (project-scoped MCP entries plus a GENLIB_START/END guidance block, removal of only what it wrote) and the guidance's when-not rules. RRF over Genlib's lexical score and a character-trigram ranker lowered tuning-set top-1 from 97.7% to 93.0–96.9%, so it was not adopted; its gains come from a vector model, which Genlib's dependency-free CLI does not carry. zg itself is cataloged as `resource:zvec-grep` |
 
 ## Changes made from this review
 
@@ -103,6 +104,6 @@ Success is measured at accepted completion against the same agent using upstream
 
 ## Still open
 
-- Running the comparison protocol in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run). Until then, Genlib's advantage over an agent that already has Context7, a source registry and a good workflow is unmeasured.
+- Rerunning the comparison protocol in [benchmarks.md](benchmarks.md#round-4-application-features-four-arms-2026-10-11) after the round-4 fixes (erasable TypeScript, `--ts-imports`, when-not guidance and `genlib connect`). Round 4 itself measured Genlib arms 27–36% more expensive on application features. Until a rerun shows otherwise, the measured answer for application features is that Genlib adds cost for an agent that already has Context7, a source registry and a good workflow.
 - Building feature packages for the external-only tasks in [gaps.md](gaps.md).
 - Semantic API diffs between module versions (Bit's `bit api diff`). The changelog records breaking changes by hand today.

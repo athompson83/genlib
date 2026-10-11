@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inspectModule, loadCatalog, searchCatalog } from '../lib/catalog.mjs';
 import { installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
@@ -16,6 +17,7 @@ import { adoptStaged, checkProvider, loadProviders, planStaged, providerSummary 
 import { addRegistry, planRegistry, removeRegistry, resolveItems, updateRegistry, verifyRegistry } from '../lib/registry-adapter.mjs';
 import { acceptanceProblems, contractCoverage, coverageFor, formatCoverage, loadContracts } from '../lib/coverage.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
+import { connectAgents, connectSummary } from '../lib/connect.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
 
 const REPOSITORY_ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -55,6 +57,7 @@ const HELP = {
     'registry plan|add shadcn:<name>|<https item URL> --target <existing-project> [--style new-york-v4] [--sha256 <hex>] [--keep-existing] [--json]   # adopt a shadcn-format registry item with conflict checks, a lock and a receipt (fetches over https)',
     'registry verify --target <existing-project> | registry remove <shadcn--name> --target <existing-project> [--dry-run]',
     'registry update <shadcn--name> --target <existing-project> [--write] [--conflict rej|inline]   # three-way merge of the registry\'s current version onto your edits; dry run unless --write',
+    'connect --target <app> [--agent claude,cursor,vscode,opencode,codex|all] [--write] [--remove] [--json]   # MCP entry + usage guidance for the app\'s coding agents; app files only, dry run unless --write',
     'provider list | provider inspect <id> | provider check <id> --target <existing-project> [--json]   # upstream feature profiles (BTST Kanban): prerequisites the app must meet, pinned steps, acceptance',
     'provider plan|adopt <id> --from <scratch-copy> [--baseline <pristine-copy>] --target <existing-project> [--json]   # adopt a scaffolder\'s output from a scratch copy: new files only, merges reported, never overwrites',
     'coverage <task words> | coverage --list [--target <existing-project>] [--json]   # which requirements of a feature Genlib code fulfills, with evidence status',
@@ -69,13 +72,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing' || name === 'ts-imports') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing' || name === 'ts-imports' || name === 'remove') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -92,7 +95,7 @@ try {
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'],
     add: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'], verify: ['target', 'json'],
-    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
+    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], connect: ['target', 'agent', 'write', 'remove', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
@@ -263,6 +266,12 @@ try {
         if (plan.conflicts.length) process.exitCode = 1;
       } else result = await addRegistry(options.target, resolved, { keepExisting: options['keep-existing'] === true });
     }
+  } else if (command === 'connect') {
+    invariant(positional.length === 0 && options.target, 'INVALID_OPTION', 'Use connect --target <app> [--agent claude,cursor,...|all] [--write] [--remove].');
+    const agents = String(options.agent ?? 'claude').split(',').map(item => item.trim()).filter(Boolean);
+    result = await connectAgents(path.resolve(REPOSITORY_ROOT), options.target, { targets: agents, write: options.write === true, remove: options.remove === true });
+    text = connectSummary(result);
+    if (result.conflicts.length) process.exitCode = 1;
   } else if (command === 'provider') {
     const [action, id, ...rest] = positional;
     invariant(['list', 'inspect', 'check', 'plan', 'adopt'].includes(action) && rest.length === 0, 'INVALID_OPTION', 'Use provider list|inspect|check|plan|adopt.');

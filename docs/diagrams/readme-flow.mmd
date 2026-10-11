@@ -7,6 +7,7 @@ flowchart LR
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Connect["genlib connect<br/>MCP entry + guidance<br/>for the app's agents"]
   Graph["registry/graph.json<br/>+ Obsidian export"]
   C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
   M["Modules"]
@@ -42,6 +43,7 @@ flowchart LR
   Shadcn -.-> App
   X -.-> Source -.-> App
   Index -.-> Jev -.-> Find
+  Connect -.-> MCP
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App

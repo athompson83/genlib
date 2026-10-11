@@ -38,8 +38,8 @@ One command searches everything below and returns each result's exact next step.
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 9805 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 710 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 9806 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 711 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -84,6 +84,7 @@ flowchart LR
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
+  Connect["genlib connect<br/>MCP entry + guidance<br/>for the app's agents"]
   Graph["registry/graph.json<br/>+ Obsidian export"]
   C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
   M["Modules"]
@@ -119,6 +120,7 @@ flowchart LR
   Shadcn -.-> App
   X -.-> Source -.-> App
   Index -.-> Jev -.-> Find
+  Connect -.-> MCP
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
@@ -187,6 +189,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `adopted <id> --target app [--test cmd] [--accepts contract#req,...]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command; `--accepts` records which feature requirements that command exercised |
 | `update <id> --target app [--write] [--conflict rej\|inline]` | Three-way merge of a newer module version into locally edited files (base from the locked commit); dry run unless `--write`, conflicts reported per file |
 | `remove <id> --target app [--dry-run]` | Roll back an install: deletes unedited files, keeps edited ones, refuses while a dependent module is installed |
+| `connect --target app [--agent claude,cursor,vscode,opencode,codex\|all] [--write] [--remove]` | Wires Genlib into the app's coding agents: a `genlib` MCP entry in each project config (`.mcp.json`, `.cursor/mcp.json`, `.vscode/mcp.json`, `opencode.json`) and a short when-to-use / when-not guidance block in `CLAUDE.md`, `AGENTS.md`, `.cursor/rules` or Copilot instructions. App files only, dry run unless `--write`, conflicts never overwritten, `--remove` deletes only what Genlib wrote; Codex gets the exact `codex mcp add` command ([agent-access.md](docs/agent-access.md#connect-an-apps-agents)) |
 | `provider check\|inspect\|plan\|adopt <id> [--target app] [--from scratch --baseline pristine]` | Upstream feature profiles (BTST Kanban): check the app's prerequisites, get the pinned steps, then adopt the scaffolder's output from a scratch copy without overwriting anything and run the shipped acceptance ([providers.md](docs/providers.md)) |
 | `coverage <task words>` / `coverage --list` `[--target app]` | Which requirements of an app feature Genlib code fulfills (`test`, `install`, `plan`, `catalog` or `app` per requirement) and what is left to build; see [coverage.md](docs/coverage.md) |
 | `registry plan\|add shadcn:<name>\|<https URL> --target app [--sha256 hex]` / `registry verify\|update\|remove` | Adopt a shadcn-format registry item and its dependencies with alias mapping, conflict checks, a lock, receipts and drift checks; `update` three-way merges the registry's new version onto local edits; fetches over https ([distribution.md](docs/distribution.md#adopting-shadcn-format-items-into-an-app-genlib-registry)) |
@@ -437,14 +440,14 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
 | [`catalog/open-source-tools-2.json`](resources/catalog/open-source-tools-2.json) | 343 | [open-source-tools.md](docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
-| [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 900 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
+| [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 901 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
 | [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/scheduling-calendar.json`](resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
 | [`catalog/social-media.json`](resources/catalog/social-media.json) | 795 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **9805** | | |
+| **Total** | **9806** | | |
 <!-- genlib:catalog:end -->
 
 `verified` and `partial` describe upstream source review, independently of lifecycle and integration readiness. Network verification checks repositories, links and available package license declarations; blocked pages and unsupported ecosystem checks remain unresolved review items. The selected integration packs have their own runtime/fixture evidence. Retired services are hidden by default and can be included for migration lookup with `--include-retired`. Copyleft, source-available and commercial feature boundaries stay explicit. See the [resource index](docs/resources/README.md), [expansion review](docs/resources/integration-expansion.md) and [dependency health workflow](docs/catalog-health.md).

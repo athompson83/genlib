@@ -309,6 +309,8 @@ Total: 1242 records in `resources/catalog/open-source-tools*.json`.
 | elixir | `credo` | MIT |
 | any | `neovim` (review), `nvm`, `kong`, `jq`, `vscodium` | Apache-2.0, GPL-2.0, MIT |
 
+For search by meaning across a codebase or a folder of documents, from an agent or the terminal, `zvec-grep` (`zg`, Apache-2.0) combines ripgrep, BM25 and local vector retrieval behind one CLI and MCP server; keep native grep or `ripgrep` for exact strings.
+
 ## Low-code and internal tools
 
 | Language | Top picks (most used first) | License |
