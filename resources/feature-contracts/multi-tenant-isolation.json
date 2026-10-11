@@ -2,13 +2,95 @@
   "id": "multi-tenant-isolation",
   "title": "Multi-tenant data isolation",
   "reviewed": "2026-10-11",
-  "tasks": ["multi-tenant data isolation"],
-  "requirements": [
-    { "id": "tenant-context", "text": "Every request resolves a tenant from trusted state, never from an unchecked client value" },
-    { "id": "scoped-queries", "text": "All reads and writes are filtered by tenant, so ids from another tenant behave as not found" },
-    { "id": "database-enforcement", "text": "The database enforces isolation (row-level security or equivalent), not only application code" },
-    { "id": "cross-tenant-tests", "text": "Tests prove a user of tenant A cannot read or change tenant B's data" }
+  "tasks": [
+    "multi-tenant data isolation"
   ],
-  "implementations": [],
-  "notes": "Several feature packages (comments, rbac, chat, short-links) scope their own tables by tenant and test it, but no package provides tenant isolation for an application's data in general."
+  "requirements": [
+    {
+      "id": "tenant-context",
+      "text": "Every request resolves a tenant from trusted state, never from an unchecked client value"
+    },
+    {
+      "id": "scoped-queries",
+      "text": "All reads and writes are filtered by tenant, so ids from another tenant behave as not found"
+    },
+    {
+      "id": "database-enforcement",
+      "text": "The database enforces isolation (row-level security or equivalent), not only application code"
+    },
+    {
+      "id": "cross-tenant-tests",
+      "text": "Tests prove a user of tenant A cannot read or change tenant B's data"
+    }
+  ],
+  "implementations": [
+    {
+      "ref": "module:tenant-isolation",
+      "status": "fixture-verified",
+      "fulfills": [
+        "tenant-context",
+        "scoped-queries",
+        "database-enforcement",
+        "cross-tenant-tests"
+      ],
+      "evidence": [
+        {
+          "requirement": "tenant-context",
+          "test": "tests/tenant-isolation.test.mjs",
+          "name": "tenant context comes from the verified session and membership, never from an unchecked client value"
+        },
+        {
+          "requirement": "tenant-context",
+          "test": "tests/tenant-isolation.test.mjs",
+          "name": "tenant handler: 401, hidden 404 for foreign tenants"
+        },
+        {
+          "requirement": "scoped-queries",
+          "test": "tests/tenant-isolation.test.mjs",
+          "name": "scoped queries add the tenant filter to every statement"
+        },
+        {
+          "requirement": "scoped-queries",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "scoped repository on PostgreSQL: ids from another tenant behave as not found"
+        },
+        {
+          "requirement": "database-enforcement",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "database enforcement: as app_user a raw unscoped SELECT returns only the current tenant"
+        },
+        {
+          "requirement": "database-enforcement",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "database enforcement: UPDATE and DELETE of another tenant"
+        },
+        {
+          "requirement": "database-enforcement",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "database enforcement: no tenant set returns 0 rows"
+        },
+        {
+          "requirement": "database-enforcement",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "inspectIsolation flags permissive policies that do not reference the tenant setting"
+        },
+        {
+          "requirement": "cross-tenant-tests",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "cross-tenant test kit: assertTenantIsolation passes on an RLS table and fails on an unprotected one"
+        },
+        {
+          "requirement": "cross-tenant-tests",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "end to end: a user of tenant A cannot read or change tenant B"
+        },
+        {
+          "requirement": "cross-tenant-tests",
+          "test": "tests/tenant-isolation-sql.test.mjs",
+          "name": "test kit checks the tenant setting on one dedicated client"
+        }
+      ]
+    }
+  ],
+  "notes": "module:tenant-isolation provides application-wide isolation: trusted tenant resolution, PostgreSQL row-level security (enabled and forced, transaction-local app.tenant_id, non-bypass app_user role), a tenant-scoped repository and a reusable cross-tenant test kit, proven on PGlite as a NOLOGIN NOBYPASSRLS role. Pooled multi-connection behavior, LOGIN roles and hosted Postgres are not fixture-verified, and non-PostgreSQL databases get application-level filtering only. Several feature packages (comments, rbac, chat, short-links) also scope their own tables by tenant."
 }

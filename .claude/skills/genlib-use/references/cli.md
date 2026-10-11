@@ -22,6 +22,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "verify_installation": "node \"$GENLIB_ROOT/bin/genlib.mjs\" verify --target \"$APP_ROOT\" --json",
     "adoption_receipt": "node \"$GENLIB_ROOT/bin/genlib.mjs\" adopted <id> --target \"$APP_ROOT\" --test \"npm test\" --json",
     "update_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --json",
+    "add_no_build": "node \"$GENLIB_ROOT/bin/genlib.mjs\" add <id> --target \"$APP_ROOT\" --ts-imports --json",
     "update_write": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --write --conflict rej --json",
     "remove_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" remove <id> --target \"$APP_ROOT\" --dry-run --json",
     "feature_coverage": "node \"$GENLIB_ROOT/bin/genlib.mjs\" coverage stripe checkout and webhooks",

@@ -70,8 +70,10 @@ export class MemoryIdempotencyStore<R> implements IdempotencyStore<R> {
 }
 
 export class IdempotencyConflict extends Error {
-  constructor(readonly reason: "in-progress" | "mismatch") {
+  readonly reason: "in-progress" | "mismatch";
+  constructor(reason: "in-progress" | "mismatch") {
     super(reason === "in-progress" ? "A request with this idempotency key is still running" : "Idempotency key reused with a different request");
+    this.reason = reason;
     this.name = "IdempotencyConflict"; // map to HTTP 409 (in-progress) or 422 (mismatch)
   }
 }

@@ -6,12 +6,12 @@ Coverage is credited per requirement, never per search hit. Each contract lists 
 
 | Coverage | Tasks |
 | --- | ---: |
-| Full: every requirement fixture-verified | 11 |
+| Full: every requirement fixture-verified | 16 |
 | Partial: some requirements fixture-verified | 41 |
-| Unverified: only install, plan or catalog claims | 10 |
-| None: no implementation claims a requirement | 4 |
+| Unverified: only install, plan or catalog claims | 9 |
+| None: no implementation claims a requirement | 0 |
 
-The "Search returns" column is what `quick` picks for the task phrase (lexical routing): 55 tasks route to Genlib code and 11 to external records. Routing to Genlib code does not mean the feature is covered; compare it with the Verified column.
+The "Search returns" column is what `quick` picks for the task phrase (lexical routing): 59 tasks route to Genlib code and 7 to external records. Routing to Genlib code does not mean the feature is covered; compare it with the Verified column.
 
 ## Partial: build next
 
@@ -56,7 +56,7 @@ Genlib verifies some requirements. The listed ones are the remaining work, for t
 | sitemap and robots.txt | `sitemap-robots` | 3/6 | sitemap-index, public-only, served-correctly | `capability:seo-files` |
 | open graph and json-ld metadata | `social-metadata` | 4/7 | schema-valid, server-rendered, og-image | `capability:structured-data` |
 | qr code generation | `qr-code-generation` | 5/6 | accessible | `resource:qr` |
-| gdpr data export for a user | `gdpr-data-export` | 2/8 | request-auth, completeness, third-party-exclusion, async-job, retention, audit-trail | `task:n8n-2295-export-n8n-cloud-execution-data-to-csv` |
+| gdpr data export for a user | `gdpr-data-export` | 2/8 | request-auth, completeness, third-party-exclusion, async-job, retention, audit-trail | `module:audit-log` |
 | i18n translations with plurals | `i18n-plurals` | 4/7 | fallback, catalog-validation, safe-output | `recipe:i18n-plural-and-message-format` |
 | dark mode theme tokens | `dark-mode-theme` | 2/7 | system-preference, persisted-no-flash, accessible-toggle, contrast-both, native-controls | `module:theme-tokens` |
 | accessibility color contrast check | `color-contrast-check` | 4/6 | css-formats, token-audit | `capability:wcag-contrast` |
@@ -69,7 +69,6 @@ Something claims these requirements, but no repository test exercises them yet.
 | --- | --- | ---: | --- | --- |
 | passkey login | `passkey-login` | 0/6 | registration, authentication, challenge-single-use, clone-detection, credential-ownership, session | `capability:webauthn-passkeys` |
 | single sign-on with SAML | `saml-sso` | 0/6 | authn-request, signature, conditions, replay, tenant-config, account-mapping | `capability:saml-sso` |
-| audit log of user actions | `audit-log` | 0/7 | record-actions, atomic-with-change, append-only, tenant-scoped-read, redaction, query-export, retention | `skill:audit` |
 | presigned upload urls for object storage | `presigned-uploads` | 0/7 | server-issued, constraints-bound, short-expiry, completion-check, private-storage, orphan-cleanup, authorized-download | `capability:signed-urls` |
 | resize and thumbnail images | `image-thumbnails` | 0/6 | decode-limits, resize-fit, orientation-metadata, web-formats, background-idempotent, serving | `resource:sharp` |
 | fill a pdf form | `pdf-form-filling` | 0/6 | list-fields, validated-fill, appearances-unicode, flatten, untrusted-input, output-handling | `capability:pdf-form-filling` |
@@ -77,17 +76,6 @@ Something claims these requirements, but no repository test exercises them yet.
 | markdown rendering with sanitization | `markdown-rendering` | 0/6 | render-commonmark, allowlist-sanitize, link-schemes, link-rel, code-escaped, bounded-input | `capability:rich-text-sanitization` |
 | rich text editor content sanitization | `rich-text-editor-sanitization` | 0/7 | server-allowlist, xss-corpus, link-schemes, formatting-kept, json-documents, media-sources, size-limit | `capability:rich-text-sanitization` |
 | kanban board with columns and tasks | `kanban-board` | 0/7 | boards, columns-tasks, move-ordering, atomic-writes, authorization, persistence, routes-ui | `provider:btst-kanban` |
-
-## Not covered
-
-No implementation claims any requirement. Candidates for new feature packages.
-
-| Task | Contract | Verified | Not verified by Genlib | Search returns |
-| --- | --- | ---: | --- | --- |
-| soft delete and restore records | `soft-delete-restore` | 0/7 | soft-delete, hidden-by-default, restore, authorization, uniqueness, cascade, purge | `task:lwc-recipes-lds-delete-record` |
-| multi-tenant data isolation | `multi-tenant-isolation` | 0/4 | tenant-context, scoped-queries, database-enforcement, cross-tenant-tests | `module:csv-import` |
-| api key management with hashing | `api-key-management` | 0/7 | generate, show-once-hash-at-rest, verify-constant-time, scoped-tenant, revoke-expire, managed-by-authorized, audit-last-used | `capability:hashing` |
-| account deletion with grace period | `account-deletion` | 0/7 | request, grace-period, cancel, sessions, dependent-data, authorization, idempotent-execution | `doc:docs/coverage.md#feature-coverage-requirements-evidence-and-acceptance` |
 
 ## Full
 
@@ -98,12 +86,17 @@ Every requirement is exercised by a named repository test. The app still verifie
 | password reset by email link | `password-reset-email` | 7/7 | - | `module:password-reset` |
 | invite teammates to an organization | `org-invitations` | 8/8 | - | `module:org-invitations` |
 | role-based access control checks | `rbac` | 6/6 | - | `module:rbac` |
+| audit log of user actions | `audit-log` | 7/7 | - | `module:audit-log` |
+| soft delete and restore records | `soft-delete-restore` | 7/7 | - | `module:soft-delete` |
+| multi-tenant data isolation | `multi-tenant-isolation` | 4/4 | - | `module:tenant-isolation` |
 | send transactional email | `transactional-email` | 6/6 | - | `module:email-outbox` |
 | full-text search with filters | `full-text-search-filters` | 7/7 | - | `module:site-search` |
+| api key management with hashing | `api-key-management` | 7/7 | - | `module:api-keys` |
 | comments with threaded replies | `threaded-comments` | 7/7 | - | `module:comments` |
 | money and currency formatting | `money-currency-formatting` | 6/6 | - | `capability:money` |
 | form validation with error messages | `form-validation` | 7/7 | - | `module:validated-form` |
 | structured logging with redaction | `structured-logging` | 7/7 | - | `module:structured-logger` |
 | url shortener | `url-shortener` | 8/8 | - | `module:short-links` |
 | image captcha or bot protection | `bot-protection` | 8/8 | - | `module:bot-protection` |
+| account deletion with grace period | `account-deletion` | 7/7 | - | `module:account-deletion` |
 

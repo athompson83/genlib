@@ -2,7 +2,9 @@
 import createClient from 'openapi-fetch';
 import type { paths } from './generated/openapi.js';
 export class ApiFailure extends Error {
-  constructor(public readonly kind: 'http'|'network'|'timeout'|'cancelled'|'invalid-response'|'authentication', message: string, public readonly status?: number) { super(message); }
+  public readonly kind: 'http'|'network'|'timeout'|'cancelled'|'invalid-response'|'authentication';
+  public readonly status: number | undefined;
+  constructor(kind: 'http'|'network'|'timeout'|'cancelled'|'invalid-response'|'authentication', message: string, status?: number) { super(message); this.kind = kind; this.status = status; }
 }
 /** Inject token acquisition and fetch. The target app owns authorization and secret storage. */
 export function createInventoryClient(options: { baseUrl: string; token: () => Promise<string>; fetch?: typeof globalThis.fetch; timeoutMs?: number }) {

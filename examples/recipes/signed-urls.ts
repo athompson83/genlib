@@ -7,8 +7,10 @@
 export type SignedUrlErrorCode = "malformed" | "bad signature" | "expired";
 
 export class SignedUrlError extends Error {
-  constructor(readonly code: SignedUrlErrorCode, detail?: string) {
+  readonly code: SignedUrlErrorCode;
+  constructor(code: SignedUrlErrorCode, detail?: string) {
     super(detail ? `${code}: ${detail}` : code);
+    this.code = code;
     this.name = "SignedUrlError";
   }
 }

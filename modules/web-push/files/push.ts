@@ -12,8 +12,10 @@ export type WebPushErrorCode =
   | "bad-request";
 
 export class WebPushError extends Error {
-  constructor(readonly code: WebPushErrorCode, message: string) {
+  readonly code: WebPushErrorCode;
+  constructor(code: WebPushErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "WebPushError";
   }
 }

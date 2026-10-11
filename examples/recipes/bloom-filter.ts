@@ -32,7 +32,11 @@ export class BloomFilter {
   readonly bits: Uint8Array;
 
   /** Creates an empty filter of m bits and k hashes, or one holding the given ceil(m/8) bytes of state. */
-  constructor(readonly m: number, readonly k: number, bits?: Uint8Array) {
+  readonly m: number;
+  readonly k: number;
+  constructor(m: number, k: number, bits?: Uint8Array) {
+      this.m = m;
+      this.k = k;
     if (!Number.isSafeInteger(m) || m < 8 || !Number.isInteger(k) || k < 1 || k > 64) {
       throw new BloomError("m must be >= 8 and 1 <= k <= 64");
     }

@@ -206,8 +206,10 @@ export type ChatErrorCode =
   | "not-group" | "not-member" | "edit-window-closed" | "deleted" | "bad-request" | "too-large";
 
 export class ChatError extends Error {
-  constructor(readonly code: ChatErrorCode, message: string) {
+  readonly code: ChatErrorCode;
+  constructor(code: ChatErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "ChatError";
   }
 }

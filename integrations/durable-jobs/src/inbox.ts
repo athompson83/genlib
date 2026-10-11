@@ -20,7 +20,9 @@ function leaseFrom(row: Record<string, unknown>): InboxLease {
 }
 
 export class PostgresWebhookInbox {
-  constructor(private readonly db: SqlExecutor) {}
+  private readonly db: SqlExecutor;
+  constructor(db: SqlExecutor) {
+      this.db = db;}
 
   /** Call only after provider signature, timestamp and tenant authorization checks succeed. */
   async receiveVerified(event: VerifiedWebhook): Promise<{ id: string; duplicate: boolean; state: string }> {

@@ -48,8 +48,8 @@ const HELP = {
     'list [--json]',
     'search <words> [--framework react] [--limit 5] [--json]',
     'inspect <id> [--json]',
-    'plan <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
-    'add <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--json]',
+    'plan <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--ts-imports] [--json]',
+    'add <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--ts-imports] [--json]',
     'verify --target <existing-project> [--json]',
     'adopted <id> --target <existing-project> [--test "<command>"] [--accepts contract#req,...] [--json]   # copied, used and verified; --accepts records requirement-level acceptance',
     'registry plan|add shadcn:<name>|<https item URL> --target <existing-project> [--style new-york-v4] [--sha256 <hex>] [--keep-existing] [--json]   # adopt a shadcn-format registry item with conflict checks, a lock and a receipt (fetches over https)',
@@ -69,13 +69,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing' || name === 'ts-imports') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -90,8 +90,8 @@ try {
   let result, text;
   const supported = {
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
-    inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
-    add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
+    inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'],
+    add: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'], verify: ['target', 'json'],
     schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
@@ -322,6 +322,7 @@ try {
         const operation = command === 'plan' ? planInstall : installModule;
         result = await operation(context, positional[0], {
           target: options.target, out: options.out, allowUnverified: options['allow-unverified'] === true,
+          tsImports: options['ts-imports'] === true,
         });
         if (result.conflicts.length > 0) process.exitCode = 1;
       }

@@ -74,6 +74,11 @@
     "totalBytes": {
       "type": "integer"
     },
+    "tsImports": {
+      "type": "boolean",
+      "const": true,
+      "description": "Present when --ts-imports rewrote relative .js imports in copied .ts/.tsx files to .ts."
+    },
     "writes": {
       "type": "boolean",
       "description": "false for plan (dry run)"

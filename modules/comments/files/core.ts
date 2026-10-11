@@ -127,8 +127,10 @@ export type CommentErrorCode =
   | "edit-window-closed" | "deleted" | "already-flagged" | "conflict" | "bad-request";
 
 export class CommentError extends Error {
-  constructor(readonly code: CommentErrorCode, message: string) {
+  readonly code: CommentErrorCode;
+  constructor(code: CommentErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "CommentError";
   }
 }

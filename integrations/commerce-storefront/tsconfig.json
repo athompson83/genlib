@@ -15,7 +15,8 @@
     "skipLibCheck": true,
     "declaration": true,
     "rootDir": "src",
-    "outDir": ".build"
+    "outDir": ".build",
+    "erasableSyntaxOnly": true
   },
   "include": [
     "src/**/*.ts",

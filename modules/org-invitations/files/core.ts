@@ -67,8 +67,10 @@ export type InvitationErrorCode =
   | "bad-request" | "delivery-failed";
 
 export class InvitationError extends Error {
-  constructor(readonly code: InvitationErrorCode, message: string) {
+  readonly code: InvitationErrorCode;
+  constructor(code: InvitationErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "InvitationError";
   }
 }

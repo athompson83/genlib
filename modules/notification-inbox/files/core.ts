@@ -118,8 +118,10 @@ export type InboxErrorCode =
   | "invalid-before" | "bad-request";
 
 export class InboxError extends Error {
-  constructor(readonly code: InboxErrorCode, message: string) {
+  readonly code: InboxErrorCode;
+  constructor(code: InboxErrorCode, message: string) {
     super(message);
+    this.code = code;
     this.name = "InboxError";
   }
 }

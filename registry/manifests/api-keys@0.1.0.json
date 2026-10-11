@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "id": "api-keys",
+  "version": "0.1.0",
+  "title": "API keys",
+  "description": "API key management for multi-tenant apps: CSPRNG keys with an identifiable non-secret prefix, shown once and stored only as an HMAC-SHA-256 under a server pepper, constant-time verification by lookup id, tenant and scope limits, revocation, expiry, throttled last-used writes and secret-free audit events, with injected authorization and persistence.",
+  "kind": "feature",
+  "tags": [
+    "api keys",
+    "api key management",
+    "personal access tokens",
+    "token hashing",
+    "hmac",
+    "bearer token",
+    "scopes",
+    "revocation",
+    "key rotation",
+    "multi-tenant",
+    "saas",
+    "server",
+    "authentication"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/api-keys"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (getRandomValues, randomUUID, subtle HMAC-SHA-256) plus the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Server-only: the pepper and the verify path must never reach a browser bundle.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "api-keys/core.ts",
+      "path": "modules/api-keys/files/core.ts",
+      "sha256": "cf25bfc7c62b85c2433c2de4f9380455aa383b934cb0f233e7781bcc16f1e746",
+      "bytes": 17060
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "api-keys/memory-store.ts",
+      "path": "modules/api-keys/files/memory-store.ts",
+      "sha256": "f3625711aa583941dc9e7de0ebadbdce79894b9acf0a9329ae669cec99f00feb",
+      "bytes": 2192
+    },
+    {
+      "source": "files/http.ts",
+      "target": "api-keys/http.ts",
+      "path": "modules/api-keys/files/http.ts",
+      "sha256": "700f5a0934a97c6934b5887804081fe2ce4050d1bba4bc3f69fda1c0cc1331b0",
+      "bytes": 2587
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "api-keys/sql-store.ts",
+      "path": "modules/api-keys/files/sql-store.ts",
+      "sha256": "b8bd228556f7cf3fb16f90f1b442140e3f1f1bd1e313fde85817002b51e5be38",
+      "bytes": 3421
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "api-keys/schema.sql",
+      "path": "modules/api-keys/files/schema.sql",
+      "sha256": "564f6bd4d6de6e9ed9fb5689d541015f615b4930f5b92b90f62e7ac09d6226fc",
+      "bytes": 1050
+    }
+  ],
+  "exports": [
+    {
+      "name": "createApiKeys",
+      "from": "api-keys/core.ts"
+    },
+    {
+      "name": "ApiKeyError",
+      "from": "api-keys/core.ts"
+    },
+    {
+      "name": "parseApiKey",
+      "from": "api-keys/core.ts"
+    },
+    {
+      "name": "randomBase62",
+      "from": "api-keys/core.ts"
+    },
+    {
+      "name": "timingSafeEqual",
+      "from": "api-keys/core.ts"
+    },
+    {
+      "name": "ALPHABET",
+      "from": "api-keys/core.ts"
+    },
+    {
+      "name": "MemoryApiKeyStore",
+      "from": "api-keys/memory-store.ts"
+    },
+    {
+      "name": "authenticateRequest",
+      "from": "api-keys/http.ts"
+    },
+    {
+      "name": "createSqlApiKeyStore",
+      "from": "api-keys/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "Load a pepper of at least 32 random bytes from your secret store on the trusted server and pass it as pepper; never store it with the keys.",
+    "On PostgreSQL, apply schema.sql and use createSqlApiKeyStore with your query executor; on other databases implement ApiKeyStore with a unique lookup id and conditional revoke and touchLastUsed writes.",
+    "Implement authorize(actor, 'create'|'list'|'revoke', {tenantId}) and holderScopes(actor, tenantId) from your own membership and role tables.",
+    "Pick an appPrefix (for example your product initials) so leaked keys are recognizable to secret scanners and support staff.",
+    "Call authenticateRequest(keys, request, requiredScopes) at the top of each API route and return its response when ok is false.",
+    "Optionally pass onAudit to write key.created, key.revoked, key.used and key.denied events to your audit log."
+  ],
+  "capabilities": [
+    "api-key-generation",
+    "hashed-key-storage",
+    "constant-time-key-verification",
+    "tenant-and-scope-limited-keys",
+    "key-revocation-and-expiry",
+    "scope-escalation-prevention",
+    "secret-free-audit-events",
+    "throttled-last-used-tracking",
+    "bearer-authentication-helper"
+  ],
+  "limitations": [
+    "One pepper per instance: rotating the pepper invalidates every existing key; there is no built-in multi-pepper verification or key rotation workflow.",
+    "Scopes are exact strings with no wildcards or hierarchy; holderScopes is read only at creation, so later removing a scope from the creator does not shrink keys already issued (revoke them).",
+    "Constant-time comparison covers the digest compare and gives unknown lookup ids the same HMAC work; database lookup timing for known versus unknown lookup ids is not equalized.",
+    "Keys carry no checksum, so typos are detected by the lookup rather than offline, and secret scanners must match the prefix pattern.",
+    "Last-used writes and audit events are best-effort: their errors are swallowed so authentication keeps working, and last-used has the configured interval's granularity.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection, not on every hosted Postgres or under multi-connection load.",
+    "No rate limiting or brute-force lockout; add request rate limits (see the rate-limit module) in front of API routes.",
+    "No management HTTP routes; mount create, list and revoke behind your own signed-in API. Production secret custody, session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/api-keys.test.mjs",
+      "tests/api-keys-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/api-keys.test.mjs tests/api-keys-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "keys match <appPrefix>_<live|test>_<12 base62>_<43 base62>; the secret has at least 256 bits of entropy",
+      "rejection sampling discards bytes at or above 248, so each base62 character maps from exactly 4 byte values",
+      "200 generated keys have no repeated secrets or lookup ids",
+      "the stored hash equals HMAC-SHA-256(pepper, key) computed independently; the row, list and revoke outputs never contain the key, its secret or (for outputs) the hash",
+      "a different pepper cannot verify a stored key",
+      "verify looks up by lookup id only and does exactly one HMAC for known and unknown lookup ids; wrong-secret, unknown and malformed keys all fail as invalid-key without echoing the key",
+      "a key authenticates as its one tenant and fails insufficient-scope for scopes it lacks",
+      "revoked and expired keys are rejected on the next verify; keys from a non-accepted environment are refused",
+      "viewers, other tenants and non-admins are refused create, list or revoke as configured; a member cannot mint scopes they do not hold",
+      "audit events (created, revoked, used, denied) carry ids and prefixes only; a failing audit sink does not break verify",
+      "last-used is written at most once per interval, also under three concurrent verifies on PostgreSQL",
+      "authenticateRequest maps missing and invalid keys to 401 and missing scopes to 403 with RFC 6750 WWW-Authenticate challenges and no-store",
+      "schema.sql applies, rejects a non-hex key_hash, and lookup-id collisions retry through ON CONFLICT"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and SQL store, Bearer authentication Fetch helper."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/api-keys/module.json",
+    "sha256": "3329c8fa4f4e45c100ac9437001e1f638e571b4df433f30dce8d8a769f766835"
+  },
+  "contractFile": {
+    "path": "modules/api-keys/CONTRACT.md",
+    "sha256": "b9a28a32c25916cc422113d255678a79b5877c18a08b8ef5076d50c6025a3264",
+    "bytes": 7718
+  }
+}
