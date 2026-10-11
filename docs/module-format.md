@@ -62,7 +62,7 @@ The registry build rejects malformed evidence, a changelog that does not start a
 
 ## Database files
 
-A feature package that needs storage may ship a `schema.sql` (PostgreSQL) and a SQL store next to its store interface, as `org-invitations`, `comments`, `rbac`, `password-reset` and `short-links` do. List both in `files`; the installer copies them like any other file and never runs migrations. Test the SQL against a real engine (the repository uses PGlite, a WASM build of PostgreSQL, as a devDependency), record it in `verification.environment` (`{"postgres": "PGlite 0.5.8"}`), and include concurrency cases for every state change that must happen once. Keep the SQL store's executor shape (`query(text, params)` and an optional `transaction(fn)`) so apps can pass `pg`, `postgres.js`, Drizzle or Neon clients through a small adapter.
+A feature package that needs storage may ship a `schema.sql` (PostgreSQL) and a SQL store next to its store interface, as `org-invitations`, `comments`, `rbac`, `password-reset`, `short-links`, `site-search`, `email-outbox`, `web-push` and `chat` do. Also credit the module in the matching feature contracts ([coverage.md](coverage.md)). List both in `files`; the installer copies them like any other file and never runs migrations. Test the SQL against a real engine (the repository uses PGlite, a WASM build of PostgreSQL, as a devDependency), record it in `verification.environment` (`{"postgres": "PGlite 0.5.8"}`), and include concurrency cases for every state change that must happen once. Keep the SQL store's executor shape (`query(text, params)` and an optional `transaction(fn)`) so apps can pass `pg`, `postgres.js`, Drizzle or Neon clients through a small adapter.
 
 ## After installation
 

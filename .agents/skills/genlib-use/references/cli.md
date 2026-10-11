@@ -24,6 +24,9 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "update_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --json",
     "update_write": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --write --conflict rej --json",
     "remove_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" remove <id> --target \"$APP_ROOT\" --dry-run --json",
+    "feature_coverage": "node \"$GENLIB_ROOT/bin/genlib.mjs\" coverage stripe checkout and webhooks",
+    "registry_item_plan": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry plan shadcn:login-01 --target \"$APP_ROOT\" --json",
+    "registry_item_add": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry add shadcn:login-01 --target \"$APP_ROOT\" --sha256 <hex> --json",
     "output_schema": "node \"$GENLIB_ROOT/bin/genlib.mjs\" schema quick",
     "integration_list": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration list --json",
     "integration_inspect": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration inspect <id> --json",
@@ -52,6 +55,8 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "A pre-existing customized file is a conflict. Review the diff and use a project-appropriate manual migration or a separate installation location; do not delete project content to satisfy the installer.",
     "add writes .genlib/receipts/<id>.json. After wiring the code in, run adopted <id> --test '<the app test command>': status copied means nothing outside the installed folder imports it yet; used means app code imports it; verified means the app's test command passed. Report that status, not just the copy.",
     "update <id> merges a newer Genlib version into locally edited files using the locked commit as the base; it is a dry run unless --write. Resolve each conflict file (.genlib-conflict or inline markers) and rerun the app's tests. remove <id> deletes only unedited files and refuses while a dependent module is installed.",
+    "Before building a feature, run coverage <task>: it lists each requirement with test (a repository test exercises it), install, plan, catalog or - (nothing). Build or adopt the requirements it does not verify yourself, and report them as your work. After your tests pass, record which requirements they exercised with adopted <id> --test '<cmd>' --accepts <contract>#<requirement>.",
+    "registry plan|add adopts a shadcn-format item (shadcn:<name> or an https item URL) with alias mapping, conflict checks, a lock and receipts. Run the install command it returns, merge the CSS and env vars it lists, and pin --sha256 from the plan for repeatable adds. It never overwrites; --keep-existing keeps your differing files.",
     "If quick returns noMatch, Genlib has nothing that covers the task: use its gh search commands or write the code, and do not force a weak result.",
     "Integration packs default to genlib/integrations/<id> and record .genlib/integrations-lock.json. Inspect the contract and declared files; installation copies source/configuration/fixtures and attribution only. Run dependency and verification commands deliberately from the pack directory after review."
   ],

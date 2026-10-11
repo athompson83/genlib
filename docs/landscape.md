@@ -53,6 +53,41 @@ Reviewed 2026-10-11. These projects center on what happens after code is found: 
 
 Not measured yet: manual repair per adoption, acceptance rate in real projects, time and model usage per task, and update effort over several upstream versions. Receipts now record the data needed for the first two; the [benchmark protocol](benchmarks.md#comparison-protocol-not-yet-run) covers the rest.
 
+## Integration blueprint: one adoption process over many providers
+
+Reviewed 2026-10-11 by the project owner, covering the 29 repositories from both comparisons. The conclusion: one Genlib catalog and adoption process, optional upstream providers, and original integration packages where the app still needs work. Each capability uses one of four delivery methods:
+
+| Method | Used for | Examples |
+| --- | --- | --- |
+| Native Genlib functionality | Selection, compatibility, planning, provenance and licenses, adoption evidence, update tracking, compact agent output, coverage reporting | `genlib` CLI and MCP, receipts, feature contracts |
+| Upstream dependency plus a Genlib integration package | Maintained implementations that need app-specific setup | BTST plugins, Convex components (Convex-only runtime semantics) |
+| Format and tool adapters | Translating another system's artifacts into a Genlib plan | shadcn registry items (done), jsrepo, Mason bricks, APM/Skills/PRPM/Agentry manifests |
+| Optional service connections | Functionality that lives in a hosted service | Context7 docs (private backend), 21st/Magic MCP (hosted, account-dependent) |
+
+### Done in this increment
+
+1. **Accurate coverage (phase 1).** `resources/feature-contracts/` gives each of the 65 common tasks its requirements and credits implementations per requirement, from `cataloged` up to `fixture-verified` (a named test, checked to exist) and `application-verified` (acceptance recorded in the app by `adopted --accepts`). `genlib coverage` and MCP `genlib_coverage` report it, and [gaps.md](gaps.md) now summarizes requirement coverage, with lexical routing as a separate column. The known false positives (account deletion, Stripe checkout, API keys, multi-tenant isolation) now show as partial or none.
+2. **One complete registry path (phase 2).** `genlib registry plan|add` resolves a shadcn-format item and its dependencies over https and records SHA-256s. It maps files to the app's aliases, rewrites registry imports, and detects conflicts and undeclared imports before writing. It records ownership in `.genlib/providers-lock.json` and writes receipts, and `adopted`, `registry verify` and `registry remove` work on the result. Tested offline with fixtures and run against ui.shadcn.com (`login-01` with six dependencies).
+
+### License and runtime boundaries
+
+These are the owner's findings. They are recorded as exclusions until each one is re-checked at the pinned commit:
+
+- Anthropic's document skills, and the PDF skill material bundled in Agent Codemode, carry restrictive terms. Do not import them as source.
+- AREX-Skill: each skill's own license governs.
+- Context7's crawler and API backend are private, and Magic MCP forwards to hosted 21st MCP. Both are service connections, not source.
+- Convex components run only in Convex's component runtime.
+- APM, Skills, Agentry and PRPM overlap on agent configuration, and shadcn, jsrepo, Copier and Mason overlap on generated files. Each managed file or block needs one owner, so adapters record ownership rather than letting tools overwrite each other.
+
+### Next, in order
+
+3. A substantial feature provider (a BTST profile with framework and database setup and version-specific guidance), accepted against named behaviors.
+4. Shared evidence and maintenance across modules, integration packs and provider artifacts, including a three-way update for registry items (originals are already stored).
+5. More adapters (jsrepo, Mason, skill managers, starters, Convex profiles), each with a tested profile.
+6. Optional content-production workers (CodeDistiller, SkillFoundry, AREX-style), whose candidates count only after review and acceptance evidence.
+
+Success is measured at accepted completion against the same agent using upstream tools directly: accepted tasks, repair effort, time, model and tool cost, and effort after an update. That comparison is still the open item below.
+
 ## Still open
 
 - Running the comparison protocol in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run). Until then, Genlib's advantage over an agent that already has Context7, a source registry and a good workflow is unmeasured.
