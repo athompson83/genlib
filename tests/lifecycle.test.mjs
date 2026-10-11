@@ -27,7 +27,7 @@ test('install writes a receipt; adopted separates copied, used and verified', as
   assert.deepEqual(installed.receipts, ['.genlib/receipts/org-invitations.json']);
   const receipt = JSON.parse(await read(target, '.genlib/receipts/org-invitations.json'));
   assert.deepEqual(receipt.outcomes, { found: true, copied: true, used: null, verified: null });
-  assert.ok(receipt.files.every(file => /^[a-f0-9]{64}$/.test(file.sha256)) && receipt.files.length === 3);
+  assert.ok(receipt.files.every(file => /^[a-f0-9]{64}$/.test(file.sha256)) && receipt.files.length === 5);
 
   const copied = await checkAdoption(target, 'org-invitations');
   assert.equal(copied.status, 'copied', 'installed but nothing imports it yet');

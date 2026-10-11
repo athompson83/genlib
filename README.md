@@ -100,6 +100,7 @@ flowchart LR
   Plan["plan<br/>(no writes)"]
   Add["add<br/>copy + .genlib/lock.json"]
   Verify["verify hashes"]
+  Receipt["receipt · adopted<br/>update · remove"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -118,6 +119,7 @@ flowchart LR
   MCP -.-> Find
   Graph -.-> Find
   M --> Inspect --> Plan --> Add --> Verify --> App
+  Add -.-> Receipt -.-> App
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App
@@ -134,6 +136,7 @@ flowchart LR
 - **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
 - **Verify in the app.** File hashes prove what was copied; the receiving app's own build and tests prove it works.
+- **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match ([docs/gaps.md](docs/gaps.md) lists the common tasks still served only by external projects).
 
 ## Quick start
 
@@ -174,11 +177,15 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `search` / `list` / `inspect <id>` | Module-only discovery and one module's full contract |
 | `plan <id> --target app` / `add <id> --target app` | Show, then perform, the exact file copy (default `src/genlib`, or `--out`) |
 | `verify --target app` | Compare installed files with their recorded hashes; exits 1 on drift |
+| `adopted <id> --target app [--test]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command |
+| `update <id> --target app [--write] [--conflict rej\|inline]` | Three-way merge of a newer module version into locally edited files (base from the locked commit); dry run unless `--write`, conflicts reported per file |
+| `remove <id> --target app [--dry-run]` | Roll back an install: deletes unedited files, keeps edited ones, refuses while a dependent module is installed |
+| `schema [quick\|steps\|plan\|receipt\|update]` | JSON Schemas for the agent-facing `--json` outputs |
 | `integration list` / `integration inspect <id>` | Discover a complete optional integration profile and read its contract |
 | `integration plan\|add <id> --target app` | Plan/copy a pack, defaulting to `genlib/integrations/<id>` |
 | `integration verify --target app` | Verify the separate pack baseline and recovery journal; exits nonzero for drift or an incomplete install |
 
-`add` writes `.genlib/lock.json` with versions, origin and original hashes, and copies license notices. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
+`add` writes `.genlib/lock.json` with versions, origin and original hashes, copies license notices, and writes an adoption receipt to `.genlib/receipts/<id>.json`. It runs no package manager, hooks or network calls. After deliberate edits, `verify` reports `drift`: review the change, don't rewrite the baseline. Pin the reviewed Genlib commit (`git rev-parse HEAD`) for repeatable installs.
 
 ## Capabilities: one task, every language
 
@@ -304,7 +311,7 @@ All modules are original Apache-2.0 code with a contract and behavior tests (ver
 | [`entitlements`](modules/entitlements/CONTRACT.md) | Plan features and limits with subscription-status fallback, plus a usage-credit ledger: idempotent grants and debits, expiring credits, holds, no overdraw under concurrency | Its plans, billing-state sync, a store with conditional appends |
 | [`notification-inbox`](modules/notification-inbox/CONTRACT.md) | In-app notification inbox: idempotent publish, cursor paging, unread counts, mark read, archive, retention, safe links, Fetch adapter | Its store, sign-in, which events become notifications |
 | [`csv-import`](modules/csv-import/CONTRACT.md) | CSV import flow: delimiter detection, column-mapping suggestions, typed row validation, idempotent commit with per-row errors, formula-safe error export, Fetch adapter | Its fields, the row writer, a store, upload limits |
-| [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership), authorization and role ceilings, sign-in, email delivery |
+| [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership; a PostgreSQL schema and SQL store are included and tested under PGlite), authorization and role ceilings, sign-in, email delivery |
 
 The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The server utilities and feature packages use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
 
@@ -340,7 +347,7 @@ npx shadcn@4.21.4 add athompson83/genlib/org-invitations   # any recipe or modul
 npx skills@1.7.2 add athompson83/genlib --skill genlib-use # the agent skill (APM: athompson83/genlib/skills/genlib-use#<commit>)
 ```
 
-After Genlib picks an external package, `tools/resources.mjs inspect <id>` returns a `docsLookup` with the two `ctx7` commands that fetch that library's version-specific docs from Context7. [landscape.md](docs/landscape.md) compares Genlib with shadcn, Bit, jsrepo, APM, Skills, Context7, AREX-Skill and CodeDistiller, and lists what was adopted from each.
+After Genlib picks an external package, `tools/resources.mjs inspect <id>` returns a `docsLookup` with the two `ctx7` commands that fetch that library's version-specific docs from Context7. [landscape.md](docs/landscape.md) compares Genlib with shadcn, Bit, jsrepo, APM, Skills, Context7, AREX-Skill, CodeDistiller, Limitless Library, BTST, TanStack Intent, Copier and others, and lists what was adopted from each. When a selected npm package is installed in the app and ships TanStack Intent skills, `inspect` names the installed version and the matching `intent load` command.
 
 ## Recipes, language examples and templates
 

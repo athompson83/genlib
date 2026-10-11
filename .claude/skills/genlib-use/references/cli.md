@@ -20,6 +20,11 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "plan_without_writing": "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan <id> --target \"$APP_ROOT\" --json",
     "install_files": "node \"$GENLIB_ROOT/bin/genlib.mjs\" add <id> --target \"$APP_ROOT\" --json",
     "verify_installation": "node \"$GENLIB_ROOT/bin/genlib.mjs\" verify --target \"$APP_ROOT\" --json",
+    "adoption_receipt": "node \"$GENLIB_ROOT/bin/genlib.mjs\" adopted <id> --target \"$APP_ROOT\" --test \"npm test\" --json",
+    "update_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --json",
+    "update_write": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --write --conflict rej --json",
+    "remove_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" remove <id> --target \"$APP_ROOT\" --dry-run --json",
+    "output_schema": "node \"$GENLIB_ROOT/bin/genlib.mjs\" schema quick",
     "integration_list": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration list --json",
     "integration_inspect": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration inspect <id> --json",
     "integration_plan": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration plan <id> --target \"$APP_ROOT\" --json",
@@ -45,6 +50,9 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "Read the selected module's contract returned by inspect in the contract field. Authored contracts also live at modules/<id>/CONTRACT.md under GENLIB_ROOT. The contract describes exports, required configuration, dependencies, and the expected installed layout.",
     "Preserve .genlib/lock.json, which records versions, origin, and original file hashes. Record the Genlib checkout SHA in the project's existing implementation notes or change record.",
     "A pre-existing customized file is a conflict. Review the diff and use a project-appropriate manual migration or a separate installation location; do not delete project content to satisfy the installer.",
+    "add writes .genlib/receipts/<id>.json. After wiring the code in, run adopted <id> --test '<the app test command>': status copied means nothing outside the installed folder imports it yet; used means app code imports it; verified means the app's test command passed. Report that status, not just the copy.",
+    "update <id> merges a newer Genlib version into locally edited files using the locked commit as the base; it is a dry run unless --write. Resolve each conflict file (.genlib-conflict or inline markers) and rerun the app's tests. remove <id> deletes only unedited files and refuses while a dependent module is installed.",
+    "If quick returns noMatch, Genlib has nothing that covers the task: use its gh search commands or write the code, and do not force a weak result.",
     "Integration packs default to genlib/integrations/<id> and record .genlib/integrations-lock.json. Inspect the contract and declared files; installation copies source/configuration/fixtures and attribution only. Run dependency and verification commands deliberately from the pack directory after review."
   ],
   "interpretation": [

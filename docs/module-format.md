@@ -59,3 +59,11 @@ Optional maintenance evidence travels with the module, and `genlib inspect <id>`
 | `deprecated` | `{reason, replacement?}` with a replacement module id when one exists |
 
 The registry build rejects malformed evidence, a changelog that does not start at the current version, and a non-id replacement. Evidence describes this repository's tests, not the consuming application.
+
+## Database files
+
+A feature package that needs storage may ship a `schema.sql` (PostgreSQL) and a SQL store next to its store interface, as `org-invitations` does. List both in `files`; the installer copies them like any other file and never runs migrations. Test the SQL against a real engine (the repository uses PGlite, a WASM build of PostgreSQL, as a devDependency), record it in `verification.environment` (`{"postgres": "PGlite 0.5.8"}`), and include concurrency cases for every state change that must happen once. Keep the SQL store's executor shape (`query(text, params)` and an optional `transaction(fn)`) so apps can pass `pg`, `postgres.js`, Drizzle or Neon clients through a small adapter.
+
+## After installation
+
+`add` writes `.genlib/receipts/<id>.json`. Bumping a module's version is what `genlib update` merges into receiving apps, so keep file targets stable between versions where possible: a renamed target is delivered as a new file plus a deletion of the old one (or `keep-removed-upstream` when it was edited). Record the change in `changelog`.

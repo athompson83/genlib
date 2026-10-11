@@ -62,6 +62,30 @@ Every result names its type, verification level and the exact next command. Modu
 | | deployment runbook (`templates/docs/docs/runbooks/deployment.md`) | template | Release, acceptance and rollback procedure |
 | 13. Market and grow | `marketing-seo`, `marketing-analytics`, `marketing-engagement`, `social-media` catalogs | resources | SEO and AI-optimization tooling, analytics, attribution, experiments, email, CRM, ads, push, consent and social media in each language, with exact install commands |
 
+## After installing: receipts, updates and rollback
+
+`add` writes `.genlib/receipts/<id>.json` next to the lock. The receipt records four outcomes, so a report can say exactly how far an adoption got:
+
+| Outcome | Set by | Meaning |
+| --- | --- | --- |
+| `found` | `add` | The module was selected and planned |
+| `copied` | `add` | Files were copied and hashed |
+| `used` | `adopted <id>` | Application code outside the installed folder imports the installed files, through a relative path or an alias such as `@/genlib/<id>/…` |
+| `verified` | `adopted <id> --test "<cmd>"` | The app's own test command exited 0 (its exit code and output tail are kept) |
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" adopted org-invitations --target "$APP_ROOT" --test "npm test" --json
+node "$GENLIB_ROOT/bin/genlib.mjs" update org-invitations --target "$APP_ROOT" --json            # dry run
+node "$GENLIB_ROOT/bin/genlib.mjs" update org-invitations --target "$APP_ROOT" --write --conflict rej
+node "$GENLIB_ROOT/bin/genlib.mjs" remove org-invitations --target "$APP_ROOT" --dry-run
+```
+
+- **update** works like Copier's update: the base is the file at the commit recorded in the lock (`git show`), the incoming file is this checkout's version, and local edits are merged with `git merge-file`. Unchanged files are replaced; edited files merge cleanly or are reported as conflicts, written to `<file>.genlib-conflict` (`--conflict rej`, the default) or as inline markers (`--conflict inline`). Nothing is written without `--write`. The base comes from the Genlib checkout's Git history; when the locked commit is not available there, an edited file is reported as a conflict (`installed original unavailable`) with the new version in its `.genlib-conflict` file, rather than merged against a guessed base. Package dependencies are not changed; `updateDependenciesFirst` names dependent modules whose versions moved.
+- **remove** deletes files whose hashes still match the lock, keeps edited files (and lists them), removes the lock and receipt entries, and refuses while another installed module depends on this one.
+- **No match.** If the best result is an external record covering less than a third of the task's words, `quick` returns `noMatch` with `gh search repos`/`gh search code` commands instead of a weak pick. [gaps.md](gaps.md) lists the common tasks still covered only by external projects.
+
+Schemas for receipts and update results are in `schemas/` (`genlib schema receipt`, `genlib schema update`).
+
 ## External resources at every stage
 
 When no module, recipe or template covers a need, the resource catalog usually names a maintained project for it, tagged by Genisys project type. Run `node tools/resources.mjs search <need> --project <type> --limit 5 --json`, or read the matching domain guide listed in the [resource index](resources/README.md): frontend, backend/API, AI agents, mobile/desktop/CLI/games, data/docs/office, DevOps/testing/security, SaaS/commerce/finance, media/automation, README tools and UI sources. Each record's `useWhen` says which hand-written work it replaces. Check `license-review` records before copying or embedding them.
@@ -73,7 +97,7 @@ The framework-neutral server modules (`env-config`, `structured-logger`, `http-r
 ## What Genlib does not cover yet
 
 - Session management and user stores. The capabilities cover the protocol pieces (SSO request and token verification, SAML, MFA, passkeys, password hashing); use the framework's maintained session library or an identity provider for the rest.
-- Database schema, migrations and background job queues.
+- Database migrations and background job queues. `org-invitations` ships a PostgreSQL schema and SQL store; other feature packages define store interfaces you implement.
 - Native mobile or desktop UI. The React modules target the browser.
 - Platform-specific deployment (Vercel, Fly.io, AWS, app stores). Use the provider's documentation and the deployment runbook template.
 

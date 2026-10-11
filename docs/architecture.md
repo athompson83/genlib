@@ -49,7 +49,8 @@ flowchart TB
   MCPS["bin/genlib-mcp.mjs<br/>MCP tools"]
   TOK["docs/token-budget.md<br/>measured output sizes"]
   INST["lib/install.mjs<br/>plan · add · verify"]
-  APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
+  APP["Target app<br/>src/genlib/ · .genlib/lock.json<br/>.genlib/receipts/"]
+  LIFE["lib/lifecycle.mjs<br/>adopted · update · remove<br/>+ schemas/*.schema.json"]
   NET["Git hosts · npm<br/>PyPI · crates.io"]
   DOCS["scripts/sync-docs.mjs<br/>README and resource counts"]
   DIAG["scripts/diagrams.mjs<br/>Agentic Mermaid SVGs"]
@@ -86,6 +87,8 @@ flowchart TB
   CLI -- "npm run tokens:report" --> TOK
   REG --> INST --> CLI
   CLI -- "copies reviewed bytes" --> APP
+  INST --> LIFE --> CLI
+  LIFE -- "receipts · 3-way merge · rollback" --> APP
   SKLIB -. "npx skills add (pinned)" .-> APP
   IDXLIB -. "mcp add · brew · SDK" .-> APP
   RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
@@ -113,6 +116,7 @@ Every arrow into the target app goes through `plan`/`add` (modules), `integratio
 5. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
 6. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`; `integration add` copies a pack to `genlib/integrations/<id>` and records it in `.genlib/integrations-lock.json`. License notices accompany the copy. It never runs module hooks or package managers.
 7. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.
+8. `add` also writes `.genlib/receipts/<id>.json`. `adopted <id>` marks it used when application code imports the installed files and verified when the app's own test command passes; `update <id>` three-way merges a newer version into local edits using the locked commit as the base (dry run unless `--write`); `remove <id>` rolls back unedited files. These live in `lib/lifecycle.mjs`, and their JSON shapes are in `schemas/`.
 
 The core CLI uses Node.js built-ins and works from a trusted local clone without installing npm packages. Each optional integration and the MCP server has isolated pinned dependencies. They do not become core runtime dependencies.
 

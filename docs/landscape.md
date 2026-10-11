@@ -30,7 +30,31 @@ Help a coding agent choose an existing implementation that fits the application,
 4. **Library docs after selection.** `docsLookup` hands off to Context7 once Genlib has picked the package.
 5. **Continuing verification by layer.** `verify-resources` reports failures by layer: source, links, packages and license, upstream lifecycle, install resolvability. It samples a rotating slice each day; the scheduled `catalog-health` workflow runs it daily and adds install checks weekly, without gating pull requests.
 
+## Second review: adoption outcomes, updates and gaps
+
+Reviewed 2026-10-11. These projects center on what happens after code is found: whether it was really used, whether it can be updated or undone, and what to do when nothing fits.
+
+| Project | What overlaps | What Genlib took from it |
+| --- | --- | --- |
+| Limitless Library | Verified reuse with receipts, rollback, runtime-use checks and an explicit no-match | Every `add` writes `.genlib/receipts/<id>.json`. `genlib adopted <id> --target app [--test]` reports found, copied, used (application code outside the installed folder imports the installed files, through relative or alias specifiers) and verified (the app's own test command passed). `genlib remove` rolls back unedited files and refuses while a dependent module is installed |
+| VOLY | GitHub search when the local index has no answer | When the best result is an external record that covers under a third of the task's terms, `quick` returns `noMatch` with `gh search repos` and `gh search code` commands instead of a weak pick |
+| [TanStack Intent](https://tanstack.com/intent) (0.5.5) | Skills shipped inside npm packages, loaded for the installed version | With `--target`, a resolved package that is installed in the app reports its installed version, the skills it ships and `npx -y @tanstack/intent@0.5.5 load <pkg>#<skill>`; `docsLookup` uses that version |
+| [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) | Schemas for choices, dry-run plans, MCP | `schemas/*.schema.json` for `quick`, `steps`, `plan`, receipts and updates (`genlib schema`); tests validate real outputs against them. `plan` and `update` already make no writes by default |
+| BTST / Better Stack feature plugins | Complete full-stack features including their database layer | `org-invitations` 0.2.0 adds a PostgreSQL schema and a SQL store with conditional updates; tests run them in PGlite 0.5.8 (WASM Postgres), including four concurrent accepts with one winner and a membership insert that rolls back with the accept |
+| SkillFoundry | Produces content where demand shows gaps | `scripts/gap-report.mjs` routes 65 common application tasks and records which are served by Genlib code, only by external projects, or not at all ([gaps.md](gaps.md)); the external-only list is the build queue for feature packages |
+| [Copier](https://copier.readthedocs.io/) | Re-applies a newer template version over a customized project | `genlib update <id> --target app` takes the base from the locked commit (`git show`), merges with `git merge-file`, and reports clean, merged and conflicting files; it writes only with `--write`, and conflicts go to `.genlib-conflict` files or inline markers |
+| Convex components, Open SaaS, next-forge, Mason, NativeScript agent skills, Snippets, Agent Codemode, PRPM | Backend components, SaaS starters, brick templates, framework skills, snippet stores, code-mode tool calls, prompt packages | Already reachable through the starter, skill and resource indexes. Not adopted as formats: each would add a second package format without changing whether code is found, used and verified |
+
+### Measured outcomes
+
+- Routing (`node scripts/routing-eval.mjs`): tuning 97.7% top-1 and 99.2% top-3; held-out 83.1% top-1 and 88.6% top-3 (89.2% before the plural-stem change, so top-3 dipped by one phrasing). One added stopword was noticed in a listing that mixed tuning and held-out phrasings, so the held-out gain is slightly optimistic.
+- Gap report: of 65 tasks, 50 route to Genlib code, 15 only to external projects, 0 to nothing.
+- Lifecycle tests (`tests/lifecycle.test.mjs`) cover receipts, the used check through relative and alias imports, test-backed verification, rollback with an edited file kept, a dependent refusal, and a three-way update with one clean merge and one conflict.
+
+Not measured yet: manual repair per adoption, acceptance rate in real projects, time and model usage per task, and update effort over several upstream versions. Receipts now record the data needed for the first two; the [benchmark protocol](benchmarks.md#comparison-protocol-not-yet-run) covers the rest.
+
 ## Still open
 
 - Running the comparison protocol in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run). Until then, Genlib's advantage over an agent that already has Context7, a source registry and a good workflow is unmeasured.
+- Building feature packages for the external-only tasks in [gaps.md](gaps.md).
 - Semantic API diffs between module versions (Bit's `bit api diff`). The changelog records breaking changes by hand today.
