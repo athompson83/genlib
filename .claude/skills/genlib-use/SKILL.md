@@ -17,8 +17,8 @@ description: Find, plan, and install reusable Genlib code while coding an applic
     "Resolve GENLIB_ROOT to a trusted Genlib checkout separate from the app (record its commit). Without one, read references/bootstrap.md; never invent a path or pipe remote scripts."
   ],
   "cheapest_path": [
-    "1. node $GENLIB_ROOT/bin/genlib.mjs quick <task words> --target <app>  -> the best match and only its install or copy commands (about 400 bytes). find <task> --target <app> --limit 5 gives options; --json adds full records.",
-    "2. node $GENLIB_ROOT/bin/genlib.mjs outline <id> [--language <lang>]  -> signatures and one-line docs. Call the code from it; open source only to change lines.",
+    "1. node $GENLIB_ROOT/bin/genlib.mjs quick <task words> --target <app>  -> the best match and only its install or copy commands (about 400 bytes); if its # caveat conflicts with the task, do not copy it. find <task> --limit 5 gives options; --json adds records.",
+    "2. node $GENLIB_ROOT/bin/genlib.mjs outline <id> [--language <lang>]  -> signatures and one-line docs. Call the code from it.",
     "3. Run the returned command (capability copy with --flat lands files in the app; add for modules; recipe-install; package install). Its output lists copied paths, the API and a test command and says what is verified: run that test instead of re-reading the copied source, then the app's own checks.",
     "External project you must read? genlib source <id> [--path dir] fetches one folder at a pinned commit and names Genlib code that already does the job; never clone whole repositories into context.",
     "MCP (claude/codex mcp add genlib -- node $GENLIB_ROOT/bin/genlib-mcp.mjs): genlib_quick, genlib_find, genlib_outline, genlib_read_doc match the CLI.",

@@ -43,6 +43,37 @@ Per task in round 2 (cost index, written tokens in brackets):
 
 The Jev decisions read about 5,100 tokens of packets for the spec set and 1,900 for the short set (round 1: 5,200 and 3,300), because packets for a task that forbids dependencies now hold only install-free candidates.
 
+### Round 3: all arms in one session
+
+After capability caveats and wave 9 landed, all three arms were run again in a single session (so the harness context is identical for every arm), with the same prompts and graders. Every run passed its hidden tests. Wall-clock times are less comparable this round because up to 20 agents ran at once.
+
+| Set | Arm | Turns | Written ≈ tokens | Read ≈ tokens | Cost index | vs without |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Spec (5) | Without | 19 | 16,987 | 5,082 | 176,788 | |
+| Spec (5) | Agent + Genlib | 29 | 3,225 | 17,525 | 168,531 | −5% |
+| Spec (5) | Jev selects | 25 | 4,245 | 11,520 | 148,125 | −16% |
+| Short (3) | Without | 17 | 16,318 | 2,511 | 161,229 | |
+| Short (3) | Agent + Genlib | 25 | 9,651 | 11,802 | 175,508 | +9% |
+| Short (3) | Jev selects | 18 | 14,256 | 4,611 | 158,044 | −2% |
+
+| Task | Without | Agent + Genlib | Jev |
+| --- | ---: | ---: | ---: |
+| TOTP/HOTP | 27,428 (2,561) | 28,536 (339) | 21,218 (339) |
+| Webhook signatures | 26,620 (2,478) | 27,808 (347) | 29,458 (961) |
+| SSRF / IP-CIDR | 43,350 (3,888) | 34,730 (544) | 30,169 (846) |
+| RRULE (spec) | 51,671 (5,477) | 44,568 (1,239) | 38,125 (1,299) |
+| ETag conditional requests | 27,719 (2,583) | 32,890 (756) | 29,156 (800) |
+| Diff identical to GNU `diff -u` | 61,740 (6,788) | 105,526 (8,065) | 60,094 (6,423) |
+| RRULE matching dateutil | 69,750 (7,330) | 28,808 (434) | 60,764 (6,532) |
+| base32/base58 | 29,739 (2,200) | 41,174 (1,152) | 37,186 (1,301) |
+
+What round 3 adds:
+- **The caveat works when a model reads it before copying.** Jev declined line-diff for the GNU task (0.15) because of its caveat, so that run cost the same as writing from scratch (60,094 vs 61,740) instead of 104,139 in round 2. The Agent + Genlib run saw the same caveat in `quick` and copied anyway (105,526). The skill, MCP instructions and `llms.txt` now say: when a caveat conflicts with the task, do not copy.
+- **A caveat that lists only exclusions can cause a false no.** Jev scored rrule 0.6 for the dateutil task because the caveat named only rejected parts, so that arm wrote it from scratch (60,764) while Agent + Genlib reused it (28,808, a 59% saving). The caveat now first says what matches dateutil; a fresh Jev decision on the same packet scored 0.88 (one sample).
+- **Small tasks stay noisy.** Per-task cost moves several thousand units between rounds for identical work (ETag requests: Genlib arm 26,740 in round 2, 32,890 in round 3), so judge the totals and the written tokens, which fall 75–94% whenever the code is reused.
+- **base32's parameter order still costs a rewrite** in every Genlib run of that task, because the prompt asks for `(data, padding)`; the caveat says to pass padding by name.
+- Jev decisions read 650–2,300 tokens of packet per task in this round.
+
 ## What it shows
 
 - **When Genlib has the code the task needs, agents write 80–90% fewer tokens.** The task-dependent cost fell 22% (Agent + Genlib) and 27% (Jev) on the spec set, and agents finished in less than half the time. Run-to-run noise is visible: Jev's round-2 spec total is above round 1 because two agents chose to write extra task tests.

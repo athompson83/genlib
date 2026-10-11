@@ -2458,7 +2458,7 @@
       "title": "Recurring events: RFC 5545 RRULE expansion",
       "tier": "pure",
       "summary": "Expand DAILY, WEEKLY, MONTHLY and YEARLY recurrence rules with INTERVAL, COUNT, UNTIL, BYDAY (including 2TU, -1FR and 20MO in the year), BYMONTHDAY and BYMONTH as filters for any frequency, in UTC, matching python-dateutil for every rule it accepts.",
-      "caveat": "UTC only; BYSETPOS, BYHOUR/BYMINUTE/BYSECOND, WKST and EXDATE are rejected.",
+      "caveat": "Matches python-dateutil for FREQ DAILY to YEARLY with INTERVAL, COUNT, UNTIL, BYDAY, BYMONTHDAY and BYMONTH, in UTC; BYSETPOS, BYHOUR/BYMINUTE/BYSECOND, WKST and EXDATE are rejected.",
       "terms": [
         "rrule",
         "recurrence",
