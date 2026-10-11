@@ -169,3 +169,30 @@ Changes made because of round 4:
 
 Limits: one run per cell on one model, four tasks, two apps; small differences (CSV and TOTP swap order between arms) are within run-to-run noise seen in earlier rounds. The direction is the finding: both Genlib arms cost more than both non-Genlib arms on three of the four tasks and in total; rerun after the fixes above before quoting a new number.
 
+## Round 5: the same runs after the round-4 fixes (2026-10-11)
+
+Same tasks, prompts, fixtures and hidden tests as round 4, 16 new runs. Only Genlib changed: erasable TypeScript, `--ts-imports`, the skill's decide-from-`quick`-and-`outline` rule, and `genlib connect` run on the Genlib arms' app copies so their `CLAUDE.md` carried the when-to-use and when-not guidance. Raw table: `benchmarks/feature-tasks/results-round5.json`. One deviation: the agent-only TOTP run made one read-only `genlib quick` query outside its directory and reports not using it.
+
+**All 16 runs passed all of their hidden tests again.**
+
+| Task | Agent | + upstream tools | + Genlib | + both |
+| --- | ---: | ---: | ---: | ---: |
+| Invitations | 182,680 | 187,062 | 215,579 | 204,336 |
+| Billing webhook | 167,552 | 179,469 | 224,626 | 215,290 |
+| CSV import | 132,633 | 133,251 | 164,874 | 194,174 |
+| TOTP (Python) | 139,392 | 142,314 | 211,049 | 237,736 |
+| **Total cost index** | **622,257** | **642,096** | **816,128** | **851,536** |
+| Round 4 total | 572,129 | 592,075 | 779,018 | 753,781 |
+| Turns | 26 | 26 | 39 | 44 |
+| Written ≈ tokens | 16,679 | 18,495 | 17,523 | 19,310 |
+| Read ≈ tokens | 10,973 | 13,441 | 26,492 | 26,393 |
+
+Genlib's added cost is **+31%** (arm 3 against arm 1) and **+33%** (arm 4 against arm 2), against +36% and +27% in round 4: no improvement beyond run-to-run noise. Every arm cost about 9% more than in round 4, so the shared baseline moved, not Genlib's share.
+
+What the fixes did and did not change:
+- **The breakage is gone.** No run hit a strip-only TypeScript failure. Recipes copied with `recipe-install` still landed under `genlib/examples/recipes/` (three runs; two moved the file by hand), so `recipe-install` now copies a single file to `genlib/<file>` or `--into <dir>`.
+- **The guidance was followed.** Both Genlib invitation runs read `quick` and `outline`, saw that `org-invitations` uses other routes, status codes and email handling, and wrote the feature themselves, as the new rule says. They still cost 9–18% more than the plain runs: reading the skill and the two queries are about three extra turns, and every turn re-reads the context.
+- **Reuse did not pay on these tasks.** Where code was reused (the webhook signature recipe, `csv-safe`, `python-totp`), adapting it, moving its tests and wiring it in took more turns than the plain agents needed to write the whole feature. Written tokens are flat across arms in both rounds.
+
+The conclusion stands and is now measured twice: for ordinary application features with a precise specification, a capable coding agent is cheaper without Genlib, even when Genlib's advice is right. Genlib's measured savings remain where earlier rounds found them, on algorithm-sized tasks against an exact standard. The question that is still open is whether the balance changes on larger features (where writing from scratch costs more), on weaker models, or when acceptance includes requirements a plain agent tends to miss; none of these four tasks had a hidden test that any arm failed.
+

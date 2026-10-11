@@ -104,6 +104,6 @@ Success is measured at accepted completion against the same agent using upstream
 
 ## Still open
 
-- Rerunning the comparison protocol in [benchmarks.md](benchmarks.md#round-4-application-features-four-arms-2026-10-11) after the round-4 fixes (erasable TypeScript, `--ts-imports`, when-not guidance and `genlib connect`). Round 4 itself measured Genlib arms 27–36% more expensive on application features. Until a rerun shows otherwise, the measured answer for application features is that Genlib adds cost for an agent that already has Context7, a source registry and a good workflow.
+- Extending the comparison protocol in [benchmarks.md](benchmarks.md#round-5-the-same-runs-after-the-round-4-fixes-2026-10-11) to larger features, other models and harder acceptance criteria. Round 4 measured Genlib arms 27–36% more expensive on application features, and round 5, after the fixes, 31–33%. For application features with a precise specification, the measured answer is that Genlib adds cost for an agent that already has Context7, a source registry and a good workflow; untested are larger features, weaker models and acceptance criteria that plain agents miss.
 - Building feature packages for the external-only tasks in [gaps.md](gaps.md).
 - Semantic API diffs between module versions (Bit's `bit api diff`). The changelog records breaking changes by hand today.

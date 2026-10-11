@@ -10,6 +10,7 @@ The kit behind round 4 in [docs/benchmarks.md](../../docs/benchmarks.md): four a
 | `grading/` | Hidden acceptance tests: invitations (9), webhook (8), CSV import (10), TOTP (10, with an RFC 6238 oracle) |
 | `grade.sh <task> <app-dir>` | Copies the hidden tests into a scratch copy of a finished run and prints the counts |
 | `measure.mjs <agents.tsv> <transcripts-dir>` | Turns, token usage, a cost index, written and read characters, time, test runs and tool calls from each run's JSONL transcript |
-| `results.json` | The 16 measured runs |
+| `results.json` | The 16 measured runs of round 4 |
+| `results-round5.json` | Round 5: the same tasks and prompts after the round-4 fixes (16 runs) |
 
 To repeat: copy a fixture per run, put the task file in it as `TASK.md`, give each arm the same prompt with only its tool lines added (see docs/benchmarks.md), and keep `grading/` out of the agents' reach.
