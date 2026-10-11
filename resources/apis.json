@@ -942,9 +942,14 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-WebSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-websearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-websearch.json -o src/api/microsoft-com-cognitiveservices-websearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-WebSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-websearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-websearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
-   ]
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
+   ],
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "apple-com-app-store-connect",
@@ -15168,11 +15173,15 @@
     "license": "Apache-2.0"
    },
    "install": [
-    "npm install googleapis@185.0.0   # official SDK",
-    "npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 https://api.apis.guru/v2/specs/googleapis.com/clouddebugger/v2/openapi.json -o src/api/googleapis-com-clouddebugger.ts   # typed client from the OpenAPI spec",
-    "uvx openapi-python-client@0.29.1 generate --url https://api.apis.guru/v2/specs/googleapis.com/clouddebugger/v2/openapi.json   # Python client from the OpenAPI spec"
+    "# retired 2023-05-31: Google points to the open-source Snapshot Debugger, archived in September 2023 and unmaintained. Do not install; see https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2023-05-31",
+    "source": "https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation",
+    "replacement": "Google points to the open-source Snapshot Debugger, archived in September 2023 and unmaintained"
+   }
   },
   {
    "id": "googleapis-com-clouddeploy",
@@ -16576,11 +16585,15 @@
     "license": "Apache-2.0"
    },
    "install": [
-    "npm install googleapis@185.0.0   # official SDK",
-    "npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 https://api.apis.guru/v2/specs/googleapis.com/firebasedynamiclinks/v1/openapi.json -o src/api/googleapis-com-firebasedynamiclinks.ts   # typed client from the OpenAPI spec",
-    "uvx openapi-python-client@0.29.1 generate --url https://api.apis.guru/v2/specs/googleapis.com/firebasedynamiclinks/v1/openapi.json   # Python client from the OpenAPI spec"
+    "# retired 2025-08-25: use platform deep links (Android App Links, iOS Universal Links) or another link service, per the Firebase migration FAQ. Do not install; see https://firebase.google.com/support/dynamic-links-faq"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-25",
+    "source": "https://firebase.google.com/support/dynamic-links-faq",
+    "replacement": "use platform deep links (Android App Links, iOS Universal Links) or another link service, per the Firebase migration FAQ"
+   }
   },
   {
    "id": "googleapis-com-firebasehosting",
@@ -18094,11 +18107,15 @@
     "license": "Apache-2.0"
    },
    "install": [
-    "npm install googleapis@185.0.0   # official SDK",
-    "npm install openapi-fetch@0.17.0 && npx openapi-typescript@7.13.0 https://api.apis.guru/v2/specs/googleapis.com/plus/v1/openapi.json -o src/api/googleapis-com-plus.ts   # typed client from the OpenAPI spec",
-    "uvx openapi-python-client@0.29.1 generate --url https://api.apis.guru/v2/specs/googleapis.com/plus/v1/openapi.json   # Python client from the OpenAPI spec"
+    "# retired 2019-03-07: use Google Sign-In for authentication and the Google People API for profile data. Do not install; see https://developers.google.com/+/api-shutdown"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2019-03-07",
+    "source": "https://developers.google.com/+/api-shutdown",
+    "replacement": "use Google Sign-In for authentication and the Google People API for profile data"
+   }
   },
   {
    "id": "googleapis-com-policyanalyzer",
@@ -19718,10 +19735,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-AutoSuggest/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-autosuggest.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-autosuggest.json -o src/api/microsoft-com-cognitiveservices-autosuggest.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-AutoSuggest/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-autosuggest.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-autosuggest.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-computervision",
@@ -19752,10 +19774,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-CustomImageSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-customimagesearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-customimagesearch.json -o src/api/microsoft-com-cognitiveservices-customimagesearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-CustomImageSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-customimagesearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-customimagesearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-customsearch",
@@ -19769,10 +19796,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-CustomSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-customsearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-customsearch.json -o src/api/microsoft-com-cognitiveservices-customsearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-CustomSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-customsearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-customsearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-entitysearch",
@@ -19786,10 +19818,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-EntitySearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-entitysearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-entitysearch.json -o src/api/microsoft-com-cognitiveservices-entitysearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-EntitySearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-entitysearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-entitysearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-imagesearch",
@@ -19803,10 +19840,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-ImageSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-imagesearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-imagesearch.json -o src/api/microsoft-com-cognitiveservices-imagesearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-ImageSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-imagesearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-imagesearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-localsearch",
@@ -19837,10 +19879,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-NewsSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-newssearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-newssearch.json -o src/api/microsoft-com-cognitiveservices-newssearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-NewsSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-newssearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-newssearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-prediction",
@@ -19871,10 +19918,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-SpellCheck/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-spellcheck.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-spellcheck.json -o src/api/microsoft-com-cognitiveservices-spellcheck.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-SpellCheck/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-spellcheck.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-spellcheck.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-videosearch",
@@ -19888,10 +19940,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-VideoSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-videosearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-videosearch.json -o src/api/microsoft-com-cognitiveservices-videosearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-VideoSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-videosearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-videosearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "microsoft-com-cognitiveservices-visualsearch",
@@ -19905,10 +19962,15 @@
    "docs": null,
    "sdk": null,
    "install": [
-    "npm install openapi-fetch@0.17.0 && mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-VisualSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-visualsearch.json && npx openapi-typescript@7.13.0 openapi/microsoft-com-cognitiveservices-visualsearch.json -o src/api/microsoft-com-cognitiveservices-visualsearch.ts   # typed client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first",
-    "mkdir -p openapi && npx swagger2openapi@7.0.8 https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-VisualSearch/1.0/swagger.json -o openapi/microsoft-com-cognitiveservices-visualsearch.json && uvx openapi-python-client@0.29.1 generate --path openapi/microsoft-com-cognitiveservices-visualsearch.json   # Python client from the Swagger 2.0 spec, converted to OpenAPI 3.0 first"
+    "# retired 2025-08-11: Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API. Do not install; see https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement"
    ],
-   "source": "apis-guru"
+   "source": "apis-guru",
+   "lifecycle": {
+    "status": "retired",
+    "date": "2025-08-11",
+    "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+    "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API"
+   }
   },
   {
    "id": "azure-com-addons-addons",

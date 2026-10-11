@@ -40,6 +40,7 @@ test('CLIs install with brew and APIs offer an SDK or a typed client from a pinn
   const apis = await loadIndex('api');
   for (const entry of apis.entries) {
     assert.ok(entry.spec.startsWith('https://'), entry.id);
+    if (entry.lifecycle?.status === 'retired') { assert.match(entry.install[0], /^# retired /, entry.id); continue; }
     assert.ok(entry.install.some(step => /npx openapi-typescript@7\.13\.0 \S+ -o src\/api\//.test(step)), entry.id);
     if (entry.sdk) assert.match(entry.install[0], new RegExp(`^npm install ${entry.sdk.npm.replace(/[/@.-]/g, '\\$&')}@`), entry.id);
   }

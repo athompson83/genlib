@@ -12,8 +12,9 @@ export function updateCart(lines: readonly CartLine[], productId: string, varian
   return result;
 }
 export function cartSubtotal(lines: readonly PricedLine[]): { minor: number; currency: string } {
-  if (!lines.length) return { minor: 0, currency: "" };
-  const currency = lines[0].currency;
+  const [first] = lines;
+  if (!first) return { minor: 0, currency: "" };
+  const currency = first.currency;
   let minor = 0;
   for (const line of lines) {
     if (!/^[A-Z]{3}$/.test(line.currency) || line.currency !== currency) throw new Error("Currency mismatch");

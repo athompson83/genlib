@@ -11,14 +11,14 @@ const swagger2 = apis.filter(api => api.openapiVersion === '2.0');
 // (reproduced on microsoft-com-cognitiveservices-websearch and instagram-com).
 test('Swagger 2.0 records convert the spec before generating a client', () => {
   assert.ok(swagger2.length > 900);
-  for (const api of swagger2) for (const step of apiSteps(api).filter(step => step.kind === 'generated')) {
+  for (const api of swagger2.filter(api => !api.lifecycle)) for (const step of apiSteps(api).filter(step => step.kind === 'generated')) {
     assert.match(step.command, /npx swagger2openapi@7\.0\.8 \S+ -o openapi\//, api.id);
     assert.ok(!step.command.includes(`openapi-typescript@7.13.0 ${shellUrl(api.spec)}`) && !step.command.includes('--url '), api.id);
   }
 });
 
 test('OpenAPI 3.x records generate straight from the spec', () => {
-  for (const api of apis.filter(api => api.openapiVersion.startsWith('3.'))) for (const step of apiSteps(api)) assert.doesNotMatch(step.command, /swagger2openapi/, api.id);
+  for (const api of apis.filter(api => api.openapiVersion.startsWith('3.') && !api.lifecycle)) for (const step of apiSteps(api)) assert.doesNotMatch(step.command, /swagger2openapi/, api.id);
 });
 
 test('stored install steps match the derived ones', () => {
@@ -39,10 +39,37 @@ test('install steps follow the receiving language', () => {
 });
 
 test('every install command keeps spec URLs as single shell words', () => {
-  for (const api of apis) for (const step of apiSteps(api)) {
+  for (const api of apis.filter(api => !api.lifecycle)) for (const step of apiSteps(api)) {
     const code = step.command.split('   # ')[0];
     assert.doesNotMatch(code, /[()'"]/, api.id);
     if (step.kind === 'generated') assert.ok(code.includes(shellUrl(api.spec)), api.id);
   }
   assert.equal(shellUrl('https://x.test/v4 (Hunt Valley)/a.json'), 'https://x.test/v4%20%28Hunt%20Valley%29/a.json');
+});
+
+test('retired services get a migration pointer, rank below live ones and name only known records', async () => {
+  const lifecycle = JSON.parse(readFileSync('resources/api-lifecycle.json', 'utf8'));
+  const { loadSources, findInSources } = await import('../lib/discover.mjs');
+  const sources = await loadSources();
+  const resourceIds = new Set(sources.resources.map(resource => resource.id));
+  for (const group of lifecycle.groups) {
+    assert.match(group.source, /^https:\/\//);
+    assert.match(group.date, /^\d{4}-\d{2}-\d{2}$/);
+    for (const id of group.ids) {
+      const api = apis.find(entry => entry.id === id);
+      assert.ok(api, id);
+      assert.equal(api.lifecycle.date, group.date);
+      assert.deepEqual(api.install, [`# retired ${group.date}: ${group.replacement}. Do not install; see ${group.source}`]);
+      assert.deepEqual(apiInstallFor(api, ['typescript']), api.install);
+    }
+    for (const id of group.resourceIds ?? []) assert.ok(resourceIds.has(id), id);
+  }
+  // The audit's queries: each returned the retired service first with ordinary install steps.
+  const bing = JSON.parse(execFileSync(process.execPath, ['bin/genlib.mjs', 'api', 'find', 'web', 'search', '--json'], { encoding: 'utf8' })).apis;
+  assert.notEqual(bing[0].id, 'microsoft-com-cognitiveservices-websearch');
+  const links = findInSources(sources, 'firebase dynamic links', { limit: 5 }).results;
+  for (const result of links.filter(result => sources.retiredResources.has(result.id))) {
+    assert.match(result.next[0], /^# wraps a service retired 2025-08-25/);
+    assert.ok(!result.next.some(step => /^npm install|^bundle add|^dotnet add|^composer require/.test(step)), result.id);
+  }
 });

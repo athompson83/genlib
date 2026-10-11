@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "about": "Retired or shut-down services in resources/apis.json, each with the provider's own notice. scripts/api-install.mjs copies an entry into the matching record's lifecycle field; a retired API then gets a migration pointer instead of install steps and ranks below live APIs. resourceIds marks catalog packages that only wrap the same service: discovery shows them with the same pointer and ranks them below live ones. Add an entry only with a primary-source notice.",
+  "reviewed": "2026-10-11",
+  "groups": [
+    {
+      "status": "retired",
+      "date": "2025-08-11",
+      "source": "https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement",
+      "replacement": "Microsoft points to Grounding with Bing Search in Azure AI Agents; for plain web search results use another search API",
+      "ids": [
+        "microsoft-com-cognitiveservices-websearch",
+        "microsoft-com-cognitiveservices-imagesearch",
+        "microsoft-com-cognitiveservices-newssearch",
+        "microsoft-com-cognitiveservices-videosearch",
+        "microsoft-com-cognitiveservices-entitysearch",
+        "microsoft-com-cognitiveservices-visualsearch",
+        "microsoft-com-cognitiveservices-autosuggest",
+        "microsoft-com-cognitiveservices-spellcheck",
+        "microsoft-com-cognitiveservices-customsearch",
+        "microsoft-com-cognitiveservices-customimagesearch"
+      ]
+    },
+    {
+      "status": "retired",
+      "date": "2025-08-25",
+      "source": "https://firebase.google.com/support/dynamic-links-faq",
+      "replacement": "use platform deep links (Android App Links, iOS Universal Links) or another link service, per the Firebase migration FAQ",
+      "ids": [
+        "googleapis-com-firebasedynamiclinks"
+      ],
+      "resourceIds": [
+        "firebase-dynamic-links",
+        "firebase-dynamic-link",
+        "google-api-firebase-dynamic-links",
+        "google-apis-firebasedynamiclinks-v1",
+        "xamarin-firebase-dynamic-links",
+        "adame-firebase-ios-dynamiclinks",
+        "yedincisenol-dynamic-links"
+      ]
+    },
+    {
+      "status": "retired",
+      "date": "2019-03-07",
+      "source": "https://developers.google.com/+/api-shutdown",
+      "replacement": "use Google Sign-In for authentication and the Google People API for profile data",
+      "ids": [
+        "googleapis-com-plus"
+      ]
+    },
+    {
+      "status": "retired",
+      "date": "2023-05-31",
+      "source": "https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation",
+      "replacement": "Google points to the open-source Snapshot Debugger, archived in September 2023 and unmaintained",
+      "ids": [
+        "googleapis-com-clouddebugger"
+      ]
+    }
+  ]
+}
