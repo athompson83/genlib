@@ -590,6 +590,20 @@
    "query": "agent-frameworks"
   },
   {
+   "id": "category:agent-instructions",
+   "kind": "category",
+   "label": "agent-instructions",
+   "count": 1,
+   "query": "agent-instructions"
+  },
+  {
+   "id": "category:agent-skill-directory",
+   "kind": "category",
+   "label": "agent-skill-directory",
+   "count": 9,
+   "query": "agent-skill-directory"
+  },
+  {
    "id": "category:ai-apps",
    "kind": "category",
    "label": "ai-apps",
@@ -628,7 +642,7 @@
    "id": "category:analytics",
    "kind": "category",
    "label": "analytics",
-   "count": 480,
+   "count": 481,
    "query": "analytics"
   },
   {
@@ -803,7 +817,7 @@
    "id": "category:browser-automation",
    "kind": "category",
    "label": "browser-automation",
-   "count": 4,
+   "count": 5,
    "query": "browser-automation"
   },
   {
@@ -994,6 +1008,13 @@
    "label": "code-quality",
    "count": 11,
    "query": "code-quality"
+  },
+  {
+   "id": "category:coding-agent",
+   "kind": "category",
+   "label": "coding-agent",
+   "count": 2,
+   "query": "coding-agent"
   },
   {
    "id": "category:color-tools",
@@ -1349,7 +1370,7 @@
    "id": "category:diagrams",
    "kind": "category",
    "label": "diagrams",
-   "count": 4,
+   "count": 3,
    "query": "diagrams"
   },
   {
@@ -1552,7 +1573,7 @@
    "id": "category:forms-landing",
    "kind": "category",
    "label": "forms-landing",
-   "count": 84,
+   "count": 85,
    "query": "forms-landing"
   },
   {
@@ -3085,7 +3106,7 @@
    "id": "doc:docs/resources/ai-agents.md",
    "kind": "doc",
    "label": "docs/resources/ai-agents.md",
-   "count": 18,
+   "count": 19,
    "file": "docs/resources/ai-agents.md"
   },
   {
@@ -3274,7 +3295,7 @@
    "id": "doc:docs/skill-library.md",
    "kind": "doc",
    "label": "docs/skill-library.md",
-   "count": 4,
+   "count": 5,
    "file": "docs/skill-library.md"
   },
   {
@@ -3315,7 +3336,7 @@
    "id": "guide:docs/resources/ai-agents.md",
    "kind": "guide",
    "label": "ai-agents",
-   "count": 90,
+   "count": 103,
    "file": "docs/resources/ai-agents.md"
   },
   {
@@ -3364,7 +3385,7 @@
    "id": "guide:docs/resources/data-docs-office.md",
    "kind": "guide",
    "label": "data-docs-office",
-   "count": 73,
+   "count": 72,
    "file": "docs/resources/data-docs-office.md"
   },
   {
@@ -3406,14 +3427,14 @@
    "id": "guide:docs/resources/marketing-analytics.md",
    "kind": "guide",
    "label": "marketing-analytics",
-   "count": 1014,
+   "count": 1015,
    "file": "docs/resources/marketing-analytics.md"
   },
   {
    "id": "guide:docs/resources/marketing-engagement.md",
    "kind": "guide",
    "label": "marketing-engagement",
-   "count": 965,
+   "count": 966,
    "file": "docs/resources/marketing-engagement.md"
   },
   {
@@ -3427,7 +3448,7 @@
    "id": "guide:docs/resources/media-automation.md",
    "kind": "guide",
    "label": "media-automation",
-   "count": 85,
+   "count": 84,
    "file": "docs/resources/media-automation.md"
   },
   {
@@ -3441,7 +3462,7 @@
    "id": "guide:docs/resources/open-source-tools.md",
    "kind": "guide",
    "label": "open-source-tools",
-   "count": 1242,
+   "count": 1243,
    "file": "docs/resources/open-source-tools.md"
   },
   {
@@ -3609,7 +3630,7 @@
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1629,
+   "count": 1640,
    "query": "python"
   },
   {
@@ -3644,7 +3665,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3506,
+   "count": 3513,
    "query": "typescript"
   },
   {
@@ -3686,7 +3707,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 579,
+   "count": 581,
    "query": "--type doc"
   },
   {
@@ -3721,14 +3742,14 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 9666,
+   "count": 9680,
    "query": "--type resource"
   },
   {
    "id": "type:skill",
    "kind": "type",
    "label": "skill",
-   "count": 1066,
+   "count": 1159,
    "query": "--type skill"
   },
   {
@@ -7773,7 +7794,7 @@
    "source": "category:agent-framework",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 6
+   "weight": 7
   },
   {
    "source": "category:agent-framework",
@@ -7899,7 +7920,7 @@
    "source": "category:ai-optimization",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 37
+   "weight": 38
   },
   {
    "source": "category:ai-optimization",
@@ -9411,7 +9432,7 @@
    "source": "category:cms",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 3
+   "weight": 5
   },
   {
    "source": "category:code-intelligence",
@@ -9442,6 +9463,12 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 7
+  },
+  {
+   "source": "category:coding-agent",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
   },
   {
    "source": "category:commerce",
@@ -10353,7 +10380,7 @@
    "source": "category:document-ingestion",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 4
+   "weight": 5
   },
   {
    "source": "category:document-management",
@@ -10665,7 +10692,7 @@
    "source": "category:email-marketing",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 126
+   "weight": 127
   },
   {
    "source": "category:email-servers",
@@ -10743,7 +10770,7 @@
    "source": "category:embeddings",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 1
+   "weight": 2
   },
   {
    "source": "category:encrypted-messenger",
@@ -11271,7 +11298,7 @@
    "source": "category:guardrails",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 3
+   "weight": 4
   },
   {
    "source": "category:headless",
@@ -11530,6 +11557,12 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 25
+  },
+  {
+   "source": "category:internal-tools",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
   },
   {
    "source": "category:iot",
@@ -13098,6 +13131,12 @@
    "weight": 28
   },
   {
+   "source": "category:prompt-optimization",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:protocol-server",
    "target": "language:go",
    "relation": "in-language",
@@ -13929,7 +13968,7 @@
    "source": "category:structured-output",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 3
+   "weight": 4
   },
   {
    "source": "category:styling",
@@ -14193,7 +14232,7 @@
    "source": "category:tokens-context",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 2
+   "weight": 3
   },
   {
    "source": "category:tokens-context",
@@ -14206,6 +14245,12 @@
    "target": "language:typescript",
    "relation": "in-language",
    "weight": 3
+  },
+  {
+   "source": "category:toolchains",
+   "target": "language:typescript",
+   "relation": "in-language",
+   "weight": 1
   },
   {
    "source": "category:transit-data",
@@ -14286,6 +14331,12 @@
    "weight": 1
   },
   {
+   "source": "category:weather-data",
+   "target": "language:python",
+   "relation": "in-language",
+   "weight": 1
+  },
+  {
    "source": "category:web-map-libraries",
    "target": "language:python",
    "relation": "in-language",
@@ -14307,13 +14358,13 @@
    "source": "category:web-scraping",
    "target": "language:python",
    "relation": "in-language",
-   "weight": 2
+   "weight": 3
   },
   {
    "source": "category:web-scraping",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 2
+   "weight": 3
   },
   {
    "source": "category:web-servers",
@@ -14373,7 +14424,7 @@
    "source": "category:workflow-automation",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 2
+   "weight": 3
   },
   {
    "source": "category:writing-tools",
@@ -14439,7 +14490,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 579
+   "weight": 581
   },
   {
    "source": "genlib",
@@ -14469,13 +14520,13 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 9666
+   "weight": 9680
   },
   {
    "source": "genlib",
    "target": "type:skill",
    "relation": "contains",
-   "weight": 1066
+   "weight": 1159
   },
   {
    "source": "genlib",
@@ -14539,9 +14590,27 @@
   },
   {
    "source": "guide:docs/resources/ai-agents.md",
+   "target": "category:agent-instructions",
+   "relation": "has-category",
+   "weight": 1
+  },
+  {
+   "source": "guide:docs/resources/ai-agents.md",
+   "target": "category:agent-skill-directory",
+   "relation": "has-category",
+   "weight": 9
+  },
+  {
+   "source": "guide:docs/resources/ai-agents.md",
    "target": "category:code-intelligence",
    "relation": "has-category",
    "weight": 5
+  },
+  {
+   "source": "guide:docs/resources/ai-agents.md",
+   "target": "category:coding-agent",
+   "relation": "has-category",
+   "weight": 2
   },
   {
    "source": "guide:docs/resources/ai-agents.md",
@@ -14626,6 +14695,12 @@
    "target": "category:vector-database",
    "relation": "has-category",
    "weight": 8
+  },
+  {
+   "source": "guide:docs/resources/ai-agents.md",
+   "target": "category:video-generation",
+   "relation": "has-category",
+   "weight": 1
   },
   {
    "source": "guide:docs/resources/ai-learning.md",
@@ -15129,7 +15204,7 @@
    "source": "guide:docs/resources/data-docs-office.md",
    "target": "category:diagrams",
    "relation": "has-category",
-   "weight": 4
+   "weight": 3
   },
   {
    "source": "guide:docs/resources/data-docs-office.md",
@@ -15741,7 +15816,7 @@
    "source": "guide:docs/resources/marketing-analytics.md",
    "target": "category:analytics",
    "relation": "has-category",
-   "weight": 479
+   "weight": 480
   },
   {
    "source": "guide:docs/resources/marketing-analytics.md",
@@ -15783,7 +15858,7 @@
    "source": "guide:docs/resources/marketing-engagement.md",
    "target": "category:forms-landing",
    "relation": "has-category",
-   "weight": 84
+   "weight": 85
   },
   {
    "source": "guide:docs/resources/marketing-engagement.md",
@@ -16015,12 +16090,6 @@
   },
   {
    "source": "guide:docs/resources/media-automation.md",
-   "target": "category:video-generation",
-   "relation": "has-category",
-   "weight": 1
-  },
-  {
-   "source": "guide:docs/resources/media-automation.md",
    "target": "category:video-players",
    "relation": "has-category",
    "weight": 4
@@ -16204,6 +16273,12 @@
    "target": "category:bi-analytics",
    "relation": "has-category",
    "weight": 11
+  },
+  {
+   "source": "guide:docs/resources/open-source-tools.md",
+   "target": "category:browser-automation",
+   "relation": "has-category",
+   "weight": 1
   },
   {
    "source": "guide:docs/resources/open-source-tools.md",
@@ -17349,7 +17424,7 @@
    "source": "type:doc",
    "target": "doc:docs/resources/ai-agents.md",
    "relation": "section-of",
-   "weight": 18
+   "weight": 19
   },
   {
    "source": "type:doc",
@@ -17511,7 +17586,7 @@
    "source": "type:doc",
    "target": "doc:docs/skill-library.md",
    "relation": "section-of",
-   "weight": 4
+   "weight": 5
   },
   {
    "source": "type:doc",
@@ -17607,7 +17682,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/ai-agents.md",
    "relation": "grouped-by",
-   "weight": 90
+   "weight": 103
   },
   {
    "source": "type:resource",
@@ -17649,7 +17724,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/data-docs-office.md",
    "relation": "grouped-by",
-   "weight": 73
+   "weight": 72
   },
   {
    "source": "type:resource",
@@ -17685,13 +17760,13 @@
    "source": "type:resource",
    "target": "guide:docs/resources/marketing-analytics.md",
    "relation": "grouped-by",
-   "weight": 1014
+   "weight": 1015
   },
   {
    "source": "type:resource",
    "target": "guide:docs/resources/marketing-engagement.md",
    "relation": "grouped-by",
-   "weight": 965
+   "weight": 966
   },
   {
    "source": "type:resource",
@@ -17703,7 +17778,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/media-automation.md",
    "relation": "grouped-by",
-   "weight": 85
+   "weight": 84
   },
   {
    "source": "type:resource",
@@ -17715,7 +17790,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/open-source-tools.md",
    "relation": "grouped-by",
-   "weight": 1242
+   "weight": 1243
   },
   {
    "source": "type:resource",
@@ -17793,7 +17868,7 @@
    "source": "type:resource",
    "target": "language:python",
    "relation": "serves",
-   "weight": 1404
+   "weight": 1415
   },
   {
    "source": "type:resource",
@@ -17817,7 +17892,7 @@
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 3328
+   "weight": 3335
   },
   {
    "source": "type:starter",
