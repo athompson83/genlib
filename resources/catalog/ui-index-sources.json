@@ -3738,7 +3738,13 @@
       },
       "install": [
         "Pin all @zag-js/* packages to the same version."
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@zag-js/react",
+        "vue": "@zag-js/vue",
+        "svelte": "@zag-js/svelte",
+        "solid": "@zag-js/solid"
+      }
     },
     {
       "id": "react-bits",
@@ -7947,7 +7953,12 @@
       },
       "install": [
         "For React/Vue/Angular use @coreui/react, @coreui/vue or @coreui/angular; pin versions."
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@coreui/react",
+        "vue": "@coreui/vue",
+        "angular": "@coreui/angular"
+      }
     },
     {
       "id": "shadcnthemes",

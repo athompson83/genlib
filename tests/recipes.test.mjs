@@ -739,7 +739,24 @@ test('idempotency store runs once, replays, and reports conflicts', async () => 
   now = 5000; // past the TTL
   assert.equal((await withIdempotency(store, 'key-0001', 'fp-b', handler)).replayed, false);
   await assert.rejects(store.begin('short', 'fp'), RangeError);
-  await assert.rejects(store.complete('unknown-key', 1), /Unknown/);
+  await assert.rejects(store.complete('unknown-key', 'token', 1), /Unknown/);
+});
+
+test('an expired idempotency claim cannot be completed or released by its former owner', async () => {
+  const { MemoryIdempotencyStore, IdempotencyClaimLost } = await load('idempotency-store');
+  let now = 0;
+  const store = new MemoryIdempotencyStore({ ttlMs: 1000, now: () => now });
+  const first = await store.begin('key-claim', 'fp');
+  now = 2000; // the first owner stalls past the TTL; a retry takes the key
+  const second = await store.begin('key-claim', 'fp');
+  assert.equal(second.state, 'started');
+  assert.notEqual(first.token, second.token);
+  await assert.rejects(store.complete('key-claim', first.token, 'late'), (e) => e instanceof IdempotencyClaimLost);
+  await store.release('key-claim', first.token); // ignored: not the owner
+  assert.equal((await store.begin('key-claim', 'fp')).state, 'in-progress');
+  await store.complete('key-claim', second.token, 'fresh');
+  assert.deepEqual(await store.begin('key-claim', 'fp'), { state: 'completed', response: 'fresh' });
+  await assert.rejects(store.complete('key-claim', second.token, 'again'), (e) => e instanceof IdempotencyClaimLost);
 });
 
 test('outbox commits state and messages atomically and relays at least once', async () => {
@@ -785,6 +802,24 @@ test('outbox commits state and messages atomically and relays at least once', as
   assert.deepEqual(await outbox.relay(publish), { sent: 0, failed: 0, dead: 0 });
   unblock();
   assert.equal((await blocking).sent, 1);
+});
+
+test('outbox copies are deep: publisher and reader mutations never change a retry', async () => {
+  const { InMemoryOutbox } = await load('outbox');
+  const outbox = new InMemoryOutbox({}, { now: () => 0, newId: () => 'm1' });
+  outbox.transaction((_d, enqueue) => { enqueue('order.created', { order: { id: 'o1', lines: [1] } }); });
+  outbox.messages()[0].payload.order.id = 'changed-by-reader';
+  const seen = [];
+  let fail = true;
+  const publish = async (m) => {
+    seen.push(structuredClone(m.payload));
+    m.payload.order.lines.push(99); // a misbehaving publisher
+    if (fail) throw new Error('broker down');
+  };
+  await outbox.relay(publish, { baseDelayMs: 0 });
+  fail = false;
+  await outbox.relay(publish, { baseDelayMs: 0 });
+  assert.deepEqual(seen, [{ order: { id: 'o1', lines: [1] } }, { order: { id: 'o1', lines: [1] } }]);
 });
 
 test('typed state machine validates transitions and guards', async () => {

@@ -8329,6 +8329,969 @@
       "tests": [],
       "verification": "CI cargo test --locked",
       "status": "example"
+    },
+    {
+      "id": "python-punycode",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/punycode.py"
+      ],
+      "tests": [
+        "python/test_punycode.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-base58",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/base58.py"
+      ],
+      "tests": [
+        "python/test_base58.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-roman-numerals",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/roman_numerals.py"
+      ],
+      "tests": [
+        "python/test_roman_numerals.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-dotted-path",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/dotted_path.py"
+      ],
+      "tests": [
+        "python/test_dotted_path.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-template-render",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/template_render.py"
+      ],
+      "tests": [
+        "python/test_template_render.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-ini-parse",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/ini_parse.py"
+      ],
+      "tests": [
+        "python/test_ini_parse.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-pii-mask",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/pii_mask.py"
+      ],
+      "tests": [
+        "python/test_pii_mask.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-password-generate",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/password_generate.py"
+      ],
+      "tests": [
+        "python/test_password_generate.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-html-escape",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/html_escape.py"
+      ],
+      "tests": [
+        "python/test_html_escape.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-punycode",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/punycode/punycode.go"
+      ],
+      "tests": [
+        "go/punycode/punycode_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-base58",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/base58/base58.go"
+      ],
+      "tests": [
+        "go/base58/base58_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-roman-numerals",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/roman/roman.go"
+      ],
+      "tests": [
+        "go/roman/roman_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-dotted-path",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/dottedpath/dottedpath.go"
+      ],
+      "tests": [
+        "go/dottedpath/dottedpath_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-template-render",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/mustache/mustache.go"
+      ],
+      "tests": [
+        "go/mustache/mustache_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-ini-parse",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/ini/ini.go"
+      ],
+      "tests": [
+        "go/ini/ini_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-pii-mask",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/piimask/piimask.go"
+      ],
+      "tests": [
+        "go/piimask/piimask_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-password-generate",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/passgen/passgen.go"
+      ],
+      "tests": [
+        "go/passgen/passgen_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-html-escape",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/htmlescape/htmlescape.go"
+      ],
+      "tests": [
+        "go/htmlescape/htmlescape_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-punycode",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/punycode.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-base58",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/base58.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-roman-numerals",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/roman_numerals.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-dotted-path",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/dotted_path.rs",
+        "rust/src/json_patch.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-template-render",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/template_render.rs",
+        "rust/src/json_patch.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-ini-parse",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/ini_parse.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-pii-mask",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/pii_mask.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-password-generate",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/password_generate.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-html-escape",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/html_escape.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-punycode",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Punycode.java"
+      ],
+      "tests": [
+        "java/PunycodeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-base58",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Base58.java"
+      ],
+      "tests": [
+        "java/Base58Test.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-roman-numerals",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/RomanNumerals.java"
+      ],
+      "tests": [
+        "java/RomanNumeralsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-dotted-path",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/DottedPath.java",
+        "java/JsonPatch.java"
+      ],
+      "tests": [
+        "java/DottedPathTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-template-render",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TemplateRender.java",
+        "java/JsonPatch.java"
+      ],
+      "tests": [
+        "java/TemplateRenderTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-ini-parse",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/IniParse.java"
+      ],
+      "tests": [
+        "java/IniParseTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-pii-mask",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/PiiMask.java"
+      ],
+      "tests": [
+        "java/PiiMaskTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-password-generate",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/PasswordGenerate.java"
+      ],
+      "tests": [
+        "java/PasswordGenerateTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-html-escape",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/HtmlEscape.java"
+      ],
+      "tests": [
+        "java/HtmlEscapeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-punycode",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Punycode.kt"
+      ],
+      "tests": [
+        "kotlin/PunycodeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-base58",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Base58.kt"
+      ],
+      "tests": [
+        "kotlin/Base58Test.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-roman-numerals",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/RomanNumerals.kt"
+      ],
+      "tests": [
+        "kotlin/RomanNumeralsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-dotted-path",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/DottedPath.kt",
+        "kotlin/JsonPatch.kt"
+      ],
+      "tests": [
+        "kotlin/DottedPathTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-template-render",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TemplateRender.kt",
+        "kotlin/JsonPatch.kt"
+      ],
+      "tests": [
+        "kotlin/TemplateRenderTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-ini-parse",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/IniParse.kt"
+      ],
+      "tests": [
+        "kotlin/IniParseTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-pii-mask",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/PiiMask.kt"
+      ],
+      "tests": [
+        "kotlin/PiiMaskTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-password-generate",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/PasswordGenerate.kt"
+      ],
+      "tests": [
+        "kotlin/PasswordGenerateTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-html-escape",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/HtmlEscape.kt"
+      ],
+      "tests": [
+        "kotlin/HtmlEscapeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-punycode",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Punycode.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-base58",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Base58.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-roman-numerals",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/RomanNumerals.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-dotted-path",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/DottedPath.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-template-render",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TemplateRender.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-ini-parse",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/IniParse.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-pii-mask",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/PiiMask.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-password-generate",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/PasswordGenerate.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-html-escape",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/HtmlEscape.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-punycode",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/punycode.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-base58",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/base58.dart",
+        "dart/pubspec.yaml"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-roman-numerals",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/roman_numerals.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-dotted-path",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/dotted_path.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-template-render",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/template_render.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-ini-parse",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/ini_parse.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-pii-mask",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/pii_mask.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-password-generate",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/password_generate.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-html-escape",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/html_escape.dart"
+      ],
+      "tests": [
+        "dart/test/wave11_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-punycode",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Punycode.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-base58",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Base58.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-roman-numerals",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/RomanNumerals.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-dotted-path",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/DottedPath.swift",
+        "swift/Sources/GenlibSwift/JsonPatch.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-template-render",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TemplateRender.swift",
+        "swift/Sources/GenlibSwift/JsonPatch.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-ini-parse",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/IniParse.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-pii-mask",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/PiiMask.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-password-generate",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/PasswordGenerate.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-html-escape",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/HtmlEscape.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave11Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }

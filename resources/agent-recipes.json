@@ -745,18 +745,26 @@
         "safe url",
         "javascript url",
         "email html",
-        "server rendered html"
+        "server rendered html",
+        "unescape html",
+        "decode html entities",
+        "strip tags",
+        "html to text",
+        "plain text preview"
       ],
       "checks": [
         "Text and quoted attributes only; never script/style/event-handler contexts",
         "Use DOMPurify or a sanitizer for user-authored HTML",
         "Prefer framework auto-escaping (JSX, template engines)",
-        "Content Security Policy as defense in depth"
+        "Content Security Policy as defense in depth",
+        "unescapeHtml/stripTags match the Genlib html-escape modules in every language (shared vectors); stripTags is not a sanitizer"
       ],
       "variants": [
         "escape",
         "template",
-        "safe-url"
+        "safe-url",
+        "unescape",
+        "strip-tags"
       ]
     },
     {
@@ -1943,18 +1951,23 @@
         "decode base32",
         "bitcoin alphabet",
         "totp secret encoding",
-        "short ids encoding"
+        "short ids encoding",
+        "base58check",
+        "bitcoin wif and address payloads",
+        "checksum encoding"
       ],
       "checks": [
         "Decoders are strict: padding, length and non-canonical trailing bits are rejected",
         "Encoding is not encryption; never treat it as a secret",
-        "base58 uses the Bitcoin alphabet with one '1' per leading zero byte"
+        "base58 uses the Bitcoin alphabet with one '1' per leading zero byte",
+        "base58CheckEncode/Decode are async (crypto.subtle double SHA-256) and match the Genlib base58 modules"
       ],
       "variants": [
         "base32",
         "base32hex",
         "base58",
-        "base64url"
+        "base64url",
+        "base58check"
       ]
     },
     {
@@ -2706,6 +2719,201 @@
         "parse",
         "format",
         "freshness"
+      ]
+    },
+    {
+      "id": "punycode",
+      "kind": "source-example",
+      "path": "examples/recipes/punycode.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "punycode",
+        "internationalized domain name",
+        "unicode domain",
+        "xn--",
+        "domain to ascii",
+        "emoji domain",
+        "idna",
+        "non-ascii hostname"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart punycode modules (shared vectors)",
+        "No Unicode normalization or UTS #46 mapping: normalize (NFC, case-fold) first when you need it",
+        "Labels over 63 octets, empty labels and names over 253 octets throw"
+      ],
+      "variants": [
+        "encode",
+        "decode",
+        "domain-to-ascii",
+        "domain-to-unicode"
+      ]
+    },
+    {
+      "id": "roman-numerals",
+      "kind": "source-example",
+      "path": "examples/recipes/roman-numerals.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "roman numerals",
+        "roman numeral",
+        "convert to roman",
+        "parse roman",
+        "numerals",
+        "year in roman",
+        "chapter numbering",
+        "mmxxvi"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart roman-numerals modules (shared vectors)",
+        "Range is 1..3999; anything else throws",
+        "Parsing accepts only canonical forms (IIII, IC and VX throw)"
+      ],
+      "variants": [
+        "to-roman",
+        "from-roman"
+      ]
+    },
+    {
+      "id": "dotted-path",
+      "kind": "source-example",
+      "path": "examples/recipes/dotted-path.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "dotted path",
+        "get nested value",
+        "deep get",
+        "deep set",
+        "object path",
+        "nested property",
+        "lodash get",
+        "safe property access",
+        "set nested value",
+        "unset nested key"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart dotted-path modules (shared vectors)",
+        "setPath and deletePath return new values and never mutate the input",
+        "Own properties only, so __proto__ is an ordinary key; index > length or a scalar in the way throws"
+      ],
+      "variants": [
+        "get",
+        "has",
+        "set",
+        "delete",
+        "parse"
+      ]
+    },
+    {
+      "id": "template-render",
+      "kind": "source-example",
+      "path": "examples/recipes/template-render.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "mustache",
+        "template render",
+        "logic-less template",
+        "render template",
+        "email template",
+        "handlebars",
+        "placeholder substitution",
+        "fill in template",
+        "merge fields",
+        "string interpolation"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart template-render modules (shared vectors)",
+        "{{name}} is HTML-escaped and {{{name}}} is raw; never feed untrusted templates into raw tags",
+        "No partials, lambdas or custom delimiters; arrays and objects in {{tags}} throw"
+      ],
+      "variants": [
+        "variables",
+        "sections",
+        "inverted",
+        "raw"
+      ]
+    },
+    {
+      "id": "ini-parse",
+      "kind": "source-example",
+      "path": "examples/recipes/ini-parse.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "ini",
+        "ini file",
+        "parse ini",
+        "git config",
+        "php ini",
+        "configparser",
+        "config sections",
+        "stringify ini"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart ini-parse modules (shared vectors)",
+        "Values are strings; convert and validate types yourself",
+        "Errors name the 1-based line; no interpolation or multi-line values"
+      ],
+      "variants": [
+        "parse",
+        "stringify"
+      ]
+    },
+    {
+      "id": "pii-mask",
+      "kind": "source-example",
+      "path": "examples/recipes/pii-mask.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "pii",
+        "mask email",
+        "mask phone",
+        "mask credit card",
+        "redact",
+        "personal data",
+        "data masking",
+        "gdpr logs",
+        "hide card number",
+        "mask sensitive data"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart pii-mask modules (shared vectors)",
+        "Display masking only, not anonymization: masked values can still identify people",
+        "redact finds emails and Luhn-valid cards only, never phone numbers or names"
+      ],
+      "variants": [
+        "email",
+        "phone",
+        "card",
+        "middle",
+        "redact"
+      ]
+    },
+    {
+      "id": "password-generate",
+      "kind": "source-example",
+      "path": "examples/recipes/password-generate.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "random password",
+        "new password",
+        "create password",
+        "password maker",
+        "passphrase",
+        "diceware",
+        "secure random string",
+        "strong password",
+        "password entropy",
+        "crypto random"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart password-generate modules (shared vectors)",
+        "Defaults to crypto.getRandomValues; inject nextByte only for tests",
+        "Rejection sampling avoids modulo bias; one character from each class is guaranteed"
+      ],
+      "variants": [
+        "password",
+        "passphrase",
+        "random-index",
+        "entropy"
       ]
     }
   ]

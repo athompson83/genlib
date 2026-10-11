@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { loadProjectTypes, loadResources, quickstartFor, searchResources } from '../lib/resources.mjs';
+import { loadProjectTypes, loadResources, searchResources } from '../lib/resources.mjs';
+import { loadSources, resolveResource } from '../lib/discover.mjs';
 
 const HELP = `Usage:
   node tools/resources.mjs search <query> [--platform web|mobile|desktop] [--category value] [--mode reference|selective-copy|package|service|license-review] [--license MIT] [--project <type>] [--language python|go|...] [--limit 5] [--json]
@@ -30,13 +31,19 @@ try {
     }
     const catalog = await loadResources();
     let result;
+    // Search and inspect use the same resolver as genlib find and the MCP server: aliases resolve to their canonical
+    // record and retired wrappers carry the notice instead of install steps.
     if (command === 'search') {
-      result = { schemaVersion: 1, query: words.join(' '), items: searchResources(catalog.items, words.join(' '), options) };
+      const sources = await loadSources();
+      const items = sources.resources.filter(item => !sources.resourceAliases.has(item.id));
+      result = { schemaVersion: 1, query: words.join(' '), items: searchResources(items, words.join(' '), options).map(hit => {
+        const resolved = resolveResource(sources, hit.id);
+        return resolved?.lifecycle ? { ...hit, lifecycle: resolved.lifecycle, quickstart: resolved.quickstart } : hit;
+      }) };
     } else if (command === 'inspect') {
       if (words.length !== 1) throw new Error('Inspect requires one resource ID.');
-      result = catalog.items.find(item => item.id === words[0]);
+      result = resolveResource(await loadSources(), words[0]);
       if (!result) throw new Error('Resource not found: ' + words[0]);
-      result = { ...result, quickstart: quickstartFor(result) };
     } else if (command === 'types') {
       const counts = {};
       for (const item of catalog.items) for (const type of item.projectTypes ?? []) counts[type] = (counts[type] ?? 0) + 1;

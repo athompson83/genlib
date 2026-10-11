@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "http-resilience",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "HTTP resilience",
   "description": "Runtime-neutral TypeScript retry with exponential backoff and full jitter, AbortSignal-aware timeouts, an idempotency-safe Fetch retry wrapper that honors Retry-After, and an in-process circuit breaker.",
   "kind": "utility",

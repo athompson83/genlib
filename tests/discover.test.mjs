@@ -164,7 +164,7 @@ test('receiving-project fit steers framework, SDK language, MCP vendor and depen
   const stripe = findInSources(sources, 'stripe api', { profile: go, limit: 4 }).results;
   const api = stripe.find(result => result.id === 'stripe-com');
   assert.ok(api.next.every(step => !/^(npm|uvx) /.test(step)), 'no npm or Python generator steps for a Go project');
-  assert.ok(api.next.includes('# go SDK in the catalog: resource:stripe-go-go (Stripe Go SDK)'));
+  assert.ok(api.next.includes('# go SDK for this API: resource:stripe-go-go (Stripe Go SDK)'));
   assert.ok(stripe.some(result => result.id === 'stripe-go-go' && result.fit === 'compatible'));
   const mcp = findInSources(sources, 'github mcp', { profile: { languages: ['python'], frameworks: [] }, limit: 3 }).results;
   assert.equal(mcp[0].id, 'io-github-github-github-mcp-server');
@@ -203,4 +203,61 @@ test('sign-up-only services point at the vendor SDK or CLI, and every mapped id 
   // A link-only record with a repository gets a pinned clone step instead of nothing to run.
   const kinetics = findInSources(sources, 'kinetics', { type: 'resource', limit: 3 }).results.find(result => result.id === 'kinetics');
   assert.ok(kinetics.next.some(step => step.includes('genlib.mjs source kinetics')));
+});
+
+// 2026-10-11 audit R2-02: compatibility followed tags while the emitted command installed the React adapter.
+test('the emitted install command matches the project framework, and quick keeps the fit qualification', async () => {
+  const sources = await loadSources();
+  const { quickPick } = await import('../lib/brief.mjs');
+  for (const [framework, adapter] of [['svelte', '@tanstack/svelte-table'], ['vue', '@tanstack/vue-table'], ['react', '@tanstack/react-table'], ['solid', '@tanstack/solid-table']]) {
+    const results = findInSources(sources, 'tanstack table', { profile: { languages: ['typescript'], frameworks: [framework] }, limit: 5 }).results;
+    const table = results.find(result => result.id === 'tanstack-table');
+    assert.equal(table.next[0], `npm install ${adapter}   # ${framework} adapter`, framework);
+    assert.ok(!table.next.some(step => /@tanstack\/(react|vue|svelte|solid)-table/.test(step) && !step.includes(adapter)), framework);
+  }
+  // A React-only package (its package name says react) does not fit Vue even if its tags list vue.
+  const pixel = findInSources(sources, 'facebook pixel', { profile: { languages: ['typescript'], frameworks: ['vue'] }, type: 'resource', limit: 25 }).results;
+  assert.ok(!pixel.some(result => result.id === 'react-facebook-pixel' && result.fit === 'compatible'));
+  // A Python project is never handed the React data-table module as its best quick pick.
+  const python = { languages: ['python'], frameworks: [] };
+  const pick = quickPick(findInSources(sources, 'data table', { profile: python, limit: 4 }));
+  assert.notEqual(pick.best, 'module:data-table');
+  const review = findInSources(sources, 'data table', { profile: { languages: ['typescript'], frameworks: [] }, limit: 4 });
+  const module = review.results.find(result => result.id === 'data-table');
+  if (module && module.fit === 'review') {
+    const brief = quickPick({ ...review, results: [module] });
+    assert.equal(brief.fit, 'review');
+    assert.ok(brief.next.some(step => / plan data-table /.test(step)) && !brief.next.some(step => / add data-table /.test(step)));
+  }
+});
+
+// 2026-10-11 audit R2-04 and R2-06: inspect paths used raw records, and alias suppression dropped classifications.
+test('every entry point applies the same lifecycle and alias rules, and canonical records keep alias classifications', async () => {
+  const sources = await loadSources();
+  const { resolveResource } = await import('../lib/discover.mjs');
+  const lifecycle = JSON.parse(await fs.readFile(new URL('../resources/api-lifecycle.json', import.meta.url), 'utf8'));
+  for (const id of lifecycle.groups.flatMap(group => group.resourceIds ?? [])) {
+    const record = resolveResource(sources, id);
+    assert.equal(record.lifecycle.status, 'retired', id);
+    assert.ok(record.quickstart.every(step => !/^(npm|pip|bundle|dotnet|composer|dart) /.test(step)), id);
+  }
+  const cli = spawnSync(process.execPath, [fileURLToPath(new URL('../tools/resources.mjs', import.meta.url)), 'inspect', 'firebase-dynamic-links', '--json'], { encoding: 'utf8' });
+  assert.equal(JSON.parse(cli.stdout).lifecycle.status, 'retired');
+  const knock = resolveResource(sources, 'knocklabs-node');
+  assert.equal(knock.canonical, 'knocklabs-node-npm');
+  assert.equal(knock.integrationMode, 'license-review');
+  for (const id of ['googleapis-com-analytics', 'googleapis-com-analyticsreporting', 'microsoft-com-cognitiveservices-localsearch']) {
+    assert.equal(sources.api.find(api => api.id === id).lifecycle.status, 'retired', id);
+  }
+  // Canonical records carry the project types and platforms of their aliases.
+  for (const [alias, canonical] of sources.resourceAliases) {
+    const merged = sources.resources.find(item => item.id === canonical);
+    const raw = sources.resources.find(item => item.id === alias);
+    for (const type of raw.projectTypes ?? []) assert.ok(merged.projectTypes.includes(type), `${canonical} lost ${type} from ${alias}`);
+    for (const platform of raw.platforms ?? []) assert.ok(merged.platforms.includes(platform), `${canonical} lost ${platform} from ${alias}`);
+  }
+  for (const [query, project, id] of [['sentence transformers', 'ai-agent', 'sentence-transformers-pypi'], ['phoenix', 'api-backend', 'phoenix-hex'], ['discord.js', 'web-app', 'discord-js-npm']]) {
+    const hits = findInSources(sources, query, { project, type: 'resource', limit: 3 }).results;
+    assert.ok(hits.some(hit => hit.id === id || sources.resourceAliases.get(id) === hit.id || sources.resourceAliases.get(hit.id) === id), `${query} in ${project}`);
+  }
 });

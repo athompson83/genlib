@@ -4,9 +4,11 @@
 // never retries anything itself. The memory store is per-process: production needs a shared
 // store with an atomic "insert if absent" (unique index, Redis SET NX) and the same states.
 // Scope keys per user/tenant and route so one caller cannot replay another caller's result.
+// Every claim carries an owner token: after a claim expires and another request takes the key,
+// the first owner's late complete() or release() is refused instead of overwriting the new claim.
 
 export type BeginResult<R> =
-  | { state: "started" }
+  | { state: "started"; token: string }
   | { state: "in-progress" }
   | { state: "completed"; response: R }
   | { state: "mismatch" }; // same key, different request body
@@ -14,21 +16,29 @@ export type BeginResult<R> =
 export interface IdempotencyStore<R> {
   /** Atomically claims `key`, or reports what already happened under it. */
   begin(key: string, fingerprint: string): Promise<BeginResult<R>>;
-  complete(key: string, response: R): Promise<void>;
-  /** Releases a claim so the client may try again (use only when no effect happened). */
-  release(key: string): Promise<void>;
+  /** Stores the response for the claim identified by `token`; throws IdempotencyClaimLost otherwise. */
+  complete(key: string, token: string, response: R): Promise<void>;
+  /** Releases the claim so the client may try again (use only when no effect happened). Ignores a lost claim. */
+  release(key: string, token: string): Promise<void>;
 }
 
-interface Record_<R> { fingerprint: string; status: "in-progress" | "completed"; response?: R; expiresAt: number }
+/** The claim expired and another request now owns the key; the late result was not stored. */
+export class IdempotencyClaimLost extends Error {
+  constructor() { super("Idempotency claim expired and was taken by another request"); this.name = "IdempotencyClaimLost"; }
+}
+
+interface Record_<R> { fingerprint: string; token: string; status: "in-progress" | "completed"; response?: R; expiresAt: number }
 
 export class MemoryIdempotencyStore<R> implements IdempotencyStore<R> {
   readonly #records = new Map<string, Record_<R>>();
   readonly #ttlMs: number;
   readonly #now: () => number;
+  readonly #newToken: () => string;
 
-  constructor(options: { ttlMs?: number; now?: () => number } = {}) {
+  constructor(options: { ttlMs?: number; now?: () => number; newToken?: () => string } = {}) {
     this.#ttlMs = options.ttlMs ?? 24 * 60 * 60 * 1000;
     this.#now = options.now ?? Date.now;
+    this.#newToken = options.newToken ?? (() => crypto.randomUUID());
   }
 
   async begin(key: string, fingerprint: string): Promise<BeginResult<R>> {
@@ -39,20 +49,23 @@ export class MemoryIdempotencyStore<R> implements IdempotencyStore<R> {
       if (existing.fingerprint !== fingerprint) return { state: "mismatch" };
       return existing.status === "completed" ? { state: "completed", response: existing.response as R } : { state: "in-progress" };
     }
-    this.#records.set(key, { fingerprint, status: "in-progress", expiresAt: now + this.#ttlMs });
-    return { state: "started" };
+    const token = this.#newToken();
+    this.#records.set(key, { fingerprint, token, status: "in-progress", expiresAt: now + this.#ttlMs });
+    return { state: "started", token };
   }
 
-  async complete(key: string, response: R): Promise<void> {
+  async complete(key: string, token: string, response: R): Promise<void> {
     const record = this.#records.get(key);
     if (!record) throw new Error("Unknown idempotency key");
+    if (record.token !== token || record.status !== "in-progress") throw new IdempotencyClaimLost();
     record.status = "completed";
     record.response = response;
     record.expiresAt = this.#now() + this.#ttlMs;
   }
 
-  async release(key: string): Promise<void> {
-    if (this.#records.get(key)?.status === "in-progress") this.#records.delete(key);
+  async release(key: string, token: string): Promise<void> {
+    const record = this.#records.get(key);
+    if (record?.status === "in-progress" && record.token === token) this.#records.delete(key);
   }
 }
 
@@ -80,9 +93,9 @@ export async function withIdempotency<R>(
   try {
     response = await handler();
   } catch (error) {
-    if (options.releaseOnError?.(error) ?? true) await store.release(key);
+    if (options.releaseOnError?.(error) ?? true) await store.release(key, claim.token);
     throw error;
   }
-  await store.complete(key, response);
+  await store.complete(key, claim.token, response);
   return { response, replayed: false };
 }

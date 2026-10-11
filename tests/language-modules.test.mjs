@@ -89,3 +89,31 @@ test('dependency commands are plain shell commands',()=>{
  for(const m of JSON.parse(readFileSync('examples/languages/modules.json','utf8')).modules)
   for(const d of [...(m.dependencies??[]),...(m.testDependencies??[])])assert.doesNotMatch(d,/[()]/,m.id+': '+d);
 });
+// 2026-10-11 audit R2-03: dependency and test steps must run where the copied manifest lands.
+test('dependency and test steps name the folder that holds the copied manifest', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'genlib-scoped-'));
+  try {
+    const py = JSON.parse(run('add', 'python-webauthn-passkeys', '--target', dir, '--with-tests', '--flat', '--json'));
+    assert.deepEqual(py.evidence.dependencies, ['cd python && pip install -r requirements.txt']);
+    const ts = JSON.parse(run('add', 'typescript-oidc-token-verification', '--target', dir, '--with-tests', '--json'));
+    assert.deepEqual(ts.evidence.dependencies, ['cd genlib/oidc-token-verification/typescript && npm ci']);
+    const go = JSON.parse(run('add', 'go-oidc-token-verification', '--target', dir, '--with-tests', '--json'));
+    assert.deepEqual(go.steps.find(step => step.kind === 'test'), { kind: 'test', argv: ['go', 'test', './...'], cwd: 'genlib/oidc-token-verification/go' });
+    // Package-add commands stay at the app root: they add to the app's own manifest.
+    const pdf = JSON.parse(run('add', 'python-pdf-text-extraction', '--target', dir, '--into', 'p', '--json'));
+    assert.deepEqual(pdf.evidence.dependencies, ['pip install pypdf==6.20.0']);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+  // An existing app manifest is kept: the reported lines are merged and the install runs at the root.
+  const app = mkdtempSync(join(tmpdir(), 'genlib-scoped-app-'));
+  try {
+    writeFileSync(join(app, 'requirements.txt'), 'flask==3.0.0\n');
+    const kept = JSON.parse(run('add', 'python-password-hashing', '--target', app, '--flat', '--json'));
+    assert.equal(kept.skipped[0].source.endsWith('requirements.txt'), true);
+    assert.deepEqual(kept.evidence.dependencies, ['pip install -r requirements.txt']);
+  } finally { rmSync(app, { recursive: true, force: true }); }
+  // Capability commands: copy, then scoped dependencies, then the tests (not --run-tests before installing).
+  const { commandsFor } = await import('../lib/capabilities.mjs');
+  const steps = commandsFor({ kind: 'language-example', id: 'python-webauthn-passkeys' }, '"$APP_ROOT"', '');
+  assert.match(steps[0], /add python-webauthn-passkeys .* --flat$/);
+  assert.deepEqual(steps.slice(1), ['cd python && pip install -r requirements.txt', 'cd python && python3 -m unittest test_passkeys']);
+});

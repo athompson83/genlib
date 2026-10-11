@@ -2,7 +2,7 @@
 import { fileURLToPath } from 'node:url';
 import { inspectModule, loadCatalog, searchCatalog } from '../lib/catalog.mjs';
 import { installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
-import { detectProject, findInSources, loadSources, sourceCounts } from '../lib/discover.mjs';
+import { detectProject, findInSources, loadSources, resolveEntry, sourceCounts } from '../lib/discover.mjs';
 import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
@@ -88,7 +88,9 @@ try {
       invariant(words.length === 1, 'INVALID_OPTION', `Provide exactly one ${INDEXES[command].label} ID.`);
       const entry = index.entries.find(item => item.id === words[0]);
       invariant(entry, 'NOT_FOUND', `No ${INDEXES[command].label} named ${words[0]}. Run ${command} find first.`);
-      result = { ...entry, install: installFor(command, entry, client, options.language ? [options.language] : undefined) };
+      // With a receiving language, API steps come from the same resolver as find (vendor SDKs, lifecycle).
+      const resolved = command === 'api' && options.language ? resolveEntry(await loadSources(), 'api', entry.id, { languages: [options.language], frameworks: [] }) : null;
+      result = { ...entry, install: resolved ? resolved.next.filter(step => !step.includes(' inspect ')) : installFor(command, entry, client, options.language ? [options.language] : undefined) };
     } else {
       invariant(false, 'INVALID_OPTION', `Use ${command} find <words> or ${command} inspect <id>.`);
     }

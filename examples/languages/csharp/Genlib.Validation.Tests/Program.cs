@@ -2021,5 +2021,300 @@ Eq("cache control freshness 5 public shared=False", (long?)null, CacheControl.Fr
 Throws<FormatException>("cache control invalid private=\"unterminated", () => CacheControl.Parse("private=\"unterminated"));
 Eq("cache control format quoted round trip", "private=\"set-cookie, x\", no-cache", CacheControl.Format(CacheControl.Parse("private=\"set-cookie, x\", no-cache")));
 
+// 65-74. Wave 11 capabilities (caps12 vectors): punycode, base58, roman numerals, dotted paths, templates, INI,
+// PII masking, password generation and HTML escaping. Literals are generated from the shared vectors.json.
+string W11Path(List<object> p) => "[" + string.Join(",", p.Select(x => x is int i ? i.ToString(System.Globalization.CultureInfo.InvariantCulture) : W10Q((string)x))) + "]";
+string W11Ini(List<KeyValuePair<string, List<KeyValuePair<string, string>>>> d) => "{" + string.Join(",", d.Select(s => W10Q(s.Key) + ":" + W10S(s.Value))) + "}";
+Func<byte> W11Bytes(string hex) { var b = Convert.FromHexString(hex); int i = 0; return () => b[i++ % b.Length]; }
+void W11Json(string name, string expected, System.Text.Json.Nodes.JsonNode? actual) {
+    bool ok = JsonPatch.DeepEqual(J(expected), actual);
+    if (!ok) Console.Error.WriteLine($"  expected <{expected}> got <{JsonPatch.Canonical(actual)}>");
+    Check(name, ok);
+}
+
+// 65. Punycode
+Eq("punycode encode 0 b\\xfccher", "bcher-kva", Punycode.Encode("b\u00FCcher"));
+Eq("punycode encode 1 m\\xfcnchen", "mnchen-3ya", Punycode.Encode("m\u00FCnchen"));
+Eq("punycode encode 2 \\u65e5\\u672c\\u8a9e", "wgv71a119e", Punycode.Encode("\u65E5\u672C\u8A9E"));
+Eq("punycode encode 3 \\xfc", "tda", Punycode.Encode("\u00FC"));
+Eq("punycode encode 4 abc", "abc-", Punycode.Encode("abc"));
+Eq("punycode encode 5 Ma\\xf1ana", "Maana-pta", Punycode.Encode("Ma\u00F1ana"));
+Eq("punycode encode 6 \\u03b5\\u03bb\\u03bb\\u03b7\\u03bd\\u03b9\\u03", "hxargifdar", Punycode.Encode("\u03B5\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"));
+Eq("punycode encode 7 \\u043f\\u0440\\u0430\\u0432\\u0434\\u0430", "80aafi6cg", Punycode.Encode("\u043F\u0440\u0430\u0432\u0434\u0430"));
+Eq("punycode encode 8 \\U0001f600", "e28h", Punycode.Encode("\U0001F600"));
+Eq("punycode encode 9 a-b", "a-b-", Punycode.Encode("a-b"));
+Eq("punycode encode 10 -", "--", Punycode.Encode("-"));
+Eq("punycode encode 11 \\u0627\\u0644\\u062d\\u0631\\u064a\\u0647", "mgbmm8erar", Punycode.Encode("\u0627\u0644\u062D\u0631\u064A\u0647"));
+Eq("punycode encode 12 Hello-Another-Way-\\u305d\\u308c\\u305e\\u30", "Hello-Another-Way--fc4qua05auwb3674vfr0b", Punycode.Encode("Hello-Another-Way-\u305D\u308C\u305E\u308C\u306E\u5834\u6240"));
+Eq("punycode encode 13 \\xdcBER", "BER-ska", Punycode.Encode("\u00DCBER"));
+Eq("punycode encode 14 x\\xe9\\u0301", "x-bga22n", Punycode.Encode("x\u00E9\u0301"));
+Eq("punycode decode 0 bcher-kva", "b\u00FCcher", Punycode.Decode("bcher-kva"));
+Eq("punycode decode 1 mnchen-3ya", "m\u00FCnchen", Punycode.Decode("mnchen-3ya"));
+Eq("punycode decode 2 wgv71a119e", "\u65E5\u672C\u8A9E", Punycode.Decode("wgv71a119e"));
+Eq("punycode decode 3 tda", "\u00FC", Punycode.Decode("tda"));
+Eq("punycode decode 4 abc-", "abc", Punycode.Decode("abc-"));
+Eq("punycode decode 5 Maana-pta", "Ma\u00F1ana", Punycode.Decode("Maana-pta"));
+Eq("punycode decode 6 hxargifdar", "\u03B5\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC", Punycode.Decode("hxargifdar"));
+Eq("punycode decode 7 80aafi6cg", "\u043F\u0440\u0430\u0432\u0434\u0430", Punycode.Decode("80aafi6cg"));
+Eq("punycode decode 8 e28h", "\U0001F600", Punycode.Decode("e28h"));
+Eq("punycode decode 9 a-b-", "a-b", Punycode.Decode("a-b-"));
+Eq("punycode decode 10 --", "-", Punycode.Decode("--"));
+Eq("punycode decode 11 mgbmm8erar", "\u0627\u0644\u062D\u0631\u064A\u0647", Punycode.Decode("mgbmm8erar"));
+Eq("punycode decode 12 Hello-Another-Way--fc4qua05auwb3674vfr0b", "Hello-Another-Way-\u305D\u308C\u305E\u308C\u306E\u5834\u6240", Punycode.Decode("Hello-Another-Way--fc4qua05auwb3674vfr0b"));
+Eq("punycode decode 13 BER-ska", "\u00DCBER", Punycode.Decode("BER-ska"));
+Eq("punycode decode 14 x-bga22n", "x\u00E9\u0301", Punycode.Decode("x-bga22n"));
+Eq("punycode decode 15 bcher-kva", "b\u00FCcher", Punycode.Decode("bcher-kva"));
+Eq("punycode domainToAscii 0 B\\xfccher.Example", "xn--bcher-kva.example", Punycode.DomainToAscii("B\u00FCcher.Example"));
+Eq("punycode domainToAscii 1 EXAMPLE.com", "example.com", Punycode.DomainToAscii("EXAMPLE.com"));
+Eq("punycode domainToAscii 2 \\u65e5\\u672c\\u8a9e.jp.", "xn--wgv71a119e.jp.", Punycode.DomainToAscii("\u65E5\u672C\u8A9E.jp."));
+Eq("punycode domainToAscii 3 m\\xfcnchen.de", "xn--mnchen-3ya.de", Punycode.DomainToAscii("m\u00FCnchen.de"));
+Eq("punycode domainToAscii 4 a.b.c", "a.b.c", Punycode.DomainToAscii("a.b.c"));
+Eq("punycode domainToUnicode 0 xn--bcher-kva.example", "b\u00FCcher.example", Punycode.DomainToUnicode("xn--bcher-kva.example"));
+Eq("punycode domainToUnicode 1 XN--wgv71a119e.jp", "\u65E5\u672C\u8A9E.jp", Punycode.DomainToUnicode("XN--wgv71a119e.jp"));
+Eq("punycode domainToUnicode 2 plain.com", "plain.com", Punycode.DomainToUnicode("plain.com"));
+Throws<FormatException>("punycode invalid decode 0 bcher-kv!", () => Punycode.Decode("bcher-kv!"));
+Throws<FormatException>("punycode invalid decode 1 a-99999999999999999999", () => Punycode.Decode("a-99999999999999999999"));
+Throws<FormatException>("punycode invalid decode 2 \\xfc-abc", () => Punycode.Decode("\u00FC-abc"));
+Throws<FormatException>("punycode invalid decode 3 xyzzy123456789zzzz", () => Punycode.Decode("xyzzy123456789zzzz"));
+Throws<FormatException>("punycode invalid domain 0 a..b", () => Punycode.DomainToAscii("a..b"));
+Throws<FormatException>("punycode invalid domain 1 .x", () => Punycode.DomainToAscii(".x"));
+Throws<FormatException>("punycode invalid domain 2 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", () => Punycode.DomainToAscii("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.com"));
+Throws<FormatException>("punycode invalid domain 3 \\xfc\\xfc\\xfc\\xfc\\xfc\\xfc\\xfc\\xfc\\xfc\\xfc", () => Punycode.DomainToAscii("\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC\u00FC.com"));
+
+// 66. Base58
+Eq("base58 encode 0 ", "", Base58.Encode(Convert.FromHexString("")));
+Eq("base58 decode 0 ", "", Convert.ToHexString(Base58.Decode("")));
+Eq("base58 encode 1 00", "1", Base58.Encode(Convert.FromHexString("00")));
+Eq("base58 decode 1 1", "00", Convert.ToHexString(Base58.Decode("1")));
+Eq("base58 encode 2 000001", "112", Base58.Encode(Convert.FromHexString("000001")));
+Eq("base58 decode 2 112", "000001", Convert.ToHexString(Base58.Decode("112")));
+Eq("base58 encode 3 68656c6c6f20776f726c64", "StV1DL6CwTryKyV", Base58.Encode(Convert.FromHexString("68656c6c6f20776f726c64")));
+Eq("base58 decode 3 StV1DL6CwTryKyV", "68656C6C6F20776F726C64", Convert.ToHexString(Base58.Decode("StV1DL6CwTryKyV")));
+Eq("base58 encode 4 00010203040506070809", "1kA3B2yGe2z4", Base58.Encode(Convert.FromHexString("00010203040506070809")));
+Eq("base58 decode 4 1kA3B2yGe2z4", "00010203040506070809", Convert.ToHexString(Base58.Decode("1kA3B2yGe2z4")));
+Eq("base58 encode 5 ffffffffffffffff", "jpXCZedGfVQ", Base58.Encode(Convert.FromHexString("ffffffffffffffff")));
+Eq("base58 decode 5 jpXCZedGfVQ", "FFFFFFFFFFFFFFFF", Convert.ToHexString(Base58.Decode("jpXCZedGfVQ")));
+Eq("base58 encode 6 000068656c6c6f", "11Cn8eVZg", Base58.Encode(Convert.FromHexString("000068656c6c6f")));
+Eq("base58 decode 6 11Cn8eVZg", "000068656C6C6F", Convert.ToHexString(Base58.Decode("11Cn8eVZg")));
+Eq("base58 check encode 0", "1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAs", Base58.CheckEncode(Convert.FromHexString("00f54a5851e9372b87810a8e60cdd2e7cfd80b6e31")));
+Eq("base58 check decode 0", "00F54A5851E9372B87810A8E60CDD2E7CFD80B6E31", Convert.ToHexString(Base58.CheckDecode("1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAs")));
+Eq("base58 check encode 1", "5HwoXVkHoRM8sL2KmNRS217n1g8mPPBomrY7yehCuXC1115WWsh", Base58.CheckEncode(Convert.FromHexString("801111111111111111111111111111111111111111111111111111111111111111")));
+Eq("base58 check decode 1", "801111111111111111111111111111111111111111111111111111111111111111", Convert.ToHexString(Base58.CheckDecode("5HwoXVkHoRM8sL2KmNRS217n1g8mPPBomrY7yehCuXC1115WWsh")));
+Eq("base58 check encode 2", "3QJmnh", Base58.CheckEncode(Convert.FromHexString("")));
+Eq("base58 check decode 2", "", Convert.ToHexString(Base58.CheckDecode("3QJmnh")));
+Throws<FormatException>("base58 invalid decode 0 0OIl", () => Base58.Decode("0OIl"));
+Throws<FormatException>("base58 invalid decode 1 abc+", () => Base58.Decode("abc+"));
+Throws<FormatException>("base58 invalid check 0 1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAt", () => Base58.CheckDecode("1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAt"));
+Throws<FormatException>("base58 invalid check 1 1", () => Base58.CheckDecode("1"));
+Throws<FormatException>("base58 invalid check 2 ", () => Base58.CheckDecode(""));
+
+// 67. Roman numerals
+Eq("roman to 1", "I", RomanNumerals.ToRoman(1));
+Eq("roman to 4", "IV", RomanNumerals.ToRoman(4));
+Eq("roman to 9", "IX", RomanNumerals.ToRoman(9));
+Eq("roman to 14", "XIV", RomanNumerals.ToRoman(14));
+Eq("roman to 40", "XL", RomanNumerals.ToRoman(40));
+Eq("roman to 90", "XC", RomanNumerals.ToRoman(90));
+Eq("roman to 400", "CD", RomanNumerals.ToRoman(400));
+Eq("roman to 1994", "MCMXCIV", RomanNumerals.ToRoman(1994));
+Eq("roman to 2026", "MMXXVI", RomanNumerals.ToRoman(2026));
+Eq("roman to 3888", "MMMDCCCLXXXVIII", RomanNumerals.ToRoman(3888));
+Eq("roman to 3999", "MMMCMXCIX", RomanNumerals.ToRoman(3999));
+Eq("roman from I", 1, RomanNumerals.FromRoman("I"));
+Eq("roman from iv", 4, RomanNumerals.FromRoman("iv"));
+Eq("roman from MCMXCIV", 1994, RomanNumerals.FromRoman("MCMXCIV"));
+Eq("roman from mmxxvi", 2026, RomanNumerals.FromRoman("mmxxvi"));
+Eq("roman from MMMCMXCIX", 3999, RomanNumerals.FromRoman("MMMCMXCIX"));
+Throws<ArgumentOutOfRangeException>("roman invalid to 0", () => RomanNumerals.ToRoman(0));
+Throws<ArgumentOutOfRangeException>("roman invalid to 4000", () => RomanNumerals.ToRoman(4000));
+Throws<ArgumentOutOfRangeException>("roman invalid to -5", () => RomanNumerals.ToRoman(-5));
+Throws<FormatException>("roman invalid from ", () => RomanNumerals.FromRoman(""));
+Throws<FormatException>("roman invalid from IIII", () => RomanNumerals.FromRoman("IIII"));
+Throws<FormatException>("roman invalid from IC", () => RomanNumerals.FromRoman("IC"));
+Throws<FormatException>("roman invalid from VX", () => RomanNumerals.FromRoman("VX"));
+Throws<FormatException>("roman invalid from MMMM", () => RomanNumerals.FromRoman("MMMM"));
+Throws<FormatException>("roman invalid from ABC", () => RomanNumerals.FromRoman("ABC"));
+Throws<FormatException>("roman invalid from IIV", () => RomanNumerals.FromRoman("IIV"));
+Throws<FormatException>("roman invalid from XM", () => RomanNumerals.FromRoman("XM"));
+
+// 68. Dotted paths
+var w11Data = J("{\"user\":{\"name\":\"Ada\",\"tags\":[\"a\",\"b\"],\"addr\":[{\"city\":\"Paris\"},{\"city\":\"Rome\"}],\"x.y\":{\"z\":1}},\"n\":0,\"nil\":null}");
+var w11DataBefore = JsonPatch.Canonical(w11Data);
+Eq("dotted parse 0 ", "[]", W11Path(DottedPath.Parse("")));
+Eq("dotted parse 1 a", "[\"a\"]", W11Path(DottedPath.Parse("a")));
+Eq("dotted parse 2 a.b.c", "[\"a\",\"b\",\"c\"]", W11Path(DottedPath.Parse("a.b.c")));
+Eq("dotted parse 3 a[0]", "[\"a\",0]", W11Path(DottedPath.Parse("a[0]")));
+Eq("dotted parse 4 a[0][1].b", "[\"a\",0,1,\"b\"]", W11Path(DottedPath.Parse("a[0][1].b")));
+Eq("dotted parse 5 [\"x.y\"].z", "[\"x.y\",\"z\"]", W11Path(DottedPath.Parse("[\"x.y\"].z")));
+Eq("dotted parse 6 user[\"x.y\"].z", "[\"user\",\"x.y\",\"z\"]", W11Path(DottedPath.Parse("user[\"x.y\"].z")));
+Eq("dotted parse 7 a[\"q\\\\\"t\"]", "[\"a\",\"q\\\"t\"]", W11Path(DottedPath.Parse("a[\"q\\\"t\"]")));
+W11Json("dotted get 0 user.name", "\"Ada\"", DottedPath.Get(w11Data, "user.name", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 1 user.tags[1]", "\"b\"", DottedPath.Get(w11Data, "user.tags[1]", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 2 user.addr[1].city", "\"Rome\"", DottedPath.Get(w11Data, "user.addr[1].city", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 3 user[\"x.y\"].z", "1", DottedPath.Get(w11Data, "user[\"x.y\"].z", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 4 user.missing", "\"DEF\"", DottedPath.Get(w11Data, "user.missing", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 5 user.tags[5]", "\"DEF\"", DottedPath.Get(w11Data, "user.tags[5]", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 6 user.name.first", "\"DEF\"", DottedPath.Get(w11Data, "user.name.first", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 7 n", "0", DottedPath.Get(w11Data, "n", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 8 nil", "null", DottedPath.Get(w11Data, "nil", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 9 ", "{\"user\":{\"name\":\"Ada\",\"tags\":[\"a\",\"b\"],\"addr\":[{\"city\":\"Paris\"},{\"city\":\"Rome\"}],\"x.y\":{\"z\":1}},\"n\":0,\"nil\":null}", DottedPath.Get(w11Data, "", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+W11Json("dotted get 10 user.tags.0", "\"DEF\"", DottedPath.Get(w11Data, "user.tags.0", System.Text.Json.Nodes.JsonValue.Create("DEF")));
+Eq("dotted has 0 user.name", true, DottedPath.Has(w11Data, "user.name"));
+Eq("dotted has 1 nil", true, DottedPath.Has(w11Data, "nil"));
+Eq("dotted has 2 user.nope", false, DottedPath.Has(w11Data, "user.nope"));
+Eq("dotted has 3 user.tags[2]", false, DottedPath.Has(w11Data, "user.tags[2]"));
+{ var d = J("{}"); var before = JsonPatch.Canonical(d); W11Json("dotted set 0 a.b", "{\"a\":{\"b\":1}}", DottedPath.Set(d, "a.b", J("1"))); Eq("dotted set leaves input 0 a.b", before, JsonPatch.Canonical(d)); }
+{ var d = J("{}"); var before = JsonPatch.Canonical(d); W11Json("dotted set 1 a[0].b", "{\"a\":[{\"b\":1}]}", DottedPath.Set(d, "a[0].b", J("1"))); Eq("dotted set leaves input 1 a[0].b", before, JsonPatch.Canonical(d)); }
+{ var d = J("{\"a\":[1]}"); var before = JsonPatch.Canonical(d); W11Json("dotted set 2 a[1]", "{\"a\":[1,2]}", DottedPath.Set(d, "a[1]", J("2"))); Eq("dotted set leaves input 2 a[1]", before, JsonPatch.Canonical(d)); }
+{ var d = J("{\"a\":{\"b\":1}}"); var before = JsonPatch.Canonical(d); W11Json("dotted set 3 a.c", "{\"a\":{\"b\":1,\"c\":[1,2]}}", DottedPath.Set(d, "a.c", J("[1,2]"))); Eq("dotted set leaves input 3 a.c", before, JsonPatch.Canonical(d)); }
+{ var d = J("null"); var before = JsonPatch.Canonical(d); W11Json("dotted set 4 x", "{\"x\":true}", DottedPath.Set(d, "x", J("true"))); Eq("dotted set leaves input 4 x", before, JsonPatch.Canonical(d)); }
+{ var d = J("{\"a\":1}"); var before = JsonPatch.Canonical(d); W11Json("dotted set 5 ", "{\"z\":2}", DottedPath.Set(d, "", J("{\"z\":2}"))); Eq("dotted set leaves input 5 ", before, JsonPatch.Canonical(d)); }
+{ var d = J("{}"); var before = JsonPatch.Canonical(d); W11Json("dotted set 6 [\"k.v\"]", "{\"k.v\":3}", DottedPath.Set(d, "[\"k.v\"]", J("3"))); Eq("dotted set leaves input 6 [\"k.v\"]", before, JsonPatch.Canonical(d)); }
+Throws<ArgumentException>("dotted invalid set 0 a[3]", () => DottedPath.Set(J("{\"a\":[1]}"), "a[3]", J("0")));
+Throws<ArgumentException>("dotted invalid set 1 a.b", () => DottedPath.Set(J("{\"a\":1}"), "a.b", J("0")));
+Throws<ArgumentException>("dotted invalid set 2 a[0]", () => DottedPath.Set(J("{\"a\":{}}"), "a[0]", J("0")));
+{ var d = J("{\"a\":{\"b\":1,\"c\":2}}"); var before = JsonPatch.Canonical(d); W11Json("dotted delete 0 a.b", "{\"a\":{\"c\":2}}", DottedPath.Delete(d, "a.b")); Eq("dotted delete leaves input 0 a.b", before, JsonPatch.Canonical(d)); }
+{ var d = J("{\"a\":[1,2,3]}"); var before = JsonPatch.Canonical(d); W11Json("dotted delete 1 a[0]", "{\"a\":[2,3]}", DottedPath.Delete(d, "a[0]")); Eq("dotted delete leaves input 1 a[0]", before, JsonPatch.Canonical(d)); }
+{ var d = J("{\"a\":1}"); var before = JsonPatch.Canonical(d); W11Json("dotted delete 2 b", "{\"a\":1}", DottedPath.Delete(d, "b")); Eq("dotted delete leaves input 2 b", before, JsonPatch.Canonical(d)); }
+{ var d = J("{\"a\":[1]}"); var before = JsonPatch.Canonical(d); W11Json("dotted delete 3 a[4]", "{\"a\":[1]}", DottedPath.Delete(d, "a[4]")); Eq("dotted delete leaves input 3 a[4]", before, JsonPatch.Canonical(d)); }
+Throws<FormatException>("dotted invalid parse 0 a.", () => DottedPath.Parse("a."));
+Throws<FormatException>("dotted invalid parse 1 .a", () => DottedPath.Parse(".a"));
+Throws<FormatException>("dotted invalid parse 2 a..b", () => DottedPath.Parse("a..b"));
+Throws<FormatException>("dotted invalid parse 3 a[01]", () => DottedPath.Parse("a[01]"));
+Throws<FormatException>("dotted invalid parse 4 a[x]", () => DottedPath.Parse("a[x]"));
+Throws<FormatException>("dotted invalid parse 5 a[\"x", () => DottedPath.Parse("a[\"x"));
+Throws<FormatException>("dotted invalid parse 6 a[1", () => DottedPath.Parse("a[1"));
+Throws<FormatException>("dotted invalid parse 7 a[-1]", () => DottedPath.Parse("a[-1]"));
+Eq("dotted data unchanged", w11DataBefore, JsonPatch.Canonical(w11Data));
+Eq("dotted delete root", (System.Text.Json.Nodes.JsonNode?)null, DottedPath.Delete(w11Data, ""));
+
+// 69. Template render
+var w11Tpl = J("{\"name\":\"Ada <3\",\"html\":\"<b>x</b>\",\"n\":3,\"f\":2.5,\"g\":4.0,\"t\":true,\"z\":0,\"e\":\"\",\"items\":[{\"name\":\"one\"},{\"name\":\"two\",\"extra\":\"!\"}],\"nums\":[1,2],\"user\":{\"first\":\"Grace\",\"tags\":[\"x\"]},\"empty\":[],\"obj\":{\"k\":\"v\"}}");
+Eq("template render 0 Hello {{name}}!", "Hello Ada &lt;3!", TemplateRender.Render("Hello {{name}}!", w11Tpl));
+Eq("template render 1 {{{html}}} vs {{html}}", "<b>x</b> vs &lt;b&gt;x&lt;/b&gt;", TemplateRender.Render("{{{html}}} vs {{html}}", w11Tpl));
+Eq("template render 2 {{ n }} {{f}} {{g}} {{t}} {{z}} [{{e}}] ", "3 2.5 4 true 0 [] []", TemplateRender.Render("{{ n }} {{f}} {{g}} {{t}} {{z}} [{{e}}] [{{missing}}]", w11Tpl));
+Eq("template render 3 {{#items}}<{{name}}{{extra}}>{{/items}}", "<one><two!>", TemplateRender.Render("{{#items}}<{{name}}{{extra}}>{{/items}}", w11Tpl));
+Eq("template render 4 {{#nums}}{{.}},{{/nums}}", "1,2,", TemplateRender.Render("{{#nums}}{{.}},{{/nums}}", w11Tpl));
+Eq("template render 5 {{#t}}yes{{/t}}{{#z}}no{{/z}}{{^z}}zero{", "yeszeronone", TemplateRender.Render("{{#t}}yes{{/t}}{{#z}}no{{/z}}{{^z}}zero{{/z}}{{^empty}}none{{/empty}}", w11Tpl));
+Eq("template render 6 {{#user}}{{first}} {{name}}{{/user}}", "Grace Ada &lt;3", TemplateRender.Render("{{#user}}{{first}} {{name}}{{/user}}", w11Tpl));
+Eq("template render 7 {{user.first}} {{user.tags[0]}}", "Grace x", TemplateRender.Render("{{user.first}} {{user.tags[0]}}", w11Tpl));
+Eq("template render 8 a{{! comment }}b", "ab", TemplateRender.Render("a{{! comment }}b", w11Tpl));
+Eq("template render 9 {{#obj}}{{k}}{{/obj}}", "v", TemplateRender.Render("{{#obj}}{{k}}{{/obj}}", w11Tpl));
+Eq("template render 10 {{#items}}{{#extra}}[{{name}}]{{/extra}}", "[two]", TemplateRender.Render("{{#items}}{{#extra}}[{{name}}]{{/extra}}{{/items}}", w11Tpl));
+Eq("template render 11 no tags", "no tags", TemplateRender.Render("no tags", w11Tpl));
+Eq("template raw 0 {{html}}", "<b>x</b>", TemplateRender.Render("{{html}}", w11Tpl, false));
+Throws<FormatException>("template invalid 0 {{", () => TemplateRender.Render("{{", w11Tpl));
+Throws<FormatException>("template invalid 1 {{#a}}x", () => TemplateRender.Render("{{#a}}x", w11Tpl));
+Throws<FormatException>("template invalid 2 {{#a}}x{{/b}}", () => TemplateRender.Render("{{#a}}x{{/b}}", w11Tpl));
+Throws<FormatException>("template invalid 3 {{/a}}", () => TemplateRender.Render("{{/a}}", w11Tpl));
+Throws<FormatException>("template invalid 4 {{ bad name }}", () => TemplateRender.Render("{{ bad name }}", w11Tpl));
+Throws<FormatException>("template invalid 5 {{{x}}", () => TemplateRender.Render("{{{x}}", w11Tpl));
+Throws<FormatException>("template invalid 6 {{obj}}", () => TemplateRender.Render("{{obj}}", w11Tpl));
+Throws<FormatException>("template invalid 7 {{items}}", () => TemplateRender.Render("{{items}}", w11Tpl));
+
+// 71. INI
+Eq("ini parse 0 a=1\\nb = two\\n", "{\"\":{\"a\":\"1\",\"b\":\"two\"}}", W11Ini(IniParse.Parse("a=1\u000Ab = two\u000A")));
+Eq("ini parse 1 [db]\\nhost = localhost ; comment\\nport: ", "{\"\":{},\"db\":{\"host\":\"localhost\",\"port\":\"5432\"}}", W11Ini(IniParse.Parse("[db]\u000Ahost = localhost ; comment\u000Aport: 5432\u000A")));
+Eq("ini parse 2 ; c\\n# c\\n\\n[s]\\nk=\"quoted \\\\\"x\\\\\" \\\\\\\\ ", "{\"\":{},\"s\":{\"k\":\"quoted \\\"x\\\" \\\\ ;#\"}}", W11Ini(IniParse.Parse("; c\u000A# c\u000A\u000A[s]\u000Ak=\"quoted \\\"x\\\" \\\\ ;#\"\u000A")));
+Eq("ini parse 3 [s]\\nflag\\nx = a#b\\ny = a #b\\n", "{\"\":{},\"s\":{\"flag\":\"\",\"x\":\"a#b\",\"y\":\"a\"}}", W11Ini(IniParse.Parse("[s]\u000Aflag\u000Ax = a#b\u000Ay = a #b\u000A")));
+Eq("ini parse 4 [a]\\nk=1\\n[b]\\nk=2\\n[a]\\nk=3\\nj=4\\n", "{\"\":{},\"a\":{\"k\":\"3\",\"j\":\"4\"},\"b\":{\"k\":\"2\"}}", W11Ini(IniParse.Parse("[a]\u000Ak=1\u000A[b]\u000Ak=2\u000A[a]\u000Ak=3\u000Aj=4\u000A")));
+Eq("ini parse 5 k: v = w\\n", "{\"\":{\"k\":\"v = w\"}}", W11Ini(IniParse.Parse("k: v = w\u000A")));
+Eq("ini parse 6 [ spaced name ]\\nK=V\\r\\nk2=v2\\r\\n", "{\"\":{},\"spaced name\":{\"K\":\"V\",\"k2\":\"v2\"}}", W11Ini(IniParse.Parse("[ spaced name ]\u000AK=V\u000D\u000Ak2=v2\u000D\u000A")));
+Eq("ini parse 7 ", "{\"\":{}}", W11Ini(IniParse.Parse("")));
+Eq("ini stringify 0", "a = 1\u000A\u000A[s]\u000Ak = v\u000Ae = \"\"\u000Asp = \" x\"\u000Aq = \"a\\\"b;c\"\u000A", IniParse.Stringify(new List<KeyValuePair<string, List<KeyValuePair<string, string>>>> { KeyValuePair.Create("", W10P("a", "1")), KeyValuePair.Create("s", W10P("k", "v", "e", "", "sp", " x", "q", "a\"b;c")) }));
+Eq("ini stringify round trip 0", "a = 1\u000A\u000A[s]\u000Ak = v\u000Ae = \"\"\u000Asp = \" x\"\u000Aq = \"a\\\"b;c\"\u000A", IniParse.Stringify(IniParse.Parse("a = 1\u000A\u000A[s]\u000Ak = v\u000Ae = \"\"\u000Asp = \" x\"\u000Aq = \"a\\\"b;c\"\u000A")));
+Eq("ini stringify 1", "[only]\u000Ax = y\u000A", IniParse.Stringify(new List<KeyValuePair<string, List<KeyValuePair<string, string>>>> { KeyValuePair.Create("", W10P()), KeyValuePair.Create("only", W10P("x", "y")) }));
+Eq("ini stringify round trip 1", "[only]\u000Ax = y\u000A", IniParse.Stringify(IniParse.Parse("[only]\u000Ax = y\u000A")));
+Eq("ini stringify 2", "", IniParse.Stringify(new List<KeyValuePair<string, List<KeyValuePair<string, string>>>> { KeyValuePair.Create("", W10P()) }));
+Eq("ini stringify round trip 2", "", IniParse.Stringify(IniParse.Parse("")));
+Throws<FormatException>("ini invalid 0 [unterminated\\n", () => IniParse.Parse("[unterminated\u000A"), e => e.Message.StartsWith("line "));
+Throws<FormatException>("ini invalid 1 []\\n", () => IniParse.Parse("[]\u000A"), e => e.Message.StartsWith("line "));
+Throws<FormatException>("ini invalid 2 =v\\n", () => IniParse.Parse("=v\u000A"), e => e.Message.StartsWith("line "));
+Throws<FormatException>("ini invalid 3 k=\"open\\n", () => IniParse.Parse("k=\"open\u000A"), e => e.Message.StartsWith("line "));
+Throws<FormatException>("ini invalid 4 [a]]\\n", () => IniParse.Parse("[a]]\u000A"), e => e.Message.StartsWith("line "));
+
+// 72. PII masking
+Eq("pii email jane.doe@example.com", "j*******@example.com", PiiMask.MaskEmail("jane.doe@example.com"));
+Eq("pii email a@b.co", "a***@b.co", PiiMask.MaskEmail("a@b.co"));
+Eq("pii email ab@x.io", "a***@x.io", PiiMask.MaskEmail("ab@x.io"));
+Eq("pii email \\xe9mile@ex.fr", "\u00E9****@ex.fr", PiiMask.MaskEmail("\u00E9mile@ex.fr"));
+Eq("pii phone +1 (415) 555-0123", "+1 (***) ***-0123", PiiMask.MaskPhone("+1 (415) 555-0123"));
+Eq("pii phone +44 20 7946 0958", "+44 ** **** 0958", PiiMask.MaskPhone("+44 20 7946 0958"));
+Eq("pii phone 0612345678", "******5678", PiiMask.MaskPhone("0612345678"));
+Eq("pii phone 555-0123-99", "***-**23-99", PiiMask.MaskPhone("555-0123-99"));
+Eq("pii card 4111 1111 1111 1111", "**** **** **** 1111", PiiMask.MaskCard("4111 1111 1111 1111"));
+Eq("pii card 4111-1111-1111-1111", "****-****-****-1111", PiiMask.MaskCard("4111-1111-1111-1111"));
+Eq("pii card 378282246310005", "***********0005", PiiMask.MaskCard("378282246310005"));
+Eq("pii card 6011000990139424", "************9424", PiiMask.MaskCard("6011000990139424"));
+Eq("pii middle 2 2 secret-token", "se********en", PiiMask.MaskMiddle("secret-token", 2, 2));
+Eq("pii middle 1 1 abc", "a*c", PiiMask.MaskMiddle("abc", 1, 1));
+Eq("pii middle 1 1 ab", "**", PiiMask.MaskMiddle("ab", 1, 1));
+Eq("pii middle 0 0 password", "********", PiiMask.MaskMiddle("password", 0, 0));
+Eq("pii middle 1 0 h\\xe9llo", "h****", PiiMask.MaskMiddle("h\u00E9llo", 1, 0));
+Eq("pii redact contact jane@example.com today", "contact j***@example.com today", PiiMask.Redact("contact jane@example.com today"));
+Eq("pii redact card 4111 1111 1111 1111 exp", "card **** **** **** 1111 exp", PiiMask.Redact("card 4111 1111 1111 1111 exp"));
+Eq("pii redact order 1234 5678 9012 3456 ok", "order 1234 5678 9012 3456 ok", PiiMask.Redact("order 1234 5678 9012 3456 ok"));
+Eq("pii redact two a@b.io, c.d@e.org", "two a***@b.io, c***@e.org", PiiMask.Redact("two a@b.io, c.d@e.org"));
+Eq("pii redact id 4111111111111111x", "id ************1111x", PiiMask.Redact("id 4111111111111111x"));
+Throws<ArgumentException>("pii invalid email nope", () => PiiMask.MaskEmail("nope"));
+Throws<ArgumentException>("pii invalid email a@b@c", () => PiiMask.MaskEmail("a@b@c"));
+Throws<ArgumentException>("pii invalid email @x.com", () => PiiMask.MaskEmail("@x.com"));
+Throws<ArgumentException>("pii invalid email x@", () => PiiMask.MaskEmail("x@"));
+Throws<ArgumentException>("pii invalid phone 123", () => PiiMask.MaskPhone("123"));
+Throws<ArgumentException>("pii invalid phone +1 55", () => PiiMask.MaskPhone("+1 55"));
+Throws<ArgumentException>("pii invalid card 4111", () => PiiMask.MaskCard("4111"));
+Throws<ArgumentException>("pii invalid card 4111 1111 1111 1111 1111 1", () => PiiMask.MaskCard("4111 1111 1111 1111 1111 1"));
+Throws<ArgumentException>("pii invalid card 4111a1111111111", () => PiiMask.MaskCard("4111a1111111111"));
+
+// 73. Password generation (deterministic cycling byte source)
+{ var nb = W11Bytes("00ff10a37c55e2019b"); Eq("password randomIndex 10 00ff10a37c55e2019b", "0,6,3,4,5,6", string.Join(",", Enumerable.Range(0, 6).Select(_ => PasswordGenerate.RandomIndex(10, nb)))); }
+{ var nb = W11Bytes("ffff0102a0b0"); Eq("password randomIndex 300 ffff0102a0b0", "258,36,258,36,258,36", string.Join(",", Enumerable.Range(0, 6).Select(_ => PasswordGenerate.RandomIndex(300, nb)))); }
+{ var nb = W11Bytes("00"); Eq("password randomIndex 1 00", "0,0,0,0,0,0", string.Join(",", Enumerable.Range(0, 6).Select(_ => PasswordGenerate.RandomIndex(1, nb)))); }
+{ var nb = W11Bytes("ab"); Eq("password randomIndex 256 ab", "171,171,171,171,171,171", string.Join(",", Enumerable.Range(0, 6).Select(_ => PasswordGenerate.RandomIndex(256, nb)))); }
+{ var nb = W11Bytes("f0f8fc00"); Eq("password randomIndex 62 f0f8fc00", "54,0,54,0,54,0", string.Join(",", Enumerable.Range(0, 6).Select(_ => PasswordGenerate.RandomIndex(62, nb)))); }
+Eq("password generate 16 lower/upper/digits/symbols 00ff10a37c55e2019b", "jl__j_ad3WbbdqQa", PasswordGenerate.GeneratePassword(16, new[] { "lower", "upper", "digits", "symbols" }, W11Bytes("00ff10a37c55e2019b"), false));
+Eq("password generate 12 lower/digits 0102030405060708090a0b0c0d0e0f", "hkjibfmdnge4", PasswordGenerate.GeneratePassword(12, new[] { "lower", "digits" }, W11Bytes("0102030405060708090a0b0c0d0e0f"), true));
+Eq("password generate 4 upper/lower/digits/symbols 7f", "X7x#", PasswordGenerate.GeneratePassword(4, new[] { "upper", "lower", "digits", "symbols" }, W11Bytes("7f"), false));
+Eq("password generate 20 symbols ffffffffffffffff00", "!!!!!!!!!!!!!!!!!!!!", PasswordGenerate.GeneratePassword(20, new[] { "symbols" }, W11Bytes("ffffffffffffffff00"), false));
+Eq("password passphrase 4 0102030405", "river-stone-cloud-maple", PasswordGenerate.GeneratePassphrase(new[] { "apple", "river", "stone", "cloud", "maple" }, 4, "-", W11Bytes("0102030405")));
+Eq("password passphrase 3 ff00", "b a b", PasswordGenerate.GeneratePassphrase(new[] { "a", "b" }, 3, " ", W11Bytes("ff00")));
+Eq("password entropy 76 16", 99.97, PasswordGenerate.EntropyBits(76, 16));
+Eq("password entropy 10 6", 19.93, PasswordGenerate.EntropyBits(10, 6));
+Eq("password entropy 7776 5", 64.62, PasswordGenerate.EntropyBits(7776, 5));
+Eq("password entropy 2 1", 1.0, PasswordGenerate.EntropyBits(2, 1));
+Throws<ArgumentException>("password invalid 3 lower/upper/digits/symbols", () => PasswordGenerate.GeneratePassword(3, new[] { "lower", "upper", "digits", "symbols" }, W11Bytes("00")));
+Throws<ArgumentException>("password invalid 8 ", () => PasswordGenerate.GeneratePassword(8, Array.Empty<string>(), W11Bytes("00")));
+Throws<ArgumentException>("password invalid 8 lower/lower", () => PasswordGenerate.GeneratePassword(8, new[] { "lower", "lower" }, W11Bytes("00")));
+Throws<ArgumentException>("password invalid 8 emoji", () => PasswordGenerate.GeneratePassword(8, new[] { "emoji" }, W11Bytes("00")));
+Throws<ArgumentException>("password invalid 1025 lower", () => PasswordGenerate.GeneratePassword(1025, new[] { "lower" }, W11Bytes("00")));
+Throws<ArgumentException>("password invalid passphrase 3 a", () => PasswordGenerate.GeneratePassphrase(new[] { "a" }, 3, "-", W11Bytes("00")));
+Throws<ArgumentException>("password invalid passphrase 0 a/b", () => PasswordGenerate.GeneratePassphrase(new[] { "a", "b" }, 0, "-", W11Bytes("00")));
+Throws<ArgumentException>("password invalid passphrase 65 a/b", () => PasswordGenerate.GeneratePassphrase(new[] { "a", "b" }, 65, "-", W11Bytes("00")));
+Throws<ArgumentException>("password invalid passphrase 2 a/", () => PasswordGenerate.GeneratePassphrase(new[] { "a", "" }, 2, "-", W11Bytes("00")));
+Check("password csprng default", PasswordGenerate.GeneratePassword().Length == 16);
+Check("password csprng passphrase", PasswordGenerate.GeneratePassphrase(new[] { "a", "b" }, 3).Split('-').Length == 3);
+Check("password csprng index", Enumerable.Range(0, 50).All(_ => PasswordGenerate.RandomIndex(7) is >= 0 and < 7));
+
+// 74. HTML escape
+Eq("html escape 0 <a href=\"x\">", "&lt;a href=&quot;x&quot;&gt;", HtmlEscape.Escape("<a href=\"x\">"));
+Eq("html escape 1 Tom & Jerry's", "Tom &amp; Jerry&#39;s", HtmlEscape.Escape("Tom & Jerry's"));
+Eq("html escape 2 plain", "plain", HtmlEscape.Escape("plain"));
+Eq("html escape 3 ", "", HtmlEscape.Escape(""));
+Eq("html unescape 0 &lt;p&gt;", "<p>", HtmlEscape.Unescape("&lt;p&gt;"));
+Eq("html unescape 1 &#169; &#xA9; &#XA9;", "\u00A9 \u00A9 \u00A9", HtmlEscape.Unescape("&#169; &#xA9; &#XA9;"));
+Eq("html unescape 2 &amp;amp;", "&amp;", HtmlEscape.Unescape("&amp;amp;"));
+Eq("html unescape 3 &amp no semicolon", "&amp no semicolon", HtmlEscape.Unescape("&amp no semicolon"));
+Eq("html unescape 4 &bogus; &AMP;", "&bogus; &AMP;", HtmlEscape.Unescape("&bogus; &AMP;"));
+Eq("html unescape 5 &#128; &#x9F;", "\u20AC \u0178", HtmlEscape.Unescape("&#128; &#x9F;"));
+Eq("html unescape 6 &#0; &#xD800; &#1114112;", "\uFFFD \uFFFD \uFFFD", HtmlEscape.Unescape("&#0; &#xD800; &#1114112;"));
+Eq("html unescape 7 &euro;5 &mdash; &hellip;", "\u20AC5 \u2014 \u2026", HtmlEscape.Unescape("&euro;5 &mdash; &hellip;"));
+Eq("html unescape 8 &#99999999999;", "&#99999999999;", HtmlEscape.Unescape("&#99999999999;"));
+Eq("html strip 0 <p>Hello <b>world</b></p>", "Hello world", HtmlEscape.StripTags("<p>Hello <b>world</b></p>"));
+Eq("html strip 1 a<script>alert(1)</script>b", "ab", HtmlEscape.StripTags("a<script>alert(1)</script>b"));
+Eq("html strip 2 <STYLE>p{}</STYLE>x &amp; y", "x & y", HtmlEscape.StripTags("<STYLE>p{}</STYLE>x &amp; y"));
+Eq("html strip 3 1 < 2 and 3>1", "1 < 2 and 3>1", HtmlEscape.StripTags("1 < 2 and 3>1"));
+Eq("html strip 4 <!-- c -->t", "t", HtmlEscape.StripTags("<!-- c -->t"));
+Eq("html strip 5 unclosed <script>evil", "unclosed ", HtmlEscape.StripTags("unclosed <script>evil"));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;

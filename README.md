@@ -25,10 +25,10 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 72 (643 implementations, 641 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
+| [Capabilities](#capabilities-one-task-every-language) | 81 (724 implementations, 722 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
 | [Modules](#modules) | 13 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
-| [TypeScript recipes](#recipes-language-examples-and-templates) | 97 | 93 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
-| [Language examples](#recipes-language-examples-and-templates) | 593 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 104 | 100 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
+| [Language examples](#recipes-language-examples-and-templates) | 665 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
@@ -247,6 +247,15 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `link-header` HTTP Link header (pagination links) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `content-disposition` Content-Disposition header for downloads | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `cache-control` Cache-Control header parse and build | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `punycode` Punycode and internationalized domain names | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `base58` Base58 and Base58Check | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `roman-numerals` Roman numerals | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `dotted-path` Dotted-path get, set and delete on nested data | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `template-render` Logic-less templates (Mustache subset) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `ini-parse` INI file parse and write | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `pii-mask` PII masking and redaction | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `password-generate` Password and passphrase generation | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `html-escape` HTML escape, unescape and tag stripping | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |

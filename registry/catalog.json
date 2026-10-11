@@ -155,7 +155,7 @@
     },
     {
       "id": "http-resilience",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "title": "HTTP resilience",
       "description": "Runtime-neutral TypeScript retry with exponential backoff and full jitter, AbortSignal-aware timeouts, an idempotency-safe Fetch retry wrapper that honors Retry-After, and an in-process circuit breaker.",
       "kind": "utility",
@@ -181,8 +181,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/http-resilience@0.1.0.json",
-      "sha256": "2fd8aa46f03682e74c1cb28b602dfa23268601c39a10d41314aad097b6007405"
+      "manifest": "registry/manifests/http-resilience@0.2.0.json",
+      "sha256": "9f38aa2f97da75cbff8ac1d413d0fc3ff984cfba6a364d0fe41d7c41e69c42f4"
     },
     {
       "id": "notification-preferences",

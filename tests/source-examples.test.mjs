@@ -34,6 +34,8 @@ test('storefront and utility sources compile strictly and behave', async () => {
   assert.throws(() => cartSubtotal([{ productId: 'p', variantId: 'v', quantity: 1, unitMinor: 1, currency: 'USD' }, { productId: 'q', variantId: 'v', quantity: 1, unitMinor: 1, currency: 'EUR' }]), /Currency mismatch/);
   const { invoiceTotals } = await load('storefront/invoice.js');
   assert.deepEqual(invoiceTotals([{ description: 'A', quantity: 3, unitMinor: 1000 }], 825), { subtotalMinor: 3000, taxMinor: 248, totalMinor: 3248 });
+  // 900719925474503 x 825 / 10000 = 74309393851646.4975: exact rounding, where floating point gave ...647.
+  assert.equal(invoiceTotals([{ description: 'Big', quantity: 1, unitMinor: 900719925474503 }], 825).taxMinor, 74309393851646);
   const { filterCatalog } = await load('storefront/catalog.js');
   const products = [
     { id: 'a', title: 'Blue mug', category: 'mugs', active: true, priceMinor: 900, currency: 'USD' },

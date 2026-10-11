@@ -1,0 +1,215 @@
+{
+ "schemaVersion": 1,
+ "about": "Explicit API -> receiving-language SDK pairs, used when an API record has no client generator for the project's language (genlib find, quick, Jev and MCP). Each target is a catalog package published by the API's own vendor and is a client for that API, not a mobile UI SDK or a feature-flag evaluator. Kotlin pairs reuse the vendor's JVM library. 'providers' covers a whole provider only where one module truly serves every API (google.golang.org/api for Go). A missing pair means docs and the spec, never a guess. Validated by tests/api-install.test.mjs.",
+ "reviewed": "2026-10-11",
+ "providers": {
+  "googleapis.com": {
+   "go": "google-api"
+  }
+ },
+ "apis": {
+  "stripe-com": {
+   "go": "stripe-go-go",
+   "csharp": "stripe-net",
+   "java": "com-stripe-stripe-java",
+   "kotlin": "com-stripe-stripe-java"
+  },
+  "slack-com": {
+   "java": "com-slack-api-bolt",
+   "kotlin": "com-slack-api-bolt"
+  },
+  "box-com": {
+   "csharp": "box-v2",
+   "java": "com-box-box-java-sdk",
+   "kotlin": "com-box-box-java-sdk"
+  },
+  "sendgrid-com": {
+   "go": "sendgrid-go",
+   "java": "com-sendgrid-sendgrid-java",
+   "kotlin": "com-sendgrid-sendgrid-java"
+  },
+  "plaid-com": {
+   "go": "plaid-go",
+   "java": "com-plaid-plaid-java",
+   "kotlin": "com-plaid-plaid-java"
+  },
+  "squareup-com": {
+   "go": "square-go-sdk",
+   "csharp": "square",
+   "java": "com-squareup-square",
+   "kotlin": "com-squareup-square"
+  },
+  "docusign-net": {
+   "csharp": "docusign-esign-dll",
+   "java": "com-docusign-docusign-esign-java",
+   "kotlin": "com-docusign-docusign-esign-java"
+  },
+  "amazonaws-com-sesv2": {
+   "go": "sesv2",
+   "rust": "aws-sdk-sesv2-crates",
+   "java": "software-amazon-awssdk-sesv2",
+   "kotlin": "software-amazon-awssdk-sesv2"
+  },
+  "amazonaws-com-location": {
+   "go": "location",
+   "rust": "aws-sdk-location",
+   "csharp": "awssdk-locationservice",
+   "java": "software-amazon-awssdk-location",
+   "kotlin": "software-amazon-awssdk-location"
+  },
+  "amazonaws-com-pinpoint": {
+   "go": "pinpoint"
+  },
+  "googleapis-com-calendar": {
+   "csharp": "google-apis-calendar-v3",
+   "java": "com-google-apis-google-api-services-calendar",
+   "kotlin": "com-google-apis-google-api-services-calendar"
+  },
+  "googleapis-com-classroom": {
+   "csharp": "google-apis-classroom-v1",
+   "java": "com-google-apis-google-api-services-classroom",
+   "kotlin": "com-google-apis-google-api-services-classroom"
+  },
+  "googleapis-com-youtube": {
+   "csharp": "google-apis-youtube-v3"
+  },
+  "xero-com-xero-files": {
+   "csharp": "xero-netstandard-oauth2",
+   "java": "com-github-xeroapi-xero-java",
+   "kotlin": "com-github-xeroapi-xero-java"
+  },
+  "xero-com-xero-assets": {
+   "csharp": "xero-netstandard-oauth2",
+   "java": "com-github-xeroapi-xero-java",
+   "kotlin": "com-github-xeroapi-xero-java"
+  },
+  "xero-com-xero-identity": {
+   "csharp": "xero-netstandard-oauth2",
+   "java": "com-github-xeroapi-xero-java",
+   "kotlin": "com-github-xeroapi-xero-java"
+  },
+  "xero-com-xero-bankfeeds": {
+   "csharp": "xero-netstandard-oauth2",
+   "java": "com-github-xeroapi-xero-java",
+   "kotlin": "com-github-xeroapi-xero-java"
+  },
+  "xero-com-xero-payroll-au": {
+   "csharp": "xero-netstandard-oauth2",
+   "java": "com-github-xeroapi-xero-java",
+   "kotlin": "com-github-xeroapi-xero-java"
+  },
+  "xero-com-xero-accounting": {
+   "csharp": "xero-netstandard-oauth2",
+   "java": "com-github-xeroapi-xero-java",
+   "kotlin": "com-github-xeroapi-xero-java"
+  },
+  "adyen-com-hopservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-fundservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-payoutservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-tfmapiservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-accountservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-balancecontrolservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-balanceplatformservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-binlookupservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-checkoutservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-checkoututilityservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-dataprotectionservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-legalentityservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-managementservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-paymentservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-recurringservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-storedvalueservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-testcardservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  },
+  "adyen-com-transferservice": {
+   "go": "adyen-go-api-library",
+   "csharp": "adyen",
+   "java": "com-adyen-adyen-java-api-library",
+   "kotlin": "com-adyen-adyen-java-api-library"
+  }
+ }
+}

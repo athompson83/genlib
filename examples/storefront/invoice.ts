@@ -10,7 +10,8 @@ export function invoiceTotals(lines: readonly InvoiceLine[], taxBasisPoints = 0)
     if (!Number.isSafeInteger(amount) || !Number.isSafeInteger(subtotalMinor + amount)) throw new Error("Amount overflow");
     subtotalMinor += amount;
   }
-  const taxMinor = Math.round(subtotalMinor * taxBasisPoints / 10000);
+  // Exact half-up rounding in bigint: subtotal * basis points can exceed 2^53 before the division.
+  const taxMinor = Number((BigInt(subtotalMinor) * BigInt(taxBasisPoints) + 5000n) / 10000n);
   const totalMinor = subtotalMinor + taxMinor;
   if (!Number.isSafeInteger(taxMinor) || !Number.isSafeInteger(totalMinor)) throw new Error("Amount overflow");
   return { subtotalMinor, taxMinor, totalMinor };
