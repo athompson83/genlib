@@ -3517,6 +3517,13 @@
    "file": "docs/multilanguage-modules.md"
   },
   {
+   "id": "doc:docs/providers.md",
+   "kind": "doc",
+   "label": "docs/providers.md",
+   "count": 4,
+   "file": "docs/providers.md"
+  },
+  {
    "id": "doc:docs/providers/btst-kanban.md",
    "kind": "doc",
    "label": "docs/providers/btst-kanban.md",
@@ -4163,7 +4170,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3615,
+   "count": 3616,
    "query": "typescript"
   },
   {
@@ -4219,7 +4226,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 704,
+   "count": 708,
    "query": "--type doc"
   },
   {
@@ -4249,6 +4256,13 @@
    "label": "module",
    "count": 29,
    "query": "--type module"
+  },
+  {
+   "id": "type:provider",
+   "kind": "type",
+   "label": "provider",
+   "count": 1,
+   "query": "--type provider"
   },
   {
    "id": "type:recipe",
@@ -16959,7 +16973,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 704
+   "weight": 708
   },
   {
    "source": "genlib",
@@ -16984,6 +16998,12 @@
    "target": "type:module",
    "relation": "contains",
    "weight": 29
+  },
+  {
+   "source": "genlib",
+   "target": "type:provider",
+   "relation": "contains",
+   "weight": 1
   },
   {
    "source": "genlib",
@@ -20233,6 +20253,12 @@
   },
   {
    "source": "type:doc",
+   "target": "doc:docs/providers.md",
+   "relation": "section-of",
+   "weight": 4
+  },
+  {
+   "source": "type:doc",
    "target": "doc:docs/providers/btst-kanban.md",
    "relation": "section-of",
    "weight": 14
@@ -20614,6 +20640,12 @@
    "target": "language:typescript",
    "relation": "serves",
    "weight": 28
+  },
+  {
+   "source": "type:provider",
+   "target": "language:typescript",
+   "relation": "serves",
+   "weight": 1
   },
   {
    "source": "type:recipe",
