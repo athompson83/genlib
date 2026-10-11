@@ -1,54 +1,443 @@
 {
- "totp": ["authenticator app", "one-time code", "verification code", "two-step verification", "two-factor authentication", "6 digit code", "rfc 6238"],
- "oidc-pkce": ["sign in with google", "sign in with microsoft", "social login", "oauth login", "authorization code flow", "pkce", "redirect to identity provider", "openid connect"],
- "recovery-codes": ["backup codes", "lost phone", "lost device", "emergency codes", "account recovery codes"],
- "calculator": ["loan calculator", "mortgage", "interest", "amortization", "monthly payment", "compound interest", "roi calculator", "bmi"],
- "form-schema": ["signup form", "registration form", "form fields", "required fields", "field validation", "validate request body", "form errors"],
- "seo-files": ["sitemap", "sitemap xml", "robots txt", "search engine indexing", "crawl rules"],
- "structured-data": ["json-ld", "schema org", "rich results", "rich snippets", "product markup", "seo metadata"],
- "utm-links": ["campaign links", "tracking parameters", "marketing links", "utm source", "attribution links"],
- "csv-safe": ["csv export", "excel export", "formula injection", "csv injection", "spreadsheet export", "download as csv"],
- "money": ["currency amounts", "prices", "floating point money", "cents", "invoice totals", "currency formatting", "split bill"],
- "signed-cursors": ["cursor pagination", "keyset pagination", "next page token", "opaque cursor", "infinite scroll api"],
- "ics-events": ["calendar invite", "ics file", "add to google calendar", "outlook invite", "event attachment", "icalendar export"],
- "ids": ["unique id", "uuid", "uuidv7", "ulid", "sortable id", "primary key", "random id", "nanoid"],
- "retry-backoff": ["retry failed requests", "exponential backoff", "jitter", "transient errors", "retry policy"],
- "token-bucket": ["rate limit", "rate limiting", "throttle", "requests per minute", "api quota", "too many requests", "429"],
- "semver": ["version numbers", "compare versions", "version ordering", "version constraint", "minimum version", "release version"],
- "cron-next": ["cron expression", "cron schedule", "next run time", "scheduled job", "crontab"],
- "wcag-contrast": ["color contrast", "accessibility contrast", "text readability", "a11y colors", "contrast ratio"],
- "geo": ["gps", "coordinates", "lat lng", "distance between points", "great circle", "nearest locations", "store locator", "miles", "kilometers"],
- "webhook-signature": ["verify webhook", "stripe webhook", "github webhook", "signed payload", "hmac signature", "webhook security"],
- "check-digits": ["credit card number", "luhn", "iban validation", "barcode", "isbn", "ean", "upc"],
- "signed-urls": ["expiring links", "temporary download link", "presigned url", "share link with expiry", "secure download"],
- "polyline": ["encoded polyline", "google maps polyline", "route geometry", "directions path"],
- "tile-math": ["map tiles", "tile coordinates", "lat lng to tile", "zoom level", "tile x y z"],
- "email-address": ["validate email", "email format", "email syntax", "normalize email", "email validation"],
- "iso-duration": ["duration string", "pt1h30m", "pt30m", "p1d", "parse duration", "format duration", "video length"],
- "geometry": ["point in polygon", "polygon area", "geofence", "line intersection", "bounding box", "inside region"],
- "safe-redirect": ["open redirect", "return url", "redirect after login", "next parameter", "redirect validation"],
- "ip-cidr": ["ssrf", "private ip", "internal network", "ip allowlist", "ip range", "subnet", "block localhost", "user supplied url fetch"],
- "http-range": ["byte range", "range requests", "video seeking", "resume download", "partial content", "206"],
- "content-negotiation": ["accept header", "accept-language", "language selection", "response format", "locale negotiation"],
- "http-conditional": ["etag", "304 not modified", "if-none-match", "if-match", "optimistic concurrency", "412 precondition", "caching"],
- "cookies": ["set-cookie", "session cookie", "secure cookie", "samesite", "httponly", "cookie parsing"],
- "url-normalize": ["canonicalize url", "duplicate urls", "deduplicate links", "url equivalence", "clean url"],
- "string-similarity": ["fuzzy matching", "typo tolerance", "did you mean", "levenshtein", "edit distance", "similar names", "duplicate detection"],
- "rrule": ["recurring meeting", "repeat weekly", "every monday", "monthly on the first", "repeating schedule", "recurrence rule", "occurrences"],
- "base-encodings": ["base32", "base58", "base64url", "bitcoin address", "binary to text", "encode bytes"],
- "vcard": ["vcf", "contact card", "export contacts", "address book", "share contact"],
- "hashing": ["consistent hashing", "jump hash", "sharding", "bucket assignment", "fnv", "murmur", "non-cryptographic hash"],
- "feature-flags": ["gradual rollout", "percentage rollout", "a/b test", "feature toggle", "canary release", "kill switch"],
- "human-units": ["file size", "human readable bytes", "kb mb gb", "format bytes", "parse sizes", "relative time"],
- "line-diff": ["text diff", "unified diff", "compare files", "show changes", "patch file", "what changed", "version comparison of text"],
- "password-policy": ["password strength", "password rules", "weak passwords", "nist", "password requirements", "breached passwords"],
- "text-sanitize": ["invisible characters", "zero width", "control characters", "unicode cleanup", "trim whitespace", "normalize text input"],
- "oidc-token-verification": ["validate jwt", "verify id token", "jwt signature", "access token validation", "jwks endpoint", "token claims"],
- "saml-sso": ["saml", "enterprise sso", "okta", "azure ad", "entra id", "single sign-on", "identity provider", "assertion"],
- "webauthn-passkeys": ["passkeys", "passwordless", "fido2", "security key", "face id login", "touch id login", "biometric login"],
- "password-hashing": ["store passwords", "hash passwords", "password storage", "verify password", "salted hash", "securely store passwords"],
- "pdf-form-filling": ["fill pdf", "pdf form", "acroform", "pdf fields", "populate pdf"],
- "pdf-text-extraction": ["read pdf", "extract text", "parse pdf", "pdf to text", "pdf content"],
- "docx-documents": ["word document", "generate docx", "create word file", "report generation", "edit docx"],
- "rich-text-sanitization": ["sanitize html", "xss prevention", "user html", "allowlist html", "clean html", "wysiwyg content"]
+ "totp": [
+  "authenticator app",
+  "one-time code",
+  "verification code",
+  "two-step verification",
+  "two-factor authentication",
+  "6 digit code",
+  "rfc 6238"
+ ],
+ "oidc-pkce": [
+  "sign in with google",
+  "sign in with microsoft",
+  "social login",
+  "oauth login",
+  "authorization code flow",
+  "pkce",
+  "redirect to identity provider",
+  "openid connect"
+ ],
+ "recovery-codes": [
+  "backup codes",
+  "lost phone",
+  "lost device",
+  "emergency codes",
+  "account recovery codes"
+ ],
+ "calculator": [
+  "loan calculator",
+  "mortgage",
+  "interest",
+  "amortization",
+  "monthly payment",
+  "compound interest",
+  "roi calculator",
+  "bmi"
+ ],
+ "form-schema": [
+  "signup form",
+  "registration form",
+  "form fields",
+  "required fields",
+  "field validation",
+  "validate request body",
+  "form errors"
+ ],
+ "seo-files": [
+  "sitemap",
+  "sitemap xml",
+  "robots txt",
+  "search engine indexing",
+  "crawl rules"
+ ],
+ "structured-data": [
+  "json-ld",
+  "schema org",
+  "rich results",
+  "rich snippets",
+  "product markup",
+  "seo metadata"
+ ],
+ "utm-links": [
+  "campaign links",
+  "tracking parameters",
+  "marketing links",
+  "utm source",
+  "attribution links"
+ ],
+ "csv-safe": [
+  "csv export",
+  "excel export",
+  "formula injection",
+  "csv injection",
+  "spreadsheet export",
+  "download as csv"
+ ],
+ "money": [
+  "currency amounts",
+  "prices",
+  "floating point money",
+  "cents",
+  "invoice totals",
+  "currency formatting",
+  "split bill"
+ ],
+ "signed-cursors": [
+  "cursor pagination",
+  "keyset pagination",
+  "next page token",
+  "opaque cursor",
+  "infinite scroll api"
+ ],
+ "ics-events": [
+  "calendar invite",
+  "ics file",
+  "add to google calendar",
+  "outlook invite",
+  "event attachment",
+  "icalendar export"
+ ],
+ "ids": [
+  "unique id",
+  "uuid",
+  "uuidv7",
+  "ulid",
+  "sortable id",
+  "primary key",
+  "random id",
+  "nanoid"
+ ],
+ "retry-backoff": [
+  "retry failed requests",
+  "exponential backoff",
+  "jitter",
+  "transient errors",
+  "retry policy"
+ ],
+ "token-bucket": [
+  "rate limit",
+  "rate limiting",
+  "throttle",
+  "requests per minute",
+  "api quota",
+  "too many requests",
+  "429"
+ ],
+ "semver": [
+  "version numbers",
+  "compare versions",
+  "version ordering",
+  "version constraint",
+  "minimum version",
+  "release version"
+ ],
+ "cron-next": [
+  "cron expression",
+  "cron schedule",
+  "next run time",
+  "scheduled job",
+  "crontab"
+ ],
+ "wcag-contrast": [
+  "color contrast",
+  "accessibility contrast",
+  "text readability",
+  "a11y colors",
+  "contrast ratio"
+ ],
+ "geo": [
+  "gps",
+  "coordinates",
+  "lat lng",
+  "distance between points",
+  "great circle",
+  "nearest locations",
+  "store locator",
+  "miles",
+  "kilometers"
+ ],
+ "webhook-signature": [
+  "verify webhook",
+  "stripe webhook",
+  "github webhook",
+  "signed payload",
+  "hmac signature",
+  "webhook security"
+ ],
+ "check-digits": [
+  "credit card number",
+  "luhn",
+  "iban validation",
+  "barcode",
+  "isbn",
+  "ean",
+  "upc"
+ ],
+ "signed-urls": [
+  "expiring links",
+  "temporary download link",
+  "presigned url",
+  "share link with expiry",
+  "secure download"
+ ],
+ "polyline": [
+  "encoded polyline",
+  "google maps polyline",
+  "route geometry",
+  "directions path"
+ ],
+ "tile-math": [
+  "map tiles",
+  "tile coordinates",
+  "lat lng to tile",
+  "zoom level",
+  "tile x y z"
+ ],
+ "email-address": [
+  "validate email",
+  "email format",
+  "email syntax",
+  "normalize email",
+  "email validation"
+ ],
+ "iso-duration": [
+  "duration string",
+  "pt1h30m",
+  "pt30m",
+  "p1d",
+  "parse duration",
+  "format duration",
+  "video length"
+ ],
+ "geometry": [
+  "point in polygon",
+  "polygon area",
+  "geofence",
+  "line intersection",
+  "bounding box",
+  "inside region"
+ ],
+ "safe-redirect": [
+  "open redirect",
+  "return url",
+  "redirect after login",
+  "next parameter",
+  "redirect validation"
+ ],
+ "ip-cidr": [
+  "ssrf",
+  "private ip",
+  "internal network",
+  "ip allowlist",
+  "ip range",
+  "subnet",
+  "block localhost",
+  "user supplied url fetch"
+ ],
+ "http-range": [
+  "byte range",
+  "range requests",
+  "video seeking",
+  "resume download",
+  "partial content",
+  "206"
+ ],
+ "content-negotiation": [
+  "accept header",
+  "accept-language",
+  "language selection",
+  "response format",
+  "locale negotiation"
+ ],
+ "http-conditional": [
+  "etag",
+  "304 not modified",
+  "if-none-match",
+  "if-match",
+  "optimistic concurrency",
+  "412 precondition",
+  "caching"
+ ],
+ "cookies": [
+  "set-cookie",
+  "session cookie",
+  "secure cookie",
+  "samesite",
+  "httponly",
+  "cookie parsing"
+ ],
+ "url-normalize": [
+  "canonicalize url",
+  "duplicate urls",
+  "deduplicate links",
+  "url equivalence",
+  "clean url"
+ ],
+ "string-similarity": [
+  "fuzzy matching",
+  "typo tolerance",
+  "did you mean",
+  "levenshtein",
+  "edit distance",
+  "similar names",
+  "duplicate detection"
+ ],
+ "rrule": [
+  "recurring meeting",
+  "repeat weekly",
+  "every monday",
+  "monthly on the first",
+  "repeating schedule",
+  "recurrence rule",
+  "occurrences"
+ ],
+ "base-encodings": [
+  "base32",
+  "base58",
+  "base64url",
+  "bitcoin address",
+  "binary to text",
+  "encode bytes"
+ ],
+ "vcard": [
+  "vcf",
+  "contact card",
+  "export contacts",
+  "address book",
+  "share contact"
+ ],
+ "hashing": [
+  "consistent hashing",
+  "jump hash",
+  "sharding",
+  "bucket assignment",
+  "fnv",
+  "murmur",
+  "non-cryptographic hash"
+ ],
+ "feature-flags": [
+  "gradual rollout",
+  "percentage rollout",
+  "a/b test",
+  "feature toggle",
+  "canary release",
+  "kill switch"
+ ],
+ "human-units": [
+  "file size",
+  "human readable bytes",
+  "kb mb gb",
+  "format bytes",
+  "parse sizes",
+  "relative time"
+ ],
+ "line-diff": [
+  "text diff",
+  "unified diff",
+  "compare files",
+  "show changes",
+  "patch file",
+  "what changed",
+  "version comparison of text"
+ ],
+ "password-policy": [
+  "password strength",
+  "password rules",
+  "weak passwords",
+  "nist",
+  "password requirements",
+  "breached passwords"
+ ],
+ "text-sanitize": [
+  "invisible characters",
+  "zero width",
+  "control characters",
+  "unicode cleanup",
+  "trim whitespace",
+  "normalize text input"
+ ],
+ "oidc-token-verification": [
+  "validate jwt",
+  "verify id token",
+  "jwt signature",
+  "access token validation",
+  "jwks endpoint",
+  "token claims"
+ ],
+ "saml-sso": [
+  "saml",
+  "enterprise sso",
+  "okta",
+  "azure ad",
+  "entra id",
+  "single sign-on",
+  "identity provider",
+  "assertion"
+ ],
+ "webauthn-passkeys": [
+  "passkeys",
+  "passwordless",
+  "fido2",
+  "security key",
+  "face id login",
+  "touch id login",
+  "biometric login"
+ ],
+ "password-hashing": [
+  "store passwords",
+  "hash passwords",
+  "password storage",
+  "verify password",
+  "salted hash",
+  "securely store passwords"
+ ],
+ "pdf-form-filling": [
+  "fill pdf",
+  "pdf form",
+  "acroform",
+  "pdf fields",
+  "populate pdf"
+ ],
+ "pdf-text-extraction": [
+  "read pdf",
+  "extract text",
+  "parse pdf",
+  "pdf to text",
+  "pdf content"
+ ],
+ "docx-documents": [
+  "word document",
+  "generate docx",
+  "create word file",
+  "report generation",
+  "edit docx"
+ ],
+ "rich-text-sanitization": [
+  "sanitize html",
+  "xss prevention",
+  "user html",
+  "allowlist html",
+  "clean html",
+  "wysiwyg content"
+ ],
+ "mime-types": [
+  "what mime type is a file",
+  "content type for a file extension",
+  "mime type for extension",
+  "mime type of webp png svg",
+  "extension to content type lookup"
+ ],
+ "data-uri": [
+  "decode data uri",
+  "data: uri to bytes",
+  "parse data url",
+  "data uri bytes"
+ ],
+ "content-disposition": [
+  "download file name",
+  "set download filename",
+  "name of downloaded file",
+  "report download name"
+ ]
 }

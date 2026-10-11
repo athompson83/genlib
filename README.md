@@ -25,20 +25,20 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 62 (553 implementations, 551 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
+| [Capabilities](#capabilities-one-task-every-language) | 72 (643 implementations, 641 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
 | [Modules](#modules) | 13 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
-| [TypeScript recipes](#recipes-language-examples-and-templates) | 87 | 83 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
-| [Language examples](#recipes-language-examples-and-templates) | 513 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 97 | 93 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
+| [Language examples](#recipes-language-examples-and-templates) | 593 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
 | [Code-navigation tools](#find-code-without-reading-the-whole-repository) | 4 | Repository map, AST graph, task context and Mermaid diagram |
-| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1066 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
+| [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1159 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
-| [External resources](#resource-catalog) | 9754 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 579 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [External resources](#resource-catalog) | 9768 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
+| [Documentation sections](#jev-and-the-search-index) | 581 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -237,6 +237,16 @@ node "$GENLIB_ROOT/bin/genlib.mjs" capability inspect pdf-form-filling --languag
 | `natural-sort` Natural sort order (file2 before file10) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `file-signature` File type detection from magic bytes | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `color` Color conversion: hex, RGB, HSL and OKLCH | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `glob-match` Glob pattern matching for file paths | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `dotenv` .env file parsing | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `query-string` URL query string parse and build | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `mime-types` MIME type lookup by file extension | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `data-uri` data: URLs (RFC 2397) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `iso-week` ISO 8601 week dates | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `topo-sort` Topological sort and dependency order | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `link-header` HTTP Link header (pagination links) | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `content-disposition` Content-Disposition header for downloads | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
+| `cache-control` Cache-Control header parse and build | pure | yes | yes | yes | yes | yes | yes | yes | yes | yes | [capabilities.md](docs/capabilities.md) |
 | `oidc-token-verification` OIDC ID token / JWT verification | library | yes | yes | yes | yes | yes | yes | yes | yes | yes | [oidc-token-verification.md](docs/cookbook/oidc-token-verification.md) |
 | `saml-sso` SAML 2.0 SSO (service provider) | library | yes | yes | yes | yes | yes | yes | yes | - | - | [saml-sso.md](docs/cookbook/saml-sso.md) |
 | `webauthn-passkeys` WebAuthn passkeys | library | yes | yes | yes | yes | yes | yes | yes | - | yes | [webauthn-passkeys.md](docs/cookbook/webauthn-passkeys.md) |
@@ -301,10 +311,10 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | --- | ---: | --- | --- |
 | [`attachments.json`](resources/attachments.json) | 25 | [attachment-review.md](docs/resources/attachment-review.md) | animation, ui-components, design-inspiration, design-prompts, design-system-files |
 | [`ui-foundations.json`](resources/ui-foundations.json) | 18 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | ui-components, icons, data-ui |
-| [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 91 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, local-inference, vector-database, llm-abstraction |
+| [`catalog/ai-agents.json`](resources/catalog/ai-agents.json) | 104 | [ai-agents.md](docs/resources/ai-agents.md) | model-sdk, agent-framework, agent-skill-directory, local-inference, vector-database |
 | [`catalog/ai-learning.json`](resources/catalog/ai-learning.json) | 36 | [ai-learning.md](docs/resources/ai-learning.md) | learning, engineering-guides, diagram-tools, agent-frameworks, ai-apps |
 | [`catalog/backend-api.json`](resources/catalog/backend-api.json) | 95 | [backend-api.md](docs/resources/backend-api.md) | server-framework, orm, background-jobs, http-client, database |
-| [`catalog/business-tools.json`](resources/catalog/business-tools.json) | 868 | [business-tools.md](docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
+| [`catalog/business-tools.json`](resources/catalog/business-tools.json) | 867 | [business-tools.md](docs/resources/business-tools.md) | business-libraries, business-sdk, baas-backend, cms-publishing, ecommerce-pos |
 | [`catalog/chat-messaging.json`](resources/catalog/chat-messaging.json) | 263 | [chat-messaging.md](docs/resources/chat-messaging.md) | bot-framework, chat-sdk-library, chat-api-sdk, team-chat, encrypted-messenger |
 | [`catalog/dashboards.json`](resources/catalog/dashboards.json) | 801 | [dashboards.md](docs/resources/dashboards.md) | chart-library, admin-template, observability, terminal-dashboard, realtime-kpi |
 | [`catalog/data-docs-office.json`](resources/catalog/data-docs-office.json) | 90 | [data-docs-office.md](docs/resources/data-docs-office.md) | charts, pdf, docs-sites, spreadsheets, diagrams |
@@ -314,22 +324,22 @@ node scripts/verify-resources.mjs --file resources/catalog/ai-agents.json   # ne
 | [`catalog/frontend-web.json`](resources/catalog/frontend-web.json) | 89 | [frontend-web.md](docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
 | [`catalog/mapping-navigation.json`](resources/catalog/mapping-navigation.json) | 814 | [mapping-navigation.md](docs/resources/mapping-navigation.md) | geo-processing-libraries, location-sdks-apis, web-map-libraries, osm-data-tools, geocoding-search |
 | [`catalog/marketing-analytics-2.json`](resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | experimentation |
-| [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 900 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
+| [`catalog/marketing-analytics.json`](resources/catalog/marketing-analytics.json) | 901 | [marketing-analytics.md](docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
 | [`catalog/marketing-engagement-2.json`](resources/catalog/marketing-engagement-2.json) | 71 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | push, reviews |
-| [`catalog/marketing-engagement.json`](resources/catalog/marketing-engagement.json) | 900 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | email-marketing, crm, push, marketing-automation, forms-landing |
+| [`catalog/marketing-engagement.json`](resources/catalog/marketing-engagement.json) | 901 | [marketing-engagement.md](docs/resources/marketing-engagement.md) | email-marketing, crm, push, marketing-automation, forms-landing |
 | [`catalog/marketing-seo-2.json`](resources/catalog/marketing-seo-2.json) | 128 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo |
 | [`catalog/marketing-seo.json`](resources/catalog/marketing-seo.json) | 900 | [marketing-seo.md](docs/resources/marketing-seo.md) | seo, content, links-qr, ai-optimization |
 | [`catalog/media-automation.json`](resources/catalog/media-automation.json) | 89 | [media-automation.md](docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
-| [`catalog/open-source-tools-2.json`](resources/catalog/open-source-tools-2.json) | 342 | [open-source-tools.md](docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
+| [`catalog/open-source-tools-2.json`](resources/catalog/open-source-tools-2.json) | 343 | [open-source-tools.md](docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
 | [`catalog/open-source-tools.json`](resources/catalog/open-source-tools.json) | 900 | [open-source-tools.md](docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
 | [`catalog/readme-tools.json`](resources/catalog/readme-tools.json) | 55 | [readme-tools.md](docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/scheduling-calendar.json`](resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
-| [`catalog/social-media.json`](resources/catalog/social-media.json) | 796 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
+| [`catalog/social-media.json`](resources/catalog/social-media.json) | 795 | [social-media.md](docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **9754** | | |
+| **Total** | **9768** | | |
 <!-- genlib:catalog:end -->
 
 `verified` records had their source claims reviewed by hand. `partial` records were checked automatically on 2026-10-10: the repository exists, the license npm, PyPI or crates.io reports matches the record, and the homepage and docs links resolve. No external project is installed or tested by Genlib. Copyleft, source-available and fair-code projects are marked `license-review`. See the [resource index](docs/resources/README.md).

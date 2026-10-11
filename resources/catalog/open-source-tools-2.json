@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "startos",
@@ -24960,6 +24960,61 @@
         "metric": "npm-downloads-last-month",
         "value": 51
       }
+    },
+    {
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "verification": "verified",
+      "homepage": "https://figranium.dev",
+      "repository": "https://github.com/figranium/figranium",
+      "docs": "https://figranium.dev/docs",
+      "cautions": [
+        "GPL-3.0: keep it a separate service.",
+        "Respect site terms and robots rules when scraping."
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/figranium/figranium",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "install": [
+        "Self-host from the pinned release; review the license and upgrade notes."
+      ],
+      "id": "figranium",
+      "name": "Figranium",
+      "category": "browser-automation",
+      "kind": "application",
+      "integrationMode": "license-review",
+      "license": {
+        "id": "GPL-3.0",
+        "url": "https://github.com/figranium/figranium/blob/HEAD/LICENSE",
+        "scope": "GPL-3.0: run it as a separate service; copying its code into your app makes the app GPL."
+      },
+      "summary": "Self-hosted visual browser automation: build block-based scraping and browser workflows, trigger them over an HTTP task API, rotate proxies, schedule runs and export data.",
+      "useWhen": "Use to run scheduled or API-triggered browser workflows as a separate service instead of hand-writing Playwright jobs.",
+      "tags": [
+        "browser-automation",
+        "scraping",
+        "workflows",
+        "proxies",
+        "playwright",
+        "self-hosted"
+      ],
+      "projectTypes": [
+        "browser-automation",
+        "devops-infra"
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/open-source-tools.md"
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT\"/bin/genlib.mjs source figranium   # pinned clone, then: docker compose up -d (see its README)"
+      ]
     }
   ]
 }

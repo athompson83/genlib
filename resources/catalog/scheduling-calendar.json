@@ -20,7 +20,7 @@
       },
       "homepage": "https://cal.com",
       "repository": "https://github.com/calcom/cal.diy",
-      "docs": "https://cal.com/docs/core-features/embed",
+      "docs": "https://cal.com/help/embedding/adding-embed",
       "summary": "Official React wrapper to embed Cal.com booking pages inline, as a popup or floating button.",
       "useWhen": "Use instead of building booking pages, availability rules, reminders and calendar sync yourself (a self-hosted Calendly alternative).",
       "cautions": [
@@ -70,7 +70,7 @@
       ],
       "quickstart": [
         "npm i @calcom/embed-react@1.5.3",
-        "Docs: https://cal.com/docs/core-features/embed"
+        "Docs: https://cal.com/help/embedding/adding-embed"
       ],
       "languages": [
         "typescript"
@@ -174,7 +174,7 @@
       },
       "homepage": "https://cal.com/platform",
       "repository": "https://github.com/calcom/cal.diy",
-      "docs": "https://cal.com/docs/platform/atoms",
+      "docs": "https://cal.com/docs/atoms",
       "summary": "Official Cal.com Platform React components (booker, availability settings, calendar connect) for embedding Cal.com scheduling in your app.",
       "useWhen": "Use instead of building booking pages, availability rules, reminders and calendar sync yourself (a self-hosted Calendly alternative).",
       "cautions": [
@@ -224,7 +224,7 @@
       ],
       "quickstart": [
         "npm i @calcom/atoms@2.6.11",
-        "Docs: https://cal.com/docs/platform/atoms"
+        "Docs: https://cal.com/docs/atoms"
       ],
       "languages": [
         "typescript"
@@ -7436,7 +7436,7 @@
       },
       "homepage": null,
       "repository": "https://github.com/jquense/react-big-calendar",
-      "docs": "https://jquense.github.io/react-big-calendar/",
+      "docs": "https://github.com/jquense/react-big-calendar#readme",
       "summary": "Gcal/Outlook-like event calendar component for React with month, week, day and agenda views.",
       "useWhen": "Use in TypeScript/JavaScript for calendar views, recurrence rules (RRULE), iCalendar (ICS) files, CalDAV access or time-slot math instead of hand-written date logic.",
       "cautions": [
@@ -7481,7 +7481,7 @@
       ],
       "quickstart": [
         "npm i react-big-calendar@1.20.0",
-        "Docs: https://jquense.github.io/react-big-calendar/"
+        "Docs: https://github.com/jquense/react-big-calendar#readme"
       ],
       "languages": [
         "typescript"
@@ -13075,7 +13075,7 @@
       },
       "homepage": null,
       "repository": "https://github.com/rodrigo-arenas/pyworkforce",
-      "docs": "https://pyworkforce.readthedocs.io",
+      "docs": "https://github.com/rodrigo-arenas/pyworkforce#readme",
       "summary": "Python tools for workforce management: Erlang C staffing, shift scheduling and rostering with OR-Tools.",
       "useWhen": "Use for constraint-based scheduling (shifts, appointments, routes) instead of writing a solver.",
       "cautions": [
@@ -13119,7 +13119,7 @@
       ],
       "quickstart": [
         "pip install pyworkforce==0.5.4",
-        "Docs: https://pyworkforce.readthedocs.io"
+        "Docs: https://github.com/rodrigo-arenas/pyworkforce#readme"
       ],
       "languages": [
         "python"

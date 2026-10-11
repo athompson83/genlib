@@ -3048,6 +3048,12 @@
       },
       "install": [
         "Install the 'tldraw' npm package only after license review; pin the version and store the license key as a secret."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tldraw"
+        }
       ]
     },
     {

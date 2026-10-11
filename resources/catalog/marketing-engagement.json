@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "thewirecutter-paapi5-php-sdk",
@@ -10100,7 +10100,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 4094
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "erxes"
+        }
+      ]
     },
     {
       "id": "crm",
@@ -33789,7 +33795,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 7792
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "foundation-emails"
+        }
+      ]
     },
     {
       "id": "brevo-crates",
@@ -43386,7 +43398,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 26293
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "grapesjs"
+        }
+      ]
     },
     {
       "id": "collecthor-surveyjs-parser",
@@ -44011,7 +44029,7 @@
       },
       "homepage": "https://webstudio.is",
       "repository": "https://github.com/webstudio-is/webstudio",
-      "docs": null,
+      "docs": "https://docs.webstudio.is",
       "summary": "Open source website builder and Webflow alternative. Webstudio is an advanced visual builder that connects to any headless CMS, supports all CSS properties, and can be hosted anywhere, including with",
       "useWhen": "Use for lead-capture forms and landing pages (page builder) instead of building them from scratch.",
       "cautions": [
@@ -44049,7 +44067,12 @@
       "popularity": {
         "metric": "github-stars",
         "value": 9049
-      }
+      },
+      "quickstart": [
+        "npx webstudio@0.305.0 link   # Webstudio CLI: link a Webstudio Cloud project, then sync and build it locally",
+        "npx webstudio@0.305.0 sync && npx webstudio@0.305.0 build",
+        "Docs: https://docs.webstudio.is"
+      ]
     },
     {
       "id": "heyform",
@@ -44232,6 +44255,7 @@
         "Self-host or adopt from the repository; pin a release and review its license and upgrade notes."
       ],
       "quickstart": [
+        "npx @plasmicapp/cli@0.1.381 sync --projects <PROJECT_ID>   # Plasmic CLI: generate code for a Plasmic project into this app",
         "git clone --depth 1 https://github.com/plasmicapp/plasmic && cd plasmic && docker compose -f docker-compose.yml up -d",
         "Docs: https://www.plasmic.app"
       ],
@@ -44846,7 +44870,7 @@
     },
     {
       "id": "builder",
-      "name": "builder",
+      "name": "Frappe Builder",
       "category": "forms-landing",
       "platforms": [
         "server",
@@ -44860,20 +44884,24 @@
         "url": null,
         "scope": "MIT (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://frappe.io/builder",
+      "homepage": "https://builder.frappe.io",
       "repository": "https://github.com/frappe/builder",
       "docs": null,
-      "summary": "Craft beautiful websites effortlessly with an intuitive visual builder and publish them instantly",
+      "summary": "Low-code visual website builder on the Frappe framework: responsive pages, structured content, dynamic data, analytics and one-click publishing.",
       "useWhen": "Use for lead-capture forms and landing pages (page builder) instead of building them from scratch.",
       "cautions": [
         "Pin the version and review the changelog before upgrading."
       ],
       "tags": [
-        "marketing",
         "forms-landing",
+        "frappe",
+        "github",
+        "low-code",
+        "marketing",
         "page-builder",
         "python",
-        "github"
+        "visual-builder",
+        "website-builder"
       ],
       "projectTypes": [
         "marketing-site",
@@ -44900,7 +44928,10 @@
       "popularity": {
         "metric": "github-stars",
         "value": 2426
-      }
+      },
+      "quickstart": [
+        "bench get-app builder https://github.com/frappe/builder && bench --site <site> install-app builder   # inside a Frappe bench"
+      ]
     },
     {
       "id": "exit-intent-js",
@@ -59628,7 +59659,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 40132
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "novu"
+        }
+      ]
     },
     {
       "id": "firebase-cloud-messaging-http-v1-api",
@@ -60377,6 +60414,58 @@
         "metric": "crates-downloads-total",
         "value": 17613
       }
+    },
+    {
+      "platforms": [
+        "web",
+        "node"
+      ],
+      "verification": "verified",
+      "homepage": "https://ycode.com",
+      "repository": "https://github.com/ycode/ycode",
+      "docs": "https://docs.ycode.com",
+      "cautions": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/ycode/ycode",
+          "title": "Upstream repository and license"
+        }
+      ],
+      "install": [
+        "Self-host from the pinned release; review the license and upgrade notes."
+      ],
+      "id": "ycode",
+      "name": "Ycode",
+      "category": "forms-landing",
+      "kind": "application",
+      "integrationMode": "selective-copy",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/ycode/ycode/blob/HEAD/LICENSE",
+        "scope": "MIT."
+      },
+      "summary": "Open-source visual website builder and CMS for building and managing sites without code; self-host it or use Ycode Cloud, and connect AI agents to a project as a custom MCP connector.",
+      "useWhen": "Use for a marketing site or CMS that non-developers edit visually, self-hosted.",
+      "tags": [
+        "page-builder",
+        "cms",
+        "visual-builder",
+        "website-builder",
+        "mcp",
+        "no-code"
+      ],
+      "projectTypes": [
+        "marketing-site",
+        "web-app"
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/marketing-engagement.md"
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT\"/bin/genlib.mjs source ycode   # pinned clone, then follow https://docs.ycode.com/docs/getting-started/installation"
+      ]
     }
   ]
 }

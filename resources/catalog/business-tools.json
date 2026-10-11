@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "firebaseadmin",
@@ -31695,75 +31695,6 @@
       "popularity": {
         "metric": "pypi-downloads-last-month",
         "value": 47584
-      }
-    },
-    {
-      "id": "pyrfc",
-      "name": "PyRFC (SAP)",
-      "category": "business-sdk",
-      "platforms": [
-        "server",
-        "python"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "Apache-2.0",
-        "url": null,
-        "scope": "Apache-2.0 (from registry metadata or the LICENSE file); keep the license notice when redistributing."
-      },
-      "homepage": null,
-      "repository": "https://github.com/SAP/PyRFC",
-      "docs": null,
-      "summary": "Python bindings for SAP NetWeaver RFC SDK",
-      "useWhen": "Use the official SDK in Python for Salesforce, HubSpot, Slack, Notion, Shopify, DocuSign and similar services instead of raw HTTP and OAuth handling.",
-      "cautions": [
-        "Talks to a commercial service: needs an account and API keys; keep keys on the trusted server and use a sandbox while developing."
-      ],
-      "tags": [
-        "business",
-        "business-sdk",
-        "python",
-        "pypi",
-        "sap",
-        "sdk",
-        "rfc",
-        "abap"
-      ],
-      "projectTypes": [
-        "saas",
-        "api-backend"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://github.com/SAP/PyRFC",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/business-tools.md"
-      },
-      "install": [
-        "Run the install command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "pypi",
-          "name": "pyrfc"
-        }
-      ],
-      "quickstart": [
-        "pip install pyrfc==3.3.1"
-      ],
-      "languages": [
-        "python"
-      ],
-      "popularity": {
-        "metric": "pypi-downloads-last-month",
-        "value": 47109
       }
     },
     {

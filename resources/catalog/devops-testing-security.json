@@ -691,6 +691,12 @@
       },
       "install": [
         "Install with the project's package manager or official installer, commit the lockfile and pin the reviewed version."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "mise"
+        }
       ]
     },
     {

@@ -49,7 +49,7 @@ All records are `verification: "partial"`: identity, links and registry licenses
 | Custom video controls, captions, adaptive streaming and player accessibility | `videojs` | Widely used open-source HTML5 video player with HLS/DASH support, plugins and skins. | Apache-2.0 |
 | HLS playlist parsing and adaptive bitrate switching | `hlsjs` | JavaScript HLS client that plays HTTP Live Streaming in browsers via Media Source Extensions. | Apache-2.0 |
 | DASH/HLS playback with Widevine/PlayReady/FairPlay DRM | `shaka-player` | JavaScript player for adaptive DASH and HLS with DRM (EME) and offline storage. | Apache-2.0 |
-| Styled, accessible media controls for simple video or audio embeds | `plyr` | Lightweight, accessible HTML5/YouTube/Vimeo media player with customizable controls. | MIT |
+| Styled, accessible media controls for simple video or audio embeds | `videojs-10` | Video.js 10 player elements and skins for HTML, React, YouTube and Vimeo; replaces Plyr, which is deprecated upstream. | Apache-2.0 |
 | Building your own ingest/relay server for cameras, OBS streams or WebRTC playback | `mediamtx` | Ready-to-use real-time media server and proxy for RTSP, RTMP, WebRTC, SRT and HLS. | MIT |
 
 ## Audio and speech

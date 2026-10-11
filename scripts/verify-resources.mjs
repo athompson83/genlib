@@ -2,6 +2,8 @@
 // Network check for resource records. Read-only: confirms repositories exist (git ls-remote),
 // compares registry-declared licenses with the recorded license, and checks that links resolve.
 // It downloads no packages and executes no upstream code. Not part of the offline test suite.
+// Also flags deprecated npm packages, inactive or yanked PyPI releases and, with --archived and a reachable
+// GitHub API, archived repositories.
 import { execFile } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { promisify } from 'node:util';
@@ -20,13 +22,18 @@ async function json(url) {
   return response.json();
 }
 
+// Outdated packages: npm marks deprecated releases; PyPI projects declare "Development Status :: 7 - Inactive"
+// or yank the release. Recorded per package so a report lists what to replace.
+const deprecation = new Map();
 async function registryLicense({ ecosystem, name }) {
   if (ecosystem === 'npm') {
     const data = await json('https://registry.npmjs.org/' + name.replace('/', '%2F') + '/latest');
+    if (data.deprecated) deprecation.set(ecosystem + ':' + name, String(data.deprecated).slice(0, 160));
     return typeof data.license === 'string' ? data.license : data.license?.type ?? null;
   }
   if (ecosystem === 'pypi') {
     const { info } = await json('https://pypi.org/pypi/' + encodeURIComponent(name) + '/json');
+    if (info.yanked || (info.classifiers ?? []).includes('Development Status :: 7 - Inactive')) deprecation.set(ecosystem + ':' + name, info.yanked ? 'yanked: ' + (info.yanked_reason ?? '') : 'Development Status :: 7 - Inactive');
     if (info.license_expression) return info.license_expression;
     const classifier = (info.classifiers ?? []).filter(item => item.startsWith('License :: OSI Approved :: ')).map(item => item.split(' :: ').at(-1));
     return classifier.join(' OR ') || (info.license && info.license.length < 80 ? info.license : null);
@@ -48,6 +55,17 @@ function licenseMatches(recorded, declared) {
   alias(a); alias(b);
   const families = ['mit', 'apache', 'bsd', 'isc', 'mpl', 'gpl', 'lgpl', 'agpl', 'unlicense', 'zlib', 'cc', 'epl', 'psf', 'python', 'elastic', 'sspl', 'busl', 'bsl'];
   return families.some(family => a.has(family) && b.has(family)) || [...b].some(token => token.length > 2 && a.has(token));
+}
+
+// Archived GitHub repositories, when the GitHub API is reachable (set GITHUB_TOKEN in CI to avoid rate limits).
+async function archived(url) {
+  const match = /^https:\/\/github\.com\/([^/]+\/[^/#?]+)/.exec(url ?? '');
+  if (!match) return undefined;
+  try {
+    const response = await fetch('https://api.github.com/repos/' + match[1].replace(/\.git$/, ''), { headers: { 'user-agent': 'genlib-resource-verifier', accept: 'application/vnd.github+json', ...(process.env.GITHUB_TOKEN ? { authorization: 'Bearer ' + process.env.GITHUB_TOKEN } : {}) }, signal: AbortSignal.timeout(TIMEOUT) });
+    if (!response.ok) return undefined;
+    return Boolean((await response.json()).archived);
+  } catch { return undefined; }
 }
 
 async function repositoryExists(url) {
@@ -73,6 +91,7 @@ async function verify(item) {
   const report = { id: item.id, problems: [] };
   report.repository = await repositoryExists(item.repository);
   if (report.repository === false) report.problems.push('repository-missing');
+  if (report.repository && process.argv.includes('--archived') && await archived(item.repository)) report.problems.push('repository-archived');
   for (const field of ['homepage', 'docs']) {
     if (item[field] && item[field] !== item.repository && (await linkResolves(item[field])) === false) report.problems.push(field + '-unreachable');
   }
@@ -86,6 +105,8 @@ async function verify(item) {
       const declared = await registryLicense(entry);
       const match = declared === undefined ? null : licenseMatches(item.license.id, declared);
       report.packages.push({ ...entry, declared, match });
+      const outdated = deprecation.get(entry.ecosystem + ':' + entry.name);
+      if (outdated) report.problems.push('package-deprecated:' + entry.name + ':' + outdated);
       if (declared === null) report.problems.push('license-undeclared:' + entry.name);
       else if (match === false) report.problems.push('license-mismatch:' + entry.name + ':' + declared);
     } catch (error) {

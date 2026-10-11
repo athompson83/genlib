@@ -6453,7 +6453,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 2656
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "llms-txt"
+        }
+      ]
     },
     {
       "id": "seanmozeik-yake-ts",
@@ -7814,7 +7820,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 1030
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "geo-optimizer-skill"
+        }
+      ]
     },
     {
       "id": "dariodario-geochecker",
@@ -8886,7 +8898,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 146
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "docusaurus-plugin-llms"
+        }
+      ]
     },
     {
       "id": "html-to-markdown",
@@ -9139,7 +9157,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 16
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "llms-txt-action"
+        }
+      ]
     },
     {
       "id": "satori",
@@ -14542,7 +14566,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 20549
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "wagtail"
+        }
+      ]
     },
     {
       "id": "backstage-laravel-og-image",
@@ -14738,7 +14768,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 19423
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "decap-cms"
+        }
+      ]
     },
     {
       "id": "motion-canvas",
@@ -15119,7 +15155,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 13825
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "tinacms"
+        }
+      ]
     },
     {
       "id": "ts-ghost-content-api",
@@ -45100,7 +45142,7 @@
         "url": null,
         "scope": "Apache-2.0 (from registry metadata); keep the license notice when redistributing."
       },
-      "homepage": "https://www.allie.chat/",
+      "homepage": null,
       "repository": null,
       "docs": "https://www.allie.chat/",
       "summary": "The Tcp assembly for Allie.Chat, an RSS messaging and routing platform to consolidate messages from multiple providers including Twitch, Discord, Websocket and Tcp.",

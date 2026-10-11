@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "facebook-nodejs-business-sdk",
@@ -21867,79 +21867,6 @@
       }
     },
     {
-      "id": "snoowrap",
-      "name": "snoowrap",
-      "category": "social-media",
-      "platforms": [
-        "node",
-        "web"
-      ],
-      "kind": "package",
-      "integrationMode": "package",
-      "verification": "verified",
-      "license": {
-        "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata); keep the license notice when redistributing."
-      },
-      "homepage": "https://github.com/not-an-aardvark/snoowrap",
-      "repository": "https://github.com/not-an-aardvark/snoowrap",
-      "docs": null,
-      "summary": "A JavaScript wrapper for the reddit API",
-      "useWhen": "Use to publish, read or embed social media (reddit client) from JavaScript through the official API or protocol instead of a hand-written client.",
-      "cautions": [
-        "Platform APIs change often and need app review, OAuth scopes and rate limits; never store user tokens in client code."
-      ],
-      "tags": [
-        "social-media",
-        "reddit-client",
-        "javascript",
-        "npm",
-        "reddit"
-      ],
-      "projectTypes": [
-        "marketing-site",
-        "saas",
-        "media-creative",
-        "web-app"
-      ],
-      "attachments": [],
-      "sources": [
-        {
-          "url": "https://www.npmjs.com/package/snoowrap",
-          "title": "npm registry record (license, versions, downloads)"
-        },
-        {
-          "url": "https://github.com/not-an-aardvark/snoowrap",
-          "title": "Upstream repository"
-        }
-      ],
-      "genlib": {
-        "module": null,
-        "guide": "docs/resources/social-media.md"
-      },
-      "install": [
-        "Install with the package command below, pin the version, then read the docs."
-      ],
-      "packages": [
-        {
-          "ecosystem": "npm",
-          "name": "snoowrap"
-        }
-      ],
-      "quickstart": [
-        "npm install snoowrap",
-        "Docs: https://github.com/not-an-aardvark/snoowrap"
-      ],
-      "languages": [
-        "typescript"
-      ],
-      "popularity": {
-        "metric": "npm-downloads-month",
-        "value": 72079
-      }
-    },
-    {
       "id": "kurigram",
       "name": "Kurigram",
       "category": "social-media",
@@ -37106,7 +37033,13 @@
       "popularity": {
         "metric": "github-stars",
         "value": 5728
-      }
+      },
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "red-discordbot"
+        }
+      ]
     },
     {
       "id": "react-share-social",

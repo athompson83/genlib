@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-10-10",
+  "reviewedAt": "2026-10-11",
   "items": [
     {
       "id": "sharp",
@@ -1568,6 +1568,12 @@
       },
       "install": [
         "Review the Remotion License, then install the remotion packages with npm and commit the lockfile."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "remotion"
+        }
       ]
     },
     {
@@ -2073,8 +2079,8 @@
       ]
     },
     {
-      "id": "plyr",
-      "name": "Plyr",
+      "id": "videojs-10",
+      "name": "Video.js 10",
       "category": "video-players",
       "platforms": [
         "web"
@@ -2083,24 +2089,27 @@
       "integrationMode": "package",
       "verification": "partial",
       "license": {
-        "id": "MIT",
-        "url": "https://github.com/sampotts/plyr/blob/HEAD/LICENSE.md",
-        "scope": "MIT."
+        "id": "Apache-2.0",
+        "url": "https://github.com/videojs/v10/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0."
       },
-      "homepage": "https://plyr.io",
-      "repository": "https://github.com/sampotts/plyr",
-      "docs": "https://github.com/sampotts/plyr#readme",
-      "summary": "Lightweight, accessible HTML5/YouTube/Vimeo media player with customizable controls.",
+      "homepage": "https://videojs.org",
+      "repository": "https://github.com/videojs/v10",
+      "docs": "https://videojs.org",
+      "summary": "Accessible HTML5 video and audio player as custom elements and skins (Video.js 10), with React bindings and YouTube, Vimeo and other providers; the successor Plyr now recommends.",
       "useWhen": "Use instead of hand-writing styled, accessible media controls for simple video or audio embeds.",
       "cautions": [
         "Release cadence is slow; pair with hls.js for HLS and test on target browsers.",
         "YouTube/Vimeo embeds are subject to those platforms' terms and tracking."
       ],
       "tags": [
-        "video",
+        "accessibility",
         "audio",
+        "audio-player",
         "player",
-        "accessibility"
+        "video",
+        "video-player",
+        "videojs"
       ],
       "projectTypes": [
         "media-creative",
@@ -2109,7 +2118,11 @@
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "plyr"
+          "name": "@videojs/html"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@videojs/react"
         }
       ],
       "attachments": [],
@@ -2129,6 +2142,10 @@
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
+      ],
+      "quickstart": [
+        "npm install @videojs/html@10.0.1   # or @videojs/react@10.0.1 for React",
+        "Docs: https://videojs.org"
       ]
     },
     {
@@ -4680,6 +4697,16 @@
       },
       "install": [
         "Use the MIT SDK (@mendable/firecrawl-js or firecrawl-py) against the hosted API, or review AGPL before self-hosting."
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "firecrawl"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "firecrawl"
+        }
       ]
     },
     {
@@ -4914,6 +4941,12 @@
       },
       "install": [
         "Review the license; self-host the official Docker image pinned to a version, or use n8n Cloud."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "n8n"
+        }
       ]
     },
     {

@@ -176,3 +176,23 @@ Start with the provider's official SDK and a direct tool-calling loop; add a fra
 | Agent skill/CLI that maps a project (code via local tree-sitter, plus docs and media) into a queryable knowledge graph | `graphify` | Use instead of repeated grep-and-read passes; agents query graph.json and GRAPH_REPORT.md rather than re-reading files, cutting context tokens | Apache-2.0 |
 | MCP coding-agent toolkit providing language-server-backed semantic symbol search and editing | `serena` | Use instead of whole-file reads; symbol-level retrieval and edits let agents work with far fewer context tokens | MIT |
 | Terminal AI pair programmer known for its tree-sitter repository map and edit formats | `aider` | Use as a reference for repo-map ranking and diff edit formats instead of designing agent code-context strategies from scratch | Apache-2.0 |
+
+## Skill and agent directories
+
+Genlib's own indexes come first: `genlib skill find`, `genlib mcp find` and `genlib find` return commit-pinned installs. These directories help when those come up empty. Their listings are unreviewed third-party code, so read SKILL.md, scripts and the license, and pin the commit.
+
+| Record | What it offers |
+|---|---|
+| `claudecode-directory` | 140,000+ Claude Code resources, searchable by task |
+| `cult-of-claude` | 32,000+ skills and 17,000+ agents with source and install command |
+| `claude-marketplace-net` | 4,500+ skills, 900+ MCP servers, plugins |
+| `claude-marketplaces-com` | Skill library showing each install command |
+| `skills-playground` | Skills and MCP servers by use case |
+| `skills-sh` | Cross-agent skill directory and the leaderboard behind Genlib's skill ranking |
+| `marketingskills-sh` | Individual marketing skills |
+| `openclaudia` | 78 marketing skills, indexed as `openclaudia-*` skills |
+| `awesome-claude-code-dykyi-roman` | Map of MCP, agents, memory, plugins and automation |
+| `claude-md-templates` | CLAUDE.md/AGENTS.md starters (MIT, pinned raw file) |
+| `awesome-seedance` | Seedance video prompt library; 15 skills as `seedance-*` |
+
+Two directory sites from a 2026-10-11 source list were left out: `claudedirectory.org` returned HTTP 402 and `marketingskills.net` did not respond. SWE-agent is listed as superseded; use `mini-swe-agent` (`pip install mini-swe-agent==2.4.6`).

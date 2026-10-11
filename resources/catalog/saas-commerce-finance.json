@@ -4192,6 +4192,12 @@
       },
       "install": [
         "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "directus"
+        }
       ]
     },
     {
@@ -4365,6 +4371,12 @@
       },
       "install": [
         "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ghost"
+        }
       ]
     },
     {
@@ -4640,6 +4652,12 @@
       },
       "install": [
         "Self-host from the official container image or release; pin the image tag and review the upgrade notes before each upgrade."
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "nocodb"
+        }
       ]
     },
     {

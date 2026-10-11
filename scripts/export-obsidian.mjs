@@ -9,6 +9,8 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, lstatSync } from 'n
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadSources, searchEntries } from '../lib/discover.mjs';
+// Record text is data: brackets in a description ("[[Demo]](url)") must not become Obsidian wikilinks.
+const plain = text => String(text ?? '').replace(/\[\[/g, '[\u200b[').replace(/\]\]/g, ']\u200b]');
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const args = process.argv.slice(2);
@@ -49,7 +51,7 @@ for (const entry of entries) {
   const props = { type: entry.type, id: entry.id, ...(entry.languages?.length ? { languages: entry.languages } : {}), ...(entry.license ? { license: entry.license } : {}), tags: [`genlib/${entry.type}`] };
   const related = [`Type: [[Types/${entry.type}]]`, ...(entry.type === 'resource' ? [`Category: [[Categories/${safe(entry.labels[2])}]]`] : []),
     ...(entry.languages ?? []).map(language => `Language: [[Languages/${safe(language)}]]`)];
-  write(entryName(entry) + '.md', note(props, `# ${entry.title ?? entry.id}\n\n${entry.summary ?? ''}\n\n## Next\n\n\`\`\`sh\n${entry.next.join('\n')}\n\`\`\`\n\n${related.join('  \n')}`));
+  write(entryName(entry) + '.md', note(props, `# ${entry.title ?? entry.id}\n\n${plain(entry.summary)}\n\n## Next\n\n\`\`\`sh\n${entry.next.join('\n')}\n\`\`\`\n\n${related.join('  \n')}`));
 }
 const moc = (folder, key, links) => write(`${folder}/${safe(key)}.md`, note({ kind: folder.toLowerCase(), key, count: links.length, tags: [`genlib/${folder.toLowerCase()}`] },
   `# ${key}\n\n${links.length} entries. Back to [[Genlib]].\n\n${links.sort().map(link => '- ' + link).join('\n')}`));

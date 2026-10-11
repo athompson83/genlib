@@ -3755,6 +3755,670 @@
       }
     },
     {
+      "id": "glob-match",
+      "title": "Glob pattern matching for file paths",
+      "tier": "pure",
+      "summary": "Match /-separated paths against glob patterns: * ? [classes] across one segment, ** across directories, {a,b} alternatives and hidden-file rules, without exponential blowup.",
+      "caveat": "Paths use / only and matching is case-sensitive; normalize Windows paths and case before matching.",
+      "terms": [
+        "glob",
+        "glob pattern",
+        "wildcard path",
+        "gitignore style pattern",
+        "file pattern",
+        "minimatch",
+        "fnmatch",
+        "path filter",
+        "double star",
+        "include exclude files"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "glob-match",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-glob-match",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-glob-match",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-glob-match",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-glob-match",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-glob-match",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-glob-match",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-glob-match",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-glob-match",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "dotenv",
+      "title": ".env file parsing",
+      "tier": "pure",
+      "summary": "Parse .env files: comments, export prefix, single and double quotes, multi-line values, escapes and ${VAR:-default} expansion, with line-numbered errors.",
+      "caveat": "Parses values only: no $(command) substitution, and expansion covers ${NAME} and ${NAME:-default}, not other shell forms.",
+      "terms": [
+        "dotenv",
+        ".env file",
+        "env file",
+        "environment variables file",
+        "load env",
+        "parse env",
+        "config from env",
+        "env vars"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "dotenv-parse",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-dotenv",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-dotenv",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-dotenv",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-dotenv",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-dotenv",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-dotenv",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-dotenv",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-dotenv",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "query-string",
+      "title": "URL query string parse and build",
+      "tier": "pure",
+      "summary": "Parse and build application/x-www-form-urlencoded query strings exactly as browsers do (WHATWG): ordered pairs, repeated keys, + for spaces and UTF-8 percent-encoding.",
+      "caveat": "Flat name/value pairs as browsers send them; nested forms such as a[b]=c are not expanded into objects.",
+      "terms": [
+        "query string",
+        "urlencoded",
+        "form urlencoded",
+        "url parameters",
+        "search params",
+        "parse query",
+        "build query string",
+        "repeated params",
+        "url query"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "query-string",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-query-string",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-query-string",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-query-string",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-query-string",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-query-string",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-query-string",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-query-string",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-query-string",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "mime-types",
+      "title": "MIME type lookup by file extension",
+      "tier": "pure",
+      "summary": "Map file names to MIME types and back for about 80 common web, media, font, archive and office formats, and build Content-Type values with charset for text types.",
+      "caveat": "Looks at the file name only; check the bytes with file-signature before trusting an upload's type.",
+      "terms": [
+        "mime type",
+        "content type",
+        "file extension",
+        "mime lookup",
+        "media type",
+        "extension to mime",
+        "mime to extension",
+        "content-type header",
+        "file type",
+        "what mime type is a file",
+        "content type for a file extension",
+        "mime type for extension",
+        "mime type of webp png svg",
+        "extension to content type lookup"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "mime-types",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-mime-types",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-mime-types",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-mime-types",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-mime-types",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-mime-types",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-mime-types",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-mime-types",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-mime-types",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "data-uri",
+      "title": "data: URLs (RFC 2397)",
+      "tier": "pure",
+      "summary": "Parse and build data: URLs with media type, parameters, base64 or percent-encoded bodies and strict base64 validation, for inline images and small files.",
+      "terms": [
+        "data uri",
+        "data url",
+        "base64 image",
+        "inline image",
+        "rfc 2397",
+        "embed file in html",
+        "data:image/png",
+        "decode data uri",
+        "data: uri to bytes",
+        "parse data url",
+        "data uri bytes"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "data-uri",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-data-uri",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-data-uri",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-data-uri",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-data-uri",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-data-uri",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-data-uri",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-data-uri",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-data-uri",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "iso-week",
+      "title": "ISO 8601 week dates",
+      "tier": "pure",
+      "summary": "Convert dates to and from ISO week dates (2026-W41-7): week-numbering year, week number, weekday, weeks in a year, parse and format, years 1 to 9999.",
+      "terms": [
+        "iso week",
+        "week number",
+        "week of year",
+        "iso 8601 week",
+        "calendar week",
+        "kw",
+        "weekly reports",
+        "week date"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "iso-week",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-iso-week",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-iso-week",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-iso-week",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-iso-week",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-iso-week",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-iso-week",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-iso-week",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-iso-week",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "topo-sort",
+      "title": "Topological sort and dependency order",
+      "tier": "pure",
+      "summary": "Order tasks so every dependency comes first (Kahn, deterministic), group them into parallel levels and report a cycle path when the graph has one.",
+      "terms": [
+        "topological sort",
+        "dependency order",
+        "dependency graph",
+        "task ordering",
+        "build order",
+        "dag",
+        "cycle detection",
+        "run in parallel levels",
+        "migration order"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "topo-sort",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-topo-sort",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-topo-sort",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-topo-sort",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-topo-sort",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-topo-sort",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-topo-sort",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-topo-sort",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-topo-sort",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "link-header",
+      "title": "HTTP Link header (pagination links)",
+      "tier": "pure",
+      "summary": "Parse and format RFC 8288 Link headers (rel=next/last pagination as in the GitHub API), with quoted values, RFC 8187 encoded titles and rel lookup.",
+      "terms": [
+        "link header",
+        "pagination links",
+        "rel next",
+        "rfc 8288",
+        "api pagination",
+        "github pagination",
+        "next page url",
+        "web linking"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "link-header",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-link-header",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-link-header",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-link-header",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-link-header",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-link-header",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-link-header",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-link-header",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-link-header",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "content-disposition",
+      "title": "Content-Disposition header for downloads",
+      "tier": "pure",
+      "summary": "Build and parse Content-Disposition headers (RFC 6266 and 8187): safe ASCII fallback plus UTF-8 filename*, and sanitized filenames from untrusted headers.",
+      "caveat": "The sanitized filename is safe in a header, not as a storage path: store uploads under your own generated name.",
+      "terms": [
+        "content-disposition",
+        "download filename",
+        "attachment header",
+        "file download header",
+        "filename*",
+        "utf-8 filename download",
+        "save as filename",
+        "inline attachment",
+        "download file name",
+        "set download filename",
+        "name of downloaded file",
+        "report download name"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "content-disposition",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-content-disposition",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-content-disposition",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-content-disposition",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-content-disposition",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-content-disposition",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-content-disposition",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-content-disposition",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-content-disposition",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "cache-control",
+      "title": "Cache-Control header parse and build",
+      "tier": "pure",
+      "summary": "Parse and format Cache-Control directives (RFC 9111) into typed values and compute freshness lifetime for private and shared caches.",
+      "caveat": "Parses directives and the freshness lifetime; full HTTP caching also needs Age, Expires, Vary and validators (see http-conditional).",
+      "terms": [
+        "cache-control",
+        "cache header",
+        "max-age",
+        "s-maxage",
+        "http caching",
+        "no-store",
+        "cache directives",
+        "stale-while-revalidate",
+        "cdn caching"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "cache-control",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-cache-control",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-cache-control",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-cache-control",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-cache-control",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-cache-control",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-cache-control",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-cache-control",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-cache-control",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",
