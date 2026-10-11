@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/athompson83/genlib/schemas/steps.schema.json",
+  "title": "genlib adoption steps (capability inspect --language --json, per implementation)",
+  "type": "object",
+  "required": [
+    "steps",
+    "verify",
+    "onFailure"
+  ],
+  "properties": {
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "cwd",
+          "purpose"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "copy",
+              "install",
+              "integrate",
+              "test",
+              "check"
+            ]
+          },
+          "run": {
+            "type": "string"
+          },
+          "cwd": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "verify": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "test",
+        "check",
+        null
+      ],
+      "description": "the step kind that is the acceptance check"
+    },
+    "onFailure": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

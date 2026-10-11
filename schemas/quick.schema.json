@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/athompson83/genlib/schemas/quick.schema.json",
+  "title": "genlib quick result",
+  "type": "object",
+  "required": [
+    "query",
+    "best",
+    "next",
+    "alternatives"
+  ],
+  "properties": {
+    "query": {
+      "type": "string"
+    },
+    "best": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "type:id of the best match, or null when nothing fits"
+    },
+    "status": {
+      "enum": [
+        "no-match"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fit": {
+      "enum": [
+        "compatible",
+        "review",
+        "incompatible"
+      ]
+    },
+    "review": {
+      "type": "string"
+    },
+    "caveat": {
+      "type": "string"
+    },
+    "next": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "commands to run, in order"
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outline": {
+      "type": "string"
+    },
+    "weak": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "incidental word matches shown with a no-match"
+    },
+    "hint": {
+      "type": "string"
+    },
+    "fallback": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "unreviewed search commands outside the catalog"
+    }
+  }
+}
