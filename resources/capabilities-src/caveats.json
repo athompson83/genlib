@@ -1,0 +1,13 @@
+{
+ "line-diff": "Valid, minimal unified diffs, but not byte-identical to GNU diff -u; call the system diff when exact GNU output is required.",
+ "slugify": "Transliterates Latin letters U+00C0-U+017F only; other scripts and emoji are dropped, so keep an id-based fallback for non-Latin titles.",
+ "rrule": "Matches python-dateutil for FREQ DAILY to YEARLY with INTERVAL, COUNT, UNTIL, BYDAY, BYMONTHDAY and BYMONTH, in UTC; BYSETPOS, BYHOUR/BYMINUTE/BYSECOND, WKST and EXDATE are rejected.",
+ "json-patch": "createPatch compares arrays by index: always correct, but not minimal when items are inserted or moved.",
+ "string-similarity": "O(n*m) time; cap input length for user-supplied strings.",
+ "hashing": "Not cryptographic: use HMAC or a password hash for anything an attacker can influence.",
+ "human-units": "relativeTime and formatDuration produce English only.",
+ "base-encodings": "base32 functions take the alphabet before the padding flag: pass padding by name where the language allows.",
+ "file-signature": "A first check, not a malware scan: still re-encode or sandbox untrusted files, and note that text formats (SVG, HTML, CSV) are not detected.",
+ "vector-math": "Brute force over every vector: fine for thousands of items; use an approximate index (HNSW, pgvector) beyond that.",
+ "text-chunking": "Counts code points, not model tokens: size chunks with a margin or count tokens with your model's tokenizer."
+}

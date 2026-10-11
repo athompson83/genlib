@@ -452,6 +452,8 @@ tests/                    CLI safety, module behavior, discovery and catalog tes
 npm ci --ignore-scripts
 npm run registry:build   # after editing modules
 npm run skills:sync      # after editing the canonical skill
+npm run capabilities:build   # after editing capabilities or modules.json
+node scripts/api-install.mjs # after editing API records or api-lifecycle.json
 npm run check            # registry, skills, resources, TypeScript build and all tests
 node scripts/routing-eval.mjs --misses   # how often quick picks the right capability
 ```

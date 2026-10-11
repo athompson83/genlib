@@ -43,7 +43,7 @@
     "skills:install": "node scripts/install-skills.mjs",
     "resources": "node tools/resources.mjs",
     "resources:check": "node tools/resources.mjs validate --json",
-    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm run docs:check && npm run index:check && npm run graph:check && npm run tokens:check && npm run diagrams:check && npm test",
+    "check": "npm run registry:check && npm run skills:check && npm run resources:check && npm run capabilities:check && npm run docs:check && npm run index:check && npm run graph:check && npm run tokens:check && npm run diagrams:check && npm test",
     "docs:sync": "node scripts/sync-docs.mjs",
     "docs:check": "node scripts/sync-docs.mjs --check",
     "index:build": "node scripts/build-search-index.mjs",
@@ -56,7 +56,9 @@
     "diagrams:render": "node scripts/diagrams.mjs --render",
     "diagrams:check": "node scripts/diagrams.mjs --check",
     "obsidian:export": "node scripts/export-obsidian.mjs",
-    "mcp": "node bin/genlib-mcp.mjs"
+    "mcp": "node bin/genlib-mcp.mjs",
+    "capabilities:build": "node scripts/build-capabilities.mjs",
+    "capabilities:check": "node scripts/build-capabilities.mjs --check && node scripts/api-install.mjs --check"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
