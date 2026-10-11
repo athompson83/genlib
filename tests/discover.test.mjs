@@ -151,3 +151,27 @@ test('a multi-word query naming a whole entry outranks partial and stemmed match
     assert.equal(findInSources(sources, query, { type: 'resource', limit: 3 }).results[0].id, id, query);
   }
 });
+
+// Regressions from the 2026-10-10 adoption audit: wrong-stack first recommendations.
+test('receiving-project fit steers framework, SDK language, MCP vendor and dependency-free selection', async () => {
+  const sources = await loadSources();
+  const { jevPacket } = await import('../lib/jev.mjs');
+  const svelte = { languages: ['typescript'], frameworks: ['svelte'] };
+  const table = findInSources(sources, 'data table', { profile: svelte, limit: 5 }).results;
+  assert.ok(!table.some(result => result.id === 'react-table-craft'), 'a React-only table is hidden in a Svelte project');
+  assert.equal(table[0].id, 'tanstack-table');
+  const go = { languages: ['go'], frameworks: [] };
+  const stripe = findInSources(sources, 'stripe api', { profile: go, limit: 4 }).results;
+  const api = stripe.find(result => result.id === 'stripe-com');
+  assert.ok(api.next.every(step => !/^(npm|uvx) /.test(step)), 'no npm or Python generator steps for a Go project');
+  assert.ok(api.next.includes('# go SDK in the catalog: resource:stripe-go-go (Stripe Go SDK)'));
+  assert.ok(stripe.some(result => result.id === 'stripe-go-go' && result.fit === 'compatible'));
+  const mcp = findInSources(sources, 'github mcp', { profile: { languages: ['python'], frameworks: [] }, limit: 3 }).results;
+  assert.equal(mcp[0].id, 'io-github-github-github-mcp-server');
+  // A deployed application's implementation language is not the app's: it stays reviewable, not hidden.
+  const elixirApp = sources.resources.find(resource => resource.kind === 'application' && resource.integrationMode === 'service' && resource.languages?.length && !resource.languages.includes('python'));
+  if (elixirApp) assert.notEqual(findInSources(sources, elixirApp.name, { profile: { languages: ['python'], frameworks: [] }, type: 'resource', limit: 25 }).results.find(result => result.id === elixirApp.id)?.fit, 'incompatible');
+  const packet = jevPacket(sources, 'password hashing', { profile: { languages: ['python'], frameworks: [] }, stdlibOnly: true });
+  assert.ok(!packet.state.candidates.some(candidate => candidate.id === 'password-hashing'), 'the pip-installed cookbook is not offered under a no-dependency constraint');
+  assert.ok(jevPacket(sources, 'password hashing', { profile: { languages: ['python'], frameworks: [] } }).state.candidates.some(candidate => candidate.id === 'password-hashing'));
+});
