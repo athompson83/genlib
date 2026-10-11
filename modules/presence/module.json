@@ -62,6 +62,11 @@
     "No rate limiting; add request rate limits (see the rate-limit module) on heartbeat and stream routes.",
     "Session security, production load behavior and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "transport is SSE GET {prefix}/stream plus POST {prefix}/heartbeat and /leave; no WebSocket",
+    "connections expire 30 s after the last heartbeat; 500 connections per room, then 409 room-full",
+    "state is JSON up to 1,024 bytes (413 state-too-large); updates throttled to one per 100 ms per user"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/presence.test.mjs"],

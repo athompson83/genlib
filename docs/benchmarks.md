@@ -196,3 +196,39 @@ What the fixes did and did not change:
 
 The conclusion stands and is now measured twice: for ordinary application features with a precise specification, a capable coding agent is cheaper without Genlib, even when Genlib's advice is right. Genlib's measured savings remain where earlier rounds found them, on algorithm-sized tasks against an exact standard. The question that is still open is whether the balance changes on larger features (where writing from scratch costs more), on weaker models, or when acceptance includes requirements a plain agent tends to miss; none of these four tasks had a hidden test that any arm failed.
 
+
+## Round 6: lean lookup, two harder tasks (2026-10-11)
+
+Changes since round 5: `quick` prints a `covers` line from the feature contracts, `genlib connect` registers only `quick` and `outline` and writes when-not-to-use guidance into `CLAUDE.md`, and the Genlib arm no longer has to read the skill first (its prompt points at `CLAUDE.md`, as a `genlib connect` setup does). Two tasks were added whose hidden tests probe requirements agents tend to miss: outgoing webhooks (SSRF in alternate address notations, DNS rebinding, redirects, retries with a stable id, signatures; 10 tests) and scheduled digests (DST gap and overlap, overlapping ticks, catch-up, retries; 8 tests). Both hidden suites were checked against reference solutions before any agent ran. Two arms (agent alone, agent with Genlib), 12 runs, raw table `benchmarks/feature-tasks/results-round6.json`.
+
+**All 12 runs passed all hidden tests**, including the plain agent on both new tasks.
+
+| Task | Agent | + Genlib | Genlib calls |
+| --- | ---: | ---: | ---: |
+| Invitations | 173,017 | 160,286 | 1 (declined) |
+| Billing webhook | 139,498 | 186,635 | 2 (copied the signature recipe) |
+| CSV import | 178,222 | 210,775 | 2 (copied csv-parse) |
+| TOTP (Python) | 157,937 | 188,606 | 3 (copied python-totp) |
+| Outgoing webhooks | 197,425 | 240,171 | 5 (copied the whole module, used 2 files) |
+| Scheduled digests | 198,559 | 203,139 | 1 (declined) |
+| **Total** | **1,044,658** | **1,189,612** | |
+
+Genlib cost **+13.9%** (+15.1% on the four round-5 tasks, was +31%; +12.0% on the new pair). Runs that declined after one `quick` cost the same or less; runs that copied a small routine took 3 to 5 extra turns and cost 18–34% more while writing about as much (Genlib arm: 62 turns, 28,966 written and 31,959 read tokens; plain: 49, 31,916 and 17,142).
+
+## Round 6b: write small code yourself (2026-10-11)
+
+Same 12 runs after one change: `quick` prints the copy's size and the guidance says code under about 200 lines is cheaper to write than to find, copy and adapt. Raw table `results-round6b.json`. All 12 runs passed all hidden tests.
+
+| | Agent | + Genlib |
+| --- | ---: | ---: |
+| Four round-5 tasks | 450,561 | 456,435 (+1.3%) |
+| Outgoing webhooks and digests | 310,911 | 318,341 (+2.4%) |
+| **Total** | **761,472** | **774,776 (+1.7%)** |
+
++1.7% is within run-to-run noise (the plain agent's own total moved from 1,044,658 to 761,472 between rounds 6 and 6b). But no Genlib run called Genlib: every one wrote its feature, so this round reaches parity by not reusing. It shows the decision overhead is gone when an agent skips; it does not show that reuse saves anything.
+
+What comes next follows an external review of round 5 (October 11): cost came from extra decision and integration turns, not response size, so the work is to make reuse take fewer decisions and less adaptation:
+1. One bounded `quick` response with what the decision needs: the module's fixed behavior (routes, status codes, storage; `decisions` in each manifest), size, files and destination, the main API, required hooks, a direct or partial verdict from the feature contracts, and the verify step. Done after this round; about 1 KB instead of an outline (1–4 KB) plus a contract read.
+2. Fit decisions and negative cases: a skip answer for small edits to existing code, the weak-match rule applied to Genlib's own results too (coverage now counts reviewed synonyms), and a `skip` set in `tests/fixtures/routing-queries.json`. Done; a held-out negative set is still to be written by a separate agent.
+3. Language examples and recipes installed through the module ownership engine (shared identical files reused, locks and receipts). Done.
+4. Compact tools in the SDK MCP server (pull request #32), 5. module install profiles (core plus one store and one adapter), 6. a rerun of these 12 runs with the one-call response. Pending; the economic gate in AGENTS.md applies to each.

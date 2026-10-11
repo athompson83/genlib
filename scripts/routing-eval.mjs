@@ -4,7 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { findInSources, loadSources } from '../lib/discover.mjs';
-import { quickPick } from '../lib/brief.mjs';
+import { isSmallEdit, quickPick } from '../lib/brief.mjs';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
 
@@ -25,12 +25,21 @@ export async function routingEval(sets = JSON.parse(readFileSync(ROOT + 'tests/f
     const total = sets[name].length;
     report[name] = { total, top1: top1 / total, top3: top3 / total, misses };
   }
+  // Negative cases: tasks where reuse cannot help; quick should return no best match.
+  const skip = sets.skip ?? [];
+  const wrong = skip.filter(query => quickPick(findInSources(sources, query, { limit: 4, profile })).best);
+  report.skip = { total: skip.length, correct: (skip.length - wrong.length) / Math.max(skip.length, 1), misses: wrong.map(query => ({ query })) };
+  // False skips: real feature tasks that the small-edit rule would wrongly turn away.
+  report.falseSkips = [...sets.tuning, ...sets.heldout].map(([query]) => query).filter(isSmallEdit);
   return report;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const report = await routingEval();
-  for (const [name, { total, top1, top3, misses }] of Object.entries(report)) {
+  const { skip, falseSkips, ...ranked } = report;
+  console.log(`skip: ${skip.total} queries, ${(skip.correct * 100).toFixed(1)}% answered no match; false skips on feature tasks: ${falseSkips.length}`);
+  if (process.argv.includes('--misses')) { for (const miss of skip.misses) console.log(`  skip miss: ${miss.query}`); for (const query of falseSkips) console.log(`  false skip: ${query}`); }
+  for (const [name, { total, top1, top3, misses }] of Object.entries(ranked)) {
     console.log(`${name}: ${total} queries, top-1 ${(top1 * 100).toFixed(1)}%, top-3 ${(top3 * 100).toFixed(1)}%`);
     if (process.argv.includes('--misses')) for (const miss of misses) console.log(`  ${miss.query} -> ${miss.got} (want ${miss.want})`);
   }

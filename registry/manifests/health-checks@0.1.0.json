@@ -71,6 +71,11 @@
     "No metrics export, startup probe semantics, dependency graph, or process-level self-healing is included.",
     "Tests ran on Node.js 22 with in-process fake checks; no orchestrator or load balancer integration was exercised."
   ],
+  "decisions": [
+    "default paths /healthz (liveness) and /readyz (readiness); GET and HEAD only, others 405",
+    "a critical check fail or timeout → 503 fail; only non-critical failures → 200 degraded",
+    "per-check timeout default 2,000 ms; error messages hidden unless exposeErrors"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -80,7 +85,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/health-checks/module.json",
-    "sha256": "5766aca76bbebcb474cdab524715818f1fa597bf98e9dc104de0b46bf9b438af"
+    "sha256": "78efedacb82ced6cac7bdfbc67c64fc4636cfb1ac66cf121219ea45ba8e648b2"
   },
   "contractFile": {
     "path": "modules/health-checks/CONTRACT.md",

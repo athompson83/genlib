@@ -96,6 +96,12 @@
     "The in-memory credit store is for tests and prototypes only.",
     "Pricing, tax, refunds and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "past_due keeps the paid plan 7 days, then the fallback plan; canceled and unpaid use fallback at once",
+    "a limit missing from a plan is 0; overrides never upgrade the fallback plan",
+    "credit balance is replayed from a ledger; debit fails insufficient rather than going negative",
+    "holds expire after a 1 s to 24 h ttl; a reused key with a different amount fails key-reused"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -129,7 +135,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/entitlements/module.json",
-    "sha256": "67c1ab061eee7bfd8da98be50d704e9a90db8a7e68c62c80113b7b88465c93e8"
+    "sha256": "2f954ed7b7734851d63a7e3fac45ed079f433974b554d83ffd2edd73753579b5"
   },
   "contractFile": {
     "path": "modules/entitlements/CONTRACT.md",

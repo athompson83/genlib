@@ -10,7 +10,7 @@ import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } fro
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
 import { LANGUAGES, commandsFor, coverage, stepsFor, loadCapabilities } from '../lib/capabilities.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
-import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick, withSize } from '../lib/brief.mjs';
+import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick, withDetails } from '../lib/brief.mjs';
 import { integrationSummary, inspectIntegration, installIntegration, loadIntegrationCatalog, planIntegration, verifyIntegrations } from '../lib/integrations.mjs';
 import { checkAdoption, removeModule, updateModule } from '../lib/lifecycle.mjs';
 import { adoptStaged, checkProvider, loadProviders, planStaged, providerSummary } from '../lib/providers.mjs';
@@ -221,7 +221,7 @@ try {
         includeRetired: options['include-retired'] === true, licensePolicy: options['license-policy'] ?? 'any',
       });
       if (detected) result.project = { languages: detected.languages, frameworks: detected.frameworks, reactMajor: detected.reactMajor };
-      if (command === 'quick') { result = await withSize(quickPick(result, { contracts: loadContracts(REPOSITORY_ROOT) }), (ref, language) => outline(REPOSITORY_ROOT, ref, { language })); text = formatQuick(result); }
+      if (command === 'quick') { result = await withDetails(quickPick(result, { contracts: loadContracts(REPOSITORY_ROOT) }), { outlineFn: (ref, language) => outline(REPOSITORY_ROOT, ref, { language }), moduleFn: id => JSON.parse(readFileSync(path.join(REPOSITORY_ROOT, 'modules', id, 'module.json'), 'utf8')) }); text = formatQuick(result); }
       else if (options.brief || !options.json) { result = briefFind(result); text = formatBrief(result); }
     }
   } else if (command === 'verify') {

@@ -148,6 +148,12 @@
     "Cursors are positions, not snapshots: documents changed between pages can move. The SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, not on every hosted Postgres under parallel load.",
     "No rate limiting; add request rate limits (see the rate-limit module) on the search route. Production database correctness, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix}?tenantId&q&f.<attr>=, PUT {prefix}/{id} (upsert), DELETE {prefix}/{id}?tenantId",
+    "words are ANDed; \"phrases\", -exclude and a trailing prefix* work; max 256 chars and 16 terms",
+    "BM25 in memory, ts_rank_cd on PostgreSQL; limit 1-50 (default 20); highlights wrapped in <mark>",
+    "undeclared filters, attrs or fields → 400; documents with a visibility list are filtered per reader"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -189,7 +195,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/site-search/module.json",
-    "sha256": "f20fa0d68e541646250babfe38ce210652089206a0a80367a0f06191eb4f7b98"
+    "sha256": "1db78b04ff88b10b5af88ecc8ab7b56aed41139486c71250285da6c80ce312e9"
   },
   "contractFile": {
     "path": "modules/site-search/CONTRACT.md",

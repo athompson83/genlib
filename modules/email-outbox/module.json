@@ -68,6 +68,12 @@
     "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, so FOR UPDATE SKIP LOCKED across separate connections is not exercised there.",
     "Production database correctness, provider deliverability (SPF, DKIM, DMARC), API key custody and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "enqueue is idempotent per key; same key with a different payload fails key-reused",
+    "retries 429/408/409/5xx with full jitter (30 s base, 1 h cap); 6 attempts, then dead",
+    "hard bounces and complaints suppress the address; the events webhook expects Resend event JSON",
+    "webhook: bad signature → 400 invalid-signature; unknown message → 200 known:false; body cap 256 KiB"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/email-outbox.test.mjs", "tests/email-outbox-sql.test.mjs"],

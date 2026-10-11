@@ -54,6 +54,11 @@
     "No raster (PNG/canvas) output and no logo overlay; logos reduce error-correction headroom and are not supported.",
     "SVG colors are limited to hex values and a short name allow-list, so CSS variables and rgb() are rejected."
   ],
+  "decisions": [
+    "output is SVG, terminal text or a 0/1 matrix only; no PNG or canvas",
+    "default error correction M; auto mode picks one mode, no mixed segments or ECI",
+    "SVG quiet zone default 4 modules at scale 1; colors limited to hex or a few names"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/qr-code.test.mjs"],

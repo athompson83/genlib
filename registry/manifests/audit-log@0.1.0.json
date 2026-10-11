@@ -159,6 +159,12 @@
     "verifyChain, checkpoint and purgeExpired are trusted-server operations without an actor check; recording does not authorize, so call it after your own authorization.",
     "Production database correctness, role configuration, backup immutability, compliance mapping and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix} (query) and GET {prefix}/export?format=csv|ndjson; read-only, no POST route",
+    "append in the caller's transaction; PostgreSQL triggers refuse UPDATE, DELETE and TRUNCATE",
+    "per-tenant SHA-256 (or HMAC) hash chain; secrets redacted and emails masked before hashing",
+    "query newest first by seq, limit 1-200 (default 50); retentionMs is required"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -203,7 +209,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/audit-log/module.json",
-    "sha256": "452145a42b7beddcd19e1ebc5d1c6c2f449018dd9d739ae8e03abe3bbb1b7c46"
+    "sha256": "42c306842434816b2e3b5dc04801ada3a8a4bae75d0705cc9673ffd69dff6456"
   },
   "contractFile": {
     "path": "modules/audit-log/CONTRACT.md",

@@ -179,6 +179,12 @@
     "No rate limiting or account-level abuse detection; add rate limits (see the rate-limit module) on the same routes.",
     "Production secret custody, provider configuration, accessibility of the chosen challenge and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "any failed check → 403 bot-check-failed (reasons hidden); body over 64 KiB → 413; other types → 415",
+    "proof-of-work challenge at GET {prefix}/challenge?form=<formId>; protect() wraps POST/PUT/PATCH/DELETE",
+    "reCAPTCHA minScore 0.5; captcha max age 5 min; provider outage fails closed unless failOpen",
+    "honeypot field 'website'; submit under 3 s after render → too-fast"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -217,7 +223,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/bot-protection/module.json",
-    "sha256": "efa32124ff8332a0cbb7ec159c0cad02e8dda8bb46e57d978fd19f2b0d1ce8b0"
+    "sha256": "9114fd8852bd20e3910f269873b0c1abd72185cbad7c39d676a4961ddb1220e9"
   },
   "contractFile": {
     "path": "modules/bot-protection/CONTRACT.md",

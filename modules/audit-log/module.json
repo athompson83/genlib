@@ -144,6 +144,12 @@
     "verifyChain, checkpoint and purgeExpired are trusted-server operations without an actor check; recording does not authorize, so call it after your own authorization.",
     "Production database correctness, role configuration, backup immutability, compliance mapping and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix} (query) and GET {prefix}/export?format=csv|ndjson; read-only, no POST route",
+    "append in the caller's transaction; PostgreSQL triggers refuse UPDATE, DELETE and TRUNCATE",
+    "per-tenant SHA-256 (or HMAC) hash chain; secrets redacted and emails masked before hashing",
+    "query newest first by seq, limit 1-200 (default 50); retentionMs is required"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [

@@ -65,6 +65,12 @@
     "No rate limiting or retention policy; add request rate limits (see the rate-limit module) on send routes and delete old messages in your own job.",
     "Production database correctness, session security, content policy and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: {prefix}/conversations[/{id}/messages|read|members], {prefix}/messages/{convId}/{seq}, /unread, /blocks",
+    "send needs a clientId; new message → 201, retry with same clientId → 200 created:false",
+    "15-min edit window, then 409 edit-window-closed; delete is soft (body null), deleted → 410",
+    "messages max 4,000 chars; groups max 256 members; blocked or not-member → 403"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/chat.test.mjs", "tests/chat-sql.test.mjs"],

@@ -121,6 +121,12 @@
     "The circuit breaker is in-process state only; it is not shared across processes, isolates, or serverless instances. Retries add load; combine with server-side rate limits and budgets.",
     "Tests use injected sleep/clock/random and a fake Fetch boundary; no live network calls were made."
   ],
+  "decisions": [
+    "fetchWithRetry retries network errors and 408, 425, 429, 500, 502, 503, 504",
+    "POST and PATCH are retried only with an Idempotency-Key header; otherwise sent once",
+    "full-jitter exponential backoff; Retry-After honored but capped at maxDelayMs; attempts 1-20",
+    "circuit breaker state is per process; half-open allows one trial call"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -150,7 +156,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/http-resilience/module.json",
-    "sha256": "84e1a58640db6d2b53c0d1a29287ce5e51afeb87048bf3052aa7a6fc0eddb315"
+    "sha256": "6e8692e2ea4f2963ef45746d83336e2cd486c577f570aabcbe469ec4d8915e6c"
   },
   "contractFile": {
     "path": "modules/http-resilience/CONTRACT.md",

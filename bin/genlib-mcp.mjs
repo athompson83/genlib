@@ -5,6 +5,8 @@
 //   claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 //   codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 import { createInterface } from 'node:readline';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { detectProject, findInSources, loadSources, resolveEntry, resolveResource, sourceCounts, SOURCE_TYPES } from '../lib/discover.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
@@ -15,7 +17,7 @@ import { quickstartFor } from '../lib/resources.mjs';
 import { inspectModule } from '../lib/catalog.mjs';
 import { inspectIntegration } from '../lib/integrations.mjs';
 import { invariant, readRegular } from '../lib/safety.mjs';
-import { briefFind, formatBrief, formatQuick, quickPick, withSize } from '../lib/brief.mjs';
+import { briefFind, formatBrief, formatQuick, quickPick, withDetails } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
 import { coverageFor, formatCoverage, loadContracts } from '../lib/coverage.mjs';
@@ -113,7 +115,7 @@ async function call(name, args = {}) {
   if (name === 'genlib_find' || name === 'genlib_quick') {
     const profile = await profileFor(args.target, args.language);
     const found = findInSources(all, String(args.query ?? ''), { type: args.type, project: args.project, limit: name === 'genlib_quick' ? 4 : args.limit ?? 8, target: profile?.target, profile });
-    if (name === 'genlib_quick') { const pick = await withSize(quickPick(found, { contracts: loadContracts(ROOT) }), (ref, language) => outline(ROOT, ref, { language })); return { result: pick, text: formatQuick(pick) }; }
+    if (name === 'genlib_quick') { const pick = await withDetails(quickPick(found, { contracts: loadContracts(ROOT) }), { outlineFn: (ref, language) => outline(ROOT, ref, { language }), moduleFn: id => JSON.parse(readFileSync(path.join(ROOT, 'modules', id, 'module.json'), 'utf8')) }); return { result: pick, text: formatQuick(pick) }; }
     invariant(args.detail === undefined || ['brief', 'full'].includes(args.detail), 'INVALID_OPTION', 'detail must be brief or full.');
     if (args.detail === 'full') return found;
     const brief = briefFind(found);

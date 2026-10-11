@@ -165,6 +165,12 @@
     "No rate limiting on the subscription routes and no per-notification preferences; combine with the rate-limit and notification-preferences modules.",
     "Production key custody, database correctness, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix}/vapid-public-key, POST|DELETE {prefix}/subscriptions; sending is server code only",
+    "payload max 3,993 bytes; default urgency normal; VAPID JWT expires after 12 h",
+    "endpoints limited to known push hosts (422 endpoint-not-allowed); 20 subscriptions per user",
+    "a 404 or 410 from the push service deletes the subscription"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -205,7 +211,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/web-push/module.json",
-    "sha256": "915107521045236ef3d8a6c55ca672a148411d768a01830dda8e1e2cd27202ad"
+    "sha256": "9925fff0fb6fe8161b79f2168caed9892765375c09e1d12d3936709dd61429e4"
   },
   "contractFile": {
     "path": "modules/web-push/CONTRACT.md",

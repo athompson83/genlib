@@ -39,7 +39,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9806 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 712 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 714 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -172,7 +172,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 
 | Command | Purpose |
 | --- | --- |
-| `quick <words> [--target app] [--language go]` | The best match and only its install or copy commands, up to 3 alternative refs, and a `# covers:` line (how much of the asked feature its tests verify, and what the app must add) so one call decides (cheapest call) |
+| `quick <words> [--target app] [--language go]` | One-call reuse decision: the best match and its install or copy commands, then `# reuse direct\|partial` (requirements its tests verify, what the app must add), `# fixed` (routes, status codes and storage a task may contradict), `# size` and destination, `# api` with the import path, `# needs` (hooks the app supplies) and `# then` (verify step); `# skip` for a small edit to existing code (cheapest call) |
 | `find <words> [--target app] [--language …] [--type …] [--project …] [--license-policy permissive] [--include-retired]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON. Retired records are hidden unless asked for |
 | `integration list\|inspect\|plan\|add\|verify` | Integration packs: inspect the contract, plan without writes, copy to `genlib/integrations/<id>` with an integrity lock, verify |
 | `source <id> [--path dir]` | Pinned, minimal fetch of an external project's original source (sparse checkout of one folder, or one raw file), its license, and Genlib code that already covers the need |

@@ -118,6 +118,12 @@
     "The in-memory store is for tests and prototypes only. The SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection: the concurrent runDue test proves the single conditional claim UPDATE gives each due account to one worker when statements interleave, not behavior under real multi-connection contention or on every hosted Postgres.",
     "Legal retention periods, erasure obligations and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET|POST|DELETE {prefix}/{userId|me}; POST schedules → 202, DELETE cancels during the grace period",
+    "30-day default grace; request/cancel need sign-in within 5 min, else 401 reauth-required",
+    "already-pending, not-pending, too-late → 409; already-deleted → 410; revoke-failed → 503",
+    "deletion runs from runDue() in your scheduler, not an HTTP route; needs a deletion store"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [

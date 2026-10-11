@@ -12,20 +12,25 @@ const bytes = text => Buffer.byteLength(text);
 // Budgets are measured with the placeholder path, so they do not depend on where the checkout lives.
 const sized = (...args) => execFileSync(process.execPath, [root + 'bin/genlib.mjs', ...args], { cwd: root, encoding: 'utf8', env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' } });
 
-test('quick prints only the best match, its acting commands and an outline hint', () => {
+test('quick prints the best match, its acting commands and the decision details instead of an outline hint', () => {
   const text = cli('quick', 'csv', 'export', '--language', 'python');
   assert.match(text, /^capability:csv-safe /);
   assert.match(text, /language-modules\.mjs add python-csv-safe --target "\$APP_ROOT" --with-tests --flat/);
-  // Text output names the real checkout path instead of "$GENLIB_ROOT", so commands run as printed.
-  assert.match(text, /# api: node "[^"$]+"\/bin\/genlib\.mjs outline capability:csv-safe --language python/);
-  assert.doesNotMatch(text, /inspect|Read docs/);
+  // The API, size and coverage come with the pick, so no outline call is needed to decide.
+  assert.match(text, /^# api: parse_csv\(text\)/m);
+  assert.match(text, /^# size: \d+ lines in 1 file/m);
+  assert.doesNotMatch(text, /inspect|Read docs|bin\/genlib\.mjs outline/);
+  // Budget raised from 600 to 1,200 bytes: the decision details replace an outline call (1-4 KB) and a
+  // contract read, which round 6 of docs/benchmarks.md measured as the extra turns that made reuse cost more.
   const quickSize = bytes(sized('quick', 'csv', 'export', '--language', 'python'));
-  assert.ok(quickSize <= 600, 'quick budget: ' + quickSize);
+  assert.ok(quickSize <= 1200, 'quick budget: ' + quickSize);
+  const moduleSize = bytes(sized('quick', 'organization', 'invitations'));
+  assert.ok(moduleSize <= 1200, 'quick budget with module decisions: ' + moduleSize);
   // A capability's known limit is shown before copying, within the same budget.
   const diff = cli('quick', 'unified', 'diff', '--language', 'python');
   assert.match(diff, /^# caveat: .*GNU diff/m);
   const diffSize = bytes(sized('quick', 'unified', 'diff', '--language', 'python'));
-  assert.ok(diffSize <= 600, 'quick budget with caveat: ' + diffSize);
+  assert.ok(diffSize <= 1200, 'quick budget with caveat: ' + diffSize);
   const json = JSON.parse(cli('quick', 'verify', 'stripe', 'webhook', '--json'));
   // Both are Genlib's tested code for this task: the 9-language capability or the TypeScript module.
   assert.match(json.best, /^(?:capability:webhook-signature|module:webhook-verification)$/);

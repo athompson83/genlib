@@ -23,7 +23,11 @@ test('recipe source installation plans, copies and refuses overwrite and symlink
   const added=call('recipe-install','add','storefront-cart','--target',dir);
   assert.equal(plan.sha256,added.sha256);
   assert.ok(readFileSync(added.destination).length>0);
+  // Re-adding the tracked, unedited file is idempotent; an edited copy is never overwritten.
+  assert.equal(call('recipe-install','add','storefront-cart','--target',dir).file,'unchanged');
+  writeFileSync(added.destination,'// edited\n');
   assert.notEqual(spawnSync(process.execPath,['tools/recipe-install.mjs','add','storefront-cart','--target',dir]).status,0);
+  assert.equal(readFileSync(added.destination,'utf8'),'// edited\n');
   mkdirSync(join(dir,'elsewhere'));
   symlinkSync(join(dir,'elsewhere'),join(dir,'link'));
   assert.notEqual(spawnSync(process.execPath,['tools/recipe-install.mjs','plan','csv-export','--target',join(dir,'link')]).status,0);

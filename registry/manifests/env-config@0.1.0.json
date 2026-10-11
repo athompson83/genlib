@@ -116,6 +116,11 @@
     "json() values are not deep-frozen, and a json validate function's own error text is replaced by a fixed message.",
     "Only own properties of the source record are read; proxy or getter-based environment objects must expose schema keys as own properties."
   ],
+  "decisions": [
+    "empty strings count as missing; unknown keys are ignored; no .env file loading",
+    "bool accepts true/false, 1/0, yes/no, on/off; num rejects hex, empty and Infinity",
+    "url() allows https and http by default; secrets serialize as [REDACTED]"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -125,7 +130,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/env-config/module.json",
-    "sha256": "34439477a678ed59e706a976401f729410502e0b9fb1a10d2935bf1f925464f0"
+    "sha256": "a9b484034c3281c0e59f437f1f5de5d0cbab287fafa6097c3621179950926303"
   },
   "contractFile": {
     "path": "modules/env-config/CONTRACT.md",

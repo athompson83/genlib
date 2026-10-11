@@ -170,6 +170,12 @@
     "The in-memory store ignores the tx argument and is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs one connection, so FOR UPDATE SKIP LOCKED across separate connections is not exercised there.",
     "Production database correctness, secret custody, receiver behavior and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "Standard Webhooks signing: webhook-id/timestamp/signature, v1 HMAC of id.timestamp.body, whsec_ secrets",
+    "10 attempts, backoff 30 s doubling to 6 h with jitter; 10 s timeout; redirects not followed",
+    "https only; private, loopback and metadata addresses refused at registration and before each send",
+    "routes under {prefix}/{tenant}/endpoints and /deliveries; payload max 256 KiB; rotation grace 24 h"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -212,7 +218,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/webhook-delivery/module.json",
-    "sha256": "e63fc9cf2892ee7fc2749f4e136e6961bdc328bf1ac489833f229d7ce22897ec"
+    "sha256": "60bb37d39fb268dfb634e6792d572166cc7eaba52348889b250460f0af0b3a3d"
   },
   "contractFile": {
     "path": "modules/webhook-delivery/CONTRACT.md",

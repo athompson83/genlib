@@ -108,6 +108,12 @@
     "No rate limiting; add request rate limits (see the rate-limit module) and cap publish volume in your own code.",
     "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: GET {prefix}, GET {prefix}/count, POST {prefix}/read, /read-all, /archive; no publish route",
+    "publish is server-side; a repeated dedupeKey returns the existing item within retention",
+    "list 1-50 per page (default 20); prune() keeps 90 days and 500 items per user",
+    "ids of other users are silently ignored (not 403 or 404)"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -142,7 +148,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/notification-inbox/module.json",
-    "sha256": "f7da6b9c16458ee5b08da4577345c09ef812d4eba5e7737b96ab58c1c92478d1"
+    "sha256": "5df8f09bfabacba52bc944f7cac5c2bbcfe2f8cf069eefca507de1b5b49a19c8"
   },
   "contractFile": {
     "path": "modules/notification-inbox/CONTRACT.md",

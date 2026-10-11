@@ -177,6 +177,12 @@
     "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs as a single connection, not on every hosted Postgres or under real multi-connection contention.",
     "Production database correctness, email deliverability, hashing cost tuning and consuming-application acceptance remain project responsibilities."
   ],
+  "decisions": [
+    "routes: POST {prefix}/signup and /resend → 202 {ok:true} for every outcome; POST {prefix}/confirm → 200",
+    "a registered email gets the same 202, never 409; the owner is told through onExistingAccount",
+    "password 15-128 chars, no composition rules; scrypt N=2^17; 400 weak-password with problems",
+    "token stored as SHA-256 hash; 24 h default ttl, single use; confirm is a POST, not a GET link"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -216,7 +222,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/email-signup/module.json",
-    "sha256": "909e64ae147c7b41613c77552ae4647062c57ef3a5135939e6947bc357a6af2d"
+    "sha256": "28a83353d4bc7c971a2fa414708a066d2cfa7fa5f596a5dd11842f85f1255160"
   },
   "contractFile": {
     "path": "modules/email-signup/CONTRACT.md",
