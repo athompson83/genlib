@@ -48,7 +48,10 @@ test('validation rejects unknown languages, kinds and guides outside docs', () =
 });
 
 test('commands copy the implementation in one step', () => {
-  assert.deepEqual(commandsFor({ kind: 'language-example', id: 'go-totp' }, '/app', ''), ['node tools/language-modules.mjs add go-totp --target /app --with-tests']);
+  assert.deepEqual(commandsFor({ kind: 'language-example', id: 'go-totp' }, '/app', ''), ['node tools/language-modules.mjs add go-totp --target /app --with-tests --run-tests']);
+  // Python copies land flat in the app and run their tests in the same call.
+  assert.deepEqual(commandsFor({ kind: 'language-example', id: 'python-totp' }, '/app', ''), ['node tools/language-modules.mjs add python-totp --target /app --with-tests --flat --run-tests']);
+  assert.deepEqual(commandsFor({ kind: 'language-example', id: 'java-totp' }, '/app', ''), ['node tools/language-modules.mjs add java-totp --target /app --with-tests']);
   assert.deepEqual(commandsFor({ kind: 'recipe', id: 'totp-mfa-codes' }, '/app', ''), ['node tools/recipe-install.mjs add totp-mfa-codes --target /app']);
   assert.deepEqual(commandsFor({ kind: 'unavailable', note: 'Use a broker.' }), ['Use a broker.']);
   assert.equal(LANGUAGES.length, 9);

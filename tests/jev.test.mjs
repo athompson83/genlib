@@ -96,3 +96,24 @@ test('a capability caveat travels with the candidate and the question asks to we
   const plain = packet.state.candidates.find(candidate => !candidate.caveat);
   if (plain) assert.doesNotMatch(packet.questions.find(question => question.ref === plain.ref).question, /caveat/);
 });
+
+test('the CLI honours --stdlib-only and --prompt prints a compact direct-call prompt', () => {
+  const run = (...args) => spawnSync(process.execPath, [new URL('../bin/genlib.mjs', import.meta.url).pathname, 'jev', ...args], { encoding: 'utf8' });
+  const strict = run('expand', 'recurring', 'events', '--stdlib-only', '--json');
+  assert.equal(strict.status, 0, strict.stderr);
+  assert.ok(JSON.parse(strict.stdout).state.constraints.length === 1);
+  const prompt = run('unified', 'diff', 'identical', 'to', 'GNU', 'diff', '-u', '--prompt');
+  assert.equal(prompt.status, 0, prompt.stderr);
+  assert.match(prompt.stdout, /^Task: unified diff/);
+  assert.match(prompt.stdout, /caveat: .*GNU diff.* If the task needs what this caveat rules out, answer below 0.3 for /);
+  assert.match(prompt.stdout, /Reply with only JSON: \{"q-c1": p/);
+  const json = run('unified', 'diff', 'identical', 'to', 'GNU', 'diff', '-u', '--json');
+  assert.ok(prompt.stdout.length < json.stdout.length / 2, `prompt ${prompt.stdout.length} vs packet ${json.stdout.length}`);
+});
+
+test('candidates far below the best match are left out of the packet', () => {
+  const packet = jevPacket(sources, 'sign and verify webhook signatures');
+  const scores = findInSources(sources, 'sign and verify webhook signatures', { limit: 8 }).results.map(result => result.score);
+  assert.ok(packet.state.candidates.length <= scores.filter(score => score >= scores[0] * 0.4).length);
+  assert.equal(packet.state.candidates[0].id, findInSources(sources, 'sign and verify webhook signatures', { limit: 1 }).results[0].id);
+});

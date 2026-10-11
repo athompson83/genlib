@@ -135,7 +135,14 @@ The capability index (`resources/capabilities.json`) maps common tasks to tested
 
 Each has a guide under `docs/resources/`.
 
-Agents reach everything through one ranking (`lib/discover.mjs`): rarity-weighted matches on stemmed labels and terms, a reviewed synonym table, and a small prior that lets Genlib's own tested code (capabilities, modules, recipes) outrank the large external indexes on equal evidence. `scripts/routing-eval.mjs` measures how often one `quick` call picks the right capability on 220 task phrasings, 166 of them held out from tuning, and `tests/routing.test.mjs` keeps it from regressing. The paths are:
+Agents reach everything through one ranking (`lib/discover.mjs`): rarity-weighted matches on stemmed labels and terms, a reviewed synonym table, and a small prior that lets Genlib's own tested code (capabilities, modules, recipes) outrank the large external indexes on equal evidence.
+
+With a receiving project (`--target`, `--language` or a language named in the query), each result gets a `fit`. A known fit multiplies its score by 1.25, and known mismatches are hidden and counted. The rules:
+
+- A resource tagged for UI frameworks other than the project's does not fit. TableCraft is React-only and is hidden in a Svelte app.
+- Packages and copied source must match the app's language. Applications and services that run beside the app may be written in any language.
+- An API is shown with only the install steps for the project's language. For other languages it points at a same-provider SDK package from the catalog, such as `stripe-go-go`.
+- MCP servers are matched by server name and repository rather than the shared `io.github` namespace. One published by the vendor named in the query gets a 1.5× boost. `scripts/routing-eval.mjs` measures how often one `quick` call picks the right capability on 220 task phrasings, 166 of them held out from tuning, and `tests/routing.test.mjs` keeps it from regressing. The paths are:
 - **CLI:** `bin/genlib.mjs`.
 - **MCP server:** `bin/genlib-mcp.mjs`.
 - **Jev decision packets:** `lib/jev.mjs`.

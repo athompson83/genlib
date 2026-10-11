@@ -1,0 +1,240 @@
+#!/usr/bin/env node
+// Builds resources/capabilities.json from the capability definitions below, the registered recipes and language
+// modules, and the hand-authored inputs in resources/capabilities-src/ (unavailable-language notes and overrides,
+// everyday search terms, caveats). --check exits non-zero when the committed file is stale.
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const root = fileURLToPath(new URL('..', import.meta.url)).replace(/\/$/, '');
+const src = name => JSON.parse(readFileSync(`${root}/resources/capabilities-src/${name}.json`, 'utf8'));
+const LANGS = ['typescript', 'python', 'go', 'rust', 'java', 'kotlin', 'csharp', 'dart', 'swift'];
+const modules = JSON.parse(readFileSync(root + '/examples/languages/modules.json', 'utf8')).modules;
+const recipes = JSON.parse(readFileSync(root + '/resources/agent-recipes.json', 'utf8')).entries;
+const notes = src('notes'); // { topic: { lang: note } }
+const overrides = src('overrides');
+for (const [topic, langs] of Object.entries(overrides)) notes[topic] = { ...notes[topic], ...langs };
+const byId = new Map(modules.map(m => [m.id, m]));
+
+const CAPS = [
+  { id: 'totp', title: 'TOTP / HOTP MFA codes', tier: 'pure', recipe: 'totp-mfa-codes',
+    summary: 'RFC 4226 HOTP and RFC 6238 TOTP (SHA-1/256/512), base32 secrets, otpauth:// enrollment URIs and constant-time verification with a skew window. Standard library only.',
+    terms: ['totp', 'hotp', 'mfa', '2fa', 'two factor', 'one time password', 'otp', 'authenticator', 'otpauth', 'google authenticator'] },
+  { id: 'oidc-pkce', title: 'SSO login request: OAuth 2.0 / OIDC authorization code + PKCE', tier: 'pure', recipe: 'oidc-pkce-authorization-request',
+    summary: 'RFC 7636 PKCE verifier/challenge, state and nonce, authorization URL builder, callback parsing with constant-time state check, and the token request body. Pair with oidc-token-verification to validate the returned ID token.',
+    terms: ['sso', 'oidc', 'openid connect', 'oauth', 'oauth2', 'pkce', 'login', 'sign in', 'authorization code', 'okta', 'auth0', 'entra', 'azure ad', 'keycloak', 'google login'] },
+  { id: 'recovery-codes', title: 'MFA recovery (backup) codes', tier: 'pure', recipe: 'mfa-recovery-codes',
+    summary: 'Unbiased Crockford-style recovery codes, normalization, HMAC-SHA256 hashing for storage and constant-time single-use lookup.',
+    terms: ['recovery codes', 'backup codes', 'mfa', '2fa', 'account recovery', 'one time codes'] },
+  { id: 'calculator', title: 'Safe calculator and loan / interest math', tier: 'pure', recipe: 'safe-calculator-and-loan-math',
+    summary: 'Expression evaluator without eval (precedence, parentheses, unary minus, %, ^), loan payment, amortization schedule and compound interest rounded to cents.',
+    terms: ['calculator', 'expression', 'math', 'eval', 'loan', 'mortgage', 'amortization', 'interest', 'compound interest', 'finance', 'payment'] },
+  { id: 'form-schema', title: 'Form schema validation', tier: 'pure', recipe: 'form-schema-validation',
+    summary: 'Declarative server-side form validation (string, email, number, integer, boolean, date; required, length, range, pattern, enum) with stable error codes and unknown-field rejection.',
+    terms: ['form', 'forms', 'validation', 'validate', 'schema', 'form builder', 'input validation', 'server side validation'] },
+  { id: 'seo-files', title: 'SEO files: sitemap.xml, robots.txt with AI-crawler rules, llms.txt', tier: 'pure', recipe: 'seo-files-sitemap-robots-llms',
+    summary: 'XML-escaped sitemap.xml, robots.txt with optional allow/disallow rules for AI crawlers (GPTBot, ClaudeBot, Google-Extended, PerplexityBot and more) and llms.txt for AI answer engines. Standard library only, byte-exact output.',
+    terms: ['seo', 'sitemap', 'sitemap xml', 'robots', 'robots txt', 'llms txt', 'llms.txt', 'ai crawlers', 'gptbot', 'geo', 'aeo', 'ai optimization', 'search engine'] },
+  { id: 'structured-data', title: 'Structured data: JSON-LD and meta / Open Graph tags', tier: 'pure', recipe: 'structured-data-json-ld-meta',
+    summary: 'JSON-LD script tags escaped so they cannot break out of the element, plus title, description, canonical, Open Graph and Twitter card tags with HTML escaping.',
+    terms: ['json ld', 'json-ld', 'schema org', 'structured data', 'rich results', 'meta tags', 'open graph', 'og tags', 'twitter card', 'canonical', 'seo'] },
+  { id: 'utm-links', title: 'UTM campaign links: build, parse and strip tracking', tier: 'pure', recipe: 'utm-campaign-links',
+    summary: 'Build campaign URLs with utm_* parameters (replacing existing ones, keeping fragments), parse UTM values, and strip tracking parameters (utm_*, gclid, fbclid, msclkid and more) from shared links.',
+    terms: ['utm', 'utm parameters', 'campaign url', 'tracking', 'attribution', 'gclid', 'fbclid', 'strip tracking', 'marketing links', 'analytics'] },
+  { id: 'csv-safe', title: 'CSV read/write (RFC 4180) with formula-injection protection', tier: 'pure', recipe: 'csv-safe',
+    summary: 'Write RFC 4180 CSV with CRLF records and correct quoting, neutralizing cells that start with = + - @ so spreadsheets do not run them as formulas; parse quoted fields, embedded newlines and a BOM strictly. Standard library only.',
+    terms: ['csv', 'csv export', 'csv import', 'parse csv', 'rfc 4180', 'spreadsheet export', 'formula injection', 'csv injection', 'excel export', 'download csv'] },
+  { id: 'money', title: 'Money in integer minor units: parse, format, rates and allocation', tier: 'pure', recipe: 'money-minor-units',
+    summary: 'ISO 4217 minor units without floating point: strict decimal parsing, plain formatting, tax or FX rates with banker\'s rounding, and largest-remainder allocation that always sums to the total. Standard library only.',
+    terms: ['money', 'currency', 'cents', 'minor units', 'decimal', 'iso 4217', 'rounding', 'bankers rounding', 'half even', 'tax', 'split payment', 'allocate', 'price'] },
+  { id: 'signed-cursors', title: 'Signed, expiring pagination cursors (HMAC-SHA256)', tier: 'pure', recipe: 'signed-cursors',
+    summary: 'Opaque base64url cursors carrying the last sort keys and an expiry, signed with HMAC-SHA256 and verified in constant time; errors distinguish malformed, bad signature and expired.',
+    terms: ['pagination', 'cursor', 'cursor pagination', 'keyset pagination', 'next page token', 'opaque cursor', 'signed token', 'hmac', 'infinite scroll'] },
+  { id: 'ics-events', title: 'Calendar invites: RFC 5545 .ics events', tier: 'pure', recipe: 'ics-events',
+    summary: 'VCALENDAR/VEVENT output with UTC or all-day dates, TEXT escaping and 75-octet line folding that never splits UTF-8 characters, for email invites and add-to-calendar links.',
+    terms: ['ics', 'ical', 'icalendar', 'calendar invite', 'add to calendar', 'vevent', 'rfc 5545', 'meeting invite', 'event export'] },
+  { id: 'ids', title: 'Sortable IDs: UUIDv7 and ULID', tier: 'pure', recipe: 'ids-uuidv7-ulid',
+    summary: 'Time-ordered UUIDv7 (RFC 9562) and ULID generation from a CSPRNG and the clock, deterministic builders for tests, and timestamp extraction with strict parsing.',
+    terms: ['uuid', 'uuidv7', 'uuid v7', 'ulid', 'id generation', 'unique id', 'sortable id', 'primary key', 'identifier', 'rfc 9562'] },
+  { id: 'retry-backoff', title: 'Retry with exponential backoff and Retry-After', tier: 'pure', recipe: 'retry-backoff',
+    summary: 'Full-jitter exponential backoff with a cap that never overflows, and Retry-After parsing (delay-seconds or IMF-fixdate) for HTTP 429 and 503 responses.',
+    terms: ['retry', 'backoff', 'exponential backoff', 'jitter', 'retry after', '429', 'rate limited', 'resilience', 'transient errors'] },
+  { id: 'token-bucket', title: 'Token-bucket rate limiter (pure, injectable clock)', tier: 'pure', recipe: 'token-bucket',
+    summary: 'Integer millitoken token bucket with capacity and refill rate, an injected clock and an exact retry-after for denied requests; keep the state in memory or in your store.',
+    terms: ['rate limit', 'rate limiter', 'token bucket', 'throttle', 'throttling', 'quota', 'api limits', '429'] },
+  { id: 'semver', title: 'Semantic versions and npm-style ranges', tier: 'pure', recipe: 'semver-compare-and-range',
+    summary: 'Strict SemVer 2.0.0 parsing and ordering (prerelease rules, build metadata ignored) and range matching with ^, ~, x-ranges, hyphen ranges and ||, desugared exactly like node-semver.',
+    terms: ['semver', 'semantic version', 'version compare', 'version range', 'caret', 'tilde', 'dependency version', 'compatibility', 'upgrade check'] },
+  { id: 'cron-next', title: 'Cron schedules: next run time', tier: 'pure', recipe: 'cron-next-run',
+    summary: 'Five-field cron parsing (lists, ranges, steps, Sunday as 0 or 7) with the Vixie day-of-month/day-of-week rule, returning the next UTC run after a given time.',
+    terms: ['cron', 'crontab', 'schedule', 'scheduler', 'next run', 'recurring job', 'cron expression', 'job scheduling'] },
+  { id: 'wcag-contrast', title: 'WCAG color contrast', tier: 'pure', recipe: 'color-contrast-wcag',
+    summary: 'Relative luminance and contrast ratio per WCAG 2.x for hex colors, with AA and AAA pass checks for normal and large text.',
+    terms: ['contrast', 'color contrast', 'wcag', 'accessibility', 'a11y', 'luminance', 'aa', 'aaa', 'readability'] },
+  { id: 'geo', title: 'Geo distance, geohash and bounding boxes', tier: 'pure', recipe: 'geo-distance-geohash',
+    summary: 'Haversine distance in meters, geohash encode and decode with error bounds, and a bounding box around a point for radius queries in a database.',
+    terms: ['geo', 'distance', 'haversine', 'geohash', 'latitude', 'longitude', 'nearby', 'radius search', 'location', 'bounding box'] },
+  { id: 'webhook-signature', title: 'Webhook signing and verification (HMAC-SHA256, t/v1 header)', tier: 'pure', recipe: 'webhook-signature',
+    summary: 'Sign outgoing webhooks and verify incoming ones with Stripe-style t=...,v1=... headers: constant-time comparison, several v1 values for secret rotation, and a timestamp tolerance against replay.',
+    terms: ['webhook', 'webhook signature', 'hmac', 'sign webhook', 'verify webhook', 'replay protection', 'signing secret', 'outgoing webhooks'] },
+  { id: 'check-digits', title: 'Check digits: Luhn, IBAN, GTIN/EAN/UPC and ISBN', tier: 'pure', recipe: 'check-digits',
+    summary: 'Luhn validation and check-digit generation for card and account numbers, ISO 13616 IBAN mod-97 validation and formatting, GTIN-8/12/13/14 (EAN, UPC) and ISBN-10/13 validation with ISBN-10 to 13 conversion.',
+    terms: ['luhn', 'credit card number', 'card validation', 'validate credit card', 'iban', 'validate iban', 'iban validation', 'bank account', 'validate isbn', 'validate barcode', 'check digit', 'checksum', 'gtin', 'ean', 'upc', 'barcode', 'isbn', 'mod 97'] },
+  { id: 'signed-urls', title: 'Signed, expiring URLs (HMAC-SHA256)', tier: 'pure', recipe: 'signed-urls',
+    summary: 'Sign a path and query with an expiry and an HMAC-SHA256 signature for private downloads or one-click links, and verify in constant time with distinct malformed, bad signature and expired errors.',
+    terms: ['signed url', 'presigned url', 'expiring link', 'download link', 'secure link', 'hmac', 'magic link', 'temporary url', 'private file'] },
+  { id: 'polyline', title: 'Encoded polylines (Google polyline algorithm)', tier: 'pure', recipe: 'polyline-encoding',
+    summary: 'Encode and decode routes in the Google encoded polyline format at precision 5 or 6 (OSRM, Valhalla, Google Directions, Mapbox), with strict decoding.',
+    terms: ['polyline', 'encoded polyline', 'route geometry', 'directions', 'osrm', 'valhalla', 'google maps', 'mapbox', 'path encoding', 'navigation'] },
+  { id: 'tile-math', title: 'Web map tile math: slippy tiles, quadkeys, Web Mercator', tier: 'pure', recipe: 'web-map-tiles',
+    summary: 'Longitude/latitude to XYZ tile at a zoom, tile bounds, Bing quadkeys and EPSG:3857 meters for tile servers, caches, MapLibre, Leaflet and OpenLayers.',
+    terms: ['map tiles', 'slippy map', 'xyz tiles', 'tile coordinates', 'quadkey', 'web mercator', 'epsg 3857', 'zoom level', 'tile server', 'maplibre', 'leaflet', 'openlayers', 'mapping'] },
+  { id: 'email-address', title: 'Email address validation and normalization', tier: 'pure', recipe: 'email-address-validation',
+    summary: 'The WHATWG HTML valid e-mail address rule with RFC length limits, and normalization that trims and lowercases the domain only. Syntax only: confirm ownership by sending a message.',
+    terms: ['email validation', 'validate email', 'email address', 'email regex', 'email format', 'normalize email', 'signup form', 'contact form'] },
+  { id: 'iso-duration', title: 'ISO 8601 durations', tier: 'pure', recipe: 'iso-8601-durations',
+    summary: 'Strict parsing of ISO 8601 durations (P1DT2H30M, PT0.5S, P2W) into parts, exact milliseconds for day-and-time durations, and canonical formatting.',
+    terms: ['iso 8601', 'duration', 'iso duration', 'pt1h', 'time span', 'youtube duration', 'schema org duration', 'timeout', 'interval'] },
+  { id: 'geometry', title: 'Polygon geometry: point in polygon, area, centroid, simplification', tier: 'pure', recipe: 'geometry-polygons',
+    summary: 'Point-in-polygon with boundary handling, signed shoelace area and centroid, Douglas-Peucker line simplification and spherical polygon area in square meters (the Turf/Mapbox formula), for geofences and map shapes.',
+    terms: ['point in polygon', 'geofence', 'polygon area', 'centroid', 'douglas peucker', 'simplify line', 'geometry', 'geojson', 'area', 'turf', 'mapping', 'gis'] },
+  { id: 'safe-redirect', title: 'Safe redirects (open-redirect guard)', tier: 'pure', recipe: 'safe-redirects',
+    summary: 'Accept a returnTo or next parameter only when it is a same-site path or an absolute http(s) URL whose origin is on an allow-list; rejects protocol-relative, backslash, control-character, userinfo and javascript: tricks.',
+    terms: ['open redirect', 'redirect', 'return url', 'returnto', 'next parameter', 'login redirect', 'callback url', 'allowlist', 'security'] },
+  { id: 'ip-cidr', title: 'IP addresses, CIDR ranges and SSRF guard', tier: 'pure', recipe: 'ip-cidr-ssrf-guard',
+    summary: 'Strict IPv4/IPv6 parsing with RFC 5952 canonical text, CIDR membership, and a public-address check covering private, loopback, link-local (cloud metadata), CGNAT, multicast, documentation and IPv4-mapped/NAT64 ranges, for SSRF protection and allow-lists.',
+    terms: ['ssrf', 'ip address', 'ipv4', 'ipv6', 'cidr', 'subnet', 'private ip', 'is private ip', 'ip allowlist', 'ip whitelist', 'webhook url validation', 'metadata endpoint', '169.254.169.254', 'rfc 5952'] },
+  { id: 'http-range', title: 'HTTP Range requests (byte ranges, 206 and 416)', tier: 'pure', recipe: 'http-range-requests',
+    summary: 'Parse a Range header against a file size into byte ranges, an unsatisfiable result (416 with Content-Range bytes */size) or none (serve the whole file), following RFC 9110, plus the Content-Range value.',
+    terms: ['range request', 'http range', 'byte range', 'partial content', '206', '416', 'content-range', 'video streaming', 'resumable download', 'seek'] },
+  { id: 'content-negotiation', title: 'Content negotiation: Accept and Accept-Language', tier: 'pure', recipe: 'content-negotiation',
+    summary: 'Choose the best response media type or language from Accept and Accept-Language headers with q-values, wildcards, most-specific matching and q=0 exclusions (RFC 9110, RFC 4647 basic filtering).',
+    terms: ['content negotiation', 'accept header', 'accept-language', 'q value', 'locale detection', 'language negotiation', 'i18n', 'media type', 'mime type', 'api versioning'] },
+  { id: 'http-conditional', title: 'ETags and conditional requests (304, 412)', tier: 'pure', recipe: 'http-conditional-requests',
+    summary: 'Entity-tag parsing and strong/weak comparison, and the RFC 9110 evaluation order of If-Match, If-Unmodified-Since, If-None-Match and If-Modified-Since giving 200, 304 Not Modified or 412 Precondition Failed for caching and optimistic concurrency.',
+    terms: ['etag', 'if-none-match', 'if-match', 'if-modified-since', '304', 'not modified', '412', 'precondition failed', 'conditional request', 'http caching', 'optimistic concurrency', 'lost update'] },
+  { id: 'cookies', title: 'Cookies: Set-Cookie and Cookie headers', tier: 'pure', recipe: 'cookies',
+    summary: 'Serialize Set-Cookie with Max-Age, Expires, Domain, Path, Secure, HttpOnly, SameSite and Partitioned, enforcing token/octet rules, SameSite=None and __Secure-/__Host- prefix requirements; parse Cookie headers into ordered pairs.',
+    terms: ['cookie', 'set-cookie', 'session cookie', 'samesite', 'httponly', 'secure cookie', '__host', 'parse cookies', 'cookie header', 'partitioned cookie', 'chips'] },
+  { id: 'url-normalize', title: 'URL normalization (RFC 3986)', tier: 'pure', recipe: 'url-normalization',
+    summary: 'Canonical http(s) URLs for caching, de-duplication and comparison: lowercase scheme and host, default ports removed, dot segments resolved, percent-encoding normalized, fragment dropped, IPv6 hosts canonicalized.',
+    terms: ['url normalization', 'normalize url', 'canonical url', 'remove dot segments', 'percent encoding', 'dedupe urls', 'crawler', 'url comparison', 'rfc 3986'] },
+  { id: 'string-similarity', title: 'String similarity: Levenshtein, Damerau, Jaro-Winkler', tier: 'pure', recipe: 'string-similarity',
+    summary: 'Edit distances (Levenshtein, optimal string alignment) and Jaro/Jaro-Winkler scores over Unicode code points, plus a normalized ratio, for fuzzy search, typo suggestions and duplicate detection.',
+    terms: ['levenshtein', 'edit distance', 'fuzzy match', 'fuzzy search', 'jaro winkler', 'damerau', 'string similarity', 'typo', 'did you mean', 'dedupe', 'record linkage'] },
+  { id: 'rrule', title: 'Recurring events: RFC 5545 RRULE expansion', tier: 'pure', recipe: 'rrule-recurrence',
+    summary: 'Expand DAILY, WEEKLY, MONTHLY and YEARLY recurrence rules with INTERVAL, COUNT, UNTIL, BYDAY (including 2TU, -1FR and 20MO in the year), BYMONTHDAY and BYMONTH as filters for any frequency, in UTC, matching python-dateutil for every rule it accepts.',
+    terms: ['rrule', 'recurrence', 'recurring event', 'repeat event', 'rfc 5545', 'icalendar', 'every second tuesday', 'last friday', 'calendar', 'schedule', 'recurring meeting', 'recurring events', 'repeating events', 'recurring event rule'] },
+  { id: 'base-encodings', title: 'Base32, Base58 and Base64url encoding', tier: 'pure', recipe: 'base-encodings',
+    summary: 'RFC 4648 base32 (standard and extended-hex alphabets, padded or not), Bitcoin-alphabet base58 and unpadded base64url, with strict decoders that reject bad characters, padding and non-canonical bits.',
+    terms: ['base32', 'base58', 'base64url', 'base64 url safe', 'encode bytes', 'decode', 'rfc 4648', 'short id', 'bitcoin address', 'binary to text'] },
+  { id: 'vcard', title: 'vCard 4.0 contact export (.vcf)', tier: 'pure', recipe: 'vcard-contacts',
+    summary: 'RFC 6350 vCard 4.0 with name, organization, emails, phones, address, URLs and notes: text escaping, TYPE parameters, validation and 75-octet folding that never splits UTF-8, for "add to contacts" downloads and QR codes.',
+    terms: ['vcard', 'vcf', 'contact card', 'add to contacts', 'export contacts', 'rfc 6350', 'business card', 'contact qr code', 'address book'] },
+  { id: 'hashing', title: 'Non-cryptographic hashing and jump consistent hashing', tier: 'pure', recipe: 'non-crypto-hashing',
+    summary: 'CRC-32 (IEEE), FNV-1a 32/64, MurmurHash3 x86_32 and Google jump consistent hash for checksums, sharding, cache keys and bucketing. Not for passwords, MACs or signatures.',
+    terms: ['crc32', 'checksum', 'fnv', 'fnv-1a', 'murmurhash', 'murmur3', 'consistent hashing', 'jump hash', 'sharding', 'hash function', 'bucketing', 'partitioning'] },
+  { id: 'feature-flags', title: 'Feature flags: deterministic rollout and A/B variants', tier: 'pure', recipe: 'feature-flag-evaluation',
+    summary: 'Evaluate a flag for a user with enable/disable, deny and allow lists, sticky percentage rollout (FNV-1a buckets out of 10,000) and weighted A/B variants, returning the reason and bucket for logging.',
+    terms: ['feature flag', 'feature toggle', 'percentage rollout', 'gradual rollout', 'canary', 'a/b test', 'ab testing', 'experiment', 'variant', 'split test', 'kill switch'] },
+  { id: 'human-units', title: 'Human-readable bytes, durations and relative times', tier: 'pure', recipe: 'human-readable-units',
+    summary: 'Format and parse byte sizes in SI (kB) or IEC (KiB) units with integer rounding, compact durations ("1h 2m") and relative times ("3 minutes ago", "in 2 days").',
+    terms: ['format bytes', 'file size', 'human readable', 'kib', 'parse size', 'time ago', 'relative time', 'humanize', 'duration format', 'pretty print', 'timeago'] },
+  { id: 'line-diff', title: 'Line diff and unified diff output', tier: 'pure', recipe: 'unified-line-diff',
+    summary: 'Minimal line diff (Myers, linear memory, up to 1,000,000 lines) and unified diff output that patch applies exactly (hunks, context, "No newline at end of file"), for change previews, audit logs and patches.',
+    terms: ['diff', 'unified diff', 'line diff', 'compare text', 'text diff', 'patch', 'changes', 'lcs', 'diff -u', 'show changes', 'version compare'] },
+  { id: 'password-policy', title: 'Password policy checks (NIST SP 800-63B)', tier: 'pure', recipe: 'nist-password-policy',
+    summary: 'Length limits in code points, control-character, blocklist (breached passwords), user-context and repetitive/sequential checks with stable failure codes and no composition rules, as NIST SP 800-63B recommends.',
+    terms: ['password policy', 'password validation', 'password rules', 'nist 800-63b', 'breached password', 'weak password', 'password strength', 'signup', 'blocklist'] },
+  { id: 'text-sanitize', title: 'Text sanitizing and Trojan Source (bidi) detection', tier: 'pure', recipe: 'text-sanitize-bidi',
+    summary: 'Normalize newlines, strip control, bidirectional-override and invisible characters from user or model text while keeping emoji joiners, truncate by code points, collapse whitespace, and report bidi controls (CVE-2021-42574).',
+    terms: ['sanitize text', 'strip control characters', 'trojan source', 'bidi', 'bidirectional', 'zero width', 'invisible characters', 'unicode safety', 'normalize whitespace', 'user input', 'prompt injection'] },
+  { id: 'slugify', title: 'URL slugs: slugify titles and make them unique', tier: 'pure', recipe: 'slugify',
+    summary: 'Turn titles into URL-safe slugs (Latin accents transliterated by one fixed table, apostrophes joined, word-boundary truncation) and pick the first free slug-2, slug-3 ..., identically in every language.',
+    terms: ['slug', 'slugify', 'permalink', 'url slug', 'friendly url', 'seo url', 'title to url', 'unique slug', 'pretty url', 'transliterate', 'accents'] },
+  { id: 'json-patch', title: 'JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396)', tier: 'pure', recipe: 'json-patch',
+    summary: 'Apply RFC 6902 JSON Patch atomically, resolve RFC 6901 pointers, apply RFC 7396 merge patches and generate a deterministic patch (JSON diff) between two documents; includes a strict JSON parser where the language has none.',
+    terms: ['json patch', 'rfc 6902', 'json pointer', 'rfc 6901', 'merge patch', 'rfc 7396', 'json diff', 'diff two json objects', 'patch document', 'partial update', 'http patch', 'apply changes to json', 'canonical json'] },
+  { id: 'sse', title: 'Server-sent events: parse and format event streams', tier: 'pure', recipe: 'sse-stream',
+    summary: 'Incremental WHATWG server-sent events parser (chunk-safe, CRLF/CR/LF, comments, id and retry) and formatter for streaming responses such as LLM token streams, live feeds and progress updates.',
+    terms: ['sse', 'server-sent events', 'event stream', 'text/event-stream', 'eventsource', 'streaming response', 'stream llm tokens', 'openai stream', 'live updates', 'push updates', 'keep-alive ping'] },
+  { id: 'text-chunking', title: 'Text chunking for retrieval (RAG)', tier: 'pure', recipe: 'text-chunking',
+    summary: 'Split documents into chunks of at most N code points at the largest natural boundary (paragraph, line, sentence, word), with optional whole-piece overlap, for embeddings and retrieval.',
+    terms: ['chunking', 'text splitter', 'split text', 'rag', 'retrieval augmented generation', 'embeddings', 'chunk documents', 'overlap', 'recursive character splitter', 'context window'] },
+  { id: 'vector-math', title: 'Vector similarity: cosine, top-k and MMR', tier: 'pure', recipe: 'vector-math',
+    summary: 'Dot product, norm, cosine similarity, normalization, brute-force top-k nearest neighbours and maximal marginal relevance (MMR) re-ranking for embedding search without a vector database.',
+    terms: ['cosine similarity', 'vector search', 'nearest neighbors', 'top k', 'embeddings search', 'semantic search', 'mmr', 'maximal marginal relevance', 'dot product', 'similarity score', 'rerank'] },
+  { id: 'circuit-breaker', title: 'Circuit breaker (closed, open, half-open)', tier: 'pure', recipe: 'circuit-breaker',
+    summary: 'A clock-injected circuit breaker state machine: consecutive failures open it, a cooldown moves it to half-open, limited trial calls close or re-open it, with retry-after for callers.',
+    terms: ['circuit breaker', 'fail fast', 'resilience', 'half open', 'cascading failure', 'downstream outage', 'retry after', 'fault tolerance', 'stop calling failing service'] },
+  { id: 'business-days', title: 'Business days: add, count and check with holidays', tier: 'pure', recipe: 'business-days',
+    summary: 'Add or subtract business days, count business days between ISO dates and check a date, with a holiday list and any weekend (Saturday/Sunday by default, Friday/Saturday and others).',
+    terms: ['business days', 'working days', 'weekdays', 'holidays', 'sla due date', 'delivery date', 'add workdays', 'count working days', 'net working days', 'shipping estimate'] },
+  { id: 'natural-sort', title: 'Natural sort order (file2 before file10)', tier: 'pure', recipe: 'natural-sort',
+    summary: 'Compare and sort strings so embedded numbers sort by value (file2 before file10, v1.9 before v1.10), case-insensitively, with deterministic tie-breaks and any number length.',
+    terms: ['natural sort', 'human sort', 'alphanumeric sort', 'sort file names', 'numeric string sort', 'version-like sort', 'sort with numbers', 'natsort'] },
+  { id: 'file-signature', title: 'File type detection from magic bytes', tier: 'pure', recipe: 'file-signature',
+    summary: 'Detect about 30 common formats (images, PDF, archives, audio, video, fonts, WASM, SQLite) from the first bytes and check that an upload\'s content matches its file extension.',
+    terms: ['magic bytes', 'file signature', 'mime sniffing', 'detect file type', 'upload validation', 'content type check', 'file extension mismatch', 'is this a png', 'validate uploaded image'] },
+  { id: 'color', title: 'Color conversion: hex, RGB, HSL and OKLCH', tier: 'pure', recipe: 'color-convert',
+    summary: 'Parse and format CSS hex colors and convert between sRGB, HSL and OKLCH (Oklab), with a gamut check, for themes, palettes and design tokens.',
+    terms: ['color conversion', 'hex to rgb', 'rgb to hsl', 'oklch', 'oklab', 'css colors', 'color palette', 'design tokens', 'hex color', 'lighten color', 'theme colors'] },
+  { id: 'oidc-token-verification', title: 'OIDC ID token / JWT verification', tier: 'library',
+    summary: 'Verify ID tokens and access-token JWTs with the maintained JOSE library of each language: JWKS keys, algorithm allow-list, issuer, audience, expiry and nonce.',
+    terms: ['jwt', 'jwks', 'id token', 'oidc', 'sso', 'token verification', 'jose', 'bearer token', 'auth'] },
+  { id: 'saml-sso', title: 'SAML 2.0 SSO (service provider)', tier: 'library',
+    summary: 'Validate signed SAML responses and assertions with a maintained SAML library: signature, audience, recipient, time conditions and replay.',
+    terms: ['saml', 'saml2', 'sso', 'saml sso', 'saml login', 'single sign on', 'identity provider', 'idp', 'service provider', 'okta', 'adfs', 'entra', 'enterprise sso'] },
+  { id: 'webauthn-passkeys', title: 'WebAuthn passkeys', tier: 'library',
+    summary: 'Passkey registration and authentication ceremonies with a maintained WebAuthn server library: challenges, origin/RP ID checks, signature counters.',
+    terms: ['webauthn', 'passkey', 'passkeys', 'fido2', 'mfa', 'passwordless', 'security key', 'biometric', 'auth', 'login', 'sign in', 'passkey login'] },
+  { id: 'password-hashing', title: 'Password hashing (Argon2id / bcrypt / scrypt)', tier: 'library',
+    summary: 'Hash and verify passwords with Argon2id (or bcrypt/scrypt where Argon2 is unavailable), including parameter choice and rehash-on-login.',
+    terms: ['password', 'password hashing', 'argon2', 'argon2id', 'bcrypt', 'scrypt', 'auth', 'login', 'credentials'] },
+  { id: 'pdf-form-filling', title: 'PDF form filling', tier: 'library',
+    summary: 'Fill AcroForm fields in an existing PDF, optionally flatten, and read values back with a maintained, permissively licensed PDF library.',
+    terms: ['pdf', 'pdf form', 'fill pdf', 'pdf filler', 'acroform', 'fillable pdf', 'flatten', 'documents'] },
+  { id: 'pdf-text-extraction', title: 'PDF parsing and text extraction', tier: 'library',
+    summary: 'Extract page text and metadata from PDFs with a maintained library; notes on scanned PDFs (OCR) and layout limits.',
+    terms: ['pdf', 'pdf parser', 'parse pdf', 'extract text', 'pdf text', 'pdf to text', 'documents', 'ocr'] },
+  { id: 'docx-documents', title: 'Word (DOCX) document editing', tier: 'library',
+    summary: 'Create, edit and read .docx documents (paragraphs, tables, replacing placeholders) with a maintained library.',
+    terms: ['docx', 'word', 'document', 'document editor', 'office', 'ms word', 'template', 'mail merge', 'documents'] },
+  { id: 'rich-text-sanitization', title: 'Rich text / HTML sanitization', tier: 'library',
+    summary: 'Sanitize user HTML from rich-text editors with an allow-list sanitizer before storage or rendering.',
+    terms: ['sanitize', 'html sanitizer', 'xss', 'rich text', 'wysiwyg', 'editor', 'document editor', 'markdown', 'user content'] },
+];
+
+const extraTerms = src('terms');
+const caveats = src('caveats');
+const out = [];
+for (const cap of CAPS) {
+  const implementations = {};
+  for (const lang of LANGS) {
+    if (cap.tier === 'pure') {
+      if (lang === 'typescript') { implementations[lang] = { kind: 'recipe', id: cap.recipe, tested: true }; continue; }
+      const m = byId.get(`${lang}-${cap.id}`);
+      if (m) implementations[lang] = { kind: 'language-example', id: m.id, tested: true };
+      else implementations[lang] = { kind: 'unavailable', note: 'Not implemented yet.' };
+    } else {
+      const m = byId.get(`${lang}-${cap.id}`);
+      if (m && m.base === 'cookbook') {
+        implementations[lang] = { kind: 'language-example', id: m.id, tested: m.tested !== false, ...(m.library ? { library: m.library } : {}), ...(m.dependencies ? { dependencies: m.dependencies } : {}), ...(m.testDependencies ? { testDependencies: m.testDependencies } : {}) };
+      } else {
+        implementations[lang] = { kind: 'unavailable', note: notes[cap.id]?.[lang] ?? `No maintained, permissively licensed ${lang} library verified here; see the guide for alternatives.` };
+      }
+    }
+  }
+  if (cap.tier === 'pure') { const r = recipes.find(e => e.id === cap.recipe); if (!r) throw Error('missing recipe ' + cap.recipe); }
+  out.push({ id: cap.id, title: cap.title, tier: cap.tier, summary: cap.summary, ...(caveats[cap.id] ? { caveat: caveats[cap.id] } : {}), terms: [...new Set([...cap.terms, ...(extraTerms[cap.id] ?? [])])],
+    guide: cap.tier === 'pure' ? 'docs/capabilities.md' : `docs/cookbook/${cap.id}.md`, implementations });
+}
+const text = JSON.stringify({ schemaVersion: 1,
+  review: 'Pure capabilities are standard-library code tested against RFC vectors. Library capabilities wrap the maintained library named per language; check its license and pin the version shown. Copy, then run the copied tests in the consuming project.',
+  capabilities: out }, null, 2) + '\n';
+const file = root + '/resources/capabilities.json';
+if (process.argv.includes('--check')) {
+  if (readFileSync(file, 'utf8') !== text) { console.error('resources/capabilities.json is stale; run node scripts/build-capabilities.mjs'); process.exit(1); }
+  console.log('capabilities current');
+} else {
+  writeFileSync(file, text);
+  console.log(out.map(c => c.id + ':' + Object.values(c.implementations).filter(i => i.kind !== 'unavailable').length).join(' '));
+}

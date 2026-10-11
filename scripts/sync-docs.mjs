@@ -14,9 +14,16 @@ if (process.argv.slice(2).some(arg => arg !== '--check')) throw new Error('Usage
 const sources = await loadSources(root);
 const counts = sourceCounts(sources);
 const types = await loadProjectTypes(root);
-// Tested implementations behind the capabilities (one per capability and language that has code).
-const capabilityImplementations = JSON.parse(readFileSync(root + 'resources/capabilities.json', 'utf8')).capabilities
-  .reduce((sum, capability) => sum + Object.values(capability.implementations).filter(item => item.kind !== 'unavailable').length, 0);
+// Implementations behind the capabilities (one per capability and language that has code), and how many carry tests.
+const shipped = JSON.parse(readFileSync(root + 'resources/capabilities.json', 'utf8')).capabilities
+  .flatMap(capability => Object.values(capability.implementations).filter(item => item.kind !== 'unavailable'));
+const capabilityImplementations = shipped.length;
+const testedImplementations = shipped.filter(item => item.tested).length;
+// Recipe records by what backs them: strictly compiled and behaviour-tested TypeScript (examples/recipes in
+// tests/recipes.test.mjs, storefront and utilities in tests/source-examples.test.mjs), or another kind of record.
+const recipeRecords = JSON.parse(readFileSync(root + 'resources/agent-recipes.json', 'utf8')).entries;
+const compiledRecipes = recipeRecords.filter(entry => entry.kind === 'source-example' && /^examples\/(recipes|storefront|utilities)\/[^/]+\.ts$/.test(entry.path)).length;
+const otherRecipes = recipeRecords.length - compiledRecipes;
 
 // Group resources by the catalog file that holds them.
 const catalogs = [];
@@ -38,9 +45,9 @@ const link = (target, from) => {
 const sourcesBlock = from => [
   '| Source | Count | What it is |',
   '| --- | ---: | --- |',
-  `| [Capabilities](#capabilities-one-task-every-language) | ${counts.capability} (${capabilityImplementations} implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with tested code in up to ${LANGUAGES.length} languages (the count in brackets is the total of tested implementations) |`,
+  `| [Capabilities](#capabilities-one-task-every-language) | ${counts.capability} (${capabilityImplementations} implementations, ${testedImplementations} tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to ${LANGUAGES.length} languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |`,
   `| [Modules](#modules) | ${counts.module} | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with \`plan\` / \`add\` / \`verify\` |`,
-  `| [TypeScript recipes](#recipes-language-examples-and-templates) | ${counts.recipe} | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |`,
+  `| [TypeScript recipes](#recipes-language-examples-and-templates) | ${counts.recipe} | ${compiledRecipes} single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other ${otherRecipes} records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |`,
   `| [Language examples](#recipes-language-examples-and-templates) | ${counts['language-example']} | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |`,
   `| [Project templates](#recipes-language-examples-and-templates) | ${counts.template} | Project, GitHub, docs, ship/release and UI-selection starters |`,
   `| [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | ${counts.starter} | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |`,

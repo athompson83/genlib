@@ -37,7 +37,7 @@ State and questions together stay under 20,000 characters, so a packet fits Geni
 
 After selection, run the candidate's `next` commands in order, under the task's existing authorization. Then inspect what was copied or installed and run the receiving project's checks.
 
-Put the task's constraints in the task text. When it forbids new dependencies ("standard library only", "no third-party dependencies", "do not install packages"), or with `--stdlib-only` (MCP: `stdlibOnly: true`), the packet keeps only candidates that need no install (capabilities, modules, recipes, language examples, templates, tools, docs), states the constraint in `state.constraints` and adds it to each question. A measured run without this selected python-dateutil for a task that forbade it. A candidate's `caveat` names a known limit (line-diff is not byte-identical to GNU diff; slugify keeps Latin letters only); its question then asks whether the caveat conflicts with the task, so a model can say no before the code is copied. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
+Put the task's constraints in the task text. When it forbids new dependencies ("standard library only", "no third-party dependencies", "do not install packages"), or with `--stdlib-only` (MCP: `stdlibOnly: true`), the packet keeps only candidates that need no install, judged on the code that would be copied: a capability's implementation for the project's language (the Python password-hashing cookbook needs `pip install`, so it is left out), or only pure capabilities when no language is known; language examples without dependencies; and modules, recipes, templates, tools and docs. It states the constraint in `state.constraints` and adds it to each question. A measured run without this selected python-dateutil for a task that forbade it. A candidate's `caveat` names a known limit (line-diff is not byte-identical to GNU diff; slugify keeps Latin letters only); its question then asks whether the caveat conflicts with the task, so a model can say no before the code is copied. Measured runs with Jev are in [benchmarks.md](benchmarks.md).
 
 ## What the shortlist searches
 
@@ -70,6 +70,19 @@ Ranking is lexical, but it is not naive:
 "<product> alternative" (or "replacement") also matches records that list the product in their `replaces` tags, such as Penpot for Figma or n8n for Zapier.
 
 Lexical matching can miss related wording. Every source therefore stays reachable through `find`, `--type`, `catalog` and the search index, and the escape path in each packet says so.
+
+## Keep the decision cheap
+
+The packet is small: in the measured runs a Jev decision read 650 to 2,300 tokens of packet and wrote under 200. Running that decision inside a full agent harness (system prompt, tool definitions, project instructions) cost about 75,000 tokens of fixed context per decision, more than the coding the selection saved on small tasks. Call the decision model directly with only the packet, no tools and no project context:
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" jev "<task words and constraints>" --target "$APP_ROOT" --prompt   # about 200-400 tokens to send
+node "$GENLIB_ROOT/bin/genlib.mjs" jev "<task words and constraints>" --target "$APP_ROOT" --json     # the same decision as structured data, with next commands
+```
+
+`--prompt` states the answer rule once instead of in every question (MCP: `prompt: true`). Candidates scoring below 40% of the best match are left out, so a clear task usually yields one or two candidates.
+
+After selection, let ordinary code finish the work before the coding model starts: run the selected copy command with `--run-tests` (Python and Go) or run its `# test:` command, and put the copied paths, the `# api:` lines, `# tests cover:` and the test result in the coding prompt. Every turn the coding agent spends re-reading copied code or re-running tests re-reads its whole context; in the measured runs each turn cost about as much as writing 900 tokens. Tell it to add tests only for requirements the listed tests do not cover.
 
 ## Over MCP
 

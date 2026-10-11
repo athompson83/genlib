@@ -1,0 +1,15 @@
+{
+  "docx-documents": {
+    "swift": "No maintained, permissively licensed Swift DOCX library works on Linux. Generate or fill the DOCX on a server with another language's implementation (for example python-docx-documents or csharp-docx-documents). On macOS only, NSAttributedString supports .officeOpenXML export (not verified here)."
+  },
+  "pdf-form-filling": {
+    "dart": "No maintained, permissively licensed pure-Dart library fills an existing AcroForm (package pdf only creates PDFs; pdfrx_engine has no form API). syncfusion_flutter_pdf can, but needs Flutter and a commercial/community license (license-review). Fill on a server with another language's implementation, e.g. python-pdf-form-filling."
+  },
+  "webauthn-passkeys": {
+    "dart": "pub.dev has no maintained WebAuthn relying-party (server) library. Verify ceremonies on a server using another language's implementation (for example typescript-webauthn-passkeys or go-webauthn-passkeys) or an identity broker; on the Flutter client use the passkeys package (BSD-3-Clause)."
+  },
+  "saml-sso": {
+    "dart": "No maintained, permissively licensed Dart SAML library verifies XML signatures. Put an identity broker (Keycloak, Authentik or ZITADEL) in front of the SAML IdP and use the oidc-pkce and oidc-token-verification capabilities in Dart, or terminate SAML on a server with another language's implementation (for example go-saml-sso).",
+    "swift": "No maintained, permissively licensed Swift SAML library verifies XML signatures. Put an identity broker (Keycloak, Authentik or ZITADEL) in front of the SAML IdP and use the oidc-pkce and oidc-token-verification capabilities in Swift, or terminate SAML on a server with another language's implementation (for example go-saml-sso)."
+  }
+}

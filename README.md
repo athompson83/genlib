@@ -25,9 +25,9 @@ One command searches everything below and returns each result's exact next step.
 <!-- genlib:sources:start -->
 | Source | Count | What it is |
 | --- | ---: | --- |
-| [Capabilities](#capabilities-one-task-every-language) | 62 (553 implementations) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with tested code in up to 9 languages (the count in brackets is the total of tested implementations) |
+| [Capabilities](#capabilities-one-task-every-language) | 62 (553 implementations, 551 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
 | [Modules](#modules) | 13 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
-| [TypeScript recipes](#recipes-language-examples-and-templates) | 87 | Single-file, strictly compiled and tested TypeScript sources copied with one command (the refactoring and workflow recipes are a separate index below) |
+| [TypeScript recipes](#recipes-language-examples-and-templates) | 87 | 83 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
 | [Language examples](#recipes-language-examples-and-templates) | 513 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
@@ -38,7 +38,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9754 | Link- and license-checked records for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 578 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 579 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -273,7 +273,7 @@ The React modules need the app's existing React 18 or 19 and a TSX build; `app-s
 
 ## Recipes, language examples and templates
 
-- **TypeScript recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. New recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
+- **TypeScript recipes** ([`resources/agent-recipes.json`](resources/agent-recipes.json)): single-file sources such as cart, catalog and invoice math, CSV export and RFC 4180 parsing, upload preflight, money allocation, slugs, cursor pagination, date ranges, deep merge without prototype pollution, debounce/throttle, bounded async pools, LRU caches, semver, safe filenames, typed URL state, i18n plurals, WCAG contrast, HTML escaping, typed events and state machines, feature-flag rollout, idempotency and outbox references, line diffs and token-budget truncation. Recipes are compiled with strict TypeScript and tested in [`tests/recipes.test.mjs`](tests/recipes.test.mjs), and the storefront and utility sources in [`tests/source-examples.test.mjs`](tests/source-examples.test.mjs); they need web-standard globals (`lib: ["DOM"]` or `@types/node`). Copy one with `node tools/recipe-install.mjs add <id> --target "$APP_ROOT"`.
 - **Language examples** ([`examples/languages`](examples/languages/README.md) and [`examples/cookbook`](examples/cookbook)): pagination, identifier validation, config, HTTP client, safe logging and the [capabilities](#capabilities-one-task-every-language) across eight languages, installed with `node tools/language-modules.mjs`.
 - **Templates** ([`templates/index.json`](templates/index.json)), all opt-in and merged by hand:
 
@@ -452,6 +452,8 @@ tests/                    CLI safety, module behavior, discovery and catalog tes
 npm ci --ignore-scripts
 npm run registry:build   # after editing modules
 npm run skills:sync      # after editing the canonical skill
+npm run capabilities:build   # after editing capabilities or modules.json
+node scripts/api-install.mjs # after editing API records or api-lifecycle.json
 npm run check            # registry, skills, resources, TypeScript build and all tests
 node scripts/routing-eval.mjs --misses   # how often quick picks the right capability
 ```
