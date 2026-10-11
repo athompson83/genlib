@@ -17,7 +17,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" provider adopt btst-kanban --from "$SCRATCH" 
 | Field | Meaning |
 | --- | --- |
 | `upstream` | Repository, exact version, tag and commit, and the packages it brings |
-| `prerequisites` | Checks Genlib runs offline against the app. A package's minimum, maximum or exact version is read from `node_modules/<pkg>/package.json` first, and otherwise from the lowest version the declared range allows. Other checks: Node version, paths that must exist, paths that must not exist (the files the scaffolder would write), and JSON settings such as `components.json` `tailwind.cssVariables`. Use `ifPresent` for packages the app may not have; failed `warning` items do not block |
+| `prerequisites` | Checks Genlib runs offline against the app. A package's minimum, maximum or exact version is read from `node_modules/<pkg>/package.json` first, and otherwise from the lowest version the declared range allows. Other checks: Node version, paths that must exist, paths that must not exist (the files the scaffolder would write), and JSON settings such as `components.json` `tailwind.cssVariables`. A `files` check refuses a pattern in a config file (for example `cacheComponents: true` in `next.config.ts`). Paths the provider has already adopted count as its own, so `check` stays clean afterwards. Use `ifPresent` for packages the app may not have; failed `warning` items do not block |
 | `steps` | Ordered steps (`install`, `stage`, `adopt`, `edit`, `env`, `migrate`, `verify`) with exact commands. The harness runs them under the project's own permissions; Genlib runs none. `@latest` is refused |
 | `stage.mergeFiles` | Files the scaffolder edits rather than creates (the global stylesheet, the root layout). They are reported for a manual merge and never written |
 | `acceptance` | The feature contract and requirements to record with `adopted --accepts` |
@@ -36,10 +36,10 @@ node "$GENLIB_ROOT/bin/genlib.mjs" provider adopt btst-kanban --from "$SCRATCH" 
 
 The scratch copy cannot be the app itself, and symlinks in it are refused. Path segments may use framework route syntax (`[id]`, `[[...all]]`, `(group)`, `+page`); `.`, `..`, `.git` and device names are still refused.
 
-Adopted files are recorded in `.genlib/providers-lock.json` as `provider--<id>`, with a receipt, so `adopted`, `registry verify` and `registry remove` apply.
+Adopted files are recorded in `.genlib/providers-lock.json` as `provider--<id>`, with a receipt, so `adopted`, `registry verify` and `registry remove` apply. Next.js App Router files the framework loads by path (`page`, `layout`, `route`, `sitemap`, ...) count as used once adopted, because routing, not imports, is how the app uses them. `adopted provider--<id> --test <cmd> --accepts <contract>#<requirement>` records acceptance against the provider's `provider:<id>` claims.
 
 ## Current profiles
 
 | Profile | Status | Notes |
 | --- | --- | --- |
-| [`btst-kanban`](providers/btst-kanban.md) | planned | Next.js App Router, React 19.2.6+, Tailwind 4.3.2+, shadcn with CSS variables, transactional database adapter. The research and every unverified point are in the linked plan. Its `kanban-board` contract credits it at `plan-available` only |
+| [`btst-kanban`](providers/btst-kanban.md) | planned | Next.js App Router, React 19.2.6+, Tailwind 4.3.2+, shadcn with CSS variables, transactional database adapter. Run end to end on 2026-10-11: check, staged adoption, build, pages, API and authorization worked with the memory adapter; the stock Kysely adapter drops joined columns, so persistence is not yet established. Its `kanban-board` contract credits it at `plan-available` only |

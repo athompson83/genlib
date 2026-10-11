@@ -107,7 +107,7 @@ test('staged output: only generator changes are adopted, merges are reported, co
   assert.match(adopted.next.at(-1), /--accepts kanban-board#boards,/);
   const lock = JSON.parse(await fs.readFile(path.join(app, '.genlib/providers-lock.json'), 'utf8'));
   assert.deepEqual(lock.artifacts['provider--btst-kanban'].files.sort(), ['app/(request)/pages/[[...all]]/page.tsx', 'app/api/data/[[...all]]/route.ts', 'lib/stack.ts']);
-  assert.equal((await checkAdoption(app, 'provider--btst-kanban')).status, 'copied');
+  assert.equal((await checkAdoption(app, 'provider--btst-kanban')).status, 'used', 'adopted route files are used by file-system routing');
 
   await fs.symlink('/etc/passwd', path.join(staged, 'app/evil.ts'));
   await assert.rejects(planStaged(kanban, staged, app, { baseline }), /symlink/);
@@ -120,4 +120,36 @@ test('CLI: provider check exits 1 when not ready; list and inspect work; find re
   assert.throws(() => execFileSync(process.execPath, [CLI, 'provider', 'check', 'btst-kanban', '--target', app], { stdio: 'pipe' }), error => /FAIL react/.test(error.stdout.toString()));
   const found = JSON.parse(execFileSync(process.execPath, [CLI, 'find', 'kanban', 'board', 'with', 'columns', '--json', '--brief', '--limit', '3'], { encoding: 'utf8' }));
   assert.equal(found.results[0].type + ':' + found.results[0].id, 'provider:btst-kanban');
+});
+
+test('fixes from the end-to-end run: next.config flags, own adopted paths, route usage and provider acceptance', async t => {
+  const { acceptanceProblems, loadContracts } = await import('../lib/coverage.mjs');
+  const app = await nextApp(t);
+  await write(app, 'next.config.ts', 'const config = { cacheComponents: true, partialPrefetching: true }\nexport default config\n');
+  const flagged = await checkProvider(kanban, app, { nodeVersion: '22.22.0' });
+  assert.deepEqual(flagged.blocking, ['next-cache-components']);
+  await write(app, 'next.config.ts', 'const config = { cacheComponents: false, partialPrefetching: false }\nexport default config\n');
+  assert.equal((await checkProvider(kanban, app, { nodeVersion: '22.22.0' })).ready, true);
+
+  // Adopt route files from a staged copy; check then treats them as the provider's own, and adopted counts them as used.
+  const baseline = await tmp(t, 'genlib-baseline-');
+  const staged = await tmp(t, 'genlib-staged-');
+  await fs.cp(app, baseline, { recursive: true });
+  await fs.cp(app, staged, { recursive: true });
+  await write(staged, 'app/(request)/pages/[[...all]]/page.tsx', 'export default function Page() { return null }\n');
+  await write(staged, 'app/sitemap.ts', 'export default function sitemap() { return [] }\n');
+  await write(staged, 'lib/stack.ts', 'export const stack = {}\n');
+  await adoptStaged(kanban, staged, app, { baseline });
+  assert.equal((await checkProvider(kanban, app, { nodeVersion: '22.22.0' })).results.find(item => item.id === 'free-paths').ok, true, 'own adopted paths are not a conflict');
+  const adoption = await checkAdoption(app, 'provider--btst-kanban', { test: 'node -e 0', accepts: ['kanban-board#routes-ui'] });
+  assert.equal(adoption.status, 'verified', 'route files are used by file-system routing');
+  assert.deepEqual(adoption.usedBy.map(use => use.match).sort(), ['route', 'route']);
+  assert.deepEqual(adoption.accepted, ['kanban-board#routes-ui']);
+
+  // Contract checks map provider--<id> receipts to provider:<id> refs.
+  const contracts = loadContracts(REPOSITORY_ROOT);
+  assert.deepEqual(acceptanceProblems(contracts, 'provider--btst-kanban', ['kanban-board#boards']), []);
+  assert.match(acceptanceProblems(contracts, 'provider--btst-kanban', ['rbac#route-guard']).join(), /provider:btst-kanban does not claim/);
+  const coverage = JSON.parse(execFileSync(process.execPath, [CLI, 'coverage', 'kanban board with columns and tasks', '--target', app, '--json'], { encoding: 'utf8' }));
+  assert.equal(coverage.requirements.find(item => item.id === 'routes-ui').status, 'application-verified');
 });
