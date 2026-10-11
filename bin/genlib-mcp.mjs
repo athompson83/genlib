@@ -32,14 +32,14 @@ const TOOLS = [
   {
     name: 'genlib_quick',
     description: 'Cheapest lookup: the best match and only its commands.',
-    inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Task words, e.g. "passkey login".' }, language: LANGUAGE, target: TARGET, type: { type: 'string', enum: SOURCE_TYPES } }, required: ['query'] },
+    inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'e.g. "passkey login"' }, language: LANGUAGE, target: TARGET, type: { type: 'string', enum: SOURCE_TYPES } }, required: ['query'] },
   },
   {
     name: 'genlib_find',
     description: 'Ranked results across every Genlib source, with next commands.',
     inputSchema: { type: 'object', properties: {
       query: { type: 'string' }, language: LANGUAGE, target: TARGET,
-      type: { type: 'string', enum: SOURCE_TYPES }, project: { type: 'string', description: 'Resource project type, e.g. saas.' },
+      type: { type: 'string', enum: SOURCE_TYPES }, project: { type: 'string', description: 'e.g. saas' },
       limit: { type: 'integer', minimum: 1, maximum: 25, default: 8 },
       detail: { type: 'string', enum: ['brief', 'full'], default: 'brief', description: 'full adds summaries and links.' },
     }, required: ['query'] },
