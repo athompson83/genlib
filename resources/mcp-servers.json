@@ -5856,10 +5856,10 @@
    "repository": "https://github.com/vish288/mcp-gitlab",
    "install": {
     "claude": [
-     "claude mcp add gitlab -e GITLAB_URL=<GITLAB_URL> -- uvx mcp-gitlab@0.15.0"
+     "claude mcp add gitlab-vish288 -e GITLAB_URL=<GITLAB_URL> -- uvx mcp-gitlab@0.15.0"
     ],
     "codex": [
-     "codex mcp add gitlab --env GITLAB_URL=<GITLAB_URL> -- uvx mcp-gitlab@0.15.0"
+     "codex mcp add gitlab-vish288 --env GITLAB_URL=<GITLAB_URL> -- uvx mcp-gitlab@0.15.0"
     ]
    }
   },
@@ -9675,10 +9675,10 @@
    "repository": "https://github.com/structured-world/gitlab-mcp",
    "install": {
     "claude": [
-     "claude mcp add gitlab -e GITLAB_TOKEN=<GITLAB_TOKEN> -- npx -y @structured-world/gitlab-mcp@10.1.0"
+     "claude mcp add gitlab-structured-world -e GITLAB_TOKEN=<GITLAB_TOKEN> -- npx -y @structured-world/gitlab-mcp@10.1.0"
     ],
     "codex": [
-     "codex mcp add gitlab --env GITLAB_TOKEN=<GITLAB_TOKEN> -- npx -y @structured-world/gitlab-mcp@10.1.0"
+     "codex mcp add gitlab-structured-world --env GITLAB_TOKEN=<GITLAB_TOKEN> -- npx -y @structured-world/gitlab-mcp@10.1.0"
     ]
    }
   },
@@ -11328,10 +11328,10 @@
    "repository": "https://github.com/surendranb/google-analytics-mcp",
    "install": {
     "claude": [
-     "claude mcp add google-analytics -e GOOGLE_APPLICATION_CREDENTIALS=<GOOGLE_APPLICATION_CREDENTIALS> -e GA4_PROPERTY_ID=<GA4_PROPERTY_ID> -- uvx google-analytics-mcp@2.8.2"
+     "claude mcp add google-analytics-surendranb -e GOOGLE_APPLICATION_CREDENTIALS=<GOOGLE_APPLICATION_CREDENTIALS> -e GA4_PROPERTY_ID=<GA4_PROPERTY_ID> -- uvx google-analytics-mcp@2.8.2"
     ],
     "codex": [
-     "codex mcp add google-analytics --env GOOGLE_APPLICATION_CREDENTIALS=<GOOGLE_APPLICATION_CREDENTIALS> --env GA4_PROPERTY_ID=<GA4_PROPERTY_ID> -- uvx google-analytics-mcp@2.8.2"
+     "codex mcp add google-analytics-surendranb --env GOOGLE_APPLICATION_CREDENTIALS=<GOOGLE_APPLICATION_CREDENTIALS> --env GA4_PROPERTY_ID=<GA4_PROPERTY_ID> -- uvx google-analytics-mcp@2.8.2"
     ]
    }
   },
@@ -11839,10 +11839,10 @@
    "repository": "https://github.com/antonorlov/mcp-postgres-server",
    "install": {
     "claude": [
-     "claude mcp add postgres -- npx -y mcp-postgres-server@0.3.1"
+     "claude mcp add postgres-antonorlov -- npx -y mcp-postgres-server@0.3.1"
     ],
     "codex": [
-     "codex mcp add postgres -- npx -y mcp-postgres-server@0.3.1"
+     "codex mcp add postgres-antonorlov -- npx -y mcp-postgres-server@0.3.1"
     ]
    }
   },
@@ -13317,7 +13317,7 @@
    "package": {
     "registry": "npm",
     "identifier": "@agent-infra/mcp-server-browser",
-    "version": "latest"
+    "version": "1.2.29"
    },
    "transport": "stdio",
    "env": [
@@ -13331,12 +13331,13 @@
    "repository": "https://github.com/bytedance/UI-TARS-desktop",
    "install": {
     "claude": [
-     "claude mcp add browser -- npx -y @agent-infra/mcp-server-browser@latest"
+     "claude mcp add browser-bytedance -- npx -y @agent-infra/mcp-server-browser@1.2.29"
     ],
     "codex": [
-     "codex mcp add browser -- npx -y @agent-infra/mcp-server-browser@latest"
+     "codex mcp add browser-bytedance -- npx -y @agent-infra/mcp-server-browser@1.2.29"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "net-varianttech-benzi",
@@ -16173,10 +16174,10 @@
    "repository": "https://github.com/YawLabs/aws-mcp",
    "install": {
     "claude": [
-     "claude mcp add aws -- npx -y @yawlabs/aws-mcp@2.5.2"
+     "claude mcp add aws-yawlabs -- npx -y @yawlabs/aws-mcp@2.5.2"
     ],
     "codex": [
-     "codex mcp add aws -- npx -y @yawlabs/aws-mcp@2.5.2"
+     "codex mcp add aws-yawlabs -- npx -y @yawlabs/aws-mcp@2.5.2"
     ]
    }
   },
@@ -17622,10 +17623,10 @@
    "repository": "https://github.com/kujenga/zotero-mcp",
    "install": {
     "claude": [
-     "claude mcp add zotero -- uvx zotero-mcp@0.3.1"
+     "claude mcp add zotero-kujenga -- uvx zotero-mcp@0.3.1"
     ],
     "codex": [
-     "codex mcp add zotero -- uvx zotero-mcp@0.3.1"
+     "codex mcp add zotero-kujenga -- uvx zotero-mcp@0.3.1"
     ]
    }
   },
@@ -18170,10 +18171,10 @@
    "repository": "https://github.com/sbroenne/mcp-server-excel",
    "install": {
     "claude": [
-     "claude mcp add excel -- npx -y @sbroenne/mcp-server-excel@2.3.9"
+     "claude mcp add excel-sbroenne -- npx -y @sbroenne/mcp-server-excel@2.3.9"
     ],
     "codex": [
-     "codex mcp add excel -- npx -y @sbroenne/mcp-server-excel@2.3.9"
+     "codex mcp add excel-sbroenne -- npx -y @sbroenne/mcp-server-excel@2.3.9"
     ]
    }
   },
@@ -18761,10 +18762,10 @@
    "repository": "https://github.com/codexguy/regiabi-plugins",
    "install": {
     "claude": [
-     "claude mcp add chart -- npx -y @bicharts/chart-mcp@0.6.85"
+     "claude mcp add chart-regiabi -- npx -y @bicharts/chart-mcp@0.6.85"
     ],
     "codex": [
-     "codex mcp add chart -- npx -y @bicharts/chart-mcp@0.6.85"
+     "codex mcp add chart-regiabi -- npx -y @bicharts/chart-mcp@0.6.85"
     ]
    }
   },
@@ -19414,10 +19415,10 @@
    "repository": "https://github.com/debu-sinha/excalidraw-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add excalidraw -- npx -y excalidraw-mcp-server@1.0.2"
+     "claude mcp add excalidraw-debu-sinha -- npx -y excalidraw-mcp-server@1.0.2"
     ],
     "codex": [
-     "codex mcp add excalidraw -- npx -y excalidraw-mcp-server@1.0.2"
+     "codex mcp add excalidraw-debu-sinha -- npx -y excalidraw-mcp-server@1.0.2"
     ]
    }
   },
@@ -19833,10 +19834,10 @@
    "repository": "https://github.com/chrischall/gemini-mcp",
    "install": {
     "claude": [
-     "claude mcp add gemini -- npx -y @chrischall/gemini-mcp@2.3.4"
+     "claude mcp add gemini-chrischall -- npx -y @chrischall/gemini-mcp@2.3.4"
     ],
     "codex": [
-     "codex mcp add gemini -- npx -y @chrischall/gemini-mcp@2.3.4"
+     "codex mcp add gemini-chrischall -- npx -y @chrischall/gemini-mcp@2.3.4"
     ]
    }
   },
@@ -22611,10 +22612,10 @@
    "repository": "https://github.com/getmcpm/cli",
    "install": {
     "claude": [
-     "claude mcp add cli -- npx -y @getmcpm/cli@0.47.1"
+     "claude mcp add cli-getmcpm -- npx -y @getmcpm/cli@0.47.1"
     ],
     "codex": [
-     "codex mcp add cli -- npx -y @getmcpm/cli@0.47.1"
+     "codex mcp add cli-getmcpm -- npx -y @getmcpm/cli@0.47.1"
     ]
    }
   },
@@ -23001,10 +23002,10 @@
    "repository": "https://github.com/mcp-z/mcp-pdf",
    "install": {
     "claude": [
-     "claude mcp add pdf -- npx -y @mcp-z/mcp-pdf@1.0.3"
+     "claude mcp add pdf-kmalakoff -- npx -y @mcp-z/mcp-pdf@1.0.3"
     ],
     "codex": [
-     "codex mcp add pdf -- npx -y @mcp-z/mcp-pdf@1.0.3"
+     "codex mcp add pdf-kmalakoff -- npx -y @mcp-z/mcp-pdf@1.0.3"
     ]
    }
   },
@@ -24311,10 +24312,10 @@
    "repository": "https://github.com/mcpcentral-io/mcp-time",
    "install": {
     "claude": [
-     "claude mcp add time -- npx -y @mcpcentral/mcp-time@0.0.3"
+     "claude mcp add time-mcpcentral-io -- npx -y @mcpcentral/mcp-time@0.0.3"
     ],
     "codex": [
-     "codex mcp add time -- npx -y @mcpcentral/mcp-time@0.0.3"
+     "codex mcp add time-mcpcentral-io -- npx -y @mcpcentral/mcp-time@0.0.3"
     ]
    }
   },
@@ -27837,10 +27838,10 @@
    "repository": "https://github.com/domdomegg/gmail-mcp.git",
    "install": {
     "claude": [
-     "claude mcp add gmail -e GOOGLE_ACCESS_TOKEN=<GOOGLE_ACCESS_TOKEN> -- npx -y gmail-mcp@2.4.0"
+     "claude mcp add gmail-domdomegg -e GOOGLE_ACCESS_TOKEN=<GOOGLE_ACCESS_TOKEN> -- npx -y gmail-mcp@2.4.0"
     ],
     "codex": [
-     "codex mcp add gmail --env GOOGLE_ACCESS_TOKEN=<GOOGLE_ACCESS_TOKEN> -- npx -y gmail-mcp@2.4.0"
+     "codex mcp add gmail-domdomegg --env GOOGLE_ACCESS_TOKEN=<GOOGLE_ACCESS_TOKEN> -- npx -y gmail-mcp@2.4.0"
     ]
    }
   },
@@ -29146,10 +29147,10 @@
    "repository": "https://github.com/domdomegg/computer-use-mcp.git",
    "install": {
     "claude": [
-     "claude mcp add computer-use -- npx -y computer-use-mcp@1.8.0"
+     "claude mcp add computer-use-domdomegg -- npx -y computer-use-mcp@1.8.0"
     ],
     "codex": [
-     "codex mcp add computer-use -- npx -y computer-use-mcp@1.8.0"
+     "codex mcp add computer-use-domdomegg -- npx -y computer-use-mcp@1.8.0"
     ]
    }
   },
@@ -31204,10 +31205,10 @@
    "repository": "https://github.com/jtalk22/slack-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add slack -- npx -y @jtalk22/slack-mcp@5.1.0"
+     "claude mcp add slack-jtalk22 -- npx -y @jtalk22/slack-mcp@5.1.0"
     ],
     "codex": [
-     "codex mcp add slack -- npx -y @jtalk22/slack-mcp@5.1.0"
+     "codex mcp add slack-jtalk22 -- npx -y @jtalk22/slack-mcp@5.1.0"
     ]
    }
   },
@@ -32539,10 +32540,10 @@
    "repository": "https://github.com/felixAnhalt/Figma-Context-MCP",
    "install": {
     "claude": [
-     "claude mcp add figma-context -e FIGMA_API_KEY=<FIGMA_API_KEY> -- npx -y @tmegit/figma-developer-mcp@0.13.0 --stdio"
+     "claude mcp add figma-context-felixanhalt -e FIGMA_API_KEY=<FIGMA_API_KEY> -- npx -y @tmegit/figma-developer-mcp@0.13.0 --stdio"
     ],
     "codex": [
-     "codex mcp add figma-context --env FIGMA_API_KEY=<FIGMA_API_KEY> -- npx -y @tmegit/figma-developer-mcp@0.13.0 --stdio"
+     "codex mcp add figma-context-felixanhalt --env FIGMA_API_KEY=<FIGMA_API_KEY> -- npx -y @tmegit/figma-developer-mcp@0.13.0 --stdio"
     ]
    }
   },
@@ -34609,10 +34610,10 @@
    "repository": "https://github.com/cyanheads/arxiv-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add arxiv -- npx -y @cyanheads/arxiv-mcp-server@1.5.4"
+     "claude mcp add arxiv-cyanheads -- npx -y @cyanheads/arxiv-mcp-server@1.5.4"
     ],
     "codex": [
-     "codex mcp add arxiv -- npx -y @cyanheads/arxiv-mcp-server@1.5.4"
+     "codex mcp add arxiv-cyanheads -- npx -y @cyanheads/arxiv-mcp-server@1.5.4"
     ]
    }
   },
@@ -35091,10 +35092,10 @@
    "repository": "https://github.com/cappyeo/discord-mcp",
    "install": {
     "claude": [
-     "claude mcp add discord -e DISCORD_TOKEN=<DISCORD_TOKEN> -- npx -y @discord-mcp/cli@0.31.1"
+     "claude mcp add discord-cappyeo -e DISCORD_TOKEN=<DISCORD_TOKEN> -- npx -y @discord-mcp/cli@0.31.1"
     ],
     "codex": [
-     "codex mcp add discord --env DISCORD_TOKEN=<DISCORD_TOKEN> -- npx -y @discord-mcp/cli@0.31.1"
+     "codex mcp add discord-cappyeo --env DISCORD_TOKEN=<DISCORD_TOKEN> -- npx -y @discord-mcp/cli@0.31.1"
     ]
    }
   },
@@ -35384,10 +35385,10 @@
    "repository": "https://github.com/YawLabs/redis-mcp",
    "install": {
     "claude": [
-     "claude mcp add redis -- npx -y @yawlabs/redis-mcp@0.5.3"
+     "claude mcp add redis-yawlabs -- npx -y @yawlabs/redis-mcp@0.5.3"
     ],
     "codex": [
-     "codex mcp add redis -- npx -y @yawlabs/redis-mcp@0.5.3"
+     "codex mcp add redis-yawlabs -- npx -y @yawlabs/redis-mcp@0.5.3"
     ]
    }
   },
@@ -35482,10 +35483,10 @@
    "repository": "https://github.com/marlinjai/email-mcp",
    "install": {
     "claude": [
-     "claude mcp add email -- npx -y @marlinjai/email-mcp@1.2.3"
+     "claude mcp add email-marlinjai -- npx -y @marlinjai/email-mcp@1.2.3"
     ],
     "codex": [
-     "codex mcp add email -- npx -y @marlinjai/email-mcp@1.2.3"
+     "codex mcp add email-marlinjai -- npx -y @marlinjai/email-mcp@1.2.3"
     ]
    }
   },
@@ -35881,10 +35882,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add stata -- uvx mcp-stata@1.0.4"
+     "claude mcp add stata-tmonk -- uvx mcp-stata@1.0.4"
     ],
     "codex": [
-     "codex mcp add stata -- uvx mcp-stata@1.0.4"
+     "codex mcp add stata-tmonk -- uvx mcp-stata@1.0.4"
     ]
    }
   },
@@ -37420,10 +37421,10 @@
    "repository": "https://github.com/YawLabs/ssh-mcp",
    "install": {
     "claude": [
-     "claude mcp add ssh -- npx -y @yawlabs/ssh-mcp@0.17.3"
+     "claude mcp add ssh-yawlabs -- npx -y @yawlabs/ssh-mcp@0.17.3"
     ],
     "codex": [
-     "codex mcp add ssh -- npx -y @yawlabs/ssh-mcp@0.17.3"
+     "codex mcp add ssh-yawlabs -- npx -y @yawlabs/ssh-mcp@0.17.3"
     ]
    }
   },
@@ -38958,10 +38959,10 @@
    "repository": "https://github.com/bumbaRasch/searxng-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add searxng -- npx -y searxng-mcp-server@0.3.1"
+     "claude mcp add searxng-bumbarasch -- npx -y searxng-mcp-server@0.3.1"
     ],
     "codex": [
-     "codex mcp add searxng -- npx -y searxng-mcp-server@0.3.1"
+     "codex mcp add searxng-bumbarasch -- npx -y searxng-mcp-server@0.3.1"
     ]
    }
   },
@@ -40309,10 +40310,10 @@
    "repository": "https://github.com/danchev/searXNG",
    "install": {
     "claude": [
-     "claude mcp add searxng -- uvx searxng@0.1.2"
+     "claude mcp add searxng-danchev -- uvx searxng@0.1.2"
     ],
     "codex": [
-     "codex mcp add searxng -- uvx searxng@0.1.2"
+     "codex mcp add searxng-danchev -- uvx searxng@0.1.2"
     ]
    }
   },
@@ -41846,10 +41847,10 @@
    "repository": "https://github.com/us-all/datadog-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add datadog -e DD_API_KEY=<DD_API_KEY> -e DD_APP_KEY=<DD_APP_KEY> -- npx -y @us-all/datadog-mcp@1.21.1"
+     "claude mcp add datadog-us-all -e DD_API_KEY=<DD_API_KEY> -e DD_APP_KEY=<DD_APP_KEY> -- npx -y @us-all/datadog-mcp@1.21.1"
     ],
     "codex": [
-     "codex mcp add datadog --env DD_API_KEY=<DD_API_KEY> --env DD_APP_KEY=<DD_APP_KEY> -- npx -y @us-all/datadog-mcp@1.21.1"
+     "codex mcp add datadog-us-all --env DD_API_KEY=<DD_API_KEY> --env DD_APP_KEY=<DD_APP_KEY> -- npx -y @us-all/datadog-mcp@1.21.1"
     ]
    }
   },
@@ -43160,10 +43161,10 @@
    "repository": "https://github.com/tomyud1/godot-mcp",
    "install": {
     "claude": [
-     "claude mcp add godot -- npx -y godot-mcp-server@0.6.0"
+     "claude mcp add godot-tomyud1 -- npx -y godot-mcp-server@0.6.0"
     ],
     "codex": [
-     "codex mcp add godot -- npx -y godot-mcp-server@0.6.0"
+     "codex mcp add godot-tomyud1 -- npx -y godot-mcp-server@0.6.0"
     ]
    }
   },
@@ -43668,10 +43669,10 @@
    "repository": "https://github.com/tianyuio/worldbank-mcp",
    "install": {
     "claude": [
-     "claude mcp add worldbank -e YOUR_API_KEY=<YOUR_API_KEY> -- npx -y worldbank-mcp@1.0.1"
+     "claude mcp add worldbank-tianyuio -e YOUR_API_KEY=<YOUR_API_KEY> -- npx -y worldbank-mcp@1.0.1"
     ],
     "codex": [
-     "codex mcp add worldbank --env YOUR_API_KEY=<YOUR_API_KEY> -- npx -y worldbank-mcp@1.0.1"
+     "codex mcp add worldbank-tianyuio --env YOUR_API_KEY=<YOUR_API_KEY> -- npx -y worldbank-mcp@1.0.1"
     ]
    }
   },
@@ -43735,10 +43736,10 @@
    "repository": "https://github.com/conorbronsdon/substack-mcp",
    "install": {
     "claude": [
-     "claude mcp add substack -e SUBSTACK_PUBLICATION_URL=<SUBSTACK_PUBLICATION_URL> -e SUBSTACK_SESSION_TOKEN=<SUBSTACK_SESSION_TOKEN> -e SUBSTACK_USER_ID=<SUBSTACK_USER_ID> -- npx -y @conorbronsdon/substack-mcp@1.3.0"
+     "claude mcp add substack-conorbronsdon -e SUBSTACK_PUBLICATION_URL=<SUBSTACK_PUBLICATION_URL> -e SUBSTACK_SESSION_TOKEN=<SUBSTACK_SESSION_TOKEN> -e SUBSTACK_USER_ID=<SUBSTACK_USER_ID> -- npx -y @conorbronsdon/substack-mcp@1.3.0"
     ],
     "codex": [
-     "codex mcp add substack --env SUBSTACK_PUBLICATION_URL=<SUBSTACK_PUBLICATION_URL> --env SUBSTACK_SESSION_TOKEN=<SUBSTACK_SESSION_TOKEN> --env SUBSTACK_USER_ID=<SUBSTACK_USER_ID> -- npx -y @conorbronsdon/substack-mcp@1.3.0"
+     "codex mcp add substack-conorbronsdon --env SUBSTACK_PUBLICATION_URL=<SUBSTACK_PUBLICATION_URL> --env SUBSTACK_SESSION_TOKEN=<SUBSTACK_SESSION_TOKEN> --env SUBSTACK_USER_ID=<SUBSTACK_USER_ID> -- npx -y @conorbronsdon/substack-mcp@1.3.0"
     ]
    }
   },
@@ -43991,10 +43992,10 @@
    "repository": "https://github.com/davidmosiah/google-health-mcp",
    "install": {
     "claude": [
-     "claude mcp add google-health -- npx -y google-health-mcp-unofficial@0.5.2"
+     "claude mcp add google-health-davidmosiah -- npx -y google-health-mcp-unofficial@0.5.2"
     ],
     "codex": [
-     "codex mcp add google-health -- npx -y google-health-mcp-unofficial@0.5.2"
+     "codex mcp add google-health-davidmosiah -- npx -y google-health-mcp-unofficial@0.5.2"
     ]
    }
   },
@@ -45018,10 +45019,10 @@
    "repository": "https://github.com/arikusi/deepseek-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add deepseek -e DEEPSEEK_API_KEY=<DEEPSEEK_API_KEY> -- npx -y @arikusi/deepseek-mcp-server@2.3.0"
+     "claude mcp add deepseek-arikusi -e DEEPSEEK_API_KEY=<DEEPSEEK_API_KEY> -- npx -y @arikusi/deepseek-mcp-server@2.3.0"
     ],
     "codex": [
-     "codex mcp add deepseek --env DEEPSEEK_API_KEY=<DEEPSEEK_API_KEY> -- npx -y @arikusi/deepseek-mcp-server@2.3.0"
+     "codex mcp add deepseek-arikusi --env DEEPSEEK_API_KEY=<DEEPSEEK_API_KEY> -- npx -y @arikusi/deepseek-mcp-server@2.3.0"
     ]
    }
   },
@@ -45817,10 +45818,10 @@
    "repository": "https://github.com/ilyautov/humanizer-ru",
    "install": {
     "claude": [
-     "claude mcp add humanizer-ru -- uvx ru-humanizer@3.31.3 mcp"
+     "claude mcp add humanizer-ru-ilyautov -- uvx ru-humanizer@3.31.3 mcp"
     ],
     "codex": [
-     "codex mcp add humanizer-ru -- uvx ru-humanizer@3.31.3 mcp"
+     "codex mcp add humanizer-ru-ilyautov -- uvx ru-humanizer@3.31.3 mcp"
     ]
    }
   },
@@ -46839,10 +46840,10 @@
    "repository": "https://github.com/voidly-ai/pay-mcp",
    "install": {
     "claude": [
-     "claude mcp add pay -- npx -y @voidly/pay-mcp@0.7.4"
+     "claude mcp add pay-voidly-ai -- npx -y @voidly/pay-mcp@0.7.4"
     ],
     "codex": [
-     "codex mcp add pay -- npx -y @voidly/pay-mcp@0.7.4"
+     "codex mcp add pay-voidly-ai -- npx -y @voidly/pay-mcp@0.7.4"
     ]
    }
   },
@@ -47821,10 +47822,10 @@
    "repository": "https://github.com/RLabs-Inc/gemini-mcp",
    "install": {
     "claude": [
-     "claude mcp add gemini -e GEMINI_API_KEY=<GEMINI_API_KEY> -- npx -y @rlabs-inc/gemini-mcp@0.7.1"
+     "claude mcp add gemini-rlabs-inc -e GEMINI_API_KEY=<GEMINI_API_KEY> -- npx -y @rlabs-inc/gemini-mcp@0.7.1"
     ],
     "codex": [
-     "codex mcp add gemini --env GEMINI_API_KEY=<GEMINI_API_KEY> -- npx -y @rlabs-inc/gemini-mcp@0.7.1"
+     "codex mcp add gemini-rlabs-inc --env GEMINI_API_KEY=<GEMINI_API_KEY> -- npx -y @rlabs-inc/gemini-mcp@0.7.1"
     ]
    }
   },
@@ -48198,10 +48199,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add anki -- npx -y anki-mcp-server@0.1.8"
+     "claude mcp add anki-nailuogg -- npx -y anki-mcp-server@0.1.8"
     ],
     "codex": [
-     "codex mcp add anki -- npx -y anki-mcp-server@0.1.8"
+     "codex mcp add anki-nailuogg -- npx -y anki-mcp-server@0.1.8"
     ]
    }
   },
@@ -49164,10 +49165,10 @@
    "repository": "https://github.com/ArtyMcLabin/Gmail-MCP-Server",
    "install": {
     "claude": [
-     "claude mcp add gmail -- npx -y @artymclabin/gmail-mcp@1.2.3"
+     "claude mcp add gmail-artymclabin -- npx -y @artymclabin/gmail-mcp@1.2.3"
     ],
     "codex": [
-     "codex mcp add gmail -- npx -y @artymclabin/gmail-mcp@1.2.3"
+     "codex mcp add gmail-artymclabin -- npx -y @artymclabin/gmail-mcp@1.2.3"
     ]
    }
   },
@@ -50846,10 +50847,10 @@
    "repository": "https://github.com/aaronsb/slack-mcp",
    "install": {
     "claude": [
-     "claude mcp add slack -- npx -y @aaronsb/slack-mcp@2.8.0"
+     "claude mcp add slack-aaronsb -- npx -y @aaronsb/slack-mcp@2.8.0"
     ],
     "codex": [
-     "codex mcp add slack -- npx -y @aaronsb/slack-mcp@2.8.0"
+     "codex mcp add slack-aaronsb -- npx -y @aaronsb/slack-mcp@2.8.0"
     ]
    }
   },
@@ -52220,10 +52221,10 @@
    "repository": "https://github.com/williansaez/abap-adt-mcp",
    "install": {
     "claude": [
-     "claude mcp add abap-adt -- npx -y abap-adt-mcp@2.7.1"
+     "claude mcp add abap-adt-williansaez -- npx -y abap-adt-mcp@2.7.1"
     ],
     "codex": [
-     "codex mcp add abap-adt -- npx -y abap-adt-mcp@2.7.1"
+     "codex mcp add abap-adt-williansaez -- npx -y abap-adt-mcp@2.7.1"
     ]
    }
   },
@@ -52384,10 +52385,10 @@
    "repository": "https://github.com/davidmosiah/whoop-mcp",
    "install": {
     "claude": [
-     "claude mcp add whoop -- npx -y whoop-mcp-unofficial@0.5.3"
+     "claude mcp add whoop-davidmosiah -- npx -y whoop-mcp-unofficial@0.5.3"
     ],
     "codex": [
-     "codex mcp add whoop -- npx -y whoop-mcp-unofficial@0.5.3"
+     "codex mcp add whoop-davidmosiah -- npx -y whoop-mcp-unofficial@0.5.3"
     ]
    }
   },
@@ -52711,10 +52712,10 @@
    "repository": "https://github.com/atc07/sheets-mcp",
    "install": {
     "claude": [
-     "claude mcp add sheets -- npx -y @sheetsmcp/server@1.3.8"
+     "claude mcp add sheets-atc07 -- npx -y @sheetsmcp/server@1.3.8"
     ],
     "codex": [
-     "codex mcp add sheets -- npx -y @sheetsmcp/server@1.3.8"
+     "codex mcp add sheets-atc07 -- npx -y @sheetsmcp/server@1.3.8"
     ]
    }
   },
@@ -53803,10 +53804,10 @@
    "repository": "https://github.com/jeffcaldwellca/honkio",
    "install": {
     "claude": [
-     "claude mcp add ca -e HONKIO_API_KEY=<HONKIO_API_KEY> -- npx -y @honkio/mcp@1.12.1"
+     "claude mcp add ca-honkio -e HONKIO_API_KEY=<HONKIO_API_KEY> -- npx -y @honkio/mcp@1.12.1"
     ],
     "codex": [
-     "codex mcp add ca --env HONKIO_API_KEY=<HONKIO_API_KEY> -- npx -y @honkio/mcp@1.12.1"
+     "codex mcp add ca-honkio --env HONKIO_API_KEY=<HONKIO_API_KEY> -- npx -y @honkio/mcp@1.12.1"
     ]
    }
   },
@@ -53954,10 +53955,10 @@
    "repository": "https://github.com/muvon/octocode",
    "install": {
     "claude": [
-     "claude mcp add octocode -- npx -y @muvon/octocode@0.26.6 mcp"
+     "claude mcp add octocode-muvon -- npx -y @muvon/octocode@0.26.6 mcp"
     ],
     "codex": [
-     "codex mcp add octocode -- npx -y @muvon/octocode@0.26.6 mcp"
+     "codex mcp add octocode-muvon -- npx -y @muvon/octocode@0.26.6 mcp"
     ]
    }
   },
@@ -57391,10 +57392,10 @@
    "repository": "https://github.com/us-all/google-drive-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add google-drive -- npx -y @us-all/google-drive-mcp@1.15.8"
+     "claude mcp add google-drive-us-all -- npx -y @us-all/google-drive-mcp@1.15.8"
     ],
     "codex": [
-     "codex mcp add google-drive -- npx -y @us-all/google-drive-mcp@1.15.8"
+     "codex mcp add google-drive-us-all -- npx -y @us-all/google-drive-mcp@1.15.8"
     ]
    }
   },
@@ -57627,10 +57628,10 @@
    "repository": "https://github.com/Voyagier-Travel/voyagier-cli",
    "install": {
     "claude": [
-     "claude mcp add cli -e VOYAGIER_TOKEN=<VOYAGIER_TOKEN> -- npx -y @voyagier/cli@2.14.0 mcp"
+     "claude mcp add cli-voyagier -e VOYAGIER_TOKEN=<VOYAGIER_TOKEN> -- npx -y @voyagier/cli@2.14.0 mcp"
     ],
     "codex": [
-     "codex mcp add cli --env VOYAGIER_TOKEN=<VOYAGIER_TOKEN> -- npx -y @voyagier/cli@2.14.0 mcp"
+     "codex mcp add cli-voyagier --env VOYAGIER_TOKEN=<VOYAGIER_TOKEN> -- npx -y @voyagier/cli@2.14.0 mcp"
     ]
    }
   },
@@ -58977,10 +58978,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add outlook -e MS_CLIENT_ID=<MS_CLIENT_ID> -e MS_TENANT_ID=<MS_TENANT_ID> -- npx -y @mcp-z/mcp-outlook@2.2.2"
+     "claude mcp add outlook-mcp-z -e MS_CLIENT_ID=<MS_CLIENT_ID> -e MS_TENANT_ID=<MS_TENANT_ID> -- npx -y @mcp-z/mcp-outlook@2.2.2"
     ],
     "codex": [
-     "codex mcp add outlook --env MS_CLIENT_ID=<MS_CLIENT_ID> --env MS_TENANT_ID=<MS_TENANT_ID> -- npx -y @mcp-z/mcp-outlook@2.2.2"
+     "codex mcp add outlook-mcp-z --env MS_CLIENT_ID=<MS_CLIENT_ID> --env MS_TENANT_ID=<MS_TENANT_ID> -- npx -y @mcp-z/mcp-outlook@2.2.2"
     ]
    }
   },
@@ -59697,10 +59698,10 @@
    "repository": "https://github.com/VirusTotal/virustotal-mcp",
    "install": {
     "claude": [
-     "claude mcp add virustotal -e VTAI_TOKEN_FILE=<VTAI_TOKEN_FILE> -- uvx vt-mcp@0.9.8"
+     "claude mcp add virustotal-virustotal -e VTAI_TOKEN_FILE=<VTAI_TOKEN_FILE> -- uvx vt-mcp@0.9.8"
     ],
     "codex": [
-     "codex mcp add virustotal --env VTAI_TOKEN_FILE=<VTAI_TOKEN_FILE> -- uvx vt-mcp@0.9.8"
+     "codex mcp add virustotal-virustotal --env VTAI_TOKEN_FILE=<VTAI_TOKEN_FILE> -- uvx vt-mcp@0.9.8"
     ]
    }
   },
@@ -59728,10 +59729,10 @@
    "repository": "https://github.com/runapi-ai/suno-mcp",
    "install": {
     "claude": [
-     "claude mcp add suno -- npx -y @runapi.ai/suno-mcp@0.4.0"
+     "claude mcp add suno-runapi-builder -- npx -y @runapi.ai/suno-mcp@0.4.0"
     ],
     "codex": [
-     "codex mcp add suno -- npx -y @runapi.ai/suno-mcp@0.4.0"
+     "codex mcp add suno-runapi-builder -- npx -y @runapi.ai/suno-mcp@0.4.0"
     ]
    }
   },
@@ -64653,10 +64654,10 @@
    "repository": "https://github.com/jschuller/mcp-server-servicenow",
    "install": {
     "claude": [
-     "claude mcp add servicenow -e SERVICENOW_INSTANCE_URL=<SERVICENOW_INSTANCE_URL> -e SERVICENOW_AUTH_TYPE=<SERVICENOW_AUTH_TYPE> -- uvx mcp-server-servicenow@0.7.0"
+     "claude mcp add servicenow-jschuller -e SERVICENOW_INSTANCE_URL=<SERVICENOW_INSTANCE_URL> -e SERVICENOW_AUTH_TYPE=<SERVICENOW_AUTH_TYPE> -- uvx mcp-server-servicenow@0.7.0"
     ],
     "codex": [
-     "codex mcp add servicenow --env SERVICENOW_INSTANCE_URL=<SERVICENOW_INSTANCE_URL> --env SERVICENOW_AUTH_TYPE=<SERVICENOW_AUTH_TYPE> -- uvx mcp-server-servicenow@0.7.0"
+     "codex mcp add servicenow-jschuller --env SERVICENOW_INSTANCE_URL=<SERVICENOW_INSTANCE_URL> --env SERVICENOW_AUTH_TYPE=<SERVICENOW_AUTH_TYPE> -- uvx mcp-server-servicenow@0.7.0"
     ]
    }
   },
@@ -64677,10 +64678,10 @@
    "repository": "https://github.com/isdaniel/mcp_weather_server",
    "install": {
     "claude": [
-     "claude mcp add weather -- uvx mcp-weather-server@0.6.1"
+     "claude mcp add weather-isdaniel -- uvx mcp-weather-server@0.6.1"
     ],
     "codex": [
-     "codex mcp add weather -- uvx mcp-weather-server@0.6.1"
+     "codex mcp add weather-isdaniel -- uvx mcp-weather-server@0.6.1"
     ]
    }
   },
@@ -65006,10 +65007,10 @@
    "repository": "https://github.com/dockndevai/mcp-azure",
    "install": {
     "claude": [
-     "claude mcp add azure -e AZURE_TENANT_ID=<AZURE_TENANT_ID> -e AZURE_CLIENT_ID=<AZURE_CLIENT_ID> -e AZURE_CLIENT_SECRET=<AZURE_CLIENT_SECRET> -- npx -y @dockndevai/mcp-azure@0.3.0"
+     "claude mcp add azure-dockndevai -e AZURE_TENANT_ID=<AZURE_TENANT_ID> -e AZURE_CLIENT_ID=<AZURE_CLIENT_ID> -e AZURE_CLIENT_SECRET=<AZURE_CLIENT_SECRET> -- npx -y @dockndevai/mcp-azure@0.3.0"
     ],
     "codex": [
-     "codex mcp add azure --env AZURE_TENANT_ID=<AZURE_TENANT_ID> --env AZURE_CLIENT_ID=<AZURE_CLIENT_ID> --env AZURE_CLIENT_SECRET=<AZURE_CLIENT_SECRET> -- npx -y @dockndevai/mcp-azure@0.3.0"
+     "codex mcp add azure-dockndevai --env AZURE_TENANT_ID=<AZURE_TENANT_ID> --env AZURE_CLIENT_ID=<AZURE_CLIENT_ID> --env AZURE_CLIENT_SECRET=<AZURE_CLIENT_SECRET> -- npx -y @dockndevai/mcp-azure@0.3.0"
     ]
    }
   },
@@ -66877,10 +66878,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add warden -- npx -y warden-ai@0.7.1"
+     "claude mcp add warden-rynald0cst0ltziam -- npx -y warden-ai@0.7.1"
     ],
     "codex": [
-     "codex mcp add warden -- npx -y warden-ai@0.7.1"
+     "codex mcp add warden-rynald0cst0ltziam -- npx -y warden-ai@0.7.1"
     ]
    }
   },
@@ -67915,10 +67916,10 @@
    "repository": "https://github.com/mindstone/mcp-servers",
    "install": {
     "claude": [
-     "claude mcp add google-workspace -e GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID> -e GOOGLE_CLIENT_SECRET=<GOOGLE_CLIENT_SECRET> -e ACCOUNTS_PATH=<ACCOUNTS_PATH> -e CREDENTIALS_PATH=<CREDENTIALS_PATH> -- npx -y @mindstone/mcp-server-google-workspace@0.4.2"
+     "claude mcp add google-workspace-mindstone -e GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID> -e GOOGLE_CLIENT_SECRET=<GOOGLE_CLIENT_SECRET> -e ACCOUNTS_PATH=<ACCOUNTS_PATH> -e CREDENTIALS_PATH=<CREDENTIALS_PATH> -- npx -y @mindstone/mcp-server-google-workspace@0.4.2"
     ],
     "codex": [
-     "codex mcp add google-workspace --env GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID> --env GOOGLE_CLIENT_SECRET=<GOOGLE_CLIENT_SECRET> --env ACCOUNTS_PATH=<ACCOUNTS_PATH> --env CREDENTIALS_PATH=<CREDENTIALS_PATH> -- npx -y @mindstone/mcp-server-google-workspace@0.4.2"
+     "codex mcp add google-workspace-mindstone --env GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID> --env GOOGLE_CLIENT_SECRET=<GOOGLE_CLIENT_SECRET> --env ACCOUNTS_PATH=<ACCOUNTS_PATH> --env CREDENTIALS_PATH=<CREDENTIALS_PATH> -- npx -y @mindstone/mcp-server-google-workspace@0.4.2"
     ]
    }
   },
@@ -68102,10 +68103,10 @@
    "repository": "https://github.com/tunglt1810/figma-mcp-go",
    "install": {
     "claude": [
-     "claude mcp add figma-mcp-go -- npx -y @tunglt1810/figma-mcp-go@0.5.0"
+     "claude mcp add figma-mcp-go-tunglt1810 -- npx -y @tunglt1810/figma-mcp-go@0.5.0"
     ],
     "codex": [
-     "codex mcp add figma-mcp-go -- npx -y @tunglt1810/figma-mcp-go@0.5.0"
+     "codex mcp add figma-mcp-go-tunglt1810 -- npx -y @tunglt1810/figma-mcp-go@0.5.0"
     ]
    }
   },
@@ -68272,10 +68273,10 @@
    "repository": "https://github.com/takiguchi-yu/google-workspace-mcp",
    "install": {
     "claude": [
-     "claude mcp add google-workspace -- npx -y @takiguchi-yu/google-workspace-mcp-server@0.0.5"
+     "claude mcp add google-workspace-takiguchi-yu -- npx -y @takiguchi-yu/google-workspace-mcp-server@0.0.5"
     ],
     "codex": [
-     "codex mcp add google-workspace -- npx -y @takiguchi-yu/google-workspace-mcp-server@0.0.5"
+     "codex mcp add google-workspace-takiguchi-yu -- npx -y @takiguchi-yu/google-workspace-mcp-server@0.0.5"
     ]
    }
   },
@@ -69535,10 +69536,10 @@
    "repository": "https://github.com/imdinu/apple-mail-mcp",
    "install": {
     "claude": [
-     "claude mcp add apple-mail -- uvx apple-mail-mcp@0.5.0"
+     "claude mcp add apple-mail-imdinu -- uvx apple-mail-mcp@0.5.0"
     ],
     "codex": [
-     "codex mcp add apple-mail -- uvx apple-mail-mcp@0.5.0"
+     "codex mcp add apple-mail-imdinu -- uvx apple-mail-mcp@0.5.0"
     ]
    }
   },
@@ -70810,10 +70811,10 @@
    "repository": "https://github.com/edgedepthhq/edgedepth-research-mcp",
    "install": {
     "claude": [
-     "claude mcp add research -e EDGEDEPTH_API_KEY=<EDGEDEPTH_API_KEY> -- npx -y @edgedepth/research-mcp@0.11.0"
+     "claude mcp add research-edgedepth -e EDGEDEPTH_API_KEY=<EDGEDEPTH_API_KEY> -- npx -y @edgedepth/research-mcp@0.11.0"
     ],
     "codex": [
-     "codex mcp add research --env EDGEDEPTH_API_KEY=<EDGEDEPTH_API_KEY> -- npx -y @edgedepth/research-mcp@0.11.0"
+     "codex mcp add research-edgedepth --env EDGEDEPTH_API_KEY=<EDGEDEPTH_API_KEY> -- npx -y @edgedepth/research-mcp@0.11.0"
     ]
    }
   },
@@ -70877,10 +70878,10 @@
    "repository": "https://github.com/dinglebear-ai/cortex",
    "install": {
     "claude": [
-     "claude mcp add cortex -- npx -y @dinglebear/cortex@3.13.2 mcp"
+     "claude mcp add cortex-dinglebear -- npx -y @dinglebear/cortex@3.13.2 mcp"
     ],
     "codex": [
-     "codex mcp add cortex -- npx -y @dinglebear/cortex@3.13.2 mcp"
+     "codex mcp add cortex-dinglebear -- npx -y @dinglebear/cortex@3.13.2 mcp"
     ]
    }
   },
@@ -72017,10 +72018,10 @@
    "repository": "https://github.com/ni-c/imap-mcp",
    "install": {
     "claude": [
-     "claude mcp add imap -e IMAP_HOST=<IMAP_HOST> -e IMAP_USER=<IMAP_USER> -e IMAP_PASSWORD=<IMAP_PASSWORD> -- npx -y @ni-c/imap-mcp@0.5.2"
+     "claude mcp add imap-ni-c -e IMAP_HOST=<IMAP_HOST> -e IMAP_USER=<IMAP_USER> -e IMAP_PASSWORD=<IMAP_PASSWORD> -- npx -y @ni-c/imap-mcp@0.5.2"
     ],
     "codex": [
-     "codex mcp add imap --env IMAP_HOST=<IMAP_HOST> --env IMAP_USER=<IMAP_USER> --env IMAP_PASSWORD=<IMAP_PASSWORD> -- npx -y @ni-c/imap-mcp@0.5.2"
+     "codex mcp add imap-ni-c --env IMAP_HOST=<IMAP_HOST> --env IMAP_USER=<IMAP_USER> --env IMAP_PASSWORD=<IMAP_PASSWORD> -- npx -y @ni-c/imap-mcp@0.5.2"
     ]
    }
   },
@@ -72041,10 +72042,10 @@
    "repository": "https://github.com/mcprating/mcp-gateway",
    "install": {
     "claude": [
-     "claude mcp add gateway -- npx -y @mcp-rating/gateway@0.2.8"
+     "claude mcp add gateway-mcprating -- npx -y @mcp-rating/gateway@0.2.8"
     ],
     "codex": [
-     "codex mcp add gateway -- npx -y @mcp-rating/gateway@0.2.8"
+     "codex mcp add gateway-mcprating -- npx -y @mcp-rating/gateway@0.2.8"
     ]
    }
   },
@@ -72369,10 +72370,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add tools -- npx -y @streamkap/tools@0.9.0"
+     "claude mcp add tools-streamkap -- npx -y @streamkap/tools@0.9.0"
     ],
     "codex": [
-     "codex mcp add tools -- npx -y @streamkap/tools@0.9.0"
+     "codex mcp add tools-streamkap -- npx -y @streamkap/tools@0.9.0"
     ]
    }
   },
@@ -72510,10 +72511,10 @@
    "repository": "https://github.com/dockndevai/mcp-kubernetes",
    "install": {
     "claude": [
-     "claude mcp add kubernetes -- npx -y @dockndevai/mcp-kubernetes@0.3.0"
+     "claude mcp add kubernetes-dockndevai -- npx -y @dockndevai/mcp-kubernetes@0.3.0"
     ],
     "codex": [
-     "codex mcp add kubernetes -- npx -y @dockndevai/mcp-kubernetes@0.3.0"
+     "codex mcp add kubernetes-dockndevai -- npx -y @dockndevai/mcp-kubernetes@0.3.0"
     ]
    }
   },
@@ -73005,10 +73006,10 @@
    "repository": "https://github.com/shuji-bonji/pdf-reader-mcp",
    "install": {
     "claude": [
-     "claude mcp add pdf-reader -- npx -y @shuji-bonji/pdf-reader-mcp@0.15.5"
+     "claude mcp add pdf-reader-shuji-bonji -- npx -y @shuji-bonji/pdf-reader-mcp@0.15.5"
     ],
     "codex": [
-     "codex mcp add pdf-reader -- npx -y @shuji-bonji/pdf-reader-mcp@0.15.5"
+     "codex mcp add pdf-reader-shuji-bonji -- npx -y @shuji-bonji/pdf-reader-mcp@0.15.5"
     ]
    }
   },
@@ -73888,10 +73889,10 @@
    "repository": "https://github.com/cherchyk/MCPBrowser",
    "install": {
     "claude": [
-     "claude mcp add browser -- npx -y mcpbrowser@0.2.1"
+     "claude mcp add browser-cherchyk -- npx -y mcpbrowser@0.2.1"
     ],
     "codex": [
-     "codex mcp add browser -- npx -y mcpbrowser@0.2.1"
+     "codex mcp add browser-cherchyk -- npx -y mcpbrowser@0.2.1"
     ]
    }
   },
@@ -74047,10 +74048,10 @@
    "repository": "https://github.com/tengence-team/tengence-search-mcp",
    "install": {
     "claude": [
-     "claude mcp add search -- npx -y @tengence/search-mcp@0.1.5"
+     "claude mcp add search-tengence -- npx -y @tengence/search-mcp@0.1.5"
     ],
     "codex": [
-     "codex mcp add search -- npx -y @tengence/search-mcp@0.1.5"
+     "codex mcp add search-tengence -- npx -y @tengence/search-mcp@0.1.5"
     ]
    }
   },
@@ -74205,10 +74206,10 @@
    "repository": "https://github.com/Offline-Protocol/offline-protocol-agent-plugins",
    "install": {
     "claude": [
-     "claude mcp add cli -- npx -y @offline-protocol/cli@0.2.6 mcp serve"
+     "claude mcp add cli-offlineprotocol -- npx -y @offline-protocol/cli@0.2.6 mcp serve"
     ],
     "codex": [
-     "codex mcp add cli -- npx -y @offline-protocol/cli@0.2.6 mcp serve"
+     "codex mcp add cli-offlineprotocol -- npx -y @offline-protocol/cli@0.2.6 mcp serve"
     ]
    }
   },
@@ -74890,10 +74891,10 @@
    "repository": "https://github.com/JhostinAleck/brightspace-mcp",
    "install": {
     "claude": [
-     "claude mcp add brightspace -- npx -y brightspace-mcp@1.2.0"
+     "claude mcp add brightspace-jhostinaleck -- npx -y brightspace-mcp@1.2.0"
     ],
     "codex": [
-     "codex mcp add brightspace -- npx -y brightspace-mcp@1.2.0"
+     "codex mcp add brightspace-jhostinaleck -- npx -y brightspace-mcp@1.2.0"
     ]
    }
   },
@@ -75796,10 +75797,10 @@
    "repository": "https://github.com/mnemopay/mnemopay-sdk",
    "install": {
     "claude": [
-     "claude mcp add sdk -- npx -y @mnemopay/sdk@1.11.0"
+     "claude mcp add sdk-mnemopay -- npx -y @mnemopay/sdk@1.11.0"
     ],
     "codex": [
-     "codex mcp add sdk -- npx -y @mnemopay/sdk@1.11.0"
+     "codex mcp add sdk-mnemopay -- npx -y @mnemopay/sdk@1.11.0"
     ]
    }
   },
@@ -76254,10 +76255,10 @@
    "repository": "https://github.com/dockndevai/mcp-keycloak",
    "install": {
     "claude": [
-     "claude mcp add keycloak -e KEYCLOAK_URL=<KEYCLOAK_URL> -- npx -y @dockndevai/mcp-keycloak@0.3.0"
+     "claude mcp add keycloak-dockndevai -e KEYCLOAK_URL=<KEYCLOAK_URL> -- npx -y @dockndevai/mcp-keycloak@0.3.0"
     ],
     "codex": [
-     "codex mcp add keycloak --env KEYCLOAK_URL=<KEYCLOAK_URL> -- npx -y @dockndevai/mcp-keycloak@0.3.0"
+     "codex mcp add keycloak-dockndevai --env KEYCLOAK_URL=<KEYCLOAK_URL> -- npx -y @dockndevai/mcp-keycloak@0.3.0"
     ]
    }
   },
@@ -76536,10 +76537,10 @@
    "repository": "https://github.com/wraps-team/wraps-js",
    "install": {
     "claude": [
-     "claude mcp add email -- npx -y @wraps.dev/mcp@0.8.2"
+     "claude mcp add email-wraps -- npx -y @wraps.dev/mcp@0.8.2"
     ],
     "codex": [
-     "codex mcp add email -- npx -y @wraps.dev/mcp@0.8.2"
+     "codex mcp add email-wraps -- npx -y @wraps.dev/mcp@0.8.2"
     ]
    }
   },
@@ -77098,10 +77099,10 @@
    "repository": "https://github.com/RethinkLedgers/rcs-templates",
    "install": {
     "claude": [
-     "claude mcp add campaigns -e RCS_AGENT_KEY=<RCS_AGENT_KEY> -- npx -y @rcs-campaigns/agent-toolkit@0.1.10 rcs-mcp"
+     "claude mcp add campaigns-rcs-campaigns -e RCS_AGENT_KEY=<RCS_AGENT_KEY> -- npx -y @rcs-campaigns/agent-toolkit@0.1.10 rcs-mcp"
     ],
     "codex": [
-     "codex mcp add campaigns --env RCS_AGENT_KEY=<RCS_AGENT_KEY> -- npx -y @rcs-campaigns/agent-toolkit@0.1.10 rcs-mcp"
+     "codex mcp add campaigns-rcs-campaigns --env RCS_AGENT_KEY=<RCS_AGENT_KEY> -- npx -y @rcs-campaigns/agent-toolkit@0.1.10 rcs-mcp"
     ]
    }
   },
@@ -77891,10 +77892,10 @@
    "repository": "https://github.com/dockndevai/mcp-clickhouse",
    "install": {
     "claude": [
-     "claude mcp add clickhouse -- npx -y @dockndevai/mcp-clickhouse@0.3.0"
+     "claude mcp add clickhouse-dockndevai -- npx -y @dockndevai/mcp-clickhouse@0.3.0"
     ],
     "codex": [
-     "codex mcp add clickhouse -- npx -y @dockndevai/mcp-clickhouse@0.3.0"
+     "codex mcp add clickhouse-dockndevai -- npx -y @dockndevai/mcp-clickhouse@0.3.0"
     ]
    }
   },
@@ -78276,10 +78277,10 @@
    "repository": "https://github.com/HasData/youtube-mcp",
    "install": {
     "claude": [
-     "claude mcp add youtube -e HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/youtube-mcp@1.0.9"
+     "claude mcp add youtube-hasdata -e HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/youtube-mcp@1.0.9"
     ],
     "codex": [
-     "codex mcp add youtube --env HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/youtube-mcp@1.0.9"
+     "codex mcp add youtube-hasdata --env HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/youtube-mcp@1.0.9"
     ]
    }
   },
@@ -79866,10 +79867,10 @@
    "repository": "https://github.com/HasData/zillow-mcp",
    "install": {
     "claude": [
-     "claude mcp add zillow -e HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/zillow-mcp@1.0.8"
+     "claude mcp add zillow-hasdata -e HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/zillow-mcp@1.0.8"
     ],
     "codex": [
-     "codex mcp add zillow --env HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/zillow-mcp@1.0.8"
+     "codex mcp add zillow-hasdata --env HASDATA_API_KEY=<HASDATA_API_KEY> -- npx -y @hasdata/zillow-mcp@1.0.8"
     ]
    }
   },
@@ -80049,10 +80050,10 @@
    "repository": "https://github.com/henrysouchien/edgar-mcp",
    "install": {
     "claude": [
-     "claude mcp add edgar -e EDGAR_API_KEY=<EDGAR_API_KEY> -- uvx edgar-mcp@1.0.2"
+     "claude mcp add edgar-henrysouchien -e EDGAR_API_KEY=<EDGAR_API_KEY> -- uvx edgar-mcp@1.0.2"
     ],
     "codex": [
-     "codex mcp add edgar --env EDGAR_API_KEY=<EDGAR_API_KEY> -- uvx edgar-mcp@1.0.2"
+     "codex mcp add edgar-henrysouchien --env EDGAR_API_KEY=<EDGAR_API_KEY> -- uvx edgar-mcp@1.0.2"
     ]
    }
   },
@@ -80098,10 +80099,10 @@
    "repository": "https://github.com/hypnosis/docker-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add docker -- npx -y @hypnosis/docker-mcp-server@2.0.1"
+     "claude mcp add docker-hypnosis -- npx -y @hypnosis/docker-mcp-server@2.0.1"
     ],
     "codex": [
-     "codex mcp add docker -- npx -y @hypnosis/docker-mcp-server@2.0.1"
+     "codex mcp add docker-hypnosis -- npx -y @hypnosis/docker-mcp-server@2.0.1"
     ]
    }
   },
@@ -81072,10 +81073,10 @@
    "repository": "https://github.com/AvatarGaia/canvas-mcp",
    "install": {
     "claude": [
-     "claude mcp add canvas -- npx -y @avatargaia/canvas-mcp@0.1.4"
+     "claude mcp add canvas-avatargaia -- npx -y @avatargaia/canvas-mcp@0.1.4"
     ],
     "codex": [
-     "codex mcp add canvas -- npx -y @avatargaia/canvas-mcp@0.1.4"
+     "codex mcp add canvas-avatargaia -- npx -y @avatargaia/canvas-mcp@0.1.4"
     ]
    }
   },
@@ -82035,10 +82036,10 @@
    "repository": "https://github.com/VelixarAi/velixar-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add memory -e VELIXAR_API_KEY=<VELIXAR_API_KEY> -- npx -y velixar-mcp-server@0.2.4"
+     "claude mcp add memory-velixarai -e VELIXAR_API_KEY=<VELIXAR_API_KEY> -- npx -y velixar-mcp-server@0.2.4"
     ],
     "codex": [
-     "codex mcp add memory --env VELIXAR_API_KEY=<VELIXAR_API_KEY> -- npx -y velixar-mcp-server@0.2.4"
+     "codex mcp add memory-velixarai --env VELIXAR_API_KEY=<VELIXAR_API_KEY> -- npx -y velixar-mcp-server@0.2.4"
     ]
    }
   },
@@ -82353,10 +82354,10 @@
    "repository": "https://github.com/Tulipe1735/Prism",
    "install": {
     "claude": [
-     "claude mcp add prism -e TYPESAFE_API_KEY=<TYPESAFE_API_KEY> -- npx -y @tulipe1735/prism@0.1.4"
+     "claude mcp add prism-tulipe1735 -e TYPESAFE_API_KEY=<TYPESAFE_API_KEY> -- npx -y @tulipe1735/prism@0.1.4"
     ],
     "codex": [
-     "codex mcp add prism --env TYPESAFE_API_KEY=<TYPESAFE_API_KEY> -- npx -y @tulipe1735/prism@0.1.4"
+     "codex mcp add prism-tulipe1735 --env TYPESAFE_API_KEY=<TYPESAFE_API_KEY> -- npx -y @tulipe1735/prism@0.1.4"
     ]
    }
   },
@@ -83743,10 +83744,10 @@
    "repository": "https://github.com/VibeTechnologies/vibe-mcp",
    "install": {
     "claude": [
-     "claude mcp add vibe -- npx -y @vibebrowser/mcp@0.3.6"
+     "claude mcp add vibe-vibetechnologies -- npx -y @vibebrowser/mcp@0.3.6"
     ],
     "codex": [
-     "codex mcp add vibe -- npx -y @vibebrowser/mcp@0.3.6"
+     "codex mcp add vibe-vibetechnologies -- npx -y @vibebrowser/mcp@0.3.6"
     ]
    }
   },
@@ -84023,10 +84024,10 @@
    "repository": "https://github.com/jordanburke/joplin-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add joplin -- npx -y joplin-mcp-server@2.3.3"
+     "claude mcp add joplin-jordanburke -- npx -y joplin-mcp-server@2.3.3"
     ],
     "codex": [
-     "codex mcp add joplin -- npx -y joplin-mcp-server@2.3.3"
+     "codex mcp add joplin-jordanburke -- npx -y joplin-mcp-server@2.3.3"
     ]
    }
   },
@@ -85055,10 +85056,10 @@
    "repository": "https://github.com/Bishop81/accessibility-scanner-mcp",
    "install": {
     "claude": [
-     "claude mcp add accessibility-scanner -- npx -y accessibility-scanner-mcp@0.1.2"
+     "claude mcp add accessibility-scanner-bishop81 -- npx -y accessibility-scanner-mcp@0.1.2"
     ],
     "codex": [
-     "codex mcp add accessibility-scanner -- npx -y accessibility-scanner-mcp@0.1.2"
+     "codex mcp add accessibility-scanner-bishop81 -- npx -y accessibility-scanner-mcp@0.1.2"
     ]
    }
   },
@@ -85815,10 +85816,10 @@
    "repository": "https://github.com/voidly-ai/mcp-email",
    "install": {
     "claude": [
-     "claude mcp add email -- npx -y @voidly/mcp-email@1.2.1"
+     "claude mcp add email-voidly-ai -- npx -y @voidly/mcp-email@1.2.1"
     ],
     "codex": [
-     "codex mcp add email -- npx -y @voidly/mcp-email@1.2.1"
+     "codex mcp add email-voidly-ai -- npx -y @voidly/mcp-email@1.2.1"
     ]
    }
   },
@@ -86444,10 +86445,10 @@
    "repository": "https://github.com/massdriver-cloud/mcp-server",
    "install": {
     "claude": [
-     "claude mcp add cloud -e MASSDRIVER_API_KEY=<MASSDRIVER_API_KEY> -e MASSDRIVER_ORGANIZATION_ID=<MASSDRIVER_ORGANIZATION_ID> -- docker run -i --rm -e MASSDRIVER_API_KEY -e MASSDRIVER_ORGANIZATION_ID docker.io/massdrivercloud/mcp-server:0.2.0"
+     "claude mcp add cloud-massdriver -e MASSDRIVER_API_KEY=<MASSDRIVER_API_KEY> -e MASSDRIVER_ORGANIZATION_ID=<MASSDRIVER_ORGANIZATION_ID> -- docker run -i --rm -e MASSDRIVER_API_KEY -e MASSDRIVER_ORGANIZATION_ID docker.io/massdrivercloud/mcp-server:0.2.0"
     ],
     "codex": [
-     "codex mcp add cloud --env MASSDRIVER_API_KEY=<MASSDRIVER_API_KEY> --env MASSDRIVER_ORGANIZATION_ID=<MASSDRIVER_ORGANIZATION_ID> -- docker run -i --rm -e MASSDRIVER_API_KEY -e MASSDRIVER_ORGANIZATION_ID docker.io/massdrivercloud/mcp-server:0.2.0"
+     "codex mcp add cloud-massdriver --env MASSDRIVER_API_KEY=<MASSDRIVER_API_KEY> --env MASSDRIVER_ORGANIZATION_ID=<MASSDRIVER_ORGANIZATION_ID> -- docker run -i --rm -e MASSDRIVER_API_KEY -e MASSDRIVER_ORGANIZATION_ID docker.io/massdrivercloud/mcp-server:0.2.0"
     ]
    }
   },
@@ -86529,10 +86530,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add runtime -- docker run -i --rm docker.io/formatho/formatho-runtime:0.3.0 run -i --rm -v formatho-audit:/data docker.io/formatho/formatho-runtime:0.3.0"
+     "claude mcp add runtime-formatho -- docker run -i --rm docker.io/formatho/formatho-runtime:0.3.0 run -i --rm -v formatho-audit:/data docker.io/formatho/formatho-runtime:0.3.0"
     ],
     "codex": [
-     "codex mcp add runtime -- docker run -i --rm docker.io/formatho/formatho-runtime:0.3.0 run -i --rm -v formatho-audit:/data docker.io/formatho/formatho-runtime:0.3.0"
+     "codex mcp add runtime-formatho -- docker run -i --rm docker.io/formatho/formatho-runtime:0.3.0 run -i --rm -v formatho-audit:/data docker.io/formatho/formatho-runtime:0.3.0"
     ]
    }
   },
@@ -86692,7 +86693,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/steledger/mcp:latest",
+    "identifier": "ghcr.io/steledger/mcp@sha256:3e38ed92a6e11bdd60dea23853263d87d0c091114fda8258105c816ef231efd7",
     "version": "0.3.0"
    },
    "transport": "stdio",
@@ -86707,12 +86708,13 @@
    "repository": "https://github.com/steledger/steledger-gateway",
    "install": {
     "claude": [
-     "claude mcp add gateway -- docker run -i --rm ghcr.io/steledger/mcp:latest"
+     "claude mcp add gateway-steledger -- docker run -i --rm ghcr.io/steledger/mcp@sha256:3e38ed92a6e11bdd60dea23853263d87d0c091114fda8258105c816ef231efd7"
     ],
     "codex": [
-     "codex mcp add gateway -- docker run -i --rm ghcr.io/steledger/mcp:latest"
+     "codex mcp add gateway-steledger -- docker run -i --rm ghcr.io/steledger/mcp@sha256:3e38ed92a6e11bdd60dea23853263d87d0c091114fda8258105c816ef231efd7"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "com-sumoffice-office",
@@ -86731,10 +86733,10 @@
    "repository": "https://github.com/SumOfficeApp/sumoffice-mcp",
    "install": {
     "claude": [
-     "claude mcp add office -- docker run -i --rm docker.io/hissih/sumoffice-mcp:0.3.1"
+     "claude mcp add office-sumoffice -- docker run -i --rm docker.io/hissih/sumoffice-mcp:0.3.1"
     ],
     "codex": [
-     "codex mcp add office -- docker run -i --rm docker.io/hissih/sumoffice-mcp:0.3.1"
+     "codex mcp add office-sumoffice -- docker run -i --rm docker.io/hissih/sumoffice-mcp:0.3.1"
     ]
    }
   },
@@ -86933,10 +86935,10 @@
    "repository": "https://github.com/APonkratov/yandex-tracker-mcp",
    "install": {
     "claude": [
-     "claude mcp add yandex-tracker -- docker run -i --rm ghcr.io/aponkratov/yandex-tracker-mcp:0.8.2"
+     "claude mcp add yandex-tracker-aponkratov -- docker run -i --rm ghcr.io/aponkratov/yandex-tracker-mcp:0.8.2"
     ],
     "codex": [
-     "codex mcp add yandex-tracker -- docker run -i --rm ghcr.io/aponkratov/yandex-tracker-mcp:0.8.2"
+     "codex mcp add yandex-tracker-aponkratov -- docker run -i --rm ghcr.io/aponkratov/yandex-tracker-mcp:0.8.2"
     ]
    }
   },
@@ -87695,10 +87697,10 @@
    "repository": "https://github.com/FabianSchurig/bitbucket-cli",
    "install": {
     "claude": [
-     "claude mcp add bitbucket -e BITBUCKET_TOKEN=<BITBUCKET_TOKEN> -- docker run -i --rm -e BITBUCKET_TOKEN ghcr.io/fabianschurig/bitbucket-mcp:0.20.2"
+     "claude mcp add bitbucket-fabianschurig -e BITBUCKET_TOKEN=<BITBUCKET_TOKEN> -- docker run -i --rm -e BITBUCKET_TOKEN ghcr.io/fabianschurig/bitbucket-mcp:0.20.2"
     ],
     "codex": [
-     "codex mcp add bitbucket --env BITBUCKET_TOKEN=<BITBUCKET_TOKEN> -- docker run -i --rm -e BITBUCKET_TOKEN ghcr.io/fabianschurig/bitbucket-mcp:0.20.2"
+     "codex mcp add bitbucket-fabianschurig --env BITBUCKET_TOKEN=<BITBUCKET_TOKEN> -- docker run -i --rm -e BITBUCKET_TOKEN ghcr.io/fabianschurig/bitbucket-mcp:0.20.2"
     ]
    }
   },
@@ -88667,7 +88669,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/krushnavardhanreddy/osmcp:latest",
+    "identifier": "ghcr.io/krushnavardhanreddy/osmcp@sha256:6388c4557f68544d2644e7b18d4b2f561f14e3cbb5ad273a12dd948681765dc8",
     "version": "1.0.5"
    },
    "transport": "stdio",
@@ -88675,12 +88677,13 @@
    "repository": "https://github.com/KrushnaVardhanReddy/osmcp",
    "install": {
     "claude": [
-     "claude mcp add osmcp -- docker run -i --rm ghcr.io/krushnavardhanreddy/osmcp:latest"
+     "claude mcp add osmcp -- docker run -i --rm ghcr.io/krushnavardhanreddy/osmcp@sha256:6388c4557f68544d2644e7b18d4b2f561f14e3cbb5ad273a12dd948681765dc8"
     ],
     "codex": [
-     "codex mcp add osmcp -- docker run -i --rm ghcr.io/krushnavardhanreddy/osmcp:latest"
+     "codex mcp add osmcp -- docker run -i --rm ghcr.io/krushnavardhanreddy/osmcp@sha256:6388c4557f68544d2644e7b18d4b2f561f14e3cbb5ad273a12dd948681765dc8"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-kurok1-mcp-server-mysql",
@@ -88951,10 +88954,10 @@
    "repository": "https://github.com/MikkoParkkola/mcp-gateway",
    "install": {
     "claude": [
-     "claude mcp add gateway -- docker run -i --rm ghcr.io/mikkoparkkola/mcp-gateway:3.5.1 serve --stdio"
+     "claude mcp add gateway-mikkoparkkola -- docker run -i --rm ghcr.io/mikkoparkkola/mcp-gateway:3.5.1 serve --stdio"
     ],
     "codex": [
-     "codex mcp add gateway -- docker run -i --rm ghcr.io/mikkoparkkola/mcp-gateway:3.5.1 serve --stdio"
+     "codex mcp add gateway-mikkoparkkola -- docker run -i --rm ghcr.io/mikkoparkkola/mcp-gateway:3.5.1 serve --stdio"
     ]
    }
   },
@@ -90657,10 +90660,10 @@
    "repository": "https://github.com/VictoriaMetrics/mcp-victorialogs",
    "install": {
     "claude": [
-     "claude mcp add victorialogs -e VL_INSTANCE_ENTRYPOINT=<VL_INSTANCE_ENTRYPOINT> -e VL_INSTANCE_BEARER_TOKEN=<VL_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VL_INSTANCE_ENTRYPOINT -e VL_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victorialogs:1.9.0"
+     "claude mcp add victorialogs-victoriametrics -e VL_INSTANCE_ENTRYPOINT=<VL_INSTANCE_ENTRYPOINT> -e VL_INSTANCE_BEARER_TOKEN=<VL_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VL_INSTANCE_ENTRYPOINT -e VL_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victorialogs:1.9.0"
     ],
     "codex": [
-     "codex mcp add victorialogs --env VL_INSTANCE_ENTRYPOINT=<VL_INSTANCE_ENTRYPOINT> --env VL_INSTANCE_BEARER_TOKEN=<VL_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VL_INSTANCE_ENTRYPOINT -e VL_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victorialogs:1.9.0"
+     "codex mcp add victorialogs-victoriametrics --env VL_INSTANCE_ENTRYPOINT=<VL_INSTANCE_ENTRYPOINT> --env VL_INSTANCE_BEARER_TOKEN=<VL_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VL_INSTANCE_ENTRYPOINT -e VL_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victorialogs:1.9.0"
     ]
    }
   },
@@ -90724,10 +90727,10 @@
    "repository": "https://github.com/VictoriaMetrics/mcp-victoriametrics",
    "install": {
     "claude": [
-     "claude mcp add victoriametrics -e VM_INSTANCE_ENTRYPOINT=<VM_INSTANCE_ENTRYPOINT> -e VM_INSTANCE_TYPE=<VM_INSTANCE_TYPE> -e VM_INSTANCE_BEARER_TOKEN=<VM_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VM_INSTANCE_ENTRYPOINT -e VM_INSTANCE_TYPE -e VM_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victoriametrics:1.120.1"
+     "claude mcp add victoriametrics-victoriametrics -e VM_INSTANCE_ENTRYPOINT=<VM_INSTANCE_ENTRYPOINT> -e VM_INSTANCE_TYPE=<VM_INSTANCE_TYPE> -e VM_INSTANCE_BEARER_TOKEN=<VM_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VM_INSTANCE_ENTRYPOINT -e VM_INSTANCE_TYPE -e VM_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victoriametrics:1.120.1"
     ],
     "codex": [
-     "codex mcp add victoriametrics --env VM_INSTANCE_ENTRYPOINT=<VM_INSTANCE_ENTRYPOINT> --env VM_INSTANCE_TYPE=<VM_INSTANCE_TYPE> --env VM_INSTANCE_BEARER_TOKEN=<VM_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VM_INSTANCE_ENTRYPOINT -e VM_INSTANCE_TYPE -e VM_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victoriametrics:1.120.1"
+     "codex mcp add victoriametrics-victoriametrics --env VM_INSTANCE_ENTRYPOINT=<VM_INSTANCE_ENTRYPOINT> --env VM_INSTANCE_TYPE=<VM_INSTANCE_TYPE> --env VM_INSTANCE_BEARER_TOKEN=<VM_INSTANCE_BEARER_TOKEN> -- docker run -i --rm -e VM_INSTANCE_ENTRYPOINT -e VM_INSTANCE_TYPE -e VM_INSTANCE_BEARER_TOKEN ghcr.io/victoriametrics/mcp-victoriametrics:1.120.1"
     ]
    }
   },
@@ -90821,10 +90824,10 @@
    "repository": "https://github.com/VictoriaMetrics/mcp-vmanomaly",
    "install": {
     "claude": [
-     "claude mcp add vmanomaly -e VMANOMALY_ENDPOINT=<VMANOMALY_ENDPOINT> -- docker run -i --rm -e VMANOMALY_ENDPOINT ghcr.io/victoriametrics/mcp-vmanomaly:0.5.0"
+     "claude mcp add vmanomaly-victoriametrics -e VMANOMALY_ENDPOINT=<VMANOMALY_ENDPOINT> -- docker run -i --rm -e VMANOMALY_ENDPOINT ghcr.io/victoriametrics/mcp-vmanomaly:0.5.0"
     ],
     "codex": [
-     "codex mcp add vmanomaly --env VMANOMALY_ENDPOINT=<VMANOMALY_ENDPOINT> -- docker run -i --rm -e VMANOMALY_ENDPOINT ghcr.io/victoriametrics/mcp-vmanomaly:0.5.0"
+     "codex mcp add vmanomaly-victoriametrics --env VMANOMALY_ENDPOINT=<VMANOMALY_ENDPOINT> -- docker run -i --rm -e VMANOMALY_ENDPOINT ghcr.io/victoriametrics/mcp-vmanomaly:0.5.0"
     ]
    }
   },
@@ -90918,10 +90921,10 @@
    "repository": "https://github.com/WYRE-AI/abnormal-mcp",
    "install": {
     "claude": [
-     "claude mcp add abnormal -e ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-ai/abnormal-mcp:v1.2.6"
+     "claude mcp add abnormal-wyre-ai -e ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-ai/abnormal-mcp:v1.2.6"
     ],
     "codex": [
-     "codex mcp add abnormal --env ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-ai/abnormal-mcp:v1.2.6"
+     "codex mcp add abnormal-wyre-ai --env ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-ai/abnormal-mcp:v1.2.6"
     ]
    }
   },
@@ -94574,10 +94577,10 @@
    "repository": "https://github.com/WYRE-AI/rootly-mcp",
    "install": {
     "claude": [
-     "claude mcp add rootly -e ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-ai/rootly-mcp:v1.2.7"
+     "claude mcp add rootly-wyre-ai -e ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-ai/rootly-mcp:v1.2.7"
     ],
     "codex": [
-     "codex mcp add rootly --env ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-ai/rootly-mcp:v1.2.7"
+     "codex mcp add rootly-wyre-ai --env ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-ai/rootly-mcp:v1.2.7"
     ]
    }
   },
@@ -95758,10 +95761,10 @@
    "repository": "https://github.com/aarondpn/redmine-cli",
    "install": {
     "claude": [
-     "claude mcp add redmine -e REDMINE_SERVER=<REDMINE_SERVER> -e REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_SERVER -e REDMINE_API_KEY ghcr.io/aarondpn/redmine-mcp:2.13.0"
+     "claude mcp add redmine-aarondpn -e REDMINE_SERVER=<REDMINE_SERVER> -e REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_SERVER -e REDMINE_API_KEY ghcr.io/aarondpn/redmine-mcp:2.13.0"
     ],
     "codex": [
-     "codex mcp add redmine --env REDMINE_SERVER=<REDMINE_SERVER> --env REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_SERVER -e REDMINE_API_KEY ghcr.io/aarondpn/redmine-mcp:2.13.0"
+     "codex mcp add redmine-aarondpn --env REDMINE_SERVER=<REDMINE_SERVER> --env REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_SERVER -e REDMINE_API_KEY ghcr.io/aarondpn/redmine-mcp:2.13.0"
     ]
    }
   },
@@ -95902,7 +95905,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/aicrafted/searxng-mcp:latest",
+    "identifier": "ghcr.io/aicrafted/searxng-mcp@sha256:240eb88aede35cbf7943c8b8a89929c41f658bce0ca35931cbd84b2efcffec61",
     "version": "1.0.0"
    },
    "transport": "stdio",
@@ -95917,12 +95920,13 @@
    "repository": "https://github.com/aicrafted/searxng-mcp",
    "install": {
     "claude": [
-     "claude mcp add searxng -e SEARXNG_URL=<SEARXNG_URL> -- docker run -i --rm -e SEARXNG_URL ghcr.io/aicrafted/searxng-mcp:latest"
+     "claude mcp add searxng-aicrafted -e SEARXNG_URL=<SEARXNG_URL> -- docker run -i --rm -e SEARXNG_URL ghcr.io/aicrafted/searxng-mcp@sha256:240eb88aede35cbf7943c8b8a89929c41f658bce0ca35931cbd84b2efcffec61"
     ],
     "codex": [
-     "codex mcp add searxng --env SEARXNG_URL=<SEARXNG_URL> -- docker run -i --rm -e SEARXNG_URL ghcr.io/aicrafted/searxng-mcp:latest"
+     "codex mcp add searxng-aicrafted --env SEARXNG_URL=<SEARXNG_URL> -- docker run -i --rm -e SEARXNG_URL ghcr.io/aicrafted/searxng-mcp@sha256:240eb88aede35cbf7943c8b8a89929c41f658bce0ca35931cbd84b2efcffec61"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-aifity-omnigit-mcp",
@@ -95965,10 +95969,10 @@
    "repository": "https://github.com/aiveto/veto",
    "install": {
     "claude": [
-     "claude mcp add veto -- docker run -i --rm ghcr.io/aiveto/veto:0.1.12 serve --config <config>"
+     "claude mcp add veto-aiveto -- docker run -i --rm ghcr.io/aiveto/veto:0.1.12 serve --config <config>"
     ],
     "codex": [
-     "codex mcp add veto -- docker run -i --rm ghcr.io/aiveto/veto:0.1.12 serve --config <config>"
+     "codex mcp add veto-aiveto -- docker run -i --rm ghcr.io/aiveto/veto:0.1.12 serve --config <config>"
     ]
    }
   },
@@ -96453,7 +96457,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "docker.io/arvindand/maven-tools-mcp:latest",
+    "identifier": "docker.io/arvindand/maven-tools-mcp:3.2.3@sha256:956552d90476b2f59eaf5a7cf02b4ed22b1455f838f558f33af5ea95f30400be",
     "version": "3.2.3"
    },
    "transport": "stdio",
@@ -96461,12 +96465,13 @@
    "repository": "https://github.com/arvindand/maven-tools-mcp",
    "install": {
     "claude": [
-     "claude mcp add maven-tools -- docker run -i --rm docker.io/arvindand/maven-tools-mcp:latest"
+     "claude mcp add maven-tools -- docker run -i --rm docker.io/arvindand/maven-tools-mcp:3.2.3@sha256:956552d90476b2f59eaf5a7cf02b4ed22b1455f838f558f33af5ea95f30400be"
     ],
     "codex": [
-     "codex mcp add maven-tools -- docker run -i --rm docker.io/arvindand/maven-tools-mcp:latest"
+     "codex mcp add maven-tools -- docker run -i --rm docker.io/arvindand/maven-tools-mcp:3.2.3@sha256:956552d90476b2f59eaf5a7cf02b4ed22b1455f838f558f33af5ea95f30400be"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-asafichaki-renology-cost-data",
@@ -96533,10 +96538,10 @@
    "repository": "https://github.com/asdecided/core",
    "install": {
     "claude": [
-     "claude mcp add core -- docker run -i --rm ghcr.io/asdecided/core:mcp-v0.31.2"
+     "claude mcp add core-asdecided -- docker run -i --rm ghcr.io/asdecided/core:mcp-v0.31.2"
     ],
     "codex": [
-     "codex mcp add core -- docker run -i --rm ghcr.io/asdecided/core:mcp-v0.31.2"
+     "codex mcp add core-asdecided -- docker run -i --rm ghcr.io/asdecided/core:mcp-v0.31.2"
     ]
    }
   },
@@ -96996,7 +97001,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/blwfish/freecad-mcp:latest",
+    "identifier": "ghcr.io/blwfish/freecad-mcp@sha256:77249ec83750ad219690ca0215510b1f7a3a1c9aa18b8b5895a6a37a36a0dfe8",
     "version": "8.2.3"
    },
    "transport": "stdio",
@@ -97004,12 +97009,13 @@
    "repository": "https://github.com/blwfish/freecad-mcp",
    "install": {
     "claude": [
-     "claude mcp add freecad -- docker run -i --rm ghcr.io/blwfish/freecad-mcp:latest"
+     "claude mcp add freecad -- docker run -i --rm ghcr.io/blwfish/freecad-mcp@sha256:77249ec83750ad219690ca0215510b1f7a3a1c9aa18b8b5895a6a37a36a0dfe8"
     ],
     "codex": [
-     "codex mcp add freecad -- docker run -i --rm ghcr.io/blwfish/freecad-mcp:latest"
+     "codex mcp add freecad -- docker run -i --rm ghcr.io/blwfish/freecad-mcp@sha256:77249ec83750ad219690ca0215510b1f7a3a1c9aa18b8b5895a6a37a36a0dfe8"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-bobbyhouse-append-log-mcp",
@@ -97112,7 +97118,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/boutquin/mcp-server-email:latest",
+    "identifier": "ghcr.io/boutquin/mcp-server-email@sha256:66631c3e782d6e0bb4055f92149a11e0539b8133cbccfe51dabc4ea5dc01c52c",
     "version": "1.0.1"
    },
    "transport": "stdio",
@@ -97133,12 +97139,13 @@
    "repository": "https://github.com/boutquin/mcp-server-email",
    "install": {
     "claude": [
-     "claude mcp add email -- docker run -i --rm ghcr.io/boutquin/mcp-server-email:latest"
+     "claude mcp add email-boutquin -- docker run -i --rm ghcr.io/boutquin/mcp-server-email@sha256:66631c3e782d6e0bb4055f92149a11e0539b8133cbccfe51dabc4ea5dc01c52c"
     ],
     "codex": [
-     "codex mcp add email -- docker run -i --rm ghcr.io/boutquin/mcp-server-email:latest"
+     "codex mcp add email-boutquin -- docker run -i --rm ghcr.io/boutquin/mcp-server-email@sha256:66631c3e782d6e0bb4055f92149a11e0539b8133cbccfe51dabc4ea5dc01c52c"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-bpolania-bulwark",
@@ -97784,10 +97791,10 @@
    "repository": "https://github.com/denizgursoy/kafka-mcp",
    "install": {
     "claude": [
-     "claude mcp add kafka -- docker run -i --rm ghcr.io/denizgursoy/kafka-mcp:v0.2.1 --server=false"
+     "claude mcp add kafka-denizgursoy -- docker run -i --rm ghcr.io/denizgursoy/kafka-mcp:v0.2.1 --server=false"
     ],
     "codex": [
-     "codex mcp add kafka -- docker run -i --rm ghcr.io/denizgursoy/kafka-mcp:v0.2.1 --server=false"
+     "codex mcp add kafka-denizgursoy -- docker run -i --rm ghcr.io/denizgursoy/kafka-mcp:v0.2.1 --server=false"
     ]
    }
   },
@@ -98472,10 +98479,10 @@
    "repository": "https://github.com/enthouan/trello-mcp",
    "install": {
     "claude": [
-     "claude mcp add trello -e TRELLO_API_KEY=<TRELLO_API_KEY> -e TRELLO_TOKEN=<TRELLO_TOKEN> -- docker run -i --rm -e TRELLO_API_KEY -e TRELLO_TOKEN ghcr.io/enthouan/trello-mcp:1.0.3"
+     "claude mcp add trello-enthouan -e TRELLO_API_KEY=<TRELLO_API_KEY> -e TRELLO_TOKEN=<TRELLO_TOKEN> -- docker run -i --rm -e TRELLO_API_KEY -e TRELLO_TOKEN ghcr.io/enthouan/trello-mcp:1.0.3"
     ],
     "codex": [
-     "codex mcp add trello --env TRELLO_API_KEY=<TRELLO_API_KEY> --env TRELLO_TOKEN=<TRELLO_TOKEN> -- docker run -i --rm -e TRELLO_API_KEY -e TRELLO_TOKEN ghcr.io/enthouan/trello-mcp:1.0.3"
+     "codex mcp add trello-enthouan --env TRELLO_API_KEY=<TRELLO_API_KEY> --env TRELLO_TOKEN=<TRELLO_TOKEN> -- docker run -i --rm -e TRELLO_API_KEY -e TRELLO_TOKEN ghcr.io/enthouan/trello-mcp:1.0.3"
     ]
    }
   },
@@ -98555,7 +98562,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/fastcrw/crw:latest",
+    "identifier": "ghcr.io/fastcrw/crw:0.37.2@sha256:a063ca83e7362c587435df8f91adeee72f3189a3d36d97506400350be2b08dca",
     "version": "0.37.2"
    },
    "transport": "stdio",
@@ -98563,12 +98570,13 @@
    "repository": "https://github.com/fastcrw/crw",
    "install": {
     "claude": [
-     "claude mcp add crw -- docker run -i --rm ghcr.io/fastcrw/crw:latest crw-mcp"
+     "claude mcp add crw -- docker run -i --rm ghcr.io/fastcrw/crw:0.37.2@sha256:a063ca83e7362c587435df8f91adeee72f3189a3d36d97506400350be2b08dca crw-mcp"
     ],
     "codex": [
-     "codex mcp add crw -- docker run -i --rm ghcr.io/fastcrw/crw:latest crw-mcp"
+     "codex mcp add crw -- docker run -i --rm ghcr.io/fastcrw/crw:0.37.2@sha256:a063ca83e7362c587435df8f91adeee72f3189a3d36d97506400350be2b08dca crw-mcp"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-fatihbaltaci-godrop",
@@ -98624,10 +98632,10 @@
    "repository": "https://github.com/felixgeelhaar/scout",
    "install": {
     "claude": [
-     "claude mcp add scout -- docker run -i --rm ghcr.io/felixgeelhaar/scout:1.10.0 mcp serve"
+     "claude mcp add scout-felixgeelhaar -- docker run -i --rm ghcr.io/felixgeelhaar/scout:1.10.0 mcp serve"
     ],
     "codex": [
-     "codex mcp add scout -- docker run -i --rm ghcr.io/felixgeelhaar/scout:1.10.0 mcp serve"
+     "codex mcp add scout-felixgeelhaar -- docker run -i --rm ghcr.io/felixgeelhaar/scout:1.10.0 mcp serve"
     ]
    }
   },
@@ -98746,10 +98754,10 @@
    "repository": "https://github.com/gambletan/cortex",
    "install": {
     "claude": [
-     "claude mcp add cortex -- docker run -i --rm ghcr.io/gambletan/cortex:v1.8.0"
+     "claude mcp add cortex-gambletan -- docker run -i --rm ghcr.io/gambletan/cortex:v1.8.0"
     ],
     "codex": [
-     "codex mcp add cortex -- docker run -i --rm ghcr.io/gambletan/cortex:v1.8.0"
+     "codex mcp add cortex-gambletan -- docker run -i --rm ghcr.io/gambletan/cortex:v1.8.0"
     ]
    }
   },
@@ -98916,10 +98924,10 @@
    "repository": "https://github.com/grafana/mcp-grafana",
    "install": {
     "claude": [
-     "claude mcp add grafana -e GRAFANA_URL=<GRAFANA_URL> -- docker run -i --rm -e GRAFANA_URL docker.io/grafana/mcp-grafana:2.0.2"
+     "claude mcp add grafana-grafana -e GRAFANA_URL=<GRAFANA_URL> -- docker run -i --rm -e GRAFANA_URL docker.io/grafana/mcp-grafana:2.0.2"
     ],
     "codex": [
-     "codex mcp add grafana --env GRAFANA_URL=<GRAFANA_URL> -- docker run -i --rm -e GRAFANA_URL docker.io/grafana/mcp-grafana:2.0.2"
+     "codex mcp add grafana-grafana --env GRAFANA_URL=<GRAFANA_URL> -- docker run -i --rm -e GRAFANA_URL docker.io/grafana/mcp-grafana:2.0.2"
     ]
    }
   },
@@ -99098,10 +99106,10 @@
    "repository": "https://github.com/hadriangateway/platter",
    "install": {
     "claude": [
-     "claude mcp add platter -- docker run -i --rm ghcr.io/hadriangateway/platter:2.0.3"
+     "claude mcp add platter-hadriangateway -- docker run -i --rm ghcr.io/hadriangateway/platter:2.0.3"
     ],
     "codex": [
-     "codex mcp add platter -- docker run -i --rm ghcr.io/hadriangateway/platter:2.0.3"
+     "codex mcp add platter-hadriangateway -- docker run -i --rm ghcr.io/hadriangateway/platter:2.0.3"
     ]
    }
   },
@@ -99195,10 +99203,10 @@
    "repository": "https://github.com/hcarrillo001/retrieval-mcp",
    "install": {
     "claude": [
-     "claude mcp add retrieval -- docker run -i --rm ghcr.io/hcarrillo001/retrieval-mcp:1.0.0"
+     "claude mcp add retrieval-hcarrillo001 -- docker run -i --rm ghcr.io/hcarrillo001/retrieval-mcp:1.0.0"
     ],
     "codex": [
-     "codex mcp add retrieval -- docker run -i --rm ghcr.io/hcarrillo001/retrieval-mcp:1.0.0"
+     "codex mcp add retrieval-hcarrillo001 -- docker run -i --rm ghcr.io/hcarrillo001/retrieval-mcp:1.0.0"
     ]
    }
   },
@@ -99419,7 +99427,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/ibeal/tidal-mcp:latest",
+    "identifier": "ghcr.io/ibeal/tidal-mcp:0.6.0@sha256:5789c9739df6b541da17d804f6a61704c144d8df58ccf11018f44b9a2dc51687",
     "version": "0.6.0"
    },
    "transport": "stdio",
@@ -99434,12 +99442,13 @@
    "repository": "https://github.com/ibeal/tidal-mcp",
    "install": {
     "claude": [
-     "claude mcp add tidal -- docker run -i --rm ghcr.io/ibeal/tidal-mcp:latest"
+     "claude mcp add tidal-ibeal -- docker run -i --rm ghcr.io/ibeal/tidal-mcp:0.6.0@sha256:5789c9739df6b541da17d804f6a61704c144d8df58ccf11018f44b9a2dc51687"
     ],
     "codex": [
-     "codex mcp add tidal -- docker run -i --rm ghcr.io/ibeal/tidal-mcp:latest"
+     "codex mcp add tidal-ibeal -- docker run -i --rm ghcr.io/ibeal/tidal-mcp:0.6.0@sha256:5789c9739df6b541da17d804f6a61704c144d8df58ccf11018f44b9a2dc51687"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-idjohnson-vikunjamcp",
@@ -99599,10 +99608,10 @@
    "repository": "https://github.com/igorolv/redmine-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add redmine -e REDMINE_URL=<REDMINE_URL> -e REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_URL -e REDMINE_API_KEY ghcr.io/igorolv/redmine-mcp-server:0.1.1"
+     "claude mcp add redmine-igorolv -e REDMINE_URL=<REDMINE_URL> -e REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_URL -e REDMINE_API_KEY ghcr.io/igorolv/redmine-mcp-server:0.1.1"
     ],
     "codex": [
-     "codex mcp add redmine --env REDMINE_URL=<REDMINE_URL> --env REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_URL -e REDMINE_API_KEY ghcr.io/igorolv/redmine-mcp-server:0.1.1"
+     "codex mcp add redmine-igorolv --env REDMINE_URL=<REDMINE_URL> --env REDMINE_API_KEY=<REDMINE_API_KEY> -- docker run -i --rm -e REDMINE_URL -e REDMINE_API_KEY ghcr.io/igorolv/redmine-mcp-server:0.1.1"
     ]
    }
   },
@@ -99642,10 +99651,10 @@
    "repository": "https://github.com/igorolv/sonar-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add sonar -e SONAR_URL=<SONAR_URL> -e SONAR_TOKEN=<SONAR_TOKEN> -- docker run -i --rm -e SONAR_URL -e SONAR_TOKEN ghcr.io/igorolv/sonar-mcp-server:0.1.0"
+     "claude mcp add sonar-igorolv -e SONAR_URL=<SONAR_URL> -e SONAR_TOKEN=<SONAR_TOKEN> -- docker run -i --rm -e SONAR_URL -e SONAR_TOKEN ghcr.io/igorolv/sonar-mcp-server:0.1.0"
     ],
     "codex": [
-     "codex mcp add sonar --env SONAR_URL=<SONAR_URL> --env SONAR_TOKEN=<SONAR_TOKEN> -- docker run -i --rm -e SONAR_URL -e SONAR_TOKEN ghcr.io/igorolv/sonar-mcp-server:0.1.0"
+     "codex mcp add sonar-igorolv --env SONAR_URL=<SONAR_URL> --env SONAR_TOKEN=<SONAR_TOKEN> -- docker run -i --rm -e SONAR_URL -e SONAR_TOKEN ghcr.io/igorolv/sonar-mcp-server:0.1.0"
     ]
    }
   },
@@ -100290,10 +100299,10 @@
    "repository": "https://github.com/jeeftor/abs-mcp",
    "install": {
     "claude": [
-     "claude mcp add abs -e ABS_BASE_URL=<ABS_BASE_URL> -e ABS_API_KEY=<ABS_API_KEY> -- docker run -i --rm -e ABS_BASE_URL -e ABS_API_KEY ghcr.io/jeeftor/abs-mcp:0.6.0"
+     "claude mcp add abs-jeeftor -e ABS_BASE_URL=<ABS_BASE_URL> -e ABS_API_KEY=<ABS_API_KEY> -- docker run -i --rm -e ABS_BASE_URL -e ABS_API_KEY ghcr.io/jeeftor/abs-mcp:0.6.0"
     ],
     "codex": [
-     "codex mcp add abs --env ABS_BASE_URL=<ABS_BASE_URL> --env ABS_API_KEY=<ABS_API_KEY> -- docker run -i --rm -e ABS_BASE_URL -e ABS_API_KEY ghcr.io/jeeftor/abs-mcp:0.6.0"
+     "codex mcp add abs-jeeftor --env ABS_BASE_URL=<ABS_BASE_URL> --env ABS_API_KEY=<ABS_API_KEY> -- docker run -i --rm -e ABS_BASE_URL -e ABS_API_KEY ghcr.io/jeeftor/abs-mcp:0.6.0"
     ]
    }
   },
@@ -100983,10 +100992,10 @@
    "repository": "https://github.com/klarlabs-studio/scout",
    "install": {
     "claude": [
-     "claude mcp add scout -- docker run -i --rm ghcr.io/klarlabs-studio/scout:1.15.3 mcp serve"
+     "claude mcp add scout-klarlabs-studio -- docker run -i --rm ghcr.io/klarlabs-studio/scout:1.15.3 mcp serve"
     ],
     "codex": [
-     "codex mcp add scout -- docker run -i --rm ghcr.io/klarlabs-studio/scout:1.15.3 mcp serve"
+     "codex mcp add scout-klarlabs-studio -- docker run -i --rm ghcr.io/klarlabs-studio/scout:1.15.3 mcp serve"
     ]
    }
   },
@@ -101007,10 +101016,10 @@
    "repository": "https://github.com/koment-dev/koment",
    "install": {
     "claude": [
-     "claude mcp add koment -- docker run -i --rm ghcr.io/koment-dev/koment:3.2.0 mcp --write"
+     "claude mcp add koment-koment-dev -- docker run -i --rm ghcr.io/koment-dev/koment:3.2.0 mcp --write"
     ],
     "codex": [
-     "codex mcp add koment -- docker run -i --rm ghcr.io/koment-dev/koment:3.2.0 mcp --write"
+     "codex mcp add koment-koment-dev -- docker run -i --rm ghcr.io/koment-dev/koment:3.2.0 mcp --write"
     ]
    }
   },
@@ -101615,10 +101624,10 @@
    "repository": "https://github.com/lucyfox199818-collab/codex-binance-agent",
    "install": {
     "claude": [
-     "claude mcp add ccxt -- docker run -i --rm ghcr.io/lucyfox199818-collab/ccxt-mcp:0.1.0"
+     "claude mcp add ccxt-lucyfox199818-collab -- docker run -i --rm ghcr.io/lucyfox199818-collab/ccxt-mcp:0.1.0"
     ],
     "codex": [
-     "codex mcp add ccxt -- docker run -i --rm ghcr.io/lucyfox199818-collab/ccxt-mcp:0.1.0"
+     "codex mcp add ccxt-lucyfox199818-collab -- docker run -i --rm ghcr.io/lucyfox199818-collab/ccxt-mcp:0.1.0"
     ]
    }
   },
@@ -101719,10 +101728,10 @@
    "repository": "https://github.com/ma2no4413/outlook-mcp",
    "install": {
     "claude": [
-     "claude mcp add outlook -e OUTLOOK_CLIENT_ID=<OUTLOOK_CLIENT_ID> -- docker run -i --rm -e OUTLOOK_CLIENT_ID ghcr.io/ma2no4413/outlook-mcp:0.2.7"
+     "claude mcp add outlook-ma2no4413 -e OUTLOOK_CLIENT_ID=<OUTLOOK_CLIENT_ID> -- docker run -i --rm -e OUTLOOK_CLIENT_ID ghcr.io/ma2no4413/outlook-mcp:0.2.7"
     ],
     "codex": [
-     "codex mcp add outlook --env OUTLOOK_CLIENT_ID=<OUTLOOK_CLIENT_ID> -- docker run -i --rm -e OUTLOOK_CLIENT_ID ghcr.io/ma2no4413/outlook-mcp:0.2.7"
+     "codex mcp add outlook-ma2no4413 --env OUTLOOK_CLIENT_ID=<OUTLOOK_CLIENT_ID> -- docker run -i --rm -e OUTLOOK_CLIENT_ID ghcr.io/ma2no4413/outlook-mcp:0.2.7"
     ]
    }
   },
@@ -102502,10 +102511,10 @@
    "repository": "https://github.com/nkpar/coda-mcp",
    "install": {
     "claude": [
-     "claude mcp add coda -e CODA_API_TOKEN=<CODA_API_TOKEN> -- docker run -i --rm -e CODA_API_TOKEN ghcr.io/nkpar/coda-mcp:0.2.1"
+     "claude mcp add coda-nkpar -e CODA_API_TOKEN=<CODA_API_TOKEN> -- docker run -i --rm -e CODA_API_TOKEN ghcr.io/nkpar/coda-mcp:0.2.1"
     ],
     "codex": [
-     "codex mcp add coda --env CODA_API_TOKEN=<CODA_API_TOKEN> -- docker run -i --rm -e CODA_API_TOKEN ghcr.io/nkpar/coda-mcp:0.2.1"
+     "codex mcp add coda-nkpar --env CODA_API_TOKEN=<CODA_API_TOKEN> -- docker run -i --rm -e CODA_API_TOKEN ghcr.io/nkpar/coda-mcp:0.2.1"
     ]
    }
   },
@@ -103051,10 +103060,10 @@
    "repository": "https://github.com/olgasafonova/mediawiki-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add mediawiki -e MEDIAWIKI_URL=<MEDIAWIKI_URL> -- docker run -i --rm -e MEDIAWIKI_URL ghcr.io/olgasafonova/mediawiki-mcp-server:1.35.0"
+     "claude mcp add mediawiki-olgasafonova -e MEDIAWIKI_URL=<MEDIAWIKI_URL> -- docker run -i --rm -e MEDIAWIKI_URL ghcr.io/olgasafonova/mediawiki-mcp-server:1.35.0"
     ],
     "codex": [
-     "codex mcp add mediawiki --env MEDIAWIKI_URL=<MEDIAWIKI_URL> -- docker run -i --rm -e MEDIAWIKI_URL ghcr.io/olgasafonova/mediawiki-mcp-server:1.35.0"
+     "codex mcp add mediawiki-olgasafonova --env MEDIAWIKI_URL=<MEDIAWIKI_URL> -- docker run -i --rm -e MEDIAWIKI_URL ghcr.io/olgasafonova/mediawiki-mcp-server:1.35.0"
     ]
    }
   },
@@ -103388,10 +103397,10 @@
    "repository": "https://github.com/oneill9/tfl-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add tfl -- docker run -i --rm ghcr.io/oneill9/tfl-mcp-server:1.5.2"
+     "claude mcp add tfl-oneill9 -- docker run -i --rm ghcr.io/oneill9/tfl-mcp-server:1.5.2"
     ],
     "codex": [
-     "codex mcp add tfl -- docker run -i --rm ghcr.io/oneill9/tfl-mcp-server:1.5.2"
+     "codex mcp add tfl-oneill9 -- docker run -i --rm ghcr.io/oneill9/tfl-mcp-server:1.5.2"
     ]
    }
   },
@@ -103934,7 +103943,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/pgedge/postgres-mcp:latest",
+    "identifier": "ghcr.io/pgedge/postgres-mcp:1.0.0@sha256:92809858a615b2d839f591c5b1e8077dbb16789b77ad719763d8cfccb5cf340b",
     "version": "1.0.0"
    },
    "transport": "stdio",
@@ -103942,12 +103951,13 @@
    "repository": "https://github.com/pgEdge/pgedge-postgres-mcp",
    "install": {
     "claude": [
-     "claude mcp add postgres -- docker run -i --rm ghcr.io/pgedge/postgres-mcp:latest"
+     "claude mcp add postgres-pgedge -- docker run -i --rm ghcr.io/pgedge/postgres-mcp:1.0.0@sha256:92809858a615b2d839f591c5b1e8077dbb16789b77ad719763d8cfccb5cf340b"
     ],
     "codex": [
-     "codex mcp add postgres -- docker run -i --rm ghcr.io/pgedge/postgres-mcp:latest"
+     "codex mcp add postgres-pgedge -- docker run -i --rm ghcr.io/pgedge/postgres-mcp:1.0.0@sha256:92809858a615b2d839f591c5b1e8077dbb16789b77ad719763d8cfccb5cf340b"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-pineforge-4pass-pineforge-backtest-mcp",
@@ -104273,7 +104283,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "docker.io/rackspacengpc/spot-mcp:latest",
+    "identifier": "docker.io/rackspacengpc/spot-mcp:0.3.2@sha256:0597165de57af10d4ba1aecff651099ac1b769b914166a89f354cad275af9465",
     "version": "0.3.2"
    },
    "transport": "stdio",
@@ -104294,12 +104304,13 @@
    "repository": "https://github.com/rackspace-spot/spot-mcp",
    "install": {
     "claude": [
-     "claude mcp add spot -e SPOT_REFRESH_TOKEN=<SPOT_REFRESH_TOKEN> -- docker run -i --rm -e SPOT_REFRESH_TOKEN docker.io/rackspacengpc/spot-mcp:latest"
+     "claude mcp add spot-rackspace-spot -e SPOT_REFRESH_TOKEN=<SPOT_REFRESH_TOKEN> -- docker run -i --rm -e SPOT_REFRESH_TOKEN docker.io/rackspacengpc/spot-mcp:0.3.2@sha256:0597165de57af10d4ba1aecff651099ac1b769b914166a89f354cad275af9465"
     ],
     "codex": [
-     "codex mcp add spot --env SPOT_REFRESH_TOKEN=<SPOT_REFRESH_TOKEN> -- docker run -i --rm -e SPOT_REFRESH_TOKEN docker.io/rackspacengpc/spot-mcp:latest"
+     "codex mcp add spot-rackspace-spot --env SPOT_REFRESH_TOKEN=<SPOT_REFRESH_TOKEN> -- docker run -i --rm -e SPOT_REFRESH_TOKEN docker.io/rackspacengpc/spot-mcp:0.3.2@sha256:0597165de57af10d4ba1aecff651099ac1b769b914166a89f354cad275af9465"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-ravibagri5-crossplane-mcp-server",
@@ -104573,10 +104584,10 @@
    "repository": "https://github.com/rwnalds/engram",
    "install": {
     "claude": [
-     "claude mcp add engram -- docker run -i --rm ghcr.io/rwnalds/engram:0.1.2 /vault"
+     "claude mcp add engram-rwnalds -- docker run -i --rm ghcr.io/rwnalds/engram:0.1.2 /vault"
     ],
     "codex": [
-     "codex mcp add engram -- docker run -i --rm ghcr.io/rwnalds/engram:0.1.2 /vault"
+     "codex mcp add engram-rwnalds -- docker run -i --rm ghcr.io/rwnalds/engram:0.1.2 /vault"
     ]
    }
   },
@@ -105256,10 +105267,10 @@
    "repository": "https://github.com/shigechika/gws-mcp",
    "install": {
     "claude": [
-     "claude mcp add gws -- docker run -i --rm ghcr.io/shigechika/gws-mcp:0.22.5-mcp.38"
+     "claude mcp add gws-shigechika -- docker run -i --rm ghcr.io/shigechika/gws-mcp:0.22.5-mcp.38"
     ],
     "codex": [
-     "codex mcp add gws -- docker run -i --rm ghcr.io/shigechika/gws-mcp:0.22.5-mcp.38"
+     "codex mcp add gws-shigechika -- docker run -i --rm ghcr.io/shigechika/gws-mcp:0.22.5-mcp.38"
     ]
    }
   },
@@ -105280,10 +105291,10 @@
    "repository": "https://github.com/shuaicongxiaomai/agentguard",
    "install": {
     "claude": [
-     "claude mcp add agentguard -- docker run -i --rm ghcr.io/shuaicongxiaomai/agentguard:0.1.2"
+     "claude mcp add agentguard-shuaicongxiaomai -- docker run -i --rm ghcr.io/shuaicongxiaomai/agentguard:0.1.2"
     ],
     "codex": [
-     "codex mcp add agentguard -- docker run -i --rm ghcr.io/shuaicongxiaomai/agentguard:0.1.2"
+     "codex mcp add agentguard-shuaicongxiaomai -- docker run -i --rm ghcr.io/shuaicongxiaomai/agentguard:0.1.2"
     ]
    }
   },
@@ -105393,7 +105404,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/socialappsceduler-eng/fastsocial-mcp:latest",
+    "identifier": "ghcr.io/socialappsceduler-eng/fastsocial-mcp@sha256:99ee58b76403033d01dcb03ee667f3ac49eda9242bccd3508547eea763f1b15b",
     "version": "1.0.0"
    },
    "transport": "stdio",
@@ -105408,12 +105419,13 @@
    "repository": "https://github.com/socialappsceduler-eng/fastsocial-mcp",
    "install": {
     "claude": [
-     "claude mcp add fastsocial -e FASTSOCIAL_API_KEY=<FASTSOCIAL_API_KEY> -- docker run -i --rm -e FASTSOCIAL_API_KEY ghcr.io/socialappsceduler-eng/fastsocial-mcp:latest"
+     "claude mcp add fastsocial -e FASTSOCIAL_API_KEY=<FASTSOCIAL_API_KEY> -- docker run -i --rm -e FASTSOCIAL_API_KEY ghcr.io/socialappsceduler-eng/fastsocial-mcp@sha256:99ee58b76403033d01dcb03ee667f3ac49eda9242bccd3508547eea763f1b15b"
     ],
     "codex": [
-     "codex mcp add fastsocial --env FASTSOCIAL_API_KEY=<FASTSOCIAL_API_KEY> -- docker run -i --rm -e FASTSOCIAL_API_KEY ghcr.io/socialappsceduler-eng/fastsocial-mcp:latest"
+     "codex mcp add fastsocial --env FASTSOCIAL_API_KEY=<FASTSOCIAL_API_KEY> -- docker run -i --rm -e FASTSOCIAL_API_KEY ghcr.io/socialappsceduler-eng/fastsocial-mcp@sha256:99ee58b76403033d01dcb03ee667f3ac49eda9242bccd3508547eea763f1b15b"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-soheil1lotfi-swiss-grounding-mcp",
@@ -105701,10 +105713,10 @@
    "repository": "https://github.com/stufently/zabbix-ai-cli-mcp",
    "install": {
     "claude": [
-     "claude mcp add zabbix-ai-cli -- docker run -i --rm ghcr.io/stufently/zabbix-ai-cli-mcp:0.4.3"
+     "claude mcp add zabbix-ai-cli-stufently -- docker run -i --rm ghcr.io/stufently/zabbix-ai-cli-mcp:0.4.3"
     ],
     "codex": [
-     "codex mcp add zabbix-ai-cli -- docker run -i --rm ghcr.io/stufently/zabbix-ai-cli-mcp:0.4.3"
+     "codex mcp add zabbix-ai-cli-stufently -- docker run -i --rm ghcr.io/stufently/zabbix-ai-cli-mcp:0.4.3"
     ]
    }
   },
@@ -105943,10 +105955,10 @@
    "repository": "https://github.com/tjhop/prometheus-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add prometheus -- docker run -i --rm ghcr.io/tjhop/prometheus-mcp-server:0.18.0"
+     "claude mcp add prometheus-tjhop -- docker run -i --rm ghcr.io/tjhop/prometheus-mcp-server:0.18.0"
     ],
     "codex": [
-     "codex mcp add prometheus -- docker run -i --rm ghcr.io/tjhop/prometheus-mcp-server:0.18.0"
+     "codex mcp add prometheus-tjhop -- docker run -i --rm ghcr.io/tjhop/prometheus-mcp-server:0.18.0"
     ]
    }
   },
@@ -106192,10 +106204,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add agents-u-cash -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.7"
+     "claude mcp add agents-u-cash-uantum -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.7"
     ],
     "codex": [
-     "codex mcp add agents-u-cash -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.7"
+     "codex mcp add agents-u-cash-uantum -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.7"
     ]
    }
   },
@@ -106208,7 +106220,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/us/crw:latest",
+    "identifier": "ghcr.io/us/crw:0.36.0@sha256:569611fe6bc0833d7349bcec99e5c5f6cb6814bd5f756eb17d302fe4e3d7480a",
     "version": "0.36.0"
    },
    "transport": "stdio",
@@ -106216,12 +106228,13 @@
    "repository": "https://github.com/us/crw",
    "install": {
     "claude": [
-     "claude mcp add crw -- docker run -i --rm ghcr.io/us/crw:latest crw-mcp"
+     "claude mcp add crw-us -- docker run -i --rm ghcr.io/us/crw:0.36.0@sha256:569611fe6bc0833d7349bcec99e5c5f6cb6814bd5f756eb17d302fe4e3d7480a crw-mcp"
     ],
     "codex": [
-     "codex mcp add crw -- docker run -i --rm ghcr.io/us/crw:latest crw-mcp"
+     "codex mcp add crw-us -- docker run -i --rm ghcr.io/us/crw:0.36.0@sha256:569611fe6bc0833d7349bcec99e5c5f6cb6814bd5f756eb17d302fe4e3d7480a crw-mcp"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-uxdevo-agents-u-cash",
@@ -106240,10 +106253,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add agents-u-cash -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.18"
+     "claude mcp add agents-u-cash-uxdevo -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.18"
     ],
     "codex": [
-     "codex mcp add agents-u-cash -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.18"
+     "codex mcp add agents-u-cash-uxdevo -- docker run -i --rm ghcr.io/udotcash/agents-u-cash-mcp:0.6.18"
     ]
    }
   },
@@ -106288,10 +106301,10 @@
    "repository": "https://github.com/verivus-oss/sqry",
    "install": {
     "claude": [
-     "claude mcp add sqry -- docker run -i --rm ghcr.io/verivus-oss/sqry:4.8.16"
+     "claude mcp add sqry-verivusoss-releases -- docker run -i --rm ghcr.io/verivus-oss/sqry:4.8.16"
     ],
     "codex": [
-     "codex mcp add sqry -- docker run -i --rm ghcr.io/verivus-oss/sqry:4.8.16"
+     "codex mcp add sqry-verivusoss-releases -- docker run -i --rm ghcr.io/verivus-oss/sqry:4.8.16"
     ]
    }
   },
@@ -106637,7 +106650,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "docker.io/mcp/ros2:latest",
+    "identifier": "docker.io/mcp/ros2@sha256:ec6572387d806edfbb2e422a061cb1b1fc4d8373c873c875ed815b612e08e48f",
     "version": "1.0.0"
    },
    "transport": "stdio",
@@ -106670,12 +106683,13 @@
    "repository": "https://github.com/wise-vision/mcp_server_ros_2",
    "install": {
     "claude": [
-     "claude mcp add ros-2 -- docker run -i --rm docker.io/mcp/ros2:latest"
+     "claude mcp add ros-2 -- docker run -i --rm docker.io/mcp/ros2@sha256:ec6572387d806edfbb2e422a061cb1b1fc4d8373c873c875ed815b612e08e48f"
     ],
     "codex": [
-     "codex mcp add ros-2 -- docker run -i --rm docker.io/mcp/ros2:latest"
+     "codex mcp add ros-2 -- docker run -i --rm docker.io/mcp/ros2@sha256:ec6572387d806edfbb2e422a061cb1b1fc4d8373c873c875ed815b612e08e48f"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-wtronk-geolocation-mcp",
@@ -106780,10 +106794,10 @@
    "repository": "https://github.com/wyre-technology/abnormal-mcp",
    "install": {
     "claude": [
-     "claude mcp add abnormal -e ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-technology/abnormal-mcp:v1.2.5"
+     "claude mcp add abnormal-wyre-technology -e ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-technology/abnormal-mcp:v1.2.5"
     ],
     "codex": [
-     "codex mcp add abnormal --env ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-technology/abnormal-mcp:v1.2.5"
+     "codex mcp add abnormal-wyre-technology --env ABNORMAL_API_TOKEN=<ABNORMAL_API_TOKEN> -- docker run -i --rm -e ABNORMAL_API_TOKEN ghcr.io/wyre-technology/abnormal-mcp:v1.2.5"
     ]
    }
   },
@@ -106847,10 +106861,10 @@
    "repository": "https://github.com/wyre-technology/action1-mcp",
    "install": {
     "claude": [
-     "claude mcp add action1 -e ACTION1_CLIENT_ID=<ACTION1_CLIENT_ID> -e ACTION1_CLIENT_SECRET=<ACTION1_CLIENT_SECRET> -- docker run -i --rm -e ACTION1_CLIENT_ID -e ACTION1_CLIENT_SECRET ghcr.io/wyre-technology/action1-mcp:v1.1.5"
+     "claude mcp add action1-wyre-technology -e ACTION1_CLIENT_ID=<ACTION1_CLIENT_ID> -e ACTION1_CLIENT_SECRET=<ACTION1_CLIENT_SECRET> -- docker run -i --rm -e ACTION1_CLIENT_ID -e ACTION1_CLIENT_SECRET ghcr.io/wyre-technology/action1-mcp:v1.1.5"
     ],
     "codex": [
-     "codex mcp add action1 --env ACTION1_CLIENT_ID=<ACTION1_CLIENT_ID> --env ACTION1_CLIENT_SECRET=<ACTION1_CLIENT_SECRET> -- docker run -i --rm -e ACTION1_CLIENT_ID -e ACTION1_CLIENT_SECRET ghcr.io/wyre-technology/action1-mcp:v1.1.5"
+     "codex mcp add action1-wyre-technology --env ACTION1_CLIENT_ID=<ACTION1_CLIENT_ID> --env ACTION1_CLIENT_SECRET=<ACTION1_CLIENT_SECRET> -- docker run -i --rm -e ACTION1_CLIENT_ID -e ACTION1_CLIENT_SECRET ghcr.io/wyre-technology/action1-mcp:v1.1.5"
     ]
    }
   },
@@ -106908,10 +106922,10 @@
    "repository": "https://github.com/wyre-technology/alternative-payments-mcp",
    "install": {
     "claude": [
-     "claude mcp add alternative-payments -e ALTERNATIVE_PAYMENTS_CLIENT_ID=<ALTERNATIVE_PAYMENTS_CLIENT_ID> -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET=<ALTERNATIVE_PAYMENTS_CLIENT_SECRET> -- docker run -i --rm -e ALTERNATIVE_PAYMENTS_CLIENT_ID -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET ghcr.io/wyre-technology/alternative-payments-mcp:v1.0.8"
+     "claude mcp add alternative-payments-wyre-technology -e ALTERNATIVE_PAYMENTS_CLIENT_ID=<ALTERNATIVE_PAYMENTS_CLIENT_ID> -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET=<ALTERNATIVE_PAYMENTS_CLIENT_SECRET> -- docker run -i --rm -e ALTERNATIVE_PAYMENTS_CLIENT_ID -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET ghcr.io/wyre-technology/alternative-payments-mcp:v1.0.8"
     ],
     "codex": [
-     "codex mcp add alternative-payments --env ALTERNATIVE_PAYMENTS_CLIENT_ID=<ALTERNATIVE_PAYMENTS_CLIENT_ID> --env ALTERNATIVE_PAYMENTS_CLIENT_SECRET=<ALTERNATIVE_PAYMENTS_CLIENT_SECRET> -- docker run -i --rm -e ALTERNATIVE_PAYMENTS_CLIENT_ID -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET ghcr.io/wyre-technology/alternative-payments-mcp:v1.0.8"
+     "codex mcp add alternative-payments-wyre-technology --env ALTERNATIVE_PAYMENTS_CLIENT_ID=<ALTERNATIVE_PAYMENTS_CLIENT_ID> --env ALTERNATIVE_PAYMENTS_CLIENT_SECRET=<ALTERNATIVE_PAYMENTS_CLIENT_SECRET> -- docker run -i --rm -e ALTERNATIVE_PAYMENTS_CLIENT_ID -e ALTERNATIVE_PAYMENTS_CLIENT_SECRET ghcr.io/wyre-technology/alternative-payments-mcp:v1.0.8"
     ]
    }
   },
@@ -106957,10 +106971,10 @@
    "repository": "https://github.com/wyre-technology/atera-mcp",
    "install": {
     "claude": [
-     "claude mcp add atera -e ATERA_API_KEY=<ATERA_API_KEY> -- docker run -i --rm -e ATERA_API_KEY ghcr.io/wyre-technology/atera-mcp:v1.5.9"
+     "claude mcp add atera-wyre-technology -e ATERA_API_KEY=<ATERA_API_KEY> -- docker run -i --rm -e ATERA_API_KEY ghcr.io/wyre-technology/atera-mcp:v1.5.9"
     ],
     "codex": [
-     "codex mcp add atera --env ATERA_API_KEY=<ATERA_API_KEY> -- docker run -i --rm -e ATERA_API_KEY ghcr.io/wyre-technology/atera-mcp:v1.5.9"
+     "codex mcp add atera-wyre-technology --env ATERA_API_KEY=<ATERA_API_KEY> -- docker run -i --rm -e ATERA_API_KEY ghcr.io/wyre-technology/atera-mcp:v1.5.9"
     ]
    }
   },
@@ -107024,10 +107038,10 @@
    "repository": "https://github.com/wyre-technology/autotask-mcp",
    "install": {
     "claude": [
-     "claude mcp add autotask -e AUTOTASK_USERNAME=<AUTOTASK_USERNAME> -e AUTOTASK_SECRET=<AUTOTASK_SECRET> -e AUTOTASK_INTEGRATION_CODE=<AUTOTASK_INTEGRATION_CODE> -- docker run -i --rm -e AUTOTASK_USERNAME -e AUTOTASK_SECRET -e AUTOTASK_INTEGRATION_CODE ghcr.io/wyre-technology/autotask-mcp:v2.32.10"
+     "claude mcp add autotask-wyre-technology -e AUTOTASK_USERNAME=<AUTOTASK_USERNAME> -e AUTOTASK_SECRET=<AUTOTASK_SECRET> -e AUTOTASK_INTEGRATION_CODE=<AUTOTASK_INTEGRATION_CODE> -- docker run -i --rm -e AUTOTASK_USERNAME -e AUTOTASK_SECRET -e AUTOTASK_INTEGRATION_CODE ghcr.io/wyre-technology/autotask-mcp:v2.32.10"
     ],
     "codex": [
-     "codex mcp add autotask --env AUTOTASK_USERNAME=<AUTOTASK_USERNAME> --env AUTOTASK_SECRET=<AUTOTASK_SECRET> --env AUTOTASK_INTEGRATION_CODE=<AUTOTASK_INTEGRATION_CODE> -- docker run -i --rm -e AUTOTASK_USERNAME -e AUTOTASK_SECRET -e AUTOTASK_INTEGRATION_CODE ghcr.io/wyre-technology/autotask-mcp:v2.32.10"
+     "codex mcp add autotask-wyre-technology --env AUTOTASK_USERNAME=<AUTOTASK_USERNAME> --env AUTOTASK_SECRET=<AUTOTASK_SECRET> --env AUTOTASK_INTEGRATION_CODE=<AUTOTASK_INTEGRATION_CODE> -- docker run -i --rm -e AUTOTASK_USERNAME -e AUTOTASK_SECRET -e AUTOTASK_INTEGRATION_CODE ghcr.io/wyre-technology/autotask-mcp:v2.32.10"
     ]
    }
   },
@@ -107085,10 +107099,10 @@
    "repository": "https://github.com/wyre-technology/auvik-mcp",
    "install": {
     "claude": [
-     "claude mcp add auvik -e AUVIK_USERNAME=<AUVIK_USERNAME> -e AUVIK_API_KEY=<AUVIK_API_KEY> -- docker run -i --rm -e AUVIK_USERNAME -e AUVIK_API_KEY ghcr.io/wyre-technology/auvik-mcp:v1.4.2"
+     "claude mcp add auvik-wyre-technology -e AUVIK_USERNAME=<AUVIK_USERNAME> -e AUVIK_API_KEY=<AUVIK_API_KEY> -- docker run -i --rm -e AUVIK_USERNAME -e AUVIK_API_KEY ghcr.io/wyre-technology/auvik-mcp:v1.4.2"
     ],
     "codex": [
-     "codex mcp add auvik --env AUVIK_USERNAME=<AUVIK_USERNAME> --env AUVIK_API_KEY=<AUVIK_API_KEY> -- docker run -i --rm -e AUVIK_USERNAME -e AUVIK_API_KEY ghcr.io/wyre-technology/auvik-mcp:v1.4.2"
+     "codex mcp add auvik-wyre-technology --env AUVIK_USERNAME=<AUVIK_USERNAME> --env AUVIK_API_KEY=<AUVIK_API_KEY> -- docker run -i --rm -e AUVIK_USERNAME -e AUVIK_API_KEY ghcr.io/wyre-technology/auvik-mcp:v1.4.2"
     ]
    }
   },
@@ -107152,10 +107166,10 @@
    "repository": "https://github.com/wyre-technology/avanan-legacy-mcp",
    "install": {
     "claude": [
-     "claude mcp add avanan-legacy -e AVANAN_APP_ID=<AVANAN_APP_ID> -e AVANAN_TOKEN=<AVANAN_TOKEN> -e AVANAN_SECRET=<AVANAN_SECRET> -- docker run -i --rm -e AVANAN_APP_ID -e AVANAN_TOKEN -e AVANAN_SECRET ghcr.io/wyre-technology/avanan-legacy-mcp:v1.1.0"
+     "claude mcp add avanan-legacy-wyre-technology -e AVANAN_APP_ID=<AVANAN_APP_ID> -e AVANAN_TOKEN=<AVANAN_TOKEN> -e AVANAN_SECRET=<AVANAN_SECRET> -- docker run -i --rm -e AVANAN_APP_ID -e AVANAN_TOKEN -e AVANAN_SECRET ghcr.io/wyre-technology/avanan-legacy-mcp:v1.1.0"
     ],
     "codex": [
-     "codex mcp add avanan-legacy --env AVANAN_APP_ID=<AVANAN_APP_ID> --env AVANAN_TOKEN=<AVANAN_TOKEN> --env AVANAN_SECRET=<AVANAN_SECRET> -- docker run -i --rm -e AVANAN_APP_ID -e AVANAN_TOKEN -e AVANAN_SECRET ghcr.io/wyre-technology/avanan-legacy-mcp:v1.1.0"
+     "codex mcp add avanan-legacy-wyre-technology --env AVANAN_APP_ID=<AVANAN_APP_ID> --env AVANAN_TOKEN=<AVANAN_TOKEN> --env AVANAN_SECRET=<AVANAN_SECRET> -- docker run -i --rm -e AVANAN_APP_ID -e AVANAN_TOKEN -e AVANAN_SECRET ghcr.io/wyre-technology/avanan-legacy-mcp:v1.1.0"
     ]
    }
   },
@@ -107213,10 +107227,10 @@
    "repository": "https://github.com/wyre-technology/avanan-mcp",
    "install": {
     "claude": [
-     "claude mcp add avanan -e AVANAN_CLIENT_ID=<AVANAN_CLIENT_ID> -e AVANAN_CLIENT_SECRET=<AVANAN_CLIENT_SECRET> -- docker run -i --rm -e AVANAN_CLIENT_ID -e AVANAN_CLIENT_SECRET ghcr.io/wyre-technology/avanan-mcp:v2.2.2"
+     "claude mcp add avanan-wyre-technology -e AVANAN_CLIENT_ID=<AVANAN_CLIENT_ID> -e AVANAN_CLIENT_SECRET=<AVANAN_CLIENT_SECRET> -- docker run -i --rm -e AVANAN_CLIENT_ID -e AVANAN_CLIENT_SECRET ghcr.io/wyre-technology/avanan-mcp:v2.2.2"
     ],
     "codex": [
-     "codex mcp add avanan --env AVANAN_CLIENT_ID=<AVANAN_CLIENT_ID> --env AVANAN_CLIENT_SECRET=<AVANAN_CLIENT_SECRET> -- docker run -i --rm -e AVANAN_CLIENT_ID -e AVANAN_CLIENT_SECRET ghcr.io/wyre-technology/avanan-mcp:v2.2.2"
+     "codex mcp add avanan-wyre-technology --env AVANAN_CLIENT_ID=<AVANAN_CLIENT_ID> --env AVANAN_CLIENT_SECRET=<AVANAN_CLIENT_SECRET> -- docker run -i --rm -e AVANAN_CLIENT_ID -e AVANAN_CLIENT_SECRET ghcr.io/wyre-technology/avanan-mcp:v2.2.2"
     ]
    }
   },
@@ -107262,10 +107276,10 @@
    "repository": "https://github.com/wyre-technology/axcient-mcp",
    "install": {
     "claude": [
-     "claude mcp add axcient -e AXCIENT_API_KEY=<AXCIENT_API_KEY> -- docker run -i --rm -e AXCIENT_API_KEY ghcr.io/wyre-technology/axcient-mcp:v1.0.1"
+     "claude mcp add axcient-wyre-technology -e AXCIENT_API_KEY=<AXCIENT_API_KEY> -- docker run -i --rm -e AXCIENT_API_KEY ghcr.io/wyre-technology/axcient-mcp:v1.0.1"
     ],
     "codex": [
-     "codex mcp add axcient --env AXCIENT_API_KEY=<AXCIENT_API_KEY> -- docker run -i --rm -e AXCIENT_API_KEY ghcr.io/wyre-technology/axcient-mcp:v1.0.1"
+     "codex mcp add axcient-wyre-technology --env AXCIENT_API_KEY=<AXCIENT_API_KEY> -- docker run -i --rm -e AXCIENT_API_KEY ghcr.io/wyre-technology/axcient-mcp:v1.0.1"
     ]
    }
   },
@@ -107317,10 +107331,10 @@
    "repository": "https://github.com/wyre-technology/blackpoint-mcp",
    "install": {
     "claude": [
-     "claude mcp add blackpoint -e BLACKPOINT_API_TOKEN=<BLACKPOINT_API_TOKEN> -- docker run -i --rm -e BLACKPOINT_API_TOKEN ghcr.io/wyre-technology/blackpoint-mcp:v1.1.12"
+     "claude mcp add blackpoint-wyre-technology -e BLACKPOINT_API_TOKEN=<BLACKPOINT_API_TOKEN> -- docker run -i --rm -e BLACKPOINT_API_TOKEN ghcr.io/wyre-technology/blackpoint-mcp:v1.1.12"
     ],
     "codex": [
-     "codex mcp add blackpoint --env BLACKPOINT_API_TOKEN=<BLACKPOINT_API_TOKEN> -- docker run -i --rm -e BLACKPOINT_API_TOKEN ghcr.io/wyre-technology/blackpoint-mcp:v1.1.12"
+     "codex mcp add blackpoint-wyre-technology --env BLACKPOINT_API_TOKEN=<BLACKPOINT_API_TOKEN> -- docker run -i --rm -e BLACKPOINT_API_TOKEN ghcr.io/wyre-technology/blackpoint-mcp:v1.1.12"
     ]
    }
   },
@@ -107366,10 +107380,10 @@
    "repository": "https://github.com/wyre-technology/blumira-mcp",
    "install": {
     "claude": [
-     "claude mcp add blumira -e BLUMIRA_JWT_TOKEN=<BLUMIRA_JWT_TOKEN> -- docker run -i --rm -e BLUMIRA_JWT_TOKEN ghcr.io/wyre-technology/blumira-mcp:v1.2.12"
+     "claude mcp add blumira-wyre-technology -e BLUMIRA_JWT_TOKEN=<BLUMIRA_JWT_TOKEN> -- docker run -i --rm -e BLUMIRA_JWT_TOKEN ghcr.io/wyre-technology/blumira-mcp:v1.2.12"
     ],
     "codex": [
-     "codex mcp add blumira --env BLUMIRA_JWT_TOKEN=<BLUMIRA_JWT_TOKEN> -- docker run -i --rm -e BLUMIRA_JWT_TOKEN ghcr.io/wyre-technology/blumira-mcp:v1.2.12"
+     "codex mcp add blumira-wyre-technology --env BLUMIRA_JWT_TOKEN=<BLUMIRA_JWT_TOKEN> -- docker run -i --rm -e BLUMIRA_JWT_TOKEN ghcr.io/wyre-technology/blumira-mcp:v1.2.12"
     ]
    }
   },
@@ -107433,10 +107447,10 @@
    "repository": "https://github.com/wyre-technology/cipp-mcp",
    "install": {
     "claude": [
-     "claude mcp add cipp -e CIPP_API_URL=<CIPP_API_URL> -e CIPP_CLIENT_ID=<CIPP_CLIENT_ID> -e CIPP_CLIENT_SECRET=<CIPP_CLIENT_SECRET> -- docker run -i --rm -e CIPP_API_URL -e CIPP_CLIENT_ID -e CIPP_CLIENT_SECRET ghcr.io/wyre-technology/cipp-mcp:v1.7.3"
+     "claude mcp add cipp-wyre-technology -e CIPP_API_URL=<CIPP_API_URL> -e CIPP_CLIENT_ID=<CIPP_CLIENT_ID> -e CIPP_CLIENT_SECRET=<CIPP_CLIENT_SECRET> -- docker run -i --rm -e CIPP_API_URL -e CIPP_CLIENT_ID -e CIPP_CLIENT_SECRET ghcr.io/wyre-technology/cipp-mcp:v1.7.3"
     ],
     "codex": [
-     "codex mcp add cipp --env CIPP_API_URL=<CIPP_API_URL> --env CIPP_CLIENT_ID=<CIPP_CLIENT_ID> --env CIPP_CLIENT_SECRET=<CIPP_CLIENT_SECRET> -- docker run -i --rm -e CIPP_API_URL -e CIPP_CLIENT_ID -e CIPP_CLIENT_SECRET ghcr.io/wyre-technology/cipp-mcp:v1.7.3"
+     "codex mcp add cipp-wyre-technology --env CIPP_API_URL=<CIPP_API_URL> --env CIPP_CLIENT_ID=<CIPP_CLIENT_ID> --env CIPP_CLIENT_SECRET=<CIPP_CLIENT_SECRET> -- docker run -i --rm -e CIPP_API_URL -e CIPP_CLIENT_ID -e CIPP_CLIENT_SECRET ghcr.io/wyre-technology/cipp-mcp:v1.7.3"
     ]
    }
   },
@@ -107506,10 +107520,10 @@
    "repository": "https://github.com/wyre-technology/connectwise-automate-mcp",
    "install": {
     "claude": [
-     "claude mcp add connectwise-automate -e CW_AUTOMATE_SERVER_URL=<CW_AUTOMATE_SERVER_URL> -e CW_AUTOMATE_CLIENT_ID=<CW_AUTOMATE_CLIENT_ID> -e CW_AUTOMATE_USERNAME=<CW_AUTOMATE_USERNAME> -e CW_AUTOMATE_PASSWORD=<CW_AUTOMATE_PASSWORD> -- docker run -i --rm -e CW_AUTOMATE_SERVER_URL -e CW_AUTOMATE_CLIENT_ID -e CW_AUTOMATE_USERNAME -e CW_AUTOMATE_PASSWORD ghcr.io/wyre-technology/connectwise-automate-mcp:v1.8.2"
+     "claude mcp add connectwise-automate-wyre-technology -e CW_AUTOMATE_SERVER_URL=<CW_AUTOMATE_SERVER_URL> -e CW_AUTOMATE_CLIENT_ID=<CW_AUTOMATE_CLIENT_ID> -e CW_AUTOMATE_USERNAME=<CW_AUTOMATE_USERNAME> -e CW_AUTOMATE_PASSWORD=<CW_AUTOMATE_PASSWORD> -- docker run -i --rm -e CW_AUTOMATE_SERVER_URL -e CW_AUTOMATE_CLIENT_ID -e CW_AUTOMATE_USERNAME -e CW_AUTOMATE_PASSWORD ghcr.io/wyre-technology/connectwise-automate-mcp:v1.8.2"
     ],
     "codex": [
-     "codex mcp add connectwise-automate --env CW_AUTOMATE_SERVER_URL=<CW_AUTOMATE_SERVER_URL> --env CW_AUTOMATE_CLIENT_ID=<CW_AUTOMATE_CLIENT_ID> --env CW_AUTOMATE_USERNAME=<CW_AUTOMATE_USERNAME> --env CW_AUTOMATE_PASSWORD=<CW_AUTOMATE_PASSWORD> -- docker run -i --rm -e CW_AUTOMATE_SERVER_URL -e CW_AUTOMATE_CLIENT_ID -e CW_AUTOMATE_USERNAME -e CW_AUTOMATE_PASSWORD ghcr.io/wyre-technology/connectwise-automate-mcp:v1.8.2"
+     "codex mcp add connectwise-automate-wyre-technology --env CW_AUTOMATE_SERVER_URL=<CW_AUTOMATE_SERVER_URL> --env CW_AUTOMATE_CLIENT_ID=<CW_AUTOMATE_CLIENT_ID> --env CW_AUTOMATE_USERNAME=<CW_AUTOMATE_USERNAME> --env CW_AUTOMATE_PASSWORD=<CW_AUTOMATE_PASSWORD> -- docker run -i --rm -e CW_AUTOMATE_SERVER_URL -e CW_AUTOMATE_CLIENT_ID -e CW_AUTOMATE_USERNAME -e CW_AUTOMATE_PASSWORD ghcr.io/wyre-technology/connectwise-automate-mcp:v1.8.2"
     ]
    }
   },
@@ -107567,10 +107581,10 @@
    "repository": "https://github.com/wyre-technology/connectwise-cpq-mcp",
    "install": {
     "claude": [
-     "claude mcp add connectwise-cpq -e CPQ_ACCESS_KEY=<CPQ_ACCESS_KEY> -e CPQ_PUBLIC_KEY=<CPQ_PUBLIC_KEY> -e CPQ_PRIVATE_KEY=<CPQ_PRIVATE_KEY> -- docker run -i --rm -e CPQ_ACCESS_KEY -e CPQ_PUBLIC_KEY -e CPQ_PRIVATE_KEY ghcr.io/wyre-technology/connectwise-cpq-mcp:v1.0.4"
+     "claude mcp add connectwise-cpq-wyre-technology -e CPQ_ACCESS_KEY=<CPQ_ACCESS_KEY> -e CPQ_PUBLIC_KEY=<CPQ_PUBLIC_KEY> -e CPQ_PRIVATE_KEY=<CPQ_PRIVATE_KEY> -- docker run -i --rm -e CPQ_ACCESS_KEY -e CPQ_PUBLIC_KEY -e CPQ_PRIVATE_KEY ghcr.io/wyre-technology/connectwise-cpq-mcp:v1.0.4"
     ],
     "codex": [
-     "codex mcp add connectwise-cpq --env CPQ_ACCESS_KEY=<CPQ_ACCESS_KEY> --env CPQ_PUBLIC_KEY=<CPQ_PUBLIC_KEY> --env CPQ_PRIVATE_KEY=<CPQ_PRIVATE_KEY> -- docker run -i --rm -e CPQ_ACCESS_KEY -e CPQ_PUBLIC_KEY -e CPQ_PRIVATE_KEY ghcr.io/wyre-technology/connectwise-cpq-mcp:v1.0.4"
+     "codex mcp add connectwise-cpq-wyre-technology --env CPQ_ACCESS_KEY=<CPQ_ACCESS_KEY> --env CPQ_PUBLIC_KEY=<CPQ_PUBLIC_KEY> --env CPQ_PRIVATE_KEY=<CPQ_PRIVATE_KEY> -- docker run -i --rm -e CPQ_ACCESS_KEY -e CPQ_PUBLIC_KEY -e CPQ_PRIVATE_KEY ghcr.io/wyre-technology/connectwise-cpq-mcp:v1.0.4"
     ]
    }
   },
@@ -107640,10 +107654,10 @@
    "repository": "https://github.com/wyre-technology/connectwise-manage-mcp",
    "install": {
     "claude": [
-     "claude mcp add connectwise-manage -e CW_MANAGE_COMPANY_ID=<CW_MANAGE_COMPANY_ID> -e CW_MANAGE_PUBLIC_KEY=<CW_MANAGE_PUBLIC_KEY> -e CW_MANAGE_PRIVATE_KEY=<CW_MANAGE_PRIVATE_KEY> -e CW_MANAGE_CLIENT_ID=<CW_MANAGE_CLIENT_ID> -- docker run -i --rm -e CW_MANAGE_COMPANY_ID -e CW_MANAGE_PUBLIC_KEY -e CW_MANAGE_PRIVATE_KEY -e CW_MANAGE_CLIENT_ID ghcr.io/wyre-technology/connectwise-manage-mcp:v1.8.6"
+     "claude mcp add connectwise-manage-wyre-technology -e CW_MANAGE_COMPANY_ID=<CW_MANAGE_COMPANY_ID> -e CW_MANAGE_PUBLIC_KEY=<CW_MANAGE_PUBLIC_KEY> -e CW_MANAGE_PRIVATE_KEY=<CW_MANAGE_PRIVATE_KEY> -e CW_MANAGE_CLIENT_ID=<CW_MANAGE_CLIENT_ID> -- docker run -i --rm -e CW_MANAGE_COMPANY_ID -e CW_MANAGE_PUBLIC_KEY -e CW_MANAGE_PRIVATE_KEY -e CW_MANAGE_CLIENT_ID ghcr.io/wyre-technology/connectwise-manage-mcp:v1.8.6"
     ],
     "codex": [
-     "codex mcp add connectwise-manage --env CW_MANAGE_COMPANY_ID=<CW_MANAGE_COMPANY_ID> --env CW_MANAGE_PUBLIC_KEY=<CW_MANAGE_PUBLIC_KEY> --env CW_MANAGE_PRIVATE_KEY=<CW_MANAGE_PRIVATE_KEY> --env CW_MANAGE_CLIENT_ID=<CW_MANAGE_CLIENT_ID> -- docker run -i --rm -e CW_MANAGE_COMPANY_ID -e CW_MANAGE_PUBLIC_KEY -e CW_MANAGE_PRIVATE_KEY -e CW_MANAGE_CLIENT_ID ghcr.io/wyre-technology/connectwise-manage-mcp:v1.8.6"
+     "codex mcp add connectwise-manage-wyre-technology --env CW_MANAGE_COMPANY_ID=<CW_MANAGE_COMPANY_ID> --env CW_MANAGE_PUBLIC_KEY=<CW_MANAGE_PUBLIC_KEY> --env CW_MANAGE_PRIVATE_KEY=<CW_MANAGE_PRIVATE_KEY> --env CW_MANAGE_CLIENT_ID=<CW_MANAGE_CLIENT_ID> -- docker run -i --rm -e CW_MANAGE_COMPANY_ID -e CW_MANAGE_PUBLIC_KEY -e CW_MANAGE_PRIVATE_KEY -e CW_MANAGE_CLIENT_ID ghcr.io/wyre-technology/connectwise-manage-mcp:v1.8.6"
     ]
    }
   },
@@ -107689,10 +107703,10 @@
    "repository": "https://github.com/wyre-technology/crewhu-mcp",
    "install": {
     "claude": [
-     "claude mcp add crewhu -e CREWHU_API_TOKEN=<CREWHU_API_TOKEN> -- docker run -i --rm -e CREWHU_API_TOKEN ghcr.io/wyre-technology/crewhu-mcp:v2.0.3"
+     "claude mcp add crewhu-wyre-technology -e CREWHU_API_TOKEN=<CREWHU_API_TOKEN> -- docker run -i --rm -e CREWHU_API_TOKEN ghcr.io/wyre-technology/crewhu-mcp:v2.0.3"
     ],
     "codex": [
-     "codex mcp add crewhu --env CREWHU_API_TOKEN=<CREWHU_API_TOKEN> -- docker run -i --rm -e CREWHU_API_TOKEN ghcr.io/wyre-technology/crewhu-mcp:v2.0.3"
+     "codex mcp add crewhu-wyre-technology --env CREWHU_API_TOKEN=<CREWHU_API_TOKEN> -- docker run -i --rm -e CREWHU_API_TOKEN ghcr.io/wyre-technology/crewhu-mcp:v2.0.3"
     ]
    }
   },
@@ -107750,10 +107764,10 @@
    "repository": "https://github.com/wyre-technology/datto-bcdr-mcp",
    "install": {
     "claude": [
-     "claude mcp add datto-bcdr -e DATTO_BCDR_PUBLIC_KEY=<DATTO_BCDR_PUBLIC_KEY> -e DATTO_BCDR_PRIVATE_KEY=<DATTO_BCDR_PRIVATE_KEY> -- docker run -i --rm -e DATTO_BCDR_PUBLIC_KEY -e DATTO_BCDR_PRIVATE_KEY ghcr.io/wyre-technology/datto-bcdr-mcp:v1.1.4"
+     "claude mcp add datto-bcdr-wyre-technology -e DATTO_BCDR_PUBLIC_KEY=<DATTO_BCDR_PUBLIC_KEY> -e DATTO_BCDR_PRIVATE_KEY=<DATTO_BCDR_PRIVATE_KEY> -- docker run -i --rm -e DATTO_BCDR_PUBLIC_KEY -e DATTO_BCDR_PRIVATE_KEY ghcr.io/wyre-technology/datto-bcdr-mcp:v1.1.4"
     ],
     "codex": [
-     "codex mcp add datto-bcdr --env DATTO_BCDR_PUBLIC_KEY=<DATTO_BCDR_PUBLIC_KEY> --env DATTO_BCDR_PRIVATE_KEY=<DATTO_BCDR_PRIVATE_KEY> -- docker run -i --rm -e DATTO_BCDR_PUBLIC_KEY -e DATTO_BCDR_PRIVATE_KEY ghcr.io/wyre-technology/datto-bcdr-mcp:v1.1.4"
+     "codex mcp add datto-bcdr-wyre-technology --env DATTO_BCDR_PUBLIC_KEY=<DATTO_BCDR_PUBLIC_KEY> --env DATTO_BCDR_PRIVATE_KEY=<DATTO_BCDR_PRIVATE_KEY> -- docker run -i --rm -e DATTO_BCDR_PUBLIC_KEY -e DATTO_BCDR_PRIVATE_KEY ghcr.io/wyre-technology/datto-bcdr-mcp:v1.1.4"
     ]
    }
   },
@@ -107811,10 +107825,10 @@
    "repository": "https://github.com/wyre-technology/datto-rmm-mcp",
    "install": {
     "claude": [
-     "claude mcp add datto-rmm -e DATTO_API_KEY=<DATTO_API_KEY> -e DATTO_API_SECRET=<DATTO_API_SECRET> -- docker run -i --rm -e DATTO_API_KEY -e DATTO_API_SECRET ghcr.io/wyre-technology/datto-rmm-mcp:v1.7.6"
+     "claude mcp add datto-rmm-wyre-technology -e DATTO_API_KEY=<DATTO_API_KEY> -e DATTO_API_SECRET=<DATTO_API_SECRET> -- docker run -i --rm -e DATTO_API_KEY -e DATTO_API_SECRET ghcr.io/wyre-technology/datto-rmm-mcp:v1.7.6"
     ],
     "codex": [
-     "codex mcp add datto-rmm --env DATTO_API_KEY=<DATTO_API_KEY> --env DATTO_API_SECRET=<DATTO_API_SECRET> -- docker run -i --rm -e DATTO_API_KEY -e DATTO_API_SECRET ghcr.io/wyre-technology/datto-rmm-mcp:v1.7.6"
+     "codex mcp add datto-rmm-wyre-technology --env DATTO_API_KEY=<DATTO_API_KEY> --env DATTO_API_SECRET=<DATTO_API_SECRET> -- docker run -i --rm -e DATTO_API_KEY -e DATTO_API_SECRET ghcr.io/wyre-technology/datto-rmm-mcp:v1.7.6"
     ]
    }
   },
@@ -107866,10 +107880,10 @@
    "repository": "https://github.com/wyre-technology/datto-saas-protection-mcp",
    "install": {
     "claude": [
-     "claude mcp add datto-saas-protection -e DATTO_SAAS_API_KEY=<DATTO_SAAS_API_KEY> -- docker run -i --rm -e DATTO_SAAS_API_KEY ghcr.io/wyre-technology/datto-saas-protection-mcp:v2.1.4"
+     "claude mcp add datto-saas-protection-wyre-technology -e DATTO_SAAS_API_KEY=<DATTO_SAAS_API_KEY> -- docker run -i --rm -e DATTO_SAAS_API_KEY ghcr.io/wyre-technology/datto-saas-protection-mcp:v2.1.4"
     ],
     "codex": [
-     "codex mcp add datto-saas-protection --env DATTO_SAAS_API_KEY=<DATTO_SAAS_API_KEY> -- docker run -i --rm -e DATTO_SAAS_API_KEY ghcr.io/wyre-technology/datto-saas-protection-mcp:v2.1.4"
+     "codex mcp add datto-saas-protection-wyre-technology --env DATTO_SAAS_API_KEY=<DATTO_SAAS_API_KEY> -- docker run -i --rm -e DATTO_SAAS_API_KEY ghcr.io/wyre-technology/datto-saas-protection-mcp:v2.1.4"
     ]
    }
   },
@@ -107921,10 +107935,10 @@
    "repository": "https://github.com/wyre-technology/domotz-mcp",
    "install": {
     "claude": [
-     "claude mcp add domotz -e DOMOTZ_API_KEY=<DOMOTZ_API_KEY> -- docker run -i --rm -e DOMOTZ_API_KEY ghcr.io/wyre-technology/domotz-mcp:v1.1.10"
+     "claude mcp add domotz-wyre-technology -e DOMOTZ_API_KEY=<DOMOTZ_API_KEY> -- docker run -i --rm -e DOMOTZ_API_KEY ghcr.io/wyre-technology/domotz-mcp:v1.1.10"
     ],
     "codex": [
-     "codex mcp add domotz --env DOMOTZ_API_KEY=<DOMOTZ_API_KEY> -- docker run -i --rm -e DOMOTZ_API_KEY ghcr.io/wyre-technology/domotz-mcp:v1.1.10"
+     "codex mcp add domotz-wyre-technology --env DOMOTZ_API_KEY=<DOMOTZ_API_KEY> -- docker run -i --rm -e DOMOTZ_API_KEY ghcr.io/wyre-technology/domotz-mcp:v1.1.10"
     ]
    }
   },
@@ -107976,10 +107990,10 @@
    "repository": "https://github.com/wyre-technology/freshdesk-mcp",
    "install": {
     "claude": [
-     "claude mcp add freshdesk -e FRESHDESK_DOMAIN=<FRESHDESK_DOMAIN> -e FRESHDESK_API_KEY=<FRESHDESK_API_KEY> -- docker run -i --rm -e FRESHDESK_DOMAIN -e FRESHDESK_API_KEY ghcr.io/wyre-technology/freshdesk-mcp:v1.0.8"
+     "claude mcp add freshdesk-wyre-technology -e FRESHDESK_DOMAIN=<FRESHDESK_DOMAIN> -e FRESHDESK_API_KEY=<FRESHDESK_API_KEY> -- docker run -i --rm -e FRESHDESK_DOMAIN -e FRESHDESK_API_KEY ghcr.io/wyre-technology/freshdesk-mcp:v1.0.8"
     ],
     "codex": [
-     "codex mcp add freshdesk --env FRESHDESK_DOMAIN=<FRESHDESK_DOMAIN> --env FRESHDESK_API_KEY=<FRESHDESK_API_KEY> -- docker run -i --rm -e FRESHDESK_DOMAIN -e FRESHDESK_API_KEY ghcr.io/wyre-technology/freshdesk-mcp:v1.0.8"
+     "codex mcp add freshdesk-wyre-technology --env FRESHDESK_DOMAIN=<FRESHDESK_DOMAIN> --env FRESHDESK_API_KEY=<FRESHDESK_API_KEY> -- docker run -i --rm -e FRESHDESK_DOMAIN -e FRESHDESK_API_KEY ghcr.io/wyre-technology/freshdesk-mcp:v1.0.8"
     ]
    }
   },
@@ -108043,10 +108057,10 @@
    "repository": "https://github.com/wyre-technology/halopsa-mcp",
    "install": {
     "claude": [
-     "claude mcp add halopsa -e HALOPSA_CLIENT_ID=<HALOPSA_CLIENT_ID> -e HALOPSA_CLIENT_SECRET=<HALOPSA_CLIENT_SECRET> -- docker run -i --rm -e HALOPSA_CLIENT_ID -e HALOPSA_CLIENT_SECRET ghcr.io/wyre-technology/halopsa-mcp:v1.7.11"
+     "claude mcp add halopsa-wyre-technology -e HALOPSA_CLIENT_ID=<HALOPSA_CLIENT_ID> -e HALOPSA_CLIENT_SECRET=<HALOPSA_CLIENT_SECRET> -- docker run -i --rm -e HALOPSA_CLIENT_ID -e HALOPSA_CLIENT_SECRET ghcr.io/wyre-technology/halopsa-mcp:v1.7.11"
     ],
     "codex": [
-     "codex mcp add halopsa --env HALOPSA_CLIENT_ID=<HALOPSA_CLIENT_ID> --env HALOPSA_CLIENT_SECRET=<HALOPSA_CLIENT_SECRET> -- docker run -i --rm -e HALOPSA_CLIENT_ID -e HALOPSA_CLIENT_SECRET ghcr.io/wyre-technology/halopsa-mcp:v1.7.11"
+     "codex mcp add halopsa-wyre-technology --env HALOPSA_CLIENT_ID=<HALOPSA_CLIENT_ID> --env HALOPSA_CLIENT_SECRET=<HALOPSA_CLIENT_SECRET> -- docker run -i --rm -e HALOPSA_CLIENT_ID -e HALOPSA_CLIENT_SECRET ghcr.io/wyre-technology/halopsa-mcp:v1.7.11"
     ]
    }
   },
@@ -108098,10 +108112,10 @@
    "repository": "https://github.com/wyre-technology/hudu-mcp",
    "install": {
     "claude": [
-     "claude mcp add hudu -e HUDU_API_KEY=<HUDU_API_KEY> -e HUDU_BASE_URL=<HUDU_BASE_URL> -- docker run -i --rm -e HUDU_API_KEY -e HUDU_BASE_URL ghcr.io/wyre-technology/hudu-mcp:v1.3.7"
+     "claude mcp add hudu-wyre-technology -e HUDU_API_KEY=<HUDU_API_KEY> -e HUDU_BASE_URL=<HUDU_BASE_URL> -- docker run -i --rm -e HUDU_API_KEY -e HUDU_BASE_URL ghcr.io/wyre-technology/hudu-mcp:v1.3.7"
     ],
     "codex": [
-     "codex mcp add hudu --env HUDU_API_KEY=<HUDU_API_KEY> --env HUDU_BASE_URL=<HUDU_BASE_URL> -- docker run -i --rm -e HUDU_API_KEY -e HUDU_BASE_URL ghcr.io/wyre-technology/hudu-mcp:v1.3.7"
+     "codex mcp add hudu-wyre-technology --env HUDU_API_KEY=<HUDU_API_KEY> --env HUDU_BASE_URL=<HUDU_BASE_URL> -- docker run -i --rm -e HUDU_API_KEY -e HUDU_BASE_URL ghcr.io/wyre-technology/hudu-mcp:v1.3.7"
     ]
    }
   },
@@ -108153,10 +108167,10 @@
    "repository": "https://github.com/wyre-technology/huntress-mcp",
    "install": {
     "claude": [
-     "claude mcp add huntress -e HUNTRESS_API_KEY=<HUNTRESS_API_KEY> -e HUNTRESS_API_SECRET=<HUNTRESS_API_SECRET> -- docker run -i --rm -e HUNTRESS_API_KEY -e HUNTRESS_API_SECRET ghcr.io/wyre-technology/huntress-mcp:v1.2.19"
+     "claude mcp add huntress-wyre-technology -e HUNTRESS_API_KEY=<HUNTRESS_API_KEY> -e HUNTRESS_API_SECRET=<HUNTRESS_API_SECRET> -- docker run -i --rm -e HUNTRESS_API_KEY -e HUNTRESS_API_SECRET ghcr.io/wyre-technology/huntress-mcp:v1.2.19"
     ],
     "codex": [
-     "codex mcp add huntress --env HUNTRESS_API_KEY=<HUNTRESS_API_KEY> --env HUNTRESS_API_SECRET=<HUNTRESS_API_SECRET> -- docker run -i --rm -e HUNTRESS_API_KEY -e HUNTRESS_API_SECRET ghcr.io/wyre-technology/huntress-mcp:v1.2.19"
+     "codex mcp add huntress-wyre-technology --env HUNTRESS_API_KEY=<HUNTRESS_API_KEY> --env HUNTRESS_API_SECRET=<HUNTRESS_API_SECRET> -- docker run -i --rm -e HUNTRESS_API_KEY -e HUNTRESS_API_SECRET ghcr.io/wyre-technology/huntress-mcp:v1.2.19"
     ]
    }
   },
@@ -108220,10 +108234,10 @@
    "repository": "https://github.com/wyre-technology/immybot-mcp",
    "install": {
     "claude": [
-     "claude mcp add immybot -e IMMYBOT_TENANT_ID=<IMMYBOT_TENANT_ID> -e IMMYBOT_CLIENT_ID=<IMMYBOT_CLIENT_ID> -e IMMYBOT_CLIENT_SECRET=<IMMYBOT_CLIENT_SECRET> -e IMMYBOT_INSTANCE_SUBDOMAIN=<IMMYBOT_INSTANCE_SUBDOMAIN> -- docker run -i --rm -e IMMYBOT_TENANT_ID -e IMMYBOT_CLIENT_ID -e IMMYBOT_CLIENT_SECRET -e IMMYBOT_INSTANCE_SUBDOMAIN ghcr.io/wyre-technology/immybot-mcp:v1.2.11"
+     "claude mcp add immybot-wyre-technology -e IMMYBOT_TENANT_ID=<IMMYBOT_TENANT_ID> -e IMMYBOT_CLIENT_ID=<IMMYBOT_CLIENT_ID> -e IMMYBOT_CLIENT_SECRET=<IMMYBOT_CLIENT_SECRET> -e IMMYBOT_INSTANCE_SUBDOMAIN=<IMMYBOT_INSTANCE_SUBDOMAIN> -- docker run -i --rm -e IMMYBOT_TENANT_ID -e IMMYBOT_CLIENT_ID -e IMMYBOT_CLIENT_SECRET -e IMMYBOT_INSTANCE_SUBDOMAIN ghcr.io/wyre-technology/immybot-mcp:v1.2.11"
     ],
     "codex": [
-     "codex mcp add immybot --env IMMYBOT_TENANT_ID=<IMMYBOT_TENANT_ID> --env IMMYBOT_CLIENT_ID=<IMMYBOT_CLIENT_ID> --env IMMYBOT_CLIENT_SECRET=<IMMYBOT_CLIENT_SECRET> --env IMMYBOT_INSTANCE_SUBDOMAIN=<IMMYBOT_INSTANCE_SUBDOMAIN> -- docker run -i --rm -e IMMYBOT_TENANT_ID -e IMMYBOT_CLIENT_ID -e IMMYBOT_CLIENT_SECRET -e IMMYBOT_INSTANCE_SUBDOMAIN ghcr.io/wyre-technology/immybot-mcp:v1.2.11"
+     "codex mcp add immybot-wyre-technology --env IMMYBOT_TENANT_ID=<IMMYBOT_TENANT_ID> --env IMMYBOT_CLIENT_ID=<IMMYBOT_CLIENT_ID> --env IMMYBOT_CLIENT_SECRET=<IMMYBOT_CLIENT_SECRET> --env IMMYBOT_INSTANCE_SUBDOMAIN=<IMMYBOT_INSTANCE_SUBDOMAIN> -- docker run -i --rm -e IMMYBOT_TENANT_ID -e IMMYBOT_CLIENT_ID -e IMMYBOT_CLIENT_SECRET -e IMMYBOT_INSTANCE_SUBDOMAIN ghcr.io/wyre-technology/immybot-mcp:v1.2.11"
     ]
    }
   },
@@ -108275,10 +108289,10 @@
    "repository": "https://github.com/wyre-technology/inforcer-mcp",
    "install": {
     "claude": [
-     "claude mcp add inforcer -e INFORCER_REGION=<INFORCER_REGION> -e INFORCER_API_KEY=<INFORCER_API_KEY> -- docker run -i --rm -e INFORCER_REGION -e INFORCER_API_KEY ghcr.io/wyre-technology/inforcer-mcp:v1.1.0"
+     "claude mcp add inforcer-wyre-technology -e INFORCER_REGION=<INFORCER_REGION> -e INFORCER_API_KEY=<INFORCER_API_KEY> -- docker run -i --rm -e INFORCER_REGION -e INFORCER_API_KEY ghcr.io/wyre-technology/inforcer-mcp:v1.1.0"
     ],
     "codex": [
-     "codex mcp add inforcer --env INFORCER_REGION=<INFORCER_REGION> --env INFORCER_API_KEY=<INFORCER_API_KEY> -- docker run -i --rm -e INFORCER_REGION -e INFORCER_API_KEY ghcr.io/wyre-technology/inforcer-mcp:v1.1.0"
+     "codex mcp add inforcer-wyre-technology --env INFORCER_REGION=<INFORCER_REGION> --env INFORCER_API_KEY=<INFORCER_API_KEY> -- docker run -i --rm -e INFORCER_REGION -e INFORCER_API_KEY ghcr.io/wyre-technology/inforcer-mcp:v1.1.0"
     ]
    }
   },
@@ -108336,10 +108350,10 @@
    "repository": "https://github.com/wyre-technology/iqms-mcp",
    "install": {
     "claude": [
-     "claude mcp add iqms -e IQMS_ORACLE_CONNECT_STRING=<IQMS_ORACLE_CONNECT_STRING> -e IQMS_ORACLE_USER=<IQMS_ORACLE_USER> -e IQMS_ORACLE_PASSWORD=<IQMS_ORACLE_PASSWORD> -- docker run -i --rm -e IQMS_ORACLE_CONNECT_STRING -e IQMS_ORACLE_USER -e IQMS_ORACLE_PASSWORD ghcr.io/wyre-technology/iqms-mcp:v1.2.12"
+     "claude mcp add iqms-wyre-technology -e IQMS_ORACLE_CONNECT_STRING=<IQMS_ORACLE_CONNECT_STRING> -e IQMS_ORACLE_USER=<IQMS_ORACLE_USER> -e IQMS_ORACLE_PASSWORD=<IQMS_ORACLE_PASSWORD> -- docker run -i --rm -e IQMS_ORACLE_CONNECT_STRING -e IQMS_ORACLE_USER -e IQMS_ORACLE_PASSWORD ghcr.io/wyre-technology/iqms-mcp:v1.2.12"
     ],
     "codex": [
-     "codex mcp add iqms --env IQMS_ORACLE_CONNECT_STRING=<IQMS_ORACLE_CONNECT_STRING> --env IQMS_ORACLE_USER=<IQMS_ORACLE_USER> --env IQMS_ORACLE_PASSWORD=<IQMS_ORACLE_PASSWORD> -- docker run -i --rm -e IQMS_ORACLE_CONNECT_STRING -e IQMS_ORACLE_USER -e IQMS_ORACLE_PASSWORD ghcr.io/wyre-technology/iqms-mcp:v1.2.12"
+     "codex mcp add iqms-wyre-technology --env IQMS_ORACLE_CONNECT_STRING=<IQMS_ORACLE_CONNECT_STRING> --env IQMS_ORACLE_USER=<IQMS_ORACLE_USER> --env IQMS_ORACLE_PASSWORD=<IQMS_ORACLE_PASSWORD> -- docker run -i --rm -e IQMS_ORACLE_CONNECT_STRING -e IQMS_ORACLE_USER -e IQMS_ORACLE_PASSWORD ghcr.io/wyre-technology/iqms-mcp:v1.2.12"
     ]
    }
   },
@@ -108391,10 +108405,10 @@
    "repository": "https://github.com/wyre-technology/ironscales-mcp",
    "install": {
     "claude": [
-     "claude mcp add ironscales -e IRONSCALES_API_KEY=<IRONSCALES_API_KEY> -e IRONSCALES_COMPANY_ID=<IRONSCALES_COMPANY_ID> -- docker run -i --rm -e IRONSCALES_API_KEY -e IRONSCALES_COMPANY_ID ghcr.io/wyre-technology/ironscales-mcp:v1.2.1"
+     "claude mcp add ironscales-wyre-technology -e IRONSCALES_API_KEY=<IRONSCALES_API_KEY> -e IRONSCALES_COMPANY_ID=<IRONSCALES_COMPANY_ID> -- docker run -i --rm -e IRONSCALES_API_KEY -e IRONSCALES_COMPANY_ID ghcr.io/wyre-technology/ironscales-mcp:v1.2.1"
     ],
     "codex": [
-     "codex mcp add ironscales --env IRONSCALES_API_KEY=<IRONSCALES_API_KEY> --env IRONSCALES_COMPANY_ID=<IRONSCALES_COMPANY_ID> -- docker run -i --rm -e IRONSCALES_API_KEY -e IRONSCALES_COMPANY_ID ghcr.io/wyre-technology/ironscales-mcp:v1.2.1"
+     "codex mcp add ironscales-wyre-technology --env IRONSCALES_API_KEY=<IRONSCALES_API_KEY> --env IRONSCALES_COMPANY_ID=<IRONSCALES_COMPANY_ID> -- docker run -i --rm -e IRONSCALES_API_KEY -e IRONSCALES_COMPANY_ID ghcr.io/wyre-technology/ironscales-mcp:v1.2.1"
     ]
    }
   },
@@ -108452,10 +108466,10 @@
    "repository": "https://github.com/wyre-technology/itglue-mcp",
    "install": {
     "claude": [
-     "claude mcp add itglue -e ITGLUE_API_KEY=<ITGLUE_API_KEY> -- docker run -i --rm -e ITGLUE_API_KEY ghcr.io/wyre-technology/itglue-mcp:v1.16.3"
+     "claude mcp add itglue-wyre-technology -e ITGLUE_API_KEY=<ITGLUE_API_KEY> -- docker run -i --rm -e ITGLUE_API_KEY ghcr.io/wyre-technology/itglue-mcp:v1.16.3"
     ],
     "codex": [
-     "codex mcp add itglue --env ITGLUE_API_KEY=<ITGLUE_API_KEY> -- docker run -i --rm -e ITGLUE_API_KEY ghcr.io/wyre-technology/itglue-mcp:v1.16.3"
+     "codex mcp add itglue-wyre-technology --env ITGLUE_API_KEY=<ITGLUE_API_KEY> -- docker run -i --rm -e ITGLUE_API_KEY ghcr.io/wyre-technology/itglue-mcp:v1.16.3"
     ]
    }
   },
@@ -108513,10 +108527,10 @@
    "repository": "https://github.com/wyre-technology/kaseya-bms-mcp",
    "install": {
     "claude": [
-     "claude mcp add kaseya-bms -e KASEYA_BMS_TENANT_SUBDOMAIN=<KASEYA_BMS_TENANT_SUBDOMAIN> -- docker run -i --rm -e KASEYA_BMS_TENANT_SUBDOMAIN ghcr.io/wyre-technology/kaseya-bms-mcp:v1.1.4"
+     "claude mcp add kaseya-bms-wyre-technology -e KASEYA_BMS_TENANT_SUBDOMAIN=<KASEYA_BMS_TENANT_SUBDOMAIN> -- docker run -i --rm -e KASEYA_BMS_TENANT_SUBDOMAIN ghcr.io/wyre-technology/kaseya-bms-mcp:v1.1.4"
     ],
     "codex": [
-     "codex mcp add kaseya-bms --env KASEYA_BMS_TENANT_SUBDOMAIN=<KASEYA_BMS_TENANT_SUBDOMAIN> -- docker run -i --rm -e KASEYA_BMS_TENANT_SUBDOMAIN ghcr.io/wyre-technology/kaseya-bms-mcp:v1.1.4"
+     "codex mcp add kaseya-bms-wyre-technology --env KASEYA_BMS_TENANT_SUBDOMAIN=<KASEYA_BMS_TENANT_SUBDOMAIN> -- docker run -i --rm -e KASEYA_BMS_TENANT_SUBDOMAIN ghcr.io/wyre-technology/kaseya-bms-mcp:v1.1.4"
     ]
    }
   },
@@ -108562,10 +108576,10 @@
    "repository": "https://github.com/wyre-technology/kaseya-quote-manager-mcp",
    "install": {
     "claude": [
-     "claude mcp add kaseya-quote-manager -e KASEYA_QUOTE_MANAGER_API_KEY=<KASEYA_QUOTE_MANAGER_API_KEY> -- docker run -i --rm -e KASEYA_QUOTE_MANAGER_API_KEY ghcr.io/wyre-technology/kaseya-quote-manager-mcp:v1.0.10"
+     "claude mcp add kaseya-quote-manager-wyre-technology -e KASEYA_QUOTE_MANAGER_API_KEY=<KASEYA_QUOTE_MANAGER_API_KEY> -- docker run -i --rm -e KASEYA_QUOTE_MANAGER_API_KEY ghcr.io/wyre-technology/kaseya-quote-manager-mcp:v1.0.10"
     ],
     "codex": [
-     "codex mcp add kaseya-quote-manager --env KASEYA_QUOTE_MANAGER_API_KEY=<KASEYA_QUOTE_MANAGER_API_KEY> -- docker run -i --rm -e KASEYA_QUOTE_MANAGER_API_KEY ghcr.io/wyre-technology/kaseya-quote-manager-mcp:v1.0.10"
+     "codex mcp add kaseya-quote-manager-wyre-technology --env KASEYA_QUOTE_MANAGER_API_KEY=<KASEYA_QUOTE_MANAGER_API_KEY> -- docker run -i --rm -e KASEYA_QUOTE_MANAGER_API_KEY ghcr.io/wyre-technology/kaseya-quote-manager-mcp:v1.0.10"
     ]
    }
   },
@@ -108629,10 +108643,10 @@
    "repository": "https://github.com/wyre-technology/kaseya-vsa-mcp",
    "install": {
     "claude": [
-     "claude mcp add kaseya-vsa -e KASEYA_VSA_TENANT_URL=<KASEYA_VSA_TENANT_URL> -- docker run -i --rm -e KASEYA_VSA_TENANT_URL ghcr.io/wyre-technology/kaseya-vsa-mcp:v1.1.4"
+     "claude mcp add kaseya-vsa-wyre-technology -e KASEYA_VSA_TENANT_URL=<KASEYA_VSA_TENANT_URL> -- docker run -i --rm -e KASEYA_VSA_TENANT_URL ghcr.io/wyre-technology/kaseya-vsa-mcp:v1.1.4"
     ],
     "codex": [
-     "codex mcp add kaseya-vsa --env KASEYA_VSA_TENANT_URL=<KASEYA_VSA_TENANT_URL> -- docker run -i --rm -e KASEYA_VSA_TENANT_URL ghcr.io/wyre-technology/kaseya-vsa-mcp:v1.1.4"
+     "codex mcp add kaseya-vsa-wyre-technology --env KASEYA_VSA_TENANT_URL=<KASEYA_VSA_TENANT_URL> -- docker run -i --rm -e KASEYA_VSA_TENANT_URL ghcr.io/wyre-technology/kaseya-vsa-mcp:v1.1.4"
     ]
    }
   },
@@ -108684,10 +108698,10 @@
    "repository": "https://github.com/wyre-technology/keeper-mcp",
    "install": {
     "claude": [
-     "claude mcp add keeper -- docker run -i --rm ghcr.io/wyre-technology/keeper-mcp:v1.0.0"
+     "claude mcp add keeper-wyre-technology -- docker run -i --rm ghcr.io/wyre-technology/keeper-mcp:v1.0.0"
     ],
     "codex": [
-     "codex mcp add keeper -- docker run -i --rm ghcr.io/wyre-technology/keeper-mcp:v1.0.0"
+     "codex mcp add keeper-wyre-technology -- docker run -i --rm ghcr.io/wyre-technology/keeper-mcp:v1.0.0"
     ]
    }
   },
@@ -108745,10 +108759,10 @@
    "repository": "https://github.com/wyre-technology/knowbe4-mcp",
    "install": {
     "claude": [
-     "claude mcp add knowbe4 -e KNOWBE4_API_KEY=<KNOWBE4_API_KEY> -- docker run -i --rm -e KNOWBE4_API_KEY ghcr.io/wyre-technology/knowbe4-mcp:v1.1.4"
+     "claude mcp add knowbe4-wyre-technology -e KNOWBE4_API_KEY=<KNOWBE4_API_KEY> -- docker run -i --rm -e KNOWBE4_API_KEY ghcr.io/wyre-technology/knowbe4-mcp:v1.1.4"
     ],
     "codex": [
-     "codex mcp add knowbe4 --env KNOWBE4_API_KEY=<KNOWBE4_API_KEY> -- docker run -i --rm -e KNOWBE4_API_KEY ghcr.io/wyre-technology/knowbe4-mcp:v1.1.4"
+     "codex mcp add knowbe4-wyre-technology --env KNOWBE4_API_KEY=<KNOWBE4_API_KEY> -- docker run -i --rm -e KNOWBE4_API_KEY ghcr.io/wyre-technology/knowbe4-mcp:v1.1.4"
     ]
    }
   },
@@ -108800,10 +108814,10 @@
    "repository": "https://github.com/wyre-technology/liongard-mcp",
    "install": {
     "claude": [
-     "claude mcp add liongard -e LIONGARD_API_KEY=<LIONGARD_API_KEY> -e LIONGARD_INSTANCE=<LIONGARD_INSTANCE> -- docker run -i --rm -e LIONGARD_API_KEY -e LIONGARD_INSTANCE ghcr.io/wyre-technology/liongard-mcp:v2.3.7"
+     "claude mcp add liongard-wyre-technology -e LIONGARD_API_KEY=<LIONGARD_API_KEY> -e LIONGARD_INSTANCE=<LIONGARD_INSTANCE> -- docker run -i --rm -e LIONGARD_API_KEY -e LIONGARD_INSTANCE ghcr.io/wyre-technology/liongard-mcp:v2.3.7"
     ],
     "codex": [
-     "codex mcp add liongard --env LIONGARD_API_KEY=<LIONGARD_API_KEY> --env LIONGARD_INSTANCE=<LIONGARD_INSTANCE> -- docker run -i --rm -e LIONGARD_API_KEY -e LIONGARD_INSTANCE ghcr.io/wyre-technology/liongard-mcp:v2.3.7"
+     "codex mcp add liongard-wyre-technology --env LIONGARD_API_KEY=<LIONGARD_API_KEY> --env LIONGARD_INSTANCE=<LIONGARD_INSTANCE> -- docker run -i --rm -e LIONGARD_API_KEY -e LIONGARD_INSTANCE ghcr.io/wyre-technology/liongard-mcp:v2.3.7"
     ]
    }
   },
@@ -108861,10 +108875,10 @@
    "repository": "https://github.com/wyre-technology/mailprotector-mcp",
    "install": {
     "claude": [
-     "claude mcp add mailprotector -e MAILPROTECTOR_API_KEY=<MAILPROTECTOR_API_KEY> -e MAILPROTECTOR_RESELLER_ID=<MAILPROTECTOR_RESELLER_ID> -- docker run -i --rm -e MAILPROTECTOR_API_KEY -e MAILPROTECTOR_RESELLER_ID ghcr.io/wyre-technology/mailprotector-mcp:v1.0.1"
+     "claude mcp add mailprotector-wyre-technology -e MAILPROTECTOR_API_KEY=<MAILPROTECTOR_API_KEY> -e MAILPROTECTOR_RESELLER_ID=<MAILPROTECTOR_RESELLER_ID> -- docker run -i --rm -e MAILPROTECTOR_API_KEY -e MAILPROTECTOR_RESELLER_ID ghcr.io/wyre-technology/mailprotector-mcp:v1.0.1"
     ],
     "codex": [
-     "codex mcp add mailprotector --env MAILPROTECTOR_API_KEY=<MAILPROTECTOR_API_KEY> --env MAILPROTECTOR_RESELLER_ID=<MAILPROTECTOR_RESELLER_ID> -- docker run -i --rm -e MAILPROTECTOR_API_KEY -e MAILPROTECTOR_RESELLER_ID ghcr.io/wyre-technology/mailprotector-mcp:v1.0.1"
+     "codex mcp add mailprotector-wyre-technology --env MAILPROTECTOR_API_KEY=<MAILPROTECTOR_API_KEY> --env MAILPROTECTOR_RESELLER_ID=<MAILPROTECTOR_RESELLER_ID> -- docker run -i --rm -e MAILPROTECTOR_API_KEY -e MAILPROTECTOR_RESELLER_ID ghcr.io/wyre-technology/mailprotector-mcp:v1.0.1"
     ]
    }
   },
@@ -108928,10 +108942,10 @@
    "repository": "https://github.com/wyre-technology/meraki-mcp",
    "install": {
     "claude": [
-     "claude mcp add meraki -e MERAKI_API_KEY=<MERAKI_API_KEY> -- docker run -i --rm -e MERAKI_API_KEY ghcr.io/wyre-technology/meraki-mcp:v1.1.3"
+     "claude mcp add meraki-wyre-technology -e MERAKI_API_KEY=<MERAKI_API_KEY> -- docker run -i --rm -e MERAKI_API_KEY ghcr.io/wyre-technology/meraki-mcp:v1.1.3"
     ],
     "codex": [
-     "codex mcp add meraki --env MERAKI_API_KEY=<MERAKI_API_KEY> -- docker run -i --rm -e MERAKI_API_KEY ghcr.io/wyre-technology/meraki-mcp:v1.1.3"
+     "codex mcp add meraki-wyre-technology --env MERAKI_API_KEY=<MERAKI_API_KEY> -- docker run -i --rm -e MERAKI_API_KEY ghcr.io/wyre-technology/meraki-mcp:v1.1.3"
     ]
    }
   },
@@ -108989,10 +109003,10 @@
    "repository": "https://github.com/wyre-technology/mimecast-mcp",
    "install": {
     "claude": [
-     "claude mcp add mimecast -e MIMECAST_CLIENT_ID=<MIMECAST_CLIENT_ID> -e MIMECAST_CLIENT_SECRET=<MIMECAST_CLIENT_SECRET> -- docker run -i --rm -e MIMECAST_CLIENT_ID -e MIMECAST_CLIENT_SECRET ghcr.io/wyre-technology/mimecast-mcp:v1.3.5"
+     "claude mcp add mimecast-wyre-technology -e MIMECAST_CLIENT_ID=<MIMECAST_CLIENT_ID> -e MIMECAST_CLIENT_SECRET=<MIMECAST_CLIENT_SECRET> -- docker run -i --rm -e MIMECAST_CLIENT_ID -e MIMECAST_CLIENT_SECRET ghcr.io/wyre-technology/mimecast-mcp:v1.3.5"
     ],
     "codex": [
-     "codex mcp add mimecast --env MIMECAST_CLIENT_ID=<MIMECAST_CLIENT_ID> --env MIMECAST_CLIENT_SECRET=<MIMECAST_CLIENT_SECRET> -- docker run -i --rm -e MIMECAST_CLIENT_ID -e MIMECAST_CLIENT_SECRET ghcr.io/wyre-technology/mimecast-mcp:v1.3.5"
+     "codex mcp add mimecast-wyre-technology --env MIMECAST_CLIENT_ID=<MIMECAST_CLIENT_ID> --env MIMECAST_CLIENT_SECRET=<MIMECAST_CLIENT_SECRET> -- docker run -i --rm -e MIMECAST_CLIENT_ID -e MIMECAST_CLIENT_SECRET ghcr.io/wyre-technology/mimecast-mcp:v1.3.5"
     ]
    }
   },
@@ -109050,10 +109064,10 @@
    "repository": "https://github.com/wyre-technology/ninjaone-mcp",
    "install": {
     "claude": [
-     "claude mcp add ninjaone -e NINJAONE_CLIENT_ID=<NINJAONE_CLIENT_ID> -e NINJAONE_CLIENT_SECRET=<NINJAONE_CLIENT_SECRET> -- docker run -i --rm -e NINJAONE_CLIENT_ID -e NINJAONE_CLIENT_SECRET ghcr.io/wyre-technology/ninjaone-mcp:v2.2.9"
+     "claude mcp add ninjaone-wyre-technology -e NINJAONE_CLIENT_ID=<NINJAONE_CLIENT_ID> -e NINJAONE_CLIENT_SECRET=<NINJAONE_CLIENT_SECRET> -- docker run -i --rm -e NINJAONE_CLIENT_ID -e NINJAONE_CLIENT_SECRET ghcr.io/wyre-technology/ninjaone-mcp:v2.2.9"
     ],
     "codex": [
-     "codex mcp add ninjaone --env NINJAONE_CLIENT_ID=<NINJAONE_CLIENT_ID> --env NINJAONE_CLIENT_SECRET=<NINJAONE_CLIENT_SECRET> -- docker run -i --rm -e NINJAONE_CLIENT_ID -e NINJAONE_CLIENT_SECRET ghcr.io/wyre-technology/ninjaone-mcp:v2.2.9"
+     "codex mcp add ninjaone-wyre-technology --env NINJAONE_CLIENT_ID=<NINJAONE_CLIENT_ID> --env NINJAONE_CLIENT_SECRET=<NINJAONE_CLIENT_SECRET> -- docker run -i --rm -e NINJAONE_CLIENT_ID -e NINJAONE_CLIENT_SECRET ghcr.io/wyre-technology/ninjaone-mcp:v2.2.9"
     ]
    }
   },
@@ -109093,10 +109107,10 @@
    "repository": "https://github.com/wyre-technology/nutanix-mcp",
    "install": {
     "claude": [
-     "claude mcp add nutanix -- docker run -i --rm ghcr.io/wyre-technology/nutanix-mcp:v1.0.0"
+     "claude mcp add nutanix-wyre-technology -- docker run -i --rm ghcr.io/wyre-technology/nutanix-mcp:v1.0.0"
     ],
     "codex": [
-     "codex mcp add nutanix -- docker run -i --rm ghcr.io/wyre-technology/nutanix-mcp:v1.0.0"
+     "codex mcp add nutanix-wyre-technology -- docker run -i --rm ghcr.io/wyre-technology/nutanix-mcp:v1.0.0"
     ]
    }
   },
@@ -109154,10 +109168,10 @@
    "repository": "https://github.com/wyre-technology/proofpoint-mcp",
    "install": {
     "claude": [
-     "claude mcp add proofpoint -e PROOFPOINT_SERVICE_PRINCIPAL=<PROOFPOINT_SERVICE_PRINCIPAL> -e PROOFPOINT_SERVICE_SECRET=<PROOFPOINT_SERVICE_SECRET> -- docker run -i --rm -e PROOFPOINT_SERVICE_PRINCIPAL -e PROOFPOINT_SERVICE_SECRET ghcr.io/wyre-technology/proofpoint-mcp:v1.1.4"
+     "claude mcp add proofpoint-wyre-technology -e PROOFPOINT_SERVICE_PRINCIPAL=<PROOFPOINT_SERVICE_PRINCIPAL> -e PROOFPOINT_SERVICE_SECRET=<PROOFPOINT_SERVICE_SECRET> -- docker run -i --rm -e PROOFPOINT_SERVICE_PRINCIPAL -e PROOFPOINT_SERVICE_SECRET ghcr.io/wyre-technology/proofpoint-mcp:v1.1.4"
     ],
     "codex": [
-     "codex mcp add proofpoint --env PROOFPOINT_SERVICE_PRINCIPAL=<PROOFPOINT_SERVICE_PRINCIPAL> --env PROOFPOINT_SERVICE_SECRET=<PROOFPOINT_SERVICE_SECRET> -- docker run -i --rm -e PROOFPOINT_SERVICE_PRINCIPAL -e PROOFPOINT_SERVICE_SECRET ghcr.io/wyre-technology/proofpoint-mcp:v1.1.4"
+     "codex mcp add proofpoint-wyre-technology --env PROOFPOINT_SERVICE_PRINCIPAL=<PROOFPOINT_SERVICE_PRINCIPAL> --env PROOFPOINT_SERVICE_SECRET=<PROOFPOINT_SERVICE_SECRET> -- docker run -i --rm -e PROOFPOINT_SERVICE_PRINCIPAL -e PROOFPOINT_SERVICE_SECRET ghcr.io/wyre-technology/proofpoint-mcp:v1.1.4"
     ]
    }
   },
@@ -109227,10 +109241,10 @@
    "repository": "https://github.com/wyre-technology/qbo-mcp",
    "install": {
     "claude": [
-     "claude mcp add qbo -e QBO_CLIENT_ID=<QBO_CLIENT_ID> -e QBO_CLIENT_SECRET=<QBO_CLIENT_SECRET> -e QBO_REFRESH_TOKEN=<QBO_REFRESH_TOKEN> -e QBO_REALM_ID=<QBO_REALM_ID> -- docker run -i --rm -e QBO_CLIENT_ID -e QBO_CLIENT_SECRET -e QBO_REFRESH_TOKEN -e QBO_REALM_ID ghcr.io/wyre-technology/qbo-mcp:v1.6.4"
+     "claude mcp add qbo-wyre-technology -e QBO_CLIENT_ID=<QBO_CLIENT_ID> -e QBO_CLIENT_SECRET=<QBO_CLIENT_SECRET> -e QBO_REFRESH_TOKEN=<QBO_REFRESH_TOKEN> -e QBO_REALM_ID=<QBO_REALM_ID> -- docker run -i --rm -e QBO_CLIENT_ID -e QBO_CLIENT_SECRET -e QBO_REFRESH_TOKEN -e QBO_REALM_ID ghcr.io/wyre-technology/qbo-mcp:v1.6.4"
     ],
     "codex": [
-     "codex mcp add qbo --env QBO_CLIENT_ID=<QBO_CLIENT_ID> --env QBO_CLIENT_SECRET=<QBO_CLIENT_SECRET> --env QBO_REFRESH_TOKEN=<QBO_REFRESH_TOKEN> --env QBO_REALM_ID=<QBO_REALM_ID> -- docker run -i --rm -e QBO_CLIENT_ID -e QBO_CLIENT_SECRET -e QBO_REFRESH_TOKEN -e QBO_REALM_ID ghcr.io/wyre-technology/qbo-mcp:v1.6.4"
+     "codex mcp add qbo-wyre-technology --env QBO_CLIENT_ID=<QBO_CLIENT_ID> --env QBO_CLIENT_SECRET=<QBO_CLIENT_SECRET> --env QBO_REFRESH_TOKEN=<QBO_REFRESH_TOKEN> --env QBO_REALM_ID=<QBO_REALM_ID> -- docker run -i --rm -e QBO_CLIENT_ID -e QBO_CLIENT_SECRET -e QBO_REFRESH_TOKEN -e QBO_REALM_ID ghcr.io/wyre-technology/qbo-mcp:v1.6.4"
     ]
    }
   },
@@ -109288,10 +109302,10 @@
    "repository": "https://github.com/wyre-technology/rocketcyber-mcp",
    "install": {
     "claude": [
-     "claude mcp add rocketcyber -e ROCKETCYBER_API_KEY=<ROCKETCYBER_API_KEY> -e ROCKETCYBER_CUSTOMER_ID=<ROCKETCYBER_CUSTOMER_ID> -- docker run -i --rm -e ROCKETCYBER_API_KEY -e ROCKETCYBER_CUSTOMER_ID ghcr.io/wyre-technology/rocketcyber-mcp:v1.5.4"
+     "claude mcp add rocketcyber-wyre-technology -e ROCKETCYBER_API_KEY=<ROCKETCYBER_API_KEY> -e ROCKETCYBER_CUSTOMER_ID=<ROCKETCYBER_CUSTOMER_ID> -- docker run -i --rm -e ROCKETCYBER_API_KEY -e ROCKETCYBER_CUSTOMER_ID ghcr.io/wyre-technology/rocketcyber-mcp:v1.5.4"
     ],
     "codex": [
-     "codex mcp add rocketcyber --env ROCKETCYBER_API_KEY=<ROCKETCYBER_API_KEY> --env ROCKETCYBER_CUSTOMER_ID=<ROCKETCYBER_CUSTOMER_ID> -- docker run -i --rm -e ROCKETCYBER_API_KEY -e ROCKETCYBER_CUSTOMER_ID ghcr.io/wyre-technology/rocketcyber-mcp:v1.5.4"
+     "codex mcp add rocketcyber-wyre-technology --env ROCKETCYBER_API_KEY=<ROCKETCYBER_API_KEY> --env ROCKETCYBER_CUSTOMER_ID=<ROCKETCYBER_CUSTOMER_ID> -- docker run -i --rm -e ROCKETCYBER_API_KEY -e ROCKETCYBER_CUSTOMER_ID ghcr.io/wyre-technology/rocketcyber-mcp:v1.5.4"
     ]
    }
   },
@@ -109337,10 +109351,10 @@
    "repository": "https://github.com/wyre-technology/rootly-mcp",
    "install": {
     "claude": [
-     "claude mcp add rootly -e ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-technology/rootly-mcp:v1.2.4"
+     "claude mcp add rootly-wyre-technology -e ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-technology/rootly-mcp:v1.2.4"
     ],
     "codex": [
-     "codex mcp add rootly --env ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-technology/rootly-mcp:v1.2.4"
+     "codex mcp add rootly-wyre-technology --env ROOTLY_API_TOKEN=<ROOTLY_API_TOKEN> -- docker run -i --rm -e ROOTLY_API_TOKEN ghcr.io/wyre-technology/rootly-mcp:v1.2.4"
     ]
    }
   },
@@ -109386,10 +109400,10 @@
    "repository": "https://github.com/wyre-technology/saas-alerts-mcp",
    "install": {
     "claude": [
-     "claude mcp add saas-alerts -e SAAS_ALERTS_API_KEY=<SAAS_ALERTS_API_KEY> -- docker run -i --rm -e SAAS_ALERTS_API_KEY ghcr.io/wyre-technology/saas-alerts-mcp:v1.2.4"
+     "claude mcp add saas-alerts-wyre-technology -e SAAS_ALERTS_API_KEY=<SAAS_ALERTS_API_KEY> -- docker run -i --rm -e SAAS_ALERTS_API_KEY ghcr.io/wyre-technology/saas-alerts-mcp:v1.2.4"
     ],
     "codex": [
-     "codex mcp add saas-alerts --env SAAS_ALERTS_API_KEY=<SAAS_ALERTS_API_KEY> -- docker run -i --rm -e SAAS_ALERTS_API_KEY ghcr.io/wyre-technology/saas-alerts-mcp:v1.2.4"
+     "codex mcp add saas-alerts-wyre-technology --env SAAS_ALERTS_API_KEY=<SAAS_ALERTS_API_KEY> -- docker run -i --rm -e SAAS_ALERTS_API_KEY ghcr.io/wyre-technology/saas-alerts-mcp:v1.2.4"
     ]
    }
   },
@@ -109441,10 +109455,10 @@
    "repository": "https://github.com/wyre-technology/salesbuildr-mcp",
    "install": {
     "claude": [
-     "claude mcp add salesbuildr -e SALESBUILDR_API_KEY=<SALESBUILDR_API_KEY> -- docker run -i --rm -e SALESBUILDR_API_KEY ghcr.io/wyre-technology/salesbuildr-mcp:v1.5.7"
+     "claude mcp add salesbuildr-wyre-technology -e SALESBUILDR_API_KEY=<SALESBUILDR_API_KEY> -- docker run -i --rm -e SALESBUILDR_API_KEY ghcr.io/wyre-technology/salesbuildr-mcp:v1.5.7"
     ],
     "codex": [
-     "codex mcp add salesbuildr --env SALESBUILDR_API_KEY=<SALESBUILDR_API_KEY> -- docker run -i --rm -e SALESBUILDR_API_KEY ghcr.io/wyre-technology/salesbuildr-mcp:v1.5.7"
+     "codex mcp add salesbuildr-wyre-technology --env SALESBUILDR_API_KEY=<SALESBUILDR_API_KEY> -- docker run -i --rm -e SALESBUILDR_API_KEY ghcr.io/wyre-technology/salesbuildr-mcp:v1.5.7"
     ]
    }
   },
@@ -109526,10 +109540,10 @@
    "repository": "https://github.com/wyre-technology/salesforce-mcp",
    "install": {
     "claude": [
-     "claude mcp add salesforce -e AUTH_MODE=<AUTH_MODE> -e SALESFORCE_CLIENT_ID=<SALESFORCE_CLIENT_ID> -e SALESFORCE_CLIENT_SECRET=<SALESFORCE_CLIENT_SECRET> -e SALESFORCE_INSTANCE_URL=<SALESFORCE_INSTANCE_URL> -- docker run -i --rm -e AUTH_MODE -e SALESFORCE_CLIENT_ID -e SALESFORCE_CLIENT_SECRET -e SALESFORCE_INSTANCE_URL ghcr.io/wyre-technology/salesforce-mcp:v1.0.3"
+     "claude mcp add salesforce-wyre-technology -e AUTH_MODE=<AUTH_MODE> -e SALESFORCE_CLIENT_ID=<SALESFORCE_CLIENT_ID> -e SALESFORCE_CLIENT_SECRET=<SALESFORCE_CLIENT_SECRET> -e SALESFORCE_INSTANCE_URL=<SALESFORCE_INSTANCE_URL> -- docker run -i --rm -e AUTH_MODE -e SALESFORCE_CLIENT_ID -e SALESFORCE_CLIENT_SECRET -e SALESFORCE_INSTANCE_URL ghcr.io/wyre-technology/salesforce-mcp:v1.0.3"
     ],
     "codex": [
-     "codex mcp add salesforce --env AUTH_MODE=<AUTH_MODE> --env SALESFORCE_CLIENT_ID=<SALESFORCE_CLIENT_ID> --env SALESFORCE_CLIENT_SECRET=<SALESFORCE_CLIENT_SECRET> --env SALESFORCE_INSTANCE_URL=<SALESFORCE_INSTANCE_URL> -- docker run -i --rm -e AUTH_MODE -e SALESFORCE_CLIENT_ID -e SALESFORCE_CLIENT_SECRET -e SALESFORCE_INSTANCE_URL ghcr.io/wyre-technology/salesforce-mcp:v1.0.3"
+     "codex mcp add salesforce-wyre-technology --env AUTH_MODE=<AUTH_MODE> --env SALESFORCE_CLIENT_ID=<SALESFORCE_CLIENT_ID> --env SALESFORCE_CLIENT_SECRET=<SALESFORCE_CLIENT_SECRET> --env SALESFORCE_INSTANCE_URL=<SALESFORCE_INSTANCE_URL> -- docker run -i --rm -e AUTH_MODE -e SALESFORCE_CLIENT_ID -e SALESFORCE_CLIENT_SECRET -e SALESFORCE_INSTANCE_URL ghcr.io/wyre-technology/salesforce-mcp:v1.0.3"
     ]
    }
   },
@@ -109593,10 +109607,10 @@
    "repository": "https://github.com/wyre-technology/scalepad-mcp",
    "install": {
     "claude": [
-     "claude mcp add scalepad -e SCALEPAD_API_KEY=<SCALEPAD_API_KEY> -- docker run -i --rm -e SCALEPAD_API_KEY ghcr.io/wyre-technology/scalepad-mcp:v1.0.5"
+     "claude mcp add scalepad-wyre-technology -e SCALEPAD_API_KEY=<SCALEPAD_API_KEY> -- docker run -i --rm -e SCALEPAD_API_KEY ghcr.io/wyre-technology/scalepad-mcp:v1.0.5"
     ],
     "codex": [
-     "codex mcp add scalepad --env SCALEPAD_API_KEY=<SCALEPAD_API_KEY> -- docker run -i --rm -e SCALEPAD_API_KEY ghcr.io/wyre-technology/scalepad-mcp:v1.0.5"
+     "codex mcp add scalepad-wyre-technology --env SCALEPAD_API_KEY=<SCALEPAD_API_KEY> -- docker run -i --rm -e SCALEPAD_API_KEY ghcr.io/wyre-technology/scalepad-mcp:v1.0.5"
     ]
    }
   },
@@ -109642,10 +109656,10 @@
    "repository": "https://github.com/wyre-technology/sentinelone-mcp",
    "install": {
     "claude": [
-     "claude mcp add sentinelone -- docker run -i --rm ghcr.io/wyre-technology/sentinelone-mcp:v1.0.6"
+     "claude mcp add sentinelone-wyre-technology -- docker run -i --rm ghcr.io/wyre-technology/sentinelone-mcp:v1.0.6"
     ],
     "codex": [
-     "codex mcp add sentinelone -- docker run -i --rm ghcr.io/wyre-technology/sentinelone-mcp:v1.0.6"
+     "codex mcp add sentinelone-wyre-technology -- docker run -i --rm ghcr.io/wyre-technology/sentinelone-mcp:v1.0.6"
     ]
    }
   },
@@ -109703,10 +109717,10 @@
    "repository": "https://github.com/wyre-technology/sherweb-mcp",
    "install": {
     "claude": [
-     "claude mcp add sherweb -e SHERWEB_CLIENT_ID=<SHERWEB_CLIENT_ID> -e SHERWEB_CLIENT_SECRET=<SHERWEB_CLIENT_SECRET> -e SHERWEB_SUBSCRIPTION_KEY=<SHERWEB_SUBSCRIPTION_KEY> -- docker run -i --rm -e SHERWEB_CLIENT_ID -e SHERWEB_CLIENT_SECRET -e SHERWEB_SUBSCRIPTION_KEY ghcr.io/wyre-technology/sherweb-mcp:v1.4.3"
+     "claude mcp add sherweb-wyre-technology -e SHERWEB_CLIENT_ID=<SHERWEB_CLIENT_ID> -e SHERWEB_CLIENT_SECRET=<SHERWEB_CLIENT_SECRET> -e SHERWEB_SUBSCRIPTION_KEY=<SHERWEB_SUBSCRIPTION_KEY> -- docker run -i --rm -e SHERWEB_CLIENT_ID -e SHERWEB_CLIENT_SECRET -e SHERWEB_SUBSCRIPTION_KEY ghcr.io/wyre-technology/sherweb-mcp:v1.4.3"
     ],
     "codex": [
-     "codex mcp add sherweb --env SHERWEB_CLIENT_ID=<SHERWEB_CLIENT_ID> --env SHERWEB_CLIENT_SECRET=<SHERWEB_CLIENT_SECRET> --env SHERWEB_SUBSCRIPTION_KEY=<SHERWEB_SUBSCRIPTION_KEY> -- docker run -i --rm -e SHERWEB_CLIENT_ID -e SHERWEB_CLIENT_SECRET -e SHERWEB_SUBSCRIPTION_KEY ghcr.io/wyre-technology/sherweb-mcp:v1.4.3"
+     "codex mcp add sherweb-wyre-technology --env SHERWEB_CLIENT_ID=<SHERWEB_CLIENT_ID> --env SHERWEB_CLIENT_SECRET=<SHERWEB_CLIENT_SECRET> --env SHERWEB_SUBSCRIPTION_KEY=<SHERWEB_SUBSCRIPTION_KEY> -- docker run -i --rm -e SHERWEB_CLIENT_ID -e SHERWEB_CLIENT_SECRET -e SHERWEB_SUBSCRIPTION_KEY ghcr.io/wyre-technology/sherweb-mcp:v1.4.3"
     ]
    }
   },
@@ -109758,10 +109772,10 @@
    "repository": "https://github.com/wyre-technology/spamtitan-mcp",
    "install": {
     "claude": [
-     "claude mcp add spamtitan -e SPAMTITAN_API_URL=<SPAMTITAN_API_URL> -e SPAMTITAN_API_KEY=<SPAMTITAN_API_KEY> -- docker run -i --rm -e SPAMTITAN_API_URL -e SPAMTITAN_API_KEY ghcr.io/wyre-technology/spamtitan-mcp:v1.3.2"
+     "claude mcp add spamtitan-wyre-technology -e SPAMTITAN_API_URL=<SPAMTITAN_API_URL> -e SPAMTITAN_API_KEY=<SPAMTITAN_API_KEY> -- docker run -i --rm -e SPAMTITAN_API_URL -e SPAMTITAN_API_KEY ghcr.io/wyre-technology/spamtitan-mcp:v1.3.2"
     ],
     "codex": [
-     "codex mcp add spamtitan --env SPAMTITAN_API_URL=<SPAMTITAN_API_URL> --env SPAMTITAN_API_KEY=<SPAMTITAN_API_KEY> -- docker run -i --rm -e SPAMTITAN_API_URL -e SPAMTITAN_API_KEY ghcr.io/wyre-technology/spamtitan-mcp:v1.3.2"
+     "codex mcp add spamtitan-wyre-technology --env SPAMTITAN_API_URL=<SPAMTITAN_API_URL> --env SPAMTITAN_API_KEY=<SPAMTITAN_API_KEY> -- docker run -i --rm -e SPAMTITAN_API_URL -e SPAMTITAN_API_KEY ghcr.io/wyre-technology/spamtitan-mcp:v1.3.2"
     ]
    }
   },
@@ -109819,10 +109833,10 @@
    "repository": "https://github.com/wyre-technology/spanning-mcp",
    "install": {
     "claude": [
-     "claude mcp add spanning -e SPANNING_PLATFORM=<SPANNING_PLATFORM> -e SPANNING_ADMIN_EMAIL=<SPANNING_ADMIN_EMAIL> -e SPANNING_API_TOKEN=<SPANNING_API_TOKEN> -- docker run -i --rm -e SPANNING_PLATFORM -e SPANNING_ADMIN_EMAIL -e SPANNING_API_TOKEN ghcr.io/wyre-technology/spanning-mcp:v1.1.3"
+     "claude mcp add spanning-wyre-technology -e SPANNING_PLATFORM=<SPANNING_PLATFORM> -e SPANNING_ADMIN_EMAIL=<SPANNING_ADMIN_EMAIL> -e SPANNING_API_TOKEN=<SPANNING_API_TOKEN> -- docker run -i --rm -e SPANNING_PLATFORM -e SPANNING_ADMIN_EMAIL -e SPANNING_API_TOKEN ghcr.io/wyre-technology/spanning-mcp:v1.1.3"
     ],
     "codex": [
-     "codex mcp add spanning --env SPANNING_PLATFORM=<SPANNING_PLATFORM> --env SPANNING_ADMIN_EMAIL=<SPANNING_ADMIN_EMAIL> --env SPANNING_API_TOKEN=<SPANNING_API_TOKEN> -- docker run -i --rm -e SPANNING_PLATFORM -e SPANNING_ADMIN_EMAIL -e SPANNING_API_TOKEN ghcr.io/wyre-technology/spanning-mcp:v1.1.3"
+     "codex mcp add spanning-wyre-technology --env SPANNING_PLATFORM=<SPANNING_PLATFORM> --env SPANNING_ADMIN_EMAIL=<SPANNING_ADMIN_EMAIL> --env SPANNING_API_TOKEN=<SPANNING_API_TOKEN> -- docker run -i --rm -e SPANNING_PLATFORM -e SPANNING_ADMIN_EMAIL -e SPANNING_API_TOKEN ghcr.io/wyre-technology/spanning-mcp:v1.1.3"
     ]
    }
   },
@@ -109880,10 +109894,10 @@
    "repository": "https://github.com/wyre-technology/superops-mcp",
    "install": {
     "claude": [
-     "claude mcp add superops -e SUPEROPS_API_TOKEN=<SUPEROPS_API_TOKEN> -e SUPEROPS_SUBDOMAIN=<SUPEROPS_SUBDOMAIN> -- docker run -i --rm -e SUPEROPS_API_TOKEN -e SUPEROPS_SUBDOMAIN ghcr.io/wyre-technology/superops-mcp:v1.6.6"
+     "claude mcp add superops-wyre-technology -e SUPEROPS_API_TOKEN=<SUPEROPS_API_TOKEN> -e SUPEROPS_SUBDOMAIN=<SUPEROPS_SUBDOMAIN> -- docker run -i --rm -e SUPEROPS_API_TOKEN -e SUPEROPS_SUBDOMAIN ghcr.io/wyre-technology/superops-mcp:v1.6.6"
     ],
     "codex": [
-     "codex mcp add superops --env SUPEROPS_API_TOKEN=<SUPEROPS_API_TOKEN> --env SUPEROPS_SUBDOMAIN=<SUPEROPS_SUBDOMAIN> -- docker run -i --rm -e SUPEROPS_API_TOKEN -e SUPEROPS_SUBDOMAIN ghcr.io/wyre-technology/superops-mcp:v1.6.6"
+     "codex mcp add superops-wyre-technology --env SUPEROPS_API_TOKEN=<SUPEROPS_API_TOKEN> --env SUPEROPS_SUBDOMAIN=<SUPEROPS_SUBDOMAIN> -- docker run -i --rm -e SUPEROPS_API_TOKEN -e SUPEROPS_SUBDOMAIN ghcr.io/wyre-technology/superops-mcp:v1.6.6"
     ]
    }
   },
@@ -109935,10 +109949,10 @@
    "repository": "https://github.com/wyre-technology/syncro-mcp",
    "install": {
     "claude": [
-     "claude mcp add syncro -e SYNCRO_SUBDOMAIN=<SYNCRO_SUBDOMAIN> -e SYNCRO_API_KEY=<SYNCRO_API_KEY> -- docker run -i --rm -e SYNCRO_SUBDOMAIN -e SYNCRO_API_KEY ghcr.io/wyre-technology/syncro-mcp:v1.4.7"
+     "claude mcp add syncro-wyre-technology -e SYNCRO_SUBDOMAIN=<SYNCRO_SUBDOMAIN> -e SYNCRO_API_KEY=<SYNCRO_API_KEY> -- docker run -i --rm -e SYNCRO_SUBDOMAIN -e SYNCRO_API_KEY ghcr.io/wyre-technology/syncro-mcp:v1.4.7"
     ],
     "codex": [
-     "codex mcp add syncro --env SYNCRO_SUBDOMAIN=<SYNCRO_SUBDOMAIN> --env SYNCRO_API_KEY=<SYNCRO_API_KEY> -- docker run -i --rm -e SYNCRO_SUBDOMAIN -e SYNCRO_API_KEY ghcr.io/wyre-technology/syncro-mcp:v1.4.7"
+     "codex mcp add syncro-wyre-technology --env SYNCRO_SUBDOMAIN=<SYNCRO_SUBDOMAIN> --env SYNCRO_API_KEY=<SYNCRO_API_KEY> -- docker run -i --rm -e SYNCRO_SUBDOMAIN -e SYNCRO_API_KEY ghcr.io/wyre-technology/syncro-mcp:v1.4.7"
     ]
    }
   },
@@ -109990,10 +110004,10 @@
    "repository": "https://github.com/wyre-technology/threatlocker-mcp",
    "install": {
     "claude": [
-     "claude mcp add threatlocker -e THREATLOCKER_API_KEY=<THREATLOCKER_API_KEY> -e THREATLOCKER_ORGANIZATION_ID=<THREATLOCKER_ORGANIZATION_ID> -- docker run -i --rm -e THREATLOCKER_API_KEY -e THREATLOCKER_ORGANIZATION_ID ghcr.io/wyre-technology/threatlocker-mcp:v1.3.6"
+     "claude mcp add threatlocker-wyre-technology -e THREATLOCKER_API_KEY=<THREATLOCKER_API_KEY> -e THREATLOCKER_ORGANIZATION_ID=<THREATLOCKER_ORGANIZATION_ID> -- docker run -i --rm -e THREATLOCKER_API_KEY -e THREATLOCKER_ORGANIZATION_ID ghcr.io/wyre-technology/threatlocker-mcp:v1.3.6"
     ],
     "codex": [
-     "codex mcp add threatlocker --env THREATLOCKER_API_KEY=<THREATLOCKER_API_KEY> --env THREATLOCKER_ORGANIZATION_ID=<THREATLOCKER_ORGANIZATION_ID> -- docker run -i --rm -e THREATLOCKER_API_KEY -e THREATLOCKER_ORGANIZATION_ID ghcr.io/wyre-technology/threatlocker-mcp:v1.3.6"
+     "codex mcp add threatlocker-wyre-technology --env THREATLOCKER_API_KEY=<THREATLOCKER_API_KEY> --env THREATLOCKER_ORGANIZATION_ID=<THREATLOCKER_ORGANIZATION_ID> -- docker run -i --rm -e THREATLOCKER_API_KEY -e THREATLOCKER_ORGANIZATION_ID ghcr.io/wyre-technology/threatlocker-mcp:v1.3.6"
     ]
    }
   },
@@ -110039,10 +110053,10 @@
    "repository": "https://github.com/wyre-technology/timezest-mcp",
    "install": {
     "claude": [
-     "claude mcp add timezest -e TIMEZEST_API_TOKEN=<TIMEZEST_API_TOKEN> -- docker run -i --rm -e TIMEZEST_API_TOKEN ghcr.io/wyre-technology/timezest-mcp:v1.2.6"
+     "claude mcp add timezest-wyre-technology -e TIMEZEST_API_TOKEN=<TIMEZEST_API_TOKEN> -- docker run -i --rm -e TIMEZEST_API_TOKEN ghcr.io/wyre-technology/timezest-mcp:v1.2.6"
     ],
     "codex": [
-     "codex mcp add timezest --env TIMEZEST_API_TOKEN=<TIMEZEST_API_TOKEN> -- docker run -i --rm -e TIMEZEST_API_TOKEN ghcr.io/wyre-technology/timezest-mcp:v1.2.6"
+     "codex mcp add timezest-wyre-technology --env TIMEZEST_API_TOKEN=<TIMEZEST_API_TOKEN> -- docker run -i --rm -e TIMEZEST_API_TOKEN ghcr.io/wyre-technology/timezest-mcp:v1.2.6"
     ]
    }
   },
@@ -110106,10 +110120,10 @@
    "repository": "https://github.com/wyre-technology/unitrends-mcp",
    "install": {
     "claude": [
-     "claude mcp add unitrends -e UNITRENDS_BASE_URL=<UNITRENDS_BASE_URL> -e UNITRENDS_USERNAME=<UNITRENDS_USERNAME> -e UNITRENDS_PASSWORD=<UNITRENDS_PASSWORD> -- docker run -i --rm -e UNITRENDS_BASE_URL -e UNITRENDS_USERNAME -e UNITRENDS_PASSWORD ghcr.io/wyre-technology/unitrends-mcp:v1.1.3"
+     "claude mcp add unitrends-wyre-technology -e UNITRENDS_BASE_URL=<UNITRENDS_BASE_URL> -e UNITRENDS_USERNAME=<UNITRENDS_USERNAME> -e UNITRENDS_PASSWORD=<UNITRENDS_PASSWORD> -- docker run -i --rm -e UNITRENDS_BASE_URL -e UNITRENDS_USERNAME -e UNITRENDS_PASSWORD ghcr.io/wyre-technology/unitrends-mcp:v1.1.3"
     ],
     "codex": [
-     "codex mcp add unitrends --env UNITRENDS_BASE_URL=<UNITRENDS_BASE_URL> --env UNITRENDS_USERNAME=<UNITRENDS_USERNAME> --env UNITRENDS_PASSWORD=<UNITRENDS_PASSWORD> -- docker run -i --rm -e UNITRENDS_BASE_URL -e UNITRENDS_USERNAME -e UNITRENDS_PASSWORD ghcr.io/wyre-technology/unitrends-mcp:v1.1.3"
+     "codex mcp add unitrends-wyre-technology --env UNITRENDS_BASE_URL=<UNITRENDS_BASE_URL> --env UNITRENDS_USERNAME=<UNITRENDS_USERNAME> --env UNITRENDS_PASSWORD=<UNITRENDS_PASSWORD> -- docker run -i --rm -e UNITRENDS_BASE_URL -e UNITRENDS_USERNAME -e UNITRENDS_PASSWORD ghcr.io/wyre-technology/unitrends-mcp:v1.1.3"
     ]
    }
   },
@@ -110161,10 +110175,10 @@
    "repository": "https://github.com/wyre-technology/xero-mcp",
    "install": {
     "claude": [
-     "claude mcp add xero -e XERO_TENANT_ID=<XERO_TENANT_ID> -e XERO_ACCESS_TOKEN=<XERO_ACCESS_TOKEN> -- docker run -i --rm -e XERO_TENANT_ID -e XERO_ACCESS_TOKEN ghcr.io/wyre-technology/xero-mcp:v1.5.5"
+     "claude mcp add xero-wyre-technology -e XERO_TENANT_ID=<XERO_TENANT_ID> -e XERO_ACCESS_TOKEN=<XERO_ACCESS_TOKEN> -- docker run -i --rm -e XERO_TENANT_ID -e XERO_ACCESS_TOKEN ghcr.io/wyre-technology/xero-mcp:v1.5.5"
     ],
     "codex": [
-     "codex mcp add xero --env XERO_TENANT_ID=<XERO_TENANT_ID> --env XERO_ACCESS_TOKEN=<XERO_ACCESS_TOKEN> -- docker run -i --rm -e XERO_TENANT_ID -e XERO_ACCESS_TOKEN ghcr.io/wyre-technology/xero-mcp:v1.5.5"
+     "codex mcp add xero-wyre-technology --env XERO_TENANT_ID=<XERO_TENANT_ID> --env XERO_ACCESS_TOKEN=<XERO_ACCESS_TOKEN> -- docker run -i --rm -e XERO_TENANT_ID -e XERO_ACCESS_TOKEN ghcr.io/wyre-technology/xero-mcp:v1.5.5"
     ]
    }
   },
@@ -110294,10 +110308,10 @@
    "repository": "https://github.com/ynishi/outline-mcp",
    "install": {
     "claude": [
-     "claude mcp add outline -- docker run -i --rm ghcr.io/ynishi/outline-mcp:0.14.0"
+     "claude mcp add outline-ynishi -- docker run -i --rm ghcr.io/ynishi/outline-mcp:0.14.0"
     ],
     "codex": [
-     "codex mcp add outline -- docker run -i --rm ghcr.io/ynishi/outline-mcp:0.14.0"
+     "codex mcp add outline-ynishi -- docker run -i --rm ghcr.io/ynishi/outline-mcp:0.14.0"
     ]
    }
   },
@@ -110334,7 +110348,7 @@
    "monthlyDownloads": 0,
    "package": {
     "registry": "oci",
-    "identifier": "ghcr.io/yotamfreund-eng/mcp-greeting-server:latest",
+    "identifier": "ghcr.io/yotamfreund-eng/mcp-greeting-server:1.0.0@sha256:da5d66077b114dde440b8c13499b574b2459da0dae550fbedfdd628ed499fc79",
     "version": "1.0.0"
    },
    "transport": "stdio",
@@ -110342,12 +110356,13 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add greeting -- docker run -i --rm ghcr.io/yotamfreund-eng/mcp-greeting-server:latest"
+     "claude mcp add greeting -- docker run -i --rm ghcr.io/yotamfreund-eng/mcp-greeting-server:1.0.0@sha256:da5d66077b114dde440b8c13499b574b2459da0dae550fbedfdd628ed499fc79"
     ],
     "codex": [
-     "codex mcp add greeting -- docker run -i --rm ghcr.io/yotamfreund-eng/mcp-greeting-server:latest"
+     "codex mcp add greeting -- docker run -i --rm ghcr.io/yotamfreund-eng/mcp-greeting-server:1.0.0@sha256:da5d66077b114dde440b8c13499b574b2459da0dae550fbedfdd628ed499fc79"
     ]
-   }
+   },
+   "pinnedAt": "2026-10-11"
   },
   {
    "id": "io-github-your-ko-mcp-k8s-ro",
@@ -110926,10 +110941,10 @@
    "repository": "https://github.com/jmagar/cortex",
    "install": {
     "claude": [
-     "claude mcp add cortex -e CORTEX_RECEIVER_HOST=<CORTEX_RECEIVER_HOST> -- docker run -i --rm -e CORTEX_RECEIVER_HOST ghcr.io/jmagar/cortex:v3.9.0"
+     "claude mcp add cortex-tootie -e CORTEX_RECEIVER_HOST=<CORTEX_RECEIVER_HOST> -- docker run -i --rm -e CORTEX_RECEIVER_HOST ghcr.io/jmagar/cortex:v3.9.0"
     ],
     "codex": [
-     "codex mcp add cortex --env CORTEX_RECEIVER_HOST=<CORTEX_RECEIVER_HOST> -- docker run -i --rm -e CORTEX_RECEIVER_HOST ghcr.io/jmagar/cortex:v3.9.0"
+     "codex mcp add cortex-tootie --env CORTEX_RECEIVER_HOST=<CORTEX_RECEIVER_HOST> -- docker run -i --rm -e CORTEX_RECEIVER_HOST ghcr.io/jmagar/cortex:v3.9.0"
     ]
    }
   },
@@ -111045,10 +111060,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http paypal https://mcp.paypal.com/mcp --header 'Authorization: <Authorization>'"
+     "claude mcp add --transport http paypal-mcp https://mcp.paypal.com/mcp --header 'Authorization: <Authorization>'"
     ],
     "codex": [
-     "codex mcp add paypal --url https://mcp.paypal.com/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add paypal-mcp --url https://mcp.paypal.com/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -111292,10 +111307,10 @@
    "repository": "https://github.com/figma/mcp-server-guide",
    "install": {
     "claude": [
-     "claude mcp add --transport http figma https://mcp.figma.com/mcp"
+     "claude mcp add --transport http figma-mcp https://mcp.figma.com/mcp"
     ],
     "codex": [
-     "codex mcp add figma --url https://mcp.figma.com/mcp"
+     "codex mcp add figma-mcp --url https://mcp.figma.com/mcp"
     ]
    }
   },
@@ -111349,10 +111364,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http notion https://mcp.notion.com/mcp"
+     "claude mcp add --transport http notion-notion https://mcp.notion.com/mcp"
     ],
     "codex": [
-     "codex mcp add notion --url https://mcp.notion.com/mcp"
+     "codex mcp add notion-notion --url https://mcp.notion.com/mcp"
     ]
    }
   },
@@ -111520,10 +111535,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http airtable https://mcp.airtable.com/mcp"
+     "claude mcp add --transport http airtable-airtable https://mcp.airtable.com/mcp"
     ],
     "codex": [
-     "codex mcp add airtable --url https://mcp.airtable.com/mcp"
+     "codex mcp add airtable-airtable --url https://mcp.airtable.com/mcp"
     ]
    }
   },
@@ -111843,10 +111858,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http marketplace https://api.nameshift.com/mcp"
+     "claude mcp add --transport http marketplace-nameshift https://api.nameshift.com/mcp"
     ],
     "codex": [
-     "codex mcp add marketplace --url https://api.nameshift.com/mcp"
+     "codex mcp add marketplace-nameshift --url https://api.nameshift.com/mcp"
     ]
    }
   },
@@ -112337,10 +112352,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http analytics https://analytics.mcp.bitmovin.com --header 'x-api-key: <x-api-key>'"
+     "claude mcp add --transport http analytics-analytics https://analytics.mcp.bitmovin.com --header 'x-api-key: <x-api-key>'"
     ],
     "codex": [
-     "codex mcp add analytics --url https://analytics.mcp.bitmovin.com --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add analytics-analytics --url https://analytics.mcp.bitmovin.com --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -112793,10 +112808,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http openalex https://mcp.openalex.org/mcp"
+     "claude mcp add --transport http openalex-openalex https://mcp.openalex.org/mcp"
     ],
     "codex": [
-     "codex mcp add openalex --url https://mcp.openalex.org/mcp"
+     "codex mcp add openalex-openalex --url https://mcp.openalex.org/mcp"
     ]
    }
   },
@@ -112964,7 +112979,7 @@
    "repository": "https://github.com/axiomhq/mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport sse axiom https://mcp.axiom.co/sse"
+     "claude mcp add --transport sse axiom-axiom https://mcp.axiom.co/sse"
     ],
     "codex": [
      "Codex supports streamable HTTP only; this server uses SSE: https://mcp.axiom.co/sse"
@@ -113933,10 +113948,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http search https://platform.liner.com/api/v1/mcp"
+     "claude mcp add --transport http search-liner https://platform.liner.com/api/v1/mcp"
     ],
     "codex": [
-     "codex mcp add search --url https://platform.liner.com/api/v1/mcp"
+     "codex mcp add search-liner --url https://platform.liner.com/api/v1/mcp"
     ]
    }
   },
@@ -114389,10 +114404,10 @@
    "repository": "https://github.com/Jumpseller/api-docs",
    "install": {
     "claude": [
-     "claude mcp add --transport http admin https://mcp.jumpseller.com/ --header 'X-LOGIN-KEY: <X-LOGIN-KEY>' --header 'X-AUTH-TOKEN: <X-AUTH-TOKEN>'"
+     "claude mcp add --transport http admin-jumpseller https://mcp.jumpseller.com/ --header 'X-LOGIN-KEY: <X-LOGIN-KEY>' --header 'X-AUTH-TOKEN: <X-AUTH-TOKEN>'"
     ],
     "codex": [
-     "codex mcp add admin --url https://mcp.jumpseller.com/ --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add admin-jumpseller --url https://mcp.jumpseller.com/ --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -114408,10 +114423,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http website https://ai.webuycars.co.za/website"
+     "claude mcp add --transport http website-webuycars https://ai.webuycars.co.za/website"
     ],
     "codex": [
-     "codex mcp add website --url https://ai.webuycars.co.za/website"
+     "codex mcp add website-webuycars --url https://ai.webuycars.co.za/website"
     ]
    }
   },
@@ -114579,10 +114594,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http search https://www.101soundboards.com/mcp/search"
+     "claude mcp add --transport http search-101soundboards https://www.101soundboards.com/mcp/search"
     ],
     "codex": [
-     "codex mcp add search --url https://www.101soundboards.com/mcp/search"
+     "codex mcp add search-101soundboards --url https://www.101soundboards.com/mcp/search"
     ]
    }
   },
@@ -115016,10 +115031,10 @@
    "repository": "https://github.com/parallel-web/search-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http search https://search-mcp.parallel.ai/mcp"
+     "claude mcp add --transport http search-parallel https://search-mcp.parallel.ai/mcp"
     ],
     "codex": [
-     "codex mcp add search --url https://search-mcp.parallel.ai/mcp"
+     "codex mcp add search-parallel --url https://search-mcp.parallel.ai/mcp"
     ]
    }
   },
@@ -115035,10 +115050,10 @@
    "repository": "https://github.com/redpanda-data/docs-site",
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://docs.redpanda.com/mcp"
+     "claude mcp add --transport http docs-redpanda https://docs.redpanda.com/mcp"
     ],
     "codex": [
-     "codex mcp add docs --url https://docs.redpanda.com/mcp"
+     "codex mcp add docs-redpanda --url https://docs.redpanda.com/mcp"
     ]
    }
   },
@@ -115529,10 +115544,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http fathom https://api.fathom.ai/mcp"
+     "claude mcp add --transport http fathom-api https://api.fathom.ai/mcp"
     ],
     "codex": [
-     "codex mcp add fathom --url https://api.fathom.ai/mcp"
+     "codex mcp add fathom-api --url https://api.fathom.ai/mcp"
     ]
    }
   },
@@ -115624,10 +115639,10 @@
    "repository": "https://github.com/vaisala-xweather/xweather-mcp-registry",
    "install": {
     "claude": [
-     "claude mcp add --transport http weather https://mcp.api.xweather.com/mcp --header 'Authorization: <Authorization>'"
+     "claude mcp add --transport http weather-xweather https://mcp.api.xweather.com/mcp --header 'Authorization: <Authorization>'"
     ],
     "codex": [
-     "codex mcp add weather --url https://mcp.api.xweather.com/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add weather-xweather --url https://mcp.api.xweather.com/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -115738,10 +115753,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://docs.continue.dev/mcp"
+     "claude mcp add --transport http docs-continue https://docs.continue.dev/mcp"
     ],
     "codex": [
-     "codex mcp add docs --url https://docs.continue.dev/mcp"
+     "codex mcp add docs-continue --url https://docs.continue.dev/mcp"
     ]
    }
   },
@@ -115776,10 +115791,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http jobs https://www.remoterocketship.com/api/openclaw/mcp/ --header 'Authorization: <Authorization>'"
+     "claude mcp add --transport http jobs-remoterocketship https://www.remoterocketship.com/api/openclaw/mcp/ --header 'Authorization: <Authorization>'"
     ],
     "codex": [
-     "codex mcp add jobs --url https://www.remoterocketship.com/api/openclaw/mcp/ --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add jobs-remoterocketship --url https://www.remoterocketship.com/api/openclaw/mcp/ --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -116004,10 +116019,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http jobs https://www.nationalevacaturebank.nl/mcp"
+     "claude mcp add --transport http jobs-www https://www.nationalevacaturebank.nl/mcp"
     ],
     "codex": [
-     "codex mcp add jobs --url https://www.nationalevacaturebank.nl/mcp"
+     "codex mcp add jobs-www --url https://www.nationalevacaturebank.nl/mcp"
     ]
    }
   },
@@ -116061,10 +116076,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http memory https://memory.agentage.io/mcp"
+     "claude mcp add --transport http memory-agentage https://memory.agentage.io/mcp"
     ],
     "codex": [
-     "codex mcp add memory --url https://memory.agentage.io/mcp"
+     "codex mcp add memory-agentage --url https://memory.agentage.io/mcp"
     ]
    }
   },
@@ -116137,10 +116152,10 @@
    "repository": "https://github.com/vaadin/vaadin-documentation-services",
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://mcp.vaadin.com/docs/"
+     "claude mcp add --transport http docs-vaadin https://mcp.vaadin.com/docs/"
     ],
     "codex": [
-     "codex mcp add docs --url https://mcp.vaadin.com/docs/"
+     "codex mcp add docs-vaadin --url https://mcp.vaadin.com/docs/"
     ]
    }
   },
@@ -116384,10 +116399,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http so https://mcp.api.fabric.so/mcp"
+     "claude mcp add --transport http so-fabric https://mcp.api.fabric.so/mcp"
     ],
     "codex": [
-     "codex mcp add so --url https://mcp.api.fabric.so/mcp"
+     "codex mcp add so-fabric --url https://mcp.api.fabric.so/mcp"
     ]
    }
   },
@@ -116422,10 +116437,10 @@
    "repository": "https://github.com/didit-protocol/mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http me https://mcp.didit.me/mcp"
+     "claude mcp add --transport http me-didit https://mcp.didit.me/mcp"
     ],
     "codex": [
-     "codex mcp add me --url https://mcp.didit.me/mcp"
+     "codex mcp add me-didit --url https://mcp.didit.me/mcp"
     ]
    }
   },
@@ -116688,10 +116703,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http jobs https://www.intermediair.nl/mcp"
+     "claude mcp add --transport http jobs-www-2 https://www.intermediair.nl/mcp"
     ],
     "codex": [
-     "codex mcp add jobs --url https://www.intermediair.nl/mcp"
+     "codex mcp add jobs-www-2 --url https://www.intermediair.nl/mcp"
     ]
    }
   },
@@ -116707,10 +116722,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http commerce https://lmk.today/api/ucp/mcp"
+     "claude mcp add --transport http commerce-lmk https://lmk.today/api/ucp/mcp"
     ],
     "codex": [
-     "codex mcp add commerce --url https://lmk.today/api/ucp/mcp"
+     "codex mcp add commerce-lmk --url https://lmk.today/api/ucp/mcp"
     ]
    }
   },
@@ -116840,10 +116855,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http hotels https://mcp.b2a.bluepillow.com/"
+     "claude mcp add --transport http hotels-bluepillow https://mcp.b2a.bluepillow.com/"
     ],
     "codex": [
-     "codex mcp add hotels --url https://mcp.b2a.bluepillow.com/"
+     "codex mcp add hotels-bluepillow --url https://mcp.b2a.bluepillow.com/"
     ]
    }
   },
@@ -117296,10 +117311,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http research https://mcp.shamra-academia.com/mcp --header 'Authorization: <Authorization>'"
+     "claude mcp add --transport http research-shamra-academia https://mcp.shamra-academia.com/mcp --header 'Authorization: <Authorization>'"
     ],
     "codex": [
-     "codex mcp add research --url https://mcp.shamra-academia.com/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add research-shamra-academia --url https://mcp.shamra-academia.com/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -117904,10 +117919,10 @@
    "repository": "https://github.com/clueso-ai/clueso-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http video https://connect.clueso.io/mcp"
+     "claude mcp add --transport http video-clueso https://connect.clueso.io/mcp"
     ],
     "codex": [
-     "codex mcp add video --url https://connect.clueso.io/mcp"
+     "codex mcp add video-clueso --url https://connect.clueso.io/mcp"
     ]
    }
   },
@@ -118132,10 +118147,10 @@
    "repository": "https://github.com/Propbar/mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http research https://mcp.propbar.co.uk"
+     "claude mcp add --transport http research-propbar https://mcp.propbar.co.uk"
     ],
     "codex": [
-     "codex mcp add research --url https://mcp.propbar.co.uk"
+     "codex mcp add research-propbar --url https://mcp.propbar.co.uk"
     ]
    }
   },
@@ -118322,10 +118337,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http catalog https://mcp.neptunecigar.com/mcp"
+     "claude mcp add --transport http catalog-neptunecigar https://mcp.neptunecigar.com/mcp"
     ],
     "codex": [
-     "codex mcp add catalog --url https://mcp.neptunecigar.com/mcp"
+     "codex mcp add catalog-neptunecigar --url https://mcp.neptunecigar.com/mcp"
     ]
    }
   },
@@ -118417,10 +118432,10 @@
    "repository": "https://github.com/DiscordServers/monorepo",
    "install": {
     "claude": [
-     "claude mcp add --transport http search https://mcp.discordservers.com/mcp"
+     "claude mcp add --transport http search-discordservers https://mcp.discordservers.com/mcp"
     ],
     "codex": [
-     "codex mcp add search --url https://mcp.discordservers.com/mcp"
+     "codex mcp add search-discordservers --url https://mcp.discordservers.com/mcp"
     ]
    }
   },
@@ -118683,10 +118698,10 @@
    "repository": "https://github.com/Nvoip/nvoip-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http br https://mcp.nvoip.com.br/mcp --header 'Authorization: <Authorization>'"
+     "claude mcp add --transport http br-nvoip https://mcp.nvoip.com.br/mcp --header 'Authorization: <Authorization>'"
     ],
     "codex": [
-     "codex mcp add br --url https://mcp.nvoip.com.br/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
+     "codex mcp add br-nvoip --url https://mcp.nvoip.com.br/mcp --bearer-token-env-var <ENV_VAR_WITH_TOKEN>"
     ]
    }
   },
@@ -118930,10 +118945,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http de https://mcp.vakantio.de/mcp"
+     "claude mcp add --transport http de-vakantio https://mcp.vakantio.de/mcp"
     ],
     "codex": [
-     "codex mcp add de --url https://mcp.vakantio.de/mcp"
+     "codex mcp add de-vakantio --url https://mcp.vakantio.de/mcp"
     ]
    }
   },
@@ -118987,10 +119002,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http shop https://mcp.tabak-brucker.de/mcp"
+     "claude mcp add --transport http shop-www https://mcp.tabak-brucker.de/mcp"
     ],
     "codex": [
-     "codex mcp add shop --url https://mcp.tabak-brucker.de/mcp"
+     "codex mcp add shop-www --url https://mcp.tabak-brucker.de/mcp"
     ]
    }
   },
@@ -119006,10 +119021,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http catalog https://www.soundcreation.ro/api/agent/mcp.php"
+     "claude mcp add --transport http catalog-soundcreation https://www.soundcreation.ro/api/agent/mcp.php"
     ],
     "codex": [
-     "codex mcp add catalog --url https://www.soundcreation.ro/api/agent/mcp.php"
+     "codex mcp add catalog-soundcreation --url https://www.soundcreation.ro/api/agent/mcp.php"
     ]
    }
   },
@@ -119158,10 +119173,10 @@
    "repository": "https://github.com/kdg22/mcp-htmlweb",
    "install": {
     "claude": [
-     "claude mcp add --transport http ru https://mcp.htmlweb.ru/"
+     "claude mcp add --transport http ru-htmlweb https://mcp.htmlweb.ru/"
     ],
     "codex": [
-     "codex mcp add ru --url https://mcp.htmlweb.ru/"
+     "codex mcp add ru-htmlweb --url https://mcp.htmlweb.ru/"
     ]
    }
   },
@@ -119272,10 +119287,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http news https://www.cryptowisser.com/mcp/server"
+     "claude mcp add --transport http news-cryptowisser https://www.cryptowisser.com/mcp/server"
     ],
     "codex": [
-     "codex mcp add news --url https://www.cryptowisser.com/mcp/server"
+     "codex mcp add news-cryptowisser --url https://www.cryptowisser.com/mcp/server"
     ]
    }
   },
@@ -119310,10 +119325,10 @@
    "repository": "https://github.com/stimulsoft/mcp-docs-server",
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://devs.stimulsoft.com/mcp-docs"
+     "claude mcp add --transport http docs-stimulsoft https://devs.stimulsoft.com/mcp-docs"
     ],
     "codex": [
-     "codex mcp add docs --url https://devs.stimulsoft.com/mcp-docs"
+     "codex mcp add docs-stimulsoft --url https://devs.stimulsoft.com/mcp-docs"
     ]
    }
   },
@@ -119329,10 +119344,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http medusa https://docs.medusajs.com/mcp"
+     "claude mcp add --transport http medusa-medusajs https://docs.medusajs.com/mcp"
     ],
     "codex": [
-     "codex mcp add medusa --url https://docs.medusajs.com/mcp"
+     "codex mcp add medusa-medusajs --url https://docs.medusajs.com/mcp"
     ]
    }
   },
@@ -119367,10 +119382,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http real-estate https://mcp.city24.lv/_mcp"
+     "claude mcp add --transport http real-estate-city24 https://mcp.city24.lv/_mcp"
     ],
     "codex": [
-     "codex mcp add real-estate --url https://mcp.city24.lv/_mcp"
+     "codex mcp add real-estate-city24 --url https://mcp.city24.lv/_mcp"
     ]
    }
   },
@@ -119462,10 +119477,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http travel-search https://www.sistaminuten.se/mcp"
+     "claude mcp add --transport http travel-search-sistaminuten https://www.sistaminuten.se/mcp"
     ],
     "codex": [
-     "codex mcp add travel-search --url https://www.sistaminuten.se/mcp"
+     "codex mcp add travel-search-sistaminuten --url https://www.sistaminuten.se/mcp"
     ]
    }
   },
@@ -120203,10 +120218,10 @@
    "repository": "https://github.com/mobiletextalerts/actions-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http sms https://mcp.mobile-text-alerts.com/mcp"
+     "claude mcp add --transport http sms-mobile-text-alerts https://mcp.mobile-text-alerts.com/mcp"
     ],
     "codex": [
-     "codex mcp add sms --url https://mcp.mobile-text-alerts.com/mcp"
+     "codex mcp add sms-mobile-text-alerts --url https://mcp.mobile-text-alerts.com/mcp"
     ]
    }
   },
@@ -120279,10 +120294,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http jobs https://mcp.alleskralle.com/mcp"
+     "claude mcp add --transport http jobs-alleskralle https://mcp.alleskralle.com/mcp"
     ],
     "codex": [
-     "codex mcp add jobs --url https://mcp.alleskralle.com/mcp"
+     "codex mcp add jobs-alleskralle --url https://mcp.alleskralle.com/mcp"
     ]
    }
   },
@@ -120317,10 +120332,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http store https://vesremont.com/mcp"
+     "claude mcp add --transport http store-vesremont https://vesremont.com/mcp"
     ],
     "codex": [
-     "codex mcp add store --url https://vesremont.com/mcp"
+     "codex mcp add store-vesremont --url https://vesremont.com/mcp"
     ]
    }
   },
@@ -120469,10 +120484,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http catalog https://api.nontoxicnook.com/api/mcp"
+     "claude mcp add --transport http catalog-nontoxicnook https://api.nontoxicnook.com/api/mcp"
     ],
     "codex": [
-     "codex mcp add catalog --url https://api.nontoxicnook.com/api/mcp"
+     "codex mcp add catalog-nontoxicnook --url https://api.nontoxicnook.com/api/mcp"
     ]
    }
   },
@@ -120963,10 +120978,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http travel-search https://www.afbudsrejser.dk/mcp"
+     "claude mcp add --transport http travel-search-afbudsrejser https://www.afbudsrejser.dk/mcp"
     ],
     "codex": [
-     "codex mcp add travel-search --url https://www.afbudsrejser.dk/mcp"
+     "codex mcp add travel-search-afbudsrejser --url https://www.afbudsrejser.dk/mcp"
     ]
    }
   },
@@ -120982,10 +120997,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http catalog https://smm.guide/mcp"
+     "claude mcp add --transport http catalog-smm https://smm.guide/mcp"
     ],
     "codex": [
-     "codex mcp add catalog --url https://smm.guide/mcp"
+     "codex mcp add catalog-smm --url https://smm.guide/mcp"
     ]
    }
   },
@@ -121172,10 +121187,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http store https://mcp.thenightsky.com/mcp"
+     "claude mcp add --transport http store-thenightsky https://mcp.thenightsky.com/mcp"
     ],
     "codex": [
-     "codex mcp add store --url https://mcp.thenightsky.com/mcp"
+     "codex mcp add store-thenightsky --url https://mcp.thenightsky.com/mcp"
     ]
    }
   },
@@ -121229,10 +121244,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://docs-assistant.handsontable.com/mcp"
+     "claude mcp add --transport http docs-handsontable https://docs-assistant.handsontable.com/mcp"
     ],
     "codex": [
-     "codex mcp add docs --url https://docs-assistant.handsontable.com/mcp"
+     "codex mcp add docs-handsontable --url https://docs-assistant.handsontable.com/mcp"
     ]
    }
   },
@@ -121305,10 +121320,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http directory https://www.choosehelp.com/mcp"
+     "claude mcp add --transport http directory-choosehelp https://www.choosehelp.com/mcp"
     ],
     "codex": [
-     "codex mcp add directory --url https://www.choosehelp.com/mcp"
+     "codex mcp add directory-choosehelp --url https://www.choosehelp.com/mcp"
     ]
    }
   },
@@ -121495,10 +121510,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http weather https://weather-mcp.windbornesystems.com/mcp"
+     "claude mcp add --transport http weather-windbornesystems https://weather-mcp.windbornesystems.com/mcp"
     ],
     "codex": [
-     "codex mcp add weather --url https://weather-mcp.windbornesystems.com/mcp"
+     "codex mcp add weather-windbornesystems --url https://weather-mcp.windbornesystems.com/mcp"
     ]
    }
   },
@@ -121514,10 +121529,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://mcp.blockrazor.io/docs"
+     "claude mcp add --transport http docs-blockrazor https://mcp.blockrazor.io/docs"
     ],
     "codex": [
-     "codex mcp add docs --url https://mcp.blockrazor.io/docs"
+     "codex mcp add docs-blockrazor --url https://mcp.blockrazor.io/docs"
     ]
    }
   },
@@ -121723,10 +121738,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http jobs https://emprego.com/api/mcp"
+     "claude mcp add --transport http jobs-emprego https://emprego.com/api/mcp"
     ],
     "codex": [
-     "codex mcp add jobs --url https://emprego.com/api/mcp"
+     "codex mcp add jobs-emprego --url https://emprego.com/api/mcp"
     ]
    }
   },
@@ -121780,10 +121795,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://docs.ntop.com/mcp"
+     "claude mcp add --transport http docs-ntop https://docs.ntop.com/mcp"
     ],
     "codex": [
-     "codex mcp add docs --url https://docs.ntop.com/mcp"
+     "codex mcp add docs-ntop --url https://docs.ntop.com/mcp"
     ]
    }
   },
@@ -121818,10 +121833,10 @@
    "repository": "https://github.com/CommonElements/common-elements-claude-plugins",
    "install": {
     "claude": [
-     "claude mcp add --transport http data https://commonelements.com/api/mcp"
+     "claude mcp add --transport http data-commonelements https://commonelements.com/api/mcp"
     ],
     "codex": [
-     "codex mcp add data --url https://commonelements.com/api/mcp"
+     "codex mcp add data-commonelements --url https://commonelements.com/api/mcp"
     ]
    }
   },
@@ -122350,10 +122365,10 @@
    "repository": "https://github.com/CerebriumAI/cerebrium-skills",
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://cerebrium.ai/docs/mcp"
+     "claude mcp add --transport http docs-cerebrium https://cerebrium.ai/docs/mcp"
     ],
     "codex": [
-     "codex mcp add docs --url https://cerebrium.ai/docs/mcp"
+     "codex mcp add docs-cerebrium --url https://cerebrium.ai/docs/mcp"
     ]
    }
   },
@@ -122426,10 +122441,10 @@
    "repository": "https://github.com/blitzworks-io/blitz-cloud-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http cloud https://mcp.blitz.cloud/mcp"
+     "claude mcp add --transport http cloud-blitz https://mcp.blitz.cloud/mcp"
     ],
     "codex": [
-     "codex mcp add cloud --url https://mcp.blitz.cloud/mcp"
+     "codex mcp add cloud-blitz --url https://mcp.blitz.cloud/mcp"
     ]
    }
   },
@@ -122464,10 +122479,10 @@
    "repository": "https://github.com/markets-ai/opencapital-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http sh https://api.opencapital.sh/mcp"
+     "claude mcp add --transport http sh-opencapital https://api.opencapital.sh/mcp"
     ],
     "codex": [
-     "codex mcp add sh --url https://api.opencapital.sh/mcp"
+     "codex mcp add sh-opencapital --url https://api.opencapital.sh/mcp"
     ]
    }
   },
@@ -122578,10 +122593,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http context https://context.era.app/mcp"
+     "claude mcp add --transport http context-era https://context.era.app/mcp"
     ],
     "codex": [
-     "codex mcp add context --url https://context.era.app/mcp"
+     "codex mcp add context-era --url https://context.era.app/mcp"
     ]
    }
   },
@@ -122654,10 +122669,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http platform https://mcp.universally.com/platform"
+     "claude mcp add --transport http platform-universally https://mcp.universally.com/platform"
     ],
     "codex": [
-     "codex mcp add platform --url https://mcp.universally.com/platform"
+     "codex mcp add platform-universally --url https://mcp.universally.com/platform"
     ]
    }
   },
@@ -123262,10 +123277,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http docs https://enterprise.wikimedia.com/mcp"
+     "claude mcp add --transport http docs-enterprise https://enterprise.wikimedia.com/mcp"
     ],
     "codex": [
-     "codex mcp add docs --url https://enterprise.wikimedia.com/mcp"
+     "codex mcp add docs-enterprise --url https://enterprise.wikimedia.com/mcp"
     ]
    }
   },
@@ -123604,10 +123619,10 @@
    "repository": "https://github.com/Atmosphere-Technologies/atmosphere_app",
    "install": {
     "claude": [
-     "claude mcp add --transport http br https://mcp.oportunidados.com.br/mcp"
+     "claude mcp add --transport http br-oportunidados https://mcp.oportunidados.com.br/mcp"
     ],
     "codex": [
-     "codex mcp add br --url https://mcp.oportunidados.com.br/mcp"
+     "codex mcp add br-oportunidados --url https://mcp.oportunidados.com.br/mcp"
     ]
    }
   },
@@ -123832,10 +123847,10 @@
    "repository": null,
    "install": {
     "claude": [
-     "claude mcp add --transport http shop https://www.med-dent24.com/mcp"
+     "claude mcp add --transport http shop-med-dent24 https://www.med-dent24.com/mcp"
     ],
     "codex": [
-     "codex mcp add shop --url https://www.med-dent24.com/mcp"
+     "codex mcp add shop-med-dent24 --url https://www.med-dent24.com/mcp"
     ]
    }
   },
@@ -123870,10 +123885,10 @@
    "repository": "https://github.com/culturecreates/artsdata-mcp-server",
    "install": {
     "claude": [
-     "claude mcp add --transport http ca https://mcp.artsdata.ca/mcp"
+     "claude mcp add --transport http ca-artsdata https://mcp.artsdata.ca/mcp"
     ],
     "codex": [
-     "codex mcp add ca --url https://mcp.artsdata.ca/mcp"
+     "codex mcp add ca-artsdata --url https://mcp.artsdata.ca/mcp"
     ]
    }
   },
@@ -124022,10 +124037,10 @@
    "repository": "https://github.com/ref-tools/ref-tools-mcp",
    "install": {
     "claude": [
-     "claude mcp add --transport http ref-tools https://api.ref.tools/mcp"
+     "claude mcp add --transport http ref-tools-ref https://api.ref.tools/mcp"
     ],
     "codex": [
-     "codex mcp add ref-tools --url https://api.ref.tools/mcp"
+     "codex mcp add ref-tools-ref --url https://api.ref.tools/mcp"
     ]
    }
   },

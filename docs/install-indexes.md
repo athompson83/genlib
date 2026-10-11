@@ -16,12 +16,13 @@ Six ranked indexes let an agent find a widely used tool and install it in one or
 ## MCP servers
 
 - **Ranked list (2,943):** packaged servers from the [official MCP Registry](https://registry.modelcontextprotocol.io), one per package: npm and PyPI servers with at least 1,000 downloads in the last month, by downloads, then container-only servers (no download signal) in registry order.
-  - Commands pin the package version.
+  - Commands pin the package version. The 15 records whose registry entry said `latest` were resolved on 2026-10-11 (`pinnedAt`). npm packages are pinned to the exact version. Container images are pinned to their declared version tag when the registry has it, plus the image digest (`image:1.0.0@sha256:…`), so the code that runs is the code that was reviewed.
   - Required environment variables and arguments appear as `<PLACEHOLDER>` values to fill.
   - `npx` runs npm packages, `uvx` runs PyPI packages, and `docker run -i --rm` runs container images.
 - **Hosted servers (699, `rank: null`):** listed separately, one per domain, ordered by domain popularity.
   - Claude Code: `claude mcp add --transport http|sse <name> <url>`.
   - Codex: `codex mcp add <name> --url <url>`. Codex supports streamable HTTP only.
+- **Local names are unique.** Installing two servers with the same local name would overwrite one in the client's config. When several records share a name (`gitlab`, `postgres`), the highest-ranked keeps it, and the others get `<name>-<owner>` from their registry namespace (`gitlab-vish288`, `postgres-pgedge`). `node scripts/mcp-index.mjs` maintains both rules: `--pin` resolves `latest` over the network, and `--check`, run by `npm run check`, fails on a `latest` tag or a shared name.
 - Both clients write their own config: Claude Code uses `.mcp.json` / `~/.claude.json`; Codex uses `~/.codex/config.toml`. Add `--scope project` to Claude Code's command to share a server through `.mcp.json`.
 
 ## CLIs

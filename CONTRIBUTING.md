@@ -94,3 +94,5 @@ If claiming a cost benefit, measure total model cost, context use, elapsed time,
 ## Documentation is part of every change
 
 Update the README, the diagrams (README and `docs/architecture.md`, then `npm run diagrams:render` to redraw their SVGs with the pinned Agentic Mermaid; it needs network and Node 22), the affected docs and guides, and the Jev guide, search index and navigation graph (`docs/jev.md`, `docs/agent-access.md`, `llms.txt`, `npm run index:build`, `npm run graph:build`, `npm run tokens:report`) in the same PR as the code or catalog change. Run `npm run docs:sync`, `npm run skills:sync` and the search-index build, then `npm run check`, which fails on stale generated content. The full checklist is in [AGENTS.md](AGENTS.md#keep-documentation-current-on-every-change); the pull request template repeats it.
+
+Quickstarts and MCP commands never run `latest`. After adding one, run `node scripts/pin-quickstarts.mjs` and `node scripts/mcp-index.mjs --pin` (both need network). They pin npm runners to exact versions and images to digests, and give colliding MCP local names a namespace. `npm run check` fails on anything left unpinned.

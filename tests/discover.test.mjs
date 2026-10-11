@@ -175,3 +175,16 @@ test('receiving-project fit steers framework, SDK language, MCP vendor and depen
   assert.ok(!packet.state.candidates.some(candidate => candidate.id === 'password-hashing'), 'the pip-installed cookbook is not offered under a no-dependency constraint');
   assert.ok(jevPacket(sources, 'password hashing', { profile: { languages: ['python'], frameworks: [] } }).state.candidates.some(candidate => candidate.id === 'password-hashing'));
 });
+
+test('a package listed by several records surfaces once, under its strictest record', async () => {
+  const sources = await loadSources();
+  const aliases = sources.resourceAliases;
+  assert.ok(aliases.size >= 80);
+  // Every alias names a package record that still exists and is not itself an alias.
+  const ids = new Set(sources.resources.map(resource => resource.id));
+  for (const [alias, canonical] of aliases) { assert.ok(ids.has(alias) && ids.has(canonical) && !aliases.has(canonical), alias); }
+  const results = findInSources(sources, 'discord js', { limit: 8 }).results;
+  assert.equal(results.filter(result => ['discord-js', 'discord-js-npm'].includes(result.id)).length, 1);
+  // A license-review flag is never lost to a duplicate without it.
+  assert.equal(aliases.get('knocklabs-node'), 'knocklabs-node-npm');
+});

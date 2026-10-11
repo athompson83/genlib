@@ -247,8 +247,8 @@
         "Run the CLI in an Astro project with Tailwind CSS v4 and commit the copied components."
       ],
       "quickstart": [
-        "npx starwind@latest init --defaults",
-        "npx starwind@latest add button"
+        "npx starwind@3.4.0 init --defaults",
+        "npx starwind@3.4.0 add button"
       ],
       "packages": [
         {
@@ -371,7 +371,7 @@
         "Requires an initialized shadcn/ui project (npx shadcn@latest init)."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://ui.spectrumhq.in/r/animated-drawer.json"
+        "npx shadcn@4.21.4 add https://ui.spectrumhq.in/r/animated-drawer.json"
       ]
     },
     {
@@ -430,8 +430,8 @@
         "Requires an initialized shadcn/ui project; @reui resolves through the official shadcn registry index."
       ],
       "quickstart": [
-        "npx shadcn@latest add @reui/c-button-10",
-        "npx shadcn@latest add @reui/c-data-grid-9"
+        "npx shadcn@4.21.4 add @reui/c-button-10",
+        "npx shadcn@4.21.4 add @reui/c-data-grid-9"
       ]
     },
     {
@@ -547,7 +547,7 @@
         "Requires an initialized shadcn/ui project."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://lina.sameer.sh/r/lina-radix.json"
+        "npx shadcn@4.21.4 add https://lina.sameer.sh/r/lina-radix.json"
       ]
     },
     {
@@ -605,7 +605,7 @@
         "Use free-edition items only after recording the site's license statement; Pro items need a purchase."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://ui.devsloka.in/r/morphing-nav.json"
+        "npx shadcn@4.21.4 add https://ui.devsloka.in/r/morphing-nav.json"
       ]
     },
     {
@@ -663,7 +663,7 @@
         "Requires an initialized shadcn/ui project; @coss/<name> also resolves through the official registry index."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://coss.com/ui/r/button.json"
+        "npx shadcn@4.21.4 add https://coss.com/ui/r/button.json"
       ]
     },
     {
@@ -780,7 +780,7 @@
         "Requires Tailwind CSS; @ui-layouts/<name> also resolves through the official shadcn registry index."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.ui-layouts.com/r/btn-bg-shine.json",
+        "npx shadcn@4.21.4 add https://www.ui-layouts.com/r/btn-bg-shine.json",
         "For copy-paste use: npm install motion clsx tailwind-merge"
       ]
     },
@@ -840,7 +840,7 @@
         "Requires an initialized shadcn/ui project."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://shadcnstudio.com/r/radix-nova/button-01.json"
+        "npx shadcn@4.21.4 add https://shadcnstudio.com/r/radix-nova/button-01.json"
       ]
     },
     {
@@ -897,7 +897,7 @@
         "Requires an initialized shadcn/ui project; @shark/<name> also resolves through the official registry index."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://shark-ui.com/r/button.json"
+        "npx shadcn@4.21.4 add https://shark-ui.com/r/button.json"
       ]
     },
     {
@@ -1081,7 +1081,7 @@
       ],
       "quickstart": [
         "Open https://tweakcn.com/editor/theme, adjust the theme and copy the generated CSS variables into your globals.css.",
-        "Or install a preset theme: npx shadcn@latest add https://tweakcn.com/r/themes/amethyst-haze.json"
+        "Or install a preset theme: npx shadcn@4.21.4 add https://tweakcn.com/r/themes/amethyst-haze.json"
       ]
     },
     {
@@ -1195,7 +1195,7 @@
       ],
       "quickstart": [
         "npm install @tiptap/react @tiptap/core @tiptap/pm",
-        "npx shadcn@latest add https://tiptap.niazmorshed.dev/r/toolbar-provider.json"
+        "npx shadcn@4.21.4 add https://tiptap.niazmorshed.dev/r/toolbar-provider.json"
       ]
     },
     {
@@ -1368,8 +1368,8 @@
         "Requires an initialized shadcn/ui project; keep map tokens in environment variables."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.terrae.dev/map.json",
-        "npx shadcn@latest add https://www.terrae.dev/marker.json"
+        "npx shadcn@4.21.4 add https://www.terrae.dev/map.json",
+        "npx shadcn@4.21.4 add https://www.terrae.dev/marker.json"
       ]
     },
     {
@@ -1427,7 +1427,7 @@
         "Requires an initialized shadcn/ui project."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.rtecn.space/r/editor.json"
+        "npx shadcn@4.21.4 add https://www.rtecn.space/r/editor.json"
       ]
     },
     {
@@ -1485,7 +1485,7 @@
         "Requires an initialized shadcn/ui project; @elevenlabs-ui/<name> also resolves through the official registry index."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://ui.elevenlabs.io/r/orb.json"
+        "npx shadcn@4.21.4 add https://ui.elevenlabs.io/r/orb.json"
       ]
     },
     {
@@ -1543,7 +1543,7 @@
         "Pin the generator version used and commit bts.jsonc so the stack can be updated later."
       ],
       "quickstart": [
-        "npm create better-fullstack@latest",
+        "npm create better-fullstack@2.7.0",
         "Or pick a stack at https://better-fullstack.dev/new and copy the generated command."
       ],
       "packages": [
@@ -1863,7 +1863,7 @@
         "Run npx shadcn@latest init first if the project has no components.json; review copied code."
       ],
       "quickstart": [
-        "npx shadcn@latest add @smoothui/dynamic-island",
+        "npx shadcn@4.21.4 add @smoothui/dynamic-island",
         "Browse all items: https://smoothui.dev/r/registry.json"
       ]
     },
@@ -1987,7 +1987,7 @@
         "Review the copied component and pin its dependencies."
       ],
       "quickstart": [
-        "npx shadcn@latest add \"https://seraui.com/registry/button.json\""
+        "npx shadcn@4.21.4 add \"https://seraui.com/registry/button.json\""
       ]
     },
     {
@@ -2045,7 +2045,7 @@
         "License review required: record the plan and terms before committing copied blocks."
       ],
       "quickstart": [
-        "Sign in at https://tailark.com (see https://tailark.com/pricing), then install a block with npx shadcn@latest add @tailark/hero-section-1 using your registry credentials"
+        "Sign in at https://tailark.com (see https://tailark.com/pricing), then install a block with npx shadcn@4.21.4 add @tailark/hero-section-1 using your registry credentials"
       ]
     },
     {
@@ -2167,7 +2167,7 @@
         "Pin @ncdai/react-wheel-picker; the shadcn item adds it as a dependency."
       ],
       "quickstart": [
-        "npx shadcn@latest add @ncdai/wheel-picker",
+        "npx shadcn@4.21.4 add @ncdai/wheel-picker",
         "Or primitives only: npm install @ncdai/react-wheel-picker"
       ]
     },
@@ -2226,8 +2226,8 @@
         "Review generated files; pin react-aria-components."
       ],
       "quickstart": [
-        "npx shadcn@latest init @intentui/theme-default",
-        "npx shadcn@latest add @intentui/button"
+        "npx shadcn@4.21.4 init @intentui/theme-default",
+        "npx shadcn@4.21.4 add @intentui/button"
       ]
     },
     {
@@ -2285,7 +2285,7 @@
         "Review copied code and pin its dependencies."
       ],
       "quickstart": [
-        "npx shadcn@latest add @jolyui/dock",
+        "npx shadcn@4.21.4 add @jolyui/dock",
         "Browse all items: https://www.jolyui.dev/r/registry.json"
       ]
     },
@@ -2345,8 +2345,8 @@
         "Resolve the license before shipping; review copied components."
       ],
       "quickstart": [
-        "npx shadcn@latest add @thegridcn/button",
-        "If no components.json yet: npx shadcn@latest init (preset @thegridcn/radix-vega per https://thegridcn.com/docs/install)"
+        "npx shadcn@4.21.4 add @thegridcn/button",
+        "If no components.json yet: npx shadcn@4.21.4 init (preset @thegridcn/radix-vega per https://thegridcn.com/docs/install)"
       ]
     },
     {
@@ -2404,7 +2404,7 @@
         "Review copied code and pin framer-motion."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://componentry.dev/r/magnetic-dock.json"
+        "npx shadcn@4.21.4 add https://componentry.dev/r/magnetic-dock.json"
       ]
     },
     {
@@ -2463,7 +2463,7 @@
         "Confirm the item is free (MIT) before committing; Pro items are licensed separately."
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.shadcn.io/r/questionnaire.json"
+        "npx shadcn@4.21.4 add https://www.shadcn.io/r/questionnaire.json"
       ]
     },
     {
@@ -2521,7 +2521,7 @@
         "Pin remotion and review copied components."
       ],
       "quickstart": [
-        "In a Remotion project: npx shadcn@latest add @remocn/soft-blur-in",
+        "In a Remotion project: npx shadcn@4.21.4 add @remocn/soft-blur-in",
         "Check Remotion licensing: https://www.remotion.dev/docs/license"
       ]
     },
@@ -2637,7 +2637,7 @@
         "Commit the SVG files you use; check brand guidelines."
       ],
       "quickstart": [
-        "npx shadcn@latest add @svgl/nvidia",
+        "npx shadcn@4.21.4 add @svgl/nvidia",
         "API: https://api.svgl.app?search=nvidia returns light/dark SVG URLs"
       ]
     },
@@ -3050,7 +3050,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://blocks.mvp-subha.me/r/hero-1.json",
+        "npx shadcn@4.21.4 add https://blocks.mvp-subha.me/r/hero-1.json",
         "Alternative CLI (scaffolds a project if none exists): npx mvpblocks add hero-1 --ts"
       ],
       "attachments": [],
@@ -3110,8 +3110,8 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add @kokonutui/shimmer-text",
-        "Run npx shadcn@latest init first if the project has no components.json."
+        "npx shadcn@4.21.4 add @kokonutui/shimmer-text",
+        "Run npx shadcn@4.21.4 init first if the project has no components.json."
       ],
       "attachments": [],
       "sources": [
@@ -3170,7 +3170,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add @cult-ui/texture-button"
+        "npx shadcn@4.21.4 add @cult-ui/texture-button"
       ],
       "attachments": [],
       "sources": [
@@ -3349,7 +3349,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.vengenceui.com/r/animated-button.json"
+        "npx shadcn@4.21.4 add https://www.vengenceui.com/r/animated-button.json"
       ],
       "attachments": [],
       "sources": [
@@ -3408,7 +3408,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add @uitripled/animated-checkbox-shadcnui",
+        "npx shadcn@4.21.4 add @uitripled/animated-checkbox-shadcnui",
         "Browse items (suffix -shadcnui, -baseui or -carbon) at https://ui.tripled.work/llms.txt"
       ],
       "attachments": [],
@@ -3467,7 +3467,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add @spell/perspective-book"
+        "npx shadcn@4.21.4 add @spell/perspective-book"
       ],
       "attachments": [],
       "sources": [
@@ -3526,7 +3526,7 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest add @shadcnuikit/hero1",
+        "npx shadcn@4.21.4 add @shadcnuikit/hero1",
         "Check https://shadcnuikit.com/pricing before using premium dashboards or templates."
       ],
       "attachments": [],
@@ -3777,7 +3777,7 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest add @react-bits/BlurText-TS-TW",
+        "npx shadcn@4.21.4 add @react-bits/BlurText-TS-TW",
         "Item names follow <Component>-<JS|TS>-<CSS|TW>."
       ],
       "attachments": [],
@@ -3967,7 +3967,7 @@
       "quickstart": [
         "npm install @animateicons/react",
         "import { BellRingIcon } from '@animateicons/react/lucide'",
-        "Or copy one icon: npx shadcn@latest add @animateicons/lu-x"
+        "Or copy one icon: npx shadcn@4.21.4 add @animateicons/lu-x"
       ],
       "attachments": [],
       "sources": [
@@ -4089,7 +4089,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add @dotmatrix/dotm-square-3"
+        "npx shadcn@4.21.4 add @dotmatrix/dotm-square-3"
       ],
       "attachments": [],
       "sources": [
@@ -4148,7 +4148,7 @@
         "data-analytics"
       ],
       "quickstart": [
-        "npx shadcn@latest add @evilcharts/recharts-area-chart",
+        "npx shadcn@4.21.4 add @evilcharts/recharts-area-chart",
         "See https://evilcharts.com/docs/area-chart for usage."
       ],
       "attachments": [],
@@ -4207,7 +4207,7 @@
         "ai-agent"
       ],
       "quickstart": [
-        "npx shadcn@latest add @blocks-so/ai-01"
+        "npx shadcn@4.21.4 add @blocks-so/ai-01"
       ],
       "attachments": [],
       "sources": [
@@ -4721,8 +4721,8 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.solaceui.com/r/hero-section-1.json  (or `npx shadcn@latest add @solaceui/hero-section-1`)",
-        "Requires a shadcn project: npx shadcn@latest init",
+        "npx shadcn@4.21.4 add https://www.solaceui.com/r/hero-section-1.json  (or `npx shadcn@4.21.4 add @solaceui/hero-section-1`)",
+        "Requires a shadcn project: npx shadcn@4.21.4 init",
         "Browse items: https://www.solaceui.com/r/registry.json"
       ],
       "attachments": [],
@@ -4841,8 +4841,8 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://glitchcn-ui.vercel.app/r/button.json",
-        "All components: npx shadcn@latest add https://glitchcn-ui.vercel.app/r/all.json",
+        "npx shadcn@4.21.4 add https://glitchcn-ui.vercel.app/r/button.json",
+        "All components: npx shadcn@4.21.4 add https://glitchcn-ui.vercel.app/r/all.json",
         "Optional short names (@glitchcn/button): register the @glitchcn registry in components.json as shown in the README at https://github.com/woustachemax/glitchcn-ui"
       ],
       "attachments": [],
@@ -4901,7 +4901,7 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.pixel-perfect.space/r/shiny-button.json  (installs gsap and @gsap/react)",
+        "npx shadcn@4.21.4 add https://www.pixel-perfect.space/r/shiny-button.json  (installs gsap and @gsap/react)",
         "Browse items: https://www.pixel-perfect.space/r/registry.json"
       ],
       "attachments": [],
@@ -4960,7 +4960,7 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://sveltebits.xyz/r/aurora.json  (jsrepo is also supported; see the installation guide)",
+        "npx shadcn@4.21.4 add https://sveltebits.xyz/r/aurora.json  (jsrepo is also supported; see the installation guide)",
         "Docs: https://sveltebits.xyz/get-started/installation"
       ],
       "attachments": [],
@@ -5020,8 +5020,8 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://animate-ui.com/r/components-buttons-button.json  (or `npx shadcn@latest add @animate-ui/components-buttons-button`)",
-        "Requires a shadcn project: npx shadcn@latest init",
+        "npx shadcn@4.21.4 add https://animate-ui.com/r/components-buttons-button.json  (or `npx shadcn@4.21.4 add @animate-ui/components-buttons-button`)",
+        "Requires a shadcn project: npx shadcn@4.21.4 init",
         "Docs: https://animate-ui.com/docs"
       ],
       "attachments": [],
@@ -5285,7 +5285,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest search @shoogle -q \"pricing\"",
+        "npx shadcn@4.21.4 search @shoogle -q \"pricing\"",
         "MCP server for agents: https://shoogle.dev/mcp",
         "Browse registries: https://shoogle.dev/directory"
       ],
@@ -5346,7 +5346,7 @@
       ],
       "quickstart": [
         "Open https://www.formscn.space/editor, build the form and copy the generated install command.",
-        "Or install a template: npx shadcn@latest add https://www.formscn.space/r/contact-form.json"
+        "Or install a template: npx shadcn@4.21.4 add https://www.formscn.space/r/contact-form.json"
       ],
       "attachments": [],
       "sources": [
@@ -5413,7 +5413,7 @@
       "quickstart": [
         "npx pdfx-cli init",
         "npx pdfx-cli add heading text badge",
-        "shadcn alternative: npx shadcn@latest add https://getpdfx.dev/r/shadcn/heading.json",
+        "shadcn alternative: npx shadcn@4.21.4 add https://getpdfx.dev/r/shadcn/heading.json",
         "Docs: https://getpdfx.dev/docs"
       ],
       "attachments": [],
@@ -5473,8 +5473,8 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://ui.bklit.com/r/area-chart.json  (or `npx shadcn@latest add @bklit/area-chart`)",
-        "Requires a shadcn project: npx shadcn@latest init",
+        "npx shadcn@4.21.4 add https://ui.bklit.com/r/area-chart.json  (or `npx shadcn@4.21.4 add @bklit/area-chart`)",
+        "Requires a shadcn project: npx shadcn@4.21.4 init",
         "Docs: https://ui.bklit.com/docs/installation"
       ],
       "attachments": [],
@@ -5722,7 +5722,7 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add @skiper-ui/skiper40",
+        "npx shadcn@4.21.4 add @skiper-ui/skiper40",
         "Registry item JSON: https://skiper-ui.com/registry/skiper40.json"
       ],
       "attachments": [],
@@ -5981,7 +5981,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://forgeui.in/r/animated-form.json",
+        "npx shadcn@4.21.4 add https://forgeui.in/r/animated-form.json",
         "Manual alternative: npm i motion react-icons clsx tailwind-merge, then copy the source from https://forgeui.in/components/animated-form"
       ],
       "attachments": [],
@@ -6041,7 +6041,7 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add @efferd/auth-1",
+        "npx shadcn@4.21.4 add @efferd/auth-1",
         "Registry item JSON: https://efferd.com/r/auth-1.json"
       ],
       "attachments": [],
@@ -6101,7 +6101,7 @@
       ],
       "quickstart": [
         "npm install @vueuse/core motion-v tw-animate-css @inspira-ui/plugins",
-        "npx shadcn-vue@latest add https://registry.inspira-ui.com/marquee.json"
+        "npx shadcn-vue@2.8.2 add https://registry.inspira-ui.com/marquee.json"
       ],
       "attachments": [],
       "sources": [
@@ -6225,7 +6225,7 @@
         "game"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://scificn.dev/r/button.json"
+        "npx shadcn@4.21.4 add https://scificn.dev/r/button.json"
       ],
       "attachments": [],
       "sources": [
@@ -6283,7 +6283,7 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest add @iconiq/b-button",
+        "npx shadcn@4.21.4 add @iconiq/b-button",
         "Registry item JSON: https://iconiqui.com/r/b-button.json"
       ],
       "attachments": [],
@@ -6702,7 +6702,7 @@
         "game"
       ],
       "quickstart": [
-        "npx shadcn@latest add @soundcn/click-soft",
+        "npx shadcn@4.21.4 add @soundcn/click-soft",
         "Use it: import { useSound } from \"@/hooks/use-sound\"; import { clickSoftSound } from \"@/sounds/click-soft\";"
       ],
       "attachments": [],
@@ -6761,7 +6761,7 @@
         "ai-agent"
       ],
       "quickstart": [
-        "npx shadcn@latest add @termcn/ink/spinner",
+        "npx shadcn@4.21.4 add @termcn/ink/spinner",
         "Registry item JSON: https://www.termcn.dev/r/ink/spinner.json"
       ],
       "attachments": [],
@@ -6821,7 +6821,7 @@
         "data-analytics"
       ],
       "quickstart": [
-        "npx shadcn@latest add @shadcn-dashboard/product-card",
+        "npx shadcn@4.21.4 add @shadcn-dashboard/product-card",
         "Registry item JSON: https://shadcndashboard.dev/r/product-card.json",
         "Full template: git clone https://github.com/shadcndashboard/shadcndashboard && npm install"
       ],
@@ -6888,8 +6888,8 @@
         }
       ],
       "quickstart": [
-        "npx ai-elements@latest add message",
-        "Equivalent: npx shadcn@latest add @ai-elements/message (registry JSON: https://elements.ai-sdk.dev/api/registry/message.json)"
+        "npx ai-elements@1.9.0 add message",
+        "Equivalent: npx shadcn@4.21.4 add @ai-elements/message (registry JSON: https://elements.ai-sdk.dev/api/registry/message.json)"
       ],
       "attachments": [],
       "sources": [
@@ -6954,7 +6954,7 @@
       ],
       "quickstart": [
         "npx servercn-cli init",
-        "npx servercn-cli@latest add logger"
+        "npx servercn-cli@2.0.11 add logger"
       ],
       "attachments": [],
       "sources": [
@@ -7190,7 +7190,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add \"https://easyui.pro/components-json/create-new.json\"",
+        "npx shadcn@4.21.4 add \"https://easyui.pro/components-json/create-new.json\"",
         "Browse templates at https://www.easyui.pro/templates and clone the linked repository for a full site."
       ],
       "attachments": [],
@@ -7249,9 +7249,9 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://www.kibo-ui.com/r/gantt.json",
+        "npx shadcn@4.21.4 add https://www.kibo-ui.com/r/gantt.json",
         "Alternative: npx kibo-ui add gantt",
-        "npx shadcn@latest add @kibo-ui/typography",
+        "npx shadcn@4.21.4 add @kibo-ui/typography",
         "Wrap rendered rich text in <div className=\"typography\">…</div>"
       ],
       "attachments": [],
@@ -7309,7 +7309,7 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://scrollxui.dev/registry/animated-button.json"
+        "npx shadcn@4.21.4 add https://scrollxui.dev/registry/animated-button.json"
       ],
       "attachments": [],
       "sources": [
@@ -7374,8 +7374,8 @@
         }
       ],
       "quickstart": [
-        "npx @tailgrids/cli@latest init",
-        "npx @tailgrids/cli@latest add button"
+        "npx @tailgrids/cli@1.4.3 init",
+        "npx @tailgrids/cli@1.4.3 add button"
       ],
       "attachments": [],
       "sources": [
@@ -7432,8 +7432,8 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://mynaui.com/registry/button/button1.json",
-        "Namespace form: register @mynaui in components.json registries as shown at https://mynaui.com/getting-started, then npx shadcn@latest add @mynaui/button1"
+        "npx shadcn@4.21.4 add https://mynaui.com/registry/button/button1.json",
+        "Namespace form: register @mynaui in components.json registries as shown at https://mynaui.com/getting-started, then npx shadcn@4.21.4 add @mynaui/button1"
       ],
       "attachments": [],
       "sources": [
@@ -7497,9 +7497,9 @@
         }
       ],
       "quickstart": [
-        "npx lightswind@latest init",
-        "npx lightswind@latest add border-beam",
-        "Or via shadcn: npx shadcn@latest add https://lightswind.com/r/border-beam.json"
+        "npx lightswind@3.2.5 init",
+        "npx lightswind@3.2.5 add border-beam",
+        "Or via shadcn: npx shadcn@4.21.4 add https://lightswind.com/r/border-beam.json"
       ],
       "attachments": [],
       "sources": [
@@ -7557,7 +7557,7 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://diceui.com/r/sortable.json",
+        "npx shadcn@4.21.4 add https://diceui.com/r/sortable.json",
         "Docs form: npx shadcn@latest add @diceui/sortable"
       ],
       "attachments": [],
@@ -7678,7 +7678,7 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://warcraftcn.com/r/button.json",
+        "npx shadcn@4.21.4 add https://warcraftcn.com/r/button.json",
         "Import: import { Button } from \"@/components/ui/warcraftcn/button\";"
       ],
       "attachments": [],
@@ -7738,8 +7738,8 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://shadcnspace.com/r/hero-01.json",
-        "Namespace form: npx shadcn@latest add @shadcn-space/button-06"
+        "npx shadcn@4.21.4 add https://shadcnspace.com/r/hero-01.json",
+        "Namespace form: npx shadcn@4.21.4 add @shadcn-space/button-06"
       ],
       "attachments": [],
       "sources": [
@@ -7861,8 +7861,8 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://wigggle-ui.vercel.app/r/clock-sm-01.json",
-        "Namespace form: npx shadcn@latest add @wigggle-ui/clock-sm-01"
+        "npx shadcn@4.21.4 add https://wigggle-ui.vercel.app/r/clock-sm-01.json",
+        "Namespace form: npx shadcn@4.21.4 add @wigggle-ui/clock-sm-01"
       ],
       "attachments": [],
       "sources": [
@@ -8041,7 +8041,7 @@
         "marketing-site"
       ],
       "quickstart": [
-        "npx shadcn@latest init",
+        "npx shadcn@4.21.4 init",
         "Copy https://raw.githubusercontent.com/brijr/components/main/components/craft.tsx into src/components/craft.tsx",
         "Copy the section you need from https://components.work/ into src/components/"
       ],
@@ -8102,7 +8102,7 @@
       ],
       "quickstart": [
         "Open https://www.shadcn-form.com/, build the form and paste the generated code (it starts with the install command for its imports).",
-        "Add a registry input: npx shadcn@latest add https://www.shadcn-form.com/r/phone-input.json"
+        "Add a registry input: npx shadcn@4.21.4 add https://www.shadcn-form.com/r/phone-input.json"
       ],
       "attachments": [],
       "sources": [
@@ -8160,8 +8160,8 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn-vue@latest init",
-        "npx shadcn-vue@latest add https://vuzeno.com/r/dialog.json"
+        "npx shadcn-vue@2.8.2 init",
+        "npx shadcn-vue@2.8.2 add https://vuzeno.com/r/dialog.json"
       ],
       "attachments": [],
       "sources": [
@@ -8277,8 +8277,8 @@
         "data-analytics"
       ],
       "quickstart": [
-        "npx shadcn@latest init --template vite --preset vega --name my-app https://marmelab.com/shadcn-admin-kit/r/admin.json",
-        "Existing shadcn project: npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/admin.json"
+        "npx shadcn@4.21.4 init --template vite --preset vega --name my-app https://marmelab.com/shadcn-admin-kit/r/admin.json",
+        "Existing shadcn project: npx shadcn@4.21.4 add https://marmelab.com/shadcn-admin-kit/r/admin.json"
       ],
       "attachments": [],
       "sources": [
@@ -8337,8 +8337,8 @@
         "saas"
       ],
       "quickstart": [
-        "npx shadcn@latest add https://flagcn.dev/r/flag-picker.json",
-        "Single flag: npx shadcn@latest add @flagcn/flag"
+        "npx shadcn@4.21.4 add https://flagcn.dev/r/flag-picker.json",
+        "Single flag: npx shadcn@4.21.4 add @flagcn/flag"
       ],
       "attachments": [],
       "sources": [
@@ -8396,7 +8396,7 @@
         "web-app"
       ],
       "quickstart": [
-        "npx shadcn@latest add @assistant-ui/elements-link-preview",
+        "npx shadcn@4.21.4 add @assistant-ui/elements-link-preview",
         "Registry JSON: https://r.assistant-ui.com/elements-link-preview.json"
       ],
       "attachments": [],

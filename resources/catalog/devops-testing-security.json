@@ -2219,7 +2219,7 @@
         }
       ],
       "quickstart": [
-        "docker run -d -p 3000:3000 --name=grafana grafana/grafana:latest   # pin a version tag in production",
+        "docker run -d -p 3000:3000 --name=grafana grafana/grafana@sha256:b28bae15e219c998fb0e0424ed724930cc61b1f61fb404d47c862f9a23f9e572   # pin a version tag in production",
         "Docs: https://grafana.com/docs/grafana/latest/"
       ]
     },
