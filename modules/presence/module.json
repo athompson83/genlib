@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "id": "presence",
+  "version": "0.1.0",
+  "title": "Real-time presence",
+  "description": "Who is online, viewing or typing in a room for multi-tenant server apps: join, heartbeat and leave per tab, members grouped by user, TTL expiry and sweep, small validated JSON state (cursors, typing), ordered join/update/leave events with throttled updates, and a Server-Sent Events Fetch adapter.",
+  "kind": "feature",
+  "tags": ["presence", "who is online", "online users", "real-time presence with websockets", "live cursors", "typing indicator", "collaborators viewing", "server-sent events", "sse", "realtime", "collaboration", "multi-tenant", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/presence"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, TextEncoder/TextDecoder, structuredClone, ReadableStream and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "The SSE stream needs a runtime that keeps a response open; short serverless timeouts end it and EventSource reconnects with a fresh snapshot.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads or network activity at install or import time; timers start only for open streams and pending throttled updates."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "presence/core.ts" },
+    { "source": "files/memory-store.ts", "target": "presence/memory-store.ts" },
+    { "source": "files/http.ts", "target": "presence/http.ts" }
+  ],
+  "exports": [
+    { "name": "createPresence", "from": "presence/core.ts" },
+    { "name": "PresenceError", "from": "presence/core.ts" },
+    { "name": "validateState", "from": "presence/core.ts" },
+    { "name": "groupMembers", "from": "presence/core.ts" },
+    { "name": "MemoryPresenceStore", "from": "presence/memory-store.ts" },
+    { "name": "createPresenceHandler", "from": "presence/http.ts" }
+  ],
+  "configuration": [
+    "For one server instance use MemoryPresenceStore; for several, implement PresenceStore on Redis (a sorted set per room scored by expiry, see CONTRACT.md) and forward events between instances through your own pub/sub.",
+    "Implement authorize(actor, action, {tenantId, room}) for join (also heartbeat) and read (list, stream) from your own membership and document-access checks.",
+    "Implement authenticate(request) from your session or verified token, never from the request body or query string.",
+    "Call presence.sweep() on an interval (for example every ttlMs / 2) so expired tabs emit leave even when nobody lists the room.",
+    "Tune ttlMs (30 s), maxPerRoom (500), maxStateBytes (1024) and minUpdateMs (100 ms); keep the client heartbeat or stream ping below ttlMs.",
+    "Mount createPresenceHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "room-presence",
+    "multi-tab-grouping",
+    "presence-ttl-expiry",
+    "presence-state-cursors-typing",
+    "ordered-presence-events",
+    "sse-presence-stream",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "Event fan-out and seq numbering are in-process; several instances need a shared store and your own pub/sub, and seq restarts when a room becomes empty and unwatched (clients resync from the snapshot).",
+    "No Redis client or WebSocket server is included; the Redis shape is documented only, and the transport is Server-Sent Events plus POST.",
+    "Join/leave decisions are serialized per room within one process; across instances, simultaneous last-tab changes can emit a duplicate or missing join/leave unless the store and pub/sub serialize them.",
+    "Presence is ephemeral and not an audit log; it does not persist history or prove that a person read anything.",
+    "No rate limiting; add request rate limits (see the rate-limit module) on heartbeat and stream routes.",
+    "Session security, production load behavior and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/presence.test.mjs"],
+    "command": "npm run build && node --test tests/presence.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2" },
+    "behaviors": [
+      "several tabs of one user list once with a connection count, the newest state and the earliest joinedAt",
+      "a user's first connection emits join and the last leave emits leave; extra tabs emit only update",
+      "re-joining an own connection refreshes it instead of adding a second one; leave is idempotent",
+      "expired connections are hidden by list and removed by sweep, which returns leave events per room",
+      "state must be plain JSON (finite numbers, no Date, Map, functions or undefined, bounded depth) within maxStateBytes in UTF-8 bytes",
+      "seq is strictly increasing per room and independent across rooms; the snapshot carries the current seq",
+      "update events are coalesced per user to one per minUpdateMs on a fake clock, emitting the latest state, and dropped when the user leaves",
+      "the same room name in another tenant is another room; outsiders and read-only users cannot join, read-only users can list",
+      "only the actor who joined a connection may heartbeat, leave or re-join it",
+      "maxPerRoom counts connections and refuses with room-full until expiry frees space",
+      "SSE stream: snapshot first, then join/update/leave events with id equal to seq, ping comments, and leave when the request's AbortSignal fires",
+      "SSE stream refuses signed-out (401), unauthorized or foreign-origin (403), invalid (400) and full-room (409) requests without leaving a connection behind",
+      "HTTP heartbeat and leave: 200, 401, 403 origin and ownership, 404, 405, 413 for large state or body, 400 for bad JSON, cache-control no-store"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core, in-memory store and Server-Sent Events Fetch adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

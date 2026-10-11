@@ -48,7 +48,7 @@ Reviewed 2026-10-11. These projects center on what happens after code is found: 
 ### Measured outcomes
 
 - Routing (`node scripts/routing-eval.mjs`): tuning 97.7% top-1 and 99.2% top-3; held-out 83.1% top-1 and 88.6% top-3 (89.2% before the plural-stem change, so top-3 dipped by one phrasing). One added stopword was noticed in a listing that mixed tuning and held-out phrasings, so the held-out gain is slightly optimistic.
-- Gap report: of 65 tasks, 50 routed to Genlib code and 15 only to external projects. The first package built from that queue, `comments` (threaded comments, reactions, flags, moderation, PostgreSQL store), moved it to 51 and 14.
+- Gap report: of 65 tasks, 50 routed to Genlib code and 15 only to external projects. The first package built from that queue, `comments` (threaded comments, reactions, flags, moderation, PostgreSQL store), moved it to 51 and 14. The next round (`rbac`, `password-reset`, `short-links`, `presence`, plus a ranking prior so tested integration packs such as `durable-jobs` rank with modules) moved it to 56 and 9.
 - Lifecycle tests (`tests/lifecycle.test.mjs`) cover receipts, the used check through relative and alias imports, test-backed verification, rollback with an edited file kept, a dependent refusal, and a three-way update with one clean merge and one conflict.
 
 Not measured yet: manual repair per adoption, acceptance rate in real projects, time and model usage per task, and update effort over several upstream versions. Receipts now record the data needed for the first two; the [benchmark protocol](benchmarks.md#comparison-protocol-not-yet-run) covers the rest.

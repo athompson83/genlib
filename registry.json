@@ -2791,6 +2791,82 @@
    }
   },
   {
+   "name": "password-reset",
+   "type": "registry:item",
+   "title": "Password reset by email link",
+   "description": "Forgot-password flow for server apps: enumeration-safe reset requests, emailed one-time links with hashed 256-bit tokens, verify without consuming, single-use completion with a password policy, revocation of other links and sessions, a PostgreSQL store and a Fetch adapter.",
+   "files": [
+    {
+     "path": "modules/password-reset/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/password-reset/core.ts"
+    },
+    {
+     "path": "modules/password-reset/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/password-reset/memory-store.ts"
+    },
+    {
+     "path": "modules/password-reset/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/password-reset/http.ts"
+    },
+    {
+     "path": "modules/password-reset/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/password-reset/sql-store.ts"
+    },
+    {
+     "path": "modules/password-reset/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/password-reset/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module password-reset@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlPasswordResetStore with your query executor; on other databases implement PasswordResetStore with a unique token_hash and a single conditional consume. Implement users.findByEmail(normalizedEmail) and users.setPasswordHash(userId, hash) against your user table. Pass hashPassword from a maintained Argon2id, scrypt or bcrypt library, and a passwordPolicy that returns a list of problems (length, breached-password check). Implement sendEmail with your email provider; set baseUrl to the absolute https URL of your reset form. Send the email from a queue if response timing must not reveal whether an account exists. Pass revokeSessions(userId) to sign the user out everywhere after a reset. Mount createPasswordResetHandler under one prefix with exact allowedOrigins, a rateLimit(key) hook and a trusted clientIp(request); log onRequestResult server-side. Contract: https://github.com/athompson83/genlib/blob/main/modules/password-reset/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "presence",
+   "type": "registry:item",
+   "title": "Real-time presence",
+   "description": "Who is online, viewing or typing in a room for multi-tenant server apps: join, heartbeat and leave per tab, members grouped by user, TTL expiry and sweep, small validated JSON state (cursors, typing), ordered join/update/leave events with throttled updates, and a Server-Sent Events Fetch adapter.",
+   "files": [
+    {
+     "path": "modules/presence/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/presence/core.ts"
+    },
+    {
+     "path": "modules/presence/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/presence/memory-store.ts"
+    },
+    {
+     "path": "modules/presence/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/presence/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module presence@0.1.0 (Apache-2.0). Configure: For one server instance use MemoryPresenceStore; for several, implement PresenceStore on Redis (a sorted set per room scored by expiry, see CONTRACT.md) and forward events between instances through your own pub/sub. Implement authorize(actor, action, {tenantId, room}) for join (also heartbeat) and read (list, stream) from your own membership and document-access checks. Implement authenticate(request) from your session or verified token, never from the request body or query string. Call presence.sweep() on an interval (for example every ttlMs / 2) so expired tabs emit leave even when nobody lists the room. Tune ttlMs (30 s), maxPerRoom (500), maxStateBytes (1024) and minUpdateMs (100 ms); keep the client heartbeat or stream ping below ttlMs. Mount createPresenceHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/presence/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "public-data-clients",
    "type": "registry:item",
    "title": "Public data and catalog maintenance clients",
@@ -2907,6 +2983,49 @@
    }
   },
   {
+   "name": "rbac",
+   "type": "registry:item",
+   "title": "Role-based access control",
+   "description": "Role-based access control for multi-tenant server apps: static roles with resource:action wildcards, inheritance and deny rules, tenant-wide or per-resource assignments with expiry, fail-closed checks, anti-escalation grants, last-owner protection, a PostgreSQL store and a Fetch adapter.",
+   "files": [
+    {
+     "path": "modules/rbac/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rbac/core.ts"
+    },
+    {
+     "path": "modules/rbac/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rbac/memory-store.ts"
+    },
+    {
+     "path": "modules/rbac/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rbac/http.ts"
+    },
+    {
+     "path": "modules/rbac/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rbac/sql-store.ts"
+    },
+    {
+     "path": "modules/rbac/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/rbac/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module rbac@0.1.0 (Apache-2.0). Configure: Define roles once in code: { role: { permissions: ['invoice:*', '!invoice:delete'], inherits: ['viewer'], protected?: true } }; give admin-like roles 'rbac:manage' and flag the owner role protected. On PostgreSQL, apply schema.sql and use createSqlRbacStore with your query executor; on other databases implement RbacStore with a unique key on (tenant, subject, role, resource or '') and an atomic last-holder guard. Create each tenant's first owner with grantAsSystem from trusted tenant-creation code; never expose grantAsSystem through a route. Implement authenticate(request) from your session or verified token; the subject id must never come from the request body. Mount createRbacHandler under one prefix with exact allowedOrigins, and wrap other route handlers with requirePermission(rbac, 'resource:action', getCtx). Contract: https://github.com/athompson83/genlib/blob/main/modules/rbac/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "security-headers",
    "type": "registry:item",
    "title": "Security headers",
@@ -2923,6 +3042,49 @@
     "utility"
    ],
    "docs": "Genlib module security-headers@0.1.0 (Apache-2.0). Configure: csp merges per directive over default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'. A directive set to false is removed, true emits a valueless directive, and csp: false omits the header. nonce (from createNonce, generated per response) is appended to nonceDirectives (default script-src); the application must put the same nonce on its script tags. reportOnly sends Content-Security-Policy-Report-Only. hsts defaults to max-age=31536000; includeSubDomains, preload is opt-in, and hsts: false omits it for plain-HTTP development. referrerPolicy, permissionsPolicy (merged over camera/microphone/geolocation/payment/usb/browsing-topics disabled), crossOriginOpenerPolicy, frameOptions, and contentTypeOptions can each be changed or disabled with false. withSecurityHeaders preserves existing response headers unless override: true. Invalid configuration throws a TypeError. Contract: https://github.com/athompson83/genlib/blob/main/modules/security-headers/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "short-links",
+   "type": "registry:item",
+   "title": "Short links",
+   "description": "URL shortener for multi-tenant apps: create short links with random or custom codes, validated destinations, expiry, disable and click limits, an atomic click counter, a redirect route and a management API, with injected authorization and persistence.",
+   "files": [
+    {
+     "path": "modules/short-links/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/short-links/core.ts"
+    },
+    {
+     "path": "modules/short-links/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/short-links/memory-store.ts"
+    },
+    {
+     "path": "modules/short-links/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/short-links/http.ts"
+    },
+    {
+     "path": "modules/short-links/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/short-links/sql-store.ts"
+    },
+    {
+     "path": "modules/short-links/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/short-links/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module short-links@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlShortLinkStore with your query executor; on other databases implement ShortLinkStore with a unique code and a single conditional increment for recordClick. Implement authorize(actor, 'create'|'manage'|'read', {tenantId}) from your own membership table. Pass your own short domain (and app domain) in blockHosts so links cannot redirect to themselves. Optionally pass isSafeDestination to call a safe-browsing service from the trusted server. Mount createRedirectHandler on the short domain; mount createManagementHandler under one prefix with exact allowedOrigins and your authenticate(request). Optionally pass onClick to store click events (link id, time, referrer host, country) in your analytics table; never add raw IPs. Contract: https://github.com/athompson83/genlib/blob/main/modules/short-links/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",

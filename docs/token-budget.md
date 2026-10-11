@@ -8,8 +8,8 @@ The baseline column is what the same step costs without the compact path: the fu
 | --- | --- | ---: | ---: | --- | ---: | ---: |
 | Pick code for a task | `quick verify stripe webhook` | 418 | ~105 | find --json (8 full records) | 7,173 | 17.2× |
 | Compare options | `find verify stripe webhook` | 1,202 | ~301 | find --json (8 full records) | 7,173 | 6.0× |
-| Pick code for a task | `quick passkey login --language go` | 343 | ~86 | find --json (8 full records) | 5,266 | 15.4× |
-| Compare options | `find passkey login --language go` | 1,199 | ~300 | find --json (8 full records) | 5,266 | 4.4× |
+| Pick code for a task | `quick passkey login --language go` | 343 | ~86 | find --json (8 full records) | 5,265 | 15.3× |
+| Compare options | `find passkey login --language go` | 1,199 | ~300 | find --json (8 full records) | 5,265 | 4.4× |
 | Pick code for a task | `quick csv export --language python` | 382 | ~96 | find --json (8 full records) | 2,703 | 7.1× |
 | Compare options | `find csv export --language python` | 790 | ~198 | find --json (8 full records) | 2,703 | 3.4× |
 | Learn an API | `outline totp --language go` | 1,458 | ~365 | read its source files | 6,589 | 4.5× |
@@ -18,7 +18,7 @@ The baseline column is what the same step costs without the compact path: the fu
 | Learn an API | `outline webhook-verification` | 4,364 | ~1,091 | read its source files | 15,416 | 3.5× |
 | Load the skill | `skills/genlib-use/SKILL.md` | 4,993 | ~1,248 | - | - | - |
 | Register MCP tools | `tools/list` | 4,492 | ~1,123 | - | - | - |
-| Decision packet | `jev add passkey login to a Go API` | 6,110 | ~1,528 | - | - | - |
+| Decision packet | `jev add passkey login to a Go API` | 2,591 | ~648 | - | - | - |
 
 ## Budgets enforced by tests
 

@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "short-links",
+  "version": "0.1.0",
+  "title": "Short links",
+  "description": "URL shortener for multi-tenant apps: create short links with random or custom codes, validated destinations, expiry, disable and click limits, an atomic click counter, a redirect route and a management API, with injected authorization and persistence.",
+  "kind": "feature",
+  "tags": [
+    "url shortener",
+    "short links",
+    "short url",
+    "link shortener",
+    "redirects",
+    "click tracking",
+    "vanity url",
+    "custom slug",
+    "multi-tenant",
+    "saas",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/short-links"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (getRandomValues, randomUUID) plus the WHATWG URL and Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the redirect handler on your short domain and the management handler under one API prefix.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "short-links/core.ts",
+      "path": "modules/short-links/files/core.ts",
+      "sha256": "44e3a9954bd883d652fa0c8e056402020e57b6344fbd8f9b6d57f4b13572215a",
+      "bytes": 18079
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "short-links/memory-store.ts",
+      "path": "modules/short-links/files/memory-store.ts",
+      "sha256": "d87785d18f9b6ecfec358f490df379aaa8c0546896e00450f1026239ff0f4e0f",
+      "bytes": 2656
+    },
+    {
+      "source": "files/http.ts",
+      "target": "short-links/http.ts",
+      "path": "modules/short-links/files/http.ts",
+      "sha256": "0b43bec58fc84300ec8a56a9ca566af64f1b942ea4180748ad88531840568fd8",
+      "bytes": 8512
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "short-links/sql-store.ts",
+      "path": "modules/short-links/files/sql-store.ts",
+      "sha256": "e9d31f96d20b5c2978e7254f8bcdf76c607a78da78a7490f0c272669d4bf5297",
+      "bytes": 4521
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "short-links/schema.sql",
+      "path": "modules/short-links/files/schema.sql",
+      "sha256": "455e36d9818367b34de04b71282b4bb1f02621d6ad8fdba233bfd327c7b71439",
+      "bytes": 889
+    }
+  ],
+  "exports": [
+    {
+      "name": "createShortLinks",
+      "from": "short-links/core.ts"
+    },
+    {
+      "name": "ShortLinkError",
+      "from": "short-links/core.ts"
+    },
+    {
+      "name": "randomCode",
+      "from": "short-links/core.ts"
+    },
+    {
+      "name": "ALPHABET",
+      "from": "short-links/core.ts"
+    },
+    {
+      "name": "RESERVED_SLUGS",
+      "from": "short-links/core.ts"
+    },
+    {
+      "name": "MemoryShortLinkStore",
+      "from": "short-links/memory-store.ts"
+    },
+    {
+      "name": "createRedirectHandler",
+      "from": "short-links/http.ts"
+    },
+    {
+      "name": "createManagementHandler",
+      "from": "short-links/http.ts"
+    },
+    {
+      "name": "createSqlShortLinkStore",
+      "from": "short-links/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlShortLinkStore with your query executor; on other databases implement ShortLinkStore with a unique code and a single conditional increment for recordClick.",
+    "Implement authorize(actor, 'create'|'manage'|'read', {tenantId}) from your own membership table.",
+    "Pass your own short domain (and app domain) in blockHosts so links cannot redirect to themselves.",
+    "Optionally pass isSafeDestination to call a safe-browsing service from the trusted server.",
+    "Mount createRedirectHandler on the short domain; mount createManagementHandler under one prefix with exact allowedOrigins and your authenticate(request).",
+    "Optionally pass onClick to store click events (link id, time, referrer host, country) in your analytics table; never add raw IPs."
+  ],
+  "capabilities": [
+    "short-link-creation",
+    "destination-url-validation",
+    "unbiased-random-codes",
+    "custom-slugs-with-reserved-words",
+    "atomic-click-limits",
+    "link-expiry-and-disable",
+    "redirect-route",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "Codes are unique across all tenants because the redirect route resolves a code without a tenant; a slug held by any tenant returns slug-taken.",
+    "Destination checks are syntactic (scheme, credentials, blocked hosts); they do not resolve DNS, follow the destination's own redirects or detect phishing unless you supply isSafeDestination.",
+    "Click counts include bots and link-preview fetchers that issue GET; HEAD and other methods are refused and not counted.",
+    "onClick runs after the counter increments and its errors are swallowed, so click events are best-effort; the counter is authoritative.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which is a single connection, not on every hosted Postgres or under multi-connection load.",
+    "No rate limiting; add request rate limits (see the rate-limit module) on create and redirect routes.",
+    "Production database correctness, session security, abuse handling and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/short-links.test.mjs",
+      "tests/short-links-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/short-links.test.mjs tests/short-links-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "destinations must parse as URLs with an allowed scheme; javascript:, data:, file: and vbscript: are refused",
+      "URLs with a username or password are refused",
+      "blocked hosts and their subdomains are refused, including case and trailing-dot variants of the own short domain",
+      "isSafeDestination can refuse a destination on create and update",
+      "generated codes use a 57-character alphabet without 0 O l 1 I and the configured length",
+      "rejection sampling discards bytes at or above 228, so each character maps from exactly 4 byte values",
+      "generated-code collisions retry and fail with exhausted after maxAttempts",
+      "custom slugs must be 3-64 of [A-Za-z0-9_-], are not reserved words (configurable) and are unique (slug-taken)",
+      "expired, disabled and used-up links resolve as 410 (or 404 with reportGone false); unknown codes as 404",
+      "click events carry only link id, time, referrer host and country; a failing onClick does not break the redirect",
+      "20 concurrent resolves with maxClicks 5 give exactly 5 redirects on the memory store and on PostgreSQL",
+      "other tenants and read-only members are refused create, manage and read as appropriate",
+      "list is newest first with keyset cursors and limit 1 to 100",
+      "redirect handler sends 302 with location, cache-control private max-age=0 and referrer-policy no-referrer-when-downgrade; only GET counts",
+      "management handler: create, list, get, stats, patch, delete, 401, origin check, no-store, 413 body limit and error mapping",
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and SQL store, redirect and management Fetch adapters."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/short-links/module.json",
+    "sha256": "ea3e4e9d60cf7c0b37d1c64aacd4b412a3d84777b0118ba33e3080d897d99afd"
+  },
+  "contractFile": {
+    "path": "modules/short-links/CONTRACT.md",
+    "sha256": "69646e1d6a95a3a8917bdbd6fcf22c4154a403e52fd0202481985d32b1b6ce51",
+    "bytes": 9239
+  }
+}
