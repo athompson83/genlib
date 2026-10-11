@@ -2,6 +2,7 @@
 // Provider profiles: offline prerequisite checks and conflict-free adoption of a scaffolder's staged output.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { existsSync } from 'node:fs';
 import * as fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -34,7 +35,13 @@ async function nextApp(t, deps = {}) {
 
 test('the committed profiles validate, and the validator refuses unpinned or malformed steps', () => {
   assert.ok(kanban, 'btst-kanban profile present');
-  assert.equal(kanban.status, 'planned', 'not credited beyond planned until run end to end');
+  assert.equal(kanban.status, 'install-supported', 'run end to end in a fixture app, but not in repository CI');
+  assert.ok(existsSync(path.join(REPOSITORY_ROOT, kanban.acceptance.script)), 'the acceptance script ships with the profile');
+  const stray = structuredClone(kanban);
+  stray.acceptance.script = 'scripts/accept.sh';
+  assert.throws(() => validateProvider(stray), /resources\/providers\/<id>/);
+  stray.acceptance.script = 'resources/providers/btst-kanban/../../x.sh';
+  assert.throws(() => validateProvider(stray), { code: 'UNSAFE_PATH' });
   const bad = structuredClone(kanban);
   bad.steps[0].run = 'npx @btst/codegen@latest init';
   assert.throws(() => validateProvider(bad), /pinned command/);
@@ -105,6 +112,7 @@ test('staged output: only generator changes are adopted, merges are reported, co
   assert.equal(await fs.readFile(path.join(app, 'app/globals.css'), 'utf8'), '@import "tailwindcss";\n', 'merge files are never written');
   assert.match(adopted.next[0], /Merge app\/globals.css/);
   assert.match(adopted.next.at(-1), /--accepts kanban-board#boards,/);
+  assert.ok(adopted.next.at(-1).includes(`--test "sh '$GENLIB_ROOT/resources/providers/btst-kanban/accept.sh'"`), 'the hint runs the shipped acceptance');
   const lock = JSON.parse(await fs.readFile(path.join(app, '.genlib/providers-lock.json'), 'utf8'));
   assert.deepEqual(lock.artifacts['provider--btst-kanban'].files.sort(), ['app/(request)/pages/[[...all]]/page.tsx', 'app/api/data/[[...all]]/route.ts', 'lib/stack.ts']);
   assert.equal((await checkAdoption(app, 'provider--btst-kanban')).status, 'used', 'adopted route files are used by file-system routing');
