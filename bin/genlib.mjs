@@ -6,9 +6,10 @@ import { detectProject, findInSources, loadSources, resolveEntry, sourceCounts }
 import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
-import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
+import { LANGUAGES, commandsFor, coverage, stepsFor, loadCapabilities } from '../lib/capabilities.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
+import { integrationSummary, inspectIntegration, installIntegration, loadIntegrationCatalog, planIntegration, verifyIntegrations } from '../lib/integrations.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
 
@@ -16,13 +17,17 @@ import { formatSource, sourcePlan } from '../lib/source.mjs';
 const FIND_LANGUAGES = [...LANGUAGES, 'ruby', 'php', 'elixir'];
 
 const HELP = {
-  name: 'genlib', version: '0.1.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
+  name: 'genlib', version: '0.2.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
     'quick <task words> [--language <name>] [--target <project>] [--type <source type>] [--json]   # best match: only its commands (cheapest)',
-    'find <task words> [--type capability|module|recipe|language-example|template|starter|task|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
+    'find <task words> [--type capability|module|integration|recipe|language-example|template|starter|task|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--license-policy any|permissive] [--include-retired] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
     'outline <id|type:id> [--language <name>] [--json]   # signatures and doc lines only: call the code without reading its source',
     'source <id|type:id> [--path <dir>] [--json]   # pinned sparse checkout or one raw file of an external project, its license, and Genlib equivalents',
-    'jev <task words> [--type <source type>] [--target <project>] [--limit 8] [--stdlib-only] [--prompt|--json]   # bounded yes/no decision packet for Jev; --prompt prints it as a compact direct-call prompt',
+    'jev <task words> [--type <source type>] [--target <project>] [--license-policy any|permissive] [--include-retired] [--limit 8] [--stdlib-only] [--prompt|--json]   # bounded yes/no decision packet for Jev; --prompt prints it as a compact direct-call prompt',
+    'integration list [--json] | integration inspect <id> [--json]',
+    'integration plan <id> --target <project> [--out genlib/integrations/<id>] [--allow-unverified] [--json]',
+    'integration add <id> --target <project> [--out genlib/integrations/<id>] [--allow-unverified] [--json]',
+    'integration verify --target <project> [--json]',
     'capability list [--json] | capability inspect <id> [--language typescript|python|go|rust|java|kotlin|csharp|dart|swift] [--json]',
     'detect --target <existing-project> [--json]',
     'skill find <words> [--harness claude|codex|both] [--limit 8] [--json]',
@@ -42,17 +47,18 @@ const HELP = {
   ],
   start: 'Run quick (or find) with the task first: it searches every Genlib source and returns the exact next command. Run outline <id> to learn the API without reading source.',
   behavior: 'Search metadata, read one contract, plan, copy reviewed source, then test the consuming app. No overwrite, install hooks, package installation, or network calls.',
+  directMcp: 'Read docs/mcp-server.md for Genlib’s own stdio and Streamable HTTP server. It is a separate opt-in package; mcp find searches the external MCP index.',
 };
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt') args.options[name] = true;
+    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired') args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -66,7 +72,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result, text;
   const supported = {
-    help: [], '--help': [], list: ['json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
+    help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
   };
@@ -74,6 +80,25 @@ try {
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
     'INVALID_OPTION', 'An option does not apply to this command.');
   if (command === 'help' || command === '--help') result = HELP;
+  else if (command === 'integration') {
+    const [action, ...ids] = positional;
+    const context = await loadIntegrationCatalog();
+    if (action === 'list') {
+      invariant(ids.length === 0 && Object.keys(options).every(key => key === 'json'), 'INVALID_OPTION', 'integration list takes no arguments.');
+      result = { integrations: context.catalog.items.map(integrationSummary) };
+    } else if (action === 'inspect') {
+      invariant(ids.length === 1 && Object.keys(options).every(key => key === 'json'), 'INVALID_OPTION', 'integration inspect takes one ID.');
+      result = await inspectIntegration(context, ids[0]);
+    } else if (action === 'verify') {
+      invariant(ids.length === 0 && options.target && Object.keys(options).every(key => ['target', 'json'].includes(key)), 'INVALID_OPTION', 'integration verify requires --target only.');
+      result = await verifyIntegrations(options.target);
+      if (result.status !== 'unchanged') process.exitCode = 1;
+    } else {
+      invariant(['plan', 'add'].includes(action) && ids.length === 1 && options.target, 'INVALID_OPTION', 'Use integration plan|add <id> --target <existing-project>.');
+      result = await (action === 'plan' ? planIntegration : installIntegration)(context, ids[0], { target: options.target, out: options.out, allowUnverified: options['allow-unverified'] === true });
+      if (result.conflicts.length > 0) process.exitCode = 1;
+    }
+  }
   else if (Object.hasOwn(INDEXES, command)) {
     const [action, ...words] = positional;
     const client = options.client ?? 'both';
@@ -109,7 +134,8 @@ try {
       const languages = language ? [language] : LANGUAGES;
       const implementations = Object.fromEntries(languages.map(name => {
         const impl = item.implementations[name] ?? { kind: 'unavailable', note: 'Not indexed.' };
-        return [name, { ...impl, commands: commandsFor(impl) }];
+        // Structured, checkable steps only for the one language being adopted, to keep the all-languages view small.
+        return [name, { ...impl, commands: commandsFor(impl), ...(language && impl.kind !== 'unavailable' ? stepsFor(impl) : {}) }];
       }));
       result = { ...item, ...coverage(item), implementations, review: index.review };
     } else {
@@ -140,7 +166,7 @@ try {
     invariant(positional.length > 0, 'INVALID_OPTION', 'Provide the task, for example: jev add passkey login to a Go API.');
     invariant(options.limit === undefined || /^\d+$/.test(options.limit), 'INVALID_OPTION', 'Limit must be a whole number.');
     const profile = options.target ? await detectProject(options.target) : undefined;
-    result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8), ...(options['stdlib-only'] ? { stdlibOnly: true } : {}) });
+    result = jevPacket(await loadSources(), positional.join(' '), { type: options.type, target: profile?.target, profile, limit: Number(options.limit ?? 8), ...(options['stdlib-only'] ? { stdlibOnly: true } : {}), includeRetired: options['include-retired'] === true, licensePolicy: options['license-policy'] ?? 'any' });
     if (options.prompt) text = formatJevPrompt(result);
   } else if (command === 'outline') {
     invariant(positional.length === 1, 'INVALID_OPTION', 'Provide exactly one reference, for example: outline totp --language go.');
@@ -157,6 +183,7 @@ try {
       result = {
         counts: sourceCounts(sources),
         modules: sources.context.catalog.items.map(item => ({ id: item.id, kind: item.kind, frameworks: item.frameworks, description: item.description })),
+        integrations: sources.integrations.map(integrationSummary),
         templates: sources.templates.map(({ id, phase, title, guide }) => ({ id, phase, title, guide })),
         next: 'Run find <task words> to rank all sources for a task.',
       };
@@ -170,6 +197,7 @@ try {
       const profile = detected ?? (options.language ? { languages: [options.language], frameworks: [] } : undefined);
       result = findInSources(sources, positional.join(' '), {
         type: options.type, project: options.project, limit: command === 'quick' ? 4 : Number(options.limit ?? 8), target: detected?.target, profile,
+        includeRetired: options['include-retired'] === true, licensePolicy: options['license-policy'] ?? 'any',
       });
       if (detected) result.project = { languages: detected.languages, frameworks: detected.frameworks, reactMajor: detected.reactMajor };
       if (command === 'quick') { result = quickPick(result); text = formatQuick(result); }

@@ -70,7 +70,7 @@ test('the committed search index is current and covers every source type', () =>
   assert.equal(check.status, 0, 'Run npm run index:build: ' + check.stdout);
   const lines = readFileSync(root + 'registry/search-index.jsonl', 'utf8').trim().split('\n').map(line => JSON.parse(line));
   const types = new Set(lines.map(line => line.type));
-  for (const type of ['capability', 'module', 'recipe', 'language-example', 'template', 'tool', 'skill', 'mcp', 'cli', 'api', 'resource', 'doc']) assert.ok(types.has(type), type);
+  for (const type of ['capability', 'module', 'integration', 'recipe', 'language-example', 'template', 'tool', 'skill', 'mcp', 'cli', 'api', 'resource', 'doc']) assert.ok(types.has(type), type);
   assert.ok(lines.every(line => line.ref === `${line.type}:${line.id}` && line.next && line.title));
 });
 

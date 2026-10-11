@@ -1,0 +1,8 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: dev.genlib.RenameFixturePackage
+displayName: Rename the fixture package
+recipeList:
+  - org.openrewrite.java.ChangePackage:
+      oldPackageName: legacy.inventory
+      newPackageName: app.inventory
+      recursive: false

@@ -6,7 +6,7 @@ Maintained projects for mobile apps, desktop apps, command-line tools and games,
 
 Pick within the stack the project already uses before switching languages. For **mobile**, React teams start with Expo (React Native) plus Expo Router, Flutter teams with Riverpod or Bloc plus go_router and dio, an existing web app can ship through Capacitor, and Kotlin teams can share logic with Kotlin Multiplatform. For **desktop**, Electron has the largest ecosystem, Tauri gives smaller and tighter-permission builds with a Rust core, Wails suits Go backends, and Avalonia or .NET MAUI suit C# teams. Rust-native GUIs (egui, Iced, Slint) suit tools. For **CLIs**, use the language's standard parser (Commander/yargs, Click/Typer, Cobra/urfave/cli, clap). Add prompts, colors and a TUI framework only when the tool is interactive, and always keep non-interactive flags for CI. Ship binaries with GoReleaser, dist (cargo-dist) or Node single executable applications. For **games**, Godot is a full editor engine, Phaser and KAPLAY cover 2D browser games, Babylon.js and PlayCanvas cover 3D web, Bevy is Rust ECS, and Rapier or Matter.js provide physics. three.js is listed in the media resources.
 
-Records are checked automatically (`verification: partial`): on 2026-10-10 the repository was confirmed to exist, links resolved, and npm/PyPI/crates licenses were compared with the recorded license. No resource is installed, reviewed or tested in Genlib. Records marked `license-review` (Slint, Defold) use non-OSI or multi-option licenses. Read the terms before shipping.
+Records are checked automatically (`verification: partial`): on 2026-10-10 the repository was confirmed to exist, links resolved, and npm/PyPI/crates licenses were compared with the recorded license. Catalog metadata does not establish installation, source review or runtime acceptance; the integration pack contracts below describe their actual verification evidence. Records marked `license-review` (Slint, Defold) use non-OSI or multi-option licenses. Read the terms before shipping.
 
 ## Mobile frameworks
 
@@ -169,3 +169,9 @@ Records are checked automatically (`verification: partial`): on 2026-10-10 the r
 | Fast 2D WebGL/WebGPU rendering engine for interactive graphics and games | [`pixijs`](https://pixijs.com) | Use instead of hand-writing WebGL sprite batching and scene graphs for 2D interactive content (JS/TS) | MIT |
 | 2D rigid-body physics engine for the web | [`matter-js`](https://brm.io/matter-js/) | Use instead of hand-writing collision detection and rigid-body integration for 2D browser games (JS/TS) | MIT |
 | 2D and 3D physics engine written in Rust with official JavaScript (WASM) bindings | [`rapier`](https://rapier.rs) | Use instead of hand-writing collision, joints and rigid-body simulation for Rust or JavaScript games (JS/TS) | Apache-2.0 |
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Desktop host and update profiles](../../integrations/desktop-delivery/CONTRACT.md): `avalonia`, `electron`, `tauri`, `wails`.

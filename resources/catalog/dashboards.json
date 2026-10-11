@@ -17457,7 +17457,7 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
+        "url": "https://github.com/leeoniya/uPlot/blob/HEAD/LICENSE",
         "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
       },
       "homepage": null,
@@ -17466,7 +17466,8 @@
       "summary": "A small, fast chart for time series, lines, areas, ohlc & bars",
       "useWhen": "Use to draw charts and dashboard widgets in TypeScript/JavaScript instead of hand-written SVG, canvas or plotting code.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Provide downsampling and an accessible table/summary alternative."
       ],
       "tags": [
         "dashboard",
@@ -17474,7 +17475,9 @@
         "typescript",
         "npm",
         "timeseries",
-        "fast"
+        "fast",
+        "time-series",
+        "uplot"
       ],
       "projectTypes": [
         "web-app",
@@ -17495,7 +17498,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/dashboards.md"
+        "guide": "docs/resources/dashboards.md",
+        "integrations": [
+          "web-data-workbench"
+        ]
       },
       "install": [
         "Run the install command below, pin the version, then read the docs."
@@ -17511,11 +17517,24 @@
         "Docs: https://www.npmjs.com/package/uplot"
       ],
       "languages": [
-        "typescript"
+        "typescript",
+        "javascript"
       ],
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 2705345
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/leeoniya/uPlot"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/leeoniya/uPlot",
+          "integrations/web-data-workbench/CONTRACT.md"
+        ]
       }
     },
     {

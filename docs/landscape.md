@@ -1,0 +1,37 @@
+# Landscape: what comparable projects do and what Genlib adopted
+
+Reviewed 2026-10-11 from each project's repository, documentation and release notes (versions below). This compares documented capabilities and architecture. No performance benchmark against these projects has been run; the protocol for one is in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run).
+
+## The goal Genlib is built around
+
+Help a coding agent choose an existing implementation that fits the application, integrate it with explicit steps, and verify the required behavior. Catalog size, natural-language search, an MCP server, skills and copyable code are well covered elsewhere. They are useful here only as parts of that adoption path.
+
+## Projects compared
+
+| Project | What overlaps | What Genlib took from it |
+| --- | --- | --- |
+| [shadcn/ui registry](https://ui.shadcn.com/docs/registry) (CLI 4.21.4) | Source registries for any project type, items with explicit file targets, GitHub registries, MCP access, hourly/daily/weekly registry health checks | `registry.json`: every recipe and module installable with `npx shadcn add athompson83/genlib/<item>` ([distribution.md](distribution.md)). Layered health evidence and a rotating daily sample in `verify-resources` and the catalog-health workflow |
+| [Bit](https://github.com/teambit/bit) (v2) | Reusable components with per-component CI and test results, semantic API diffs, deprecation, agent/MCP setup | Module manifests carry their maintenance evidence: `verification.behaviors`, `command`, `environment`, a `changelog` whose first entry is the current version, and `deprecated`; `genlib inspect` returns them |
+| [jsrepo](https://jsrepo.dev) (3.8.1) | Source registries with dependency resolution; files with roles (file, example, doc, test) whose dependencies install only when selected | Already matched by the language installer: `--with-tests` copies tests and their `testDependencies`, and dependency commands run where the copied manifest lands. Not adopted: a jsrepo-format registry (see [distribution.md](distribution.md#what-is-not-claimed)) |
+| [Microsoft APM](https://github.com/microsoft/apm) (0.33.0) | Manifest and lockfile for skills, instructions and MCP servers, with commit and content-hash pins and drift audit | The `genlib-use` skill installs through APM (verified; [distribution.md](distribution.md#agent-skill-skills-cli-and-apm)). Genlib does not build its own agent-package manager |
+| [Vercel Skills](https://github.com/vercel-labs/skills) (1.7.2) | Skill discovery and install across agents | Genlib's skill index emits pinned `npx skills add` commands, and `genlib-use` itself installs this way |
+| [Context7](https://github.com/upstash/context7) (`ctx7` 0.6.0) | Resolve a library's identity, then fetch version-specific docs and examples | Resolved resources with a package carry a `docsLookup`: the two `ctx7` commands, with the library ID resolved by Context7 rather than guessed |
+| [AREX-Skill](https://github.com/VectorSpaceLab/AREX-Skill) | Repository-derived skills: routing, workflow, validation, limits, provenance and refresh cues | Capability inspects for one language return ordered `steps` (copy, install, integrate, test or check), the acceptance step (`verify`) and `onFailure` guidance. Contracts now state when to use a package and what to check if it fails (see `modules/org-invitations/CONTRACT.md`) |
+| [CodeDistiller](https://github.com/cognitiveailab/codedistiller) | Generates and executes working examples from repositories, keeping code, requirements, outputs and reports | A future production path for new capabilities: select an upstream repository, write a minimal integration, run it in a declared environment, keep the evidence, review, publish. Not automated yet |
+| [anthropics/skills](https://github.com/anthropics/skills), [obra/superpowers](https://github.com/obra/superpowers) | Skills as procedures plus scripts; with/without-skill comparisons; a full engineering workflow | Indexed in the skill catalog. Their with/without comparison shapes the benchmark protocol |
+| [agentry](https://github.com/OpenTechIL/agentry) | Exact-commit lock, owned-entry manifest, drift checks | Matches Genlib's `.genlib/lock.json` (per-file hashes, `verify` reports drift) |
+| [qdrant/mcp-code-snippets](https://github.com/qdrant/mcp-code-snippets), [21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp) | Context-filtered snippet retrieval with broad fallback; hosted UI generation | Genlib keeps compatibility checks when it broadens a search: incompatible results are counted and hidden, never silently returned |
+
+## Changes made from this review
+
+1. **Executable adoption steps.** `genlib capability inspect <id> --language <lang> --json` and MCP `genlib_capability` (with `language`) return ordered `steps` (`{kind, run, cwd, purpose}`), `verify` and `onFailure`. A test step appears only where the copied files run on their own: Python, Go, Java and Kotlin, each run end to end in a fresh app. Elsewhere there is a compile check and an integrate step.
+2. **Feature packages with evidence.** `org-invitations` is a complete tenant-invitation feature with injected store, authorization, authentication and email. It has tests for replay, concurrent accepts, expiry, revocation, link rotation, tenant and role boundaries, forwarded links and failed delivery, and it lists those behaviors in its manifest.
+3. **Existing distribution channels.** A shadcn-format `registry.json`, plus verified Skills CLI and APM install routes for the agent skill.
+4. **Library docs after selection.** `docsLookup` hands off to Context7 once Genlib has picked the package.
+5. **Continuing verification by layer.** `verify-resources` reports failures by layer: source, links, packages and license, upstream lifecycle, install resolvability. It samples a rotating slice each day; the scheduled `catalog-health` workflow runs it daily and adds install checks weekly, without gating pull requests.
+
+## Still open
+
+- Feature packages for entitlements and credits, a notification inbox and file import flows, built like `org-invitations`.
+- Running the comparison protocol in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run). Until then, Genlib's advantage over an agent that already has Context7, a source registry and a good workflow is unmeasured.
+- Semantic API diffs between module versions (Bit's `bit api diff`). The changelog records breaking changes by hand today.

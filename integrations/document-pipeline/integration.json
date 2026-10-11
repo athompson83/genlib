@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "document-pipeline",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Invoices, PDF templates, email and spreadsheet exports",
+  "summary": "Typed invoice, estimate, receipt, packing-slip and report models drive editable pdfme templates and dynamic PDFs; invoice email/XLSX/CSV and bounded Gotenberg/Typst adapters provide complementary output profiles.",
+  "languages": [
+    "typescript",
+    "typst"
+  ],
+  "frameworks": [
+    "react"
+  ],
+  "platforms": [
+    "node",
+    "browser"
+  ],
+  "resources": [
+    "pdfme",
+    "gotenberg",
+    "typst",
+    "react-email",
+    "exceljs",
+    "papaparse"
+  ],
+  "tags": [
+    "pdf",
+    "documents",
+    "invoice",
+    "email",
+    "xlsx",
+    "csv",
+    "conversion",
+    "templates",
+    "estimate",
+    "receipt",
+    "packing-slip",
+    "report"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/estimate.json",
+    "fixtures/invoice.json",
+    "fixtures/packing-slip.json",
+    "fixtures/receipt.json",
+    "fixtures/report.json",
+    "package-lock.json",
+    "package.json",
+    "src/designer.ts",
+    "src/document-pdfs.ts",
+    "src/documents.ts",
+    "src/email.tsx",
+    "src/gotenberg.ts",
+    "src/invoice.ts",
+    "src/invoice.typ",
+    "src/pdf.ts",
+    "src/spreadsheet.ts",
+    "src/typst.ts",
+    "tests/document-variants.test.mjs",
+    "tests/documents.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/invoice.ts",
+    "src/pdf.ts",
+    "src/designer.ts",
+    "src/email.tsx",
+    "src/spreadsheet.ts",
+    "src/gotenberg.ts",
+    "src/typst.ts",
+    "src/invoice.typ",
+    "src/documents.ts",
+    "src/document-pdfs.ts"
+  ],
+  "compatibility": {
+    "reactMajors": [
+      18,
+      19
+    ]
+  },
+  "verification": {
+    "level": "tested",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and ten tests including real pdfme PDFs for five document types, a 90-row multi-page report with a supplied font map, React Email, ExcelJS reload and PapaParse round trips.",
+      "Node 24.19.0; mocked Gotenberg HTTP boundary and controlled executable Typst argument/JSON/cleanup fixtures; neither external converter was run."
+    ],
+    "notes": [
+      "Browser PDF designer interactions, a live Gotenberg service and a real Typst compiler were not exercised.",
+      "The invoice uses integer minor units; tax rules, fonts/assets, legal invoice requirements, visual output and email-client acceptance remain application-specific.",
+      "React 18 fits peer ranges but was not executed; server conversion and spreadsheet modules must remain outside browser bundles."
+    ]
+  }
+}

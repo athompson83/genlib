@@ -1178,11 +1178,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/data-docs-office.md"
+        "guide": "docs/resources/data-docs-office.md",
+        "integrations": [
+          "document-pipeline"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/document-pipeline/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "arquero",
@@ -4113,11 +4122,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/data-docs-office.md"
+        "guide": "docs/resources/data-docs-office.md",
+        "integrations": [
+          "document-pipeline"
+        ]
       },
       "install": [
         "Run the official gotenberg/gotenberg image at a pinned tag as an internal service."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/document-pipeline/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "pandoc",
@@ -4453,11 +4471,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/data-docs-office.md"
+        "guide": "docs/resources/data-docs-office.md",
+        "integrations": [
+          "document-pipeline"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/document-pipeline/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "sheetjs",

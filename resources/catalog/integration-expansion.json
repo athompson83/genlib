@@ -1,0 +1,2741 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10",
+  "items": [
+    {
+      "id": "pdfme",
+      "name": "pdfme",
+      "category": "pdf-generation",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pdfme/pdfme/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/pdfme/pdfme",
+      "repository": "https://github.com/pdfme/pdfme",
+      "docs": "https://pdfme.com/docs/getting-started",
+      "summary": "JSON-template PDF designer and generator with plugin-driven fields.",
+      "useWhen": "Use for branded invoices, estimates, receipts and reports.",
+      "cautions": [
+        "Review fonts, images and plugin licenses independently.",
+        "Pin matching generator/common/schema packages and verify generated documents."
+      ],
+      "tags": [
+        "pdf-generation",
+        "pdfme"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@pdfme/common"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@pdfme/generator"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@pdfme/schemas"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@pdfme/ui"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://pdfme.com/docs/getting-started",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "document-pipeline"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://pdfme.com/docs/getting-started"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://pdfme.com/docs/getting-started",
+          "integrations/document-pipeline/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "zip-js",
+      "name": "zip.js",
+      "category": "archive-export",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "BSD-3-Clause",
+        "url": "https://github.com/gildas-lormeau/zip.js/blob/HEAD/LICENSE",
+        "scope": "BSD-3-Clause applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/gildas-lormeau/zip.js",
+      "repository": "https://github.com/gildas-lormeau/zip.js",
+      "docs": "https://gildas-lormeau.github.io/zip.js/",
+      "summary": "Streaming ZIP creation and extraction for JavaScript applications.",
+      "useWhen": "Use for bounded bulk exports, progress and cancellation.",
+      "cautions": [
+        "Reject unsafe extraction paths, duplicate names and excessive expansion."
+      ],
+      "tags": [
+        "archive-export",
+        "zip-js"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@zip.js/zip.js"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://gildas-lormeau.github.io/zip.js/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "resumable-files"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://gildas-lormeau.github.io/zip.js/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://gildas-lormeau.github.io/zip.js/",
+          "integrations/resumable-files/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "oasdiff",
+      "name": "oasdiff",
+      "category": "api-contracts",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/oasdiff/oasdiff/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/oasdiff/oasdiff",
+      "repository": "https://github.com/oasdiff/oasdiff",
+      "docs": "https://github.com/oasdiff/oasdiff",
+      "summary": "Detects breaking changes between OpenAPI specifications.",
+      "useWhen": "Use for an accepted-baseline versus proposed-contract CI gate.",
+      "cautions": [
+        "Pin the CLI version and baseline; hosted offerings are separate."
+      ],
+      "tags": [
+        "api-contracts",
+        "oasdiff"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "testing-qa",
+        "devops-infra"
+      ],
+      "languages": [
+        "go"
+      ],
+      "packages": [
+        {
+          "ecosystem": "go",
+          "name": "github.com/oasdiff/oasdiff"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/oasdiff/oasdiff",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "api-contracts"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/oasdiff/oasdiff"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/oasdiff/oasdiff",
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "go install github.com/oasdiff/oasdiff@v1.33.0"
+      ]
+    },
+    {
+      "id": "hurl",
+      "name": "Hurl",
+      "category": "http-testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/Orange-OpenSource/hurl/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/Orange-OpenSource/hurl",
+      "repository": "https://github.com/Orange-OpenSource/hurl",
+      "docs": "https://hurl.dev/",
+      "summary": "Text-file HTTP request chains and response assertions.",
+      "useWhen": "Use for explicit authentication, pagination, cache and API contract fixtures.",
+      "cautions": [
+        "Requires a Hurl runtime; use disposable local services for mutating fixture requests."
+      ],
+      "tags": [
+        "http-testing",
+        "hurl"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "testing-qa"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "hurl"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://hurl.dev/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "api-contracts"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://hurl.dev/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://hurl.dev/",
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "cargo install hurl --locked"
+      ]
+    },
+    {
+      "id": "schemathesis",
+      "name": "Schemathesis",
+      "category": "api-testing",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/schemathesis/schemathesis/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/schemathesis/schemathesis",
+      "repository": "https://github.com/schemathesis/schemathesis",
+      "docs": "https://github.com/schemathesis/schemathesis",
+      "summary": "OpenAPI and GraphQL generated test cases with failure reproduction.",
+      "useWhen": "Use to explore a disposable API fixture beyond hand-authored examples.",
+      "cautions": [
+        "Generated tests can mutate data; do not target production by default.",
+        "Optional Python test runtime, independent of service implementation language."
+      ],
+      "tags": [
+        "api-testing",
+        "schemathesis"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "testing-qa"
+      ],
+      "languages": [
+        "python"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "schemathesis"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/schemathesis/schemathesis",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "api-contracts"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/schemathesis/schemathesis"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/schemathesis/schemathesis",
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "copier",
+      "name": "Copier",
+      "category": "template-upgrades",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/copier-org/copier/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/copier-org/copier",
+      "repository": "https://github.com/copier-org/copier",
+      "docs": "https://copier.readthedocs.io/en/stable/updating/",
+      "summary": "Parameterized project creation and template evolution with stored answers.",
+      "useWhen": "Use for deliberate versioned template updates that preserve application edits.",
+      "cautions": [
+        "Template tasks can execute code; keep them explicitly disabled or separately reviewed.",
+        "Pin template source and review update conflicts."
+      ],
+      "tags": [
+        "template-upgrades",
+        "copier"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "languages": [
+        "python"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "copier"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://copier.readthedocs.io/en/stable/updating/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "developer-codemods"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://copier.readthedocs.io/en/stable/updating/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://copier.readthedocs.io/en/stable/updating/",
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "ts-morph",
+      "name": "ts-morph",
+      "category": "codemods",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/dsherret/ts-morph/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/dsherret/ts-morph",
+      "repository": "https://github.com/dsherret/ts-morph",
+      "docs": "https://github.com/dsherret/ts-morph",
+      "summary": "TypeScript semantic source manipulation and project inspection.",
+      "useWhen": "Use for repeatable imports, registrations and interface edits needing compiler context.",
+      "cautions": [
+        "Pin supported TypeScript/compiler versions and prove a second run is a no-op."
+      ],
+      "tags": [
+        "codemods",
+        "ts-morph"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "ts-morph"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/dsherret/ts-morph",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "developer-codemods"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/dsherret/ts-morph"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/dsherret/ts-morph",
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "libcst",
+      "name": "LibCST",
+      "category": "codemods",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/Instagram/LibCST/blob/HEAD/LICENSE",
+        "scope": "MIT core. Bundled source identified in LICENSE carries PSF/Apache notices that must be retained."
+      },
+      "homepage": "https://github.com/Instagram/LibCST",
+      "repository": "https://github.com/Instagram/LibCST",
+      "docs": "https://github.com/Instagram/LibCST",
+      "summary": "Python concrete syntax tree transformations preserving formatting and comments.",
+      "useWhen": "Use for repeatable Python migrations and codemods.",
+      "cautions": [
+        "Keep bundled PSF and Apache notices identified in the upstream license.",
+        "Run formatting-preservation and second-run no-op fixtures."
+      ],
+      "tags": [
+        "codemods",
+        "libcst"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "languages": [
+        "python"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "name": "libcst"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/Instagram/LibCST",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "developer-codemods"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/Instagram/LibCST"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/Instagram/LibCST",
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "rector",
+      "name": "Rector",
+      "category": "codemods",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/rectorphp/rector/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/rectorphp/rector",
+      "repository": "https://github.com/rectorphp/rector",
+      "docs": "https://github.com/rectorphp/rector",
+      "summary": "Rule-based PHP refactoring and version upgrades.",
+      "useWhen": "Use selected rules in preview mode with exclusions and target-PHP fixtures.",
+      "cautions": [
+        "External rule packages have independent terms; pin and review each package."
+      ],
+      "tags": [
+        "codemods",
+        "rector"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "languages": [
+        "php"
+      ],
+      "packages": [
+        {
+          "ecosystem": "packagist",
+          "name": "rector/rector"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/rectorphp/rector",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "developer-codemods"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/rectorphp/rector"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/rectorphp/rector",
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "composer require --dev rector/rector"
+      ]
+    },
+    {
+      "id": "dependency-cruiser",
+      "name": "dependency-cruiser",
+      "category": "dependency-analysis",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/sverweij/dependency-cruiser/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/sverweij/dependency-cruiser",
+      "repository": "https://github.com/sverweij/dependency-cruiser",
+      "docs": "https://github.com/sverweij/dependency-cruiser",
+      "summary": "Import boundary and cycle checks with machine-readable graphs.",
+      "useWhen": "Use for architectural constraints after integration.",
+      "cautions": [
+        "Keep project-specific rule exceptions reviewed; do not hide violations with unconditional success."
+      ],
+      "tags": [
+        "dependency-analysis",
+        "dependency-cruiser"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "dependency-cruiser"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/sverweij/dependency-cruiser",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "developer-codemods"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/sverweij/dependency-cruiser"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/sverweij/dependency-cruiser",
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "npm install --save-dev dependency-cruiser"
+      ]
+    },
+    {
+      "id": "maestro",
+      "name": "Maestro",
+      "category": "native-testing",
+      "platforms": [
+        "mobile",
+        "cli"
+      ],
+      "kind": "source-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/mobile-dev-inc/Maestro/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/mobile-dev-inc/Maestro",
+      "repository": "https://github.com/mobile-dev-inc/Maestro",
+      "docs": "https://docs.maestro.dev/",
+      "summary": "Native/mobile acceptance testing with retained YAML flows.",
+      "useWhen": "Use for sign-in, permissions, navigation and offline-recovery fixtures.",
+      "cautions": [
+        "Apache-2.0 covers CLI/framework; Studio is free but not open source, Cloud is a paid service.",
+        "Physical Android devices are supported; physical iOS devices are not."
+      ],
+      "tags": [
+        "native-testing",
+        "maestro"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "testing-qa"
+      ],
+      "languages": [
+        "kotlin",
+        "swift",
+        "dart"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.maestro.dev/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "native-acceptance"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://docs.maestro.dev/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://docs.maestro.dev/",
+          "integrations/native-acceptance/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "Download the reviewed CLI archive from https://github.com/mobile-dev-inc/Maestro/releases and add its bin directory to PATH."
+      ]
+    },
+    {
+      "id": "patrol",
+      "name": "Patrol",
+      "category": "native-testing",
+      "platforms": [
+        "mobile",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/leancodepl/patrol/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/leancodepl/patrol",
+      "repository": "https://github.com/leancodepl/patrol",
+      "docs": "https://patrol.leancode.co/",
+      "summary": "Flutter acceptance testing with native and system interactions.",
+      "useWhen": "Use for Flutter apps whose flows cross native permission and system UI.",
+      "cautions": [
+        "Pin a compatible stable CLI/package pair and document simulator/emulator setup."
+      ],
+      "tags": [
+        "native-testing",
+        "patrol"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "testing-qa"
+      ],
+      "languages": [
+        "dart"
+      ],
+      "packages": [
+        {
+          "ecosystem": "pub",
+          "name": "patrol"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://patrol.leancode.co/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "native-acceptance"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://patrol.leancode.co/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://patrol.leancode.co/",
+          "integrations/native-acceptance/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "flutter pub add --dev patrol",
+        "dart pub global activate patrol_cli"
+      ]
+    },
+    {
+      "id": "react-arborist",
+      "name": "React Arborist",
+      "category": "tree-navigation",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/brimdata/react-arborist/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/brimdata/react-arborist",
+      "repository": "https://github.com/brimdata/react-arborist",
+      "docs": "https://github.com/brimdata/react-arborist",
+      "summary": "Virtualized React trees with controlled nodes, rename and drag/drop.",
+      "useWhen": "Use for file/project navigation with a persistence and permissions adapter.",
+      "cautions": [
+        "Rollback failed moves; validate permissions on the server."
+      ],
+      "tags": [
+        "tree-navigation",
+        "react-arborist"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "react-arborist"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/brimdata/react-arborist",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "web-calendar-files"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/brimdata/react-arborist"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/brimdata/react-arborist",
+          "integrations/web-calendar-files/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "imask",
+      "name": "IMask",
+      "category": "masked-input",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/uNmAnNeR/imaskjs/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/uNmAnNeR/imaskjs",
+      "repository": "https://github.com/uNmAnNeR/imaskjs",
+      "docs": "https://github.com/uNmAnNeR/imaskjs",
+      "summary": "Typed, raw and displayed value handling for masked inputs.",
+      "useWhen": "Use for input formatting with composition and mobile-keyboard fixtures.",
+      "cautions": [
+        "Masks are not server-side validation."
+      ],
+      "tags": [
+        "masked-input",
+        "imask"
+      ],
+      "projectTypes": [
+        "web-app",
+        "saas"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "imask"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "react-imask"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/uNmAnNeR/imaskjs",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/uNmAnNeR/imaskjs"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/uNmAnNeR/imaskjs",
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "sqldelight",
+      "name": "SQLDelight",
+      "category": "native-persistence",
+      "platforms": [
+        "mobile",
+        "desktop",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/sqldelight/sqldelight/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/sqldelight/sqldelight",
+      "repository": "https://github.com/sqldelight/sqldelight",
+      "docs": "https://sqldelight.github.io/sqldelight/",
+      "summary": "Typed Kotlin SQL queries, database schemas and migrations.",
+      "useWhen": "Use for native local persistence with documented driver/platform profiles.",
+      "cautions": [
+        "SQLite and JVM database drivers have different platform support."
+      ],
+      "tags": [
+        "native-persistence",
+        "sqldelight"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "app.cash.sqldelight:sqlite-driver"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://sqldelight.github.io/sqldelight/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "native-persistence"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://sqldelight.github.io/sqldelight/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://sqldelight.github.io/sqldelight/",
+          "integrations/native-persistence/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "grdb-swift",
+      "name": "GRDB.swift",
+      "category": "native-persistence",
+      "platforms": [
+        "mobile",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/groue/GRDB.swift/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/groue/GRDB.swift",
+      "repository": "https://github.com/groue/GRDB.swift",
+      "docs": "https://github.com/groue/GRDB.swift",
+      "summary": "Swift SQLite transactions, migrations and observable queries.",
+      "useWhen": "Use for local Swift persistence with an in-memory fixture database.",
+      "cautions": [
+        "Does not provide a device synchronization service."
+      ],
+      "tags": [
+        "native-persistence",
+        "grdb-swift"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/groue/GRDB.swift"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/groue/GRDB.swift",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "native-persistence"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/groue/GRDB.swift"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/groue/GRDB.swift",
+          "integrations/native-persistence/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "Add https://github.com/groue/GRDB.swift through Xcode Package Dependencies; pin the reviewed release."
+      ]
+    },
+    {
+      "id": "swift-snapshot-testing",
+      "name": "Swift Snapshot Testing",
+      "category": "native-testing",
+      "platforms": [
+        "mobile",
+        "desktop"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/pointfreeco/swift-snapshot-testing/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/pointfreeco/swift-snapshot-testing",
+      "repository": "https://github.com/pointfreeco/swift-snapshot-testing",
+      "docs": "https://github.com/pointfreeco/swift-snapshot-testing",
+      "summary": "Swift visual and value snapshot assertions.",
+      "useWhen": "Use fixed simulator/runtime baselines for theme, text-size and failure states.",
+      "cautions": [
+        "Snapshots vary by OS, font and rendering environment; document the exact baseline."
+      ],
+      "tags": [
+        "native-testing",
+        "swift-snapshot-testing"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "testing-qa"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "packages": [
+        {
+          "ecosystem": "swift",
+          "name": "https://github.com/pointfreeco/swift-snapshot-testing"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/pointfreeco/swift-snapshot-testing",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "native-acceptance"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/pointfreeco/swift-snapshot-testing"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/pointfreeco/swift-snapshot-testing",
+          "integrations/native-acceptance/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "Add https://github.com/pointfreeco/swift-snapshot-testing through Xcode Package Dependencies; pin the reviewed release."
+      ]
+    },
+    {
+      "id": "uniffi",
+      "name": "UniFFI",
+      "category": "cross-language",
+      "platforms": [
+        "mobile",
+        "desktop",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "license-review",
+      "verification": "partial",
+      "license": {
+        "id": "MPL-2.0",
+        "url": "https://github.com/mozilla/uniffi-rs/blob/HEAD/LICENSE",
+        "scope": "MPL-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/mozilla/uniffi-rs",
+      "repository": "https://github.com/mozilla/uniffi-rs",
+      "docs": "https://github.com/mozilla/uniffi-rs",
+      "summary": "Rust utilities exposed through generated foreign-language bindings.",
+      "useWhen": "Use for a concrete shared Rust utility with Swift/Kotlin/Python conformance tests.",
+      "cautions": [
+        "Review MPL notices and affected files before vendoring.",
+        "Packaging and native build/distribution are separate integration requirements."
+      ],
+      "tags": [
+        "cross-language",
+        "uniffi"
+      ],
+      "projectTypes": [
+        "mobile-app",
+        "desktop-app"
+      ],
+      "languages": [
+        "rust",
+        "swift",
+        "kotlin",
+        "python"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "uniffi"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/mozilla/uniffi-rs",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "shared-rust-core"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/mozilla/uniffi-rs"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/mozilla/uniffi-rs",
+          "integrations/shared-rust-core/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "velopack",
+      "name": "Velopack",
+      "category": "desktop-updates",
+      "platforms": [
+        "desktop",
+        "cli"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/velopack/velopack/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/velopack/velopack",
+      "repository": "https://github.com/velopack/velopack",
+      "docs": "https://docs.velopack.io/",
+      "summary": "Desktop installation and update tooling.",
+      "useWhen": "Use for an explicit desktop packaging/update profile.",
+      "cautions": [
+        "Signing, notarization and trusted update hosting remain application-owned.",
+        "Compare with existing Tauri/Electron update mechanisms."
+      ],
+      "tags": [
+        "desktop-updates",
+        "velopack"
+      ],
+      "projectTypes": [
+        "desktop-app"
+      ],
+      "languages": [
+        "csharp",
+        "rust"
+      ],
+      "packages": [
+        {
+          "ecosystem": "nuget",
+          "name": "Velopack"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.velopack.io/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "desktop-delivery"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://docs.velopack.io/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://docs.velopack.io/",
+          "integrations/desktop-delivery/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "hey-api",
+      "name": "Hey API",
+      "category": "api-codegen",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/hey-api/hey-api/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/hey-api/hey-api",
+      "repository": "https://github.com/hey-api/hey-api",
+      "docs": "https://heyapi.dev/",
+      "summary": "OpenAPI TypeScript SDK generation and integration plugins.",
+      "useWhen": "Use when runtime schemas and query integrations justify an alternative generator.",
+      "cautions": [
+        "Compare existing Orval and openapi-typescript first.",
+        "Pin the generator and plugin versions; review generated diffs."
+      ],
+      "tags": [
+        "api-codegen",
+        "hey-api"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "web-app"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@hey-api/openapi-ts",
+          "version": "0.99.0"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://heyapi.dev/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "api-contracts"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://heyapi.dev/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://heyapi.dev/",
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "npm install --save-dev @hey-api/openapi-ts@0.99.0"
+      ]
+    },
+    {
+      "id": "typespec",
+      "name": "TypeSpec",
+      "category": "api-contracts",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/microsoft/typespec/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/microsoft/typespec",
+      "repository": "https://github.com/microsoft/typespec",
+      "docs": "https://typespec.io/",
+      "summary": "Reusable API contract authoring and schema/client emission.",
+      "useWhen": "Use for a new API with multiple generated clients.",
+      "cautions": [
+        "Do not impose a new DSL on projects whose framework-native contracts already work.",
+        "Experimental emitters/features require separate review."
+      ],
+      "tags": [
+        "api-contracts",
+        "typespec"
+      ],
+      "projectTypes": [
+        "api-backend"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "@typespec/compiler"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@typespec/http"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@typespec/openapi3"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://typespec.io/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "api-contracts"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://typespec.io/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://typespec.io/",
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "microcks",
+      "name": "Microcks",
+      "category": "api-mocks",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/microcks/microcks/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/microcks/microcks",
+      "repository": "https://github.com/microcks/microcks",
+      "docs": "https://microcks.io/documentation/",
+      "summary": "Multi-protocol API mocks and contract verification.",
+      "useWhen": "Use when parallel client/server work needs shared protocol fixtures.",
+      "cautions": [
+        "Optional containerized service with persistence and operational requirements."
+      ],
+      "tags": [
+        "api-mocks",
+        "microcks"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "testing-qa"
+      ],
+      "languages": [
+        "java"
+      ],
+      "packages": [
+        {
+          "ecosystem": "docker",
+          "name": "quay.io/microcks/microcks"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://microcks.io/documentation/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "api-contracts"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://microcks.io/documentation/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://microcks.io/documentation/",
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "cedar",
+      "name": "Cedar",
+      "category": "authorization",
+      "platforms": [
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/cedar-policy/cedar/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/cedar-policy/cedar",
+      "repository": "https://github.com/cedar-policy/cedar",
+      "docs": "https://docs.cedarpolicy.com/",
+      "summary": "Policies over principal, action, resource and context.",
+      "useWhen": "Use for explicit agent/tool authorization with allow/deny fixtures.",
+      "cautions": [
+        "Supply authenticated identities and validated context; policy results do not create a transactional spending ledger."
+      ],
+      "tags": [
+        "authorization",
+        "cedar"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "ai-agent",
+        "security"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "packages": [
+        {
+          "ecosystem": "crates",
+          "name": "cedar-policy"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.cedarpolicy.com/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "authorization-collaboration"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://docs.cedarpolicy.com/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://docs.cedarpolicy.com/",
+          "integrations/authorization-collaboration/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "loro",
+      "name": "Loro",
+      "category": "collaboration",
+      "platforms": [
+        "web",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/loro-dev/loro/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
+      },
+      "homepage": "https://github.com/loro-dev/loro",
+      "repository": "https://github.com/loro-dev/loro",
+      "docs": "https://loro.dev/docs/",
+      "summary": "CRDT tree/history primitives for collaborative applications.",
+      "useWhen": "Use for a concrete collaborative editor with an application data model.",
+      "cautions": [
+        "Evaluate existing Yjs/Automerge alternatives.",
+        "Keep permissions and authoritative financial state under separate server rules."
+      ],
+      "tags": [
+        "collaboration",
+        "loro"
+      ],
+      "projectTypes": [
+        "realtime-collab",
+        "web-app"
+      ],
+      "languages": [
+        "typescript",
+        "rust"
+      ],
+      "packages": [
+        {
+          "ecosystem": "npm",
+          "name": "loro-crdt"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://loro.dev/docs/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "authorization-collaboration"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://loro.dev/docs/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://loro.dev/docs/",
+          "integrations/authorization-collaboration/CONTRACT.md"
+        ]
+      }
+    },
+    {
+      "id": "frankfurter",
+      "name": "Frankfurter v2",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://frankfurter.dev/",
+        "scope": "Server code MIT; reference data retain each source provider's terms."
+      },
+      "homepage": "https://frankfurter.dev/",
+      "repository": "https://github.com/lineofflight/frankfurter",
+      "docs": "https://frankfurter.dev/",
+      "summary": "Reference exchange rates with date, provider and currency-pair selection.",
+      "useWhen": "Use for historical/reference currency displays and decimal-safe application conversions.",
+      "cautions": [
+        "Hosted API is free for commercial use without a key; anti-abuse limits apply.",
+        "Reference rates are not live transaction quotes."
+      ],
+      "tags": [
+        "public-data-api",
+        "frankfurter",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://frankfurter.dev/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://frankfurter.dev/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "national-weather-service",
+      "name": "National Weather Service API",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://www.weather.gov/documentation/services-web-api",
+        "scope": "Official U.S. government open-data service, free for any purpose; this record does not assert an open-source license for its hosted server."
+      },
+      "homepage": "https://www.weather.gov/documentation/services-web-api",
+      "repository": null,
+      "docs": "https://www.weather.gov/documentation/services-web-api",
+      "summary": "U.S. weather grid discovery, forecasts and active alerts.",
+      "useWhen": "Use for location-based U.S. weather displays with expiry and source attribution.",
+      "cautions": [
+        "Identifying User-Agent required; rate-limit numbers are not published.",
+        "Coverage is not global; revalidate cached point-to-grid mappings."
+      ],
+      "tags": [
+        "public-data-api",
+        "national-weather-service",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.weather.gov/documentation/services-web-api",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://www.weather.gov/documentation/services-web-api"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "census",
+      "name": "U.S. Census API",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html",
+        "scope": "U.S. government data under Census API terms; preserve the required Census attribution and non-endorsement notice."
+      },
+      "homepage": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html",
+      "repository": null,
+      "docs": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html",
+      "summary": "Dataset-vintage and geography-based demographic/economic data.",
+      "useWhen": "Use for location comparisons, FIPS/geography filters and table conversion.",
+      "cautions": [
+        "A free API key is required for data queries; older no-key examples are obsolete.",
+        "Preserve estimate/uncertainty variables, dataset vintage and attribution notice."
+      ],
+      "tags": [
+        "public-data-api",
+        "census",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://www.census.gov/data/developers/guidance/api-user-guide.API_Key.html"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "vpic",
+      "name": "NHTSA vPIC",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://vpic.nhtsa.dot.gov/api/",
+        "scope": "U.S. government public API and downloadable data; does not imply an open-source license for the hosted application."
+      },
+      "homepage": "https://vpic.nhtsa.dot.gov/api/",
+      "repository": null,
+      "docs": "https://vpic.nhtsa.dot.gov/api/",
+      "summary": "VIN decoding into manufacturer-supplied vehicle specifications.",
+      "useWhen": "Use for full or explicitly partial VIN intake and bounded batch decoding.",
+      "cautions": [
+        "Automated traffic controls apply; use downloadable data for bulk workflows.",
+        "Decoding specifications is not a vehicle-history or ownership check."
+      ],
+      "tags": [
+        "public-data-api",
+        "vpic",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://vpic.nhtsa.dot.gov/api/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://vpic.nhtsa.dot.gov/api/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "crossref",
+      "name": "Crossref REST API",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": null,
+        "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+        "scope": "Bibliographic facts are public domain and Crossref-generated metadata CC0; abstracts and other third-party material retain their own rights."
+      },
+      "homepage": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+      "repository": null,
+      "docs": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+      "summary": "DOI lookup, citation metadata and cursor-based works search.",
+      "useWhen": "Use for reference enrichment with explicit fields and source attribution.",
+      "cautions": [
+        "Identify the application/contact for polite access and honor rate/concurrency headers.",
+        "Abstracts remain subject to author/publisher copyright; paid Metadata Plus has separate terms."
+      ],
+      "tags": [
+        "public-data-api",
+        "crossref",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "gleif",
+      "name": "GLEIF API",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "CC0-1.0",
+        "url": "https://www.gleif.org/en/lei-data/gleif-api",
+        "scope": "LEI reference data are provided under CC0; this is a data/service scope, not a hosted-server code license."
+      },
+      "homepage": "https://www.gleif.org/en/lei-data/gleif-api",
+      "repository": null,
+      "docs": "https://www.gleif.org/en/lei-data/gleif-api",
+      "summary": "Legal Entity Identifier records and relationship links.",
+      "useWhen": "Use for legal-entity lookup and ambiguity-preserving autocomplete.",
+      "cautions": [
+        "Coverage is entities with LEIs, not all businesses.",
+        "Service is best effort; keep status, jurisdiction and source links."
+      ],
+      "tags": [
+        "public-data-api",
+        "gleif",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://www.gleif.org/en/lei-data/gleif-api",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://www.gleif.org/en/lei-data/gleif-api"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "ror",
+      "name": "ROR API v2",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://ror.readme.io/docs/rest-api",
+        "scope": "API code MIT; ROR identifiers/metadata CC0. GeoNames-derived material requires its applicable attribution."
+      },
+      "homepage": "https://ror.readme.io/docs/rest-api",
+      "repository": "https://github.com/ror-community/ror-api",
+      "docs": "https://ror.readme.io/docs/rest-api",
+      "summary": "Research organization IDs, multilingual names and successor relationships.",
+      "useWhen": "Use for affiliation matching and research-institution lookup.",
+      "cautions": [
+        "No registration currently; limit 2,000 requests per five minutes per IP and 10,000 results. Use dumps for the full registry.",
+        "Core metadata CC0; geographic source material has separate attribution requirements."
+      ],
+      "tags": [
+        "public-data-api",
+        "ror",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://ror.readme.io/docs/rest-api",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://ror.readme.io/docs/rest-api"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "open-food-facts",
+      "name": "Open Food Facts",
+      "category": "public-data-api",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "AGPL-3.0",
+        "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+        "scope": "Server AGPL-3.0; database ODbL, contents DbCL, images CC BY-SA with possible additional embedded rights."
+      },
+      "homepage": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+      "repository": "https://github.com/openfoodfacts/openfoodfacts-server",
+      "docs": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+      "summary": "Barcode product enrichment and structured food-product search.",
+      "useWhen": "Use for cached product reads with sparse data and explicit attribution.",
+      "cautions": [
+        "Current product API v3; structured search still uses v2.",
+        "Current documented limits: 15 product reads/min/IP and 10 searches/min/IP; use exports for bulk."
+      ],
+      "tags": [
+        "public-data-api",
+        "open-food-facts",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://openfoodfacts.github.io/openfoodfacts-server/api/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "deps-dev",
+      "name": "deps.dev API",
+      "category": "catalog-maintenance",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://docs.deps.dev/api/v3/",
+        "scope": "API definitions/examples Apache-2.0; generated API data CC-BY-4.0, aggregated source data retain their terms, and Google API Terms apply."
+      },
+      "homepage": "https://docs.deps.dev/api/v3/",
+      "repository": "https://github.com/google/deps.dev",
+      "docs": "https://docs.deps.dev/api/v3/",
+      "summary": "Exact package/version dependency, license, advisory and deprecation metadata.",
+      "useWhen": "Use cached maintainer enrichment for reviewed exact resource versions.",
+      "cautions": [
+        "Empty license data means unknown; inspect upstream terms independently.",
+        "Direct advisory keys do not include transitive dependencies; inspect the resolved dependency graph."
+      ],
+      "tags": [
+        "catalog-maintenance",
+        "deps-dev",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.deps.dev/api/v3/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://docs.deps.dev/api/v3/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "osv-api",
+      "name": "OSV API",
+      "category": "catalog-maintenance",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://google.github.io/osv.dev/api/",
+        "scope": "OSV infrastructure code Apache-2.0; advisory data retain their source database terms/provenance."
+      },
+      "homepage": "https://google.github.io/osv.dev/api/",
+      "repository": "https://github.com/google/osv.dev",
+      "docs": "https://google.github.io/osv.dev/api/",
+      "summary": "Advisory queries by exact package/version or commit, with batch support.",
+      "useWhen": "Use for cached resource-maintenance enrichment alongside existing OSV-Scanner.",
+      "cautions": [
+        "No returned advisory is not proof that a version has no vulnerabilities.",
+        "Store query time and advisory IDs; preserve source database provenance."
+      ],
+      "tags": [
+        "catalog-maintenance",
+        "osv-api",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://google.github.io/osv.dev/api/",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://google.github.io/osv.dev/api/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "endoflife-date",
+      "name": "endoflife.date API",
+      "category": "catalog-maintenance",
+      "platforms": [
+        "server"
+      ],
+      "kind": "service",
+      "integrationMode": "service",
+      "verification": "partial",
+      "license": {
+        "id": "MIT",
+        "url": "https://github.com/endoflife-date/endoflife.date/blob/master/LICENSE",
+        "scope": "Project code MIT. Product descriptions adapted from Wikipedia are CC BY-SA 3.0, and third-party assets retain their own terms; consult the linked official product policies."
+      },
+      "homepage": "https://endoflife.date/docs/api",
+      "repository": "https://github.com/endoflife-date/endoflife.date",
+      "docs": "https://endoflife.date/docs/api",
+      "summary": "Versioned software product and release-support lifecycle metadata.",
+      "useWhen": "Use as optional secondary lifecycle evidence with provider notices as the authority.",
+      "cautions": [
+        "Use API v1 products routes, not deprecated legacy paths.",
+        "May not cover a hosted API retirement; confirm important lifecycle decisions with the provider.",
+        "The upstream API currently describes v1 as beta; pin the adapter schema and review changes."
+      ],
+      "tags": [
+        "catalog-maintenance",
+        "endoflife-date",
+        "api",
+        "read-only",
+        "server"
+      ],
+      "projectTypes": [
+        "api-backend",
+        "saas",
+        "data-analytics"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://endoflife.date/docs/api",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": "public-data-clients",
+        "guide": "docs/resources/integration-expansion.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://endoflife.date/docs/api"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "quickstart": [
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" plan public-data-clients --target \"$APP_ROOT\" --json",
+        "node \"$GENLIB_ROOT/bin/genlib.mjs\" add public-data-clients --target \"$APP_ROOT\" --json"
+      ]
+    },
+    {
+      "id": "openrewrite",
+      "name": "OpenRewrite Apache core",
+      "category": "codemods",
+      "platforms": [
+        "cli",
+        "server"
+      ],
+      "kind": "package",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/openrewrite/rewrite/blob/HEAD/LICENSE",
+        "scope": "Apache-2.0 applies only to reviewed org.openrewrite:rewrite-core, rewrite-java, rewrite-maven and rewrite-xml artifacts. The wider ecosystem is not uniformly Apache-2.0."
+      },
+      "homepage": "https://github.com/openrewrite/rewrite",
+      "repository": "https://github.com/openrewrite/rewrite",
+      "docs": "https://docs.moderne.io/user-documentation/recipes/lists/latest-versions-of-every-openrewrite-module/",
+      "summary": "Selected Apache-2.0 OpenRewrite core modules for reviewed Java changes.",
+      "useWhen": "Use the allowlisted org.openrewrite core/java/maven/xml profile with preview and repeatability fixtures.",
+      "cautions": [
+        "The wider recipe ecosystem includes MSAL source-available and proprietary artifacts.",
+        "MSAL restrictions on third-party functionality are material to a customer-facing coding harness; do not auto-adopt additional recipes.",
+        "The documentation-table candidate8.93.0 did not resolve at Maven Central. Core/java/maven/xml8.90.4 and Maven plugin6.46.1 POMs resolved; this does not establish execution or all transitive dependency licenses."
+      ],
+      "tags": [
+        "codemods",
+        "openrewrite"
+      ],
+      "projectTypes": [
+        "cli-tool",
+        "devops-infra"
+      ],
+      "languages": [
+        "java"
+      ],
+      "packages": [
+        {
+          "ecosystem": "maven",
+          "name": "org.openrewrite:rewrite-java",
+          "version": "8.90.4"
+        }
+      ],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://docs.moderne.io/user-documentation/recipes/lists/latest-versions-of-every-openrewrite-module/",
+          "title": "Primary project documentation and source"
+        },
+        {
+          "url": "https://repo.maven.apache.org/maven2/org/openrewrite/rewrite-java/8.90.4/rewrite-java-8.90.4.pom",
+          "title": "Exact artifact resolution and Apache-2.0 declaration checked 2026-10-10"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/resources/integration-expansion.md",
+        "integrations": [
+          "developer-codemods"
+        ]
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://docs.moderne.io/user-documentation/recipes/lists/latest-versions-of-every-openrewrite-module/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://docs.moderne.io/user-documentation/recipes/lists/latest-versions-of-every-openrewrite-module/",
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      },
+      "quickstart": [
+        "Add org.openrewrite:rewrite-java:8.90.4 to the reviewed Maven profile; allow only the listed Apache core artifacts."
+      ]
+    },
+    {
+      "id": "genlib-direct-mcp",
+      "name": "Genlib direct MCP",
+      "category": "mcp-integration",
+      "platforms": [
+        "server",
+        "cli"
+      ],
+      "kind": "source-library",
+      "integrationMode": "package",
+      "verification": "partial",
+      "license": {
+        "id": "Apache-2.0",
+        "url": "https://github.com/athompson83/genlib/blob/HEAD/LICENSE",
+        "scope": "Original Apache-2.0 Genlib adapter. The official MCP SDK and dependencies retain their licenses."
+      },
+      "homepage": "https://github.com/athompson83/genlib",
+      "repository": "https://github.com/athompson83/genlib",
+      "docs": "https://github.com/athompson83/genlib",
+      "summary": "Optional direct Genlib MCP server using official SDK transport profiles.",
+      "useWhen": "Use to expose bounded Genlib discovery and approved installation operations directly to an MCP client.",
+      "cautions": [
+        "Local optional package at packages/genlib-mcp; not a published npm package.",
+        "Stdio and Streamable HTTP setup, authentication and permissions are documented in docs/mcp-server.md.",
+        "Source and local fixtures do not establish deployment security or live client acceptance."
+      ],
+      "tags": [
+        "mcp-integration",
+        "genlib-direct-mcp"
+      ],
+      "projectTypes": [
+        "ai-agent",
+        "cli-tool"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "packages": [],
+      "attachments": [],
+      "sources": [
+        {
+          "url": "https://github.com/athompson83/genlib",
+          "title": "Primary project documentation and source"
+        }
+      ],
+      "genlib": {
+        "module": null,
+        "guide": "docs/mcp-server.md"
+      },
+      "install": [
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
+      ],
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/athompson83/genlib"
+      },
+      "readiness": {
+        "level": "cataloged",
+        "evidence": [
+          "packages/genlib-mcp",
+          "docs/mcp-server.md"
+        ]
+      },
+      "quickstart": [
+        "npm ci --ignore-scripts --prefix \"$GENLIB_ROOT/packages/genlib-mcp\"",
+        "node \"$GENLIB_ROOT/packages/genlib-mcp/server.mjs\""
+      ]
+    }
+  ]
+}

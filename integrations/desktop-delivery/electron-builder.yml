@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: Apache-2.0
+appId: dev.genlib.inventory
+productName: Genlib Inventory
+asar: true
+directories:
+  output: artifacts/electron
+files:
+  - electron/**
+  - core/**
+  - web/**
+  - package.json
+mac:
+  target: [dmg, zip]
+  hardenedRuntime: true
+win:
+  target: [nsis]
+  verifyUpdateCodeSignature: true
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+linux:
+  target: [AppImage]
+  category: Utility

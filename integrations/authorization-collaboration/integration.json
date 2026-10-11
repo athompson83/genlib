@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "authorization-collaboration",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Authorization and collaborative state",
+  "summary": "Fail-closed OpenFGA check adapter and tested Cedar policy, plus bounded Loro inventory/tree updates and replica convergence fixtures with explicit server authority boundaries.",
+  "languages": [
+    "javascript",
+    "rust",
+    "cedar"
+  ],
+  "frameworks": [
+    "node",
+    "cedar",
+    "openfga",
+    "loro"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "resources": [
+    "cedar",
+    "openfga",
+    "loro"
+  ],
+  "tags": [
+    "authorization",
+    "permissions",
+    "policy",
+    "local-first",
+    "crdt",
+    "collaboration"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "openfga/gate.mjs",
+    "openfga/model.fga.yaml",
+    "cedar/src/lib.rs",
+    "cedar/policy.cedar",
+    "loro/inventory.mjs",
+    "loro/outline.mjs"
+  ],
+  "verification": {
+    "level": "tested",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0 / Loro 1.16.4: 6 tests passed covering replica convergence, movable trees, invalid update staging and injected OpenFGA HTTP failure/denial boundaries.",
+      "Linux x86_64, Rust 1.99.0 / cedar-policy 4.13.0: 2 real-engine tests passed for policy/schema validation, tenant/owner decisions, forbid precedence and malformed entities."
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test",
+      "cargo test --locked --manifest-path cedar/Cargo.toml"
+    ],
+    "notes": [
+      "Tested scope is the local Node adapters and actual Rust Cedar engine. OpenFGA CLI model-fixture execution and live service/deployment acceptance remain unexecuted.",
+      "Run fga model test --tests openfga/model.fga.yaml with an explicitly provisioned compatible CLI; live store/model/tuple writes are not performed by this pack.",
+      "The host authenticates actors, supplies trusted policy entities and authorizes CRDT update transport. Replicated client state is not authoritative for permissions or budgets.",
+      "Cedar was verified using an isolated build target with debug info disabled and two build jobs after the workspace filesystem failed to archive an object. This was an environment build retry, not a waived source/test failure."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "cedar/Cargo.lock",
+    "cedar/Cargo.toml",
+    "cedar/fixtures/entities.json",
+    "cedar/policy.cedar",
+    "cedar/schema.cedarschema",
+    "cedar/src/lib.rs",
+    "loro/inventory.mjs",
+    "loro/outline.mjs",
+    "openfga/gate.mjs",
+    "openfga/model.fga",
+    "openfga/model.fga.yaml",
+    "package-lock.json",
+    "package.json",
+    "tests/loro.test.mjs",
+    "tests/openfga.test.mjs"
+  ]
+}

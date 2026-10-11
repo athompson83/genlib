@@ -1853,11 +1853,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/backend-api.md"
+        "guide": "docs/resources/backend-api.md",
+        "integrations": [
+          "typed-backend-services"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/typed-backend-services/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "diesel",
@@ -3657,11 +3666,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/backend-api.md"
+        "guide": "docs/resources/backend-api.md",
+        "integrations": [
+          "api-contracts"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "orval",
@@ -3715,11 +3733,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/backend-api.md"
+        "guide": "docs/resources/backend-api.md",
+        "integrations": [
+          "api-contracts"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/api-contracts/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "swagger-ui",
@@ -3953,11 +3980,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/backend-api.md"
+        "guide": "docs/resources/backend-api.md",
+        "integrations": [
+          "typed-backend-services"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/typed-backend-services/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "graphql-yoga",

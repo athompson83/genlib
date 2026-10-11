@@ -25529,7 +25529,7 @@
         "web"
       ],
       "kind": "package",
-      "integrationMode": "package",
+      "integrationMode": "reference",
       "verification": "verified",
       "license": {
         "id": "MIT",
@@ -25539,9 +25539,10 @@
       "homepage": null,
       "repository": "https://github.com/mostafa-hz/firebase-dynamic-links",
       "docs": "https://www.npmjs.com/package/firebase-dynamic-links",
-      "summary": "unofficial package to create firebase dynamic links",
-      "useWhen": "Use for deep links: short links, UTM-tagged URLs or QR codes, instead of writing them by hand in TypeScript/JavaScript.",
+      "summary": "Historical Firebase Dynamic Links integration; the provider service shut down on 2025-08-25. Retained for migration discovery.",
+      "useWhen": "Use only to identify and migrate an existing Firebase Dynamic Links integration. Migrate to maintained app/universal links or an explicitly selected deep-link service.",
       "cautions": [
+        "Firebase Dynamic Links shut down on 2025-08-25; a reachable package repository does not make the retired service usable.",
         "Pin the version and review the changelog before upgrading."
       ],
       "tags": [
@@ -25550,7 +25551,9 @@
         "deep-links",
         "typescript",
         "npm",
-        "links"
+        "links",
+        "retired",
+        "migration"
       ],
       "projectTypes": [
         "marketing-site",
@@ -25566,6 +25569,10 @@
         {
           "url": "https://github.com/mostafa-hz/firebase-dynamic-links",
           "title": "Upstream repository"
+        },
+        {
+          "url": "https://firebase.google.com/support/dynamic-links-faq",
+          "title": "Official service retirement notice"
         }
       ],
       "genlib": {
@@ -25587,7 +25594,22 @@
       "popularity": {
         "metric": "npm-downloads-month",
         "value": 16248
-      }
+      },
+      "lifecycle": {
+        "status": "retired",
+        "reviewedAt": "2026-10-10",
+        "source": "https://firebase.google.com/support/dynamic-links-faq",
+        "replacement": "Migrate to maintained app/universal links or an explicitly selected deep-link service."
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://firebase.google.com/support/dynamic-links-faq"
+        ]
+      },
+      "quickstart": [
+        "Review the official retirement and migration guidance: https://firebase.google.com/support/dynamic-links-faq"
+      ]
     },
     {
       "id": "yorcreative-laravel-urlshortener",

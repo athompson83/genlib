@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "id": "observability-harness",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Telemetry and disposable database tests",
+  "summary": "Node/Python OpenTelemetry wrappers with real span/redaction tests, plus explicit Collector and PostgreSQL Testcontainers profiles for transaction and rollback acceptance.",
+  "languages": [
+    "javascript",
+    "python",
+    "sql"
+  ],
+  "frameworks": [
+    "node",
+    "opentelemetry",
+    "testcontainers",
+    "postgresql",
+    "docker"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "resources": [
+    "opentelemetry-js",
+    "opentelemetry-python",
+    "opentelemetry-collector",
+    "testcontainers-node",
+    "testcontainers-python"
+  ],
+  "tags": [
+    "observability",
+    "tracing",
+    "redaction",
+    "testcontainers",
+    "integration-testing",
+    "postgresql"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "node/telemetry.mjs",
+    "python/telemetry.py",
+    "collector/config.yaml",
+    "collector/compose.yaml",
+    "node/postgres.mjs",
+    "tests/containers/postgres.test.mjs",
+    "python/test_containers.py"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0 / OpenTelemetry SDK 0.223.0: 2 real SDK span/correlation/attribute-filter tests passed using an in-memory exporter and explicit deterministic sampler.",
+      "Linux x86_64, Python 3.12.14 / OpenTelemetry SDK 1.45.1: 1 real SDK context/attribute/exception test passed using an in-memory exporter and deterministic sampler."
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test",
+      "python -m pip install -r python/requirements.lock.txt",
+      "python -m unittest discover -s python -p test_telemetry.py -v"
+    ],
+    "notes": [
+      "Docker, Collector validation and real PostgreSQL/Testcontainers execution were unavailable and remain unexecuted. Explicit container gates fail without a daemon instead of skipping.",
+      "For Docker: npm run test:containers; for Python provision python/requirements-containers.txt then python -m pytest python/test_containers.py. Collector commands are in CONTRACT.md.",
+      "Default official PostgreSQL image is postgres:18.6-alpine3.24; receiving CI may select an approved immutable digest. No production database URL is accepted by these fixture tests.",
+      "Telemetry tests prove wrapper behavior only. The host reviews trusted exporters, production sampling, allowed attribute values, instrumentation additions and backend retention."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "collector/compose.yaml",
+    "collector/config.yaml",
+    "fixtures/postgres.sql",
+    "node/postgres.mjs",
+    "node/telemetry.mjs",
+    "package-lock.json",
+    "package.json",
+    "python/requirements-containers.txt",
+    "python/requirements.lock.txt",
+    "python/requirements.txt",
+    "python/telemetry.py",
+    "python/test_containers.py",
+    "python/test_telemetry.py",
+    "tests/containers/postgres.test.mjs",
+    "tests/telemetry.test.mjs"
+  ]
+}

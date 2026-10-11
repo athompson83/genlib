@@ -282,7 +282,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/best-practices/ui-libraries.md"
+        "guide": "docs/best-practices/ui-libraries.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
         "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
@@ -301,7 +304,13 @@
         "npm install radix-ui",
         "import { Dialog } from \"radix-ui\";",
         "Docs: https://www.radix-ui.com/primitives/docs/overview/introduction"
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "base-ui",
@@ -419,7 +428,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/best-practices/ui-libraries.md"
+        "guide": "docs/best-practices/ui-libraries.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
         "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
@@ -437,7 +449,13 @@
       "quickstart": [
         "npm install react-aria-components",
         "Docs: https://react-spectrum.adobe.com/react-aria/getting-started.html"
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "headless-ui",
@@ -1185,7 +1203,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/best-practices/ui-libraries.md"
+        "guide": "docs/best-practices/ui-libraries.md",
+        "integrations": [
+          "web-data-workbench"
+        ]
       },
       "install": [
         "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
@@ -1211,6 +1232,12 @@
         "svelte": "@tanstack/svelte-table",
         "solid": "@tanstack/solid-table",
         "angular": "@tanstack/angular-table"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/web-data-workbench/CONTRACT.md"
+        ]
       }
     },
     {

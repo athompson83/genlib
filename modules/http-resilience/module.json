@@ -59,7 +59,13 @@
   ],
   "verification": {
     "level": "tested",
-    "testFiles": ["tests/http-resilience.test.mjs"]
+    "testFiles": ["tests/http-resilience.test.mjs"],
+    "command": "npm run build && node --test tests/http-resilience.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2" }
   },
+  "changelog": [
+    { "version": "0.2.0", "changes": ["fetchWithRetry combines options.signal, init.signal and a Request input's own signal.", "Breaking: a Request input with a body is sent once unless replayRequestBody: true declares it buffered (set it to keep the 0.1.0 replay)."] },
+    { "version": "0.1.0", "changes": ["First release: retry, fetchWithRetry, withTimeout and the circuit breaker."] }
+  ],
   "contract": "CONTRACT.md"
 }

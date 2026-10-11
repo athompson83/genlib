@@ -196,3 +196,9 @@ Genlib's own indexes come first: `genlib skill find`, `genlib mcp find` and `gen
 | `awesome-seedance` | Seedance video prompt library; 15 skills as `seedance-*` |
 
 Two directory sites from a 2026-10-11 source list were left out: `claudedirectory.org` returned HTTP 402 and `marketingskills.net` did not respond. SWE-agent is listed as superseded; use `mini-swe-agent` (`pip install mini-swe-agent==2.4.6`).
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Developer codemods and template evolution](../../integrations/developer-codemods/CONTRACT.md): `ast-grep`.

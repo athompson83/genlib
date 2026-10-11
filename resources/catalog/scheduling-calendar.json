@@ -7428,19 +7428,20 @@
       ],
       "kind": "package",
       "integrationMode": "package",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/bigcalendar/react-big-calendar/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
-      "homepage": null,
-      "repository": "https://github.com/jquense/react-big-calendar",
-      "docs": "https://github.com/jquense/react-big-calendar#readme",
+      "homepage": "https://github.com/bigcalendar/react-big-calendar",
+      "repository": "https://github.com/bigcalendar/react-big-calendar",
+      "docs": "https://bigcalendar.github.io/react-big-calendar/",
       "summary": "Gcal/Outlook-like event calendar component for React with month, week, day and agenda views.",
-      "useWhen": "Use in TypeScript/JavaScript for calendar views, recurrence rules (RRULE), iCalendar (ICS) files, CalDAV access or time-slot math instead of hand-written date logic.",
+      "useWhen": "Use for calendar interfaces with explicit timezone and availability adapters.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "The widget does not enforce booking constraints or prevent server-side conflicts."
       ],
       "tags": [
         "scheduling",
@@ -7448,7 +7449,8 @@
         "typescript",
         "npm",
         "calendar-ui",
-        "react"
+        "react",
+        "react-big-calendar"
       ],
       "projectTypes": [
         "web-app",
@@ -7458,30 +7460,38 @@
       "attachments": [],
       "sources": [
         {
-          "url": "https://github.com/jquense/react-big-calendar",
-          "title": "Upstream repository"
+          "url": "https://github.com/bigcalendar/react-big-calendar",
+          "title": "Primary project documentation and source"
         },
         {
-          "url": "https://jquense.github.io/react-big-calendar/",
+          "url": "https://bigcalendar.github.io/react-big-calendar/",
           "title": "Registry record or documentation"
+        },
+        {
+          "url": "https://github.com/bigcalendar/react-big-calendar/blob/HEAD/LICENSE",
+          "title": "Upstream component license"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/scheduling-calendar.md"
+        "guide": "docs/resources/scheduling-calendar.md",
+        "integrations": [
+          "web-calendar-files"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "react-big-calendar"
+          "name": "react-big-calendar",
+          "version": "1.20.0"
         }
       ],
       "quickstart": [
         "npm i react-big-calendar@1.20.0",
-        "Docs: https://github.com/jquense/react-big-calendar#readme"
+        "Docs: https://bigcalendar.github.io/react-big-calendar/"
       ],
       "languages": [
         "typescript"
@@ -7489,6 +7499,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 5841121
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/bigcalendar/react-big-calendar"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/bigcalendar/react-big-calendar",
+          "integrations/web-calendar-files/CONTRACT.md"
+        ]
       }
     },
     {
@@ -7920,19 +7942,20 @@
       ],
       "kind": "package",
       "integrationMode": "package",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/sebbo2002/ical-generator/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
-      "homepage": null,
+      "homepage": "https://github.com/sebbo2002/ical-generator",
       "repository": "https://github.com/sebbo2002/ical-generator",
-      "docs": null,
+      "docs": "https://github.com/sebbo2002/ical-generator",
       "summary": "Generate iCalendar files and feeds in Node.js with timezone and attendee support.",
-      "useWhen": "Use in TypeScript/JavaScript for calendar views, recurrence rules (RRULE), iCalendar (ICS) files, CalDAV access or time-slot math instead of hand-written date logic.",
+      "useWhen": "Use for downloads, recurrence, updates and cancellation feeds.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Keep stable event UIDs, recurrence/timezone fixtures and application-owned authorization."
       ],
       "tags": [
         "scheduling",
@@ -7940,7 +7963,9 @@
         "typescript",
         "npm",
         "icalendar",
-        "generator"
+        "generator",
+        "calendar-feed",
+        "ical-generator"
       ],
       "projectTypes": [
         "web-app",
@@ -7951,20 +7976,28 @@
       "sources": [
         {
           "url": "https://github.com/sebbo2002/ical-generator",
-          "title": "Upstream repository"
+          "title": "Primary project documentation and source"
+        },
+        {
+          "url": "https://github.com/sebbo2002/ical-generator/blob/HEAD/LICENSE",
+          "title": "Upstream component license"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/scheduling-calendar.md"
+        "guide": "docs/resources/scheduling-calendar.md",
+        "integrations": [
+          "web-calendar-files"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "ical-generator"
+          "name": "ical-generator",
+          "version": "11.1.2"
         }
       ],
       "quickstart": [
@@ -7976,6 +8009,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 2999720
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/sebbo2002/ical-generator"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/sebbo2002/ical-generator",
+          "integrations/web-calendar-files/CONTRACT.md"
+        ]
       }
     },
     {
@@ -8761,16 +8806,18 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/schedule-x/schedule-x/blob/main/LICENSE",
+        "scope": "MIT covers @schedule-x/calendar 4.9.1 calendar core only. Schedule-X v4 drag-and-drop, resize and time-grid resource views are separately licensed Premium components and are not included in this record."
       },
       "homepage": "https://schedule-x.dev",
       "repository": "https://github.com/schedule-x/schedule-x",
-      "docs": null,
-      "summary": "Modern event calendar and scheduler with day/week/month views, drag-and-drop and resource views.",
-      "useWhen": "Use in TypeScript/JavaScript for calendar views, recurrence rules (RRULE), iCalendar (ICS) files, CalDAV access or time-slot math instead of hand-written date logic.",
+      "docs": "https://schedule-x.dev/docs/calendar",
+      "summary": "MIT calendar core with day, week, month-grid and month-agenda views.",
+      "useWhen": "Use to display events with configurable calendar views in TypeScript/JavaScript; review Premium requirements before adding interactive scheduling.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Starting with Schedule-X v4, drag-and-drop and resize use separately licensed @sx-premium packages; the time-grid resource view is also Premium.",
+        "The MIT core or React adapter license does not grant access to Premium code. Older open-source drag/resize plugins are no longer supported for v4."
       ],
       "tags": [
         "scheduling",
@@ -8788,12 +8835,32 @@
       "attachments": [],
       "sources": [
         {
-          "url": "https://github.com/schedule-x/schedule-x",
-          "title": "Upstream repository"
-        },
-        {
           "url": "https://schedule-x.dev",
           "title": "Official site"
+        },
+        {
+          "url": "https://github.com/schedule-x/schedule-x",
+          "title": "Upstream component repository"
+        },
+        {
+          "url": "https://github.com/schedule-x/schedule-x/blob/main/LICENSE",
+          "title": "Upstream component MIT license"
+        },
+        {
+          "url": "https://registry.npmjs.org/@schedule-x%2Fcalendar/4.9.1",
+          "title": "Exact package version and declared license"
+        },
+        {
+          "url": "https://schedule-x.dev/docs/calendar",
+          "title": "Official component documentation"
+        },
+        {
+          "url": "https://schedule-x.dev/blog/schedule-x-v4",
+          "title": "Official v4 free and Premium feature boundary"
+        },
+        {
+          "url": "https://schedule-x.dev/docs/calendar/plugins/drag-and-drop",
+          "title": "Official Premium drag-and-drop licensing and installation"
         }
       ],
       "genlib": {
@@ -8806,7 +8873,8 @@
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "@schedule-x/calendar"
+          "name": "@schedule-x/calendar",
+          "version": "4.9.1"
         }
       ],
       "quickstart": [
@@ -8818,6 +8886,14 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 781740
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://registry.npmjs.org/@schedule-x%2Fcalendar/4.9.1",
+          "https://schedule-x.dev/blog/schedule-x-v4",
+          "https://schedule-x.dev/docs/calendar/plugins/drag-and-drop"
+        ]
       }
     },
     {
@@ -9175,16 +9251,18 @@
       "verification": "verified",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/schedule-x/react/blob/main/LICENSE",
+        "scope": "MIT covers @schedule-x/react 4.1.0 React adapter only. Schedule-X v4 drag-and-drop, resize and time-grid resource views are separately licensed Premium components and are not included in this record."
       },
       "homepage": "https://schedule-x.dev",
-      "repository": "https://github.com/schedule-x/schedule-x",
-      "docs": null,
-      "summary": "React adapter for the Schedule-X calendar.",
-      "useWhen": "Use in TypeScript/JavaScript for calendar views, recurrence rules (RRULE), iCalendar (ICS) files, CalDAV access or time-slot math instead of hand-written date logic.",
+      "repository": "https://github.com/schedule-x/react",
+      "docs": "https://schedule-x.dev/docs/frameworks/react",
+      "summary": "MIT React adapter for Schedule-X calendar core; Premium features require separate licenses.",
+      "useWhen": "Use as the React wrapper for Schedule-X core, with the documented theme and supported plugins configured explicitly.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Starting with Schedule-X v4, drag-and-drop and resize use separately licensed @sx-premium packages; the time-grid resource view is also Premium.",
+        "The MIT core or React adapter license does not grant access to Premium code. Older open-source drag/resize plugins are no longer supported for v4."
       ],
       "tags": [
         "scheduling",
@@ -9202,12 +9280,32 @@
       "attachments": [],
       "sources": [
         {
-          "url": "https://github.com/schedule-x/schedule-x",
-          "title": "Upstream repository"
-        },
-        {
           "url": "https://schedule-x.dev",
           "title": "Official site"
+        },
+        {
+          "url": "https://github.com/schedule-x/react",
+          "title": "Upstream component repository"
+        },
+        {
+          "url": "https://github.com/schedule-x/react/blob/main/LICENSE",
+          "title": "Upstream component MIT license"
+        },
+        {
+          "url": "https://registry.npmjs.org/@schedule-x%2Freact/4.1.0",
+          "title": "Exact package version and declared license"
+        },
+        {
+          "url": "https://schedule-x.dev/docs/frameworks/react",
+          "title": "Official component documentation"
+        },
+        {
+          "url": "https://schedule-x.dev/blog/schedule-x-v4",
+          "title": "Official v4 free and Premium feature boundary"
+        },
+        {
+          "url": "https://schedule-x.dev/docs/calendar/plugins/drag-and-drop",
+          "title": "Official Premium drag-and-drop licensing and installation"
         }
       ],
       "genlib": {
@@ -9220,7 +9318,8 @@
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "@schedule-x/react"
+          "name": "@schedule-x/react",
+          "version": "4.1.0"
         }
       ],
       "quickstart": [
@@ -9232,6 +9331,14 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 651853
+      },
+      "readiness": {
+        "level": "source-reviewed",
+        "evidence": [
+          "https://registry.npmjs.org/@schedule-x%2Freact/4.1.0",
+          "https://schedule-x.dev/blog/schedule-x-v4",
+          "https://schedule-x.dev/docs/calendar/plugins/drag-and-drop"
+        ]
       }
     },
     {

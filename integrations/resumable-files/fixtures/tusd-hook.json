@@ -1,0 +1,7 @@
+{
+  "Type": "pre-create",
+  "Event": {
+    "Upload": { "ID": "", "Size": 6, "Offset": 0, "SizeIsDeferred": false, "MetaData": { "name": "report.txt", "type": "text/plain", "tenant": "untrusted-client-value" } },
+    "HTTPRequest": { "Header": { "Authorization": ["Bearer fixture-user-session"] } }
+  }
+}

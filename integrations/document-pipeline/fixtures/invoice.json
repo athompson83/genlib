@@ -1,0 +1,9 @@
+{
+  "id": "INV-2026-0042", "issuedOn": "2026-10-10", "seller": "Example Studio", "customer": "Sam Rivera",
+  "currency": "USD", "minorDigits": 2,
+  "lines": [
+    { "id": "consulting", "description": "Implementation review", "quantity": 2, "unitMinor": 12500 },
+    { "id": "report", "description": "Technical report", "quantity": 1, "unitMinor": 5000 }
+  ],
+  "taxMinor": 2400, "shippingMinor": 0, "discountMinor": 1000, "totalMinor": 31400
+}

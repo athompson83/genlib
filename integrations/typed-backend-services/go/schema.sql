@@ -1,0 +1,5 @@
+CREATE TABLE item (
+  id TEXT NOT NULL PRIMARY KEY,
+  title TEXT NOT NULL CHECK(length(title) BETWEEN 1 AND 200),
+  completed BOOLEAN NOT NULL DEFAULT false
+);

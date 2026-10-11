@@ -1,0 +1,17 @@
+{
+  "name": "@genisys/genlib-mcp",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Direct MCP access to a trusted Genlib checkout through stdio or Streamable HTTP.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=22" },
+  "bin": { "genlib-mcp": "server.mjs" },
+  "scripts": { "start": "node server.mjs", "test": "node --test test/*.test.mjs" },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "@modelcontextprotocol/node": "2.1.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": { "@modelcontextprotocol/client": "2.3.1" }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@genlib/authorization-collaboration",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "loro-crdt": "1.16.4"
+  }
+}

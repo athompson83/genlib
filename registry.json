@@ -1,0 +1,2694 @@
+{
+ "$schema": "https://ui.shadcn.com/schema/registry.json",
+ "name": "genlib",
+ "homepage": "https://github.com/athompson83/genlib",
+ "items": [
+  {
+   "name": "storefront-cart",
+   "type": "registry:item",
+   "title": "Storefront cart",
+   "description": "Pure cart model. Server must reprice and revalidate inventory before checkout",
+   "files": [
+    {
+     "path": "examples/storefront/cart.ts",
+     "type": "registry:file",
+     "target": "~/genlib/cart.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Server-side price and inventory validation; Integer minor units; Currency consistency.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "storefront-catalog",
+   "type": "registry:item",
+   "title": "Storefront catalog",
+   "description": "Client-side filtering only; upstream authorization, stock and pricing remain authoritative",
+   "files": [
+    {
+     "path": "examples/storefront/catalog.ts",
+     "type": "registry:file",
+     "target": "~/genlib/catalog.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Authorized product visibility; Server pagination for large catalogs.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "invoice-totals",
+   "type": "registry:item",
+   "title": "Invoice totals",
+   "description": "Invoice preview math only. Legal/tax compliance and invoice numbering are application responsibilities",
+   "files": [
+    {
+     "path": "examples/storefront/invoice.ts",
+     "type": "registry:file",
+     "target": "~/genlib/invoice.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Jurisdiction-specific tax; Approved rounding policy.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "csv-export",
+   "type": "registry:item",
+   "title": "Csv export",
+   "description": "CSV export with formula injection protection and explicit column selection",
+   "files": [
+    {
+     "path": "examples/utilities/export.ts",
+     "type": "registry:file",
+     "target": "~/genlib/export.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Export authorization; Spreadsheet formula injection.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "upload-preflight",
+   "type": "registry:item",
+   "title": "Upload preflight",
+   "description": "Metadata-only upload preflight; server must inspect bytes and enforce storage policies",
+   "files": [
+    {
+     "path": "examples/utilities/files.ts",
+     "type": "registry:file",
+     "target": "~/genlib/files.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Server-side MIME sniffing; Malware scanning; Signed storage URLs.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "ui-primitives",
+   "type": "registry:item",
+   "title": "Ui primitives",
+   "description": "modal, popup, disclosure, header",
+   "files": [
+    {
+     "path": "examples/ui/Primitives.tsx",
+     "type": "registry:file",
+     "target": "~/genlib/Primitives.tsx"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Accessible dialog library for production; Focus management; Keyboard navigation.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "structural-example"
+   }
+  },
+  {
+   "name": "formatting",
+   "type": "registry:item",
+   "title": "Formatting",
+   "description": "Reusable locale-aware formatters; caller controls locale, currency and timezone",
+   "files": [
+    {
+     "path": "examples/utilities/formatting.ts",
+     "type": "registry:file",
+     "target": "~/genlib/formatting.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Currency minor units; Time zone.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "slugify-and-unique-slug",
+   "type": "registry:item",
+   "title": "Slugify and unique slug",
+   "description": "URL slugs and collision-free unique slugs",
+   "files": [
+    {
+     "path": "examples/recipes/slugify.ts",
+     "type": "registry:file",
+     "target": "~/genlib/slugify.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Enforce a database unique constraint; uniqueSlug is only a pre-check; Decide unicode vs ASCII slugs per product and locale; Keep old slugs as redirects when titles change.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "money-minor-units",
+   "type": "registry:item",
+   "title": "Money minor units",
+   "description": "money in integer minor units (parse, rate, allocate, format)",
+   "files": [
+    {
+     "path": "examples/recipes/money.ts",
+     "type": "registry:file",
+     "target": "~/genlib/money.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Store integer minor units and an ISO 4217 code per amount; Approved rounding mode and allocation policy; Jurisdiction-specific tax rules; Extend the pinned ISO 4217 exponent table deliberately; unknown codes are rejected.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "date-ranges-and-business-days",
+   "type": "registry:item",
+   "title": "Date ranges and business days",
+   "description": "UTC-safe calendar dates, ranges and business days",
+   "files": [
+    {
+     "path": "examples/recipes/date-ranges.ts",
+     "type": "registry:file",
+     "target": "~/genlib/date-ranges.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Convert instants to the business time zone before using date-only helpers; Supply a reviewed holiday calendar per jurisdiction; Confirm inclusive vs exclusive range semantics with product.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "cursor-pagination",
+   "type": "registry:item",
+   "title": "Cursor pagination",
+   "description": "opaque base64url keyset cursors",
+   "files": [
+    {
+     "path": "examples/recipes/cursor-pagination.ts",
+     "type": "registry:file",
+     "target": "~/genlib/cursor-pagination.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Re-authorize every page request; cursors are not tamper-proof; Sign cursors (HMAC) if their contents must be trusted; Index the (sort, id) columns used by the keyset query; Stable unique tie-breaker column.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "deep-merge-and-pick-omit",
+   "type": "registry:item",
+   "title": "Deep merge and pick omit",
+   "description": "prototype-pollution-safe deep merge, pick and omit",
+   "files": [
+    {
+     "path": "examples/recipes/deep-merge.ts",
+     "type": "registry:file",
+     "target": "~/genlib/deep-merge.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Validate the merged shape with a schema before use; Decide array replace vs concat semantics; Non-plain objects are copied by reference.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "debounce-throttle",
+   "type": "registry:item",
+   "title": "Debounce throttle",
+   "description": "debounce and throttle with cancel, flush and pending",
+   "files": [
+    {
+     "path": "examples/recipes/debounce-throttle.ts",
+     "type": "registry:file",
+     "target": "~/genlib/debounce-throttle.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Cancel pending calls on unmount or teardown; Create the wrapper once per component (useMemo/useRef); Server-side rate limits still required.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "async-pool",
+   "type": "registry:item",
+   "title": "Async pool",
+   "description": "bounded-concurrency async map with AbortSignal support",
+   "files": [
+    {
+     "path": "examples/recipes/async-pool.ts",
+     "type": "registry:file",
+     "target": "~/genlib/async-pool.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Pass the signal to fetch/IO so aborts stop real work; Choose concurrency within provider rate limits; No retries: add idempotent retry policy separately if needed.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "lru-cache-with-ttl",
+   "type": "registry:item",
+   "title": "Lru cache with ttl",
+   "description": "in-process LRU cache with optional TTL and in-flight load de-duplication",
+   "files": [
+    {
+     "path": "examples/recipes/lru-cache.ts",
+     "type": "registry:file",
+     "target": "~/genlib/lru-cache.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Per-process only; use a shared cache across instances; Never share cached per-user data across users; Bound maxEntries for memory; Invalidate on writes.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "semver-compare-and-range",
+   "type": "registry:item",
+   "title": "Semver compare and range",
+   "description": "Semantic Versioning 2.0.0 parse/compare and npm-style range checks",
+   "files": [
+    {
+     "path": "examples/recipes/semver.ts",
+     "type": "registry:file",
+     "target": "~/genlib/semver.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Only strict SemVer 2.0.0 versions; no loose coercion; Prerelease matching follows npm rules unless includePrerelease; Use the package manager resolver for real dependency resolution.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "safe-filename-and-path-join",
+   "type": "registry:item",
+   "title": "Safe filename and path join",
+   "description": "safe download/upload filenames and traversal-proof relative paths",
+   "files": [
+    {
+     "path": "examples/recipes/safe-filename.ts",
+     "type": "registry:file",
+     "target": "~/genlib/safe-filename.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Resolve realpath on the server and confirm it stays inside the base (symlinks); Generate storage keys server-side instead of trusting user names; Encode Content-Disposition with RFC 6266 filename*.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "csv-parse",
+   "type": "registry:item",
+   "title": "Csv parse",
+   "description": "RFC 4180 CSV parsing with quoted fields and header mapping",
+   "files": [
+    {
+     "path": "examples/recipes/csv-parse.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-parse.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Validate and convert each column; parsing yields strings only; Limit upload size, rows and field length; Authorize the import and its target records; Escape formulas if data is re-exported.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "url-query-state",
+   "type": "registry:item",
+   "title": "Url query state",
+   "description": "typed URL query-string state (filters, sort, page) with defaults",
+   "files": [
+    {
+     "path": "examples/recipes/url-query-state.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-query-state.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Authorize and validate the same parameters on the server; Reset page when filters change; Keep URLs canonical for caching and analytics.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "jwt-decode-unverified",
+   "type": "registry:item",
+   "title": "Jwt decode unverified",
+   "description": "decode a JWT WITHOUT verifying it",
+   "files": [
+    {
+     "path": "examples/recipes/jwt-decode-unverified.ts",
+     "type": "registry:file",
+     "target": "~/genlib/jwt-decode-unverified.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: INSPECTION ONLY: never use for authentication or authorization; Verify signature, issuer, audience and expiry on the server with a JOSE library; Do not log full tokens.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "password-strength-policy",
+   "type": "registry:item",
+   "title": "Password strength policy",
+   "description": "NIST-style password acceptance policy (length + blocklist, no composition rules)",
+   "files": [
+    {
+     "path": "examples/recipes/password-policy.ts",
+     "type": "registry:file",
+     "target": "~/genlib/password-policy.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Hash with Argon2id/scrypt/bcrypt on the server; Check a breached-password corpus server-side; Confirm the minimum length for your compliance target; Allow paste and password managers.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "i18n-plural-and-message-format",
+   "type": "registry:item",
+   "title": "I18n plural and message format",
+   "description": "ICU-style plural/select message formatting on Intl.PluralRules",
+   "files": [
+    {
+     "path": "examples/recipes/i18n-message.ts",
+     "type": "registry:file",
+     "target": "~/genlib/i18n-message.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Subset of ICU MessageFormat; use a full library for dates and rich text; Escape output before inserting into HTML; Test every supported locale plural category.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "color-contrast-wcag",
+   "type": "registry:item",
+   "title": "Color contrast wcag",
+   "description": "WCAG 2.x contrast ratio, level checks and readable text color",
+   "files": [
+    {
+     "path": "examples/recipes/color-contrast.ts",
+     "type": "registry:file",
+     "target": "~/genlib/color-contrast.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: WCAG 2.x ratio, not APCA; Test real states (hover, focus, disabled) and text over images; Large text and non-text thresholds differ.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "markdown-to-plaintext-excerpt",
+   "type": "registry:item",
+   "title": "Markdown to plaintext excerpt",
+   "description": "Markdown to plain text and word-safe excerpts",
+   "files": [
+    {
+     "path": "examples/recipes/markdown-excerpt.ts",
+     "type": "registry:file",
+     "target": "~/genlib/markdown-excerpt.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Not a CommonMark parser or sanitizer; Escape output before inserting into HTML; Render full Markdown with a maintained parser.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "html-escape-and-safe-template",
+   "type": "registry:item",
+   "title": "Html escape and safe template",
+   "description": "HTML escaping, an auto-escaping html`` template tag, URL allow-listing, character-reference",
+   "files": [
+    {
+     "path": "examples/recipes/html-escape.ts",
+     "type": "registry:file",
+     "target": "~/genlib/html-escape.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Text and quoted attributes only; never script/style/event-handler contexts; Use DOMPurify or a sanitizer for user-authored HTML; Prefer framework auto-escaping (JSX, template engines); Content Security Policy as defense in depth; unescapeHtml/stripTags match the Genlib html-escape modules in every language (shared vectors); stripTags is not a sanitizer.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "event-emitter-typed",
+   "type": "registry:item",
+   "title": "Event emitter typed",
+   "description": "strongly typed event emitter with unsubscribe, once and waitFor",
+   "files": [
+    {
+     "path": "examples/recipes/typed-emitter.ts",
+     "type": "registry:file",
+     "target": "~/genlib/typed-emitter.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Unsubscribe on teardown to avoid leaks; In-process only; use BroadcastChannel or a queue across contexts; Decide listener error policy.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "result-type-and-error-mapping",
+   "type": "registry:item",
+   "title": "Result type and error mapping",
+   "description": "Result type plus mapping unknown errors to safe, typed application errors",
+   "files": [
+    {
+     "path": "examples/recipes/result.ts",
+     "type": "registry:file",
+     "target": "~/genlib/result.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Never send causes or stack traces to clients; Log the original cause server-side; Retryable writes still need idempotency keys.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "feature-flag-percentage-rollout",
+   "type": "registry:item",
+   "title": "Feature flag percentage rollout",
+   "description": "deterministic percentage rollouts and weighted variants",
+   "files": [
+    {
+     "path": "examples/recipes/feature-flag-rollout.ts",
+     "type": "registry:file",
+     "target": "~/genlib/feature-flag-rollout.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Flags are not authorization; enforce permissions separately; Freeze variant weights while an experiment runs; Hash is not cryptographic; do not use for secrets; Record exposure events for analysis.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "idempotency-key-store",
+   "type": "registry:item",
+   "title": "Idempotency key store",
+   "description": "idempotency-key store interface, in-memory implementation and handler wrapper",
+   "files": [
+    {
+     "path": "examples/recipes/idempotency-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/idempotency-store.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Use a shared store with atomic insert-if-absent in production; Scope keys per user/tenant and route; Do not release keys after uncertain external effects; reconcile instead; Fingerprint the canonical request body.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "outbox-pattern-in-memory",
+   "type": "registry:item",
+   "title": "Outbox pattern in memory",
+   "description": "transactional outbox reference implementation (in memory)",
+   "files": [
+    {
+     "path": "examples/recipes/outbox.ts",
+     "type": "registry:file",
+     "target": "~/genlib/outbox.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Write outbox rows in the same database transaction as business data; Consumers must de-duplicate by message id; Alert on dead messages; Single relay owner or row locking (SKIP LOCKED).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "state-machine-typed",
+   "type": "registry:item",
+   "title": "State machine typed",
+   "description": "small typed finite state machine with guards and an actor",
+   "files": [
+    {
+     "path": "examples/recipes/state-machine.ts",
+     "type": "registry:file",
+     "target": "~/genlib/state-machine.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Guards supplement, never replace, server-side authorization; Persist state and validate transitions on the server; Record transition history for audit if required.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "text-diff-lines",
+   "type": "registry:item",
+   "title": "Text diff lines",
+   "description": "line diff (Myers O(ND)) with unified-diff output",
+   "files": [
+    {
+     "path": "examples/recipes/text-diff.ts",
+     "type": "registry:file",
+     "target": "~/genlib/text-diff.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Bound input size with maxEdits; Escape lines before rendering as HTML; Exact line comparison (no whitespace folding).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "token-budget-truncation",
+   "type": "registry:item",
+   "title": "Token budget truncation",
+   "description": "rough token estimation and chat-history trimming to a context budget",
+   "files": [
+    {
+     "path": "examples/recipes/token-budget.ts",
+     "type": "registry:file",
+     "target": "~/genlib/token-budget.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: chars/4 is a rough estimate; use the provider tokenizer or count endpoint when limits are strict; Keep tool calls and results grouped; Reserve output tokens and a safety margin; Not a billing figure.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "totp-mfa-codes",
+   "type": "registry:item",
+   "title": "Totp mfa codes",
+   "description": "HOTP/TOTP one-time passwords for MFA (RFC 4226, RFC 6238)",
+   "files": [
+    {
+     "path": "examples/recipes/totp.ts",
+     "type": "registry:file",
+     "target": "~/genlib/totp.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Store the shared secret encrypted at rest and never log otpauth URIs; Rate-limit verification attempts and lock out on repeated failures; Record the last accepted counter per user to block replay within the window; Keep server clock synchronized (NTP); window 1 tolerates 30 seconds of skew.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "oidc-pkce-authorization-request",
+   "type": "registry:item",
+   "title": "Oidc pkce authorization request",
+   "description": "OAuth 2.0 authorization code + PKCE request side for OpenID Connect SSO",
+   "files": [
+    {
+     "path": "examples/recipes/oidc-pkce.ts",
+     "type": "registry:file",
+     "target": "~/genlib/oidc-pkce.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Request side only: verify ID and access tokens with a vetted OIDC/JOSE library; Keep verifier, state and nonce in an HttpOnly server session bound to one login; Register exact redirect URIs with the provider; Send the token request from the server over HTTPS.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "mfa-recovery-codes",
+   "type": "registry:item",
+   "title": "Mfa recovery codes",
+   "description": "MFA recovery (backup) codes: generate, normalize, keyed hash, lookup",
+   "files": [
+    {
+     "path": "examples/recipes/recovery-codes.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recovery-codes.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Show codes once and store only keyed HMAC hashes; Keep the HMAC key (pepper) outside the database; Delete a hash after use and notify the user; Rate-limit recovery attempts.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "safe-calculator-and-loan-math",
+   "type": "registry:item",
+   "title": "Safe calculator and loan math",
+   "description": "safe arithmetic expression evaluator plus loan and interest math",
+   "files": [
+    {
+     "path": "examples/recipes/calculator.ts",
+     "type": "registry:file",
+     "target": "~/genlib/calculator.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Results are doubles; use integer minor units for ledger amounts; Confirm the rounding convention (half away from zero, per row) with finance; Bound expression length and variables supplied by users; Mortgage figures are estimates, not lending disclosures.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "form-schema-validation",
+   "type": "registry:item",
+   "title": "Form schema validation",
+   "description": "server-side form validation from a small declarative schema",
+   "files": [
+    {
+     "path": "examples/recipes/form-schema.ts",
+     "type": "registry:file",
+     "target": "~/genlib/form-schema.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Validate on the server even when the browser validates; Patterns come from schema authors, never end users; Confirm email ownership with a verification link; Map error codes to localized messages in the UI.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "seo-files-sitemap-robots-llms",
+   "type": "registry:item",
+   "title": "Seo files sitemap robots llms",
+   "description": "sitemap.xml, robots.txt (with AI-crawler rules) and llms.txt generation",
+   "files": [
+    {
+     "path": "examples/recipes/seo-files.ts",
+     "type": "registry:file",
+     "target": "~/genlib/seo-files.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Serve the files from the site root with correct content types (application/xml, text/plain); robots.txt is advisory; enforce access control on the server; Keep sitemap lastmod values truthful and split sitemaps above 50,000 URLs; Review the AI crawler list periodically; vendors add new user agents.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "structured-data-json-ld-meta",
+   "type": "registry:item",
+   "title": "Structured data json ld meta",
+   "description": "JSON-LD <script> blocks and <head> meta / Open Graph / Twitter card tags",
+   "files": [
+    {
+     "path": "examples/recipes/structured-data.ts",
+     "type": "registry:file",
+     "target": "~/genlib/structured-data.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Validate output with a schema.org or rich results testing tool; Structured data must describe content visible on the page; Use absolute https URLs for canonical and og:image; Render once per page server-side; avoid duplicate meta tags from frameworks.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "utm-campaign-links",
+   "type": "registry:item",
+   "title": "Utm campaign links",
+   "description": "build, parse and clean campaign (UTM) URLs",
+   "files": [
+    {
+     "path": "examples/recipes/utm-links.ts",
+     "type": "registry:file",
+     "target": "~/genlib/utm-links.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Agree on a lowercase naming convention for source, medium and campaign; Strip tracking parameters before storing canonical URLs or sharing links; Never put personal data in UTM values; Verify attribution in analytics before reporting results.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "csv-safe",
+   "type": "registry:item",
+   "title": "Csv safe",
+   "description": "RFC 4180 CSV writing and strict parsing with formula-injection protection",
+   "files": [
+    {
+     "path": "examples/recipes/csv-safe.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-safe.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Authorize the export and limit rows to what the user may see; Keep formula neutralization on for any file opened in a spreadsheet; Validate and convert each parsed column; parsing yields strings only; Limit upload size before parsing imports.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "signed-cursors",
+   "type": "registry:item",
+   "title": "Signed cursors",
+   "description": "HMAC-SHA256 signed, expiring pagination cursors",
+   "files": [
+    {
+     "path": "examples/recipes/signed-cursors.ts",
+     "type": "registry:file",
+     "target": "~/genlib/signed-cursors.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Keep the secret (32+ bytes) on the server and rotate it with an overlap window; Re-authorize every page request; signing does not hide values; Choose a short expiry and pass a trusted server clock as now; Map malformed, bad signature and expired to a generic 400 for clients.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "ics-events",
+   "type": "registry:item",
+   "title": "Ics events",
+   "description": "RFC 5545 iCalendar (VCALENDAR/VEVENT) writer for \"add to calendar\" files",
+   "files": [
+    {
+     "path": "examples/recipes/ics-events.ts",
+     "type": "registry:file",
+     "target": "~/genlib/ics-events.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Use a stable globally unique UID per event so updates replace, not duplicate; Store and write times in UTC; convert for display only; Serve as text/calendar with a sensible filename; Do not put private attendee data in public feeds.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "ids-uuidv7-ulid",
+   "type": "registry:item",
+   "title": "Ids uuidv7 ulid",
+   "description": "time-ordered unique IDs, UUIDv7 (RFC 9562) and ULID",
+   "files": [
+    {
+     "path": "examples/recipes/ids.ts",
+     "type": "registry:file",
+     "target": "~/genlib/ids.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: IDs reveal their creation time; never use them as secrets or unguessable tokens; Generate with the CSPRNG (newUuidV7/newUlid); pure builders are for tests and replays; ULIDs from the same millisecond are not monotonic; sort ties by another key.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "retry-backoff",
+   "type": "registry:item",
+   "title": "Retry backoff",
+   "description": "exponential backoff with full jitter and HTTP Retry-After parsing",
+   "files": [
+    {
+     "path": "examples/recipes/retry-backoff.ts",
+     "type": "registry:file",
+     "target": "~/genlib/retry-backoff.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Retry only idempotent requests or ones carrying an idempotency key; Cap the number of attempts and the total time, not just the delay; Prefer the server Retry-After value when present; null means fall back to backoff.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "token-bucket",
+   "type": "registry:item",
+   "title": "Token bucket",
+   "description": "pure token-bucket rate limiter with an injected clock and integer millitokens",
+   "files": [
+    {
+     "path": "examples/recipes/token-bucket.ts",
+     "type": "registry:file",
+     "target": "~/genlib/token-bucket.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Store state per key and apply take() atomically when servers share a limit; Use a monotonic or server clock; client timestamps are untrusted; Return 429 with Retry-After from retryAfterMs when denied.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "cron-next-run",
+   "type": "registry:item",
+   "title": "Cron next run",
+   "description": "next run time of a 5-field cron expression in UTC",
+   "files": [
+    {
+     "path": "examples/recipes/cron-next.ts",
+     "type": "registry:file",
+     "target": "~/genlib/cron-next.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: UTC only: convert local schedules and DST before calling; Five numeric fields only; names, seconds, ?, L and W are rejected; Throws when no run exists within 5 years (for example 30 February).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "geo-distance-geohash",
+   "type": "registry:item",
+   "title": "Geo distance geohash",
+   "description": "haversine distance, geohash encode/decode and a radius bounding box",
+   "files": [
+    {
+     "path": "examples/recipes/geo.ts",
+     "type": "registry:file",
+     "target": "~/genlib/geo.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Spherical model: up to about 0.5% error versus WGS 84; Prefilter with the bounding box, then filter by exact distance; Neighbouring geohash cells can be close despite different prefixes.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "webhook-signature",
+   "type": "registry:item",
+   "title": "Webhook signature",
+   "description": "sign and verify Stripe-style webhook headers (t=<ts>,v1=<hex HMAC-SHA256>)",
+   "files": [
+    {
+     "path": "examples/recipes/webhook-signature.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-signature.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Verify the raw request body bytes before JSON parsing; Keep the tolerance small and dedupe event ids to stop replays inside the window; Send several v1 values while rotating secrets; store secrets server-side only.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "check-digits",
+   "type": "registry:item",
+   "title": "Check digits",
+   "description": "check digits for Luhn (cards), IBAN (mod 97), GTIN/EAN/UPC and ISBN-10/13",
+   "files": [
+    {
+     "path": "examples/recipes/check-digits.ts",
+     "type": "registry:file",
+     "target": "~/genlib/check-digits.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: A valid check digit proves only the typing, not that the card, account or product exists; Strip spaces and hyphens before storing; store the canonical digits; Never log full card numbers; use a PCI-compliant processor for payments.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "signed-urls",
+   "type": "registry:item",
+   "title": "Signed urls",
+   "description": "expiring signed URLs (\"...&expires=<unix s>&signature=<base64url HMAC-SHA256>\")",
+   "files": [
+    {
+     "path": "examples/recipes/signed-urls.ts",
+     "type": "registry:file",
+     "target": "~/genlib/signed-urls.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: A signed URL is a bearer credential until it expires: keep expiries short and use HTTPS; Keep the secret server-side; rotate by verifying against old and new secrets; Verify before serving and return the same error for bad and expired signatures to clients.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "polyline-encoding",
+   "type": "registry:item",
+   "title": "Polyline encoding",
+   "description": "Google encoded polyline algorithm (encode/decode, precision 5 or 6)",
+   "files": [
+    {
+     "path": "examples/recipes/polyline.ts",
+     "type": "registry:file",
+     "target": "~/genlib/polyline.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Match the provider's precision (Google 5, OSRM/Valhalla often 6); Points are [lat, lon] here, unlike GeoJSON [lon, lat]; Round trips are exact only to half a unit of the chosen precision.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "web-map-tiles",
+   "type": "registry:item",
+   "title": "Web map tiles",
+   "description": "Web Mercator (EPSG:3857) slippy-map tiles, bounds, Bing quadkeys and meters",
+   "files": [
+    {
+     "path": "examples/recipes/tile-math.ts",
+     "type": "registry:file",
+     "target": "~/genlib/tile-math.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Web Mercator stops at about +/-85.05 degrees latitude; XYZ counts y from the north; TMS flips y; Bing quadkeys encode x/y/zoom as base-4 digits.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "email-address-validation",
+   "type": "registry:item",
+   "title": "Email address validation",
+   "description": "WHATWG HTML \"valid e-mail address\" check and normalization",
+   "files": [
+    {
+     "path": "examples/recipes/email-address.ts",
+     "type": "registry:file",
+     "target": "~/genlib/email-address.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Syntax only: confirm ownership with a single-use link sent to the address; Matches browser <input type=email> rules, so a@b is accepted; Lowercase only the domain; the local part may be case-sensitive.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "iso-8601-durations",
+   "type": "registry:item",
+   "title": "Iso 8601 durations",
+   "description": "ISO 8601 durations (parse \"P1Y2M3DT4H5M6.5S\", exact milliseconds, format)",
+   "files": [
+    {
+     "path": "examples/recipes/iso-duration.ts",
+     "type": "registry:file",
+     "target": "~/genlib/iso-duration.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Years and months have no exact length; apply them to a calendar date; Weeks are 7 days and days are 24 hours (no DST); Fractions are allowed only on seconds, up to milliseconds.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "geometry-polygons",
+   "type": "registry:item",
+   "title": "Geometry polygons",
+   "description": "planar point-in-polygon, signed area, centroid, Douglas-Peucker and ring area in m²",
+   "files": [
+    {
+     "path": "examples/recipes/geometry.ts",
+     "type": "registry:file",
+     "target": "~/genlib/geometry.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Planar math on degrees suits hit tests and small shapes, not large areas; Use ringAreaSquareMeters for real-world areas (spherical approximation); Points on an edge or vertex count as inside.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "safe-redirects",
+   "type": "registry:item",
+   "title": "Safe redirects",
+   "description": "open-redirect guard for \"?next=\" / \"returnTo\" parameters",
+   "files": [
+    {
+     "path": "examples/recipes/safe-redirect.ts",
+     "type": "registry:file",
+     "target": "~/genlib/safe-redirect.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Redirect only to the returned value, never the raw parameter; Reject protocol-relative, backslash and userinfo URLs; Allow exact origins; never match by prefix or substring.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "ip-cidr-ssrf-guard",
+   "type": "registry:item",
+   "title": "Ip cidr ssrf guard",
+   "description": "IP parsing, CIDR matching and an SSRF guard",
+   "files": [
+    {
+     "path": "examples/recipes/ip-cidr.ts",
+     "type": "registry:file",
+     "target": "~/genlib/ip-cidr.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Resolve the hostname yourself and check every resolved address; Connect to the checked address (no second DNS lookup) and re-check after redirects; IPv4-mapped and NAT64 IPv6 addresses are judged by their embedded IPv4.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "http-range-requests",
+   "type": "registry:item",
+   "title": "Http range requests",
+   "description": "RFC 9110 byte Range requests and Content-Range",
+   "files": [
+    {
+     "path": "examples/recipes/http-range.ts",
+     "type": "registry:file",
+     "target": "~/genlib/http-range.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Ignore malformed headers and serve 200 with the full body; Respond 416 with Content-Range: bytes */size when nothing is satisfiable; Cap the number of ranges and serve multipart or only the first when several remain.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "content-negotiation",
+   "type": "registry:item",
+   "title": "Content negotiation",
+   "description": "Accept and Accept-Language negotiation (RFC 9110 q-values, RFC 4647 basic",
+   "files": [
+    {
+     "path": "examples/recipes/content-negotiation.ts",
+     "type": "registry:file",
+     "target": "~/genlib/content-negotiation.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Send Vary: Accept or Vary: Accept-Language; q=0 excludes an entry even when a wildcard matches; Return 406 or a documented default when nothing matches.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "http-conditional-requests",
+   "type": "registry:item",
+   "title": "Http conditional requests",
+   "description": "ETags and conditional requests (RFC 9110 section 13)",
+   "files": [
+    {
+     "path": "examples/recipes/http-conditional.ts",
+     "type": "registry:file",
+     "target": "~/genlib/http-conditional.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: If-Match uses strong comparison; If-None-Match uses weak comparison; Evaluate preconditions in RFC 9110 13.2.2 order before the method runs; Only exact IMF-fixdate values are honoured.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "cookies",
+   "type": "registry:item",
+   "title": "Cookies",
+   "description": "Set-Cookie serialization and Cookie header parsing (RFC 6265 plus current browser",
+   "files": [
+    {
+     "path": "examples/recipes/cookies.ts",
+     "type": "registry:file",
+     "target": "~/genlib/cookies.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Encode values first; only cookie-octets are accepted; SameSite=None and Partitioned require Secure; __Host- requires Secure, Path=/ and no Domain.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "url-normalization",
+   "type": "registry:item",
+   "title": "Url normalization",
+   "description": "http(s) URL normalization (RFC 3986 section 6) for cache keys, dedupe and allow-list",
+   "files": [
+    {
+     "path": "examples/recipes/url-normalize.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-normalize.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Userinfo is rejected and the fragment is dropped; Only unreserved percent-encodings are decoded; reserved ones keep uppercase hex; Compare normalized URLs, never raw strings.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "string-similarity",
+   "type": "registry:item",
+   "title": "String similarity",
+   "description": "edit distances and similarity scores over Unicode code points (not UTF-16 units),",
+   "files": [
+    {
+     "path": "examples/recipes/string-similarity.ts",
+     "type": "registry:file",
+     "target": "~/genlib/string-similarity.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Distances count Unicode code points, not UTF-16 units; Normalize case and Unicode form before comparing when it matters; Cap input lengths; distance tables are O(n*m).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "rrule-recurrence",
+   "type": "registry:item",
+   "title": "Rrule recurrence",
+   "description": "RFC 5545 recurrence expansion for a UTC subset",
+   "files": [
+    {
+     "path": "examples/recipes/rrule.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rrule.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: UTC only; convert local wall times yourself; Unsupported parts such as BYSETPOS throw instead of being ignored; Expansion is bounded by limit, COUNT, UNTIL and a period cap.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "base-encodings",
+   "type": "registry:item",
+   "title": "Base encodings",
+   "description": "strict base32 (RFC 4648 sections 6 and 7), Bitcoin base58 and unpadded base64url",
+   "files": [
+    {
+     "path": "examples/recipes/base-encodings.ts",
+     "type": "registry:file",
+     "target": "~/genlib/base-encodings.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Decoders are strict: padding, length and non-canonical trailing bits are rejected; Encoding is not encryption; never treat it as a secret; base58 uses the Bitcoin alphabet with one '1' per leading zero byte; base58CheckEncode/Decode are async (crypto.subtle double SHA-256) and match the Genlib base58 modules.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "vcard-contacts",
+   "type": "registry:item",
+   "title": "Vcard contacts",
+   "description": "RFC 6350 vCard 4.0 export for \"save contact\" downloads (.vcf) and address-book feeds",
+   "files": [
+    {
+     "path": "examples/recipes/vcard.ts",
+     "type": "registry:file",
+     "target": "~/genlib/vcard.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Serve as text/vcard; charset=utf-8 with a .vcf filename; Lines are CRLF and folded at 75 octets without splitting UTF-8; Control characters, invalid emails, phones, URLs and TYPE values throw.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "non-crypto-hashing",
+   "type": "registry:item",
+   "title": "Non crypto hashing",
+   "description": "non-cryptographic hashes for checksums, sharding, cache keys and bucketing: CRC-32",
+   "files": [
+    {
+     "path": "examples/recipes/hashing.ts",
+     "type": "registry:file",
+     "target": "~/genlib/hashing.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Never use for passwords, MACs or signatures; use Web Crypto or node:crypto; fnv1a64 and jumpHash use BigInt for 64-bit math; Strings are hashed as UTF-8 bytes.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "feature-flag-evaluation",
+   "type": "registry:item",
+   "title": "Feature flag evaluation",
+   "description": "deterministic feature-flag evaluation with a kill switch, deny/allow lists, percentage",
+   "files": [
+    {
+     "path": "examples/recipes/feature-flags.ts",
+     "type": "registry:file",
+     "target": "~/genlib/feature-flags.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Flags are not authorization; enforce permissions separately; Raising rolloutPercent only adds users; lowering it removes them; Keep variant weights frozen while an experiment runs.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "human-readable-units",
+   "type": "registry:item",
+   "title": "Human readable units",
+   "description": "human-readable units: byte sizes (SI kB/MB and IEC KiB/MiB), byte-size parsing,",
+   "files": [
+    {
+     "path": "examples/recipes/human-units.ts",
+     "type": "registry:file",
+     "target": "~/genlib/human-units.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: SI (kB = 1000) and IEC (KiB = 1024) are distinct; pick one per product; parseBytes returns a BigInt and throws above 2^63-1; English only; use Intl.RelativeTimeFormat for localized UI.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "unified-line-diff",
+   "type": "registry:item",
+   "title": "Unified line diff",
+   "description": "minimal line diff (Myers' linear-space algorithm) and unified output",
+   "files": [
+    {
+     "path": "examples/recipes/line-diff.ts",
+     "type": "registry:file",
+     "target": "~/genlib/line-diff.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: More than 1,000,000 lines in total throw; O((N+M)*D) time grows with the number of edits, so bound sizes first; Escape lines before rendering as HTML; Output is a valid, minimal unified diff (patch reproduces the new text); usually identical to GNU diff -u but not guaranteed.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "nist-password-policy",
+   "type": "registry:item",
+   "title": "Nist password policy",
+   "description": "NIST SP 800-63B style password checks with no composition rules, returning every",
+   "files": [
+    {
+     "path": "examples/recipes/nist-password-policy.ts",
+     "type": "registry:file",
+     "target": "~/genlib/nist-password-policy.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Check a large breached-password list as the blocklist on the server; Allow spaces and emoji and never truncate; Rate-limit attempts and hash with Argon2id, scrypt or bcrypt.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "text-sanitize-bidi",
+   "type": "registry:item",
+   "title": "Text sanitize bidi",
+   "description": "sanitize untrusted text (usernames, comments, filenames shown in UI, code review input):",
+   "files": [
+    {
+     "path": "examples/recipes/text-sanitize.ts",
+     "type": "registry:file",
+     "target": "~/genlib/text-sanitize.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Keeps ZWJ/ZWNJ for emoji and Indic/Persian text; Not HTML escaping; still escape output for its context; Lengths count code points.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "slugify",
+   "type": "registry:item",
+   "title": "Slugify",
+   "description": "URL slugs with a fixed transliteration table, so every Genlib language (Python, Go, Rust,",
+   "files": [
+    {
+     "path": "examples/recipes/slugify-portable.ts",
+     "type": "registry:file",
+     "target": "~/genlib/slugify-portable.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart slugify modules (shared vectors); Non-Latin scripts are dropped and the slug can be empty; supply a fallback; uniqueSlug is only a pre-check; enforce a database unique constraint.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "json-patch",
+   "type": "registry:item",
+   "title": "Json patch",
+   "description": "JSON Pointer (RFC 6901), JSON Patch (RFC 6902), JSON Merge Patch (RFC 7396), a deterministic patch",
+   "files": [
+    {
+     "path": "examples/recipes/json-patch.ts",
+     "type": "registry:file",
+     "target": "~/genlib/json-patch.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: applyPatch is atomic and never mutates its input; validate patches from clients before applying; createPatch is deterministic but not minimal (no move/copy operations); Numbers compare numerically (1 equals 1.0); booleans never equal numbers.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "sse-stream",
+   "type": "registry:item",
+   "title": "Sse stream",
+   "description": "server-sent events (WHATWG HTML \"event stream\" interpretation)",
+   "files": [
+    {
+     "path": "examples/recipes/sse.ts",
+     "type": "registry:file",
+     "target": "~/genlib/sse.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart sse modules (shared vectors); Parser accepts arbitrary chunks, including a CRLF split across chunks; an unterminated final event is dropped; Honor retry and Last-Event-ID on reconnect; authenticate the stream like any other endpoint.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "text-chunking",
+   "type": "registry:item",
+   "title": "Text chunking",
+   "description": "text chunking for retrieval (RAG)",
+   "files": [
+    {
+     "path": "examples/recipes/text-chunking.ts",
+     "type": "registry:file",
+     "target": "~/genlib/text-chunking.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart text-chunking modules (shared vectors); Lengths count code points, not tokens; size chunks from your embedding model's token limit with headroom; Whitespace is ASCII only; chunks are trimmed and never empty.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "vector-math",
+   "type": "registry:item",
+   "title": "Vector math",
+   "description": "vector math for embeddings",
+   "files": [
+    {
+     "path": "examples/recipes/vector-math.ts",
+     "type": "registry:file",
+     "target": "~/genlib/vector-math.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart vector-math modules (shared vectors); Brute force is O(n*d); use a vector index (pgvector, HNSW) for large collections; Cosine of a zero vector is 0; normalize throws on it.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "circuit-breaker",
+   "type": "registry:item",
+   "title": "Circuit breaker",
+   "description": "circuit breaker as a pure state machine with an injected clock",
+   "files": [
+    {
+     "path": "examples/recipes/circuit-breaker.ts",
+     "type": "registry:file",
+     "target": "~/genlib/circuit-breaker.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart circuit-breaker modules (shared vectors); Pure state machine with an injected clock; state is per process unless you store it centrally; Combine with retry-backoff and timeouts; count only failures that indicate an unhealthy dependency.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "business-days",
+   "type": "registry:item",
+   "title": "Business days",
+   "description": "business days over strict ISO dates (YYYY-MM-DD)",
+   "files": [
+    {
+     "path": "examples/recipes/business-days.ts",
+     "type": "registry:file",
+     "target": "~/genlib/business-days.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart business-days modules (shared vectors); Dates are strict YYYY-MM-DD civil dates; convert to the business's own time zone first; Holiday lists are data you must maintain per region; weekends are MO..SU codes.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "natural-sort",
+   "type": "registry:item",
+   "title": "Natural sort",
+   "description": "natural sort (\"file2\" before \"file10\")",
+   "files": [
+    {
+     "path": "examples/recipes/natural-sort.ts",
+     "type": "registry:file",
+     "target": "~/genlib/natural-sort.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart natural-sort modules (shared vectors); Locale-independent ASCII case folding; use Intl.Collator numeric for language-aware UI; Digit runs of any length compare without number overflow.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "file-signature",
+   "type": "registry:item",
+   "title": "File signature",
+   "description": "file type detection from leading bytes (magic numbers)",
+   "files": [
+    {
+     "path": "examples/recipes/file-signature.ts",
+     "type": "registry:file",
+     "target": "~/genlib/file-signature.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart file-signature modules (shared vectors); Detection is a first check, not a malware scan; still re-encode or sandbox untrusted files; Reads only the first 64 bytes; a matching extension does not prove the whole file is valid.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "color-convert",
+   "type": "registry:item",
+   "title": "Color convert",
+   "description": "color conversions between CSS hex, sRGB, HSL and OKLCH",
+   "files": [
+    {
+     "path": "examples/recipes/color-convert.ts",
+     "type": "registry:file",
+     "target": "~/genlib/color-convert.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart color modules (shared vectors); oklchToRgb is unclamped; check inGamut before using the result; toHex clamps and rounds half up; alpha is written only when below 1.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "glob-match",
+   "type": "registry:item",
+   "title": "Glob match",
+   "description": "glob matching for \"/\"-separated paths (gitignore-style **, braces, classes)",
+   "files": [
+    {
+     "path": "examples/recipes/glob-match.ts",
+     "type": "registry:file",
+     "target": "~/genlib/glob-match.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart glob-match modules (shared vectors); Matches path strings only; it never touches the file system, so list files first; A leading dot segment needs dot=true or a literal dot; ** does not descend into hidden folders without it.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "dotenv-parse",
+   "type": "registry:item",
+   "title": "Dotenv parse",
+   "description": "parse .env files with optional ${NAME} / ${NAME:-default} expansion",
+   "files": [
+    {
+     "path": "examples/recipes/dotenv.ts",
+     "type": "registry:file",
+     "target": "~/genlib/dotenv.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart dotenv modules (shared vectors); Errors name the 1-based line; never log parsed values, they are usually secrets; Expansion is opt-in and reads earlier keys before the vars you pass (not process.env implicitly).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "query-string",
+   "type": "registry:item",
+   "title": "Query string",
+   "description": "application/x-www-form-urlencoded parse and stringify (WHATWG URL standard)",
+   "files": [
+    {
+     "path": "examples/recipes/query-string.ts",
+     "type": "registry:file",
+     "target": "~/genlib/query-string.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart query-string modules (shared vectors); Exact WHATWG form encoding: + is a space, invalid percent escapes stay literal, invalid UTF-8 becomes U+FFFD; Raw ordered pairs only; for typed filter/sort/page state use url-query-state.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "mime-types",
+   "type": "registry:item",
+   "title": "Mime types",
+   "description": "MIME type <-> file extension lookup for common web and document formats",
+   "files": [
+    {
+     "path": "examples/recipes/mime-types.ts",
+     "type": "registry:file",
+     "target": "~/genlib/mime-types.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart mime-types modules (shared vectors); Maps names, not bytes; check uploads with file-signature before trusting the type; Text types get charset=utf-8; unknown names fall back to application/octet-stream.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "data-uri",
+   "type": "registry:item",
+   "title": "Data uri",
+   "description": "data: URLs (RFC 2397 with the WHATWG fetch \"data: URL processor\" rules, simplified)",
+   "files": [
+    {
+     "path": "examples/recipes/data-uri.ts",
+     "type": "registry:file",
+     "target": "~/genlib/data-uri.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart data-uri modules (shared vectors); Strict base64 check; invalid percent escapes stay literal and an invalid media type becomes text/plain; Never put user-supplied data: URLs into href or src without an allow-list of media types.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "iso-week",
+   "type": "registry:item",
+   "title": "Iso week",
+   "description": "ISO 8601 week dates (weeks start Monday; week 1 holds the year's first Thursday)",
+   "files": [
+    {
+     "path": "examples/recipes/iso-week.ts",
+     "type": "registry:file",
+     "target": "~/genlib/iso-week.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart iso-week modules (shared vectors); Plain day arithmetic for years 1..9999; no Date object, time zone or locale; The week-numbering year can differ from the calendar year near January 1.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "topo-sort",
+   "type": "registry:item",
+   "title": "Topo sort",
+   "description": "deterministic topological sort (Kahn's algorithm) and parallel levels",
+   "files": [
+    {
+     "path": "examples/recipes/topo-sort.ts",
+     "type": "registry:file",
+     "target": "~/genlib/topo-sort.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart topo-sort modules (shared vectors); Deterministic: ready nodes come out in input order; a cycle error names one cycle; Validate that every edge names a known node; duplicate nodes are rejected.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "link-header",
+   "type": "registry:item",
+   "title": "Link header",
+   "description": "HTTP Link header (RFC 8288) parse, rel lookup and format, e.g. GitHub-style pagination",
+   "files": [
+    {
+     "path": "examples/recipes/link-header.ts",
+     "type": "registry:file",
+     "target": "~/genlib/link-header.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart link-header modules (shared vectors); Commas inside <...> and quoted strings do not split; title* (RFC 8187) values are decoded; Resolve link targets against the request URL and check the origin before following them.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "content-disposition",
+   "type": "registry:item",
+   "title": "Content disposition",
+   "description": "Content-Disposition (RFC 6266 + RFC 8187) build and parse for downloads",
+   "files": [
+    {
+     "path": "examples/recipes/content-disposition.ts",
+     "type": "registry:file",
+     "target": "~/genlib/content-disposition.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart content-disposition modules (shared vectors); Sanitizes filenames on build and parse (no path separators, quotes or control characters); Store uploads under a server-generated name; the parsed filename is display data only.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "cache-control",
+   "type": "registry:item",
+   "title": "Cache control",
+   "description": "Cache-Control (RFC 9111) parse, format and freshness lifetime",
+   "files": [
+    {
+     "path": "examples/recipes/cache-control.ts",
+     "type": "registry:file",
+     "target": "~/genlib/cache-control.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart cache-control modules (shared vectors); Delta values must be ASCII digits; invalid ones are dropped and an unterminated quote throws; Freshness covers max-age and s-maxage only; Expires and heuristic freshness are out of scope.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "punycode",
+   "type": "registry:item",
+   "title": "Punycode",
+   "description": "Punycode (RFC 3492) and simple IDNA-style domain conversion",
+   "files": [
+    {
+     "path": "examples/recipes/punycode.ts",
+     "type": "registry:file",
+     "target": "~/genlib/punycode.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart punycode modules (shared vectors); No Unicode normalization or UTS #46 mapping: normalize (NFC, case-fold) first when you need it; Labels over 63 octets, empty labels and names over 253 octets throw.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "roman-numerals",
+   "type": "registry:item",
+   "title": "Roman numerals",
+   "description": "Roman numerals 1..3999 in standard subtractive form",
+   "files": [
+    {
+     "path": "examples/recipes/roman-numerals.ts",
+     "type": "registry:file",
+     "target": "~/genlib/roman-numerals.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart roman-numerals modules (shared vectors); Range is 1..3999; anything else throws; Parsing accepts only canonical forms (IIII, IC and VX throw).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "dotted-path",
+   "type": "registry:item",
+   "title": "Dotted path",
+   "description": "dotted paths into JSON data, e.g. \"user.addresses[0].city\" or 'a[\"x.y\"]'",
+   "files": [
+    {
+     "path": "examples/recipes/dotted-path.ts",
+     "type": "registry:file",
+     "target": "~/genlib/dotted-path.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart dotted-path modules (shared vectors); setPath and deletePath return new values and never mutate the input; Own properties only, so __proto__ is an ordinary key; index > length or a scalar in the way throws.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "template-render",
+   "type": "registry:item",
+   "title": "Template render",
+   "description": "minimal logic-less templates (a Mustache subset), e.g. \"Hello {{ user.name }}!\"",
+   "files": [
+    {
+     "path": "examples/recipes/template-render.ts",
+     "type": "registry:file",
+     "target": "~/genlib/template-render.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart template-render modules (shared vectors); {{name}} is HTML-escaped and {{{name}}} is raw; never feed untrusted templates into raw tags; No partials, lambdas or custom delimiters; arrays and objects in {{tags}} throw.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "ini-parse",
+   "type": "registry:item",
+   "title": "Ini parse",
+   "description": "INI files, the common subset used by git config, PHP and Python configparser",
+   "files": [
+    {
+     "path": "examples/recipes/ini-parse.ts",
+     "type": "registry:file",
+     "target": "~/genlib/ini-parse.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart ini-parse modules (shared vectors); Values are strings; convert and validate types yourself; Errors name the 1-based line; no interpolation or multi-line values.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "pii-mask",
+   "type": "registry:item",
+   "title": "Pii mask",
+   "description": "masking personal data for logs and UIs (display masking, NOT anonymization)",
+   "files": [
+    {
+     "path": "examples/recipes/pii-mask.ts",
+     "type": "registry:file",
+     "target": "~/genlib/pii-mask.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart pii-mask modules (shared vectors); Display masking only, not anonymization: masked values can still identify people; redact finds emails and Luhn-valid cards only, never phone numbers or names.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "password-generate",
+   "type": "registry:item",
+   "title": "Password generate",
+   "description": "password and passphrase generation with an injectable byte source",
+   "files": [
+    {
+     "path": "examples/recipes/password-generate.ts",
+     "type": "registry:file",
+     "target": "~/genlib/password-generate.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart password-generate modules (shared vectors); Defaults to crypto.getRandomValues; inject nextByte only for tests; Rejection sampling avoids modulo bias; one character from each class is guaranteed.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "app-shell",
+   "type": "registry:item",
+   "title": "Responsive application shell",
+   "description": "React application header, primary navigation, responsive menu disclosure, skip link, and main-content layout.",
+   "dependencies": [
+    "react"
+   ],
+   "registryDependencies": [
+    "theme-tokens"
+   ],
+   "files": [
+    {
+     "path": "modules/app-shell/files/AppShell.tsx",
+     "type": "registry:file",
+     "target": "~/genlib/app-shell/AppShell.tsx"
+    },
+    {
+     "path": "modules/app-shell/files/app-shell.css",
+     "type": "registry:file",
+     "target": "~/genlib/app-shell/app-shell.css"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "component"
+   ],
+   "docs": "Genlib module app-shell@0.1.0 (Apache-2.0). Configure: brand, items, activeItemId, navigationLabel, headerActions, sidebarFooter, children, className, onNavigate. Import theme and shell CSS once at the application root; map semantic tokens to the project's design system. Contract: https://github.com/athompson83/genlib/blob/main/modules/app-shell/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "common-api-clients",
+   "type": "registry:item",
+   "title": "Common API clients",
+   "description": "Server-only TypeScript clients for GitHub, Stripe Checkout, Resend, Supabase reads, Microsoft Graph, Google Calendar, OpenAI, Anthropic, Saleor catalog reads, and Steel sessions with explicit credentials and bounded HTTP transport.",
+   "files": [
+    {
+     "path": "modules/common-api-clients/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/http.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/github.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/github.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/stripe.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/stripe.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/resend.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/resend.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/supabase.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/supabase.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/microsoft-graph.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/microsoft-graph.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/google-calendar.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/google-calendar.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/ai-core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/ai-core.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/openai.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/openai.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/anthropic.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/anthropic.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/saleor.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/saleor.ts"
+    },
+    {
+     "path": "modules/common-api-clients/files/steel-browser.ts",
+     "type": "registry:file",
+     "target": "~/genlib/common-api-clients/steel-browser.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module common-api-clients@0.1.0 (Apache-2.0). Configure: Inject trusted token resolvers and Fetch configuration; never copy request headers, request JSON, user URLs, or client-supplied identity into client configuration. GitHub, Stripe, and Anthropic require an explicit supported API version; AI adapters also require a configured model and output token limit. Stripe requires approved server price mappings, return URLs, an order authorization callback, and a persisted idempotency key per attempt. Resend requires a verified server-owned sender, exact recipient/content authorization, and a persisted idempotency key per delivery event. Supabase requires a project HTTPS origin, publishable key, caller user token, and table/column allowlists; enable and test RLS in the target database. Graph requires a delegated Graph token; Calendar requires allowed calendar IDs and explicit time bounds; these clients do not obtain or refresh OAuth tokens. Model calls require a mandatory application authorization callback; check tenant, data disclosure, and budget before allowing each paid call. Saleor requires a trusted GraphQL endpoint; Steel requires explicit authority for each session operation and careful handling of server-only connection URLs. Contract: https://github.com/athompson83/genlib/blob/main/modules/common-api-clients/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "data-table",
+   "type": "registry:item",
+   "title": "Searchable sortable data table",
+   "description": "Typed React table with client-side search, stable sorting, pagination, empty states, and accessible table controls.",
+   "dependencies": [
+    "react"
+   ],
+   "registryDependencies": [
+    "theme-tokens"
+   ],
+   "files": [
+    {
+     "path": "modules/data-table/files/DataTable.tsx",
+     "type": "registry:file",
+     "target": "~/genlib/data-table/DataTable.tsx"
+    },
+    {
+     "path": "modules/data-table/files/data-table.css",
+     "type": "registry:file",
+     "target": "~/genlib/data-table/data-table.css"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "component"
+   ],
+   "docs": "Genlib module data-table@0.1.0 (Apache-2.0). Configure: rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className. Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering. Contract: https://github.com/athompson83/genlib/blob/main/modules/data-table/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "env-config",
+   "type": "registry:item",
+   "title": "Environment configuration",
+   "description": "Framework-neutral TypeScript schema for environment variables that validates a caller-supplied record at startup, returns a frozen typed object, reports every problem by key without echoing values, redacts secrets, and renders .env.example text.",
+   "files": [
+    {
+     "path": "modules/env-config/files/fields.ts",
+     "type": "registry:file",
+     "target": "~/genlib/env-config/fields.ts"
+    },
+    {
+     "path": "modules/env-config/files/config.ts",
+     "type": "registry:file",
+     "target": "~/genlib/env-config/config.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module env-config@0.1.0 (Apache-2.0). Configure: Declare a schema with str/num/bool/url/list/json/secret fields; chain .optional(), .secret(), .describe(text), and .example(text) as needed. Call defineConfig(schema).parse(source) once at startup with the runtime's environment record and let ConfigError stop the process; use safeParse for a result object instead. Use toExample() to generate or check a committed .env.example, and redact(config) or JSON.stringify(config) for safe startup logging. Contract: https://github.com/athompson83/genlib/blob/main/modules/env-config/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "health-checks",
+   "type": "registry:item",
+   "title": "Health checks",
+   "description": "Framework-neutral Fetch handlers for liveness (/healthz) and readiness (/readyz) with concurrent named checks, per-check timeouts, critical versus degraded results, redacted errors, and no-store JSON.",
+   "files": [
+    {
+     "path": "modules/health-checks/files/health.ts",
+     "type": "registry:file",
+     "target": "~/genlib/health-checks/health.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module health-checks@0.1.0 (Apache-2.0). Configure: checks: named functions (critical by default) or { check, critical?, timeoutMs? }. Each receives an AbortSignal that fires on timeout. Names match [A-Za-z0-9_.:-]{1,64}; at most 50 checks. timeoutMs (default 2000, 1-60000), clock (epoch milliseconds, default Date.now), optional non-sensitive version label, livenessPath/readinessPath for handle(). exposeErrors (default false) adds truncated error messages; enable only behind a trusted internal network. Contract: https://github.com/athompson83/genlib/blob/main/modules/health-checks/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "http-resilience",
+   "type": "registry:item",
+   "title": "HTTP resilience",
+   "description": "Runtime-neutral TypeScript retry with exponential backoff and full jitter, AbortSignal-aware timeouts, an idempotency-safe Fetch retry wrapper that honors Retry-After, and an in-process circuit breaker.",
+   "files": [
+    {
+     "path": "modules/http-resilience/files/retry.ts",
+     "type": "registry:file",
+     "target": "~/genlib/http-resilience/retry.ts"
+    },
+    {
+     "path": "modules/http-resilience/files/fetch-retry.ts",
+     "type": "registry:file",
+     "target": "~/genlib/http-resilience/fetch-retry.ts"
+    },
+    {
+     "path": "modules/http-resilience/files/circuit-breaker.ts",
+     "type": "registry:file",
+     "target": "~/genlib/http-resilience/circuit-breaker.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module http-resilience@0.2.0 (Apache-2.0). Configure: retry: attempts (1–20, total including the first call), baseDelayMs, maxDelayMs (0–3600000), jitter \"full\" (default) or \"none\", optional shouldRetry(error, attempt) returning boolean or { delayMs }, signal, and injectable sleep/random. withTimeout(fn, ms, signal?): ms 1–3600000; fn receives the combined signal. fetchWithRetry(fetch, input, init, options): attempts default 3, baseDelayMs, maxDelayMs, jitter, optional attemptTimeoutMs, signal (defaults to init.signal), injectable sleep/random/now. createCircuitBreaker: failureThreshold (1–1000 consecutive counted failures), resetAfterMs (1–86400000), optional clock and isFailure(error). Contract: https://github.com/athompson83/genlib/blob/main/modules/http-resilience/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.2.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "notification-preferences",
+   "type": "registry:item",
+   "title": "Notification preferences",
+   "description": "A configurable preference form, validated TypeScript domain model, Fetch API client, and authenticated Request/Response adapter with injected atomic persistence.",
+   "dependencies": [
+    "react"
+   ],
+   "files": [
+    {
+     "path": "modules/notification-preferences/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/notification-preferences/core.ts"
+    },
+    {
+     "path": "modules/notification-preferences/files/server.ts",
+     "type": "registry:file",
+     "target": "~/genlib/notification-preferences/server.ts"
+    },
+    {
+     "path": "modules/notification-preferences/files/client.ts",
+     "type": "registry:file",
+     "target": "~/genlib/notification-preferences/client.ts"
+    },
+    {
+     "path": "modules/notification-preferences/files/NotificationPreferencesForm.tsx",
+     "type": "registry:file",
+     "target": "~/genlib/notification-preferences/NotificationPreferencesForm.tsx"
+    },
+    {
+     "path": "modules/notification-preferences/files/notification-preferences.css",
+     "type": "registry:file",
+     "target": "~/genlib/notification-preferences/notification-preferences.css"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module notification-preferences@0.1.0 (Apache-2.0). Configure: Declare 1–32 stable preference keys, labels, allowed email/push/inApp channels, and explicit defaults; omitted defaults are false. Inject a persistent store implementing atomic compareAndSet and read, scoped to authenticated subject and tenant. Inject application authentication/authorization and configure exact allowedOrigins; PUT fails closed without an allowed Origin. Mount the form with schema, initialSnapshot, and save callback; remount when authenticated identity or schema changes. Import notification-preferences.css explicitly and map its documented CSS variables to the project Brand Kit. Contract: https://github.com/athompson83/genlib/blob/main/modules/notification-preferences/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "org-invitations",
+   "type": "registry:item",
+   "title": "Organization invitations",
+   "description": "Tenant invitations for multi-tenant apps: invite by email with a role, inspect, accept once, revoke and expire, with hashed one-time tokens, injected authorization and persistence, and a Fetch Request/Response adapter.",
+   "files": [
+    {
+     "path": "modules/org-invitations/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/org-invitations/core.ts"
+    },
+    {
+     "path": "modules/org-invitations/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/org-invitations/memory-store.ts"
+    },
+    {
+     "path": "modules/org-invitations/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/org-invitations/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module org-invitations@0.1.0 (Apache-2.0). Configure: Implement InvitationStore on your database: a unique index on token_hash and an atomic conditional status update (UPDATE ... WHERE id = $1 AND status = 'pending'); create the membership row in the same transaction as the accepted transition. Implement authorize(actor, action, {tenantId, role}) from your own membership table and enforce role ceilings there (who may invite whom). Declare the invitable roles; keep owner or billing roles out unless invitations should grant them. Implement authenticate(request) from your session or verified token; verifiedEmail must come from your identity provider. Implement sendInvitation with your email provider and build the join link from a trusted base URL, keeping the token in the URL fragment. Mount createInvitationHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/org-invitations/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "public-data-clients",
+   "type": "registry:item",
+   "title": "Public data and catalog maintenance clients",
+   "description": "Server-only TypeScript adapters for Frankfurter, NWS, Census, vPIC, Crossref, GLEIF, ROR, Open Food Facts, Open-Meteo, deps.dev, OSV and endoflife.date with injected transport, bounded responses, conditional cache metadata and normalized errors.",
+   "files": [
+    {
+     "path": "modules/public-data-clients/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/http.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/frankfurter.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/frankfurter.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/nws.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/nws.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/census.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/census.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/vpic.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/vpic.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/crossref.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/crossref.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/gleif.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/gleif.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/ror.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/ror.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/open-food-facts.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/open-food-facts.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/open-meteo.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/open-meteo.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/deps-dev.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/deps-dev.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/osv.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/osv.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/endoflife.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/endoflife.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module public-data-clients@0.1.0 (Apache-2.0). Configure: Inject a trusted Fetch implementation, application identification and explicit server credential callbacks. Use a configured HTTPS origin only; never derive origins or credentials from an incoming request. Census data queries require a key. Open-Meteo hosted access requires an explicit noncommercial or customer subscription profile. Configure request deadlines and decoded response byte limits; retries are opt-in and bounded. Applications own caching, cross-process quotas, source attribution, authorization and live acceptance. Contract: https://github.com/athompson83/genlib/blob/main/modules/public-data-clients/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "rate-limit",
+   "type": "registry:item",
+   "title": "Rate limit",
+   "description": "Runtime-neutral TypeScript rate limiting with token bucket, fixed window, and exact sliding window algorithms over a pluggable atomic store, a bounded in-memory LRU store, and Fetch-standard 429 and RateLimit header helpers.",
+   "files": [
+    {
+     "path": "modules/rate-limit/files/store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rate-limit/store.ts"
+    },
+    {
+     "path": "modules/rate-limit/files/limiter.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rate-limit/limiter.ts"
+    },
+    {
+     "path": "modules/rate-limit/files/headers.ts",
+     "type": "registry:file",
+     "target": "~/genlib/rate-limit/headers.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module rate-limit@0.1.0 (Apache-2.0). Configure: createRateLimiter({ algorithm: \"token-bucket\", limit, refillPerSecond, store, clock?, prefix? }) or ({ algorithm: \"fixed-window\" | \"sliding-window\", limit, windowMs, store, clock?, prefix? }). limit 1–1000000 (sliding-window 1–10000). limiter.consume(key, cost = 1) returns { allowed, limit, remaining, resetAt, resetAfterMs, retryAfterMs }. Denied requests consume nothing. createMemoryStore({ maxKeys = 10000, clock? }); pass the same clock as the limiter. Derive keys on the trusted server from an authenticated principal, API key ID, or a client IP taken from your platform's trusted proxy configuration. Never trust a raw X-Forwarded-For header that clients can set. Contract: https://github.com/athompson83/genlib/blob/main/modules/rate-limit/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "security-headers",
+   "type": "registry:item",
+   "title": "Security headers",
+   "description": "Framework-neutral TypeScript builder for HTTP response security headers: validated Content-Security-Policy with per-request nonces and report-only mode, HSTS, nosniff, Referrer-Policy, Permissions-Policy, COOP, and X-Frame-Options, applied to Fetch Responses.",
+   "files": [
+    {
+     "path": "modules/security-headers/files/security-headers.ts",
+     "type": "registry:file",
+     "target": "~/genlib/security-headers/security-headers.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module security-headers@0.1.0 (Apache-2.0). Configure: csp merges per directive over default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'. A directive set to false is removed, true emits a valueless directive, and csp: false omits the header. nonce (from createNonce, generated per response) is appended to nonceDirectives (default script-src); the application must put the same nonce on its script tags. reportOnly sends Content-Security-Policy-Report-Only. hsts defaults to max-age=31536000; includeSubDomains, preload is opt-in, and hsts: false omits it for plain-HTTP development. referrerPolicy, permissionsPolicy (merged over camera/microphone/geolocation/payment/usb/browsing-topics disabled), crossOriginOpenerPolicy, frameOptions, and contentTypeOptions can each be changed or disabled with false. withSecurityHeaders preserves existing response headers unless override: true. Invalid configuration throws a TypeError. Contract: https://github.com/athompson83/genlib/blob/main/modules/security-headers/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "structured-logger",
+   "type": "registry:item",
+   "title": "Structured logger",
+   "description": "Framework-neutral TypeScript JSON-lines logger with levels, child bindings, deterministic key-based redaction, bounded cycle-safe serialization, error cause chains, an injectable sink and clock, and x-request-id correlation for Fetch Request objects.",
+   "files": [
+    {
+     "path": "modules/structured-logger/files/logger.ts",
+     "type": "registry:file",
+     "target": "~/genlib/structured-logger/logger.ts"
+    },
+    {
+     "path": "modules/structured-logger/files/request.ts",
+     "type": "registry:file",
+     "target": "~/genlib/structured-logger/request.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module structured-logger@0.1.0 (Apache-2.0). Configure: createLogger({ level, sink, base, redact, includeStack, clock, maxDepth, maxStringLength, maxArrayLength, maxKeys, maxCauseDepth, maxLineBytes }); every option has a safe default. Pass the level from application configuration (for example an env-config field); the module does not read environment variables. Add application-specific sensitive field names through redact; they extend the default list. withRequest(logger, request, { header, trustIncoming, generate }) returns a child logger and requestId; set the same ID on the response. Contract: https://github.com/athompson83/genlib/blob/main/modules/structured-logger/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "theme-tokens",
+   "type": "registry:item",
+   "title": "Semantic theme tokens",
+   "description": "Framework-neutral light and dark CSS variables for consistent project branding without changing feature behavior.",
+   "files": [
+    {
+     "path": "modules/theme-tokens/files/theme.css",
+     "type": "registry:file",
+     "target": "~/genlib/theme-tokens/theme.css"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "theme"
+   ],
+   "docs": "Genlib module theme-tokens@0.1.0 (Apache-2.0). Configure: Override --gl-* variables after this stylesheet or within a scoped theme container. Set data-genlib-theme to light or dark on a container or the document root. Contract: https://github.com/athompson83/genlib/blob/main/modules/theme-tokens/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "validated-form",
+   "type": "registry:item",
+   "title": "Validated form with submission handling",
+   "description": "Typed React form wrapper with injected validation and submission, accessible error summaries, busy state, and duplicate-submit protection.",
+   "dependencies": [
+    "react"
+   ],
+   "registryDependencies": [
+    "theme-tokens"
+   ],
+   "files": [
+    {
+     "path": "modules/validated-form/files/ValidatedForm.tsx",
+     "type": "registry:file",
+     "target": "~/genlib/validated-form/ValidatedForm.tsx"
+    },
+    {
+     "path": "modules/validated-form/files/validated-form.css",
+     "type": "registry:file",
+     "target": "~/genlib/validated-form/validated-form.css"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "component"
+   ],
+   "docs": "Genlib module validated-form@0.1.0 (Apache-2.0). Configure: Required initialValues, formLabel, validate(values), onSubmit(values), and render-prop children. field(name, hintId) supplies IDs and accessibility attributes; setValue(name, value) keeps type conversion explicit. Optional fieldLabels, submitLabel, submittingLabel, successMessage, submissionErrorMessage, and className. Contract: https://github.com/athompson83/genlib/blob/main/modules/validated-form/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "webhook-verification",
+   "type": "registry:item",
+   "title": "Webhook verification",
+   "description": "Framework-neutral TypeScript verification of inbound webhook HMAC-SHA256 signatures over raw body bytes with Web Crypto: generic hex, GitHub, Stripe, and Standard Webhooks/Svix, with secret rotation, timestamp tolerance, and a size-capped raw body reader.",
+   "files": [
+    {
+     "path": "modules/webhook-verification/files/hmac.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-verification/hmac.ts"
+    },
+    {
+     "path": "modules/webhook-verification/files/providers.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-verification/providers.ts"
+    },
+    {
+     "path": "modules/webhook-verification/files/raw-body.ts",
+     "type": "registry:file",
+     "target": "~/genlib/webhook-verification/raw-body.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module webhook-verification@0.1.0 (Apache-2.0). Configure: Supply each signing secret from trusted server configuration; pass an array (1-10, current first) during rotation. String secrets are UTF-8 key bytes except Standard Webhooks, which expects whsec_<base64> (16-128 decoded bytes). Stripe and Standard Webhooks accept toleranceSeconds (default 300, 1-86400, enforced in both directions) and an injectable clock returning epoch milliseconds. readRawBody(request, maxBytes) requires an explicit cap from 1 byte to 64 MiB; choose the provider's documented maximum payload size. Invalid configuration (missing/oversized secrets, bad tolerance, bad cap) throws a TypeError with a fixed message that never contains secret material; request input never throws. Contract: https://github.com/athompson83/genlib/blob/main/modules/webhook-verification/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  }
+ ]
+}

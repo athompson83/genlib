@@ -1,0 +1,13 @@
+{
+  "id": "about",
+  "schemaVersion": 1,
+  "revision": "\"revision-1\"",
+  "data": {
+    "root": { "props": { "title": "About" } },
+    "content": [
+      { "type": "Heading", "props": { "id": "heading-1", "text": "About our team", "level": "h2" } },
+      { "type": "Paragraph", "props": { "id": "paragraph-1", "text": "Edit this page using registered application components." } },
+      { "type": "CallToAction", "props": { "id": "cta-1", "label": "Contact", "href": "/contact" } }
+    ]
+  }
+}

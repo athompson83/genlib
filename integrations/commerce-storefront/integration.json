@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "commerce-storefront",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Medusa core storefront and explicit checkout",
+  "summary": "Original Medusa Store API adapter, product/cart components and serialized checkout with regional prices, ownership callbacks, provider allowlists and uncertain-outcome handling.",
+  "languages": [
+    "typescript",
+    "css"
+  ],
+  "frameworks": [
+    "react"
+  ],
+  "platforms": [
+    "node",
+    "browser"
+  ],
+  "resources": [
+    "medusa"
+  ],
+  "tags": [
+    "commerce",
+    "storefront",
+    "cart",
+    "checkout",
+    "medusa",
+    "payments",
+    "authorization"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/cart.json",
+    "fixtures/products.json",
+    "package-lock.json",
+    "package.json",
+    "src/CheckoutPanel.tsx",
+    "src/Storefront.tsx",
+    "src/checkout.ts",
+    "src/medusa.server.ts",
+    "src/model.ts",
+    "src/styles.css",
+    "tests/commerce.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/model.ts",
+    "src/medusa.server.ts",
+    "src/Storefront.tsx",
+    "src/checkout.ts",
+    "src/CheckoutPanel.tsx"
+  ],
+  "compatibility": {
+    "reactMajors": [
+      18,
+      19
+    ]
+  },
+  "verification": {
+    "level": "experimental",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and seven fixture-transport/SSR tests covering regional price units, authorization-before-credentials, cart routes, payment-collection reuse, order sequencing and uncertain outcomes."
+    ],
+    "notes": [
+      "No live Medusa service, payment session, purchase, email or provider challenge was performed; React 18 is peer-compatible but unexecuted.",
+      "Keep the HTTP adapter on the trusted server; the host supplies cart/session ownership, authenticated routes and an explicitly authorized payment-provider SDK flow.",
+      "Medusa binding covers MIT core only; Enterprise Edition and hosted services retain separate terms."
+    ]
+  }
+}

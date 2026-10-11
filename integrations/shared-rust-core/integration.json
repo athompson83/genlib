@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "shared-rust-core",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Shared Rust domain core and UniFFI bindings",
+  "summary": "Deterministic validated inventory transitions with a common conformance fixture, real Python FFI tests and reproducible Swift/Kotlin/Python binding generation.",
+  "languages": [
+    "rust",
+    "python",
+    "swift",
+    "kotlin"
+  ],
+  "frameworks": [
+    "uniffi",
+    "cargo"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows",
+    "android",
+    "ios"
+  ],
+  "resources": [
+    "uniffi"
+  ],
+  "tags": [
+    "native",
+    "ffi",
+    "shared-core",
+    "rust",
+    "conformance",
+    "codegen"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "Cargo.toml",
+    "src/lib.rs",
+    "fixtures/conformance.json",
+    "bindings/generate.py",
+    "bindings/test_python.py",
+    "bindings/InventoryCoreTest.swift",
+    "bindings/InventoryCoreTest.kt"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Rust 1.99.0 / UniFFI 0.32.2: 2 Cargo conformance/error tests passed.",
+      "Linux x86_64, Python 3.12.14: generated binding and real shared-library conformance/error checks passed.",
+      "Linux x86_64, UniFFI 0.32.2: Swift and Kotlin binding generation completed with the configured module/package names."
+    ],
+    "commands": [
+      "cargo test --locked",
+      "python3 bindings/generate.py python",
+      "python3 bindings/test_python.py",
+      "python3 bindings/generate.py swift",
+      "python3 bindings/generate.py kotlin"
+    ],
+    "notes": [
+      "Swift/Kotlin host tests, mobile ABIs, Apple cross-compilation and release linking are unexecuted; binding generation alone does not validate those runtimes.",
+      "UniFFI is MPL-2.0. Generated bindings and linked runtime artifacts retain their applicable upstream terms; the Apache-2.0 manifest covers only the original delivered glue/config/fixtures.",
+      "Generated binding/runtime trees and build products are excluded. The receiving app packages architecture-specific libraries and owns state persistence, authorization and synchronization."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "Cargo.lock",
+    "Cargo.toml",
+    "bindings/InventoryCoreTest.kt",
+    "bindings/InventoryCoreTest.swift",
+    "bindings/generate.py",
+    "bindings/test_python.py",
+    "bindings/uniffi-bindgen.rs",
+    "fixtures/conformance.json",
+    "src/lib.rs",
+    "tests/conformance.rs",
+    "uniffi.toml"
+  ]
+}

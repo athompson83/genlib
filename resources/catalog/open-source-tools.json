@@ -8913,19 +8913,21 @@
       ],
       "kind": "package",
       "integrationMode": "package",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/timgit/pg-boss/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
       "homepage": "https://pgboss.io/",
       "repository": "https://github.com/timgit/pg-boss",
-      "docs": null,
+      "docs": "https://github.com/timgit/pg-boss",
       "summary": "Postgres-backed job queue for Node.js",
-      "useWhen": "Use instead of writing glue code and schedulers for integrations and data pipelines.",
+      "useWhen": "Use for an asynchronous export, conversion or scheduling consumer that already operates PostgreSQL.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Optional Node/PostgreSQL infrastructure; ordinary small synchronous work does not need a queue.",
+        "Design idempotent handlers and persist business completion separately from job delivery."
       ],
       "tags": [
         "open-source",
@@ -8933,7 +8935,9 @@
         "typescript",
         "npm",
         "library",
-        "sdk"
+        "sdk",
+        "durable-jobs",
+        "pg-boss"
       ],
       "projectTypes": [
         "devops-infra",
@@ -8943,24 +8947,32 @@
       "sources": [
         {
           "url": "https://github.com/timgit/pg-boss",
-          "title": "Upstream repository"
+          "title": "Primary project documentation and source"
         },
         {
           "url": "https://pgboss.io/",
           "title": "Official site"
+        },
+        {
+          "url": "https://github.com/timgit/pg-boss/blob/HEAD/LICENSE",
+          "title": "Reviewed upstream component license"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/open-source-tools.md"
+        "guide": "docs/resources/open-source-tools.md",
+        "integrations": [
+          "durable-jobs"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "pg-boss"
+          "name": "pg-boss",
+          "version": "12.37.1"
         }
       ],
       "quickstart": [
@@ -8973,6 +8985,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 9444161
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/timgit/pg-boss"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/timgit/pg-boss",
+          "integrations/durable-jobs/CONTRACT.md"
+        ]
       }
     },
     {

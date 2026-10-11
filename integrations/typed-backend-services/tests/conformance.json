@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "token": "genlib-conformance-token",
+  "create": [
+    {
+      "title": "  One  ",
+      "expectedTitle": "One"
+    },
+    {
+      "title": " Café ",
+      "expectedTitle": "Café"
+    },
+    {
+      "title": "﻿🧭 Three﻿",
+      "expectedTitle": "🧭 Three"
+    }
+  ],
+  "pages": [
+    {
+      "cursor": 0,
+      "pageSize": 2,
+      "indices": [
+        0,
+        1
+      ],
+      "nextCursor": 2
+    },
+    {
+      "cursor": 2,
+      "pageSize": 2,
+      "indices": [
+        2
+      ],
+      "nextCursor": 0
+    },
+    {
+      "cursor": 3,
+      "pageSize": 2,
+      "indices": [],
+      "nextCursor": 0
+    },
+    {
+      "cursor": 0,
+      "pageSize": 0,
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "nextCursor": 0
+    },
+    {
+      "cursor": 2147483647,
+      "pageSize": 100,
+      "indices": [],
+      "nextCursor": 0
+    }
+  ],
+  "errors": [
+    {
+      "name": "blank-title",
+      "method": "createItem",
+      "request": {
+        "title": " \t "
+      },
+      "code": "invalid_argument"
+    },
+    {
+      "name": "long-title",
+      "method": "createItem",
+      "request": {
+        "title": "🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭🧭"
+      },
+      "code": "invalid_argument"
+    },
+    {
+      "name": "missing-item",
+      "method": "getItem",
+      "request": {
+        "id": "missing-id"
+      },
+      "code": "not_found"
+    },
+    {
+      "name": "negative-cursor",
+      "method": "listItems",
+      "request": {
+        "cursor": -1,
+        "pageSize": 2
+      },
+      "code": "invalid_argument"
+    },
+    {
+      "name": "negative-page-size",
+      "method": "listItems",
+      "request": {
+        "cursor": 0,
+        "pageSize": -1
+      },
+      "code": "invalid_argument"
+    },
+    {
+      "name": "large-page-size",
+      "method": "listItems",
+      "request": {
+        "cursor": 0,
+        "pageSize": 101
+      },
+      "code": "invalid_argument"
+    },
+    {
+      "name": "unauthorized-create",
+      "method": "createItem",
+      "token": "wrong-token",
+      "request": {
+        "title": "Denied"
+      },
+      "code": "unauthenticated"
+    },
+    {
+      "name": "unauthorized-get",
+      "method": "getItem",
+      "token": "wrong-token",
+      "request": {
+        "id": "missing-id"
+      },
+      "code": "unauthenticated"
+    },
+    {
+      "name": "unauthorized-list",
+      "method": "listItems",
+      "token": "wrong-token",
+      "request": {
+        "pageSize": 2
+      },
+      "code": "unauthenticated"
+    },
+    {
+      "name": "missing-session-token",
+      "method": "createItem",
+      "token": "",
+      "request": {
+        "title": "Denied"
+      },
+      "code": "unauthenticated"
+    }
+  ]
+}

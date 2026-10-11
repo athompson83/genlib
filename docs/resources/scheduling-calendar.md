@@ -6,6 +6,10 @@ Every record was checked on 2026-10-10: registry API for packages, `git ls-remot
 
 ## Find and install
 
+The canonical `react-big-calendar` and `ical-generator` records connect to the original [calendar and file-tree integration](../../integrations/web-calendar-files/CONTRACT.md), with controlled events, timezone checks and iCalendar generation. The contract records the exercised runtime profile; catalog source checks alone do not establish application behavior.
+
+`schedule-x-calendar` and `schedule-x-react` describe the MIT core and React adapter only. Schedule-X v4 puts drag-and-drop, resize and advanced resource views in separately licensed Premium packages; see the [official v4 announcement](https://schedule-x.dev/blog/schedule-x-v4). Select those features deliberately rather than assuming the core package includes them.
+
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" find booking page calendar --target "$APP_ROOT" --json
 node "$GENLIB_ROOT/tools/resources.mjs" search rrule recurrence --language python --limit 5 --json

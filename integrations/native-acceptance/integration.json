@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "native-acceptance",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Native acceptance and snapshot profiles",
+  "summary": "Deterministic Flutter sign-in, permission, navigation and offline recovery state flows; widget/controller tests, Patrol/Maestro device acceptance and five SwiftUI image snapshot scenarios with honest native gates.",
+  "languages": [
+    "dart",
+    "swift",
+    "javascript",
+    "java",
+    "objective-c"
+  ],
+  "frameworks": [
+    "flutter",
+    "patrol",
+    "maestro",
+    "swiftui",
+    "xctest"
+  ],
+  "platforms": [
+    "android",
+    "ios",
+    "macos"
+  ],
+  "resources": [
+    "maestro",
+    "patrol",
+    "swift-snapshot-testing"
+  ],
+  "tags": [
+    "native",
+    "mobile",
+    "acceptance",
+    "accessibility",
+    "snapshot",
+    "flutter",
+    "sign-in",
+    "permissions",
+    "offline-recovery",
+    "state-tests"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "flutter/create-fixture.mjs",
+    "flutter/lib/main.dart",
+    "flutter/patrol_test/inventory_test.dart",
+    "maestro/inventory.yaml",
+    "swift/Package.swift",
+    "swift/ios/InventoryRowSnapshotTests.swift",
+    "flutter/lib/controller.dart",
+    "flutter/test/inventory_test.dart",
+    "maestro/permission-denied.yaml",
+    "swift/Sources/InventoryPresentation/InventoryDashboard.swift",
+    "tool-versions.json"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0: fixture-scaffold JavaScript syntax checked. No Flutter, Swift or mobile runtime executed locally."
+    ],
+    "commands": [
+      "node --check flutter/create-fixture.mjs",
+      "node flutter/create-fixture.mjs /tmp/genlib-native-fixture",
+      "swift test --package-path swift"
+    ],
+    "notes": [
+      "Flutter/Dart, Android/iOS devices, Swift/Xcode and reviewed image baselines were unavailable locally; no native or headless Flutter success is claimed.",
+      "Resolved CI profile: Flutter 3.47.7 stable commit abaf9c523780a608bd46686fd5e53740a07077f8. In the newly created fixture run flutter pub get and flutter test test/inventory_test.dart (3 widget and 2 controller tests).",
+      "Patrol 4.10.0/CLI 4.8.0 and Maestro CLI 2.11.0 require a configured disposable native host, camera declarations and an emulator. Patrol requires a fresh real permission prompt.",
+      "Offline state and the simulated remote service are in memory; process-death persistence, real authentication and production connectivity are not claimed. Five iOS image assertions intentionally fail until real simulator baselines are recorded and reviewed."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "flutter/create-fixture.mjs",
+    "flutter/lib/controller.dart",
+    "flutter/lib/main.dart",
+    "flutter/native/AndroidManifest.fragment.xml",
+    "flutter/native/Info.plist.fragment.xml",
+    "flutter/native/MainActivityTest.java",
+    "flutter/native/Podfile.fragment.rb",
+    "flutter/native/RunnerUITests.m",
+    "flutter/native/android.gradle.kts",
+    "flutter/patrol_test/inventory_test.dart",
+    "flutter/pubspec.yaml",
+    "flutter/test/inventory_test.dart",
+    "maestro/inventory.yaml",
+    "maestro/permission-denied.yaml",
+    "swift/Package.swift",
+    "swift/Sources/InventoryPresentation/InventoryDashboard.swift",
+    "swift/Sources/InventoryPresentation/InventoryRow.swift",
+    "swift/Sources/InventoryPresentation/InventorySummary.swift",
+    "swift/Tests/InventoryPresentationTests/InventorySummaryTests.swift",
+    "swift/Tests/InventoryPresentationTests/__Snapshots__/InventorySummaryTests/testSummary.summary.txt",
+    "swift/ios/InventoryRowSnapshotTests.swift",
+    "tool-versions.json"
+  ]
+}

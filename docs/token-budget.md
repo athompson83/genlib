@@ -6,19 +6,19 @@ The baseline column is what the same step costs without the compact path: the fu
 
 | Step | Command | Bytes | Tokens (est.) | Baseline | Baseline bytes | Ratio |
 | --- | --- | ---: | ---: | --- | ---: | ---: |
-| Pick code for a task | `quick verify stripe webhook` | 418 | ~105 | find --json (8 full records) | 5,581 | 13.4× |
-| Compare options | `find verify stripe webhook` | 1,202 | ~301 | find --json (8 full records) | 5,581 | 4.6× |
-| Pick code for a task | `quick passkey login --language go` | 343 | ~86 | find --json (8 full records) | 4,893 | 14.3× |
-| Compare options | `find passkey login --language go` | 1,199 | ~300 | find --json (8 full records) | 4,893 | 4.1× |
-| Pick code for a task | `quick csv export --language python` | 382 | ~96 | find --json (8 full records) | 2,472 | 6.5× |
-| Compare options | `find csv export --language python` | 790 | ~198 | find --json (8 full records) | 2,472 | 3.1× |
+| Pick code for a task | `quick verify stripe webhook` | 418 | ~105 | find --json (8 full records) | 7,051 | 16.9× |
+| Compare options | `find verify stripe webhook` | 1,202 | ~301 | find --json (8 full records) | 7,051 | 5.9× |
+| Pick code for a task | `quick passkey login --language go` | 343 | ~86 | find --json (8 full records) | 5,178 | 15.1× |
+| Compare options | `find passkey login --language go` | 1,199 | ~300 | find --json (8 full records) | 5,178 | 4.3× |
+| Pick code for a task | `quick csv export --language python` | 382 | ~96 | find --json (8 full records) | 2,665 | 7.0× |
+| Compare options | `find csv export --language python` | 790 | ~198 | find --json (8 full records) | 2,665 | 3.4× |
 | Learn an API | `outline totp --language go` | 1,458 | ~365 | read its source files | 6,589 | 4.5× |
 | Learn an API | `outline saml-sso --language typescript` | 505 | ~126 | read its source files | 3,711 | 7.3× |
 | Learn an API | `outline money --language java` | 1,046 | ~262 | read its source files | 5,464 | 5.2× |
 | Learn an API | `outline webhook-verification` | 4,364 | ~1,091 | read its source files | 15,416 | 3.5× |
-| Load the skill | `skills/genlib-use/SKILL.md` | 4,990 | ~1,248 | - | - | - |
-| Register MCP tools | `tools/list` | 4,436 | ~1,109 | - | - | - |
-| Decision packet | `jev add passkey login to a Go API` | 2,442 | ~611 | - | - | - |
+| Load the skill | `skills/genlib-use/SKILL.md` | 4,993 | ~1,248 | - | - | - |
+| Register MCP tools | `tools/list` | 4,492 | ~1,123 | - | - | - |
+| Decision packet | `jev add passkey login to a Go API` | 6,110 | ~1,528 | - | - | - |
 
 ## Budgets enforced by tests
 

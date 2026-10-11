@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "id": "developer-codemods",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Developer codemods and template evolution",
+  "summary": "Reviewable TypeScript and Python transforms, AST rules, architecture checks and a real Copier template-upgrade fixture, with opt-in Rector and narrowly allowlisted OpenRewrite profiles.",
+  "languages": [
+    "typescript",
+    "javascript",
+    "python",
+    "php",
+    "java"
+  ],
+  "frameworks": [
+    "node",
+    "copier",
+    "libcst",
+    "rector",
+    "openrewrite"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "resources": [
+    "copier",
+    "ts-morph",
+    "libcst",
+    "rector",
+    "dependency-cruiser",
+    "ast-grep",
+    "openrewrite"
+  ],
+  "tags": [
+    "codemod",
+    "refactor",
+    "template-upgrade",
+    "architecture",
+    "agent-efficiency",
+    "source-transform"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "codemods/imports.mjs",
+    "codemods/ast-rewrite.mjs",
+    "python/import_migration.py",
+    "copier/template/copier.yml",
+    "php/rector.php",
+    "openrewrite/allowed-artifacts.json",
+    "openrewrite/verify.py"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0: 3 tests passed using ts-morph 28.0.0, ast-grep 0.50.0 and dependency-cruiser 18.5.0.",
+      "Linux x86_64, Python 3.12.14: 4 tests passed with LibCST 1.9.0 and a real Copier 9.18.2 Git template upgrade."
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test",
+      "python -m pip install -r python/requirements.lock.txt",
+      "python -m unittest discover -s python -v"
+    ],
+    "notes": [
+      "PHP/Composer and Java/Maven were unavailable in the local authoring environment. Dedicated CI jobs execute the Rector and allowlisted OpenRewrite profiles; receiving-app dry runs and behavior tests still require review.",
+      "OpenRewrite core 8.90.4 and Maven plugin 6.46.1 exact artifact POMs resolved with Apache-2.0 declarations. Only the declared core recipe scope is selected; external recipe bundles are excluded.",
+      "Copier writes only a disposable temporary Git fixture during tests. Conflicting receiving-app upgrades require diff review. No template tasks or installer hooks."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "ast-grep/console-logger.yml",
+    "codemods/ast-rewrite.mjs",
+    "codemods/imports.mjs",
+    "copier/template/copier.yml",
+    "copier/template/project/.copier-answers.yml.jinja",
+    "copier/template/project/README.md.jinja",
+    "copier/template/project/inventory.py.jinja",
+    "dependency-cruiser.config.cjs",
+    "fixtures/after.ts",
+    "fixtures/architecture/client/main.js",
+    "fixtures/architecture/server/private.js",
+    "fixtures/architecture/shared/label.js",
+    "fixtures/before.ts",
+    "fixtures/console-after.ts",
+    "fixtures/console-before.ts",
+    "openrewrite/allowed-artifacts.json",
+    "openrewrite/pom.xml",
+    "openrewrite/rewrite.yml",
+    "openrewrite/src/main/java/legacy/inventory/Label.java",
+    "openrewrite/src/test/java/fixture/LabelBehavior.java",
+    "openrewrite/verify.py",
+    "package-lock.json",
+    "package.json",
+    "php/composer.json",
+    "php/fixtures/before.php",
+    "php/rector.php",
+    "php/test-refactor.php",
+    "python/import_migration.py",
+    "python/requirements.lock.txt",
+    "python/requirements.txt",
+    "python/test_import_migration.py",
+    "python/test_template_update.py",
+    "tests/codemods.test.mjs"
+  ]
+}

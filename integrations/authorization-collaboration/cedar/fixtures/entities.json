@@ -1,0 +1,67 @@
+[
+  {
+    "uid": {
+      "type": "App::User",
+      "id": "alice"
+    },
+    "attrs": {
+      "tenant": "one",
+      "suspended": false
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "App::User",
+      "id": "bob"
+    },
+    "attrs": {
+      "tenant": "two",
+      "suspended": false
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "App::User",
+      "id": "suspended"
+    },
+    "attrs": {
+      "tenant": "one",
+      "suspended": true
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "App::Document",
+      "id": "inventory"
+    },
+    "attrs": {
+      "tenant": "one",
+      "owner": {
+        "__entity": {
+          "type": "App::User",
+          "id": "alice"
+        }
+      }
+    },
+    "parents": []
+  },
+  {
+    "uid": {
+      "type": "App::Document",
+      "id": "blocked"
+    },
+    "attrs": {
+      "tenant": "one",
+      "owner": {
+        "__entity": {
+          "type": "App::User",
+          "id": "suspended"
+        }
+      }
+    },
+    "parents": []
+  }
+]

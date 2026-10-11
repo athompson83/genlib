@@ -1,0 +1,11 @@
+{
+  "name": "genlib/rector-profile",
+  "license": "Apache-2.0",
+  "require-dev": {
+    "rector/rector": "2.7.0"
+  },
+  "scripts": {
+    "preview": "rector process --dry-run --no-progress-bar",
+    "test": "php test-refactor.php"
+  }
+}

@@ -52,13 +52,26 @@ Promote to `tested` only after the relevant tests and TypeScript build pass, the
 
 For published modules, advance the version when changing delivered source or its integration contract. Keep a released version's content stable. Each checkout exposes one selected version per ID; previous catalogs remain reproducible through their Git revisions. No consumer operation silently replaces a customized installed version.
 
+## Add or change an integration pack
+
+Use `integrations/<id>/integration.json`, `CONTRACT.md`, original source/configuration, pinned optional dependencies and meaningful fixtures. The [integration format and adoption guide](docs/integrations.md) defines manifest fields, resource bindings and safe file limits. Keep dependencies isolated from the zero-dependency CLI and identify their exact license scope. Declare React peer majors explicitly; native/desktop/service profiles must name their runtime requirements.
+
+Start at `experimental`; promote only the exercised scope and record the actual environments in `verification.profiles`. Include reproducible commands for remaining acceptance checks. Generators, containers and package scripts run only in the deliberate development/receiving-app workflow. The installer must never execute them.
+
+For the direct MCP package, run `npm ci --ignore-scripts --prefix packages/genlib-mcp` and `npm test --prefix packages/genlib-mcp`. Keep stdio/HTTP protocol tests, project scoping, readonly defaults and write opt-in intact. [The MCP guide](docs/mcp-server.md) documents connection and deployment boundaries.
+
 ## Regenerate derived files
 
 Edit authored source and canonical instructions, then run:
 
 ```sh
 npm run registry:build
+npm run shadcn:build
+npm run integrations:build
 npm run skills:sync
+npm run docs:sync
+npm run index:build
+npm run graph:build
 npm run check
 ```
 
@@ -67,9 +80,14 @@ Commit the relevant generated files with the authored changes:
 | Authoritative input | Generated output |
 | --- | --- |
 | Module manifests, contracts, source, `LICENSE`, and `NOTICE` | `registry/catalog.json` and `registry/manifests/` |
+| Integration manifests, contracts and declared files | `registry/integrations.json` |
+| Recipe catalog and module manifests | `registry.json` (shadcn-format registry) |
 | `skills/genlib-use/` | `.agents/skills/genlib-use/` and `.claude/skills/genlib-use/` |
+| Source catalogs and documentation sections | Generated count blocks, `registry/search-index.jsonl` and `registry/graph.json` |
 
 When you add a capability, define it in `scripts/build-capabilities.mjs`, give it the everyday words people use for the need in `resources/capabilities-src/terms.json` (not only the standard's name), a one-sentence caveat in `caveats.json` when it has a limit users would otherwise discover after copying, add two or three task phrasings to the `tuning` set in `tests/fixtures/routing-queries.json`, then run `npm run capabilities:build` and `node scripts/routing-eval.mjs --misses`. Leave the `heldout` set alone: it measures ranking changes honestly only while nobody tunes against it.
+
+When you change a module's behavior, bump its version and add a `changelog` entry (mark breaking changes), and keep `verification.behaviors` and `verification.command` true to its tests ([module-format.md](docs/module-format.md)).
 
 When a new capability or module covers what an indexed external project does, add the pair to `resources/equivalents.json` (`type:id` of the record to `capability:`/`module:`/`template:` targets) so agents reuse the tested code first.
 
@@ -90,6 +108,8 @@ Changes to the installer require tests for the affected safety and recovery beha
 A proposed change should state the problem, resulting behavior, affected modules and versions, compatibility or migration implications, and verification performed. Keep work scoped and preserve parallel contributors' changes.
 
 If claiming a cost benefit, measure total model cost, context use, elapsed time, repair attempts, and accepted feature behavior against a normal library-aware build process. Include curation and maintenance effort. Copied byte counts alone are not evidence of token savings.
+
+Run the offline [retrieval evaluation](docs/retrieval-evaluation.md) when changing ranking or adoption paths. Use [catalog health](docs/catalog-health.md) for deliberately selected exact-version advisory/license/lifecycle enrichment; preserve query time, provenance and unknown/error states. New or corrected resource records need source verification (`--file` and optionally `--ids`), with blocked responses reported separately.
 
 ## Documentation is part of every change
 

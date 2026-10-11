@@ -1,0 +1,7 @@
+id: console-to-injected-logger
+language: TypeScript
+rule:
+  pattern: console.log($$$ARGS)
+fix: logger.info($$$ARGS)
+message: Inject the application's logger before applying this rule.
+severity: warning

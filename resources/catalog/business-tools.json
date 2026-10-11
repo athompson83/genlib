@@ -5131,7 +5131,8 @@
       "summary": "A simpler (and smaller) rewrite of Google Android's libphonenumber library in javascript",
       "useWhen": "Use a maintained library in TypeScript/JavaScript for invoices, e-invoicing (ZUGFeRD/Factur-X), PDF, spreadsheet or report generation instead of writing the format yourself.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Parsing does not verify number ownership; retain upstream data notices."
       ],
       "tags": [
         "business",
@@ -5143,7 +5144,9 @@
       ],
       "projectTypes": [
         "office-documents",
-        "api-backend"
+        "api-backend",
+        "web-app",
+        "saas"
       ],
       "attachments": [],
       "sources": [
@@ -5154,7 +5157,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/business-tools.md"
+        "guide": "docs/resources/business-tools.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
         "Run the install command below, pin the version, then read the docs."
@@ -5174,6 +5180,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 123250136
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/catamphetamine/libphonenumber-js",
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/catamphetamine/libphonenumber-js"
       }
     },
     {
@@ -14275,7 +14293,9 @@
       "useWhen": "Use a maintained library in Python for invoices, e-invoicing (ZUGFeRD/Factur-X), PDF, spreadsheet or report generation instead of writing the format yourself.",
       "cautions": [
         "The registry declares no license; confirm it in the repository before use.",
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Keep template code, package imports, file roots, fonts and assets within an application-approved compilation boundary.",
+        "Compiler availability does not establish rendering fidelity or hosted editor entitlement."
       ],
       "tags": [
         "business",
@@ -14287,7 +14307,9 @@
       ],
       "projectTypes": [
         "office-documents",
-        "api-backend"
+        "api-backend",
+        "web-app",
+        "saas"
       ],
       "attachments": [],
       "sources": [
@@ -14298,7 +14320,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/business-tools.md"
+        "guide": "docs/resources/business-tools.md",
+        "integrations": [
+          "document-pipeline"
+        ]
       },
       "install": [
         "Run the install command below, pin the version, then read the docs."
@@ -14318,6 +14343,19 @@
       "popularity": {
         "metric": "pypi-downloads-last-month",
         "value": 921084
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/typst/typst",
+          "https://typst.app/docs/",
+          "integrations/document-pipeline/CONTRACT.md"
+        ]
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/typst/typst"
       }
     },
     {
@@ -46745,7 +46783,8 @@
       "summary": "Customizable JSON Schema-based forms with React, Angular and Vue support out of the box.",
       "useWhen": "Use as the form builder or survey platform instead of building one.",
       "cautions": [
-        "Holds business and customer data: put it behind authentication and TLS, back it up, keep it patched and pin the image tag."
+        "Holds business and customer data: put it behind authentication and TLS, back it up, keep it patched and pin the image tag.",
+        "Choose a supported renderer/theme profile; server validation and authorization remain application responsibilities."
       ],
       "tags": [
         "business",
@@ -46768,7 +46807,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/business-tools.md"
+        "guide": "docs/resources/business-tools.md",
+        "integrations": [
+          "web-forms-editor"
+        ]
       },
       "install": [
         "Run the install command below, pin the version, then read the docs."
@@ -46782,6 +46824,18 @@
       "popularity": {
         "metric": "github-stars",
         "value": 2744
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://jsonforms.io/docs/",
+          "integrations/web-forms-editor/CONTRACT.md"
+        ]
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://jsonforms.io/docs/"
       }
     },
     {
@@ -54786,7 +54840,8 @@
       "summary": "Interactive Tables and Data Grids for JavaScript",
       "useWhen": "Use as the Airtable-style spreadsheet database or no-code data app instead of building one.",
       "cautions": [
-        "Holds business and customer data: put it behind authentication and TLS, back it up, keep it patched and pin the image tag."
+        "Holds business and customer data: put it behind authentication and TLS, back it up, keep it patched and pin the image tag.",
+        "Persist validation and permissions on the server; keep TanStack Table as the headless React alternative."
       ],
       "tags": [
         "business",
@@ -54797,7 +54852,8 @@
       ],
       "projectTypes": [
         "saas",
-        "data-analytics"
+        "data-analytics",
+        "web-app"
       ],
       "attachments": [],
       "sources": [
@@ -54808,7 +54864,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/business-tools.md"
+        "guide": "docs/resources/business-tools.md",
+        "integrations": [
+          "web-data-workbench"
+        ]
       },
       "install": [
         "Run the install command below, pin the version, then read the docs."
@@ -54822,6 +54881,18 @@
       "popularity": {
         "metric": "github-stars",
         "value": 7781
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://tabulator.info/docs/",
+          "integrations/web-data-workbench/CONTRACT.md"
+        ]
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://tabulator.info/docs/"
       }
     },
     {
@@ -55029,7 +55100,8 @@
       "summary": "Glide Data Grid is a no compromise, outrageously fast react data grid with rich rendering, first class accessibility, and full TypeScript support.",
       "useWhen": "Use as the Airtable-style spreadsheet database or no-code data app instead of building one.",
       "cautions": [
-        "Holds business and customer data: put it behind authentication and TLS, back it up, keep it patched and pin the image tag."
+        "Holds business and customer data: put it behind authentication and TLS, back it up, keep it patched and pin the image tag.",
+        "Verify accessibility and target-device behavior before selecting this over ordinary tables."
       ],
       "tags": [
         "business",
@@ -55041,7 +55113,8 @@
       ],
       "projectTypes": [
         "saas",
-        "data-analytics"
+        "data-analytics",
+        "web-app"
       ],
       "attachments": [],
       "sources": [
@@ -55052,7 +55125,10 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/business-tools.md"
+        "guide": "docs/resources/business-tools.md",
+        "integrations": [
+          "web-data-workbench"
+        ]
       },
       "install": [
         "Run the install command below, pin the version, then read the docs."
@@ -55066,6 +55142,18 @@
       "popularity": {
         "metric": "github-stars",
         "value": 5358
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/glideapps/glide-data-grid",
+          "integrations/web-data-workbench/CONTRACT.md"
+        ]
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/glideapps/glide-data-grid"
       }
     },
     {

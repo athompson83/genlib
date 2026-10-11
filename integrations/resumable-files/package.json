@@ -1,0 +1,25 @@
+{
+  "name": "@genlib-integration/resumable-files",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@uppy/core": "6.2.0",
+    "@uppy/dashboard": "6.0.1",
+    "@uppy/tus": "6.0.0",
+    "tus-js-client": "4.3.1",
+    "@zip.js/zip.js": "2.23.0"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "@types/node": "26.6.5"
+  }
+}

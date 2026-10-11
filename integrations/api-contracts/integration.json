@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "id": "api-contracts",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "API contracts and generated clients",
+  "summary": "Original OpenAPI inventory/cache/chunk-upload contract, typed clients and a real loopback server; successful pagination, ETag 304 and idempotent completion fixtures plus Hurl, schema fuzzing and breaking-change checks.",
+  "languages": [
+    "typescript",
+    "javascript",
+    "python",
+    "typespec"
+  ],
+  "frameworks": [
+    "node",
+    "openapi",
+    "typespec",
+    "microcks"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "resources": [
+    "openapi-typescript",
+    "orval",
+    "hey-api",
+    "typespec",
+    "oasdiff",
+    "hurl",
+    "schemathesis",
+    "microcks"
+  ],
+  "tags": [
+    "openapi",
+    "typed-client",
+    "api-contract",
+    "contract-testing",
+    "fuzzing",
+    "codegen",
+    "etag",
+    "cache",
+    "pagination",
+    "upload-completion"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "schema/openapi.json",
+    "client.ts",
+    "fixture/server.mjs",
+    "http/run-fixture-check.mjs",
+    "http/check-breaking.mjs",
+    "orval.config.mjs",
+    "hey-api.config.mjs",
+    "typespec/main.tsp",
+    "http/inventory.hurl",
+    "http/tool-versions.json"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Node 24.19.0 / TypeScript 5.9.3: generated client/typecheck and seven HTTP/transport tests passed, including pagination, ETag 304, concurrent upload offsets and exact/idempotent completion.",
+      "Linux x86_64, Node 24.19.0: Orval 8.41.0, Hey API 0.99.0 and TypeSpec 1.17.0 generation completed against the current schema/profile.",
+      "Linux x86_64, Hurl 8.0.1 verified upstream binary: all 22 local request-chain assertions passed. oasdiff v1.33.0 built with Go 1.27.2: unchanged baseline passed and removed GET /items failed as expected.",
+      "Linux x86_64, Python 3.12.14 / Schemathesis 4.30.1: seed 42 coverage/fuzzing selected eight operations; 284 generated cases passed, 14 skipped; stateful disabled and examples absent."
+    ],
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test",
+      "npm run generate:orval",
+      "npm run generate:hey",
+      "npm run generate:typespec",
+      "python -m pip install -r http/requirements.lock.txt",
+      "npm run test:schemathesis",
+      "npm run test:hurl",
+      "npm run test:breaking"
+    ],
+    "notes": [
+      "Docker/Microcks acceptance remains unexecuted. Provision external tools from http/tool-versions.json deliberately; copying this pack never installs them.",
+      "Schemathesis warned that PATCH/complete mostly rejected generated requests requiring existing upload state. Node and Hurl separately exercise positive ordered flows.",
+      "Generated client/runtime trees are excluded. Regenerate deliberately and retain upstream notices. The fixture upload protocol is not a production tus server and clears state on restart.",
+      "Token acquisition, production authorization, retries, deployment and receiving-app generated-client compatibility remain host responsibilities."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "client.ts",
+    "fixture/server.mjs",
+    "fixtures/openapi-breaking.json",
+    "hey-api.config.mjs",
+    "http/check-breaking.mjs",
+    "http/inventory.hurl",
+    "http/requirements.lock.txt",
+    "http/requirements.txt",
+    "http/run-fixture-check.mjs",
+    "http/schemathesis.toml",
+    "http/tool-versions.json",
+    "microcks/compose.yaml",
+    "microcks/import-spec.sh",
+    "orval.config.mjs",
+    "package-lock.json",
+    "package.json",
+    "schema/openapi.json",
+    "tests/fixture.test.mjs",
+    "tsconfig.json",
+    "typespec/main.tsp"
+  ]
+}

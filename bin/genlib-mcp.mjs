@@ -8,11 +8,12 @@ import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import { detectProject, findInSources, loadSources, resolveEntry, resolveResource, sourceCounts, SOURCE_TYPES } from '../lib/discover.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
-import { LANGUAGES, commandsFor, coverage } from '../lib/capabilities.mjs';
+import { LANGUAGES, commandsFor, coverage, stepsFor } from '../lib/capabilities.mjs';
 import { installFor } from '../lib/indexes.mjs';
 import { installCommand } from '../lib/skills.mjs';
 import { quickstartFor } from '../lib/resources.mjs';
 import { inspectModule } from '../lib/catalog.mjs';
+import { inspectIntegration } from '../lib/integrations.mjs';
 import { invariant, readRegular } from '../lib/safety.mjs';
 import { briefFind, formatBrief, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
@@ -71,7 +72,7 @@ const TOOLS = [
     name: 'genlib_inspect',
     description: 'Full record (license, links, cautions, commands) for one result.',
     inputSchema: { type: 'object', properties: {
-      type: { type: 'string', enum: ['module', 'resource', 'skill', 'mcp', 'cli', 'api', 'starter', 'task', 'capability', 'recipe', 'language-example', 'template', 'tool'] },
+      type: { type: 'string', enum: ['module', 'integration', 'resource', 'skill', 'mcp', 'cli', 'api', 'starter', 'task', 'capability', 'recipe', 'language-example', 'template', 'tool'] },
       id: { type: 'string' }, client: { type: 'string', enum: ['claude', 'codex', 'both'], default: 'both' },
       language: { type: 'string' },
     }, required: ['type', 'id'] },
@@ -125,13 +126,14 @@ async function call(name, args = {}) {
     const languages = args.language ? [args.language] : LANGUAGES;
     return { ...item, implementations: Object.fromEntries(languages.map(language => {
       const impl = item.implementations[language] ?? { kind: 'unavailable', note: 'Not indexed.' };
-      return [language, { ...impl, commands: commandsFor(impl) }];
+      return [language, { ...impl, commands: commandsFor(impl), ...(args.language && impl.kind !== 'unavailable' ? stepsFor(impl) : {}) }];
     })) };
   }
   if (name === 'genlib_inspect') {
     const { type, id } = args;
     const pick = (list, label) => { const found = list.find(entry => entry.id === id); invariant(found, 'NOT_FOUND', `No ${label} named ${id}`); return found; };
     if (type === 'module') return inspectModule(all.context, id);
+    if (type === 'integration') return inspectIntegration(all.integrationContext, id);
     if (type === 'resource') { const item = resolveResource(all, id); invariant(item, 'NOT_FOUND', `No resource named ${id}`); return item; }
     if (type === 'skill') { const item = pick(all.skills, 'skill'); return { ...item, install: installCommand(item, args.client ?? 'both') }; }
     if (type === 'api' && typeof args.language === 'string') { const item = pick(all.api, type); return { ...item, install: resolveEntry(all, 'api', id, { languages: [args.language], frameworks: [] }).next.filter(step => !step.includes(' inspect ')) }; }

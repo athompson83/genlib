@@ -1,0 +1,38 @@
+{
+  "name": "@genlib-integration/document-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@pdfme/common": "6.2.4",
+    "@pdfme/generator": "6.2.4",
+    "@pdfme/schemas": "6.2.4",
+    "@pdfme/ui": "6.2.4",
+    "@react-email/render": "2.1.0",
+    "exceljs": "4.4.0",
+    "papaparse": "5.7.0",
+    "react-email": "6.11.1"
+  },
+  "devDependencies": {
+    "@pdfme/pdf-lib": "6.2.4",
+    "@types/node": "26.6.5",
+    "@types/papaparse": "5.5.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1 || ^19.0.0",
+    "react-dom": "^18.3.1 || ^19.0.0"
+  }
+}

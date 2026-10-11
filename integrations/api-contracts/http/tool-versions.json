@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "hurl": {
+    "version": "8.0.1",
+    "license": "Apache-2.0",
+    "source": "https://github.com/Orange-OpenSource/hurl/releases/tag/8.0.1",
+    "sourceInstall": "cargo install hurl --version 8.0.1 --locked",
+    "minimumRust": "1.95.0",
+    "linuxX64Asset": "https://github.com/Orange-OpenSource/hurl/releases/download/8.0.1/hurl-8.0.1-x86_64-unknown-linux-gnu.tar.gz",
+    "linuxX64AssetSha256": "cac7c4670d69444db120edb21fe06c97ba8c80dcc52279957c8dd18f05fb0c06"
+  },
+  "oasdiff": {
+    "version": "v1.33.0",
+    "license": "Apache-2.0",
+    "source": "https://github.com/oasdiff/oasdiff/tree/v1.33.0",
+    "install": "go install github.com/oasdiff/oasdiff@v1.33.0",
+    "module": "github.com/oasdiff/oasdiff",
+    "moduleSum": "h1:LIgFL8tDfx78kypHpz3rp1ldTweYDfUaomqpvYcgLgs=",
+    "minimumGo": "1.26.0",
+    "moduleToolchain": "go1.27.1"
+  }
+}

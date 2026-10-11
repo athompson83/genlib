@@ -4934,11 +4934,20 @@
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/ai-agents.md"
+        "guide": "docs/resources/ai-agents.md",
+        "integrations": [
+          "developer-codemods"
+        ]
       },
       "install": [
         "Install with the project's package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "integrations/developer-codemods/CONTRACT.md"
+        ]
+      }
     },
     {
       "id": "graphify",

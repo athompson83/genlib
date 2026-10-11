@@ -17,6 +17,12 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
       "guides": "docs/resources/README.md lists one guide per domain (docs/resources/<domain>.md) with Need | Pick | Why | License tables; read only the relevant table."
     },
     {
+      "need": "Complete web features, API contracts, codemods, native persistence/testing, Rust bindings, desktop delivery or observability",
+      "search": "node \"$GENLIB_ROOT/bin/genlib.mjs\" find <need> --type integration --limit 5 --json",
+      "guide": "docs/integrations.md",
+      "reference": "references/integrations-mcp.md"
+    },
+    {
       "need": "Repository code navigation, dependency graph, impact analysis or Mermaid diagrams",
       "guide": "docs/repository-intelligence.md",
       "dependencyGuide": "docs/dependency-navigation.md",
@@ -27,6 +33,12 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
       "search": "node \"$GENLIB_ROOT/tools/resources.mjs\" search <capability> --platform <platform> --limit 5 --json",
       "inspect": "node \"$GENLIB_ROOT/tools/resources.mjs\" inspect <resource-id> --json",
       "guide": "docs/best-practices/ui-libraries.md"
+    },
+    {
+      "need": "Reference FX, weather, Census, VIN, DOI, organization or product data; dependency/advisory/lifecycle APIs",
+      "inspect": "node \"$GENLIB_ROOT/bin/genlib.mjs\" inspect public-data-clients --json",
+      "contract": "modules/public-data-clients/CONTRACT.md",
+      "guide": "docs/resources/integration-expansion.md"
     },
     {
       "need": "Common provider API, Saleor commerce catalog or Steel browser session",
@@ -49,7 +61,7 @@ Resolve `GENLIB_ROOT` as described by the main skill. The paths below are inside
     }
   ],
   "adoption": [
-    "Read the selected record's integrationMode, verification, license.scope, sources, genlib binding and cautions. Resource verification describes evidence review, not runtime testing: verified = hand-reviewed source claims; partial = repository, registry license and links checked automatically by scripts/verify-resources.mjs.",
+    "Read integrationMode, verification, lifecycle, readiness, license.scope, sources, Genlib bindings and cautions. Source/network review is distinct from executable profile and live receiving-app evidence. Blocked links and unsupported license metadata remain unverified review items.",
     "Use the record's quickstart (returned by find, search and inspect) as the exact install or copy steps; do not re-derive them from docs.",
     "Prefer a record whose useWhen names the work you would otherwise write. Treat license-review records (copyleft, source-available, fair-code, custom terms) as needing a license decision before copying or embedding.",
     "Prefer the project's existing UI system. Pin any selected external release or commit, keep required notices, inspect transitive dependencies and test target compatibility.",
