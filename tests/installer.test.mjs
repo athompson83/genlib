@@ -314,3 +314,18 @@ test('a named pipe in installation metadata fails promptly instead of blocking',
   assert.equal(result.status, 1);
   assert.equal(JSON.parse(result.stderr).code, 'INVALID_FILE');
 });
+
+test('module evidence: inspect shows verified behaviors and changelog, and malformed evidence is rejected', async () => {
+  const { validateModule } = await import('../lib/catalog.mjs');
+  const context = await loadCatalog(REPOSITORY_ROOT);
+  const invitations = await inspectModule(context, 'org-invitations');
+  assert.ok(invitations.verification.behaviors.some(item => /concurrent accepts/.test(item)));
+  assert.match(invitations.verification.command, /org-invitations\.test\.mjs/);
+  assert.equal(invitations.changelog[0].version, invitations.version);
+  const base = JSON.parse(await fs.readFile(path.join(REPOSITORY_ROOT, 'modules/org-invitations/module.json'), 'utf8'));
+  const bad = changes => () => validateModule({ ...base, ...changes }, 'org-invitations');
+  assert.doesNotThrow(bad({}));
+  assert.throws(bad({ changelog: [{ version: '9.9.9', changes: ['x'] }] }), /current version/);
+  assert.throws(bad({ verification: { ...base.verification, behaviors: [] } }), /behaviors/);
+  assert.throws(bad({ deprecated: { replacement: 'Not An Id' } }), /deprecated/);
+});

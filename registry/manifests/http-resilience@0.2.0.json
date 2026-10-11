@@ -125,12 +125,32 @@
     "level": "tested",
     "testFiles": [
       "tests/http-resilience.test.mjs"
-    ]
+    ],
+    "command": "npm run build && node --test tests/http-resilience.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2"
+    }
   },
+  "changelog": [
+    {
+      "version": "0.2.0",
+      "changes": [
+        "fetchWithRetry combines options.signal, init.signal and a Request input's own signal.",
+        "Breaking: a Request input with a body is sent once unless replayRequestBody: true declares it buffered (set it to keep the 0.1.0 replay)."
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: retry, fetchWithRetry, withTimeout and the circuit breaker."
+      ]
+    }
+  ],
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/http-resilience/module.json",
-    "sha256": "9a30a0cc40f2f12e66e3c31e6f9fc706f307b9edb75c2d4190cdccef7d93d3e9"
+    "sha256": "84e1a58640db6d2b53c0d1a29287ce5e51afeb87048bf3052aa7a6fc0eddb315"
   },
   "contractFile": {
     "path": "modules/http-resilience/CONTRACT.md",

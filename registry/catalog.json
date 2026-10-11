@@ -182,7 +182,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/http-resilience@0.2.0.json",
-      "sha256": "9f38aa2f97da75cbff8ac1d413d0fc3ff984cfba6a364d0fe41d7c41e69c42f4"
+      "sha256": "b99d24938487ea004a6f9ffebd05e8fd7765082b03fc7f6583727c83ce2e0c17"
     },
     {
       "id": "notification-preferences",
@@ -207,6 +207,36 @@
       "verification": "tested",
       "manifest": "registry/manifests/notification-preferences@0.1.0.json",
       "sha256": "45112a7d81ad45ba65fdf89868cf1f74b8fbc1e45f73f0f82134200dc5c8d8d1"
+    },
+    {
+      "id": "org-invitations",
+      "version": "0.1.0",
+      "title": "Organization invitations",
+      "description": "Tenant invitations for multi-tenant apps: invite by email with a role, inspect, accept once, revoke and expire, with hashed one-time tokens, injected authorization and persistence, and a Fetch Request/Response adapter.",
+      "kind": "feature",
+      "tags": [
+        "invitations",
+        "invite",
+        "multi-tenant",
+        "organizations",
+        "teams",
+        "workspaces",
+        "membership",
+        "roles",
+        "saas",
+        "onboarding",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/org-invitations@0.1.0.json",
+      "sha256": "cdc8313c3beb9f6429bd03140c687aad49f7431be132ac8fec9ecfb43913e7d5"
     },
     {
       "id": "rate-limit",

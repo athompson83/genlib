@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "org-invitations",
+  "version": "0.1.0",
+  "title": "Organization invitations",
+  "description": "Tenant invitations for multi-tenant apps: invite by email with a role, inspect, accept once, revoke and expire, with hashed one-time tokens, injected authorization and persistence, and a Fetch Request/Response adapter.",
+  "kind": "feature",
+  "tags": ["invitations", "invite", "multi-tenant", "organizations", "teams", "workspaces", "membership", "roles", "saas", "onboarding", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/org-invitations"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (crypto.subtle, getRandomValues, randomUUID) plus the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "org-invitations/core.ts" },
+    { "source": "files/memory-store.ts", "target": "org-invitations/memory-store.ts" },
+    { "source": "files/http.ts", "target": "org-invitations/http.ts" }
+  ],
+  "exports": [
+    { "name": "createInvitations", "from": "org-invitations/core.ts" },
+    { "name": "InvitationError", "from": "org-invitations/core.ts" },
+    { "name": "normalizeEmail", "from": "org-invitations/core.ts" },
+    { "name": "hashToken", "from": "org-invitations/core.ts" },
+    { "name": "MemoryInvitationStore", "from": "org-invitations/memory-store.ts" },
+    { "name": "createInvitationHandler", "from": "org-invitations/http.ts" }
+  ],
+  "configuration": [
+    "Implement InvitationStore on your database: a unique index on token_hash and an atomic conditional status update (UPDATE ... WHERE id = $1 AND status = 'pending'); create the membership row in the same transaction as the accepted transition.",
+    "Implement authorize(actor, action, {tenantId, role}) from your own membership table and enforce role ceilings there (who may invite whom).",
+    "Declare the invitable roles; keep owner or billing roles out unless invitations should grant them.",
+    "Implement authenticate(request) from your session or verified token; verifiedEmail must come from your identity provider.",
+    "Implement sendInvitation with your email provider and build the join link from a trusted base URL, keeping the token in the URL fragment.",
+    "Mount createInvitationHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "tenant-invitations",
+    "one-time-hashed-tokens",
+    "single-use-acceptance",
+    "invitation-revocation-and-expiry",
+    "tenant-scoped-authorization-hooks"
+  ],
+  "limitations": [
+    "Does not create memberships, users or tenants; your store's accepted transition must do that atomically.",
+    "Does not send email or render templates; failed delivery revokes the invitation so nothing is left pending.",
+    "The in-memory store is for tests and prototypes only.",
+    "No rate limiting beyond the per-tenant pending cap; add request rate limits (see the rate-limit module) on invite and accept routes.",
+    "Production database correctness, session security, email deliverability and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/org-invitations.test.mjs"],
+    "command": "npm run build && node --test tests/org-invitations.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2" },
+    "behaviors": [
+      "invite returns a 256-bit token once and stores only its SHA-256 hash",
+      "accept succeeds once; replays fail with already-accepted",
+      "exactly one of several concurrent accepts wins",
+      "expired, revoked, unknown and malformed tokens fail with distinct codes",
+      "re-inviting an email revokes the earlier link",
+      "members, admins of another tenant and role ceilings are refused",
+      "a different signed-in account cannot use a forwarded link (email-mismatch)",
+      "pending invitations are capped per tenant",
+      "HTTP adapter: status codes, origin check, minimal inspect response, revoke and failed-delivery revocation"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core, in-memory store and Fetch adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}
