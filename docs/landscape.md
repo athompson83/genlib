@@ -94,7 +94,7 @@ These are the owner's findings. They are recorded as exclusions until each one i
 
 ### Next, in order
 
-3. A substantial feature provider (a BTST profile with framework and database setup and version-specific guidance), accepted against named behaviors.
+3. A substantial feature provider: BTST Kanban on Next.js App Router with a transactional adapter, accepted against named behaviors. The researched plan, pinned versions, prerequisite checks and the scaffolder's unsafe defaults are in [providers/btst-kanban.md](providers/btst-kanban.md).
 4. Shared evidence and maintenance across modules, integration packs and provider artifacts. Registry items already have receipts, drift checks, removal and a three-way `registry update`; integration packs and external packages do not yet.
 5. More adapters (jsrepo, Mason, skill managers, starters, Convex profiles), each with a tested profile.
 6. Optional content-production workers (CodeDistiller, SkillFoundry, AREX-style), whose candidates count only after review and acceptance evidence.
