@@ -1,0 +1,14 @@
+{
+  "id": "multi-tenant-isolation",
+  "title": "Multi-tenant data isolation",
+  "reviewed": "2026-10-11",
+  "tasks": ["multi-tenant data isolation"],
+  "requirements": [
+    { "id": "tenant-context", "text": "Every request resolves a tenant from trusted state, never from an unchecked client value" },
+    { "id": "scoped-queries", "text": "All reads and writes are filtered by tenant, so ids from another tenant behave as not found" },
+    { "id": "database-enforcement", "text": "The database enforces isolation (row-level security or equivalent), not only application code" },
+    { "id": "cross-tenant-tests", "text": "Tests prove a user of tenant A cannot read or change tenant B's data" }
+  ],
+  "implementations": [],
+  "notes": "Several feature packages (comments, rbac, chat, short-links) scope their own tables by tenant and test it, but no package provides tenant isolation for an application's data in general."
+}

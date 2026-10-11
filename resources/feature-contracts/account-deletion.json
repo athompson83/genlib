@@ -1,0 +1,17 @@
+{
+  "id": "account-deletion",
+  "title": "Account deletion with a grace period",
+  "reviewed": "2026-10-11",
+  "tasks": ["account deletion with grace period"],
+  "requirements": [
+    { "id": "request", "text": "A signed-in user (re-authenticated) can request deletion of their account" },
+    { "id": "grace-period", "text": "Deletion is scheduled after a configurable grace period, during which the account is disabled" },
+    { "id": "cancel", "text": "The user can cancel during the grace period and regain access" },
+    { "id": "sessions", "text": "Existing sessions and tokens are revoked when deletion is requested" },
+    { "id": "dependent-data", "text": "Dependent data is deleted, anonymized or retained per a declared policy when the period ends" },
+    { "id": "authorization", "text": "Only the account owner (or an authorized admin) can request or cancel deletion" },
+    { "id": "idempotent-execution", "text": "The scheduled deletion runs once, survives retries and records completion" }
+  ],
+  "implementations": [],
+  "notes": "No Genlib package covers this workflow. Building blocks elsewhere: password-reset revokes sessions through an injected hook; durable-jobs can run the scheduled deletion."
+}

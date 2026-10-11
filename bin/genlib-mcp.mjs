@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Genlib as an MCP server (stdio, newline-delimited JSON-RPC 2.0, no dependencies).
-// Agents call quick, find, outline, jev, capability, inspect and read_doc as tools instead of shelling out.
+// Agents call quick, find, outline, jev, capability, coverage, inspect and read_doc as tools instead of shelling out.
 // Results are brief by default (identity plus acting commands); detail "full" returns whole records.
 //   claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
 //   codex mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
@@ -18,6 +18,7 @@ import { invariant, readRegular } from '../lib/safety.mjs';
 import { briefFind, formatBrief, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
+import { coverageFor, formatCoverage } from '../lib/coverage.mjs';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05'];
@@ -69,6 +70,11 @@ const TOOLS = [
     inputSchema: { type: 'object', properties: { id: { type: 'string', description: 'Omit to list all.' }, language: { type: 'string', enum: LANGUAGES } } },
   },
   {
+    name: 'genlib_coverage',
+    description: 'Which requirements of an app feature Genlib code fulfills (per-requirement status and evidence), and what is left to build.',
+    inputSchema: { type: 'object', properties: { task: { type: 'string', description: 'e.g. stripe checkout and webhooks' }, target: TARGET }, required: ['task'] },
+  },
+  {
     name: 'genlib_inspect',
     description: 'Full record (license, links, cautions, commands) for one result.',
     inputSchema: { type: 'object', properties: {
@@ -118,6 +124,10 @@ async function call(name, args = {}) {
     const profile = await profileFor(args.target);
     const packet = jevPacket(all, String(args.task ?? ''), { type: args.type, target: profile?.target, profile, limit: args.limit ?? 8, ...(args.stdlibOnly === true ? { stdlibOnly: true } : {}) });
     return args.prompt === true ? { result: packet, text: formatJevPrompt(packet) } : packet;
+  }
+  if (name === 'genlib_coverage') {
+    const result = coverageFor(ROOT, String(args.task ?? ''), { target: args.target });
+    return { result, text: formatCoverage(result) };
   }
   if (name === 'genlib_capability') {
     if (!args.id) return { capabilities: all.capabilities.map(item => ({ id: item.id, title: item.title, tier: item.tier, ...coverage(item) })) };
