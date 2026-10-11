@@ -1762,7 +1762,14 @@
       },
       "install": [
         "Install with the project package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@tanstack/react-query",
+        "vue": "@tanstack/vue-query",
+        "svelte": "@tanstack/svelte-query",
+        "solid": "@tanstack/solid-query",
+        "angular": "@tanstack/angular-query-experimental"
+      }
     },
     {
       "id": "swr",
@@ -1939,7 +1946,12 @@
       },
       "install": [
         "Install with the project package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "urql",
+        "svelte": "@urql/svelte",
+        "vue": "@urql/vue"
+      }
     },
     {
       "id": "trpc",
@@ -3366,7 +3378,13 @@
       },
       "install": [
         "Install with the project package manager and commit the lockfile; pin the reviewed version."
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@ark-ui/react",
+        "vue": "@ark-ui/vue",
+        "solid": "@ark-ui/solid",
+        "svelte": "@ark-ui/svelte"
+      }
     },
     {
       "id": "park-ui",

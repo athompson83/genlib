@@ -73,3 +73,35 @@ test('retired services get a migration pointer, rank below live ones and name on
     assert.ok(!result.next.some(step => /^npm install|^bundle add|^dotnet add|^composer require/.test(step)), result.id);
   }
 });
+
+// 2026-10-11 audit R2-01: SDKs were inferred from name prefixes (Gmail/Rust -> an Ads Manager crate,
+// StackExchange/C# -> StackExchange.Redis, Regulations.gov/Dart -> a table widget).
+test('API SDK fallbacks come only from explicit same-API mappings, and retired APIs get none', async () => {
+  const { loadSources, findInSources } = await import('../lib/discover.mjs');
+  const sources = await loadSources();
+  const resources = new Map(sources.resources.map(resource => [resource.id, resource]));
+  const apiIds = new Set(sources.api.map(api => api.id));
+  const lang = resource => resource.languages ?? [];
+  for (const [api, byLanguage] of Object.entries(sources.apiSdks.apis)) {
+    assert.ok(apiIds.has(api), api);
+    for (const [language, id] of Object.entries(byLanguage)) {
+      assert.ok(resources.has(id), `${api}/${language}: ${id}`);
+      assert.ok(lang(resources.get(id)).includes(language) || (language === 'kotlin' && lang(resources.get(id)).includes('java')), `${api}/${language}: ${id}`);
+    }
+  }
+  const steps = (query, language, id) => findInSources(sources, query, { type: 'api', profile: { languages: [language], frameworks: [] }, limit: 5 }).results.find(result => result.id === id).next;
+  const installs = /^(go get|cargo add|dotnet add|dart pub add|npm install)/;
+  assert.ok(!steps('gmail api', 'rust', 'googleapis-com-gmail').some(step => installs.test(step) || /admanager/i.test(step)));
+  assert.ok(!steps('stackexchange api', 'csharp', 'stackexchange-com').some(step => installs.test(step) || /redis/i.test(step)));
+  assert.ok(!steps('regulations.gov api', 'dart', 'data-gov').some(step => installs.test(step) || /data_table/i.test(step)));
+  const firebase = steps('firebase dynamic links api', 'rust', 'googleapis-com-firebasedynamiclinks');
+  assert.match(firebase[0], /^# retired 2025-08-25/);
+  assert.ok(!firebase.some(step => installs.test(step)));
+  const stripe = steps('stripe api', 'go', 'stripe-com');
+  assert.ok(stripe.includes('go get github.com/stripe/stripe-go/v87@v87.0.0'));
+  assert.ok(!stripe.some(step => step.startsWith('# no go client')));
+  assert.ok(steps('gmail api', 'go', 'googleapis-com-gmail').some(step => step.startsWith('go get google.golang.org/api@')));
+  // The same answer through inspect with a language.
+  const cli = JSON.parse(execFileSync(process.execPath, ['bin/genlib.mjs', 'api', 'inspect', 'googleapis-com-gmail', '--language', 'rust', '--json'], { encoding: 'utf8' }));
+  assert.ok(!cli.install.some(step => installs.test(step)));
+});

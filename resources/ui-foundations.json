@@ -57,8 +57,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -73,7 +73,14 @@
         "npm install lucide-react",
         "import { Camera } from \"lucide-react\";",
         "Docs: https://lucide.dev/guide/packages/lucide-react"
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "lucide-react",
+        "vue": "@lucide/vue",
+        "svelte": "@lucide/svelte",
+        "solid": "lucide-solid",
+        "angular": "@lucide/angular"
+      }
     },
     {
       "id": "heroicons",
@@ -126,8 +133,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -141,7 +148,11 @@
       "quickstart": [
         "npm install @heroicons/react",
         "import { BeakerIcon } from \"@heroicons/react/24/solid\";"
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@heroicons/react",
+        "vue": "@heroicons/vue"
+      }
     },
     {
       "id": "tabler-icons",
@@ -193,8 +204,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -208,7 +219,13 @@
       "quickstart": [
         "npm install @tabler/icons-react",
         "import { IconHome } from \"@tabler/icons-react\";"
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@tabler/icons-react",
+        "vue": "@tabler/icons-vue",
+        "svelte": "@tabler/icons-svelte",
+        "solid": "@tabler/icons-solidjs"
+      }
     },
     {
       "id": "radix-primitives",
@@ -268,8 +285,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -335,8 +352,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -405,8 +422,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -480,8 +497,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -500,7 +517,11 @@
         "npm install @headlessui/react   # React",
         "npm install @headlessui/vue     # Vue",
         "Docs: https://headlessui.com"
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@headlessui/react",
+        "vue": "@headlessui/vue"
+      }
     },
     {
       "id": "mantine",
@@ -552,8 +573,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -627,8 +648,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -692,8 +713,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "mobile-app"
@@ -763,8 +784,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -834,8 +855,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -901,8 +922,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -972,8 +993,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -1101,8 +1122,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -1167,8 +1188,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app"
@@ -1183,7 +1204,14 @@
         "npm install @tanstack/react-table",
         "Or use Genlib data-table: node \"$GENLIB_ROOT/bin/genlib.mjs\" plan data-table --target \"$APP_ROOT\"",
         "Docs: https://tanstack.com/table/latest"
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@tanstack/react-table",
+        "vue": "@tanstack/vue-table",
+        "svelte": "@tanstack/svelte-table",
+        "solid": "@tanstack/solid-table",
+        "angular": "@tanstack/angular-table"
+      }
     },
     {
       "id": "storefront-ui",
@@ -1235,8 +1263,8 @@
         "guide": "docs/best-practices/ui-libraries.md"
       },
       "install": [
-        "Read the selected version\u2019s official installation guide; record an exact version or commit and its license before adoption.",
-        "Use the target project\u2019s package manager and lockfile; import only the required components."
+        "Read the selected version’s official installation guide; record an exact version or commit and its license before adoption.",
+        "Use the target project’s package manager and lockfile; import only the required components."
       ],
       "projectTypes": [
         "web-app",
@@ -1251,7 +1279,11 @@
       "quickstart": [
         "npm install @storefront-ui/react",
         "Docs: https://docs.storefrontui.io/v2/"
-      ]
+      ],
+      "frameworkPackages": {
+        "react": "@storefront-ui/react",
+        "vue": "@storefront-ui/vue"
+      }
     }
   ]
 }
