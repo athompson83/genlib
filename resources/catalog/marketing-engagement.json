@@ -38137,7 +38137,7 @@
         }
       ],
       "quickstart": [
-        "docker pull listmonk/listmonk:latest  # app releases (v2+) ship as binaries/Docker; the Go module path only exposes v1.x",
+        "docker pull listmonk/listmonk@sha256:f535d59e14991337a9f2d570273685378ae86b0d7698c3e00da444e3bc205286  # app releases (v2+) ship as binaries/Docker; the Go module path only exposes v1.x",
         "Docs: https://pkg.go.dev/github.com/knadh/listmonk"
       ],
       "languages": [

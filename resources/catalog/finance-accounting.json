@@ -2309,7 +2309,7 @@
         "Run the install command below, pin the version, then read the docs."
       ],
       "quickstart": [
-        "docker pull apache/fineract:latest",
+        "docker pull apache/fineract@sha256:be9d5b04138a7c82b9faa03cbbb3ca4ca413e57ef5066e6297e8a10e44122d52",
         "Docs: https://fineract.apache.org/docs/current/"
       ],
       "languages": [
@@ -11847,7 +11847,7 @@
         "Run the install command below, pin the version, then read the docs."
       ],
       "quickstart": [
-        "docker pull quantconnect/lean:latest",
+        "docker pull quantconnect/lean@sha256:688262f0460385d7cfb4321dad0fce76054b860feb9bcb954da9f512ef769141",
         "Docs: https://www.quantconnect.com/docs"
       ],
       "languages": [

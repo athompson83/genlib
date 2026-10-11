@@ -103,3 +103,11 @@ test('MCP commands launch pinned versions and use distinct local names', async (
   const pg = mcp.entries.find(entry => entry.id === 'io-github-pgedge-postgres-mcp');
   assert.match(pg.install.claude[0], /^claude mcp add postgres-pgedge -- docker run -i --rm ghcr\.io\/pgedge\/postgres-mcp:1\.0\.0@sha256:[0-9a-f]{64}$/);
 });
+
+test('resource quickstarts never run latest', async () => {
+  const { spawnSync } = await import('node:child_process');
+  const result = spawnSync(process.execPath, ['scripts/pin-quickstarts.mjs', '--check'], { encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const shadcn = (await import('node:fs')).readFileSync('resources/catalog/ui-index-sources.json', 'utf8');
+  assert.match(shadcn, /npx shadcn@\d+\.\d+\.\d+ add /);
+});
