@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-window",
+  "description": "Local main window with no direct filesystem, keyring, HTTP, dialog or updater plugin grants. Authored Rust commands provide only fixed, validated capabilities.",
+  "windows": [
+    "main"
+  ],
+  "permissions": []
+}

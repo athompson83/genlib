@@ -12369,19 +12369,21 @@
       ],
       "kind": "package",
       "integrationMode": "package",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/lucaong/minisearch/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
       "homepage": "https://lucaong.github.io/minisearch/",
       "repository": "https://github.com/lucaong/minisearch",
-      "docs": null,
+      "docs": "https://github.com/lucaong/minisearch",
       "summary": "Tiny in-memory full-text search engine",
-      "useWhen": "Use instead of building full-text or vector search.",
+      "useWhen": "Use for small app datasets or offline documentation.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Keep private records on an authorized server; do not ship them to build a browser index.",
+        "Not a dependency of Genlib core."
       ],
       "tags": [
         "open-source",
@@ -12389,7 +12391,9 @@
         "typescript",
         "npm",
         "library",
-        "sdk"
+        "sdk",
+        "local-search",
+        "minisearch"
       ],
       "projectTypes": [
         "api-backend",
@@ -12399,24 +12403,32 @@
       "sources": [
         {
           "url": "https://github.com/lucaong/minisearch",
-          "title": "Upstream repository"
+          "title": "Primary project documentation and source"
         },
         {
           "url": "https://lucaong.github.io/minisearch/",
           "title": "Official site"
+        },
+        {
+          "url": "https://github.com/lucaong/minisearch/blob/HEAD/LICENSE",
+          "title": "Reviewed upstream component license"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/open-source-tools.md"
+        "guide": "docs/resources/open-source-tools.md",
+        "integrations": [
+          "web-data-workbench"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "minisearch"
+          "name": "minisearch",
+          "version": "7.2.0"
         }
       ],
       "quickstart": [
@@ -12429,6 +12441,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 14238498
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/lucaong/minisearch"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/lucaong/minisearch",
+          "integrations/web-data-workbench/CONTRACT.md"
+        ]
       }
     },
     {
@@ -19076,19 +19100,20 @@
       ],
       "kind": "package",
       "integrationMode": "package",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/tus/tus-js-client/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
       "homepage": "https://tus.io/",
       "repository": "https://github.com/tus/tus-js-client",
-      "docs": null,
+      "docs": "https://github.com/tus/tus-js-client",
       "summary": "tus resumable upload client for JavaScript",
-      "useWhen": "Use instead of building file storage, sync, sharing or media libraries.",
+      "useWhen": "Use directly for a custom upload interface without Uppy.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Uppy already uses this protocol through its tus plugin; avoid duplicate upload sessions."
       ],
       "tags": [
         "open-source",
@@ -19096,7 +19121,9 @@
         "typescript",
         "npm",
         "library",
-        "sdk"
+        "sdk",
+        "resumable-upload",
+        "tus-js-client"
       ],
       "projectTypes": [
         "devops-infra"
@@ -19105,24 +19132,32 @@
       "sources": [
         {
           "url": "https://github.com/tus/tus-js-client",
-          "title": "Upstream repository"
+          "title": "Primary project documentation and source"
         },
         {
           "url": "https://tus.io/",
           "title": "Official site"
+        },
+        {
+          "url": "https://github.com/tus/tus-js-client/blob/HEAD/LICENSE",
+          "title": "Reviewed upstream component license"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/open-source-tools.md"
+        "guide": "docs/resources/open-source-tools.md",
+        "integrations": [
+          "resumable-files"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "tus-js-client"
+          "name": "tus-js-client",
+          "version": "4.3.1"
         }
       ],
       "quickstart": [
@@ -19135,6 +19170,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 8742572
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/tus/tus-js-client"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/tus/tus-js-client",
+          "integrations/resumable-files/CONTRACT.md"
+        ]
       }
     },
     {
@@ -19147,19 +19194,23 @@
       ],
       "kind": "package",
       "integrationMode": "package",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/transloadit/uppy/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
       "homepage": "https://uppy.io",
       "repository": "https://github.com/transloadit/uppy",
-      "docs": null,
+      "docs": "https://uppy.io/docs/",
       "summary": "Modular file uploader for the web",
-      "useWhen": "Use instead of building file storage, sync, sharing or media libraries.",
+      "useWhen": "Use for authenticated interrupted/resumable uploads with a configured tus backend.",
       "cautions": [
-        "Pin the version and review the changelog before upgrading."
+        "Pin the version and review the changelog before upgrading.",
+        "Use the Uppy tus plugin rather than creating a second independent tus client.",
+        "Authorize uploads on the server; account for persistence, completion deduplication and storage terms.",
+        "The resumable-files profile pins @uppy/core 6.2.0, @uppy/dashboard 6.0.1 and @uppy/tus 6.0.0. Use its manifest and contract for the complete dependency and browser setup.",
+        "@uppy/react is a separate optional wrapper and is not installed or tested by this Genlib profile. The npm uppy bundle is a distinct catalog record; this record covers @uppy/core."
       ],
       "tags": [
         "open-source",
@@ -19167,7 +19218,9 @@
         "typescript",
         "npm",
         "library",
-        "sdk"
+        "sdk",
+        "resumable-upload",
+        "uppy"
       ],
       "projectTypes": [
         "devops-infra"
@@ -19181,19 +19234,47 @@
         {
           "url": "https://uppy.io",
           "title": "Official site"
+        },
+        {
+          "url": "https://uppy.io/docs/",
+          "title": "Primary project documentation and source"
+        },
+        {
+          "url": "https://github.com/transloadit/uppy/blob/HEAD/LICENSE",
+          "title": "Reviewed upstream component license"
+        },
+        {
+          "url": "https://registry.npmjs.org/@uppy%2Fcore/6.2.0",
+          "title": "Exact selected Uppy core package"
+        },
+        {
+          "url": "https://registry.npmjs.org/@uppy%2Fdashboard/6.0.1",
+          "title": "Exact Dashboard companion in the Genlib profile"
+        },
+        {
+          "url": "https://registry.npmjs.org/@uppy%2Ftus/6.0.0",
+          "title": "Exact tus companion in the Genlib profile"
+        },
+        {
+          "url": "https://registry.npmjs.org/@uppy%2Freact",
+          "title": "Separate optional React wrapper; outside the Genlib tested profile"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/open-source-tools.md"
+        "guide": "docs/resources/open-source-tools.md",
+        "integrations": [
+          "resumable-files"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "npm",
-          "name": "@uppy/core"
+          "name": "@uppy/core",
+          "version": "6.2.0"
         }
       ],
       "quickstart": [
@@ -19206,6 +19287,18 @@
       "popularity": {
         "metric": "npm-downloads-last-month",
         "value": 5906966
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://uppy.io/docs/"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://uppy.io/docs/",
+          "integrations/resumable-files/CONTRACT.md"
+        ]
       }
     },
     {
@@ -21977,26 +22070,31 @@
       ],
       "kind": "application",
       "integrationMode": "selective-copy",
-      "verification": "verified",
+      "verification": "partial",
       "license": {
         "id": "MIT",
-        "url": null,
-        "scope": "MIT (from registry metadata or the LICENSE file); keep the license notice when redistributing."
+        "url": "https://github.com/tus/tusd/blob/HEAD/LICENSE",
+        "scope": "MIT applies to the named open-source component. Dependencies, assets and hosted services retain their own terms."
       },
       "homepage": "https://tus.github.io/tusd",
       "repository": "https://github.com/tus/tusd",
-      "docs": null,
+      "docs": "https://github.com/tus/tusd",
       "summary": "Reference server implementation in Go of tus: the open protocol for resumable file uploads",
-      "useWhen": "Use instead of building file storage, sync, sharing or media libraries.",
+      "useWhen": "Use behind an authenticated application proxy with configured storage.",
       "cautions": [
-        "Self-hosted service: put it behind authentication and TLS, back up its data, pin the image tag and keep it patched."
+        "Self-hosted service: put it behind authentication and TLS, back up its data, pin the image tag and keep it patched.",
+        "Configure hooks, upload ownership, quotas and completion records.",
+        "Do not expose an unrestricted upload server to the public internet.",
+        "Docker and Go builds are alternative server deployment paths. The Genlib profile supplies upload policy and hook guidance; it does not deploy or authenticate a tusd service."
       ],
       "tags": [
         "open-source",
         "storage-files",
         "go",
         "docker",
-        "self-hosted"
+        "self-hosted",
+        "resumable-upload",
+        "tusd"
       ],
       "projectTypes": [
         "devops-infra"
@@ -22005,29 +22103,47 @@
       "sources": [
         {
           "url": "https://github.com/tus/tusd",
-          "title": "Upstream repository"
+          "title": "Primary project documentation and source"
         },
         {
           "url": "https://tus.github.io/tusd",
           "title": "Official site"
+        },
+        {
+          "url": "https://github.com/tus/tusd/blob/HEAD/LICENSE",
+          "title": "Reviewed upstream component license"
+        },
+        {
+          "url": "https://proxy.golang.org/github.com/tus/tusd/v2/@v/v2.10.1.info",
+          "title": "Exact Go module release, source commit and tag"
         }
       ],
       "genlib": {
         "module": null,
-        "guide": "docs/resources/open-source-tools.md"
+        "guide": "docs/resources/open-source-tools.md",
+        "integrations": [
+          "resumable-files"
+        ]
       },
       "install": [
-        "Run the install command below, pin the version, then read the docs."
+        "Select the documented integration profile and pin its reviewed dependencies in the receiving application."
       ],
       "packages": [
         {
           "ecosystem": "docker",
-          "name": "tusproject/tusd"
+          "name": "tusproject/tusd",
+          "version": "v2.10.1"
+        },
+        {
+          "ecosystem": "go",
+          "name": "github.com/tus/tusd/v2",
+          "version": "v2.10.1"
         }
       ],
       "quickstart": [
         "docker pull tusproject/tusd:v2.10.1",
-        "Docs: https://tus.github.io/tusd"
+        "Docs: https://tus.github.io/tusd",
+        "Alternative Go build: go install github.com/tus/tusd/v2/cmd/tusd@v2.10.1"
       ],
       "languages": [
         "go"
@@ -22035,6 +22151,18 @@
       "popularity": {
         "metric": "github-stars",
         "value": 3890
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://github.com/tus/tusd"
+      },
+      "readiness": {
+        "level": "recipe-available",
+        "evidence": [
+          "https://github.com/tus/tusd",
+          "integrations/resumable-files/CONTRACT.md"
+        ]
       }
     },
     {

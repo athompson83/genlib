@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="GenlibInventory.MainWindow" Title="Inventory desktop fixture" Width="760" Height="840">
+<ScrollViewer><StackPanel Margin="24" Spacing="12">
+<TextBlock Text="Inventory desktop fixture" FontSize="28" />
+<TextBox Name="TitleInput" Watermark="Item title" MaxLength="200" /><Button Name="NormalizeButton" Content="Normalize title" /><TextBlock Name="Result" TextWrapping="Wrap" />
+<TextBlock Text="Native text selection" FontSize="22" /><Button Name="PickFile" Content="Choose text file" /><TextBlock Name="FileStatus" TextWrapping="Wrap" /><TextBox Name="FilePreview" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="160" />
+<TextBlock Text="OS secure session storage" FontSize="22" /><TextBlock Text="Use a disposable token. The UI receives only presence status after saving." TextWrapping="Wrap" /><TextBox Name="SessionToken" Watermark="Fixture token" PasswordChar="●" MaxLength="2048" />
+<StackPanel Orientation="Horizontal" Spacing="8"><Button Name="SaveSession" Content="Save in OS vault" /><Button Name="SessionStatus" Content="Check saved session" /><Button Name="ClearSession" Content="Clear saved session" /></StackPanel><TextBlock Name="VaultStatus" TextWrapping="Wrap" />
+<TextBlock Text="Application update" FontSize="22" /><TextBlock Text="Save your work before installing and restarting." TextWrapping="Wrap" />
+<Button Name="CheckUpdate" Content="Check for updates" /><Button Name="DownloadUpdate" Content="Download and prepare update" IsEnabled="False" /><Button Name="RestartUpdate" Content="Install and restart" IsEnabled="False" /><TextBlock Name="UpdateStatus" TextWrapping="Wrap" />
+</StackPanel></ScrollViewer></Window>

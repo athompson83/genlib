@@ -151,3 +151,9 @@ Search with `node tools/resources.mjs search "<need>" --project devops-infra` (o
 | Argon2 password hashing for Python with safe defaults. | `argon2-cffi` | Use instead of hashlib-based password storage in Python apps. | MIT |
 | Modern bcrypt password hashing for Python from the Python Cryptographic Authority. | `pyca-bcrypt` | Use instead of custom salted-hash password storage when bcrypt is required for compatibility. | Apache-2.0 |
 | Native bcrypt password hashing for Node.js. | `node-bcrypt` | Use instead of custom salted-hash password code in Node when bcrypt compatibility is needed. | MIT |
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Telemetry and disposable database tests](../../integrations/observability-harness/CONTRACT.md): `opentelemetry-collector`, `opentelemetry-js`, `opentelemetry-python`, `testcontainers-node`, `testcontainers-python`.

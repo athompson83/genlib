@@ -35,6 +35,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/education.json`](../../resources/catalog/education.json) | 380 | [education.md](../../docs/resources/education.md) | interactive-learning, accessibility-reading, assessment-quiz, writing-tools, lms |
 | [`catalog/finance-accounting.json`](../../resources/catalog/finance-accounting.json) | 360 | [finance-accounting.md](../../docs/resources/finance-accounting.md) | payments-billing, money-libraries, banking-ledger, market-data-quant, crypto-finance |
 | [`catalog/frontend-web.json`](../../resources/catalog/frontend-web.json) | 89 | [frontend-web.md](../../docs/resources/frontend-web.md) | components, framework, styling, build-tool, state |
+| [`catalog/integration-expansion.json`](../../resources/catalog/integration-expansion.json) | 37 | several | public-data-api, codemods, catalog-maintenance, native-testing, api-contracts |
 | [`catalog/mapping-navigation.json`](../../resources/catalog/mapping-navigation.json) | 814 | [mapping-navigation.md](../../docs/resources/mapping-navigation.md) | geo-processing-libraries, location-sdks-apis, web-map-libraries, osm-data-tools, geocoding-search |
 | [`catalog/marketing-analytics-2.json`](../../resources/catalog/marketing-analytics-2.json) | 117 | [marketing-analytics.md](../../docs/resources/marketing-analytics.md) | experimentation |
 | [`catalog/marketing-analytics.json`](../../resources/catalog/marketing-analytics.json) | 901 | [marketing-analytics.md](../../docs/resources/marketing-analytics.md) | analytics, advertising, experimentation, consent, attribution |
@@ -52,7 +53,7 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 795 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **9768** | | |
+| **Total** | **9805** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -64,19 +65,19 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 <!-- genlib:types:start -->
 | Project type | Records | Covers |
 | --- | ---: | --- |
-| `web-app` | 5639 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
+| `web-app` | 5649 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
 | `marketing-site` | 4012 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
-| `mobile-app` | 1351 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
-| `desktop-app` | 120 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
-| `api-backend` | 1514 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
-| `cli-tool` | 177 | Argument parsing, prompts, output formatting, config files and distribution. |
-| `ai-agent` | 305 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
-| `data-analytics` | 2016 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
+| `mobile-app` | 1357 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
+| `desktop-app` | 124 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
+| `api-backend` | 1533 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
+| `cli-tool` | 184 | Argument parsing, prompts, output formatting, config files and distribution. |
+| `ai-agent` | 307 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
+| `data-analytics` | 2027 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 774 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
-| `saas` | 6110 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
-| `realtime-collab` | 299 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
-| `devops-infra` | 937 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
-| `testing-qa` | 157 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
+| `saas` | 6128 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
+| `realtime-collab` | 300 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
+| `devops-infra` | 944 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
+| `testing-qa` | 164 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
 | `docs-knowledge` | 433 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 26 | Headless browsers, scraping within terms, workflow automation and RPA. |
 | `office-documents` | 557 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
@@ -84,7 +85,7 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 | `finance-accounting` | 421 | Money math, ledgers, invoicing, accounting APIs and financial data. |
 | `legal-compliance` | 120 | Contracts, e-signature, privacy, consent, accessibility and policy tooling. |
 | `game` | 30 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
-| `security` | 148 | Crypto, secrets scanning, dependency auditing, auth hardening and threat checks. |
+| `security` | 149 | Crypto, secrets scanning, dependency auditing, auth hardening and threat checks. |
 <!-- genlib:types:end -->
 
 ## Record fields and status

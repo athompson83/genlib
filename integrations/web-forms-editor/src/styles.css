@@ -1,0 +1,7 @@
+.genlib-form,.genlib-editor,.genlib-field{font:inherit;color:var(--genlib-text,#17202a)}
+.genlib-form{display:grid;gap:1rem;max-width:52rem}.genlib-field{display:grid;gap:.35rem}.genlib-toolbar{display:flex;align-items:center;gap:1rem;padding:.75rem}
+.genlib-overlay{position:fixed;inset:0;background:#0008;z-index:1000;display:grid;place-items:center}
+.genlib-dialog{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;background:var(--genlib-surface,#fff);color:var(--genlib-text,#17202a);padding:1.5rem;border-radius:var(--genlib-radius,.5rem);max-width:min(36rem,90vw);max-height:85vh;overflow:auto;box-shadow:0 1rem 4rem #0004}
+.genlib-overlay .genlib-dialog{position:relative;top:auto;left:auto;transform:none}.genlib-form input,.genlib-form select,.genlib-form textarea{font:inherit;padding:.5rem;border:1px solid var(--genlib-border,#8c939a);border-radius:.25rem}
+.genlib-form button,.genlib-dialog button,.genlib-toolbar button,.genlib-action{font:inherit;padding:.5rem 1rem}.genlib-form :focus-visible,.genlib-dialog :focus-visible,.genlib-toolbar :focus-visible{outline:3px solid var(--genlib-focus,#1668d4);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.genlib-dialog,.genlib-overlay{animation:none;transition:none}}

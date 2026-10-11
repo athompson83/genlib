@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    { "id": "resume-uploads", "query": "resumable file uploads with cancellation and zip export", "expectedAny": ["integration:resumable-files"], "maxRank": 5 },
+    { "id": "nested-schema-forms", "query": "nested JSON schema forms with conditional fields and saved drafts", "expectedAny": ["integration:web-forms-editor"], "maxRank": 5 },
+    { "id": "registered-visual-editor", "query": "Puck visual editor registered React components drafts", "expectedAny": ["integration:web-forms-editor"], "maxRank": 5 },
+    { "id": "pdf-invoice", "query": "PDF invoice templates with line items and branding", "expectedAny": ["integration:document-pipeline"], "maxRank": 5 },
+    { "id": "editable-inventory", "query": "editable inventory grid batch edits search and accessible charts", "type": "integration", "profile": { "languages": ["typescript"], "frameworks": ["react"], "reactMajor": 18 }, "expectedAny": ["integration:web-data-workbench"], "maxRank": 3 },
+    { "id": "calendar-timezones", "query": "calendar bookings timezone iCalendar updates and file tree moves", "expectedAny": ["integration:web-calendar-files"], "maxRank": 5 },
+    { "id": "durable-deliveries", "query": "PostgreSQL webhook deduplication retries durable background jobs", "expectedAny": ["integration:durable-jobs"], "maxRank": 5 },
+    { "id": "storefront-cart", "query": "Medusa product variants cart checkout order state", "expectedAny": ["integration:commerce-storefront"], "maxRank": 5 },
+    { "id": "typed-api-client", "query": "generate typed API client with cancellation errors and pagination", "expectedAny": ["integration:api-contracts"], "maxRank": 5 },
+    { "id": "breaking-contracts", "query": "OpenAPI breaking changes baseline Hurl response assertions", "expectedAny": ["integration:api-contracts"], "maxRank": 5 },
+    { "id": "idempotent-python-edits", "query": "preserve comments Python codemods imports idempotent refactor", "type": "integration", "expectedAny": ["integration:developer-codemods"], "maxRank": 3 },
+    { "id": "mobile-offline-flow", "query": "Flutter native permissions acceptance testing offline recovery", "type": "integration", "expectedAny": ["integration:native-acceptance"], "maxRank": 3 },
+    { "id": "kotlin-migrations", "query": "Kotlin SQLite schema migrations typed queries persistence", "type": "integration", "expectedAny": ["integration:native-persistence"], "maxRank": 3 },
+    { "id": "swift-local-database", "query": "Swift GRDB transaction migration repository", "type": "integration", "expectedAny": ["integration:native-persistence"], "maxRank": 3 },
+    { "id": "shared-ffi", "query": "Rust shared core Swift Kotlin Python UniFFI bindings", "type": "integration", "expectedAny": ["integration:shared-rust-core"], "maxRank": 3 },
+    { "id": "desktop-updates", "query": "desktop Velopack updates Avalonia Wails Tauri Electron", "type": "integration", "expectedAny": ["integration:desktop-delivery"], "maxRank": 3 },
+    { "id": "policy-collaboration", "query": "Cedar policies OpenFGA relationship sharing Loro collaboration", "expectedAny": ["integration:authorization-collaboration"], "maxRank": 5 },
+    { "id": "typed-rpc-sql", "query": "typed Go sqlc database queries Connect RPC service", "type": "integration", "expectedAny": ["integration:typed-backend-services"], "maxRank": 3 },
+    { "id": "correlated-traces", "query": "OpenTelemetry correlated HTTP job traces Testcontainers", "type": "integration", "expectedAny": ["integration:observability-harness"], "maxRank": 3 },
+    { "id": "direct-mcp", "query": "connect directly genlib MCP server", "type": "resource", "expectedAny": ["resource:genlib-direct-mcp"], "maxRank": 3 },
+    { "id": "retired-default", "query": "firebase dynamic links", "type": "resource", "forbiddenLifecycle": ["retired"], "expectedAny": ["resource:react-native-chottulink-sdk", "resource:flinku-react-native", "resource:flinku-capacitor"], "maxRank": 8 },
+    { "id": "retired-migration", "query": "firebase dynamic links migration", "type": "resource", "includeRetired": true, "expectedAny": ["resource:firebase-dynamic-links", "resource:firebase-dynamic-link", "resource:adame-firebase-ios-dynamiclinks"], "maxRank": 8 },
+    { "id": "permissive-grid", "query": "data grid", "type": "resource", "licensePolicy": "permissive", "requirePermissive": true, "expectedAny": ["resource:glide-data-grid", "resource:tabulator", "resource:tanstack-table"], "maxRank": 8 },
+    { "id": "existing-webhook", "query": "verify stripe webhook signature", "expectedAny": ["module:webhook-verification"], "maxRank": 3 },
+    { "id": "existing-passkeys", "query": "add passkey login in Go", "expectedAny": ["capability:webauthn-passkeys"], "maxRank": 3 }
+  ]
+}

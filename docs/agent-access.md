@@ -1,12 +1,12 @@
 # Agent access: CLI, MCP, Jev, search index, graph and Obsidian
 
-Genlib offers six ways for an agent to reach the code, tool, skill or doc it needs without reading the repository. All six come from the same catalogs, so they always agree. Pick the one that fits the harness.
+Genlib offers six ways for an agent to reach the code, tool, skill or doc it needs without reading the repository. They derive discovery metadata from the same catalogs. Pick the one that fits the harness and its required access.
 
 Whichever you pick, the cheapest sequence is the same: `quick` for the best match and only its commands, `outline` for signatures instead of source, then the returned command. When the best match is an external project and you need to read its code, `source <id> [--path dir]` fetches only that folder at a pinned commit (`git fetch --depth 1 --filter=blob:none` plus sparse checkout) instead of cloning the repository, and names any Genlib capability or module that already does the job (`resources/equivalents.json`, also shown first in `find` and `quick` results). [token-budget.md](token-budget.md) has the measured sizes.
 
 | Way | Best for | Entry point |
 | --- | --- | --- |
-| MCP server | Claude Code, Codex and any MCP client: native tool calls, no shell parsing | `bin/genlib-mcp.mjs` |
+| MCP server | Claude Code, Codex and any MCP client: native tool calls, no shell parsing. The dependency-free server is read-only discovery; the optional [direct SDK server](mcp-server.md) adds scoped planning, verification and opt-in installation | `bin/genlib-mcp.mjs` or `packages/genlib-mcp` |
 | CLI | Shell-capable agents and scripts | `node bin/genlib.mjs quick <task> --target "$APP_ROOT"`, `find` (compact text, `--json` for full records), `outline <id>` |
 | Jev packet | Typed-decision models (Genisys Jev): bounded yes/no selection | `genlib jev <task> --json`, or MCP `genlib_jev` |
 | Search index | Harnesses with their own retrieval (exact lookup, embeddings, rerankers) or plain `grep` | `registry/search-index.jsonl` |
@@ -15,7 +15,7 @@ Whichever you pick, the cheapest sequence is the same: `quick` for the best matc
 
 ## MCP server
 
-The server is dependency-free and speaks stdio JSON-RPC 2.0 (MCP protocol versions 2025-06-18, 2025-03-26 and 2024-11-05).
+The existing `bin/genlib-mcp.mjs` entry point is dependency-free and speaks stdio JSON-RPC 2.0 (MCP protocol versions 2025-06-18, 2025-03-26 and 2024-11-05). It performs local read-only discovery and accepts local project paths for compatibility detection. Use it only with trusted local clients. The optional [direct SDK server](mcp-server.md) has bounded tool schemas and file pages, a configured project root, installation planning and verification, explicit startup write opt-in, and stdio/Streamable HTTP transports. Choose one entry point per client server name.
 
 ```sh
 claude mcp add genlib -- node "$GENLIB_ROOT/bin/genlib-mcp.mjs"
@@ -33,7 +33,7 @@ Text output from the CLI and the MCP tools names this checkout's real path in pl
 | `genlib_outline` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib_jev` | The bounded `genlib.jev/v1` decision packet (see [jev.md](jev.md)); `stdlibOnly: true` (or a task that forbids dependencies) keeps only candidates that need no install |
 | `genlib_capability` | Capability list, or one capability's copy commands for a language |
-| `genlib_inspect` | The full record for a result (any type, including `starter` and `task`): license, links, cautions, install commands. Pass `language` to get only that language's API install steps |
+| `genlib_inspect` | The full record for a result (any type, including `starter`, `task` and an integration pack's contract): license, links, cautions, install commands. Pass `language` to get only that language's API install steps |
 | `genlib_read_doc` | One documentation section by `file#anchor`, at most 400 lines |
 
 Quick, find and outline return compact text in `content` for the model and the structured result in `structuredContent`; other tools return JSON in both.
@@ -58,6 +58,7 @@ node "$GENLIB_ROOT/scripts/export-obsidian.mjs" --out "$VAULT/genlib" --types ca
 ```
 
 The export writes:
+
 - A `Genlib` home note.
 - One map-of-content note for each source type, resource category and language.
 - One note per entry, with YAML properties (`type`, `id`, `languages`, `license`, `tags`), a summary, the next commands, and `[[wikilinks]]` to its type, category and languages.

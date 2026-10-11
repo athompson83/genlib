@@ -1,0 +1,13 @@
+{
+  "id": "RCT-2026-0042", "invoiceId": "INV-2026-0042", "issuedOn": "2026-10-10",
+  "seller": "Example Studio", "customer": "Sam Rivera", "currency": "USD", "minorDigits": 2,
+  "lines": [
+    { "id": "consulting", "description": "Implementation review", "quantity": 2, "unitMinor": 12500 },
+    { "id": "report", "description": "Technical report", "quantity": 1, "unitMinor": 5000 }
+  ],
+  "taxMinor": 2400, "shippingMinor": 0, "discountMinor": 1000, "totalMinor": 31400,
+  "payments": [
+    { "id": "deposit", "paidOn": "2026-10-08", "method": "Bank transfer", "reference": "DEPOSIT-0042", "amountMinor": 15000 },
+    { "id": "balance", "paidOn": "2026-10-10", "method": "Bank transfer", "reference": "FINAL-0042", "amountMinor": 16400 }
+  ]
+}

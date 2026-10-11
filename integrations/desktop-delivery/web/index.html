@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Inventory desktop fixture</title><link rel="stylesheet" href="style.css"></head>
+<body><main><h1>Inventory desktop fixture</h1>
+<section><h2>Item title</h2><form id="label-form"><label for="title">Item title</label><input id="title" maxlength="200" required autocomplete="off"><button>Normalize title</button></form><p id="result" role="status"></p></section>
+<section><h2>Native text selection</h2><p>Choose one text, Markdown or JSON file, up to 256 KiB.</p><button id="pick-file">Choose text file</button><p id="file-status" role="status"></p><pre id="file-preview"></pre></section>
+<section><h2>OS secure session storage</h2><p>Use a disposable fixture token. The UI receives only presence status after saving.</p><form id="session-form"><label for="session-token">Fixture token</label><input id="session-token" type="password" autocomplete="off" maxlength="2048" required><button>Save in OS vault</button></form><button id="session-status">Check saved session</button><button id="clear-session">Clear saved session</button><p id="vault-status" role="status"></p></section>
+<section><h2>Application update</h2><p>Updates use the application's configured HTTPS feed. Save your work before installing and restarting.</p><button id="check-update">Check for updates</button><button id="download-update" disabled>Download and prepare update</button><button id="restart-update" disabled>Install and restart</button><p id="update-status" role="status"></p></section>
+</main><script src="renderer.js"></script></body></html>

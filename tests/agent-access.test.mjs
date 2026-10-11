@@ -63,6 +63,21 @@ test('MCP server falls back to its newest protocol version and rejects malformed
   assert.equal(JSON.parse(child.stdout.trim()).error.code, -32700);
 });
 
+test('the read-only MCP can inspect an integration returned by its search', async () => {
+  const replies = await mcp([
+    { id: 1, method: 'tools/list' },
+    { id: 2, method: 'tools/call', params: { name: 'genlib_find', arguments: { query: 'resumable file uploads', type: 'integration', limit: 1 } } },
+    { id: 3, method: 'tools/call', params: { name: 'genlib_inspect', arguments: { type: 'integration', id: 'resumable-files' } } },
+  ]);
+  const inspect = replies[0].result.tools.find(tool => tool.name === 'genlib_inspect');
+  assert.ok(inspect.inputSchema.properties.type.enum.includes('integration'));
+  assert.equal(replies[1].result.structuredContent.results[0].id, 'resumable-files');
+  assert.equal(replies[2].result.isError, false);
+  assert.equal(replies[2].result.structuredContent.id, 'resumable-files');
+  assert.match(replies[2].result.structuredContent.contract, /resumable/i);
+  assert.ok(replies[2].result.structuredContent.files.length > 0);
+});
+
 test('the committed navigation graph is current and connects types, languages and capabilities', () => {
   const check = spawnSync(process.execPath, [root + 'scripts/build-graph.mjs', '--check'], { encoding: 'utf8' });
   assert.equal(check.status, 0, 'Run npm run graph:build: ' + check.stdout);

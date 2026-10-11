@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "public-data-clients",
+  "version": "0.1.0",
+  "title": "Public data and catalog maintenance clients",
+  "description": "Server-only TypeScript adapters for Frankfurter, NWS, Census, vPIC, Crossref, GLEIF, ROR, Open Food Facts, Open-Meteo, deps.dev, OSV and endoflife.date with injected transport, bounded responses, conditional cache metadata and normalized errors.",
+  "kind": "utility",
+  "tags": [
+    "api",
+    "read-only",
+    "public-data",
+    "weather",
+    "currency",
+    "census",
+    "vin",
+    "doi",
+    "lei",
+    "ror",
+    "food",
+    "dependencies",
+    "vulnerabilities",
+    "lifecycle",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/public-data-clients"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Node.js 22+ with standard Fetch, streams, AbortController and a TypeScript build is the supported baseline.",
+      "Factories reject browser DOM runtimes; the receiving build must also keep these files in server-only code.",
+      "Import and installation do not read credentials, connect providers or install runtime packages."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/http.ts",
+      "target": "public-data-clients/http.ts"
+    },
+    {
+      "source": "files/frankfurter.ts",
+      "target": "public-data-clients/frankfurter.ts"
+    },
+    {
+      "source": "files/nws.ts",
+      "target": "public-data-clients/nws.ts"
+    },
+    {
+      "source": "files/census.ts",
+      "target": "public-data-clients/census.ts"
+    },
+    {
+      "source": "files/vpic.ts",
+      "target": "public-data-clients/vpic.ts"
+    },
+    {
+      "source": "files/crossref.ts",
+      "target": "public-data-clients/crossref.ts"
+    },
+    {
+      "source": "files/gleif.ts",
+      "target": "public-data-clients/gleif.ts"
+    },
+    {
+      "source": "files/ror.ts",
+      "target": "public-data-clients/ror.ts"
+    },
+    {
+      "source": "files/open-food-facts.ts",
+      "target": "public-data-clients/open-food-facts.ts"
+    },
+    {
+      "source": "files/open-meteo.ts",
+      "target": "public-data-clients/open-meteo.ts"
+    },
+    {
+      "source": "files/deps-dev.ts",
+      "target": "public-data-clients/deps-dev.ts"
+    },
+    {
+      "source": "files/osv.ts",
+      "target": "public-data-clients/osv.ts"
+    },
+    {
+      "source": "files/endoflife.ts",
+      "target": "public-data-clients/endoflife.ts"
+    }
+  ],
+  "exports": [
+    {
+      "name": "PublicDataError",
+      "from": "public-data-clients/http.ts"
+    },
+    {
+      "name": "createPublicDataTransport",
+      "from": "public-data-clients/http.ts"
+    },
+    {
+      "name": "createFrankfurterClient",
+      "from": "public-data-clients/frankfurter.ts"
+    },
+    {
+      "name": "createNwsClient",
+      "from": "public-data-clients/nws.ts"
+    },
+    {
+      "name": "createCensusClient",
+      "from": "public-data-clients/census.ts"
+    },
+    {
+      "name": "createVpicClient",
+      "from": "public-data-clients/vpic.ts"
+    },
+    {
+      "name": "createCrossrefClient",
+      "from": "public-data-clients/crossref.ts"
+    },
+    {
+      "name": "createGleifClient",
+      "from": "public-data-clients/gleif.ts"
+    },
+    {
+      "name": "createRorClient",
+      "from": "public-data-clients/ror.ts"
+    },
+    {
+      "name": "createOpenFoodFactsClient",
+      "from": "public-data-clients/open-food-facts.ts"
+    },
+    {
+      "name": "createOpenMeteoClient",
+      "from": "public-data-clients/open-meteo.ts"
+    },
+    {
+      "name": "createDepsDevClient",
+      "from": "public-data-clients/deps-dev.ts"
+    },
+    {
+      "name": "createOsvClient",
+      "from": "public-data-clients/osv.ts"
+    },
+    {
+      "name": "createEndOfLifeClient",
+      "from": "public-data-clients/endoflife.ts"
+    }
+  ],
+  "configuration": [
+    "Inject a trusted Fetch implementation, application identification and explicit server credential callbacks.",
+    "Use a configured HTTPS origin only; never derive origins or credentials from an incoming request.",
+    "Census data queries require a key. Open-Meteo hosted access requires an explicit noncommercial or customer subscription profile.",
+    "Configure request deadlines and decoded response byte limits; retries are opt-in and bounded.",
+    "Applications own caching, cross-process quotas, source attribution, authorization and live acceptance."
+  ],
+  "capabilities": [
+    "bounded-public-json-reads",
+    "conditional-cache-revalidation",
+    "read-only-post-batches",
+    "currency-reference-rates",
+    "nws-grid-forecast-alerts",
+    "census-geography-table",
+    "vin-decoding",
+    "crossref-doi-cursor-page",
+    "gleif-entity-lookup",
+    "ror-affiliation-lookup",
+    "food-barcode-search",
+    "open-meteo-forecast",
+    "package-version-dependency-enrichment",
+    "osv-advisory-query",
+    "software-lifecycle-enrichment"
+  ],
+  "limitations": [
+    "Only documented operations and returned fields are supported; these are original adapters rather than full provider SDKs.",
+    "No shared cache storage, key provisioning, billing setup, background scheduling, offline dataset mirrors or source-rights clearance is included.",
+    "HTTP metadata does not establish freshness once cached by the receiving application; revalidate according to provider headers and terms.",
+    "Only injected mock-transport fixtures are exercised here. Live provider uptime, credentials, quotas, legal suitability and deployment acceptance remain application checks."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/public-data-clients.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md"
+}

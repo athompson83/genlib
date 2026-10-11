@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "id": "public-data-clients",
+  "version": "0.1.0",
+  "title": "Public data and catalog maintenance clients",
+  "description": "Server-only TypeScript adapters for Frankfurter, NWS, Census, vPIC, Crossref, GLEIF, ROR, Open Food Facts, Open-Meteo, deps.dev, OSV and endoflife.date with injected transport, bounded responses, conditional cache metadata and normalized errors.",
+  "kind": "utility",
+  "tags": [
+    "api",
+    "read-only",
+    "public-data",
+    "weather",
+    "currency",
+    "census",
+    "vin",
+    "doi",
+    "lei",
+    "ror",
+    "food",
+    "dependencies",
+    "vulnerabilities",
+    "lifecycle",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/public-data-clients"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Node.js 22+ with standard Fetch, streams, AbortController and a TypeScript build is the supported baseline.",
+      "Factories reject browser DOM runtimes; the receiving build must also keep these files in server-only code.",
+      "Import and installation do not read credentials, connect providers or install runtime packages."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/http.ts",
+      "target": "public-data-clients/http.ts",
+      "path": "modules/public-data-clients/files/http.ts",
+      "sha256": "db97ae2972c3d9f004ac5eef4e0c043d58921e4a8ec24dbf46e94d5278f5da06",
+      "bytes": 17731
+    },
+    {
+      "source": "files/frankfurter.ts",
+      "target": "public-data-clients/frankfurter.ts",
+      "path": "modules/public-data-clients/files/frankfurter.ts",
+      "sha256": "c992219debcdd52aa70576626e686beaaa5b3dfa7a38cbab9e25c79d6c99601a",
+      "bytes": 3173
+    },
+    {
+      "source": "files/nws.ts",
+      "target": "public-data-clients/nws.ts",
+      "path": "modules/public-data-clients/files/nws.ts",
+      "sha256": "4513db1a9c9f3d7209ec6d57ea249233a3b1a7cfa428565ef0e2c8db21cd1855",
+      "bytes": 4518
+    },
+    {
+      "source": "files/census.ts",
+      "target": "public-data-clients/census.ts",
+      "path": "modules/public-data-clients/files/census.ts",
+      "sha256": "831bd1f5e3ea2c4ae865a3463f8204946b78289590693df20757ab95bcfe76ee",
+      "bytes": 3403
+    },
+    {
+      "source": "files/vpic.ts",
+      "target": "public-data-clients/vpic.ts",
+      "path": "modules/public-data-clients/files/vpic.ts",
+      "sha256": "cd04a7e6807836a485170be0a576a972842a7497b399100315a865b6f5a96bb6",
+      "bytes": 3042
+    },
+    {
+      "source": "files/crossref.ts",
+      "target": "public-data-clients/crossref.ts",
+      "path": "modules/public-data-clients/files/crossref.ts",
+      "sha256": "25887f40718183fe2986654f9e4f7095cb0cccf70bd42f5e9162acbf93ff5ce2",
+      "bytes": 3427
+    },
+    {
+      "source": "files/gleif.ts",
+      "target": "public-data-clients/gleif.ts",
+      "path": "modules/public-data-clients/files/gleif.ts",
+      "sha256": "49eb33f642533ee47ecf778472ca1a4821b73cd414776dedc50cd9cf481628f3",
+      "bytes": 3590
+    },
+    {
+      "source": "files/ror.ts",
+      "target": "public-data-clients/ror.ts",
+      "path": "modules/public-data-clients/files/ror.ts",
+      "sha256": "1532a8240612139398bf9178110aac6335fe72dd35a0fcea7701f6bbf2e17710",
+      "bytes": 3893
+    },
+    {
+      "source": "files/open-food-facts.ts",
+      "target": "public-data-clients/open-food-facts.ts",
+      "path": "modules/public-data-clients/files/open-food-facts.ts",
+      "sha256": "21acd01ec1a521f01ddeb7fc9e92f44baad9941d12809b779dbd2f7421c99fad",
+      "bytes": 3925
+    },
+    {
+      "source": "files/open-meteo.ts",
+      "target": "public-data-clients/open-meteo.ts",
+      "path": "modules/public-data-clients/files/open-meteo.ts",
+      "sha256": "384632e75bc4d0b6e54425f3a24bce30f8cb5c75f26681ad44ded0501a79d73c",
+      "bytes": 5434
+    },
+    {
+      "source": "files/deps-dev.ts",
+      "target": "public-data-clients/deps-dev.ts",
+      "path": "modules/public-data-clients/files/deps-dev.ts",
+      "sha256": "b7821491834551d35fa0c1f8c93189030e7c6412a86a83aac8203b5791a604e6",
+      "bytes": 3958
+    },
+    {
+      "source": "files/osv.ts",
+      "target": "public-data-clients/osv.ts",
+      "path": "modules/public-data-clients/files/osv.ts",
+      "sha256": "a9b24818d3b40b8e1cfe2cc3adc4fe7b084ece9087fccaa6dfb489fc312683f0",
+      "bytes": 4550
+    },
+    {
+      "source": "files/endoflife.ts",
+      "target": "public-data-clients/endoflife.ts",
+      "path": "modules/public-data-clients/files/endoflife.ts",
+      "sha256": "b0caf3e9dfd5483a9742591d8f6e9547a45fe814187c285d9fce34ce78266b3f",
+      "bytes": 3023
+    }
+  ],
+  "exports": [
+    {
+      "name": "PublicDataError",
+      "from": "public-data-clients/http.ts"
+    },
+    {
+      "name": "createPublicDataTransport",
+      "from": "public-data-clients/http.ts"
+    },
+    {
+      "name": "createFrankfurterClient",
+      "from": "public-data-clients/frankfurter.ts"
+    },
+    {
+      "name": "createNwsClient",
+      "from": "public-data-clients/nws.ts"
+    },
+    {
+      "name": "createCensusClient",
+      "from": "public-data-clients/census.ts"
+    },
+    {
+      "name": "createVpicClient",
+      "from": "public-data-clients/vpic.ts"
+    },
+    {
+      "name": "createCrossrefClient",
+      "from": "public-data-clients/crossref.ts"
+    },
+    {
+      "name": "createGleifClient",
+      "from": "public-data-clients/gleif.ts"
+    },
+    {
+      "name": "createRorClient",
+      "from": "public-data-clients/ror.ts"
+    },
+    {
+      "name": "createOpenFoodFactsClient",
+      "from": "public-data-clients/open-food-facts.ts"
+    },
+    {
+      "name": "createOpenMeteoClient",
+      "from": "public-data-clients/open-meteo.ts"
+    },
+    {
+      "name": "createDepsDevClient",
+      "from": "public-data-clients/deps-dev.ts"
+    },
+    {
+      "name": "createOsvClient",
+      "from": "public-data-clients/osv.ts"
+    },
+    {
+      "name": "createEndOfLifeClient",
+      "from": "public-data-clients/endoflife.ts"
+    }
+  ],
+  "configuration": [
+    "Inject a trusted Fetch implementation, application identification and explicit server credential callbacks.",
+    "Use a configured HTTPS origin only; never derive origins or credentials from an incoming request.",
+    "Census data queries require a key. Open-Meteo hosted access requires an explicit noncommercial or customer subscription profile.",
+    "Configure request deadlines and decoded response byte limits; retries are opt-in and bounded.",
+    "Applications own caching, cross-process quotas, source attribution, authorization and live acceptance."
+  ],
+  "capabilities": [
+    "bounded-public-json-reads",
+    "conditional-cache-revalidation",
+    "read-only-post-batches",
+    "currency-reference-rates",
+    "nws-grid-forecast-alerts",
+    "census-geography-table",
+    "vin-decoding",
+    "crossref-doi-cursor-page",
+    "gleif-entity-lookup",
+    "ror-affiliation-lookup",
+    "food-barcode-search",
+    "open-meteo-forecast",
+    "package-version-dependency-enrichment",
+    "osv-advisory-query",
+    "software-lifecycle-enrichment"
+  ],
+  "limitations": [
+    "Only documented operations and returned fields are supported; these are original adapters rather than full provider SDKs.",
+    "No shared cache storage, key provisioning, billing setup, background scheduling, offline dataset mirrors or source-rights clearance is included.",
+    "HTTP metadata does not establish freshness once cached by the receiving application; revalidate according to provider headers and terms.",
+    "Only injected mock-transport fixtures are exercised here. Live provider uptime, credentials, quotas, legal suitability and deployment acceptance remain application checks."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/public-data-clients.test.mjs"
+    ]
+  },
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/public-data-clients/module.json",
+    "sha256": "c33f95adb67d2e67fb83a6ef441d08e2e765c783a33c82ba967df7fdaed44a67"
+  },
+  "contractFile": {
+    "path": "modules/public-data-clients/CONTRACT.md",
+    "sha256": "277de23bd880e4e05eb842133d097a9ff89ffa7c26a6ce70fbb60532480207b6",
+    "bytes": 16566
+  }
+}

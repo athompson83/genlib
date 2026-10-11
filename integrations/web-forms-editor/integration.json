@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "id": "web-forms-editor",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Schema forms, page editing and input primitives",
+  "summary": "JSON Forms with schema validation, Puck registered blocks and revision-safe drafts, Radix/React Aria dialog variants, and phone/masked inputs.",
+  "languages": [
+    "typescript",
+    "css"
+  ],
+  "frameworks": [
+    "react"
+  ],
+  "platforms": [
+    "browser",
+    "node"
+  ],
+  "resources": [
+    "json-forms",
+    "puckeditor-core",
+    "radix-primitives",
+    "react-aria",
+    "libphonenumber-js",
+    "imask"
+  ],
+  "tags": [
+    "forms",
+    "schema",
+    "page-editor",
+    "drafts",
+    "accessibility",
+    "phone",
+    "mask"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/contact.schema.json",
+    "fixtures/contact.ui.json",
+    "fixtures/page.json",
+    "package-lock.json",
+    "package.json",
+    "src/ContactInput.tsx",
+    "src/PageEditor.tsx",
+    "src/Primitives.tsx",
+    "src/SchemaForm.tsx",
+    "src/documents.ts",
+    "src/styles.css",
+    "tests/forms-editor.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/SchemaForm.tsx",
+    "src/PageEditor.tsx",
+    "src/documents.ts",
+    "src/Primitives.tsx",
+    "src/ContactInput.tsx"
+  ],
+  "compatibility": {
+    "reactMajors": [
+      18,
+      19
+    ]
+  },
+  "verification": {
+    "level": "tested",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and six tests covering real JSON Forms/AJV and Puck server rendering, draft conflicts, phone parsing and dialog trigger markup."
+    ],
+    "notes": [
+      "React 18 is within upstream peer ranges but was not executed in this pack; no browser drag/drop, mask events, focus, keyboard or screen-reader acceptance was run.",
+      "Persistence, revision enforcement, publication authorization and custom block/schema validation belong to the receiving application."
+    ]
+  }
+}

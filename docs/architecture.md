@@ -1,6 +1,6 @@
 # Architecture
 
-Genlib distributes editable source to an existing application. It is not an application runtime, hosted service, or authority system. The library uses original Apache-2.0 code with explicit contracts for React/TypeScript web modules, framework-neutral theme tokens and server-only TypeScript API clients.
+Genlib distributes editable source and isolated integration profiles to an existing application. Its dependency-free CLI and optional direct MCP server share the same discovery, integrity, compatibility and installation functions. Original Apache-2.0 adapters have explicit contracts; external tools, packages, hosted services and data retain their own terms. A catalog result or tool call never grants application authority.
 
 ## System overview
 
@@ -24,8 +24,15 @@ flowchart TB
     RES["resources/*.json<br/>resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning,<br/>mapping-navigation)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>1,066 pinned agent skills"]
     IDX["resources/mcp-servers.json<br/>clis.json · apis.json<br/>starters.json · task-recipes.json<br/>ranked install indexes"]
+    INTEG["integrations/{id}/<br/>manifest · CONTRACT.md<br/>source · fixtures"]
   end
   REG["registry/catalog.json<br/>registry/manifests/*.json<br/>(SHA-256)"]
+  INTREG["registry/integrations.json<br/>pack integrity"]
+  INTLIB["lib/integrations.mjs<br/>integration plan · add · verify"]
+  SHAD["registry.json<br/>shadcn-format registry"]
+  SDKMCP["packages/genlib-mcp<br/>direct SDK server<br/>scoped root · write opt-in"]
+  HEALTH["lib/catalog-health.mjs<br/>deps.dev · OSV · endoflife"]
+  CHK["catalog-health workflow<br/>daily sample · weekly install"]
   DISC["lib/discover.mjs<br/>find · detect · catalog"]
   CAPLIB["lib/capabilities.mjs<br/>capability list · inspect"]
   SKLIB["lib/skills.mjs<br/>skill find · inspect"]
@@ -51,6 +58,13 @@ flowchart TB
   VAULT["Obsidian vault<br/>(generated notes only)"]
   SKILL["skills/genlib-use"]
   MOD -- "npm run registry:build" --> REG
+  INTEG -- "npm run integrations:build" --> INTREG --> DISC
+  INTREG --> INTLIB --> CLI
+  INTLIB --> SDKMCP -. "stdio · Streamable HTTP" .-> JEVX
+  INTLIB -- "copies reviewed bytes" --> APP
+  MOD & REC -- "npm run shadcn:build" --> SHAD
+  SHAD -. "npx shadcn add athompson83/genlib/{item}" .-> APP
+  HEALTH -. "maintainers" .-> NET
   REG --> DISC
   REC --> DISC
   LANG --> DISC
@@ -75,6 +89,7 @@ flowchart TB
   SKLIB -. "npx skills add (pinned)" .-> APP
   IDXLIB -. "mcp add · brew · SDK" .-> APP
   RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
+  RES -.-> CHK -. "rotating sample" .-> NET
   REG & RES --> DOCS
   DOCS_MD -. "npm run diagrams:render" .-> DIAG
   SIDX -. "grep / own retrieval" .-> JEVX
@@ -87,18 +102,29 @@ flowchart TB
 
 </details>
 
-Every arrow into the target app goes through `plan`/`add` (modules), the recipe or language installers, or a person merging a template. Nothing in the catalog runs automatically.
+Every arrow into the target app goes through `plan`/`add` (modules), `integration plan`/`add` (packs), the recipe or language installers, the shadcn CLI reading `registry.json`, or a person merging a template. No catalog text, package hook or maintainer network response executes automatically. The MCP servers adapt these functions to a protocol; they do not shell out to perform tool requests.
 
 ## Discovery and delivery
 
 1. Authors maintain `modules/<id>/module.json`, `CONTRACT.md`, and `files/`.
 2. `npm run registry:build` emits a compact `registry/catalog.json` and detailed manifests with SHA-256 file hashes. `registry:check` checks freshness without changing files.
-3. Agents run `quick` (best match and its commands) or `find` (compact list; `--json` for full records), read `outline` signatures instead of source, inspect one integration contract, and select a compatible feature. `find` ranks capabilities, modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
-4. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
-5. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`. License notices accompany the copy. It never runs module hooks or package managers.
-6. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.
+3. `npm run integrations:build` creates `registry/integrations.json` from pack manifests, contracts and source. Binding checks require canonical external resource IDs and resolvable Genlib module and pack references.
+4. Agents run `quick` (best match and its commands) or `find` (compact list; `--json` for full records), read `outline` signatures instead of source, inspect one module or integration contract, and select a compatible feature. Discovery applies the lifecycle and license policy (retired records hidden unless `--include-retired`; `--license-policy permissive`). `find` ranks capabilities, modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
+5. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
+6. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`; `integration add` copies a pack to `genlib/integrations/<id>` and records it in `.genlib/integrations-lock.json`. License notices accompany the copy. It never runs module hooks or package managers.
+7. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.
 
-The CLI uses Node.js built-ins and works from a trusted local clone without installing npm packages. Development dependencies are only for testing and compiling the sample modules.
+The core CLI uses Node.js built-ins and works from a trusted local clone without installing npm packages. Each optional integration and the MCP server has isolated pinned dependencies. They do not become core runtime dependencies.
+
+## Direct MCP transport
+
+`packages/genlib-mcp/server.mjs` uses the official SDK for stdio and Streamable HTTP, serving current and legacy stateless clients through one server factory. It exposes bounded metadata/contracts and declared-file reads, Jev packets, scoped project detection, planning and baseline verification. Startup `--allow-install` plus `--project-root` is required to register the write tool.
+
+HTTP defaults to loopback. A non-loopback bind requires a bearer token and exact allowed hosts; Origin-bearing requests need an exact allowed origin. HTTP bodies/tool results are bounded; paths are scoped before shared library calls. The private token mode is a single trust boundary, not a multi-user OAuth system. Deployment, TLS and per-tenant process isolation belong to the host. See [MCP connection and access](mcp-server.md) and the SDK-client transport tests.
+
+## Integration pack profiles
+
+Packs cover web features, contract generation, codemods, native acceptance/persistence, Rust bindings, desktop delivery, authorization/collaboration, typed backend services and observability. Manifests list exact delivered files and resource bindings. `verification.profiles` describes environments actually exercised; unavailable native or service-backed acceptance stays experimental. The [integration guide](integrations.md) describes compatibility, provenance, safe copying and version updates.
 
 ## Integration boundaries
 
@@ -121,6 +147,7 @@ The module registry currently accepts only original Apache-2.0 source. External 
 ## Generated catalogs and agent access
 
 The capability index (`resources/capabilities.json`) maps common tasks to tested code in 9 languages; see [capabilities.md](capabilities.md). Several resource catalogs are generated from verified registry research rather than written by hand, and carry `languages` and registry `popularity`:
+
 - `resources/catalog/marketing-*.json`
 - `social-media.json`
 - `dashboards.json`
@@ -145,7 +172,8 @@ With a receiving project (`--target`, `--language` or a language named in the qu
 - Package records that name the same single package (88 duplicates, such as `discord-js` and `discord-js-npm`) surface once, under a canonical record chosen by `canonicalPackages()`. The stricter integration mode wins, so a license-review flag is never dropped, then the more complete record. The canonical record lists its `aliases` and keeps their project types, platforms, tags and cautions, so a duplicate's classification is never lost. Inspecting an alias id returns the canonical record (`requested`, `canonical`).
 - MCP servers are matched by server name and repository rather than the shared `io.github` namespace. One published by the vendor named in the query gets a 1.5× boost. `scripts/routing-eval.mjs` measures how often one `quick` call picks the right capability on 220 task phrasings, 166 of them held out from tuning, and `tests/routing.test.mjs` keeps it from regressing. The paths are:
 - **CLI:** `bin/genlib.mjs`.
-- **MCP server:** `bin/genlib-mcp.mjs`.
+- **Dependency-free MCP discovery:** `bin/genlib-mcp.mjs`.
+- **Direct SDK MCP, scoped project operations and HTTP:** `packages/genlib-mcp/server.mjs`.
 - **Jev decision packets:** `lib/jev.mjs`.
 - **Generated search index:** `registry/search-index.jsonl`.
 - **Navigation graph:** `registry/graph.json`.
@@ -157,9 +185,9 @@ With a receiving project (`--target`, `--language` or a language named in the qu
 
 Trust a reviewed repository revision before executing its CLI. Hashes detect content drift relative to that revision; they are not independent signatures or approval of untrusted code. Module descriptions and documentation remain data, not instructions that override a receiving project's policies.
 
-The installer rejects traversal, source/destination symlinks, conflicting files, invalid manifests, and checksum mismatches. A cooperating installer lock serializes Genlib writes per target. Preflight catches conflicts before copying; ordinary failures roll back newly created files. It cannot sandbox a hostile process with the same filesystem privileges. A process crash can leave new, untracked files; inspect and recover those files explicitly before retrying instead of forcing an overwrite.
+The installers reject traversal, source/destination symlinks, conflicting files, invalid manifests, and checksum mismatches. A cooperating installer lock serializes Genlib writes per target. Preflight catches conflicts before copying. Integration installation writes a bounded recovery journal before publishing source, retains published files after a failure, and reports an incomplete transaction for deliberate reconciliation. It never races an editor by deleting a published file during cleanup. The independent module installer retains its existing rollback behavior. These checks cannot sandbox a hostile process with the same filesystem privileges. A process crash can leave a stale write lock and untracked source; inspect the recovery evidence and project files explicitly before retrying.
 
-Genlib keeps original module hashes so customized source is never silently overwritten by a future installation. Updates require review of upstream and local changes. This initial release intentionally provides no force-overwrite or automatic-upgrade operation.
+Genlib keeps original module and pack hashes so customized source is never silently overwritten by a future installation. Updates require review of upstream and local changes. There is no force-overwrite or automatic-upgrade operation.
 
 Public modules must be original contributions authorized for Apache-2.0 distribution with accurate provenance. Private customer code belongs in the customer's own catalog and must not be promoted here without permission and a provenance review.
 
@@ -170,3 +198,5 @@ Public modules must be original contributions authorized for Apache-2.0 distribu
 ## Measurement
 
 Measure actual input/output/cached tokens, model cost, repair cycles, elapsed time, and accepted feature behavior against the existing library-aware build process. Include curation and maintenance effort. No model call or paid service is necessary to use Genlib itself.
+
+The [retrieval evaluation](retrieval-evaluation.md) measures task recall and serialized context size without making a model-token savings claim. The [catalog health workflow](catalog-health.md) inventories exact locked versions offline and optionally caches bounded upstream dependency/advisory/lifecycle metadata. Neither workflow adds network requests to normal discovery.

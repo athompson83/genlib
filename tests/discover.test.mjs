@@ -19,7 +19,7 @@ async function project(t, files) {
 
 test('loads every source catalog and reports counts', async () => {
   const counts = sourceCounts(await loadSources());
-  for (const type of ['module', 'recipe', 'language-example', 'template', 'tool', 'resource']) assert.ok(counts[type] > 0, type);
+  for (const type of ['module', 'integration', 'recipe', 'language-example', 'template', 'tool', 'resource']) assert.ok(counts[type] > 0, type);
 });
 
 test('query terms stem plurals and add reviewed synonyms without duplicating words', () => {
@@ -212,7 +212,10 @@ test('the emitted install command matches the project framework, and quick keeps
   for (const [framework, adapter] of [['svelte', '@tanstack/svelte-table'], ['vue', '@tanstack/vue-table'], ['react', '@tanstack/react-table'], ['solid', '@tanstack/solid-table']]) {
     const results = findInSources(sources, 'tanstack table', { profile: { languages: ['typescript'], frameworks: [framework] }, limit: 5 }).results;
     const table = results.find(result => result.id === 'tanstack-table');
-    assert.equal(table.next[0], `npm install ${adapter}   # ${framework} adapter`, framework);
+    // The framework's adapter is the install step; the React-only data-workbench pack is offered to React apps only, first.
+    assert.equal(table.next.find(step => step.startsWith('npm install')), `npm install ${adapter}   # ${framework} adapter`, framework);
+    assert.equal(table.next.some(step => step.includes('integration inspect web-data-workbench')), framework === 'react', framework);
+    if (framework !== 'react') assert.equal(table.next[0], `npm install ${adapter}   # ${framework} adapter`, framework);
     assert.ok(!table.next.some(step => /@tanstack\/(react|vue|svelte|solid)-table/.test(step) && !step.includes(adapter)), framework);
   }
   // A React-only package (its package name says react) does not fit Vue even if its tags list vue.

@@ -10,6 +10,9 @@ flowchart LR
   Graph["registry/graph.json<br/>+ Obsidian export"]
   C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
   M["Modules"]
+  P["Integration packs<br/>(multi-file features,<br/>native and dev profiles)"]
+  PackPlan["integration plan · add<br/>+ integrations-lock"]
+  Shadcn["registry.json<br/>npx shadcn add<br/>athompson83/genlib/{item}"]
   R["Recipes and<br/>language examples"]
   T["Templates"]
   N["Navigation tools"]
@@ -30,7 +33,9 @@ flowchart LR
   App["Adapt to the app<br/>and run its tests"]
   Task --> Quick --> Find
   Quick -.-> Outline -.-> App
-  Find --> C & M & R & T & N & S & X & D
+  Find --> C & M & P & R & T & N & S & X & D
+  P --> PackPlan --> Verify
+  Shadcn -.-> App
   X -.-> Source -.-> App
   Index -.-> Jev -.-> Find
   MCP -.-> Find

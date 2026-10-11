@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "web-calendar-files",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Calendar export and controlled file trees",
+  "summary": "React Big Calendar with explicit timed/all-day event rules, stable iCalendar generation, and React Arborist mutations that preserve identity and prevent cycles.",
+  "languages": [
+    "typescript",
+    "css"
+  ],
+  "frameworks": [
+    "react"
+  ],
+  "platforms": [
+    "browser",
+    "node"
+  ],
+  "resources": [
+    "react-big-calendar",
+    "ical-generator",
+    "react-arborist"
+  ],
+  "tags": [
+    "calendar",
+    "scheduling",
+    "icalendar",
+    "files",
+    "tree",
+    "drag-drop"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/events.json",
+    "fixtures/files.json",
+    "package-lock.json",
+    "package.json",
+    "src/FileTree.tsx",
+    "src/Scheduler.tsx",
+    "src/events.ts",
+    "src/ical.ts",
+    "src/styles.css",
+    "src/tree-model.ts",
+    "tests/calendar-files.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/Scheduler.tsx",
+    "src/events.ts",
+    "src/ical.ts",
+    "src/FileTree.tsx",
+    "src/tree-model.ts"
+  ],
+  "compatibility": {
+    "reactMajors": [
+      18,
+      19
+    ]
+  },
+  "verification": {
+    "level": "tested",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0 + React/ReactDOM 19.3.0; TypeScript build and four tests covering real ical-generator output across DST/all-day cases and Arborist move/index/tree invariants."
+    ],
+    "notes": [
+      "React 18 is peer-compatible but unexecuted; browser calendar/tree keyboard, drag/drop and calendar-client import were not tested.",
+      "The calendar displays timed events in the browser local zone; recurrence expansion, remote calendar sync, availability checks and atomic persistence are application responsibilities."
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+version: v2
+plugins:
+  - local: [go, -C, connect-go, tool, protoc-gen-go]
+    out: connect-go/generated
+    opt: paths=source_relative
+  - local: [go, -C, connect-go, tool, protoc-gen-connect-go]
+    out: connect-go/generated
+    opt: paths=source_relative

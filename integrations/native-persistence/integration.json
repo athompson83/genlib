@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "id": "native-persistence",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Native SQLite repositories and migrations",
+  "summary": "Original SQLDelight Kotlin/JVM+iOS and GRDB Swift repository profiles with transactions, parameterized queries and versioned SQLite migration fixtures.",
+  "languages": [
+    "kotlin",
+    "swift",
+    "sql",
+    "python"
+  ],
+  "frameworks": [
+    "sqldelight",
+    "grdb",
+    "kotlin-multiplatform",
+    "swift-package-manager"
+  ],
+  "platforms": [
+    "android",
+    "ios",
+    "macos",
+    "linux",
+    "windows"
+  ],
+  "resources": [
+    "sqldelight",
+    "grdb-swift"
+  ],
+  "tags": [
+    "native",
+    "sqlite",
+    "persistence",
+    "migration",
+    "transaction",
+    "kotlin",
+    "swift"
+  ],
+  "entrypoints": [
+    "CONTRACT.md",
+    "kotlin/build.gradle.kts",
+    "kotlin/src/commonMain/kotlin/dev/genlib/inventory/InventoryRepository.kt",
+    "swift/Package.swift",
+    "swift/Sources/InventoryStore/InventoryStore.swift",
+    "tests/test_sql_profile.py"
+  ],
+  "verification": {
+    "level": "experimental",
+    "profiles": [
+      "Linux x86_64, Python 3.12.14 / SQLite: 2 tests passed for the original schema, additive migration, constraints and transaction rollback."
+    ],
+    "commands": [
+      "python3 tests/test_sql_profile.py",
+      "gradle -p kotlin jvmTest",
+      "gradle -p kotlin verifySqlDelightMigration",
+      "swift test --package-path swift"
+    ],
+    "notes": [
+      "Python SQLite success does not establish Kotlin or Swift compilation. Gradle/Kotlin, Swift and Xcode were unavailable; native profiles are unexecuted.",
+      "SQLDelight 2.4.1 / Kotlin 2.4.21 and GRDB 7.11.1 / Swift 6.1+ are pinned source profiles. Select a compatible Gradle version and commit native dependency locks after verified resolution.",
+      "Kotlin/iOS compilation additionally requires macOS/Xcode: gradle -p kotlin compileKotlinIosSimulatorArm64.",
+      "The version-one schema database is an original Genlib fixture, not third-party data. Host owns database lifecycle, migrations, backups, encryption and concurrency."
+    ]
+  },
+  "files": [
+    ".gitignore",
+    "CONTRACT.md",
+    "fixtures/v1.sql",
+    "kotlin/build.gradle.kts",
+    "kotlin/settings.gradle.kts",
+    "kotlin/src/commonMain/kotlin/dev/genlib/inventory/InventoryRepository.kt",
+    "kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/1.db",
+    "kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/1.sqm",
+    "kotlin/src/commonMain/sqldelight/dev/genlib/inventory/db/Item.sq",
+    "kotlin/src/iosMain/kotlin/dev/genlib/inventory/IosDatabase.kt",
+    "kotlin/src/jvmMain/kotlin/dev/genlib/inventory/JvmDatabase.kt",
+    "kotlin/src/jvmTest/kotlin/dev/genlib/inventory/InventoryRepositoryTest.kt",
+    "swift/Package.swift",
+    "swift/Sources/InventoryStore/InventoryStore.swift",
+    "swift/Tests/InventoryStoreTests/InventoryStoreTests.swift",
+    "tests/test_sql_profile.py"
+  ]
+}

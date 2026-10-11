@@ -2,7 +2,7 @@
 
 Meta tags, sitemaps, robots rules, structured data (JSON-LD), Open Graph images, crawlers and audits, llms.txt and AI-crawler rules for answer-engine optimization (AEO/GEO), keyword and readability analysis, feeds, short links, UTM builders and QR codes.
 
-Every record here was checked against its registry or repository on 2026-10-10: the package or repository exists, is not deprecated, and its license comes from registry metadata or the LICENSE file. Popularity is the registry's own number (monthly downloads, total downloads, importers or GitHub stars) and is only comparable within one ecosystem. Records marked `license-review` are copyleft, commercial or have no declared license; decide before embedding them. Platform terms change often: prefer official APIs, keep keys and user tokens on the server, and honor consent and unsubscribe laws.
+Imported registry and repository metadata is a starting point for source selection. A reachable package does not establish current provider availability, integration readiness or rights to every product feature. Lifecycle and license-scope corrections reviewed on 2026-10-10 are documented in [the integration expansion guide](integration-expansion.md); retired service wrappers are retained only for migration discovery and excluded from ordinary recommendations. Review the exact record and current provider terms before adoption.
 
 ## Find and install
 

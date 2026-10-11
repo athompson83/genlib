@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: Apache-2.0
+syntax = "proto3";
+package genlib.inventory.v1;
+option go_package = "dev.genlib/inventory-connect/generated/genlib/inventory/v1;inventoryv1";
+message Item { string id = 1; string title = 2; bool completed = 3; }
+message CreateItemRequest { string title = 1; }
+message CreateItemResponse { Item item = 1; }
+message GetItemRequest { string id = 1; }
+message GetItemResponse { Item item = 1; }
+message ListItemsRequest { int32 cursor = 1; int32 page_size = 2; }
+message ListItemsResponse { repeated Item items = 1; int32 next_cursor = 2; }
+service InventoryService {
+  rpc CreateItem(CreateItemRequest) returns (CreateItemResponse);
+  rpc GetItem(GetItemRequest) returns (GetItemResponse);
+  rpc ListItems(ListItemsRequest) returns (ListItemsResponse);
+}

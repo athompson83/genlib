@@ -181,3 +181,10 @@ Read the chosen entry using `node tools/resources.mjs inspect <id> --json` befor
 Use [templates/ui/selection.json](../../templates/ui/selection.json) as a review record. Fill in the exact release/commit, source paths, license evidence, selected components, dependency impact and tests performed. Leave unverified results unverified. Do not store keys, tokens, downloaded private content or another customer's source in public Genlib.
 
 For agent-driven work, search compact metadata, read one contract, adopt the minimum code and record real behavior checks. A gallery link is a reference; a callable adapter is code; a deployed integration needs separate runtime evidence.
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Editable data tables, search and time series](../../integrations/web-data-workbench/CONTRACT.md): `tanstack-table`.
+- [Schema forms, page editing and input primitives](../../integrations/web-forms-editor/CONTRACT.md): `radix-primitives`, `react-aria`.

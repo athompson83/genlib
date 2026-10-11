@@ -69,7 +69,7 @@ Records are automatically link/license checked (`verification: partial`, 2026-10
 
 | Need | Pick | Why / when | License |
 | --- | --- | --- | --- |
-| Instead of hand-building cart, checkout, order and inventory modules for a custom storefront | `medusa` | Modular headless commerce platform in TypeScript/Node with carts, orders, payments, fulfillment and an admin dashboard. | MIT |
+| Instead of hand-building cart, checkout, order and inventory modules for a custom storefront | `medusa` | Modular headless commerce platform in TypeScript/Node with carts, orders, payments, fulfillment and an admin dashboard. | MIT core; separate Enterprise terms |
 | Instead of building a GraphQL commerce backend (catalog, orders, promotions, channels) from scratch | `vendure` | Headless TypeScript/NestJS commerce framework with a GraphQL API, plugin system and admin UI. **License review.** | GPL-3.0-or-later |
 | Instead of hand-writing Storefront API queries, cart state and SEO helpers for a headless Shopify store | `shopify-hydrogen` | React Router-based framework and components for building custom Shopify storefronts on the Storefront API. | MIT |
 | Instead of building a Laravel storefront, catalog and order admin from scratch | `bagisto` | Laravel/PHP e-commerce platform with multi-channel, multi-currency and marketplace extensions. | MIT |
@@ -225,3 +225,15 @@ Records are automatically link/license checked (`verification: partial`, 2026-10
 | Instead of hand-building a consent banner, preference storage and conditional loading of analytics scripts | `cookieconsent` | Lightweight, dependency-free cookie consent banner and preferences modal with category-based script blocking. | MIT |
 | A client needs a managed consent platform with legal updates instead of a self-maintained banner | `osano` | Commercial consent-management and privacy platform (cookie consent, DSAR, vendor monitoring). | see record |
 | A small site owner wants generated policies and a managed consent banner rather than custom legal text | `termly` | Commercial service for generating privacy policies and terms and running a cookie-consent banner. | see record |
+
+## Medusa source boundary
+
+[Medusa repository terms](https://github.com/medusajs/medusa) distinguish the MIT core from identified Enterprise Edition materials. Review exact package/files and retain notices; do not interpret `SEE LICENSE IN LICENSE` package metadata as permission for every repository feature. The original Genlib storefront integration may use reviewed core interfaces without copying Enterprise source.
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Authorization and collaborative state](../../integrations/authorization-collaboration/CONTRACT.md): `openfga`.
+- [Medusa core storefront and explicit checkout](../../integrations/commerce-storefront/CONTRACT.md): `medusa`.
+- [Invoices, PDF templates, email and spreadsheet exports](../../integrations/document-pipeline/CONTRACT.md): `react-email`.

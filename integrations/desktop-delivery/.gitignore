@@ -1,0 +1,10 @@
+node_modules/
+**/target/
+**/bin/
+**/obj/
+**/build/
+artifacts/
+!wails/frontend/dist/
+!wails/frontend/dist/**
+tauri/src-tauri/gen/
+wails/frontend/wailsjs/

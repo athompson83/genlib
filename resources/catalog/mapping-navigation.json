@@ -47084,7 +47084,9 @@
       "useWhen": "Use for forecasts, radar and storm tracks instead of running weather models.",
       "cautions": [
         "Free API is non-commercial and rate-limited; commercial use needs a subscription.",
-        "Attribution is required wherever the data is shown."
+        "Attribution is required wherever the data is shown.",
+        "Free hosted access is noncommercial; commercial hosted use requires a subscription/customer endpoint.",
+        "Open-source server and weather-data licenses do not erase hosted-service terms."
       ],
       "tags": [
         "mapping",
@@ -47098,7 +47100,9 @@
       "projectTypes": [
         "web-app",
         "mobile-app",
-        "data-analytics"
+        "data-analytics",
+        "api-backend",
+        "saas"
       ],
       "attachments": [],
       "sources": [
@@ -47116,12 +47120,27 @@
         }
       ],
       "genlib": {
-        "module": null,
+        "module": "public-data-clients",
         "guide": "docs/resources/mapping-navigation.md"
       },
       "install": [
         "Read the provider docs, keep any key on the server, cache within the terms and show the required attribution."
-      ]
+      ],
+      "readiness": {
+        "level": "recipe-available",
+        "profiles": [
+          "node24-typescript-mock-transport"
+        ],
+        "evidence": [
+          "modules/public-data-clients/CONTRACT.md",
+          "tests/public-data-clients.test.mjs"
+        ]
+      },
+      "lifecycle": {
+        "status": "active",
+        "reviewedAt": "2026-10-10",
+        "source": "https://open-meteo.com/en/docs"
+      }
     },
     {
       "id": "pydeck",

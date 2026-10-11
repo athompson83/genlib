@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: Apache-2.0
+appId: ${APP_ID}
+name: Permission denial keeps inventory usable
+---
+- launchApp:
+    clearState: true
+    permissions:
+      camera: deny
+- tapOn: "Email"
+- inputText: "fixture@example.invalid"
+- tapOn: "Password"
+- inputText: "fixture-only"
+- tapOn: "Sign in"
+- tapOn: "Settings"
+- tapOn: "Request camera permission"
+- assertVisible: "Camera (denied|blocked)"
+- tapOn: "Inventory"
+- tapOn: "Item title"
+- inputText: "No camera needed"
+- tapOn: "Add item"
+- assertVisible: "No camera needed"

@@ -9,8 +9,15 @@ flowchart TB
     RES["resources/*.json<br/>resources/catalog/*.json<br/>(incl. marketing-*, social-media,<br/>dashboards, scheduling-calendar,<br/>chat-messaging, open-source-tools,<br/>finance-accounting, business-tools,<br/>education, ai-learning,<br/>mapping-navigation)<br/>resources/project-types.json"]
     SKL["resources/skills.json<br/>1,066 pinned agent skills"]
     IDX["resources/mcp-servers.json<br/>clis.json · apis.json<br/>starters.json · task-recipes.json<br/>ranked install indexes"]
+    INTEG["integrations/{id}/<br/>manifest · CONTRACT.md<br/>source · fixtures"]
   end
   REG["registry/catalog.json<br/>registry/manifests/*.json<br/>(SHA-256)"]
+  INTREG["registry/integrations.json<br/>pack integrity"]
+  INTLIB["lib/integrations.mjs<br/>integration plan · add · verify"]
+  SHAD["registry.json<br/>shadcn-format registry"]
+  SDKMCP["packages/genlib-mcp<br/>direct SDK server<br/>scoped root · write opt-in"]
+  HEALTH["lib/catalog-health.mjs<br/>deps.dev · OSV · endoflife"]
+  CHK["catalog-health workflow<br/>daily sample · weekly install"]
   DISC["lib/discover.mjs<br/>find · detect · catalog"]
   CAPLIB["lib/capabilities.mjs<br/>capability list · inspect"]
   SKLIB["lib/skills.mjs<br/>skill find · inspect"]
@@ -36,6 +43,13 @@ flowchart TB
   VAULT["Obsidian vault<br/>(generated notes only)"]
   SKILL["skills/genlib-use"]
   MOD -- "npm run registry:build" --> REG
+  INTEG -- "npm run integrations:build" --> INTREG --> DISC
+  INTREG --> INTLIB --> CLI
+  INTLIB --> SDKMCP -. "stdio · Streamable HTTP" .-> JEVX
+  INTLIB -- "copies reviewed bytes" --> APP
+  MOD & REC -- "npm run shadcn:build" --> SHAD
+  SHAD -. "npx shadcn add athompson83/genlib/{item}" .-> APP
+  HEALTH -. "maintainers" .-> NET
   REG --> DISC
   REC --> DISC
   LANG --> DISC
@@ -60,6 +74,7 @@ flowchart TB
   SKLIB -. "npx skills add (pinned)" .-> APP
   IDXLIB -. "mcp add · brew · SDK" .-> APP
   RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
+  RES -.-> CHK -. "rotating sample" .-> NET
   REG & RES --> DOCS
   DOCS_MD -. "npm run diagrams:render" .-> DIAG
   SIDX -. "grep / own retrieval" .-> JEVX

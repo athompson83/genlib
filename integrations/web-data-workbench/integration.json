@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "web-data-workbench",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Editable data tables, search and time series",
+  "summary": "Shared versioned row edits and query contracts across TanStack Table, Tabulator and Glide, plus MiniSearch indexing and uPlot with semantic fallbacks.",
+  "languages": [
+    "typescript",
+    "css"
+  ],
+  "frameworks": [
+    "react"
+  ],
+  "platforms": [
+    "browser",
+    "node"
+  ],
+  "resources": [
+    "tanstack-table",
+    "tabulator",
+    "glide-data-grid",
+    "minisearch",
+    "uplot"
+  ],
+  "tags": [
+    "data-table",
+    "grid",
+    "search",
+    "charts",
+    "editing",
+    "pagination",
+    "react18"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/inventory.json",
+    "package-lock.json",
+    "package.json",
+    "src/GlideGrid.tsx",
+    "src/TanStackTable.tsx",
+    "src/TimeSeriesChart.tsx",
+    "src/model.ts",
+    "src/search.ts",
+    "src/series.ts",
+    "src/styles.css",
+    "src/tabulator.ts",
+    "src/useDataSource.ts",
+    "tests/workbench.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/model.ts",
+    "src/TanStackTable.tsx",
+    "src/tabulator.ts",
+    "src/GlideGrid.tsx",
+    "src/search.ts",
+    "src/TimeSeriesChart.tsx",
+    "src/useDataSource.ts"
+  ],
+  "compatibility": {
+    "reactMajors": [
+      18
+    ]
+  },
+  "verification": {
+    "level": "tested",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0 + React/ReactDOM 18.3.1; TypeScript build and five tests covering versioned edit batches, query validation, real MiniSearch updates, aligned time series and real TanStack v9 server rendering."
+    ],
+    "notes": [
+      "Stable Glide 6.0.3 limits this combined pack to React 18; React 19 is unsupported by this profile.",
+      "Tabulator/Glide browser editing, uPlot canvas/resize and device/accessibility acceptance were not exercised; semantic previews are bounded and need server pagination for full datasets."
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    { "type": "Control", "scope": "#/properties/name" },
+    { "type": "Control", "scope": "#/properties/email" },
+    { "type": "Control", "scope": "#/properties/business" },
+    { "type": "Control", "scope": "#/properties/company", "rule": { "effect": "SHOW", "condition": { "scope": "#/properties/business", "schema": { "const": true } } } },
+    { "type": "Control", "scope": "#/properties/contacts" }
+  ]
+}

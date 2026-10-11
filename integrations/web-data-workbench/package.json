@@ -1,0 +1,37 @@
+{
+  "name": "@genlib-integration/web-data-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@tanstack/react-table": "9.2.8",
+    "tabulator-tables": "6.6.1",
+    "@glideapps/glide-data-grid": "6.0.3",
+    "lodash": "4.17.21",
+    "marked": "4.3.0",
+    "react-responsive-carousel": "3.2.23",
+    "minisearch": "7.2.0",
+    "uplot": "1.6.32"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "@types/node": "26.6.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@types/react": "18.3.27",
+    "@types/react-dom": "18.3.7",
+    "@types/tabulator-tables": "6.3.6"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

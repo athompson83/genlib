@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "genlib",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "repository": "https://github.com/athompson83/genlib",
   "license": {
     "id": "Apache-2.0",
@@ -237,6 +237,40 @@
       "verification": "tested",
       "manifest": "registry/manifests/org-invitations@0.1.0.json",
       "sha256": "cdc8313c3beb9f6429bd03140c687aad49f7431be132ac8fec9ecfb43913e7d5"
+    },
+    {
+      "id": "public-data-clients",
+      "version": "0.1.0",
+      "title": "Public data and catalog maintenance clients",
+      "description": "Server-only TypeScript adapters for Frankfurter, NWS, Census, vPIC, Crossref, GLEIF, ROR, Open Food Facts, Open-Meteo, deps.dev, OSV and endoflife.date with injected transport, bounded responses, conditional cache metadata and normalized errors.",
+      "kind": "utility",
+      "tags": [
+        "api",
+        "read-only",
+        "public-data",
+        "weather",
+        "currency",
+        "census",
+        "vin",
+        "doi",
+        "lei",
+        "ror",
+        "food",
+        "dependencies",
+        "vulnerabilities",
+        "lifecycle",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/public-data-clients@0.1.0.json",
+      "sha256": "6aaa94bd356d330fe7b1df71df9db8692e76c5f77d5cb2018f376dd619c51338"
     },
     {
       "id": "rate-limit",

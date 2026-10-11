@@ -1,6 +1,6 @@
 # Use Genlib from Claude Code, Codex, or another coding harness
 
-Genlib includes a portable `genlib-use` skill. Its workflow searches compact metadata, checks one candidate's contract, copies source with the CLI, and focuses model work on integration and customization. The skill does not require a Genisys account or an MCP server. It requires a trusted local checkout and a harness with permission to read and run local tools.
+Genlib includes a portable `genlib-use` skill. Its workflow searches compact metadata, checks one candidate's contract, plans and copies source, and focuses model work on integration and customization. It uses an available direct Genlib MCP connection or a trusted local checkout and the CLI. The skill does not require a Genisys account; the receiving harness controls which tools and project operations are authorized.
 
 ## Install into an application project
 
@@ -26,6 +26,8 @@ Commit the installed skill with the receiving project if it should be shared wit
 
 ## Make the registry available
 
+For a connected workflow, configure the [direct Genlib MCP server](mcp-server.md). The skill uses `genlib_search`, `genlib_inspect`, `genlib_read_file` and the matching plan/verify tools. The client needs no arbitrary file access to the server's checkout. Project operations require the server's configured project root, and copying source additionally requires startup write opt-in. Install optional MCP dependencies in the trusted server checkout using the connection guide.
+
 The installed skill is intentionally small; it does not contain all module source. Keep a separate trusted checkout of [athompson83/genlib](https://github.com/athompson83/genlib), select a reviewed commit, and provide its absolute directory as `GENLIB_ROOT` in the shell or harness environment. Provide the application's existing package directory as `APP_ROOT` when running the reference commands.
 
 The copied skill's [bootstrap reference](../skills/genlib-use/references/bootstrap.md) explains this process without assuming its location is inside the Genlib repository. A cloud coding environment needs its own accessible checkout. The installer does not fetch code, run package hooks, install dependencies, or configure credentials.
@@ -44,7 +46,7 @@ Example Codex task:
 }
 ```
 
-For Claude Code, invoke `/genlib-use` and supply the same task details. For another harness, load the skill only through the user's authorized skill mechanism. The workflow uses ordinary file access and CLI operations; it does not assume a particular model, provider, or orchestrator.
+For Claude Code, invoke `/genlib-use` and supply the same task details. For another harness, load the skill only through the user's authorized skill mechanism. The workflow uses the connected MCP tools or ordinary local file access and CLI operations; it does not assume a particular model, provider, or orchestrator.
 
 ## Maintain one source of truth
 

@@ -2434,6 +2434,89 @@
    }
   },
   {
+   "name": "public-data-clients",
+   "type": "registry:item",
+   "title": "Public data and catalog maintenance clients",
+   "description": "Server-only TypeScript adapters for Frankfurter, NWS, Census, vPIC, Crossref, GLEIF, ROR, Open Food Facts, Open-Meteo, deps.dev, OSV and endoflife.date with injected transport, bounded responses, conditional cache metadata and normalized errors.",
+   "files": [
+    {
+     "path": "modules/public-data-clients/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/http.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/frankfurter.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/frankfurter.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/nws.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/nws.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/census.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/census.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/vpic.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/vpic.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/crossref.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/crossref.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/gleif.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/gleif.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/ror.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/ror.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/open-food-facts.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/open-food-facts.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/open-meteo.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/open-meteo.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/deps-dev.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/deps-dev.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/osv.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/osv.ts"
+    },
+    {
+     "path": "modules/public-data-clients/files/endoflife.ts",
+     "type": "registry:file",
+     "target": "~/genlib/public-data-clients/endoflife.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "utility"
+   ],
+   "docs": "Genlib module public-data-clients@0.1.0 (Apache-2.0). Configure: Inject a trusted Fetch implementation, application identification and explicit server credential callbacks. Use a configured HTTPS origin only; never derive origins or credentials from an incoming request. Census data queries require a key. Open-Meteo hosted access requires an explicit noncommercial or customer subscription profile. Configure request deadlines and decoded response byte limits; retries are opt-in and bounded. Applications own caching, cross-process quotas, source attribution, authorization and live acceptance. Contract: https://github.com/athompson83/genlib/blob/main/modules/public-data-clients/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "rate-limit",
    "type": "registry:item",
    "title": "Rate limit",

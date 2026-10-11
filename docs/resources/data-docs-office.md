@@ -240,3 +240,9 @@ This guide indexes the `resources/catalog/data-docs-office.json` shard. Choose b
 - SheetJS: do not install the stale npm `xlsx` release; use the version-pinned tarball from the official docs.
 - PyMuPDF, Metabase, PlantUML and Pandoc carry copyleft terms; tldraw needs a production license key; docxtemplater has paid modules.
 - Material for MkDocs is in maintenance mode; check project status before new adoption.
+
+## Genlib integration packs
+
+These resource records include sorted `genlib.integrations` bindings and `readiness.level: recipe-available` with the contract as evidence. Read each contract for its supported profile, actual verification and remaining application work. Existing source/license review and module bindings are preserved.
+
+- [Invoices, PDF templates, email and spreadsheet exports](../../integrations/document-pipeline/CONTRACT.md): `exceljs`, `gotenberg`, `papaparse`.

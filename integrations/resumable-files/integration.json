@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "resumable-files",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "title": "Resumable uploads and ZIP exports",
+  "summary": "Uppy Dashboard and headless tus adapters with scoped resume, refreshed credentials, tusd ownership hooks, and bounded ZIP export.",
+  "languages": [
+    "typescript"
+  ],
+  "frameworks": [
+    "any"
+  ],
+  "platforms": [
+    "browser",
+    "node"
+  ],
+  "resources": [
+    "tus-js-client",
+    "tusd",
+    "uppy-core",
+    "zip-js"
+  ],
+  "tags": [
+    "uploads",
+    "resumable",
+    "files",
+    "archive",
+    "authorization",
+    "tus"
+  ],
+  "files": [
+    "CONTRACT.md",
+    "fixtures/archive.json",
+    "fixtures/tusd-hook.json",
+    "package-lock.json",
+    "package.json",
+    "src/archive.ts",
+    "src/policy.ts",
+    "src/tus-upload.ts",
+    "src/tusd-hooks.server.ts",
+    "src/uppy.ts",
+    "tests/files.test.mjs",
+    "tsconfig.json"
+  ],
+  "entrypoints": [
+    "src/uppy.ts",
+    "src/tus-upload.ts",
+    "src/tusd-hooks.server.ts",
+    "src/archive.ts"
+  ],
+  "verification": {
+    "level": "tested",
+    "commands": [
+      "npm ci --ignore-scripts",
+      "npm test"
+    ],
+    "profiles": [
+      "Node 24.19.0; TypeScript build and six tests including a real tus-js-client transfer against a local HTTP fixture, zip.js round trips, and tusd hook adapter checks."
+    ],
+    "notes": [
+      "Uppy Dashboard browser interactions and a deployed tusd/auth gateway/storage backend were not exercised.",
+      "The host must authenticate every upload resource request and persist quota/ownership/completion state; MIME and fingerprint checks are client hints."
+    ]
+  }
+}

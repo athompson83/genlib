@@ -1,0 +1,30 @@
+{
+  "changes": [
+    {
+      "kind": "add",
+      "id": "one",
+      "title": "  Ship integration  "
+    },
+    {
+      "kind": "add",
+      "id": "two",
+      "title": "Review API"
+    },
+    {
+      "kind": "complete",
+      "id": "one",
+      "completed": true
+    },
+    {
+      "kind": "remove",
+      "id": "two"
+    }
+  ],
+  "expected": [
+    {
+      "id": "one",
+      "title": "Ship integration",
+      "completed": true
+    }
+  ]
+}
