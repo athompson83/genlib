@@ -134,7 +134,39 @@
           "maxItems": 20,
           "items": { "$ref": "#/$defs/relativePath", "pattern": "^tests/" },
           "description": "Existing test files relative to the repository root."
+        },
+        "behaviors": {
+          "type": "array", "minItems": 1, "maxItems": 40, "items": { "type": "string", "minLength": 1 },
+          "description": "Behaviors the tests verify, one line each."
+        },
+        "command": { "type": "string", "maxLength": 300, "description": "The exact command that runs those tests." },
+        "environment": {
+          "type": "object", "additionalProperties": { "type": "string", "maxLength": 80 },
+          "description": "Tool names mapped to the versions the tests ran on."
         }
+      }
+    },
+    "changelog": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "changes"],
+        "properties": {
+          "version": { "$ref": "#/$defs/moduleVersion" },
+          "changes": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "type": "string", "minLength": 1 } }
+        }
+      },
+      "description": "Newest first; the first entry must be the current version."
+    },
+    "deprecated": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason"],
+      "properties": {
+        "reason": { "type": "string", "minLength": 1 },
+        "replacement": { "$ref": "#/$defs/moduleId" }
       }
     },
     "contract": { "const": "CONTRACT.md" }

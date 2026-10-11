@@ -41,6 +41,36 @@
       "sha256": "3c9c2d3065a2857c7987fc1303e33280134f938b8140858084dd86cbccb9f7d4"
     },
     {
+      "id": "comments",
+      "version": "0.1.0",
+      "title": "Threaded comments",
+      "description": "Threaded comments for any resource in a multi-tenant app: post and reply with a depth limit, @mentions, edit window, soft delete, paginated lists with reply previews, emoji reactions, user flags with auto-hide and moderation, with injected authorization, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "comments",
+        "threaded replies",
+        "discussion",
+        "reactions",
+        "mentions",
+        "moderation",
+        "flagging",
+        "multi-tenant",
+        "collaboration",
+        "feedback",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/comments@0.1.0.json",
+      "sha256": "443c9c74d78c6bb2c56f0dce68e9bcb64ab7f71491e81efb5a0a94ba78142d5b"
+    },
+    {
       "id": "common-api-clients",
       "version": "0.1.0",
       "title": "Common API clients",

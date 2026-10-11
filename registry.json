@@ -2369,6 +2369,49 @@
    }
   },
   {
+   "name": "comments",
+   "type": "registry:item",
+   "title": "Threaded comments",
+   "description": "Threaded comments for any resource in a multi-tenant app: post and reply with a depth limit, @mentions, edit window, soft delete, paginated lists with reply previews, emoji reactions, user flags with auto-hide and moderation, with injected authorization, a PostgreSQL store and a Fetch adapter.",
+   "files": [
+    {
+     "path": "modules/comments/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/comments/core.ts"
+    },
+    {
+     "path": "modules/comments/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/comments/memory-store.ts"
+    },
+    {
+     "path": "modules/comments/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/comments/http.ts"
+    },
+    {
+     "path": "modules/comments/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/comments/sql-store.ts"
+    },
+    {
+     "path": "modules/comments/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/comments/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module comments@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlCommentStore with your query executor; on other databases implement CommentStore with primary keys on (comment_id, user_id, emoji) and (comment_id, user_id) and an atomic flag counter. Implement authorize(actor, action, {tenantId, resourceType, resourceId}) for read, post and moderate from your own membership and resource-access checks. Implement authenticate(request) from your session or verified token, never from the request body. Tune editWindowMs, maxDepth, maxBodyLength, flagThreshold, previewReplies and the reactions allow-list; pass sanitize only if you store rich text. Resolve mentions to users and send notifications in your own code after post or edit; the module only extracts the handles. Mount createCommentHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/comments/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "common-api-clients",
    "type": "registry:item",
    "title": "Common API clients",

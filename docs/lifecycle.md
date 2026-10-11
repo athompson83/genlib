@@ -40,6 +40,7 @@ Every result names its type, verification level and the exact next command. Modu
 | | `notification-inbox` | module | In-app inbox: idempotent publish, unread counts, mark read, archive, retention |
 | | `csv-import` | module | CSV upload, column mapping, typed validation and idempotent commit with per-row errors |
 | | `org-invitations` | module | Tenant invitations: hashed one-time tokens, single-use accept, revoke, expiry, Fetch adapter |
+| | `comments` | module | Threaded comments with mentions, reactions, flags and moderation, plus a PostgreSQL schema and SQL store |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
 | | `chat-messaging` catalog (Mattermost, Rocket.Chat, Zulip, Chatwoot, Matrix, SimpleX, Socket.IO, bot SDKs) | resources | Team chat, live support, real-time messaging and bots in each language |
@@ -92,12 +93,12 @@ When no module, recipe or template covers a need, the resource catalog usually n
 
 ## Runtime reach of the server modules
 
-The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`, `entitlements`, `notification-inbox`, `csv-import`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
+The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`, `entitlements`, `notification-inbox`, `csv-import`, `comments`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
 
 ## What Genlib does not cover yet
 
 - Session management and user stores. The capabilities cover the protocol pieces (SSO request and token verification, SAML, MFA, passkeys, password hashing); use the framework's maintained session library or an identity provider for the rest.
-- Database migrations and background job queues. `org-invitations` ships a PostgreSQL schema and SQL store; other feature packages define store interfaces you implement.
+- Database migrations and background job queues. `org-invitations` and `comments` ship a PostgreSQL schema and SQL store; other feature packages define store interfaces you implement.
 - Native mobile or desktop UI. The React modules target the browser.
 - Platform-specific deployment (Vercel, Fly.io, AWS, app stores). Use the provider's documentation and the deployment runbook template.
 
