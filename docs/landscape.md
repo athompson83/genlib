@@ -82,7 +82,7 @@ These are the owner's findings. They are recorded as exclusions until each one i
 ### Next, in order
 
 3. A substantial feature provider (a BTST profile with framework and database setup and version-specific guidance), accepted against named behaviors.
-4. Shared evidence and maintenance across modules, integration packs and provider artifacts, including a three-way update for registry items (originals are already stored).
+4. Shared evidence and maintenance across modules, integration packs and provider artifacts. Registry items already have receipts, drift checks, removal and a three-way `registry update`; integration packs and external packages do not yet.
 5. More adapters (jsrepo, Mason, skill managers, starters, Convex profiles), each with a tested profile.
 6. Optional content-production workers (CodeDistiller, SkillFoundry, AREX-style), whose candidates count only after review and acceptance evidence.
 

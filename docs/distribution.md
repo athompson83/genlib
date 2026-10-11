@@ -33,6 +33,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" registry plan shadcn:login-01 --target "$APP_
 node "$GENLIB_ROOT/bin/genlib.mjs" registry add shadcn:login-01 --target "$APP_ROOT" --sha256 <hex>
 node "$GENLIB_ROOT/bin/genlib.mjs" adopted shadcn--login-01 --target "$APP_ROOT" --test "npm test"
 node "$GENLIB_ROOT/bin/genlib.mjs" registry verify --target "$APP_ROOT"
+node "$GENLIB_ROOT/bin/genlib.mjs" registry update shadcn--login-01 --target "$APP_ROOT"   # dry run; --write applies
 node "$GENLIB_ROOT/bin/genlib.mjs" registry remove shadcn--login-01 --target "$APP_ROOT"
 ```
 
@@ -41,7 +42,9 @@ node "$GENLIB_ROOT/bin/genlib.mjs" registry remove shadcn--login-01 --target "$A
 - **Add.** Writes only a conflict-free plan (`--keep-existing` keeps your differing files and leaves them unowned). Files are created exclusively, never overwritten. Ownership is recorded in `.genlib/providers-lock.json`, each item's original JSON in `.genlib/providers/`, and a receipt per item in `.genlib/receipts/shadcn--<name>.json`.
 - **Afterwards.** `adopted` counts application imports, not registry files importing each other. `registry verify` reports drift, and `registry remove` keeps edited files and refuses while another installed item depends on the one being removed.
 
-Genlib never runs the package manager or the shadcn CLI, and it does not merge CSS. A three-way `update` for registry items is not implemented yet; the stored originals make it possible.
+`registry update shadcn--<name> --target app [--write] [--conflict rej|inline]` fetches the registry's current version. It replaces unedited files and three-way merges edited ones against the stored original. Conflicts are written to `<file>.genlib-conflict` (or inline markers). New registry dependencies are reported for `registry add` rather than added silently. It is a dry run unless `--write`.
+
+Genlib never runs the package manager or the shadcn CLI, and it does not merge CSS.
 
 ## Agent skill (Skills CLI and APM)
 

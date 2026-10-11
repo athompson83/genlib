@@ -27,6 +27,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "feature_coverage": "node \"$GENLIB_ROOT/bin/genlib.mjs\" coverage stripe checkout and webhooks",
     "registry_item_plan": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry plan shadcn:login-01 --target \"$APP_ROOT\" --json",
     "registry_item_add": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry add shadcn:login-01 --target \"$APP_ROOT\" --sha256 <hex> --json",
+    "registry_item_update": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry update shadcn--login-01 --target \"$APP_ROOT\" --json",
     "output_schema": "node \"$GENLIB_ROOT/bin/genlib.mjs\" schema quick",
     "integration_list": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration list --json",
     "integration_inspect": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration inspect <id> --json",

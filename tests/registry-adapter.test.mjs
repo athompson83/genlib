@@ -6,7 +6,7 @@ import * as fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { addRegistry, itemUrl, planRegistry, removeRegistry, resolveItems, rewriteImports, verifyRegistry } from '../lib/registry-adapter.mjs';
+import { addRegistry, itemUrl, planRegistry, removeRegistry, resolveItems, rewriteImports, updateRegistry, verifyRegistry } from '../lib/registry-adapter.mjs';
 import { checkAdoption } from '../lib/lifecycle.mjs';
 
 const BASE = 'https://registry.example/r/';
@@ -129,4 +129,44 @@ test('verify reports drift; remove keeps edited files and refuses while a depend
   await removeRegistry(target, 'shadcn--button');
   assert.ok(await fs.stat(path.join(target, 'src/components/ui/button.tsx')), 'edited file kept');
   await assert.rejects(removeRegistry(target, 'shadcn--button'), { code: 'NOT_INSTALLED' });
+});
+
+test('update merges the registry\'s new version onto local edits, replaces unedited files and reports conflicts', async t => {
+  const target = await app(t);
+  const v1 = { name: 'widget', type: 'registry:ui', files: [
+    { path: 'registry/x/ui/widget.tsx', type: 'registry:ui', content: 'line 1\nline 2\nline 3\nline 4\nline 5\n' },
+    { path: 'registry/x/ui/widget-icon.tsx', type: 'registry:ui', content: 'icon v1\n' },
+    { path: 'registry/x/ui/widget-old.tsx', type: 'registry:ui', content: 'old\n' },
+  ] };
+  let current = Buffer.from(JSON.stringify(v1));
+  const url = `${BASE}widget.json`;
+  const serve = async requested => ({ ok: requested === url, status: 200, url: requested, arrayBuffer: async () => current });
+  await addRegistry(target, await resolveItems(url, { fetch: serve }));
+  assert.equal((await updateRegistry(target, 'shadcn--widget', { fetch: serve })).status, 'up-to-date');
+
+  // The app edits line 1; upstream changes line 5, the icon, drops widget-old and adds widget-new.
+  const widget = path.join(target, 'src/components/ui/widget.tsx');
+  await fs.writeFile(widget, 'line 1 (ours)\nline 2\nline 3\nline 4\nline 5\n');
+  current = Buffer.from(JSON.stringify({ ...v1, files: [
+    { ...v1.files[0], content: 'line 1\nline 2\nline 3\nline 4\nline 5 (upstream)\n' },
+    { ...v1.files[1], content: 'icon v2\n' },
+    { path: 'registry/x/ui/widget-new.tsx', type: 'registry:ui', content: 'new\n' },
+  ] }));
+  const dry = await updateRegistry(target, 'shadcn--widget', { fetch: serve });
+  assert.deepEqual(dry.files.map(file => [path.basename(file.path), file.action]), [['widget.tsx', 'merged'], ['widget-icon.tsx', 'replace'], ['widget-new.tsx', 'create'], ['widget-old.tsx', 'delete']]);
+  assert.equal(await fs.readFile(widget, 'utf8'), 'line 1 (ours)\nline 2\nline 3\nline 4\nline 5\n', 'dry run writes nothing');
+  const applied = await updateRegistry(target, 'shadcn--widget', { fetch: serve, write: true });
+  assert.deepEqual(applied.conflicts, []);
+  assert.equal(await fs.readFile(widget, 'utf8'), 'line 1 (ours)\nline 2\nline 3\nline 4\nline 5 (upstream)\n');
+  assert.equal(await fs.readFile(path.join(target, 'src/components/ui/widget-icon.tsx'), 'utf8'), 'icon v2\n');
+  assert.equal(await fs.stat(path.join(target, 'src/components/ui/widget-old.tsx')).catch(() => null), null);
+  assert.equal((await updateRegistry(target, 'shadcn--widget', { fetch: serve })).status, 'up-to-date');
+
+  // Both sides change the same line: a conflict file, the app's copy untouched.
+  await fs.writeFile(widget, 'line 1 (ours)\nline 2\nline 3\nline 4\nline 5 (ours too)\n');
+  current = Buffer.from(JSON.stringify({ ...v1, files: [{ ...v1.files[0], content: 'line 1\nline 2\nline 3\nline 4\nline 5 (upstream again)\n' }] }));
+  const clash = await updateRegistry(target, 'shadcn--widget', { fetch: serve, write: true });
+  assert.deepEqual(clash.conflicts, ['src/components/ui/widget.tsx']);
+  assert.equal(await fs.readFile(widget, 'utf8'), 'line 1 (ours)\nline 2\nline 3\nline 4\nline 5 (ours too)\n');
+  assert.match(await fs.readFile(widget + '.genlib-conflict', 'utf8'), /<<<<<<< your edits[\s\S]*>>>>>>> registry version/);
 });
