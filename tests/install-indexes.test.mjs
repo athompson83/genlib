@@ -94,3 +94,12 @@ test('starter and task indexes give pinned one-command installs and are searchab
   assert.match(text, /^1\. starter:/);
   assert.ok(text.length < 1500, 'index find text output stays compact');
 });
+
+test('MCP commands launch pinned versions and use distinct local names', async () => {
+  const { spawnSync } = await import('node:child_process');
+  const result = spawnSync(process.execPath, ['scripts/mcp-index.mjs', '--check'], { encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  const mcp = await loadIndex('mcp');
+  const pg = mcp.entries.find(entry => entry.id === 'io-github-pgedge-postgres-mcp');
+  assert.match(pg.install.claude[0], /^claude mcp add postgres-pgedge -- docker run -i --rm ghcr\.io\/pgedge\/postgres-mcp:1\.0\.0@sha256:[0-9a-f]{64}$/);
+});

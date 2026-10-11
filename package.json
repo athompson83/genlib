@@ -58,7 +58,7 @@
     "obsidian:export": "node scripts/export-obsidian.mjs",
     "mcp": "node bin/genlib-mcp.mjs",
     "capabilities:build": "node scripts/build-capabilities.mjs",
-    "capabilities:check": "node scripts/build-capabilities.mjs --check && node scripts/api-install.mjs --check"
+    "capabilities:check": "node scripts/build-capabilities.mjs --check && node scripts/api-install.mjs --check && node scripts/mcp-index.mjs --check"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
