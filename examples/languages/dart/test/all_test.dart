@@ -74,6 +74,18 @@ import 'wave11_test.dart'
         runPunycodeTests,
         runRomanNumeralsTests,
         runTemplateRenderTests;
+import 'wave12_test.dart'
+    show
+        runBloomFilterTests,
+        runIntervalMergeTests,
+        runMarkdownTableTests,
+        runNdjsonTests,
+        runNumberWordsTests,
+        runPaginationWindowTests,
+        runShellQuoteTests,
+        runStatsSummaryTests,
+        runTextWrapTests,
+        runUrlTemplateTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -151,5 +163,15 @@ void main() {
   runPiiMaskTests(c);
   runPasswordGenerateTests(c);
   runHtmlEscapeTests(c);
+  runUrlTemplateTests(c);
+  runBloomFilterTests(c);
+  runStatsSummaryTests(c);
+  runIntervalMergeTests(c);
+  runShellQuoteTests(c);
+  runNumberWordsTests(c);
+  runPaginationWindowTests(c);
+  runTextWrapTests(c);
+  runMarkdownTableTests(c);
+  runNdjsonTests(c);
   c.finish();
 }

@@ -5005,6 +5005,654 @@
       }
     },
     {
+      "id": "url-template",
+      "title": "URI templates (RFC 6570)",
+      "tier": "pure",
+      "summary": "Expand RFC 6570 URI templates at all four levels ({var}, {+path}, {?query*}, {/segments}, prefixes and exploded lists and maps) with correct percent-encoding.",
+      "terms": [
+        "uri template",
+        "url template",
+        "rfc 6570",
+        "expand url",
+        "build api url",
+        "path parameters",
+        "query parameters template",
+        "hal links",
+        "github api urls"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "url-template",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-url-template",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-url-template",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-url-template",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-url-template",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-url-template",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-url-template",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-url-template",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-url-template",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "bloom-filter",
+      "title": "Bloom filter",
+      "tier": "pure",
+      "summary": "Size, fill, test, merge and serialize Bloom filters with deterministic FNV-1a double hashing, for \"have we seen this\" checks with a known false-positive rate.",
+      "caveat": "False positives are expected at the configured rate and there are no deletions; use a set or a database index when you need exact answers.",
+      "terms": [
+        "bloom filter",
+        "probabilistic set",
+        "seen before",
+        "dedupe at scale",
+        "membership test",
+        "false positive rate",
+        "set membership"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "bloom-filter",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-bloom-filter",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-bloom-filter",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-bloom-filter",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-bloom-filter",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-bloom-filter",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-bloom-filter",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-bloom-filter",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-bloom-filter",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "stats-summary",
+      "title": "Descriptive statistics and percentiles",
+      "tier": "pure",
+      "summary": "Count, sum, min, max, mean, median, sample variance and standard deviation, p25 to p99 percentiles (linear interpolation) and fixed-edge histograms.",
+      "caveat": "Percentiles use linear interpolation (numpy default); other definitions (nearest rank, Excel PERCENTILE.EXC) give slightly different values.",
+      "terms": [
+        "statistics",
+        "percentile",
+        "p95",
+        "p99",
+        "median",
+        "standard deviation",
+        "variance",
+        "average",
+        "histogram",
+        "latency stats",
+        "summary stats"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "stats-summary",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-stats-summary",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-stats-summary",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-stats-summary",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-stats-summary",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-stats-summary",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-stats-summary",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-stats-summary",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-stats-summary",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "interval-merge",
+      "title": "Interval merge, intersect and gaps",
+      "tier": "pure",
+      "summary": "Merge, intersect and subtract half-open integer intervals, find gaps in a range, total covered length and overlap or point tests, for bookings and time ranges.",
+      "terms": [
+        "interval merge",
+        "merge ranges",
+        "overlapping ranges",
+        "free slots",
+        "availability gaps",
+        "time ranges",
+        "booking overlap",
+        "range intersection",
+        "subtract intervals"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "interval-merge",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-interval-merge",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-interval-merge",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-interval-merge",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-interval-merge",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-interval-merge",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-interval-merge",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-interval-merge",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-interval-merge",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "shell-quote",
+      "title": "Shell quoting and splitting",
+      "tier": "pure",
+      "summary": "Quote arguments safely for POSIX sh and split command lines into words with sh quoting rules and no expansion, so commands are built without injection.",
+      "caveat": "POSIX sh rules only: not for Windows cmd.exe or PowerShell. Prefer passing an argument array to the process API over building a command string.",
+      "terms": [
+        "shell quote",
+        "escape shell argument",
+        "shell injection",
+        "shlex",
+        "split command line",
+        "posix shell",
+        "quote arguments",
+        "command string"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "shell-quote",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-shell-quote",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-shell-quote",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-shell-quote",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-shell-quote",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-shell-quote",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-shell-quote",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-shell-quote",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-shell-quote",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "number-to-words",
+      "title": "Numbers to English words",
+      "tier": "pure",
+      "summary": "Spell integers in English words, ordinal words and suffixes (21st), and money amounts in words for cheques and invoices.",
+      "caveat": "US English only, without \"and\"; integers below 10^15.",
+      "terms": [
+        "number to words",
+        "spell number",
+        "amount in words",
+        "cheque amount",
+        "check writing",
+        "ordinal",
+        "1st 2nd 3rd",
+        "ordinal suffix",
+        "numbers in words"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "number-to-words",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-number-to-words",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-number-to-words",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-number-to-words",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-number-to-words",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-number-to-words",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-number-to-words",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-number-to-words",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-number-to-words",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "pagination-window",
+      "title": "Pagination page numbers",
+      "tier": "pure",
+      "summary": "Page counts, offsets and the page-number window with ellipses (1 … 4 5 6 … 20) for pagination controls, with sibling and boundary counts.",
+      "terms": [
+        "pagination",
+        "page numbers",
+        "pager",
+        "page links",
+        "ellipsis pagination",
+        "page count",
+        "offset limit",
+        "previous next pages"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "pagination-window",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-pagination-window",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-pagination-window",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-pagination-window",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-pagination-window",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-pagination-window",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-pagination-window",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-pagination-window",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-pagination-window",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "text-wrap",
+      "title": "Text wrapping and truncation",
+      "tier": "pure",
+      "summary": "Word-wrap plain text to a width (breaking long words) and truncate on a word boundary with an ellipsis, counting code points.",
+      "caveat": "Counts code points, not display width: wide CJK characters and combined emoji take more columns than counted.",
+      "terms": [
+        "word wrap",
+        "wrap text",
+        "truncate text",
+        "ellipsis",
+        "shorten string",
+        "line width",
+        "text excerpt",
+        "fold lines"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "text-wrap",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-text-wrap",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-text-wrap",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-text-wrap",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-text-wrap",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-text-wrap",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-text-wrap",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-text-wrap",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-text-wrap",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "markdown-table",
+      "title": "Markdown tables",
+      "tier": "pure",
+      "summary": "Render rows as GitHub-flavored Markdown tables with column alignment, padding and escaping of pipes and newlines.",
+      "terms": [
+        "markdown table",
+        "gfm table",
+        "render table",
+        "table to markdown",
+        "ascii table",
+        "report table",
+        "pipe table"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "markdown-table",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-markdown-table",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-markdown-table",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-markdown-table",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-markdown-table",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-markdown-table",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-markdown-table",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-markdown-table",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-markdown-table",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "ndjson",
+      "title": "NDJSON / JSON Lines",
+      "tier": "pure",
+      "summary": "Parse and write newline-delimited JSON (JSON Lines) with blank-line tolerance and line-numbered errors, for logs, exports and streaming APIs.",
+      "terms": [
+        "ndjson",
+        "json lines",
+        "jsonl",
+        "newline delimited json",
+        "log lines",
+        "streaming json",
+        "bulk export"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "ndjson",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-ndjson",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-ndjson",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-ndjson",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-ndjson",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-ndjson",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-ndjson",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-ndjson",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-ndjson",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

@@ -9292,6 +9292,1073 @@
       ],
       "verification": "CI swift run",
       "status": "example"
+    },
+    {
+      "id": "python-url-template",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/url_template.py"
+      ],
+      "tests": [
+        "python/test_url_template.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-bloom-filter",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/bloom_filter.py"
+      ],
+      "tests": [
+        "python/test_bloom_filter.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-stats-summary",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/stats_summary.py"
+      ],
+      "tests": [
+        "python/test_stats_summary.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-interval-merge",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/interval_merge.py"
+      ],
+      "tests": [
+        "python/test_interval_merge.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-shell-quote",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/shell_quote.py"
+      ],
+      "tests": [
+        "python/test_shell_quote.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-number-to-words",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/number_words.py"
+      ],
+      "tests": [
+        "python/test_number_words.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-pagination-window",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/pagination_window.py"
+      ],
+      "tests": [
+        "python/test_pagination_window.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-text-wrap",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/text_wrap.py"
+      ],
+      "tests": [
+        "python/test_text_wrap.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-markdown-table",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/markdown_table.py"
+      ],
+      "tests": [
+        "python/test_markdown_table.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-ndjson",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/ndjson.py"
+      ],
+      "tests": [
+        "python/test_ndjson.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "go-url-template",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/uritemplate/uritemplate.go"
+      ],
+      "tests": [
+        "go/uritemplate/uritemplate_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-bloom-filter",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/bloom/bloom.go"
+      ],
+      "tests": [
+        "go/bloom/bloom_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-stats-summary",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/stats/stats.go"
+      ],
+      "tests": [
+        "go/stats/stats_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-interval-merge",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/intervals/intervals.go"
+      ],
+      "tests": [
+        "go/intervals/intervals_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-shell-quote",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/shellquote/shellquote.go"
+      ],
+      "tests": [
+        "go/shellquote/shellquote_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-number-to-words",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/numwords/numwords.go"
+      ],
+      "tests": [
+        "go/numwords/numwords_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-pagination-window",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/pagination/pagination.go"
+      ],
+      "tests": [
+        "go/pagination/pagination_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-text-wrap",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/textwrap/textwrap.go"
+      ],
+      "tests": [
+        "go/textwrap/textwrap_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-markdown-table",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/mdtable/mdtable.go"
+      ],
+      "tests": [
+        "go/mdtable/mdtable_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-ndjson",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/ndjson/ndjson.go"
+      ],
+      "tests": [
+        "go/ndjson/ndjson_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-url-template",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/url_template.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-bloom-filter",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/bloom_filter.rs",
+        "rust/src/base_encodings.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-stats-summary",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/stats_summary.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-interval-merge",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/interval_merge.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-shell-quote",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/shell_quote.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-number-to-words",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/number_words.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-pagination-window",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/pagination_window.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-text-wrap",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/text_wrap.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-markdown-table",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/markdown_table.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-ndjson",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/ndjson.rs",
+        "rust/src/json_patch.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "java-url-template",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/UrlTemplate.java"
+      ],
+      "tests": [
+        "java/UrlTemplateTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-bloom-filter",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/BloomFilter.java"
+      ],
+      "tests": [
+        "java/BloomFilterTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-stats-summary",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/StatsSummary.java"
+      ],
+      "tests": [
+        "java/StatsSummaryTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-interval-merge",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/IntervalMerge.java"
+      ],
+      "tests": [
+        "java/IntervalMergeTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-shell-quote",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/ShellQuote.java"
+      ],
+      "tests": [
+        "java/ShellQuoteTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-number-to-words",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/NumberWords.java"
+      ],
+      "tests": [
+        "java/NumberWordsTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-pagination-window",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/PaginationWindow.java"
+      ],
+      "tests": [
+        "java/PaginationWindowTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-text-wrap",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TextWrap.java"
+      ],
+      "tests": [
+        "java/TextWrapTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-markdown-table",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/MarkdownTable.java"
+      ],
+      "tests": [
+        "java/MarkdownTableTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-ndjson",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Ndjson.java",
+        "java/JsonPatch.java"
+      ],
+      "tests": [
+        "java/NdjsonTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-url-template",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/UrlTemplate.kt"
+      ],
+      "tests": [
+        "kotlin/UrlTemplateTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-bloom-filter",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/BloomFilter.kt"
+      ],
+      "tests": [
+        "kotlin/BloomFilterTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-stats-summary",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/StatsSummary.kt"
+      ],
+      "tests": [
+        "kotlin/StatsSummaryTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-interval-merge",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/IntervalMerge.kt"
+      ],
+      "tests": [
+        "kotlin/IntervalMergeTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-shell-quote",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/ShellQuote.kt"
+      ],
+      "tests": [
+        "kotlin/ShellQuoteTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-number-to-words",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/NumberWords.kt"
+      ],
+      "tests": [
+        "kotlin/NumberWordsTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-pagination-window",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/PaginationWindow.kt"
+      ],
+      "tests": [
+        "kotlin/PaginationWindowTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-text-wrap",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TextWrap.kt"
+      ],
+      "tests": [
+        "kotlin/TextWrapTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-markdown-table",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/MarkdownTable.kt"
+      ],
+      "tests": [
+        "kotlin/MarkdownTableTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-ndjson",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Ndjson.kt",
+        "kotlin/JsonPatch.kt"
+      ],
+      "tests": [
+        "kotlin/NdjsonTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-url-template",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/UrlTemplate.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-bloom-filter",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/BloomFilter.cs",
+        "csharp/Genlib.Validation/Hashing.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-stats-summary",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/StatsSummary.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-interval-merge",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/IntervalMerge.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-shell-quote",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/ShellQuote.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-number-to-words",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/NumberWords.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-pagination-window",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/PaginationWindow.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-text-wrap",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TextWrap.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-markdown-table",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/MarkdownTable.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-ndjson",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Ndjson.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-url-template",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/url_template.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-bloom-filter",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/bloom_filter.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-stats-summary",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/stats_summary.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-interval-merge",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/interval_merge.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-shell-quote",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/shell_quote.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-number-to-words",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/number_words.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-pagination-window",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/pagination_window.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-text-wrap",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/text_wrap.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-markdown-table",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/markdown_table.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-ndjson",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/ndjson.dart"
+      ],
+      "tests": [
+        "dart/test/wave12_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-url-template",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/UrlTemplate.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-bloom-filter",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/BloomFilter.swift",
+        "swift/Sources/GenlibSwift/BaseEncodings.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-stats-summary",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/StatsSummary.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-interval-merge",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/IntervalMerge.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-shell-quote",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/ShellQuote.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-number-to-words",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/NumberWords.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-pagination-window",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/PaginationWindow.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-text-wrap",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TextWrap.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-markdown-table",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/MarkdownTable.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-ndjson",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Ndjson.swift",
+        "swift/Sources/GenlibSwift/JsonPatch.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave12Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
     }
   ]
 }

@@ -432,6 +432,86 @@
   [
    "strip html tags to get plain text",
    "html-escape"
+  ],
+  [
+   "expand a uri template like /users{/id}{?fields}",
+   "url-template"
+  ],
+  [
+   "rfc 6570 url template expansion",
+   "url-template"
+  ],
+  [
+   "check if we have probably seen this email before using little memory",
+   "bloom-filter"
+  ],
+  [
+   "probabilistic set membership with false positives",
+   "bloom-filter"
+  ],
+  [
+   "compute p95 and p99 latency from response times",
+   "stats-summary"
+  ],
+  [
+   "mean median and standard deviation of a list",
+   "stats-summary"
+  ],
+  [
+   "merge overlapping time ranges",
+   "interval-merge"
+  ],
+  [
+   "find free gaps between bookings",
+   "interval-merge"
+  ],
+  [
+   "escape a filename for a shell command",
+   "shell-quote"
+  ],
+  [
+   "split a command line string into arguments like shlex",
+   "shell-quote"
+  ],
+  [
+   "write the amount in words on a cheque",
+   "number-to-words"
+  ],
+  [
+   "add the st nd rd th ordinal suffix to a number",
+   "number-to-words"
+  ],
+  [
+   "show page numbers with ellipsis for pagination",
+   "pagination-window"
+  ],
+  [
+   "how many pages and the offset for page 3",
+   "pagination-window"
+  ],
+  [
+   "wrap long text at 80 characters",
+   "text-wrap"
+  ],
+  [
+   "truncate a description with an ellipsis on a word boundary",
+   "text-wrap"
+  ],
+  [
+   "render rows as a markdown table",
+   "markdown-table"
+  ],
+  [
+   "print a github markdown table with aligned columns",
+   "markdown-table"
+  ],
+  [
+   "parse a json lines file",
+   "ndjson"
+  ],
+  [
+   "write newline delimited json for a bulk export",
+   "ndjson"
   ]
  ],
  "heldout": [

@@ -2915,6 +2915,283 @@
         "random-index",
         "entropy"
       ]
+    },
+    {
+      "id": "url-template",
+      "kind": "source-example",
+      "path": "examples/recipes/url-template.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "uri template",
+        "url template",
+        "rfc 6570",
+        "expand url",
+        "build url from template",
+        "path parameters",
+        "hypermedia link",
+        "api link template"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart url-template modules (shared vectors)",
+        "Strings, arrays and ordered maps; missing, null, [] and empty maps are skipped",
+        "Literal %XX triplets are copied as-is (RFC 6570 section 3.1); bad templates throw UrlTemplateError"
+      ],
+      "variants": [
+        "simple",
+        "reserved",
+        "fragment",
+        "label",
+        "path",
+        "matrix",
+        "query",
+        "continuation",
+        "prefix",
+        "explode"
+      ]
+    },
+    {
+      "id": "bloom-filter",
+      "kind": "source-example",
+      "path": "examples/recipes/bloom-filter.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "bloom filter",
+        "probabilistic set",
+        "membership test",
+        "seen before",
+        "false positive rate",
+        "approximate set",
+        "deduplicate",
+        "have i seen this"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart bloom-filter modules (shared vectors)",
+        "FNV-1a 64 double hashing in BigInt; serialized base64url state moves between languages",
+        "No deletion and false positives by design; size with bloomSizeFor(n, p)"
+      ],
+      "variants": [
+        "size-for",
+        "add",
+        "might-contain",
+        "count-estimate",
+        "serialize",
+        "union"
+      ]
+    },
+    {
+      "id": "stats-summary",
+      "kind": "source-example",
+      "path": "examples/recipes/stats-summary.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "descriptive statistics",
+        "mean",
+        "median",
+        "standard deviation",
+        "percentile",
+        "p95 latency",
+        "histogram",
+        "variance",
+        "quantile",
+        "average"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart stats-summary modules (shared vectors)",
+        "Sample variance (n - 1); percentiles are linear interpolation (numpy default, R type 7)",
+        "Empty input, NaN/Infinity, q outside 0..100 and bad edges throw StatsError"
+      ],
+      "variants": [
+        "summary",
+        "percentile",
+        "histogram"
+      ]
+    },
+    {
+      "id": "interval-merge",
+      "kind": "source-example",
+      "path": "examples/recipes/interval-merge.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "merge intervals",
+        "overlapping intervals",
+        "interval",
+        "time slots",
+        "free slots",
+        "range intersection",
+        "subtract ranges",
+        "covered length"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart interval-merge modules (shared vectors)",
+        "Half-open [start, end) integer intervals; touching intervals merge but do not overlap",
+        "Empty or reversed intervals throw IntervalError; inputs are never mutated"
+      ],
+      "variants": [
+        "merge",
+        "intersect",
+        "subtract",
+        "gaps",
+        "total",
+        "overlaps",
+        "contains"
+      ]
+    },
+    {
+      "id": "shell-quote",
+      "kind": "source-example",
+      "path": "examples/recipes/shell-quote.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "shell quote",
+        "shell escape",
+        "escape shell argument",
+        "split command line",
+        "shlex",
+        "posix shell",
+        "quote argument",
+        "command line arguments"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart shell-quote modules (shared vectors)",
+        "No expansion: $VAR, * and ~ stay literal; every quoted argument round-trips through shellSplit",
+        "Prefer an argument array (execFile/spawn without a shell) over building a command line"
+      ],
+      "variants": [
+        "quote",
+        "join",
+        "split"
+      ]
+    },
+    {
+      "id": "number-to-words",
+      "kind": "source-example",
+      "path": "examples/recipes/number-to-words.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "number to words",
+        "spell out number",
+        "numbers in words",
+        "ordinal number",
+        "ordinal suffix",
+        "amount in words",
+        "check writing",
+        "1st 2nd 3rd"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart number-words modules (shared vectors)",
+        "US English without \"and\", |n| < 10^15; other languages need Intl or a translation catalog",
+        "Money amounts are integer minor units with exponent 0..3"
+      ],
+      "variants": [
+        "cardinal",
+        "ordinal-words",
+        "ordinal-suffix",
+        "money"
+      ]
+    },
+    {
+      "id": "pagination-window",
+      "kind": "source-example",
+      "path": "examples/recipes/pagination-window.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "page numbers",
+        "pagination buttons",
+        "page window",
+        "pagination ellipsis",
+        "page count",
+        "total pages",
+        "page offset",
+        "numbered pages",
+        "usepagination"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart pagination-window modules (shared vectors)",
+        "Gaps are null (render an ellipsis); a gap never hides a single page",
+        "Use cursor-pagination for keyset paging over changing data"
+      ],
+      "variants": [
+        "page-count",
+        "page-offset",
+        "page-window"
+      ]
+    },
+    {
+      "id": "text-wrap",
+      "kind": "source-example",
+      "path": "examples/recipes/text-wrap.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "word wrap",
+        "wrap text",
+        "line width",
+        "wrap lines",
+        "truncate string",
+        "shorten text",
+        "fixed width text",
+        "textwrap"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart text-wrap modules (shared vectors)",
+        "Counts code points, not grapheme clusters or display columns",
+        "Truncation backs up to a word boundary only when it is in the second half of the kept text"
+      ],
+      "variants": [
+        "wrap",
+        "truncate"
+      ]
+    },
+    {
+      "id": "markdown-table",
+      "kind": "source-example",
+      "path": "examples/recipes/markdown-table.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "markdown table",
+        "gfm table",
+        "pipe table",
+        "render table",
+        "align columns",
+        "readme table",
+        "table to markdown",
+        "text table"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart markdown-table modules (shared vectors)",
+        "Escapes \"|\" and \"\\\" and turns line breaks into <br>; other Markdown in cells still renders",
+        "Column widths count code points (minimum 3); ragged rows and unknown alignments throw"
+      ],
+      "variants": [
+        "left",
+        "right",
+        "center",
+        "unaligned"
+      ]
+    },
+    {
+      "id": "ndjson",
+      "kind": "source-example",
+      "path": "examples/recipes/ndjson.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "ndjson",
+        "json lines",
+        "jsonl",
+        "newline delimited json",
+        "line delimited json",
+        "log lines",
+        "streaming json",
+        "json per line"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart ndjson modules (shared vectors)",
+        "Parse errors carry the 1-based line number in NdjsonError.line",
+        "Compact output with insertion-ordered keys; pass a Map when integer-like keys must keep their order"
+      ],
+      "variants": [
+        "parse",
+        "stringify"
+      ]
     }
   ]
 }
