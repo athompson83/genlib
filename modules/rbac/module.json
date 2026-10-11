@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "rbac",
+  "version": "0.1.0",
+  "title": "Role-based access control",
+  "description": "Role-based access control for multi-tenant server apps: static roles with resource:action wildcards, inheritance and deny rules, tenant-wide or per-resource assignments with expiry, fail-closed checks, anti-escalation grants, last-owner protection, a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": ["rbac", "roles", "permissions", "access control", "authorization", "role-based access control checks", "admin", "owner", "multi-tenant", "teams", "workspaces", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/rbac"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, TextEncoder/TextDecoder, btoa/atob and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route and wrap other routes with requirePermission.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "rbac/core.ts" },
+    { "source": "files/memory-store.ts", "target": "rbac/memory-store.ts" },
+    { "source": "files/http.ts", "target": "rbac/http.ts" },
+    { "source": "files/sql-store.ts", "target": "rbac/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "rbac/schema.sql" }
+  ],
+  "exports": [
+    { "name": "createRbac", "from": "rbac/core.ts" },
+    { "name": "RbacError", "from": "rbac/core.ts" },
+    { "name": "MANAGE_PERMISSION", "from": "rbac/core.ts" },
+    { "name": "isPermissionPattern", "from": "rbac/core.ts" },
+    { "name": "MemoryRbacStore", "from": "rbac/memory-store.ts" },
+    { "name": "createRbacHandler", "from": "rbac/http.ts" },
+    { "name": "requirePermission", "from": "rbac/http.ts" },
+    { "name": "createSqlRbacStore", "from": "rbac/sql-store.ts" }
+  ],
+  "configuration": [
+    "Define roles once in code: { role: { permissions: ['invoice:*', '!invoice:delete'], inherits: ['viewer'], protected?: true } }; give admin-like roles 'rbac:manage' and flag the owner role protected.",
+    "On PostgreSQL, apply schema.sql and use createSqlRbacStore with your query executor; on other databases implement RbacStore with a unique key on (tenant, subject, role, resource or '') and an atomic last-holder guard.",
+    "Create each tenant's first owner with grantAsSystem from trusted tenant-creation code; never expose grantAsSystem through a route.",
+    "Implement authenticate(request) from your session or verified token; the subject id must never come from the request body.",
+    "Mount createRbacHandler under one prefix with exact allowedOrigins, and wrap other route handlers with requirePermission(rbac, 'resource:action', getCtx)."
+  ],
+  "capabilities": [
+    "role-based-access-control",
+    "wildcard-and-deny-permissions",
+    "role-inheritance",
+    "tenant-and-resource-scoped-roles",
+    "expiring-role-assignments",
+    "anti-escalation-grants",
+    "last-owner-protection"
+  ],
+  "limitations": [
+    "Roles are a static definition in code; there is no runtime role editor. Removing a role from the definition makes its stored assignments grant nothing.",
+    "No attribute or relationship rules (ownership of a row, time of day, resource hierarchies); combine with your own checks for those.",
+    "Permission checks read the store on every call; there is no cache. Add one per request if needed and keep revocation latency in mind.",
+    "Protected roles cannot expire and the last-owner guard covers tenant-wide assignments only; resource-scoped grants of a protected role are not guarded.",
+    "The in-memory store is for tests and prototypes only. The SQL store is tested on PostgreSQL semantics through PGlite, which is one connection, so the concurrency tests interleave statements rather than running them in parallel; the FOR UPDATE row locking under real parallel transactions is not exercised.",
+    "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/rbac.test.mjs", "tests/rbac-sql.test.mjs"],
+    "command": "npm run build && node --test tests/rbac.test.mjs tests/rbac-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "behaviors": [
+      "role definitions with unknown inherited roles, inheritance cycles or invalid permission strings are rejected at creation",
+      "resource:action wildcards (invoice:*, *:read, *) match and inherited permissions apply",
+      "a deny rule overrides any allow, including an allow from another role of the same subject",
+      "unknown permission shapes, wildcard queries and malformed contexts are denied",
+      "roles never cross tenants; tenant-wide roles apply to every resource and resource-scoped roles only to their resource",
+      "expired assignments are ignored and re-granting revives them with the new expiry",
+      "grant and revoke require rbac:manage in the tenant or on the resource",
+      "anti-escalation: an actor cannot grant or revoke a role whose permissions exceed their own, deny rules included",
+      "granting an existing assignment is idempotent",
+      "the last holder of a protected role cannot be removed (last-owner), and of two concurrent revokes of the last two owners exactly one succeeds",
+      "listAssignments pages by keyset cursor, filters by subject and requires rbac:manage",
+      "HTTP adapter: me/permissions, list, grant (201/200), revoke, 401, 403, 409, 400, origin check, bounded body and no-store",
+      "requirePermission returns 401 or 403 JSON and calls the wrapped handler only when allowed",
+      "schema.sql applies, the unique index treats NULL resource_id as tenant-wide, and the SQL store passes the core behaviors on PostgreSQL",
+      "concurrent guarded removals on the database always leave one active owner"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core, in-memory store, PostgreSQL schema and store, Fetch adapter and requirePermission wrapper."] }
+  ],
+  "contract": "CONTRACT.md"
+}
