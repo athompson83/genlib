@@ -7256,6 +7256,1079 @@
       ],
       "verification": "CI unit tests",
       "status": "example"
+    },
+    {
+      "id": "python-glob-match",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/glob_match.py"
+      ],
+      "tests": [
+        "python/test_glob_match.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-dotenv",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/dotenv.py"
+      ],
+      "tests": [
+        "python/test_dotenv.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-query-string",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/query_string.py"
+      ],
+      "tests": [
+        "python/test_query_string.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-mime-types",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/mime_types.py"
+      ],
+      "tests": [
+        "python/test_mime_types.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-data-uri",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/data_uri.py"
+      ],
+      "tests": [
+        "python/test_data_uri.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-iso-week",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/iso_week.py"
+      ],
+      "tests": [
+        "python/test_iso_week.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-topo-sort",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/topo_sort.py"
+      ],
+      "tests": [
+        "python/test_topo_sort.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-link-header",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/link_header.py"
+      ],
+      "tests": [
+        "python/test_link_header.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-content-disposition",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/content_disposition.py"
+      ],
+      "tests": [
+        "python/test_content_disposition.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "python-cache-control",
+      "language": "python",
+      "runtime": "Python >=3.10",
+      "files": [
+        "python/cache_control.py"
+      ],
+      "tests": [
+        "python/test_cache_control.py"
+      ],
+      "verification": "CI unit tests",
+      "status": "example"
+    },
+    {
+      "id": "java-glob-match",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/GlobMatch.java"
+      ],
+      "tests": [
+        "java/GlobMatchTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-dotenv",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/Dotenv.java"
+      ],
+      "tests": [
+        "java/DotenvTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-query-string",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/QueryString.java"
+      ],
+      "tests": [
+        "java/QueryStringTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-mime-types",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/MimeTypes.java"
+      ],
+      "tests": [
+        "java/MimeTypesTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-data-uri",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/DataUri.java"
+      ],
+      "tests": [
+        "java/DataUriTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-iso-week",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/IsoWeek.java"
+      ],
+      "tests": [
+        "java/IsoWeekTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-topo-sort",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/TopoSort.java"
+      ],
+      "tests": [
+        "java/TopoSortTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-link-header",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/LinkHeader.java"
+      ],
+      "tests": [
+        "java/LinkHeaderTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-content-disposition",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/ContentDisposition.java"
+      ],
+      "tests": [
+        "java/ContentDispositionTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "java-cache-control",
+      "language": "java",
+      "runtime": "Java >=17",
+      "files": [
+        "java/CacheControl.java"
+      ],
+      "tests": [
+        "java/CacheControlTest.java"
+      ],
+      "verification": "CI javac/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-glob-match",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/GlobMatch.kt"
+      ],
+      "tests": [
+        "kotlin/GlobMatchTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-dotenv",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/Dotenv.kt"
+      ],
+      "tests": [
+        "kotlin/DotenvTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-query-string",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/QueryString.kt"
+      ],
+      "tests": [
+        "kotlin/QueryStringTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-mime-types",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/MimeTypes.kt"
+      ],
+      "tests": [
+        "kotlin/MimeTypesTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-data-uri",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/DataUri.kt"
+      ],
+      "tests": [
+        "kotlin/DataUriTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-iso-week",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/IsoWeek.kt"
+      ],
+      "tests": [
+        "kotlin/IsoWeekTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-topo-sort",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/TopoSort.kt"
+      ],
+      "tests": [
+        "kotlin/TopoSortTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-link-header",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/LinkHeader.kt"
+      ],
+      "tests": [
+        "kotlin/LinkHeaderTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-content-disposition",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/ContentDisposition.kt"
+      ],
+      "tests": [
+        "kotlin/ContentDispositionTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "kotlin-cache-control",
+      "language": "kotlin",
+      "runtime": "Kotlin/JVM >=1.9",
+      "files": [
+        "kotlin/CacheControl.kt"
+      ],
+      "tests": [
+        "kotlin/CacheControlTest.kt"
+      ],
+      "verification": "CI kotlinc/java",
+      "status": "example"
+    },
+    {
+      "id": "csharp-glob-match",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/GlobMatch.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-dotenv",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/Dotenv.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-query-string",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/QueryString.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-mime-types",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/MimeTypes.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-data-uri",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/DataUri.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-iso-week",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/IsoWeek.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-topo-sort",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/TopoSort.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-link-header",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/LinkHeader.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-content-disposition",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/ContentDisposition.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "csharp-cache-control",
+      "language": "csharp",
+      "runtime": ".NET >=8",
+      "files": [
+        "csharp/Genlib.Validation/CacheControl.cs"
+      ],
+      "tests": [
+        "csharp/Genlib.Validation.Tests/Program.cs"
+      ],
+      "verification": "CI dotnet run",
+      "status": "example"
+    },
+    {
+      "id": "dart-glob-match",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/glob_match.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-dotenv",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/dotenv.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-query-string",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/query_string.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-mime-types",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/mime_types.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-data-uri",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/data_uri.dart",
+        "dart/lib/src/header_params.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-iso-week",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/iso_week.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-topo-sort",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/topo_sort.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-link-header",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/link_header.dart",
+        "dart/lib/src/header_params.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-content-disposition",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/content_disposition.dart",
+        "dart/lib/src/header_params.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "dart-cache-control",
+      "language": "dart",
+      "runtime": "Dart >=3.4",
+      "files": [
+        "dart/lib/cache_control.dart",
+        "dart/lib/src/header_params.dart"
+      ],
+      "tests": [
+        "dart/test/wave10_test.dart",
+        "dart/test/src/checks.dart"
+      ],
+      "verification": "CI dart run",
+      "status": "example"
+    },
+    {
+      "id": "swift-glob-match",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/GlobMatch.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-dotenv",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/Dotenv.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-query-string",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/QueryString.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-mime-types",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/MimeTypes.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-data-uri",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/DataUri.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-iso-week",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/IsoWeek.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-topo-sort",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/TopoSort.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-link-header",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/LinkHeader.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-content-disposition",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/ContentDisposition.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "swift-cache-control",
+      "language": "swift",
+      "runtime": "Swift >=5.10 (SwiftPM; swift-crypto on Linux)",
+      "files": [
+        "swift/Sources/GenlibSwift/CacheControl.swift",
+        "swift/Sources/GenlibSwift/HeaderParams.swift",
+        "swift/Package.swift"
+      ],
+      "tests": [
+        "swift/Sources/GenlibSwiftChecks/Wave10Checks.swift"
+      ],
+      "verification": "CI swift run",
+      "status": "example"
+    },
+    {
+      "id": "go-glob-match",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/globmatch/globmatch.go"
+      ],
+      "tests": [
+        "go/globmatch/globmatch_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-dotenv",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/dotenv/dotenv.go"
+      ],
+      "tests": [
+        "go/dotenv/dotenv_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-query-string",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/querystring/querystring.go"
+      ],
+      "tests": [
+        "go/querystring/querystring_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-mime-types",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/mimetypes/mimetypes.go"
+      ],
+      "tests": [
+        "go/mimetypes/mimetypes_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-data-uri",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/datauri/datauri.go"
+      ],
+      "tests": [
+        "go/datauri/datauri_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-iso-week",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/isoweek/isoweek.go"
+      ],
+      "tests": [
+        "go/isoweek/isoweek_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-topo-sort",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/toposort/toposort.go"
+      ],
+      "tests": [
+        "go/toposort/toposort_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-link-header",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/linkheader/linkheader.go"
+      ],
+      "tests": [
+        "go/linkheader/linkheader_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-content-disposition",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/disposition/disposition.go"
+      ],
+      "tests": [
+        "go/disposition/disposition_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "go-cache-control",
+      "language": "go",
+      "runtime": "Go >=1.20",
+      "files": [
+        "go/cachecontrol/cachecontrol.go"
+      ],
+      "tests": [
+        "go/cachecontrol/cachecontrol_test.go"
+      ],
+      "verification": "CI go test",
+      "status": "example"
+    },
+    {
+      "id": "rust-glob-match",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/glob_match.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-dotenv",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/dotenv.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-query-string",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/query_string.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-mime-types",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/mime_types.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-data-uri",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/data_uri.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-iso-week",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/iso_week.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-topo-sort",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/topo_sort.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-link-header",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/link_header.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-content-disposition",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/content_disposition.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
+    },
+    {
+      "id": "rust-cache-control",
+      "language": "rust",
+      "runtime": "Rust >=1.75",
+      "files": [
+        "rust/src/cache_control.rs",
+        "rust/Cargo.toml",
+        "rust/Cargo.lock"
+      ],
+      "tests": [],
+      "verification": "CI cargo test --locked",
+      "status": "example"
     }
   ]
 }

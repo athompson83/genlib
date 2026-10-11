@@ -295,6 +295,36 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 **text-sanitize**
 - `sanitizeText` normalizes newlines and removes control, bidirectional-override and invisible characters (keeping the zero-width joiners emoji and some scripts need), `findBidiControls` reports Trojan Source characters (CVE-2021-42574) in code or reviews, and `normalizeWhitespace` collapses runs of whitespace.
 
+**glob-match**
+- `globMatch(pattern, path, dot)` and `globFilter` match /-separated paths. `*`, `?` and `[classes]` stay within one segment, a whole-segment `**` spans directories (so `src/**` matches `src` too) and `{a,b}` gives alternatives. Hidden segments match only a literal `.` unless `dot` is set. Matching is memoized, so patterns such as `*a*a*a*b` cannot blow up.
+
+**dotenv**
+- `parseDotenv(text, expand, vars)` reads `.env` files the way the common loaders do: `#` comments, `export`, unquoted values with ` #` comments, literal single quotes, and double quotes with escapes that may span lines. Later keys win. With `expand`, `${NAME}` and `${NAME:-default}` are filled from earlier keys and then `vars`. Errors carry the line number.
+
+**query-string**
+- `parseQuery`/`stringifyQuery`/`getAll` follow the WHATWG urlencoded rules browsers use: ordered pairs, repeated keys kept, `+` for spaces and UTF-8 percent-encoding (invalid `%` sequences stay literal). For typed filter, sort and page state in a URL, use the `url-query-state` recipe instead.
+
+**mime-types**
+- `mimeTypeFor(name)`, `extensionFor(type)` and `contentTypeFor(name)` cover about 80 web, media, font, archive and office formats. `contentTypeFor` adds `charset=utf-8` to text types and falls back to `application/octet-stream`. Pair it with file-signature: names can lie.
+
+**data-uri**
+- `parseDataUri` returns the media type, parameters and bytes of a `data:` URL; `text/plain;charset=US-ASCII` is the default, and base64 is checked strictly. `buildDataUri(bytes, mime)` picks base64 unless the type is textual and valid UTF-8. Keep data URLs small: browsers and CSP limit them.
+
+**iso-week**
+- `isoWeek(y, m, d)` gives the ISO week-numbering year, week and weekday (2021-01-03 is 2020-W53-7). `fromIsoWeek`, `weeksInYear` (52 or 53), `formatIsoWeek` and `parseIsoWeek` (`2026-W41-7`, `2026W417`, `2026-W41`) complete it for weekly reports and calendar weeks.
+
+**topo-sort**
+- `topoSort(nodes, edges)` orders nodes so that every `[before, after]` edge is respected. Among ready nodes, the one listed first goes first, so the result is stable. `topoLevels` groups nodes that can run in parallel. A cycle raises `cycle: a -> b -> a`, naming one cycle to fix.
+
+**link-header**
+- `parseLinkHeader` reads RFC 8288 `Link` headers (GitHub-style `rel="next"` pagination), including quoted commas and RFC 8187 `title*` values. `findRel(links, "next")` picks a link, and `formatLinkHeader` writes one, encoding non-ASCII values.
+
+**content-disposition**
+- `buildContentDisposition(filename, inline)` writes a safe ASCII `filename` plus a UTF-8 `filename*` when needed. `parseContentDisposition` prefers `filename*`. Both sanitize the name: path separators, quotes and control characters become `_`, and leading or trailing dots are trimmed. Store uploaded files under your own generated names anyway.
+
+**cache-control**
+- `parseCacheControl` returns typed directives: flags are `true`, delta seconds are integers, and invalid ones are dropped. `formatCacheControl` writes them back, and `cacheFreshness(directives, shared)` gives the freshness lifetime: 0 for `no-store` or `no-cache`, and shared caches prefer `s-maxage`. Use `http-conditional` for ETag revalidation.
+
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 
 Learn any implementation's API without opening it: `genlib outline <capability> --language <lang>` lists its signatures and one-line docs.

@@ -280,6 +280,86 @@
   [
    "generate a palette in oklch",
    "color"
+  ],
+  [
+   "match file paths against patterns like src/**/*.ts",
+   "glob-match"
+  ],
+  [
+   "filter files with gitignore style wildcards",
+   "glob-match"
+  ],
+  [
+   "load settings from a .env file",
+   "dotenv"
+  ],
+  [
+   "parse environment variables file with quotes and comments",
+   "dotenv"
+  ],
+  [
+   "parse url query parameters into pairs",
+   "query-string"
+  ],
+  [
+   "encode form data as application/x-www-form-urlencoded",
+   "query-string"
+  ],
+  [
+   "get the content type for a file extension",
+   "mime-types"
+  ],
+  [
+   "which mime type is a .webp file",
+   "mime-types"
+  ],
+  [
+   "embed a small image as a base64 data url",
+   "data-uri"
+  ],
+  [
+   "decode a data: uri into bytes",
+   "data-uri"
+  ],
+  [
+   "what week number of the year is this date",
+   "iso-week"
+  ],
+  [
+   "group sales by calendar week",
+   "iso-week"
+  ],
+  [
+   "order tasks so dependencies run first",
+   "topo-sort"
+  ],
+  [
+   "detect circular dependencies between modules",
+   "topo-sort"
+  ],
+  [
+   "follow next page links from the api response header",
+   "link-header"
+  ],
+  [
+   "parse github api pagination link header",
+   "link-header"
+  ],
+  [
+   "set the download file name for a generated report",
+   "content-disposition"
+  ],
+  [
+   "send a file as an attachment with a unicode name",
+   "content-disposition"
+  ],
+  [
+   "parse max-age from cache headers",
+   "cache-control"
+  ],
+  [
+   "how long can a cdn cache this response",
+   "cache-control"
   ]
  ],
  "heldout": [

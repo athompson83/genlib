@@ -51,6 +51,18 @@ import 'wave9_test.dart'
         runSseTests,
         runTextChunkingTests,
         runVectorMathTests;
+import 'wave10_test.dart'
+    show
+        runCacheControlTests,
+        runContentDispositionTests,
+        runDataUriTests,
+        runDotenvTests,
+        runGlobMatchTests,
+        runIsoWeekTests,
+        runLinkHeaderTests,
+        runMimeTypesTests,
+        runQueryStringTests,
+        runTopoSortTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -109,5 +121,15 @@ void main() {
   runNaturalSortTests(c);
   runFileSignatureTests(c);
   runColorConvertTests(c);
+  runGlobMatchTests(c);
+  runDotenvTests(c);
+  runQueryStringTests(c);
+  runMimeTypesTests(c);
+  runDataUriTests(c);
+  runIsoWeekTests(c);
+  runTopoSortTests(c);
+  runLinkHeaderTests(c);
+  runContentDispositionTests(c);
+  runCacheControlTests(c);
   c.finish();
 }

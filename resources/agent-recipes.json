@@ -2429,6 +2429,284 @@
         "hsl",
         "oklch"
       ]
+    },
+    {
+      "id": "glob-match",
+      "kind": "source-example",
+      "path": "examples/recipes/glob-match.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "glob",
+        "glob pattern",
+        "wildcard",
+        "file path patterns",
+        "globstar",
+        "path wildcards",
+        "gitignore style",
+        "include exclude patterns",
+        "brace expansion",
+        "filter paths"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart glob-match modules (shared vectors)",
+        "Matches path strings only; it never touches the file system, so list files first",
+        "A leading dot segment needs dot=true or a literal dot; ** does not descend into hidden folders without it"
+      ],
+      "variants": [
+        "match",
+        "filter",
+        "dot"
+      ]
+    },
+    {
+      "id": "dotenv-parse",
+      "kind": "source-example",
+      "path": "examples/recipes/dotenv.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "dotenv",
+        ".env file",
+        "env file",
+        "environment variables",
+        "load env",
+        "export KEY=value",
+        "variable expansion",
+        "config secrets",
+        "multiline env value",
+        "parse env"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart dotenv modules (shared vectors)",
+        "Errors name the 1-based line; never log parsed values, they are usually secrets",
+        "Expansion is opt-in and reads earlier keys before the vars you pass (not process.env implicitly)"
+      ],
+      "variants": [
+        "parse",
+        "expand"
+      ]
+    },
+    {
+      "id": "query-string",
+      "kind": "source-example",
+      "path": "examples/recipes/query-string.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "urlencoded",
+        "x-www-form-urlencoded",
+        "form body",
+        "form encoding",
+        "percent decode",
+        "repeated params",
+        "parse url params",
+        "encode form fields",
+        "whatwg url params",
+        "plus as space"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart query-string modules (shared vectors)",
+        "Exact WHATWG form encoding: + is a space, invalid percent escapes stay literal, invalid UTF-8 becomes U+FFFD",
+        "Raw ordered pairs only; for typed filter/sort/page state use url-query-state"
+      ],
+      "variants": [
+        "parse",
+        "stringify",
+        "get-all"
+      ]
+    },
+    {
+      "id": "mime-types",
+      "kind": "source-example",
+      "path": "examples/recipes/mime-types.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "mime type",
+        "mime lookup",
+        "content type from extension",
+        "file extension to mime",
+        "mime to extension",
+        "content-type header",
+        "static file server",
+        "charset utf-8",
+        "media type",
+        "serve files"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart mime-types modules (shared vectors)",
+        "Maps names, not bytes; check uploads with file-signature before trusting the type",
+        "Text types get charset=utf-8; unknown names fall back to application/octet-stream"
+      ],
+      "variants": [
+        "type-for",
+        "extension-for",
+        "content-type"
+      ]
+    },
+    {
+      "id": "data-uri",
+      "kind": "source-example",
+      "path": "examples/recipes/data-uri.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "data uri",
+        "data url",
+        "data: url",
+        "inline image",
+        "base64 image",
+        "embed file in url",
+        "rfc 2397",
+        "base64 src",
+        "inline svg",
+        "decode data url"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart data-uri modules (shared vectors)",
+        "Strict base64 check; invalid percent escapes stay literal and an invalid media type becomes text/plain",
+        "Never put user-supplied data: URLs into href or src without an allow-list of media types"
+      ],
+      "variants": [
+        "parse",
+        "build"
+      ]
+    },
+    {
+      "id": "iso-week",
+      "kind": "source-example",
+      "path": "examples/recipes/iso-week.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "iso week",
+        "week number",
+        "iso 8601 week",
+        "week of year",
+        "weekly report",
+        "calendar week",
+        "yyyy-www",
+        "week year",
+        "weeks in year",
+        "monday week start"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart iso-week modules (shared vectors)",
+        "Plain day arithmetic for years 1..9999; no Date object, time zone or locale",
+        "The week-numbering year can differ from the calendar year near January 1"
+      ],
+      "variants": [
+        "iso-week",
+        "from-iso-week",
+        "format",
+        "parse"
+      ]
+    },
+    {
+      "id": "topo-sort",
+      "kind": "source-example",
+      "path": "examples/recipes/topo-sort.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "topological sort",
+        "dependency order",
+        "dependency graph",
+        "kahn algorithm",
+        "build order",
+        "task dependencies",
+        "cycle detection",
+        "parallel levels",
+        "dag",
+        "run order"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart topo-sort modules (shared vectors)",
+        "Deterministic: ready nodes come out in input order; a cycle error names one cycle",
+        "Validate that every edge names a known node; duplicate nodes are rejected"
+      ],
+      "variants": [
+        "sort",
+        "levels"
+      ]
+    },
+    {
+      "id": "link-header",
+      "kind": "source-example",
+      "path": "examples/recipes/link-header.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "link header",
+        "rfc 8288",
+        "pagination links",
+        "rel next",
+        "rel=next",
+        "github pagination",
+        "next page url",
+        "web linking",
+        "parse link",
+        "preload link"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart link-header modules (shared vectors)",
+        "Commas inside <...> and quoted strings do not split; title* (RFC 8187) values are decoded",
+        "Resolve link targets against the request URL and check the origin before following them"
+      ],
+      "variants": [
+        "parse",
+        "find-rel",
+        "format"
+      ]
+    },
+    {
+      "id": "content-disposition",
+      "kind": "source-example",
+      "path": "examples/recipes/content-disposition.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "content-disposition",
+        "download filename",
+        "attachment filename",
+        "filename*",
+        "rfc 6266",
+        "save as name",
+        "file download header",
+        "inline vs attachment",
+        "unicode filename",
+        "rfc 8187"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart content-disposition modules (shared vectors)",
+        "Sanitizes filenames on build and parse (no path separators, quotes or control characters)",
+        "Store uploads under a server-generated name; the parsed filename is display data only"
+      ],
+      "variants": [
+        "build",
+        "parse",
+        "sanitize"
+      ]
+    },
+    {
+      "id": "cache-control",
+      "kind": "source-example",
+      "path": "examples/recipes/cache-control.ts",
+      "platform": "typescript",
+      "taskTerms": [
+        "cache-control",
+        "max-age",
+        "s-maxage",
+        "no-store",
+        "no-cache",
+        "stale-while-revalidate",
+        "http caching",
+        "cdn cache header",
+        "cache freshness",
+        "immutable assets"
+      ],
+      "checks": [
+        "Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart cache-control modules (shared vectors)",
+        "Delta values must be ASCII digits; invalid ones are dropped and an unterminated quote throws",
+        "Freshness covers max-age and s-maxage only; Expires and heuristic freshness are out of scope"
+      ],
+      "variants": [
+        "parse",
+        "format",
+        "freshness"
+      ]
     }
   ]
 }

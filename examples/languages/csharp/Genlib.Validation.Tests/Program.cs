@@ -1736,5 +1736,290 @@ Eq("color toHex 0.00196078431372549/0.0058823529411764705/0.00980392156862745", 
 Eq("color inGamut 0.25183094033414793", true, ColorConvert.InGamut(0.25183094033414793, 0.6942495954401551, 0.7170636897415913));
 Eq("color inGamut -2.5595884674002214", false, ColorConvert.InGamut(-2.5595884674002214, 0.5687880047974224, -0.8622713129274896));
 
+// 55-64. Wave 10 capabilities (caps11 vectors): glob match, dotenv, query strings, MIME types, data: URLs, ISO weeks,
+// topological sort, Link headers, Content-Disposition and Cache-Control. Literals are generated from the shared vectors.json.
+string W10Q(string s) => "\"" + s.Replace("\\", "\\\\").Replace("\"", "\\\"") + "\"";
+string W10S(IEnumerable<KeyValuePair<string, string>> p) => "{" + string.Join(",", p.Select(kv => W10Q(kv.Key) + ":" + W10Q(kv.Value))) + "}";
+string W10L(IEnumerable<string> xs) => "[" + string.Join(",", xs.Select(W10Q)) + "]";
+string W10C(IEnumerable<KeyValuePair<string, CacheValue>> p) => "{" + string.Join(",", p.Select(kv => W10Q(kv.Key) + ":" + kv.Value.ToString())) + "}";
+List<KeyValuePair<string, string>> W10P(params string[] kv) { var r = new List<KeyValuePair<string, string>>(); for (int i = 0; i < kv.Length; i += 2) r.Add(KeyValuePair.Create(kv[i], kv[i + 1])); return r; }
+
+// 55. Glob match
+Eq("glob match 0 *.js a.js dot=False", true, GlobMatch.Match("*.js", "a.js", false));
+Eq("glob match 1 *.js a/b.js dot=False", false, GlobMatch.Match("*.js", "a/b.js", false));
+Eq("glob match 2 **/*.js a/b/c.js dot=False", true, GlobMatch.Match("**/*.js", "a/b/c.js", false));
+Eq("glob match 3 **/*.js c.js dot=False", true, GlobMatch.Match("**/*.js", "c.js", false));
+Eq("glob match 4 src/** src dot=False", true, GlobMatch.Match("src/**", "src", false));
+Eq("glob match 5 src/** src/a/b.ts dot=False", true, GlobMatch.Match("src/**", "src/a/b.ts", false));
+Eq("glob match 6 src/**/test/*.py src/test/x.py dot=False", true, GlobMatch.Match("src/**/test/*.py", "src/test/x.py", false));
+Eq("glob match 7 src/**/test/*.py src/a/b/test/x.py dot=False", true, GlobMatch.Match("src/**/test/*.py", "src/a/b/test/x.py", false));
+Eq("glob match 8 a?c abc dot=False", true, GlobMatch.Match("a?c", "abc", false));
+Eq("glob match 9 a?c a/c dot=False", false, GlobMatch.Match("a?c", "a/c", false));
+Eq("glob match 10 [a-c]x bx dot=False", true, GlobMatch.Match("[a-c]x", "bx", false));
+Eq("glob match 11 [!a-c]x bx dot=False", false, GlobMatch.Match("[!a-c]x", "bx", false));
+Eq("glob match 12 [!a-c]x dx dot=False", true, GlobMatch.Match("[!a-c]x", "dx", false));
+Eq("glob match 13 [^0-9] x dot=False", true, GlobMatch.Match("[^0-9]", "x", false));
+Eq("glob match 14 []a] a dot=False", true, GlobMatch.Match("[]a]", "a", false));
+Eq("glob match 15 []a] ] dot=False", true, GlobMatch.Match("[]a]", "]", false));
+Eq("glob match 16 *.{js,ts} x.ts dot=False", true, GlobMatch.Match("*.{js,ts}", "x.ts", false));
+Eq("glob match 17 *.{js,ts} x.tsx dot=False", false, GlobMatch.Match("*.{js,ts}", "x.tsx", false));
+Eq("glob match 18 {src,lib}/**/*.go lib/x/y.go dot=False", true, GlobMatch.Match("{src,lib}/**/*.go", "lib/x/y.go", false));
+Eq("glob match 19 .* .env dot=False", true, GlobMatch.Match(".*", ".env", false));
+Eq("glob match 20 * .env dot=False", false, GlobMatch.Match("*", ".env", false));
+Eq("glob match 21 * .env dot=True", true, GlobMatch.Match("*", ".env", true));
+Eq("glob match 22 **/x .git/x dot=False", false, GlobMatch.Match("**/x", ".git/x", false));
+Eq("glob match 23 **/x .git/x dot=True", true, GlobMatch.Match("**/x", ".git/x", true));
+Eq("glob match 24 a\\*b a*b dot=False", true, GlobMatch.Match("a\\*b", "a*b", false));
+Eq("glob match 25 a\\*b axb dot=False", false, GlobMatch.Match("a\\*b", "axb", false));
+Eq("glob match 26 *  dot=False", true, GlobMatch.Match("*", "", false));
+Eq("glob match 27 ** a/b/c dot=False", true, GlobMatch.Match("**", "a/b/c", false));
+Eq("glob match 28 a/**/b a/b dot=False", true, GlobMatch.Match("a/**/b", "a/b", false));
+Eq("glob match 29 a/**/b a/x/y/b dot=False", true, GlobMatch.Match("a/**/b", "a/x/y/b", false));
+Eq("glob match 30 *.txt notes.TXT dot=False", false, GlobMatch.Match("*.txt", "notes.TXT", false));
+Eq("glob match 31 [a-z]*.md Readme.md dot=False", false, GlobMatch.Match("[a-z]*.md", "Readme.md", false));
+Eq("glob match 32 docs/* docs/a/b dot=False", false, GlobMatch.Match("docs/*", "docs/a/b", false));
+Eq("glob match 33 ? \u00E9 dot=False", true, GlobMatch.Match("?", "\u00E9", false));
+Throws<FormatException>("glob invalid [abc", () => GlobMatch.Match("[abc", "x"));
+Throws<FormatException>("glob invalid {a,b", () => GlobMatch.Match("{a,b", "x"));
+Throws<FormatException>("glob invalid a{b{c}}", () => GlobMatch.Match("a{b{c}}", "x"));
+Throws<FormatException>("glob invalid ", () => GlobMatch.Match("", "x"));
+Throws<FormatException>("glob invalid x\\", () => GlobMatch.Match("x\\", "x"));
+Eq("glob filter *.js dot=False", "[\"a.js\"]", W10L(GlobMatch.Filter("*.js", new[] { "a.js", "a/b.js", "src/x.ts", ".env", "src", "b.ts" }, false)));
+Eq("glob filter **/*.{js,ts} dot=False", "[\"a.js\",\"a/b.js\",\"src/x.ts\",\"b.ts\"]", W10L(GlobMatch.Filter("**/*.{js,ts}", new[] { "a.js", "a/b.js", "src/x.ts", ".env", "src", "b.ts" }, false)));
+Eq("glob filter * dot=True", "[\"a.js\",\".env\",\"src\",\"b.ts\"]", W10L(GlobMatch.Filter("*", new[] { "a.js", "a/b.js", "src/x.ts", ".env", "src", "b.ts" }, true)));
+Eq("glob filter src/** dot=False", "[\"src/x.ts\",\"src\"]", W10L(GlobMatch.Filter("src/**", new[] { "a.js", "a/b.js", "src/x.ts", ".env", "src", "b.ts" }, false)));
+Check("glob no exponential blowup", !GlobMatch.Match("**/**/**/**/**/**/**/**/**/**/**/**/*a*a*a*a*a*a*a*a*a*b", string.Join("/", Enumerable.Repeat("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 20))));
+
+// 56. Dotenv
+Eq("dotenv parse 0 A=1\\nB=two\\n", "{\"A\":\"1\",\"B\":\"two\"}", W10S(Dotenv.Parse("A=1\u000AB=two\u000A")));
+Eq("dotenv parse 1 # c\\n\\nexport KEY = value with spaces  #", "{\"KEY\":\"value with spaces\"}", W10S(Dotenv.Parse("# c\u000A\u000Aexport KEY = value with spaces  # comment\u000A")));
+Eq("dotenv parse 2 Q=\"a\\nb\\t\\\"c\\\" \\\\ \\$HOME\"\\n", "{\"Q\":\"a\u000Ab\u0009\\\"c\\\" \\\\ $HOME\"}", W10S(Dotenv.Parse("Q=\"a\\nb\\t\\\"c\\\" \\\\ \\$HOME\"\u000A")));
+Eq("dotenv parse 3 S='raw ${X} \\n'\\n", "{\"S\":\"raw ${X} \\\\n\"}", W10S(Dotenv.Parse("S='raw ${X} \\n'\u000A")));
+Eq("dotenv parse 4 M=\"line1\\nline2\"\\nN=after\\n", "{\"M\":\"line1\u000Aline2\",\"N\":\"after\"}", W10S(Dotenv.Parse("M=\"line1\u000Aline2\"\u000AN=after\u000A")));
+Eq("dotenv parse 5 E=\\nF= \\n", "{\"E\":\"\",\"F\":\"\"}", W10S(Dotenv.Parse("E=\u000AF= \u000A")));
+Eq("dotenv parse 6 DUP=1\\nDUP=2\\n", "{\"DUP\":\"2\"}", W10S(Dotenv.Parse("DUP=1\u000ADUP=2\u000A")));
+Eq("dotenv parse 7 URL=https://x.test/#frag\\n", "{\"URL\":\"https://x.test/#frag\"}", W10S(Dotenv.Parse("URL=https://x.test/#frag\u000A")));
+Eq("dotenv parse 8 H=a#b\\n", "{\"H\":\"a#b\"}", W10S(Dotenv.Parse("H=a#b\u000A")));
+Eq("dotenv parse 9 K.x_y=1\\n", "{\"K.x_y\":\"1\"}", W10S(Dotenv.Parse("K.x_y=1\u000A")));
+Eq("dotenv parse 10 W=\"x\" # trailing ok\\n", "{\"W\":\"x\"}", W10S(Dotenv.Parse("W=\"x\" # trailing ok\u000A")));
+Eq("dotenv parse 11 CRLF=1\\r\\nNEXT=2\\r\\n", "{\"CRLF\":\"1\",\"NEXT\":\"2\"}", W10S(Dotenv.Parse("CRLF=1\u000D\u000ANEXT=2\u000D\u000A")));
+Eq("dotenv expand 0 A=1\\nB=${A}-x\\n", "{\"A\":\"1\",\"B\":\"1-x\"}", W10S(Dotenv.Parse("A=1\u000AB=${A}-x\u000A", true, new Dictionary<string, string> {  })));
+Eq("dotenv expand 1 B=${A}\\nA=1\\n", "{\"B\":\"env\",\"A\":\"1\"}", W10S(Dotenv.Parse("B=${A}\u000AA=1\u000A", true, new Dictionary<string, string> { ["A"] = "env" })));
+Eq("dotenv expand 2 P=${MISSING:-fallback}\\nQ=${EMPTY:-d}\\n", "{\"P\":\"fallback\",\"Q\":\"d\"}", W10S(Dotenv.Parse("P=${MISSING:-fallback}\u000AQ=${EMPTY:-d}\u000A", true, new Dictionary<string, string> { ["EMPTY"] = "" })));
+Eq("dotenv expand 3 S='${A}'\\nT=\"${A}\"\\nU=\"\\${A}\"\\n", "{\"S\":\"${A}\",\"T\":\"v\",\"U\":\"${A}\"}", W10S(Dotenv.Parse("S='${A}'\u000AT=\"${A}\"\u000AU=\"\\${A}\"\u000A", true, new Dictionary<string, string> { ["A"] = "v" })));
+Throws<FormatException>("dotenv invalid NOEQUALS\\n", () => Dotenv.Parse("NOEQUALS\u000A"), e => e.Message.StartsWith("line 1:"));
+Throws<FormatException>("dotenv invalid 1BAD=x\\n", () => Dotenv.Parse("1BAD=x\u000A"), e => e.Message.StartsWith("line 1:"));
+Throws<FormatException>("dotenv invalid A='unterminated\\n", () => Dotenv.Parse("A='unterminated\u000A"), e => e.Message.StartsWith("line 1:"));
+Throws<FormatException>("dotenv invalid A=\"never closed\\nB=1\\n", () => Dotenv.Parse("A=\"never closed\u000AB=1\u000A"), e => e.Message.StartsWith("line 1:"));
+Throws<FormatException>("dotenv invalid A=\"x\" junk\\n", () => Dotenv.Parse("A=\"x\" junk\u000A"), e => e.Message.StartsWith("line 1:"));
+Throws<FormatException>("dotenv invalid -K=v\\n", () => Dotenv.Parse("-K=v\u000A"), e => e.Message.StartsWith("line 1:"));
+
+// 57. Query strings
+Eq("query parse 0 a=1&b=2", "{\"a\":\"1\",\"b\":\"2\"}", W10S(QueryString.Parse("a=1&b=2")));
+Eq("query parse 1 ?a=1&a=2", "{\"a\":\"1\",\"a\":\"2\"}", W10S(QueryString.Parse("?a=1&a=2")));
+Eq("query parse 2 x=a+b%20c", "{\"x\":\"a b c\"}", W10S(QueryString.Parse("x=a+b%20c")));
+Eq("query parse 3 e=%E2%82%AC", "{\"e\":\"\u20AC\"}", W10S(QueryString.Parse("e=%E2%82%AC")));
+Eq("query parse 4 bad=%zz&ok=1", "{\"bad\":\"%zz\",\"ok\":\"1\"}", W10S(QueryString.Parse("bad=%zz&ok=1")));
+Eq("query parse 5 %", "{\"%\":\"\"}", W10S(QueryString.Parse("%")));
+Eq("query parse 6 &&a&&", "{\"a\":\"\"}", W10S(QueryString.Parse("&&a&&")));
+Eq("query parse 7 k=v=w", "{\"k\":\"v=w\"}", W10S(QueryString.Parse("k=v=w")));
+Eq("query parse 8 =v", "{\"\":\"v\"}", W10S(QueryString.Parse("=v")));
+Eq("query parse 9 emoji=%F0%9F%98%80", "{\"emoji\":\"\U0001F600\"}", W10S(QueryString.Parse("emoji=%F0%9F%98%80")));
+Eq("query parse 10 invalid=%FF", "{\"invalid\":\"\uFFFD\"}", W10S(QueryString.Parse("invalid=%FF")));
+Eq("query parse 11 plus=%2B", "{\"plus\":\"+\"}", W10S(QueryString.Parse("plus=%2B")));
+Eq("query stringify 0", "a=1&b=x+y", QueryString.Stringify(W10P("a", "1", "b", "x y")));
+Eq("query stringify 1", "q=a%26b%3Dc&e=%E2%82%AC", QueryString.Stringify(W10P("q", "a&b=c", "e", "\u20AC")));
+Eq("query stringify 2", "*-._=%7E%21%27%28%29", QueryString.Stringify(W10P("*-._", "~!'()")));
+Eq("query stringify 3", "k=&=v", QueryString.Stringify(W10P("k", "", "", "v")));
+Eq("query getAll a=1&b=2&a=3 a", "[\"1\",\"3\"]", W10L(QueryString.GetAll(QueryString.Parse("a=1&b=2&a=3"), "a")));
+
+// 58. MIME types
+Eq("mime type for index.html", "text/html", MimeTypes.MimeTypeFor("index.html"));
+Eq("mime type for APP.JS", "text/javascript", MimeTypes.MimeTypeFor("APP.JS"));
+Eq("mime type for data.json", "application/json", MimeTypes.MimeTypeFor("data.json"));
+Eq("mime type for photo.JPG", "image/jpeg", MimeTypes.MimeTypeFor("photo.JPG"));
+Eq("mime type for x.tar.gz", "application/gzip", MimeTypes.MimeTypeFor("x.tar.gz"));
+Eq("mime type for video.webm", "video/webm", MimeTypes.MimeTypeFor("video.webm"));
+Eq("mime type for font.woff2", "font/woff2", MimeTypes.MimeTypeFor("font.woff2"));
+Eq("mime type for doc.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", MimeTypes.MimeTypeFor("doc.docx"));
+Eq("mime type for noext", (string?)null, MimeTypes.MimeTypeFor("noext"));
+Eq("mime type for json", "application/json", MimeTypes.MimeTypeFor("json"));
+Eq("mime type for .png", "image/png", MimeTypes.MimeTypeFor(".png"));
+Eq("mime type for a.unknown", (string?)null, MimeTypes.MimeTypeFor("a.unknown"));
+Eq("mime type for style.css", "text/css", MimeTypes.MimeTypeFor("style.css"));
+Eq("mime type for feed.xml", "application/xml", MimeTypes.MimeTypeFor("feed.xml"));
+Eq("mime type for pic.svg", "image/svg+xml", MimeTypes.MimeTypeFor("pic.svg"));
+Eq("mime extension for image/jpeg", "jpg", MimeTypes.ExtensionFor("image/jpeg"));
+Eq("mime extension for text/html; charset=UTF-8", "html", MimeTypes.ExtensionFor("text/html; charset=UTF-8"));
+Eq("mime extension for Application/JSON", "json", MimeTypes.ExtensionFor("Application/JSON"));
+Eq("mime extension for text/javascript", "js", MimeTypes.ExtensionFor("text/javascript"));
+Eq("mime extension for application/x-unknown", (string?)null, MimeTypes.ExtensionFor("application/x-unknown"));
+Eq("mime extension for video/mp4", "mp4", MimeTypes.ExtensionFor("video/mp4"));
+Eq("mime content type a.html", "text/html; charset=utf-8", MimeTypes.ContentTypeFor("a.html"));
+Eq("mime content type a.json", "application/json; charset=utf-8", MimeTypes.ContentTypeFor("a.json"));
+Eq("mime content type a.png", "image/png", MimeTypes.ContentTypeFor("a.png"));
+Eq("mime content type a.svg", "image/svg+xml; charset=utf-8", MimeTypes.ContentTypeFor("a.svg"));
+Eq("mime content type a.bin", "application/octet-stream", MimeTypes.ContentTypeFor("a.bin"));
+Eq("mime content type a.zzz", "application/octet-stream", MimeTypes.ContentTypeFor("a.zzz"));
+Eq("mime content type readme.md", "text/markdown; charset=utf-8", MimeTypes.ContentTypeFor("readme.md"));
+
+// 59. data: URLs
+{ var d = DataUri.Parse("data:,Hello%2C%20World!"); string n = "data uri parse 0 data:,Hello%2C%20World!"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{\"charset\":\"US-ASCII\"}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "48656c6c6f2c20576f726c6421", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:text/plain;base64,SGVsbG8sIFdvcmxkIQ=="); string n = "data uri parse 1 data:text/plain;base64,SGVsbG8sIFdvcmxkI"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{}", W10S(d.Params)); Eq(n + " base64", true, d.Base64); Eq(n + " data", "48656c6c6f2c20576f726c6421", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:text/html;charset=utf-8,%3Ch1%3EHi%3C%2Fh1%3E"); string n = "data uri parse 2 data:text/html;charset=utf-8,%3Ch1%3EHi%"; Eq(n + " mime", "text/html", d.Mime); Eq(n + " params", "{\"charset\":\"utf-8\"}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "3c68313e48693c2f68313e", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("DATA:image/png;BASE64,iVBORw0KGgo="); string n = "data uri parse 3 DATA:image/png;BASE64,iVBORw0KGgo="; Eq(n + " mime", "image/png", d.Mime); Eq(n + " params", "{}", W10S(d.Params)); Eq(n + " base64", true, d.Base64); Eq(n + " data", "89504e470d0a1a0a", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:;base64,SGk"); string n = "data uri parse 4 data:;base64,SGk"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{\"charset\":\"US-ASCII\"}", W10S(d.Params)); Eq(n + " base64", true, d.Base64); Eq(n + " data", "4869", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:text/plain;charset=utf-8;foo=bar,x"); string n = "data uri parse 5 data:text/plain;charset=utf-8;foo=bar,x"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{\"charset\":\"utf-8\",\"foo\":\"bar\"}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "78", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:application/json,%7B%22a%22%3A1%7D"); string n = "data uri parse 6 data:application/json,%7B%22a%22%3A1%7D"; Eq(n + " mime", "application/json", d.Mime); Eq(n + " params", "{}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "7b2261223a317d", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:bogus,x"); string n = "data uri parse 7 data:bogus,x"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{\"charset\":\"US-ASCII\"}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "78", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:text/plain;base64,SG Vs\u000AbG8="); string n = "data uri parse 8 data:text/plain;base64,SG Vs\\nbG8="; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{}", W10S(d.Params)); Eq(n + " base64", true, d.Base64); Eq(n + " data", "48656c6c6f", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:;charset=utf-8,%E2%82%AC"); string n = "data uri parse 9 data:;charset=utf-8,%E2%82%AC"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{\"charset\":\"utf-8\"}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "e282ac", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+{ var d = DataUri.Parse("data:,a%zzb"); string n = "data uri parse 10 data:,a%zzb"; Eq(n + " mime", "text/plain", d.Mime); Eq(n + " params", "{\"charset\":\"US-ASCII\"}", W10S(d.Params)); Eq(n + " base64", false, d.Base64); Eq(n + " data", "61257a7a62", Convert.ToHexString(d.Data).ToLowerInvariant()); }
+Eq("data uri build 0 text/plain", "data:text/plain,Hello,%20World!", DataUri.Build(Convert.FromHexString("48656c6c6f2c20576f726c6421"), "text/plain", null));
+Eq("data uri build 1 image/png", "data:image/png;base64,iVBORw0K", DataUri.Build(Convert.FromHexString("89504e470d0a"), "image/png", null));
+Eq("data uri build 2 application/json", "data:application/json,%7B%22a%22:1%7D", DataUri.Build(Convert.FromHexString("7b2261223a317d"), "application/json", null));
+Eq("data uri build 3 text/plain;charset=utf-8", "data:text/plain;charset=utf-8,%E2%82%AC%20&%20%C3%BC", DataUri.Build(Convert.FromHexString("e282ac202620c3bc"), "text/plain;charset=utf-8", null));
+Eq("data uri build 4 text/plain", "data:text/plain;base64,//4=", DataUri.Build(Convert.FromHexString("fffe"), "text/plain", null));
+Eq("data uri build 5 text/plain", "data:text/plain;base64,YWJj", DataUri.Build(Convert.FromHexString("616263"), "text/plain", true));
+Eq("data uri build 6 application/octet-stream", "data:application/octet-stream;base64,", DataUri.Build(Convert.FromHexString(""), "application/octet-stream", null));
+Eq("data uri build 7 text/plain", "data:text/plain,a%20b/c?d", DataUri.Build(Convert.FromHexString("6120622f633f64"), "text/plain", false));
+Throws<FormatException>("data uri invalid parse text/plain,x", () => DataUri.Parse("text/plain,x"));
+Throws<FormatException>("data uri invalid parse data:text/plain", () => DataUri.Parse("data:text/plain"));
+Throws<FormatException>("data uri invalid parse data:;base64,a", () => DataUri.Parse("data:;base64,a"));
+Throws<FormatException>("data uri invalid parse data:;base64,@@@@", () => DataUri.Parse("data:;base64,@@@@"));
+Throws<FormatException>("data uri invalid parse data:;base64,SGVsbG8=x", () => DataUri.Parse("data:;base64,SGVsbG8=x"));
+Throws<FormatException>("data uri invalid build not a type", () => DataUri.Build(Convert.FromHexString("00"), "not a type"));
+Throws<FormatException>("data uri invalid build text/plain; charset", () => DataUri.Build(Convert.FromHexString("00"), "text/plain; charset"));
+
+// 60. ISO week dates
+Eq("iso week 2021-1-3", (2020, 53, 7), IsoWeek.Of(2021, 1, 3)); Eq("iso week format 2021-1-3", "2020-W53-7", IsoWeek.Format(2021, 1, 3));
+Eq("iso week 2021-1-4", (2021, 1, 1), IsoWeek.Of(2021, 1, 4)); Eq("iso week format 2021-1-4", "2021-W01-1", IsoWeek.Format(2021, 1, 4));
+Eq("iso week 2020-12-31", (2020, 53, 4), IsoWeek.Of(2020, 12, 31)); Eq("iso week format 2020-12-31", "2020-W53-4", IsoWeek.Format(2020, 12, 31));
+Eq("iso week 2026-10-11", (2026, 41, 7), IsoWeek.Of(2026, 10, 11)); Eq("iso week format 2026-10-11", "2026-W41-7", IsoWeek.Format(2026, 10, 11));
+Eq("iso week 2008-12-29", (2009, 1, 1), IsoWeek.Of(2008, 12, 29)); Eq("iso week format 2008-12-29", "2009-W01-1", IsoWeek.Format(2008, 12, 29));
+Eq("iso week 2010-1-3", (2009, 53, 7), IsoWeek.Of(2010, 1, 3)); Eq("iso week format 2010-1-3", "2009-W53-7", IsoWeek.Format(2010, 1, 3));
+Eq("iso week 2015-12-31", (2015, 53, 4), IsoWeek.Of(2015, 12, 31)); Eq("iso week format 2015-12-31", "2015-W53-4", IsoWeek.Format(2015, 12, 31));
+Eq("iso week 2016-1-1", (2015, 53, 5), IsoWeek.Of(2016, 1, 1)); Eq("iso week format 2016-1-1", "2015-W53-5", IsoWeek.Format(2016, 1, 1));
+Eq("iso week 2024-12-30", (2025, 1, 1), IsoWeek.Of(2024, 12, 30)); Eq("iso week format 2024-12-30", "2025-W01-1", IsoWeek.Format(2024, 12, 30));
+Eq("iso week 1-1-1", (1, 1, 1), IsoWeek.Of(1, 1, 1)); Eq("iso week format 1-1-1", "0001-W01-1", IsoWeek.Format(1, 1, 1));
+Eq("iso week 9999-12-31", (9999, 52, 5), IsoWeek.Of(9999, 12, 31)); Eq("iso week format 9999-12-31", "9999-W52-5", IsoWeek.Format(9999, 12, 31));
+Eq("iso weeks in year 2015", 53, IsoWeek.WeeksInYear(2015));
+Eq("iso weeks in year 2016", 52, IsoWeek.WeeksInYear(2016));
+Eq("iso weeks in year 2020", 53, IsoWeek.WeeksInYear(2020));
+Eq("iso weeks in year 2021", 52, IsoWeek.WeeksInYear(2021));
+Eq("iso weeks in year 2026", 53, IsoWeek.WeeksInYear(2026));
+Eq("iso weeks in year 2032", 53, IsoWeek.WeeksInYear(2032));
+Eq("iso weeks in year 2037", 53, IsoWeek.WeeksInYear(2037));
+Eq("iso from week 2020-W53-5", (2021, 1, 1), IsoWeek.FromIsoWeek(2020, 53, 5));
+Eq("iso from week 2026-W1-1", (2025, 12, 29), IsoWeek.FromIsoWeek(2026, 1, 1));
+Eq("iso from week 2009-W1-1", (2008, 12, 29), IsoWeek.FromIsoWeek(2009, 1, 1));
+Eq("iso parse 2026-W41-7", (2026, 10, 11), IsoWeek.Parse("2026-W41-7"));
+Eq("iso parse 2026W417", (2026, 10, 11), IsoWeek.Parse("2026W417"));
+Eq("iso parse 2026-W41", (2026, 10, 5), IsoWeek.Parse("2026-W41"));
+Eq("iso parse 2020-W53-5", (2021, 1, 1), IsoWeek.Parse("2020-W53-5"));
+Throws<ArgumentOutOfRangeException>("iso parse invalid 2021-W53-1", () => IsoWeek.Parse("2021-W53-1"));
+Throws<ArgumentOutOfRangeException>("iso parse invalid 2026-W00-1", () => IsoWeek.Parse("2026-W00-1"));
+Throws<FormatException>("iso parse invalid 2026-W10-8", () => IsoWeek.Parse("2026-W10-8"));
+Throws<FormatException>("iso parse invalid 26-W10-1", () => IsoWeek.Parse("26-W10-1"));
+Throws<FormatException>("iso parse invalid 2026-w10-1", () => IsoWeek.Parse("2026-w10-1"));
+Throws<FormatException>("iso parse invalid 2026-W1-1", () => IsoWeek.Parse("2026-W1-1"));
+Throws<ArgumentOutOfRangeException>("iso week invalid 2021-02-29", () => IsoWeek.Of(2021, 2, 29));
+Throws<ArgumentOutOfRangeException>("iso from week 9999-W52-7 beyond year 9999", () => IsoWeek.FromIsoWeek(9999, 52, 7));
+
+// 61. Topological sort
+Eq("topo sort 0", "[\"b\",\"c\",\"a\",\"d\"]", W10L(TopoSort.Sort(new[] { "a", "b", "c", "d" }, new (string, string)[] { ("c", "a"), ("a", "d") })));
+Eq("topo sort 1", "[\"x\"]", W10L(TopoSort.Sort(new[] { "x" }, new (string, string)[] {  })));
+Eq("topo sort 2", "[\"a\",\"b\",\"c\"]", W10L(TopoSort.Sort(new[] { "a", "b", "c" }, new (string, string)[] {  })));
+Eq("topo sort 3", "[\"shirt\",\"tie\",\"trousers\",\"belt\",\"jacket\",\"socks\",\"shoes\",\"watch\"]", W10L(TopoSort.Sort(new[] { "shirt", "tie", "jacket", "belt", "trousers", "shoes", "socks", "watch" }, new (string, string)[] { ("shirt", "tie"), ("tie", "jacket"), ("shirt", "belt"), ("belt", "jacket"), ("trousers", "belt"), ("trousers", "shoes"), ("socks", "shoes") })));
+Eq("topo sort 4", "[\"a\",\"b\"]", W10L(TopoSort.Sort(new[] { "a", "b" }, new (string, string)[] { ("a", "b"), ("a", "b") })));
+Eq("topo levels 0", "[\"b\",\"c\"],[\"a\"],[\"d\"]", string.Join(",", TopoSort.Levels(new[] { "a", "b", "c", "d" }, new (string, string)[] { ("c", "a"), ("a", "d") }).Select(W10L)));
+Eq("topo levels 1", "[\"x\"]", string.Join(",", TopoSort.Levels(new[] { "x" }, new (string, string)[] {  }).Select(W10L)));
+Eq("topo levels 2", "[\"a\",\"b\",\"c\"]", string.Join(",", TopoSort.Levels(new[] { "a", "b", "c" }, new (string, string)[] {  }).Select(W10L)));
+Eq("topo levels 3", "[\"shirt\",\"trousers\",\"socks\",\"watch\"],[\"tie\",\"belt\",\"shoes\"],[\"jacket\"]", string.Join(",", TopoSort.Levels(new[] { "shirt", "tie", "jacket", "belt", "trousers", "shoes", "socks", "watch" }, new (string, string)[] { ("shirt", "tie"), ("tie", "jacket"), ("shirt", "belt"), ("belt", "jacket"), ("trousers", "belt"), ("trousers", "shoes"), ("socks", "shoes") }).Select(W10L)));
+Eq("topo levels 4", "[\"a\"],[\"b\"]", string.Join(",", TopoSort.Levels(new[] { "a", "b" }, new (string, string)[] { ("a", "b"), ("a", "b") }).Select(W10L)));
+Throws<InvalidOperationException>("topo cycle 0", () => TopoSort.Sort(new[] { "a", "b", "c" }, new (string, string)[] { ("a", "b"), ("b", "c"), ("c", "b") }), e => e.Message == "cycle: b -> c -> b");
+Throws<InvalidOperationException>("topo levels cycle 0", () => TopoSort.Levels(new[] { "a", "b", "c" }, new (string, string)[] { ("a", "b"), ("b", "c"), ("c", "b") }), e => e.Message == "cycle: b -> c -> b");
+Throws<InvalidOperationException>("topo cycle 1", () => TopoSort.Sort(new[] { "a" }, new (string, string)[] { ("a", "a") }), e => e.Message == "cycle: a -> a");
+Throws<InvalidOperationException>("topo levels cycle 1", () => TopoSort.Levels(new[] { "a" }, new (string, string)[] { ("a", "a") }), e => e.Message == "cycle: a -> a");
+Throws<InvalidOperationException>("topo cycle 2", () => TopoSort.Sort(new[] { "p", "q", "r", "s" }, new (string, string)[] { ("p", "q"), ("q", "r"), ("r", "p"), ("r", "s") }), e => e.Message == "cycle: p -> q -> r -> p");
+Throws<InvalidOperationException>("topo levels cycle 2", () => TopoSort.Levels(new[] { "p", "q", "r", "s" }, new (string, string)[] { ("p", "q"), ("q", "r"), ("r", "p"), ("r", "s") }), e => e.Message == "cycle: p -> q -> r -> p");
+Throws<ArgumentException>("topo invalid 0", () => TopoSort.Sort(new[] { "a" }, new (string, string)[] { ("a", "b") }));
+Throws<ArgumentException>("topo levels invalid 0", () => TopoSort.Levels(new[] { "a" }, new (string, string)[] { ("a", "b") }));
+Throws<ArgumentException>("topo invalid 1", () => TopoSort.Sort(new[] { "a", "a" }, new (string, string)[] {  }));
+Throws<ArgumentException>("topo levels invalid 1", () => TopoSort.Levels(new[] { "a", "a" }, new (string, string)[] {  }));
+Throws<InvalidOperationException>("topo cycle reached after a dead end", () => TopoSort.Sort(new[] { "s", "p", "q" }, new (string, string)[] { ("p", "q"), ("q", "p"), ("q", "s") }), e => e.Message == "cycle: p -> q -> p");
+Throws<InvalidOperationException>("topo Sort cycle dead end z", () => TopoSort.Sort(new[] { "z", "a", "b" }, new (string, string)[] { ("a", "z"), ("a", "b"), ("b", "a") }), e => e.Message == "cycle: a -> b -> a");
+Throws<InvalidOperationException>("topo Levels cycle dead end z", () => TopoSort.Levels(new[] { "z", "a", "b" }, new (string, string)[] { ("a", "z"), ("a", "b"), ("b", "a") }), e => e.Message == "cycle: a -> b -> a");
+Throws<InvalidOperationException>("topo Sort cycle dead end chain", () => TopoSort.Sort(new[] { "s", "x", "y", "d" }, new (string, string)[] { ("x", "d"), ("x", "y"), ("y", "x"), ("d", "s") }), e => e.Message == "cycle: x -> y -> x");
+Throws<InvalidOperationException>("topo Levels cycle dead end chain", () => TopoSort.Levels(new[] { "s", "x", "y", "d" }, new (string, string)[] { ("x", "d"), ("x", "y"), ("y", "x"), ("d", "s") }), e => e.Message == "cycle: x -> y -> x");
+
+// 62. Link header
+Eq("link parse 0 <https://api.test/items?page=2>; rel=\"ne", "\"https://api.test/items?page=2\"{\"rel\":\"next\"};\"https://api.test/items?page=9\"{\"rel\":\"last\"}", string.Join(";", LinkHeader.Parse("<https://api.test/items?page=2>; rel=\"next\", <https://api.test/items?page=9>; rel=\"last\"").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link parse 1 <https://x/?a=1,2>; rel=next; title=\"a, ", "\"https://x/?a=1,2\"{\"rel\":\"next\",\"title\":\"a, \\\"b\\\"; c\"}", string.Join(";", LinkHeader.Parse("<https://x/?a=1,2>; rel=next; title=\"a, \\\"b\\\"; c\"").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link parse 2 </TheBook/chapter2>; rel=\"previous\"; tit", "\"/TheBook/chapter2\"{\"rel\":\"previous\",\"title\":\"letztes Kapitel\"};\"/TheBook/chapter4\"{\"rel\":\"next\",\"title\":\"n\u00E4chstes Kapitel\"}", string.Join(";", LinkHeader.Parse("</TheBook/chapter2>; rel=\"previous\"; title*=UTF-8'de'letztes%20Kapitel, </TheBook/chapter4>; rel=\"next\"; title*=UTF-8'de'n%c3%a4chstes%20Kapitel").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link parse 3 <http://example.org/>; REL=\"Start Index\"", "\"http://example.org/\"{\"rel\":\"start index\",\"anchor\":\"#x\",\"hreflang\":\"en\"}", string.Join(";", LinkHeader.Parse("<http://example.org/>; REL=\"Start Index\"; anchor=\"#x\"; rel=ignored; hreflang=en").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link parse 4 <a>;rel=x;crossorigin", "\"a\"{\"rel\":\"x\",\"crossorigin\":\"\"}", string.Join(";", LinkHeader.Parse("<a>;rel=x;crossorigin").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link parse 5 ", "", string.Join(";", LinkHeader.Parse("").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link parse 6   ,  <a>; rel=x ,", "\"a\"{\"rel\":\"x\"}", string.Join(";", LinkHeader.Parse("  ,  <a>; rel=x ,").Select(l => W10Q(l.Uri) + W10S(l.Params))));
+Eq("link rel 0 LAST", "https://api.test/items?page=9", LinkHeader.FindRel(LinkHeader.Parse("<https://api.test/items?page=2>; rel=\"next\", <https://api.test/items?page=9>; rel=\"last\""), "LAST")?.Uri);
+Eq("link rel 1 prev", (string?)null, LinkHeader.FindRel(LinkHeader.Parse("<https://api.test/items?page=2>; rel=\"next\", <https://api.test/items?page=9>; rel=\"last\""), "prev")?.Uri);
+Eq("link format 0", "</a>; rel=\"next\"", LinkHeader.Format(new[] { new WebLink("/a", W10P("rel", "next")) }));
+Eq("link format 1", "</b>; rel=\"prev\"; title=\"Page \\\"1\\\"\"; type=\"text/html\", </c>; rel=\"next\"; title*=UTF-8''%E2%82%AC%20x", LinkHeader.Format(new[] { new WebLink("/b", W10P("rel", "prev", "title", "Page \"1\"", "type", "text/html")), new WebLink("/c", W10P("rel", "next", "title", "\u20AC x")) }));
+Throws<FormatException>("link invalid https://x; rel=next", () => LinkHeader.Parse("https://x; rel=next"));
+Throws<FormatException>("link invalid <https://x", () => LinkHeader.Parse("<https://x"));
+Throws<FormatException>("link invalid <a>; title=\"x", () => LinkHeader.Parse("<a>; title=\"x"));
+Throws<FormatException>("link invalid <a> rel=x", () => LinkHeader.Parse("<a> rel=x"));
+Throws<FormatException>("link invalid <a>; title*=UTF-8''%zz", () => LinkHeader.Parse("<a>; title*=UTF-8''%zz"));
+Throws<FormatException>("link invalid <a>; title*=KOI8-R''x", () => LinkHeader.Parse("<a>; title*=KOI8-R''x"));
+
+// 63. Content-Disposition
+Eq("disposition build 0 report.pdf", "attachment; filename=\"report.pdf\"", ContentDisposition.Build("report.pdf", false));
+Eq("disposition build 1 caf\u00E9.pdf", "attachment; filename=\"caf_.pdf\"; filename*=UTF-8''caf%C3%A9.pdf", ContentDisposition.Build("caf\u00E9.pdf", false));
+Eq("disposition build 2 ../etc/passwd", "attachment; filename=\"_etc_passwd\"", ContentDisposition.Build("../etc/passwd", false));
+Eq("disposition build 3 a\"b\\c.txt", "attachment; filename=\"a_b_c.txt\"", ContentDisposition.Build("a\"b\\c.txt", false));
+Eq("disposition build 4   .hidden  ", "attachment; filename=\"hidden\"", ContentDisposition.Build("  .hidden  ", false));
+Eq("disposition build 5 ", "attachment; filename=\"download\"", ContentDisposition.Build("", false));
+Eq("disposition build 6 \u65E5\u672C\u8A9E.txt", "inline; filename=\"___.txt\"; filename*=UTF-8''%E6%97%A5%E6%9C%AC%E8%AA%9E.txt", ContentDisposition.Build("\u65E5\u672C\u8A9E.txt", true));
+Eq("disposition build 7 tab\\there.csv", "attachment; filename=\"tab_here.csv\"", ContentDisposition.Build("tab\u0009here.csv", false));
+Eq("disposition build 8 100% sure+ok.txt", "attachment; filename=\"100% sure+ok.txt\"", ContentDisposition.Build("100% sure+ok.txt", false));
+{ var d = ContentDisposition.Parse("attachment; filename=\"x.txt\""); string n = "disposition parse 0 attachment; filename=\"x.txt\""; Eq(n + " type", "attachment", d.Type); Eq(n + " filename", "x.txt", d.Filename); Eq(n + " params", "{\"filename\":\"x.txt\"}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("attachment; filename=x.txt"); string n = "disposition parse 1 attachment; filename=x.txt"; Eq(n + " type", "attachment", d.Type); Eq(n + " filename", "x.txt", d.Filename); Eq(n + " params", "{\"filename\":\"x.txt\"}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("INLINE"); string n = "disposition parse 2 INLINE"; Eq(n + " type", "inline", d.Type); Eq(n + " filename", (string?)null, d.Filename); Eq(n + " params", "{}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("attachment; filename=\"a.txt\"; filename*=UTF-8''%E2%82%AC%20rates.txt"); string n = "disposition parse 3 attachment; filename=\"a.txt\"; filename*="; Eq(n + " type", "attachment", d.Type); Eq(n + " filename", "\u20AC rates.txt", d.Filename); Eq(n + " params", "{\"filename\":\"\u20AC rates.txt\"}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("attachment; filename*=iso-8859-1'en'%A3%20rates.txt"); string n = "disposition parse 4 attachment; filename*=iso-8859-1'en'%A3%"; Eq(n + " type", "attachment", d.Type); Eq(n + " filename", "\u00A3 rates.txt", d.Filename); Eq(n + " params", "{\"filename\":\"\u00A3 rates.txt\"}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("attachment; filename=\"..\\\\..\\\\evil.exe\""); string n = "disposition parse 5 attachment; filename=\"..\\\\..\\\\evil.exe\""; Eq(n + " type", "attachment", d.Type); Eq(n + " filename", "_.._evil.exe", d.Filename); Eq(n + " params", "{\"filename\":\"..\\\\..\\\\evil.exe\"}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("attachment; filename=\"\\\"quoted\\\".txt\"; size=100"); string n = "disposition parse 6 attachment; filename=\"\\\"quoted\\\".txt\"; s"; Eq(n + " type", "attachment", d.Type); Eq(n + " filename", "_quoted_.txt", d.Filename); Eq(n + " params", "{\"filename\":\"\\\"quoted\\\".txt\",\"size\":\"100\"}", W10S(d.Params)); }
+{ var d = ContentDisposition.Parse("form-data; name=\"file\"; filename=\"photo.jpg\""); string n = "disposition parse 7 form-data; name=\"file\"; filename=\"photo."; Eq(n + " type", "form-data", d.Type); Eq(n + " filename", "photo.jpg", d.Filename); Eq(n + " params", "{\"name\":\"file\",\"filename\":\"photo.jpg\"}", W10S(d.Params)); }
+Throws<FormatException>("disposition invalid ; filename=x", () => ContentDisposition.Parse("; filename=x"));
+Throws<FormatException>("disposition invalid attachment; filename=\"open", () => ContentDisposition.Parse("attachment; filename=\"open"));
+Throws<FormatException>("disposition invalid attachment; filename*=UTF-8''%G0", () => ContentDisposition.Parse("attachment; filename*=UTF-8''%G0"));
+Throws<FormatException>("disposition invalid attachment filename=x", () => ContentDisposition.Parse("attachment filename=x"));
+Eq("disposition sanitize empty", "download", ContentDisposition.SanitizeFilename(" . "));
+
+// 64. Cache-Control
+Eq("cache control parse 0 public, max-age=600", "{\"public\":true,\"max-age\":600}", W10C(CacheControl.Parse("public, max-age=600")));
+Eq("cache control parse 1 no-store", "{\"no-store\":true}", W10C(CacheControl.Parse("no-store")));
+Eq("cache control parse 2 private=\"set-cookie, x-y\", max-age=0", "{\"private\":\"set-cookie, x-y\",\"max-age\":0}", W10C(CacheControl.Parse("private=\"set-cookie, x-y\", max-age=0")));
+Eq("cache control parse 3 max-age=\"120\", s-maxage=60, must-revalidate", "{\"max-age\":120,\"s-maxage\":60,\"must-revalidate\":true}", W10C(CacheControl.Parse("max-age=\"120\", s-maxage=60, must-revalidate")));
+Eq("cache control parse 4 max-age=abc, max-age=30", "{\"max-age\":30}", W10C(CacheControl.Parse("max-age=abc, max-age=30")));
+Eq("cache control parse 5 MAX-AGE=5, Max-Age=9", "{\"max-age\":5}", W10C(CacheControl.Parse("MAX-AGE=5, Max-Age=9")));
+Eq("cache control parse 6 max-stale", "{\"max-stale\":true}", W10C(CacheControl.Parse("max-stale")));
+Eq("cache control parse 7 max-stale=120, min-fresh=10", "{\"max-stale\":120,\"min-fresh\":10}", W10C(CacheControl.Parse("max-stale=120, min-fresh=10")));
+Eq("cache control parse 8 stale-while-revalidate=30, immutable", "{\"stale-while-revalidate\":30,\"immutable\":true}", W10C(CacheControl.Parse("stale-while-revalidate=30, immutable")));
+Eq("cache control parse 9 ,, public ,,", "{\"public\":true}", W10C(CacheControl.Parse(",, public ,,")));
+Eq("cache control parse 10 no-cache=\"Set-Cookie\"", "{\"no-cache\":\"Set-Cookie\"}", W10C(CacheControl.Parse("no-cache=\"Set-Cookie\"")));
+Eq("cache control parse 11 foo=bar, baz=\"q\\\"t\"", "{\"foo\":\"bar\",\"baz\":\"q\\\"t\"}", W10C(CacheControl.Parse("foo=bar, baz=\"q\\\"t\"")));
+Eq("cache control format 0", "public, max-age=600", CacheControl.Format(new KeyValuePair<string, CacheValue>[] { KeyValuePair.Create("public", CacheValue.Flag), KeyValuePair.Create("max-age", CacheValue.Of(600L)) }));
+Eq("cache control format 1", "private=\"set-cookie, x\", no-cache", CacheControl.Format(new KeyValuePair<string, CacheValue>[] { KeyValuePair.Create("private", CacheValue.Of("set-cookie, x")), KeyValuePair.Create("no-cache", CacheValue.Flag) }));
+Eq("cache control format 2", "s-maxage=0, stale-if-error=86400", CacheControl.Format(new KeyValuePair<string, CacheValue>[] { KeyValuePair.Create("s-maxage", CacheValue.Of(0L)), KeyValuePair.Create("stale-if-error", CacheValue.Of(86400L)) }));
+Eq("cache control freshness 0 max-age=600 shared=False", (long?)600, CacheControl.Freshness(CacheControl.Parse("max-age=600"), false));
+Eq("cache control freshness 1 max-age=600, s-maxage=60 shared=True", (long?)60, CacheControl.Freshness(CacheControl.Parse("max-age=600, s-maxage=60"), true));
+Eq("cache control freshness 2 max-age=600, s-maxage=60 shared=False", (long?)600, CacheControl.Freshness(CacheControl.Parse("max-age=600, s-maxage=60"), false));
+Eq("cache control freshness 3 no-store, max-age=600 shared=False", (long?)0, CacheControl.Freshness(CacheControl.Parse("no-store, max-age=600"), false));
+Eq("cache control freshness 4 no-cache shared=True", (long?)0, CacheControl.Freshness(CacheControl.Parse("no-cache"), true));
+Eq("cache control freshness 5 public shared=False", (long?)null, CacheControl.Freshness(CacheControl.Parse("public"), false));
+Throws<FormatException>("cache control invalid private=\"unterminated", () => CacheControl.Parse("private=\"unterminated"));
+Eq("cache control format quoted round trip", "private=\"set-cookie, x\", no-cache", CacheControl.Format(CacheControl.Parse("private=\"set-cookie, x\", no-cache")));
+
 Console.WriteLine($"C# checks: {passed} passed, {failed} failed");
 return failed == 0 ? 0 : 1;
