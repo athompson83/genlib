@@ -1531,7 +1531,9 @@
         "idempotency",
         "postgresql",
         "retry",
-        "leases"
+        "leases",
+        "background jobs",
+        "worker"
       ],
       "files": [
         {
@@ -1611,8 +1613,8 @@
       "manifest": {
         "path": "integrations/durable-jobs/integration.json",
         "target": "integration.json",
-        "bytes": 1637,
-        "sha256": "276774ee42b5c9c024718ddf2d9b94d17a19aee950f73e51b5466b1981d61953"
+        "bytes": 1674,
+        "sha256": "25109031088b3f287370e8fd816368743ebea15943871001b1cc8b5ec890ba54"
       }
     },
     {
