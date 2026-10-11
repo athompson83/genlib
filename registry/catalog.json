@@ -360,6 +360,67 @@
       "sha256": "f0eac5d18ccda92385515eecf117bcdc40e41143b28d0732d31903a4e0851e6c"
     },
     {
+      "id": "password-reset",
+      "version": "0.1.0",
+      "title": "Password reset by email link",
+      "description": "Forgot-password flow for server apps: enumeration-safe reset requests, emailed one-time links with hashed 256-bit tokens, verify without consuming, single-use completion with a password policy, revocation of other links and sessions, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "password reset",
+        "forgot password",
+        "reset link",
+        "email link",
+        "account recovery",
+        "reset password",
+        "authentication",
+        "login",
+        "security",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/password-reset@0.1.0.json",
+      "sha256": "a59f15a4acd12854f7feff36f2e3e08f3c2b97a22591c5eb7a3f68a0da59ed20"
+    },
+    {
+      "id": "presence",
+      "version": "0.1.0",
+      "title": "Real-time presence",
+      "description": "Who is online, viewing or typing in a room for multi-tenant server apps: join, heartbeat and leave per tab, members grouped by user, TTL expiry and sweep, small validated JSON state (cursors, typing), ordered join/update/leave events with throttled updates, and a Server-Sent Events Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "presence",
+        "who is online",
+        "online users",
+        "real-time presence with websockets",
+        "live cursors",
+        "typing indicator",
+        "collaborators viewing",
+        "server-sent events",
+        "sse",
+        "realtime",
+        "collaboration",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/presence@0.1.0.json",
+      "sha256": "14c323d9c20bb11856399908a14d6ed03dea7d8b61b43aecf100b8453739243f"
+    },
+    {
       "id": "public-data-clients",
       "version": "0.1.0",
       "title": "Public data and catalog maintenance clients",
@@ -425,6 +486,37 @@
       "sha256": "3a703d7e67554f79872bac75fddd35c6dc37a74339b2c9f75c7a612da9fdeeff"
     },
     {
+      "id": "rbac",
+      "version": "0.1.0",
+      "title": "Role-based access control",
+      "description": "Role-based access control for multi-tenant server apps: static roles with resource:action wildcards, inheritance and deny rules, tenant-wide or per-resource assignments with expiry, fail-closed checks, anti-escalation grants, last-owner protection, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "rbac",
+        "roles",
+        "permissions",
+        "access control",
+        "authorization",
+        "role-based access control checks",
+        "admin",
+        "owner",
+        "multi-tenant",
+        "teams",
+        "workspaces",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/rbac@0.1.0.json",
+      "sha256": "29bc039de83ef8b11f49b0f321b534a447c3b02a3b75e39fc3ff3651c6d6530f"
+    },
+    {
       "id": "security-headers",
       "version": "0.1.0",
       "title": "Security headers",
@@ -451,6 +543,36 @@
       "verification": "tested",
       "manifest": "registry/manifests/security-headers@0.1.0.json",
       "sha256": "7ae05d3ae2f88ea3fa52383a3028295f9f2354fd8465a2b4a4e51620979fbd38"
+    },
+    {
+      "id": "short-links",
+      "version": "0.1.0",
+      "title": "Short links",
+      "description": "URL shortener for multi-tenant apps: create short links with random or custom codes, validated destinations, expiry, disable and click limits, an atomic click counter, a redirect route and a management API, with injected authorization and persistence.",
+      "kind": "feature",
+      "tags": [
+        "url shortener",
+        "short links",
+        "short url",
+        "link shortener",
+        "redirects",
+        "click tracking",
+        "vanity url",
+        "custom slug",
+        "multi-tenant",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/short-links@0.1.0.json",
+      "sha256": "dfc019c6b312fb265e6b3040f54552ab63a1e05f93b12d57f346d12ae7880183"
     },
     {
       "id": "structured-logger",
