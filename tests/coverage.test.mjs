@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { loadCatalog, REPOSITORY_ROOT } from '../lib/catalog.mjs';
 import { installModule } from '../lib/install.mjs';
 import { checkAdoption } from '../lib/lifecycle.mjs';
-import { acceptanceProblems, contractCoverage, findContract, formatCoverage, loadContracts, validateContracts } from '../lib/coverage.mjs';
+import { acceptanceProblems, ciPacks, contractCoverage, findContract, formatCoverage, loadContracts, validateContracts } from '../lib/coverage.mjs';
 import { loadSources, searchEntries } from '../lib/discover.mjs';
 
 const contracts = loadContracts(REPOSITORY_ROOT);
@@ -40,6 +40,13 @@ test('validation rejects invented evidence, unknown requirements and unsupported
   const selfVerified = base();
   selfVerified.implementations[0].status = 'application-verified';
   assert.match(problems(selfVerified).join('\n'), /application-verified comes from app receipts/);
+  const notRunByCi = base();
+  notRunByCi.implementations[0].evidence[0].test = 'examples/recipes/utilities/slugify.ts';
+  assert.match(problems(notRunByCi).join('\n'), /is not a test CI runs/);
+  const packEvidence = base();
+  packEvidence.implementations[0].evidence[0] = { requirement: 'role-definitions', test: 'integrations/durable-jobs/tests/inbox.test.mjs', name: 'a title that is not there' };
+  assert.match(problems(packEvidence).join('\n'), /no test in integrations\/durable-jobs\/tests\/inbox.test.mjs contains/, 'pack tests in the CI matrix are accepted as evidence files');
+  assert.match(validateContracts(REPOSITORY_ROOT, [packEvidence], { packs: new Set() }).join('\n'), /is not a test CI runs/, 'a pack outside the CI matrix is not');
   const notInCatalog = base();
   assert.match(validateContracts(REPOSITORY_ROOT, [notInCatalog], { known: () => false }).join('\n'), /not found in the catalogs/);
   const duplicateTask = [base(), { ...base(), id: 'rbac-copy' }];
@@ -103,4 +110,10 @@ test('adopted --accepts records requirement-level acceptance that coverage --tar
 
   // The CLI refuses keys the module does not claim.
   assert.throws(() => execFileSync(process.execPath, [CLI, 'adopted', 'rbac', '--target', target, '--test', 'node -e 0', '--accepts', 'stripe-checkout#fulfillment', '--json'], { stdio: 'pipe' }), /does not claim/);
+});
+
+test('the CI pack list is read from the workflow matrix', () => {
+  const packs = ciPacks(REPOSITORY_ROOT);
+  assert.ok(packs.has('durable-jobs') && packs.has('commerce-storefront'));
+  assert.ok(!packs.has('native-persistence'), 'non-Node packs run in other jobs and are not node:test evidence');
 });

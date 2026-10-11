@@ -38,16 +38,45 @@
   "implementations": [
     {
       "ref": "integration:durable-jobs",
+      "status": "fixture-verified",
+      "fulfills": [
+        "retry-backoff-dead",
+        "single-claim-lease",
+        "idempotent-effects"
+      ],
+      "evidence": [
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "failed jobs respect retry availability and become dead at the attempt ceiling"
+        },
+        {
+          "requirement": "retry-backoff-dead",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "expired final attempt is dead-lettered"
+        },
+        {
+          "requirement": "single-claim-lease",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "claims are distinct and stale owners cannot complete or extend a replaced lease"
+        },
+        {
+          "requirement": "idempotent-effects",
+          "test": "integrations/durable-jobs/tests/inbox.test.mjs",
+          "name": "claims are distinct and stale owners cannot complete or extend a replaced lease"
+        }
+      ],
+      "notes": "PostgreSQL inbox (PostgresWebhookInbox) on in-process PGlite: delayed retry availability, attempt ceiling and dead state; FOR UPDATE SKIP LOCKED claim with lease expiry, re-claim and stale-owner rejection; the same idempotency key across re-claims. The retry delay is fixed per call (not exponential), dead-job replay is not tested, and honoring the key at the external provider is the application's work. The pg-boss runner path is not exercised"
+    },
+    {
+      "ref": "integration:durable-jobs",
       "status": "install-supported",
       "fulfills": [
         "durable-enqueue",
-        "retry-backoff-dead",
-        "single-claim-lease",
-        "idempotent-effects",
         "payload-validation",
         "bounded-concurrency-shutdown"
       ],
-      "notes": "pg-boss runner and PostgreSQL inbox; its own PGlite tests live in the pack, not in a repository test, and pg-boss worker execution is unexercised"
+      "notes": "pg-boss runner: payload parsing before the handler, worker concurrency limits and graceful stop are not exercised (the pack test only checks the runner refuses work before start); durable-enqueue is left here because the PGlite test recreates the adapter over the same in-memory database rather than restarting a process"
     },
     {
       "ref": "recipe:outbox-pattern-in-memory",

@@ -59,14 +59,53 @@
     },
     {
       "ref": "integration:commerce-storefront",
-      "status": "install-supported",
+      "status": "fixture-verified",
       "fulfills": [
         "cart-operations",
         "server-pricing",
-        "cart-ownership",
         "single-order"
       ],
-      "notes": "Medusa Store API adapter: backend totals, authorization callback before every operation, serialized completion and uncertain-outcome blocking; tests live in the pack, and no live backend or payment was run"
+      "evidence": [
+        {
+          "requirement": "cart-operations",
+          "test": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "name": "cart mutation routes use item identifiers"
+        },
+        {
+          "requirement": "cart-operations",
+          "test": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "name": "lost or malformed mutation responses remain uncertain"
+        },
+        {
+          "requirement": "server-pricing",
+          "test": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "name": "totals come from server"
+        },
+        {
+          "requirement": "server-pricing",
+          "test": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "name": "Medusa core adapter sends regional pricing query"
+        },
+        {
+          "requirement": "single-order",
+          "test": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "name": "prevents duplicate completion"
+        },
+        {
+          "requirement": "single-order",
+          "test": "integrations/commerce-storefront/tests/commerce.test.mjs",
+          "name": "uncertain provider outcome blocks order completion and another attempt"
+        }
+      ],
+      "notes": "Medusa Store API adapter and checkout controller against a fake fetch and fixture cart; no live Medusa backend or payment provider was run. Add, change and remove send only identifiers and quantities, and totals/prices/availability are read from the backend response. At-most-once completion and uncertain-outcome blocking are enforced per checkout controller instance; cross-process completion and reconciling the uncertain outcome are the backend's and application's work"
+    },
+    {
+      "ref": "integration:commerce-storefront",
+      "status": "install-supported",
+      "fulfills": [
+        "cart-ownership"
+      ],
+      "notes": "The adapter calls the application's authorize callback before credentials or network access (pack test: cart authorization runs before credential access), but binding a cart to its session or customer is the callback's work and is not tested"
     },
     {
       "ref": "module:webhook-verification",
@@ -85,9 +124,7 @@
     }
   ],
   "missing": [
-    "server-pricing",
     "cart-ownership",
-    "inventory-concurrency",
-    "single-order"
+    "inventory-concurrency"
   ]
 }

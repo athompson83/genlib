@@ -1,6 +1,24 @@
-# Provider plan: BTST Kanban (not implemented yet)
+# Provider plan: BTST Kanban (profile written, not yet run end to end)
 
-> Status: research and plan for the first "upstream dependency + Genlib integration package" provider (phase 3 of the [integration blueprint](../landscape.md#integration-blueprint-one-adoption-process-over-many-providers)). Nothing below has been installed, scaffolded, migrated or built against an app; the "Not verified" list at the end is explicit. Facts were read on 2026-10-11 from the npm registry and the repository at tag v4.5.1.
+> Status: the profile is in `resources/providers/btst-kanban.json` (`genlib provider check btst-kanban --target app` checks the prerequisites below; see [providers.md](../providers.md)). This page is the research and plan for the first "upstream dependency + Genlib integration package" provider (phase 3 of the [integration blueprint](../landscape.md#integration-blueprint-one-adoption-process-over-many-providers)). Nothing below has been installed, scaffolded, migrated or built against an app; the "Not verified" list at the end is explicit. Facts were read on 2026-10-11 from the npm registry and the repository at tag v4.5.1.
+
+## End-to-end run (2026-10-11)
+
+A fixture app was built with create-next-app 16.4.0 (next 16.4.0, React 19.3.0, Tailwind 4.3.3) and shadcn 4.19.1, then taken through the profile:
+
+| Step | Result |
+| --- | --- |
+| `provider check` | Ready after `shadcn init` (before it: `FAIL shadcn-css-variables`) |
+| Install | The original command failed (`ERESOLVE`: npm picked zod 3 for the auto-installed peers, against better-call's zod 4 peer). Listing every required peer exactly resolves without `--legacy-peer-deps`; the profile now does this |
+| Scaffold in scratch copy | 13 files; it patched `app/globals.css` (one `@import`) and generated a pages layout instead of editing the root layout |
+| `provider plan` / `adopt` | 13 create, 1 merge (`app/globals.css`), 0 conflicts; adopt wrote the files, the lock and a receipt |
+| Build | Failed until `cacheComponents` and `partialPrefetching` were set to false in `next.config.ts` (create-next-app 16.4 enables them); the profile now checks this. Also fails closed without `BTST_SITE_URL`, as designed |
+| Memory adapter | Pages return 200 and render server-side; 18 of 18 API checks pass (boards, columns, tasks at every priority, moves, reorders, two concurrent moves, cascading delete) |
+| Server authorization (`kanbanPermissions`, evaluation-only header identity) | 401 on all 14 operations anonymously; 403 on all 12 record operations for another user; client-supplied `ownerId` ignored. Collection reads carry no owner facts |
+| Kysely on file-backed PGlite, `transaction: true` | Migration created the three tables (via `@electric-sql/pglite-socket`, because the CLI needs a live PostgreSQL URL). Reads returned `columns: []`: `@btst/adapter-kysely@3.0.0` looks up `schema["kanbanColumn"]` where the key is `column`. A one-line local patch fixed it, and data then survived a restart; the stock package does not pass. `transaction: false` is refused with `ATOMIC_TRANSACTION_REQUIRED` and writes nothing. A duplicate board name returns HTTP 500 |
+| `genlib adopted` | Exposed two Genlib bugs, now fixed: provider route files never counted as used, and `--accepts` refused provider artifacts |
+
+Status stays `planned`: the persistent path needs an unpatched adapter release (or a tested Prisma path) before the profile can claim acceptance.
 
 ## Why Genlib wraps BTST instead of running its CLI
 

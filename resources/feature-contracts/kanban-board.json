@@ -1,0 +1,20 @@
+{
+  "id": "kanban-board",
+  "title": "Kanban board with columns and tasks",
+  "reviewed": "2026-10-11",
+  "tasks": ["kanban board with columns and tasks"],
+  "requirements": [
+    { "id": "boards", "text": "Users create, list, view, rename and delete boards; a new board starts with To Do, In Progress and Done columns" },
+    { "id": "columns-tasks", "text": "Columns and tasks can be added, edited, deleted and reordered; tasks carry a priority and an optional assignee" },
+    { "id": "move-ordering", "text": "Moving or reordering tasks keeps a stable order, and competing moves are serialized so only one wins" },
+    { "id": "atomic-writes", "text": "Writes run in transactions and fail closed without them; deleting a board removes its columns and tasks" },
+    { "id": "authorization", "text": "With server authorization configured, anonymous requests get 401 and denied requests 403 on every operation, and client-supplied ownership is ignored" },
+    { "id": "persistence", "text": "Board data is stored in the app's database through a migration and survives a restart" },
+    { "id": "routes-ui", "text": "The board list, new-board and board pages render server-side without console errors, with assignees resolved from the app's users" }
+  ],
+  "implementations": [
+    { "ref": "provider:btst-kanban", "status": "plan-available", "fulfills": ["boards", "columns-tasks", "move-ordering", "atomic-writes", "authorization", "persistence", "routes-ui"],
+      "notes": "Upstream BTST tests cover these (e2e/tests/smoke.kanban.spec.ts, plugins/kanban/__tests__/authorization.test.ts at v4.5.1), but Genlib has not run the profile end to end in an app, so nothing is credited above plan-available." }
+  ],
+  "notes": "Genlib has no Kanban module of its own; the BTST provider profile (genlib provider check btst-kanban) is the adoption path."
+}

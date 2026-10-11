@@ -12,6 +12,7 @@ import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { integrationSummary, inspectIntegration, installIntegration, loadIntegrationCatalog, planIntegration, verifyIntegrations } from '../lib/integrations.mjs';
 import { checkAdoption, removeModule, updateModule } from '../lib/lifecycle.mjs';
+import { adoptStaged, checkProvider, loadProviders, planStaged, providerSummary } from '../lib/providers.mjs';
 import { addRegistry, planRegistry, removeRegistry, resolveItems, updateRegistry, verifyRegistry } from '../lib/registry-adapter.mjs';
 import { acceptanceProblems, contractCoverage, coverageFor, formatCoverage, loadContracts } from '../lib/coverage.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
@@ -54,6 +55,8 @@ const HELP = {
     'registry plan|add shadcn:<name>|<https item URL> --target <existing-project> [--style new-york-v4] [--sha256 <hex>] [--keep-existing] [--json]   # adopt a shadcn-format registry item with conflict checks, a lock and a receipt (fetches over https)',
     'registry verify --target <existing-project> | registry remove <shadcn--name> --target <existing-project> [--dry-run]',
     'registry update <shadcn--name> --target <existing-project> [--write] [--conflict rej|inline]   # three-way merge of the registry\'s current version onto your edits; dry run unless --write',
+    'provider list | provider inspect <id> | provider check <id> --target <existing-project> [--json]   # upstream feature profiles (BTST Kanban): prerequisites the app must meet, pinned steps, acceptance',
+    'provider plan|adopt <id> --from <scratch-copy> [--baseline <pristine-copy>] --target <existing-project> [--json]   # adopt a scaffolder\'s output from a scratch copy: new files only, merges reported, never overwrites',
     'coverage <task words> | coverage --list [--target <existing-project>] [--json]   # which requirements of a feature Genlib code fulfills, with evidence status',
     'update <id> --target <existing-project> [--write] [--conflict rej|inline] [--json]   # three-way merge onto your edits; dry run unless --write',
     'schema [quick|steps|plan|receipt|update|module]   # JSON Schema of an agent-facing output',
@@ -66,7 +69,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -89,7 +92,7 @@ try {
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'json'],
     add: ['target', 'out', 'allow-unverified', 'json'], verify: ['target', 'json'],
-    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
+    schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
@@ -259,6 +262,31 @@ try {
         result = { ...plan, writes: false };
         if (plan.conflicts.length) process.exitCode = 1;
       } else result = await addRegistry(options.target, resolved, { keepExisting: options['keep-existing'] === true });
+    }
+  } else if (command === 'provider') {
+    const [action, id, ...rest] = positional;
+    invariant(['list', 'inspect', 'check', 'plan', 'adopt'].includes(action) && rest.length === 0, 'INVALID_OPTION', 'Use provider list|inspect|check|plan|adopt.');
+    const profiles = loadProviders(REPOSITORY_ROOT);
+    if (action === 'list') result = { providers: profiles.map(providerSummary) };
+    else {
+      const profile = profiles.find(item => item.id === id);
+      invariant(profile, 'NOT_FOUND', `No provider named ${id}. Run genlib provider list.`);
+      if (action === 'inspect') result = profile;
+      else if (action === 'check') {
+        invariant(options.target, 'INVALID_OPTION', 'provider check needs --target <existing-project>.');
+        result = await checkProvider(profile, options.target);
+        text = [`${profile.id}: ${result.ready ? 'ready' : 'not ready'} (${options.target})`,
+          ...result.results.map(item => `  ${item.ok ? 'ok  ' : item.severity === 'warning' ? 'warn' : 'FAIL'} ${item.id}: ${item.text} (${item.found})`),
+          ...(result.ready ? [`# next: node "$GENLIB_ROOT"/bin/genlib.mjs provider inspect ${profile.id} --json, then run its steps in order`] : ['# fix the FAIL lines before adopting'])].join('\n');
+        if (!result.ready) process.exitCode = 1;
+      } else {
+        invariant(options.target && options.from, 'INVALID_OPTION', `provider ${action} needs --from <scratch-copy> and --target <existing-project>.`);
+        if (action === 'plan') {
+          const { _writes, ...plan } = await planStaged(profile, options.from, options.target, { baseline: options.baseline });
+          result = { ...plan, writes: false };
+          if (plan.conflicts.length) process.exitCode = 1;
+        } else result = await adoptStaged(profile, options.from, options.target, { baseline: options.baseline });
+      }
     }
   } else if (command === 'coverage') {
     if (options.list) {
