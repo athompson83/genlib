@@ -42,7 +42,7 @@ test('dry run writes nothing; --write adds entries and blocks next to existing s
   assert.ok(agents.startsWith('# Rules\n\nUse pnpm.\n'));
   assert.ok(agents.includes(GUIDANCE));
   assert.match(await read(target, '.cursor/rules/genlib.mdc'), /^---\ndescription: /);
-  assert.ok((await read(target, 'CLAUDE.md')).includes('Skip Genlib when the task fully specifies a small app feature'), 'guidance says when not to use Genlib');
+  assert.ok((await read(target, 'CLAUDE.md')).includes('Default to writing the code yourself'), 'guidance says when not to use Genlib');
 
   const again = await connectAgents(GENLIB, target, { targets: ['all'] });
   assert.equal(again.changed, 0, 'a second run changes nothing');
