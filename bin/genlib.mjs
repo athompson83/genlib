@@ -6,7 +6,7 @@ import { detectProject, findInSources, loadSources, resolveEntry, sourceCounts }
 import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
 import { INDEXES, MCP_CLIENTS, installFor, loadIndex, searchIndex, summarize } from '../lib/indexes.mjs';
-import { LANGUAGES, commandsFor, coverage, loadCapabilities } from '../lib/capabilities.mjs';
+import { LANGUAGES, commandsFor, coverage, stepsFor, loadCapabilities } from '../lib/capabilities.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
 import { briefFind, formatBrief, formatIndexHits, formatQuick, quickPick } from '../lib/brief.mjs';
 import { formatOutline, outline } from '../lib/outline.mjs';
@@ -109,7 +109,8 @@ try {
       const languages = language ? [language] : LANGUAGES;
       const implementations = Object.fromEntries(languages.map(name => {
         const impl = item.implementations[name] ?? { kind: 'unavailable', note: 'Not indexed.' };
-        return [name, { ...impl, commands: commandsFor(impl) }];
+        // Structured, checkable steps only for the one language being adopted, to keep the all-languages view small.
+        return [name, { ...impl, commands: commandsFor(impl), ...(language && impl.kind !== 'unavailable' ? stepsFor(impl) : {}) }];
       }));
       result = { ...item, ...coverage(item), implementations, review: index.review };
     } else {

@@ -215,3 +215,28 @@ test('form-schema: validation vectors', async () => {
   assert.deepEqual(v({ name: 'Al', email: 'a@b.co', start: '2000-02-29', code: 'ABC-12x' }), { code: ['pattern'] });
   assert.throws(() => validate([{ name: 'x', type: 'string' }, { name: 'x', type: 'number' }], {}), /duplicate/);
 });
+
+test('stepsFor gives ordered, checkable adoption steps that run in a fresh app', async () => {
+  const { stepsFor } = await import('../lib/capabilities.mjs');
+  const { mkdtempSync, rmSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { execSync } = await import('node:child_process');
+  const root = new URL('../', import.meta.url).pathname;
+  const app = mkdtempSync(tmpdir() + '/genlib-steps-');
+  try {
+    const plan = stepsFor({ kind: 'language-example', id: 'python-roman-numerals' }, app, root);
+    assert.deepEqual(plan.steps.map(step => step.kind), ['copy', 'test']);
+    assert.equal(plan.verify, 'test');
+    for (const step of plan.steps) execSync(step.run, { cwd: app, stdio: 'pipe' });
+  } finally { rmSync(app, { recursive: true, force: true }); }
+  // Dependency installs run where the copied manifest landed, before the tests.
+  const dart = stepsFor({ kind: 'language-example', id: 'dart-base58' });
+  assert.deepEqual(dart.steps.map(step => step.kind).slice(0, 1), ['copy']);
+  const java = stepsFor({ kind: 'language-example', id: 'java-dotted-path' });
+  assert.match(java.steps.at(-1).run, /javac --release 17 .*DottedPath\.java JsonPatch\.java DottedPathTest\.java && java -cp "\$out" DottedPathTest$/);
+  const rust = stepsFor({ kind: 'language-example', id: 'rust-punycode' });
+  assert.deepEqual(rust.steps.map(step => step.kind), ['copy', 'integrate', 'check']);
+  const recipe = stepsFor({ kind: 'recipe', id: 'punycode' });
+  assert.match(recipe.steps[0].purpose, /genlib\/examples\/recipes\/punycode\.ts/);
+  assert.ok(stepsFor({ kind: 'module', id: 'org-invitations' }).steps.some(step => /genlib\.mjs verify/.test(step.run ?? '')));
+});

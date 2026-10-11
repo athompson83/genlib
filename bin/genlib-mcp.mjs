@@ -8,7 +8,7 @@ import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import { detectProject, findInSources, loadSources, resolveEntry, resolveResource, sourceCounts, SOURCE_TYPES } from '../lib/discover.mjs';
 import { formatJevPrompt, jevPacket } from '../lib/jev.mjs';
-import { LANGUAGES, commandsFor, coverage } from '../lib/capabilities.mjs';
+import { LANGUAGES, commandsFor, coverage, stepsFor } from '../lib/capabilities.mjs';
 import { installFor } from '../lib/indexes.mjs';
 import { installCommand } from '../lib/skills.mjs';
 import { quickstartFor } from '../lib/resources.mjs';
@@ -125,7 +125,7 @@ async function call(name, args = {}) {
     const languages = args.language ? [args.language] : LANGUAGES;
     return { ...item, implementations: Object.fromEntries(languages.map(language => {
       const impl = item.implementations[language] ?? { kind: 'unavailable', note: 'Not indexed.' };
-      return [language, { ...impl, commands: commandsFor(impl) }];
+      return [language, { ...impl, commands: commandsFor(impl), ...(args.language && impl.kind !== 'unavailable' ? stepsFor(impl) : {}) }];
     })) };
   }
   if (name === 'genlib_inspect') {
