@@ -74,6 +74,37 @@
       "sha256": "cef23e9440766c4a392fa439e4dcbd7f65e3d29ee606b3c1362e27cc47a863db"
     },
     {
+      "id": "csv-import",
+      "version": "0.1.0",
+      "title": "CSV import pipeline",
+      "description": "Server-side CSV import for apps: upload, preview with suggested column mapping, per-row validation with typed parsers and in-file duplicate checks, idempotent commit through your own save function, and a formula-safe error report, with tenant/user scoping and a Fetch Request/Response adapter.",
+      "kind": "feature",
+      "tags": [
+        "csv import",
+        "bulk upload",
+        "spreadsheet import",
+        "data import",
+        "column mapping",
+        "csv",
+        "import",
+        "upload",
+        "validation",
+        "error report",
+        "multi-tenant",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/csv-import@0.1.0.json",
+      "sha256": "ea0fbfff0a81d7d57d1b15a8c3babdd5c9f13e039f2b7808e9d21c92d79ea927"
+    },
+    {
       "id": "data-table",
       "version": "0.1.0",
       "title": "Searchable sortable data table",
@@ -98,6 +129,37 @@
       "verification": "tested",
       "manifest": "registry/manifests/data-table@0.1.0.json",
       "sha256": "1c4f9f90ce5a74a51e060dd2e9981ff5ac1582824daae75bde73f06b2187097f"
+    },
+    {
+      "id": "entitlements",
+      "version": "0.1.0",
+      "title": "Plan entitlements and usage credits",
+      "description": "Server-side plan features and limits with subscription-status fallback and grace, plus an append-only usage-credit ledger with idempotent grants and debits, expiring credits, holds and optimistic concurrency.",
+      "kind": "feature",
+      "tags": [
+        "entitlements",
+        "plans",
+        "pricing",
+        "subscriptions",
+        "feature gating",
+        "limits",
+        "quotas",
+        "credits",
+        "usage billing",
+        "metering",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/entitlements@0.1.0.json",
+      "sha256": "12dc37730fed72e2e6a882b7ce32bef93067be23dd9a2e7a206b0d32777d6e4d"
     },
     {
       "id": "env-config",
@@ -183,6 +245,35 @@
       "verification": "tested",
       "manifest": "registry/manifests/http-resilience@0.2.0.json",
       "sha256": "b99d24938487ea004a6f9ffebd05e8fd7765082b03fc7f6583727c83ce2e0c17"
+    },
+    {
+      "id": "notification-inbox",
+      "version": "0.1.0",
+      "title": "Notification inbox",
+      "description": "Server-side in-app notification inbox (the bell menu): idempotent publish, newest-first cursor paging, unread counts, mark read, mark all read, archive and retention pruning, scoped to each user's own tenant, with injected persistence and a Fetch Request/Response adapter.",
+      "kind": "feature",
+      "tags": [
+        "notifications",
+        "inbox",
+        "bell",
+        "unread",
+        "activity feed",
+        "alerts",
+        "mark as read",
+        "multi-tenant",
+        "saas",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/notification-inbox@0.1.0.json",
+      "sha256": "d69aaacbd31d12fb1b18ba0516034d889164ed3c839549279224bb2c4ba4f24a"
     },
     {
       "id": "notification-preferences",

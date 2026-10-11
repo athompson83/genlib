@@ -2237,6 +2237,39 @@
    }
   },
   {
+   "name": "csv-import",
+   "type": "registry:item",
+   "title": "CSV import pipeline",
+   "description": "Server-side CSV import for apps: upload, preview with suggested column mapping, per-row validation with typed parsers and in-file duplicate checks, idempotent commit through your own save function, and a formula-safe error report, with tenant/user scoping and a Fetch Request/Response adapter.",
+   "files": [
+    {
+     "path": "modules/csv-import/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-import/core.ts"
+    },
+    {
+     "path": "modules/csv-import/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-import/memory-store.ts"
+    },
+    {
+     "path": "modules/csv-import/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-import/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module csv-import@0.1.0 (Apache-2.0). Configure: Declare the importable fields: key, label, required, aliases, parse ('string', 'integer', 'decimal', 'boolean', 'date', 'email' or a custom function), unique and maxLength. Implement ImportStore on your database with a conditional status update (UPDATE ... WHERE id = $1 AND status = $2) and a scheduled delete of expired imports. Implement onRow(record, rowNumber) to save one record, idempotently keyed on importId and rowNumber, with your own unique constraints; throw to record a row failure. Implement authenticate(request) from your session or verified token, returning tenantId and userId; never from the request body. Set parser limits (maxBytes, maxRows, maxColumns, maxFieldLength) and the HTTP maxUploadBytes to what your app accepts. Mount createImportHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/csv-import/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "data-table",
    "type": "registry:item",
    "title": "Searchable sortable data table",
@@ -2264,6 +2297,34 @@
     "component"
    ],
    "docs": "Genlib module data-table@0.1.0 (Apache-2.0). Configure: rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className. Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering. Contract: https://github.com/athompson83/genlib/blob/main/modules/data-table/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "entitlements",
+   "type": "registry:item",
+   "title": "Plan entitlements and usage credits",
+   "description": "Server-side plan features and limits with subscription-status fallback and grace, plus an append-only usage-credit ledger with idempotent grants and debits, expiring credits, holds and optimistic concurrency.",
+   "files": [
+    {
+     "path": "modules/entitlements/files/plans.ts",
+     "type": "registry:file",
+     "target": "~/genlib/entitlements/plans.ts"
+    },
+    {
+     "path": "modules/entitlements/files/credits.ts",
+     "type": "registry:file",
+     "target": "~/genlib/entitlements/credits.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module entitlements@0.1.0 (Apache-2.0). Configure: Declare plans with feature flags and numeric limits (Infinity for unlimited) and choose the fallback plan for canceled, unpaid and post-grace past_due accounts. Load the Account (plan, status, pastDueSince, overrides) from your billing state, for example a Stripe subscription synced by webhook; never from the request. Count current usage from your own data inside the same transaction that creates the resource, then call canUse. Implement CreditStore on your database: one row per ledger entry with a unique (account_id, version) so a stale append fails. Use a stable idempotency key per business event (payment intent id, job id) for grant, debit and reserve. Contract: https://github.com/athompson83/genlib/blob/main/modules/entitlements/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",
@@ -2351,6 +2412,39 @@
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.2.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "notification-inbox",
+   "type": "registry:item",
+   "title": "Notification inbox",
+   "description": "Server-side in-app notification inbox (the bell menu): idempotent publish, newest-first cursor paging, unread counts, mark read, mark all read, archive and retention pruning, scoped to each user's own tenant, with injected persistence and a Fetch Request/Response adapter.",
+   "files": [
+    {
+     "path": "modules/notification-inbox/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/notification-inbox/core.ts"
+    },
+    {
+     "path": "modules/notification-inbox/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/notification-inbox/memory-store.ts"
+    },
+    {
+     "path": "modules/notification-inbox/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/notification-inbox/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module notification-inbox@0.1.0 (Apache-2.0). Configure: Implement InboxStore on your database: an index on (tenant_id, user_id, created_at DESC, id DESC), a unique partial index on (tenant_id, user_id, dedupe_key), and updateMany as one UPDATE scoped by tenant_id and user_id (the SQL shape is in core.ts). Call publish(recipient, notification) only from trusted server code after deciding who should be told; it is not exposed over HTTP. Implement authenticate(request) from your session or verified token, returning the user's id and active tenant id; never read them from the request. Optionally pass authorize(actor, action) to refuse removed members or suspended tenants. Set retentionMs and maxPerUser, and run prune() from a scheduled job. Mount createInboxHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/notification-inbox/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
     "verification": "tested"
    }
   },

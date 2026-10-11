@@ -301,9 +301,12 @@ All modules are original Apache-2.0 code with a contract and behavior tests (ver
 | [`webhook-verification`](modules/webhook-verification/CONTRACT.md) | GitHub, Stripe and Standard Webhooks signatures with Web Crypto, rotation, capped raw body | Secrets, de-duplication of deliveries |
 | [`health-checks`](modules/health-checks/CONTRACT.md) | Fetch-standard `/healthz` and `/readyz` with concurrent, timed checks | Real dependency checks and routing |
 | [`security-headers`](modules/security-headers/CONTRACT.md) | CSP builder with nonces, HSTS, framing, referrer and permissions policies | A CSP matching its real sources |
+| [`entitlements`](modules/entitlements/CONTRACT.md) | Plan features and limits with subscription-status fallback, plus a usage-credit ledger: idempotent grants and debits, expiring credits, holds, no overdraw under concurrency | Its plans, billing-state sync, a store with conditional appends |
+| [`notification-inbox`](modules/notification-inbox/CONTRACT.md) | In-app notification inbox: idempotent publish, cursor paging, unread counts, mark read, archive, retention, safe links, Fetch adapter | Its store, sign-in, which events become notifications |
+| [`csv-import`](modules/csv-import/CONTRACT.md) | CSV import flow: delimiter detection, column-mapping suggestions, typed row validation, idempotent commit with per-row errors, formula-safe error export, Fetch adapter | Its fields, the row writer, a store, upload limits |
 | [`org-invitations`](modules/org-invitations/CONTRACT.md) | Tenant invitations: hashed one-time tokens, accept once, revoke, expire, link rotation, per-tenant caps, Fetch adapter | Its store (atomic accept plus membership), authorization and role ceilings, sign-in, email delivery |
 
-The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The eight server utilities use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
+The React modules need the app's existing React 18 or 19 and a TSX build; `app-shell`, `data-table` and `validated-form` pull in `theme-tokens` automatically. The server utilities and feature packages use only web standards (Fetch `Request`/`Response`, Web Crypto, `AbortSignal`), so the same source targets Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono. Repository tests run on Node.js.
 
 ## Integration packs
 

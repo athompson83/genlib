@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "notification-inbox",
+  "version": "0.1.0",
+  "title": "Notification inbox",
+  "description": "Server-side in-app notification inbox (the bell menu): idempotent publish, newest-first cursor paging, unread counts, mark read, mark all read, archive and retention pruning, scoped to each user's own tenant, with injected persistence and a Fetch Request/Response adapter.",
+  "kind": "feature",
+  "tags": ["notifications", "inbox", "bell", "unread", "activity feed", "alerts", "mark as read", "multi-tenant", "saas", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/notification-inbox"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (crypto.randomUUID) plus the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route. The bell UI and real-time push are left to the receiving app.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "notification-inbox/core.ts" },
+    { "source": "files/memory-store.ts", "target": "notification-inbox/memory-store.ts" },
+    { "source": "files/http.ts", "target": "notification-inbox/http.ts" }
+  ],
+  "exports": [
+    { "name": "createInbox", "from": "notification-inbox/core.ts" },
+    { "name": "InboxError", "from": "notification-inbox/core.ts" },
+    { "name": "isSafeLink", "from": "notification-inbox/core.ts" },
+    { "name": "MemoryInboxStore", "from": "notification-inbox/memory-store.ts" },
+    { "name": "createInboxHandler", "from": "notification-inbox/http.ts" }
+  ],
+  "configuration": [
+    "Implement InboxStore on your database: an index on (tenant_id, user_id, created_at DESC, id DESC), a unique partial index on (tenant_id, user_id, dedupe_key), and updateMany as one UPDATE scoped by tenant_id and user_id (the SQL shape is in core.ts).",
+    "Call publish(recipient, notification) only from trusted server code after deciding who should be told; it is not exposed over HTTP.",
+    "Implement authenticate(request) from your session or verified token, returning the user's id and active tenant id; never read them from the request.",
+    "Optionally pass authorize(actor, action) to refuse removed members or suspended tenants.",
+    "Set retentionMs and maxPerUser, and run prune() from a scheduled job.",
+    "Mount createInboxHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy."
+  ],
+  "capabilities": [
+    "in-app-notification-inbox",
+    "idempotent-publish-with-dedupe-keys",
+    "unread-counts",
+    "cursor-pagination",
+    "per-user-tenant-scoping",
+    "retention-pruning"
+  ],
+  "limitations": [
+    "Does not render the bell or list UI, push real-time updates (WebSocket, SSE) or send email, SMS or mobile push.",
+    "Does not decide who receives a notification or honor user preferences; check those (see the notification-preferences module) before calling publish.",
+    "Titles and bodies are plain text; render them as text, never as HTML.",
+    "Cursors are opaque but unsigned; they only position within the actor's own items.",
+    "The in-memory store is for tests and prototypes only.",
+    "No rate limiting; add request rate limits (see the rate-limit module) and cap publish volume in your own code.",
+    "Production database correctness, session security and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/notification-inbox.test.mjs"],
+    "command": "npm run build && node --test tests/notification-inbox.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2" },
+    "behaviors": [
+      "list returns newest first and the opaque cursor pages without gaps or repeats, including timestamp ties",
+      "a repeated dedupeKey for the same recipient returns the existing item, also under concurrent publishes",
+      "a dedupeKey is independent per user and reusable after the retention window",
+      "unread counts follow markRead, markAllRead (with an optional before time) and archive",
+      "markRead keeps the first read time and ignores unknown ids",
+      "another user's or another tenant's ids are never read, marked or archived",
+      "javascript:, data:, http:, protocol-relative and credential-bearing links are rejected",
+      "title, kind, body, dedupeKey and data size are validated; stored data is a detached copy",
+      "prune drops items past retention and the oldest beyond maxPerUser per user",
+      "HTTP adapter: routes and status codes, 401 when signed out, origin check on writes, no publish route, no-store responses"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core, in-memory store and Fetch adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

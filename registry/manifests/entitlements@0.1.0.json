@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "entitlements",
+  "version": "0.1.0",
+  "title": "Plan entitlements and usage credits",
+  "description": "Server-side plan features and limits with subscription-status fallback and grace, plus an append-only usage-credit ledger with idempotent grants and debits, expiring credits, holds and optimistic concurrency.",
+  "kind": "feature",
+  "tags": [
+    "entitlements",
+    "plans",
+    "pricing",
+    "subscriptions",
+    "feature gating",
+    "limits",
+    "quotas",
+    "credits",
+    "usage billing",
+    "metering",
+    "saas",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/entitlements"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and crypto.randomUUID: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral; there is no HTTP adapter because entitlement checks belong inside your own request handlers.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/plans.ts",
+      "target": "entitlements/plans.ts",
+      "path": "modules/entitlements/files/plans.ts",
+      "sha256": "a69a7c41f9b243e3bb279997ffa0167d15247c9b03d5d81b55e6e4274c673913",
+      "bytes": 4956
+    },
+    {
+      "source": "files/credits.ts",
+      "target": "entitlements/credits.ts",
+      "path": "modules/entitlements/files/credits.ts",
+      "sha256": "24427c23793f8ba7d1176b70405ebc5fd653d502dfefa139e2627da5ed55bb34",
+      "bytes": 11406
+    }
+  ],
+  "exports": [
+    {
+      "name": "createEntitlements",
+      "from": "entitlements/plans.ts"
+    },
+    {
+      "name": "createCredits",
+      "from": "entitlements/credits.ts"
+    },
+    {
+      "name": "CreditError",
+      "from": "entitlements/credits.ts"
+    },
+    {
+      "name": "MemoryCreditStore",
+      "from": "entitlements/credits.ts"
+    }
+  ],
+  "configuration": [
+    "Declare plans with feature flags and numeric limits (Infinity for unlimited) and choose the fallback plan for canceled, unpaid and post-grace past_due accounts.",
+    "Load the Account (plan, status, pastDueSince, overrides) from your billing state, for example a Stripe subscription synced by webhook; never from the request.",
+    "Count current usage from your own data inside the same transaction that creates the resource, then call canUse.",
+    "Implement CreditStore on your database: one row per ledger entry with a unique (account_id, version) so a stale append fails.",
+    "Use a stable idempotency key per business event (payment intent id, job id) for grant, debit and reserve."
+  ],
+  "capabilities": [
+    "plan-feature-gating",
+    "plan-limits",
+    "subscription-status-fallback",
+    "usage-credit-ledger",
+    "idempotent-credit-operations",
+    "credit-holds"
+  ],
+  "limitations": [
+    "Does not talk to a billing provider, create subscriptions or invoices, or sync webhook state.",
+    "canUse is only race-free when current usage is counted in the same transaction that creates the resource.",
+    "Balances are replayed from the ledger; very long ledgers need periodic snapshots in your store.",
+    "The in-memory credit store is for tests and prototypes only.",
+    "Pricing, tax, refunds and consuming-application acceptance remain project responsibilities."
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/entitlements.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/entitlements.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2"
+    },
+    "behaviors": [
+      "features and limits follow the plan, with per-account overrides on the account's own plan",
+      "past_due keeps the paid plan inside grace, then falls back; canceled and unpaid fall back at once",
+      "overrides never upgrade the fallback plan",
+      "a retried debit or grant with the same key changes nothing; the same key with a different amount is refused",
+      "debits never take the balance below zero",
+      "expiring credits are consumed first and forfeited after expiry",
+      "holds reserve credits; capture charges part and returns the rest; release and expiry return all; a retried capture cannot charge twice",
+      "five concurrent debits against 100 credits charge exactly three; the version check makes the others re-decide",
+      "a store that keeps losing the race surfaces a conflict"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: plan entitlements and the usage-credit ledger."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/entitlements/module.json",
+    "sha256": "67c1ab061eee7bfd8da98be50d704e9a90db8a7e68c62c80113b7b88465c93e8"
+  },
+  "contractFile": {
+    "path": "modules/entitlements/CONTRACT.md",
+    "sha256": "2c259a47f0e89509c7d574fdb5e4902731e243830bf24453a4f27169b35e17cc",
+    "bytes": 5080
+  }
+}

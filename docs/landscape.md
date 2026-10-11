@@ -25,13 +25,12 @@ Help a coding agent choose an existing implementation that fits the application,
 ## Changes made from this review
 
 1. **Executable adoption steps.** `genlib capability inspect <id> --language <lang> --json` and MCP `genlib_capability` (with `language`) return ordered `steps` (`{kind, run, cwd, purpose}`), `verify` and `onFailure`. A test step appears only where the copied files run on their own: Python, Go, Java and Kotlin, each run end to end in a fresh app. Elsewhere there is a compile check and an integrate step.
-2. **Feature packages with evidence.** `org-invitations` is a complete tenant-invitation feature with injected store, authorization, authentication and email. It has tests for replay, concurrent accepts, expiry, revocation, link rotation, tenant and role boundaries, forwarded links and failed delivery, and it lists those behaviors in its manifest.
+2. **Feature packages with evidence.** `entitlements` (plans plus a usage-credit ledger), `notification-inbox` and `csv-import` follow the same pattern. `org-invitations` is a complete tenant-invitation feature with injected store, authorization, authentication and email. It has tests for replay, concurrent accepts, expiry, revocation, link rotation, tenant and role boundaries, forwarded links and failed delivery, and it lists those behaviors in its manifest.
 3. **Existing distribution channels.** A shadcn-format `registry.json`, plus verified Skills CLI and APM install routes for the agent skill.
 4. **Library docs after selection.** `docsLookup` hands off to Context7 once Genlib has picked the package.
 5. **Continuing verification by layer.** `verify-resources` reports failures by layer: source, links, packages and license, upstream lifecycle, install resolvability. It samples a rotating slice each day; the scheduled `catalog-health` workflow runs it daily and adds install checks weekly, without gating pull requests.
 
 ## Still open
 
-- Feature packages for entitlements and credits, a notification inbox and file import flows, built like `org-invitations`.
 - Running the comparison protocol in [benchmarks.md](benchmarks.md#comparison-protocol-not-yet-run). Until then, Genlib's advantage over an agent that already has Context7, a source registry and a good workflow is unmeasured.
 - Semantic API diffs between module versions (Bit's `bit api diff`). The changelog records breaking changes by hand today.

@@ -36,6 +36,9 @@ Every result names its type, verification level and the exact next command. Modu
 | | `punycode`, `base58`, `roman-numerals`, `dotted-path`, `template-render`, `ini-parse`, `pii-mask`, `password-generate`, `html-escape` | capabilities | Internationalized domains, Base58Check, numerals, nested-data paths, logic-less templates, INI config, PII masking for logs, CSPRNG passwords and HTML entities in 9 languages |
 | 7. Protect the service | `rate-limit` | module | Token-bucket and window limiters with a pluggable store and standard 429 headers |
 | | `security-headers` | module | CSP builder with nonces, HSTS, framing, referrer and permissions policies |
+| | `entitlements` | module | Plan features and limits with status fallback, and an idempotent, overdraw-proof usage-credit ledger |
+| | `notification-inbox` | module | In-app inbox: idempotent publish, unread counts, mark read, archive, retention |
+| | `csv-import` | module | CSV upload, column mapping, typed validation and idempotent commit with per-row errors |
 | | `org-invitations` | module | Tenant invitations: hashed one-time tokens, single-use accept, revoke, expiry, Fetch adapter |
 | | `dashboards` catalog (Grafana, Superset, Metabase, Tabler, AdminLTE, chart libraries per language) | resources | Admin panels, charts, BI and operations dashboards without building them from scratch |
 | | `scheduling-calendar` catalog (Cal.diy, Easy!Appointments, Radicale, FullCalendar, rrule, ICS, calendar SDKs) | resources | Booking, calendars, recurrence and calendar sync in each language |
@@ -65,7 +68,7 @@ When no module, recipe or template covers a need, the resource catalog usually n
 
 ## Runtime reach of the server modules
 
-The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
+The framework-neutral server modules (`env-config`, `structured-logger`, `http-resilience`, `rate-limit`, `webhook-verification`, `health-checks`, `security-headers`, `org-invitations`, `entitlements`, `notification-inbox`, `csv-import`) depend only on web-standard APIs: Fetch `Request`/`Response`/`Headers`, `AbortSignal`, Web Crypto and streams. That makes the same source usable in Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and middleware, Remix/React Router actions, Hono, and Express or Fastify through their Fetch adapters. Repository tests run on Node.js 22+; other runtimes are a design target that the receiving application must verify.
 
 ## What Genlib does not cover yet
 
