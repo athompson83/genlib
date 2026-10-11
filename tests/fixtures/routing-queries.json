@@ -151,7 +151,7 @@
   ],
   [
    "base58 encode bitcoin address",
-   "base-encodings"
+   "base58"
   ],
   [
    "export contacts as vcf",
@@ -360,6 +360,78 @@
   [
    "how long can a cdn cache this response",
    "cache-control"
+  ],
+  [
+   "convert an emoji domain name to xn-- form",
+   "punycode"
+  ],
+  [
+   "decode a punycode hostname",
+   "punycode"
+  ],
+  [
+   "encode bytes as base58 with a checksum",
+   "base58"
+  ],
+  [
+   "bitcoin style base58 short ids",
+   "base58"
+  ],
+  [
+   "convert a number to roman numerals",
+   "roman-numerals"
+  ],
+  [
+   "parse MCMXCIX into an integer",
+   "roman-numerals"
+  ],
+  [
+   "get a nested value by a dotted path like a.b[0]",
+   "dotted-path"
+  ],
+  [
+   "set a deep property in a json object without mutating it",
+   "dotted-path"
+  ],
+  [
+   "render a mustache style email template with placeholders",
+   "template-render"
+  ],
+  [
+   "fill {{name}} placeholders in a string template",
+   "template-render"
+  ],
+  [
+   "read an ini config file with sections",
+   "ini-parse"
+  ],
+  [
+   "parse a settings.ini file",
+   "ini-parse"
+  ],
+  [
+   "mask email addresses and card numbers in logs",
+   "pii-mask"
+  ],
+  [
+   "redact credit card numbers from free text",
+   "pii-mask"
+  ],
+  [
+   "generate a strong random password with symbols",
+   "password-generate"
+  ],
+  [
+   "create a diceware style passphrase",
+   "password-generate"
+  ],
+  [
+   "unescape html entities like &amp; and &#39;",
+   "html-escape"
+  ],
+  [
+   "strip html tags to get plain text",
+   "html-escape"
   ]
  ],
  "heldout": [

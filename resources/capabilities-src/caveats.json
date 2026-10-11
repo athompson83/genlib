@@ -15,5 +15,12 @@
  "query-string": "Flat name/value pairs as browsers send them; nested forms such as a[b]=c are not expanded into objects.",
  "mime-types": "Looks at the file name only; check the bytes with file-signature before trusting an upload's type.",
  "content-disposition": "The sanitized filename is safe in a header, not as a storage path: store uploads under your own generated name.",
- "cache-control": "Parses directives and the freshness lifetime; full HTTP caching also needs Age, Expires, Vary and validators (see http-conditional)."
+ "cache-control": "Parses directives and the freshness lifetime; full HTTP caching also needs Age, Expires, Vary and validators (see http-conditional).",
+ "punycode": "Converts labels only: no IDNA2008/UTS 46 mapping, normalization or bidi checks; use the platform IDNA library before accepting user-typed domains.",
+ "base58": "Bitcoin alphabet only; Base58Check here is the plain double-SHA-256 checksum, not address version or network validation.",
+ "dotted-path": "A small path grammar (dots, [index], [\"quoted\"]), not JSONPath or JSON Pointer; use json-patch for RFC 6902/6901.",
+ "template-render": "A logic-less Mustache subset: no partials, lambdas, delimiter changes or standalone-line whitespace rules; escaping is for HTML text and attribute values only.",
+ "ini-parse": "INI has no single standard: this follows one documented dialect (no multi-line values or interpolation); check it against the files you must read.",
+ "pii-mask": "Pattern-based masking for display and logs; it does not find every kind of personal data and is not a compliance control by itself.",
+ "html-escape": "stripTags produces plain text and is not a sanitizer; use rich-text-sanitization before rendering user HTML."
 }

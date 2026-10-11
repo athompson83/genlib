@@ -335,6 +335,33 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 **cache-control**
 - `parseCacheControl` returns typed directives: flags are `true`, delta seconds are integers, and invalid ones are dropped. `formatCacheControl` writes them back, and `cacheFreshness(directives, shared)` gives the freshness lifetime: 0 for `no-store` or `no-cache`, and shared caches prefer `s-maxage`. Use `http-conditional` for ETag revalidation.
 
+**punycode**
+- `punycodeEncode`/`punycodeDecode` implement RFC 3492 with its overflow checks; decoding accepts either case and rejects invalid digits, truncated input and code points outside Unicode. `domainToAscii` and `domainToUnicode` convert each label to or from `xn--` form and lowercase ASCII only. They do no IDNA mapping or normalization, so run user-typed domains through the platform IDNA library first.
+
+**base58**
+- `base58Encode`/`base58Decode` use the Bitcoin alphabet and keep leading zero bytes as `1`s; `base58CheckEncode`/`base58CheckDecode` add and verify a 4-byte double SHA-256 checksum. The TypeScript check functions are async because they use Web Crypto. The conversion works on byte arrays, so no big-integer library is needed.
+
+**roman-numerals**
+- `toRoman(n)` covers 1 to 3999. `fromRoman(s)` is case-insensitive and accepts canonical forms only, so `IIII`, `VX` and `IC` are errors rather than guesses.
+
+**dotted-path**
+- `parsePath("a.b[0][\"x.y\"]")` splits a path into keys and indexes. `getPath(data, path, default)`, `hasPath`, `setPath` and `deletePath` work on JSON-like data and return new structures, never mutating the input. `setPath` creates missing objects and lists, appends at index == length, and fails on a larger index or when it would traverse a scalar. The empty path is the root. For RFC 6902/6901 use json-patch.
+
+**template-render**
+- `renderTemplate(template, data, escape)` renders a logic-less Mustache subset: `{{path}}` (HTML-escaped), `{{{path}}}` (raw), `{{#path}}…{{/path}}` sections that iterate lists (`.` is the item), `{{^path}}` inverted sections and `{{! comments }}`. Lists and objects cannot be printed directly, and malformed or unclosed tags are errors, not silent output. There are no partials, lambdas or delimiter changes.
+
+**ini-parse**
+- `parseIni(text)` returns ordered sections (the unnamed `""` section first) of ordered keys. It handles `;` and `#` comments, repeated section headers, `=` or `:` separators, inline comments after whitespace, and quoted values with escapes. Bare keys become `""` and the last duplicate wins. Errors carry the line number. `stringifyIni` writes the result back. INI has no single standard, so check this dialect against the files you must read.
+
+**pii-mask**
+- `maskEmail` (`j***@example.com`), `maskPhone` and `maskCard` (last four digits kept) are for display and logs. `maskMiddle(s, keepStart, keepEnd, mask)` works by code point, and `redact(text)` replaces emails and Luhn-valid card numbers found in free text. This is pattern matching: it is not a data-discovery or compliance control.
+
+**password-generate**
+- `generatePassword(length, classes, excludeAmbiguous)` includes at least one character from each requested class. `generatePassphrase(words, count, separator)` picks words from your list, and `entropyBits(alphabetSize, length)` reports the strength. All of them draw from the platform CSPRNG through unbiased rejection sampling (`randomIndex`). The byte source can be injected, so tests are deterministic. Never swap in `Math.random` or `rand`.
+
+**html-escape**
+- `escapeHtml` escapes `& < > " '`. `unescapeHtml` decodes numeric references, the windows-1252 C1 table and a fixed set of named entities, and requires the closing `;`. `stripTags` drops script and style contents, removes tags and unescapes the rest into plain text. It is not a sanitizer: use rich-text-sanitization before rendering user HTML. The TypeScript recipe also has the `html` tagged template and `safeUrl`.
+
 Behavior that differs by language (option objects versus keyword arguments, ordered-map types, async Web Crypto in TypeScript cursors and webhooks, null versus exceptions for an unparseable Retry-After) is noted at the top of each source file.
 
 Learn any implementation's API without opening it: `genlib outline <capability> --language <lang>` lists its signatures and one-line docs.

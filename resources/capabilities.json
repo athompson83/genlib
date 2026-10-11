@@ -4419,6 +4419,592 @@
       }
     },
     {
+      "id": "punycode",
+      "title": "Punycode and internationalized domain names",
+      "tier": "pure",
+      "summary": "Encode and decode RFC 3492 Punycode and convert domain labels between Unicode and xn-- ASCII form (no IDNA mapping or normalization).",
+      "caveat": "Converts labels only: no IDNA2008/UTS 46 mapping, normalization or bidi checks; use the platform IDNA library before accepting user-typed domains.",
+      "terms": [
+        "punycode",
+        "internationalized domain",
+        "xn--",
+        "unicode domain",
+        "domain to ascii",
+        "rfc 3492",
+        "emoji domain"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "punycode",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-punycode",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-punycode",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-punycode",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-punycode",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-punycode",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-punycode",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-punycode",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-punycode",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "base58",
+      "title": "Base58 and Base58Check",
+      "tier": "pure",
+      "summary": "Encode and decode Base58 (Bitcoin alphabet) and Base58Check with a double SHA-256 checksum, keeping leading zero bytes, for short IDs and addresses.",
+      "caveat": "Bitcoin alphabet only; Base58Check here is the plain double-SHA-256 checksum, not address version or network validation.",
+      "terms": [
+        "base58",
+        "base58check",
+        "bitcoin address",
+        "short id",
+        "readable id",
+        "checksum encoding",
+        "crypto address"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "base-encodings",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-base58",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-base58",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-base58",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-base58",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-base58",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-base58",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-base58",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-base58",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "roman-numerals",
+      "title": "Roman numerals",
+      "tier": "pure",
+      "summary": "Convert integers 1 to 3999 to Roman numerals and parse canonical numerals back, case-insensitive, rejecting non-canonical forms like IIII or VX.",
+      "terms": [
+        "roman numerals",
+        "roman numeral",
+        "to roman",
+        "from roman",
+        "mcmxcix",
+        "chapter numbering",
+        "outline numbering"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "roman-numerals",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-roman-numerals",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-roman-numerals",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-roman-numerals",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-roman-numerals",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-roman-numerals",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-roman-numerals",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-roman-numerals",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-roman-numerals",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "dotted-path",
+      "title": "Dotted-path get, set and delete on nested data",
+      "tier": "pure",
+      "summary": "Read, test, set and delete values in nested JSON-like data with paths like a.b[0][\"x.y\"], returning new structures instead of mutating the input.",
+      "caveat": "A small path grammar (dots, [index], [\"quoted\"]), not JSONPath or JSON Pointer; use json-patch for RFC 6902/6901.",
+      "terms": [
+        "dotted path",
+        "deep get",
+        "deep set",
+        "nested object",
+        "lodash get",
+        "object path",
+        "property path",
+        "get nested value",
+        "nested key"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "dotted-path",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-dotted-path",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-dotted-path",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-dotted-path",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-dotted-path",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-dotted-path",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-dotted-path",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-dotted-path",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-dotted-path",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "template-render",
+      "title": "Logic-less templates (Mustache subset)",
+      "tier": "pure",
+      "summary": "Render {{name}} templates with HTML escaping, raw {{{values}}}, sections, inverted sections and comments, as a small logic-less Mustache subset.",
+      "caveat": "A logic-less Mustache subset: no partials, lambdas, delimiter changes or standalone-line whitespace rules; escaping is for HTML text and attribute values only.",
+      "terms": [
+        "template",
+        "mustache",
+        "handlebars",
+        "template rendering",
+        "email template",
+        "placeholder substitution",
+        "string template",
+        "render template",
+        "variable interpolation"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "template-render",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-template-render",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-template-render",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-template-render",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-template-render",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-template-render",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-template-render",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-template-render",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-template-render",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "ini-parse",
+      "title": "INI file parse and write",
+      "tier": "pure",
+      "summary": "Parse INI and config files into ordered sections with comments, quoted values, inline comments and line-numbered errors, and write them back.",
+      "caveat": "INI has no single standard: this follows one documented dialect (no multi-line values or interpolation); check it against the files you must read.",
+      "terms": [
+        "ini",
+        "ini file",
+        "ini config",
+        "configparser",
+        "ini sections",
+        "parse ini",
+        "php.ini",
+        "desktop file",
+        "gitconfig"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "ini-parse",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-ini-parse",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-ini-parse",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-ini-parse",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-ini-parse",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-ini-parse",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-ini-parse",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-ini-parse",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-ini-parse",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "pii-mask",
+      "title": "PII masking and redaction",
+      "tier": "pure",
+      "summary": "Mask emails, phone numbers and card numbers for display and logs, and redact emails and Luhn-valid card numbers in free text.",
+      "caveat": "Pattern-based masking for display and logs; it does not find every kind of personal data and is not a compliance control by itself.",
+      "terms": [
+        "pii",
+        "mask email",
+        "mask card",
+        "redact",
+        "redaction",
+        "data masking",
+        "log scrubbing",
+        "gdpr",
+        "mask phone",
+        "personal data"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "pii-mask",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-pii-mask",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-pii-mask",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-pii-mask",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-pii-mask",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-pii-mask",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-pii-mask",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-pii-mask",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-pii-mask",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "password-generate",
+      "title": "Password and passphrase generation",
+      "tier": "pure",
+      "summary": "Generate random passwords with required character classes and passphrases from a word list using the platform CSPRNG and unbiased rejection sampling, plus entropy bits.",
+      "terms": [
+        "password generator",
+        "generate password",
+        "random password",
+        "passphrase",
+        "diceware",
+        "temporary password",
+        "secure random string",
+        "password entropy"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "password-generate",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-password-generate",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-password-generate",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-password-generate",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-password-generate",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-password-generate",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-password-generate",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-password-generate",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-password-generate",
+          "tested": true
+        }
+      }
+    },
+    {
+      "id": "html-escape",
+      "title": "HTML escape, unescape and tag stripping",
+      "tier": "pure",
+      "summary": "Escape text for HTML, decode named and numeric character references (including the windows-1252 C1 table) and strip tags to plain text (not a sanitizer).",
+      "caveat": "stripTags produces plain text and is not a sanitizer; use rich-text-sanitization before rendering user HTML.",
+      "terms": [
+        "html escape",
+        "escape html",
+        "unescape html",
+        "html entities",
+        "decode entities",
+        "strip tags",
+        "html to text",
+        "xss escaping",
+        "amp lt gt"
+      ],
+      "guide": "docs/capabilities.md",
+      "implementations": {
+        "typescript": {
+          "kind": "recipe",
+          "id": "html-escape-and-safe-template",
+          "tested": true
+        },
+        "python": {
+          "kind": "language-example",
+          "id": "python-html-escape",
+          "tested": true
+        },
+        "go": {
+          "kind": "language-example",
+          "id": "go-html-escape",
+          "tested": true
+        },
+        "rust": {
+          "kind": "language-example",
+          "id": "rust-html-escape",
+          "tested": true
+        },
+        "java": {
+          "kind": "language-example",
+          "id": "java-html-escape",
+          "tested": true
+        },
+        "kotlin": {
+          "kind": "language-example",
+          "id": "kotlin-html-escape",
+          "tested": true
+        },
+        "csharp": {
+          "kind": "language-example",
+          "id": "csharp-html-escape",
+          "tested": true
+        },
+        "dart": {
+          "kind": "language-example",
+          "id": "dart-html-escape",
+          "tested": true
+        },
+        "swift": {
+          "kind": "language-example",
+          "id": "swift-html-escape",
+          "tested": true
+        }
+      }
+    },
+    {
       "id": "oidc-token-verification",
       "title": "OIDC ID token / JWT verification",
       "tier": "library",

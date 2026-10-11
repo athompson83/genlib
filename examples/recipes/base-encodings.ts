@@ -2,7 +2,8 @@
 // Genlib recipe: strict base32 (RFC 4648 sections 6 and 7), Bitcoin base58 and unpadded base64url
 // (RFC 4648 section 5). Original source; copy and adapt. Hand-written so every Genlib language accepts
 // and rejects exactly the same inputs. Decoders throw RangeError for unknown characters, bad padding or
-// lengths, and non-canonical trailing bits.
+// lengths, and non-canonical trailing bits. Base58Check (payload + first 4 bytes of double SHA-256) uses
+// crypto.subtle, so base58CheckEncode/base58CheckDecode are async; same vectors as the Genlib base58 modules.
 
 export type Base32Alphabet = "rfc4648" | "hex";
 const B32: Record<Base32Alphabet, string> = {
@@ -73,6 +74,25 @@ export function base58Decode(text: string): Uint8Array {
   const body: number[] = [];
   while (num > 0n) { body.unshift(Number(num & 255n)); num >>= 8n; }
   return Uint8Array.from([...new Array<number>(zeros).fill(0), ...body]);
+}
+
+async function checksum(payload: Uint8Array): Promise<Uint8Array> {
+  const once = await crypto.subtle.digest("SHA-256", Uint8Array.from(payload));
+  return new Uint8Array(await crypto.subtle.digest("SHA-256", once)).slice(0, 4);
+}
+
+/** Base58Check: base58 of payload followed by its 4-byte double-SHA-256 checksum. */
+export async function base58CheckEncode(payload: Uint8Array): Promise<string> {
+  return base58Encode(Uint8Array.from([...payload, ...(await checksum(payload))]));
+}
+
+/** Decodes Base58Check and returns the payload; throws RangeError for short input or a checksum mismatch. */
+export async function base58CheckDecode(text: string): Promise<Uint8Array> {
+  const data = base58Decode(text);
+  if (data.length < 4) throw new RangeError("too short for a base58check checksum");
+  const payload = data.slice(0, -4), expected = await checksum(payload);
+  if (!expected.every((b, i) => b === data[data.length - 4 + i])) throw new RangeError("base58check checksum mismatch");
+  return payload;
 }
 
 export function base64UrlEncode(bytes: Uint8Array): string {

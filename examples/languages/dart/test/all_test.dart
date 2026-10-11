@@ -63,6 +63,17 @@ import 'wave10_test.dart'
         runMimeTypesTests,
         runQueryStringTests,
         runTopoSortTests;
+import 'wave11_test.dart'
+    show
+        runBase58Tests,
+        runDottedPathTests,
+        runHtmlEscapeTests,
+        runIniParseTests,
+        runPasswordGenerateTests,
+        runPiiMaskTests,
+        runPunycodeTests,
+        runRomanNumeralsTests,
+        runTemplateRenderTests;
 
 void main() {
   identifier.main(); // throws on failure (existing check)
@@ -131,5 +142,14 @@ void main() {
   runLinkHeaderTests(c);
   runContentDispositionTests(c);
   runCacheControlTests(c);
+  runPunycodeTests(c);
+  runBase58Tests(c);
+  runRomanNumeralsTests(c);
+  runDottedPathTests(c);
+  runTemplateRenderTests(c);
+  runIniParseTests(c);
+  runPiiMaskTests(c);
+  runPasswordGenerateTests(c);
+  runHtmlEscapeTests(c);
   c.finish();
 }
