@@ -34,7 +34,19 @@ const sizeOf = path => readdirSync(path, { withFileTypes: true, recursive: true 
 }, { files: 0, bytes: 0 });
 const front = text => {
   const block = text.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-  const field = name => block.match(new RegExp(`^${name}:\\s*(?:"([^"]*)"|'([^']*)'|(.*))$`, 'm'))?.slice(1).find(v => v !== undefined)?.trim();
+  const field = name => {
+    const lines = block.split(/\r?\n/);
+    const at = lines.findIndex(line => line.startsWith(name + ':'));
+    if (at < 0) return undefined;
+    const value = lines[at].slice(name.length + 1).trim();
+    // YAML block scalars (description: > or |) continue on the following indented lines.
+    if (/^[>|][-+]?$/.test(value)) {
+      const body = [];
+      for (const line of lines.slice(at + 1)) { if (line.trim() && !/^\s/.test(line)) break; body.push(line.trim()); }
+      return value.startsWith('|') ? body.join('\n').trim() : body.join(' ').replace(/\s+/g, ' ').trim();
+    }
+    return value.replace(/^"(.*)"$/, '$1').replace(/^'(.*)'$/, '$1');
+  };
   return { name: field('name'), description: field('description') };
 };
 
