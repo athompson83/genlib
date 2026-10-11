@@ -22,7 +22,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "verify_installation": "node \"$GENLIB_ROOT/bin/genlib.mjs\" verify --target \"$APP_ROOT\" --json"
   },
   "copy": [
-    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run, # tests cover: what those tests check and # verified: how it was tested. --run-tests (Python, Go) runs them in the same call. Do not re-read the copied source to check it; add tests only for what the task adds."
+    "language-modules add copies a capability's files (plus tests with --with-tests) into --into <dir> (default genlib/), or straight into the target with --flat. Text output lists copied paths, # api: signatures, # test: the command to run, # tests cover: what those tests check and # repo evidence: how Genlib CI tested it. --run-tests (Python, Go) runs them in the same call and exits non-zero if they fail on this copy. An existing requirements.txt or other manifest is kept and its lines reported to merge. Do not re-read the copied source to check it; add tests only for what the task adds."
   ],
   "find": [
     "Output is sized for agents: quick prints the best match and only its acting commands; find prints one line plus commands per result. Add --json for full records (--json --brief for compact JSON). --language <name> prefers a language without a target.",

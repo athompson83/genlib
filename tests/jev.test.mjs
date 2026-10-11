@@ -105,7 +105,7 @@ test('the CLI honours --stdlib-only and --prompt prints a compact direct-call pr
   const prompt = run('unified', 'diff', 'identical', 'to', 'GNU', 'diff', '-u', '--prompt');
   assert.equal(prompt.status, 0, prompt.stderr);
   assert.match(prompt.stdout, /^Task: unified diff/);
-  assert.match(prompt.stdout, /caveat: .*GNU diff/);
+  assert.match(prompt.stdout, /caveat: .*GNU diff.* If the task needs what this caveat rules out, answer below 0.3 for /);
   assert.match(prompt.stdout, /Reply with only JSON: \{"q-c1": p/);
   const json = run('unified', 'diff', 'identical', 'to', 'GNU', 'diff', '-u', '--json');
   assert.ok(prompt.stdout.length < json.stdout.length / 2, `prompt ${prompt.stdout.length} vs packet ${json.stdout.length}`);
