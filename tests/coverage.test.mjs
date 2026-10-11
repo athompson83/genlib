@@ -131,5 +131,5 @@ test('quick says what its pick verifiably covers of the asked feature, and nothi
   assert.equal(refCoverage(contracts, 'capability:webhook-signature', 'verify stripe webhook'), null);
   assert.equal(refCoverage(contracts, 'resource:does-not-exist', 'anything'), null);
   const quick = execFileSync(process.execPath, [CLI, 'quick', 'organization', 'invitations'], { encoding: 'utf8' });
-  assert.match(quick, /^# covers: 8\/8 of org-invitations verified by tests$/m);
+  assert.match(quick, /^# reuse direct: 8\/8 of org-invitations verified by tests$/m);
 });
