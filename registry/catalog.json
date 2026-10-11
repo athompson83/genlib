@@ -301,7 +301,7 @@
     },
     {
       "id": "org-invitations",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "title": "Organization invitations",
       "description": "Tenant invitations for multi-tenant apps: invite by email with a role, inspect, accept once, revoke and expire, with hashed one-time tokens, injected authorization and persistence, and a Fetch Request/Response adapter.",
       "kind": "feature",
@@ -326,8 +326,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/org-invitations@0.1.0.json",
-      "sha256": "cdc8313c3beb9f6429bd03140c687aad49f7431be132ac8fec9ecfb43913e7d5"
+      "manifest": "registry/manifests/org-invitations@0.2.0.json",
+      "sha256": "f0eac5d18ccda92385515eecf117bcdc40e41143b28d0732d31903a4e0851e6c"
     },
     {
       "id": "public-data-clients",

@@ -149,7 +149,7 @@ const CAPS = [
     terms: ['sanitize text', 'strip control characters', 'trojan source', 'bidi', 'bidirectional', 'zero width', 'invisible characters', 'unicode safety', 'normalize whitespace', 'user input', 'prompt injection'] },
   { id: 'slugify', title: 'URL slugs: slugify titles and make them unique', tier: 'pure', recipe: 'slugify',
     summary: 'Turn titles into URL-safe slugs (Latin accents transliterated by one fixed table, apostrophes joined, word-boundary truncation) and pick the first free slug-2, slug-3 ..., identically in every language.',
-    terms: ['slug', 'slugify', 'permalink', 'url slug', 'friendly url', 'seo url', 'title to url', 'unique slug', 'pretty url', 'transliterate', 'accents'] },
+    terms: ['slug', 'slugify', 'generate slug', 'slug generator', 'permalink', 'url slug', 'friendly url', 'seo url', 'title to url', 'unique slug', 'pretty url', 'transliterate', 'accents'] },
   { id: 'json-patch', title: 'JSON Patch, JSON Pointer and merge patch (RFC 6902, 6901, 7396)', tier: 'pure', recipe: 'json-patch',
     summary: 'Apply RFC 6902 JSON Patch atomically, resolve RFC 6901 pointers, apply RFC 7396 merge patches and generate a deterministic patch (JSON diff) between two documents; includes a strict JSON parser where the language has none.',
     terms: ['json patch', 'rfc 6902', 'json pointer', 'rfc 6901', 'merge patch', 'rfc 7396', 'json diff', 'diff two json objects', 'patch document', 'partial update', 'http patch', 'apply changes to json', 'canonical json'] },

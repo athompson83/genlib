@@ -2125,6 +2125,216 @@
    }
   },
   {
+   "name": "url-template",
+   "type": "registry:item",
+   "title": "Url template",
+   "description": "RFC 6570 URI Template expansion, levels 1-4 (simple, +, #, ., /, ;, ? and &)",
+   "files": [
+    {
+     "path": "examples/recipes/url-template.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-template.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart url-template modules (shared vectors); Strings, arrays and ordered maps; missing, null, [] and empty maps are skipped; Literal %XX triplets are copied as-is (RFC 6570 section 3.1); bad templates throw UrlTemplateError.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "bloom-filter",
+   "type": "registry:item",
+   "title": "Bloom filter",
+   "description": "Bloom filter with deterministic FNV-1a double hashing and a portable serialized form. Original",
+   "files": [
+    {
+     "path": "examples/recipes/bloom-filter.ts",
+     "type": "registry:file",
+     "target": "~/genlib/bloom-filter.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart bloom-filter modules (shared vectors); FNV-1a 64 double hashing in BigInt; serialized base64url state moves between languages; No deletion and false positives by design; size with bloomSizeFor(n, p).",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "stats-summary",
+   "type": "registry:item",
+   "title": "Stats summary",
+   "description": "descriptive statistics for a non-empty array of finite numbers",
+   "files": [
+    {
+     "path": "examples/recipes/stats-summary.ts",
+     "type": "registry:file",
+     "target": "~/genlib/stats-summary.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart stats-summary modules (shared vectors); Sample variance (n - 1); percentiles are linear interpolation (numpy default, R type 7); Empty input, NaN/Infinity, q outside 0..100 and bad edges throw StatsError.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "interval-merge",
+   "type": "registry:item",
+   "title": "Interval merge",
+   "description": "set operations on integer half-open intervals [start, end)",
+   "files": [
+    {
+     "path": "examples/recipes/interval-merge.ts",
+     "type": "registry:file",
+     "target": "~/genlib/interval-merge.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart interval-merge modules (shared vectors); Half-open [start, end) integer intervals; touching intervals merge but do not overlap; Empty or reversed intervals throw IntervalError; inputs are never mutated.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "shell-quote",
+   "type": "registry:item",
+   "title": "Shell quote",
+   "description": "POSIX shell quoting and splitting with no expansion",
+   "files": [
+    {
+     "path": "examples/recipes/shell-quote.ts",
+     "type": "registry:file",
+     "target": "~/genlib/shell-quote.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart shell-quote modules (shared vectors); No expansion: $VAR, * and ~ stay literal; every quoted argument round-trips through shellSplit; Prefer an argument array (execFile/spawn without a shell) over building a command line.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "number-to-words",
+   "type": "registry:item",
+   "title": "Number to words",
+   "description": "English number words in US style without \"and\": cardinals, ordinals, suffixes and money. Original",
+   "files": [
+    {
+     "path": "examples/recipes/number-to-words.ts",
+     "type": "registry:file",
+     "target": "~/genlib/number-to-words.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart number-words modules (shared vectors); US English without \"and\", |n| < 10^15; other languages need Intl or a translation catalog; Money amounts are integer minor units with exponent 0..3.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "pagination-window",
+   "type": "registry:item",
+   "title": "Pagination window",
+   "description": "page-number pagination math: page count, offsets and the page-button window with gaps. Original",
+   "files": [
+    {
+     "path": "examples/recipes/pagination-window.ts",
+     "type": "registry:file",
+     "target": "~/genlib/pagination-window.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart pagination-window modules (shared vectors); Gaps are null (render an ellipsis); a gap never hides a single page; Use cursor-pagination for keyset paging over changing data.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "text-wrap",
+   "type": "registry:item",
+   "title": "Text wrap",
+   "description": "plain-text word wrap and word-boundary truncation, counted in code points",
+   "files": [
+    {
+     "path": "examples/recipes/text-wrap.ts",
+     "type": "registry:file",
+     "target": "~/genlib/text-wrap.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart text-wrap modules (shared vectors); Counts code points, not grapheme clusters or display columns; Truncation backs up to a word boundary only when it is in the second half of the kept text.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "markdown-table",
+   "type": "registry:item",
+   "title": "Markdown table",
+   "description": "GitHub-flavored Markdown tables with escaping, alignment and padded columns",
+   "files": [
+    {
+     "path": "examples/recipes/markdown-table.ts",
+     "type": "registry:file",
+     "target": "~/genlib/markdown-table.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart markdown-table modules (shared vectors); Escapes \"|\" and \"\\\" and turns line breaks into <br>; other Markdown in cells still renders; Column widths count code points (minimum 3); ragged rows and unknown alignments throw.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
+   "name": "ndjson",
+   "type": "registry:item",
+   "title": "Ndjson",
+   "description": "newline-delimited JSON (NDJSON / JSON Lines) parsing and serialization",
+   "files": [
+    {
+     "path": "examples/recipes/ndjson.ts",
+     "type": "registry:file",
+     "target": "~/genlib/ndjson.ts"
+    }
+   ],
+   "categories": [
+    "genlib-recipe"
+   ],
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Same output as the Genlib Python, Go, Rust, Java, Kotlin, C#, Swift and Dart ndjson modules (shared vectors); Parse errors carry the 1-based line number in NdjsonError.line; Compact output with insertion-ordered keys; pass a Map when integer-like keys must keep their order.",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "kind": "source-example"
+   }
+  },
+  {
    "name": "app-shell",
    "type": "registry:item",
    "title": "Responsive application shell",
@@ -2514,16 +2724,26 @@
      "path": "modules/org-invitations/files/http.ts",
      "type": "registry:file",
      "target": "~/genlib/org-invitations/http.ts"
+    },
+    {
+     "path": "modules/org-invitations/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/org-invitations/sql-store.ts"
+    },
+    {
+     "path": "modules/org-invitations/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/org-invitations/schema.sql"
     }
    ],
    "categories": [
     "genlib-module",
     "feature"
    ],
-   "docs": "Genlib module org-invitations@0.1.0 (Apache-2.0). Configure: Implement InvitationStore on your database: a unique index on token_hash and an atomic conditional status update (UPDATE ... WHERE id = $1 AND status = 'pending'); create the membership row in the same transaction as the accepted transition. Implement authorize(actor, action, {tenantId, role}) from your own membership table and enforce role ceilings there (who may invite whom). Declare the invitable roles; keep owner or billing roles out unless invitations should grant them. Implement authenticate(request) from your session or verified token; verifiedEmail must come from your identity provider. Implement sendInvitation with your email provider and build the join link from a trusted base URL, keeping the token in the URL fragment. Mount createInvitationHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/org-invitations/CONTRACT.md",
+   "docs": "Genlib module org-invitations@0.2.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlInvitationStore with your query executor, passing onAccepted to insert the membership row in the accepting transaction; on other databases implement InvitationStore with a unique token_hash and a conditional status update. Implement authorize(actor, action, {tenantId, role}) from your own membership table and enforce role ceilings there (who may invite whom). Declare the invitable roles; keep owner or billing roles out unless invitations should grant them. Implement authenticate(request) from your session or verified token; verifiedEmail must come from your identity provider. Implement sendInvitation with your email provider and build the join link from a trusted base URL, keeping the token in the URL fragment. Mount createInvitationHandler under one prefix with exact allowedOrigins; it complements, not replaces, your CSRF policy. Contract: https://github.com/athompson83/genlib/blob/main/modules/org-invitations/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "verification": "tested"
    }
   },
