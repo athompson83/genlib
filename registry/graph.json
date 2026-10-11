@@ -4149,7 +4149,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3605,
+   "count": 3609,
    "query": "typescript"
   },
   {
@@ -4233,7 +4233,7 @@
    "id": "type:module",
    "kind": "type",
    "label": "module",
-   "count": 19,
+   "count": 23,
    "query": "--type module"
   },
   {
@@ -16969,7 +16969,7 @@
    "source": "genlib",
    "target": "type:module",
    "relation": "contains",
-   "weight": 19
+   "weight": 23
   },
   {
    "source": "genlib",
@@ -20587,7 +20587,7 @@
    "source": "type:module",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 18
+   "weight": 22
   },
   {
    "source": "type:recipe",
