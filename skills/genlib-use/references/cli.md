@@ -28,6 +28,8 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "registry_item_plan": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry plan shadcn:login-01 --target \"$APP_ROOT\" --json",
     "registry_item_add": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry add shadcn:login-01 --target \"$APP_ROOT\" --sha256 <hex> --json",
     "registry_item_update": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry update shadcn--login-01 --target \"$APP_ROOT\" --json",
+    "provider_check": "node \"$GENLIB_ROOT/bin/genlib.mjs\" provider check btst-kanban --target \"$APP_ROOT\"",
+    "provider_adopt": "node \"$GENLIB_ROOT/bin/genlib.mjs\" provider adopt btst-kanban --from \"$SCRATCH\" --baseline \"$BASELINE\" --target \"$APP_ROOT\" --json",
     "output_schema": "node \"$GENLIB_ROOT/bin/genlib.mjs\" schema quick",
     "integration_list": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration list --json",
     "integration_inspect": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration inspect <id> --json",
@@ -58,6 +60,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "update <id> merges a newer Genlib version into locally edited files using the locked commit as the base; it is a dry run unless --write. Resolve each conflict file (.genlib-conflict or inline markers) and rerun the app's tests. remove <id> deletes only unedited files and refuses while a dependent module is installed.",
     "Before building a feature, run coverage <task>: it lists each requirement with test (a repository test exercises it), install, plan, catalog or - (nothing). Build or adopt the requirements it does not verify yourself, and report them as your work. After your tests pass, record which requirements they exercised with adopted <id> --test '<cmd>' --accepts <contract>#<requirement>.",
     "registry plan|add adopts a shadcn-format item (shadcn:<name> or an https item URL) with alias mapping, conflict checks, a lock and receipts. Run the install command it returns, merge the CSS and env vars it lists, and pin --sha256 from the plan for repeatable adds. It never overwrites; --keep-existing keeps your differing files.",
+    "A provider result (provider:<id>) is an upstream feature. Run provider check first and fix FAIL lines; then run the profile's steps yourself in order. Run its scaffolder only in a scratch copy, and adopt with provider adopt --from <scratch> --baseline <pristine copy>. Merge the reported merge files by hand.",
     "If quick returns noMatch, Genlib has nothing that covers the task: use its gh search commands or write the code, and do not force a weak result.",
     "Integration packs default to genlib/integrations/<id> and record .genlib/integrations-lock.json. Inspect the contract and declared files; installation copies source/configuration/fixtures and attribution only. Run dependency and verification commands deliberately from the pack directory after review."
   ],

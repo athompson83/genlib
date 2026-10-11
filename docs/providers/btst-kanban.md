@@ -1,6 +1,6 @@
-# Provider plan: BTST Kanban (not implemented yet)
+# Provider plan: BTST Kanban (profile written, not yet run end to end)
 
-> Status: research and plan for the first "upstream dependency + Genlib integration package" provider (phase 3 of the [integration blueprint](../landscape.md#integration-blueprint-one-adoption-process-over-many-providers)). Nothing below has been installed, scaffolded, migrated or built against an app; the "Not verified" list at the end is explicit. Facts were read on 2026-10-11 from the npm registry and the repository at tag v4.5.1.
+> Status: the profile is in `resources/providers/btst-kanban.json` (`genlib provider check btst-kanban --target app` checks the prerequisites below; see [providers.md](../providers.md)). This page is the research and plan for the first "upstream dependency + Genlib integration package" provider (phase 3 of the [integration blueprint](../landscape.md#integration-blueprint-one-adoption-process-over-many-providers)). Nothing below has been installed, scaffolded, migrated or built against an app; the "Not verified" list at the end is explicit. Facts were read on 2026-10-11 from the npm registry and the repository at tag v4.5.1.
 
 ## Why Genlib wraps BTST instead of running its CLI
 

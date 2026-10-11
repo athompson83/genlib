@@ -103,6 +103,7 @@ flowchart LR
   Receipt["receipt · adopted<br/>update · remove"]
   Coverage["genlib coverage<br/>feature contracts:<br/>requirements + evidence"]
   RegistryIn["genlib registry<br/>shadcn-format items<br/>plan · add · verify"]
+  Provider["genlib provider<br/>upstream features (BTST):<br/>check · staged adopt"]
   Lang["pick the detected<br/>language's code"]
   Copy["recipe-install / language-modules<br/>plan + add"]
   Merge["read guide, merge<br/>selected files"]
@@ -124,6 +125,7 @@ flowchart LR
   Add -.-> Receipt -.-> App
   Quick -.-> Coverage -.-> App
   RegistryIn --> Receipt
+  Find --> Provider --> Receipt
   C --> Lang --> Copy
   R --> Copy --> App
   T --> Merge --> App
@@ -185,6 +187,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `adopted <id> --target app [--test cmd] [--accepts contract#req,...]` | Adoption receipt: found, copied, used (app code outside the installed folder imports it) and, with `--test`, verified by the app's own test command; `--accepts` records which feature requirements that command exercised |
 | `update <id> --target app [--write] [--conflict rej\|inline]` | Three-way merge of a newer module version into locally edited files (base from the locked commit); dry run unless `--write`, conflicts reported per file |
 | `remove <id> --target app [--dry-run]` | Roll back an install: deletes unedited files, keeps edited ones, refuses while a dependent module is installed |
+| `provider check\|inspect\|plan\|adopt <id> [--target app] [--from scratch --baseline pristine]` | Upstream feature profiles (BTST Kanban): check the app's prerequisites, get the pinned steps, then adopt the scaffolder's output from a scratch copy without overwriting anything ([providers.md](docs/providers.md)) |
 | `coverage <task words>` / `coverage --list` `[--target app]` | Which requirements of an app feature Genlib code fulfills (`test`, `install`, `plan`, `catalog` or `app` per requirement) and what is left to build; see [coverage.md](docs/coverage.md) |
 | `registry plan\|add shadcn:<name>\|<https URL> --target app [--sha256 hex]` / `registry verify\|update\|remove` | Adopt a shadcn-format registry item and its dependencies with alias mapping, conflict checks, a lock, receipts and drift checks; `update` three-way merges the registry's new version onto local edits; fetches over https ([distribution.md](docs/distribution.md#adopting-shadcn-format-items-into-an-app-genlib-registry)) |
 | `schema [quick\|steps\|plan\|receipt\|update]` | JSON Schemas for the agent-facing `--json` outputs |
