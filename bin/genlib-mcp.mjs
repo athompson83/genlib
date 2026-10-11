@@ -31,12 +31,12 @@ const TARGET = { type: 'string', description: 'Absolute app path; detects its la
 const TOOLS = [
   {
     name: 'genlib_quick',
-    description: 'Cheapest lookup: the best match for a task and only its install or copy commands.',
+    description: 'Cheapest lookup: the best match and only its commands.',
     inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Task words, e.g. "passkey login".' }, language: LANGUAGE, target: TARGET, type: { type: 'string', enum: SOURCE_TYPES } }, required: ['query'] },
   },
   {
     name: 'genlib_find',
-    description: 'Ranked results for a task across every Genlib source, each with its next command.',
+    description: 'Ranked results across every Genlib source, with next commands.',
     inputSchema: { type: 'object', properties: {
       query: { type: 'string' }, language: LANGUAGE, target: TARGET,
       type: { type: 'string', enum: SOURCE_TYPES }, project: { type: 'string', description: 'Resource project type, e.g. saas.' },
@@ -46,22 +46,22 @@ const TOOLS = [
   },
   {
     name: 'genlib_outline',
-    description: 'Signatures and one-line docs of Genlib code, so it can be called without reading source.',
+    description: 'Signatures and one-line docs instead of source.',
     inputSchema: { type: 'object', properties: { ref: { type: 'string', description: 'e.g. totp, capability:saml-sso, go-totp, webhook-verification' }, language: { type: 'string', enum: LANGUAGES } }, required: ['ref'] },
   },
   {
     name: 'genlib_source',
-    description: 'Minimal pinned fetch of an external project\'s source (one path or file), its license and Genlib equivalents.',
+    description: 'Pinned fetch of one path of an external project, its license and Genlib equivalents.',
     inputSchema: { type: 'object', properties: { ref: { type: 'string', description: 'e.g. resource:pocketbase, starter:create-t3-app, skill:pdf' }, path: { type: 'string', description: 'Folder inside the repository to fetch.' } }, required: ['ref'] },
   },
   {
     name: 'genlib_jev',
-    description: 'Bounded decision packet for Genisys Jev: up to 8 candidates, one yes/no question each.',
+    description: 'Jev decision packet: up to 8 candidates, a yes/no question each.',
     inputSchema: { type: 'object', properties: {
       task: { type: 'string' }, type: { type: 'string', enum: SOURCE_TYPES }, target: TARGET,
       limit: { type: 'integer', minimum: 1, maximum: 8, default: 8 },
-      stdlibOnly: { type: 'boolean', description: 'Keep only candidates that need no install. Implied when the task says "standard library only" or "no dependencies".' },
-      prompt: { type: 'boolean', description: 'Return the decision as a compact prompt for a direct model call (structured packet stays in structuredContent).' },
+      stdlibOnly: { type: 'boolean', description: 'Only install-free candidates (implied by "no dependencies").' },
+      prompt: { type: 'boolean', description: 'Also return a compact prompt for a direct model call.' },
     }, required: ['task'] },
   },
   {
@@ -71,8 +71,8 @@ const TOOLS = [
   },
   {
     name: 'genlib_coverage',
-    description: 'Which requirements of an app feature Genlib code fulfills (per-requirement status and evidence), and what is left to build.',
-    inputSchema: { type: 'object', properties: { task: { type: 'string', description: 'e.g. stripe checkout and webhooks' }, target: TARGET }, required: ['task'] },
+    description: 'Per-requirement status of a feature in Genlib, and what is left to build.',
+    inputSchema: { type: 'object', properties: { task: { type: 'string' }, target: { type: 'string' } }, required: ['task'] },
   },
   {
     name: 'genlib_inspect',
