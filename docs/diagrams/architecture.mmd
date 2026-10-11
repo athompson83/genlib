@@ -34,7 +34,8 @@ flowchart TB
   MCPS["bin/genlib-mcp.mjs<br/>MCP tools"]
   TOK["docs/token-budget.md<br/>measured output sizes"]
   INST["lib/install.mjs<br/>plan · add · verify"]
-  APP["Target app<br/>src/genlib/ · .genlib/lock.json"]
+  APP["Target app<br/>src/genlib/ · .genlib/lock.json<br/>.genlib/receipts/"]
+  LIFE["lib/lifecycle.mjs<br/>adopted · update · remove<br/>+ schemas/*.schema.json"]
   NET["Git hosts · npm<br/>PyPI · crates.io"]
   DOCS["scripts/sync-docs.mjs<br/>README and resource counts"]
   DIAG["scripts/diagrams.mjs<br/>Agentic Mermaid SVGs"]
@@ -71,6 +72,8 @@ flowchart TB
   CLI -- "npm run tokens:report" --> TOK
   REG --> INST --> CLI
   CLI -- "copies reviewed bytes" --> APP
+  INST --> LIFE --> CLI
+  LIFE -- "receipts · 3-way merge · rollback" --> APP
   SKLIB -. "npx skills add (pinned)" .-> APP
   IDXLIB -. "mcp add · brew · SDK" .-> APP
   RES -. "verify-resources.mjs<br/>(network, maintainers)" .-> NET
