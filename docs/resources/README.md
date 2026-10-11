@@ -64,24 +64,24 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 <!-- genlib:types:start -->
 | Project type | Records | Covers |
 | --- | ---: | --- |
-| `web-app` | 5613 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
-| `marketing-site` | 3981 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
+| `web-app` | 5639 | Browser SPA or server-rendered app: routing, state, forms, data fetching, UI components. |
+| `marketing-site` | 4012 | Landing pages, blogs, static sites, SEO, analytics and CMS-backed content. |
 | `mobile-app` | 1351 | iOS/Android via native, React Native/Expo, Flutter or Capacitor. |
-| `desktop-app` | 119 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
-| `api-backend` | 1506 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
+| `desktop-app` | 120 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
+| `api-backend` | 1514 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
 | `cli-tool` | 177 | Argument parsing, prompts, output formatting, config files and distribution. |
-| `ai-agent` | 298 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
-| `data-analytics` | 2011 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
+| `ai-agent` | 305 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
+| `data-analytics` | 2016 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 774 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
-| `saas` | 6106 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
-| `realtime-collab` | 297 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
+| `saas` | 6110 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
+| `realtime-collab` | 299 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
 | `devops-infra` | 937 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
-| `testing-qa` | 156 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
-| `docs-knowledge` | 432 | Docs sites, API references, diagrams, search and markdown tooling. |
-| `browser-automation` | 25 | Headless browsers, scraping within terms, workflow automation and RPA. |
-| `office-documents` | 556 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
-| `media-creative` | 948 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
-| `finance-accounting` | 418 | Money math, ledgers, invoicing, accounting APIs and financial data. |
+| `testing-qa` | 157 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
+| `docs-knowledge` | 433 | Docs sites, API references, diagrams, search and markdown tooling. |
+| `browser-automation` | 26 | Headless browsers, scraping within terms, workflow automation and RPA. |
+| `office-documents` | 557 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
+| `media-creative` | 973 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |
+| `finance-accounting` | 421 | Money math, ledgers, invoicing, accounting APIs and financial data. |
 | `legal-compliance` | 120 | Contracts, e-signature, privacy, consent, accessibility and policy tooling. |
 | `game` | 30 | Game engines, 2D/3D rendering, physics, input and asset pipelines. |
 | `security` | 148 | Crypto, secrets scanning, dependency auditing, auth hardening and threat checks. |

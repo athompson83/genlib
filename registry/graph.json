@@ -11,6 +11,14 @@
    "guide": "docs/capabilities.md"
   },
   {
+   "id": "capability:base58",
+   "kind": "capability",
+   "label": "base58",
+   "count": 1,
+   "query": "base58",
+   "guide": "docs/capabilities.md"
+  },
+  {
    "id": "capability:business-days",
    "kind": "capability",
    "label": "business-days",
@@ -123,6 +131,14 @@
    "guide": "docs/capabilities.md"
   },
   {
+   "id": "capability:dotted-path",
+   "kind": "capability",
+   "label": "dotted-path",
+   "count": 1,
+   "query": "dotted-path",
+   "guide": "docs/capabilities.md"
+  },
+  {
    "id": "capability:email-address",
    "kind": "capability",
    "label": "email-address",
@@ -187,6 +203,14 @@
    "guide": "docs/capabilities.md"
   },
   {
+   "id": "capability:html-escape",
+   "kind": "capability",
+   "label": "html-escape",
+   "count": 1,
+   "query": "html-escape",
+   "guide": "docs/capabilities.md"
+  },
+  {
    "id": "capability:http-conditional",
    "kind": "capability",
    "label": "http-conditional",
@@ -224,6 +248,14 @@
    "label": "ids",
    "count": 1,
    "query": "ids",
+   "guide": "docs/capabilities.md"
+  },
+  {
+   "id": "capability:ini-parse",
+   "kind": "capability",
+   "label": "ini-parse",
+   "count": 1,
+   "query": "ini-parse",
    "guide": "docs/capabilities.md"
   },
   {
@@ -315,6 +347,14 @@
    "guide": "docs/cookbook/oidc-token-verification.md"
   },
   {
+   "id": "capability:password-generate",
+   "kind": "capability",
+   "label": "password-generate",
+   "count": 1,
+   "query": "password-generate",
+   "guide": "docs/capabilities.md"
+  },
+  {
    "id": "capability:password-hashing",
    "kind": "capability",
    "label": "password-hashing",
@@ -347,11 +387,27 @@
    "guide": "docs/cookbook/pdf-text-extraction.md"
   },
   {
+   "id": "capability:pii-mask",
+   "kind": "capability",
+   "label": "pii-mask",
+   "count": 1,
+   "query": "pii-mask",
+   "guide": "docs/capabilities.md"
+  },
+  {
    "id": "capability:polyline",
    "kind": "capability",
    "label": "polyline",
    "count": 1,
    "query": "polyline",
+   "guide": "docs/capabilities.md"
+  },
+  {
+   "id": "capability:punycode",
+   "kind": "capability",
+   "label": "punycode",
+   "count": 1,
+   "query": "punycode",
    "guide": "docs/capabilities.md"
   },
   {
@@ -385,6 +441,14 @@
    "count": 1,
    "query": "rich-text-sanitization",
    "guide": "docs/cookbook/rich-text-sanitization.md"
+  },
+  {
+   "id": "capability:roman-numerals",
+   "kind": "capability",
+   "label": "roman-numerals",
+   "count": 1,
+   "query": "roman-numerals",
+   "guide": "docs/capabilities.md"
   },
   {
    "id": "capability:rrule",
@@ -472,6 +536,14 @@
    "label": "structured-data",
    "count": 1,
    "query": "structured-data",
+   "guide": "docs/capabilities.md"
+  },
+  {
+   "id": "capability:template-render",
+   "kind": "capability",
+   "label": "template-render",
+   "count": 1,
+   "query": "template-render",
    "guide": "docs/capabilities.md"
   },
   {
@@ -3018,7 +3090,7 @@
    "id": "doc:docs/capabilities.md",
    "kind": "doc",
    "label": "docs/capabilities.md",
-   "count": 69,
+   "count": 78,
    "file": "docs/capabilities.md"
   },
   {
@@ -3598,14 +3670,14 @@
    "id": "language:csharp",
    "kind": "language",
    "label": "csharp",
-   "count": 588,
+   "count": 606,
    "query": "csharp"
   },
   {
    "id": "language:dart",
    "kind": "language",
    "label": "dart",
-   "count": 381,
+   "count": 399,
    "query": "dart"
   },
   {
@@ -3626,7 +3698,7 @@
    "id": "language:go",
    "kind": "language",
    "label": "go",
-   "count": 798,
+   "count": 816,
    "query": "go"
   },
   {
@@ -3661,7 +3733,7 @@
    "id": "language:java",
    "kind": "language",
    "label": "java",
-   "count": 2955,
+   "count": 2973,
    "query": "java"
   },
   {
@@ -3689,7 +3761,7 @@
    "id": "language:kotlin",
    "kind": "language",
    "label": "kotlin",
-   "count": 290,
+   "count": 308,
    "query": "kotlin"
   },
   {
@@ -3710,7 +3782,7 @@
    "id": "language:python",
    "kind": "language",
    "label": "python",
-   "count": 1659,
+   "count": 1677,
    "query": "python"
   },
   {
@@ -3724,7 +3796,7 @@
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 621,
+   "count": 639,
    "query": "rust"
   },
   {
@@ -3738,14 +3810,14 @@
    "id": "language:swift",
    "kind": "language",
    "label": "swift",
-   "count": 316,
+   "count": 334,
    "query": "swift"
   },
   {
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3532,
+   "count": 3548,
    "query": "typescript"
   },
   {
@@ -3773,7 +3845,7 @@
    "id": "type:capability",
    "kind": "type",
    "label": "capability",
-   "count": 72,
+   "count": 81,
    "query": "--type capability"
   },
   {
@@ -3794,7 +3866,7 @@
    "id": "type:language-example",
    "kind": "type",
    "label": "language-example",
-   "count": 593,
+   "count": 665,
    "query": "--type language-example"
   },
   {
@@ -3815,7 +3887,7 @@
    "id": "type:recipe",
    "kind": "type",
    "label": "recipe",
-   "count": 95,
+   "count": 102,
    "query": "--type recipe"
   },
   {
@@ -3918,6 +3990,66 @@
   },
   {
    "source": "capability:base-encodings",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:base58",
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
@@ -4757,6 +4889,66 @@
    "weight": 1
   },
   {
+   "source": "capability:dotted-path",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:dotted-path",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
    "source": "capability:email-address",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
@@ -5237,6 +5429,66 @@
    "weight": 1
   },
   {
+   "source": "capability:html-escape",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:html-escape",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
    "source": "capability:http-conditional",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
@@ -5532,6 +5784,66 @@
   },
   {
    "source": "capability:ids",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:ini-parse",
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
@@ -6197,6 +6509,66 @@
    "weight": 1
   },
   {
+   "source": "capability:password-generate",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:password-generate",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
    "source": "capability:password-hashing",
    "target": "doc:docs/cookbook/password-hashing.md",
    "relation": "documented-by",
@@ -6431,6 +6803,66 @@
    "weight": 1
   },
   {
+   "source": "capability:pii-mask",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:pii-mask",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
    "source": "capability:polyline",
    "target": "doc:docs/capabilities.md",
    "relation": "documented-by",
@@ -6486,6 +6918,66 @@
   },
   {
    "source": "capability:polyline",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:punycode",
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
@@ -6726,6 +7218,66 @@
   },
   {
    "source": "capability:rich-text-sanitization",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:roman-numerals",
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
@@ -7374,6 +7926,66 @@
   },
   {
    "source": "capability:structured-data",
+   "target": "language:typescript",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "doc:docs/capabilities.md",
+   "relation": "documented-by",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:csharp",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:dart",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:go",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:java",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:kotlin",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:python",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:rust",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
+   "target": "language:swift",
+   "relation": "implemented-in",
+   "weight": 1
+  },
+  {
+   "source": "capability:template-render",
    "target": "language:typescript",
    "relation": "implemented-in",
    "weight": 1
@@ -15158,7 +15770,7 @@
    "source": "genlib",
    "target": "type:capability",
    "relation": "contains",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "genlib",
@@ -15176,7 +15788,7 @@
    "source": "genlib",
    "target": "type:language-example",
    "relation": "contains",
-   "weight": 593
+   "weight": 665
   },
   {
    "source": "genlib",
@@ -15194,7 +15806,7 @@
    "source": "genlib",
    "target": "type:recipe",
    "relation": "contains",
-   "weight": 95
+   "weight": 102
   },
   {
    "source": "genlib",
@@ -17460,6 +18072,12 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:base58",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:business-days",
    "relation": "includes",
    "weight": 1
@@ -17544,6 +18162,12 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:dotted-path",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:email-address",
    "relation": "includes",
    "weight": 1
@@ -17592,6 +18216,12 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:html-escape",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:http-conditional",
    "relation": "includes",
    "weight": 1
@@ -17617,6 +18247,12 @@
   {
    "source": "type:capability",
    "target": "capability:ids",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
+   "target": "capability:ini-parse",
    "relation": "includes",
    "weight": 1
   },
@@ -17688,6 +18324,12 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:password-generate",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:password-hashing",
    "relation": "includes",
    "weight": 1
@@ -17712,7 +18354,19 @@
   },
   {
    "source": "type:capability",
+   "target": "capability:pii-mask",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
    "target": "capability:polyline",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
+   "target": "capability:punycode",
    "relation": "includes",
    "weight": 1
   },
@@ -17737,6 +18391,12 @@
   {
    "source": "type:capability",
    "target": "capability:rich-text-sanitization",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
+   "target": "capability:roman-numerals",
    "relation": "includes",
    "weight": 1
   },
@@ -17803,6 +18463,12 @@
   {
    "source": "type:capability",
    "target": "capability:structured-data",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:capability",
+   "target": "capability:template-render",
    "relation": "includes",
    "weight": 1
   },
@@ -17888,55 +18554,55 @@
    "source": "type:capability",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:capability",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 69
+   "weight": 78
   },
   {
    "source": "type:capability",
    "target": "language:go",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:capability",
    "target": "language:java",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:capability",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:capability",
    "target": "language:python",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:capability",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:capability",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 70
+   "weight": 79
   },
   {
    "source": "type:capability",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 72
+   "weight": 81
   },
   {
    "source": "type:doc",
@@ -18350,49 +19016,49 @@
    "source": "type:language-example",
    "target": "language:csharp",
    "relation": "serves",
-   "weight": 73
+   "weight": 82
   },
   {
    "source": "type:language-example",
    "target": "language:dart",
    "relation": "serves",
-   "weight": 70
+   "weight": 79
   },
   {
    "source": "type:language-example",
    "target": "language:go",
    "relation": "serves",
-   "weight": 76
+   "weight": 85
   },
   {
    "source": "type:language-example",
    "target": "language:java",
    "relation": "serves",
-   "weight": 73
+   "weight": 82
   },
   {
    "source": "type:language-example",
    "target": "language:kotlin",
    "relation": "serves",
-   "weight": 73
+   "weight": 82
   },
   {
    "source": "type:language-example",
    "target": "language:python",
    "relation": "serves",
-   "weight": 76
+   "weight": 85
   },
   {
    "source": "type:language-example",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 73
+   "weight": 82
   },
   {
    "source": "type:language-example",
    "target": "language:swift",
    "relation": "serves",
-   "weight": 71
+   "weight": 80
   },
   {
    "source": "type:language-example",
@@ -18410,7 +19076,7 @@
    "source": "type:recipe",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 94
+   "weight": 101
   },
   {
    "source": "type:resource",
