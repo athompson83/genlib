@@ -237,6 +237,6 @@ test('stepsFor gives ordered, checkable adoption steps that run in a fresh app',
   const rust = stepsFor({ kind: 'language-example', id: 'rust-punycode' });
   assert.deepEqual(rust.steps.map(step => step.kind), ['copy', 'integrate', 'check']);
   const recipe = stepsFor({ kind: 'recipe', id: 'punycode' });
-  assert.match(recipe.steps[0].purpose, /genlib\/examples\/recipes\/punycode\.ts/);
+  assert.match(recipe.steps[0].purpose, /genlib\/punycode\.ts /);
   assert.ok(stepsFor({ kind: 'module', id: 'org-invitations' }).steps.some(step => /genlib\.mjs verify/.test(step.run ?? '')));
 });

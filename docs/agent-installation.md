@@ -6,8 +6,10 @@ The agent recipe router now supports **explicit compatibility assessment** and *
 node tools/agent-recipes.mjs find "shopping cart"
 node tools/recipe-compat.mjs assess storefront-cart --project project-profile.json
 node tools/recipe-install.mjs plan storefront-cart --target /existing/project
-node tools/recipe-install.mjs add storefront-cart --target /existing/project
+node tools/recipe-install.mjs add storefront-cart --target /existing/project --into src/lib
 ```
+
+The recipe lands as one file, `genlib/<file>` by default or under the folder `--into` names; existing files are never overwritten.
 
 Example project profile:
 

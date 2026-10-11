@@ -46,14 +46,14 @@ Each domain catalog has a guide with `Need | Pick | Why / when | License` tables
 | [`catalog/media-automation.json`](../../resources/catalog/media-automation.json) | 89 | [media-automation.md](../../docs/resources/media-automation.md) | image-processing, workflow-automation, image-applications, video-processing, 3d-graphics |
 | [`catalog/mobile-desktop-cli-game.json`](../../resources/catalog/mobile-desktop-cli-game.json) | 77 | [mobile-desktop-cli-game.md](../../docs/resources/mobile-desktop-cli-game.md) | desktop-framework, game-engine, cli-args, cli-output, mobile-framework |
 | [`catalog/open-source-tools-2.json`](../../resources/catalog/open-source-tools-2.json) | 343 | [open-source-tools.md](../../docs/resources/open-source-tools.md) | productivity-docs, storage-files, search, security, project-management |
-| [`catalog/open-source-tools.json`](../../resources/catalog/open-source-tools.json) | 900 | [open-source-tools.md](../../docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
+| [`catalog/open-source-tools.json`](../../resources/catalog/open-source-tools.json) | 901 | [open-source-tools.md](../../docs/resources/open-source-tools.md) | databases, dev-tools, ai-local, media, paas-devops |
 | [`catalog/readme-tools.json`](../../resources/catalog/readme-tools.json) | 55 | [readme-tools.md](../../docs/resources/readme-tools.md) | readme-widget, readme-generator, readme-action, badge |
 | [`catalog/saas-commerce-finance.json`](../../resources/catalog/saas-commerce-finance.json) | 102 | [saas-commerce-finance.md](../../docs/resources/saas-commerce-finance.md) | realtime, auth, payments, cms, commerce |
 | [`catalog/scheduling-calendar.json`](../../resources/catalog/scheduling-calendar.json) | 189 | [scheduling-calendar.md](../../docs/resources/scheduling-calendar.md) | calendar-library, calendar-api-sdk, booking-scheduling, calendar-app, caldav-server |
 | [`catalog/social-media.json`](../../resources/catalog/social-media.json) | 795 | [social-media.md](../../docs/resources/social-media.md) | social-media, advertising, content, links-qr, marketing-automation |
 | [`catalog/ui-component-sources.json`](../../resources/catalog/ui-component-sources.json) | 3 | [ui-libraries.md](../../docs/best-practices/ui-libraries.md) | index, copy-paste-elements |
 | [`catalog/ui-index-sources.json`](../../resources/catalog/ui-index-sources.json) | 139 | [ui-index-sources.md](../../docs/resources/ui-index-sources.md) | shadcn-registry, specialized-ui, copy-paste-components, tailwind-components, directory |
-| **Total** | **9805** | | |
+| **Total** | **9806** | | |
 <!-- genlib:catalog:end -->
 
 Related guides: [UI libraries](../best-practices/ui-libraries.md) (copy-paste, animation, package and index tiers), [attachment review](attachment-review.md), [common APIs](../best-practices/common-apis.md), [commerce and browser](../best-practices/commerce-and-browser.md), [GitHub setup](../best-practices/github-setup.md) and [README/docs setup](../best-practices/readme-and-docs.md).
@@ -71,14 +71,14 @@ Records list the Genisys project types they serve in `projectTypes`. The type li
 | `desktop-app` | 124 | Electron, Tauri or native desktop apps, packaging, auto-update and OS integration. |
 | `api-backend` | 1533 | HTTP/GraphQL/RPC services, validation, persistence, queues, caching and background jobs. |
 | `cli-tool` | 184 | Argument parsing, prompts, output formatting, config files and distribution. |
-| `ai-agent` | 307 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
+| `ai-agent` | 308 | Model SDKs, tool calling, MCP servers, RAG, evaluation, prompt and token optimization. |
 | `data-analytics` | 2027 | Data loading, transformation, SQL engines, notebooks, charts and dashboards. |
 | `ecommerce` | 774 | Catalog, cart, checkout, payments, tax, inventory and storefront platforms. |
 | `saas` | 6128 | Multi-tenant apps: auth, billing/subscriptions, email, feature flags, admin and audit. |
 | `realtime-collab` | 300 | WebSockets, presence, CRDT/collaborative editing, chat and notifications. |
-| `devops-infra` | 944 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
+| `devops-infra` | 945 | CI/CD, containers, infrastructure as code, observability, secrets and deployment. |
 | `testing-qa` | 164 | Unit, integration, end-to-end, visual, load and accessibility testing; mocking and fixtures. |
-| `docs-knowledge` | 433 | Docs sites, API references, diagrams, search and markdown tooling. |
+| `docs-knowledge` | 434 | Docs sites, API references, diagrams, search and markdown tooling. |
 | `browser-automation` | 26 | Headless browsers, scraping within terms, workflow automation and RPA. |
 | `office-documents` | 557 | PDF, Word, spreadsheet and presentation generation, parsing and conversion. |
 | `media-creative` | 973 | Image processing, video editing/transcoding, audio, 3D and creative tooling. |

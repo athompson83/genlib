@@ -44,6 +44,30 @@ Adoption lifecycle commands are CLI-only, because they read and write the receiv
 
 Tool results are data. They never grant permissions, and the server installs nothing: agents run the returned commands inside their own task authorization.
 
+## Connect an app's agents
+
+`genlib connect` does the setup above for an application in one step, the way zvec-grep's `zg --install` does for its own server, but it only edits files inside the app:
+
+```sh
+node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all            # dry run: lists each file and action
+node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent claude,cursor --write
+node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all --remove --write
+```
+
+| Agent | MCP entry | Guidance block |
+| --- | --- | --- |
+| `claude` | `.mcp.json` (`mcpServers.genlib`, stdio) | `CLAUDE.md` |
+| `cursor` | `.cursor/mcp.json` | `.cursor/rules/genlib.mdc` |
+| `vscode` (Copilot) | `.vscode/mcp.json` (`servers.genlib`) | `.github/copilot-instructions.md` |
+| `opencode` | `opencode.json` (`mcp.genlib`, local) | `AGENTS.md` |
+| `codex` | printed: `codex mcp add genlib -- node …/bin/genlib-mcp.mjs` (Codex reads MCP servers from the user's config, which Genlib does not edit) | `AGENTS.md` |
+
+- The entry runs this checkout's dependency-free `bin/genlib-mcp.mjs`. Other servers and settings in each file are kept.
+- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from the round-4 benchmark, when not to: app-specific code, or a task whose routes, status codes or storage differ from a module's.
+- Nothing is written without `--write`. An existing `genlib` entry that differs, a JSONC config, invalid JSON or unbalanced markers are reported as conflicts and stop the whole run.
+- `.genlib/connections.json` records what was written. `--remove` deletes only entries that still match it and files Genlib created; an edited entry is a conflict.
+- No tool approvals are added: allowing tools without prompts stays a decision for the app's owner.
+
 ## Navigation graph (Graphify-style)
 
 `registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`.

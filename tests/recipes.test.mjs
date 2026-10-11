@@ -51,7 +51,7 @@ test('every recipe file is registered, licensed, focused and installable', () =>
   }
   const plan = spawnSync(process.execPath, ['tools/recipe-install.mjs', 'plan', 'money-minor-units', '--target', out], { cwd: root, encoding: 'utf8' });
   assert.equal(plan.status, 0, plan.stderr);
-  assert.match(JSON.parse(plan.stdout).destination, /genlib\/examples\/recipes\/money\.ts$/);
+  assert.match(JSON.parse(plan.stdout).destination, /genlib\/money\.ts$/);
 });
 
 test('agent-recipes find routes common phrasings to the new recipes', () => {

@@ -31,6 +31,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "registry_item_update": "node \"$GENLIB_ROOT/bin/genlib.mjs\" registry update shadcn--login-01 --target \"$APP_ROOT\" --json",
     "provider_check": "node \"$GENLIB_ROOT/bin/genlib.mjs\" provider check btst-kanban --target \"$APP_ROOT\"",
     "provider_adopt": "node \"$GENLIB_ROOT/bin/genlib.mjs\" provider adopt btst-kanban --from \"$SCRATCH\" --baseline \"$BASELINE\" --target \"$APP_ROOT\" --json",
+    "connect_agents": "node \"$GENLIB_ROOT/bin/genlib.mjs\" connect --target \"$APP_ROOT\" --agent claude,cursor --write",
     "provider_accept": "node \"$GENLIB_ROOT/bin/genlib.mjs\" adopted provider--btst-kanban --target \"$APP_ROOT\" --test \"sh '$GENLIB_ROOT/resources/providers/btst-kanban/accept.sh'\" --accepts kanban-board#boards,kanban-board#persistence",
     "output_schema": "node \"$GENLIB_ROOT/bin/genlib.mjs\" schema quick",
     "integration_list": "node \"$GENLIB_ROOT/bin/genlib.mjs\" integration list --json",

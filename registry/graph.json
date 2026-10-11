@@ -1665,7 +1665,7 @@
    "id": "category:dev-tools",
    "kind": "category",
    "label": "dev-tools",
-   "count": 107,
+   "count": 108,
    "query": "dev-tools"
   },
   {
@@ -3233,7 +3233,7 @@
    "id": "doc:docs/agent-access.md",
    "kind": "doc",
    "label": "docs/agent-access.md",
-   "count": 6,
+   "count": 7,
    "file": "docs/agent-access.md"
   },
   {
@@ -3268,7 +3268,7 @@
    "id": "doc:docs/benchmarks.md",
    "kind": "doc",
    "label": "docs/benchmarks.md",
-   "count": 10,
+   "count": 11,
    "file": "docs/benchmarks.md"
   },
   {
@@ -3939,7 +3939,7 @@
    "id": "guide:docs/resources/open-source-tools.md",
    "kind": "guide",
    "label": "open-source-tools",
-   "count": 1243,
+   "count": 1244,
    "file": "docs/resources/open-source-tools.md"
   },
   {
@@ -4142,7 +4142,7 @@
    "id": "language:rust",
    "kind": "language",
    "label": "rust",
-   "count": 667,
+   "count": 668,
    "query": "rust"
   },
   {
@@ -4170,7 +4170,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3621,
+   "count": 3622,
    "query": "typescript"
   },
   {
@@ -4226,7 +4226,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 710,
+   "count": 712,
    "query": "--type doc"
   },
   {
@@ -4275,14 +4275,14 @@
    "id": "type:resource",
    "kind": "type",
    "label": "resource",
-   "count": 9715,
+   "count": 9716,
    "query": "--type resource"
   },
   {
    "id": "type:skill",
    "kind": "type",
    "label": "skill",
-   "count": 1159,
+   "count": 1160,
    "query": "--type skill"
   },
   {
@@ -12725,13 +12725,13 @@
    "source": "category:dev-tools",
    "target": "language:rust",
    "relation": "in-language",
-   "weight": 18
+   "weight": 19
   },
   {
    "source": "category:dev-tools",
    "target": "language:typescript",
    "relation": "in-language",
-   "weight": 31
+   "weight": 32
   },
   {
    "source": "category:diagram-tools",
@@ -16973,7 +16973,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 710
+   "weight": 712
   },
   {
    "source": "genlib",
@@ -17015,13 +17015,13 @@
    "source": "genlib",
    "target": "type:resource",
    "relation": "contains",
-   "weight": 9715
+   "weight": 9716
   },
   {
    "source": "genlib",
    "target": "type:skill",
    "relation": "contains",
-   "weight": 1159
+   "weight": 1160
   },
   {
    "source": "genlib",
@@ -18947,7 +18947,7 @@
    "source": "guide:docs/resources/open-source-tools.md",
    "target": "category:dev-tools",
    "relation": "has-category",
-   "weight": 107
+   "weight": 108
   },
   {
    "source": "guide:docs/resources/open-source-tools.md",
@@ -20009,7 +20009,7 @@
    "source": "type:doc",
    "target": "doc:docs/agent-access.md",
    "relation": "section-of",
-   "weight": 6
+   "weight": 7
   },
   {
    "source": "type:doc",
@@ -20039,7 +20039,7 @@
    "source": "type:doc",
    "target": "doc:docs/benchmarks.md",
    "relation": "section-of",
-   "weight": 10
+   "weight": 11
   },
   {
    "source": "type:doc",
@@ -20783,7 +20783,7 @@
    "source": "type:resource",
    "target": "guide:docs/resources/open-source-tools.md",
    "relation": "grouped-by",
-   "weight": 1243
+   "weight": 1244
   },
   {
    "source": "type:resource",
@@ -20879,7 +20879,7 @@
    "source": "type:resource",
    "target": "language:rust",
    "relation": "serves",
-   "weight": 481
+   "weight": 482
   },
   {
    "source": "type:resource",
@@ -20891,7 +20891,7 @@
    "source": "type:resource",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 3354
+   "weight": 3355
   },
   {
    "source": "type:starter",

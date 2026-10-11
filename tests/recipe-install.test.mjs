@@ -29,3 +29,13 @@ test('recipe source installation plans, copies and refuses overwrite and symlink
   assert.notEqual(spawnSync(process.execPath,['tools/recipe-install.mjs','plan','csv-export','--target',join(dir,'link')]).status,0);
  }finally{rmSync(dir,{recursive:true,force:true})}
 });
+test('recipes land as one file under genlib/ or --into, not under Genlib\'s own folder tree',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'genlib-into-'));
+ try{
+  const flat=call('recipe-install','add','webhook-signature','--target',dir);
+  assert.equal(flat.destination,join(dir,'genlib','webhook-signature.ts'));
+  const into=call('recipe-install','add','csv-safe','--target',dir,'--into','src/lib');
+  assert.equal(into.destination,join(dir,'src','lib','csv-safe.ts'));
+  for(const bad of ['../outside','/abs','a/../b','.git'])assert.notEqual(spawnSync(process.execPath,['tools/recipe-install.mjs','plan','csv-export','--target',dir,'--into',bad]).status,0,bad);
+ }finally{rmSync(dir,{recursive:true,force:true})}
+});

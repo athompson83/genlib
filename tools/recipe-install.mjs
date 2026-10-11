@@ -9,7 +9,7 @@ const [cmd,id,...args]=process.argv.slice(2);
 const opt=n=>{const i=args.indexOf(n);return i<0?undefined:args[i+1]};
 const within=(base,path)=>path.startsWith(base+sep);
 try{
- if(!['plan','add'].includes(cmd))throw Error('Usage: plan|add <recipe> --target <existing-directory>');
+ if(!['plan','add'].includes(cmd))throw Error('Usage: plan|add <recipe> --target <existing-directory> [--into <dir, default genlib>]');
  const recipe=recipes.find(x=>x.id===id);if(!recipe||recipe.kind!=='source-example')throw Error('Only reviewed source examples may be copied');
  const target=opt('--target');if(!target||!existsSync(target)||lstatSync(target).isSymbolicLink()||!lstatSync(target).isDirectory())throw Error('Existing non-symlink target required');
  const base=realpathSync(target);
@@ -17,9 +17,12 @@ try{
  if(isAbsolute(path)||path.split('/').some(p=>!p||p==='.'||p==='..'))throw Error('Unsafe source path');
  const src=join(root,path);
  if(!existsSync(src)||lstatSync(src).isSymbolicLink()||!lstatSync(src).isFile())throw Error('Unsafe source file');
- const dest=join(base,'genlib',path);
+ // One file lands under --into (default genlib/), named as in Genlib, without Genlib's own folder tree.
+ const into=opt('--into')??'genlib';
+ if(isAbsolute(into)||into.split(/[\\/]/).some(p=>!p||p==='.'||p==='..'||p.toLowerCase()==='.git'))throw Error('Unsafe --into directory');
+ const dest=join(base,...into.split('/'),path.split('/').at(-1));
  let cursor=base;
- for(const part of ['genlib',...path.split('/').slice(0,-1)]){
+ for(const part of into.split('/')){
   cursor=join(cursor,part);
   if(existsSync(cursor)&&(lstatSync(cursor).isSymbolicLink()||!lstatSync(cursor).isDirectory()))throw Error('Unsafe target parent');
  }
