@@ -7,12 +7,13 @@ The kit behind round 4 in [docs/benchmarks.md](../../docs/benchmarks.md): four a
 | `fixtures/teamnotes` | Multi-tenant notes API, TypeScript run directly by Node 22 (type stripping, no build) |
 | `fixtures/pyaccounts` | Account service, Python standard library |
 | `tasks/*.md` | The task text each agent received as `TASK.md` (identical in every arm) |
-| `grading/` | Hidden acceptance tests: invitations (9), webhook (8), CSV import (10), TOTP (10, with an RFC 6238 oracle), outgoing webhooks (10: SSRF notations, DNS rebinding, redirects, retries, signatures) and scheduled digests (8: DST gap and overlap, overlapping ticks, catch-up, retries). The last two were checked against reference solutions before any agent ran. |
+| `grading/` | Hidden acceptance tests: invitations (9), webhook (8), CSV import (10), TOTP (10, with an RFC 6238 oracle), outgoing webhooks (10: SSRF notations, DNS rebinding, redirects, retries, signatures) and scheduled digests (8: DST gap and overlap, overlapping ticks, catch-up, retries); signup, two-factor and uploads (16 each) and recurring events (18, expected occurrences from `grading/recurring/oracle.py`, python-dateutil 2.9 with RFC 5545 corrections). The last two were checked against reference solutions before any agent ran. |
 | `grade.sh <task> <app-dir>` | Copies the hidden tests into a scratch copy of a finished run and prints the counts |
 | `measure.mjs <agents.tsv> <transcripts-dir>` | Turns, token usage, a cost index, written and read characters, time, test runs and tool calls from each run's JSONL transcript |
 | `results.json` | The 16 measured runs of round 4 |
 | `results-round5.json` | Round 5: the same tasks and prompts after the round-4 fixes (16 runs) |
 | `results-round7.json` | Round 7: signup, two-factor and uploads in three arms (agent, Genlib guidance, required reuse; 9 runs) |
 | `results-round8.json` | Round 8: round 7 repeated with Haiku as the coding agent (9 runs) |
+| `results-round9.json` | Round 9: recurring events against a python-dateutil oracle (18 hidden tests; 10 runs) |
 
 To repeat: copy a fixture per run, put the task file in it as `TASK.md`, give each arm the same prompt with only its tool lines added (see docs/benchmarks.md), and keep `grading/` out of the agents' reach.
