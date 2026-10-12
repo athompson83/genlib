@@ -267,3 +267,19 @@ Round 7 repeated with Haiku as the coding agent, to test whether reuse pays when
 - One run noticed that `file-uploads` copies the buffered chunks once more at the end of a read (about twice the size limit held briefly); worth fixing in the module.
 
 Across rounds 7 and 8 (18 runs, two models, three tasks): for features whose interface the task fixes, writing is cheaper than reusing, and the guidance arm stays at parity because agents decline. Savings would need reuse that skips reading module source (the glue is the whole cost) or tasks where plain agents fail.
+
+## Round 9: a hard standard, recurring events (2026-10-12)
+
+Rounds 1–3 measured savings on algorithm-sized tasks with an exact standard, so this round tests the one feature in the neutral set most likely to trip an agent writing alone: RFC 5545 recurrence with DST. A separate agent wrote the task without seeing Genlib (`benchmarks/feature-tasks/tasks/recurring.md`): RRULE validation and expansion (DAILY to YEARLY, INTERVAL, COUNT, UNTIL, BYDAY ordinals, negative BYMONTHDAY, BYMONTH, BYSETPOS, WKST), EXDATE/RDATE, per-occurrence overrides, window queries, this-and-following splits, gap and fall-back rules, tenant isolation. 18 hidden tests take their expected occurrences from python-dateutil 2.9 with `zoneinfo` (`grading/recurring/oracle.py`), corrected to RFC 5545 where dateutil differs (weekly BYSETPOS over the whole week, the start as first occurrence, UTC UNTIL). The reference solution passes 18/18; a naive one that expands in a fixed offset without BYSETPOS passes 6/18. Genlib at commit 7b37d3a, raw table `results-round9.json`. All ten runs passed 18/18.
+
+| Arm | Runs | Mean cost index | Range |
+| --- | ---: | ---: | --- |
+| Agent | 4 | 208,775 | 178,139–239,222 |
+| + Genlib (guidance) | 4 | 246,341 (+18%) | 189,441–270,732 |
+| + Genlib (reuse required) | 2 | 294,758 (+41%) | 252,859–336,656 |
+
+- **Agents alone handled the hard standard**: every plain run wrote a 585–605 line expander that matched the oracle, DST cases included, so even here reuse had no failures or repairs to save.
+- **Guidance arm:** each run made one `quick` call, judged the module's fixed choices (its routes, UNTIL-based splits that shift exceptions) to conflict with the task and wrote the feature. Its mean is 18% higher, but the ranges overlap and the first two runs alone (+35%) shrank to +18% with two more each; the direct Genlib cost is one call, and the rest is how long each agent debugged its own expander. Recorded as within noise, with the direction noted: across rounds 7–9 the guidance arm ran −12%, +2.5% and +18%.
+- **Required reuse:** both runs installed `recurring-events` and reused its RRULE expander and time-zone conversion (`ruleWalls`, `zoneFor`, `wallToInstant`), writing 372–388 lines of glue instead of about 600, but reading 14–27k tokens of module source took more turns than the lines saved.
+
+Conclusion from rounds 7–9 (22 runs, two models, four tasks): capable agents now write these features correctly in one pass, so reuse saves tokens only when the module can be used without reading its source and without re-implementing semantics the task sets differently. The work that follows from this: give reusable internals (`ruleWalls`, time-zone conversion, sniffing, TOTP checks) their own small documented entry points with signatures in `quick`, so glue can call them without reading the module; and make semantic choices that differ between specifications (start-as-first-occurrence, split style, COUNT caps) options rather than fixed behavior.
