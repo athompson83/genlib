@@ -70,5 +70,29 @@ test('a module installed with --ts-imports loads under Node type stripping, veri
   assert.deepEqual(update.conflicts, []);
   assert.ok(update.files.filter(item => item.path.endsWith('.ts')).every(item => item.action === 'unchanged'), JSON.stringify(update.files));
 
-  await assert.rejects(installModule(context, 'webhook-verification', { target }), /--ts-imports/, 'a reinstall must keep the same setting');
+  await assert.rejects(installModule(context, 'webhook-verification', { target, tsImports: false }), /--ts-imports/, 'a reinstall must keep the same setting');
+  assert.equal((await planInstall(context, 'webhook-verification', { target })).tsImports, true, 'an omitted setting follows the recorded install');
+});
+
+test('without the option, --ts-imports is detected from scripts that run .ts files directly and reported', async t => {
+  const context = await loadCatalog(REPOSITORY_ROOT);
+  const stripping = await app(t);
+  await fs.writeFile(path.join(stripping, 'package.json'), JSON.stringify({ name: 'app', type: 'module', scripts: { test: 'node --test "tests/**/*.test.ts"', start: 'node src/server.ts' } }));
+  const detected = await planInstall(context, 'webhook-verification', { target: stripping });
+  assert.equal(detected.tsImports, true);
+  assert.equal(detected.tsImportsDetected, true);
+  assert.ok(!detected.compatibility.warnings.some(warning => /--ts-imports/.test(warning)), 'no advice when it was applied');
+  assert.match((await planInstall(context, 'email-signup', { target: stripping })).wiring ?? '', /genlib\/email-signup\/[\w-]+\.ts["']/, 'the wiring imports .ts paths');
+  assert.ok(!(await planInstall(context, 'webhook-verification', { target: stripping, tsImports: false })).tsImports, 'an explicit false wins');
+
+  const built = await app(t);
+  await fs.writeFile(path.join(built, 'package.json'), JSON.stringify({ name: 'app', type: 'module', scripts: { test: 'node --test "tests/**/*.test.ts"' } }));
+  await fs.writeFile(path.join(built, 'tsconfig.json'), '{}');
+  assert.ok(!(await planInstall(context, 'webhook-verification', { target: built })).tsImports, 'a tsconfig.json means a build or a loader resolves .js');
+
+  const javascript = await app(t);
+  await fs.writeFile(path.join(javascript, 'package.json'), JSON.stringify({ name: 'app', type: 'module', scripts: { test: 'node --test', build: 'tsc -p . && echo src/x.ts' } }));
+  const plain = await planInstall(context, 'webhook-verification', { target: javascript });
+  assert.ok(!plain.tsImports, 'only a node, deno or bun command running a .ts path counts');
+  assert.ok(plain.compatibility.warnings.some(warning => /--ts-imports/.test(warning)));
 });

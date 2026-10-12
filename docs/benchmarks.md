@@ -249,3 +249,21 @@ Three larger tasks written without reading the modules, each graded by 16 hidden
 - **Avoidable integration cost:** two of three reuse runs first installed without `--ts-imports` in an app that runs TypeScript without a build, then rewrote imports by hand or removed and reinstalled.
 
 What this means for the economic goal: for fully specified features of about 150–250 lines that a capable agent gets right first time, writing them is cheaper than reusing a module, and the current guidance correctly says so. Reuse can only pay where the agent alone fails or repairs (no run here did) or where the module is far larger than the glue. Next: install with `--ts-imports` automatically when the target has no build step, give `quick` the adapter shape a task usually needs so the agent reads less module source, and measure tasks whose plain runs miss requirements.
+
+## Round 8: the same tasks with a smaller model (2026-10-12)
+
+Round 7 repeated with Haiku as the coding agent, to test whether reuse pays when the agent is likelier to miss requirements. Same three tasks, fixture, hidden tests and prompts; Genlib built from the working tree of pull request #39 (automatic `--ts-imports`). Raw table `benchmarks/feature-tasks/results-round8.json`. All nine runs passed 16/16 hidden tests, so again no repair round was needed.
+
+| Task | Agent | + Genlib (guidance) | + Genlib (reuse required) |
+| --- | ---: | ---: | ---: |
+| signup | 252,324 | 251,533 | 332,222 |
+| two-factor | 278,450 | 264,815 | 383,034 |
+| uploads | 353,238 | 389,872 | 547,934 |
+| **Total** | **884,012** | **906,220 (+2.5%)** | **1,263,190 (+42.9%)** |
+
+- **The smaller model also wrote every feature correctly**, so the case where reuse avoids failures and repairs did not occur on these tasks.
+- **Guidance arm:** two runs made one `quick` call and then wrote the feature; the third wrote it without asking. +2.5% is within noise. Both agents that asked read the `# fixed` line as conflicts (a 15-character password minimum, an always-202 response, the upload allowlist and status codes), although most of those are defaults with options or belong to the optional HTTP adapter. The line overstates what is fixed; it stays a correction to make, measured, since here it steered agents to the cheaper path.
+- **Required reuse cost 43% more:** 15–24 turns instead of 12–17, and 20–27k read tokens instead of 4–8k, for about the same written code. With `--ts-imports` now automatic, no run lost a turn to imports.
+- One run noticed that `file-uploads` copies the buffered chunks once more at the end of a read (about twice the size limit held briefly); worth fixing in the module.
+
+Across rounds 7 and 8 (18 runs, two models, three tasks): for features whose interface the task fixes, writing is cheaper than reusing, and the guidance arm stays at parity because agents decline. Savings would need reuse that skips reading module source (the glue is the whole cost) or tasks where plain agents fail.

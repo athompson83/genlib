@@ -79,6 +79,11 @@
       "const": true,
       "description": "Present when --ts-imports rewrote relative .js imports in copied .ts/.tsx files to .ts."
     },
+    "tsImportsDetected": {
+      "type": "boolean",
+      "const": true,
+      "description": "Present when --ts-imports was not given and was turned on because the app has no tsconfig.json and a package.json script runs .ts files with node, deno or bun."
+    },
     "profiles": {
       "type": "array",
       "items": {

@@ -192,6 +192,9 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
       return body.slice();
     }
     const reader = body.getReader();
+    // With a Content-Length the bytes go straight into one buffer of that size, so a read holds about one copy of the
+    // body instead of the chunks plus their concatenation; a body longer than declared grows it (capped at `limit`).
+    let buffer: Uint8Array | null = declared !== null && declared > 0 ? new Uint8Array(declared) : null;
     const chunks: Uint8Array[] = [];
     let size = 0;
     try {
@@ -202,7 +205,16 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
         size += value.byteLength;
         if (size > limit) throw overLimit(size, declared);
         await grow(size);
-        chunks.push(value);
+        if (buffer) {
+          if (size > buffer.byteLength) {
+            const next = new Uint8Array(Math.min(limit, Math.max(size, buffer.byteLength * 2)));
+            next.set(buffer.subarray(0, size - value.byteLength));
+            buffer = next;
+          }
+          buffer.set(value, size - value.byteLength);
+        } else {
+          chunks.push(value);
+        }
       }
     } catch (error) {
       await cancelQuietly(body, reader);
@@ -211,6 +223,9 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
     } finally {
       reader.releaseLock();
     }
+    if (buffer) return size === buffer.byteLength ? buffer : buffer.slice(0, size);
+    const [only] = chunks;
+    if (chunks.length === 1 && only) return only;
     const bytes = new Uint8Array(size);
     let offset = 0;
     for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
