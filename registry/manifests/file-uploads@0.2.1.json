@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "file-uploads",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "title": "File upload with size and type checks",
   "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
   "kind": "feature",
@@ -60,8 +60,8 @@
       "source": "files/core.ts",
       "target": "file-uploads/core.ts",
       "path": "modules/file-uploads/files/core.ts",
-      "sha256": "5093601a2b8e10be27b52859d75d9e9ea4fa1ae586289abfa509b2f6c3ad9c1f",
-      "bytes": 21045
+      "sha256": "4cffa86aea9799ceb6068afce21d7db1dd117a45ad8ded4eef3b9baf096eb271",
+      "bytes": 21868
     },
     {
       "source": "files/memory-store.ts",
@@ -242,6 +242,12 @@
   },
   "changelog": [
     {
+      "version": "0.2.1",
+      "changes": [
+        "Streamed reads with a Content-Length write into one buffer of that size instead of keeping the chunks and concatenating them, so a read holds about one copy of the body instead of two; a single-chunk body is returned without copying. Behavior is unchanged."
+      ]
+    },
+    {
       "version": "0.2.0",
       "changes": [
         "Breaking: UploadMetadataStore adds claimScan, releaseScanClaim and listQuarantined, and schema.sql adds file_uploads.scan_claimed_until (ALTER TABLE file_uploads ADD COLUMN IF NOT EXISTS scan_claimed_until bigint).",
@@ -261,11 +267,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/file-uploads/module.json",
-    "sha256": "81c15f458d3d4ac4e54742e5ad9e7ad681062563d347c76fe7dc806e3e3c9fcd"
+    "sha256": "71762ae8e512c0ae26b1b02b726c226ad2509e03bce42a6426753e4f0888d7f1"
   },
   "contractFile": {
     "path": "modules/file-uploads/CONTRACT.md",
-    "sha256": "17889ad5250c44b3fac668f669f61fce4a496fa598d38398341a068045a88683",
+    "sha256": "3847c66d20d2b5e6e135b27ca468cff319a6b5359dcb2932448254cf765885f2",
     "bytes": 14335
   }
 }

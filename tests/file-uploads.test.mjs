@@ -517,3 +517,18 @@ test("a scan claim held by a crashed worker expires after scanLeaseMs", async ()
   assert.equal((await uploads.scan(a.id)).status, "clean");
   assert.throws(() => setup({ options: { scanLeaseMs: 10 } }), RangeError);
 });
+
+test("streamed bodies are stored byte for byte with an exact, a missing or an over-stated Content-Length", async () => {
+  const { uploads, alice } = setup();
+  const parts = [TEXT.subarray(0, 5), TEXT.subarray(5, 6), TEXT.subarray(6)];
+  const send = (contentLength, chunks = parts) => uploads.upload({ user: alice, tenantId: "acme", filename: "n.txt", declaredType: "text/plain", contentLength, body: trackedStream(chunks).stream });
+  for (const contentLength of [TEXT.byteLength, null]) {
+    const record = await send(contentLength);
+    await uploads.scan(record.id);
+    assert.deepEqual((await uploads.download(alice, record.id)).bytes, TEXT, `contentLength ${contentLength}`);
+  }
+  const single = await send(TEXT.byteLength, [TEXT.slice()]);
+  await uploads.scan(single.id);
+  assert.deepEqual((await uploads.download(alice, single.id)).bytes, TEXT, "one chunk");
+  await assert.rejects(send(TEXT.byteLength + 7), (error) => error instanceof FileUploadError, "a body shorter than declared is refused as before");
+});

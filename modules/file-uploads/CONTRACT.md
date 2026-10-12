@@ -1,4 +1,4 @@
-# File upload with size and type checks · 0.2.0
+# File upload with size and type checks · 0.2.1
 
 ## What installs
 

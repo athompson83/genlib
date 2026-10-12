@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "file-uploads",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "title": "File upload with size and type checks",
   "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
   "kind": "feature",
@@ -115,6 +115,7 @@
     ]
   },
   "changelog": [
+    { "version": "0.2.1", "changes": ["Streamed reads with a Content-Length write into one buffer of that size instead of keeping the chunks and concatenating them, so a read holds about one copy of the body instead of two; a single-chunk body is returned without copying. Behavior is unchanged."] },
     { "version": "0.2.0", "changes": ["Breaking: UploadMetadataStore adds claimScan, releaseScanClaim and listQuarantined, and schema.sql adds file_uploads.scan_claimed_until (ALTER TABLE file_uploads ADD COLUMN IF NOT EXISTS scan_claimed_until bigint).", "Fix: overlapping scan workers could scan one file twice; scans now claim the file, and scanPending() scans every quarantined file for a background job.", "Fix: without Content-Length the whole maxBytes was reserved, refusing uploads that fit the remaining quota; quota is now reserved as bytes arrive when maxBytes does not fit.", "Fix: text starting with \"<\" not followed by a letter, !, ? or / (\"<3\") was refused as html.", "New options with the 0.1.0 behavior as default: policy.extensions, policy.filenameControls, policy.invalidFilenames (error code invalid-name), checkDeclaredType, lengthMismatch and scanLeaseMs; sanitizeFilename also takes an options object."] },
     { "version": "0.1.0", "changes": ["First release: policy and sniffing, browser preflight, core, in-memory stores, PostgreSQL schema and store, and Fetch adapter."] }
   ],

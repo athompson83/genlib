@@ -502,7 +502,7 @@
     },
     {
       "id": "file-uploads",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "title": "File upload with size and type checks",
       "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
       "kind": "feature",
@@ -528,8 +528,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/file-uploads@0.2.0.json",
-      "sha256": "afa4f4dc2fa0bc56ec390d1d9818c3ec7a966ed0f0090f9ff0ed0f9bd4655d1d"
+      "manifest": "registry/manifests/file-uploads@0.2.1.json",
+      "sha256": "ebffb2e160c06c7284dace68883e073c800ad095da0a5464a086269246a1d76c"
     },
     {
       "id": "health-checks",
