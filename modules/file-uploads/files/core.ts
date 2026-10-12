@@ -224,7 +224,8 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
       reader.releaseLock();
     }
     if (buffer) return size === buffer.byteLength ? buffer : buffer.slice(0, size);
-    if (chunks.length === 1) return chunks[0];
+    const [only] = chunks;
+    if (chunks.length === 1 && only) return only;
     const bytes = new Uint8Array(size);
     let offset = 0;
     for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
