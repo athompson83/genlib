@@ -23,6 +23,7 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
     "adoption_receipt": "node \"$GENLIB_ROOT/bin/genlib.mjs\" adopted <id> --target \"$APP_ROOT\" --test \"npm test\" --json",
     "update_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --json",
     "add_no_build": "node \"$GENLIB_ROOT/bin/genlib.mjs\" add <id> --target \"$APP_ROOT\" --ts-imports --json",
+    "add_profiles": "node \"$GENLIB_ROOT/bin/genlib.mjs\" add org-invitations --target \"$APP_ROOT\" --profile core,memory,http --json",
     "update_write": "node \"$GENLIB_ROOT/bin/genlib.mjs\" update <id> --target \"$APP_ROOT\" --write --conflict rej --json",
     "remove_dry_run": "node \"$GENLIB_ROOT/bin/genlib.mjs\" remove <id> --target \"$APP_ROOT\" --dry-run --json",
     "feature_coverage": "node \"$GENLIB_ROOT/bin/genlib.mjs\" coverage stripe checkout and webhooks",
@@ -56,6 +57,8 @@ The following command strings use POSIX shell syntax. Supply existing absolute d
   ],
   "installation": [
     "The default output directory is src/genlib inside the target application. If a different location is required, use the same --out relative/path for plan and add.",
+    "Modules with profiles (quick prints # profiles: core, memory, sql, http) install part of their files: --profile core,memory copies those groups plus every module file they import, records the profiles in the lock and refuses a selection that leaves an import unresolved. Repeat add with another --profile to add files later; verify, update and remove act on what the lock records. Dependencies always install fully.",
+    "plan and add return wiring: the contract's integration example with imports rewritten to the installed path relative to the app root (.ts with --ts-imports), lines for files not installed omitted and named in a // not installed note. Paste and adapt it instead of reading the copied source.",
     "Read the selected module's contract returned by inspect in the contract field. Authored contracts also live at modules/<id>/CONTRACT.md under GENLIB_ROOT. The contract describes exports, required configuration, dependencies, and the expected installed layout.",
     "Preserve .genlib/lock.json, which records versions, origin, and original file hashes. Record the Genlib checkout SHA in the project's existing implementation notes or change record.",
     "A pre-existing customized file is a conflict. Review the diff and use a project-appropriate manual migration or a separate installation location; do not delete project content to satisfy the installer.",

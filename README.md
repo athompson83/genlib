@@ -26,7 +26,7 @@ One command searches everything below and returns each result's exact next step.
 | Source | Count | What it is |
 | --- | ---: | --- |
 | [Capabilities](#capabilities-one-task-every-language) | 91 (814 implementations, 812 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
-| [Modules](#modules) | 39 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
+| [Modules](#modules) | 45 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
 | [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
 | [TypeScript recipes](#recipes-language-examples-and-templates) | 114 | 110 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
 | [Language examples](#recipes-language-examples-and-templates) | 745 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
@@ -39,7 +39,7 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9806 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 728 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 729 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
