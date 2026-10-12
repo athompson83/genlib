@@ -16,5 +16,6 @@ The kit behind round 4 in [docs/benchmarks.md](../../docs/benchmarks.md): four a
 | `results-round8.json` | Round 8: round 7 repeated with Haiku as the coding agent (9 runs) |
 | `results-round9.json` | Round 9: recurring events against a python-dateutil oracle (18 hidden tests; 10 runs) |
 | `results-round10.json` | Round 10: the round-9 task with standalone parts (4 runs) |
+| `results-round11.json` | Round 11: the round-9 task, Opus reuse and Haiku in three arms (8 runs) |
 
 To repeat: copy a fixture per run, put the task file in it as `TASK.md`, give each arm the same prompt with only its tool lines added (see docs/benchmarks.md), and keep `grading/` out of the agents' reach.
