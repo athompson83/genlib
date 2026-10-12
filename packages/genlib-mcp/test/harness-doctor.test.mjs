@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import * as fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { test } from 'node:test';
+import { doctorHarness } from '../../../lib/harness-doctor.mjs';
+
+test('SDK doctor negotiates real MCP and detects its configured project without writes', { timeout: 30000 }, async t => {
+  const target = await fs.mkdtemp(path.join(await fs.realpath(os.tmpdir()), 'genlib-sdk-doctor-'));
+  t.after(() => fs.rm(target, { recursive: true, force: true }));
+  const manifest = JSON.stringify({ name: 'doctor-fixture', private: true, type: 'module', dependencies: { react: '19.3.0' }, devDependencies: { typescript: '7.0.2' } });
+  await fs.writeFile(path.join(target, 'package.json'), manifest);
+  const result = await doctorHarness({ target });
+  assert.equal(result.schemaVersion, 1);
+  assert.equal(result.mode, 'sdk');
+  assert.equal(result.status, 'verified');
+  assert.equal(result.readOnly, true);
+  assert.ok(result.toolNames.includes('genlib_quick'));
+  assert.ok(result.toolNames.includes('genlib_detect_project'));
+  assert.ok(!result.toolNames.includes('genlib_install'));
+  assert.equal(result.sample.best, 'module:webhook-verification');
+  assert.equal(result.projectOperations.supported, true);
+  assert.equal(result.projectOperations.configured, true);
+  assert.equal(result.projectOperations.status, 'verified');
+  assert.deepEqual(result.projectOperations.languages, ['typescript']);
+  assert.deepEqual(result.projectOperations.frameworks, ['react']);
+  assert.equal(result.projectOperations.manifestCount, 1);
+  assert.match(result.limitation, /no named harness client UI/);
+  assert.deepEqual(await fs.readdir(target), ['package.json']);
+  assert.equal(await fs.readFile(path.join(target, 'package.json'), 'utf8'), manifest);
+});

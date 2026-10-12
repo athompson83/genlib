@@ -14,7 +14,7 @@
 [![Node.js 22+](https://img.shields.io/badge/node-%E2%89%A522-339933.svg?logo=node.js&logoColor=white)](package.json)
 [![No runtime dependencies](https://img.shields.io/badge/CLI%20dependencies-0-brightgreen.svg)](bin/genlib.mjs)
 
-**Genlib is a reusable code library and resource catalog for coding agents.** Genisys agents and other harnesses (Claude Code, Codex) discover modules, integration packs, recipes, templates and external tools, inspect their contracts and verification profiles, then adopt the selected source. A direct MCP server exposes the same workflow alongside the dependency-free CLI.
+**Genlib is a reusable code library and resource catalog for coding agents.** Genisys, OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode, Claude Code and Codex can discover modules, integration packs, recipes, templates and external tools through a portable skill and MCP. Ollama supplies local models through an MCP-capable host. Agents inspect contracts and verification profiles, then adopt selected source through the same libraries as the dependency-free CLI. See the [documented harness profiles and verification limits](docs/harnesses.md).
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" find verify stripe webhook --target "$APP_ROOT" --limit 5 --json
@@ -33,13 +33,13 @@ One command searches everything below and returns each result's exact next step.
 | [Project templates](#recipes-language-examples-and-templates) | 5 | Project, GitHub, docs, ship/release and UI-selection starters |
 | [Project starters](#install-indexes-skills-mcp-servers-clis-and-apis) | 2818 | Ranked project templates and boilerplates in every major language (GitHub templates, cookiecutters, create-* CLIs, dotnet new packs, generators), each one pinned command |
 | [Refactoring and workflow recipes](#install-indexes-skills-mcp-servers-clis-and-apis) | 4234 | OpenRewrite migration, upgrade and security recipes with pinned Maven/Gradle commands, plus n8n and Activepieces workflow templates and other runnable recipes |
-| [Developer tools](#find-code-without-reading-the-whole-repository) | 6 | Repository map, AST graph, task context, Mermaid diagram, dependency health and retrieval evaluation |
+| [Developer tools](#find-code-without-reading-the-whole-repository) | 7 | Repository map, AST graph, task context, Mermaid diagram, dependency health and retrieval evaluation |
 | [Agent skills](#install-indexes-skills-mcp-servers-clis-and-apis) | 1160 | Claude Code and Codex skills, ranked by installs and installable in one commit-pinned command |
 | [MCP servers](#install-indexes-skills-mcp-servers-clis-and-apis) | 3642 | Top MCP servers by downloads plus hosted servers, wired with one `claude mcp add` / `codex mcp add` |
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9806 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 714 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 728 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
@@ -59,7 +59,7 @@ One command searches everything below and returns each result's exact next step.
 - [Jev and the search index](#jev-and-the-search-index)
 - [MCP server, graph and Obsidian](#mcp-server-graph-and-obsidian)
 - [From new repository to shipped app](#from-new-repository-to-shipped-app)
-- [Claude Code and Codex skill](#claude-code-and-codex-skill)
+- [Skills and MCP across harnesses](#skills-and-mcp-across-harnesses)
 - [Safety model](#safety-model)
 - [Repository layout](#repository-layout)
 - [Develop and contribute](#develop-and-contribute)
@@ -75,7 +75,7 @@ One command searches everything below and returns each result's exact next step.
 <summary>Diagram source (Mermaid: edit this, then run <code>npm run diagrams:render</code>)</summary>
 
 ```mermaid
-flowchart LR
+flowchart TB
   Task["Agent task<br/>e.g. 'rate-limit the login API'"]
   Quick["genlib quick<br/>best match + its commands"]
   Find["genlib find<br/>(+ detect --target)"]
@@ -85,6 +85,8 @@ flowchart LR
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
   Connect["genlib connect<br/>MCP entry + guidance<br/>for the app's agents"]
+  Harness["Harness profiles<br/>config · install · doctor"]
+  Skill["Portable genlib-use skill"]
   Graph["registry/graph.json<br/>+ Obsidian export"]
   C["Capabilities<br/>(SSO, MFA, PDF, maps…)"]
   M["Modules"]
@@ -113,6 +115,9 @@ flowchart LR
   Adopt["inspect record:<br/>license, links, cautions"]
   Section["sed -n start,end p"]
   App["Adapt to the app<br/>and run its tests"]
+  Harness -. "native configuration" .-> MCP
+  Harness -- "safe copy" --> Skill
+  Skill -. "MCP or CLI" .-> Quick
   Task --> Quick --> Find
   Quick -.-> Outline -.-> App
   Find --> C & M & P & R & T & N & S & X & D
@@ -172,6 +177,7 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 
 | Command | Purpose |
 | --- | --- |
+| `harness list\|config\|install\|doctor` | Generate native client configuration, install the portable skill and verify real local MCP calls; [all profiles](docs/harnesses.md) |
 | `quick <words> [--target app] [--language go]` | One-call reuse decision: the best match and its install or copy commands, then `# reuse direct\|partial` (requirements its tests verify, what the app must add), `# fixed` (routes, status codes and storage a task may contradict), `# size` and destination (or `# profiles` with a suggested `--profile` on the add command), `# api` with the import path, `# needs` (hooks the app supplies) and `# then` (verify step); `# skip` for a small edit to existing code (cheapest call) |
 | `find <words> [--target app] [--language …] [--type …] [--project …] [--license-policy permissive] [--include-retired]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON. Retired records are hidden unless asked for |
 | `integration list\|inspect\|plan\|add\|verify` | Integration packs: inspect the contract, plan without writes, copy to `genlib/integrations/<id>` with an integrity lock, verify |
@@ -532,18 +538,35 @@ See [docs/agent-access.md](docs/agent-access.md) for which access path to use wh
 
 [`docs/lifecycle.md`](docs/lifecycle.md) maps every stage to a Genlib asset: scaffold, configure, build UI and features, integrate services, protect, operate, document, verify in CI, and ship.
 
-## Claude Code and Codex skill
+<a id="claude-code-and-codex-skill"></a>
+
+## Skills and MCP across harnesses
 
 ```sh
-node "$GENLIB_ROOT/scripts/install-skills.mjs" --target "$APP_ROOT" --harness both
+node "$GENLIB_ROOT/bin/genlib.mjs" harness list
+node "$GENLIB_ROOT/bin/genlib.mjs" harness install cursor --target "$APP_ROOT"
+npm ci --ignore-scripts --prefix "$GENLIB_ROOT/packages/genlib-mcp"
+node "$GENLIB_ROOT/bin/genlib.mjs" harness config cursor --target "$APP_ROOT" --raw
+node "$GENLIB_ROOT/bin/genlib.mjs" harness doctor --target "$APP_ROOT"
 ```
 
-| Harness | Discovery path | Invoke |
-| --- | --- | --- |
-| Claude Code | `.claude/skills/genlib-use/SKILL.md` | `/genlib-use` |
-| Codex | `.agents/skills/genlib-use/SKILL.md` | `$genlib-use` |
+Replace `cursor` with the host you use. Merge the emitted Genlib entry into that host's settings, then reload its MCP connection. The configuration generator does not rewrite settings. It uses absolute Node and server paths so the MCP process can start from the application directory.
 
-The skill tells agents to start with `find`, inspect one contract, plan, copy, verify and then run the app's own checks. It is small and doesn't contain the library: set `GENLIB_ROOT` to a trusted checkout in the agent's environment. The installer preserves existing `AGENTS.md`, `CLAUDE.md` and other skills. See [harness setup](docs/harnesses.md).
+| Profile | Skill and MCP route | Native MCP configuration |
+| --- | --- | --- |
+| `openclaw` | Shared project skill; native MCP | `mcp.servers` in OpenClaw settings |
+| `hermes` | Shared project skill with project trust; native MCP | `mcp_servers` in Hermes YAML |
+| `antigravity` | Shared project skill; native MCP | `.agents/mcp_config.json` |
+| `vscode` | Shared project skill; Copilot MCP | `.vscode/mcp.json` with `servers` |
+| `cursor` | Shared project skill; native MCP | `.cursor/mcp.json` |
+| `opencode` | Shared project skill; native MCP | `opencode.json` with a command array |
+| `ollama` | OpenCode loads the skill and MCP; Ollama runs the model | OpenCode profile, then `ollama launch opencode` |
+| `claude`, `codex`, `cline`, `roo` | Documented native skill and MCP profiles | JSON, TOML or the host's configuration editor |
+| `generic` | Standard MCP connection values, portable Agent Skills or CLI fallback | Use the receiving host's documented schema |
+
+The shared project skill is `.agents/skills/genlib-use/SKILL.md`; Claude uses `.claude/skills` and Cline uses `.cline/skills`. `harness install all` deduplicates those destinations. Personal installation is explicit: `--scope user --target /absolute/home-directory`. The existing `scripts/install-skills.mjs --harness both` command still works.
+
+The skill prefers compact MCP tools, then the CLI, and loads source only for the selected integration. A connected MCP client needs no local `GENLIB_ROOT`; the CLI fallback uses a reviewed checkout. Installers preserve project instructions, other skills and edited files. Configurations follow linked official documentation; SDK protocol tests and `doctor` establish MCP behavior, while acceptance inside individual host applications must be checked there. See [harness setup](docs/harnesses.md) for exact locations, prerequisites and evidence.
 
 ```json
 {

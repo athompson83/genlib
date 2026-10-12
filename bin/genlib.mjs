@@ -19,6 +19,8 @@ import { acceptanceProblems, contractCoverage, coverageFor, formatCoverage, load
 import { formatOutline, outline } from '../lib/outline.mjs';
 import { connectAgents, connectSummary } from '../lib/connect.mjs';
 import { formatSource, sourcePlan } from '../lib/source.mjs';
+import { harnessConfiguration, listHarnesses } from '../lib/harnesses.mjs';
+import { installSkills } from '../scripts/install-skills.mjs';
 
 const REPOSITORY_ROOT = fileURLToPath(new URL('..', import.meta.url));
 
@@ -28,6 +30,10 @@ const FIND_LANGUAGES = [...LANGUAGES, 'ruby', 'php', 'elixir'];
 const HELP = {
   name: 'genlib', version: '0.2.0', runtime: 'Node.js 22+; no npm install needed for this CLI',
   commands: [
+    'harness list [--json]   # documented skill/MCP profiles, including Ollama through an MCP host',
+    'harness config <name> [--target <absolute-project>] [--mode sdk|discovery] [--transport stdio|http --url <endpoint>] [--allow-install] [--raw|--json]   # emit native MCP configuration; never rewrites settings',
+    'harness install <name|both|all> --target <absolute-directory> [--scope project|user] [--json]   # copy the portable skill; user scope target is the home directory',
+    'harness doctor [--target <absolute-project>] [--mode sdk|discovery] [--json]   # read-only local MCP connection and tool-call check',
     'quick <task words> [--language <name>] [--target <project>] [--type <source type>] [--json]   # best match: only its commands (cheapest)',
     'find <task words> [--type capability|module|integration|recipe|language-example|template|starter|task|tool|skill|mcp|cli|api|resource|doc] [--language <name>] [--project <project-type>] [--target <project>] [--license-policy any|permissive] [--include-retired] [--limit 8] [--json [--brief]]   # text output is compact; --json gives full records',
     'outline <id|type:id> [--language <name>] [--json]   # signatures and doc lines only: call the code without reading its source',
@@ -62,7 +68,7 @@ const HELP = {
     'provider plan|adopt <id> --from <scratch-copy> [--baseline <pristine-copy>] --target <existing-project> [--json]   # adopt a scaffolder\'s output from a scratch copy: new files only, merges reported, never overwrites',
     'coverage <task words> | coverage --list [--target <existing-project>] [--json]   # which requirements of a feature Genlib code fulfills, with evidence status',
     'update <id> --target <existing-project> [--write] [--conflict rej|inline] [--json]   # three-way merge onto your edits; dry run unless --write',
-    'schema [quick|steps|plan|receipt|update|module]   # JSON Schema of an agent-facing output',
+    'schema [quick|steps|plan|receipt|update|module|harness-config|harness-doctor]   # JSON Schema of an agent-facing output',
     'remove <id> --target <existing-project> [--dry-run] [--json]   # roll back: delete unmodified files, keep edited ones, drop the lock record',
   ],
   start: 'Run quick (or find) with the task first: it searches every Genlib source and returns the exact next command. Run outline <id> to learn the API without reading source.',
@@ -72,13 +78,13 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove', 'all-tools', 'profile']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove', 'all-tools', 'mode', 'transport', 'url', 'allow-install', 'raw', 'scope', 'profile']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
     const name = value.slice(2);
     invariant(allowed.has(name) && !Object.hasOwn(args.options, name), 'INVALID_OPTION', 'Unknown or duplicate option: ' + value);
-    if (name === 'json' || name === 'allow-unverified' || name === 'brief' || name === 'stdlib-only' || name === 'prompt' || name === 'include-retired' || name === 'write' || name === 'dry-run' || name === 'list' || name === 'keep-existing' || name === 'ts-imports' || name === 'remove' || name === 'all-tools') args.options[name] = true;
+    if (['json', 'allow-unverified', 'brief', 'stdlib-only', 'prompt', 'include-retired', 'write', 'dry-run', 'list', 'keep-existing', 'ts-imports', 'remove', 'all-tools', 'allow-install', 'raw'].includes(name)) args.options[name] = true;
     else {
       const next = argv[++index];
       invariant(next && !next.startsWith('--'), 'INVALID_OPTION', 'Missing value for ' + value);
@@ -92,6 +98,7 @@ try {
   const { command, positional, options } = argumentsFor(process.argv.slice(2));
   let result, text;
   const supported = {
+    harness: ['target', 'mode', 'transport', 'url', 'allow-install', 'raw', 'scope', 'json'],
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
     inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'ts-imports', 'profile', 'json'],
     add: ['target', 'out', 'allow-unverified', 'ts-imports', 'profile', 'json'], verify: ['target', 'json'],
@@ -101,6 +108,29 @@ try {
   invariant(Object.keys(options).every(option => supported[command].includes(option)),
     'INVALID_OPTION', 'An option does not apply to this command.');
   if (command === 'help' || command === '--help') result = HELP;
+  else if (command === 'harness') {
+    const [action, ...names] = positional;
+    const actions = {
+      list: ['json'],
+      config: ['target', 'mode', 'transport', 'url', 'allow-install', 'raw', 'json'],
+      install: ['target', 'scope', 'json'],
+      doctor: ['target', 'mode', 'json'],
+    };
+    invariant(Object.hasOwn(actions, action), 'INVALID_OPTION', 'Use harness list|config|install|doctor.');
+    invariant(Object.keys(options).every(option => actions[action].includes(option)), 'INVALID_OPTION', 'An option does not apply to this harness action.');
+    invariant(names.length === (['config', 'install'].includes(action) ? 1 : 0), 'INVALID_OPTION', 'config/install take exactly one harness name; list/doctor take none.');
+    invariant(!(options.raw && options.json), 'INVALID_OPTION', 'Choose --raw native config or --json metadata, not both.');
+    if (action === 'list') result = { harnesses: listHarnesses() };
+    else if (action === 'config') {
+      result = await harnessConfiguration({ harness: names[0], target: options.target, mode: options.mode, transport: options.transport, url: options.url, allowInstall: options['allow-install'] === true });
+      if (options.raw) text = result.content.trimEnd();
+    } else if (action === 'install') {
+      result = installSkills({ harness: names[0], target: options.target, scope: options.scope });
+    } else {
+      const { doctorHarness } = await import('../lib/harness-doctor.mjs');
+      result = await doctorHarness({ target: options.target, mode: options.mode });
+    }
+  }
   else if (command === 'integration') {
     const [action, ...ids] = positional;
     const context = await loadIntegrationCatalog();
@@ -229,7 +259,7 @@ try {
     result = await verifyInstallation(options.target);
     if (result.status === 'drift') process.exitCode = 1;
   } else if (command === 'schema') {
-    const names = ['quick', 'steps', 'plan', 'receipt', 'update', 'module'];
+    const names = ['quick', 'steps', 'plan', 'receipt', 'update', 'module', 'harness-config', 'harness-doctor'];
     invariant(positional.length <= 1 && (!positional[0] || names.includes(positional[0])), 'INVALID_OPTION', 'schema takes one of: ' + names.join(', '));
     result = positional[0]
       ? JSON.parse(readFileSync(new URL(`../schemas/${positional[0]}.schema.json`, import.meta.url), 'utf8'))

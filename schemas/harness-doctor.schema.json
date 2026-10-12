@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Genlib local read-only MCP doctor success evidence",
+  "type": "object",
+  "required": ["schema", "schemaVersion", "status", "mode", "transport", "protocolVersion", "readOnly", "toolCount", "toolNames", "sample", "counts", "projectOperations", "limitation", "elapsedMs"],
+  "properties": {
+    "schema": {"const": "genlib.harness-doctor/v1"},
+    "schemaVersion": {"const": 1},
+    "status": {"const": "verified"},
+    "mode": {"enum": ["sdk", "discovery"]},
+    "transport": {"const": "stdio"},
+    "protocolVersion": {"type": "string"},
+    "readOnly": {"const": true},
+    "toolCount": {"type": "integer"},
+    "toolNames": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "sample": {
+      "type": "object", "required": ["query", "best", "nextStepCount"],
+      "properties": {"query": {"type": "string"}, "best": {"type": "string"}, "nextStepCount": {"type": "integer"}}
+    },
+    "counts": {"type": "object"},
+    "projectOperations": {
+      "type": "object", "required": ["supported", "configured", "status"],
+      "properties": {
+        "supported": {"type": "boolean", "description": "Whether SDK scoped project operations are available; discovery still permits unscoped local manifest reads."},
+        "configured": {"type": "boolean"},
+        "status": {"enum": ["verified", "not-configured", "unsupported"]}
+      }
+    },
+    "limitation": {"type": "string"},
+    "projectNote": {"type": "string"},
+    "elapsedMs": {"type": "integer"}
+  }
+}

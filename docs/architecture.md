@@ -63,6 +63,9 @@ flowchart TB
   GRAPH["registry/graph.json<br/>navigation graph"]
   VAULT["Obsidian vault<br/>(generated notes only)"]
   SKILL["skills/genlib-use"]
+  HARN["lib/harnesses.mjs<br/>native configuration profiles"]
+  SKINSTALL["install-skills.mjs<br/>scoped safe skill copy"]
+  DOCTOR["harness-doctor.mjs<br/>read-only protocol checks"]
   MOD -- "npm run registry:build" --> REG
   INTEG -- "npm run integrations:build" --> INTREG --> DISC
   INTREG --> INTLIB --> CLI
@@ -114,6 +117,12 @@ flowchart TB
   DISC -- "export-obsidian.mjs" --> VAULT
   JEV -. "genlib jev --json" .-> JEVX
   SKILL -- "routes agents to" --> CLI
+  HARN --> CLI
+  HARN -- "native MCP configuration" --> JEVX
+  HARN --> SKINSTALL
+  SKILL --> SKINSTALL --> JEVX
+  CLI --> DOCTOR -. "local stdio smoke calls" .-> SDKMCP
+  DOCTOR -. "discovery smoke calls" .-> MCPS
 ```
 
 </details>
@@ -136,7 +145,7 @@ The core CLI uses Node.js built-ins and works from a trusted local clone without
 
 ## Direct MCP transport
 
-`packages/genlib-mcp/server.mjs` uses the official SDK for stdio and Streamable HTTP, serving current and legacy stateless clients through one server factory. It exposes bounded metadata/contracts and declared-file reads, Jev packets, scoped project detection, planning and baseline verification. Startup `--allow-install` plus `--project-root` is required to register the write tool.
+`packages/genlib-mcp/server.mjs` uses the official SDK for stdio and Streamable HTTP, serving current and legacy stateless clients through one server factory. It exposes compact quick/find/outline tools, bounded metadata/contracts and declared-file reads, Jev packets, scoped project detection, planning and baseline verification. Startup `--allow-install` plus `--project-root` is required to register the write tool. Compact tools reuse the CLI's ranking, caveats and formatters; project access uses the configured root.
 
 HTTP defaults to loopback. A non-loopback bind requires a bearer token and exact allowed hosts; Origin-bearing requests need an exact allowed origin. HTTP bodies/tool results are bounded; paths are scoped before shared library calls. The private token mode is a single trust boundary, not a multi-user OAuth system. Deployment, TLS and per-tenant process isolation belong to the host. See [MCP connection and access](mcp-server.md) and the SDK-client transport tests.
 
@@ -211,7 +220,11 @@ Public modules must be original contributions authorized for Apache-2.0 distribu
 
 ## Harness support
 
-`skills/genlib-use` is canonical. Generated project mirrors live under `.agents/skills` (Codex) and `.claude/skills` (Claude Code). The separate skill installer copies only its own skill folder, preserving target `AGENTS.md`, `CLAUDE.md`, and other skills. It does not configure an account or assume a hosted Genisys connection.
+`skills/genlib-use` is canonical. Generated repository mirrors live under `.agents/skills` and `.claude/skills`. `lib/harnesses.mjs` records documented MCP formats and skill paths for OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode, Claude Code, Codex, Cline, Roo and generic hosts. `genlib harness config` emits a native configuration fragment and setup metadata without changing host settings. The Ollama profile explicitly delegates skill and MCP execution to OpenCode; Ollama provides the model.
+
+`harness install` uses the existing skill installer, preflights every unique destination and copies only its own complete skill folder. Project scope is the default; personal scope requires an explicit home-directory target. Shared destinations are deduplicated, existing instructions and customizations are preserved, and repository mirrors remain generated from the canonical skill.
+
+`lib/harness-doctor.mjs` launches only the selected fixed local Genlib entry point with Node, negotiates MCP, lists tools and performs bounded read-only calls. It uses no shell, installs no dependencies, and always closes the child process. It verifies the server-side protocol path, not a desktop application's configuration or a remote endpoint. Protocol, documented configuration and actual client acceptance remain separate evidence. See [harness setup](harnesses.md).
 
 ## Measurement
 

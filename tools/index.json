@@ -2,6 +2,20 @@
   "schemaVersion": 1,
   "tools": [
     {
+      "id": "harness-setup",
+      "kind": "integration",
+      "title": "Portable Genlib skill and MCP setup",
+      "guide": "docs/harnesses.md",
+      "summary": "Generate native host configuration, safely install the shared skill and verify local MCP calls for OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode, Claude, Codex and other hosts. Ollama runs through an MCP host.",
+      "terms": ["harness", "MCP", "skill", "setup", "connect", "OpenClaw", "Hermes", "Antigravity", "VS Code", "Cursor", "OpenCode", "Ollama", "Cline", "Roo"],
+      "commands": [
+        "node bin/genlib.mjs harness list",
+        "node bin/genlib.mjs harness config <host> --target <absolute-app>",
+        "node bin/genlib.mjs harness install <host> --target <absolute-app>",
+        "node bin/genlib.mjs harness doctor --target <absolute-app>"
+      ]
+    },
+    {
       "id": "repo-context",
       "title": "Task-scoped code context",
       "guide": "docs/task-context.md",
