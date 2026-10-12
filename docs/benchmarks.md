@@ -232,3 +232,20 @@ What comes next follows an external review of round 5 (October 11): cost came fr
 2. Fit decisions and negative cases: a skip answer for small edits to existing code, the weak-match rule applied to Genlib's own results too (coverage now counts reviewed synonyms), and a `skip` set in `tests/fixtures/routing-queries.json`. Done; a held-out negative set is still to be written by a separate agent.
 3. Language examples and recipes installed through the module ownership engine (shared identical files reused, locks and receipts). Done.
 4. Compact tools in the SDK MCP server (pull request #32), 5. module install profiles (core plus one store and one adapter), 6. a rerun of these 12 runs with the one-call response. Pending; the economic gate in AGENTS.md applies to each.
+
+## Round 7: neutral tasks, three arms (2026-10-12)
+
+Three larger tasks written without reading the modules, each graded by 16 hidden tests (`benchmarks/feature-tasks/tasks/{signup,twofactor,uploads}.md`; reference solutions pass 16/16, naive ones 5–6/16): signup with email verification, TOTP two-factor login and file uploads with type checks, quotas and scanning. Before any agent ran, a fit check confirmed that `genlib add` plus a 45–64 line wrapper passes all three; the module fixes it led to are general options, not task special cases. Three arms on the same prompt: the agent alone, the agent with Genlib set up by `genlib connect` (CLAUDE.md guidance, Genlib CLI named in the prompt) and the agent told to build on the matching module (`quick`, `add`, then glue). Genlib at commit 6c7a4a2, raw table `benchmarks/feature-tasks/results-round7.json`. All nine runs passed 16/16 hidden tests, so no repair round was needed.
+
+| Task | Agent | + Genlib (guidance) | + Genlib (reuse required) |
+| --- | ---: | ---: | ---: |
+| signup | 169,083 | 158,887 | 221,536 |
+| two-factor | 234,608 | 172,010 | 303,277 |
+| uploads | 185,195 | 185,423 | 254,407 |
+| **Total** | **588,886** | **516,320 (−12.3%)** | **779,220 (+32.3%)** |
+
+- **The guidance arm did not call Genlib.** Each agent judged the feature small enough to write, as the guidance says. Its lower total is run-to-run noise: most of the gap is one plain two-factor run that needed five test-fix rounds. The economic gate holds (Genlib added no cost), but this arm shows no saving from reuse.
+- **Required reuse cost 32% more for the same accepted result.** Those runs took 14–20 turns instead of 7–13 and read 16–20k tokens of module output and source instead of about 5k, while the code they wrote was nearly as long (glue of 162, 192 and 88 non-blank lines against 206, 196 and 156 written from scratch). Each task fixes its own function signatures, error codes and storage, so the agent still writes most of the surface and must also learn the module's.
+- **Avoidable integration cost:** two of three reuse runs first installed without `--ts-imports` in an app that runs TypeScript without a build, then rewrote imports by hand or removed and reinstalled.
+
+What this means for the economic goal: for fully specified features of about 150–250 lines that a capable agent gets right first time, writing them is cheaper than reusing a module, and the current guidance correctly says so. Reuse can only pay where the agent alone fails or repairs (no run here did) or where the module is far larger than the glue. Next: install with `--ts-imports` automatically when the target has no build step, give `quick` the adapter shape a task usually needs so the agent reads less module source, and measure tasks whose plain runs miss requirements.
