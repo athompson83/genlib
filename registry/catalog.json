@@ -919,7 +919,7 @@
     },
     {
       "id": "recurring-events",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "title": "Recurring calendar events (RRULE)",
       "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
       "kind": "feature",
@@ -947,8 +947,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/recurring-events@0.1.1.json",
-      "sha256": "89a1352b8bb6c3787854468862c1c1fb8749e6bf61fa062c4d161a1c9bcb44ce"
+      "manifest": "registry/manifests/recurring-events@0.1.2.json",
+      "sha256": "f8b7d29d120f1dbec167af8dc952f09283e774b52e35cf984e1a2c34f170e701"
     },
     {
       "id": "scheduled-tasks",

@@ -299,3 +299,19 @@ Pull request #41 lets a module list parts, profiles usable without the rest of i
 - **Economic gate:** the guidance arm's mean is +6.6% over the plain agent's round-9 mean with overlapping ranges, within noise.
 
 What remains open: `# fixed` should say that a part carries none of the module's fixed choices; `quick` should prefer an implementation whose contract coverage is direct over a partial one for the same feature; and a module parser could take a strict mode so glue need not re-validate. None of these is expected to turn reuse into a saving on tasks where a capable agent writes a correct feature in one pass, which rounds 7–10 (26 runs) consistently showed.
+
+## Round 11: the recurrence task with a smaller model (2026-10-12)
+
+Same task as rounds 9 and 10, with Genlib at commit 63b3963 (full-coverage preference when the wording names a contract, `# fixed (not parts)`). Two Opus runs with reuse required, and Haiku in all three arms, two runs each, to test whether a smaller model fails the standard alone. Raw table `results-round11.json`. All eight runs passed 18/18.
+
+| Arm | Runs | Mean cost index | Runs |
+| --- | ---: | ---: | --- |
+| Opus, reuse required | 2 | 331,045 | 369,565 · 292,525 |
+| Haiku, agent | 2 | 517,353 | 507,429 · 527,277 |
+| Haiku, reuse required | 2 | 551,914 (+6.7%) | 569,289 · 534,539 |
+| Haiku, Genlib guidance | 2 | 575,661 (+11%) | 693,269 · 458,053 |
+
+- **Haiku alone wrote RFC 5545 recurrence correctly** (DST gaps and folds in four zones, BYSETPOS over whole weeks, splits), so again no run failed and nothing could be saved on repairs.
+- **Reuse came closest to parity with the smaller model:** +6.7% with Haiku against +32–47% with Opus in rounds 7–10. A smaller model spends more turns writing the expander itself, so reusing one costs relatively less.
+- **Guidance arm:** both Haiku runs made one `quick` call and wrote the feature; the 693,269 run spent its extra turns debugging its own expander, the other cost less than either plain run. Within noise.
+- **Routing:** the Opus reuse runs phrased the task so that no contract matched, so the full-coverage preference did not apply and `quick` still led with the `rrule` capability under `--target`. Commit 27a66f7 adds a fallback for that case (a contract both picks claim); it was not in this round's build.

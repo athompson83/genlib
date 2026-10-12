@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "recurring-events",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": "Recurring calendar events (RRULE)",
   "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -258,6 +258,12 @@
   },
   "changelog": [
     {
+      "version": "0.1.2",
+      "changes": [
+        "Shorter expander part description so quick output stays within its budget with the (not parts) label; no code change."
+      ]
+    },
+    {
       "version": "0.1.1",
       "changes": [
         "New expander install profile (rrule.ts, timezone.ts, errors.ts) and a parts entry, so apps that keep their own storage and API can install only RRULE expansion and zone conversion."
@@ -275,7 +281,7 @@
   "parts": [
     {
       "profile": "expander",
-      "use": "RRULE parsing and expansion in local time plus DST-safe zone conversion, no store",
+      "use": "RRULE parse/expand in local time + DST-safe zone conversion, no store",
       "api": [
         "parseRRule(text)",
         "ruleWalls(rule, startWall, {fromWall, stopWall})",
@@ -285,11 +291,11 @@
   ],
   "authoredManifest": {
     "path": "modules/recurring-events/module.json",
-    "sha256": "447a9b60ac0c6e2c31de9a99f7323d402f6c5dc038d4f06a445930ba5e85e111"
+    "sha256": "cf823eaedffaa8c6e6e604c89e37aed864410e89b6d552d2faa4840a7943d43b"
   },
   "contractFile": {
     "path": "modules/recurring-events/CONTRACT.md",
-    "sha256": "9de0e620e0ab899c63d64b67619e896f64fd4379da8711afc447e4c776c11265",
+    "sha256": "1f8d2d7e5b44a70dbbaed93597e2ebfbb396350e6a19c4419ad9ec6efccb7165",
     "bytes": 11870
   }
 }

@@ -79,6 +79,7 @@ test('a module with standalone parts names each with its profile, size, purpose 
   const sized = execFileSync(process.execPath, [root + 'bin/genlib.mjs', 'quick', 'recurring', 'calendar', 'events', 'with', 'time', 'zones', 'and', 'exceptions'], { cwd: root, encoding: 'utf8', env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' } });
   assert.ok(Buffer.byteLength(sized) <= 1200, 'quick budget with parts: ' + Buffer.byteLength(sized));
   assert.match(text, /^# parts: --profile expander \(\d+ lines\): .+ · ruleWalls\(/m);
+  assert.match(text, /^# fixed \(not parts\): /m, 'the module\'s fixed choices are marked as not applying to parts');
 });
 
 test('parts must name an existing profile and stay short', async () => {
@@ -87,4 +88,18 @@ test('parts must name an existing profile and stay short', async () => {
   assert.doesNotThrow(() => validateModule(manifest, 'recurring-events'));
   assert.throws(() => validateModule({ ...manifest, parts: [{ profile: 'nope', use: 'x', api: ['f()'] }] }, 'recurring-events'), /parts/);
   assert.throws(() => validateModule({ ...manifest, parts: [{ profile: 'expander', use: 'x'.repeat(200), api: ['f()'] }] }, 'recurring-events'), /parts/);
+});
+
+test('a pick that covers part of the asked feature yields to a near-top one whose tests cover all of it', () => {
+  const pick = json('recurring', 'events', 'rrule');
+  assert.equal(pick.best, 'module:recurring-events', JSON.stringify({ best: pick.best, alternatives: pick.alternatives }));
+  assert.equal(pick.reuse, 'direct');
+  assert.ok(pick.alternatives.includes('capability:rrule'), 'the smaller pick stays listed');
+});
+
+test('the full-coverage preference also works when the wording matches no contract, through a contract both picks claim', () => {
+  const fixture = root + 'benchmarks/feature-tasks/fixtures/teamnotes';
+  const pick = JSON.parse(execFileSync(process.execPath, [root + 'bin/genlib.mjs', 'quick', 'recurring', 'calendar', 'events', 'with', 'rrule', 'expansion,', 'overrides,', 'time', 'zones', '--target', fixture, '--json'], { cwd: root, encoding: 'utf8' }));
+  assert.equal(pick.best, 'module:recurring-events', JSON.stringify({ best: pick.best, alternatives: pick.alternatives }));
+  assert.equal(pick.reuse, 'direct');
 });
