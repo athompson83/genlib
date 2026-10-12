@@ -1,4 +1,4 @@
-# Two-factor authentication with an authenticator app (TOTP) · 0.2.0
+# Two-factor authentication with an authenticator app (TOTP) · 0.2.1
 
 ## What installs
 

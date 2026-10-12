@@ -374,7 +374,7 @@ async function profiledFixture(t, { httpImport = './core.js' } = {}) {
   await fs.writeFile(path.join(location, 'CONTRACT.md'), [
     '# profiled', '', '## Integration points', '', 'Wire it like this:', '', '```ts',
     'import { createThing } from "./genlib/profiled/core.js";', 'import { createHandler } from "./genlib/profiled/http.js";',
-    'import { z } from "zod";', '', 'const thing = createThing({ store });', 'export const handler = createHandler({', '  thing,', '});', '```', '',
+    'import { z } from "zod";', '', 'const thing = createThing({ store });', 'export const handler = createHandler({', '  thing,', '});', 'await handler.start();', '```', '',
     '## Behavior', '', '```ts', 'notTheWiring();', '```', '',
   ].join('\n'));
   await fs.writeFile(path.join(location, 'files/core.ts'), 'import "../base-style/value.js";\nexport function createThing(options: unknown) { return options; }\n');
@@ -411,6 +411,7 @@ test('profiles: wiring prints the integration example with app paths and drops w
   const core = await planInstall(context, 'profiled', { target, profiles: ['core', 'memory'] });
   assert.match(core.wiring, /^import \{ createThing \} from "\.\/src\/genlib\/profiled\/core\.js";$/m);
   assert.doesNotMatch(core.wiring, /http\.js|createHandler\(/, 'the http import and the statement using it are omitted');
+  assert.doesNotMatch(core.wiring, /handler\.start/, 'statements on a variable an omitted statement declared are omitted too');
   assert.match(core.wiring, /^import \{ z \} from "zod";$/m, 'package imports are kept');
   assert.match(core.wiring, /const thing = createThing\(\{ store \}\);/);
   assert.match(core.wiring, /also: import \{ MemoryStore \} from "\.\/src\/genlib\/profiled\/memory-store\.js"/);
@@ -419,6 +420,7 @@ test('profiles: wiring prints the integration example with app paths and drops w
   const ts = await planInstall(context, 'profiled', { target, profiles: ['http'], tsImports: true, out: 'lib/shared' });
   assert.match(ts.wiring, /from "\.\/lib\/shared\/profiled\/http\.ts"/);
   assert.match(ts.wiring, /export const handler = createHandler\(\{\n  thing,\n\}\);/);
+  assert.match(ts.wiring, /^await handler\.start\(\);$/m, 'kept when its declaration is installed');
   const installed = await installModule(context, 'profiled', { target, profiles: ['core'] });
   assert.equal(installed.wiring.split('\n').length <= 40, true);
   const app = path.join(path.dirname(target), 'fresh-app');

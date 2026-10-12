@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "email-signup",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "title": "User signup with email verification",
   "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -105,8 +105,22 @@
     ],
     "http": [
       "files/http.ts"
+    ],
+    "password": [
+      "files/password-policy.ts",
+      "files/scrypt-hasher.ts"
     ]
   },
+  "parts": [
+    {
+      "profile": "password",
+      "use": "NIST-style password checks and scrypt hashing (Node.js), no accounts or tokens",
+      "api": [
+        "createPasswordPolicy({ minLength })(password) -> problems",
+        "createScryptHasher().hash(pw) / .verify(pw, stored)"
+      ]
+    }
+  ],
   "exports": [
     {
       "name": "createEmailSignup",
@@ -196,10 +210,9 @@
     "Production database correctness, email deliverability, hashing cost tuning and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: POST {prefix}/signup and /resend → 202 {ok:true} for every outcome; POST {prefix}/confirm → 200",
-    "a registered email gets the same 202, never 409; accountId and serverError are server-only",
-    "password 15-128 chars (minLength option), no composition rules; scrypt N=2^17; 400 weak-password",
-    "token SHA-256 hashed, 24 h, single use, confirmed by POST; the resend cap is a rolling window"
+    "http adapter: signup and resend answer 202 {ok:true} for every outcome (never 409), confirm 200",
+    "password 15-128 chars by default (minLength option), no composition rules; scrypt N=2^17",
+    "tokens SHA-256 hashed, 24 h, single use; resend capped per rolling hour; accountId stays server-side"
   ],
   "verification": {
     "level": "tested",
@@ -236,6 +249,12 @@
   },
   "changelog": [
     {
+      "version": "0.2.1",
+      "changes": [
+        "New password install profile (password-policy.ts, scrypt-hasher.ts) and a parts entry; decisions reworded to say which apply to the HTTP adapter only."
+      ]
+    },
+    {
       "version": "0.2.0",
       "changes": [
         "Breaking: the resend cap is a rolling window. SignupAccount.recentSends replaces sendWindowStart/sendWindowCount, and schema.sql replaces send_window_start/send_window_count with recent_sends bigint[] (see the upgrade note in schema.sql).",
@@ -254,11 +273,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/email-signup/module.json",
-    "sha256": "cabd5e0908e3ba0054582144167e6aafb9e69951c19874a2acaaad2f7c101803"
+    "sha256": "019db15fbf5feddf5c505bf49b39a2273b11dd253e0903a8b8125b8d020f56cd"
   },
   "contractFile": {
     "path": "modules/email-signup/CONTRACT.md",
-    "sha256": "837b0336aa7c0e1530bdc43dab58e8630bfebba845a65a6b4c3364571f51d00f",
+    "sha256": "5b3de7b5fb6e4a143dd69e79a7b9d41316334f6a11abf63920fce8b412eda5d6",
     "bytes": 13796
   }
 }

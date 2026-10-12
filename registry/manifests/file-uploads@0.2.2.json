@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "file-uploads",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "title": "File upload with size and type checks",
   "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
   "kind": "feature",
@@ -109,8 +109,22 @@
     ],
     "client": [
       "files/client.ts"
+    ],
+    "policy": [
+      "files/policy.ts"
     ]
   },
+  "parts": [
+    {
+      "profile": "policy",
+      "use": "byte-sniffed type checks against an allowlist and safe file names, no store or quota",
+      "api": [
+        "sniffType(bytes)",
+        "checkType(detected, filename, declared, normalizePolicy(input))",
+        "sanitizeFilename(name, options)"
+      ]
+    }
+  ],
   "exports": [
     {
       "name": "sniffType",
@@ -242,6 +256,12 @@
   },
   "changelog": [
     {
+      "version": "0.2.2",
+      "changes": [
+        "New policy install profile (policy.ts) and a parts entry: type sniffing, allowlist checks and file-name sanitizing without the store, quota or adapter."
+      ]
+    },
+    {
       "version": "0.2.1",
       "changes": [
         "Streamed reads with a Content-Length write into one buffer of that size instead of keeping the chunks and concatenating them, so a read holds about one copy of the body instead of two; a single-chunk body is returned without copying. Behavior is unchanged."
@@ -267,11 +287,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/file-uploads/module.json",
-    "sha256": "71762ae8e512c0ae26b1b02b726c226ad2509e03bce42a6426753e4f0888d7f1"
+    "sha256": "25391afcf7e1b5110ddeabd1952780a0403baae67edf24aa6261b4cdbe19d827"
   },
   "contractFile": {
     "path": "modules/file-uploads/CONTRACT.md",
-    "sha256": "3847c66d20d2b5e6e135b27ca468cff319a6b5359dcb2932448254cf765885f2",
+    "sha256": "bf993684745905dda93933cff9199f2b41ee00b9aa99886ff4a5ff41b9c0d681",
     "bytes": 14335
   }
 }

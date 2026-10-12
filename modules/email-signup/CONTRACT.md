@@ -1,4 +1,4 @@
-# User signup with email verification · 0.2.0
+# User signup with email verification · 0.2.1
 
 ## What installs
 

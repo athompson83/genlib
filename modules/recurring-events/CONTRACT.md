@@ -1,4 +1,4 @@
-# Recurring calendar events (RRULE) · 0.1.0
+# Recurring calendar events (RRULE) · 0.1.1
 
 ## What installs
 
@@ -14,6 +14,8 @@ Nine original Apache-2.0 files under `recurring-events/`:
 - `http.ts`: `createRecurringEventsHandler`, an optional server-only Fetch adapter. The core does not import it.
 
 There is no hidden database, session or sharing model. The application supplies persistence and authorization.
+
+Install profiles: `core`, `memory`, `sql`, `http`, and `expander` (`rrule.ts`, `timezone.ts`, `errors.ts`). Use `add recurring-events --profile expander` when the app keeps its own storage, API and edit rules and needs only expansion: `parseRRule(text)`, `ruleWalls(rule, startWall, { fromWall, stopWall })` (ascending local wall times as epoch-style milliseconds, COUNT and local UNTIL applied; apply a UTC UNTIL against instants), `zoneFor(timeZone)` and `wallToInstant(zone, wall)` (a time skipped by DST moves forward by the gap, a repeated time takes its first instance). The expander has no fixed routes, storage or split behavior.
 
 ## When to use it
 
