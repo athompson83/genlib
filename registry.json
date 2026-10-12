@@ -6,7 +6,7 @@
   {
    "name": "storefront-cart",
    "type": "registry:item",
-   "title": "Storefront cart",
+   "title": "Cart state and subtotal helpers",
    "description": "Pure cart model. Server must reprice and revalidate inventory before checkout",
    "files": [
     {
@@ -18,7 +18,7 @@
    "categories": [
     "genlib-recipe"
    ],
-   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Server-side price and inventory validation; Integer minor units; Currency consistency.",
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Data helpers only; no rendered cart, drawer, product catalog or checkout. Checks for your integration: Server-side price and inventory validation; Integer minor units; Currency consistency.",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "kind": "source-example"
@@ -27,7 +27,7 @@
   {
    "name": "storefront-catalog",
    "type": "registry:item",
-   "title": "Storefront catalog",
+   "title": "Product catalog filtering and sorting helpers",
    "description": "Client-side filtering only; upstream authorization, stock and pricing remain authoritative",
    "files": [
     {
@@ -39,7 +39,7 @@
    "categories": [
     "genlib-recipe"
    ],
-   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Authorized product visibility; Server pagination for large catalogs.",
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Data helpers only; the app supplies the product grid or list UI and data source. Checks for your integration: Authorized product visibility; Server pagination for large catalogs.",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "kind": "source-example"
@@ -48,7 +48,7 @@
   {
    "name": "invoice-totals",
    "type": "registry:item",
-   "title": "Invoice totals",
+   "title": "Invoice total calculation helper",
    "description": "Invoice preview math only. Legal/tax compliance and invoice numbering are application responsibilities",
    "files": [
     {
@@ -60,7 +60,7 @@
    "categories": [
     "genlib-recipe"
    ],
-   "docs": "Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: Jurisdiction-specific tax; Approved rounding policy.",
+   "docs": "Genlib recipe (Apache-2.0, no dependencies). Calculation helper only; no invoice layout, PDF renderer or invoice issuance workflow. Checks for your integration: Jurisdiction-specific tax; Approved rounding policy.",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "kind": "source-example"
@@ -2817,10 +2817,10 @@
     "genlib-module",
     "component"
    ],
-   "docs": "Genlib module data-table@0.1.0 (Apache-2.0). Configure: rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className. Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering. Contract: https://github.com/athompson83/genlib/blob/main/modules/data-table/CONTRACT.md",
+   "docs": "Genlib module data-table@0.1.1 (Apache-2.0). Configure: rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className. Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering. Contract: https://github.com/athompson83/genlib/blob/main/modules/data-table/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "verification": "tested"
    }
   },

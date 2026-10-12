@@ -16,6 +16,7 @@ const clip = (value, limit) => String(value ?? '').replace(/\s+/g, ' ').trim().s
 const sources = await loadSources(root);
 const lines = searchEntries(sources).map(entry => JSON.stringify({
   ref: `${entry.type}:${entry.id}`, type: entry.type, id: entry.id, title: clip(entry.title, 160), summary: clip(entry.summary, 240),
+  ...(entry.caveat ? { caveat: clip(entry.caveat, 200) } : {}),
   terms: [...new Set(entry.labels.join(' ').toLowerCase().match(/[a-z0-9][a-z0-9+#.-]*/g) ?? [])].slice(0, 24),
   ...(entry.languages?.length ? { languages: entry.languages } : {}),
   ...(entry.license ? { license: clip(entry.license, 100) } : {}),

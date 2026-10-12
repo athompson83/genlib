@@ -6,6 +6,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { detectProject, findInSources, loadSources, queryTerms, sourceCounts } from '../lib/discover.mjs';
+import { briefFind, formatQuick, quickPick } from '../lib/brief.mjs';
+import { jevPacket } from '../lib/jev.mjs';
 
 const cli = fileURLToPath(new URL('../bin/genlib.mjs', import.meta.url));
 const run = (...args) => spawnSync(process.execPath, [cli, ...args], { encoding: 'utf8' });
@@ -46,6 +48,26 @@ test('find ranks the matching source first and returns its next commands', async
   const csv = findInSources(sources, 'csv export', { type: 'recipe' });
   assert.ok(csv.results.every(result => result.type === 'recipe'));
   assert.match(csv.results[0].next.at(-1), /recipe-install\.mjs add csv-export/);
+});
+
+test('recipe delivery limits survive full, brief, quick and Jev discovery before copying', async () => {
+  const sources = await loadSources();
+  for (const id of ['storefront-cart', 'storefront-catalog', 'invoice-totals']) {
+    const recipe = sources.recipes.find(entry => entry.id === id);
+    const found = findInSources(sources, id, { type: 'recipe' });
+    assert.equal(found.results[0].id, id);
+    assert.equal(found.results[0].title, recipe.title);
+    assert.equal(briefFind(found).results[0].caveat, recipe.caveat);
+    const pick = quickPick(found);
+    assert.equal(pick.caveat, recipe.caveat);
+    assert.ok(formatQuick(pick).includes('# caveat: ' + recipe.caveat));
+    assert.ok(pick.next.some(command => command.includes('recipe-install.mjs add ' + id)));
+    const packet = jevPacket(sources, id, { type: 'recipe', limit: 1 });
+    assert.equal(packet.state.candidates[0].caveat, recipe.caveat);
+    assert.match(packet.questions[0].question, /caveat conflicts/);
+  }
+  const ordinary = findInSources(sources, 'csv export', { type: 'recipe' }).results[0];
+  assert.equal(ordinary.title, ordinary.id);
 });
 
 test('label matching uses whole tokens and versioned-module recipes merge into their module', async () => {

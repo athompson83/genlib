@@ -3747,7 +3747,7 @@
    "id": "doc:AGENTS.md",
    "kind": "doc",
    "label": "AGENTS.md",
-   "count": 4,
+   "count": 5,
    "file": "AGENTS.md"
   },
   {
@@ -3796,7 +3796,7 @@
    "id": "doc:docs/benchmarks.md",
    "kind": "doc",
    "label": "docs/benchmarks.md",
-   "count": 19,
+   "count": 20,
    "file": "docs/benchmarks.md"
   },
   {
@@ -3945,6 +3945,13 @@
    "label": "docs/distribution.md",
    "count": 6,
    "file": "docs/distribution.md"
+  },
+  {
+   "id": "doc:docs/focused-reuse.md",
+   "kind": "doc",
+   "label": "docs/focused-reuse.md",
+   "count": 6,
+   "file": "docs/focused-reuse.md"
   },
   {
    "id": "doc:docs/gaps.md",
@@ -5181,7 +5188,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 735,
+   "count": 743,
    "query": "--type doc"
   },
   {
@@ -18498,7 +18505,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 735
+   "weight": 743
   },
   {
    "source": "genlib",
@@ -21840,7 +21847,7 @@
    "source": "type:doc",
    "target": "doc:AGENTS.md",
    "relation": "section-of",
-   "weight": 4
+   "weight": 5
   },
   {
    "source": "type:doc",
@@ -21882,7 +21889,7 @@
    "source": "type:doc",
    "target": "doc:docs/benchmarks.md",
    "relation": "section-of",
-   "weight": 19
+   "weight": 20
   },
   {
    "source": "type:doc",
@@ -22007,6 +22014,12 @@
   {
    "source": "type:doc",
    "target": "doc:docs/distribution.md",
+   "relation": "section-of",
+   "weight": 6
+  },
+  {
+   "source": "type:doc",
+   "target": "doc:docs/focused-reuse.md",
    "relation": "section-of",
    "weight": 6
   },

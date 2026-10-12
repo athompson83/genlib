@@ -20,7 +20,7 @@ npx shadcn@4.21.4 add athompson83/genlib/punycode          # one recipe -> genli
 npx shadcn@4.21.4 add athompson83/genlib/org-invitations   # a module's three files -> genlib/org-invitations/
 ```
 
-The CLI prints each item's `docs`: the recipe's integration checks, or the module's configuration points and a link to its contract. The shadcn route copies files only. It does not check compatibility, pick another language or record integrity hashes. Use `genlib plan`/`add` when you want those, and `genlib inspect <id>` for the full contract.
+The CLI prints each item's `docs`: the recipe's delivery caveat and integration checks, or the module's configuration points and a link to its contract. Authored recipe titles describe what the code supplies. The shadcn route copies files only. It does not check compatibility, pick another language or record integrity hashes. Use `genlib plan`/`add` when you want those, and `genlib inspect <id>` for the full contract.
 
 The GitHub form (`athompson83/genlib/<item>`) reads the default branch. Pin a reviewed version by installing from the item's raw URL at a commit, or with the Genlib CLI from a checkout at that commit.
 
@@ -48,7 +48,7 @@ Genlib never runs the package manager or the shadcn CLI, and it does not merge C
 
 ## Agent skill (Skills CLI and APM)
 
-The `genlib-use` skill teaches an agent the cheapest path: `quick`, then `outline`, then the returned command. Install it with either tool:
+The `genlib-use` skill makes reuse optional: check the app's existing code and libraries, use a known suitable item directly, or make a bounded `quick` lookup when helpful. Read the selected contract, handoff and any source needed to integrate, then run the app's checks. These steps are not a measured savings guarantee; see the [focused reuse plan](focused-reuse.md). Install the skill with either tool:
 
 ```bash
 npx skills@1.7.2 add athompson83/genlib --skill genlib-use

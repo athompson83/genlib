@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "data-table",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Searchable sortable data table",
   "description": "Typed React table with client-side search, stable sorting, pagination, empty states, and accessible table controls.",
   "kind": "component",
@@ -104,17 +104,26 @@
   "verification": {
     "level": "tested",
     "testFiles": [
-      "tests/web-modules.test.mjs"
+      "tests/web-modules.test.mjs",
+      "tests/component-handoff.test.mjs"
     ]
   },
+  "changelog": [
+    {
+      "version": "0.1.1",
+      "changes": [
+        "Return the integration example and both stylesheet imports in plan/add, with application acceptance kept separate from copied-file integrity. Component source and public props are unchanged."
+      ]
+    }
+  ],
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/data-table/module.json",
-    "sha256": "32173e30cc8d4b939cc53bbc5d7d3e189be170174b35481c67cd033c290605c7"
+    "sha256": "5ed9cd17859e8ffe8c52cadde037923c7826d281cc73c84b7034dc2fd5ce6458"
   },
   "contractFile": {
     "path": "modules/data-table/CONTRACT.md",
-    "sha256": "074ce7fa1f2f04d3aa73444a33f19ca998b42c5f4cdd78c891c31d69a0c6385b",
-    "bytes": 3414
+    "sha256": "b6d02b8bd3b8b3b82bb8d8dc58f47e067470b981fb1a5adb1c2de1c544479301",
+    "bytes": 4698
   }
 }

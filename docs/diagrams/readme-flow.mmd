@@ -3,7 +3,7 @@ flowchart TB
   Quick["genlib quick<br/>best match + its commands"]
   Find["genlib find<br/>(+ detect --target)"]
   Outline["genlib outline<br/>signatures, not source"]
-  Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"]
+  Source["genlib source<br/>pinned fetch plan<br/>+ Genlib equivalents"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
@@ -41,7 +41,10 @@ flowchart TB
   Harness -. "native configuration" .-> MCP
   Harness -- "safe copy" --> Skill
   Skill -. "MCP or CLI" .-> Quick
-  Task --> Quick --> Find
+  Task -- "optional lookup" --> Quick
+  Task -- "known module" --> Inspect
+  Task -- "existing app code" --> App
+  Quick -. "compare if needed" .-> Find
   Quick -.-> Outline -.-> App
   Find --> C & M & P & R & T & N & S & X & D
   P --> PackPlan --> Verify

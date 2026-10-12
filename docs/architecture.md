@@ -2,6 +2,8 @@
 
 Genlib distributes editable source and isolated integration profiles to an existing application. Its dependency-free CLI and optional direct MCP server share the same discovery, integrity, compatibility and installation functions. Original Apache-2.0 adapters have explicit contracts; external tools, packages, hosted services and data retain their own terms. A catalog result or tool call never grants application authority.
 
+The [focused reuse plan](focused-reuse.md) pauses broad catalog, language and harness expansion. The existing topology remains available; current work prioritizes accurate delivery descriptions, complete handoffs and measured adoption on concrete application tasks. Agents may use a known item directly or skip Genlib when the app's existing code or libraries already fit.
+
 ## System overview
 
 <picture>
@@ -45,7 +47,7 @@ flowchart TB
   BRIEF["lib/brief.mjs<br/>quick · compact find"]
   CLI["bin/genlib.mjs"]
   OUTL["lib/outline.mjs<br/>signatures, not source"]
-  SRC["lib/source.mjs<br/>sparse pinned fetch<br/>+ resources/equivalents.json"]
+  SRC["lib/source.mjs<br/>pinned fetch plan<br/>+ resources/equivalents.json"]
   MCPS["bin/genlib-mcp.mjs<br/>MCP tools"]
   TOK["docs/token-budget.md<br/>measured output sizes"]
   INST["lib/install.mjs<br/>plan · add · verify"]
@@ -134,7 +136,7 @@ Every arrow into the target app goes through `plan`/`add` (modules), `integratio
 1. Authors maintain `modules/<id>/module.json`, `CONTRACT.md`, and `files/`.
 2. `npm run registry:build` emits a compact `registry/catalog.json` and detailed manifests with SHA-256 file hashes. `registry:check` checks freshness without changing files.
 3. `npm run integrations:build` creates `registry/integrations.json` from pack manifests, contracts and source. Binding checks require canonical external resource IDs and resolvable Genlib module and pack references.
-4. Agents run `quick` (best match and its commands) or `find` (compact list; `--json` for full records), read `outline` signatures instead of source, inspect one module or integration contract, and select a compatible feature. Discovery applies the lifecycle and license policy (retired records hidden unless `--include-retired`; `--license-policy permissive`). `find` ranks capabilities, modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
+4. When discovery is useful, agents run `quick` (best match and its commands) or `find` (compact list; `--json` for full records). A known item can go directly to its contract and installation plan. Public signatures, delivery caveats and targeted source reads support the integration decision. Discovery applies the lifecycle and license policy (retired records hidden unless `--include-retired`; `--license-policy permissive`). `find` ranks capabilities, modules, recipes, language examples, templates, navigation tools and resources together, and `detect` reads the target's manifests to mark fit. Agents do not load all module source to make that choice.
 5. `plan` resolves exact local module dependencies and checks paths, existing files, and target compatibility without writing.
 6. `add` copies verified files to the target's `src/genlib` (or explicit `--out`) and writes provenance to `.genlib/lock.json`; `integration add` copies a pack to `genlib/integrations/<id>` and records it in `.genlib/integrations-lock.json`. License notices accompany the copy. It never runs module hooks or package managers. The language-example and recipe installers record their copies in the same lock (`kind: language|recipe`) through `planCopy`/`installCopy`, so an identical shared file is reused and owned by every capability that needs it, while edited or untracked files still conflict.
 7. `verify` compares installed files with their recorded original hashes. A deliberate edit is reported as modified; this is not an application correctness test.
@@ -142,6 +144,8 @@ Every arrow into the target app goes through `plan`/`add` (modules), `integratio
 9. `coverage <task>` reads `resources/feature-contracts/` and reports each requirement of a feature at its best evidence status, from `cataloged` to `fixture-verified` (a named repository test, checked by `npm run contracts:check`) and `application-verified` (acceptance recorded in the app's receipt by `adopted --accepts`). `registry plan|add` adopts shadcn-format registry items into the app with the same plan, conflict, lock and receipt rules, recorded in `.genlib/providers-lock.json`. `provider check|adopt` does the same for an upstream feature profile: offline prerequisite checks, then adoption of a scaffolder's output from a scratch copy, new files only ([providers.md](providers.md)).
 
 The core CLI uses Node.js built-ins and works from a trusted local clone without installing npm packages. Each optional integration and the MCP server has isolated pinned dependencies. They do not become core runtime dependencies.
+
+The module handoff returned by `plan` and `add` comes from the contract's `Integration points` code block. Import paths include selected dependency files and follow a custom output directory. For `data-table`, this includes the component and both required stylesheets. The app still supplies data, mounts the component and runs its own checks; installation does not invent or execute an application test command.
 
 ## Direct MCP transport
 
@@ -230,6 +234,6 @@ Public modules must be original contributions authorized for Apache-2.0 distribu
 
 Measure actual input/output/cached tokens, model cost, repair cycles, elapsed time, and accepted feature behavior against the existing library-aware build process. Include curation and maintenance effort. No model call or paid service is necessary to use Genlib itself.
 
-The [comparison protocol](benchmarks.md#comparison-protocol-not-yet-run) defines a four-arm measurement against an agent that already has upstream tools; it has not been run. [landscape.md](landscape.md) records what comparable projects do and what Genlib adopted, and [distribution.md](distribution.md) the verified shadcn, Skills, APM and Context7 routes.
+The [comparison protocol](benchmarks.md#comparison-protocol) defines a four-arm measurement against an agent that already has upstream tools. Rounds 4–5 ran that comparison on backend features, and later rounds tested interventions on recurring tasks; the report documents their scope and limitations. Where final model output usage is unavailable, the canonical cost proxy uses estimated full written output and labels it as an estimate. A new receiving-application comparison for the focused reuse work remains pending; deterministic installation and DOM fixtures do not satisfy the economic gate. [landscape.md](landscape.md) records comparable projects, and [distribution.md](distribution.md) the checked shadcn, Skills, APM and Context7 routes.
 
 The [retrieval evaluation](retrieval-evaluation.md) measures task recall and serialized context size without making a model-token savings claim. The [catalog health workflow](catalog-health.md) inventories exact locked versions offline and optionally caches bounded upstream dependency/advisory/lifecycle metadata. Neither workflow adds network requests to normal discovery.

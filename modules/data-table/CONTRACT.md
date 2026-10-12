@@ -15,11 +15,16 @@ Import `theme-tokens/theme.css`, then `data-table/data-table.css`, in the applic
 - `pageSize` defaults to 10. Non-finite values or values below 1 fall back to 10; positive fractions are rounded down.
 - `initialSort` initializes internal sort state. `searchLabel`, `searchPlaceholder`, `emptyMessage`, `noResultsMessage`, and `className` customize presentation.
 
-## Example
+## Integration points
+
+`plan` and `add` return this example with paths relative to the receiving app's root, including a custom `--out`. Put the component in a client module and adjust relative paths if that file lives elsewhere. Load the two stylesheets once, using the framework's global CSS entry when required.
 
 ```tsx
 "use client";
-import { DataTable, type DataTableColumn } from "./genlib/data-table/DataTable";
+import { DataTable, type DataTableColumn } from "./genlib/data-table/DataTable.js";
+// Load once; use the framework's global CSS entry when required.
+import "./genlib/theme-tokens/theme.css";
+import "./genlib/data-table/data-table.css";
 
 type Project = { id: string; name: string; openTasks: number };
 const columns: DataTableColumn<Project>[] = [
@@ -27,9 +32,12 @@ const columns: DataTableColumn<Project>[] = [
   { id: "tasks", header: "Open tasks", value: (row) => row.openTasks, sortable: true, align: "end" },
 ];
 
-export function ProjectsTable({ projects }: { projects: Project[] }) {
+export function ProjectsTable({ projects }: { projects: readonly Project[] }) {
   return <DataTable rows={projects} columns={columns} rowId={(row) => row.id} caption="Projects" pageSize={10} />;
 }
+// Mount ProjectsTable with your already-authorized project rows.
+// Run the app's TSX build; check search, sorting, pagination and empty states.
+// genlib verify checks copied-file hashes, not rendering or application behavior.
 ```
 
 In server-component frameworks, define accessor and renderer functions in a client component. Pass only already-authorized serializable data across the server/client boundary. Do not attempt to serialize these callback functions from a server component.
@@ -38,7 +46,9 @@ In server-component frameworks, define accessor and renderer functions in a clie
 
 Search and sort return to page one. Dataset shrinkage clamps the page to an available page. The input array is not mutated. Column headers communicate sort direction, every table has a caption, and count changes use a polite status region. The scroll region is keyboard-focusable for wide content.
 
-Tests cover filtering, ascending/descending and stable sorting, missing values, immutability, pagination, page clamping, zero matches, and accessible sort/search controls. Validate the completed table with the project's data and assistive technology.
+Tests cover filtering, ascending/descending and stable sorting, missing values, immutability, pagination, page clamping, zero matches, and accessible sort/search controls. The handoff test compiles the returned example against the installed files and exercises it in a local React DOM fixture with a custom output path; it does not validate browser layout or the receiving application's routes, data, or styling. Validate the completed table with the project's data and assistive technology.
+
+After mounting the component, run the receiving application's actual build and tests, check that both stylesheets load, and exercise search, both sort directions, page changes and empty states. A successful `genlib verify` only establishes agreement with the copied baseline. No application test command is created or executed by installation.
 
 ## Boundaries
 

@@ -30,11 +30,11 @@ for (const entry of json('resources/agent-recipes.json').entries) {
   items.push({
     name: entry.id,
     type: 'registry:item',
-    title: entry.id.replace(/-/g, ' ').replace(/^./, c => c.toUpperCase()),
+    title: entry.title ?? entry.id.replace(/-/g, ' ').replace(/^./, c => c.toUpperCase()),
     description: summary.slice(0, 300),
     files: [{ path: entry.path, type: 'registry:file', target: `~/genlib/${entry.path.split('/').pop()}` }],
     categories: ['genlib-recipe'],
-    docs: `Genlib recipe (Apache-2.0, no dependencies). Checks for your integration: ${entry.checks.join('; ')}.`,
+    docs: `Genlib recipe (Apache-2.0, no dependencies). ${entry.caveat ? entry.caveat + ' ' : ''}Checks for your integration: ${entry.checks.join('; ')}.`,
     meta: { source: 'https://github.com/athompson83/genlib', kind: entry.kind },
   });
 }

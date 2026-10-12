@@ -49,16 +49,18 @@ export function render(rows) {
     lines.push(`| ${row.path} | \`${row.command}\` | ${row.genlib.toLocaleString('en-US')} | ${tokens(row.genlib)} | ${row.baselineLabel} | ${row.baseline ? row.baseline.toLocaleString('en-US') : '-'} | ${ratio} |`);
   }
   lines.push('', '## Budgets enforced by tests', '', '`tests/token-budget.test.mjs` fails when a compact path grows past its budget:', '',
-    '- `quick` output: at most 600 bytes.',
+    '- Representative `quick` decisions: at most 1,200 bytes in the budget tests; this is not a universal output cap.',
     '- `find` text output with 8 results: at most 2,000 bytes.',
     '- `outline`: at most half the bytes of the source it describes.',
     '- `SKILL.md`: at most 5,000 bytes.',
     '- MCP `tools/list`: at most 4,500 bytes.',
     '- Jev packet: at most 20,000 characters of state and questions (Genisys\' limit).',
-    '', '## Cheapest path for an agent', '',
-    '1. `genlib quick <task> --target "$APP_ROOT"`: the best match and only its install or copy commands.',
-    '2. `genlib outline <id> --language <lang>`: signatures and one-line docs instead of the source.',
-    '3. Run the returned command, then the app\'s own checks.',
+    '', '## Optional reuse path', '',
+    'Use the app\'s existing components and installed libraries first. A known compatible Genlib component can be reused directly; a catalog lookup is optional.',
+    '',
+    '1. When discovery is useful, `genlib quick <task> --target "$APP_ROOT"` returns one candidate and its install or copy commands.',
+    '2. Read the install handoff or `genlib outline <id> --language <lang>` for the selected API; inspect targeted source only as integration or repair requires.',
+    '3. Run the app\'s own checks. `genlib verify` checks copied hashes; it does not test application behavior.',
     '', 'Use `find` (compact text) when you need to compare options, and `--json` only when you need licenses, links or summaries.', '');
   return lines.join('\n');
 }

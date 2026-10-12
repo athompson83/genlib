@@ -1,6 +1,16 @@
 # Storefront and common UI foundations
 
-Genlib now provides original, dependency-light **source examples** for product catalogs, carts, invoice previews, CSV export, upload metadata checks, and React UI primitives. These are not a complete production storefront. The consuming application supplies dynamic data, identity, inventory, payment authorization, persistence, tax, refunds, shipping and security.
+Genlib provides original, dependency-light source for catalog filtering, cart state, invoice calculations, CSV export, upload metadata checks and React UI primitives. Check what an entry actually delivers before choosing it:
+
+| Entry | Delivered code | Application work still required |
+| --- | --- | --- |
+| `storefront-cart` | Pure cart quantity updates, item removal and subtotal calculation | Rendered cart or drawer, product data, persistence and checkout |
+| `storefront-catalog` | Pure text/category/tag filtering and title/price sorting | Product grid or list UI, data source and server pagination |
+| `invoice-totals` | Invoice total calculation | Invoice layout, PDF rendering and invoice issuance workflow |
+| `data-table` | Rendered React table with styles, search, sorting and pagination | Authorized rows, columns, mounting and application checks |
+| Modal in `examples/ui/primitives.tsx` | Structural example | Production dialog behavior and accessibility integration |
+
+Recipe titles, caveats and variants describe the implemented behavior: cart operations are not drawer variants, and catalog filters are not grid components. The consuming application supplies dynamic data, identity, inventory, payment authorization, persistence, tax, refunds, shipping and security. The [focused reuse plan](focused-reuse.md) preserves these assets while pausing broad expansion.
 
 ## Reuse and customization
 
@@ -18,6 +28,6 @@ Use Radix UI or React Aria for accessible popups, menus, dialogs, and focus mana
 
 See `docs/best-practices/ui-libraries.md` and `docs/best-practices/commerce-and-browser.md` for broader resources. For scrollbars, prefer native browser scrolling with CSS styling and keyboard access; custom scroll containers need careful accessibility testing.
 
-## Follow-up requirements
+## Acceptance in the receiving application
 
-Before registering these examples as installable production modules: add automated tests for cart calculations, currency isolation, invalid input, CSV formula injection, upload metadata, and UI keyboard interactions; add provider adapters, security reviews, integration contracts and platform-specific variants. Do not present example UI as production-accessible without those checks.
+The pure storefront and utility sources have repository behavior tests in `tests/source-examples.test.mjs`; the data-table has component tests and a compile/DOM handoff fixture. These checks establish only their named behavior. Run the receiving app's build and relevant tests with its real data and UI, and check keyboard interactions and stylesheet loading where applicable. Record missing provider, authorization, persistence and accessibility work in that task. A source copy or passing hash check does not establish a completed storefront or savings on the whole task.

@@ -2,6 +2,8 @@
 
 Jev is Genisys' typed decision model: deterministic code gives it a concise state and a few typed questions, and it answers each question with a probability. This guide explains how Jev, and any agent working the same way, finds anything in this repository without reading it: code, capabilities, catalogs, install commands and documentation sections.
 
+This is an optional access path under the [focused reuse plan](focused-reuse.md). Use the app's existing components or a known suitable library directly; do not add a decision-model call to every coding task. Evaluate the entire lookup, integration and repair cost before claiming savings. Recipe titles and caveats distinguish data helpers from rendered components, structural examples and external references; they appear in the same candidate fields as other known limits.
+
 The rule follows Genisys' bounded Jev contract (`docs/architecture/project-context-and-jev.md` and `docs/research/jev-routing-and-skills-2026-10-08.md` in the Genisys repository):
 
 1. Ordinary code shortlists candidates deterministically.
@@ -18,7 +20,7 @@ The result is a `genlib.jev/v1` packet:
 
 | Field | Contents |
 | --- | --- |
-| `state` | The task (at most 2,000 characters), the selection policy (license policy, retired records), the detected project languages and frameworks when `--target` is given, and up to 8 candidates. Each candidate has `ref`, `type`, `id`, `title`, a summary of at most 200 characters, languages and fit, plus, where known, a compact license and scope, installation mode, module or pack bindings, lifecycle, readiness, verification, tested profiles and a `caveat` (at most 200 characters) when a capability has a known limit. |
+| `state` | The task (at most 2,000 characters), the selection policy (license policy, retired records), the detected project languages and frameworks when `--target` is given, and up to 8 candidates. Each candidate has `ref`, `type`, `id`, `title`, a summary of at most 200 characters, languages and fit, plus, where known, a compact license and scope, installation mode, module or pack bindings, lifecycle, readiness, verification, tested profiles and a `caveat` (at most 200 characters) for a known limit or delivery boundary. |
 | `questions` | One `yes_no` question per candidate, for example: "Would the capability ... (c2) directly help complete the task?". Several candidates may be useful at once. |
 | `decision` | `independent-membership` with threshold `0.8`, and the selection rule. |
 | `next` | For each `ref`, the exact commands to run after selection: copy, install, inspect or read a section. |
@@ -50,7 +52,7 @@ Put the task's constraints in the task text. When it forbids new dependencies ("
 | `capability` | One task mapped to tested code in 9 languages (SSO, MFA, passkeys, PDF, DOCX, forms, calculator and more) | The one copy command for the detected or named language |
 | `module` | Versioned, hash-verified source modules | `inspect`, `plan`, `add` |
 | `integration` | Complete optional feature/developer/native profiles with declared files and scoped verification | `integration inspect`, `integration plan`, `integration add` |
-| `recipe` | Single-file TypeScript sources | `recipe-install.mjs add` |
+| `recipe` | TypeScript helpers, source/structural examples and module aliases; check delivery caveats | `recipe-install.mjs add` |
 | `language-example` | Code in Python, Go, Rust, Java, Kotlin, C#, Dart, Swift | `language-modules.mjs add --with-tests` |
 | `template` | Project, GitHub, docs and ship starters | Read the guide, merge selected files |
 | `tool` | Repository navigation, cached dependency health and retrieval evaluation | The tool's command |
@@ -78,7 +80,7 @@ Lexical matching can miss related wording. Every source therefore stays reachabl
 
 ## Keep the decision cheap
 
-The packet is small: in the measured runs a Jev decision read 650 to 2,300 tokens of packet and wrote under 200. Running that decision inside a full agent harness (system prompt, tool definitions, project instructions) cost about 75,000 tokens of fixed context per decision, more than the coding the selection saved on small tasks. Call the decision model directly with only the packet, no tools and no project context:
+The [historical benchmark runs](benchmarks.md) measured 650 to 2,300 tokens of packet input and under 200 output tokens for a Jev decision. Those harness runs also recorded substantial fixed context. These observations do not establish the cost of a different host or model. If a separate decision call is justified for the task, send the bounded packet directly without adding an unnecessary full coding-agent context:
 
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" jev "<task words and constraints>" --target "$APP_ROOT" --prompt   # about 200-400 tokens to send
@@ -87,11 +89,11 @@ node "$GENLIB_ROOT/bin/genlib.mjs" jev "<task words and constraints>" --target "
 
 `--prompt` states the answer rule once instead of in every question (MCP: `prompt: true`). Candidates scoring below 40% of the best match are left out, so a clear task usually yields one or two candidates.
 
-After selection, let ordinary code finish the work before the coding model starts: run the selected copy command with `--run-tests` (Python and Go) or run its `# test:` command, and put the copied paths, the `# api:` lines, `# tests cover:` and the test result in the coding prompt. Every turn the coding agent spends re-reading copied code or re-running tests re-reads its whole context; in the measured runs each turn cost about as much as writing 900 tokens. Tell it to add tests only for requirements the listed tests do not cover.
+After selection, ordinary code can run the selected copy command and its declared checks (`--run-tests` for supported Python and Go examples). Pass copied paths, the handoff, declared test coverage and actual check results to the coding agent. A module's `verify` checks hashes only. The agent must still integrate and run the app's relevant checks, and may read source or add tests where the task requires them. A passing copy or a decision that declines Genlib is not evidence of reuse savings.
 
 ## Over MCP
 
-MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`. After Jev selects a code candidate, `genlib outline <ref>` (MCP `genlib_outline`) gives its signatures without reading the source; for an external candidate, `genlib source <ref>` (MCP `genlib_source`) fetches only the needed folder at a pinned commit.
+MCP clients get the same packet from the `genlib_jev` tool of `bin/genlib-mcp.mjs` (see [agent-access.md](agent-access.md)), and the same rankings from `genlib_find`. After Jev selects a code candidate, `genlib outline <ref>` (MCP `genlib_outline`) gives its signatures without reading the source; for an external candidate, `genlib source <ref>` (MCP `genlib_source`) returns source-fetch commands for the requested path. Run those commands separately only within the existing task authorization.
 
 Both MCP entry points expose `genlib_jev` over the same packet builder, plus compact `genlib_quick`, `genlib_find` and `genlib_outline`. The dependency-free `bin/genlib-mcp.mjs` accepts a local absolute `target` (see [agent-access.md](agent-access.md)). The optional SDK server also offers full `genlib_search`, accepts a relative `project` inside its configured root, and exposes explicit `licensePolicy` and `includeRetired` inputs (see [MCP connection instructions](mcp-server.md)). Use the input schema of the connected server; their project-path arguments are different. `genlib harness config <host>` emits the correct native configuration for each [supported harness](harnesses.md), including Ollama through an MCP-capable host. `harness doctor` verifies local read-only protocol calls without invoking a decision model.
 
@@ -103,6 +105,7 @@ Both MCP entry points expose `genlib_jev` over the same packet builder, plus com
 | --- | --- |
 | `ref` | `type:id` |
 | `title`, `summary` | Short display text |
+| `caveat` | Known limit or delivery boundary, when supplied, at most 200 characters |
 | `terms` | Search terms |
 | `languages` | Languages the entry serves, when known |
 | `license`, `lifecycle`, `readiness`, `testedProfiles` | Compact selection evidence when available; unknown remains unknown |
