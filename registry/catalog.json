@@ -384,7 +384,7 @@
     },
     {
       "id": "email-signup",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "title": "User signup with email verification",
       "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
       "kind": "feature",
@@ -408,8 +408,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/email-signup@0.2.0.json",
-      "sha256": "38bd41be77d61d96786e3ec83237eb7dfce196f1b53561a130df8c8471917b0d"
+      "manifest": "registry/manifests/email-signup@0.2.1.json",
+      "sha256": "1f9699ae0d440666c5d2da560379a89b8280febcc44f192ad6b43930248a3f3b"
     },
     {
       "id": "entitlements",
@@ -502,7 +502,7 @@
     },
     {
       "id": "file-uploads",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "title": "File upload with size and type checks",
       "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
       "kind": "feature",
@@ -528,8 +528,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/file-uploads@0.2.1.json",
-      "sha256": "55743ccf3eae501ab6524a77564c1eb22f1aeb43309c855d9f9d27746758a2b2"
+      "manifest": "registry/manifests/file-uploads@0.2.2.json",
+      "sha256": "a3125e0237739a73443d4794cb7e4ec1c3c19823790314224f8940ce7eda0317"
     },
     {
       "id": "health-checks",
@@ -919,7 +919,7 @@
     },
     {
       "id": "recurring-events",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "title": "Recurring calendar events (RRULE)",
       "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
       "kind": "feature",
@@ -947,8 +947,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/recurring-events@0.1.0.json",
-      "sha256": "1eabc1682cdeb1f787e09b774de23ece41261a689a826b8028b9c2a400600a4c"
+      "manifest": "registry/manifests/recurring-events@0.1.1.json",
+      "sha256": "89a1352b8bb6c3787854468862c1c1fb8749e6bf61fa062c4d161a1c9bcb44ce"
     },
     {
       "id": "scheduled-tasks",
@@ -1187,7 +1187,7 @@
     },
     {
       "id": "two-factor",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "title": "Two-factor authentication with an authenticator app (TOTP)",
       "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
       "kind": "feature",
@@ -1215,8 +1215,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/two-factor@0.2.0.json",
-      "sha256": "051c10053f82fbeb5dce87798bd559ed3dd802667e92fae6122aefa582509480"
+      "manifest": "registry/manifests/two-factor@0.2.1.json",
+      "sha256": "bf781a46ff99aa48ca3ac0e67109d76dad878da9e2c6f642cedd90633ffb7f62"
     },
     {
       "id": "url-slugs",

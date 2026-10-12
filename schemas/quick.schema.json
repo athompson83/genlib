@@ -152,6 +152,20 @@
       "type": "string",
       "description": "Suggested minimal profile selection, already applied to the add command in next"
     },
+    "parts": {
+      "type": "array",
+      "description": "Standalone parts: a profile usable without the rest of the module, its size, what it is for and its key signatures (printed as # parts:)",
+      "items": {
+        "type": "object",
+        "required": ["profile", "lines", "use", "api"],
+        "properties": {
+          "profile": { "type": "string" },
+          "lines": { "type": "integer" },
+          "use": { "type": "string" },
+          "api": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
     "importFrom": {
       "type": "string",
       "description": "App path of the file that exports the main API"

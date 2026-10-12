@@ -283,3 +283,19 @@ Rounds 1–3 measured savings on algorithm-sized tasks with an exact standard, s
 - **Required reuse:** both runs installed `recurring-events` and reused its RRULE expander and time-zone conversion (`ruleWalls`, `zoneFor`, `wallToInstant`), writing 372–388 lines of glue instead of about 600, but reading 14–27k tokens of module source took more turns than the lines saved.
 
 Conclusion from rounds 7–9 (22 runs, two models, four tasks): capable agents now write these features correctly in one pass, so reuse saves tokens only when the module can be used without reading its source and without re-implementing semantics the task sets differently. The work that follows from this: give reusable internals (`ruleWalls`, time-zone conversion, sniffing, TOTP checks) their own small documented entry points with signatures in `quick`, so glue can call them without reading the module; and make semantic choices that differ between specifications (start-as-first-occurrence, split style, COUNT caps) options rather than fixed behavior.
+
+## Round 10: standalone parts on the recurrence task (2026-10-12)
+
+Pull request #41 lets a module list parts, profiles usable without the rest of it, and `quick` prints each with its size and signatures; `recurring-events` gained an `expander` part (RRULE expansion and zone conversion, 423 lines, no store, routes or split rules). Same task, fixture and prompts as round 9, two runs each of the guidance and required-reuse arms. Raw table `results-round10.json`. All four passed 18/18.
+
+| Arm | Round 9 mean (runs) | Round 10 runs | Round 10 mean |
+| --- | ---: | --- | ---: |
+| Agent | 208,775 (4) | not rerun | |
+| + Genlib (guidance) | 246,341 (4) | 257,151 (used the part), 187,898 (wrote it) | 222,525 |
+| + Genlib (reuse required) | 294,758 (2) | 331,878, 279,125 | 305,502 |
+
+- **Parts did not lower the cost of reuse.** Both required-reuse runs installed only the expander files but still read 13–26k tokens and wrote 405–440 lines of glue, because the task's validation differs from the module's parser (COUNT capped at 10,000, `+` and leading zeros accepted, date-only UNTIL) and its split rule differs from the module's. One guidance run chose the part on its own and cost more than the two plain runs nearest it.
+- **Routing sent both reuse runs to the smaller `rrule` recipe first**, which rejects BYSETPOS and WKST; they found the module under `# also`. The remaining guidance run read the `# fixed` line (routes, split behavior) as applying to the part and wrote the feature.
+- **Economic gate:** the guidance arm's mean is +6.6% over the plain agent's round-9 mean with overlapping ranges, within noise.
+
+What remains open: `# fixed` should say that a part carries none of the module's fixed choices; `quick` should prefer an implementation whose contract coverage is direct over a partial one for the same feature; and a module parser could take a strict mode so glue need not re-validate. None of these is expected to turn reuse into a saving on tasks where a capable agent writes a correct feature in one pass, which rounds 7–10 (26 runs) consistently showed.

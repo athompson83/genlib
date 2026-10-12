@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "two-factor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "title": "Two-factor authentication with an authenticator app (TOTP)",
   "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -94,6 +94,18 @@
       "files/http.ts"
     ]
   },
+  "parts": [
+    {
+      "profile": "core",
+      "use": "RFC 6238 TOTP and base32 helpers callable without a store (one file)",
+      "api": [
+        "totpCode(secret, timeMs)",
+        "base32Decode(text) / base32Encode(bytes)",
+        "buildOtpauthUri({ issuer, accountName, secret })",
+        "constantTimeEqual(a, b)"
+      ]
+    }
+  ],
   "exports": [
     {
       "name": "createTwoFactor",
@@ -209,6 +221,12 @@
   },
   "changelog": [
     {
+      "version": "0.2.1",
+      "changes": [
+        "Parts entry: the core file's TOTP, base32 and otpauth helpers work without a store."
+      ]
+    },
+    {
       "version": "0.2.0",
       "changes": [
         "New options with the 0.1.0 behavior as default: lockoutMs (consecutive-failure lockout) and allowCodeSpaces.",
@@ -225,11 +243,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/two-factor/module.json",
-    "sha256": "aef4649236e3e24b264c6813c6173ae056ca417707bb67aa79e477ed97a2edd8"
+    "sha256": "4b0fac492ce2a13dc4c5bf6a5a19f673e217a88f447c9eda2ed40e73f92234d3"
   },
   "contractFile": {
     "path": "modules/two-factor/CONTRACT.md",
-    "sha256": "73f66acbd806af65e56fadb59287ceaf4e1e1de9bd895cb1aed715b0680f3f56",
+    "sha256": "c48077acec59155670ca358a3193cc0082903043520923ca45425b64f66fd660",
     "bytes": 11260
   }
 }

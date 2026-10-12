@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "email-signup",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "title": "User signup with email verification",
   "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -33,7 +33,8 @@
     { "source": "files/sql-store.ts", "target": "email-signup/sql-store.ts" },
     { "source": "files/schema.sql", "target": "email-signup/schema.sql" }
   ],
-  "profiles": { "core": ["files/core.ts", "files/password-policy.ts", "files/scrypt-hasher.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
+  "profiles": { "core": ["files/core.ts", "files/password-policy.ts", "files/scrypt-hasher.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"], "password": ["files/password-policy.ts", "files/scrypt-hasher.ts"] },
+  "parts": [{ "profile": "password", "use": "NIST-style password checks and scrypt hashing (Node.js), no accounts or tokens", "api": ["createPasswordPolicy({ minLength })(password) -> problems", "createScryptHasher().hash(pw) / .verify(pw, stored)"] }],
   "exports": [
     { "name": "createEmailSignup", "from": "email-signup/core.ts" },
     { "name": "SignupError", "from": "email-signup/core.ts" },
@@ -81,10 +82,9 @@
     "Production database correctness, email deliverability, hashing cost tuning and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: POST {prefix}/signup and /resend → 202 {ok:true} for every outcome; POST {prefix}/confirm → 200",
-    "a registered email gets the same 202, never 409; accountId and serverError are server-only",
-    "password 15-128 chars (minLength option), no composition rules; scrypt N=2^17; 400 weak-password",
-    "token SHA-256 hashed, 24 h, single use, confirmed by POST; the resend cap is a rolling window"
+    "http adapter: signup and resend answer 202 {ok:true} for every outcome (never 409), confirm 200",
+    "password 15-128 chars by default (minLength option), no composition rules; scrypt N=2^17",
+    "tokens SHA-256 hashed, 24 h, single use; resend capped per rolling hour; accountId stays server-side"
   ],
   "verification": {
     "level": "tested",
@@ -113,6 +113,7 @@
     ]
   },
   "changelog": [
+    { "version": "0.2.1", "changes": ["New password install profile (password-policy.ts, scrypt-hasher.ts) and a parts entry; decisions reworded to say which apply to the HTTP adapter only."] },
     { "version": "0.2.0", "changes": ["Breaking: the resend cap is a rolling window. SignupAccount.recentSends replaces sendWindowStart/sendWindowCount, and schema.sql replaces send_window_start/send_window_count with recent_sends bigint[] (see the upgrade note in schema.sql).", "Fix: a fixed window that restarted after sendWindowMs allowed up to twice maxSendsPerWindow emails inside one rolling window.", "New: verifyPassword(email, password); accountId on the signup result (server-only); onVerified receives { email }; retryDelaysMs option.", "Fix: the built-in blocklist now covers common 8 to 14 character passwords, which slipped through when minLength was lowered to 8."] },
     { "version": "0.1.0", "changes": ["First release: core, NIST-style policy, scrypt hasher, in-memory store, PostgreSQL schema and store, and Fetch adapter with a verified gate."] }
   ],

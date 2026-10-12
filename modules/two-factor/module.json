@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "two-factor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "title": "Two-factor authentication with an authenticator app (TOTP)",
   "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -31,6 +31,7 @@
     { "source": "files/schema.sql", "target": "two-factor/schema.sql" }
   ],
   "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
+  "parts": [{ "profile": "core", "use": "RFC 6238 TOTP and base32 helpers callable without a store (one file)", "api": ["totpCode(secret, timeMs)", "base32Decode(text) / base32Encode(bytes)", "buildOtpauthUri({ issuer, accountName, secret })", "constantTimeEqual(a, b)"] }],
   "exports": [
     { "name": "createTwoFactor", "from": "two-factor/core.ts" },
     { "name": "TwoFactorError", "from": "two-factor/core.ts" },
@@ -102,6 +103,7 @@
     ]
   },
   "changelog": [
+    { "version": "0.2.1", "changes": ["Parts entry: the core file's TOTP, base32 and otpauth helpers work without a store."] },
     { "version": "0.2.0", "changes": ["New options with the 0.1.0 behavior as default: lockoutMs (consecutive-failure lockout) and allowCodeSpaces.", "Breaking (SQL): the SQL store writes two_factor_attempts.locked_until, so run the migration below before upgrading. Store: registerAttempt takes an optional lockout argument and AttemptWindow may carry lockedUntil; schema.sql adds two_factor_attempts.locked_until (ALTER TABLE two_factor_attempts ADD COLUMN IF NOT EXISTS locked_until bigint). Custom stores that ignore the argument fail closed in lockout mode (the count never resets except on success)."] },
     { "version": "0.1.0", "changes": ["First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter."] }
   ],

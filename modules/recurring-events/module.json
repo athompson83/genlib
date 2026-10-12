@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "recurring-events",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Recurring calendar events (RRULE)",
   "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -97,6 +97,11 @@
     ],
     "http": [
       "files/http.ts"
+    ],
+    "expander": [
+      "files/rrule.ts",
+      "files/timezone.ts",
+      "files/errors.ts"
     ]
   },
   "exports": [
@@ -135,6 +140,34 @@
     {
       "name": "createRecurringEventsHandler",
       "from": "recurring-events/http.ts"
+    },
+    {
+      "name": "parseRRule",
+      "from": "recurring-events/rrule.ts"
+    },
+    {
+      "name": "ruleWalls",
+      "from": "recurring-events/rrule.ts"
+    },
+    {
+      "name": "zoneFor",
+      "from": "recurring-events/timezone.ts"
+    },
+    {
+      "name": "wallToInstant",
+      "from": "recurring-events/timezone.ts"
+    },
+    {
+      "name": "instantToWall",
+      "from": "recurring-events/timezone.ts"
+    },
+    {
+      "name": "parseLocal",
+      "from": "recurring-events/timezone.ts"
+    },
+    {
+      "name": "formatLocal",
+      "from": "recurring-events/timezone.ts"
     }
   ],
   "configuration": [
@@ -162,10 +195,10 @@
     "Authorization, calendar sharing, invitations/attendees, reminders and notifications are application responsibilities."
   ],
   "decisions": [
-    "routes: POST /series 201, GET|PATCH|DELETE /series/:id, GET /occurrences, /series/:id/occurrences, /series/:id/ics",
-    "a time skipped by DST shifts forward by the gap; a repeated time uses its first instance (RFC 5545 3.3.5)",
-    "cancelled occurrences export as EXDATE; moved/changed ones as VEVENTs with RECURRENCE-ID",
-    "following edits set UNTIL 1 s before the split; timing edits shift exceptions by the start delta, drop non-matches"
+    "http routes: POST /series, GET|PATCH|DELETE /series/:id, GET /occurrences, /series/:id/occurrences, /series/:id/ics",
+    "a DST-skipped time moves forward by the gap; a repeated one takes its first instance",
+    "cancelled occurrences export as EXDATE, changed ones as RECURRENCE-ID VEVENTs",
+    "following edits end the old series 1 s before the split (UNTIL) and shift exceptions by the start delta"
   ],
   "verification": {
     "level": "tested",
@@ -198,6 +231,12 @@
   },
   "changelog": [
     {
+      "version": "0.1.1",
+      "changes": [
+        "New expander install profile (rrule.ts, timezone.ts, errors.ts) and a parts entry, so apps that keep their own storage and API can install only RRULE expansion and zone conversion."
+      ]
+    },
+    {
       "version": "0.1.0",
       "changes": [
         "First release: RRULE engine, time-zone expansion, exceptions and overrides, window queries, series edits, .ics export, in-memory and PostgreSQL stores, and Fetch adapter.",
@@ -205,5 +244,16 @@
       ]
     }
   ],
-  "contract": "CONTRACT.md"
+  "contract": "CONTRACT.md",
+  "parts": [
+    {
+      "profile": "expander",
+      "use": "RRULE parsing and expansion in local time plus DST-safe zone conversion, no store",
+      "api": [
+        "parseRRule(text)",
+        "ruleWalls(rule, startWall, {fromWall, stopWall})",
+        "wallToInstant(zoneFor(tz), wall)"
+      ]
+    }
+  ]
 }

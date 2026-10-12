@@ -66,3 +66,25 @@ test('a module with install profiles lists them and suggests a minimal --profile
   assert.match(text, /^# profiles: core, memory, sql, http$/m);
   assert.match(text, /add org-invitations --profile core,memory,http --target/);
 });
+
+test('a module with standalone parts names each with its profile, size, purpose and signatures', () => {
+  const pick = json('recurring', 'calendar', 'events', 'with', 'time', 'zones', 'and', 'exceptions');
+  assert.equal(pick.best, 'module:recurring-events');
+  const expander = pick.parts?.find(part => part.profile === 'expander');
+  assert.ok(expander, JSON.stringify(pick.parts));
+  assert.ok(expander.lines > 0 && expander.lines < pick.size.lines, 'a part is smaller than the module');
+  assert.ok(expander.api.some(signature => /^ruleWalls\(/.test(signature)));
+  const text = quick('recurring', 'calendar', 'events', 'with', 'time', 'zones', 'and', 'exceptions');
+  // Measured with the placeholder path, as the token budgets are, so the checkout location does not count.
+  const sized = execFileSync(process.execPath, [root + 'bin/genlib.mjs', 'quick', 'recurring', 'calendar', 'events', 'with', 'time', 'zones', 'and', 'exceptions'], { cwd: root, encoding: 'utf8', env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' } });
+  assert.ok(Buffer.byteLength(sized) <= 1200, 'quick budget with parts: ' + Buffer.byteLength(sized));
+  assert.match(text, /^# parts: --profile expander \(\d+ lines\): .+ · ruleWalls\(/m);
+});
+
+test('parts must name an existing profile and stay short', async () => {
+  const { validateModule } = await import('../lib/catalog.mjs');
+  const manifest = JSON.parse(readFileSync(root + 'modules/recurring-events/module.json', 'utf8'));
+  assert.doesNotThrow(() => validateModule(manifest, 'recurring-events'));
+  assert.throws(() => validateModule({ ...manifest, parts: [{ profile: 'nope', use: 'x', api: ['f()'] }] }, 'recurring-events'), /parts/);
+  assert.throws(() => validateModule({ ...manifest, parts: [{ profile: 'expander', use: 'x'.repeat(200), api: ['f()'] }] }, 'recurring-events'), /parts/);
+});
