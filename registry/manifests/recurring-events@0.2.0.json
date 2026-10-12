@@ -222,10 +222,14 @@
     "Authorization, calendar sharing, invitations/attendees, reminders and notifications are application responsibilities."
   ],
   "decisions": [
-    "start must match the rule unless startRule:'rfc5545' (start always first, counts in COUNT)",
-    "windows overlap [from,to) unless windowMatch:'start'; lastYear caps expansion",
-    "DST gap moves forward, repeated time takes the first; errors carry code + field to map",
-    "following edits end the old series at the split; COUNT carries over"
+    "DST gap moves forward, repeated time takes the first; errors carry code + field",
+    "following splits end the old series; a new start shifts later exceptions"
+  ],
+  "options": [
+    "startRule:'rfc5545' (start always first, in COUNT)",
+    "windowMatch:'start' (default overlap)",
+    "lastYear",
+    "editOccurrence {replace:true}"
   ],
   "verification": {
     "level": "tested",
@@ -304,7 +308,7 @@
   ],
   "authoredManifest": {
     "path": "modules/recurring-events/module.json",
-    "sha256": "0765c30874faa954d266f81fc1583e6affc2c2104ec0027a8e41d56d6849440f"
+    "sha256": "59f91e8a0553f005e6b66e1f1e78e303bbe25109b639436381a4bd5418046196"
   },
   "contractFile": {
     "path": "modules/recurring-events/CONTRACT.md",

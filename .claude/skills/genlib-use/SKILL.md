@@ -18,7 +18,7 @@ description: Find, plan, and install reusable Genlib code, modules and integrati
   ],
   "cheapest_path": [
     "0. Default: write it yourself. Code under ~200 lines (signatures, CSV, TOTP, URL checks) is cheaper to write than find, copy and adapt; query only for larger features or an unknown standard.",
-    "1. node $GENLIB_ROOT/bin/genlib.mjs quick <task words> --target <app>  -> best match, commands, # reuse, # fixed (routes/codes it imposes), # size, # api, # needs, # then. Decide from this one call: copy only large code whose # fixed fits; a conflict, # caveat or # skip means write it.",
+    "1. node $GENLIB_ROOT/bin/genlib.mjs quick <task words> --target <app>  -> best match, # reuse, # fixed (imposed), # options (changeable, not conflicts), # size, # api, # needs, # then. Decide from this call: copy large code whose # fixed fits; a conflict, # caveat or # skip means write it.",
     "2. Only once copying: outline <id> [--language <lang>]  -> signatures and one-line docs.",
     "3. Run the returned command; it lists copied paths, API, a test command and what is verified. Run that test (do not re-read source), then app checks.",
     "External project to read? genlib source <id> [--path dir] fetches one pinned folder and names Genlib code doing the job; never clone whole repos into context.",

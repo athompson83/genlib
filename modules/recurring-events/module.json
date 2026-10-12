@@ -195,10 +195,14 @@
     "Authorization, calendar sharing, invitations/attendees, reminders and notifications are application responsibilities."
   ],
   "decisions": [
-    "start must match the rule unless startRule:'rfc5545' (start always first, counts in COUNT)",
-    "windows overlap [from,to) unless windowMatch:'start'; lastYear caps expansion",
-    "DST gap moves forward, repeated time takes the first; errors carry code + field to map",
-    "following edits end the old series at the split; COUNT carries over"
+    "DST gap moves forward, repeated time takes the first; errors carry code + field",
+    "following splits end the old series; a new start shifts later exceptions"
+  ],
+  "options": [
+    "startRule:'rfc5545' (start always first, in COUNT)",
+    "windowMatch:'start' (default overlap)",
+    "lastYear",
+    "editOccurrence {replace:true}"
   ],
   "verification": {
     "level": "tested",

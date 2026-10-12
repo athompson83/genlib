@@ -119,6 +119,14 @@
       "maxItems": 4,
       "description": "Behavior the module fixes that a task may contradict (routes, status codes, storage)"
     },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "description": "Defaults the module lets the app change, with the option that changes each"
+    },
     "size": {
       "type": "object",
       "required": [
