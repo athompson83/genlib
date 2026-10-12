@@ -185,10 +185,11 @@
     "Production database correctness, key management, session handling and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "TOTP only: SHA-1, 6 digits, 30 s, one step either side; no SMS or email codes",
-    "5 attempts per 15 min (or a lockoutMs lockout), then 429; 10 HMAC-stored recovery codes (XXXXX-XXXXX)",
-    "secrets AES-256-GCM encrypted at rest; a pending enrollment expires after 15 min",
-    "disable and regenerate need sign-in within 10 min, else 403 reauthentication-required"
+    "TOTP only: SHA-1, 6 digits, 30 s, ±1 step, each step once; no SMS or email codes",
+    "over the limit → 429; recovery codes HMAC-stored; secrets AES-256-GCM; stale sign-in → 403"
+  ],
+  "options": [
+    "maxAttempts (5) per attemptWindowMs (15 min) or lockoutMs; stepUpMaxAgeMs (10 min); recoveryCodeCount (10)"
   ],
   "verification": {
     "level": "tested",
@@ -243,7 +244,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/two-factor/module.json",
-    "sha256": "4b0fac492ce2a13dc4c5bf6a5a19f673e217a88f447c9eda2ed40e73f92234d3"
+    "sha256": "6754b2cb90a452a6f8ff1b6bf2f00a99b17140882f342da9ce3a6d42eb5b0c18"
   },
   "contractFile": {
     "path": "modules/two-factor/CONTRACT.md",

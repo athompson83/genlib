@@ -56,10 +56,12 @@
     "Pricing, tax, refunds and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "past_due keeps the paid plan 7 days, then the fallback plan; canceled and unpaid use fallback at once",
-    "a limit missing from a plan is 0; overrides never upgrade the fallback plan",
+    "canceled and unpaid use fallbackPlan at once; a limit missing from a plan is 0; overrides never upgrade the fallback",
     "credit balance is replayed from a ledger; debit fails insufficient rather than going negative",
-    "holds expire after a 1 s to 24 h ttl; a reused key with a different amount fails key-reused"
+    "reserve ttlMs must be 1 s to 24 h; a reused key with a different amount fails key-reused"
+  ],
+  "options": [
+    "graceMs: past_due keeps the paid plan, then fallbackPlan (default 7 days)"
   ],
   "verification": {
     "level": "tested",

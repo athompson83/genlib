@@ -226,8 +226,11 @@
   ],
   "decisions": [
     "results are {notModified, data, meta}; a 304 gives data: null and caching is the app's job",
-    "retries off by default (max 2, only 429/502/503/504); 15 s total timeout; 1 MiB response cap",
-    "a provider 404 is a PublicDataError, not an empty record; redirects are refused"
+    "only 429/502/503/504 retry; a provider 404 is a PublicDataError, not an empty record; redirects refused"
+  ],
+  "options": [
+    "maxRetries (default 0, max 2), maxRetryDelayMs (5000); timeoutMs: total deadline (15000)",
+    "maxResponseBytes: decoded response cap (default 1 MiB)"
   ],
   "verification": {
     "level": "tested",
@@ -238,7 +241,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/public-data-clients/module.json",
-    "sha256": "597cd833addaa8b761471c82e5ef84cc2bad13c9459ba9d3fadf180b07e5ebf6"
+    "sha256": "b0a3d84682d750955dc9cfc975f1799fc5cb7b792f3957779fd41f6e393f69a6"
   },
   "contractFile": {
     "path": "modules/public-data-clients/CONTRACT.md",

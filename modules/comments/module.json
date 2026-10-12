@@ -64,9 +64,11 @@
   ],
   "decisions": [
     "routes: GET|POST {prefix}, PATCH|DELETE {prefix}/{id}, POST {prefix}/{id}/reactions|flag|moderate",
-    "max reply depth 3; author edit window 15 min, then 409; delete is soft, deleted → 410",
-    "3 flags auto-hide a comment; bodies plain text up to 10,000 chars, never rendered as HTML",
-    "other-tenant ids → 404 not-found; listing an unreadable target → 403"
+    "edit after the window → 409; delete is soft, deleted → 410; other-tenant ids → 404; unreadable target → 403"
+  ],
+  "options": [
+    "maxDepth: replies (default 3), editWindowMs (default 15 min), flagThreshold: auto-hide (default 3)",
+    "maxBodyLength (default 10,000); reactions allow-list; sanitize for rich text (default plain text, never HTML)"
   ],
   "verification": {
     "level": "tested",

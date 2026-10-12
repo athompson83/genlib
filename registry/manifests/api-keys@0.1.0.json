@@ -166,6 +166,9 @@
     "Authorization: Bearer only; invalid, revoked or expired → 401 invalid_token; missing scope → 403",
     "no HTTP management routes: only the authenticateRequest helper"
   ],
+  "options": [
+    "appPrefix (default 'sk'), acceptEnvironments (default live, test), realm (default 'api')"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": [
@@ -205,7 +208,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/api-keys/module.json",
-    "sha256": "9d6cc0d73a4e6b0f8d75922fbd2c18ebb585d521a26c01071af0e4e4a971e8c9"
+    "sha256": "995af61c8945c46fe69aea9c4d0efde8969d579b7c04060682f3ae1ffdcc843c"
   },
   "contractFile": {
     "path": "modules/api-keys/CONTRACT.md",

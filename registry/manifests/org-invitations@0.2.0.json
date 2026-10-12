@@ -145,9 +145,13 @@
   ],
   "decisions": [
     "routes: POST {prefix}, GET {prefix}?tenantId=, DELETE {prefix}/{id}, POST {prefix}/inspect, POST {prefix}/accept",
-    "accepting a used invite → 409 already-accepted; expired or revoked → 410; email mismatch → 403",
-    "token stored as SHA-256 hash; 7-day default ttl; re-inviting an email revokes the earlier link",
-    "failed email send revokes the invite → 502 delivery-failed; over 100 pending per tenant → 429"
+    "accepting a used invite → 409 already-accepted; expired or revoked → 410",
+    "token stored as SHA-256 hash; re-inviting an email revokes the earlier link",
+    "failed email send revokes the invite → 502 delivery-failed"
+  ],
+  "options": [
+    "ttlMs: invite lifetime (default 7 days); maxPendingPerTenant (default 100, then 429)",
+    "requireEmailMatch: verified email must equal the invited one (default true, mismatch → 403)"
   ],
   "verification": {
     "level": "tested",
@@ -193,7 +197,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/org-invitations/module.json",
-    "sha256": "2899dfb08c4ab4b9ffe04e0beb771cb3b4f3e72a91cd461b56bbbe8e8d739297"
+    "sha256": "0779d1ee4b385b4e9f77bc32b6c3a1e0365c1344da101876ccf8341845657e7a"
   },
   "contractFile": {
     "path": "modules/org-invitations/CONTRACT.md",

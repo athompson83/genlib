@@ -148,8 +148,10 @@
   "decisions": [
     "routes: GET {prefix} (query) and GET {prefix}/export?format=csv|ndjson; read-only, no POST route",
     "append in the caller's transaction; PostgreSQL triggers refuse UPDATE, DELETE and TRUNCATE",
-    "per-tenant SHA-256 (or HMAC) hash chain; secrets redacted and emails masked before hashing",
-    "query newest first by seq, limit 1-200 (default 50); retentionMs is required"
+    "per-tenant hash chain; secrets redacted before hashing; query newest first, limit 1-200; retentionMs required"
+  ],
+  "options": [
+    "hmacKey: HMAC chain (default SHA-256); maskEmails (default true); redactKeys, redactPatterns add redactions"
   ],
   "verification": {
     "level": "tested",

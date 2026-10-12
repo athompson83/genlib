@@ -55,10 +55,13 @@
     "Tests use an injected clock and the memory store only."
   ],
   "decisions": [
-    "429 body {\"error\":\"rate_limited\"} with RateLimit-Limit/Remaining/Reset and Retry-After headers",
-    "memory store is a single-process LRU (10,000 keys); use a shared store across instances",
+    "429 with RateLimit-Limit/Remaining/Reset and Retry-After headers; memory store is single-process",
     "denied requests consume nothing; fixed window can pass 2x limit across a boundary",
     "store errors reject consume(); each route chooses fail open or closed"
+  ],
+  "options": [
+    "rateLimitResponse body, headers (default body {\"error\":\"rate_limited\"})",
+    "maxKeys: memory-store LRU size (default 10,000); prefix: key prefix (default rl:<algorithm>:)"
   ],
   "verification": {
     "level": "tested",

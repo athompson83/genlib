@@ -154,9 +154,12 @@
   ],
   "decisions": [
     "derived slugs suffix past taken/reserved (post-2); exact:true refuses non-canonical, reserved or taken input",
-    "default route GET|HEAD {prefix}/:slug -> 200 {entityId, slug}, 301 Location to current slug, else 404",
     "old slugs redirect straight to the current slug and remain owned by their entity; renaming back reclaims one",
-    "default maxLength 80 code points, separator -, fallback item; & becomes and, apostrophes are dropped"
+    "& becomes and, apostrophes are dropped"
+  ],
+  "options": [
+    "routes, prefix, statusFor, redirectStatus: override route and statuses (default GET|HEAD {prefix}/:slug, 301)",
+    "maxLength (80 code points), separator (-), unicode (false), fallback (item), reserved"
   ],
   "verification": {
     "level": "tested",
@@ -198,7 +201,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/url-slugs/module.json",
-    "sha256": "9bd2d752823409b34ff391e9ce2da8040eddf5a1fd19c4f5fce7bcc810ed2d09"
+    "sha256": "13909954241454bdd6ae0a8ca1234447b151a19d98949736341613dae11397e1"
   },
   "contractFile": {
     "path": "modules/url-slugs/CONTRACT.md",

@@ -71,8 +71,11 @@
   "decisions": [
     "routes: GET {prefix}?tenantId&q&f.<attr>=, PUT {prefix}/{id} (upsert), DELETE {prefix}/{id}?tenantId",
     "words are ANDed; \"phrases\", -exclude and a trailing prefix* work; max 256 chars and 16 terms",
-    "BM25 in memory, ts_rank_cd on PostgreSQL; limit 1-50 (default 20); highlights wrapped in <mark>",
+    "BM25 in memory, ts_rank_cd on PostgreSQL; limit max 50; HTTP highlights use <mark>",
     "undeclared filters, attrs or fields → 400; documents with a visibility list are filtered per reader"
+  ],
+  "options": [
+    "limit (default 20); highlight.pre/post in search() (default <mark>); facetLimit (20)"
   ],
   "verification": {
     "level": "tested",

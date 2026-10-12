@@ -122,8 +122,12 @@
   "decisions": [
     "routes: GET {prefix}, GET {prefix}/count, POST {prefix}/read, /read-all, /archive; no publish route",
     "publish is server-side; a repeated dedupeKey returns the existing item within retention",
-    "list 1-50 per page (default 20); prune() keeps 90 days and 500 items per user",
+    "list 1-50 per page (default 20)",
     "ids of other users are silently ignored (not 403 or 404)"
+  ],
+  "options": [
+    "retentionMs: item lifetime and dedupe window (default 90 days); maxPerUser: kept by prune() (default 500)",
+    "maxDataBytes: JSON size of data (default 4,096)"
   ],
   "verification": {
     "level": "tested",
@@ -159,7 +163,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/notification-inbox/module.json",
-    "sha256": "a993fc3fa2f258eb7d676288fac0e4c4742eeff928ffa17bd2ef1ce2d297c015"
+    "sha256": "1cf1d4eff776bc67d03fc1f70b8c0c7f8877c7ad7154f6aa149b1dd01838b5ed"
   },
   "contractFile": {
     "path": "modules/notification-inbox/CONTRACT.md",

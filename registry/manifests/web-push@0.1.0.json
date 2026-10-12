@@ -167,9 +167,12 @@
   ],
   "decisions": [
     "routes: GET {prefix}/vapid-public-key, POST|DELETE {prefix}/subscriptions; sending is server code only",
-    "payload max 3,993 bytes; default urgency normal; VAPID JWT expires after 12 h",
-    "endpoints limited to known push hosts (422 endpoint-not-allowed); 20 subscriptions per user",
-    "a 404 or 410 from the push service deletes the subscription"
+    "payload max 3,993 bytes; a 404 or 410 from the push service deletes the subscription",
+    "endpoint outside allowed hosts → 422 endpoint-not-allowed"
+  ],
+  "options": [
+    "allowedHosts (known push services), allowAnyHttpsEndpoint (false); maxSubscriptionsPerUser (20)",
+    "urgency (default normal); vapidTtlSeconds: VAPID JWT life (default 43,200 = 12 h)"
   ],
   "verification": {
     "level": "tested",
@@ -211,7 +214,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/web-push/module.json",
-    "sha256": "9925fff0fb6fe8161b79f2168caed9892765375c09e1d12d3936709dd61429e4"
+    "sha256": "a9be7bd0920e2671a382feefa5b6c676b32e21582c6f74225d05b5071d090044"
   },
   "contractFile": {
     "path": "modules/web-push/CONTRACT.md",

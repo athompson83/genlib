@@ -149,10 +149,12 @@
     "Legal retention periods, erasure obligations and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: GET|POST|DELETE {prefix}/{userId|me}; POST schedules → 202, DELETE cancels during the grace period",
-    "30-day default grace; request/cancel need sign-in within 5 min, else 401 reauth-required",
-    "already-pending, not-pending, too-late → 409; already-deleted → 410; revoke-failed → 503",
+    "routes: GET|POST|DELETE {prefix}/{userId|me}; POST schedules → 202, DELETE cancels in the grace period",
+    "stale sign-in → 401 reauth-required; pending/not-pending/too-late → 409; deleted → 410; revoke-failed → 503",
     "deletion runs from runDue() in your scheduler, not an HTTP route; needs a deletion store"
+  ],
+  "options": [
+    "graceMs (default 30 days), recentAuthMs: sign-in freshness (default 5 min), leaseMs (default 5 min)"
   ],
   "verification": {
     "level": "tested",
@@ -196,7 +198,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/account-deletion/module.json",
-    "sha256": "a0c41bc5d33780184016fce4f8a65132a9b8ff071d22dcf6c5233821e0ba41ea"
+    "sha256": "6960cac404d52cd299c94101ddbad1a4733e8b10ab2cc545c8c0308ddb297ee3"
   },
   "contractFile": {
     "path": "modules/account-deletion/CONTRACT.md",

@@ -148,8 +148,10 @@
   "decisions": [
     "routes: {prefix}/conversations[/{id}/messages|read|members], {prefix}/messages/{convId}/{seq}, /unread, /blocks",
     "send needs a clientId; new message → 201, retry with same clientId → 200 created:false",
-    "15-min edit window, then 409 edit-window-closed; delete is soft (body null), deleted → 410",
-    "messages max 4,000 chars; groups max 256 members; blocked or not-member → 403"
+    "edit after the window → 409 edit-window-closed; delete is soft (body null), deleted → 410; blocked/not-member → 403"
+  ],
+  "options": [
+    "editWindowMs (default 15 min), maxBody: message chars (default 4,000), maxMembers: group size (default 256)"
   ],
   "verification": {
     "level": "tested",
@@ -192,7 +194,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/chat/module.json",
-    "sha256": "b17264ff9c564f57634d75b72c2fcf22076a658e457b619a9dc2c34128db5285"
+    "sha256": "cac25ea30e8e571d126f533ac8dbff2b7d8c3c968931a8b16dbb1edc133ed1eb"
   },
   "contractFile": {
     "path": "modules/chat/CONTRACT.md",

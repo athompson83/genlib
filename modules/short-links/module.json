@@ -70,10 +70,13 @@
     "Production database correctness, session security, abuse handling and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "redirect GET {prefix}/{code} → 302 (not 301) with cache-control: private, max-age=0",
-    "unknown code → 404; disabled, expired or used-up → 410 unless reportGone: false",
-    "random codes 7 chars from a 57-char alphabet; slugs 3-64 chars, unique across tenants; taken → 409",
-    "only http/https destinations; credentials or blocked hosts → 400; client IP never recorded"
+    "redirect GET {prefix}/{code} → 302 (not 301), cache-control: private, max-age=0; unknown → 404",
+    "codes from a 57-char alphabet; slugs 3-64 chars, unique across tenants; taken → 409",
+    "credentials, blocked hosts or javascript:/data: → 400; client IP never recorded"
+  ],
+  "options": [
+    "reportGone: disabled/expired/used-up → 410 (default true; false → 404); codeLength (7)",
+    "allowedSchemes (https:, http:); maxUrlLength (2048); reservedSlugs; blockHosts (add your domain)"
   ],
   "verification": {
     "level": "tested",

@@ -65,8 +65,11 @@
   "decisions": [
     "GET returns defaults with revision 0; PUT replaces the whole document, no PATCH",
     "stale revision with different values → 409 with current snapshot; an identical PUT is unchanged",
-    "channels limited to email, push, inApp; omitted defaults are false; 1-32 types",
+    "channels limited to email, push, inApp; 1-32 types",
     "PUT body JSON only (415 otherwise), max 16,384 bytes; adapter failures → 503"
+  ],
+  "options": [
+    "schema channels: which of email/push/inApp each type offers; defaults: per-channel default (default false)"
   ],
   "verification": {
     "level": "tested",

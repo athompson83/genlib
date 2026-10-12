@@ -177,8 +177,10 @@
   "decisions": [
     "routes: GET {prefix} (query) and GET {prefix}/export?format=csv|ndjson; read-only, no POST route",
     "append in the caller's transaction; PostgreSQL triggers refuse UPDATE, DELETE and TRUNCATE",
-    "per-tenant SHA-256 (or HMAC) hash chain; secrets redacted and emails masked before hashing",
-    "query newest first by seq, limit 1-200 (default 50); retentionMs is required"
+    "per-tenant hash chain; secrets redacted before hashing; query newest first, limit 1-200; retentionMs required"
+  ],
+  "options": [
+    "hmacKey: HMAC chain (default SHA-256); maskEmails (default true); redactKeys, redactPatterns add redactions"
   ],
   "verification": {
     "level": "tested",
@@ -224,7 +226,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/audit-log/module.json",
-    "sha256": "c87dd2f88f895b3a72c9cc85d61a2485491a119f84d1c75929c4e8613ac8acb6"
+    "sha256": "f0c83c7ef0ae7b5c73ef4e4d2014365529a094e5bce0b1cfb0b55de047ecb2f3"
   },
   "contractFile": {
     "path": "modules/audit-log/CONTRACT.md",

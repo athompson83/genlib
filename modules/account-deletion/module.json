@@ -120,10 +120,12 @@
     "Legal retention periods, erasure obligations and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: GET|POST|DELETE {prefix}/{userId|me}; POST schedules → 202, DELETE cancels during the grace period",
-    "30-day default grace; request/cancel need sign-in within 5 min, else 401 reauth-required",
-    "already-pending, not-pending, too-late → 409; already-deleted → 410; revoke-failed → 503",
+    "routes: GET|POST|DELETE {prefix}/{userId|me}; POST schedules → 202, DELETE cancels in the grace period",
+    "stale sign-in → 401 reauth-required; pending/not-pending/too-late → 409; deleted → 410; revoke-failed → 503",
     "deletion runs from runDue() in your scheduler, not an HTTP route; needs a deletion store"
+  ],
+  "options": [
+    "graceMs (default 30 days), recentAuthMs: sign-in freshness (default 5 min), leaseMs (default 5 min)"
   ],
   "verification": {
     "level": "tested",

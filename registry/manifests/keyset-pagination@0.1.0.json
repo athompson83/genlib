@@ -156,10 +156,14 @@
     "Authorization of the rows themselves stays with the application: the scope hook and scopeColumns must reflect what the caller may see."
   ],
   "decisions": [
-    "cursor = keyId.base64url(JSON).base64url(HMAC-SHA256); default ttl 24 h; first key signs, every listed key verifies",
+    "cursor = keyId.base64url(JSON).base64url(HMAC-SHA256); first key signs, every listed key verifies",
     "errors: malformed-cursor, invalid-signature, expired-cursor, scope-mismatch, invalid-limit, invalid-sort, invalid-filter",
-    "limit: default 20, clamped to maxLimit 100; non-integer or < 1 is invalid-limit (not clamped)",
-    "GET {prefix}{routes.list} -> 200 {items, nextCursor, prevCursor, limit, sort} + Link; all errors 400 by default"
+    "limit above maxLimit is clamped; non-integer or < 1 is invalid-limit (not clamped)"
+  ],
+  "options": [
+    "defaultLimit (default 20), maxLimit (default 100), ttlMs: cursor lifetime (default 24 h)",
+    "routes, statusFor, params: override path, statuses, query names (default GET {prefix}; errors 400)",
+    "linkHeader (default true), publicOrigin"
   ],
   "verification": {
     "level": "tested",
@@ -206,7 +210,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/keyset-pagination/module.json",
-    "sha256": "f17bc67e4be43fd0968c4f2d8b30f2560fa4bce12e2441c8b1efa74848896895"
+    "sha256": "c96f12c0e8682e0497cad5077d11dfce14375ab1e99982d3f36bffdc3b67f7cb"
   },
   "contractFile": {
     "path": "modules/keyset-pagination/CONTRACT.md",

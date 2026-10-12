@@ -77,6 +77,9 @@
     "Authorization: Bearer only; invalid, revoked or expired → 401 invalid_token; missing scope → 403",
     "no HTTP management routes: only the authenticateRequest helper"
   ],
+  "options": [
+    "appPrefix (default 'sk'), acceptEnvironments (default live, test), realm (default 'api')"
+  ],
   "verification": {
     "level": "tested",
     "testFiles": ["tests/api-keys.test.mjs", "tests/api-keys-sql.test.mjs"],

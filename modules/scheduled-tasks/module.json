@@ -139,10 +139,12 @@
     "Production database correctness, tick hosting, handler idempotency and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "5-field cron only (no seconds, L, W, #); default time zone UTC; a DST-skipped time runs once after",
-    "default catch-up runs only the latest missed occurrence; overlap policy skip, queue or allow",
-    "failed runs retry 30 s doubling to 1 h, 3 attempts; 60 s lease; payload max 64 KiB",
-    "no HTTP routes; drive tick() from your own timer or platform cron"
+    "5-field cron only (no seconds, L, W, #); a DST-skipped time runs once after the gap",
+    "payload max 64 KiB; handlers by name; no HTTP routes, drive tick() from your own timer or cron"
+  ],
+  "options": [
+    "timeZone (default UTC); overlap skip|queue|allow (skip); catchUp none|latest|all (latest), maxCatchUp",
+    "maxAttempts (3); retryBaseMs, retryMaxMs: doubling delay (30 s to 1 h); leaseMs, graceMs (60 s)"
   ],
   "verification": {
     "level": "tested",

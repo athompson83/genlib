@@ -171,10 +171,13 @@
     "Tenant resolution trusts whatever session(request) and memberships(userId) return; session security, membership administration and tenant provisioning remain project responsibilities."
   ],
   "decisions": [
-    "PostgreSQL RLS via transaction-local set_config('app.tenant_id'); tables get FORCE ROW LEVEL SECURITY",
-    "a tenant the user is not a member of → 404 not-found by default (hiddenStatus: 403 to change)",
+    "PostgreSQL RLS via transaction-local set_config; tables get FORCE ROW LEVEL SECURITY",
     "several memberships and no selector → 400 tenant-required; none → 403 no-tenant",
     "tenant ids 1-128 chars of [A-Za-z0-9_.:-]; memberships are read on every request"
+  ],
+  "options": [
+    "hiddenStatus: a tenant the user is not a member of (default 404 not-found, or 403)",
+    "setting (app.tenant_id), column (tenant_id), role (app_user); selector (default: session tenant)"
   ],
   "verification": {
     "level": "tested",
@@ -226,7 +229,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/tenant-isolation/module.json",
-    "sha256": "c7fc8aa5bef18fb0b6a2da7b243741327a30353939f6a56df9be894c83c5f711"
+    "sha256": "7270b925e4b6383663b665ca4a5df1c9f99d8c969c289322754e9339aab2d5e0"
   },
   "contractFile": {
     "path": "modules/tenant-isolation/CONTRACT.md",

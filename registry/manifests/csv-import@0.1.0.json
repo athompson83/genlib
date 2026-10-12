@@ -140,9 +140,12 @@
   ],
   "decisions": [
     "routes: POST {prefix}, POST {prefix}/{id}/validate|commit, GET {prefix}/{id}/errors.csv, DELETE {prefix}/{id}",
-    "upload is the raw text/csv body (not multipart), UTF-8 only; other types → 415",
-    "limits 5 MiB, 10,000 rows, 200 columns → 413; staged imports expire after 24 h",
+    "upload is the raw text/csv body (not multipart), UTF-8 only; other types → 415; over a limit → 413",
     "commit saves only valid rows and is repeat-safe; not-validated or commit-in-progress → 409"
+  ],
+  "options": [
+    "limits {maxBytes (5 MiB), maxRows (10,000), maxColumns (200), maxFieldLength}; maxUploadBytes (default 5 MiB)",
+    "ttlMs: staged import lifetime (default 24 h); delimiter (default 'auto')"
   ],
   "verification": {
     "level": "tested",
@@ -180,7 +183,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/csv-import/module.json",
-    "sha256": "d5e6982f2a4f4fd4c3e41d503bfd1d4b2d1ee9afc7bb81255f263de2ca46ce28"
+    "sha256": "2fcd7ed67ee91731e574303ab1efe8c6cdc25128185fe845cd0574a95df8e9c1"
   },
   "contractFile": {
     "path": "modules/csv-import/CONTRACT.md",

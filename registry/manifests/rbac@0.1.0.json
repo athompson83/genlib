@@ -153,8 +153,11 @@
   "decisions": [
     "routes: GET {prefix}/me/permissions, GET|POST|DELETE {prefix}/assignments (DELETE takes a JSON body)",
     "deny rules beat allows; checks need concrete permissions, wildcards → invalid-permission",
-    "escalation → 403; revoking the last owner → 409 last-owner; an existing grant → 200, not 201",
+    "escalation → 403; last holder of a protected role → 409 last-owner; an existing grant → 200, not 201",
     "assignments apply only in their tenant; bodies JSON up to 4 KB"
+  ],
+  "options": [
+    "roles: permissions, inherits, protected per role; expiresAt per grant (default null: never)"
   ],
   "verification": {
     "level": "tested",
@@ -197,7 +200,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/rbac/module.json",
-    "sha256": "a11069eea9127120d204336c08ea59641b1098ccd5c9590bdadcb9141d60caf7"
+    "sha256": "b92374a572d1ad21938ef70d5ea2f5a691c0e8f31bc083fdf58555a2675c9d14"
   },
   "contractFile": {
     "path": "modules/rbac/CONTRACT.md",

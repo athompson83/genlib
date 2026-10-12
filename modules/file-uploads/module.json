@@ -82,10 +82,13 @@
     "Production storage, antivirus accuracy, proxy body limits and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: POST {prefix}/tenants/{tenantId}/files?filename= (raw bytes, not multipart), GET|DELETE {prefix}/files/{id}",
-    "default allowlist png, jpeg, gif, webp, pdf; type sniffed from bytes; mismatch → 415",
-    "new files stay quarantined until a claimed scan is clean; quarantined download → 409, infected → 410",
-    "too-large and quota-exceeded → 413; invalid-name → 400; downloads always use Content-Disposition: attachment"
+    "routes POST {prefix}/tenants/{tenantId}/files?filename= (raw bytes), GET|DELETE {prefix}/files/{id}",
+    "type sniffed from bytes; mismatch → 415; quarantined until a clean scan (409, infected 410); too large → 413",
+    "downloads always Content-Disposition: attachment"
+  ],
+  "options": [
+    "policy.allow (png, jpeg, gif, webp, pdf); policy.invalidFilenames (rename; reject → 400)",
+    "checkDeclaredType (true), scanLeaseMs (15 min)"
   ],
   "verification": {
     "level": "tested",

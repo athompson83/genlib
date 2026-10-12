@@ -77,10 +77,12 @@
     "Tests replace only the outbound HTTP boundary and make no live calls. Provider credentials, current permissions, database policies, actual payments/delivery, and deployed behavior remain unverified."
   ],
   "decisions": [
-    "no automatic retries; redirects refused; 15 s timeout; 1 MiB response and 256 KiB request caps",
-    "Resend: plain text required, max 50 recipients, no attachments; OpenAI sends store: false, no tools",
-    "GitHub lists stop at 10 pages of 100; Google Calendar returns one page of at most 250 events",
-    "Stripe, Resend and AI calls require an authorize callback returning true before credentials load"
+    "no automatic retries or redirects; Stripe, Resend and AI calls need authorize() true first",
+    "Resend: text body, max 50 recipients, no attachments; OpenAI store: false, no tools"
+  ],
+  "options": [
+    "timeoutMs (15 s), maxResponseBytes (1 MiB), maxRequestBytes (256 KiB)",
+    "GitHub perPage, maxPages (30 x 3, max 100 x 10); Calendar maxResults (100, max 250), pageToken"
   ],
   "verification": {
     "level": "tested",

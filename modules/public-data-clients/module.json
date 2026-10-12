@@ -187,8 +187,11 @@
   ],
   "decisions": [
     "results are {notModified, data, meta}; a 304 gives data: null and caching is the app's job",
-    "retries off by default (max 2, only 429/502/503/504); 15 s total timeout; 1 MiB response cap",
-    "a provider 404 is a PublicDataError, not an empty record; redirects are refused"
+    "only 429/502/503/504 retry; a provider 404 is a PublicDataError, not an empty record; redirects refused"
+  ],
+  "options": [
+    "maxRetries (default 0, max 2), maxRetryDelayMs (5000); timeoutMs: total deadline (15000)",
+    "maxResponseBytes: decoded response cap (default 1 MiB)"
   ],
   "verification": {
     "level": "tested",

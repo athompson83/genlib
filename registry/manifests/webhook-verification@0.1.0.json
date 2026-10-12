@@ -112,9 +112,12 @@
     "Tests ran on Node.js 22 with signatures computed independently by node:crypto; no live provider deliveries were received and other runtimes were not exercised."
   ],
   "decisions": [
-    "verifies raw body bytes; Stripe and Standard Webhooks timestamps allowed 300 s either way",
-    "GitHub sha256 only (no SHA-1); Stripe v1 only; no asymmetric v1a signatures",
+    "verifies raw body bytes; GitHub sha256 only (no SHA-1); Stripe v1 only; no asymmetric v1a signatures",
     "returns {ok:false, reason} instead of throwing; header values over 4,096 chars → malformed"
+  ],
+  "options": [
+    "toleranceSeconds: Stripe/Standard Webhooks window, both ways (default 300, 1-86400)",
+    "secret: one secret, or 1-10 (current first) during rotation"
   ],
   "verification": {
     "level": "tested",
@@ -125,7 +128,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/webhook-verification/module.json",
-    "sha256": "20a8a8068b872bea553e20cecb9f6c91ed72a389cd97ef7dbff99cd018c0f0df"
+    "sha256": "6f3b3115784bbb88933a9de603da99098487f5391690d87e190677d5b5dc1280"
   },
   "contractFile": {
     "path": "modules/webhook-verification/CONTRACT.md",

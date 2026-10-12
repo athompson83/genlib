@@ -67,10 +67,14 @@
     "Authentication, rate-limit storage, production query plans at your scale and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: GET {prefix}/search?lat=&lng=&radius=&limit=&cursor=, PUT and DELETE {prefix}/places/:id (overridable)",
-    "approximate places are stored as a geohash cell centre (>= 1,000 m by default); distances round up to the step",
-    "only the owner can update or delete a place; a foreign id gives 403 on PUT and 404 on DELETE",
-    "default max radius 50 km, page size 20 (max 100); cursors are bound to the exact center and radius"
+    "approximate places stored as a geohash cell centre; others' distances round up to the step",
+    "only the owner can update or delete a place (foreign id: forbidden on PUT, not-found on DELETE)",
+    "cursors bound to the exact center and radius; tenant from the viewer, never the request"
+  ],
+  "options": [
+    "routes, statusFor: override paths and statuses (default GET {prefix}/search, PUT|DELETE {prefix}/places/:id)",
+    "maxRadiusMeters (default 50 km), defaultLimit (20), maxLimit (100)",
+    "privacy.precisionMeters (default 1,000 m), privacy.distanceStepMeters (default precisionMeters)"
   ],
   "verification": {
     "level": "tested",

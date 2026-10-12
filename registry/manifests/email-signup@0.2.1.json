@@ -210,9 +210,12 @@
     "Production database correctness, email deliverability, hashing cost tuning and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "http adapter: signup and resend answer 202 {ok:true} for every outcome (never 409), confirm 200",
-    "password 15-128 chars by default (minLength option), no composition rules; scrypt N=2^17",
-    "tokens SHA-256 hashed, 24 h, single use; resend capped per rolling hour; accountId stays server-side"
+    "signup and resend answer 202 {ok:true} for every outcome, confirm 200",
+    "no password composition rules; tokens SHA-256 hashed, single use; accountId stays server-side"
+  ],
+  "options": [
+    "createPasswordPolicy({minLength, maxLength}) (15-128); hasher (scrypt, cost 17)",
+    "ttlMs (24 h); resendCooldownMs (60 s); maxSendsPerWindow per sendWindowMs (5 per hour)"
   ],
   "verification": {
     "level": "tested",
@@ -273,7 +276,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/email-signup/module.json",
-    "sha256": "019db15fbf5feddf5c505bf49b39a2273b11dd253e0903a8b8125b8d020f56cd"
+    "sha256": "879756f1ef029d3988c6ba6dea238639c330768cc8a478faca2dc2c10fe02279"
   },
   "contractFile": {
     "path": "modules/email-signup/CONTRACT.md",

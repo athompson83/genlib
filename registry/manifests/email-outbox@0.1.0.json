@@ -178,9 +178,12 @@
   ],
   "decisions": [
     "enqueue is idempotent per key; same key with a different payload fails key-reused",
-    "retries 429/408/409/5xx with full jitter (30 s base, 1 h cap); 6 attempts, then dead",
-    "hard bounces and complaints suppress the address; the events webhook expects Resend event JSON",
-    "webhook: bad signature → 400 invalid-signature; unknown message → 200 known:false; body cap 256 KiB"
+    "transports retry 429/408/409/5xx (Retry-After honoured); hard bounces and complaints suppress the address",
+    "events webhook expects Resend event JSON, verified before parsing; bad signature → 400 invalid-signature"
+  ],
+  "options": [
+    "maxAttempts (default 6, then dead); backoff {baseMs, maxMs} full jitter (default 30 s, 1 h)",
+    "maxRequestBytes: webhook body cap (default 256 KiB); suppress: extra suppression check"
   ],
   "verification": {
     "level": "tested",
@@ -221,7 +224,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/email-outbox/module.json",
-    "sha256": "a09d6152c3fe61f786f04798230d8c010101e3f351585f520730af906fdbc266"
+    "sha256": "5e537035540f14c502bdce55887ece751bfa9cb6450d8a3bc26c88b8b7352e71"
   },
   "contractFile": {
     "path": "modules/email-outbox/CONTRACT.md",

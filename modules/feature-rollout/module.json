@@ -73,9 +73,12 @@
   ],
   "decisions": [
     "precedence: kill switch > user deny > user allow > tenant deny > tenant allow > stored experiment assignment > rollout",
-    "routes: GET|POST /flags, GET|PATCH|DELETE /flags/:key, GET /flags/:key/audit, POST /evaluate; 409 conflict/exists",
     "an exposed experiment subject keeps its variant (even at weight 0 or lower traffic); a removed variant reassigns visibly",
     "exposures and conversions count once per unit; analysis attributes to the variant first shown (intention to treat)"
+  ],
+  "options": [
+    "routes, statusFor: override paths and statuses (default {prefix}/flags, /flags/:key, POST /evaluate)",
+    "cacheTtlMs (default 5,000 ms), maxRequestBytes (default 65,536)"
   ],
   "verification": {
     "level": "tested",

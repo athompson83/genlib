@@ -97,10 +97,12 @@
     "Pricing, tax, refunds and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "past_due keeps the paid plan 7 days, then the fallback plan; canceled and unpaid use fallback at once",
-    "a limit missing from a plan is 0; overrides never upgrade the fallback plan",
+    "canceled and unpaid use fallbackPlan at once; a limit missing from a plan is 0; overrides never upgrade the fallback",
     "credit balance is replayed from a ledger; debit fails insufficient rather than going negative",
-    "holds expire after a 1 s to 24 h ttl; a reused key with a different amount fails key-reused"
+    "reserve ttlMs must be 1 s to 24 h; a reused key with a different amount fails key-reused"
+  ],
+  "options": [
+    "graceMs: past_due keeps the paid plan, then fallbackPlan (default 7 days)"
   ],
   "verification": {
     "level": "tested",
@@ -135,7 +137,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/entitlements/module.json",
-    "sha256": "2f954ed7b7734851d63a7e3fac45ed079f433974b554d83ffd2edd73753579b5"
+    "sha256": "f4e4534f2c1530e564fd8d6dcd4c6473ae846aa4fd2cac6603a3e1e3042bb6d4"
   },
   "contractFile": {
     "path": "modules/entitlements/CONTRACT.md",

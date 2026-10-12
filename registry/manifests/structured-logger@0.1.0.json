@@ -101,10 +101,13 @@
     "Error stacks are omitted unless includeStack is true; stack text can still reveal file paths when enabled."
   ],
   "decisions": [
-    "one JSON line per call: time, level, msg, then fields; default level info",
+    "one JSON line per call: time, level, msg, then fields",
     "redacts whole keys (password, token, cookie...); values and msg are not scanned",
-    "x-request-id reused only if it matches [A-Za-z0-9._:-]{1,128}, else a new UUID",
-    "stacks off by default; lines over 16,384 bytes replaced by a truncation marker"
+    "incoming request ID reused only if it matches [A-Za-z0-9._:-]{1,128}, else a new one"
+  ],
+  "options": [
+    "level (default info); includeStack (false); redact: extra keys; maxLineBytes (16,384, then truncated)",
+    "withRequest header (default x-request-id), trustIncoming (default true)"
   ],
   "verification": {
     "level": "tested",
@@ -115,7 +118,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/structured-logger/module.json",
-    "sha256": "8f24573ddfc0a1d45f116a73d90c831344123a30e6d2e8ad4effddc8a086a26a"
+    "sha256": "9a806623d38a96fb564310a20d0ac433970fb1cd4e5c75ac5666839c01531527"
   },
   "contractFile": {
     "path": "modules/structured-logger/CONTRACT.md",

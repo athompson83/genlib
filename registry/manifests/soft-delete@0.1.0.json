@@ -165,8 +165,10 @@
   "decisions": [
     "rows get deleted_at and are hidden by default; children cascade by declared relations in one batch",
     "routes: GET {prefix}?tenantId= (trash list), POST {prefix}/{trashId}/restore?tenantId=",
-    "30-day default retention, then purge; restore afterwards → 410 retention-expired",
-    "unique-value conflict or deleted parent on restore → 409; nothing is restored partially"
+    "restore after retention → 410 retention-expired; unique conflict or deleted parent → 409, none partial"
+  ],
+  "options": [
+    "retentionMs: trash kept before purge (default 30 days); purgeExpired batchSize, maxBatches (100)"
   ],
   "verification": {
     "level": "tested",
@@ -210,7 +212,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/soft-delete/module.json",
-    "sha256": "21544213be0427edc51cde7ffee72add8d5bd1c1245511b8f56be4698a2e2e71"
+    "sha256": "6022fc8fb28eccbe37759f7fa0b07e6c2c39e030c8335629d737f5ea53c88309"
   },
   "contractFile": {
     "path": "modules/soft-delete/CONTRACT.md",

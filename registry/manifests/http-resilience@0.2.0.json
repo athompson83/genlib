@@ -123,9 +123,12 @@
   ],
   "decisions": [
     "fetchWithRetry retries network errors and 408, 425, 429, 500, 502, 503, 504",
-    "POST and PATCH are retried only with an Idempotency-Key header; otherwise sent once",
-    "full-jitter exponential backoff; Retry-After honored but capped at maxDelayMs; attempts 1-20",
-    "circuit breaker state is per process; half-open allows one trial call"
+    "POST/PATCH retried only with an Idempotency-Key header; stream bodies sent once",
+    "Retry-After honored, capped at maxDelayMs; breaker state per process, half-open allows one trial"
+  ],
+  "options": [
+    "attempts (fetch default 3), jitter 'full'|'none' (default full), attemptTimeoutMs, replayRequestBody (default false)",
+    "shouldRetry (default retry every error), isFailure (default every error counts)"
   ],
   "verification": {
     "level": "tested",
@@ -156,7 +159,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/http-resilience/module.json",
-    "sha256": "6e8692e2ea4f2963ef45746d83336e2cd486c577f570aabcbe469ec4d8915e6c"
+    "sha256": "1ece577309536dfd53d3a4f133d105229c2c58b3120d8098af014431a22902d0"
   },
   "contractFile": {
     "path": "modules/http-resilience/CONTRACT.md",

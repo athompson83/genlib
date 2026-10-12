@@ -119,7 +119,10 @@
   "decisions": [
     "empty strings count as missing; unknown keys are ignored; no .env file loading",
     "bool accepts true/false, 1/0, yes/no, on/off; num rejects hex, empty and Infinity",
-    "url() allows https and http by default; secrets serialize as [REDACTED]"
+    "secrets serialize as [REDACTED]"
+  ],
+  "options": [
+    "url({protocols}): allowed schemes (default https, http); list({separator}) (default comma)"
   ],
   "verification": {
     "level": "tested",
@@ -130,7 +133,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/env-config/module.json",
-    "sha256": "a9b484034c3281c0e59f437f1f5de5d0cbab287fafa6097c3621179950926303"
+    "sha256": "293c0211467997af7a3f9fdeb95b8d2077f2a7e46b49b82597182f377476c3d7"
   },
   "contractFile": {
     "path": "modules/env-config/CONTRACT.md",

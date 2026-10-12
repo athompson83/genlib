@@ -172,9 +172,12 @@
   ],
   "decisions": [
     "precedence: kill switch > user deny > user allow > tenant deny > tenant allow > stored experiment assignment > rollout",
-    "routes: GET|POST /flags, GET|PATCH|DELETE /flags/:key, GET /flags/:key/audit, POST /evaluate; 409 conflict/exists",
     "an exposed experiment subject keeps its variant (even at weight 0 or lower traffic); a removed variant reassigns visibly",
     "exposures and conversions count once per unit; analysis attributes to the variant first shown (intention to treat)"
+  ],
+  "options": [
+    "routes, statusFor: override paths and statuses (default {prefix}/flags, /flags/:key, POST /evaluate)",
+    "cacheTtlMs (default 5,000 ms), maxRequestBytes (default 65,536)"
   ],
   "verification": {
     "level": "tested",
@@ -215,7 +218,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/feature-rollout/module.json",
-    "sha256": "69580b3fe4e8c611a1b08f128f348ebd3c15b10c1fcab8e29a63c2bbfffe63fd"
+    "sha256": "fccbfdd4edd00ae48fc1841e7111f69002901b92f40ad3ff8aef9383df23cd9c"
   },
   "contractFile": {
     "path": "modules/feature-rollout/CONTRACT.md",

@@ -110,10 +110,13 @@
     "Tests use an injected clock and the memory store only."
   ],
   "decisions": [
-    "429 body {\"error\":\"rate_limited\"} with RateLimit-Limit/Remaining/Reset and Retry-After headers",
-    "memory store is a single-process LRU (10,000 keys); use a shared store across instances",
+    "429 with RateLimit-Limit/Remaining/Reset and Retry-After headers; memory store is single-process",
     "denied requests consume nothing; fixed window can pass 2x limit across a boundary",
     "store errors reject consume(); each route chooses fail open or closed"
+  ],
+  "options": [
+    "rateLimitResponse body, headers (default body {\"error\":\"rate_limited\"})",
+    "maxKeys: memory-store LRU size (default 10,000); prefix: key prefix (default rl:<algorithm>:)"
   ],
   "verification": {
     "level": "tested",
@@ -124,7 +127,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/rate-limit/module.json",
-    "sha256": "2514d7bc06605824e45195567e7350e8f5f3e6ab0bcced74042a79ca6c1249a4"
+    "sha256": "90e296bb9b2978301ebb85b7c8e59ac196ac46730272a46762f5e68bcbfbb840"
   },
   "contractFile": {
     "path": "modules/rate-limit/CONTRACT.md",

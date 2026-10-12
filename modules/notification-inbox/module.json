@@ -64,8 +64,12 @@
   "decisions": [
     "routes: GET {prefix}, GET {prefix}/count, POST {prefix}/read, /read-all, /archive; no publish route",
     "publish is server-side; a repeated dedupeKey returns the existing item within retention",
-    "list 1-50 per page (default 20); prune() keeps 90 days and 500 items per user",
+    "list 1-50 per page (default 20)",
     "ids of other users are silently ignored (not 403 or 404)"
+  ],
+  "options": [
+    "retentionMs: item lifetime and dedupe window (default 90 days); maxPerUser: kept by prune() (default 500)",
+    "maxDataBytes: JSON size of data (default 4,096)"
   ],
   "verification": {
     "level": "tested",

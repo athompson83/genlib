@@ -67,10 +67,14 @@
     "Authorization of the rows themselves stays with the application: the scope hook and scopeColumns must reflect what the caller may see."
   ],
   "decisions": [
-    "cursor = keyId.base64url(JSON).base64url(HMAC-SHA256); default ttl 24 h; first key signs, every listed key verifies",
+    "cursor = keyId.base64url(JSON).base64url(HMAC-SHA256); first key signs, every listed key verifies",
     "errors: malformed-cursor, invalid-signature, expired-cursor, scope-mismatch, invalid-limit, invalid-sort, invalid-filter",
-    "limit: default 20, clamped to maxLimit 100; non-integer or < 1 is invalid-limit (not clamped)",
-    "GET {prefix}{routes.list} -> 200 {items, nextCursor, prevCursor, limit, sort} + Link; all errors 400 by default"
+    "limit above maxLimit is clamped; non-integer or < 1 is invalid-limit (not clamped)"
+  ],
+  "options": [
+    "defaultLimit (default 20), maxLimit (default 100), ttlMs: cursor lifetime (default 24 h)",
+    "routes, statusFor, params: override path, statuses, query names (default GET {prefix}; errors 400)",
+    "linkHeader (default true), publicOrigin"
   ],
   "verification": {
     "level": "tested",

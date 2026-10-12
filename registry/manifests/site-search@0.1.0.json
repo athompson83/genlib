@@ -166,8 +166,11 @@
   "decisions": [
     "routes: GET {prefix}?tenantId&q&f.<attr>=, PUT {prefix}/{id} (upsert), DELETE {prefix}/{id}?tenantId",
     "words are ANDed; \"phrases\", -exclude and a trailing prefix* work; max 256 chars and 16 terms",
-    "BM25 in memory, ts_rank_cd on PostgreSQL; limit 1-50 (default 20); highlights wrapped in <mark>",
+    "BM25 in memory, ts_rank_cd on PostgreSQL; limit max 50; HTTP highlights use <mark>",
     "undeclared filters, attrs or fields → 400; documents with a visibility list are filtered per reader"
+  ],
+  "options": [
+    "limit (default 20); highlight.pre/post in search() (default <mark>); facetLimit (20)"
   ],
   "verification": {
     "level": "tested",
@@ -210,7 +213,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/site-search/module.json",
-    "sha256": "e668955a9a83ad41c9e74d95afafaa1eaf4565c0c264e55c9c5af8ae51dd7058"
+    "sha256": "f5a1cb9018fca6ca3c914bba6f861675b954ac991a18e7b1b8658d60af55636c"
   },
   "contractFile": {
     "path": "modules/site-search/CONTRACT.md",

@@ -174,10 +174,13 @@
     "Production data volumes, Excel versions other than the BOM/CRLF convention, and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: GET {prefix}/export?columns=a,b&filename= streams text/csv; GET {prefix}/columns lists exportable columns",
-    "UTF-8 with BOM and CRLF by default; formula-like strings get a leading apostrophe; numbers are not prefixed",
-    "row or byte cap → stream errors with limit-exceeded by default (no silent truncation); first-page failure → 500",
-    "unselectable column → 403 forbidden, unknown or repeated column → 400 invalid-columns; rows refused by authorize skipped"
+    "only declared columns are written; unselectable column → forbidden, unknown or repeated → invalid-columns",
+    "numbers never get the formula prefix; rows refused by authorize are skipped"
+  ],
+  "options": [
+    "routes, statusFor: override paths and statuses (default GET {prefix}/export streams text/csv, GET {prefix}/columns)",
+    "bom (default true), lineEnding (default CRLF), neutralizeFormulas, formulaEscape (default leading apostrophe)",
+    "maxRows (100,000), maxBytes (50 MiB), onLimit (default 'error' → limit-exceeded, or 'truncate')"
   ],
   "verification": {
     "level": "tested",
@@ -216,7 +219,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/csv-download/module.json",
-    "sha256": "c725bb93d4c628caed09a1726cc0e40f5ffa637c769fa3134c9d92fe768dd917"
+    "sha256": "7dfac18d6673255e5b604bac2f9c68032644d3abb4e7280aecee6089cf4c26db"
   },
   "contractFile": {
     "path": "modules/csv-download/CONTRACT.md",

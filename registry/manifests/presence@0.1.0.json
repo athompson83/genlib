@@ -129,8 +129,12 @@
   ],
   "decisions": [
     "transport is SSE GET {prefix}/stream plus POST {prefix}/heartbeat and /leave; no WebSocket",
-    "connections expire 30 s after the last heartbeat; 500 connections per room, then 409 room-full",
-    "state is JSON up to 1,024 bytes (413 state-too-large); updates throttled to one per 100 ms per user"
+    "full room → 409 room-full; oversized state → 413 state-too-large; throttled updates keep the latest state"
+  ],
+  "options": [
+    "ttlMs: expiry after last heartbeat (default 30 s), maxPerRoom (default 500)",
+    "maxStateBytes (default 1,024), minUpdateMs: per-user update throttle (default 100 ms)",
+    "pingMs (default 15 s), maxRequestBytes (default 8,192)"
   ],
   "verification": {
     "level": "tested",
@@ -169,7 +173,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/presence/module.json",
-    "sha256": "3b1040e5d111264d4dfc06e4567134730f94cc50eb010a72a0d4da83c61469ca"
+    "sha256": "53779953433c3f65a41cf9abd79bb90d754f106488f9ee59872133fd38344764"
   },
   "contractFile": {
     "path": "modules/presence/CONTRACT.md",

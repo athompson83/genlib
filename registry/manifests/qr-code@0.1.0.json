@@ -108,8 +108,11 @@
   ],
   "decisions": [
     "output is SVG, terminal text or a 0/1 matrix only; no PNG or canvas",
-    "default error correction M; auto mode picks one mode, no mixed segments or ECI",
-    "SVG quiet zone default 4 modules at scale 1; colors limited to hex or a few names"
+    "one mode per code, no mixed segments or ECI; SVG colors limited to hex or a few names"
+  ],
+  "options": [
+    "ecc (default M); mode (auto); minVersion/maxVersion (1-40); mask; boostEcc (false)",
+    "toSvg margin (4), scale (1), dark, light, title; toTerminal margin (2), invert"
   ],
   "verification": {
     "level": "tested",
@@ -147,7 +150,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/qr-code/module.json",
-    "sha256": "753543bbd63435ade1b66e81a0056604205107929188f11a5bf9ae795cd188ac"
+    "sha256": "09b78897eb3ff63ee48b971f1fc1211761bb239041d0c564aef204fcc72ae504"
   },
   "contractFile": {
     "path": "modules/qr-code/CONTRACT.md",

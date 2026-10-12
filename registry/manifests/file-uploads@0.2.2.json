@@ -214,10 +214,13 @@
     "Production storage, antivirus accuracy, proxy body limits and consuming-application acceptance remain project responsibilities."
   ],
   "decisions": [
-    "routes: POST {prefix}/tenants/{tenantId}/files?filename= (raw bytes, not multipart), GET|DELETE {prefix}/files/{id}",
-    "default allowlist png, jpeg, gif, webp, pdf; type sniffed from bytes; mismatch → 415",
-    "new files stay quarantined until a claimed scan is clean; quarantined download → 409, infected → 410",
-    "too-large and quota-exceeded → 413; invalid-name → 400; downloads always use Content-Disposition: attachment"
+    "routes POST {prefix}/tenants/{tenantId}/files?filename= (raw bytes), GET|DELETE {prefix}/files/{id}",
+    "type sniffed from bytes; mismatch → 415; quarantined until a clean scan (409, infected 410); too large → 413",
+    "downloads always Content-Disposition: attachment"
+  ],
+  "options": [
+    "policy.allow (png, jpeg, gif, webp, pdf); policy.invalidFilenames (rename; reject → 400)",
+    "checkDeclaredType (true), scanLeaseMs (15 min)"
   ],
   "verification": {
     "level": "tested",
@@ -287,7 +290,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/file-uploads/module.json",
-    "sha256": "25391afcf7e1b5110ddeabd1952780a0403baae67edf24aa6261b4cdbe19d827"
+    "sha256": "b3e7756364d11df33b5f67fbcce0703153ee3f05382acb38072a5dc0f5e9d162"
   },
   "contractFile": {
     "path": "modules/file-uploads/CONTRACT.md",

@@ -152,9 +152,12 @@
   ],
   "decisions": [
     "Standard Webhooks signing: webhook-id/timestamp/signature, v1 HMAC of id.timestamp.body, whsec_ secrets",
-    "10 attempts, backoff 30 s doubling to 6 h with jitter; 10 s timeout; redirects not followed",
-    "https only; private, loopback and metadata addresses refused at registration and before each send",
-    "routes under {prefix}/{tenant}/endpoints and /deliveries; payload max 256 KiB; rotation grace 24 h"
+    "backoff doubles with jitter; redirects not followed; private, loopback and metadata addresses refused",
+    "routes under {prefix}/{tenant}/endpoints and /deliveries"
+  ],
+  "options": [
+    "maxAttempts (10); backoff.baseMs, backoff.maxMs (30 s, 6 h); timeoutMs per attempt (10 s)",
+    "maxPayloadBytes (256 KiB); rotationGraceMs (24 h); allowHttp (default false, tests only)"
   ],
   "verification": {
     "level": "tested",

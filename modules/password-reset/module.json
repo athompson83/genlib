@@ -68,8 +68,12 @@
   "decisions": [
     "routes: POST {prefix}/request → 202 always, GET {prefix}/verify?token=, POST {prefix}/complete → 204",
     "unknown, expired, used and revoked tokens all → 400 invalid-token (no 404 or 410)",
-    "token stored as SHA-256 hash; 30-min default ttl; at most 3 active links per user",
+    "token stored as SHA-256 hash and consumed once",
     "completion revokes other links and calls revokeSessions; a link dies if the account email changes"
+  ],
+  "options": [
+    "ttlMs: link lifetime (default 30 min); maxActivePerUser: older links revoked (default 3)",
+    "rateLimit(key): false → 429 (default none); maxRequestBytes (default 4,096)"
   ],
   "verification": {
     "level": "tested",

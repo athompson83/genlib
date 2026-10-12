@@ -98,10 +98,12 @@
     "withSecurityHeaders transfers the original body stream and returns Responses with a status outside 200-599 unchanged. Tests ran on Node.js 22 only; browser enforcement was not exercised."
   ],
   "decisions": [
-    "default CSP default-src 'self' blocks inline scripts/styles and third-party resources",
-    "HSTS max-age=31536000; includeSubDomains by default; X-Frame-Options DENY; COOP same-origin",
-    "Referrer-Policy strict-origin-when-cross-origin; existing headers win unless override: true",
-    "no CORS, COEP/CORP or cookie attributes"
+    "no CORS, COEP/CORP or cookie attributes; invalid configuration throws a TypeError"
+  ],
+  "options": [
+    "csp: merged per directive over default-src 'self' (false omits); nonce; reportOnly",
+    "hsts: maxAge, includeSubDomains, preload (default max-age=31536000; includeSubDomains)",
+    "frameOptions (DENY), crossOriginOpenerPolicy (same-origin), referrerPolicy; override (false: existing win)"
   ],
   "verification": {
     "level": "tested",
@@ -112,7 +114,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/security-headers/module.json",
-    "sha256": "fbe1776b578757c49458cda9d2b472732710ed32a291fa9eb8c24bb2344a35f5"
+    "sha256": "f6d224c4cded505374a78ded53a414ab545ed1b96d4a113da175ae0ce18fa440"
   },
   "contractFile": {
     "path": "modules/security-headers/CONTRACT.md",
