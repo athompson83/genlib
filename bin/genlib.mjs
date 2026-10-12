@@ -361,7 +361,7 @@ try {
         const operation = command === 'plan' ? planInstall : installModule;
         result = await operation(context, positional[0], {
           target: options.target, out: options.out, allowUnverified: options['allow-unverified'] === true,
-          tsImports: options['ts-imports'] === true,
+          tsImports: options['ts-imports'] === true ? true : undefined,
           ...(options.profile !== undefined ? { profiles: options.profile.split(',').map(name => name.trim()).filter(Boolean) } : {}),
         });
         text = formatInstall(result);
