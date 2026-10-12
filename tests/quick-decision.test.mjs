@@ -75,7 +75,9 @@ test('a module with standalone parts names each with its profile, size, purpose 
   assert.ok(expander.lines > 0 && expander.lines < pick.size.lines, 'a part is smaller than the module');
   assert.ok(expander.api.some(signature => /^ruleWalls\(/.test(signature)));
   const text = quick('recurring', 'calendar', 'events', 'with', 'time', 'zones', 'and', 'exceptions');
-  assert.ok(Buffer.byteLength(text) <= 1200, 'quick budget with parts: ' + Buffer.byteLength(text));
+  // Measured with the placeholder path, as the token budgets are, so the checkout location does not count.
+  const sized = execFileSync(process.execPath, [root + 'bin/genlib.mjs', 'quick', 'recurring', 'calendar', 'events', 'with', 'time', 'zones', 'and', 'exceptions'], { cwd: root, encoding: 'utf8', env: { ...process.env, GENLIB_ROOT: '$GENLIB_ROOT' } });
+  assert.ok(Buffer.byteLength(sized) <= 1200, 'quick budget with parts: ' + Buffer.byteLength(sized));
   assert.match(text, /^# parts: --profile expander \(\d+ lines\): .+ · ruleWalls\(/m);
 });
 
