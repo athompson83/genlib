@@ -71,6 +71,10 @@ test('outline extracts public signatures and docs per language and skips private
   assert.deepEqual(outlineSource('// Sum adds.\nfunc Sum(a, b int) int {\n\treturn a + b\n}\nfunc private() {}\n', 'go'), [{ signature: 'func Sum(a, b int) int', doc: 'Sum adds.' }]);
   assert.deepEqual(outlineSource('/// Doubles.\npub fn double(x: i64) -> i64 {\n    x * 2\n}\nfn hidden() {}\n', 'rust'), [{ signature: 'pub fn double(x: i64) -> i64', doc: 'Doubles.' }]);
   assert.deepEqual(outlineSource('export interface Opts {\n  // the size\n  size: number;\n}\n', 'typescript'), [{ signature: 'export interface Opts { size: number; }' }]);
+  // A service interface keeps its methods even when long doc comments push the raw text past 1,200 characters (round 12).
+  const documented = 'export interface Service {\n' + Array.from({ length: 12 }, (_, i) => `  /** ${'Explains the method in detail. '.repeat(4)} */\n  call${i}(id: string): Promise<void>;\n`).join('') + '}\n';
+  const [service] = outlineSource(documented, 'typescript');
+  assert.match(service.signature, /^export interface Service \{ call0\(id: string\): Promise<void>; .* call11\(id: string\): Promise<void>; \}$/);
   assert.deepEqual(outlineSource('    /// <summary>Gets <paramref name="x"/>.</summary>\n    public static int Get(int x) {\n    private static int Hide() {\n', 'csharp'),
     [{ signature: 'public static int Get(int x)', doc: 'Gets x.' }]);
 });
