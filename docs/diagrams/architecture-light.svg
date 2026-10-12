@@ -1,4 +1,4 @@
-<!-- genlib-diagram source-sha256=37b1723f72949d1c2f9fabc13fdf9a15838b77ea720111da1d77ea1758ae1e2c renderer=agentic-mermaid@0.4.1 style=github-light -->
+<!-- genlib-diagram source-sha256=ed088b423d8b6acafe74cca5bbfb211c71190eaa5b3289eecbd3532d645c655e renderer=agentic-mermaid@0.4.1 style=github-light -->
 <svg xmlns="http://www.w3.org/2000/svg" width="6727.408731684982" height="2015.0999999999997" viewBox="0 0 6727.408731684982 2015.0999999999997" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;--font:Inter;background:#ffffff">
 <style>
   text { font-family: var(--font, 'Inter'), system-ui, sans-serif; }
@@ -405,10 +405,10 @@ signatures, not source" data-shape="rectangle" data-role="node">
   <text x="1845.9310833333338" y="868.6999999999999" text-anchor="middle" font-size="13" font-weight="500" fill="#1f2328"><tspan x="1845.9310833333338" dy="-3.9000000000000012" textLength="79.755" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">lib/outline.mjs</tspan><tspan x="1845.9310833333338" dy="16.900000000000002" textLength="133.848" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">signatures, not source</tspan></text>
 </g>
 <g class="node" data-id="SRC" data-label="lib/source.mjs
-sparse pinned fetch
+pinned fetch plan
 + resources/equivalents.json" data-shape="rectangle" data-role="node">
   <rect x="4774.475771062272" y="458.1" width="215.34399999999994" height="70.7" rx="0" ry="0" fill="#f8f8f9" stroke="#d2d3d4" stroke-width="0.75" data-id="node-shape:SRC" data-role="node" />
-  <text x="4882.147771062271" y="493.45000000000005" text-anchor="middle" font-size="13" font-weight="500" fill="#1f2328"><tspan x="4882.147771062271" dy="-12.350000000000001" textLength="84.201" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">lib/source.mjs</tspan><tspan x="4882.147771062271" dy="16.900000000000002" textLength="117.546" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">sparse pinned fetch</tspan><tspan x="4882.147771062271" dy="16.900000000000002" textLength="175.344" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">+ resources/equivalents.json</tspan></text>
+  <text x="4882.147771062271" y="493.45000000000005" text-anchor="middle" font-size="13" font-weight="500" fill="#1f2328"><tspan x="4882.147771062271" dy="-12.350000000000001" textLength="84.201" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">lib/source.mjs</tspan><tspan x="4882.147771062271" dy="16.900000000000002" textLength="99.762" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">pinned fetch plan</tspan><tspan x="4882.147771062271" dy="16.900000000000002" textLength="175.344" lengthAdjust="spacingAndGlyphs" data-font-metrics="deterministic-fit">+ resources/equivalents.json</tspan></text>
 </g>
 <g class="node" data-id="INST" data-label="lib/install.mjs
 plan · add · verify" data-shape="rectangle" data-role="node">

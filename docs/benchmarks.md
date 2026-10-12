@@ -1,6 +1,24 @@
 # Measured A/B runs: coding with and without Genlib
 
-On 2026-10-10 the same coding tasks were given to separate agents in empty Python projects, with and without Genlib, and graded by acceptance tests the agents never saw. This page reports what was measured, what it means, and what was changed because of it. It is a small sample (one run per task, arm and round) on one model and harness; treat the numbers as indicative, not as a guarantee.
+Beginning on 2026-10-10, the same coding tasks were given to separate agents with and without Genlib and graded by acceptance tests the agents never saw. The early rounds used empty Python projects; later rounds used application fixtures. This page records a sequence of changes and measurements, with small samples per task, model and arm. The rounds reuse tasks while changing the library and guidance; they are not independent replications or a guarantee of savings.
+
+## Reading the measurements
+
+**The cost figures are estimates, not billed spending or exact total tokens.** From round 4 onward the reported proxy is fresh input + 1.25 × cache writes + 0.1 × cache reads + 5 × estimated written tokens, where written tokens = characters / 3.5. The weights express input-token equivalents. Compare arms using the same model and measurement method; these units are not a dollar comparison between Opus and Haiku.
+
+An accounting review on 2026-10-12 found that the round 7–12 tables had used the raw `costIndex` field, which includes incomplete transcript output counts. For example, a round-12 agent wrote 613 feature lines and approximately 12,345 written tokens, but its transcript reported only 119 output tokens. **The round 7–12 tables and conclusions below now use `cost2`, the full-written-output proxy.** Earlier tables already used a written-output estimate and retain their values. Historical `results*.json` files are unchanged.
+
+Future `measure.mjs` output names the reporting field `estimatedCostIndex` and marks `outputTokensComplete: false`. `cost2` remains its compatibility alias. The old `costIndex` field retains its partial-output calculation for existing consumers and must not be used for reporting. The offline summary command also recognizes the earlier `writtenTokensEstimate` schema; it rejects a later row that has only the incomplete-output metric.
+
+```sh
+node benchmarks/feature-tasks/measure.mjs --summary benchmarks/feature-tasks/results-round12.json
+```
+
+Elapsed seconds come from the first and last transcript timestamps and are reported separately from cost. They include tool and scheduling time; this series does not document a controlled concurrency policy. Passing the hidden suite means the submitted result passed those tests, not that the agent needed no local test/fix cycles. The `repairs` counter is a command/output heuristic and can include intentional TDD failures.
+
+The application kit records 112 runs across rounds 4–12, including round 6b. It contains no UI tasks or repeated same-stack adoption measurement. It does not establish production equivalence or whether discovery and integration costs amortize across projects. No transcripts or exact model snapshots are bundled with the stored aggregates, so the original per-call accounting cannot be independently replayed from this kit alone.
+
+**Current finding:** reuse increased the full-output cost proxy in every comparable required-reuse arm in rounds 7–12. Time was mixed: round-12 Opus reuse was faster while costing more. Several guidance improvements came from declining Genlib and are not reuse savings. This accounting correction runs no new agent experiments; live economic evidence for the focused reuse path remains pending, and the economic gate in `AGENTS.md` still applies.
 
 ## Method
 
@@ -74,9 +92,9 @@ What round 3 adds:
 - **base32's parameter order still costs a rewrite** in every Genlib run of that task, because the prompt asks for `(data, padding)`; the caveat says to pass padding by name.
 - Jev decisions read 650–2,300 tokens of packet per task in this round.
 
-## What it shows
+## What the early algorithm runs showed
 
-- **When Genlib has the code the task needs, agents write 80–90% fewer tokens.** The task-dependent cost fell 22% (Agent + Genlib) and 27% (Jev) on the spec set, and agents finished in less than half the time. Run-to-run noise is visible: Jev's round-2 spec total is above round 1 because two agents chose to write extra task tests.
+- **Exact-fit reuse sharply reduced writing in this early sample.** The round-2 task-dependent cost proxy fell 22% (Agent + Genlib) and 27% (Jev) on the spec set, with 80–90% fewer estimated written tokens and less than half the recorded time. These were algorithm tasks compared with writing from memory, not a general application-feature result. Run-to-run variation is visible: Jev's round-2 spec total is above round 1 because two agents chose to write extra task tests.
 - **Fixing the requirement gap turns a loss into the biggest win.** In round 1 every Genlib arm rewrote RRULE because the code was a subset of dateutil; with dateutil's rule model the same task cost 44–58% less than writing it, and all arms pass 17 extra dateutil cases.
 - **Agents stopped moving files.** With `--flat` and the copy output's API, test command and "verified" line, Agent + Genlib runs on the spec set used 26 turns instead of 30. Most agents still printed the copied module once (with `cat`) before trusting it, which is why reading stays high.
 - **A requirement Genlib cannot meet still costs more than writing from scratch.** Byte-identical GNU diff output needs GNU's own heuristics (GPL), which Genlib does not copy; both Genlib arms copied the diff, measured 82–93% agreement against `/usr/bin/diff`, and rewrote the alignment. Capabilities now carry a `caveat` (here: "not byte-identical to GNU diff -u ... call the system diff") that `quick`, `find`, the copy output and Jev's question all show, so an agent or Jev can decline before copying.
@@ -104,7 +122,7 @@ A wrong first pick costs turns, which dominate cost on small tasks. `scripts/rou
 
 ## Reproduce
 
-The prompts, hidden tests and measuring scripts were run from a scratch directory, not committed. To repeat: give each arm the same prompt in an empty project, keep acceptance tests outside the agent's reach, and measure written and read characters from the transcript, since per-message output token counts can be partial.
+For rounds 1–3, the prompts, hidden tests and measuring scripts were run from a scratch directory and not committed. Later application fixtures, task texts, graders and aggregate results are in [benchmarks/feature-tasks/](../benchmarks/feature-tasks/README.md). An authorized repeat must give each arm the same task, keep acceptance tests outside the agent's reach, retain complete transcripts and measure written/read characters when per-message output counts are incomplete.
 
 ## Comparison protocol
 
@@ -121,12 +139,12 @@ The runs above compare Genlib with an agent working from memory. The more useful
 
 **Measures per task:**
 - accepted (hidden tests pass)
-- total model tokens and tool-call cost
+- measured input/cache tokens, estimated written tokens and the full-output cost proxy; separately record any verified billed model/tool cost
 - elapsed time
 - repair attempts
 - human corrections
 
-Failed attempts stay in the totals. Report per-arm medians and the raw table. A small retrieval response counts only if the whole task still succeeds.
+Failed attempts stay in the totals. Report per-arm medians and the raw table. Separate accepted hidden-test outcomes from local repair attempts. A small retrieval response counts only if the whole task still succeeds. A run that skips Genlib cannot establish a benefit from code reuse. Record actual adoption separately from lookup counts.
 
 **Reading the result:** arm 4 against arm 2 measures Genlib's added value; arm 3 against arm 1 repeats the earlier comparison. Record the model, versions, dates and every task's transcript location.
 
@@ -187,7 +205,7 @@ Same tasks, prompts, fixtures and hidden tests as round 4, 16 new runs. Only Gen
 | Written ≈ tokens | 16,679 | 18,495 | 17,523 | 19,310 |
 | Read ≈ tokens | 10,973 | 13,441 | 26,492 | 26,393 |
 
-Genlib's added cost is **+31%** (arm 3 against arm 1) and **+33%** (arm 4 against arm 2), against +36% and +27% in round 4: no improvement beyond run-to-run noise. Every arm cost about 9% more than in round 4, so the shared baseline moved, not Genlib's share.
+Genlib's added cost proxy is **+31%** (arm 3 against arm 1) and **+33%** (arm 4 against arm 2), against +36% and +27% in round 4. The plain and upstream-tool baselines moved about 8–9% between rounds; these small samples do not establish an improvement from the fixes. Both Genlib comparisons remain more expensive.
 
 What the fixes did and did not change:
 - **The breakage is gone.** No run hit a strip-only TypeScript failure. Recipes copied with `recipe-install` still landed under `genlib/examples/recipes/` (three runs; two moved the file by hand), so `recipe-install` now copies a single file to `genlib/<file>` or `--into <dir>`.
@@ -225,7 +243,7 @@ Same 12 runs after one change: `quick` prints the copy's size and the guidance s
 | Outgoing webhooks and digests | 310,911 | 318,341 (+2.4%) |
 | **Total** | **761,472** | **774,776 (+1.7%)** |
 
-+1.7% is within run-to-run noise (the plain agent's own total moved from 1,044,658 to 761,472 between rounds 6 and 6b). But no Genlib run called Genlib: every one wrote its feature, so this round reaches parity by not reusing. It shows the decision overhead is gone when an agent skips; it does not show that reuse saves anything.
+The +1.7% difference is small relative to the observed between-round variation (the plain agent's own total moved from 1,044,658 to 761,472). This does not statistically establish equivalence. No Genlib run called Genlib: every one wrote its feature, so the near-parity is achieved by not reusing. It does not show that reuse saves anything.
 
 What comes next follows an external review of round 5 (October 11): cost came from extra decision and integration turns, not response size, so the work is to make reuse take fewer decisions and less adaptation:
 1. One bounded `quick` response with what the decision needs: the module's fixed behavior (routes, status codes, storage; `decisions` in each manifest), size, files and destination, the main API, required hooks, a direct or partial verdict from the feature contracts, and the verify step. Done after this round; about 1 KB instead of an outline (1–4 KB) plus a contract read.
@@ -235,105 +253,115 @@ What comes next follows an external review of round 5 (October 11): cost came fr
 
 ## Round 7: neutral tasks, three arms (2026-10-12)
 
-Three larger tasks written without reading the modules, each graded by 16 hidden tests (`benchmarks/feature-tasks/tasks/{signup,twofactor,uploads}.md`; reference solutions pass 16/16, naive ones 5–6/16): signup with email verification, TOTP two-factor login and file uploads with type checks, quotas and scanning. Before any agent ran, a fit check confirmed that `genlib add` plus a 45–64 line wrapper passes all three; the module fixes it led to are general options, not task special cases. Three arms on the same prompt: the agent alone, the agent with Genlib set up by `genlib connect` (CLAUDE.md guidance, Genlib CLI named in the prompt) and the agent told to build on the matching module (`quick`, `add`, then glue). Genlib at commit 6c7a4a2, raw table `benchmarks/feature-tasks/results-round7.json`. All nine runs passed 16/16 hidden tests, so no repair round was needed.
+Three larger tasks written without reading the modules, each graded by 16 hidden tests (`benchmarks/feature-tasks/tasks/{signup,twofactor,uploads}.md`; reference solutions pass 16/16, naive ones 5–6/16): signup with email verification, TOTP two-factor login and file uploads with type checks, quotas and scanning. Before any agent ran, a fit check confirmed that `genlib add` plus a 45–64 line wrapper passes all three; the module fixes it led to are general options, not task special cases. Three arms on the same prompt: the agent alone, the agent with Genlib set up by `genlib connect` (CLAUDE.md guidance, Genlib CLI named in the prompt) and the agent told to build on the matching module (`quick`, `add`, then glue). Genlib at commit 6c7a4a2, raw table `benchmarks/feature-tasks/results-round7.json`. All nine submitted runs passed 16/16 hidden tests; local test/fix cycles are included in their cost.
+
+Cost proxy below uses the raw `cost2` field, including estimated written output.
 
 | Task | Agent | + Genlib (guidance) | + Genlib (reuse required) |
 | --- | ---: | ---: | ---: |
-| signup | 169,083 | 158,887 | 221,536 |
-| two-factor | 234,608 | 172,010 | 303,277 |
-| uploads | 185,195 | 185,423 | 254,407 |
-| **Total** | **588,886** | **516,320 (−12.3%)** | **779,220 (+32.3%)** |
+| signup | 200,804 | 187,806 | 250,701 |
+| two-factor | 272,992 | 203,706 | 343,189 |
+| uploads | 223,976 | 223,321 | 285,180 |
+| **Total** | **697,772** | **614,833 (−11.9%)** | **879,070 (+26.0%)** |
 
-- **The guidance arm did not call Genlib.** Each agent judged the feature small enough to write, as the guidance says. Its lower total is run-to-run noise: most of the gap is one plain two-factor run that needed five test-fix rounds. The economic gate holds (Genlib added no cost), but this arm shows no saving from reuse.
-- **Required reuse cost 32% more for the same accepted result.** Those runs took 14–20 turns instead of 7–13 and read 16–20k tokens of module output and source instead of about 5k, while the code they wrote was nearly as long (glue of 162, 192 and 88 non-blank lines against 206, 196 and 156 written from scratch). Each task fixes its own function signatures, error codes and storage, so the agent still writes most of the surface and must also learn the module's.
+- **The guidance arm did not call Genlib.** Each agent judged the feature small enough to write, as the guidance says. Most of the lower total comes from one plain two-factor run that needed five local test/fix cycles. The observed difference cannot be attributed to code reuse.
+- **Required reuse cost 26.0% more in the proxy for the same accepted result.** Those runs took 14–20 turns instead of 7–13 and read an estimated 16–20k tokens of module output and source instead of about 5k, while the code they wrote was nearly as long (glue of 162, 192 and 88 non-blank lines against 206, 196 and 156 written from scratch). Each task fixes its own function signatures, error codes and storage, so the agent still writes most of the surface and must also learn the module's.
 - **Avoidable integration cost:** two of three reuse runs first installed without `--ts-imports` in an app that runs TypeScript without a build, then rewrote imports by hand or removed and reinstalled.
 
-What this means for the economic goal: for fully specified features of about 150–250 lines that a capable agent gets right first time, writing them is cheaper than reusing a module, and the current guidance correctly says so. Reuse can only pay where the agent alone fails or repairs (no run here did) or where the module is far larger than the glue. Next: install with `--ts-imports` automatically when the target has no build step, give `quick` the adapter shape a task usually needs so the agent reads less module source, and measure tasks whose plain runs miss requirements.
+For these fully specified features, writing them had a lower measured proxy than reusing a module. Passing the hidden tests does not mean there were no development repairs: the plain two-factor run above is a counterexample. The result does not establish an economic benefit from reuse or a universal size threshold. Automatic `--ts-imports` was subsequently evaluated in round 8.
 
 ## Round 8: the same tasks with a smaller model (2026-10-12)
 
-Round 7 repeated with Haiku as the coding agent, to test whether reuse pays when the agent is likelier to miss requirements. Same three tasks, fixture, hidden tests and prompts; Genlib built from the working tree of pull request #39 (automatic `--ts-imports`). Raw table `benchmarks/feature-tasks/results-round8.json`. All nine runs passed 16/16 hidden tests, so again no repair round was needed.
+Round 7 repeated with Haiku as the coding agent, to test whether reuse pays when the agent is likelier to miss requirements. Same three tasks, fixture, hidden tests and prompts; Genlib built from the working tree of pull request #39 (automatic `--ts-imports`). Raw table `benchmarks/feature-tasks/results-round8.json`. All nine submitted runs passed 16/16 hidden tests. Cost proxy below uses `cost2`.
 
 | Task | Agent | + Genlib (guidance) | + Genlib (reuse required) |
 | --- | ---: | ---: | ---: |
-| signup | 252,324 | 251,533 | 332,222 |
-| two-factor | 278,450 | 264,815 | 383,034 |
-| uploads | 353,238 | 389,872 | 547,934 |
-| **Total** | **884,012** | **906,220 (+2.5%)** | **1,263,190 (+42.9%)** |
+| signup | 295,136 | 290,787 | 371,785 |
+| two-factor | 330,400 | 315,281 | 433,940 |
+| uploads | 414,116 | 342,174 | 606,826 |
+| **Total** | **1,039,652** | **948,242 (−8.8%)** | **1,412,551 (+35.9%)** |
 
-- **The smaller model also wrote every feature correctly**, so the case where reuse avoids failures and repairs did not occur on these tasks.
-- **Guidance arm:** two runs made one `quick` call and then wrote the feature; the third wrote it without asking. +2.5% is within noise. Both agents that asked read the `# fixed` line as conflicts (a 15-character password minimum, an always-202 response, the upload allowlist and status codes), although most of those are defaults with options or belong to the optional HTTP adapter. The line overstates what is fixed; it stays a correction to make, measured, since here it steered agents to the cheaper path.
-- **Required reuse cost 43% more:** 15–24 turns instead of 12–17, and 20–27k read tokens instead of 4–8k, for about the same written code. With `--ts-imports` now automatic, no run lost a turn to imports.
+- **The smaller model's submissions also passed every hidden test.** Local test/fix cycles occurred in both direct and reuse arms; these runs show no final acceptance advantage from reuse.
+- **Guidance arm:** two runs made one `quick` call and then wrote the feature; the third wrote it without asking. The corrected −8.8% difference is not a reuse saving. Both agents that asked read the `# fixed` line as conflicts (a 15-character password minimum, an always-202 response, the upload allowlist and status codes), although most of those are defaults with options or belong to the optional HTTP adapter. The line overstated what was fixed and steered these runs away from reuse.
+- **Required reuse cost 35.9% more in the proxy:** 15–24 turns instead of 12–17, and an estimated 20–27k read tokens instead of 4–8k, for about the same written code. With `--ts-imports` now automatic, no run lost a turn to imports.
 - One run noticed that `file-uploads` copies the buffered chunks once more at the end of a read (about twice the size limit held briefly); worth fixing in the module.
 
-Across rounds 7 and 8 (18 runs, two models, three tasks): for features whose interface the task fixes, writing is cheaper than reusing, and the guidance arm stays at parity because agents decline. Savings would need reuse that skips reading module source (the glue is the whole cost) or tasks where plain agents fail.
+Across rounds 7 and 8 (18 runs, two models, three tasks), required reuse had a higher cost proxy. The guidance arms declined reuse, so their lower means cannot demonstrate its value. These small samples do not establish statistical equivalence between guidance and direct implementation.
 
 ## Round 9: a hard standard, recurring events (2026-10-12)
 
-Rounds 1–3 measured savings on algorithm-sized tasks with an exact standard, so this round tests the one feature in the neutral set most likely to trip an agent writing alone: RFC 5545 recurrence with DST. A separate agent wrote the task without seeing Genlib (`benchmarks/feature-tasks/tasks/recurring.md`): RRULE validation and expansion (DAILY to YEARLY, INTERVAL, COUNT, UNTIL, BYDAY ordinals, negative BYMONTHDAY, BYMONTH, BYSETPOS, WKST), EXDATE/RDATE, per-occurrence overrides, window queries, this-and-following splits, gap and fall-back rules, tenant isolation. 18 hidden tests take their expected occurrences from python-dateutil 2.9 with `zoneinfo` (`grading/recurring/oracle.py`), corrected to RFC 5545 where dateutil differs (weekly BYSETPOS over the whole week, the start as first occurrence, UTC UNTIL). The reference solution passes 18/18; a naive one that expands in a fixed offset without BYSETPOS passes 6/18. Genlib at commit 7b37d3a, raw table `results-round9.json`. All ten runs passed 18/18.
+Rounds 1–3 measured savings on algorithm-sized tasks with an exact standard, so this round tests a more complex feature: recurring events with DST. A separate agent wrote the task without seeing Genlib (`benchmarks/feature-tasks/tasks/recurring.md`): RRULE validation and expansion (DAILY to YEARLY, INTERVAL, COUNT, UNTIL, BYDAY ordinals, negative BYMONTHDAY, BYMONTH, BYSETPOS, WKST), EXDATE/RDATE, per-occurrence overrides, window queries, this-and-following splits, gap and fall-back rules, tenant isolation. Eighteen hidden tests take their expected occurrences from python-dateutil 2.9 with `zoneinfo` (`grading/recurring/oracle.py`), adjusted to the task's explicit rules for weekly BYSETPOS, the start as first occurrence and UTC UNTIL. The task supports a defined subset of RRULE fields, uses an in-memory database and excludes HTTP routes/authentication; passing it is not proof of complete RFC 5545 compliance or production integration. The reference solution passes 18/18; a naive one that expands in a fixed offset without BYSETPOS passes 6/18. Genlib at commit 7b37d3a, raw table `results-round9.json`. All ten submitted runs passed 18/18. Means below use `cost2`.
 
-| Arm | Runs | Mean cost index | Range |
+| Arm | Runs | Mean cost proxy | Range |
 | --- | ---: | ---: | --- |
-| Agent | 4 | 208,775 | 178,139–239,222 |
-| + Genlib (guidance) | 4 | 246,341 (+18%) | 189,441–270,732 |
-| + Genlib (reuse required) | 2 | 294,758 (+41%) | 252,859–336,656 |
+| Agent | 4 | 274,807.25 | 241,436–304,917 |
+| + Genlib (guidance) | 4 | 317,341 (+15.5%) | 256,526–345,028 |
+| + Genlib (reuse required) | 2 | 357,711.5 (+30.2%) | 311,738–403,685 |
 
-- **Agents alone handled the hard standard**: every plain run wrote a 585–605 line expander that matched the oracle, DST cases included, so even here reuse had no failures or repairs to save.
-- **Guidance arm:** each run made one `quick` call, judged the module's fixed choices (its routes, UNTIL-based splits that shift exceptions) to conflict with the task and wrote the feature. Its mean is 18% higher, but the ranges overlap and the first two runs alone (+35%) shrank to +18% with two more each; the direct Genlib cost is one call, and the rest is how long each agent debugged its own expander. Recorded as within noise, with the direction noted: across rounds 7–9 the guidance arm ran −12%, +2.5% and +18%.
+- **Agents alone passed the specified recurrence tests**: every plain run wrote a 585–605 line expander that matched the oracle's cases, including DST. This establishes no final acceptance advantage from reuse; local debugging still occurred.
+- **Guidance arm:** each run made one `quick` call, judged the module's fixed choices (its routes, UNTIL-based splits that shift exceptions) to conflict with the task and wrote the feature. Its corrected mean is 15.5% higher, with overlapping ranges. These small samples and overlapping ranges do not establish equivalence or attribute the whole difference to the lookup; agents also debugged their own expanders. Across rounds 7–9 the corrected guidance differences were −11.9%, −8.8% and +15.5%, all without reusing Genlib code.
 - **Required reuse:** both runs installed `recurring-events` and reused its RRULE expander and time-zone conversion (`ruleWalls`, `zoneFor`, `wallToInstant`), writing 372–388 lines of glue instead of about 600, but reading 14–27k tokens of module source took more turns than the lines saved.
 
-Conclusion from rounds 7–9 (22 runs, two models, four tasks): capable agents now write these features correctly in one pass, so reuse saves tokens only when the module can be used without reading its source and without re-implementing semantics the task sets differently. The work that follows from this: give reusable internals (`ruleWalls`, time-zone conversion, sniffing, TOTP checks) their own small documented entry points with signatures in `quick`, so glue can call them without reading the module; and make semantic choices that differ between specifications (start-as-first-occurrence, split style, COUNT caps) options rather than fixed behavior.
+Across rounds 7–9 (28 runs, two models, four tasks), required reuse cost more in the full-output proxy even though all submitted arms passed their hidden suites. Smaller standalone entry points and configurable semantics were subsequently evaluated in rounds 10–12. These results do not show that agents universally get such features right in one pass or that code reuse cannot save work in other settings.
 
 ## Round 10: standalone parts on the recurrence task (2026-10-12)
 
-Pull request #41 lets a module list parts, profiles usable without the rest of it, and `quick` prints each with its size and signatures; `recurring-events` gained an `expander` part (RRULE expansion and zone conversion, 423 lines, no store, routes or split rules). Same task, fixture and prompts as round 9, two runs each of the guidance and required-reuse arms. Raw table `results-round10.json`. All four passed 18/18.
+Pull request #41 lets a module list parts, profiles usable without the rest of it, and `quick` prints each with its size and signatures; `recurring-events` gained an `expander` part (RRULE expansion and zone conversion, 423 lines, no store, routes or split rules). Same task, fixture and prompts as round 9, two runs each of the guidance and required-reuse arms. Raw table `results-round10.json`. All four passed 18/18. The plain baseline was not rerun in this session; the comparison below uses round 9. All means use `cost2`.
 
 | Arm | Round 9 mean (runs) | Round 10 runs | Round 10 mean |
 | --- | ---: | --- | ---: |
-| Agent | 208,775 (4) | not rerun | |
-| + Genlib (guidance) | 246,341 (4) | 257,151 (used the part), 187,898 (wrote it) | 222,525 |
-| + Genlib (reuse required) | 294,758 (2) | 331,878, 279,125 | 305,502 |
+| Agent | 274,807.25 (4) | not rerun | |
+| + Genlib (guidance) | 317,341 (4) | 309,779 (used the part), 250,577 (wrote it) | 280,178 |
+| + Genlib (reuse required) | 357,711.5 (2) | 390,453, 333,700 | 362,076.5 |
 
 - **Parts did not lower the cost of reuse.** Both required-reuse runs installed only the expander files but still read 13–26k tokens and wrote 405–440 lines of glue, because the task's validation differs from the module's parser (COUNT capped at 10,000, `+` and leading zeros accepted, date-only UNTIL) and its split rule differs from the module's. One guidance run chose the part on its own and cost more than the two plain runs nearest it.
 - **Routing sent both reuse runs to the smaller `rrule` recipe first**, which rejects BYSETPOS and WKST; they found the module under `# also`. The remaining guidance run read the `# fixed` line (routes, split behavior) as applying to the part and wrote the feature.
-- **Economic gate:** the guidance arm's mean is +6.6% over the plain agent's round-9 mean with overlapping ranges, within noise.
+- **Economic evidence:** required reuse is +31.8% and guidance +2.0% versus the prior-session plain mean. The guidance arm mixes one reuse run with one direct implementation. That small mixed-arm difference does not establish a reuse saving or statistical equivalence.
 
-What remains open: `# fixed` should say that a part carries none of the module's fixed choices; `quick` should prefer an implementation whose contract coverage is direct over a partial one for the same feature; and a module parser could take a strict mode so glue need not re-validate. None of these is expected to turn reuse into a saving on tasks where a capable agent writes a correct feature in one pass, which rounds 7–10 (26 runs) consistently showed.
+The remaining routing and configurability issues were addressed in subsequent rounds: clarify that a part carries none of the module's fixed choices, prefer direct contract coverage, and avoid duplicating parser validation. Through rounds 7–10 (32 runs), the recorded required-reuse arms still had higher mean cost proxies. This is a finding about the measured tasks and interfaces.
 
 ## Round 11: the recurrence task with a smaller model (2026-10-12)
 
-Same task as rounds 9 and 10, with Genlib at commit 63b3963 (full-coverage preference when the wording names a contract, `# fixed (not parts)`). Two Opus runs with reuse required, and Haiku in all three arms, two runs each, to test whether a smaller model fails the standard alone. Raw table `results-round11.json`. All eight runs passed 18/18.
+Same task as rounds 9 and 10, with Genlib at commit 63b3963 (full-coverage preference when the wording names a contract, `# fixed (not parts)`). Two Opus runs with reuse required, and Haiku in all three arms, two runs each. Raw table `results-round11.json`. All eight submitted runs passed 18/18. Every run also records a nonzero local repair marker. Means below use `cost2`; there is no same-session Opus plain baseline.
 
-| Arm | Runs | Mean cost index | Runs |
+| Arm | Runs | Mean cost proxy | Runs |
 | --- | ---: | ---: | --- |
-| Opus, reuse required | 2 | 331,045 | 369,565 · 292,525 |
-| Haiku, agent | 2 | 517,353 | 507,429 · 527,277 |
-| Haiku, reuse required | 2 | 551,914 (+6.7%) | 569,289 · 534,539 |
-| Haiku, Genlib guidance | 2 | 575,661 (+11%) | 693,269 · 458,053 |
+| Opus, reuse required | 2 | 389,302 | 432,498 · 346,106 |
+| Haiku, agent | 2 | 605,168.5 | 597,091 · 613,246 |
+| Haiku, reuse required | 2 | 638,924 (+5.6%) | 654,796 · 623,052 |
+| Haiku, Genlib guidance | 2 | 673,329.5 (+11.3%) | 801,696 · 544,963 |
 
-- **Haiku alone wrote RFC 5545 recurrence correctly** (DST gaps and folds in four zones, BYSETPOS over whole weeks, splits), so again no run failed and nothing could be saved on repairs.
-- **Reuse came closest to parity with the smaller model:** +6.7% with Haiku against +32–47% with Opus in rounds 7–10. A smaller model spends more turns writing the expander itself, so reusing one costs relatively less.
-- **Guidance arm:** both Haiku runs made one `quick` call and wrote the feature; the 693,269 run spent its extra turns debugging its own expander, the other cost less than either plain run. Within noise.
+- **Haiku alone passed the specified recurrence suite**, including DST gaps and folds in four zones, weekly BYSETPOS and splits. No final acceptance difference was observed; local repairs were part of both arms' costs.
+- **Reuse came closest to parity here:** +5.6% with Haiku, compared with +26.0–31.8% for the primary-model required-reuse arms in rounds 7, 9 and 10. Two runs per arm do not establish parity or a stable model-level effect.
+- **Guidance arm:** both Haiku runs made one `quick` call and wrote the feature; the 801,696 run spent extra turns debugging its own expander, while the other cost less than either plain run. The wide range and absence of reuse prevent attributing a benefit to Genlib code.
 - **Routing:** the Opus reuse runs phrased the task so that no contract matched, so the full-coverage preference did not apply and `quick` still led with the `rrule` capability under `--target`. Commit 27a66f7 adds a fallback for that case (a contract both picks claim); it was not in this round's build.
 
 ## Round 12: recurrence with the module usable as is (2026-10-12)
 
-Same task, fixture and hidden tests as rounds 9–11. Before any agent ran, `recurring-events` 0.2.0 added opt-in options for specs that follow RFC 5545 (`startRule: "rfc5545"`, `windowMatch: "start"`, `lastYear`, an error `field`, `editOccurrence` `replace`) and fixed `startLocal` for times skipped by DST. A 166-line adapter on the core then passed 18/18; the round-11 reuse runs had written 454–466 lines of glue. Twelve runs at commit eea8c8e (Opus and Haiku, all three arms, two each), with the plain arm repeated in this session so every comparison is same-session, then four guidance re-runs at bd52765 after the fix described below. Raw table `results-round12.json`. All 16 runs passed 18/18.
+Same task, fixture and hidden tests as rounds 9–11. Before any agent ran, `recurring-events` 0.2.0 added opt-in options matching the task (`startRule: "rfc5545"`, `windowMatch: "start"`, `lastYear`, an error `field`, `editOccurrence` `replace`) and fixed `startLocal` for times skipped by DST. A 166-line adapter on the core then passed 18/18; the round-11 reuse runs had written 454–466 lines of glue. Twelve runs at commit eea8c8e (Opus and Haiku, all three arms, two each), with the plain arm repeated in this session so each model has a same-session comparison, then four guidance re-runs at bd52765 after the change described below. Raw table `results-round12.json`. All 16 submitted runs passed 18/18; nine record local repair markers. Means below use `cost2` and keep the revised guidance runs separate.
 
-| Arm | Opus mean (runs) | vs alone | Haiku mean (runs) | vs alone |
+| Arm | Opus mean cost proxy (runs) | vs alone | Haiku mean cost proxy (runs) | vs alone |
 | --- | ---: | ---: | ---: | ---: |
-| Agent alone | 272,914 (273,730 · 272,097) | – | 534,243 (457,402 · 611,084) | – |
-| Reuse required | 333,696 (336,123 · 331,269) | +22% | 731,523 (487,750 · 975,296) | +37% |
-| Genlib guidance, eea8c8e | 317,306 (328,488 · 306,123) | +16% | 673,750 (786,293 · 561,206) | +26% |
-| Genlib guidance, bd52765 | 228,204 (197,444 · 258,963) | −16% | 576,770 (399,471 · 754,070) | +8% |
+| Agent alone | 340,941.5 (334,858 · 347,025) | – | 644,889.5 (547,072 · 742,707) | – |
+| Reuse required | 384,199 (384,809 · 383,589) | +12.69% | 828,450.5 (562,275 · 1,094,626) | +28.46% |
+| Genlib guidance, eea8c8e | 376,936.5 (381,747 · 372,126) | +10.56% | 772,744 (898,036 · 647,452) | +19.83% |
+| Genlib guidance, bd52765 | 294,407 (260,289 · 328,525) | −13.65% | 692,964.5 (497,117 · 888,812) | +7.45% |
 
 - **The module was used as is.** Every reuse run built on the core with the new options. Their own code fell to 292–497 lines, against 613–803 written alone.
-- **Reuse still cost more.** The Opus reuse runs read about 26k tokens (the whole of `core.ts` and the expander) against 6–7k alone, and took 14–15 turns against 12. Writing about 300 fewer lines saved less than that reading cost.
-- **Guidance failed the gate at eea8c8e.** The Opus guidance runs (306–328k) did not overlap the plain runs (272–274k). Both copied the expander part, read its source plus an outline (about 16k tokens), and wrote the rest themselves.
+- **Reuse still had a higher cost proxy.** The Opus reuse runs read an estimated 26–27k tokens (the whole of `core.ts` and the expander) against 6–7k alone, and took 14–15 turns against 12. Their 24.72% decrease in estimated written tokens was accompanied by a 318.30% increase in tool-output reading and a 27.71% increase in recorded input tokens including cache reads. Haiku reuse wrote 11.90% fewer estimated tokens but read 146.83% more tool output and consumed 64.96% more recorded input tokens.
+- **Original guidance remained more expensive.** The Opus guidance runs (372–382k) did not overlap the plain runs (335–347k). Both copied the expander part, read its source plus an outline (about 16k estimated tokens), and wrote the rest themselves. Two runs per arm do not quantify a reliable effect size for other tasks.
 - **Haiku misread `# fixed`.** Both Haiku guidance runs read the module's configurable defaults, listed under `# fixed`, as conflicts and wrote the feature. Commit c520bfd prints those as a separate `# options:` line.
-- **The fix (bd52765):** the `genlib connect` guidance now says to skip Genlib when the task text spells out every rule, error code and edge case, even for a long feature that follows a standard. Rounds 7–12 found that such tasks are cheaper to write than to find, read and adapt.
-- **Re-run under the fix:**
-  - Both Opus runs skipped Genlib and cost less than either plain run. That is the skip plus run-to-run variation, not a saving from reuse.
-  - Haiku: one run made one lookup and declined, the other skipped. +8% with overlapping ranges (the 754k run spent 29 turns debugging its own expander), within noise.
+- **The guidance change (bd52765):** `genlib connect` was changed to skip Genlib when the task text spells out every rule, error code and edge case, even for a long feature. That intervention reduces exposure to the measured integration overhead; it does not improve the measured economics of actually reusing code.
+- **Re-run under the change:** both Opus runs skipped Genlib and cost less than either plain run. Haiku made one lookup and declined in one run and skipped in the other; its mean was 7.45% higher, with wide overlapping ranges. The 888,812 run spent 29 turns debugging its own expander. These outcomes are not reuse savings, and overlap does not establish equivalence.
 
-The gate holds again. Reuse pays only where reading the API costs less than writing the code. On a fully specified task, a capable agent writes the code correctly in one pass, so reading the module adds cost even when it covers the task. The open path to a saving is tasks whose text leaves a standard's rules to the agent, where an agent alone misses requirements or repairs. Round 6's outgoing-webhook and digest tasks are the model. The next round should write such a task in short form and grade it against the full standard.
+Cost and time answer different questions in this round:
+
+| Required reuse vs agent alone | Opus | Haiku |
+| --- | ---: | ---: |
+| Mean elapsed seconds, alone → reuse | 333 → 258.5 | 595.5 → 634.5 |
+| Change in elapsed time | −22.37% | +6.55% |
+| Change in full-output cost proxy | +12.69% | +28.46% |
+
+Opus reuse was faster in these recorded runs while costing more in the proxy. The samples are small and elapsed time includes execution and scheduling; neither the cost result nor the timing result proves universal behavior.
+
+The existing application-feature results do not demonstrate the intended economic benefit from the tested reuse path. Sequential changes to routing, parts, configuration and guidance have not produced a lower required-reuse cost proxy. Skipping the library does not satisfy a claim that retrieving code saves tokens. No new economic evidence is claimed for the focused reuse path; it remains pending under the existing gate. Deterministic installation and acceptance checks can establish that a component works, but cannot substitute for that live economic comparison.

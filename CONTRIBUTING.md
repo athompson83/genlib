@@ -2,6 +2,8 @@
 
 Genlib's purpose is to make repeated application work reusable without hiding its integration requirements. Prefer a small, configurable feature with a clear contract and meaningful tests. Follow [AGENTS.md](AGENTS.md) and read the [architecture](docs/architecture.md) before changing behavior.
 
+Broad expansion is paused under the [focused reuse plan](docs/focused-reuse.md). Maintain existing resources and fix demonstrated adoption problems. Further component work needs a concrete receiving-app task; additional catalog entries or language variants are not a substitute for accepted-feature evidence. The existing economic merge gate still applies.
+
 ## Ownership and licensing
 
 The current registry accepts **original Apache-2.0 modules** with Genlib provenance. Contribute code you have the right to publish under that license. Preserve `LICENSE`, `NOTICE`, and accurate authorship; do not label copied third-party code as original.
@@ -39,6 +41,8 @@ Each module lives under `modules/<id>/` with:
 Use [the module format](docs/module-format.md) as the reference. The validator accepts lowercase hyphenated IDs and numeric `major.minor.patch` versions. Source targets must be safe relative paths, and declared exports must refer to included files. Local dependencies specify an exact module ID and version available in the same checkout.
 
 Keep discovery descriptions short enough for agents to select a candidate without reading implementation source. Write contracts that answer the questions needed for integration: imports and CSS, required props or adapters, framework versions, client/server boundaries, state and error behavior, access and persistence responsibilities, verification, and known limits. Small examples belong in the contract; avoid duplicating the full implementation in documentation.
+
+Describe what the selected files deliver. A data helper does not count as a rendered component, and a package reference does not count as an installed integration. Recipe `variants` must name implemented behavior; optional `title` and `caveat` fields make that scope visible before copying. Do not label proposed cart drawers or catalog grids as shipped variants of pure data functions.
 
 Keep reusable behavior separate from application-specific data and appearance. Prefer props, injected adapters, wrappers, and semantic design variables. Reuse the project's own authentication, authorization, storage, and design system. Never manufacture a default identity or present temporary storage as production persistence.
 

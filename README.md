@@ -16,6 +16,8 @@
 
 **Genlib is a reusable code library and resource catalog for coding agents.** Genisys, OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode, Claude Code and Codex can discover modules, integration packs, recipes, templates and external tools through a portable skill and MCP. Ollama supplies local models through an MCP-capable host. Agents inspect contracts and verification profiles, then adopt selected source through the same libraries as the dependency-free CLI. See the [documented harness profiles and verification limits](docs/harnesses.md).
 
+**Current focus:** broad catalog, language and harness expansion is paused. Preserve the existing code and access paths, repair incomplete handoffs, and evaluate reuse on actual application work. Start with the app's own components and installed libraries; use Genlib when a known item fits or a bounded lookup is likely to help. The [focused reuse plan](docs/focused-reuse.md) defines what would justify further investment. Token and time savings remain something to demonstrate for the whole task.
+
 ```sh
 node "$GENLIB_ROOT/bin/genlib.mjs" find verify stripe webhook --target "$APP_ROOT" --limit 5 --json
 ```
@@ -26,7 +28,7 @@ One command searches everything below and returns each result's exact next step.
 | Source | Count | What it is |
 | --- | ---: | --- |
 | [Capabilities](#capabilities-one-task-every-language) | 91 (814 implementations, 812 tested) | SSO, MFA, auth, PDF, documents, forms, CSV, money, IDs, retries, rate limits, semver, cron, geo, webhooks, check digits, signed URLs, map tiles, polylines, geometry, email, durations, safe redirects, SSRF guards, HTTP caching and ranges, cookies, fuzzy matching, recurrence rules, feature flags, diffs, password policy and more, each with code in up to 9 languages (in brackets: implementations shipped, and how many have tests in Genlib CI) |
-| [Modules](#modules) | 45 | Complete components (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify` |
+| [Modules](#modules) | 45 | Source modules with scoped contracts (UI shell, data table, forms, API clients, config, logging, resilience, rate limits, webhooks, health checks, security headers, tenant invitations), each versioned, hash-verified and installed with `plan` / `add` / `verify`; the receiving app supplies integration and acceptance |
 | [Integration packs](#integration-packs) | 16 | Opt-in feature, API, developer and native profiles with source, manifests, fixtures and scoped verification |
 | [TypeScript recipes](#recipes-language-examples-and-templates) | 114 | 110 single-file TypeScript sources, strictly compiled and behaviour-tested, copied with one command; the other 4 records are a CSS source, a structural UI example and aliases for versioned modules (the refactoring and workflow recipes are a separate index below) |
 | [Language examples](#recipes-language-examples-and-templates) | 745 | The same patterns in Python, Go, Rust, Java, Kotlin, C#, Dart and Swift |
@@ -39,12 +41,13 @@ One command searches everything below and returns each result's exact next step.
 | [CLIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 1500 | Top Homebrew CLIs by install requests, one `brew install` each |
 | [APIs](#install-indexes-skills-mcp-servers-clis-and-apis) | 2526 | Top OpenAPI-described APIs with official SDK or one-command typed client |
 | [External resources](#resource-catalog) | 9806 | Link- and license-checked records, with source evidence, license scope, lifecycle and adoption metadata, for open-source libraries, services and apps (including SEO, AI optimization, marketing, social media, dashboards, scheduling/calendar, chat/messaging, popular open-source tools with the products they replace, finance/accounting, business tools, educator tools, AI agent tools and learning references, diagram tools, mapping, GIS and navigation tools with live geodata feeds, in 12 languages) across 21 [project types](resources/project-types.json) |
-| [Documentation sections](#jev-and-the-search-index) | 735 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
+| [Documentation sections](#jev-and-the-search-index) | 743 | Every README, AGENTS, CONTRIBUTING and docs section, returned with the exact line range to read |
 <!-- genlib:sources:end -->
 
 ## Contents
 
 - [How it works](#how-it-works)
+- [Focused reuse plan](docs/focused-reuse.md)
 - [Quick start](#quick-start)
 - [Capabilities: one task, every language](#capabilities-one-task-every-language)
 - [Modules](#modules)
@@ -80,7 +83,7 @@ flowchart TB
   Quick["genlib quick<br/>best match + its commands"]
   Find["genlib find<br/>(+ detect --target)"]
   Outline["genlib outline<br/>signatures, not source"]
-  Source["genlib source<br/>sparse pinned fetch<br/>+ Genlib equivalents"]
+  Source["genlib source<br/>pinned fetch plan<br/>+ Genlib equivalents"]
   Jev["genlib jev<br/>≤8 candidates, yes/no each"]
   Index["registry/search-index.jsonl"]
   MCP["genlib MCP server<br/>genlib_quick · genlib_find<br/>genlib_outline · genlib_jev"]
@@ -118,7 +121,10 @@ flowchart TB
   Harness -. "native configuration" .-> MCP
   Harness -- "safe copy" --> Skill
   Skill -. "MCP or CLI" .-> Quick
-  Task --> Quick --> Find
+  Task -- "optional lookup" --> Quick
+  Task -- "known module" --> Inspect
+  Task -- "existing app code" --> App
+  Quick -. "compare if needed" .-> Find
   Quick -.-> Outline -.-> App
   Find --> C & M & P & R & T & N & S & X & D
   P --> PackPlan --> Verify
@@ -144,11 +150,12 @@ flowchart TB
 
 </details>
 
-- **Pay only for what acts.** `quick` returns the best match and only its install or copy commands (about 400 bytes); `find` prints one line per result; `outline` gives signatures instead of source. [docs/token-budget.md](docs/token-budget.md) holds the measured sizes, and tests enforce budgets. [docs/benchmarks.md](docs/benchmarks.md) reports measured agent runs with and without Genlib. On algorithm-sized tasks with an exact standard, agents that reused Genlib's code wrote 75–94% fewer tokens and cost 5–16% less (rounds 1–3). On ordinary application features with a precise spec, Genlib arms cost 27–36% more (rounds 4–5), mostly extra decision turns, so the guidance now says to skip Genlib there and `quick` decides in one call. Round 7 repeated this on three larger features with hidden tests: with the guidance, agents wrote the code and matched the plain agent; told to reuse the matching module, they passed the same tests at 32% more cost (43% with a smaller model in round 8). On RFC 5545 recurrence with DST (round 9), plain agents also passed every hidden test, and required reuse cost 41% more. Every change to what agents read must pass that economic check (AGENTS.md). `node scripts/routing-eval.mjs` measures how often one `quick` call lands on the right capability: 81% top-1 and 88% top-3 on 166 held-out task phrasings (61% and 75% before the stemming, term and prior changes measured in [docs/benchmarks.md](docs/benchmarks.md)).
-- **Search metadata, not source.** `find` ranks compact metadata from every catalog. With `--target`, it detects the app's languages and frameworks from its manifests, marks each result `compatible` or `review`, and hides known mismatches.
-- **Read one contract.** Module results list their installed files, exports and dependencies, so the agent opens only the entry points it needs.
+- **Keep optional discovery bounded.** `quick` returns a best match and its commands; `find` lists alternatives; `outline` gives public signatures. Use only the steps needed to decide and integrate. [Output-size budgets](docs/token-budget.md) constrain these surfaces but do not establish task-level savings.
+- **Measure the complete task.** The [benchmark report](docs/benchmarks.md) separates estimated full written output, tool reads, total cost proxies and elapsed time. In the latest same-session required-reuse recurrence comparison (round 12, two runs per model and arm), Genlib's estimated cost was about 13% higher for Opus and 28% higher for Haiku; recorded time was about 22% lower and 7% higher respectively. These backend tasks do not establish frontend savings. A guidance-only run that never calls Genlib is not a reuse win. The existing [economic gate](AGENTS.md#working-rules) still applies before merging agent-facing behavior changes.
+- **Check fit and delivery.** `find` ranks compact metadata. With `--target`, it detects the app's languages and frameworks, marks results `compatible` or `review`, and hides known mismatches. A data helper, rendered component, structural example and external package have different integration requirements; read the title, caveat and contract before adopting one.
+- **Read the relevant contract and source.** Module results list installed files, exports and dependencies. Use the handoff and signatures first, then targeted source reads when needed to integrate or debug.
 - **Copy deterministically.** The CLI copies reviewed bytes and records hashes. The model never retypes a module.
-- **Verify in the app.** File hashes prove what was copied; the receiving app's own build and tests prove it works.
+- **Verify in the app.** File hashes establish agreement with the copied baseline. The receiving app's build, tests and relevant interaction checks establish acceptance for that application.
 - **Record the outcome.** Each install writes a receipt; `adopted` reports whether the app actually imports and tests the code, `update` merges upstream fixes into local edits, and `remove` rolls back. When nothing fits, `quick` says so and returns GitHub search commands instead of a weak match.
 - **Count requirements, not search hits.** `genlib coverage <task>` reports, per requirement of a feature, whether a named repository test exercises it, and what the app still has to build. [docs/gaps.md](docs/gaps.md) summarizes 65 common tasks; the app records its own acceptance with `adopted --accepts`.
 
@@ -156,23 +163,26 @@ flowchart TB
 
 Requirements: Node.js 22+ and Git. The CLI uses only Node built-ins, so you don't need `npm install` to use it.
 
+This example adopts the existing React data-table component after deciding it fits. A known component can go straight to its contract and plan; discovery is optional.
+
 ```sh
 git clone https://github.com/athompson83/genlib.git
 export GENLIB_ROOT="$PWD/genlib"
 export APP_ROOT="/absolute/path/to/existing-application"
 
-# 1. Get the best match and its exact commands (find lists options; outline shows signatures)
+# 1. If needed, get a candidate and its commands
 node "$GENLIB_ROOT/bin/genlib.mjs" quick searchable table --target "$APP_ROOT"
-node "$GENLIB_ROOT/bin/genlib.mjs" find searchable table --target "$APP_ROOT" --limit 5
-node "$GENLIB_ROOT/bin/genlib.mjs" outline data-table
+# Optional alternatives: find lists candidates; outline data-table shows public signatures
 
 # 2. Inspect one module contract, then plan without writing
 node "$GENLIB_ROOT/bin/genlib.mjs" inspect data-table --json
 node "$GENLIB_ROOT/bin/genlib.mjs" plan data-table --target "$APP_ROOT" --json
 
-# 3. Copy the reviewed source and record its baseline
+# 3. Copy the reviewed source and use the returned component/CSS wiring
 node "$GENLIB_ROOT/bin/genlib.mjs" add data-table --target "$APP_ROOT" --json
 node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
+# Mount the component, load both stylesheets, then run the app's build and interaction checks.
+# verify checks copied hashes only; it does not run those application checks.
 ```
 
 | Command | Purpose |
@@ -181,11 +191,11 @@ node "$GENLIB_ROOT/bin/genlib.mjs" verify --target "$APP_ROOT" --json
 | `quick <words> [--target app] [--language go]` | One-call reuse decision: the best match and its install or copy commands, then `# reuse direct\|partial` (requirements its tests verify, what the app must add), `# fixed` (routes, status codes and storage a task may contradict), `# size` and destination (or `# profiles` with a suggested `--profile` on the add command, and `# parts` for a profile usable on its own with its signatures), `# api` with the import path, `# needs` (hooks the app supplies) and `# then` (verify step); `# skip` for a small edit to existing code (cheapest call) |
 | `find <words> [--target app] [--language …] [--type …] [--project …] [--license-policy permissive] [--include-retired]` | Rank every source for a task; compact text by default, `--json` for full records, `--json --brief` for compact JSON. Retired records are hidden unless asked for |
 | `integration list\|inspect\|plan\|add\|verify` | Integration packs: inspect the contract, plan without writes, copy to `genlib/integrations/<id>` with an integrity lock, verify |
-| `source <id> [--path dir]` | Pinned, minimal fetch of an external project's original source (sparse checkout of one folder, or one raw file), its license, and Genlib code that already covers the need |
+| `source <id> [--path dir]` | Returns source-fetch commands for the requested external path (or a raw-file URL), license notes and related Genlib implementations; it does not execute the fetch |
 | `outline <id> [--language go]` | Public signatures and one-line docs of a capability, module, recipe or language example, with measured source and outline bytes |
 | `genlib-mcp` (`bin/genlib-mcp.mjs`) | Dependency-free MCP server exposing quick, find, outline, source, jev, capability, inspect, read_doc and catalog as tools; the optional direct SDK server (`packages/genlib-mcp`, [mcp-server.md](docs/mcp-server.md)) adds scoped plans, installation and Streamable HTTP |
 | `jev <task words> [--target app]` | Bounded decision packet for Jev: up to 8 candidates, one yes/no question each, and the exact next commands |
-| `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language; with `--language`, `--json` adds ordered `steps` (copy, install, integrate, test or check), the acceptance step and failure guidance |
+| `capability list` / `capability inspect <id> [--language go]` | Coverage of each common task across 9 languages and the one copy command per language; with `--language`, `--json` adds ordered `steps` (copy, install, integrate, test or check), the available verification step and failure guidance. App acceptance remains separate |
 | `skill\|mcp\|cli\|api\|starter\|task find <words>` / `… inspect <id>` | Search the ranked install indexes (compact text, `--json` for records) and get the exact install commands (`--harness` / `--client claude\|codex\|both`) |
 | `detect --target app` | Report languages, frameworks, React major and package manager from manifests |
 | `catalog` | Counts and a short overview of every source |

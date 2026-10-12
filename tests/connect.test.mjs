@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { REPOSITORY_ROOT } from '../lib/catalog.mjs';
-import { connectAgents, GUIDANCE } from '../lib/connect.mjs';
+import { connectAgents, GUIDANCE, REUSE_POLICY } from '../lib/connect.mjs';
 
 const GENLIB = path.resolve(REPOSITORY_ROOT);
 async function app(t) {
@@ -42,11 +42,32 @@ test('dry run writes nothing; --write adds entries and blocks next to existing s
   assert.ok(agents.startsWith('# Rules\n\nUse pnpm.\n'));
   assert.ok(agents.includes(GUIDANCE));
   assert.match(await read(target, '.cursor/rules/genlib.mdc'), /^---\ndescription: /);
-  assert.ok((await read(target, 'CLAUDE.md')).includes('Default to writing the code yourself'), 'guidance says when not to use Genlib');
+  for (const file of ['CLAUDE.md', '.cursor/rules/genlib.mdc', '.github/copilot-instructions.md']) {
+    assert.ok((await read(target, file)).includes(GUIDANCE), file + ' receives the same reuse policy');
+  }
 
   const again = await connectAgents(GENLIB, target, { targets: ['all'] });
   assert.equal(again.changed, 0, 'a second run changes nothing');
   assert.ok(again.files.every(file => file.action === 'unchanged'));
+});
+
+test('refresh upgrades an existing managed guidance block without changing project rules or MCP settings', async t => {
+  const target = await app(t);
+  await fs.writeFile(path.join(target, 'CLAUDE.md'), '# Project rules\n\nUse the existing component library.\n');
+  await connectAgents(GENLIB, target, { targets: ['claude'], write: true });
+  const configBefore = await read(target, '.mcp.json');
+  const current = await read(target, 'CLAUDE.md');
+  const legacy = current.replace(GUIDANCE, '## Older Genlib guidance\n\nUse the old selection workflow.') + '\n## Local checks\n\nRun the app acceptance suite.\n';
+  await fs.writeFile(path.join(target, 'CLAUDE.md'), legacy);
+
+  const plan = await connectAgents(GENLIB, target, { targets: ['claude'] });
+  assert.equal(plan.changed, 1);
+  assert.equal(await read(target, 'CLAUDE.md'), legacy, 'planning leaves old guidance in place');
+  const result = await connectAgents(GENLIB, target, { targets: ['claude'], write: true });
+  assert.deepEqual(result.conflicts, []);
+  assert.equal(await read(target, '.mcp.json'), configBefore);
+  assert.equal(await read(target, 'CLAUDE.md'), current + '\n## Local checks\n\nRun the app acceptance suite.\n');
+  assert.equal((await connectAgents(GENLIB, target, { targets: ['claude'] })).changed, 0);
 });
 
 test('an existing unmanaged genlib entry, JSONC, invalid JSON and broken markers are conflicts, and nothing is written', async t => {
@@ -105,6 +126,7 @@ test('the written .mcp.json starts a working Genlib MCP server', async t => {
   child.stdin.end();
   await new Promise(resolve => child.on('close', resolve));
   const replies = out.trim().split('\n').map(line => JSON.parse(line));
+  assert.ok(replies.find(reply => reply.id === 1).result.instructions.startsWith(REUSE_POLICY), 'MCP initialization carries the shared project reuse policy');
   const tools = replies.find(reply => reply.id === 2).result.tools.map(tool => tool.name);
   assert.deepEqual(tools, ['genlib_quick', 'genlib_outline'], 'the lean default registers only quick and outline');
 });

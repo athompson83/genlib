@@ -14,6 +14,15 @@ test('registry.json is current', () => {
   assert.equal(run.status, 0, run.stderr);
 });
 
+test('installable recipe metadata retains authored delivery titles and caveats', () => {
+  const recipes = JSON.parse(readFileSync(new URL('resources/agent-recipes.json', root), 'utf8')).entries;
+  for (const recipe of recipes.filter(entry => entry.caveat)) {
+    const item = registry.items.find(entry => entry.name === recipe.id);
+    assert.equal(item.title, recipe.title);
+    assert.ok(item.docs.includes(recipe.caveat), recipe.id);
+  }
+});
+
 test('every item is a universal registry:item whose files exist and target ~/genlib/', () => {
   assert.equal(registry.$schema, 'https://ui.shadcn.com/schema/registry.json');
   assert.equal(registry.name, 'genlib');

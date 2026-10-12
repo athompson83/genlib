@@ -22,7 +22,7 @@ test('a module pick carries its fixed behavior, files, import path, API, hooks a
   assert.ok(pick.api.includes('createInvitations(options)'));
   assert.deepEqual(pick.hooks, ['store', 'authorize']);
   assert.ok(pick.size.lines > 100 && pick.size.files >= 3);
-  assert.match(pick.verify, /genlib verify org-invitations/);
+  assert.match(pick.verify, /genlib verify --target "\$APP_ROOT" checks copied hashes only/);
   const text = quick('organization', 'invitations');
   assert.match(text, /^# fixed: .*409 already-accepted/m);
   assert.match(text, /^# reuse direct: 8\/8 of org-invitations/m);

@@ -72,6 +72,11 @@ test('the committed search index is current and covers every source type', () =>
   const types = new Set(lines.map(line => line.type));
   for (const type of ['capability', 'module', 'integration', 'recipe', 'language-example', 'template', 'tool', 'skill', 'mcp', 'cli', 'api', 'resource', 'doc']) assert.ok(types.has(type), type);
   assert.ok(lines.every(line => line.ref === `${line.type}:${line.id}` && line.next && line.title));
+  for (const recipe of sources.recipes.filter(entry => entry.caveat)) {
+    const indexed = lines.find(entry => entry.ref === `recipe:${recipe.id}`);
+    assert.equal(indexed.title, recipe.title ?? recipe.id);
+    assert.equal(indexed.caveat, recipe.caveat.slice(0, 200));
+  }
 });
 
 test('a no-dependency constraint keeps only candidates that need no install and is stated in the packet', () => {

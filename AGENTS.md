@@ -2,11 +2,17 @@
 
 Genlib is a source-code registry for applications built by Genisys and other coding harnesses. Preserve the Apache-2.0 license and keep the command-line tools free of runtime dependencies.
 
+## Current development focus
+
+Broad catalog, language and harness expansion is paused. Preserve the existing assets and access paths; prioritize accurate evidence, complete handoffs for existing components, and reuse tied to a concrete application task. Follow [the focused reuse plan](docs/focused-reuse.md). Resource counts, copied bytes and agents declining to call Genlib do not establish savings.
+
+Keep the economic gate below in force. Correct historical reporting without rewriting raw results, use the full-written-output estimate when final model usage is unavailable, and report time separately from cost. A draft may record missing application or economic evidence; do not merge it by treating source-copy checks as that evidence.
+
 ## Working rules
 
 - Read `docs/architecture.md` and the relevant module's `CONTRACT.md` before changing behavior.
 - Inspect the target application's own instructions, dependencies, design system, and permissions before integrating a module.
-- Search catalog metadata first. Install files with the CLI; read source only for integration or edits. Never dump the whole registry into model context.
+- When discovery is needed, search catalog metadata before source. A known compatible component needs no catalog lookup. Install files with the CLI; inspect targeted source for integration, edits or repair. Never dump the whole registry into model context.
 - Keep module source, manifests, contract documentation, and meaningful tests together. Record original or third-party provenance accurately.
 - Do not copy private customer code into this public repository. Preserve licenses and attribution for any approved third-party material.
 - Installers must reject unsafe paths, symlinks, integrity failures, incompatible targets, and overwrites. No install hooks, automatic package installation, external publishing, or credential access.
@@ -69,7 +75,7 @@ Run `npm run check` before publishing; it fails when generated docs, counts, mir
 - `lib/jev.mjs` (`genlib jev`), `lib/docs-index.mjs` and `scripts/build-search-index.mjs` (`npm run index:build`): Jev decision packets, documentation-section search and `registry/search-index.jsonl`. Keep the packet within Genisys' limits (8 candidates, 20,000 characters) and regenerate the index with every change; guide in `docs/jev.md`.
 - `scripts/routing-eval.mjs`, `tests/routing.test.mjs` and `tests/fixtures/routing-queries.json`: routing quality (how often `quick` picks the right capability). When you add a capability, add a few natural task phrasings to the `tuning` set and give it everyday terms; never edit the `heldout` set to make a ranking change pass.
 - `lib/brief.mjs` (`genlib quick`, compact `find` output), `lib/outline.mjs` (`genlib outline`: signatures instead of source), `scripts/token-report.mjs` (`docs/token-budget.md`, `npm run tokens:report`), `tests/token-budget.test.mjs` and `llms.txt`: the token diet. Keep agent-facing output compact: new result fields go in `--json`, not in quick or text output, and budgets only rise with a measured reason.
-- `lib/source.mjs` (`genlib source`) and `resources/equivalents.json`: the access path to any external project's original code (pinned sparse fetch, license note) and the curated map from external records to Genlib code that covers the same need. Add an equivalent only when the Genlib code is tested and genuinely overlaps; keys and targets are validated by `tests/source.test.mjs`.
+- `lib/source.mjs` (`genlib source`) and `resources/equivalents.json`: source-fetch command plans and license notes for external projects, and the curated map from external records to Genlib code that covers the same need. The command returns the plan without executing its fetch steps. Add an equivalent only when the Genlib code is tested and genuinely overlaps; keys and targets are validated by `tests/source.test.mjs`.
 - `scripts/diagrams.mjs` and `docs/diagrams/`: Mermaid source extracted from README.md and `docs/architecture.md` and light/dark SVGs rendered by the pinned Agentic Mermaid (`npm run diagrams:render`, network); `npm run diagrams:check` compares source hashes offline.
 - `lib/connect.mjs` (`genlib connect`): project-scoped MCP entries and a GENLIB_START/END guidance block for Claude Code, Cursor, VS Code, OpenCode and Codex (printed command); app files only, dry run unless `--write`, removal limited to what `.genlib/connections.json` records. Keep the guidance in step with the benchmark findings in `docs/benchmarks.md`.
 - `bin/genlib-mcp.mjs` (MCP server), `scripts/build-graph.mjs` (`registry/graph.json`, `npm run graph:build`) and `scripts/export-obsidian.mjs`: agent access paths over the same catalogs; keep their tools, graph and export in step with any new source type, and document changes in `docs/agent-access.md`.

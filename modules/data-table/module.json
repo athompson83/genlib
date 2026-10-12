@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "data-table",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Searchable sortable data table",
   "description": "Typed React table with client-side search, stable sorting, pagination, empty states, and accessible table controls.",
   "kind": "component",
@@ -15,6 +15,7 @@
   "configuration": ["rows, columns, rowId, caption, pageSize, initialSort, searchable, searchLabel, searchPlaceholder, emptyMessage, noResultsMessage, className.", "Column accessors define filtering/sorting values; optional render and compare functions customize presentation and ordering."],
   "capabilities": ["client-filtering", "stable-sorting", "client-pagination", "empty-states", "table-accessibility"],
   "limitations": ["All supplied rows are available to the browser. Fetch and authorize data on the server before supplying it.", "No server pagination, virtualization, row selection, persistence, database connection, or permission enforcement.", "Default search is a case-insensitive substring match on searchable accessor values, not rendered cells.", "Supply unique stable row and column IDs; use immutable data updates."],
-  "verification": { "level": "tested", "testFiles": ["tests/web-modules.test.mjs"] },
+  "verification": { "level": "tested", "testFiles": ["tests/web-modules.test.mjs", "tests/component-handoff.test.mjs"] },
+  "changelog": [{ "version": "0.1.1", "changes": ["Return the integration example and both stylesheet imports in plan/add, with application acceptance kept separate from copied-file integrity. Component source and public props are unchanged."] }],
   "contract": "CONTRACT.md"
 }

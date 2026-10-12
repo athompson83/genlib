@@ -1,6 +1,6 @@
 # Use Genlib with coding agents, editors, and local models
 
-Genlib provides a portable `genlib-use` skill, native MCP configuration fragments, and a dependency-free CLI over the same reusable-code registry. Use the skill to teach an agent the reuse workflow and MCP to give it structured access to the catalog, contracts, and permitted project operations. Neither requires a Genisys account. The receiving harness, selected model, and application's own instructions determine which actions are available and authorized.
+Genlib provides a portable `genlib-use` skill, native MCP configuration fragments, and a dependency-free CLI over the same reusable-code registry. The skill teaches optional reuse: prefer existing app components and installed maintained libraries, use a known fitting Genlib component, and make a bounded lookup only when useful. MCP supplies structured access to the catalog, contracts, and permitted project operations. Neither requires a Genisys account. The receiving harness, selected model, and application's own instructions determine which actions are available and authorized.
 
 The supported setup profiles include OpenClaw, Nous Research's Hermes Agent, Google Antigravity, VS Code with GitHub Copilot, Cursor, OpenCode, Claude Code, Codex, Cline, Roo Code, and a generic MCP/Agent Skills route. Ollama uses a configured agent host such as OpenCode. A profile describes a connection contract; it does not make every catalog module compatible with every application stack.
 
@@ -344,17 +344,18 @@ For Claude Code, invoke `/genlib-use` and provide the same task details. Other h
 
 ```json
 {
-  "task": "Use the genlib-use skill and the connected Genlib tools to find reusable code for a searchable records table.",
+  "task": "Use the genlib-use skill to add a searchable records table, reusing compatible existing code where it helps.",
   "workflow": [
-    "Inspect the receiving application's instructions, stack, and existing components.",
-    "Use compact discovery, inspect the selected contract, and plan the integration.",
+    "Inspect the receiving application's instructions, stack, existing components and installed maintained libraries.",
+    "Use a known fitting component or one bounded Genlib lookup when useful; no catalog query is required.",
+    "Use the short API/install handoff, inspect targeted source when integration or repair needs it, and plan any copy.",
     "Perform only project changes already authorized by the task.",
     "Verify the integrated behavior and report the actual results."
   ]
 }
 ```
 
-Start with `genlib_quick` for one match or `genlib_find` for options, then inspect only the selected candidate. SDK discovery also exposes `genlib_search` for richer metadata. Read source only when integration or editing needs it; use `genlib_outline` for public signatures. The host may prefix MCP tool names, so discover available tools instead of hard-coding another client's prefix. Token savings are measured, never promised as a percentage.
+When discovery is useful, use `genlib_quick` for a bounded match or `genlib_find` for options; SDK discovery also exposes `genlib_search` for richer metadata. Use `genlib_outline` for missing public signatures and targeted source inspection for integration, edits or repair. Prefer maintained libraries for security protocols. The host may prefix MCP tool names, so use the connected schemas. Distinguish an adopted component, a partial helper and an external reference. Per-task savings remain unproven until measured; a skip or successful copy is not evidence of token or time savings.
 
 ## Maintain one source of truth
 

@@ -3,6 +3,8 @@
   "entries": [
     {
       "id": "storefront-cart",
+      "title": "Cart state and subtotal helpers",
+      "caveat": "Data helpers only; no rendered cart, drawer, product catalog or checkout.",
       "kind": "source-example",
       "path": "examples/storefront/cart.ts",
       "platform": "typescript",
@@ -18,13 +20,15 @@
         "Currency consistency"
       ],
       "variants": [
-        "drawer",
-        "page",
-        "mini-cart"
+        "quantity-update",
+        "item-removal",
+        "subtotal"
       ]
     },
     {
       "id": "storefront-catalog",
+      "title": "Product catalog filtering and sorting helpers",
+      "caveat": "Data helpers only; the app supplies the product grid or list UI and data source.",
       "kind": "source-example",
       "path": "examples/storefront/catalog.ts",
       "platform": "typescript",
@@ -40,13 +44,17 @@
         "Server pagination for large catalogs"
       ],
       "variants": [
-        "grid",
-        "list",
-        "search"
+        "text-filter",
+        "category-filter",
+        "tag-filter",
+        "title-sort",
+        "price-sort"
       ]
     },
     {
       "id": "invoice-totals",
+      "title": "Invoice total calculation helper",
+      "caveat": "Calculation helper only; no invoice layout, PDF renderer or invoice issuance workflow.",
       "kind": "source-example",
       "path": "examples/storefront/invoice.ts",
       "platform": "typescript",
