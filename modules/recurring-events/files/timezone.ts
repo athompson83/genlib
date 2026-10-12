@@ -22,7 +22,7 @@ export const offsetLookups = { count: 0 };
 
 /** The zone for an IANA name; throws invalid-input for an unknown one. */
 export function zoneFor(timeZone: string): Zone {
-  if (typeof timeZone !== "string" || timeZone.length === 0 || timeZone.length > 64) throw new RecurringEventsError("invalid-input", "invalid time zone");
+  if (typeof timeZone !== "string" || timeZone.length === 0 || timeZone.length > 64) throw new RecurringEventsError("invalid-input", "invalid time zone", "timeZone");
   const cached = zones.get(timeZone);
   if (cached) return cached;
   let format: Intl.DateTimeFormat;
@@ -31,7 +31,7 @@ export function zoneFor(timeZone: string): Zone {
       timeZone, hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric",
     });
   } catch {
-    throw new RecurringEventsError("invalid-input", `unknown time zone: ${JSON.stringify(timeZone)}`);
+    throw new RecurringEventsError("invalid-input", `unknown time zone: ${JSON.stringify(timeZone)}`, "timeZone");
   }
   const name = format.resolvedOptions().timeZone;
   const zone: Zone = name === "UTC" || name === "Etc/UTC" ? { name, offsetAt: () => 0 } : {
@@ -69,10 +69,10 @@ export const instantToWall = (zone: Zone, instant: number): number => instant + 
 /** Parses YYYY-MM-DDTHH:MM[:SS] (years 1000-9998) into wall milliseconds; throws invalid-input. */
 export function parseLocal(text: unknown, label = "date-time"): number {
   const m = typeof text === "string" ? /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/.exec(text) : null;
-  if (!m) throw new RecurringEventsError("invalid-input", `${label} must be a local date-time YYYY-MM-DDTHH:MM[:SS]`);
+  if (!m) throw new RecurringEventsError("invalid-input", `${label} must be a local date-time YYYY-MM-DDTHH:MM[:SS]`, label);
   const [y, mo, d, h, mi, s] = [1, 2, 3, 4, 5, 6].map((i) => Number(m[i] ?? "0")) as [number, number, number, number, number, number];
   if (y < 1000 || y > 9998 || mo < 1 || mo > 12 || d < 1 || d > daysInMonth(y, mo) || h > 23 || mi > 59 || s > 59) {
-    throw new RecurringEventsError("invalid-input", `${label} is not a valid date-time: ${JSON.stringify(text)}`);
+    throw new RecurringEventsError("invalid-input", `${label} is not a valid date-time: ${JSON.stringify(text)}`, label);
   }
   return daysFromCivil(y, mo, d) * DAY_MS + ((h * 60 + mi) * 60 + s) * 1000;
 }

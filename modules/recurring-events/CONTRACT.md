@@ -1,4 +1,4 @@
-# Recurring calendar events (RRULE) · 0.1.2
+# Recurring calendar events (RRULE) · 0.2.0
 
 ## What installs
 
@@ -55,14 +55,17 @@ export const handler = createRecurringEventsHandler({
   - Malformed rules fail with `invalid-rule`. FREQ=HOURLY, MINUTELY and SECONDLY, and the parts BYHOUR, BYMINUTE, BYSECOND, BYYEARDAY, BYWEEKNO, RSCALE and SKIP, fail with `unsupported-rule` instead of being ignored.
   - Invalid dates, such as the 31st of a short month or February 29th in a common year, are skipped, not clamped.
   - Rules are stored in canonical form.
-- **Start.** The start must be the rule's first occurrence, otherwise the series fails with `invalid-rule`. This also rejects rules that never occur. RDATEs may not precede the start.
-- **Time zones.** Occurrences keep their local wall time across DST changes. A local time that a forward transition skips is read with the offset from before the gap, so 02:30 becomes 03:30. A repeated local time means its first occurrence. A UTC UNTIL is compared with real instants. Durations are exact.
+- **Start.** By default the start must be the rule's first occurrence, otherwise the series fails with `invalid-rule`. This also rejects rules that never occur. RDATEs may not precede the start.
+  - With `startRule: "rfc5545"` the start is always the first occurrence and counts towards COUNT even when the rule does not produce it (RFC 5545 DTSTART), RDATEs may precede it, and only an UNTIL before the start is `invalid-rule`.
+  - `lastYear` (for example 2200) stops expansion after that local year, so a rule that never matches yields only its start.
+- **Time zones.** Occurrences keep their local wall time across DST changes. A local time that a forward transition skips is read with the offset from before the gap, so 02:30 becomes 03:30. `startLocal` shows the shifted time; `recurrenceId` keeps the nominal one. A repeated local time means its first occurrence. A UTC UNTIL is compared with real instants. Durations are exact.
 - **Exceptions.** EXDATE removes occurrences, including RDATEs. RDATE adds occurrences, which may be at another time of day. COUNT counts rule occurrences before EXDATEs are removed.
   - An override keyed by RECURRENCE-ID (the original local start) can move one occurrence or change its duration, title, description or location.
   - `cancelOccurrence` cancels an occurrence and `restoreOccurrence` removes its override.
+  - `editOccurrence` merges with an earlier override; pass `{ replace: true }` to replace it.
   - Only real occurrences can be overridden. Anything else fails with `not-an-occurrence`.
   - A series holds at most `maxOverridesPerSeries` overrides (default 1,000).
-- **Window queries.** `listOccurrences({calendarId, from, to, limit})` loads only the series whose stored `[rangeStart, rangeEnd)` overlaps the window. It returns occurrences that overlap `[from, to)` in start order, at most `limit` (default 500, at most `maxOccurrences`), with `truncated`.
+- **Window queries.** `listOccurrences({calendarId, from, to, limit})` loads only the series whose stored `[rangeStart, rangeEnd)` overlaps the window. It returns occurrences that overlap `[from, to)` in start order, at most `limit` (default 500, at most `maxOccurrences`), with `truncated`. With `windowMatch: "start"` it returns those whose start is in `[from, to)`. Ties in start order break by series id, so a sortable `newId` gives creation order.
   - Expansion jumps directly to the period that contains `from`. COUNT rules count from the start instead, but they compare local wall times cheaply and convert only occurrences within a day of the window to instants.
   - A moved occurrence appears in windows that cover its new time.
 - **Series edits.** `editSeries(id, {scope, recurrenceId?, changes, expectedVersion?})`:
@@ -130,7 +133,8 @@ In the receiving app, run the same window and edit cases against your real store
 ## If something fails
 
 - **Occurrences are an hour off after DST:** the start was stored as a UTC instant or with a fixed offset. Store local wall time plus an IANA zone.
-- **`invalid-rule` on create:** the start is not the rule's first occurrence. For example, a Tuesday start with `BYDAY=MO`. Move the start to the first occurrence.
+- **`invalid-rule` on create:** the start is not the rule's first occurrence. For example, a Tuesday start with `BYDAY=MO`. Move the start to the first occurrence, or pass `startRule: "rfc5545"` if your spec follows RFC 5545 DTSTART.
+- **Mapping errors to your API:** `RecurringEventsError` has `code` and `field` (`title`, `timeZone`, `start`, `durationMinutes`, `rrule`, `exdates`, `rdates`, `recurrenceId`, `window`, `limit`). Map `field` to your own error codes instead of re-validating.
 - **An override disappeared after an "all" edit:** the new rule or start no longer produces that occurrence. The response reports it in `droppedExceptions`.
 - **Frequent `version-conflict`:** reload the series and retry with its current `version`.
 

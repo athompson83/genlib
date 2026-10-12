@@ -315,3 +315,25 @@ Same task as rounds 9 and 10, with Genlib at commit 63b3963 (full-coverage prefe
 - **Reuse came closest to parity with the smaller model:** +6.7% with Haiku against +32–47% with Opus in rounds 7–10. A smaller model spends more turns writing the expander itself, so reusing one costs relatively less.
 - **Guidance arm:** both Haiku runs made one `quick` call and wrote the feature; the 693,269 run spent its extra turns debugging its own expander, the other cost less than either plain run. Within noise.
 - **Routing:** the Opus reuse runs phrased the task so that no contract matched, so the full-coverage preference did not apply and `quick` still led with the `rrule` capability under `--target`. Commit 27a66f7 adds a fallback for that case (a contract both picks claim); it was not in this round's build.
+
+## Round 12: recurrence with the module usable as is (2026-10-12)
+
+Same task, fixture and hidden tests as rounds 9–11. Before any agent ran, `recurring-events` 0.2.0 added opt-in options for specs that follow RFC 5545 (`startRule: "rfc5545"`, `windowMatch: "start"`, `lastYear`, an error `field`, `editOccurrence` `replace`) and fixed `startLocal` for times skipped by DST. A 166-line adapter on the core then passed 18/18; the round-11 reuse runs had written 454–466 lines of glue. Twelve runs at commit eea8c8e (Opus and Haiku, all three arms, two each), with the plain arm repeated in this session so every comparison is same-session, then four guidance re-runs at bd52765 after the fix described below. Raw table `results-round12.json`. All 16 runs passed 18/18.
+
+| Arm | Opus mean (runs) | vs alone | Haiku mean (runs) | vs alone |
+| --- | ---: | ---: | ---: | ---: |
+| Agent alone | 272,914 (273,730 · 272,097) | – | 534,243 (457,402 · 611,084) | – |
+| Reuse required | 333,696 (336,123 · 331,269) | +22% | 731,523 (487,750 · 975,296) | +37% |
+| Genlib guidance, eea8c8e | 317,306 (328,488 · 306,123) | +16% | 673,750 (786,293 · 561,206) | +26% |
+| Genlib guidance, bd52765 | 228,204 (197,444 · 258,963) | −16% | 576,770 (399,471 · 754,070) | +8% |
+
+- **The module was used as is.** Every reuse run built on the core with the new options. Their own code fell to 292–497 lines, against 613–803 written alone.
+- **Reuse still cost more.** The Opus reuse runs read about 26k tokens (the whole of `core.ts` and the expander) against 6–7k alone, and took 14–15 turns against 12. Writing about 300 fewer lines saved less than that reading cost.
+- **Guidance failed the gate at eea8c8e.** The Opus guidance runs (306–328k) did not overlap the plain runs (272–274k). Both copied the expander part, read its source plus an outline (about 16k tokens), and wrote the rest themselves.
+- **Haiku misread `# fixed`.** Both Haiku guidance runs read the module's configurable defaults, listed under `# fixed`, as conflicts and wrote the feature. Commit c520bfd prints those as a separate `# options:` line.
+- **The fix (bd52765):** the `genlib connect` guidance now says to skip Genlib when the task text spells out every rule, error code and edge case, even for a long feature that follows a standard. Rounds 7–12 found that such tasks are cheaper to write than to find, read and adapt.
+- **Re-run under the fix:**
+  - Both Opus runs skipped Genlib and cost less than either plain run. That is the skip plus run-to-run variation, not a saving from reuse.
+  - Haiku: one run made one lookup and declined, the other skipped. +8% with overlapping ranges (the 754k run spent 29 turns debugging its own expander), within noise.
+
+The gate holds again. Reuse pays only where reading the API costs less than writing the code. On a fully specified task, a capable agent writes the code correctly in one pass, so reading the module adds cost even when it covers the task. The open path to a saving is tasks whose text leaves a standard's rules to the agent, where an agent alone misses requirements or repairs. Round 6's outgoing-webhook and digest tasks are the model. The next round should write such a task in short form and grade it against the full standard.

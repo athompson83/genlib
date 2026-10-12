@@ -80,6 +80,8 @@ test('a module with standalone parts names each with its profile, size, purpose 
   assert.ok(Buffer.byteLength(sized) <= 1200, 'quick budget with parts: ' + Buffer.byteLength(sized));
   assert.match(text, /^# parts: --profile expander \(\d+ lines\): .+ · ruleWalls\(/m);
   assert.match(text, /^# fixed \(not parts\): /m, 'the module\'s fixed choices are marked as not applying to parts');
+  assert.match(text, /^# options: startRule:'rfc5545'/m, 'changeable defaults print apart from the fixed choices');
+  assert.doesNotMatch(text.match(/^# fixed.*$/m)[0], /startRule|windowMatch/, 'options are not listed as fixed');
 });
 
 test('parts must name an existing profile and stay short', async () => {

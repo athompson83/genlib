@@ -12,9 +12,12 @@ export type RecurringEventsErrorCode =
 
 export class RecurringEventsError extends Error {
   readonly code: RecurringEventsErrorCode;
-  constructor(code: RecurringEventsErrorCode, message: string) {
+  /** The input field at fault (`title`, `timeZone`, `start`, `durationMinutes`, `rrule`, `exdates`, `rdates`, `recurrenceId`, `window`…), when there is one. */
+  readonly field: string | undefined;
+  constructor(code: RecurringEventsErrorCode, message: string, field?: string) {
     super(message);
     this.name = "RecurringEventsError";
     this.code = code;
+    this.field = field;
   }
 }

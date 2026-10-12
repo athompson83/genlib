@@ -57,7 +57,7 @@ export const daysInMonth = (y: number, m: number): number => (m === 2 ? (isLeap(
 /** 0 = Monday (1970-01-01 was a Thursday). */
 export const weekdayOf = (days: number): number => (((days + 3) % 7) + 7) % 7;
 
-const fail = (message: string): never => { throw new RecurringEventsError("invalid-rule", message); };
+const fail = (message: string): never => { throw new RecurringEventsError("invalid-rule", message, "rrule"); };
 
 /** Parses YYYYMMDD[THHMMSS[Z]] into wall milliseconds plus its form. */
 function parseStamp(text: string): { wall: number; utc: boolean; date: boolean } {
@@ -98,11 +98,11 @@ export function parseRRule(text: string): RecurrenceRule {
     parts.set(key, piece.slice(eq + 1));
   }
   for (const key of parts.keys()) {
-    if (UNSUPPORTED.has(key)) throw new RecurringEventsError("unsupported-rule", `${key} is not supported`);
+    if (UNSUPPORTED.has(key)) throw new RecurringEventsError("unsupported-rule", `${key} is not supported`, "rrule");
     if (!SUPPORTED.has(key)) fail(`unknown rule part: ${key}`);
   }
   const freq = parts.get("FREQ");
-  if (freq === "SECONDLY" || freq === "MINUTELY" || freq === "HOURLY") throw new RecurringEventsError("unsupported-rule", `FREQ=${freq} is not supported`);
+  if (freq === "SECONDLY" || freq === "MINUTELY" || freq === "HOURLY") throw new RecurringEventsError("unsupported-rule", `FREQ=${freq} is not supported`, "rrule");
   if (freq !== "DAILY" && freq !== "WEEKLY" && freq !== "MONTHLY" && freq !== "YEARLY") return fail("FREQ must be DAILY, WEEKLY, MONTHLY or YEARLY");
   if (parts.has("COUNT") && parts.has("UNTIL")) fail("COUNT and UNTIL cannot both be set");
 
@@ -121,7 +121,8 @@ export function parseRRule(text: string): RecurrenceRule {
   const byday: WeekdayNum[] = [];
   const bydayText = get("BYDAY");
   if (bydayText !== undefined) {
-    const maxOrdinal = freq === "MONTHLY" || (freq === "YEARLY" && bymonth.length > 0) ? 5 : 53;
+    // RFC 5545: ordinals are 1-53; within a month (MONTHLY) only 1-5 can occur. YEARLY with BYMONTH accepts 1-53, and 6+ never matches.
+    const maxOrdinal = freq === "MONTHLY" ? 5 : 53;
     const seen = new Set<string>();
     for (const item of list(bydayText, "BYDAY")) {
       const m = /^([+-]?\d{1,2})?(MO|TU|WE|TH|FR|SA|SU)$/.exec(item);
@@ -179,6 +180,11 @@ export interface RuleWallOptions {
   /** Stop once candidates pass this wall time (inclusive bound). */
   readonly stopWall?: number;
   readonly stats?: ExpandStats;
+  /**
+   * RFC 5545 DTSTART semantics: yield `startWall` first even when the rule does not produce it, count it towards
+   * COUNT, and skip rule candidates at or before it. Default false: the start must be produced by the rule.
+   */
+  readonly includeStart?: boolean;
 }
 
 /**
@@ -225,6 +231,12 @@ export function* ruleWalls(rule: RecurrenceRule, startWall: number, options: Rul
   }
 
   let produced = 0;
+  const includeStart = options.includeStart === true;
+  if (includeStart) {
+    if (startWall > stop) return;
+    yield startWall;
+    if (rule.count !== null && ++produced >= rule.count) return;
+  }
   for (let k = k0; k < k0 + MAX_PERIODS; k++) {
     const p = period(k);
     if (p === null) return;
@@ -278,7 +290,7 @@ export function* ruleWalls(rule: RecurrenceRule, startWall: number, options: Rul
     }
     for (const day of candidates) {
       const wall = day * DAY_MS + time;
-      if (wall < startWall) continue;
+      if (wall < startWall || (includeStart && wall === startWall)) continue;
       if (wall > stop) return;
       yield wall;
       if (rule.count !== null && ++produced >= rule.count) return;
