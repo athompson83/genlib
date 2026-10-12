@@ -1,4 +1,4 @@
-# Recurring calendar events (RRULE) · 0.1.1
+# Recurring calendar events (RRULE) · 0.1.2
 
 ## What installs
 

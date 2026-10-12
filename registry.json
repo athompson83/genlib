@@ -3660,10 +3660,10 @@
     "genlib-module",
     "feature"
    ],
-   "docs": "Genlib module recurring-events@0.1.1 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlRecurringEventStore with an executor that has query(text, params) and transaction(work); elsewhere implement RecurringEventStore with a version-checked atomic update. Store event starts as local wall time plus an IANA zone (America/New_York), never as UTC instants; pass window bounds as epoch milliseconds. Mount createRecurringEventsHandler under one prefix with exact allowedOrigins and an authorize(request, {operation, calendarId, seriesId}) hook backed by your session and calendar sharing rules; override routes and statusFor to match your API. Set maxOccurrences, maxSeriesPerQuery and maxOverridesPerSeries to your UI's needs; pass uidDomain in icsOptions so exported UIDs are globally unique. Contract: https://github.com/athompson83/genlib/blob/main/modules/recurring-events/CONTRACT.md",
+   "docs": "Genlib module recurring-events@0.1.2 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlRecurringEventStore with an executor that has query(text, params) and transaction(work); elsewhere implement RecurringEventStore with a version-checked atomic update. Store event starts as local wall time plus an IANA zone (America/New_York), never as UTC instants; pass window bounds as epoch milliseconds. Mount createRecurringEventsHandler under one prefix with exact allowedOrigins and an authorize(request, {operation, calendarId, seriesId}) hook backed by your session and calendar sharing rules; override routes and statusFor to match your API. Set maxOccurrences, maxSeriesPerQuery and maxOverridesPerSeries to your UI's needs; pass uidDomain in icsOptions so exported UIDs are globally unique. Contract: https://github.com/athompson83/genlib/blob/main/modules/recurring-events/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "verification": "tested"
    }
   },
