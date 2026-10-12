@@ -62,6 +62,60 @@ func TestBoundingBox(t *testing.T) {
 	}
 }
 
+// Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+func TestBoundingBoxLongitudeExtent(t *testing.T) {
+	box, err := BoundingBox(60, 0, 0.1*EarthRadiusM)
+	if err != nil {
+		t.Fatal(err)
+	}
+	half := box.MaxLon * math.Pi / 180
+	want := math.Asin(math.Sin(0.1) / math.Cos(math.Pi/3))
+	if math.Abs(half-want) > 1e-6*want || math.Abs(half-0.20101) >= 1e-5 || math.Abs(box.MinLon+box.MaxLon) > 1e-12 {
+		t.Fatalf("half-width %v rad, want %v (%+v)", half, want, box)
+	}
+}
+
+func TestBoundingBoxContainsCircle(t *testing.T) {
+	for _, cLat := range []float64{0, 45, 60, 75, -70} {
+		for _, radius := range []float64{1000, 100000, 1000000} {
+			box, err := BoundingBox(cLat, 0, radius)
+			if err != nil {
+				t.Fatal(err)
+			}
+			d := radius / EarthRadiusM
+			p1 := cLat * math.Pi / 180
+			for i := 0; i < 360; i++ {
+				b := float64(i) * math.Pi / 180
+				p2 := math.Asin(math.Sin(p1)*math.Cos(d) + math.Cos(p1)*math.Sin(d)*math.Cos(b))
+				l2 := math.Atan2(math.Sin(b)*math.Sin(d)*math.Cos(p1), math.Cos(d)-math.Sin(p1)*math.Sin(p2))
+				lat, lon := p2*180/math.Pi, l2*180/math.Pi
+				if lat < box.MinLat-1e-9 || lat > box.MaxLat+1e-9 || lon < box.MinLon-1e-9 || lon > box.MaxLon+1e-9 {
+					t.Fatalf("center %v, radius %v, bearing %d: %v,%v outside %+v", cLat, radius, i, lat, lon, box)
+				}
+			}
+		}
+	}
+}
+
+func TestBoundingBoxAntimeridian(t *testing.T) {
+	for _, c := range [][2]float64{{179.9, 90}, {-179.9, 270}} {
+		box, err := BoundingBox(10, c[0], 50000)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if box.MinLon != -180 || box.MaxLon != 180 {
+			t.Fatalf("center lon %v: want full longitude range, got %+v", c[0], box)
+		}
+		d, p1, b := 50000/EarthRadiusM, 10*math.Pi/180, c[1]*math.Pi/180
+		p2 := math.Asin(math.Sin(p1)*math.Cos(d) + math.Cos(p1)*math.Sin(d)*math.Cos(b))
+		l2 := c[0]*math.Pi/180 + math.Atan2(math.Sin(b)*math.Sin(d)*math.Cos(p1), math.Cos(d)-math.Sin(p1)*math.Sin(p2))
+		lat, lon := p2*180/math.Pi, math.Mod(l2*180/math.Pi+540, 360)-180
+		if math.Abs(lon) <= 179.5 || lat < box.MinLat || lat > box.MaxLat || lon < box.MinLon || lon > box.MaxLon {
+			t.Fatalf("center lon %v, bearing %v: %v,%v outside %+v", c[0], c[1], lat, lon, box)
+		}
+	}
+}
+
 func TestValidation(t *testing.T) {
 	if _, err := HaversineMeters(91, 0, 0, 0); err == nil {
 		t.Fatal("lat 91 accepted")

@@ -74,7 +74,7 @@ test("failed blob writes and rejected content release reserved quota on PostgreS
   await assert.rejects(put(new TextEncoder().encode("not a png"), "x.png"), code("type-mismatch"));
   assert.equal(await metadata.usage("acme"), 0);
   assert.equal((await db.query("SELECT count(*)::int AS n FROM file_uploads")).rows[0].n, 0);
-  // Without Content-Length the whole maxBytes is reserved while reading, then settled to the real size.
+  // Without Content-Length the rest of maxBytes is reserved while reading (it fits here), then settled to the real size.
   const ok = await setup();
   const stream = new ReadableStream({ start(controller) { controller.enqueue(PNG); controller.close(); } });
   await ok.uploads.upload({ user: ok.alice, tenantId: "acme", filename: "s.png", declaredType: "image/png", body: stream });
@@ -103,4 +103,44 @@ test("conditional status changes and deletes on PostgreSQL: infected bytes are r
   assert.equal(await metadata.usage("acme"), before - fresh.size);
   assert.equal(await metadata.get(fresh.id), null);
   assert.equal(await uploads.scan(fresh.id), null, "scanning a deleted file changes nothing");
+});
+
+test("scan claims on PostgreSQL: overlapping scanPending passes and concurrent scan(id) run the scanner once per file", async () => {
+  let calls = 0;
+  let fail = false;
+  const scanner = async () => { calls++; await new Promise((resolve) => setTimeout(resolve, 5)); if (fail) throw new Error("down"); return "clean"; };
+  const { uploads, put, metadata, db } = await setup({ scanner });
+  const a = await put(PNG, "a.png");
+  const b = await put(PNG, "b.png");
+  await Promise.all([uploads.scanPending(), uploads.scanPending(), uploads.scanPending()]);
+  assert.equal(calls, 2);
+  assert.equal((await metadata.get(a.id)).status, "clean");
+  assert.equal((await metadata.get(b.id)).status, "clean");
+  assert.equal((await db.query("SELECT count(*)::int AS n FROM file_uploads WHERE scan_claimed_until IS NOT NULL")).rows[0].n, 0, "verdicts clear the claim");
+  const c = await put(PNG, "c.png");
+  await Promise.all([uploads.scan(c.id), uploads.scan(c.id)]);
+  assert.equal(calls, 3);
+  // A failed scan drops its claim so the next pass retries; a live claim hides the file from listQuarantined.
+  fail = true;
+  const d = await put(PNG, "d.png");
+  assert.deepEqual(await uploads.scanPending(), { clean: 0, infected: 0, failed: 1, skipped: 0 });
+  assert.equal((await metadata.listQuarantined(5_000, 10)).length, 1);
+  assert.ok(await metadata.claimScan(d.id, 5_000, 9_000));
+  assert.equal(await metadata.claimScan(d.id, 5_000, 9_000), null, "one claim at a time");
+  assert.deepEqual(await metadata.listQuarantined(5_000, 10), []);
+  assert.equal((await metadata.listQuarantined(9_000, 10)).length, 1, "an expired claim is listed again");
+  await metadata.releaseScanClaim(d.id, 9_000);
+  fail = false;
+  assert.deepEqual(await uploads.scanPending(), { clean: 1, infected: 0, failed: 0, skipped: 0 });
+});
+
+test("without Content-Length on PostgreSQL, a streamed upload that fits what remains of the quota is accepted", async () => {
+  const { uploads, alice, metadata } = await setup({ quotaBytes: 100 });
+  const big = new Uint8Array(60); big.set(PNG);
+  const send = (data, name) => uploads.upload({ user: alice, tenantId: "acme", filename: name, declaredType: "image/png", body: new ReadableStream({ start(c) { c.enqueue(data.slice(0, 20)); c.enqueue(data.slice(20)); c.close(); } }) });
+  await send(big, "a.png");
+  const small = new Uint8Array(40); small.set(PNG);
+  assert.equal((await send(small, "b.png")).size, 40, "fits although maxBytes (1024) does not");
+  await assert.rejects(send(small, "c.png"), code("quota-exceeded"));
+  assert.equal(await metadata.usage("acme"), 100);
 });

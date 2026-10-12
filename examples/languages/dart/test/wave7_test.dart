@@ -112,23 +112,23 @@ void runHashingTests(Checks c) {
 
 void runFeatureFlagsTests(Checks c) {
   const cases = [
-    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-1', FlagResult(false, 'excluded', 4063, null)),
-    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-2', FlagResult(true, 'rollout', 1682, null)),
-    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-3', FlagResult(false, 'excluded', 9301, null)),
-    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-42', FlagResult(false, 'excluded', 9926, null)),
-    (FeatureFlag('new-checkout', rolloutPercent: 25), 'alice@example.com', FlagResult(false, 'excluded', 2919, null)),
-    (FeatureFlag('new-checkout', allow: const ['user-2'], deny: const ['user-1'], rolloutPercent: 25), 'user-1', FlagResult(false, 'deny', 4063, null)),
-    (FeatureFlag('new-checkout', allow: const ['user-2'], deny: const ['user-1'], rolloutPercent: 25), 'user-2', FlagResult(true, 'allow', 1682, null)),
-    (FeatureFlag('beta', enabled: false, allow: const ['vip']), 'vip', FlagResult(false, 'disabled', 3546, null)),
-    (FeatureFlag('banner', rolloutPercent: 0), 'user-1', FlagResult(false, 'excluded', 6646, null)),
-    (FeatureFlag('banner', rolloutPercent: 100), 'user-1', FlagResult(true, 'rollout', 6646, null)),
-    (FeatureFlag('banner', rolloutPercent: 12.34), 'user-9', FlagResult(false, 'excluded', 7598, null)),
-    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u1', FlagResult(true, 'rollout', 4196, 'monthly-first')),
-    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u2', FlagResult(true, 'rollout', 7053, 'control')),
-    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u3', FlagResult(true, 'rollout', 9434, 'annual-first')),
-    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u4', FlagResult(true, 'rollout', 1339, 'annual-first')),
-    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u5', FlagResult(true, 'rollout', 3720, 'annual-first')),
-    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), '\u{FC}n\u{EF}code', FlagResult(true, 'rollout', 9874, 'control')),
+    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-1', FlagResult(true, 'rollout', 849, null)),
+    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-2', FlagResult(false, 'excluded', 5308, null)),
+    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-3', FlagResult(false, 'excluded', 5247, null)),
+    (FeatureFlag('new-checkout', rolloutPercent: 25), 'user-42', FlagResult(false, 'excluded', 9209, null)),
+    (FeatureFlag('new-checkout', rolloutPercent: 25), 'alice@example.com', FlagResult(false, 'excluded', 9060, null)),
+    (FeatureFlag('new-checkout', allow: const ['user-2'], deny: const ['user-1'], rolloutPercent: 25), 'user-1', FlagResult(false, 'deny', 849, null)),
+    (FeatureFlag('new-checkout', allow: const ['user-2'], deny: const ['user-1'], rolloutPercent: 25), 'user-2', FlagResult(true, 'allow', 5308, null)),
+    (FeatureFlag('beta', enabled: false, allow: const ['vip']), 'vip', FlagResult(false, 'disabled', 8844, null)),
+    (FeatureFlag('banner', rolloutPercent: 0), 'user-1', FlagResult(false, 'excluded', 6875, null)),
+    (FeatureFlag('banner', rolloutPercent: 100), 'user-1', FlagResult(true, 'rollout', 6875, null)),
+    (FeatureFlag('banner', rolloutPercent: 12.34), 'user-9', FlagResult(false, 'excluded', 8197, null)),
+    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u1', FlagResult(true, 'rollout', 6435, 'control')),
+    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u2', FlagResult(true, 'rollout', 401, 'annual-first')),
+    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u3', FlagResult(true, 'rollout', 9955, 'monthly-first')),
+    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u4', FlagResult(true, 'rollout', 8249, 'annual-first')),
+    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), 'u5', FlagResult(true, 'rollout', 6254, 'control')),
+    (FeatureFlag('pricing-test', variants: [FlagVariant('control', 50), FlagVariant('annual-first', 30), FlagVariant('monthly-first', 20)]), '\u{FC}n\u{EF}code', FlagResult(true, 'rollout', 7068, 'control')),
   ];
   for (final (flag, user, expected) in cases) {
     c.eq('flag ${flag.key} $user', expected, evaluateFlag(flag, user));
@@ -139,6 +139,39 @@ void runFeatureFlagsTests(Checks c) {
   }
   c.eq('flag same user same answer', evaluateFlag(const FeatureFlag('x', rolloutPercent: 50), 'u7'), evaluateFlag(const FeatureFlag('x', rolloutPercent: 50), 'u7'));
   c.check('flag raising percent only adds users', [for (var i = 0; i < 500; i++) 'user-$i'].every((u) => !evaluateFlag(const FeatureFlag('ramp', rolloutPercent: 10), u).on || evaluateFlag(const FeatureFlag('ramp', rolloutPercent: 30), u).on));
+  // Plain FNV-1a's low bit is the parity of the input bytes, so two 50/50 experiments with similar keys put every
+  // subject in the same half of both. The fmix32 finalizer must keep them independent (chi-square < 10.83, p > 0.001).
+  const ab = [FlagVariant('a', 1), FlagVariant('b', 1)];
+  for (final (k1, k2) in [('checkout-a', 'checkout-b'), ('exp1', 'exp2')]) {
+    final parity = [[0.0, 0.0], [0.0, 0.0]];
+    final arms = [[0.0, 0.0], [0.0, 0.0]];
+    for (var i = 0; i < 10000; i++) {
+      final u = 'u$i';
+      parity[evaluateFlag(FeatureFlag(k1), u).bucket % 2][evaluateFlag(FeatureFlag(k2), u).bucket % 2]++;
+      arms[evaluateFlag(FeatureFlag(k1, variants: ab), u).variant == 'b' ? 1 : 0][evaluateFlag(FeatureFlag(k2, variants: ab), u).variant == 'b' ? 1 : 0]++;
+    }
+    final cp = _flagChiSquare2x2(parity), ca = _flagChiSquare2x2(arms);
+    c.check('flag bucket parity $k1/$k2 independent (chi-square ${cp.toStringAsFixed(2)})', cp < 10.83);
+    c.check('flag 50/50 variants $k1/$k2 independent (chi-square ${ca.toStringAsFixed(2)})', ca < 10.83);
+  }
+  final counts = List<int>.filled(100, 0);
+  for (var i = 0; i < 10000; i++) {
+    counts[evaluateFlag(const FeatureFlag('checkout-a'), 'u$i').bucket % 100]++;
+  }
+  c.check('flag 100 buckets each get 100 +/- 40 of 10000 subjects', counts.every((n) => (n - 100).abs() <= 40));
+}
+
+/// Chi-square statistic of the 2x2 contingency table of two 0/1 assignments.
+double _flagChiSquare2x2(List<List<double>> t) {
+  final n = t[0][0] + t[0][1] + t[1][0] + t[1][1];
+  var chi = 0.0;
+  for (var i = 0; i < 2; i++) {
+    for (var j = 0; j < 2; j++) {
+      final e = (t[i][0] + t[i][1]) * (t[0][j] + t[1][j]) / n;
+      chi += (t[i][j] - e) * (t[i][j] - e) / e;
+    }
+  }
+  return chi;
 }
 
 void runHumanUnitsTests(Checks c) {

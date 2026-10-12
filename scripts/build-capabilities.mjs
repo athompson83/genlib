@@ -133,7 +133,7 @@ const CAPS = [
     summary: 'CRC-32 (IEEE), FNV-1a 32/64, MurmurHash3 x86_32 and Google jump consistent hash for checksums, sharding, cache keys and bucketing. Not for passwords, MACs or signatures.',
     terms: ['crc32', 'checksum', 'fnv', 'fnv-1a', 'murmurhash', 'murmur3', 'consistent hashing', 'jump hash', 'sharding', 'hash function', 'bucketing', 'partitioning'] },
   { id: 'feature-flags', title: 'Feature flags: deterministic rollout and A/B variants', tier: 'pure', recipe: 'feature-flag-evaluation',
-    summary: 'Evaluate a flag for a user with enable/disable, deny and allow lists, sticky percentage rollout (FNV-1a buckets out of 10,000) and weighted A/B variants, returning the reason and bucket for logging.',
+    summary: 'Evaluate a flag for a user with enable/disable, deny and allow lists, sticky percentage rollout (FNV-1a + fmix32 buckets out of 10,000, independent across experiments) and weighted A/B variants, returning the reason and bucket for logging.',
     terms: ['feature flag', 'feature toggle', 'percentage rollout', 'gradual rollout', 'canary', 'a/b test', 'ab testing', 'experiment', 'variant', 'split test', 'kill switch'] },
   { id: 'human-units', title: 'Human-readable bytes, durations and relative times', tier: 'pure', recipe: 'human-readable-units',
     summary: 'Format and parse byte sizes in SI (kB) or IEC (KiB) units with integer rounding, compact durations ("1h 2m") and relative times ("3 minutes ago", "in 2 days").',

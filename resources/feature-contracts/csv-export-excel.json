@@ -33,6 +33,76 @@
   ],
   "implementations": [
     {
+      "ref": "module:csv-download",
+      "status": "fixture-verified",
+      "fulfills": [
+        "rfc4180-quoting",
+        "formula-neutralization",
+        "excel-encoding",
+        "download-headers",
+        "authorized-rows",
+        "bounded-export"
+      ],
+      "evidence": [
+        {
+          "requirement": "rfc4180-quoting",
+          "test": "tests/csv-download.test.mjs",
+          "name": "RFC 4180: fields with commas, quotes and line breaks are quoted, quotes doubled, every record ends with CRLF"
+        },
+        {
+          "requirement": "formula-neutralization",
+          "test": "tests/csv-download.test.mjs",
+          "name": "formula neutralization: = + - @ tab and CR prefixes get a leading apostrophe, then quoting applies"
+        },
+        {
+          "requirement": "formula-neutralization",
+          "test": "tests/csv-download-sql.test.mjs",
+          "name": "SQL: formula-like database text is neutralized and numeric columns come through; the export log records the run"
+        },
+        {
+          "requirement": "excel-encoding",
+          "test": "tests/csv-download.test.mjs",
+          "name": "Excel encoding: output is UTF-8 with a byte-order mark by default, CRLF records, and non-ASCII bytes intact"
+        },
+        {
+          "requirement": "download-headers",
+          "test": "tests/csv-download.test.mjs",
+          "name": "download headers: attachment with RFC 6266 filename and RFC 8187 filename* for non-ASCII names, text/csv, no-store"
+        },
+        {
+          "requirement": "authorized-rows",
+          "test": "tests/csv-download.test.mjs",
+          "name": "authorized rows: the row source is scoped to the requester"
+        },
+        {
+          "requirement": "authorized-rows",
+          "test": "tests/csv-download.test.mjs",
+          "name": "authorized rows: the authorize hook drops rows the requester cannot read and counts them as denied"
+        },
+        {
+          "requirement": "authorized-rows",
+          "test": "tests/csv-download-sql.test.mjs",
+          "name": "SQL: schema applies; the row source returns only the requester"
+        },
+        {
+          "requirement": "bounded-export",
+          "test": "tests/csv-download.test.mjs",
+          "name": "bounded export: maxRows stops the stream with limit-exceeded instead of silently truncating"
+        },
+        {
+          "requirement": "bounded-export",
+          "test": "tests/csv-download.test.mjs",
+          "name": "bounded export: streaming applies backpressure, so an unread export fetches only a bounded number of pages"
+        },
+        {
+          "requirement": "bounded-export",
+          "test": "tests/csv-download-sql.test.mjs",
+          "name": "SQL: a row cap on a real table fails the stream and logs limit-exceeded"
+        }
+      ],
+      "notes": "Exports stream within the request (no background job); over-limit exports fail unless onLimit truncate is set. PGlite tests run on one connection."
+    },
+    {
       "ref": "capability:csv-safe",
       "status": "fixture-verified",
       "fulfills": [

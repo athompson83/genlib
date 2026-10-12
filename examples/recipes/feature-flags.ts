@@ -2,8 +2,12 @@
 // Genlib recipe: deterministic feature-flag evaluation with a kill switch, deny/allow lists, percentage
 // rollout and weighted variants. Original source; copy and adapt. The same flag and user id always give
 // the same answer, and raising rolloutPercent only adds users (a user's bucket never changes). Buckets use
-// FNV-1a 32 over UTF-8, so every Genlib language agrees. Flags are not authorization: enforce permissions
-// separately. Invalid flags throw RangeError.
+// FNV-1a 32 over UTF-8 followed by the MurmurHash3 fmix32 finalizer, so every Genlib language agrees.
+// BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is the parity of the input
+// bytes, so 50/50 experiments with similar keys put the same users in the same half. The finalizer makes
+// experiments independent but changes every bucket and variant assignment; re-baseline running rollouts
+// and experiments when upgrading. Flags are not authorization: enforce permissions separately. Invalid
+// flags throw RangeError.
 
 export interface FlagVariant { name: string; weight: number }
 export interface Flag {
@@ -19,10 +23,16 @@ export interface FlagResult { on: boolean; reason: FlagReason; bucket: number; v
 
 const KEY = /^[A-Za-z0-9._-]{1,100}$/;
 
-function fnv1a32(text: string): number {
+/** FNV-1a 32 over UTF-8, then the MurmurHash3 fmix32 finalizer so low bits (bucket % n) are well mixed. */
+function bucketHash(text: string): number {
   let h = 0x811c9dc5;
   for (const b of new TextEncoder().encode(text)) h = Math.imul(h ^ b, 0x01000193) >>> 0;
-  return h;
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x85ebca6b) >>> 0;
+  h ^= h >>> 13;
+  h = Math.imul(h, 0xc2b2ae35) >>> 0;
+  h ^= h >>> 16;
+  return h >>> 0;
 }
 
 function validate(flag: Flag): number {
@@ -42,7 +52,7 @@ function validate(flag: Flag): number {
 function pickVariant(flag: Flag, userId: string): string | null {
   const variants = flag.variants ?? [];
   if (variants.length === 0) return null;
-  let x = fnv1a32(`${flag.key}:variant:${userId}`) % variants.reduce((sum, v) => sum + v.weight, 0);
+  let x = bucketHash(`${flag.key}:variant:${userId}`) % variants.reduce((sum, v) => sum + v.weight, 0);
   for (const v of variants) {
     if (x < v.weight) return v.name;
     x -= v.weight;
@@ -53,7 +63,7 @@ function pickVariant(flag: Flag, userId: string): string | null {
 /** Evaluates in order: disabled, deny, allow, rollout bucket, excluded. bucket is always reported. */
 export function evaluateFlag(flag: Flag, userId: string): FlagResult {
   const threshold = validate(flag);
-  const bucket = fnv1a32(`${flag.key}:${userId}`) % 10000;
+  const bucket = bucketHash(`${flag.key}:${userId}`) % 10000;
   const result = (on: boolean, reason: FlagReason): FlagResult => ({ on, reason, bucket, variant: on ? pickVariant(flag, userId) : null });
   if (flag.enabled === false) return result(false, "disabled");
   if ((flag.deny ?? []).includes(userId)) return result(false, "deny");

@@ -1,10 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Package featureflags evaluates feature flags deterministically. The bucket
-// is FNV-1a 32 of "key:userId" modulo 10000, so the same user always gets the
-// same answer for the same flag, and raising the rollout percentage only adds
-// users (nobody already in the rollout drops out). Variants use a separate
-// "key:variant:userId" hash so assignment is independent of the rollout.
+// is FNV-1a 32 of "key:userId" followed by the MurmurHash3 fmix32 finalizer,
+// modulo 10000, so the same user always gets the same answer for the same
+// flag, and raising the rollout percentage only adds users (nobody already in
+// the rollout drops out). Variants use a separate "key:variant:userId" hash so
+// assignment is independent of the rollout.
+//
+// BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is
+// the parity of the input bytes, so 50/50 experiments with similar keys put
+// the same users in the same half. The finalizer makes experiments independent
+// but changes every bucket and variant assignment; re-baseline running
+// rollouts and experiments when upgrading.
 package featureflags
 
 import (
@@ -37,11 +44,18 @@ type Result struct {
 	Variant string
 }
 
-func fnv1a32(s string) uint32 {
+// bucketHash is FNV-1a 32 over the UTF-8 bytes, then the MurmurHash3 fmix32
+// finalizer so the low bits used by % n are well mixed.
+func bucketHash(s string) uint32 {
 	h := uint32(0x811c9dc5)
 	for i := 0; i < len(s); i++ {
 		h = (h ^ uint32(s[i])) * 0x01000193
 	}
+	h ^= h >> 16
+	h *= 0x85ebca6b
+	h ^= h >> 13
+	h *= 0xc2b2ae35
+	h ^= h >> 16
 	return h
 }
 
@@ -87,12 +101,12 @@ func Evaluate(f Flag, userID string) (Result, error) {
 		}
 		total += v.Weight
 	}
-	bucket := fnv1a32(f.Key+":"+userID) % 10000
+	bucket := bucketHash(f.Key+":"+userID) % 10000
 	variant := func() string {
 		if total == 0 {
 			return ""
 		}
-		x := int(uint64(fnv1a32(f.Key+":variant:"+userID)) % uint64(total))
+		x := int(uint64(bucketHash(f.Key+":variant:"+userID)) % uint64(total))
 		for _, v := range f.Variants {
 			if x < v.Weight {
 				return v.Name

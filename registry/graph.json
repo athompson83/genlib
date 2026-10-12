@@ -3796,7 +3796,7 @@
    "id": "doc:docs/benchmarks.md",
    "kind": "doc",
    "label": "docs/benchmarks.md",
-   "count": 13,
+   "count": 14,
    "file": "docs/benchmarks.md"
   },
   {
@@ -4034,7 +4034,7 @@
    "id": "doc:docs/module-format.md",
    "kind": "doc",
    "label": "docs/module-format.md",
-   "count": 4,
+   "count": 5,
    "file": "docs/module-format.md"
   },
   {
@@ -4810,7 +4810,7 @@
    "id": "language:typescript",
    "kind": "language",
    "label": "typescript",
-   "count": 3627,
+   "count": 3633,
    "query": "typescript"
   },
   {
@@ -4898,6 +4898,13 @@
    "query": "common-api-clients"
   },
   {
+   "id": "module:csv-download",
+   "kind": "module",
+   "label": "csv-download",
+   "count": 1,
+   "query": "csv-download"
+  },
+  {
    "id": "module:csv-import",
    "kind": "module",
    "label": "csv-import",
@@ -4940,6 +4947,13 @@
    "query": "env-config"
   },
   {
+   "id": "module:feature-rollout",
+   "kind": "module",
+   "label": "feature-rollout",
+   "count": 1,
+   "query": "feature-rollout"
+  },
+  {
    "id": "module:file-uploads",
    "kind": "module",
    "label": "file-uploads",
@@ -4959,6 +4973,20 @@
    "label": "http-resilience",
    "count": 1,
    "query": "http-resilience"
+  },
+  {
+   "id": "module:keyset-pagination",
+   "kind": "module",
+   "label": "keyset-pagination",
+   "count": 1,
+   "query": "keyset-pagination"
+  },
+  {
+   "id": "module:nearby-search",
+   "kind": "module",
+   "label": "nearby-search",
+   "count": 1,
+   "query": "nearby-search"
   },
   {
    "id": "module:notification-inbox",
@@ -5024,6 +5052,13 @@
    "query": "rbac"
   },
   {
+   "id": "module:recurring-events",
+   "kind": "module",
+   "label": "recurring-events",
+   "count": 1,
+   "query": "recurring-events"
+  },
+  {
    "id": "module:scheduled-tasks",
    "kind": "module",
    "label": "scheduled-tasks",
@@ -5087,6 +5122,13 @@
    "query": "two-factor"
   },
   {
+   "id": "module:url-slugs",
+   "kind": "module",
+   "label": "url-slugs",
+   "count": 1,
+   "query": "url-slugs"
+  },
+  {
    "id": "module:validated-form",
    "kind": "module",
    "label": "validated-form",
@@ -5139,7 +5181,7 @@
    "id": "type:doc",
    "kind": "type",
    "label": "doc",
-   "count": 728,
+   "count": 730,
    "query": "--type doc"
   },
   {
@@ -5167,7 +5209,7 @@
    "id": "type:module",
    "kind": "type",
    "label": "module",
-   "count": 39,
+   "count": 45,
    "query": "--type module"
   },
   {
@@ -18456,7 +18498,7 @@
    "source": "genlib",
    "target": "type:doc",
    "relation": "contains",
-   "weight": 728
+   "weight": 730
   },
   {
    "source": "genlib",
@@ -18480,7 +18522,7 @@
    "source": "genlib",
    "target": "type:module",
    "relation": "contains",
-   "weight": 39
+   "weight": 45
   },
   {
    "source": "genlib",
@@ -20931,6 +20973,12 @@
    "weight": 7
   },
   {
+   "source": "module:csv-download",
+   "target": "contract:csv-export-excel",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
    "source": "module:csv-import",
    "target": "contract:csv-import-mapping",
    "relation": "fulfills",
@@ -20979,6 +21027,18 @@
    "weight": 6
   },
   {
+   "source": "module:feature-rollout",
+   "target": "contract:ab-test-assignment",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:feature-rollout",
+   "target": "contract:feature-flag-rollout",
+   "relation": "fulfills",
+   "weight": 8
+  },
+  {
    "source": "module:file-uploads",
    "target": "contract:file-upload-checks",
    "relation": "fulfills",
@@ -20995,6 +21055,18 @@
    "target": "contract:webhook-delivery",
    "relation": "fulfills",
    "weight": 1
+  },
+  {
+   "source": "module:keyset-pagination",
+   "target": "contract:api-cursor-pagination",
+   "relation": "fulfills",
+   "weight": 7
+  },
+  {
+   "source": "module:nearby-search",
+   "target": "contract:geo-nearby-search",
+   "relation": "fulfills",
+   "weight": 7
   },
   {
    "source": "module:notification-inbox",
@@ -21063,6 +21135,12 @@
    "weight": 6
   },
   {
+   "source": "module:recurring-events",
+   "target": "contract:recurring-events-rrule",
+   "relation": "fulfills",
+   "weight": 6
+  },
+  {
    "source": "module:scheduled-tasks",
    "target": "contract:cron-scheduled-tasks",
    "relation": "fulfills",
@@ -21121,6 +21199,12 @@
    "target": "contract:totp-two-factor",
    "relation": "fulfills",
    "weight": 8
+  },
+  {
+   "source": "module:url-slugs",
+   "target": "contract:url-slugs",
+   "relation": "fulfills",
+   "weight": 7
   },
   {
    "source": "module:validated-form",
@@ -21798,7 +21882,7 @@
    "source": "type:doc",
    "target": "doc:docs/benchmarks.md",
    "relation": "section-of",
-   "weight": 13
+   "weight": 14
   },
   {
    "source": "type:doc",
@@ -22002,7 +22086,7 @@
    "source": "type:doc",
    "target": "doc:docs/module-format.md",
    "relation": "section-of",
-   "weight": 4
+   "weight": 5
   },
   {
    "source": "type:doc",
@@ -22494,7 +22578,7 @@
    "source": "type:module",
    "target": "language:typescript",
    "relation": "serves",
-   "weight": 38
+   "weight": 44
   },
   {
    "source": "type:module",
@@ -22546,6 +22630,12 @@
   },
   {
    "source": "type:module",
+   "target": "module:csv-download",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
    "target": "module:csv-import",
    "relation": "includes",
    "weight": 1
@@ -22582,6 +22672,12 @@
   },
   {
    "source": "type:module",
+   "target": "module:feature-rollout",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
    "target": "module:file-uploads",
    "relation": "includes",
    "weight": 1
@@ -22595,6 +22691,18 @@
   {
    "source": "type:module",
    "target": "module:http-resilience",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:keyset-pagination",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:nearby-search",
    "relation": "includes",
    "weight": 1
   },
@@ -22654,6 +22762,12 @@
   },
   {
    "source": "type:module",
+   "target": "module:recurring-events",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
    "target": "module:scheduled-tasks",
    "relation": "includes",
    "weight": 1
@@ -22703,6 +22817,12 @@
   {
    "source": "type:module",
    "target": "module:two-factor",
+   "relation": "includes",
+   "weight": 1
+  },
+  {
+   "source": "type:module",
+   "target": "module:url-slugs",
    "relation": "includes",
    "weight": 1
   },

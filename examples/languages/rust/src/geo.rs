@@ -122,9 +122,11 @@ pub struct BoundingBox {
     pub max_lon: f64,
 }
 
-/// Box around a point: latitude +-radius/R, longitude widened by 1/cos(lat)
-/// (solved exactly on the sphere), clamped to valid ranges. Near a pole the
-/// longitude range becomes [-180, 180]. Use as a prefilter, then haversine.
+/// Box around a point: latitude +-radius/R, longitude half-width equal to the
+/// circle's widest longitude extent, asin(sin(r)/cos(lat)) for angular radius r,
+/// latitude clamped to valid ranges. Near a pole (or when sin(r) >= cos(lat)) and
+/// when the box would cross the antimeridian, the longitude range becomes
+/// [-180, 180] so far-side points are never excluded. Use as a prefilter, then haversine.
 pub fn bounding_box(lat: f64, lon: f64, radius_meters: f64) -> Result<BoundingBox, GeoError> {
     check(lat, lon)?;
     if !radius_meters.is_finite() || radius_meters < 0.0 {
@@ -133,12 +135,12 @@ pub fn bounding_box(lat: f64, lon: f64, radius_meters: f64) -> Result<BoundingBo
     let angular = radius_meters / EARTH_RADIUS_M;
     let dlat = angular.to_degrees();
     let (min_lat, max_lat) = (lat - dlat, lat + dlat);
-    let s = (angular / 2.0).sin() / lat.to_radians().cos();
+    let s = angular.sin() / lat.to_radians().cos();
     let (min_lon, max_lon) = if min_lat <= -90.0 || max_lat >= 90.0 || !(s.is_finite() && s < 1.0) {
         (-180.0, 180.0)
     } else {
-        let dlon = (2.0 * s.asin()).to_degrees();
-        ((lon - dlon).max(-180.0), (lon + dlon).min(180.0))
+        let dlon = s.asin().to_degrees();
+        if lon - dlon < -180.0 || lon + dlon > 180.0 { (-180.0, 180.0) } else { (lon - dlon, lon + dlon) }
     };
     Ok(BoundingBox { min_lat: min_lat.max(-90.0), min_lon, max_lat: max_lat.min(90.0), max_lon })
 }
@@ -187,5 +189,50 @@ mod tests {
         let polar = bounding_box(89.99, 10.0, 5000.0).unwrap();
         assert_eq!((polar.min_lon, polar.max_lon, polar.max_lat), (-180.0, 180.0, 90.0));
         assert!(bounding_box(0.0, 0.0, -1.0).is_err());
+    }
+
+    // Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+    #[test]
+    fn bounding_box_longitude_extent() {
+        let b = bounding_box(60.0, 0.0, 0.1 * EARTH_RADIUS_M).unwrap();
+        let half = b.max_lon.to_radians();
+        let want = (0.1f64.sin() / 60f64.to_radians().cos()).asin();
+        assert!((half - want).abs() <= 1e-6 * want, "half-width {half}, want {want}");
+        assert!((half - 0.20101).abs() < 1e-5 && (b.min_lon + b.max_lon).abs() < 1e-12, "{b:?}");
+    }
+
+    #[test]
+    fn bounding_box_antimeridian_spans_all_longitudes() {
+        for (c_lon, bearing) in [(179.9f64, 90.0f64), (-179.9, 270.0)] {
+            let b = bounding_box(10.0, c_lon, 50_000.0).unwrap();
+            assert_eq!((b.min_lon, b.max_lon), (-180.0, 180.0), "center lon {c_lon}: {b:?}");
+            let (d, p1, t) = (50_000.0 / EARTH_RADIUS_M, 10f64.to_radians(), bearing.to_radians());
+            let p2 = (p1.sin() * d.cos() + p1.cos() * d.sin() * t.cos()).asin();
+            let l2 = c_lon.to_radians() + (t.sin() * d.sin() * p1.cos()).atan2(d.cos() - p1.sin() * p2.sin());
+            let (lat, lon) = (p2.to_degrees(), (l2.to_degrees() + 540.0).rem_euclid(360.0) - 180.0);
+            assert!(lon.abs() > 179.5, "{lon}");
+            assert!(lat >= b.min_lat && lat <= b.max_lat && lon >= b.min_lon && lon <= b.max_lon, "{lat},{lon} outside {b:?}");
+        }
+    }
+
+    #[test]
+    fn bounding_box_contains_circle() {
+        for c_lat in [0.0f64, 45.0, 60.0, 75.0, -70.0] {
+            for radius in [1_000.0, 100_000.0, 1_000_000.0] {
+                let b = bounding_box(c_lat, 0.0, radius).unwrap();
+                let d = radius / EARTH_RADIUS_M;
+                let p1 = c_lat.to_radians();
+                for i in 0..360 {
+                    let t = (i as f64).to_radians();
+                    let p2 = (p1.sin() * d.cos() + p1.cos() * d.sin() * t.cos()).asin();
+                    let l2 = (t.sin() * d.sin() * p1.cos()).atan2(d.cos() - p1.sin() * p2.sin());
+                    let (lat, lon) = (p2.to_degrees(), l2.to_degrees());
+                    assert!(
+                        lat >= b.min_lat - 1e-9 && lat <= b.max_lat + 1e-9 && lon >= b.min_lon - 1e-9 && lon <= b.max_lon + 1e-9,
+                        "center {c_lat}, radius {radius}, bearing {i}: {lat},{lon} outside {b:?}"
+                    );
+                }
+            }
+        }
     }
 }

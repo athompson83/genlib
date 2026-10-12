@@ -33,6 +33,76 @@
   ],
   "implementations": [
     {
+      "ref": "module:recurring-events",
+      "status": "fixture-verified",
+      "fulfills": [
+        "expand-rules",
+        "reject-invalid",
+        "timezone-wall-clock",
+        "exceptions",
+        "window-query",
+        "series-edits"
+      ],
+      "evidence": [
+        {
+          "requirement": "expand-rules",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "expand-rules: RFC 5545 DAILY, WEEKLY, MONTHLY and YEARLY examples with INTERVAL, COUNT and UNTIL"
+        },
+        {
+          "requirement": "expand-rules",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "expand-rules: BYSETPOS and WKST follow the RFC 5545 examples"
+        },
+        {
+          "requirement": "reject-invalid",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "reject-invalid: malformed and unsupported rules are refused with a specific code"
+        },
+        {
+          "requirement": "timezone-wall-clock",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "timezone-wall-clock: a weekly 09:00 New York meeting stays at 09:00 local across both DST changes"
+        },
+        {
+          "requirement": "timezone-wall-clock",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "timezone-wall-clock: a time skipped by spring-forward shifts by the gap; a repeated time uses its first instance"
+        },
+        {
+          "requirement": "exceptions",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "exceptions: EXDATE removes and RDATE adds occurrences, and both survive storage"
+        },
+        {
+          "requirement": "exceptions",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "exceptions: a single occurrence can be moved, retitled, cancelled and restored by RECURRENCE-ID"
+        },
+        {
+          "requirement": "window-query",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "window-query: listOccurrences returns overlapping occurrences across a calendar"
+        },
+        {
+          "requirement": "window-query",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "window-query: a window decades into an infinite series skips straight to it"
+        },
+        {
+          "requirement": "series-edits",
+          "test": "tests/recurring-events.test.mjs",
+          "name": "series-edits: 'this and following' splits the series and leaves past occurrences unchanged"
+        },
+        {
+          "requirement": "series-edits",
+          "test": "tests/recurring-events-sql.test.mjs",
+          "name": "sql: 'this and following' split is atomic and keeps the past; 'all' edits and deletes cascade overrides"
+        }
+      ],
+      "notes": "No sub-daily frequencies or all-day events (refused, not ignored); no .ics import. PGlite tests run on one connection."
+    },
+    {
       "ref": "capability:rrule",
       "status": "fixture-verified",
       "fulfills": [

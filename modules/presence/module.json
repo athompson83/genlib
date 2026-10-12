@@ -29,6 +29,7 @@
     { "source": "files/memory-store.ts", "target": "presence/memory-store.ts" },
     { "source": "files/http.ts", "target": "presence/http.ts" }
   ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "http": ["files/http.ts"] },
   "exports": [
     { "name": "createPresence", "from": "presence/core.ts" },
     { "name": "PresenceError", "from": "presence/core.ts" },

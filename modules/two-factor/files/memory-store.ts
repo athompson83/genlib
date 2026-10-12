@@ -2,7 +2,7 @@
 // In-memory TwoFactorStore for tests and prototypes. Per-process and lost on restart: production needs durable
 // tables with conditional updates (see schema.sql and sql-store.ts). Every check-and-write below runs without an
 // await in between, so it is atomic within one process.
-import type { AttemptWindow, EncryptedSecret, TwoFactorEnrollment, TwoFactorStore } from "./core.js";
+import type { AttemptLockout, AttemptWindow, EncryptedSecret, TwoFactorEnrollment, TwoFactorStore } from "./core.js";
 
 interface RecoveryRow { readonly userId: string; readonly codeHash: string; readonly createdAt: number; readonly usedAt?: number }
 
@@ -76,11 +76,17 @@ export class MemoryTwoFactorStore implements TwoFactorStore {
     return this.#enrollments.delete(userId);
   }
 
-  async registerAttempt(userId: string, now: number, windowMs: number): Promise<AttemptWindow> {
+  async registerAttempt(userId: string, now: number, windowMs: number, lockout?: AttemptLockout): Promise<AttemptWindow> {
     const current = this.#attempts.get(userId);
-    const next = !current || current.windowStart <= now - windowMs
-      ? { count: 1, windowStart: now }
-      : { count: current.count + 1, windowStart: current.windowStart };
+    const lockEnded = current?.lockedUntil !== undefined && current.lockedUntil <= now;
+    const reset = !current || lockEnded || (current.lockedUntil === undefined && current.windowStart <= now - windowMs);
+    const count = reset ? 1 : current.count + 1;
+    const windowStart = reset ? now : current.windowStart;
+    // An active lock is kept as it is; otherwise the attempt that reaches the limit starts one.
+    const lockedUntil = !reset && current.lockedUntil !== undefined
+      ? current.lockedUntil
+      : lockout && count >= lockout.maxAttempts ? now + lockout.lockoutMs : undefined;
+    const next: AttemptWindow = lockedUntil === undefined ? { count, windowStart } : { count, windowStart, lockedUntil };
     this.#attempts.set(userId, next);
     return { ...next };
   }

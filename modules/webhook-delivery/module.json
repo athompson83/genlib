@@ -70,6 +70,7 @@
       "target": "webhook-delivery/http.ts"
     }
   ],
+  "profiles": { "core": ["files/core.ts", "files/signing.ts", "files/ssrf.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
   "exports": [
     {
       "name": "createWebhookDelivery",

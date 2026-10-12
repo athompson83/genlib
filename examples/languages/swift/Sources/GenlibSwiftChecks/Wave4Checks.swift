@@ -1,5 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 // Checks for ids, retry-backoff, token-bucket, semver, cron-next, wcag-contrast, geo and webhook-signature.
+#if canImport(Glibc)
+import Glibc
+#elseif canImport(Darwin)
+import Darwin
+#elseif canImport(ucrt)
+import ucrt
+#endif
 import GenlibSwift
 
 func runIdsChecks(_ c: inout Checks) {
@@ -199,6 +206,50 @@ func runGeoChecks(_ c: inout Checks) {
     let polar = try? Geo.boundingBox(89.99, 10, radiusMeters: 5000)
     c.check("bbox polar widens to all longitudes", polar?.minLon == -180 && polar?.maxLon == 180 && polar?.maxLat == 90)
     c.throwsError("bbox negative radius", { _ = try Geo.boundingBox(0, 0, radiusMeters: -1) })
+    // Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+    if let wide = try? Geo.boundingBox(60, 0, radiusMeters: 0.1 * Geo.earthRadiusMeters) {
+        let half = wide.maxLon * Double.pi / 180
+        let want = asin(sin(0.1) / cos(Double.pi / 3))
+        c.check("bbox lat 60 r 0.1 half-width \(half) want \(want)", abs(half - want) <= 1e-6 * want && abs(half - 0.20101) < 1e-5)
+        c.check("bbox lat 60 symmetric", abs(wide.minLon + wide.maxLon) < 1e-12)
+    } else {
+        c.check("bbox lat 60 computes", false)
+    }
+    var outside: String? = nil
+    for cLat in [0.0, 45.0, 60.0, 75.0, -70.0] {
+        for r in [1_000.0, 100_000.0, 1_000_000.0] {
+            guard let b = try? Geo.boundingBox(cLat, 0, radiusMeters: r) else {
+                outside = outside ?? "center \(cLat), radius \(r): boundingBox threw"
+                continue
+            }
+            let d = r / Geo.earthRadiusMeters
+            let p1 = cLat * Double.pi / 180
+            for i in 0..<360 where outside == nil {
+                let t = Double(i) * Double.pi / 180
+                let p2 = asin(sin(p1) * cos(d) + cos(p1) * sin(d) * cos(t))
+                let l2 = atan2(sin(t) * sin(d) * cos(p1), cos(d) - sin(p1) * sin(p2))
+                let pLat = p2 * 180 / Double.pi, pLon = l2 * 180 / Double.pi
+                if pLat < b.minLat - 1e-9 || pLat > b.maxLat + 1e-9 || pLon < b.minLon - 1e-9 || pLon > b.maxLon + 1e-9 {
+                    outside = "center \(cLat), radius \(r), bearing \(i): \(pLat),\(pLon) outside \(b)"
+                }
+            }
+        }
+    }
+    c.check("bbox contains circle points at 360 bearings \(outside ?? "")", outside == nil)
+    for (cLon, bearing) in [(179.9, 90.0), (-179.9, 270.0)] {
+        guard let b = try? Geo.boundingBox(10, cLon, radiusMeters: 50_000) else {
+            c.check("bbox antimeridian center lon \(cLon) computes", false)
+            continue
+        }
+        c.check("bbox antimeridian center lon \(cLon) spans all longitudes \(b)", b.minLon == -180 && b.maxLon == 180)
+        let d = 50_000 / Geo.earthRadiusMeters, p1 = 10 * Double.pi / 180, t = bearing * Double.pi / 180
+        let p2 = asin(sin(p1) * cos(d) + cos(p1) * sin(d) * cos(t))
+        let l2 = cLon * Double.pi / 180 + atan2(sin(t) * sin(d) * cos(p1), cos(d) - sin(p1) * sin(p2))
+        let pLat = p2 * 180 / Double.pi
+        let pLon = (l2 * 180 / Double.pi + 540).truncatingRemainder(dividingBy: 360) - 180
+        c.check("bbox antimeridian far-side point \(pLat),\(pLon) inside \(b)",
+                abs(pLon) > 179.5 && pLat >= b.minLat && pLat <= b.maxLat && pLon >= b.minLon && pLon <= b.maxLon)
+    }
 }
 
 func runWebhookSignatureChecks(_ c: inout Checks) {

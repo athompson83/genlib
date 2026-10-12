@@ -4,11 +4,31 @@
 The same flag and user id always give the same answer, and raising rolloutPercent only adds users
 (a user's bucket never changes). Flags are not authorization: enforce permissions separately.
 Flag mappings use the shared JSON keys: key, enabled, allow, deny, rolloutPercent, variants.
+
+Buckets are FNV-1a 32 over UTF-8 followed by the MurmurHash3 fmix32 finalizer, matching every Genlib
+language. BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is the parity of the
+input bytes, so 50/50 experiments with similar keys put the same users in the same half. The finalizer
+makes experiments independent but changes every bucket and variant assignment; re-baseline running
+rollouts and experiments when upgrading.
 """
 import re
 from collections.abc import Mapping
 
 from hashing import fnv1a32
+
+_M32 = 0xFFFFFFFF
+
+
+def _bucket_hash(text: str) -> int:
+    """FNV-1a 32 over UTF-8, then the MurmurHash3 fmix32 finalizer so low bits are well mixed."""
+    h = fnv1a32(text.encode())
+    h ^= h >> 16
+    h = (h * 0x85EBCA6B) & _M32
+    h ^= h >> 13
+    h = (h * 0xC2B2AE35) & _M32
+    h ^= h >> 16
+    return h
+
 
 _KEY = re.compile(r"[A-Za-z0-9._-]{1,100}")
 
@@ -33,12 +53,12 @@ def _validate(flag: Mapping):
 def evaluate_flag(flag: Mapping, user_id: str) -> dict:
     """Return {"on", "reason", "bucket", "variant"}; reason is disabled, deny, allow, rollout or excluded."""
     key, threshold, variants = _validate(flag)
-    bucket = fnv1a32(f"{key}:{user_id}".encode()) % 10000
+    bucket = _bucket_hash(f"{key}:{user_id}") % 10000
 
     def result(on: bool, reason: str) -> dict:
         variant = None
         if on and variants:
-            x = fnv1a32(f"{key}:variant:{user_id}".encode()) % sum(v["weight"] for v in variants)
+            x = _bucket_hash(f"{key}:variant:{user_id}") % sum(v["weight"] for v in variants)
             for v in variants:
                 if x < v["weight"]:
                     variant = v["name"]

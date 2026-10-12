@@ -1,10 +1,10 @@
-# User signup with email verification · 0.1.0
+# User signup with email verification · 0.2.0
 
 ## What installs
 
 Seven original Apache-2.0 files under `email-signup/`:
 
-- `core.ts`: `createEmailSignup` (`signup`, `resend`, `resendForAccount`, `confirm`, `isVerified`, `requireVerified`), `SignupError`, the `EmailSignupStore` interface, and the helpers `normalizeEmail`, `assertVerified`, `hashToken` and `constantTimeEqual`.
+- `core.ts`: `createEmailSignup` (`signup`, `resend`, `resendForAccount`, `confirm`, `verifyPassword`, `isVerified`, `requireVerified`), `SignupError`, the `EmailSignupStore` interface, and the helpers `normalizeEmail`, `assertVerified`, `hashToken` and `constantTimeEqual`.
 - `password-policy.ts`: `createPasswordPolicy` and `defaultPasswordPolicy`, in the style of NIST SP 800-63B.
 - `scrypt-hasher.ts`: `createScryptHasher` and `parseScryptHash`, the default password hasher on `node:crypto`.
 - `memory-store.ts`: `MemoryEmailSignupStore`, a per-process reference store for tests and prototypes.
@@ -25,10 +25,10 @@ Use it when an app lets people create an account with an email and a password an
 | `sendEmail({to, link, expiresAt, idempotencyKey, reason})` | Your email provider. Pass `idempotencyKey` through so retries never deliver two copies of one link. Resolve once the message is queued to keep timing uniform. |
 | `baseUrl` | The absolute `https` URL of your confirmation page. The link is `${baseUrl}?token=...`; the page POSTs the token to `/confirm`. |
 | `onExistingAccount({accountId, email, verified})` | Optional. Emails the owner that someone tried to sign up with their address. |
-| `onVerified(accountId)` | Optional. Runs once, for the confirm that verified the account. |
+| `onVerified(accountId, { email })` | Optional. Runs once, for the confirm that verified the account (send a welcome email here). |
 | `passwordPolicy(password, {email})` | Optional. Returns a list of problems. Default `defaultPasswordPolicy`. Add a breached-password check for production. |
 | `hasher` | Optional. `{hash, verify, needsRehash?}`. Default `createScryptHasher()`. |
-| `resendCooldownMs`, `maxSendsPerWindow`, `sendWindowMs`, `ttlMs`, `sendAttempts` | Optional limits. Defaults: 60 s, 5 per hour, 24 h links, 3 attempts. |
+| `resendCooldownMs`, `maxSendsPerWindow`, `sendWindowMs`, `ttlMs`, `sendAttempts`, `retryDelaysMs` | Optional limits. Defaults: 60 s, 5 per rolling hour, 24 h links, 3 attempts, waits of 250 ms then 1 s, 2 s, ... |
 | HTTP `rateLimit(key)`, `clientIp(request)` | Your limiter (see the `rate-limit` module) and the trusted client address. |
 | Gate `accountId(request)` | The signed-in account id from your session, never from the request body. |
 
@@ -58,11 +58,13 @@ export const requireVerifiedEmail = createVerifiedGate({ signup, accountId: (req
 - **Unique accounts.** `createAccount` is one insert against the unique email index (`ON CONFLICT (email) DO NOTHING`). Concurrent signups with the same normalized email create exactly one account.
 - **Password policy.** The default allows 15 to 128 Unicode code points (NIST SP 800-63B-4 asks for at least 15 for single-factor passwords and at least 64 allowed). It blocks a small list of common passwords, a single repeated character and passwords built on the email's local part. There are no composition rules. Inputs over 4,096 characters are refused before the policy runs.
 - **Password storage.** The default hasher derives a 32-byte scrypt key with N = 2^17, r = 8, p = 1 and a 16-byte random salt, from the NFKC-normalized password. It stores `$scrypt$ln=17,r=8,p=1$<salt>$<key>` (unpadded base64). `verify` compares with `timingSafeEqual` and returns false for malformed strings or parameters outside safe bounds. `needsRehash` reports weaker or malformed hashes. Costs below N = 2^15 or r = 8 are refused.
-- **Enumeration safety.** `signup` throws only for format and policy problems, which reveal nothing about other accounts. Otherwise it resolves to `{ ok: true }` whether the account was created or the email was already registered. In the registered case it creates nothing, keeps the existing password and calls `onExistingAccount`. If that hook throws, the failure is reported only as `serverError: "existing-account-notice-failed"`, so the public result matches a new account whose email failed. The password is hashed on both paths. A server-only `serverError` (`existing-account`, `existing-account-notice-failed`, `rate-limited`, `delivery-failed`) explains the outcome; the HTTP layer never returns it.
+- **Enumeration safety.** `signup` throws only for format and policy problems, which reveal nothing about other accounts. Otherwise it resolves to `{ ok: true }` whether the account was created or the email was already registered. In the registered case it creates nothing, keeps the existing password and calls `onExistingAccount`. If that hook throws, the failure is reported only as `serverError: "existing-account-notice-failed"`, so the public result matches a new account whose email failed. The password is hashed on both paths. A new account's id comes back as the server-only `accountId`, absent for a registered email. A server-only `serverError` (`existing-account`, `existing-account-notice-failed`, `rate-limited`, `delivery-failed`) explains the outcome; the HTTP layer never returns it.
 - **Tokens.** Each link carries 32 random bytes, base64url encoded (43 characters). Only the SHA-256 hash is stored. Links last 24 hours by default (15 minutes to 7 days) and work once. A link is bound to the account's email when it was sent and dies if the email changes.
 - **Verified gate.** `confirm(token)` consumes the token with one conditional update, then marks the account verified with another (`WHERE verified_at IS NULL`). Exactly one of several concurrent confirms succeeds; `newlyVerified` is true only for the call that made the transition, and `onVerified` runs only then. Other pending links are revoked. `isVerified`, `requireVerified` (throws `unverified`), `assertVerified(account)` and `createVerifiedGate` (403 `email-unverified`, 401 signed out) refuse unverified accounts.
-- **Resend limits.** Each verification email, including the signup email, reserves a slot with one conditional update: at least `resendCooldownMs` since the last send and at most `maxSendsPerWindow` sends per `sendWindowMs`. Concurrent resends cannot exceed the limits. Each new link revokes the account's earlier links in the same atomic `issueToken` call (one `WITH ... INSERT` plus `UPDATE` on SQL). It revokes the other pending links that already exist and are not newer (`created_at` at or before the new one), so the last-issued link always survives and interleaved concurrent resends never leave zero working links. On a multi-connection database two simultaneous issues may each miss the other's uncommitted row and both stay valid. `resend(email)` is enumeration-safe; `resendForAccount(accountId)` is for signed-in users and throws `rate-limited` with `retryAfterMs`. Verified accounts get no further links.
-- **Delivery.** `sendEmail` is tried up to `sendAttempts` times (waits of 250 ms, then 1 s, 2 s, ...) with the same `idempotencyKey` (`email-verification:<token id>`). If every attempt fails, the link is revoked (a copy the provider sent anyway is inert) and the failure is reported as `delivery-failed` (`serverError`, or a thrown error from `resendForAccount`). The account can resend after the cooldown.
+- **Resend limits.** Each verification email, including the signup email, reserves a slot with one conditional update: at least `resendCooldownMs` since the last send and fewer than `maxSendsPerWindow` sends in the rolling window of the last `sendWindowMs` (the account keeps the times of its recent sends, `recent_sends` on SQL). `retryAfterMs` counts to when the oldest of them leaves the window. Concurrent resends cannot exceed the limits. Each new link revokes the account's earlier links in the same atomic `issueToken` call (one `WITH ... INSERT` plus `UPDATE` on SQL). It revokes the other pending links that already exist and are not newer (`created_at` at or before the new one), so the last-issued link always survives and interleaved concurrent resends never leave zero working links. On a multi-connection database two simultaneous issues may each miss the other's uncommitted row and both stay valid. `resend(email)` is enumeration-safe; `resendForAccount(accountId)` is for signed-in users and throws `rate-limited` with `retryAfterMs`. Verified accounts get no further links.
+- **Delivery.** `sendEmail` is tried up to `sendAttempts` times (waits of 250 ms, then 1 s, 2 s, ..., or `retryDelaysMs`, whose last entry repeats) with the same `idempotencyKey` (`email-verification:<token id>`). If every attempt fails, the link is revoked (a copy the provider sent anyway is inert) and the failure is reported as `delivery-failed` (`serverError`, or a thrown error from `resendForAccount`). The account can resend after the cooldown.
+
+- **Password check.** `verifyPassword(email, password)` returns the account id when the password matches and null otherwise. Unknown and malformed emails still run one verify against a dummy hash. It returns unverified accounts too; gate features with `isVerified`. Sessions remain yours.
 
 ## HTTP routes
 
@@ -91,8 +93,10 @@ Every response carries `cache-control: no-store` and `referrer-policy: no-referr
 - scrypt PHC format, salting, verification, NFKC, bounded stored parameters and `needsRehash`, including one hash at the default cost
 - hash-only token storage, expiry and single use
 - the verified gate (core, `assertVerified`, HTTP 403/401) and four concurrent confirms with one winner (memory and PGlite)
-- cooldown, window cap, concurrent resends, revocation of earlier links, and interleaved resends that keep at least one working link (memory and PGlite)
-- idempotency keys, retries and failed delivery
+- cooldown, rolling window cap, concurrent resends, revocation of earlier links, and interleaved resends that keep at least one working link (memory and PGlite)
+- idempotency keys, retries, `retryDelaysMs` and failed delivery
+- `verifyPassword`, the server-only `accountId` and the `onVerified` email
+- the blocklist with `minLength: 8`
 - enumeration-safe signup and the owner notice, including identical 202 bodies when both `sendEmail` and `onExistingAccount` throw
 - invalidation after an email change
 - HTTP statuses and headers: 202, 200, 400, 403, 404, 405, 429, the bounded body, `no-store` and `no-referrer`
@@ -113,7 +117,8 @@ This package does not send email, sign users in or manage sessions.
 - **Timing.** Response bodies are identical, but a new account also inserts a token and sends the email. Queue the email if timing matters.
 - **Pre-registration.** Someone can create an unverified account for another person's address first. The owner is told when they try to sign up, and recovers it through a password reset. Delete long-unverified accounts on a schedule.
 - **Retries.** Retries happen in-process; durable retries across restarts need a queue such as `email-outbox`.
-- **Blocklist.** The default blocklist is small and is not a breached-password check.
+- **Blocklist.** The default blocklist is small (common passwords of 8 or more characters) and is not a breached-password check.
+- **Upgrading from 0.1.0.** Apply the `recent_sends` migration in `schema.sql`, and replace `sendWindowStart`/`sendWindowCount` with `recentSends` in a custom store.
 - **Testing scope.** PGlite runs as a single connection, so the concurrency tests check the conditional statements, not real multi-connection contention. Bun, Deno and Workers were not tested.
 
 Rate-limit storage, production database correctness, email deliverability, hashing cost tuning and consuming-application acceptance remain project responsibilities.

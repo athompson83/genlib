@@ -86,18 +86,20 @@ GeohashCell geohashDecode(String hash) {
   return GeohashCell((latLo + latHi) / 2, (lonLo + lonHi) / 2, (latHi - latLo) / 2, (lonHi - lonLo) / 2);
 }
 
-/// A box containing every point within [radiusMeters] of the center.
+/// A box containing every point within [radiusMeters] of the center. The longitude range is the full [-180, 180]
+/// near a pole or when the box would cross the antimeridian, so far-side points are never excluded.
 GeoBox boundingBox(double lat, double lon, double radiusMeters) {
   _checkPoint(lat, lon);
   if (!radiusMeters.isFinite || radiusMeters < 0) throw RangeError.value(radiusMeters, 'radiusMeters', 'must be finite and >= 0');
   final angular = radiusMeters / earthRadiusMeters;
   final dLat = _deg(angular);
   final minLat = math.max(-90.0, lat - dLat), maxLat = math.min(90.0, lat + dLat);
-  // Exact longitude half-width so the point due east/west on the same parallel is exactly radiusMeters away.
-  final s = math.sin(angular / 2) / math.cos(_rad(lat));
+  // Longitude half-width is the circle's widest longitude extent, asin(sin(r)/cos(lat)); full range when sin(r) >= cos(lat).
+  final s = math.sin(angular) / math.cos(_rad(lat));
   if (maxLat >= 90 || minLat <= -90 || angular >= math.pi || s >= 1) return GeoBox(minLat, -180, maxLat, 180);
-  final dLon = _deg(2 * math.asin(s));
-  return GeoBox(minLat, math.max(-180.0, lon - dLon), maxLat, math.min(180.0, lon + dLon));
+  final dLon = _deg(math.asin(s));
+  if (lon - dLon < -180 || lon + dLon > 180) return GeoBox(minLat, -180, maxLat, 180);
+  return GeoBox(minLat, lon - dLon, maxLat, lon + dLon);
 }
 
 double _rad(double d) => d * math.pi / 180;

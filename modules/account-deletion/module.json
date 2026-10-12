@@ -61,6 +61,7 @@
       "target": "account-deletion/schema.sql"
     }
   ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
   "exports": [
     {
       "name": "createAccountDeletion",

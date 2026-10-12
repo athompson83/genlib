@@ -37,6 +37,72 @@
   ],
   "implementations": [
     {
+      "ref": "module:url-slugs",
+      "status": "fixture-verified",
+      "fulfills": [
+        "normalize",
+        "truncate",
+        "fallback",
+        "unique-suffix",
+        "concurrent-unique",
+        "reserved-words",
+        "rename-redirect"
+      ],
+      "evidence": [
+        {
+          "requirement": "normalize",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "slugify lowercases, transliterates Latin diacritics, joins apostrophes and collapses punctuation"
+        },
+        {
+          "requirement": "truncate",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "slugify truncates at a word boundary and hard-cuts a single overlong word"
+        },
+        {
+          "requirement": "fallback",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "slugify returns the configured fallback when nothing usable remains"
+        },
+        {
+          "requirement": "unique-suffix",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "a taken slug gets the first free numeric suffix"
+        },
+        {
+          "requirement": "concurrent-unique",
+          "test": "tests/url-slugs-sql.test.mjs",
+          "name": "PGlite: schema applies; ten concurrent creates of one title get distinct slugs via the unique key and retry"
+        },
+        {
+          "requirement": "concurrent-unique",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "ten concurrent creates of the same title get distinct slugs (memory store)"
+        },
+        {
+          "requirement": "reserved-words",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "reserved words and route names are refused as exact slugs and skipped when derived"
+        },
+        {
+          "requirement": "rename-redirect",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "rename keeps history and old slugs resolve to a permanent redirect to the current slug"
+        },
+        {
+          "requirement": "rename-redirect",
+          "test": "tests/url-slugs.test.mjs",
+          "name": "redirect chains collapse to the current slug and renaming back never loops"
+        },
+        {
+          "requirement": "rename-redirect",
+          "test": "tests/url-slugs-sql.test.mjs",
+          "name": "PGlite: reserved words, rename history, collapsed redirects and reclaiming an old slug"
+        }
+      ],
+      "notes": "Old slugs stay owned by their entity and redirect to the current slug; SQL renames need an executor with transaction(). PGlite tests run on one connection."
+    },
+    {
       "ref": "capability:slugify",
       "status": "fixture-verified",
       "fulfills": [

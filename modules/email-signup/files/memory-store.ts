@@ -29,7 +29,7 @@ export class MemoryEmailSignupStore implements EmailSignupStore {
   async createAccount(account: SignupAccount): Promise<boolean> {
     if (this.#idByEmail.has(account.email)) return false;
     if (this.#accounts.has(account.id)) throw new Error("Duplicate account id");
-    this.#accounts.set(account.id, { ...account });
+    this.#accounts.set(account.id, { ...account, recentSends: [...account.recentSends] });
     this.#idByEmail.set(account.email, account.id);
     return true;
   }
@@ -56,13 +56,9 @@ export class MemoryEmailSignupStore implements EmailSignupStore {
     const account = this.#accounts.get(accountId);
     if (!account || account.verifiedAt !== undefined) return false;
     if (account.lastSentAt !== undefined && now - account.lastSentAt < limits.cooldownMs) return false;
-    const windowOpen = account.sendWindowStart !== undefined && now - account.sendWindowStart < limits.windowMs;
-    if (windowOpen && account.sendWindowCount >= limits.maxPerWindow) return false;
-    this.#accounts.set(accountId, {
-      ...account, lastSentAt: now,
-      sendWindowStart: windowOpen ? (account.sendWindowStart as number) : now,
-      sendWindowCount: windowOpen ? account.sendWindowCount + 1 : 1,
-    });
+    const inWindow = account.recentSends.filter((sentAt) => now - sentAt < limits.windowMs);
+    if (inWindow.length >= limits.maxPerWindow) return false;
+    this.#accounts.set(accountId, { ...account, lastSentAt: now, recentSends: [...inWindow, now] });
     return true;
   }
 

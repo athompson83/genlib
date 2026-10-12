@@ -6,7 +6,13 @@ import java.util.regex.Pattern;
 
 /**
  * Deterministic feature-flag evaluation. The same flag and user always give the same answer, and raising
- * rolloutPercent only adds users (bucket = fnv1a32(key + ":" + userId) % 10000 is compared with percent * 100).
+ * rolloutPercent only adds users (bucket = fmix32(fnv1a32(key + ":" + userId)) % 10000 is compared with
+ * percent * 100; fmix32 is the MurmurHash3 finalizer).
+ *
+ * <p>BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is the parity of the input
+ * bytes, so 50/50 experiments with similar keys put the same users in the same half. The finalizer makes
+ * experiments independent but changes every bucket and variant assignment; re-baseline running rollouts and
+ * experiments when upgrading.
  */
 public final class FeatureFlags {
     private static final Pattern KEY = Pattern.compile("[A-Za-z0-9._-]{1,100}");
@@ -37,9 +43,15 @@ public final class FeatureFlags {
         public Flag variant(String name, int weight) { variants.add(new Variant(name, weight)); return this; }
     }
 
-    private static long fnv1a32(String s) {
+    /** FNV-1a 32 over UTF-8, then the MurmurHash3 fmix32 finalizer; returned as an unsigned 32-bit value. */
+    private static long bucketHash(String s) {
         int h = 0x811c9dc5;
         for (byte b : s.getBytes(StandardCharsets.UTF_8)) h = (h ^ (b & 0xff)) * 0x01000193;
+        h ^= h >>> 16;
+        h *= 0x85ebca6b;
+        h ^= h >>> 13;
+        h *= 0xc2b2ae35;
+        h ^= h >>> 16;
         return Integer.toUnsignedLong(h);
     }
 
@@ -55,7 +67,7 @@ public final class FeatureFlags {
             total += v.weight();
         }
         if (userId == null) throw new IllegalArgumentException("userId is required");
-        int bucket = (int) (fnv1a32(flag.key + ":" + userId) % 10000);
+        int bucket = (int) (bucketHash(flag.key + ":" + userId) % 10000);
         if (!flag.enabled) return new Result(false, "disabled", bucket, null);
         if (flag.deny.contains(userId)) return new Result(false, "deny", bucket, null);
         if (flag.allow.contains(userId)) return new Result(true, "allow", bucket, variant(flag, userId, total));
@@ -65,7 +77,7 @@ public final class FeatureFlags {
 
     private static String variant(Flag flag, String userId, long total) {
         if (flag.variants.isEmpty()) return null;
-        long x = fnv1a32(flag.key + ":variant:" + userId) % total;
+        long x = bucketHash(flag.key + ":variant:" + userId) % total;
         for (Variant v : flag.variants) {
             if (x < v.weight()) return v.name();
             x -= v.weight();

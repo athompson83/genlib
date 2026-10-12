@@ -1,12 +1,30 @@
 // SPDX-License-Identifier: Apache-2.0
-/// Deterministic, dependency-free feature flag evaluation. The bucket is FNV-1a 32 of `key:userId` mod 10000, so the
-/// same user always gets the same answer for the same flag, and raising the rollout percentage only adds users
-/// (nobody who is already on is dropped).
+/// Deterministic, dependency-free feature flag evaluation. The bucket is FNV-1a 32 of `key:userId` followed by the
+/// MurmurHash3 fmix32 finalizer, mod 10000, so the same user always gets the same answer for the same flag, and raising
+/// the rollout percentage only adds users (nobody who is already on is dropped).
+///
+/// BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is the parity of the input bytes, so 50/50
+/// experiments with similar keys put the same users in the same half. The finalizer makes experiments independent but
+/// changes every bucket and variant assignment; re-baseline running rollouts and experiments when upgrading.
 library;
 
 import 'dart:convert';
 
 import 'hashing.dart' show fnv1a32;
+
+// 32-bit multiply that stays exact on the web, where ints are doubles.
+int _mul32(int a, int b) => (((a & 0xffff) * b) + ((((a >>> 16) * b) & 0xffff) << 16)) & 0xffffffff;
+
+/// FNV-1a 32 over UTF-8, then the MurmurHash3 fmix32 finalizer so the low bits used by `% n` are well mixed.
+int _bucketHash(String text) {
+  var h = fnv1a32(utf8.encode(text));
+  h ^= h >>> 16;
+  h = _mul32(h, 0x85ebca6b);
+  h ^= h >>> 13;
+  h = _mul32(h, 0xc2b2ae35);
+  h ^= h >>> 16;
+  return h;
+}
 
 /// One weighted variant; [weight] is a positive integer.
 class FlagVariant {
@@ -61,10 +79,10 @@ FlagResult evaluateFlag(FeatureFlag flag, String userId) {
     if (v.name.isEmpty || v.weight < 1) throw ArgumentError('variants need a name and a positive weight');
     totalWeight += v.weight;
   }
-  final bucket = fnv1a32(utf8.encode('${flag.key}:$userId')) % 10000;
+  final bucket = _bucketHash('${flag.key}:$userId') % 10000;
   String? variant() {
     if (flag.variants.isEmpty) return null;
-    var x = fnv1a32(utf8.encode('${flag.key}:variant:$userId')) % totalWeight;
+    var x = _bucketHash('${flag.key}:variant:$userId') % totalWeight;
     for (final v in flag.variants) {
       if (x < v.weight) return v.name;
       x -= v.weight;

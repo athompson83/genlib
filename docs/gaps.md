@@ -6,8 +6,8 @@ Coverage is credited per requirement, never per search hit. Each contract lists 
 
 | Coverage | Tasks |
 | --- | ---: |
-| Full: every requirement fixture-verified | 21 |
-| Partial: some requirements fixture-verified | 36 |
+| Full: every requirement fixture-verified | 28 |
+| Partial: some requirements fixture-verified | 29 |
 | Unverified: only install, plan or catalog claims | 9 |
 | None: no implementation claims a requirement | 0 |
 
@@ -26,28 +26,21 @@ Genlib verifies some requirements. The listed ones are the remaining work, for t
 | notification preferences per channel | `notification-preferences` | 5/7 | enforced-at-send, unsubscribe-link | `module:notification-preferences` |
 | web push notifications | `web-push` | 7/8 | permission-ux | `module:web-push` |
 | csv import with column mapping | `csv-import-mapping` | 7/8 | mapping-ui | `module:csv-import` |
-| csv export safe for excel | `csv-export-excel` | 3/6 | excel-encoding, authorized-rows, bounded-export | `capability:csv-safe` |
 | generate pdf invoices | `pdf-invoices` | 1/7 | required-fields, sequential-numbering, pdf-render, branding-locale, immutability, access-control | `resource:pdfmake` |
-| cursor pagination for an api | `api-cursor-pagination` | 5/7 | keyset-query, scope-binding | `capability:signed-cursors` |
 | rate limit an api by user | `per-user-rate-limit` | 5/7 | shared-store, trusted-identity | `capability:token-bucket` |
 | background job queue with retries | `background-job-queue` | 3/7 | durable-enqueue, payload-validation, bounded-concurrency-shutdown, observability | `integration:durable-jobs` |
-| feature flags with gradual rollout | `feature-flag-rollout` | 5/8 | runtime-config, tenant-targeting, audited-changes | `capability:feature-flags` |
-| a/b test assignment | `ab-test-assignment` | 3/7 | exposure-logging, anonymous-to-user, stable-on-change, analysis | `capability:feature-flags` |
 | activity feed | `activity-feed` | 4/7 | record-on-commit, permission-visibility, aggregation | `module:notification-inbox` |
 | real-time presence with websockets | `realtime-presence` | 5/7 | websocket-transport, multi-instance | `module:presence` |
 | chat messages between users | `user-chat-messages` | 7/8 | realtime-delivery | `module:chat` |
 | calendar booking with availability | `calendar-booking` | 2/7 | availability-rules, no-double-booking, timezone-display, booking-validation, cancel-reschedule | `resource:timeful-schej` |
-| recurring events with rrule | `recurring-events-rrule` | 2/6 | timezone-wall-clock, exceptions, window-query, series-edits | `capability:rrule` |
 | timezone-aware date formatting | `timezone-date-formatting` | 1/6 | explicit-zone, locale-format, dst-correct, invalid-input, utc-storage | `recipe:formatting` |
 | tax calculation for invoices | `invoice-tax-calculation` | 2/7 | per-line-rates, jurisdiction-rates, inclusive-exclusive, reconciled-totals, immutable-issued | `capability:money` |
 | shopping cart and checkout | `cart-checkout` | 5/7 | cart-ownership, inventory-concurrency | `integration:commerce-storefront` |
 | product search with facets | `product-faceted-search` | 6/7 | typo-tolerance | `module:site-search` |
-| geolocation distance and nearby search | `geo-nearby-search` | 4/7 | nearest-first, spatial-index, location-privacy | `capability:geo` |
 | admin dashboard tables with sorting | `admin-data-tables` | 6/7 | server-side | `module:data-table` |
 | health check endpoint | `health-check-endpoint` | 5/6 | detail-access | `module:health-checks` |
 | environment config validation | `env-config-validation` | 6/7 | client-exposure | `module:env-config` |
 | security headers and csp | `security-headers` | 6/7 | violation-reports | `module:security-headers` |
-| slug generation for urls | `url-slugs` | 4/7 | concurrent-unique, reserved-words, rename-redirect | `capability:slugify` |
 | sitemap and robots.txt | `sitemap-robots` | 3/6 | sitemap-index, public-only, served-correctly | `capability:seo-files` |
 | open graph and json-ld metadata | `social-metadata` | 4/7 | schema-valid, server-rendered, og-image | `capability:structured-data` |
 | qr code generation | `qr-code-generation` | 5/6 | accessible | `resource:qr` |
@@ -88,14 +81,21 @@ Every requirement is exercised by a named repository test. The app still verifie
 | multi-tenant data isolation | `multi-tenant-isolation` | 4/4 | - | `module:tenant-isolation` |
 | send transactional email | `transactional-email` | 6/6 | - | `module:email-outbox` |
 | file upload with size and type checks | `file-upload-checks` | 8/8 | - | `module:file-uploads` |
+| csv export safe for excel | `csv-export-excel` | 6/6 | - | `module:csv-download` |
 | full-text search with filters | `full-text-search-filters` | 7/7 | - | `module:site-search` |
+| cursor pagination for an api | `api-cursor-pagination` | 7/7 | - | `capability:signed-cursors` |
 | api key management with hashing | `api-key-management` | 7/7 | - | `module:api-keys` |
 | webhook delivery with retries and signatures | `webhook-delivery` | 7/7 | - | `module:webhook-delivery` |
 | cron scheduled tasks | `cron-scheduled-tasks` | 7/7 | - | `module:scheduled-tasks` |
+| feature flags with gradual rollout | `feature-flag-rollout` | 8/8 | - | `capability:feature-flags` |
+| a/b test assignment | `ab-test-assignment` | 7/7 | - | `module:feature-rollout` |
 | comments with threaded replies | `threaded-comments` | 7/7 | - | `module:comments` |
+| recurring events with rrule | `recurring-events-rrule` | 6/6 | - | `capability:rrule` |
 | money and currency formatting | `money-currency-formatting` | 6/6 | - | `capability:money` |
+| geolocation distance and nearby search | `geo-nearby-search` | 7/7 | - | `module:nearby-search` |
 | form validation with error messages | `form-validation` | 7/7 | - | `module:validated-form` |
 | structured logging with redaction | `structured-logging` | 7/7 | - | `module:structured-logger` |
+| slug generation for urls | `url-slugs` | 7/7 | - | `capability:slugify` |
 | url shortener | `url-shortener` | 8/8 | - | `module:short-links` |
 | image captcha or bot protection | `bot-protection` | 8/8 | - | `module:bot-protection` |
 | account deletion with grace period | `account-deletion` | 7/7 | - | `module:account-deletion` |

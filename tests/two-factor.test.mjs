@@ -393,3 +393,47 @@ test("HTTP adapter: user ids containing a colon enroll with a colon-free label; 
   assert.equal(bad.headers.get("content-type"), "application/json");
   assert.equal((await bad.json()).error, "bad-request");
 });
+
+// ---- Options from fitting the module to an independent app spec (0.2.0) ----
+
+test("lockoutMs: consecutive failures lock the account from the attempt that reached the limit, without extension", async () => {
+  const { tf, secret, now, advance } = await enrolled({ options: { lockoutMs: 15 * MINUTE } });
+  // Failures spread over more than 15 minutes still add up: there is no rolling-off window in this mode.
+  for (let i = 0; i < 4; i++) { await assert.rejects(tf.verify("u1", "000000"), code("invalid-code")); advance(5 * MINUTE); }
+  await assert.rejects(tf.verify("u1", "000000"), code("invalid-code"), "the fifth failure");
+  const locked = await tf.verify("u1", await codeFor(secret, now())).catch((error) => error);
+  assert.equal(locked.code, "rate-limited");
+  assert.equal(locked.retryAfterMs, 15 * MINUTE, "locked for 15 minutes from the fifth failure");
+  advance(15 * MINUTE - 1000);
+  const still = await tf.verifyRecoveryCode("u1", "AAAAA-AAAAA").catch((error) => error);
+  assert.equal(still.code, "rate-limited");
+  assert.equal(still.retryAfterMs, 1000, "attempts while locked do not extend the lock");
+  advance(1000);
+  assert.deepEqual(await tf.verify("u1", await codeFor(secret, now())), { ok: true, method: "totp" }, "the end of the lock resets the count");
+  advance(30_000);
+  for (let i = 0; i < 4; i++) await assert.rejects(tf.verify("u1", "000000"), code("invalid-code"));
+  assert.deepEqual(await tf.verify("u1", await codeFor(secret, now())), { ok: true, method: "totp" }, "a success resets the count");
+  advance(30_000);
+  for (let i = 0; i < 4; i++) await assert.rejects(tf.verify("u1", "000000"), code("invalid-code"));
+  // Concurrent wrong guesses cannot get more than the limit checked.
+  const burst = await enrolled({ options: { lockoutMs: 15 * MINUTE } });
+  const results = await Promise.allSettled(Array.from({ length: 12 }, () => burst.tf.verify("u1", "000000")));
+  assert.equal(results.filter((r) => r.reason?.code === "invalid-code").length, 5);
+  assert.equal(results.filter((r) => r.reason?.code === "rate-limited").length, 7);
+  assert.throws(() => setup({ options: { lockoutMs: 10 } }), RangeError);
+});
+
+test("allowCodeSpaces: false accepts only exactly six ASCII digits", async () => {
+  const { tf, secret, now, advance, store } = await enrolled({ options: { allowCodeSpaces: false } });
+  const good = await codeFor(secret, now());
+  for (const spaced of [`${good.slice(0, 3)} ${good.slice(3)}`, ` ${good}`, `${good} `]) {
+    await assert.rejects(tf.verify("u1", spaced), code("invalid-code"), JSON.stringify(spaced));
+  }
+  await store.clearAttempts("u1");
+  assert.deepEqual(await tf.verify("u1", good), { ok: true, method: "totp" });
+  advance(30_000);
+  const begun = await setup({ options: { allowCodeSpaces: false } });
+  const { secret: s2 } = await begun.tf.beginEnrollment("u2", { accountName: "bob@example.com" });
+  const c2 = await codeFor(s2, begun.now());
+  await assert.rejects(begun.tf.confirmEnrollment("u2", ` ${c2}`), code("invalid-code"), "enrollment confirmation too");
+});

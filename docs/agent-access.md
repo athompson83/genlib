@@ -30,7 +30,7 @@ Text output from the CLI and the dependency-free MCP tools names this checkout's
 
 | Tool | Returns |
 | --- | --- |
-| `genlib_quick` | One-call reuse decision (about 1 KB): the best match and its acting commands; `reuse` (direct or partial) with the feature contract's verified requirements and what the app must add; the module's fixed behavior (`decisions`: routes, status codes, storage); size, files and destination; the main API and import path; required hooks; the verify step; up to 3 alternative refs. A small edit to existing code gets `status: "small-edit"` and no pick (cheapest call) |
+| `genlib_quick` | One-call reuse decision (about 1 KB): the best match and its acting commands; `reuse` (direct or partial) with the feature contract's verified requirements and what the app must add; the module's fixed behavior (`decisions`: routes, status codes, storage); size, files and destination (for a module with install profiles, `profiles` and a suggested `profile` already applied to the add command, printed as `# profiles:`); the main API and import path; required hooks; the verify step; up to 3 alternative refs. A small edit to existing code gets `status: "small-edit"` and no pick (cheapest call) |
 | `genlib_jev` `prompt` | `prompt: true` returns the decision as a compact direct-call prompt in `text` (the structured packet stays in `structuredContent`). |
 | `genlib_find` | Ranked results across every source type, each with its acting commands (and a capability's `caveat`, its main known limit, when it has one). Pass `target` or `language` to prefer a language; `detail: "full"` adds summaries, licenses and links. |
 | `genlib_source` | For an external record: a pinned, blob-less, sparse fetch of one folder (or a raw-file URL), the license note, and Genlib code that already covers the need |
@@ -68,14 +68,14 @@ node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all --re
 | `codex` | printed: `codex mcp add genlib -- node …/bin/genlib-mcp.mjs` (Codex reads MCP servers from the user's config, which Genlib does not edit) | `AGENTS.md` |
 
 - The entry runs this checkout's dependency-free `bin/genlib-mcp.mjs` with `--tools quick,outline`; `--all-tools` registers every tool (rerunning with or without it updates an entry Genlib wrote). Other servers and settings in each file are kept.
-- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from benchmark rounds 4 and 5, when not to: skip it for a small, fully specified app feature with no exact standard or security/concurrency rule; otherwise make one `genlib_quick` call, decide from its `covers` line, and call `genlib_outline` only once copying.
+- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from benchmark rounds 4 and 5, when not to: skip it for a small, fully specified app feature with no exact standard or security/concurrency rule; otherwise make one `genlib_quick` call, decide from its `# reuse`, `# fixed` and `# size` lines, and call `genlib_outline` only once copying.
 - Nothing is written without `--write`. An existing `genlib` entry that differs, a JSONC config, invalid JSON or unbalanced markers are reported as conflicts and stop the whole run.
 - `.genlib/connections.json` records what was written. `--remove` deletes only entries that still match it and files Genlib created; an edited entry is a conflict.
 - No tool approvals are added: allowing tools without prompts stays a decision for the app's owner.
 
 ## Navigation graph (Graphify-style)
 
-`registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities, modules, integration packs, feature contracts and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`; `fulfills` links run from code to a feature contract, weighted by the number of requirements its tests verify (the same evidence `genlib coverage` and `quick`'s `covers` line use).
+`registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities, modules, integration packs, feature contracts and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`; `fulfills` links run from code to a feature contract, weighted by the number of requirements its tests verify (the same evidence `genlib coverage` and `quick`'s `# reuse` line use).
 
 The nodes/links shape loads directly in d3, Obsidian graph plugins and Graphify-style viewers. Follow a node's `query` into `genlib find`, or its `file` into a guide. Entry-level detail stays in the search index, so the graph stays small: a few hundred nodes.
 

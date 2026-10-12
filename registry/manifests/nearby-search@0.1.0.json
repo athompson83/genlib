@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "id": "nearby-search",
+  "version": "0.1.0",
+  "title": "Nearby search by distance",
+  "description": "Radius search for server apps: validated coordinates, haversine meters, a bounding-box prefilter that handles poles and the antimeridian, nearest-first keyset pagination, tenant and visibility scoping, location privacy with snapped cells and rounded distances, a PostgreSQL store without PostGIS and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "nearby search",
+    "radius search",
+    "geolocation",
+    "distance",
+    "haversine",
+    "store locator",
+    "near me",
+    "places",
+    "location privacy",
+    "geohash",
+    "bounding box",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/nearby-search"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, btoa/atob, TextDecoder and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; http.ts is optional. The SQL store needs plain PostgreSQL (no PostGIS or earthdistance).",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "nearby-search/core.ts",
+      "path": "modules/nearby-search/files/core.ts",
+      "sha256": "5e9f4e633bafbbfb936485cc3f4dd90744e7012a56bc60d36c0bb5756082dade",
+      "bytes": 19448
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "nearby-search/memory-store.ts",
+      "path": "modules/nearby-search/files/memory-store.ts",
+      "sha256": "9a5099331d9a3d13f33e21ec7aacf729d40a4f85152dbbb0b7ae4f5db18edfaa",
+      "bytes": 5915
+    },
+    {
+      "source": "files/http.ts",
+      "target": "nearby-search/http.ts",
+      "path": "modules/nearby-search/files/http.ts",
+      "sha256": "f30e70786289c9a5dd40a742358ff1d2bca79a1d285a8412679dc6c0f3be5947",
+      "bytes": 8796
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "nearby-search/sql-store.ts",
+      "path": "modules/nearby-search/files/sql-store.ts",
+      "sha256": "15e2da9694fd8237dfef0eca80bcc5fd1490657061c961c226e70a0d0f80137b",
+      "bytes": 4456
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "nearby-search/schema.sql",
+      "path": "modules/nearby-search/files/schema.sql",
+      "sha256": "9fdc4c0a31408b524f4fb72b2a6f201057925e9d2d3216430c1b57993a5cc91f",
+      "bytes": 1508
+    }
+  ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
+  "exports": [
+    {
+      "name": "createNearbySearch",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "NearbySearchError",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "validateCoordinates",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "haversineMeters",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "boundingBoxes",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "geohashEncode",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "snapToCell",
+      "from": "nearby-search/core.ts"
+    },
+    {
+      "name": "MemoryNearbyStore",
+      "from": "nearby-search/memory-store.ts"
+    },
+    {
+      "name": "createSqlNearbyStore",
+      "from": "nearby-search/sql-store.ts"
+    },
+    {
+      "name": "createNearbySearchHandler",
+      "from": "nearby-search/http.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlNearbyStore with your query executor; elsewhere implement NearbyStore (atomic owner-checked upsert, bounding-box prefilter, exact distance, keyset order by distance then id).",
+    "Pass the signed-in viewer {tenantId, userId} from your session; never take the tenant from the request.",
+    "Choose each place's visibility: public (exact), approximate (others see a snapped cell and rounded distance) or private (owner only). Tune privacy.precisionMeters and distanceStepMeters.",
+    "Set maxRadiusMeters and maxLimit for your data density; for millions of rows in dense areas add PostGIS or earthdistance (see schema.sql).",
+    "Mount createNearbySearchHandler under one prefix with authenticate, allowedOrigins (cookie auth), a rateLimit hook, and routes/statusFor if your API shape differs."
+  ],
+  "capabilities": [
+    "nearby-radius-search",
+    "haversine-distance",
+    "keyset-pagination-by-distance",
+    "location-privacy",
+    "tenant-scoped-places"
+  ],
+  "limitations": [
+    "Distances use a sphere (mean radius 6,371,008.8 m): up to about 0.5% from WGS 84 geodesics.",
+    "The SQL prefilter is a B-tree range on (tenant_id, lat, lng); it reads every row in the latitude band, so very dense or global datasets need PostGIS GiST or earthdistance.",
+    "Approximate places are filtered and ordered by their cell centre, so a place just inside the radius by its exact point can be excluded (and the reverse). Repeated radius probes can locate the cell, never the point inside it.",
+    "Rounded approximate distances can appear out of numeric order next to exact ones; order is by unrounded distance to the shared location. Cursors carry that unrounded cell distance.",
+    "Changing privacy.precisionMeters affects only places written afterwards; existing approximate rows keep their cells until updated.",
+    "The memory store is per-process; the SQL store is tested on PostgreSQL semantics through PGlite, a single connection, not under real multi-connection contention or on every hosted Postgres.",
+    "Authentication, rate-limit storage, production query plans at your scale and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "routes: GET {prefix}/search?lat=&lng=&radius=&limit=&cursor=, PUT and DELETE {prefix}/places/:id (overridable)",
+    "approximate places are stored as a geohash cell centre (>= 1,000 m by default); distances round up to the step",
+    "only the owner can update or delete a place; a foreign id gives 403 on PUT and 404 on DELETE",
+    "default max radius 50 km, page size 20 (max 100); cursors are bound to the exact center and radius"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/nearby-search.test.mjs",
+      "tests/nearby-search-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/nearby-search.test.mjs tests/nearby-search-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "latitudes outside [-90, 90], longitudes outside [-180, 180], non-finite and non-number values fail with invalid-coordinates",
+      "haversine distances in meters match known vectors, including antipodes and the antimeridian",
+      "bounding boxes split at the antimeridian and open to all longitudes at the poles; a deterministic fuzz of 72,000 circle points finds none outside",
+      "radius search returns places nearest first with rounded meters and excludes places beyond the radius",
+      "keyset pagination by (distance, id) visits every place once, orders ties by id, survives inserts and rejects cursors from another query",
+      "searches across the antimeridian and at both poles find neighbours on the other side (memory and PGlite)",
+      "the memory store visits only covering geohash cells; on PostgreSQL the plan uses the (tenant_id, lat, lng) index and an exact distance check",
+      "other tenants never see places; private places reach only their owner; only the owner can update or delete, atomically under concurrent upserts",
+      "approximate places expose only a fixed snapped cell (or no coordinates) and distances rounded up to the step; the owner sees the exact point",
+      "HTTP adapter: 200 search with cursor, 201/200 PUT, 204 DELETE, 400, 401, 403, 404, 405, 429, bounded body and cache-control no-store",
+      "HTTP adapter: routes and statusFor overrides change paths and statuses"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/nearby-search/module.json",
+    "sha256": "e03a8983a024344b3eb8eb7e5e80341483a658656e58a4d7b19a3617c0efeb85"
+  },
+  "contractFile": {
+    "path": "modules/nearby-search/CONTRACT.md",
+    "sha256": "cebb303e6c827b047e4033fa6757e0015e0faab0490e8c93b9805726befbc8a8",
+    "bytes": 9663
+  }
+}

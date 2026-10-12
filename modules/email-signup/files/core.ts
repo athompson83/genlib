@@ -19,9 +19,8 @@ export interface SignupAccount {
   readonly verifiedAt?: number;
   /** When the most recent verification email was reserved (resend cooldown). */
   readonly lastSentAt?: number;
-  /** Start of the current resend window and the sends reserved inside it. */
-  readonly sendWindowStart?: number;
-  readonly sendWindowCount: number;
+  /** When each verification email inside the rolling send window was reserved (older entries may be pruned). */
+  readonly recentSends: readonly number[];
 }
 
 export interface VerificationToken {
@@ -57,9 +56,10 @@ export interface EmailSignupStore {
    */
   markVerified(accountId: string, now: number): Promise<boolean>;
   /**
-   * Atomically reserves one verification send for an unverified account if the cooldown has passed and the
-   * window still has room, updating lastSentAt and the window counters. Returns whether the send was reserved.
-   * Must be ONE conditional statement so concurrent resends cannot exceed the limits.
+   * Atomically reserves one verification send for an unverified account if the cooldown has passed and fewer than
+   * maxPerWindow sends happened in the rolling window (now - windowMs, now], updating lastSentAt and recentSends
+   * (dropping entries older than the window). Returns whether the send was reserved. Must be ONE conditional
+   * statement so concurrent resends cannot exceed the limits.
    */
   reserveSend(accountId: string, now: number, limits: SendLimits): Promise<boolean>;
   /**
@@ -102,8 +102,8 @@ export interface EmailSignupOptions {
    * create an account with your email; sign in or reset your password"). The public result does not change.
    */
   readonly onExistingAccount?: (notice: ExistingAccountNotice) => Promise<void> | void;
-  /** Called once, by the confirm that marked the account verified. */
-  readonly onVerified?: (accountId: string) => Promise<void> | void;
+  /** Called once, by the confirm that marked the account verified, with the account's normalized email. */
+  readonly onVerified?: (accountId: string, account: { readonly email: string }) => Promise<void> | void;
   /** Returns problems (empty when acceptable). Default: defaultPasswordPolicy (NIST SP 800-63B style). */
   readonly passwordPolicy?: PasswordPolicy;
   /** Default: scrypt on node:crypto (createScryptHasher()). */
@@ -117,7 +117,12 @@ export interface EmailSignupOptions {
   readonly sendWindowMs?: number;
   /** Total sendEmail attempts per link, with the same idempotency key. Default 3. */
   readonly sendAttempts?: number;
-  /** Waits between attempts (attempt 1 -> 250 ms, 2 -> 1,000 ms). Inject for tests. */
+  /**
+   * Waits between attempts in milliseconds: entry i follows attempt i + 1, and the last entry repeats. Default
+   * [250, 1000, 2000, 4000, ...] (doubling). Each 0 to 120,000; 0 means retry at once.
+   */
+  readonly retryDelaysMs?: readonly number[];
+  /** How a wait happens (setTimeout by default). Inject for tests. */
   readonly sleep?: (ms: number) => Promise<void>;
   readonly now?: () => number;
   readonly randomBytes?: (length: number) => Uint8Array;
@@ -146,6 +151,8 @@ export class SignupError extends Error {
  */
 export interface PublicResult {
   readonly ok: true;
+  /** Server-only, like serverError: the id of the account this call created. Absent when the email was registered. */
+  readonly accountId?: string;
   readonly serverError?: "existing-account" | "existing-account-notice-failed" | "unknown-account" | "already-verified" | "rate-limited" | "delivery-failed" | "invalid-email";
 }
 
@@ -215,6 +222,13 @@ export function createEmailSignup(options: EmailSignupOptions) {
     maxPerWindow: intInRange(options.maxSendsPerWindow ?? 5, 1, 100, "maxSendsPerWindow"),
   };
   const sendAttempts = intInRange(options.sendAttempts ?? 3, 1, 10, "sendAttempts");
+  const retryDelays = options.retryDelaysMs;
+  if (retryDelays !== undefined && (!Array.isArray(retryDelays) || retryDelays.length === 0)) throw new RangeError("retryDelaysMs must list at least one delay");
+  retryDelays?.forEach((ms, index) => intInRange(ms, 0, 120_000, `retryDelaysMs[${index}]`));
+  /** The wait after failed attempt `attempt` (1-based). */
+  const retryDelay = (attempt: number): number => retryDelays
+    ? (retryDelays[Math.min(attempt, retryDelays.length) - 1] as number)
+    : (attempt === 1 ? 250 : 1000 * 2 ** (attempt - 2));
   const base = new URL(options.baseUrl);
   if (base.protocol !== "https:" && !(base.protocol === "http:" && /^(localhost|127\.0\.0\.1|\[::1\])$/.test(base.hostname))) {
     throw new RangeError("baseUrl must be https (http only for localhost)");
@@ -227,12 +241,15 @@ export function createEmailSignup(options: EmailSignupOptions) {
   const policy = options.passwordPolicy ?? defaultPasswordPolicy;
   let hasher = options.hasher;
   const getHasher = (): PasswordHasher => (hasher ??= createScryptHasher());
+  let dummyHash: Promise<string> | undefined;
   const { store } = options;
 
   function retryAfter(account: SignupAccount, at: number): number {
     let until = account.lastSentAt === undefined ? at : account.lastSentAt + limits.cooldownMs;
-    if (account.sendWindowStart !== undefined && account.sendWindowCount >= limits.maxPerWindow) {
-      until = Math.max(until, account.sendWindowStart + limits.windowMs);
+    const inWindow = account.recentSends.filter((sentAt) => at - sentAt < limits.windowMs).sort((a, b) => a - b);
+    if (inWindow.length >= limits.maxPerWindow) {
+      // A slot opens when enough of the oldest sends have left the rolling window.
+      until = Math.max(until, (inWindow[inWindow.length - limits.maxPerWindow] as number) + limits.windowMs);
     }
     return Math.max(1000, until - at);
   }
@@ -244,7 +261,8 @@ export function createEmailSignup(options: EmailSignupOptions) {
         await options.sendEmail(message);
         return true;
       } catch {
-        if (attempt < sendAttempts) await sleep(attempt === 1 ? 250 : 1000 * 2 ** (attempt - 2));
+        const wait = retryDelay(attempt);
+        if (attempt < sendAttempts && wait > 0) await sleep(wait);
       }
     }
     return false;
@@ -299,7 +317,7 @@ export function createEmailSignup(options: EmailSignupOptions) {
       // Hash on every path, so registered and new emails cost the same CPU work.
       const passwordHash = await getHasher().hash(checked);
       const at = now();
-      const account: SignupAccount = { id: newId(), email: normalized, passwordHash, createdAt: at, sendWindowCount: 0 };
+      const account: SignupAccount = { id: newId(), email: normalized, passwordHash, createdAt: at, recentSends: [] };
       if (!(await store.createAccount(account))) {
         const existing = await store.findAccountByEmail(normalized);
         if (existing && options.onExistingAccount) {
@@ -312,8 +330,24 @@ export function createEmailSignup(options: EmailSignupOptions) {
         }
         return { ok: true, serverError: "existing-account" };
       }
-      if (!(await store.reserveSend(account.id, at, limits))) return { ok: true, serverError: "rate-limited" };
-      return (await issue(account, "signup", at)) ? { ok: true } : { ok: true, serverError: "delivery-failed" };
+      const accountId = account.id;
+      if (!(await store.reserveSend(account.id, at, limits))) return { ok: true, accountId, serverError: "rate-limited" };
+      return (await issue(account, "signup", at)) ? { ok: true, accountId } : { ok: true, accountId, serverError: "delivery-failed" };
+    },
+
+    /**
+     * Checks an email and password against a signup account (for a sign-in step; sessions are yours). Returns the
+     * account id, or null for a malformed or unknown email or a wrong password. Unknown emails still run one verify
+     * against a dummy hash, so the timing does not reveal which emails are registered. Unverified accounts are
+     * returned too: gate features with isVerified or requireVerified.
+     */
+    async verifyPassword(email: string, password: string): Promise<string | null> {
+      const normalized = normalizeEmail(email);
+      const account = normalized === null ? null : await store.findAccountByEmail(normalized);
+      const candidate = typeof password === "string" && password.length > 0 && password.length <= MAX_PASSWORD ? password : null;
+      const stored = account?.passwordHash ?? (await (dummyHash ??= getHasher().hash("genlib-email-signup-dummy-password")));
+      const matches = await getHasher().verify(candidate ?? "", stored);
+      return account && candidate !== null && matches ? account.id : null;
     },
 
     /** Signed-out resend by email: always `{ ok: true }` publicly; rate limits and failures are server-only. */
@@ -363,7 +397,7 @@ export function createEmailSignup(options: EmailSignupOptions) {
       if (!consumed) throw invalid();
       const newlyVerified = await store.markVerified(consumed.accountId, at);
       await store.revokePendingTokens(consumed.accountId, at, consumed.id);
-      if (newlyVerified && options.onVerified) await options.onVerified(consumed.accountId);
+      if (newlyVerified && options.onVerified) await options.onVerified(consumed.accountId, { email: account.email });
       return { accountId: consumed.accountId, newlyVerified };
     },
 

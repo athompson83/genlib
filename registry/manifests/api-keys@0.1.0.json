@@ -78,6 +78,21 @@
       "bytes": 1050
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createApiKeys",
@@ -190,7 +205,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/api-keys/module.json",
-    "sha256": "65e891ed9db6e0881b730d2796931047fbcf85bc880ca01b4fd44895ae6762da"
+    "sha256": "9d6cc0d73a4e6b0f8d75922fbd2c18ebb585d521a26c01071af0e4e4a971e8c9"
   },
   "contractFile": {
     "path": "modules/api-keys/CONTRACT.md",

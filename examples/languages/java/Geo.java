@@ -76,8 +76,9 @@ public final class Geo {
 
     /**
      * Box containing every point within radiusMeters of the center. Latitude is clamped to [-90, 90]; the longitude
-     * half-width is the exact great-circle widening 2*asin(sin(d/2)/cos(lat)) (about d/cos(lat)), and the full
-     * [-180, 180] range is used near the poles. Longitudes are clamped, so a box crossing the antimeridian is truncated.
+     * half-width is the circle's widest longitude extent asin(sin(d)/cos(lat)) (about d/cos(lat)), and the full
+     * [-180, 180] range is used near the poles, when sin(d) >= cos(lat), or when the box would cross the antimeridian,
+     * so points on the far side of +-180 are never excluded.
      */
     public static Box boundingBox(double lat, double lon, double radiusMeters) {
         checkPoint(lat, lon);
@@ -86,9 +87,10 @@ public final class Geo {
         double dLat = Math.toDegrees(d);
         double minLat = Math.max(-90, lat - dLat);
         double maxLat = Math.min(90, lat + dLat);
-        double s = Math.sin(d / 2) / Math.cos(Math.toRadians(lat));
+        double s = Math.sin(d) / Math.cos(Math.toRadians(lat));
         if (minLat <= -90 || maxLat >= 90 || !(s < 1)) return new Box(minLat, -180, maxLat, 180);
-        double dLon = Math.toDegrees(2 * Math.asin(s));
-        return new Box(minLat, Math.max(-180, lon - dLon), maxLat, Math.min(180, lon + dLon));
+        double dLon = Math.toDegrees(Math.asin(s));
+        if (lon - dLon < -180 || lon + dLon > 180) return new Box(minLat, -180, maxLat, 180);
+        return new Box(minLat, lon - dLon, maxLat, lon + dLon);
     }
 }

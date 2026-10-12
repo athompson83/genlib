@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inspectModule, loadCatalog, searchCatalog } from '../lib/catalog.mjs';
-import { installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
+import { formatInstall, installModule, planInstall, verifyInstallation } from '../lib/install.mjs';
 import { detectProject, findInSources, loadSources, resolveEntry, sourceCounts } from '../lib/discover.mjs';
 import { invariant } from '../lib/safety.mjs';
 import { HARNESSES, installCommand, loadSkills, searchSkills, skillSummary } from '../lib/skills.mjs';
@@ -56,8 +56,8 @@ const HELP = {
     'list [--json]',
     'search <words> [--framework react] [--limit 5] [--json]',
     'inspect <id> [--json]',
-    'plan <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--ts-imports] [--json]',
-    'add <id> --target <existing-project> [--out src/genlib] [--allow-unverified] [--ts-imports] [--json]',
+    'plan <id> --target <existing-project> [--profile core,http] [--out src/genlib] [--allow-unverified] [--ts-imports] [--json]   # files, then the wiring example with app import paths',
+    'add <id> --target <existing-project> [--profile core,http] [--out src/genlib] [--allow-unverified] [--ts-imports] [--json]   # --profile copies only those file groups (plus what they import); repeat with another profile to add it',
     'verify --target <existing-project> [--json]',
     'adopted <id> --target <existing-project> [--test "<command>"] [--accepts contract#req,...] [--json]   # copied, used and verified; --accepts records requirement-level acceptance',
     'registry plan|add shadcn:<name>|<https item URL> --target <existing-project> [--style new-york-v4] [--sha256 <hex>] [--keep-existing] [--json]   # adopt a shadcn-format registry item with conflict checks, a lock and a receipt (fetches over https)',
@@ -78,7 +78,7 @@ const HELP = {
 
 function argumentsFor(argv) {
   const args = { command: argv[0] ?? 'help', positional: [], options: {} };
-  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove', 'all-tools', 'mode', 'transport', 'url', 'allow-install', 'raw', 'scope']);
+  const allowed = new Set(['json', 'framework', 'limit', 'target', 'out', 'allow-unverified', 'type', 'project', 'harness', 'client', 'language', 'brief', 'path', 'stdlib-only', 'prompt', 'include-retired', 'license-policy', 'test', 'write', 'conflict', 'dry-run', 'accepts', 'list', 'style', 'sha256', 'keep-existing', 'from', 'baseline', 'ts-imports', 'agent', 'remove', 'all-tools', 'mode', 'transport', 'url', 'allow-install', 'raw', 'scope', 'profile']);
   for (let index = 1; index < argv.length; index++) {
     const value = argv[index];
     if (!value.startsWith('--')) { args.positional.push(value); continue; }
@@ -100,8 +100,8 @@ try {
   const supported = {
     harness: ['target', 'mode', 'transport', 'url', 'allow-install', 'raw', 'scope', 'json'],
     help: [], '--help': [], list: ['json'], integration: ['target', 'out', 'allow-unverified', 'json'], capability: ['language', 'json'], jev: ['type', 'target', 'limit', 'json', 'stdlib-only', 'prompt', 'include-retired', 'license-policy'], find: ['type', 'project', 'target', 'limit', 'language', 'brief', 'json', 'include-retired', 'license-policy'], quick: ['type', 'target', 'language', 'json'], outline: ['language', 'json'], source: ['path', 'json'], skill: ['harness', 'limit', 'json'], mcp: ['client', 'limit', 'json'], cli: ['limit', 'json'], api: ['limit', 'language', 'json'], starter: ['limit', 'json'], task: ['limit', 'json'], detect: ['target', 'json'], catalog: ['json'], search: ['framework', 'limit', 'json'],
-    inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'],
-    add: ['target', 'out', 'allow-unverified', 'ts-imports', 'json'], verify: ['target', 'json'],
+    inspect: ['json'], plan: ['target', 'out', 'allow-unverified', 'ts-imports', 'profile', 'json'],
+    add: ['target', 'out', 'allow-unverified', 'ts-imports', 'profile', 'json'], verify: ['target', 'json'],
     schema: ['json'], adopted: ['target', 'test', 'accepts', 'json'], coverage: ['target', 'list', 'json'], provider: ['target', 'from', 'baseline', 'json'], connect: ['target', 'agent', 'all-tools', 'write', 'remove', 'json'], registry: ['target', 'style', 'sha256', 'keep-existing', 'dry-run', 'write', 'conflict', 'json'], update: ['target', 'write', 'conflict', 'json'], remove: ['target', 'dry-run', 'json'],
   };
   invariant(Object.hasOwn(supported, command), 'INVALID_COMMAND', 'Unknown command. Run genlib help.');
@@ -362,7 +362,9 @@ try {
         result = await operation(context, positional[0], {
           target: options.target, out: options.out, allowUnverified: options['allow-unverified'] === true,
           tsImports: options['ts-imports'] === true,
+          ...(options.profile !== undefined ? { profiles: options.profile.split(',').map(name => name.trim()).filter(Boolean) } : {}),
         });
+        text = formatInstall(result);
         if (result.conflicts.length > 0) process.exitCode = 1;
       }
     }

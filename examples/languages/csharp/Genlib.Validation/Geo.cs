@@ -57,18 +57,20 @@ public static class Geo {
         return new GeohashCell((latLo + latHi) / 2, (lonLo + lonHi) / 2, (latHi - latLo) / 2, (lonHi - lonLo) / 2);
     }
 
-    /// <summary>A box containing every point within <paramref name="radiusMeters"/> of the center.</summary>
+    /// <summary>A box containing every point within <paramref name="radiusMeters"/> of the center. The longitude range is
+    /// the full [-180, 180] near a pole or when the box would cross the antimeridian, so far-side points are never excluded.</summary>
     public static GeoBox BoundingBox(double lat, double lon, double radiusMeters) {
         CheckPoint(lat, lon);
         if (!double.IsFinite(radiusMeters) || radiusMeters < 0) throw new ArgumentOutOfRangeException(nameof(radiusMeters), "radiusMeters must be finite and >= 0");
         double angular = radiusMeters / EarthRadiusMeters;
         double dLat = Deg(angular);
         double minLat = Math.Max(-90, lat - dLat), maxLat = Math.Min(90, lat + dLat);
-        // Exact longitude half-width so the point due east/west on the same parallel is exactly radiusMeters away.
-        double s = Math.Sin(angular / 2) / Math.Cos(Rad(lat));
+        // Longitude half-width is the circle's widest longitude extent, asin(sin(r)/cos(lat)); full range when sin(r) >= cos(lat).
+        double s = Math.Sin(angular) / Math.Cos(Rad(lat));
         if (maxLat >= 90 || minLat <= -90 || angular >= Math.PI || s >= 1) return new GeoBox(minLat, -180, maxLat, 180);
-        double dLon = Deg(2 * Math.Asin(s));
-        return new GeoBox(minLat, Math.Max(-180, lon - dLon), maxLat, Math.Min(180, lon + dLon));
+        double dLon = Deg(Math.Asin(s));
+        if (lon - dLon < -180 || lon + dLon > 180) return new GeoBox(minLat, -180, maxLat, 180);
+        return new GeoBox(minLat, lon - dLon, maxLat, lon + dLon);
     }
 
     private static double Rad(double d) => d * Math.PI / 180;

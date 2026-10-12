@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "email-signup",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "User signup with email verification",
   "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -44,15 +44,15 @@
       "source": "files/core.ts",
       "target": "email-signup/core.ts",
       "path": "modules/email-signup/files/core.ts",
-      "sha256": "9ac1b13db852467035d0da114046307b1bd3cb0f1be219a55059451eee9cf23e",
-      "bytes": 19712
+      "sha256": "b5839098d6feafb370e9f96cceecd4cd4b8f7ecb29ceb7bd42c78c4c6098f65b",
+      "bytes": 22234
     },
     {
       "source": "files/password-policy.ts",
       "target": "email-signup/password-policy.ts",
       "path": "modules/email-signup/files/password-policy.ts",
-      "sha256": "87fcfc5ee1c14b97756c6673f830bf4526a5dea7032ee6903f9303448aad0b23",
-      "bytes": 3398
+      "sha256": "970fee93a2267756e47e84f5a15916189e529a9a13aaff19fc4b0710c9f10edc",
+      "bytes": 4328
     },
     {
       "source": "files/scrypt-hasher.ts",
@@ -65,8 +65,8 @@
       "source": "files/memory-store.ts",
       "target": "email-signup/memory-store.ts",
       "path": "modules/email-signup/files/memory-store.ts",
-      "sha256": "dda2b50bab3b33e7bd320ece8d9cb2354ebcf555410575fb3c334bfc600d1ae9",
-      "bytes": 5217
+      "sha256": "829679d92118540d0d0b2d31e0d04746014f8e22a1297fc0ac59d01b9280551e",
+      "bytes": 5088
     },
     {
       "source": "files/http.ts",
@@ -79,17 +79,34 @@
       "source": "files/sql-store.ts",
       "target": "email-signup/sql-store.ts",
       "path": "modules/email-signup/files/sql-store.ts",
-      "sha256": "402acbc8db032c1cd93560546cb3cfbf145a97c4547e57f764de11114ad299d1",
-      "bytes": 6758
+      "sha256": "0e5e322546824b4df4d9f617a838246840129d3d433a431625f720723f0ecc11",
+      "bytes": 6640
     },
     {
       "source": "files/schema.sql",
       "target": "email-signup/schema.sql",
       "path": "modules/email-signup/files/schema.sql",
-      "sha256": "f70b725259d39e5fe00758d8a13763b69d7d2af05427469d93c5175ffe0b7884",
-      "bytes": 1534
+      "sha256": "15d75d52c8d96bfafda7fc8659f479ba44df88a9d47e4730d8d15aa1be37e2b7",
+      "bytes": 1835
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts",
+      "files/password-policy.ts",
+      "files/scrypt-hasher.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createEmailSignup",
@@ -154,7 +171,8 @@
     "Implement sendEmail with your email provider and pass idempotencyKey to it; set baseUrl to the absolute https URL of the page that POSTs the token to /confirm.",
     "Pass onExistingAccount to email the owner when someone signs up with their address, and onVerified for post-verification work.",
     "Keep the default password policy (15 to 128 code points, blocklist) or pass createPasswordPolicy({ minLength: 8 }) when passwords are only one factor of MFA; add a breached-password check for production.",
-    "Use the default scrypt hasher on Node.js 22+ or inject a PasswordHasher (Argon2id from a maintained library); verify sign-ins with the same hasher and rehash when needsRehash returns true.",
+    "Use the default scrypt hasher on Node.js 22+ or inject a PasswordHasher (Argon2id from a maintained library); check sign-in passwords with verifyPassword(email, password) (same hasher, dummy hash for unknown emails) and rehash when needsRehash returns true.",
+    "signup returns the new account's id as the server-only accountId (absent for a registered email); onVerified(accountId, { email }) receives the address for a welcome email; retryDelaysMs sets the waits between delivery attempts.",
     "Mount createEmailSignupHandler under one prefix with exact allowedOrigins, a rateLimit(key) hook and a trusted clientIp(request); log serverError through onResult. Guard gated routes with createVerifiedGate or requireVerified."
   ],
   "capabilities": [
@@ -179,9 +197,9 @@
   ],
   "decisions": [
     "routes: POST {prefix}/signup and /resend → 202 {ok:true} for every outcome; POST {prefix}/confirm → 200",
-    "a registered email gets the same 202, never 409; the owner is told through onExistingAccount",
-    "password 15-128 chars, no composition rules; scrypt N=2^17; 400 weak-password with problems",
-    "token stored as SHA-256 hash; 24 h default ttl, single use; confirm is a POST, not a GET link"
+    "a registered email gets the same 202, never 409; accountId and serverError are server-only",
+    "password 15-128 chars (minLength option), no composition rules; scrypt N=2^17; 400 weak-password",
+    "token SHA-256 hashed, 24 h, single use, confirmed by POST; the resend cap is a rolling window"
   ],
   "verification": {
     "level": "tested",
@@ -203,15 +221,29 @@
       "the link carries a 256-bit base64url token; only its SHA-256 hash is stored; it expires after 24 hours and works once",
       "unverified accounts are refused by requireVerified, assertVerified and the HTTP gate (403 email-unverified, 401 signed out) until confirmed",
       "exactly one of four concurrent confirms verifies the account and onVerified runs once (memory store and PGlite)",
-      "resends are limited by a cooldown and a per-window cap on an injected clock, concurrent resends cannot exceed them, each resend revokes earlier links, and interleaved concurrent resends always leave at least one working link (memory store and PGlite)",
+      "resends are limited by a cooldown and a rolling per-window cap on an injected clock, concurrent resends cannot exceed them, each resend revokes earlier links, and interleaved concurrent resends always leave at least one working link (memory store and PGlite)",
       "every verification email carries an idempotency key per token; retries reuse it; final failure revokes the link and is reported only in serverError",
       "signup with a registered email returns the same public result, creates nothing, keeps the existing password and calls onExistingAccount; a throwing onExistingAccount is reported only in serverError, so the HTTP response stays the same 202 as a new email with a failed send",
       "a link stops working when the account email changes after it was sent",
       "HTTP adapter: 202 identical bodies for signup and resend, 400 invalid-email, weak-password with problems and invalid-token, 200 confirm, origin check, 429 from rateLimit keyed by IP and email, bounded body, cache-control no-store and referrer-policy no-referrer",
-      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL",
+      "the per-window send cap is rolling: a send is refused while maxSendsPerWindow sends fall inside the last sendWindowMs, with retryAfterMs from the oldest of them (memory store and PGlite)",
+      "retryDelaysMs sets the waits between delivery attempts (the last entry repeats; 0 retries at once)",
+      "signup returns the created account's id server-side only; onVerified receives the account email",
+      "verifyPassword returns the account id for the right password and null otherwise, running one verify against a dummy hash for unknown emails",
+      "the built-in blocklist covers common 8 to 14 character passwords for apps that lower minLength to 8"
     ]
   },
   "changelog": [
+    {
+      "version": "0.2.0",
+      "changes": [
+        "Breaking: the resend cap is a rolling window. SignupAccount.recentSends replaces sendWindowStart/sendWindowCount, and schema.sql replaces send_window_start/send_window_count with recent_sends bigint[] (see the upgrade note in schema.sql).",
+        "Fix: a fixed window that restarted after sendWindowMs allowed up to twice maxSendsPerWindow emails inside one rolling window.",
+        "New: verifyPassword(email, password); accountId on the signup result (server-only); onVerified receives { email }; retryDelaysMs option.",
+        "Fix: the built-in blocklist now covers common 8 to 14 character passwords, which slipped through when minLength was lowered to 8."
+      ]
+    },
     {
       "version": "0.1.0",
       "changes": [
@@ -222,11 +254,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/email-signup/module.json",
-    "sha256": "28a83353d4bc7c971a2fa414708a066d2cfa7fa5f596a5dd11842f85f1255160"
+    "sha256": "cabd5e0908e3ba0054582144167e6aafb9e69951c19874a2acaaad2f7c101803"
   },
   "contractFile": {
     "path": "modules/email-signup/CONTRACT.md",
-    "sha256": "fee8d0abc3802f37be3faf32c92637f3aa84ecd94c5a4a2c7f3e1e8def75cca0",
-    "bytes": 12731
+    "sha256": "837b0336aa7c0e1530bdc43dab58e8630bfebba845a65a6b4c3364571f51d00f",
+    "bytes": 13796
   }
 }

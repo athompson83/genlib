@@ -59,6 +59,7 @@ function setup(extra = {}) {
     quotaBytes: extra.quotaBytes ?? 1_000_000,
     scanner: extra.scanner ?? (async (data, record) => { scanned.push(record.id); return new TextDecoder().decode(data).includes("EICAR") ? "infected" : "clean"; }),
     now: () => now, newId: () => `id${++counter}`,
+    ...extra.options,
   });
   const alice = { id: "alice", tenant: "acme" };
   const bob = { id: "bob", tenant: "globex" };
@@ -363,4 +364,156 @@ test("HTTP: origin check, 401 without a user, 404 for another tenant's file, 409
   assert.equal((await get(id)).status, 404);
   assert.equal((await handler(new Request(`${ORIGIN}/api/uploads/files/${id}`, { method: "PUT", headers: { origin: ORIGIN } }))).status, 405);
   assert.equal((await handler(new Request(`${ORIGIN}/elsewhere`))).status, 404);
+});
+
+// ---- Options and fixes from fitting the module to an independent app spec (0.2.0) ----
+
+test("markup detection: only < followed by a letter, !, ? or / counts as markup; other text that starts with < is plain text", () => {
+  const t = (text) => sniffType(new TextEncoder().encode(text));
+  assert.equal(t("<3 uploads"), "text");
+  assert.equal(t("< 5 items\n"), "text");
+  assert.equal(t("<<<>>> banner"), "text");
+  assert.equal(t("﻿  <b>bold</b>"), "html");
+  assert.equal(t("\n  <script>alert(1)</script>"), "html");
+  assert.equal(t("<!-- c --><p>x</p>"), "html");
+  assert.equal(t("  <?xml version=\"1.0\"?><svg/>"), "svg");
+  assert.equal(t("</p> trailing"), "html");
+});
+
+test("policy.extensions narrows the extensions each type accepts, on the server and in preflight", async () => {
+  const policy = { allow: ["jpeg", "text", "png"], extensions: { jpeg: ["jpg", "jpeg"], text: ["txt"] } };
+  const { put } = setup({ policy });
+  assert.equal((await put(TEXT, "notes.txt", "text/plain")).status, "quarantined");
+  await assert.rejects(put(TEXT, "server.log", "text/plain"), code("unsupported-type"));
+  await assert.rejects(put(JPEG, "photo.jpe", "image/jpeg"), code("unsupported-type"));
+  assert.equal((await put(JPEG, "photo.JPEG", "image/jpeg")).contentType, "image/jpeg");
+  assert.equal((await put(PNG, "a.png", "image/png")).contentType, "image/png", "types without an override keep their defaults");
+  assert.equal((await preflight({ name: "x.log", size: 3, type: "" }, { maxBytes: 100, ...policy })).reason, "type-not-allowed");
+  assert.throws(() => normalizePolicy({ maxBytes: 10, allow: ["text"], extensions: { text: [] } }), RangeError);
+  assert.throws(() => normalizePolicy({ maxBytes: 10, allow: ["text"], extensions: { text: [".txt"] } }), RangeError);
+  assert.throws(() => normalizePolicy({ maxBytes: 10, allow: ["text"], extensions: { nope: ["x"] } }), RangeError);
+  assert.throws(() => normalizePolicy({ maxBytes: 10, allow: ["text", "png"], extensions: { text: ["png"] } }), RangeError, "an extension belongs to one type");
+});
+
+test("filename options: filenameControls 'remove' deletes controls, invalidFilenames 'reject' refuses reserved, empty and dot-only names", async () => {
+  const opts = { filenameControls: "remove", invalidFilenames: "reject" };
+  assert.equal(sanitizeFilename("a\u0000b\u0007c.txt", opts), "abc.txt");
+  assert.equal(sanitizeFilename("note‮gpj.txt", opts), "notegpj.txt");
+  assert.equal(sanitizeFilename("trail.txt. . ", opts), "trail.txt");
+  for (const name of ["CON.txt", "nul.tar.gz", "Com1.txt", "LPT9.txt", "prn", "..", "/", " . ", "", "a/b/"]) {
+    assert.equal(sanitizeFilename(name, opts), null, JSON.stringify(name));
+  }
+  assert.equal(sanitizeFilename("console.txt", opts), "console.txt");
+  assert.equal(sanitizeFilename("x".repeat(300) + ".txt", { ...opts, maxBytes: 255 }).length, 255);
+  // Defaults are unchanged: controls become "_" and reserved or empty names are renamed.
+  assert.equal(sanitizeFilename("a\u0000b.txt"), "a_b.txt");
+  assert.equal(sanitizeFilename("CON"), "_CON");
+  assert.equal(sanitizeFilename(".."), "file");
+  assert.equal(sanitizeFilename("x".repeat(40) + ".txt", 16), "x".repeat(12) + ".txt", "the numeric maxBytes form still works");
+  const { put, uploads, alice } = setup({ policy: opts });
+  for (const name of ["CON.txt", "..", "", "   "]) await assert.rejects(put(TEXT, name, "text/plain"), code("invalid-name"), JSON.stringify(name));
+  await assert.rejects(put(SVG, "aux.svg", "image/svg+xml"), code("invalid-name"), "the name is checked before the type");
+  assert.equal((await put(TEXT, "a\u0001b.txt", "text/plain")).filename, "ab.txt");
+  await assert.rejects(uploads.upload({ user: alice, tenantId: "acme", filename: undefined, declaredType: "", body: TEXT }), code("invalid-name"));
+  assert.equal((await preflight({ name: "nul.txt", size: 3, type: "" }, { maxBytes: 100, allow: ["text"], ...opts })).reason, "bad-name");
+  assert.throws(() => normalizePolicy({ maxBytes: 10, filenameControls: "drop" }), RangeError);
+  assert.throws(() => normalizePolicy({ maxBytes: 10, invalidFilenames: "ignore" }), RangeError);
+});
+
+test("checkDeclaredType: false ignores the client's Content-Type; the type still comes from the bytes and the extension", async () => {
+  const { uploads, alice } = setup({ options: { checkDeclaredType: false } });
+  const put = (data, filename, declaredType) => uploads.upload({ user: alice, tenantId: "acme", filename, declaredType, contentLength: data.byteLength, body: data });
+  assert.equal((await put(PNG, "a.png", "text/html")).contentType, "image/png");
+  assert.equal((await put(PDF, "a.pdf", "image/png")).contentType, "application/pdf");
+  await assert.rejects(put(HTML, "fake.png", "image/png"), code("unsupported-type"), "markup under a png name is still refused");
+  await assert.rejects(put(PNG, "photo.jpg", "image/jpeg"), code("type-mismatch"));
+  // Default: the declared type must agree.
+  await assert.rejects(setup().put(PNG, "a.png", "text/html"), code("type-mismatch"));
+});
+
+test("lengthMismatch: 'too-large' answers a body longer than its declared Content-Length with too-large, still without reading on", async () => {
+  const { uploads, alice, metadata } = setup({ options: { lengthMismatch: "too-large" } });
+  const liar = trackedStream([PNG, new Uint8Array(100)], { endless: true });
+  await assert.rejects(uploads.upload({ user: alice, tenantId: "acme", filename: "a.png", declaredType: "image/png", contentLength: 4, body: liar.stream }), code("too-large"));
+  assert.equal(liar.state.cancelled, true);
+  assert.ok(liar.state.pulls <= 2);
+  assert.equal(await metadata.usage("acme"), 0);
+  // A shorter body than declared is still a bad request.
+  await assert.rejects(uploads.upload({ user: alice, tenantId: "acme", filename: "a.png", declaredType: "image/png", contentLength: PNG.byteLength + 5, body: PNG }), code("bad-request"));
+  assert.throws(() => setup({ options: { lengthMismatch: "teapot" } }), RangeError);
+});
+
+test("without Content-Length, quota is reserved as bytes arrive: an upload that fits what remains is accepted, one that does not is cut off", async () => {
+  const big = new Uint8Array(1500); big.set(PNG);
+  const { uploads, alice, metadata } = setup({ quotaBytes: 4000 });
+  const stream = (data, size = 256) => trackedStream(Array.from({ length: Math.ceil(data.byteLength / size) }, (_, i) => data.slice(i * size, (i + 1) * size)));
+  const send = (data, name, s = stream(data)) => uploads.upload({ user: alice, tenantId: "acme", filename: name, declaredType: "image/png", body: s.stream });
+  await send(big, "a.png");
+  await send(big, "b.png");
+  assert.equal(await metadata.usage("acme"), 3000);
+  const small = new Uint8Array(900); small.set(PNG);
+  assert.equal((await send(small, "c.png")).size, 900, "fits the remaining 1000 bytes although maxBytes (4096) does not");
+  const tooBig = stream(big);
+  await assert.rejects(send(big, "d.png", tooBig), code("quota-exceeded"));
+  assert.equal(tooBig.state.cancelled, true, "reading stops once the quota is reached");
+  assert.equal(await metadata.usage("acme"), 3900, "the partial reservation was released");
+  // Concurrent streamed uploads never exceed the quota together. While a whole maxBytes still fits, an upload reserves
+  // that much at once (as 0.1.0 did), so concurrent uploads cannot starve each other; only near the quota does it fall
+  // back to exact increments.
+  const env = setup({ quotaBytes: 9000 });
+  let peak = 0;
+  const reserve = env.metadata.reserve.bind(env.metadata);
+  env.metadata.reserve = async (...args) => { const ok = await reserve(...args); peak = Math.max(peak, await env.metadata.usage("acme")); return ok; };
+  const results = await Promise.allSettled([1, 2, 3, 4].map((i) => env.uploads.upload({ user: env.alice, tenantId: "acme", filename: `p${i}.png`, declaredType: "image/png", body: stream(big, 100).stream })));
+  const done = results.filter((r) => r.status === "fulfilled").length;
+  assert.ok(done >= 2, `${done} uploads finished`);
+  assert.ok(results.filter((r) => r.status === "rejected").every((r) => code("quota-exceeded")(r.reason)));
+  assert.ok(peak <= 9000, `peak usage ${peak}`);
+  assert.equal(await env.metadata.usage("acme"), 1500 * done);
+});
+
+test("scanPending scans each quarantined file once even when calls overlap; a failed scan is retried on the next call", async () => {
+  let calls = 0;
+  let mode = "clean";
+  const scanner = async (data) => {
+    calls++;
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    if (mode === "throw") throw new Error("daemon down");
+    return new TextDecoder().decode(data).includes("EICAR") ? "infected" : mode;
+  };
+  const { uploads, put, metadata, blobs, alice } = setup({ scanner });
+  const a = await put(TEXT, "a.txt", "text/plain");
+  const b = await put(new TextEncoder().encode("EICAR sample\n"), "b.txt", "text/plain");
+  const usage = await metadata.usage("acme");
+  const summaries = await Promise.all([uploads.scanPending(), uploads.scanPending(), uploads.scanPending()]);
+  assert.equal(calls, 2, "each file was scanned by exactly one call");
+  assert.deepEqual(summaries.reduce((sum, s) => ({ clean: sum.clean + s.clean, infected: sum.infected + s.infected, failed: sum.failed + s.failed }), { clean: 0, infected: 0, failed: 0 }), { clean: 1, infected: 1, failed: 0 });
+  assert.equal((await uploads.download(alice, a.id)).record.status, "clean");
+  assert.equal(await metadata.usage("acme"), usage - b.size, "the infected file's quota was released once");
+  assert.ok(!blobs.keys().includes(b.storageKey));
+  await uploads.scanPending();
+  assert.equal(calls, 2, "decided files are not scanned again");
+  // Two concurrent scan(id) calls run the scanner once.
+  const c = await put(TEXT, "c.txt", "text/plain");
+  await Promise.all([uploads.scan(c.id), uploads.scan(c.id)]);
+  assert.equal(calls, 3);
+  // A scanner error leaves the file quarantined and the next call scans it again.
+  mode = "throw";
+  const d = await put(TEXT, "d.txt", "text/plain");
+  assert.deepEqual(await uploads.scanPending(), { clean: 0, infected: 0, failed: 1, skipped: 0 });
+  assert.equal((await metadata.get(d.id)).status, "quarantined");
+  mode = "clean";
+  assert.deepEqual(await uploads.scanPending(), { clean: 1, infected: 0, failed: 0, skipped: 0 });
+  assert.equal(calls, 5);
+});
+
+test("a scan claim held by a crashed worker expires after scanLeaseMs", async () => {
+  const { uploads, put, metadata, advance } = setup({ options: { scanLeaseMs: 60_000 } });
+  const a = await put(TEXT, "a.txt", "text/plain");
+  assert.ok(await metadata.claimScan(a.id, 1_000_000, 1_000_000 + 60_000), "a worker claims the file and then crashes");
+  assert.equal((await uploads.scan(a.id)).status, "quarantined", "skipped while the claim is live");
+  assert.deepEqual(await uploads.scanPending(), { clean: 0, infected: 0, failed: 0, skipped: 0 }, "claimed files are not listed");
+  advance(60_000);
+  assert.equal((await uploads.scan(a.id)).status, "clean");
+  assert.throws(() => setup({ options: { scanLeaseMs: 10 } }), RangeError);
 });

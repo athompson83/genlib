@@ -79,6 +79,17 @@
       "const": true,
       "description": "Present when --ts-imports rewrote relative .js imports in copied .ts/.tsx files to .ts."
     },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Install profiles of the requested module that are installed (recorded ones plus --profile); absent when every file is installed."
+    },
+    "wiring": {
+      "type": "string",
+      "description": "The module's integration example from CONTRACT.md with import paths rewritten to the install location relative to the app root; imports of files not installed are omitted. At most 40 lines."
+    },
     "writes": {
       "type": "boolean",
       "description": "false for plan (dry run)"

@@ -1,7 +1,7 @@
 #!/bin/sh
 # SPDX-License-Identifier: Apache-2.0
 # grade.sh <task> <app-dir>: copy the hidden tests into a scratch copy of a finished run and report pass counts.
-# task: invitations | webhook | csv | totp | outgoing | digests
+# task: invitations | webhook | csv | totp | outgoing | digests | signup | twofactor | uploads
 set -e
 K=$(cd "$(dirname "$0")" && pwd); t=$1; app=$(cd "$2" && pwd)
 G=$(mktemp -d); cp -R "$app/." "$G"; cd "$G"

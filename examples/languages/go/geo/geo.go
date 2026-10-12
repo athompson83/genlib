@@ -105,10 +105,11 @@ func GeohashDecode(hash string) (Cell, error) {
 }
 
 // BoundingBox returns a box containing every point within radiusMeters,
-// clamped to valid coordinates. The longitude half-width is widened by
-// 1/cos(lat) (solved exactly on the sphere) and becomes the full range when
-// the circle reaches a pole. Boxes crossing the antimeridian are clamped to
-// [-180, 180] rather than split.
+// clamped to valid coordinates. The longitude half-width is the circle's
+// widest longitude extent, asin(sin(r)/cos(lat)) for angular radius r, and
+// becomes the full range when the circle reaches a pole (sin(r) >= cos(lat))
+// or when the box would cross the antimeridian, so points on the far side of
+// +-180 are never excluded.
 func BoundingBox(lat, lon, radiusMeters float64) (Box, error) {
 	if err := check(lat, lon); err != nil {
 		return Box{}, err
@@ -121,11 +122,13 @@ func BoundingBox(lat, lon, radiusMeters float64) (Box, error) {
 	box := Box{lat - dLat, -180, lat + dLat, 180}
 	ratio := 2.0
 	if math.Abs(lat) < 90 {
-		ratio = math.Sin(angular/2) / math.Cos(rad(lat))
+		ratio = math.Sin(angular) / math.Cos(rad(lat))
 	}
 	if box.MinLat > -90 && box.MaxLat < 90 && ratio < 1 {
-		dLon := deg(2 * math.Asin(ratio))
-		box.MinLon, box.MaxLon = math.Max(-180, lon-dLon), math.Min(180, lon+dLon)
+		dLon := deg(math.Asin(ratio))
+		if lon-dLon >= -180 && lon+dLon <= 180 {
+			box.MinLon, box.MaxLon = lon-dLon, lon+dLon
+		}
 	}
 	box.MinLat, box.MaxLat = math.Max(-90, box.MinLat), math.Min(90, box.MaxLat)
 	return box, nil

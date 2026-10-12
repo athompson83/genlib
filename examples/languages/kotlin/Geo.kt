@@ -74,8 +74,9 @@ object Geo {
 
     /**
      * Box containing every point within [radiusMeters] of the center. Latitude is clamped to [-90, 90]; the longitude
-     * half-width is the exact great-circle widening 2*asin(sin(d/2)/cos(lat)) (about d/cos(lat)), and the full
-     * [-180, 180] range is used near the poles. Longitudes are clamped, so a box crossing the antimeridian is truncated.
+     * half-width is the circle's widest longitude extent asin(sin(d)/cos(lat)) (about d/cos(lat)), and the full
+     * [-180, 180] range is used near the poles, when sin(d) >= cos(lat), or when the box would cross the antimeridian,
+     * so points on the far side of +-180 are never excluded.
      */
     fun boundingBox(lat: Double, lon: Double, radiusMeters: Double): Box {
         checkPoint(lat, lon)
@@ -84,9 +85,10 @@ object Geo {
         val dLat = Math.toDegrees(d)
         val minLat = maxOf(-90.0, lat - dLat)
         val maxLat = minOf(90.0, lat + dLat)
-        val s = sin(d / 2) / cos(Math.toRadians(lat))
+        val s = sin(d) / cos(Math.toRadians(lat))
         if (minLat <= -90 || maxLat >= 90 || !(s < 1)) return Box(minLat, -180.0, maxLat, 180.0)
-        val dLon = Math.toDegrees(2 * asin(s))
-        return Box(minLat, maxOf(-180.0, lon - dLon), maxLat, minOf(180.0, lon + dLon))
+        val dLon = Math.toDegrees(asin(s))
+        if (lon - dLon < -180 || lon + dLon > 180) return Box(minLat, -180.0, maxLat, 180.0)
+        return Box(minLat, lon - dLon, maxLat, lon + dLon)
     }
 }

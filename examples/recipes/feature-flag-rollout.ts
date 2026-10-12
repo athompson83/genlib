@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // Genlib recipe: deterministic percentage rollouts and weighted variants. Original source; copy and adapt.
-// Uses FNV-1a (fast, stable, NOT cryptographic). The same subject always lands in the same
-// bucket for a flag; raising the percentage only adds subjects. Flags are UX/release
+// Buckets use FNV-1a followed by the MurmurHash3 fmix32 finalizer (fast, stable, NOT cryptographic).
+// The same subject always lands in the same bucket for a flag; raising the percentage only adds subjects.
+// BREAKING (behavior): bucketOf and chooseVariant previously used plain FNV-1a, whose lowest bit is the
+// parity of the input bytes, so 50/50 experiments with similar keys put the same subjects in the same
+// half. The finalizer makes experiments independent but changes every bucket and variant assignment;
+// re-baseline running rollouts and experiments when upgrading. fnv1a32 itself is unchanged. Flags are UX/release
 // controls, never authorization: enforce permissions separately on the server.
 
 export interface RolloutFlag {
@@ -28,10 +32,20 @@ export function fnv1a32(text: string): number {
   return hash >>> 0;
 }
 
+/** MurmurHash3 fmix32 finalizer: spreads every input bit into the low bits used by `% n`. */
+export function fmix32(h: number): number {
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x85ebca6b) >>> 0;
+  h ^= h >>> 13;
+  h = Math.imul(h, 0xc2b2ae35) >>> 0;
+  h ^= h >>> 16;
+  return h >>> 0;
+}
+
 /** Stable bucket 0..9999 for a subject under a flag. */
 export function bucketOf(flagKey: string, subjectId: string, salt = ""): number {
   if (!flagKey || !subjectId) throw new RangeError("flagKey and subjectId are required");
-  return fnv1a32(`${salt}:${flagKey}:${subjectId}`) % 10_000;
+  return fmix32(fnv1a32(`${salt}:${flagKey}:${subjectId}`)) % 10_000;
 }
 
 function basisPoints(percentage: number): number {
@@ -63,7 +77,7 @@ export function chooseVariant<N extends string>(experimentKey: string, subjectId
     return sum + v.weight;
   }, 0);
   if (total <= 0) throw new RangeError("At least one variant needs a positive weight");
-  const point = fnv1a32(`${salt}:${experimentKey}:variant:${subjectId}`) % total;
+  const point = fmix32(fnv1a32(`${salt}:${experimentKey}:variant:${subjectId}`)) % total;
   let acc = 0;
   for (const v of variants) {
     acc += v.weight;

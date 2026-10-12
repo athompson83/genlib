@@ -40,7 +40,22 @@ export interface UploadPolicyInput {
   readonly allowGenericDeclaredType?: boolean;
   /** Cap for sanitized filenames in UTF-8 bytes. Default 200; 16 to 255. */
   readonly maxFilenameBytes?: number;
+  /**
+   * Replace the extensions a type accepts, for example `{ text: ["txt"], jpeg: ["jpg", "jpeg"] }`. Lowercase, without
+   * the dot; each extension may belong to only one allowed type. Types without an entry keep UPLOAD_TYPES' list.
+   */
+  readonly extensions?: Partial<Readonly<Record<UploadTypeId, readonly string[]>>>;
+  /** What happens to control characters in file names: "replace" with "_" (default) or "remove". */
+  readonly filenameControls?: FilenameControls;
+  /**
+   * Names that are empty after sanitizing (for example "..") or Windows device names (CON, NUL, COM1 ...): "rename"
+   * them ("file", "_CON", the default) or "reject" them with an invalid-name error.
+   */
+  readonly invalidFilenames?: InvalidFilenames;
 }
+
+export type FilenameControls = "replace" | "remove";
+export type InvalidFilenames = "rename" | "reject";
 
 export interface UploadPolicy {
   readonly maxBytes: number;
@@ -48,6 +63,10 @@ export interface UploadPolicy {
   readonly allowActiveContent: boolean;
   readonly allowGenericDeclaredType: boolean;
   readonly maxFilenameBytes: number;
+  /** Accepted extensions per type (UPLOAD_TYPES' lists unless overridden). */
+  readonly extensions: Readonly<Record<UploadTypeId, readonly string[]>>;
+  readonly filenameControls: FilenameControls;
+  readonly invalidFilenames: InvalidFilenames;
 }
 
 export const DEFAULT_ALLOW: readonly UploadTypeId[] = ["png", "jpeg", "gif", "webp", "pdf"];
@@ -65,7 +84,29 @@ export function normalizePolicy(input: UploadPolicyInput): UploadPolicy {
   }
   const maxFilenameBytes = input.maxFilenameBytes ?? 200;
   if (!Number.isInteger(maxFilenameBytes) || maxFilenameBytes < 16 || maxFilenameBytes > 255) throw new RangeError("maxFilenameBytes must be 16 to 255");
-  return { maxBytes: input.maxBytes, allow, allowActiveContent: input.allowActiveContent === true, allowGenericDeclaredType: input.allowGenericDeclaredType ?? true, maxFilenameBytes };
+  const extensions = Object.fromEntries(Object.values(UPLOAD_TYPES).map((info) => [info.id, info.extensions])) as Record<UploadTypeId, readonly string[]>;
+  for (const [id, list] of Object.entries(input.extensions ?? {})) {
+    if (!Object.hasOwn(UPLOAD_TYPES, id)) throw new RangeError(`Unknown upload type in extensions: ${id}`);
+    if (!Array.isArray(list) || list.length === 0 || !list.every((ext) => typeof ext === "string" && /^[a-z0-9]{1,16}$/.test(ext))) {
+      throw new RangeError(`extensions.${id} must list lowercase extensions without the dot`);
+    }
+    extensions[id as UploadTypeId] = [...new Set(list as readonly string[])];
+  }
+  const owner = new Map<string, UploadTypeId>();
+  for (const id of allow) {
+    for (const ext of extensions[id]) {
+      if (owner.has(ext)) throw new RangeError(`Extension ${ext} is claimed by both ${owner.get(ext)} and ${id}`);
+      owner.set(ext, id);
+    }
+  }
+  const filenameControls = input.filenameControls ?? "replace";
+  if (filenameControls !== "replace" && filenameControls !== "remove") throw new RangeError('filenameControls must be "replace" or "remove"');
+  const invalidFilenames = input.invalidFilenames ?? "rename";
+  if (invalidFilenames !== "rename" && invalidFilenames !== "reject") throw new RangeError('invalidFilenames must be "rename" or "reject"');
+  return {
+    maxBytes: input.maxBytes, allow, allowActiveContent: input.allowActiveContent === true, allowGenericDeclaredType: input.allowGenericDeclaredType ?? true,
+    maxFilenameBytes, extensions, filenameControls, invalidFilenames,
+  };
 }
 
 function at(b: Uint8Array, offset: number, signature: readonly number[]): boolean {
@@ -106,7 +147,8 @@ function isPlainText(bytes: Uint8Array): boolean {
 
 function markupType(bytes: Uint8Array): UploadTypeId | null {
   const head = new TextDecoder("utf-8").decode(bytes.subarray(0, MARKUP_HEAD)).replace(/^﻿/, "").trimStart().toLowerCase();
-  if (!head.startsWith("<")) return null;
+  // A tag, comment, doctype or processing instruction: "<" then a letter, "!", "?" or "/". "<3" or "< 5" is text.
+  if (!/^<[a-z!?/]/.test(head)) return null;
   // An XML prolog, comment or doctype may precede the root element; look for an <svg root within the head.
   if (/<svg[\s>/]/.test(head)) return "svg";
   return "html";
@@ -143,7 +185,7 @@ export function baseMediaType(declared: string | null | undefined): string {
 export function typeForExtension(filename: string, policy: UploadPolicy): UploadTypeId | null {
   const extension = extensionOf(filename);
   if (!extension) return null;
-  for (const id of policy.allow) if (UPLOAD_TYPES[id].extensions.includes(extension)) return id;
+  for (const id of policy.allow) if (policy.extensions[id].includes(extension)) return id;
   return null;
 }
 
@@ -171,8 +213,9 @@ export function checkType(detected: UploadTypeId | null, filename: string, decla
 }
 
 const RESERVED = /^(con|prn|aux|nul|clock\$|conin\$|conout\$|com[0-9¹²³]|lpt[0-9¹²³])(\..*)?$/i;
-// C0/C1 controls, DEL and characters Windows forbids become "_".
+// C0/C1 controls, DEL and characters Windows forbids become "_" (controls are removed with filenameControls: "remove").
 const UNSAFE = /[\u0000-\u001f\u007f-\u009f<>:"|?*]/g;
+const CONTROLS = /[\u0000-\u001f\u007f-\u009f]/g;
 // Removed outright: every format character (\p{Cf}: bidi controls such as U+202E and U+061C, zero-width characters,
 // soft hyphen, BOM, U+180E) and invisible fillers that render as blank (Hangul fillers, halfwidth filler, braille blank).
 const INVISIBLE = /[\p{Cf}\u115f\u1160\u3164\uffa0\u2800]/gu;
@@ -191,23 +234,41 @@ function truncateBytes(text: string, max: number): string {
   return out;
 }
 
+export interface FilenameOptions {
+  /** Cap in UTF-8 bytes. Default 200; 16 to 255. */
+  readonly maxBytes?: number;
+  readonly filenameControls?: FilenameControls;
+  /** "reject" makes the function return null for empty and Windows device names instead of renaming them. */
+  readonly invalidFilenames?: InvalidFilenames;
+}
+
 /**
  * A display name that is safe to store and to echo in headers: only the last path segment survives (so "../../x"
- * becomes "x"), unsafe characters become "_", leading and trailing dots and spaces are trimmed, Windows device names
- * get a "_" prefix, and the result is capped at `maxBytes` UTF-8 bytes keeping the extension. Never use it as a
- * storage path: store bytes under a random key.
+ * becomes "x"), format characters are removed, controls and characters Windows forbids become "_" (controls are
+ * removed with `filenameControls: "remove"`), leading and trailing dots and spaces are trimmed, and the result is
+ * capped at `maxBytes` UTF-8 bytes keeping the extension. Empty results become "file" and Windows device names get a
+ * "_" prefix; with `invalidFilenames: "reject"` both return null instead. Never use it as a storage path: store
+ * bytes under a random key.
  */
-export function sanitizeFilename(name: string, maxBytes = 200): string {
+export function sanitizeFilename(name: string, maxBytes?: number): string;
+export function sanitizeFilename(name: string, options: FilenameOptions): string | null;
+export function sanitizeFilename(name: string, limit: number | FilenameOptions = 200): string | null {
+  const options: FilenameOptions = typeof limit === "number" ? { maxBytes: limit } : limit;
+  const maxBytes = options.maxBytes ?? 200;
   if (!Number.isInteger(maxBytes) || maxBytes < 16 || maxBytes > 255) throw new RangeError("maxBytes must be 16 to 255");
+  const reject = options.invalidFilenames === "reject";
   const segments = String(name).normalize("NFC").split(/[\\/]/);
   const segment = segments[segments.length - 1] ?? "";
   const visible = segment.replace(INVISIBLE, "");
-  let clean = visible.replace(UNSAFE, "_");
+  let clean = (options.filenameControls === "remove" ? visible.replace(CONTROLS, "") : visible).replace(UNSAFE, "_");
   // A stem made only of invisible characters ("\u3164.png") falls back to the default stem, keeping the extension.
   if (visible.startsWith(".") && !segment.startsWith(".")) clean = `file${clean}`;
   clean = clean.replace(/^[\s.]+/, "").replace(/[\s.]+$/, "").replace(/\s+/g, " ");
-  if (!clean || /^_+$/.test(clean)) return "file";
-  if (RESERVED.test(clean)) clean = `_${clean}`;
+  if (!clean || /^_+$/.test(clean)) return reject ? null : "file";
+  if (RESERVED.test(clean)) {
+    if (reject) return null;
+    clean = `_${clean}`;
+  }
   if (byteLength(clean) <= maxBytes) return clean;
   const dot = clean.lastIndexOf(".");
   const extension = dot > 0 && clean.length - dot <= 11 ? clean.slice(dot) : "";

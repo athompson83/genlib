@@ -76,6 +76,21 @@
       "bytes": 889
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createShortLinks",
@@ -189,7 +204,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/short-links/module.json",
-    "sha256": "5dd2ea46e471fe91a907febf13176a60e038fdeb0dfa16e7b561a0e5d6347f5d"
+    "sha256": "56f104eeeeb0adc32c906ca5da8b14acb6e1146b3f2a1393a7133d20214ee037"
   },
   "contractFile": {
     "path": "modules/short-links/CONTRACT.md",

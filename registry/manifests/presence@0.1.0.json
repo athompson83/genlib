@@ -65,6 +65,17 @@
       "bytes": 9037
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createPresence",
@@ -158,7 +169,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/presence/module.json",
-    "sha256": "d0399f8879caa79749badc20d19985dec59471bcec77190be1af4089fd5bac57"
+    "sha256": "3b1040e5d111264d4dfc06e4567134730f94cc50eb010a72a0d4da83c61469ca"
   },
   "contractFile": {
     "path": "modules/presence/CONTRACT.md",

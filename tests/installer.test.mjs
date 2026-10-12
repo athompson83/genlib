@@ -329,3 +329,102 @@ test('module evidence: inspect shows verified behaviors and changelog, and malfo
   assert.throws(bad({ verification: { ...base.verification, behaviors: [] } }), /behaviors/);
   assert.throws(bad({ deprecated: { replacement: 'Not An Id' } }), /deprecated/);
 });
+
+test('profiles: validation requires known sources, short names, at most 8 groups and full coverage', async () => {
+  const { validateModule } = await import('../lib/catalog.mjs');
+  const base = JSON.parse(await fs.readFile(path.join(REPOSITORY_ROOT, 'modules/org-invitations/module.json'), 'utf8'));
+  const check = profiles => () => validateModule({ ...base, profiles }, 'org-invitations');
+  const good = { core: ['files/core.ts'], memory: ['files/memory-store.ts'], sql: ['files/sql-store.ts', 'files/schema.sql'], http: ['files/http.ts'] };
+  assert.doesNotThrow(check(good));
+  assert.doesNotThrow(check(undefined));
+  assert.throws(check({ ...good, extra: ['files/missing.ts'] }), /profiles/);
+  assert.throws(check({ ...good, Core: ['files/core.ts'] }), /profiles/);
+  assert.throws(check({ ...good, '9lives': ['files/core.ts'] }), /profiles/);
+  assert.throws(check({ core: ['files/core.ts'], memory: ['files/memory-store.ts'], http: ['files/http.ts'] }), /cover every file/);
+  assert.throws(check(Object.fromEntries(Array.from({ length: 9 }, (_, i) => ['p' + i, base.files.map(file => file.source)]))), /profiles/);
+  assert.throws(check({ ...good, empty: [] }), /profiles/);
+  assert.throws(check(['files/core.ts']), /profiles/);
+});
+
+async function profiledFixture(t, { httpImport = './core.js' } = {}) {
+  const fixtureState = await fixture(t);
+  const { root } = fixtureState;
+  const location = path.join(root, 'modules/profiled');
+  await fs.mkdir(path.join(location, 'files'), { recursive: true });
+  const module = {
+    schemaVersion: 1, id: 'profiled', version: '0.1.0', title: 'profiled', description: 'Profiled feature',
+    kind: 'feature', tags: ['feature'], license: 'Apache-2.0',
+    source: { type: 'original', repository: 'https://github.com/athompson83/genlib', path: 'modules/profiled' },
+    compatibility: { frameworks: ['any'], languages: ['typescript'], platform: 'server', notes: [] },
+    dependencies: [{ id: 'base-style', version: '0.1.0' }],
+    files: [
+      { source: 'files/core.ts', target: 'profiled/core.ts' },
+      { source: 'files/memory-store.ts', target: 'profiled/memory-store.ts' },
+      { source: 'files/http.ts', target: 'profiled/http.ts' },
+    ],
+    profiles: { core: ['files/core.ts'], memory: ['files/memory-store.ts'], http: ['files/http.ts'] },
+    exports: [
+      { name: 'createThing', from: 'profiled/core.ts' }, { name: 'MemoryStore', from: 'profiled/memory-store.ts' },
+      { name: 'createHandler', from: 'profiled/http.ts' },
+    ],
+    configuration: [], capabilities: ['profiled'], limitations: ['Fixture only'],
+    verification: { level: 'experimental', testFiles: ['tests/feature.test.mjs'] }, contract: 'CONTRACT.md',
+  };
+  await fs.writeFile(path.join(location, 'module.json'), JSON.stringify(module));
+  await fs.writeFile(path.join(location, 'CONTRACT.md'), [
+    '# profiled', '', '## Integration points', '', 'Wire it like this:', '', '```ts',
+    'import { createThing } from "./genlib/profiled/core.js";', 'import { createHandler } from "./genlib/profiled/http.js";',
+    'import { z } from "zod";', '', 'const thing = createThing({ store });', 'export const handler = createHandler({', '  thing,', '});', '```', '',
+    '## Behavior', '', '```ts', 'notTheWiring();', '```', '',
+  ].join('\n'));
+  await fs.writeFile(path.join(location, 'files/core.ts'), 'import "../base-style/value.js";\nexport function createThing(options: unknown) { return options; }\n');
+  await fs.writeFile(path.join(location, 'files/memory-store.ts'), 'import type { X } from "./core.js";\nexport class MemoryStore {}\n');
+  await fs.writeFile(path.join(location, 'files/http.ts'), `import { createThing } from "${httpImport}";\nexport function createHandler(options: unknown) { return createThing(options); }\n`);
+  await artifacts(root);
+  return { ...fixtureState, context: await loadCatalog(root) };
+}
+
+test('profiles: a selection installs the named groups plus the module files they import; dependencies stay whole', async t => {
+  const { context, target } = await profiledFixture(t);
+  const plan = await planInstall(context, 'profiled', { target, profiles: ['memory'] });
+  const paths = plan.files.map(file => file.path);
+  assert.deepEqual(plan.profiles, ['memory']);
+  assert.ok(paths.includes('src/genlib/profiled/memory-store.ts'));
+  assert.ok(paths.includes('src/genlib/profiled/core.ts'), 'core.ts is imported by memory-store.ts');
+  assert.ok(!paths.includes('src/genlib/profiled/http.ts'));
+  assert.ok(paths.includes('src/genlib/base-style/value.ts'), 'dependencies install fully');
+  await assert.rejects(planInstall(context, 'profiled', { target, profiles: ['nope'] }), { code: 'INVALID_OPTION', message: /core, memory, http/ });
+  await assert.rejects(planInstall(context, 'base-style', { target, profiles: ['core'] }), { code: 'INVALID_OPTION', message: /no install profiles/ });
+  const full = await planInstall(context, 'profiled', { target });
+  assert.equal(full.profiles, undefined);
+  assert.equal(full.files.filter(file => file.path.startsWith('src/genlib/profiled/')).length, 3);
+});
+
+test('profiles: a selection that leaves an import unresolved is refused before any write', async t => {
+  const { context, target } = await profiledFixture(t, { httpImport: './missing.js' });
+  await assert.rejects(installModule(context, 'profiled', { target, profiles: ['core', 'http'] }), { code: 'UNRESOLVED_IMPORT', message: /profiled\/http\.ts imports \.\/missing\.js/ });
+  assert.deepEqual(await fs.readdir(target), ['package.json']);
+});
+
+test('profiles: wiring prints the integration example with app paths and drops what was not installed', async t => {
+  const { context, target } = await profiledFixture(t);
+  const core = await planInstall(context, 'profiled', { target, profiles: ['core', 'memory'] });
+  assert.match(core.wiring, /^import \{ createThing \} from "\.\/src\/genlib\/profiled\/core\.js";$/m);
+  assert.doesNotMatch(core.wiring, /http\.js|createHandler\(/, 'the http import and the statement using it are omitted');
+  assert.match(core.wiring, /^import \{ z \} from "zod";$/m, 'package imports are kept');
+  assert.match(core.wiring, /const thing = createThing\(\{ store \}\);/);
+  assert.match(core.wiring, /also: import \{ MemoryStore \} from "\.\/src\/genlib\/profiled\/memory-store\.js"/);
+  assert.match(core.wiring, /not installed: createHandler \(add --profile http\)/);
+  assert.doesNotMatch(core.wiring, /notTheWiring/);
+  const ts = await planInstall(context, 'profiled', { target, profiles: ['http'], tsImports: true, out: 'lib/shared' });
+  assert.match(ts.wiring, /from "\.\/lib\/shared\/profiled\/http\.ts"/);
+  assert.match(ts.wiring, /export const handler = createHandler\(\{\n  thing,\n\}\);/);
+  const installed = await installModule(context, 'profiled', { target, profiles: ['core'] });
+  assert.equal(installed.wiring.split('\n').length <= 40, true);
+  const app = path.join(path.dirname(target), 'fresh-app');
+  await fs.mkdir(app);
+  const cli = spawnSync(process.execPath, [path.join(REPOSITORY_ROOT, 'bin/genlib.mjs'), 'plan', 'org-invitations', '--target', app, '--profile', 'core,memory'], { encoding: 'utf8' });
+  assert.equal(cli.status, 0, cli.stderr + cli.stdout);
+  assert.match(cli.stdout, /^# wiring/m);
+  assert.match(cli.stdout, /from "\.\/src\/genlib\/org-invitations\/core\.js"/);
+});

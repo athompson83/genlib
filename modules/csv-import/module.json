@@ -28,6 +28,7 @@
     { "source": "files/memory-store.ts", "target": "csv-import/memory-store.ts" },
     { "source": "files/http.ts", "target": "csv-import/http.ts" }
   ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "http": ["files/http.ts"] },
   "exports": [
     { "name": "createImporter", "from": "csv-import/core.ts" },
     { "name": "ImportError", "from": "csv-import/core.ts" },

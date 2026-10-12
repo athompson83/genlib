@@ -77,6 +77,21 @@
       "bytes": 1270
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createRbac",
@@ -182,7 +197,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/rbac/module.json",
-    "sha256": "16b65485c4f04ddfa79d7cbee3d35b0f3691419b691c5c98c419eb56a9930868"
+    "sha256": "a11069eea9127120d204336c08ea59641b1098ccd5c9590bdadcb9141d60caf7"
   },
   "contractFile": {
     "path": "modules/rbac/CONTRACT.md",

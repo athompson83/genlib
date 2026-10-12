@@ -2715,6 +2715,49 @@
    }
   },
   {
+   "name": "csv-download",
+   "type": "registry:item",
+   "title": "CSV download safe for Excel",
+   "description": "Streamed CSV downloads for server apps: RFC 4180 quoting with CRLF records, formula-injection neutralization, UTF-8 with a BOM for Excel, tenant-scoped rows through an injected cursor-paged source plus a per-row authorize hook, explicit column allow-lists, row and byte caps, RFC 6266 download header",
+   "files": [
+    {
+     "path": "modules/csv-download/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-download/core.ts"
+    },
+    {
+     "path": "modules/csv-download/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-download/memory-store.ts"
+    },
+    {
+     "path": "modules/csv-download/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-download/http.ts"
+    },
+    {
+     "path": "modules/csv-download/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/csv-download/sql-store.ts"
+    },
+    {
+     "path": "modules/csv-download/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/csv-download/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module csv-download@0.1.0 (Apache-2.0). Configure: Declare every exportable column with a key, header and value function; nothing outside that list is written. Set defaultColumns to the safe default set. Supply a RowSource scoped by requester.tenantId (keyset pages: WHERE tenant = $1 AND id > cursor ORDER BY id LIMIT n); on PostgreSQL use createSqlRowSource with an index on (tenant, id). Add authorize(requester, row) for row-level rules, canReadColumn for sensitive columns, canExport for the export permission and tenantOf as a cross-check. Set maxRows, maxBytes and pageSize for your data; onLimit 'error' (default) fails oversize exports, 'truncate' ends them early and reports it. Apply schema.sql and pass createSqlExportLog(db) as log to keep an audit row per export, or implement ExportLog yourself. Mount createCsvExportHandler with authenticate(request) from your session; adjust prefix, routes and statusFor to your API, and validate query filters in parseFilter. Contract: https://github.com/athompson83/genlib/blob/main/modules/csv-download/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "csv-import",
    "type": "registry:item",
    "title": "CSV import pipeline",
@@ -2875,10 +2918,10 @@
     "genlib-module",
     "feature"
    ],
-   "docs": "Genlib module email-signup@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlEmailSignupStore with your query executor; elsewhere implement EmailSignupStore with a unique normalized-email index and single conditional statements for createAccount, markVerified, reserveSend and consumeToken, and an atomic issueToken that inserts the new link and revokes the other pending links that are not newer. If you already have a users table, implement EmailSignupStore against it instead of adding email_signup_accounts; keep the unique index on the normalized email. Implement sendEmail with your email provider and pass idempotencyKey to it; set baseUrl to the absolute https URL of the page that POSTs the token to /confirm. Pass onExistingAccount to email the owner when someone signs up with their address, and onVerified for post-verification work. Keep the default password policy (15 to 128 code points, blocklist) or pass createPasswordPolicy({ minLength: 8 }) when passwords are only one factor of MFA; add a breached-password check for production. Use the default scrypt hasher on Node.js 22+ or inject a PasswordHasher (Argon2id from a maintained library); verify sign-ins with the same hasher and rehash when needsRehash returns true. Mount createEmailSignupHandler under one prefix with exact allowedOrigins, a rateLimit(key) hook and a trusted clientIp(request); log serverError through onResult. Guard gated routes with createVerifiedGate or requireVerified. Contract: https://github.com/athompson83/genlib/blob/main/modules/email-signup/CONTRACT.md",
+   "docs": "Genlib module email-signup@0.2.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlEmailSignupStore with your query executor; elsewhere implement EmailSignupStore with a unique normalized-email index and single conditional statements for createAccount, markVerified, reserveSend and consumeToken, and an atomic issueToken that inserts the new link and revokes the other pending links that are not newer. If you already have a users table, implement EmailSignupStore against it instead of adding email_signup_accounts; keep the unique index on the normalized email. Implement sendEmail with your email provider and pass idempotencyKey to it; set baseUrl to the absolute https URL of the page that POSTs the token to /confirm. Pass onExistingAccount to email the owner when someone signs up with their address, and onVerified for post-verification work. Keep the default password policy (15 to 128 code points, blocklist) or pass createPasswordPolicy({ minLength: 8 }) when passwords are only one factor of MFA; add a breached-password check for production. Use the default scrypt hasher on Node.js 22+ or inject a PasswordHasher (Argon2id from a maintained library); check sign-in passwords with verifyPassword(email, password) (same hasher, dummy hash for unknown emails) and rehash when needsRehash returns true. signup returns the new account's id as the server-only accountId (absent for a registered email); onVerified(accountId, { email }) receives the address for a welcome email; retryDelaysMs sets the waits between delivery attempts. Mount createEmailSignupHandler under one prefix with exact allowedOrigins, a rateLimit(key) hook and a trusted clientIp(request); log serverError through onResult. Guard gated routes with createVerifiedGate or requireVerified. Contract: https://github.com/athompson83/genlib/blob/main/modules/email-signup/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "verification": "tested"
    }
   },
@@ -2939,6 +2982,49 @@
    }
   },
   {
+   "name": "feature-rollout",
+   "type": "registry:item",
+   "title": "Feature flags with gradual rollout and A/B assignment",
+   "description": "Server-side feature flags and experiments: sticky hashed buckets, percentage rollout that only grows, kill switch, user and tenant targeting with fixed precedence, runtime config from a store with a TTL cache and change notification, audited admin changes, weighted variants with sticky assignments, ",
+   "files": [
+    {
+     "path": "modules/feature-rollout/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/feature-rollout/core.ts"
+    },
+    {
+     "path": "modules/feature-rollout/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/feature-rollout/memory-store.ts"
+    },
+    {
+     "path": "modules/feature-rollout/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/feature-rollout/http.ts"
+    },
+    {
+     "path": "modules/feature-rollout/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/feature-rollout/sql-store.ts"
+    },
+    {
+     "path": "modules/feature-rollout/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/feature-rollout/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module feature-rollout@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlFeatureFlagStore with your query executor; grant the app role only SELECT and INSERT on feature_flag_audit. On other databases implement FeatureFlagStore with a version-conditional flag write that appends its audit row atomically and insert-if-absent assignments, exposures and conversions. Pass authorize(actor, action, flagKey) to allow admin operations (read, create, update, delete, audit); without it every admin call is refused. Keep cacheTtlMs short (default 5,000 ms) and call refresh() from your pub/sub (for example Postgres LISTEN/NOTIFY) to apply changes sooner; subscribe() reports changed keys. Evaluate on the server with the session's userId, tenantId and an anonymous-id cookie; call stitch(anonymousId, userId) at sign-in and expose() only where the variant is actually rendered. Forward onExposure to analytics. Mount createFeatureFlagHandler with authenticate(request), a trusted subject(request), and optional routes, statusFor, prefix and allowedOrigins (for cookie-authenticated admin UIs). Contract: https://github.com/athompson83/genlib/blob/main/modules/feature-rollout/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "file-uploads",
    "type": "registry:item",
    "title": "File upload with size and type checks",
@@ -2984,10 +3070,10 @@
     "genlib-module",
     "feature"
    ],
-   "docs": "Genlib module file-uploads@0.1.0 (Apache-2.0). Configure: Set policy.maxBytes and policy.allow (default png, jpeg, gif, webp, pdf); use the same policy object in preflight on the client and createFileUploads on the server. Implement BlobStore (put/get/delete) over your object storage (S3, R2, GCS, disk) keyed by the random storageKey; MemoryBlobStore is for tests. On PostgreSQL, apply schema.sql and use createSqlUploadMetadataStore with your query executor; elsewhere implement UploadMetadataStore with a single conditional quota reservation and conditional status change and delete. Pass authorize(user, tenantId, action) for upload, read and delete, and quotaBytes as a number or per-tenant function. Pass scanner(bytes, record) backed by your antivirus (for example a ClamAV daemon or a scanning service) and call scan(id) from a queue worker, or call recordScanResult(id, verdict) from your own pipeline. No antivirus engine is included. Mount createFileUploadHandler under one prefix with exact allowedOrigins and an authenticate(request) that reads your session; also cap the request body size at your proxy or platform. Contract: https://github.com/athompson83/genlib/blob/main/modules/file-uploads/CONTRACT.md",
+   "docs": "Genlib module file-uploads@0.2.0 (Apache-2.0). Configure: Set policy.maxBytes and policy.allow (default png, jpeg, gif, webp, pdf); use the same policy object in preflight on the client and createFileUploads on the server. Implement BlobStore (put/get/delete) over your object storage (S3, R2, GCS, disk) keyed by the random storageKey; MemoryBlobStore is for tests. On PostgreSQL, apply schema.sql and use createSqlUploadMetadataStore with your query executor; elsewhere implement UploadMetadataStore with a single conditional quota reservation and conditional status change and delete. Pass authorize(user, tenantId, action) for upload, read and delete, and quotaBytes as a number or per-tenant function. Pass scanner(bytes, record) backed by your antivirus (for example a ClamAV daemon or a scanning service) and call scanPending() from a background job (or scan(id) from a queue worker), or call recordScanResult(id, verdict) from your own pipeline. No antivirus engine is included. Match your spec with options instead of wrapper code: policy.extensions (accepted extensions per type), policy.filenameControls (\"remove\"), policy.invalidFilenames (\"reject\" → invalid-name), checkDeclaredType: false (ignore the client's Content-Type on the server), lengthMismatch (\"too-large\") and scanLeaseMs. Mount createFileUploadHandler under one prefix with exact allowedOrigins and an authenticate(request) that reads your session; also cap the request body size at your proxy or platform. Contract: https://github.com/athompson83/genlib/blob/main/modules/file-uploads/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "verification": "tested"
    }
   },
@@ -3044,6 +3130,92 @@
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.2.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "keyset-pagination",
+   "type": "registry:item",
+   "title": "Cursor pagination for APIs",
+   "description": "Keyset (seek) pagination for server list endpoints: opaque HMAC-signed cursors with key rotation and expiry, bound to tenant, filters and sort; multi-column ASC/DESC sorts with a unique tie-breaker; parameterized PostgreSQL WHERE/ORDER BY/LIMIT; an in-memory source; limit clamping; next/prev cursors",
+   "files": [
+    {
+     "path": "modules/keyset-pagination/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/keyset-pagination/core.ts"
+    },
+    {
+     "path": "modules/keyset-pagination/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/keyset-pagination/memory-store.ts"
+    },
+    {
+     "path": "modules/keyset-pagination/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/keyset-pagination/sql-store.ts"
+    },
+    {
+     "path": "modules/keyset-pagination/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/keyset-pagination/schema.sql"
+    },
+    {
+     "path": "modules/keyset-pagination/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/keyset-pagination/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module keyset-pagination@0.1.0 (Apache-2.0). Configure: Generate one or more 32-byte random secrets and pass them as keys [{id, secret}] from your secret store; rotate by prepending a new key and drop the old one after the cursor ttl. Declare named sorts over NOT NULL columns (type number, string, or timestamp for timestamptz), each ending in a unique tie-breaker (usually the primary key), and create a matching B-tree index per sort (see schema.sql). On PostgreSQL use createSqlKeysetSource(db, {table, scopeColumns, filterColumns, toItem}); elsewhere implement KeysetSource.fetch (rows strictly after a key tuple in a given order, limited). Derive the scope (tenant, user) from your trusted session or API key in the HTTP scope(request) hook, never from the query string; declare the filters the endpoint accepts. Set defaultLimit, maxLimit and ttlMs for your endpoint; pass routes, statusFor, params and publicOrigin to match your API's surface. Contract: https://github.com/athompson83/genlib/blob/main/modules/keyset-pagination/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "nearby-search",
+   "type": "registry:item",
+   "title": "Nearby search by distance",
+   "description": "Radius search for server apps: validated coordinates, haversine meters, a bounding-box prefilter that handles poles and the antimeridian, nearest-first keyset pagination, tenant and visibility scoping, location privacy with snapped cells and rounded distances, a PostgreSQL store without PostGIS and ",
+   "files": [
+    {
+     "path": "modules/nearby-search/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/nearby-search/core.ts"
+    },
+    {
+     "path": "modules/nearby-search/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/nearby-search/memory-store.ts"
+    },
+    {
+     "path": "modules/nearby-search/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/nearby-search/http.ts"
+    },
+    {
+     "path": "modules/nearby-search/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/nearby-search/sql-store.ts"
+    },
+    {
+     "path": "modules/nearby-search/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/nearby-search/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module nearby-search@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlNearbyStore with your query executor; elsewhere implement NearbyStore (atomic owner-checked upsert, bounding-box prefilter, exact distance, keyset order by distance then id). Pass the signed-in viewer {tenantId, userId} from your session; never take the tenant from the request. Choose each place's visibility: public (exact), approximate (others see a snapped cell and rounded distance) or private (owner only). Tune privacy.precisionMeters and distanceStepMeters. Set maxRadiusMeters and maxLimit for your data density; for millions of rows in dense areas add PostGIS or earthdistance (see schema.sql). Mount createNearbySearchHandler under one prefix with authenticate, allowedOrigins (cookie auth), a rateLimit hook, and routes/statusFor if your API shape differs. Contract: https://github.com/athompson83/genlib/blob/main/modules/nearby-search/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
     "verification": "tested"
    }
   },
@@ -3433,6 +3605,69 @@
    }
   },
   {
+   "name": "recurring-events",
+   "type": "registry:item",
+   "title": "Recurring calendar events (RRULE)",
+   "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics exp",
+   "files": [
+    {
+     "path": "modules/recurring-events/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/core.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/rrule.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/rrule.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/timezone.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/timezone.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/ics.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/ics.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/errors.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/errors.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/memory-store.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/sql-store.ts"
+    },
+    {
+     "path": "modules/recurring-events/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/schema.sql"
+    },
+    {
+     "path": "modules/recurring-events/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/recurring-events/http.ts"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module recurring-events@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlRecurringEventStore with an executor that has query(text, params) and transaction(work); elsewhere implement RecurringEventStore with a version-checked atomic update. Store event starts as local wall time plus an IANA zone (America/New_York), never as UTC instants; pass window bounds as epoch milliseconds. Mount createRecurringEventsHandler under one prefix with exact allowedOrigins and an authorize(request, {operation, calendarId, seriesId}) hook backed by your session and calendar sharing rules; override routes and statusFor to match your API. Set maxOccurrences, maxSeriesPerQuery and maxOverridesPerSeries to your UI's needs; pass uidDomain in icsOptions so exported UIDs are globally unique. Contract: https://github.com/athompson83/genlib/blob/main/modules/recurring-events/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.1.0",
+    "verification": "tested"
+   }
+  },
+  {
    "name": "scheduled-tasks",
    "type": "registry:item",
    "title": "Cron scheduled tasks for multi-instance apps",
@@ -3752,7 +3987,50 @@
     "genlib-module",
     "feature"
    ],
-   "docs": "Genlib module two-factor@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlTwoFactorStore with your query executor; on other databases implement TwoFactorStore with single-statement conditional updates for activate, advanceStep, consumeRecoveryCode and registerAttempt. Generate a 32-byte AES key from a secret manager and pass it as encryption.keys[<id>] with currentKeyId; to rotate, add a new id, make it current, keep the old id until reencryptSecret has run for every user. Pass recoveryPepper: at least 32 random bytes from a secret manager, kept separate from the database. Set issuer to your product name (no colon); the account name is usually the user's email. After a password sign-in, check isEnabled(userId) and, when true, hold a second-factor-pending session until verify or verifyRecoveryCode succeeds. Pass authenticatedAt (when the user last proved their password) to disable and regenerateRecoveryCodes; re-prompt for the password when they refuse with reauthentication-required. Mount createTwoFactorHandler under one prefix with exact allowedOrigins, an authenticate hook that reports the session stage, a rateLimit(key) hook, a trusted clientIp(request) and an onVerified hook that upgrades the session. Contract: https://github.com/athompson83/genlib/blob/main/modules/two-factor/CONTRACT.md",
+   "docs": "Genlib module two-factor@0.2.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlTwoFactorStore with your query executor; on other databases implement TwoFactorStore with single-statement conditional updates for activate, advanceStep, consumeRecoveryCode and registerAttempt. Generate a 32-byte AES key from a secret manager and pass it as encryption.keys[<id>] with currentKeyId; to rotate, add a new id, make it current, keep the old id until reencryptSecret has run for every user. Pass recoveryPepper: at least 32 random bytes from a secret manager, kept separate from the database. Set issuer to your product name (no colon); the account name is usually the user's email. After a password sign-in, check isEnabled(userId) and, when true, hold a second-factor-pending session until verify or verifyRecoveryCode succeeds. Pass authenticatedAt (when the user last proved their password) to disable and regenerateRecoveryCodes; re-prompt for the password when they refuse with reauthentication-required. For a lockout policy (N consecutive failures lock the account for a fixed time from the Nth) pass lockoutMs; for strict six-digit input pass allowCodeSpaces: false. Mount createTwoFactorHandler under one prefix with exact allowedOrigins, an authenticate hook that reports the session stage, a rateLimit(key) hook, a trusted clientIp(request) and an onVerified hook that upgrades the session. Contract: https://github.com/athompson83/genlib/blob/main/modules/two-factor/CONTRACT.md",
+   "meta": {
+    "source": "https://github.com/athompson83/genlib",
+    "version": "0.2.0",
+    "verification": "tested"
+   }
+  },
+  {
+   "name": "url-slugs",
+   "type": "registry:item",
+   "title": "URL slugs",
+   "description": "Title-to-slug generation for server apps: Latin diacritic transliteration and optional Unicode scripts, word-boundary length cap, concurrency-safe unique slugs per tenant scope with numeric suffixes, reserved route words, rename history with 301 redirects that never chain or loop, a PostgreSQL store",
+   "files": [
+    {
+     "path": "modules/url-slugs/files/core.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-slugs/core.ts"
+    },
+    {
+     "path": "modules/url-slugs/files/memory-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-slugs/memory-store.ts"
+    },
+    {
+     "path": "modules/url-slugs/files/http.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-slugs/http.ts"
+    },
+    {
+     "path": "modules/url-slugs/files/sql-store.ts",
+     "type": "registry:file",
+     "target": "~/genlib/url-slugs/sql-store.ts"
+    },
+    {
+     "path": "modules/url-slugs/files/schema.sql",
+     "type": "registry:file",
+     "target": "~/genlib/url-slugs/schema.sql"
+    }
+   ],
+   "categories": [
+    "genlib-module",
+    "feature"
+   ],
+   "docs": "Genlib module url-slugs@0.1.0 (Apache-2.0). Configure: On PostgreSQL, apply schema.sql and use createSqlSlugStore (table may be schema-qualified) with a query executor that also offers transaction() (needed for rename); elsewhere implement SlugStore with a unique (scope, slug) key and a unique current slug per (scope, entity). Build each scope with slugScope(tenantId, collection) from trusted server context, never from the URL or request body. Pass reserved: [...DEFAULT_RESERVED_SLUGS, ...yourRouteNames] so no slug can shadow a route; set maxLength, separator, unicode and fallback to match your URLs. Call create when the entity is created, rename when its title or slug changes and remove when it is deleted; store the returned slug on your entity if you need it in listings. Mount createSlugResolveHandler with routes, prefix and a scopeFor(request, params) that reads the tenant from the session or verified host, or call slugs.resolve from your page handler and issue the redirect yourself. Contract: https://github.com/athompson83/genlib/blob/main/modules/url-slugs/CONTRACT.md",
    "meta": {
     "source": "https://github.com/athompson83/genlib",
     "version": "0.1.0",

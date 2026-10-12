@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // Deterministic feature-flag evaluation: disabled -> deny list -> allow list -> percentage rollout, with weighted
-// variants. bucket = fnv1a32(UTF-8 of key + ":" + userId) % 10000, so the same user always gets the same answer for the
-// same flag, and raising rolloutPercent only adds users (buckets below the threshold stay on). Uses Hashing.swift.
+// variants. bucket = fmix32(fnv1a32(UTF-8 of key + ":" + userId)) % 10000 (fmix32 is the MurmurHash3 finalizer), so the
+// same user always gets the same answer for the same flag, and raising rolloutPercent only adds users (buckets below the
+// threshold stay on). Uses Hashing.swift.
+// BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is the parity of the input bytes, so 50/50
+// experiments with similar keys put the same users in the same half. The finalizer makes experiments independent but
+// changes every bucket and variant assignment; re-baseline running rollouts and experiments when upgrading.
 
 public enum FeatureFlagError: Error, Equatable {
     case invalidArgument(String)
@@ -47,6 +51,17 @@ public enum FeatureFlags {
         }
     }
 
+    /// FNV-1a 32 over the bytes, then the MurmurHash3 fmix32 finalizer so the low bits used by `% n` are well mixed.
+    private static func bucketHash(_ bytes: [UInt8]) -> UInt32 {
+        var h = Hashing.fnv1a32(bytes)
+        h ^= h >> 16
+        h = h &* 0x85eb_ca6b
+        h ^= h >> 13
+        h = h &* 0xc2b2_ae35
+        h ^= h >> 16
+        return h
+    }
+
     /// Exact (byte-wise) membership; Swift String equality would treat canonically equivalent ids as equal.
     private static func member(_ id: [UInt8], _ list: [String]) -> Bool { list.contains { Array($0.utf8) == id } }
 
@@ -63,10 +78,10 @@ public enum FeatureFlags {
         }
         let threshold = Int(scaled.rounded())
         let id = Array(userId.utf8)
-        let bucket = Int(Hashing.fnv1a32(Array((flag.key + ":").utf8) + id) % 10000)
+        let bucket = Int(bucketHash(Array((flag.key + ":").utf8) + id) % 10000)
         func variant() -> String? {
             guard !flag.variants.isEmpty else { return nil }
-            var x = Int(Hashing.fnv1a32(Array((flag.key + ":variant:").utf8) + id)) % total
+            var x = Int(bucketHash(Array((flag.key + ":variant:").utf8) + id)) % total
             for v in flag.variants {
                 if x < v.weight { return v.name }
                 x -= v.weight
