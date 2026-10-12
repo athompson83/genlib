@@ -3,10 +3,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
+import { skillTargets } from '../lib/harnesses.mjs';
 
 const repositoryRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const canonicalRoot = path.join(repositoryRoot, 'skills', 'genlib-use');
-const locations = { codex: '.agents', claude: '.claude' };
 const noFollow = fs.constants.O_NOFOLLOW ?? 0;
 
 function statOrMissing(filename) {
@@ -86,17 +86,6 @@ function readTree(directory) {
   }
   visit();
   return { files, directories };
-}
-
-function targetsFor(target, harness) {
-  const selected = harness === 'both' ? ['codex', 'claude'] : [harness];
-  if (selected.some((item) => !Object.hasOwn(locations, item))) {
-    throw new Error('Harness must be codex, claude, or both.');
-  }
-  return selected.map((item) => ({
-    harness: item,
-    directory: path.join(target, locations[item], 'skills', 'genlib-use'),
-  }));
 }
 
 function planCopy(destination, source, allowGeneratedChanges) {
@@ -183,21 +172,21 @@ function applyPlans(plans, source) {
   } catch (error) { rollbackCreated(created); throw error; }
 }
 
-export function installSkills({ target, harness = 'both' }) {
+export function installSkills({ target, harness = 'both', scope = 'project' }) {
   target = safeDirectory(absolutePath(target), true);
   const source = readTree(canonicalRoot);
   if (!source.files.has('SKILL.md')) throw new Error('Canonical skill is missing SKILL.md.');
-  const targets = targetsFor(target, harness);
-  // Preflight both harnesses before creating anything in the receiving application.
+  const targets = skillTargets(target, harness, scope);
+  // Preflight every unique skill directory before creating anything in the receiving application.
   const plans = targets.map((item) => planCopy(item.directory, source, false));
   applyPlans(plans, source);
-  return { targets, filesWritten: plans.reduce((sum, item) => sum + item.changes.length, 0) };
+  return { requestedHarness: harness, scope, targets, filesWritten: plans.reduce((sum, item) => sum + item.changes.length, 0) };
 }
 
 export function syncSkillMirrors({ check = false } = {}) {
   const source = readTree(canonicalRoot);
   if (!source.files.has('SKILL.md')) throw new Error('Canonical skill is missing SKILL.md.');
-  const targets = targetsFor(repositoryRoot, 'both');
+  const targets = skillTargets(repositoryRoot, 'both');
   const plans = targets.map((item) => planCopy(item.directory, source, true));
   const differences = plans.flatMap((item) => [
     ...item.changes.map((change) => path.relative(repositoryRoot, path.join(item.destination, change.relative))),
@@ -209,13 +198,13 @@ export function syncSkillMirrors({ check = false } = {}) {
 
 function run(args) {
   if (args.length === 1 && ['--help', '-h'].includes(args[0])) {
-    process.stdout.write('Usage: node scripts/install-skills.mjs --target <absolute-project-directory> [--harness codex|claude|both]\n');
+    process.stdout.write('Usage: node scripts/install-skills.mjs --target <absolute-directory> [--harness <name>|both|all] [--scope project|user]\nList supported hosts: node bin/genlib.mjs harness list\nFor user scope, target is the existing home directory.\n');
     return;
   }
   const options = {};
   for (let index = 0; index < args.length; index += 2) {
     const flag = args[index];
-    if (!['--target', '--harness'].includes(flag) || !args[index + 1] || args[index + 1].startsWith('--')) {
+    if (!['--target', '--harness', '--scope'].includes(flag) || !args[index + 1] || args[index + 1].startsWith('--')) {
       throw new Error(`Unknown or incomplete option: ${flag}`);
     }
     const key = flag.slice(2);

@@ -3,7 +3,7 @@
 ```json
 {
   "connected_workflow": [
-    "Call genlib_search with concrete task words and limit at most 5. The server's fixed trusted checkout is the source; no local GENLIB_ROOT is needed for read-only MCP discovery.",
+    "Discover available tool schemas and use their actual host-prefixed names. Prefer genlib_quick for one match, genlib_find with limit 5 for options, and genlib_outline for signatures. Older SDK connections may expose only genlib_search; use it with limit 5. No local GENLIB_ROOT is needed for MCP discovery.",
     "Call genlib_inspect with the selected type and id. For integration packs, read the contract, dependency/license boundaries, React peers, verification.profiles and unexecuted native/service checks.",
     "Read only the needed manifest-declared files with genlib_read_file. Use kind module or integration and the exact file path returned by inspection; documentation uses kind doc and an indexed section ID. Follow nextOffset for bounded pages.",
     "Use genlib_catalog to see whether this server has project operations and installation enabled. Project arguments are relative to the configured root, usually a single receiving app; use project '.' for that app. A tool argument cannot authorize another root.",
@@ -24,6 +24,7 @@
     "verify": "genlib integration verify --target <app> --json"
   },
   "connection": [
+    "Generate each host's native configuration with genlib harness config <host>; add --raw to print only the fragment. Supported profiles include OpenClaw, Hermes, Antigravity, VS Code, Cursor, OpenCode, Claude, Codex, Cline, Roo and generic MCP. The Ollama profile explicitly delegates to OpenCode.",
     "The optional server is repository-owned packages/genlib-mcp/server.mjs, with a separate pinned lockfile. It is not a published npm package. Read docs/mcp-server.md from a reviewed checkout for client configuration.",
     "Local clients launch stdio. A private service may deploy Streamable HTTP with explicit host/token/origin configuration and TLS at its proxy. Do not assume a hosted Genlib URL exists.",
     "Keep genlib mcp find for selecting third-party MCP servers. Direct Genlib MCP tools and that external index are separate interfaces."

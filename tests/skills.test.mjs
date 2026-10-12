@@ -42,6 +42,8 @@ function contents(directory) {
 function fixture(t) {
   const directory = temporary(t);
   fs.mkdirSync(path.join(directory, 'scripts'));
+  fs.mkdirSync(path.join(directory, 'lib'));
+  for (const name of ['harnesses.mjs', 'safety.mjs']) fs.copyFileSync(path.join(root, 'lib', name), path.join(directory, 'lib', name));
   for (const name of ['install-skills.mjs', 'sync-skills.mjs']) {
     fs.copyFileSync(path.join(root, 'scripts', name), path.join(directory, 'scripts', name));
   }
