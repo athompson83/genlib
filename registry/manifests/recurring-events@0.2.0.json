@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "recurring-events",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "title": "Recurring calendar events (RRULE)",
   "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -47,22 +47,22 @@
       "source": "files/core.ts",
       "target": "recurring-events/core.ts",
       "path": "modules/recurring-events/files/core.ts",
-      "sha256": "0986ae7b5449edc88b859b043fc54f7a1854080e027e5548bebef0a2f2f66b71",
-      "bytes": 39482
+      "sha256": "c1d347ddcfce0eea8cb9a0be6164acaa89e0f75a65fe5ee54269beea258ec4ac",
+      "bytes": 43201
     },
     {
       "source": "files/rrule.ts",
       "target": "recurring-events/rrule.ts",
       "path": "modules/recurring-events/files/rrule.ts",
-      "sha256": "9fa1ea4218b324ff0ef26e33ee991ecef57867a3b97927b8d13f634ae001e98f",
-      "bytes": 15668
+      "sha256": "74dcfed13a28344afab03a9333f338c21acbe70526d54163056edacb23e2f3a3",
+      "bytes": 16297
     },
     {
       "source": "files/timezone.ts",
       "target": "recurring-events/timezone.ts",
       "path": "modules/recurring-events/files/timezone.ts",
-      "sha256": "cf7f3fe4134c8d2d8af7a7b90019dd1e51fd6dbb5cfd594531f990773d8955ea",
-      "bytes": 5442
+      "sha256": "cea74a17ad8aa00482f07ee0ab0f299b44c1bd3f245f5261f476156f39fe15c7",
+      "bytes": 5480
     },
     {
       "source": "files/ics.ts",
@@ -75,8 +75,8 @@
       "source": "files/errors.ts",
       "target": "recurring-events/errors.ts",
       "path": "modules/recurring-events/files/errors.ts",
-      "sha256": "904d7ed2d654e67391e9cb0aabca1458782d733f1a554c0ecb15b6621b3b9024",
-      "bytes": 587
+      "sha256": "f5fc0e0a5e755a02e01132800b9542bcec10a63585f7c0042a6b4d73d4dcb8a1",
+      "bytes": 828
     },
     {
       "source": "files/memory-store.ts",
@@ -215,17 +215,17 @@
   ],
   "limitations": [
     "FREQ=SECONDLY/MINUTELY/HOURLY, BYHOUR/BYMINUTE/BYSECOND, BYYEARDAY, BYWEEKNO, RSCALE and SKIP are refused, not ignored; all-day (DATE-valued) events are not modeled.",
-    "A start must be the rule's first occurrence; RDATEs may not precede it. COUNT is capped at 10,000 and counts from the series start, so COUNT rules cannot skip ahead in window queries.",
+    "By default a start must be the rule's first occurrence and RDATEs may not precede it (startRule \"rfc5545\" lifts both). COUNT is capped at 10,000 and counts from the series start, so COUNT rules cannot skip ahead in window queries.",
     "One expansion scans at most 100,000 periods and stops at year 9999; a rule with occurrences beyond that is cut off silently.",
     ".ics export only; there is no .ics import. VTIMEZONE observances are sampled weekly through Intl from the start year through the series' range end (ten years after the export for an endless series), listing the start year plus at most the newest 100 years, so transitions less than a week apart are not represented.",
     "Time-zone results depend on the runtime's ICU tz data; the SQL store is tested on PGlite (one connection), not on every hosted Postgres or under real multi-connection contention.",
     "Authorization, calendar sharing, invitations/attendees, reminders and notifications are application responsibilities."
   ],
   "decisions": [
-    "http routes: POST /series, GET|PATCH|DELETE /series/:id, GET /occurrences, /series/:id/occurrences, /series/:id/ics",
-    "a DST-skipped time moves forward by the gap; a repeated one takes its first instance",
-    "cancelled occurrences export as EXDATE, changed ones as RECURRENCE-ID VEVENTs",
-    "following edits end the old series 1 s before the split (UNTIL) and shift exceptions by the start delta"
+    "start must match the rule unless startRule:'rfc5545' (start always first, counts in COUNT)",
+    "windows overlap [from,to) unless windowMatch:'start'; lastYear caps expansion",
+    "DST gap moves forward, repeated time takes the first; errors carry code + field to map",
+    "following edits end the old series at the split; COUNT carries over"
   ],
   "verification": {
     "level": "tested",
@@ -253,10 +253,23 @@
       ".ics export emits VTIMEZONE, DTSTART;TZID, DURATION, RRULE with UTC UNTIL, EXDATE, RDATE and RECURRENCE-ID VEVENTs, escaped and folded with CRLF",
       "optimistic versions: exactly one of several concurrent edits wins (memory store and PGlite)",
       "schema.sql applies; the SQL store round-trips series and overrides, filters by range bounds and splits atomically",
-      "HTTP adapter: default and overridden routes, prefix and statusFor; 403 for other calendars on create/list and 404 for hidden series; Origin check, bounded JSON, 405, 413, 415"
+      "HTTP adapter: default and overridden routes, prefix and statusFor; 403 for other calendars on create/list and 404 for hidden series; Origin check, bounded JSON, 405, 413, 415",
+      "opt-in startRule rfc5545 includes a start the rule does not produce and counts it towards COUNT; lastYear caps expansion; windowMatch start filters by start instant; errors name the field at fault"
     ]
   },
   "changelog": [
+    {
+      "version": "0.2.0",
+      "changes": [
+        "Breaking: Occurrence.startLocal and previewOccurrences startLocal are now the local wall time of the real start, so a time skipped by DST shows the shifted time (02:30 becomes 03:30); recurrenceId (now also on preview results) keeps the nominal time.",
+        "Opt-in options on createRecurringEvents: startRule \"rfc5545\" (the start is always the first occurrence and counts towards COUNT, RDATEs may precede it, an UNTIL before the start is invalid-rule), windowMatch \"start\" (window queries by start instant instead of overlap) and lastYear (no occurrence after that local year). previewOccurrences takes startRule and lastYear.",
+        "RecurringEventsError carries field, the input at fault (title, timeZone, start, durationMinutes, rrule, exdates, rdates, recurrenceId, window, limit), so apps can map errors to their own codes.",
+        "editOccurrence takes { replace: true } to replace an earlier override instead of merging with it.",
+        "BYDAY ordinals 6-53 are accepted with FREQ=YEARLY and BYMONTH, as RFC 5545 allows (they never match); MONTHLY keeps 1-5.",
+        "ruleWalls takes includeStart for RFC 5545 DTSTART semantics.",
+        "Defaults are unchanged."
+      ]
+    },
     {
       "version": "0.1.2",
       "changes": [
@@ -291,11 +304,11 @@
   ],
   "authoredManifest": {
     "path": "modules/recurring-events/module.json",
-    "sha256": "cf823eaedffaa8c6e6e604c89e37aed864410e89b6d552d2faa4840a7943d43b"
+    "sha256": "0765c30874faa954d266f81fc1583e6affc2c2104ec0027a8e41d56d6849440f"
   },
   "contractFile": {
     "path": "modules/recurring-events/CONTRACT.md",
-    "sha256": "1f8d2d7e5b44a70dbbaed93597e2ebfbb396350e6a19c4419ad9ec6efccb7165",
-    "bytes": 11870
+    "sha256": "e09dea83dd0c723614905a7c09417da424bca2094f098b4d24ed935a71662919",
+    "bytes": 12898
   }
 }

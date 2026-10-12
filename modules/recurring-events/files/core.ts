@@ -7,9 +7,9 @@
 // Series edits: this occurrence (override), this and following (split into two series, past untouched), or all.
 // The application supplies persistence through RecurringEventStore (memory-store.ts, sql-store.ts).
 import { RecurringEventsError } from "./errors.js";
-import { DAY_MS, formatRRule, parseRRule, ruleWalls } from "./rrule.js";
+import { DAY_MS, daysFromCivil, formatRRule, parseRRule, ruleWalls } from "./rrule.js";
 import type { ExpandStats, RecurrenceRule } from "./rrule.js";
-import { formatLocal, parseLocal, wallToInstant, zoneFor } from "./timezone.js";
+import { formatLocal, instantToWall, parseLocal, wallToInstant, zoneFor } from "./timezone.js";
 import type { Zone } from "./timezone.js";
 import { seriesToIcs } from "./ics.js";
 import type { IcsOptions } from "./ics.js";
@@ -71,6 +71,7 @@ export interface Occurrence {
   /** Epoch ms. */
   readonly start: number;
   readonly end: number;
+  /** Local wall time of `start` in `timeZone`: a time skipped by DST shows the shifted time (02:30 -> 03:30); `recurrenceId` keeps the nominal one. */
   readonly startLocal: string;
   readonly timeZone: string;
   readonly title: string;
@@ -154,6 +155,28 @@ export interface RecurringEventsOptions {
   readonly maxOccurrences?: number;
   /** Most series one calendar window query loads. Default 1000; more sets `truncated`. */
   readonly maxSeriesPerQuery?: number;
+  /**
+   * `"first-occurrence"` (default): the start must be the rule's first occurrence and RDATEs may not precede it.
+   * `"rfc5545"`: the start is always the first occurrence and counts towards COUNT even when the rule does not
+   * produce it (RFC 5545 DTSTART), RDATEs may precede it, and an UNTIL before the start is `invalid-rule`.
+   */
+  readonly startRule?: "first-occurrence" | "rfc5545";
+  /** `"overlap"` (default): window queries return occurrences that overlap `[from, to)`. `"start"`: whose start is in it. */
+  readonly windowMatch?: "overlap" | "start";
+  /** No occurrence (rule, RDATE) later than the end of this local year is produced. Default: none (expansion stops at 9999). */
+  readonly lastYear?: number;
+}
+
+function modeFor(options: Pick<RecurringEventsOptions, "startRule" | "windowMatch" | "lastYear">): Mode {
+  const { startRule = "first-occurrence", windowMatch = "overlap", lastYear } = options;
+  if (startRule !== "first-occurrence" && startRule !== "rfc5545") invalid('startRule must be "first-occurrence" or "rfc5545"', "startRule");
+  if (windowMatch !== "overlap" && windowMatch !== "start") invalid('windowMatch must be "overlap" or "start"', "windowMatch");
+  if (lastYear !== undefined && (!Number.isSafeInteger(lastYear) || lastYear < 1000 || lastYear > 9998)) invalid("lastYear must be an integer from 1000 to 9998", "lastYear");
+  return {
+    rfcStart: startRule === "rfc5545",
+    startWindow: windowMatch === "start",
+    horizonWall: lastYear === undefined ? Infinity : daysFromCivil(lastYear + 1, 1, 1) * DAY_MS - 1000,
+  };
 }
 
 /**
@@ -168,13 +191,13 @@ const PREVIEW_LIMIT = 10_000;
 
 // ---------------------------------------------------------------- validation
 
-const invalid = (message: string): never => { throw new RecurringEventsError("invalid-input", message); };
+const invalid = (message: string, field?: string): never => { throw new RecurringEventsError("invalid-input", message, field); };
 // eslint-disable-next-line no-control-regex
 const CONTROL = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/;
 
 function textField(value: unknown, label: string, max: number, multiline: boolean): string {
-  if (typeof value !== "string") return invalid(`${label} must be a string`);
-  if (value.length > max || CONTROL.test(value) || (!multiline && /[\r\n]/.test(value))) return invalid(`${label} must be at most ${max} characters without control characters`);
+  if (typeof value !== "string") return invalid(`${label} must be a string`, label);
+  if (value.length > max || CONTROL.test(value) || (!multiline && /[\r\n]/.test(value))) return invalid(`${label} must be at most ${max} characters without control characters`, label);
   return value;
 }
 function optionalText(value: unknown, label: string, max: number): string | null {
@@ -183,26 +206,26 @@ function optionalText(value: unknown, label: string, max: number): string | null
   return text === "" ? null : text;
 }
 function duration(value: unknown): number {
-  if (!Number.isSafeInteger(value) || (value as number) < 1 || (value as number) > MAX_DURATION_MINUTES) return invalid(`durationMinutes must be an integer from 1 to ${MAX_DURATION_MINUTES}`);
+  if (!Number.isSafeInteger(value) || (value as number) < 1 || (value as number) > MAX_DURATION_MINUTES) return invalid(`durationMinutes must be an integer from 1 to ${MAX_DURATION_MINUTES}`, "durationMinutes");
   return value as number;
 }
 function dateList(value: unknown, label: string): string[] {
-  if (!Array.isArray(value) || value.length > MAX_DATES) return invalid(`${label} must be an array of at most ${MAX_DATES} local date-times`);
+  if (!Array.isArray(value) || value.length > MAX_DATES) return invalid(`${label} must be an array of at most ${MAX_DATES} local date-times`, label);
   return [...new Set(value.map((item) => parseLocal(item, label)))].sort((a, b) => a - b).map(formatLocal);
 }
 function ruleText(value: unknown): string | null {
   if (value === null || value === undefined || value === "") return null;
-  if (typeof value !== "string") return invalid("rrule must be a string or null");
+  if (typeof value !== "string") return invalid("rrule must be a string or null", "rrule");
   return formatRRule(parseRRule(value));
 }
 function version(value: unknown): number | undefined {
   if (value === undefined || value === null) return undefined;
-  if (!Number.isSafeInteger(value) || (value as number) < 1) return invalid("expectedVersion must be a positive integer");
+  if (!Number.isSafeInteger(value) || (value as number) < 1) return invalid("expectedVersion must be a positive integer", "expectedVersion");
   return value as number;
 }
 function onlyKeys(input: unknown, allowed: readonly string[], label: string): Record<string, unknown> {
   if (!input || typeof input !== "object" || Array.isArray(input)) return invalid(`${label} must be an object`);
-  for (const key of Object.keys(input)) if (!allowed.includes(key)) invalid(`unknown ${label} field: ${key}`);
+  for (const key of Object.keys(input)) if (!allowed.includes(key)) invalid(`unknown ${label} field: ${key}`, key);
   return input as Record<string, unknown>;
 }
 
@@ -226,7 +249,7 @@ const OCCURRENCE_KEYS = ["start", "durationMinutes", "title", "description", "lo
 function applyChanges(base: SeriesFields, raw: Record<string, unknown>): SeriesFields {
   const has = (key: string): boolean => Object.prototype.hasOwnProperty.call(raw, key) && raw[key] !== undefined;
   const title = has("title") ? textField(raw.title, "title", 500, false).trim() : base.title;
-  if (!title) invalid("title is required");
+  if (!title) invalid("title is required", "title");
   return {
     calendarId: base.calendarId,
     title,
@@ -244,14 +267,24 @@ function applyChanges(base: SeriesFields, raw: Record<string, unknown>): SeriesF
 function inputFields(input: unknown): SeriesFields {
   const raw = onlyKeys(input, ["calendarId", ...CHANGE_KEYS], "series");
   const calendarId = textField(raw.calendarId, "calendarId", 200, false);
-  if (!calendarId.trim()) invalid("calendarId is required");
-  for (const key of ["title", "timeZone", "start", "durationMinutes"]) if (raw[key] === undefined) invalid(`${key} is required`);
+  if (!calendarId.trim()) invalid("calendarId is required", "calendarId");
+  for (const key of ["title", "timeZone", "start", "durationMinutes"]) if (raw[key] === undefined) invalid(`${key} is required`, key);
   return applyChanges({ calendarId, title: "", description: null, location: null, timeZone: "UTC", start: "", durationMinutes: 1, rrule: null, exdates: [], rdates: [] }, raw);
 }
 
 // ---------------------------------------------------------------- compiled series
 
+/** Expansion semantics chosen by `RecurringEventsOptions` (see `startRule`, `windowMatch`, `lastYear`). */
+interface Mode {
+  readonly rfcStart: boolean;
+  readonly startWindow: boolean;
+  /** Last local wall time any occurrence may have, or Infinity. */
+  readonly horizonWall: number;
+}
+const DEFAULT_MODE: Mode = { rfcStart: false, startWindow: false, horizonWall: Infinity };
+
 interface Compiled {
+  readonly mode: Mode;
   readonly zone: Zone;
   readonly startWall: number;
   readonly rule: RecurrenceRule | null;
@@ -261,24 +294,25 @@ interface Compiled {
   readonly durationMs: number;
 }
 
-function compile(fields: Pick<SeriesFields, "timeZone" | "start" | "durationMinutes" | "rrule" | "exdates" | "rdates">, withExdates = true): Compiled {
+function compile(fields: Pick<SeriesFields, "timeZone" | "start" | "durationMinutes" | "rrule" | "exdates" | "rdates">, withExdates = true, mode: Mode = DEFAULT_MODE): Compiled {
   const zone = zoneFor(fields.timeZone);
   const rule = fields.rrule === null ? null : parseRRule(fields.rrule);
   return {
-    zone, rule,
+    mode, zone, rule,
     startWall: parseLocal(fields.start, "start"),
     untilInstant: rule?.until?.utc ? rule.until.instant : null,
     exdates: new Set(withExdates ? fields.exdates.map((x) => parseLocal(x)) : []),
-    rdates: fields.rdates.map((x) => parseLocal(x)).sort((a, b) => a - b),
+    rdates: fields.rdates.map((x) => parseLocal(x)).filter((w) => w <= mode.horizonWall).sort((a, b) => a - b),
     durationMs: fields.durationMinutes * MINUTE,
   };
 }
 
 /** The rule's own occurrences (or just the start without a rule), applying a UTC UNTIL against real instants. */
 function* ruleStream(c: Compiled, fromWall?: number, stats?: ExpandStats): Generator<number, void, undefined> {
-  if (!c.rule) { yield c.startWall; return; }
-  const stopWall = c.untilInstant === null ? undefined : c.untilInstant + SKEW;
-  for (const wall of ruleWalls(c.rule, c.startWall, { ...(fromWall === undefined ? {} : { fromWall }), ...(stopWall === undefined ? {} : { stopWall }), ...(stats ? { stats } : {}) })) {
+  if (!c.rule) { if (c.startWall <= c.mode.horizonWall) yield c.startWall; return; }
+  const stopWall = Math.min(c.untilInstant === null ? Infinity : c.untilInstant + SKEW, c.mode.horizonWall);
+  const options = { includeStart: c.mode.rfcStart, ...(fromWall === undefined ? {} : { fromWall }), ...(stopWall === Infinity ? {} : { stopWall }), ...(stats ? { stats } : {}) };
+  for (const wall of ruleWalls(c.rule, c.startWall, options)) {
     // Only walls within SKEW of UNTIL need a real conversion to decide.
     if (c.untilInstant !== null && wall + SKEW > c.untilInstant && wallToInstant(c.zone, wall) > c.untilInstant) return;
     yield wall;
@@ -334,19 +368,26 @@ function occurrenceSet(c: Compiled, walls: readonly number[]): Set<number> {
 }
 
 function assertValidSeries(c: Compiled): void {
+  if (c.rule && c.mode.rfcStart) {
+    const until = c.rule.until;
+    if (until && (until.utc ? wallToInstant(c.zone, c.startWall) > until.instant : c.startWall > until.wall)) {
+      throw new RecurringEventsError("invalid-rule", "UNTIL is before the start", "rrule");
+    }
+    return;
+  }
   if (c.rule) {
     const first = ruleWalls(c.rule, c.startWall, { stopWall: c.startWall }).next();
     if (first.done || first.value !== c.startWall || (c.untilInstant !== null && wallToInstant(c.zone, c.startWall) > c.untilInstant)) {
-      throw new RecurringEventsError("invalid-rule", "start must be the first occurrence of the rule");
+      throw new RecurringEventsError("invalid-rule", "start must be the first occurrence of the rule", "start");
     }
   }
-  if (c.rdates.length && (c.rdates[0] ?? 0) < c.startWall) invalid("rdates must not precede start");
+  if (c.rdates.length && (c.rdates[0] ?? 0) < c.startWall) invalid("rdates must not precede start", "rdates");
 }
 
 function computeRange(c: Compiled, overrides: readonly OccurrenceOverride[]): { rangeStart: number; rangeEnd: number | null } {
   const at = (wall: number): number => wallToInstant(c.zone, wall);
-  // RDATEs never precede the start, and wall order is instant order, so the start is the earliest base occurrence.
-  let rangeStart = at(c.startWall);
+  // Wall order is instant order, so the earlier of the start and the first RDATE is the earliest base occurrence.
+  let rangeStart = at(Math.min(c.startWall, c.rdates[0] ?? c.startWall));
   let rangeEnd: number | null = null;
   const rule = c.rule;
   if (!rule || rule.count !== null || rule.until !== null) {
@@ -372,7 +413,7 @@ function toOccurrence(series: EventSeries, rid: number, override: OccurrenceOver
   return {
     seriesId: series.id, calendarId: series.calendarId, recurrenceId: formatLocal(rid), start,
     end: start + (override?.durationMinutes ?? series.durationMinutes) * MINUTE,
-    startLocal: formatLocal(startWall), timeZone: series.timeZone,
+    startLocal: formatLocal(instantToWall(zone, start)), timeZone: series.timeZone,
     title: override?.title ?? series.title,
     description: override?.description ?? series.description,
     location: override?.location ?? series.location,
@@ -382,10 +423,11 @@ function toOccurrence(series: EventSeries, rid: number, override: OccurrenceOver
 
 const byStart = (a: Occurrence, b: Occurrence): number => a.start - b.start || (a.seriesId < b.seriesId ? -1 : a.seriesId > b.seriesId ? 1 : 0) || (a.recurrenceId < b.recurrenceId ? -1 : 1);
 const overlaps = (start: number, end: number, from: number, to: number): boolean => start < to && (end > from || start >= from);
+const inWindow = (mode: Mode, start: number, end: number, from: number, to: number): boolean => (mode.startWindow ? start >= from && start < to : overlaps(start, end, from, to));
 
 /** Up to `limit + 1` occurrences of one series that overlap [from, to), in start order. */
-function windowOccurrences(series: EventSeries, overrides: readonly OccurrenceOverride[], from: number, to: number, limit: number, stats?: ExpandStats): Occurrence[] {
-  const c = compile(series);
+function windowOccurrences(series: EventSeries, overrides: readonly OccurrenceOverride[], from: number, to: number, limit: number, mode: Mode, stats?: ExpandStats): Occurrence[] {
+  const c = compile(series, true, mode);
   const byRid = new Map(overrides.map((o) => [parseLocal(o.recurrenceId), o]));
   const out: Occurrence[] = [];
   // Wall time differs from UTC by at most 14 hours; widen by a day and filter on real instants.
@@ -395,14 +437,14 @@ function windowOccurrences(series: EventSeries, overrides: readonly OccurrenceOv
     if (wall - SKEW >= to) break;
     const start = wallToInstant(c.zone, wall);
     if (start >= to) break;
-    if (byRid.has(wall) || !overlaps(start, start + c.durationMs, from, to)) continue;
+    if (byRid.has(wall) || !inWindow(c.mode, start, start + c.durationMs, from, to)) continue;
     out.push(toOccurrence(series, wall, null, c.zone));
     if (out.length > limit) break;
   }
   for (const [rid, o] of byRid) {
     if (o.cancelled) continue;
     const occurrence = toOccurrence(series, rid, o, c.zone);
-    if (overlaps(occurrence.start, occurrence.end, from, to)) out.push(occurrence);
+    if (inWindow(c.mode, occurrence.start, occurrence.end, from, to)) out.push(occurrence);
   }
   return out.sort(byStart).slice(0, limit + 1);
 }
@@ -417,15 +459,16 @@ export interface PreviewInput {
   readonly rdates?: readonly string[];
   readonly durationMinutes?: number;
 }
-export interface PreviewOptions { readonly limit?: number; readonly from?: number; readonly to?: number; readonly stats?: ExpandStats }
-export interface PreviewOccurrence { readonly start: number; readonly end: number; readonly startLocal: string }
+export interface PreviewOptions extends Pick<RecurringEventsOptions, "startRule" | "lastYear"> { readonly limit?: number; readonly from?: number; readonly to?: number; readonly stats?: ExpandStats }
+/** `startLocal` is the local wall time of `start`; `recurrenceId` is the nominal local time the rule produced. */
+export interface PreviewOccurrence { readonly start: number; readonly end: number; readonly startLocal: string; readonly recurrenceId: string }
 
 /** Occurrences of a rule without a store: the first `limit` (default 50, at most 10,000), or those overlapping [from, to). */
 export function previewOccurrences(input: PreviewInput, options: PreviewOptions = {}): PreviewOccurrence[] {
   const limit = options.limit ?? 50;
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > PREVIEW_LIMIT) invalid(`limit must be an integer from 1 to ${PREVIEW_LIMIT}`);
   const fields = inputFields({ calendarId: "preview", title: "preview", durationMinutes: 1, ...input });
-  const c = compile(fields);
+  const c = compile(fields, true, modeFor(options));
   assertValidSeries(c);
   const windowed = options.from !== undefined || options.to !== undefined;
   const from = options.from ?? -Infinity, to = options.to ?? Infinity;
@@ -437,7 +480,7 @@ export function previewOccurrences(input: PreviewInput, options: PreviewOptions 
     const start = wallToInstant(c.zone, wall);
     if (start >= to) break;
     if (!overlaps(start, start + c.durationMs, from, to)) continue;
-    out.push({ start, end: start + c.durationMs, startLocal: formatLocal(wall) });
+    out.push({ start, end: start + c.durationMs, startLocal: formatLocal(instantToWall(c.zone, start)), recurrenceId: formatLocal(wall) });
     if (out.length >= limit) break;
   }
   return out;
@@ -451,7 +494,8 @@ export interface RecurringEvents {
   /** Occurrences of one calendar overlapping [from, to), earliest first, at most `limit` (default 500). */
   listOccurrences(query: WindowQuery & { readonly calendarId: string }): Promise<WindowResult>;
   seriesOccurrences(seriesId: string, query: WindowQuery): Promise<WindowResult>;
-  editOccurrence(seriesId: string, recurrenceId: string, changes: OccurrenceChanges, options?: VersionOption): Promise<{ series: EventSeries; override: OccurrenceOverride }>;
+  /** Changes one occurrence; merges with an existing override unless `replace` is true. */
+  editOccurrence(seriesId: string, recurrenceId: string, changes: OccurrenceChanges, options?: VersionOption & { readonly replace?: boolean }): Promise<{ series: EventSeries; override: OccurrenceOverride }>;
   cancelOccurrence(seriesId: string, recurrenceId: string, options?: VersionOption): Promise<{ series: EventSeries; override: OccurrenceOverride }>;
   /** Removes an occurrence's override (un-cancels it and drops its changes). */
   restoreOccurrence(seriesId: string, recurrenceId: string, options?: VersionOption): Promise<EventSeries>;
@@ -467,12 +511,14 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
   const maxOverrides = options.maxOverridesPerSeries ?? 1000;
   const maxOccurrences = options.maxOccurrences ?? 2000;
   const maxSeries = options.maxSeriesPerQuery ?? 1000;
+  const mode = modeFor(options);
+  const comp = (fields: Parameters<typeof compile>[0], withExdates = true): Compiled => compile(fields, withExdates, mode);
 
   function window(query: WindowQuery): { from: number; to: number; limit: number } {
     const { from, to } = query;
     const limit = query.limit ?? Math.min(500, maxOccurrences);
-    if (!Number.isSafeInteger(from) || !Number.isSafeInteger(to) || from >= to) invalid("from and to must be epoch milliseconds with from before to");
-    if (!Number.isSafeInteger(limit) || limit < 1 || limit > maxOccurrences) invalid(`limit must be an integer from 1 to ${maxOccurrences}`);
+    if (!Number.isSafeInteger(from) || !Number.isSafeInteger(to) || from >= to) invalid("from and to must be epoch milliseconds with from before to", "window");
+    if (!Number.isSafeInteger(limit) || limit < 1 || limit > maxOccurrences) invalid(`limit must be an integer from 1 to ${maxOccurrences}`, "limit");
     return { from, to, limit };
   }
 
@@ -504,9 +550,9 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
     const exdates = raw.exdates !== undefined ? fields.exdates : shift(oldExdates, delta);
     const rdates = (raw.rdates !== undefined ? fields.rdates : shift(oldRdates, delta)).filter((r) => r !== fields.start);
     const draft = { ...fields, exdates, rdates };
-    const c = compile(draft);
+    const c = comp(draft);
     assertValidSeries(c);
-    const loose = compile(draft, false);
+    const loose = comp(draft, false);
     const exWalls = exdates.map((x) => parseLocal(x));
     const exMatch = occurrenceSet(loose, exWalls);
     const keptEx = exWalls.filter((w) => exMatch.has(w)).map(formatLocal);
@@ -514,13 +560,13 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
     const ovMatch = occurrenceSet(c, moved.map((o) => parseLocal(o.recurrenceId)));
     const keptOv = moved.filter((o) => ovMatch.has(parseLocal(o.recurrenceId)));
     const finalFields: SeriesFields = { ...draft, exdates: keptEx };
-    return { fields: finalFields, compiled: compile(finalFields), overrides: keptOv, dropped: (exdates.length - keptEx.length) + (overrides.length - keptOv.length) };
+    return { fields: finalFields, compiled: comp(finalFields), overrides: keptOv, dropped: (exdates.length - keptEx.length) + (overrides.length - keptOv.length) };
   }
 
   async function editAll(current: EventSeries, overrides: OccurrenceOverride[], raw: Record<string, unknown>): Promise<EditResult> {
     const fields = applyChanges(fieldsOf(current), raw);
     const timing = fields.start !== current.start || fields.rrule !== current.rrule || fields.timeZone !== current.timeZone || raw.exdates !== undefined || raw.rdates !== undefined;
-    let result = { fields, compiled: compile(fields), overrides: overrides as readonly OccurrenceOverride[], dropped: 0 };
+    let result = { fields, compiled: comp(fields), overrides: overrides as readonly OccurrenceOverride[], dropped: 0 };
     let changes: OverrideChanges = { remove: [], upsert: [] };
     if (timing) {
       result = reanchor(fields, raw, current.exdates, current.rdates, overrides, parseLocal(fields.start) - parseLocal(current.start), current.id);
@@ -544,7 +590,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
     const early = (v: string): boolean => parseLocal(v) < ridWall;
     const fields: SeriesFields = { ...fieldsOf(current), rrule, exdates: current.exdates.filter(early), rdates: current.rdates.filter(early) };
     const keep = overrides.filter((o) => early(o.recurrenceId));
-    const compiled = compile(fields);
+    const compiled = comp(fields);
     const original: EventSeries = { ...current, ...fields, version: current.version + 1, updatedAt: clock(), ...computeRange(compiled, keep) };
     return {
       original, remaining,
@@ -557,12 +603,12 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
   function splitPoint(c: Compiled, recurrenceId: unknown): number {
     const ridWall = parseLocal(recurrenceId, "recurrenceId");
     if (!isOccurrence(c, ridWall)) throw new RecurringEventsError("not-an-occurrence", "recurrenceId is not an occurrence of the series");
-    if (c.rule && ridWall > c.startWall && !isRuleOccurrence(c, ridWall)) invalid("split at an occurrence generated by the rule, not an RDATE");
+    if (c.rule && ridWall > c.startWall && !isRuleOccurrence(c, ridWall)) invalid("split at an occurrence generated by the rule, not an RDATE", "recurrenceId");
     return ridWall;
   }
 
   async function editFollowing(current: EventSeries, overrides: OccurrenceOverride[], recurrenceId: unknown, raw: Record<string, unknown>): Promise<EditResult> {
-    const c = compile(current);
+    const c = comp(current);
     const ridWall = splitPoint(c, recurrenceId);
     if (ridWall <= c.startWall) return editAll(current, overrides, raw);
     const cut = truncate(current, overrides, c, ridWall);
@@ -581,7 +627,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
     const ridWall = parseLocal(recurrenceId, "recurrenceId");
     const rid = formatLocal(ridWall);
     const { series, overrides } = await load(seriesId, expectedVersion);
-    const c = compile(series);
+    const c = comp(series);
     if (!isOccurrence(c, ridWall)) throw new RecurringEventsError("not-an-occurrence", "recurrenceId is not an occurrence of the series");
     const existing = overrides.find((o) => o.recurrenceId === rid);
     if (!existing && overrides.length >= maxOverrides) throw new RecurringEventsError("too-many-overrides", `A series holds at most ${maxOverrides} overrides`);
@@ -599,7 +645,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
   const service: RecurringEvents = {
     async createSeries(input) {
       const fields = inputFields(input);
-      const c = compile(fields);
+      const c = comp(fields);
       assertValidSeries(c);
       const now = clock();
       const series: EventSeries = { id: newId(), ...fields, splitFrom: null, version: 1, createdAt: now, updatedAt: now, ...computeRange(c, []) };
@@ -623,7 +669,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
       const overrides = list.length ? await store.listOverrides(list.map((s) => s.id)) : [];
       const grouped = new Map<string, OccurrenceOverride[]>();
       for (const o of overrides) grouped.set(o.seriesId, [...(grouped.get(o.seriesId) ?? []), o]);
-      const all = list.flatMap((s) => windowOccurrences(s, grouped.get(s.id) ?? [], from, to, limit)).sort(byStart);
+      const all = list.flatMap((s) => windowOccurrences(s, grouped.get(s.id) ?? [], from, to, limit, mode)).sort(byStart);
       if (all.length > limit) truncated = true;
       return { occurrences: all.slice(0, limit), truncated };
     },
@@ -631,7 +677,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
     async seriesOccurrences(seriesId, query) {
       const { from, to, limit } = window(query);
       const { series, overrides } = await load(seriesId);
-      const found = windowOccurrences(series, overrides, from, to, limit);
+      const found = windowOccurrences(series, overrides, from, to, limit, mode);
       return { occurrences: found.slice(0, limit), truncated: found.length > limit };
     },
 
@@ -640,11 +686,11 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
       const has = (key: string): boolean => raw[key] !== undefined;
       const start = has("start") ? formatLocal(parseLocal(raw.start, "start")) : undefined;
       const minutes = has("durationMinutes") ? duration(raw.durationMinutes) : undefined;
-      const title = has("title") ? textField(raw.title, "title", 500, false).trim() || invalid("title cannot be empty") : undefined;
+      const title = has("title") ? textField(raw.title, "title", 500, false).trim() || invalid("title cannot be empty", "title") : undefined;
       const description = has("description") || raw.description === null ? optionalText(raw.description, "description", 8000) : undefined;
       const location = has("location") || raw.location === null ? optionalText(raw.location, "location", 500) : undefined;
       return putOverride(seriesId, recurrenceId, (existing, rid) => {
-        const prior = existing ?? blank(seriesId, rid);
+        const prior = (opts.replace === true ? undefined : existing) ?? blank(seriesId, rid);
         return {
           ...prior, cancelled: false, updatedAt: clock(),
           ...(start === undefined ? {} : { start }),
@@ -665,7 +711,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
       const { series, overrides } = await load(seriesId, opts.expectedVersion);
       if (!overrides.some((o) => o.recurrenceId === rid)) return series;
       const rest = overrides.filter((o) => o.recurrenceId !== rid);
-      const next: EventSeries = { ...series, version: series.version + 1, updatedAt: clock(), ...computeRange(compile(series), rest) };
+      const next: EventSeries = { ...series, version: series.version + 1, updatedAt: clock(), ...computeRange(comp(series), rest) };
       await save(series, next, { remove: [rid], upsert: [] });
       return next;
     },
@@ -682,7 +728,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
       const raw = onlyKeys(request.changes ?? {}, CHANGE_KEYS, "series change");
       const { series, overrides } = await load(seriesId, expected);
       if (scope === "all") return editAll(series, overrides, raw);
-      if (request.recurrenceId === undefined) invalid("recurrenceId is required for scope \"following\"");
+      if (request.recurrenceId === undefined) invalid("recurrenceId is required for scope \"following\"", "recurrenceId");
       return editFollowing(series, overrides, request.recurrenceId, raw);
     },
 
@@ -694,7 +740,7 @@ export function createRecurringEvents(options: RecurringEventsOptions): Recurrin
       if (raw.scope !== "following" && raw.scope !== "all") return invalid('scope must be "this", "following" or "all"');
       const { series, overrides } = await load(seriesId, expected);
       if (raw.scope === "following") {
-        const c = compile(series);
+        const c = comp(series);
         const ridWall = splitPoint(c, raw.recurrenceId);
         if (ridWall > c.startWall) {
           const cut = truncate(series, overrides, c, ridWall);

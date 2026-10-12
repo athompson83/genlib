@@ -166,7 +166,8 @@ test("timezone-wall-clock: a weekly 09:00 New York meeting stays at 09:00 local 
 test("timezone-wall-clock: a time skipped by spring-forward shifts by the gap; a repeated time uses its first instance", () => {
   const gap = previewOccurrences({ start: "2026-03-07T02:30", timeZone: NY, rrule: "FREQ=DAILY;COUNT=3" }, { limit: 5 });
   assert.deepEqual(gap.map((o) => iso(o.start)), ["2026-03-07T07:30:00.000Z", "2026-03-08T07:30:00.000Z", "2026-03-09T06:30:00.000Z"]);
-  assert.deepEqual(gap.map((o) => o.startLocal), ["2026-03-07T02:30:00", "2026-03-08T02:30:00", "2026-03-09T02:30:00"], "recurrence ids keep the nominal wall time");
+  assert.deepEqual(gap.map((o) => o.recurrenceId), ["2026-03-07T02:30:00", "2026-03-08T02:30:00", "2026-03-09T02:30:00"], "recurrence ids keep the nominal wall time");
+  assert.deepEqual(gap.map((o) => o.startLocal), ["2026-03-07T02:30:00", "2026-03-08T03:30:00", "2026-03-09T02:30:00"], "startLocal is the wall time of the real start");
   const overlap = previewOccurrences({ start: "2026-10-31T01:30", timeZone: NY, rrule: "FREQ=DAILY;COUNT=3" }, { limit: 5 });
   assert.deepEqual(overlap.map((o) => iso(o.start)), ["2026-10-31T05:30:00.000Z", "2026-11-01T05:30:00.000Z", "2026-11-02T06:30:00.000Z"]);
   // UNTIL in UTC is compared with real instants: 09:00 EST on 2026-11-02 is 14:00Z.
@@ -501,4 +502,83 @@ test("ics export: an endless series that started decades ago carries current VTI
   const big = await svc.exportIcs("b");
   assert.ok(big.length < 40_000, `ics is ${big.length} bytes`);
   assert.match(big.replace(/\r\n /g, ""), /2036\d{4}T020000/);
+});
+
+// ------------------------------------------------------------------ opt-in RFC 5545 start, start windows, horizon, error fields
+
+test("start-rule rfc5545: the start is always the first occurrence and counts towards COUNT", async () => {
+  const friday13 = "FREQ=MONTHLY;BYDAY=FR;BYMONTHDAY=13;COUNT=3";
+  assert.throws(() => previewOccurrences({ start: "1997-09-02T09:00", timeZone: NY, rrule: friday13 }),
+    (error) => code("invalid-rule")(error) && error.field === "start");
+  const rfc = (start, rrule, extra = {}) => previewOccurrences({ start, timeZone: NY, rrule, ...extra }, { startRule: "rfc5545", limit: 20 })
+    .map((o) => o.startLocal.slice(0, 10));
+  assert.deepEqual(rfc("1997-09-02T09:00", friday13), ["1997-09-02", "1998-02-13", "1998-03-13"]);
+  // A start the rule produces is not counted twice.
+  assert.deepEqual(rfc("2026-01-05T09:00", "FREQ=DAILY;COUNT=3"), ["2026-01-05", "2026-01-06", "2026-01-07"]);
+  // RDATEs may precede the start; an UNTIL before the start is refused.
+  assert.deepEqual(rfc("2026-01-05T09:00", "FREQ=DAILY;COUNT=2", { rdates: ["2026-01-01T12:00"] }), ["2026-01-01", "2026-01-05", "2026-01-06"]);
+  assert.throws(() => rfc("2026-01-05T09:00", "FREQ=DAILY;UNTIL=20260104T000000Z"), (error) => code("invalid-rule")(error) && error.field === "rrule");
+  assert.throws(() => rfc("2026-01-05T09:00", "FREQ=DAILY;UNTIL=20260105T085959"), (error) => code("invalid-rule")(error) && error.field === "rrule");
+  const { events } = setup({ options: { startRule: "rfc5545" } });
+  const series = await events.createSeries({ calendarId: "c", title: "T", timeZone: NY, start: "1997-09-02T09:00", durationMinutes: 30, rrule: friday13 });
+  const split = await events.editSeries(series.id, { scope: "following", recurrenceId: "1998-02-13T09:00:00", changes: {} });
+  assert.match(split.created.rrule, /COUNT=2/);
+});
+
+test("last-year: no occurrence is produced after the horizon, so a rule that never matches yields only its start", async () => {
+  const opts = { startRule: "rfc5545", lastYear: 2200, limit: 10 };
+  assert.deepEqual(previewOccurrences({ start: "2026-01-01T09:00", timeZone: NY, rrule: "FREQ=YEARLY;BYMONTH=2;BYMONTHDAY=30" }, opts).map((o) => o.startLocal),
+    ["2026-01-01T09:00:00"]);
+  const { events } = setup({ options: { lastYear: 2200 } });
+  await events.createSeries({ calendarId: "c", title: "T", timeZone: NY, start: "2026-01-01T09:00", durationMinutes: 30, rrule: "FREQ=DAILY" });
+  const late = await events.listOccurrences({ calendarId: "c", from: Date.UTC(2200, 11, 31), to: Date.UTC(2201, 0, 3) });
+  assert.deepEqual(late.occurrences.map((o) => o.startLocal), ["2200-12-31T09:00:00"]);
+  assert.throws(() => setup({ options: { lastYear: 99 } }), (error) => code("invalid-input")(error) && error.field === "lastYear");
+});
+
+test("window-match start: only occurrences whose start is in [from, to) are returned", async () => {
+  const input = { calendarId: "c", title: "T", timeZone: "UTC", start: "2026-01-01T09:00", durationMinutes: 120, rrule: "FREQ=DAILY;COUNT=3" };
+  const window = { calendarId: "c", from: Date.UTC(2026, 0, 2, 10), to: Date.UTC(2026, 0, 3, 9) };
+  const overlap = setup();
+  await overlap.events.createSeries(input);
+  assert.deepEqual((await overlap.events.listOccurrences(window)).occurrences.map((o) => o.recurrenceId), ["2026-01-02T09:00:00"]);
+  const byStart = setup({ options: { windowMatch: "start" } });
+  await byStart.events.createSeries(input);
+  assert.deepEqual((await byStart.events.listOccurrences(window)).occurrences, []);
+  assert.deepEqual((await byStart.events.listOccurrences({ ...window, to: window.to + 1 })).occurrences.map((o) => o.recurrenceId), ["2026-01-03T09:00:00"]);
+});
+
+test("error fields: invalid input names the field at fault", async () => {
+  const { events } = setup();
+  const base = { calendarId: "c", title: "T", timeZone: NY, start: "2026-01-05T09:00", durationMinutes: 30 };
+  const cases = [
+    [{ timeZone: "Mars/Olympus" }, "invalid-input", "timeZone"],
+    [{ start: "2026-02-30T09:00" }, "invalid-input", "start"],
+    [{ durationMinutes: 0 }, "invalid-input", "durationMinutes"],
+    [{ title: "  " }, "invalid-input", "title"],
+    [{ exdates: ["nope"] }, "invalid-input", "exdates"],
+    [{ rdates: "2026-01-06T09:00" }, "invalid-input", "rdates"],
+    [{ rrule: "FREQ=DAILY;COUNT=0" }, "invalid-rule", "rrule"],
+    [{ rrule: "FREQ=DAILY;BYHOUR=9" }, "unsupported-rule", "rrule"],
+  ];
+  for (const [change, expectedCode, field] of cases) {
+    await assert.rejects(events.createSeries({ ...base, ...change }), (error) => code(expectedCode)(error) && error.field === field, field);
+  }
+});
+
+test("reject-invalid: BYDAY ordinals above 5 are refused with MONTHLY but accepted with YEARLY and BYMONTH (RFC 5545 allows 1-53)", () => {
+  assert.throws(() => parseRRule("FREQ=MONTHLY;BYDAY=6MO"), code("invalid-rule"));
+  assert.deepEqual(parseRRule("FREQ=YEARLY;BYMONTH=1;BYDAY=6MO").byday, [{ ordinal: 6, weekday: 0 }]);
+  assert.deepEqual(previewOccurrences({ start: "2026-01-01T09:00", timeZone: NY, rrule: "FREQ=YEARLY;BYMONTH=1;BYDAY=6MO" }, { startRule: "rfc5545", lastYear: 2100 })
+    .map((o) => o.startLocal), ["2026-01-01T09:00:00"]);
+});
+
+test("exceptions: editOccurrence with replace drops the earlier override's other changes", async () => {
+  const { events } = setup();
+  const series = await events.createSeries({ calendarId: "c", title: "Standup", timeZone: NY, start: "2026-01-05T09:00", durationMinutes: 15, rrule: "FREQ=DAILY;COUNT=3" });
+  await events.editOccurrence(series.id, "2026-01-06T09:00", { title: "Moved", start: "2026-01-06T11:00" });
+  const merged = await events.editOccurrence(series.id, "2026-01-06T09:00", { durationMinutes: 30 });
+  assert.equal(merged.override.title, "Moved");
+  const replaced = await events.editOccurrence(series.id, "2026-01-06T09:00", { durationMinutes: 45 }, { replace: true });
+  assert.deepEqual([replaced.override.title, replaced.override.start, replaced.override.durationMinutes], [null, null, 45]);
 });
