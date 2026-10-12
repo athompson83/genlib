@@ -37,6 +37,72 @@
   ],
   "implementations": [
     {
+      "ref": "module:keyset-pagination",
+      "status": "fixture-verified",
+      "fulfills": [
+        "opaque-cursor",
+        "exactly-once",
+        "tamper-proof",
+        "limit-clamp",
+        "end-signal",
+        "keyset-query",
+        "scope-binding"
+      ],
+      "evidence": [
+        {
+          "requirement": "opaque-cursor",
+          "test": "tests/keyset-pagination.test.mjs",
+          "name": "cursor is opaque base64url, encodes the last sort keys (not an offset) and is signed with the active key"
+        },
+        {
+          "requirement": "exactly-once",
+          "test": "tests/keyset-pagination.test.mjs",
+          "name": "stable under concurrent inserts and deletes between pages: no duplicates and no skips (memory source)"
+        },
+        {
+          "requirement": "exactly-once",
+          "test": "tests/keyset-pagination-sql.test.mjs",
+          "name": "PGlite: inserts and deletes between pages produce no duplicates and no skips"
+        },
+        {
+          "requirement": "tamper-proof",
+          "test": "tests/keyset-pagination.test.mjs",
+          "name": "tampered, malformed, expired and wrong-key cursors are rejected with distinguishable errors"
+        },
+        {
+          "requirement": "limit-clamp",
+          "test": "tests/keyset-pagination.test.mjs",
+          "name": "limit is validated and clamped to the server maximum; default applies when absent"
+        },
+        {
+          "requirement": "end-signal",
+          "test": "tests/keyset-pagination.test.mjs",
+          "name": "an empty or exactly-full final page ends correctly"
+        },
+        {
+          "requirement": "keyset-query",
+          "test": "tests/keyset-pagination-sql.test.mjs",
+          "name": "SQL builder: parameterized keyset WHERE/ORDER BY/LIMIT, row comparison for uniform order, OR chain for mixed, no OFFSET"
+        },
+        {
+          "requirement": "keyset-query",
+          "test": "tests/keyset-pagination-sql.test.mjs",
+          "name": "PGlite: schema applies; the newest walk seeks on the index (Index Cond on the cursor keys)"
+        },
+        {
+          "requirement": "scope-binding",
+          "test": "tests/keyset-pagination.test.mjs",
+          "name": "scope binding: a cursor reused by another tenant, with other filters or with another sort is rejected"
+        },
+        {
+          "requirement": "scope-binding",
+          "test": "tests/keyset-pagination-sql.test.mjs",
+          "name": "PGlite: a cursor is bound to tenant and filters; filtered walks never leave the scope"
+        }
+      ],
+      "notes": "Cursors are signed, not encrypted; sort columns must be NOT NULL numbers or strings. PGlite tests run on one connection."
+    },
+    {
       "ref": "recipe:cursor-pagination",
       "status": "fixture-verified",
       "fulfills": [

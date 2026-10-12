@@ -76,6 +76,21 @@
       "bytes": 1632
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createAccountDeletion",
@@ -181,7 +196,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/account-deletion/module.json",
-    "sha256": "696a7bb553e59032ef0e66f8276f756b6e2683eb871d9644d9bc43455235a193"
+    "sha256": "a0c41bc5d33780184016fce4f8a65132a9b8ff071d22dcf6c5233821e0ba41ea"
   },
   "contractFile": {
     "path": "modules/account-deletion/CONTRACT.md",

@@ -85,6 +85,24 @@
       "bytes": 1384
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ],
+    "transports": [
+      "files/transports.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createEmailOutbox",
@@ -203,7 +221,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/email-outbox/module.json",
-    "sha256": "b7920c2a14f4a37cdc75935e86984b2e47b94003046619dc7b84bc91e6c49b5a"
+    "sha256": "a09d6152c3fe61f786f04798230d8c010101e3f351585f520730af906fdbc266"
   },
   "contractFile": {
     "path": "modules/email-outbox/CONTRACT.md",

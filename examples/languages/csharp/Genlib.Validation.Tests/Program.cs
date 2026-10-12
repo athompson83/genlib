@@ -452,6 +452,38 @@ Check("bbox not huge", box.MaxLat - box.MinLat < 0.2 && box.MaxLon - box.MinLon 
 var polar = Geo.BoundingBox(89.99, 0, 10000);
 Check("bbox near pole spans all longitudes", polar.MaxLat == 90 && polar.MinLon == -180 && polar.MaxLon == 180);
 Throws<ArgumentOutOfRangeException>("bbox negative radius", () => Geo.BoundingBox(0, 0, -1));
+// Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+var bbxWide = Geo.BoundingBox(60, 0, 0.1 * Geo.EarthRadiusMeters);
+double bbxHalf = bbxWide.MaxLon * Math.PI / 180;
+double bbxWant = Math.Asin(Math.Sin(0.1) / Math.Cos(Math.PI / 3));
+Check($"bbox lat 60 r 0.1 half-width {bbxHalf} want {bbxWant}", Math.Abs(bbxHalf - bbxWant) <= 1e-6 * bbxWant && Math.Abs(bbxHalf - 0.20101) < 1e-5);
+Check("bbox lat 60 symmetric", Math.Abs(bbxWide.MinLon + bbxWide.MaxLon) < 1e-12);
+string? bbxOutside = null;
+foreach (double bbxLat in new[] { 0.0, 45, 60, 75, -70 }) {
+    foreach (double bbxRadius in new[] { 1_000.0, 100_000, 1_000_000 }) {
+        var bbx = Geo.BoundingBox(bbxLat, 0, bbxRadius);
+        double bbxD = bbxRadius / Geo.EarthRadiusMeters, bbxP1 = bbxLat * Math.PI / 180;
+        for (int bbxI = 0; bbxI < 360; bbxI++) {
+            double bbxT = bbxI * Math.PI / 180;
+            double bbxP2 = Math.Asin(Math.Sin(bbxP1) * Math.Cos(bbxD) + Math.Cos(bbxP1) * Math.Sin(bbxD) * Math.Cos(bbxT));
+            double bbxL2 = Math.Atan2(Math.Sin(bbxT) * Math.Sin(bbxD) * Math.Cos(bbxP1), Math.Cos(bbxD) - Math.Sin(bbxP1) * Math.Sin(bbxP2));
+            double pLatDeg = bbxP2 * 180 / Math.PI, pLonDeg = bbxL2 * 180 / Math.PI;
+            if (bbxOutside is null && (pLatDeg < bbx.MinLat - 1e-9 || pLatDeg > bbx.MaxLat + 1e-9 || pLonDeg < bbx.MinLon - 1e-9 || pLonDeg > bbx.MaxLon + 1e-9))
+                bbxOutside = $"center {bbxLat}, radius {bbxRadius}, bearing {bbxI}: {pLatDeg},{pLonDeg} outside {bbx}";
+        }
+    }
+}
+Check($"bbox contains circle points at 360 bearings {bbxOutside}", bbxOutside is null);
+foreach (var (amLon, amBearing) in new[] { (179.9, 90.0), (-179.9, 270.0) }) {
+    var amBox = Geo.BoundingBox(10, amLon, 50_000);
+    Check($"bbox antimeridian center lon {amLon} spans all longitudes {amBox}", amBox.MinLon == -180 && amBox.MaxLon == 180);
+    double amD = 50_000 / Geo.EarthRadiusMeters, amP1 = 10 * Math.PI / 180, amT = amBearing * Math.PI / 180;
+    double amP2 = Math.Asin(Math.Sin(amP1) * Math.Cos(amD) + Math.Cos(amP1) * Math.Sin(amD) * Math.Cos(amT));
+    double amL2 = amLon * Math.PI / 180 + Math.Atan2(Math.Sin(amT) * Math.Sin(amD) * Math.Cos(amP1), Math.Cos(amD) - Math.Sin(amP1) * Math.Sin(amP2));
+    double amLat = amP2 * 180 / Math.PI, amPLon = ((amL2 * 180 / Math.PI + 540) % 360) - 180;
+    Check($"bbox antimeridian far-side point {amLat},{amPLon} inside {amBox}",
+        Math.Abs(amPLon) > 179.5 && amLat >= amBox.MinLat && amLat <= amBox.MaxLat && amPLon >= amBox.MinLon && amPLon <= amBox.MaxLon);
+}
 
 // 20. Webhook signature
 const string whSecret = "whsec_test_secret_0123456789abcd";
@@ -947,29 +979,55 @@ Throws<ArgumentOutOfRangeException>("jump hash 0 buckets", () => Hashing.JumpHas
 
 // 40. Feature flags (wave 7 vectors)
 foreach (var (flag, user, expected) in new (FeatureFlag, string, FlagResult)[] {
-    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-1", new FlagResult(false, "excluded", 4063, null)),
-    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-2", new FlagResult(true, "rollout", 1682, null)),
-    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-3", new FlagResult(false, "excluded", 9301, null)),
-    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-42", new FlagResult(false, "excluded", 9926, null)),
-    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "alice@example.com", new FlagResult(false, "excluded", 2919, null)),
-    (new FeatureFlag("new-checkout") { Allow = new[] { "user-2" }, Deny = new[] { "user-1" }, RolloutPercent = 25 }, "user-1", new FlagResult(false, "deny", 4063, null)),
-    (new FeatureFlag("new-checkout") { Allow = new[] { "user-2" }, Deny = new[] { "user-1" }, RolloutPercent = 25 }, "user-2", new FlagResult(true, "allow", 1682, null)),
-    (new FeatureFlag("beta") { Enabled = false, Allow = new[] { "vip" } }, "vip", new FlagResult(false, "disabled", 3546, null)),
-    (new FeatureFlag("banner") { RolloutPercent = 0 }, "user-1", new FlagResult(false, "excluded", 6646, null)),
-    (new FeatureFlag("banner") { RolloutPercent = 100 }, "user-1", new FlagResult(true, "rollout", 6646, null)),
-    (new FeatureFlag("banner") { RolloutPercent = 12.34 }, "user-9", new FlagResult(false, "excluded", 7598, null)),
-    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u1", new FlagResult(true, "rollout", 4196, "monthly-first")),
-    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u2", new FlagResult(true, "rollout", 7053, "control")),
-    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u3", new FlagResult(true, "rollout", 9434, "annual-first")),
-    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u4", new FlagResult(true, "rollout", 1339, "annual-first")),
-    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u5", new FlagResult(true, "rollout", 3720, "annual-first")),
-    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "\u00FCn\u00EFcode", new FlagResult(true, "rollout", 9874, "control")),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-1", new FlagResult(true, "rollout", 849, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-2", new FlagResult(false, "excluded", 5308, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-3", new FlagResult(false, "excluded", 5247, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "user-42", new FlagResult(false, "excluded", 9209, null)),
+    (new FeatureFlag("new-checkout") { RolloutPercent = 25 }, "alice@example.com", new FlagResult(false, "excluded", 9060, null)),
+    (new FeatureFlag("new-checkout") { Allow = new[] { "user-2" }, Deny = new[] { "user-1" }, RolloutPercent = 25 }, "user-1", new FlagResult(false, "deny", 849, null)),
+    (new FeatureFlag("new-checkout") { Allow = new[] { "user-2" }, Deny = new[] { "user-1" }, RolloutPercent = 25 }, "user-2", new FlagResult(true, "allow", 5308, null)),
+    (new FeatureFlag("beta") { Enabled = false, Allow = new[] { "vip" } }, "vip", new FlagResult(false, "disabled", 8844, null)),
+    (new FeatureFlag("banner") { RolloutPercent = 0 }, "user-1", new FlagResult(false, "excluded", 6875, null)),
+    (new FeatureFlag("banner") { RolloutPercent = 100 }, "user-1", new FlagResult(true, "rollout", 6875, null)),
+    (new FeatureFlag("banner") { RolloutPercent = 12.34 }, "user-9", new FlagResult(false, "excluded", 8197, null)),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u1", new FlagResult(true, "rollout", 6435, "control")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u2", new FlagResult(true, "rollout", 401, "annual-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u3", new FlagResult(true, "rollout", 9955, "monthly-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u4", new FlagResult(true, "rollout", 8249, "annual-first")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "u5", new FlagResult(true, "rollout", 6254, "control")),
+    (new FeatureFlag("pricing-test") { Variants = new[] { new FlagVariant("control", 50), new FlagVariant("annual-first", 30), new FlagVariant("monthly-first", 20) } }, "\u00FCn\u00EFcode", new FlagResult(true, "rollout", 7068, "control")),
 })
     Eq($"flag {flag.Key} {user}", expected, FeatureFlags.EvaluateFlag(flag, user));
 var invalidFlags = new FeatureFlag[] { new FeatureFlag("bad key") {  }, new FeatureFlag("k") { RolloutPercent = 101 }, new FeatureFlag("k") { RolloutPercent = 12.345 }, new FeatureFlag("k") { Variants = new[] { new FlagVariant("a", 0) } }, new FeatureFlag("") {  } };
 for (int i = 0; i < invalidFlags.Length; i++) { var bad = invalidFlags[i]; Throws<ArgumentException>($"flag invalid {i}", () => FeatureFlags.EvaluateFlag(bad, "u")); }
 Eq("flag same user same answer", FeatureFlags.EvaluateFlag(new FeatureFlag("x") { RolloutPercent = 50 }, "u7"), FeatureFlags.EvaluateFlag(new FeatureFlag("x") { RolloutPercent = 50 }, "u7"));
 Check("flag raising percent only adds users", Enumerable.Range(0, 500).All(i => !FeatureFlags.EvaluateFlag(new FeatureFlag("ramp") { RolloutPercent = 10 }, "user-" + i).On || FeatureFlags.EvaluateFlag(new FeatureFlag("ramp") { RolloutPercent = 30 }, "user-" + i).On));
+// Plain FNV-1a's low bit is the parity of the input bytes, so two 50/50 experiments with similar keys put every subject
+// in the same half of both. The fmix32 finalizer must keep them independent (2x2 chi-square below 10.83, p > 0.001).
+static double FlagChiSquare2x2(double[,] t) {
+    double n = t[0, 0] + t[0, 1] + t[1, 0] + t[1, 1], chi = 0;
+    for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++) {
+        double e = (t[i, 0] + t[i, 1]) * (t[0, j] + t[1, j]) / n;
+        chi += (t[i, j] - e) * (t[i, j] - e) / e;
+    }
+    return chi;
+}
+foreach (var (k1, k2) in new[] { ("checkout-a", "checkout-b"), ("exp1", "exp2") }) {
+    var parity = new double[2, 2];
+    var arms = new double[2, 2];
+    var ab = new[] { new FlagVariant("a", 1), new FlagVariant("b", 1) };
+    for (int i = 0; i < 10000; i++) {
+        string u = "u" + i;
+        parity[FeatureFlags.EvaluateFlag(new FeatureFlag(k1), u).Bucket % 2, FeatureFlags.EvaluateFlag(new FeatureFlag(k2), u).Bucket % 2]++;
+        arms[FeatureFlags.EvaluateFlag(new FeatureFlag(k1) { Variants = ab }, u).Variant == "b" ? 1 : 0, FeatureFlags.EvaluateFlag(new FeatureFlag(k2) { Variants = ab }, u).Variant == "b" ? 1 : 0]++;
+    }
+    double cp = FlagChiSquare2x2(parity), ca = FlagChiSquare2x2(arms);
+    Check($"flag bucket parity {k1}/{k2} independent (chi-square {cp:F2})", cp < 10.83);
+    Check($"flag 50/50 variants {k1}/{k2} independent (chi-square {ca:F2})", ca < 10.83);
+}
+var flagBucketCounts = new int[100];
+for (int i = 0; i < 10000; i++) flagBucketCounts[FeatureFlags.EvaluateFlag(new FeatureFlag("checkout-a"), "u" + i).Bucket % 100]++;
+Check("flag 100 buckets each get 100 +/- 40 of 10000 subjects", flagBucketCounts.All(n => Math.Abs(n - 100) <= 40));
 
 // 41. Human units (wave 7 vectors)
 foreach (var (n, unitBase, decimals, expected) in new (long, string, int, string)[] { (0L, "si", 1, "0 B"), (999L, "si", 1, "999 B"), (1000L, "si", 1, "1 kB"), (1536L, "iec", 1, "1.5 KiB"), (1536L, "si", 1, "1.5 kB"), (999950L, "si", 1, "1 MB"), (999949L, "si", 1, "999.9 kB"), (1048576L, "iec", 2, "1 MiB"), (123456789L, "si", 2, "123.46 MB"), (123456789L, "iec", 0, "118 MiB"), (9223372036854775807L, "iec", 3, "8 EiB"), (1023L, "iec", 1, "1023 B"), (1024L, "iec", 1, "1 KiB"), (5000000000000L, "si", 1, "5 TB") })

@@ -6,7 +6,7 @@
 //   GET    {prefix}/files/{id}   -> 200 bytes as an attachment (clean files only), 409 while quarantined
 //   DELETE {prefix}/files/{id}   -> 204
 // The body is the file itself, not multipart/form-data, so the size limit can be enforced while streaming. Errors are
-// JSON {error: code}: 400 bad-request, 401 unauthenticated, 403 forbidden/bad-origin, 404 not-found, 409 quarantined,
+// JSON {error: code}: 400 bad-request/invalid-name, 401 unauthenticated, 403 forbidden/bad-origin, 404 not-found, 409 quarantined,
 // 410 infected, 413 too-large/quota-exceeded, 415 unsupported-type/type-mismatch.
 import { FileUploadError } from "./core.js";
 import type { FileUploadErrorCode, FileUploads, UploadRecord } from "./core.js";
@@ -27,7 +27,7 @@ const json = (status: number, body: unknown): Response =>
   new Response(JSON.stringify(body), { status, headers: { ...BASE_HEADERS, "content-type": "application/json" } });
 
 const STATUS: Record<FileUploadErrorCode, number> = {
-  "bad-request": 400, forbidden: 403, "not-found": 404, quarantined: 409, infected: 410, "too-large": 413,
+  "bad-request": 400, "invalid-name": 400, forbidden: 403, "not-found": 404, quarantined: 409, infected: 410, "too-large": 413,
   "quota-exceeded": 413, "unsupported-type": 415, "type-mismatch": 415, "scan-failed": 503,
 };
 const ID = /^[A-Za-z0-9_-]{1,128}$/;

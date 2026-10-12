@@ -52,6 +52,46 @@ fun main() {
     check(polar.maxLat == 90.0 && polar.minLon == -180.0 && polar.maxLon == 180.0, "polar box clamps and spans all longitudes")
     throwsIae("negative radius") { Geo.boundingBox(0.0, 0.0, -1.0) }
 
+    // Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+    val wide = Geo.boundingBox(60.0, 0.0, 0.1 * Geo.EARTH_RADIUS_M)
+    val half = Math.toRadians(wide.maxLon)
+    val want = Math.asin(Math.sin(0.1) / Math.cos(Math.toRadians(60.0)))
+    check(abs(half - want) <= 1e-6 * want && abs(half - 0.20101) < 1e-5, "lat 60 r 0.1 half-width $half want $want")
+    check(abs(wide.minLon + wide.maxLon) < 1e-12, "lat 60 box symmetric")
+    var allInside = true
+    for (cLat in doubleArrayOf(0.0, 45.0, 60.0, 75.0, -70.0)) {
+        for (radius in doubleArrayOf(1_000.0, 100_000.0, 1_000_000.0)) {
+            val box = Geo.boundingBox(cLat, 0.0, radius)
+            val d = radius / Geo.EARTH_RADIUS_M
+            val p1 = Math.toRadians(cLat)
+            for (i in 0 until 360) {
+                val t = Math.toRadians(i.toDouble())
+                val p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(t))
+                val l2 = Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2))
+                val pLat = Math.toDegrees(p2)
+                val pLon = Math.toDegrees(l2)
+                if (pLat < box.minLat - 1e-9 || pLat > box.maxLat + 1e-9 || pLon < box.minLon - 1e-9 || pLon > box.maxLon + 1e-9) {
+                    if (allInside) System.err.println("outside: center $cLat, radius $radius, bearing $i: $pLat,$pLon $box")
+                    allInside = false
+                }
+            }
+        }
+    }
+    check(allInside, "circle points at 360 bearings lie inside the box")
+    for ((cLon, bearing) in listOf(179.9 to 90.0, -179.9 to 270.0)) {
+        val box = Geo.boundingBox(10.0, cLon, 50_000.0)
+        check(box.minLon == -180.0 && box.maxLon == 180.0, "antimeridian center lon $cLon spans all longitudes $box")
+        val d = 50_000.0 / Geo.EARTH_RADIUS_M
+        val p1 = Math.toRadians(10.0)
+        val t = Math.toRadians(bearing)
+        val p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(t))
+        val l2 = Math.toRadians(cLon) + Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2))
+        val pLat = Math.toDegrees(p2)
+        val pLon = ((Math.toDegrees(l2) + 540) % 360) - 180
+        check(abs(pLon) > 179.5 && pLat >= box.minLat && pLat <= box.maxLat && pLon >= box.minLon && pLon <= box.maxLon,
+            "antimeridian far-side point $pLat,$pLon inside $box")
+    }
+
     println("GeoTest: $passed passed, $failed failed")
     if (failed > 0) exitProcess(1)
 }

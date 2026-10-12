@@ -31,6 +31,7 @@ const jevShape = Object.fromEntries(Object.entries(searchShape).filter(([key]) =
 const installShape = {
   kind: z.enum(['module', 'integration']), id: idSchema, project: projectSchema,
   out: z.string().min(1).max(200).optional(), allowUnverified: z.boolean().default(false),
+  profiles: z.array(z.string().regex(/^[a-z][a-z0-9-]*$/)).min(1).max(8).optional(),
 };
 
 function bounded(value) {

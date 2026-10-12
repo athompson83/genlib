@@ -75,7 +75,7 @@ See the [official Codex MCP documentation](https://developers.openai.com/codex/m
 | `genlib_read_file` | A page of a manifest-declared module/pack file or a search-indexed documentation section |
 | `genlib_jev` | Bounded independent yes/no questions and candidate metadata; no model or provider call |
 | `genlib_detect_project` | Top-level manifest evidence inside the configured project root |
-| `genlib_plan_install` | Integrity, compatibility, file conflicts and proposed destinations; no writes |
+| `genlib_plan_install` | Integrity, compatibility, file conflicts and proposed destinations; no writes. `profiles: ["core","memory"]` selects module install profiles, as `add --profile` does |
 | `genlib_verify_installation` | Missing/modified/unchanged status against the recorded baseline, or incomplete integration recovery evidence |
 | `genlib_install` | Source-copy operation, registered only when the server starts with `--allow-install` |
 

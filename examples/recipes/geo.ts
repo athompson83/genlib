@@ -71,9 +71,10 @@ export function geohashDecode(hash: string): GeohashCell {
 export interface BoundingBox { minLat: number; maxLat: number; minLon: number; maxLon: number }
 
 /**
- * Box containing every point within radiusMeters. Longitude half-width is the exact angle whose
- * great-circle distance along the center's latitude equals the radius (wider than radius/cos(lat)).
- * Near a pole or across the antimeridian the longitude range becomes the full [-180, 180].
+ * Box containing every point within radiusMeters. Longitude half-width is the circle's widest
+ * longitude extent, asin(sin(r) / cos(lat)) for angular radius r (wider than the due-east offset
+ * along the center's parallel). Near a pole, when sin(r) >= cos(lat), or across the antimeridian
+ * the longitude range becomes the full [-180, 180].
  */
 export function boundingBox(lat: number, lon: number, radiusMeters: number): BoundingBox {
   checkPoint(lat, lon);
@@ -83,9 +84,9 @@ export function boundingBox(lat: number, lon: number, radiusMeters: number): Bou
   const maxLat = lat + deg(angular);
   const box = { minLat: Math.max(-90, minLat), maxLat: Math.min(90, maxLat), minLon: -180, maxLon: 180 };
   if (minLat <= -90 || maxLat >= 90 || angular >= Math.PI / 2) return box;
-  const s = Math.sin(angular / 2) / Math.cos(rad(lat));
+  const s = Math.sin(angular) / Math.cos(rad(lat));
   if (s >= 1) return box;
-  const dLon = deg(2 * Math.asin(s));
+  const dLon = deg(Math.asin(s));
   if (lon - dLon < -180 || lon + dLon > 180) return box;
   return { ...box, minLon: lon - dLon, maxLon: lon + dLon };
 }

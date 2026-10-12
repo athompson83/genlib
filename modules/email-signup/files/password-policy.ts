@@ -20,12 +20,22 @@ export interface PasswordPolicyOptions {
   readonly blocklist?: readonly string[];
 }
 
-/** A small list of the most common passwords that meet a 15-character minimum or would otherwise slip through. */
+/**
+ * A small list of the most common passwords of 8 or more characters (from published breach top lists), so the
+ * policy stays useful when an app lowers minLength to 8, plus long values that meet a 15-character minimum.
+ */
 export const COMMON_PASSWORDS: readonly string[] = [
-  "password", "password1", "password123", "passwordpassword", "123456789012345", "1234567890123456",
-  "123456789", "1234567890", "qwertyuiop", "qwertyuiopasdfgh", "qwertyuiopasdfghjkl", "1q2w3e4r5t6y7u8i",
-  "iloveyouiloveyou", "letmeinletmein", "welcome123456789", "abcdefghijklmno", "abcdefghijklmnop",
-  "administrator", "changeme", "changemechangeme", "trustno1trustno1", "correcthorsebatterystaple",
+  "password", "password1", "password12", "password123", "password1234", "passwordpassword", "passw0rd", "p@ssw0rd", "p@ssword",
+  "12345678", "123456789", "1234567890", "12345678910", "123456789012345", "1234567890123456", "87654321", "123123123",
+  "11111111", "111111111", "00000000", "88888888", "12341234", "11223344", "1q2w3e4r", "1q2w3e4r5t", "1qaz2wsx", "zaq12wsx",
+  "qwerty123", "qwerty12", "qwertyui", "qwertyuiop", "qwertyuiopasdfgh", "qwertyuiopasdfghjkl", "1q2w3e4r5t6y7u8i",
+  "asdfghjk", "asdfghjkl", "zxcvbnm1", "abc12345", "abcd1234", "abcdefgh", "abcdefghijklmno", "abcdefghijklmnop",
+  "iloveyou", "iloveyou1", "iloveyouiloveyou", "letmein1", "letmein123", "letmeinletmein", "welcome1", "welcome123",
+  "welcome123456789", "sunshine", "sunshine1", "football", "football1", "baseball", "basketball", "princess", "princess1",
+  "superman", "batman123", "starwars", "trustno1", "trustno1trustno1", "whatever", "computer", "internet", "michelle",
+  "jennifer", "jordan23", "liverpool", "chocolate", "butterfly", "passion1", "master123", "monkey123", "dragon123",
+  "shadow123", "charlie1", "freedom1", "qazwsxedc", "administrator", "changeme", "changeme1", "changemechangeme",
+  "correcthorsebatterystaple",
 ];
 
 export function createPasswordPolicy(options: PasswordPolicyOptions = {}): PasswordPolicy {

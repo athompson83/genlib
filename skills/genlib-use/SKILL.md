@@ -34,7 +34,7 @@ description: Find, plan, and install reusable Genlib code, modules and integrati
   "modules": [
     "For a versioned module: plan <id> --target <app>, review compatibility and file changes, then add. Never regenerate installed source in a response; never force conflicts, symlinks or integrity errors. Use --allow-unverified only with recorded independent evidence.",
     "Then run verify and adopted <id> --test <app test>; update/remove: references/cli.md. Wrap edits; never rewrite baseline hashes.",
-    "No tsconfig.json (Node type stripping)? add --ts-imports. Task's routes/codes/storage differ from the module's? Wire only its matching core or write it."
+    "No tsconfig.json (Node type stripping)? add --ts-imports. add --profile core,... copies only those files and prints the wiring. Routes/codes/storage differ? Wire only its core or write it."
   ],
   "boundaries": [
     "Web modules: a narrow React/TypeScript family, framework-neutral utilities and server HTTPS clients (Node 22+); resource metadata does not extend that.",

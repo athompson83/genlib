@@ -76,6 +76,21 @@
       "bytes": 796
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createInvitations",
@@ -178,7 +193,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/org-invitations/module.json",
-    "sha256": "7d06605343d0b69195bf4552c3b35c386b9e88363686dcba91d3916ee6926eb9"
+    "sha256": "2899dfb08c4ab4b9ffe04e0beb771cb3b4f3e72a91cd461b56bbbe8e8d739297"
   },
   "contractFile": {
     "path": "modules/org-invitations/CONTRACT.md",

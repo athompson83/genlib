@@ -43,7 +43,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/account-deletion@0.1.0.json",
-      "sha256": "543ec1c570435759d2049b6d8383a292ff1f736d8221acb31f724423de74e20a"
+      "sha256": "225b86e1d65c2bb7f16e968b84a52703ad9320242ed5ba9a1d18d2f7ef15b1f8"
     },
     {
       "id": "api-keys",
@@ -75,7 +75,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/api-keys@0.1.0.json",
-      "sha256": "6b7e6c97681c2e58c0bab71ba91cd34cbcccc4f456c705fc46b4def27dfc1eee"
+      "sha256": "937a0633c676245f671243be24e03d5c1cf80720c3462857a00046616d214b24"
     },
     {
       "id": "app-shell",
@@ -135,7 +135,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/audit-log@0.1.0.json",
-      "sha256": "000631484bc81a3c9e1d1f7c842aa82a6341df836e274cfff6ea632706b90924"
+      "sha256": "f979d53b1538cdb2cee0ffe4d3f669a362c84a410c033641977eb96178216ab5"
     },
     {
       "id": "bot-protection",
@@ -198,7 +198,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/chat@0.1.0.json",
-      "sha256": "5047dfcdb44b289817e85bfb101e3781462d9a271b638017e4fcd129bdd10501"
+      "sha256": "c8685785f508eb14365ccb4da4cd0e011dd7712a682f244565619ec614292828"
     },
     {
       "id": "comments",
@@ -228,7 +228,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/comments@0.1.0.json",
-      "sha256": "3afcb9feafbd74ad7c728fea5b89770583a6afba79329234c3a4d1edd68d427a"
+      "sha256": "1b899ee772db5346eb6ed5db32b7879b68872cb2cac2a7ddbab0bc0c8a164ec0"
     },
     {
       "id": "common-api-clients",
@@ -264,6 +264,36 @@
       "sha256": "31d70c16485b8d4802dbda9398b9c28d9a23256999ea6f6e25d2f648c5c3c850"
     },
     {
+      "id": "csv-download",
+      "version": "0.1.0",
+      "title": "CSV download safe for Excel",
+      "description": "Streamed CSV downloads for server apps: RFC 4180 quoting with CRLF records, formula-injection neutralization, UTF-8 with a BOM for Excel, tenant-scoped rows through an injected cursor-paged source plus a per-row authorize hook, explicit column allow-lists, row and byte caps, RFC 6266 download headers, a PostgreSQL row source and export log, and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "csv export",
+        "export to csv",
+        "download csv",
+        "excel export",
+        "spreadsheet export",
+        "csv injection",
+        "formula injection",
+        "streaming download",
+        "report download",
+        "data export",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/csv-download@0.1.0.json",
+      "sha256": "67062803dad63002c2633353aaede02c2229d0ee185b7756f52d15b7e91269e0"
+    },
+    {
       "id": "csv-import",
       "version": "0.1.0",
       "title": "CSV import pipeline",
@@ -292,7 +322,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/csv-import@0.1.0.json",
-      "sha256": "bda722c48cf10ce551c63180d3e2d6e51d643c93a5a1c409a7f750ef8b1741ed"
+      "sha256": "2675f786958dab8376a748ad918a4b72026ba6b6836a4c3de066bf5e26cd0ed2"
     },
     {
       "id": "data-table",
@@ -350,11 +380,11 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/email-outbox@0.1.0.json",
-      "sha256": "50134210f476f64c440dab706a8ab2a28609ba217f6930bec1bd9231106ab339"
+      "sha256": "ceb9df7d4285aaf1c2aa032b010dbd1d418e792b09fe99c299d592596bb34dbf"
     },
     {
       "id": "email-signup",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "title": "User signup with email verification",
       "description": "Email-and-password signup for server apps: validated, normalized and unique emails, a NIST-style password policy, scrypt password hashing, hashed single-use 256-bit verification links, a verified-account gate, rate-limited resends that invalidate earlier links, retried idempotent verification email, enumeration-safe responses, a PostgreSQL store and a Fetch adapter.",
       "kind": "feature",
@@ -378,8 +408,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/email-signup@0.1.0.json",
-      "sha256": "0a09cc3cbfd1fe41ea89e1b83f499931864aeefdcc29e6dd3fdb975e99315f75"
+      "manifest": "registry/manifests/email-signup@0.2.0.json",
+      "sha256": "38bd41be77d61d96786e3ec83237eb7dfce196f1b53561a130df8c8471917b0d"
     },
     {
       "id": "entitlements",
@@ -441,8 +471,38 @@
       "sha256": "a2a4f17395051ececce02a4b3fd6bdfa15c43b230a63156a0c26241d91d8c3bf"
     },
     {
-      "id": "file-uploads",
+      "id": "feature-rollout",
       "version": "0.1.0",
+      "title": "Feature flags with gradual rollout and A/B assignment",
+      "description": "Server-side feature flags and experiments: sticky hashed buckets, percentage rollout that only grows, kill switch, user and tenant targeting with fixed precedence, runtime config from a store with a TTL cache and change notification, audited admin changes, weighted variants with sticky assignments, once-per-unit exposure logging, anonymous-to-user stitching, a two-proportion z-test, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "feature flags",
+        "feature toggle",
+        "gradual rollout",
+        "percentage rollout",
+        "kill switch",
+        "a/b test",
+        "experiment",
+        "variants",
+        "exposure logging",
+        "canary",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/feature-rollout@0.1.0.json",
+      "sha256": "11c48d2d2025f6f97e1d4847c43b7caa64137045dca4949665e574876e8fd415"
+    },
+    {
+      "id": "file-uploads",
+      "version": "0.2.0",
       "title": "File upload with size and type checks",
       "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
       "kind": "feature",
@@ -468,8 +528,8 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/file-uploads@0.1.0.json",
-      "sha256": "bd5ae32327ad06e946469e036e85083962f52efa7d09fa1854788367df0b3490"
+      "manifest": "registry/manifests/file-uploads@0.2.0.json",
+      "sha256": "afa4f4dc2fa0bc56ec390d1d9818c3ec7a966ed0f0090f9ff0ed0f9bd4655d1d"
     },
     {
       "id": "health-checks",
@@ -529,6 +589,66 @@
       "sha256": "109cf5a3f4797befb4f0794e96c1042d11e977f7b15409aa2760d522b841fdfc"
     },
     {
+      "id": "keyset-pagination",
+      "version": "0.1.0",
+      "title": "Cursor pagination for APIs",
+      "description": "Keyset (seek) pagination for server list endpoints: opaque HMAC-signed cursors with key rotation and expiry, bound to tenant, filters and sort; multi-column ASC/DESC sorts with a unique tie-breaker; parameterized PostgreSQL WHERE/ORDER BY/LIMIT; an in-memory source; limit clamping; next/prev cursors and an RFC 8288 Link header.",
+      "kind": "feature",
+      "tags": [
+        "pagination",
+        "cursor pagination",
+        "keyset pagination",
+        "seek pagination",
+        "infinite scroll",
+        "next page",
+        "link header",
+        "api",
+        "postgresql",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/keyset-pagination@0.1.0.json",
+      "sha256": "5fe1b6a1b8a1525bb4f366b970b35f511b2b4388f32ee788487489dbf18e70b3"
+    },
+    {
+      "id": "nearby-search",
+      "version": "0.1.0",
+      "title": "Nearby search by distance",
+      "description": "Radius search for server apps: validated coordinates, haversine meters, a bounding-box prefilter that handles poles and the antimeridian, nearest-first keyset pagination, tenant and visibility scoping, location privacy with snapped cells and rounded distances, a PostgreSQL store without PostGIS and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "nearby search",
+        "radius search",
+        "geolocation",
+        "distance",
+        "haversine",
+        "store locator",
+        "near me",
+        "places",
+        "location privacy",
+        "geohash",
+        "bounding box",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/nearby-search@0.1.0.json",
+      "sha256": "ae643f8ac5691b858958752afd1a498525e38c28415b1ed31804a23d42c2cb0e"
+    },
+    {
       "id": "notification-inbox",
       "version": "0.1.0",
       "title": "Notification inbox",
@@ -555,7 +675,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/notification-inbox@0.1.0.json",
-      "sha256": "664dabd58d44e22b96ff463e1f3bb57bd1968c4623b4a206c5abf1b88f67e231"
+      "sha256": "f9458057f0e01cca6f9a96e1c94bd6b80221c561c6cf4d3091d39c645347c20a"
     },
     {
       "id": "notification-preferences",
@@ -609,7 +729,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/org-invitations@0.2.0.json",
-      "sha256": "627dc252034ab3d51f3b4cde40d9a7f4541f296aa6e7bb369041b3b27d9fa704"
+      "sha256": "ab9ef4bcaee86b9121561646d5f70b705521ac225dc0854f7cc03c26d70e1640"
     },
     {
       "id": "password-reset",
@@ -638,7 +758,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/password-reset@0.1.0.json",
-      "sha256": "37e9e6313bc7e2013f7a2ee1b10094aa47684d06360f77fb8d08d1437290632d"
+      "sha256": "0a29ecd5c74726b027ce05f7fa84c0cac4fbe7adb0a76c8a9a303f6a186039fd"
     },
     {
       "id": "presence",
@@ -670,7 +790,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/presence@0.1.0.json",
-      "sha256": "1d4b3a70e777e53ae2efdc132d29aa9a78a4c3e73fa2974fff144b3a0e0a4ca4"
+      "sha256": "6c19f63b652225fa42124fe1b6dc84e22ec9d023deb349f9857f73e491285ab0"
     },
     {
       "id": "public-data-clients",
@@ -795,7 +915,40 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/rbac@0.1.0.json",
-      "sha256": "b8ae61b3d87b6ff8e8095359d1d203133eab156bd2b02539d8912cc5e656c25a"
+      "sha256": "0437ae6c398a8efc823616fdad112c0b58107057f152b26075af8ad32ca06a8d"
+    },
+    {
+      "id": "recurring-events",
+      "version": "0.1.0",
+      "title": "Recurring calendar events (RRULE)",
+      "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
+      "kind": "feature",
+      "tags": [
+        "recurring events",
+        "rrule",
+        "recurrence",
+        "calendar",
+        "repeating events",
+        "icalendar",
+        "ics export",
+        "rfc 5545",
+        "exdate",
+        "recurrence-id",
+        "time zones",
+        "dst",
+        "scheduling",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/recurring-events@0.1.0.json",
+      "sha256": "1eabc1682cdeb1f787e09b774de23ece41261a689a826b8028b9c2a400600a4c"
     },
     {
       "id": "scheduled-tasks",
@@ -884,7 +1037,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/short-links@0.1.0.json",
-      "sha256": "2660ad6ac8a876fd7a5c72dc4af04bd6d2761a05feaf6bf6953f4c78c72bbaf3"
+      "sha256": "fdb180ac51ce6eaa702e4f41ed4095a7c3ddd7ab7c23d5d5098cd8cd6250635a"
     },
     {
       "id": "site-search",
@@ -916,7 +1069,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/site-search@0.1.0.json",
-      "sha256": "080b30be9b68c60deefa5b1f9ab61dba388239b83e6d6c9b2b3f52b9f06e7233"
+      "sha256": "7f25553f5b6f35338b54ef0a64559ed446c10c1c26440e3ecc6c484fe785d6de"
     },
     {
       "id": "soft-delete",
@@ -950,7 +1103,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/soft-delete@0.1.0.json",
-      "sha256": "6e80f1073f552c4da54b55964c78f83e8dec3111a232a7ffa52ac57b2d99b8d2"
+      "sha256": "3896bd589687bac7be8c6b5438d91e81ea7a85af8f7dcf0ca0db6d0b14e198a3"
     },
     {
       "id": "structured-logger",
@@ -1034,7 +1187,7 @@
     },
     {
       "id": "two-factor",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "title": "Two-factor authentication with an authenticator app (TOTP)",
       "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
       "kind": "feature",
@@ -1062,8 +1215,39 @@
       ],
       "platform": "server",
       "verification": "tested",
-      "manifest": "registry/manifests/two-factor@0.1.0.json",
-      "sha256": "1f6c2927676624ff2b7849a15366f74b17124d3c541cc5c9d4aec317e74b4043"
+      "manifest": "registry/manifests/two-factor@0.2.0.json",
+      "sha256": "051c10053f82fbeb5dce87798bd559ed3dd802667e92fae6122aefa582509480"
+    },
+    {
+      "id": "url-slugs",
+      "version": "0.1.0",
+      "title": "URL slugs",
+      "description": "Title-to-slug generation for server apps: Latin diacritic transliteration and optional Unicode scripts, word-boundary length cap, concurrency-safe unique slugs per tenant scope with numeric suffixes, reserved route words, rename history with 301 redirects that never chain or loop, a PostgreSQL store and a Fetch resolve adapter.",
+      "kind": "feature",
+      "tags": [
+        "slug",
+        "slugify",
+        "url slug",
+        "permalink",
+        "friendly url",
+        "seo url",
+        "unique slug",
+        "redirect",
+        "301",
+        "rename",
+        "transliterate",
+        "server"
+      ],
+      "frameworks": [
+        "any"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platform": "server",
+      "verification": "tested",
+      "manifest": "registry/manifests/url-slugs@0.1.0.json",
+      "sha256": "451ab28d09e440e66985b8d47c800d126ed2d607ae32c6b8e21d760ee3eed8d1"
     },
     {
       "id": "validated-form",
@@ -1147,7 +1331,7 @@
       "platform": "server",
       "verification": "tested",
       "manifest": "registry/manifests/webhook-delivery@0.1.0.json",
-      "sha256": "7c61b66ee59ddfdcdad1e607c1848f9b7eb75779ce8370a3c8492d38529e05be"
+      "sha256": "21cbe2b7b04a92714f99f48ff5808396fefa9f6acd438bb068353cebaf562b83"
     },
     {
       "id": "webhook-verification",

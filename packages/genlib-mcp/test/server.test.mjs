@@ -94,6 +94,18 @@ test('write opt-in uses the existing installer, confines project access and pres
   assert.deepEqual(await fs.readdir(outside), []);
 });
 
+test('install plans honor module profiles and refuse unknown ones', { timeout: 30000 }, async t => {
+  const { app } = await fixture(t);
+  const client = await stdio(t, ['--project-root', app]);
+  const plan = payload(await client.callTool({ name: 'genlib_plan_install', arguments: { kind: 'module', id: 'email-signup', project: '.', profiles: ['core', 'memory'] } }));
+  assert.deepEqual(plan.profiles, ['core', 'memory']);
+  const paths = plan.files.map(item => item.path);
+  assert.ok(paths.some(item => item.endsWith('email-signup/memory-store.ts')));
+  assert.ok(!paths.some(item => item.endsWith('email-signup/http.ts') || item.endsWith('email-signup/sql-store.ts')));
+  const unknown = await client.callTool({ name: 'genlib_plan_install', arguments: { kind: 'module', id: 'email-signup', project: '.', profiles: ['nope'] } });
+  assert.equal(unknown.isError, true);
+});
+
 for (const mode of ['legacy', { pin: '2026-07-28' }]) {
   const label = typeof mode === 'string' ? mode : mode.pin;
   test(`HTTP ${label}: real SDK requests require authentication and honor host/origin/body bounds`, { timeout: 30000 }, async t => {

@@ -22,7 +22,8 @@ export class MemoryUploadMetadataStore implements UploadMetadataStore {
   async setStatus(id: string, from: UploadStatus, to: UploadStatus, at: number): Promise<UploadRecord | null> {
     const record = this.#records.get(id);
     if (!record || record.status !== from) return null;
-    const updated: UploadRecord = { ...record, status: to, scannedAt: at };
+    const { scanClaimedUntil: _claim, ...rest } = record;
+    const updated: UploadRecord = { ...rest, status: to, scannedAt: at };
     this.#records.set(id, updated);
     return { ...updated };
   }
@@ -47,6 +48,29 @@ export class MemoryUploadMetadataStore implements UploadMetadataStore {
 
   async usage(tenantId: string): Promise<number> {
     return this.#usage.get(tenantId) ?? 0;
+  }
+
+  async claimScan(id: string, now: number, until: number): Promise<UploadRecord | null> {
+    const record = this.#records.get(id);
+    if (!record || record.status !== "quarantined" || (record.scanClaimedUntil !== undefined && record.scanClaimedUntil > now)) return null;
+    const claimed: UploadRecord = { ...record, scanClaimedUntil: until };
+    this.#records.set(id, claimed);
+    return { ...claimed };
+  }
+
+  async releaseScanClaim(id: string, until: number): Promise<void> {
+    const record = this.#records.get(id);
+    if (!record || record.scanClaimedUntil !== until) return;
+    const { scanClaimedUntil: _claim, ...rest } = record;
+    this.#records.set(id, rest);
+  }
+
+  async listQuarantined(now: number, limit: number): Promise<UploadRecord[]> {
+    return [...this.#records.values()]
+      .filter((record) => record.status === "quarantined" && (record.scanClaimedUntil === undefined || record.scanClaimedUntil <= now))
+      .sort((a, b) => a.createdAt - b.createdAt)
+      .slice(0, limit)
+      .map((record) => ({ ...record }));
   }
 
   /** Test helper: a snapshot of every record. */

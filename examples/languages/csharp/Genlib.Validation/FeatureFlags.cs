@@ -20,8 +20,12 @@ public sealed record FeatureFlag(string Key) {
 public sealed record FlagResult(bool On, string Reason, int Bucket, string? Variant);
 
 /// <summary>
-/// Deterministic, dependency-free flag evaluation. The bucket is FNV-1a 32 of "key:userId" mod 10000, so the same user always
-/// gets the same answer for the same flag, and raising the rollout percentage only adds users (nobody already on is dropped).
+/// Deterministic, dependency-free flag evaluation. The bucket is FNV-1a 32 of "key:userId" followed by the MurmurHash3 fmix32
+/// finalizer, mod 10000, so the same user always gets the same answer for the same flag, and raising the rollout percentage only
+/// adds users (nobody already on is dropped).
+/// BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit is the parity of the input bytes, so 50/50
+/// experiments with similar keys put the same users in the same half. The finalizer makes experiments independent but changes
+/// every bucket and variant assignment; re-baseline running rollouts and experiments when upgrading.
 /// </summary>
 public static class FeatureFlags {
     private static readonly Regex KeyPattern = new(@"\A[A-Za-z0-9._-]{1,100}\z", RegexOptions.CultureInvariant);
@@ -41,7 +45,7 @@ public static class FeatureFlags {
             if (string.IsNullOrEmpty(v.Name) || v.Weight < 1) throw new ArgumentException("variants need a name and a positive weight", nameof(flag));
             totalWeight += v.Weight;
         }
-        int bucket = (int)(Hashing.Fnv1a32(Encoding.UTF8.GetBytes(flag.Key + ":" + userId)) % 10000);
+        int bucket = (int)(BucketHash(flag.Key + ":" + userId) % 10000);
         if (!flag.Enabled) return new FlagResult(false, "disabled", bucket, null);
         if (flag.Deny.Contains(userId)) return new FlagResult(false, "deny", bucket, null);
         if (flag.Allow.Contains(userId)) return new FlagResult(true, "allow", bucket, PickVariant(flag, userId, totalWeight));
@@ -49,9 +53,20 @@ public static class FeatureFlags {
         return new FlagResult(false, "excluded", bucket, null);
     }
 
+    /// <summary>FNV-1a 32 over UTF-8, then the MurmurHash3 fmix32 finalizer so the low bits used by % n are well mixed.</summary>
+    private static uint BucketHash(string text) {
+        uint h = Hashing.Fnv1a32(Encoding.UTF8.GetBytes(text));
+        h ^= h >> 16;
+        h = unchecked(h * 0x85ebca6bu);
+        h ^= h >> 13;
+        h = unchecked(h * 0xc2b2ae35u);
+        h ^= h >> 16;
+        return h;
+    }
+
     private static string? PickVariant(FeatureFlag flag, string userId, long totalWeight) {
         if (flag.Variants.Count == 0) return null;
-        long x = Hashing.Fnv1a32(Encoding.UTF8.GetBytes(flag.Key + ":variant:" + userId)) % totalWeight;
+        long x = BucketHash(flag.Key + ":variant:" + userId) % totalWeight;
         foreach (var v in flag.Variants) {
             if (x < v.Weight) return v.Name;
             x -= v.Weight;

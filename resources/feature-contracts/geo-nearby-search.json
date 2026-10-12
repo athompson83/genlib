@@ -37,6 +37,77 @@
   ],
   "implementations": [
     {
+      "ref": "module:nearby-search",
+      "status": "fixture-verified",
+      "fulfills": [
+        "distance",
+        "coordinate-validation",
+        "index-prefilter",
+        "edge-cases",
+        "nearest-first",
+        "spatial-index",
+        "location-privacy"
+      ],
+      "evidence": [
+        {
+          "requirement": "distance",
+          "test": "tests/nearby-search.test.mjs",
+          "name": "haversineMeters returns great-circle meters for known vectors"
+        },
+        {
+          "requirement": "coordinate-validation",
+          "test": "tests/nearby-search.test.mjs",
+          "name": "validateCoordinates rejects out-of-range, non-finite and non-number latitudes and longitudes"
+        },
+        {
+          "requirement": "index-prefilter",
+          "test": "tests/nearby-search.test.mjs",
+          "name": "the memory store prefilters by geohash cells and bounding box instead of distance-checking every place"
+        },
+        {
+          "requirement": "index-prefilter",
+          "test": "tests/nearby-search-sql.test.mjs",
+          "name": "sql: the bounding-box prefilter uses the (tenant_id, lat, lng) index and parameters, then checks exact distance"
+        },
+        {
+          "requirement": "edge-cases",
+          "test": "tests/nearby-search.test.mjs",
+          "name": "boundingBoxes splits at the antimeridian and opens to every longitude at the poles"
+        },
+        {
+          "requirement": "edge-cases",
+          "test": "tests/nearby-search-sql.test.mjs",
+          "name": "sql: schema applies; radius search is nearest first with meters, across the antimeridian and at the poles"
+        },
+        {
+          "requirement": "nearest-first",
+          "test": "tests/nearby-search.test.mjs",
+          "name": "radius search returns places nearest first with distances in meters and excludes places beyond the radius"
+        },
+        {
+          "requirement": "nearest-first",
+          "test": "tests/nearby-search-sql.test.mjs",
+          "name": "sql: keyset pagination by (distance, id) with ties visits every row once"
+        },
+        {
+          "requirement": "spatial-index",
+          "test": "tests/nearby-search-sql.test.mjs",
+          "name": "sql: the bounding-box prefilter uses the (tenant_id, lat, lng) index and parameters, then checks exact distance"
+        },
+        {
+          "requirement": "location-privacy",
+          "test": "tests/nearby-search.test.mjs",
+          "name": "location privacy: approximate places expose only a snapped cell and a rounded distance, never exact coordinates"
+        },
+        {
+          "requirement": "location-privacy",
+          "test": "tests/nearby-search-sql.test.mjs",
+          "name": "sql: approximate places are stored, filtered and returned by their snapped cell; exact coordinates reach only the owner"
+        }
+      ],
+      "notes": "Spherical distance (about 0.5% from WGS 84); the SQL prefilter is a B-tree latitude/longitude range, not PostGIS. PGlite tests run on one connection."
+    },
+    {
       "ref": "capability:geo",
       "status": "fixture-verified",
       "fulfills": [

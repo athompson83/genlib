@@ -1,6 +1,7 @@
 -- SPDX-License-Identifier: Apache-2.0
 -- PostgreSQL tables for file-uploads (sql-store.ts). Times are epoch milliseconds, as core.ts uses.
 -- Apply with your migration tool; rename the tables by passing { table, quotaTable } to createSqlUploadMetadataStore.
+-- Upgrading from 0.1.0: ALTER TABLE file_uploads ADD COLUMN IF NOT EXISTS scan_claimed_until bigint;
 -- Bytes live in your BlobStore (object storage) under storage_key, a random id; never under the user's file name.
 CREATE TABLE IF NOT EXISTS file_uploads (
   id            text PRIMARY KEY,
@@ -12,7 +13,9 @@ CREATE TABLE IF NOT EXISTS file_uploads (
   size          bigint NOT NULL CHECK (size > 0),
   status        text NOT NULL CHECK (status IN ('quarantined', 'clean', 'infected')),
   created_at    bigint NOT NULL,
-  scanned_at    bigint
+  scanned_at    bigint,
+  -- Set while one scan worker holds the file; expires so a crashed worker cannot block it.
+  scan_claimed_until  bigint
 );
 CREATE INDEX IF NOT EXISTS file_uploads_tenant ON file_uploads (tenant_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS file_uploads_quarantined ON file_uploads (created_at) WHERE status = 'quarantined';

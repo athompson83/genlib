@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "id": "csv-download",
+  "version": "0.1.0",
+  "title": "CSV download safe for Excel",
+  "description": "Streamed CSV downloads for server apps: RFC 4180 quoting with CRLF records, formula-injection neutralization, UTF-8 with a BOM for Excel, tenant-scoped rows through an injected cursor-paged source plus a per-row authorize hook, explicit column allow-lists, row and byte caps, RFC 6266 download headers, a PostgreSQL row source and export log, and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "csv export",
+    "export to csv",
+    "download csv",
+    "excel export",
+    "spreadsheet export",
+    "csv injection",
+    "formula injection",
+    "streaming download",
+    "report download",
+    "data export",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/csv-download"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and the web streams (ReadableStream, ByteLengthQueuingStrategy), TextEncoder, AbortSignal and Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; mount the HTTP adapter with your framework's catch-all route or call exportCsv from your own route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "csv-download/core.ts",
+      "path": "modules/csv-download/files/core.ts",
+      "sha256": "61c99fb26996c46dac7d86fa148c93a9d8b0d3fd36ae2e8a6547145fa4810d61",
+      "bytes": 22146
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "csv-download/memory-store.ts",
+      "path": "modules/csv-download/files/memory-store.ts",
+      "sha256": "a15248da0fd922b46960a2ea0c1e4c1753549b761f041f9646184513c5b78ff9",
+      "bytes": 2397
+    },
+    {
+      "source": "files/http.ts",
+      "target": "csv-download/http.ts",
+      "path": "modules/csv-download/files/http.ts",
+      "sha256": "9b4bdcd42dacbf41451c7da8ab62e59fffa7dd8d2a53da215ea0aea7d93a4f95",
+      "bytes": 5587
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "csv-download/sql-store.ts",
+      "path": "modules/csv-download/files/sql-store.ts",
+      "sha256": "d61e9eabb7ec46b029b42838cd92269f303d678e60a80248a8fc8a957d530b50",
+      "bytes": 5862
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "csv-download/schema.sql",
+      "path": "modules/csv-download/files/schema.sql",
+      "sha256": "1f2edef4e1102a78ab0035110943d0e9e68a86c177e12719b1b7f2f71f8cedc8",
+      "bytes": 1067
+    }
+  ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
+  "exports": [
+    {
+      "name": "createCsvExporter",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "CsvExportError",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "csvField",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "formatCell",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "safeCsvFilename",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "contentDisposition",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "downloadHeaders",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "DEFAULT_FORMULA_TRIGGERS",
+      "from": "csv-download/core.ts"
+    },
+    {
+      "name": "createMemoryRowSource",
+      "from": "csv-download/memory-store.ts"
+    },
+    {
+      "name": "MemoryExportLog",
+      "from": "csv-download/memory-store.ts"
+    },
+    {
+      "name": "createCsvExportHandler",
+      "from": "csv-download/http.ts"
+    },
+    {
+      "name": "DEFAULT_STATUS",
+      "from": "csv-download/http.ts"
+    },
+    {
+      "name": "createSqlRowSource",
+      "from": "csv-download/sql-store.ts"
+    },
+    {
+      "name": "createSqlExportLog",
+      "from": "csv-download/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "Declare every exportable column with a key, header and value function; nothing outside that list is written. Set defaultColumns to the safe default set.",
+    "Supply a RowSource scoped by requester.tenantId (keyset pages: WHERE tenant = $1 AND id > cursor ORDER BY id LIMIT n); on PostgreSQL use createSqlRowSource with an index on (tenant, id).",
+    "Add authorize(requester, row) for row-level rules, canReadColumn for sensitive columns, canExport for the export permission and tenantOf as a cross-check.",
+    "Set maxRows, maxBytes and pageSize for your data; onLimit 'error' (default) fails oversize exports, 'truncate' ends them early and reports it.",
+    "Apply schema.sql and pass createSqlExportLog(db) as log to keep an audit row per export, or implement ExportLog yourself.",
+    "Mount createCsvExportHandler with authenticate(request) from your session; adjust prefix, routes and statusFor to your API, and validate query filters in parseFilter."
+  ],
+  "capabilities": [
+    "csv-export-rfc4180",
+    "csv-formula-injection-neutralization",
+    "excel-utf8-bom",
+    "tenant-scoped-authorized-export",
+    "streamed-bounded-export",
+    "rfc6266-download-headers"
+  ],
+  "limitations": [
+    "Does not authenticate users or define your permission rules; the application injects the requester, row source and hooks.",
+    "Neutralization covers leading = + - @ TAB CR (configurable) on string cells; typed numbers are written as-is. It does not detect formulas after leading spaces or full-width characters.",
+    "Headers are sent before the stream ends, so a limit or source failure after the first page aborts the download rather than returning an error status.",
+    "No background jobs: very large exports stream synchronously within maxRows/maxBytes; queue and email a file yourself for longer runs.",
+    "The SQL source is tested on PostgreSQL semantics through PGlite (single connection), with text ids; keyset paging over a non-unique or non-indexed column is unsupported.",
+    "Production data volumes, Excel versions other than the BOM/CRLF convention, and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "routes: GET {prefix}/export?columns=a,b&filename= streams text/csv; GET {prefix}/columns lists exportable columns",
+    "UTF-8 with BOM and CRLF by default; formula-like strings get a leading apostrophe; numbers are not prefixed",
+    "row or byte cap → stream errors with limit-exceeded by default (no silent truncation); first-page failure → 500",
+    "unselectable column → 403 forbidden, unknown or repeated column → 400 invalid-columns; rows refused by authorize skipped"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/csv-download.test.mjs",
+      "tests/csv-download-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/csv-download.test.mjs tests/csv-download-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "fields with commas, quotes and line breaks are quoted with doubled quotes, and every record ends with CRLF",
+      "string cells starting with = + - @ TAB or CR get a leading apostrophe; triggers, escape and opt-out are configurable; typed numbers are not prefixed",
+      "output starts with a UTF-8 BOM by default and keeps non-ASCII text intact; BOM and LF endings are opt-in changes",
+      "download headers: attachment with an ASCII filename plus RFC 8187 filename* for non-ASCII names, text/csv; charset=utf-8, no-store, nosniff; unsafe names sanitized",
+      "rows come only from a tenant-scoped source; authorize and tenantOf drop rows the requester cannot read; only declared, selected and readable columns are written",
+      "canExport refuses before any row is fetched; malformed requesters are rejected",
+      "maxRows and maxBytes fail the stream with limit-exceeded, or truncate and report it; exactly maxRows succeeds",
+      "the stream applies backpressure: an unread export fetches a bounded number of cursor pages; cancel and abort stop fetching",
+      "a failing first page rejects before headers with an internal-detail-free source-error; non-advancing cursors and oversize pages fail",
+      "HTTP adapter: 200 streamed attachment, 401, 403, 400, 404, 405, generic 500; routes and statusFor overrides; parseFilter validation",
+      "schema.sql applies; the SQL source pages by keyset within the tenant, honors ownerColumn and allow-listed parameterized filters; the export log records each run"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core streaming exporter, in-memory source and log, PostgreSQL row source and export log, and Fetch adapter."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/csv-download/module.json",
+    "sha256": "c725bb93d4c628caed09a1726cc0e40f5ffa637c769fa3134c9d92fe768dd917"
+  },
+  "contractFile": {
+    "path": "modules/csv-download/CONTRACT.md",
+    "sha256": "c748b372915ef6d99bce37ca6481b39b9acfef936e449347d311fb548006956f",
+    "bytes": 10001
+  }
+}

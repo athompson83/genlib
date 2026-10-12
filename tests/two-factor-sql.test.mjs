@@ -97,3 +97,22 @@ test("sql: disable requires recent re-authentication and deletes the secret and 
   assert.equal((await db.query("SELECT count(*)::int AS n FROM two_factor_recovery_codes")).rows[0].n, 0);
   assert.equal((await db.query("SELECT count(*)::int AS n FROM two_factor_enrollments")).rows[0].n, 0);
 });
+
+test("sql: lockoutMs locks from the attempt that reached the limit, atomically under concurrency, and resets when the lock ends", async () => {
+  const db = new PGlite();
+  await db.exec(schema);
+  let now = 1_700_000_000_000;
+  const store = createSqlTwoFactorStore(executor(db));
+  const tf = createTwoFactor({ store, issuer: "Example", encryption: { currentKeyId: "k1", keys: { k1: KEY } }, recoveryPepper: PEPPER, now: () => now, lockoutMs: 15 * MINUTE });
+  const { secret } = await tf.beginEnrollment("u1", { accountName: "ann@example.com" });
+  await tf.confirmEnrollment("u1", await totpCode(base32Decode(secret), now));
+  now += 30_000;
+  for (let i = 0; i < 4; i++) { await assert.rejects(tf.verify("u1", "000000"), { code: "invalid-code" }); now += 5 * MINUTE; }
+  const results = await Promise.allSettled(Array.from({ length: 6 }, () => tf.verify("u1", "000000")));
+  assert.equal(results.filter((r) => r.reason?.code === "invalid-code").length, 1, "only the fifth attempt is checked");
+  const locked = await tf.verify("u1", await totpCode(base32Decode(secret), now)).catch((error) => error);
+  assert.equal(locked.code, "rate-limited");
+  assert.equal(locked.retryAfterMs, 15 * MINUTE);
+  now += 15 * MINUTE;
+  assert.deepEqual(await tf.verify("u1", await totpCode(base32Decode(secret), now)), { ok: true, method: "totp" });
+});

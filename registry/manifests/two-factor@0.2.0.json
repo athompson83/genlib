@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "two-factor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Two-factor authentication with an authenticator app (TOTP)",
   "description": "TOTP two-factor authentication for server apps: 160-bit secrets with otpauth:// QR URIs, confirm-before-enable enrollment, RFC 6238 verification with a one-step window and replay protection, per-account attempt limits, AES-256-GCM secrets at rest with key rotation, HMAC-peppered one-time recovery codes, step-up checks, a PostgreSQL store and a Fetch adapter.",
   "kind": "feature",
@@ -47,15 +47,15 @@
       "source": "files/core.ts",
       "target": "two-factor/core.ts",
       "path": "modules/two-factor/files/core.ts",
-      "sha256": "39743205ba108a01acc5ec5558f779d183b3da557c16905cc3d483d65828eab5",
-      "bytes": 22596
+      "sha256": "afdb03d5412a8ec0a1f7beed011c6566ae20ed5b12a40d8bec85bce72c68d8b1",
+      "bytes": 24521
     },
     {
       "source": "files/memory-store.ts",
       "target": "two-factor/memory-store.ts",
       "path": "modules/two-factor/files/memory-store.ts",
-      "sha256": "e8b0062f5584adaa042bf35fdaa0d424521494b4affc2f64dc8476b5bfc5cc5f",
-      "bytes": 4507
+      "sha256": "530e28d5b0bf3bfa16b1c7cb62b7af1b19f3b3491b28799bf1625878c8764201",
+      "bytes": 5090
     },
     {
       "source": "files/http.ts",
@@ -68,17 +68,32 @@
       "source": "files/sql-store.ts",
       "target": "two-factor/sql-store.ts",
       "path": "modules/two-factor/files/sql-store.ts",
-      "sha256": "8178f70000ab07220bae3b5a795367c5ef40bf5c057bea6a13a522803a6b10af",
-      "bytes": 6541
+      "sha256": "34fdd5fba6cb4fd306b8b4431b9e58c7c6d62b7fb0f89d9a8d28b8aea772acf2",
+      "bytes": 7459
     },
     {
       "source": "files/schema.sql",
       "target": "two-factor/schema.sql",
       "path": "modules/two-factor/files/schema.sql",
-      "sha256": "87a80df9df05011d79125564a5271a0038b0f3c3620d6c88902a8996329368d8",
-      "bytes": 1233
+      "sha256": "8f353f43533aa2d3e37c385f8f7388c2f36176035890216ccc8902ba6e04a37d",
+      "bytes": 1420
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createTwoFactor",
@@ -136,6 +151,7 @@
     "Set issuer to your product name (no colon); the account name is usually the user's email.",
     "After a password sign-in, check isEnabled(userId) and, when true, hold a second-factor-pending session until verify or verifyRecoveryCode succeeds.",
     "Pass authenticatedAt (when the user last proved their password) to disable and regenerateRecoveryCodes; re-prompt for the password when they refuse with reauthentication-required.",
+    "For a lockout policy (N consecutive failures lock the account for a fixed time from the Nth) pass lockoutMs; for strict six-digit input pass allowCodeSpaces: false.",
     "Mount createTwoFactorHandler under one prefix with exact allowedOrigins, an authenticate hook that reports the session stage, a rateLimit(key) hook, a trusted clientIp(request) and an onVerified hook that upgrades the session."
   ],
   "capabilities": [
@@ -158,7 +174,7 @@
   ],
   "decisions": [
     "TOTP only: SHA-1, 6 digits, 30 s, one step either side; no SMS or email codes",
-    "5 attempts per 15 min per account, then 429; 10 recovery codes (XXXXX-XXXXX), HMAC-stored",
+    "5 attempts per 15 min (or a lockoutMs lockout), then 429; 10 HMAC-stored recovery codes (XXXXX-XXXXX)",
     "secrets AES-256-GCM encrypted at rest; a pending enrollment expires after 15 min",
     "disable and regenerate need sign-in within 10 min, else 403 reauthentication-required"
   ],
@@ -186,10 +202,19 @@
       "recovery codes are random, stored only as HMAC-SHA-256 with the pepper, single use under concurrency, and regenerate replaces all",
       "disable and regenerateRecoveryCodes refuse without re-authentication in the last 10 minutes",
       "HTTP adapter: enroll, confirm, verify, recovery, regenerate and disable routes; origin check, 401 from authenticate, 403 for settings routes from a second-factor-pending session, 429 from the rateLimit hook and lockout with retry-after, bounded body and cache-control no-store",
-      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL"
+      "schema.sql applies and the SQL store passes the core behaviors on PostgreSQL",
+      "with lockoutMs, maxAttempts consecutive failures lock the account for lockoutMs from the attempt that reached the limit; attempts while locked are refused without extending it; a success or the end of the lock resets the count; concurrent guesses cannot exceed the limit (memory and PGlite)",
+      "with allowCodeSpaces false, codes with spaces fail for verify and enrollment confirmation"
     ]
   },
   "changelog": [
+    {
+      "version": "0.2.0",
+      "changes": [
+        "New options with the 0.1.0 behavior as default: lockoutMs (consecutive-failure lockout) and allowCodeSpaces.",
+        "Breaking (SQL): the SQL store writes two_factor_attempts.locked_until, so run the migration below before upgrading. Store: registerAttempt takes an optional lockout argument and AttemptWindow may carry lockedUntil; schema.sql adds two_factor_attempts.locked_until (ALTER TABLE two_factor_attempts ADD COLUMN IF NOT EXISTS locked_until bigint). Custom stores that ignore the argument fail closed in lockout mode (the count never resets except on success)."
+      ]
+    },
     {
       "version": "0.1.0",
       "changes": [
@@ -200,11 +225,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/two-factor/module.json",
-    "sha256": "cc3398bf8297915c3d7568efa89d760f5868b5109614f276a0f6f9776e08597a"
+    "sha256": "aef4649236e3e24b264c6813c6173ae056ca417707bb67aa79e477ed97a2edd8"
   },
   "contractFile": {
     "path": "modules/two-factor/CONTRACT.md",
-    "sha256": "fe0045025186f5691e97e5b1ca4e79779bc7ef132b4e81ddddbf999dbae3c078",
-    "bytes": 10432
+    "sha256": "73f66acbd806af65e56fadb59287ceaf4e1e1de9bd895cb1aed715b0680f3f56",
+    "bytes": 11260
   }
 }

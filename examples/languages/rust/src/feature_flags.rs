@@ -1,10 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 //! Deterministic feature flag evaluation. The bucket is FNV-1a 32 of
-//! `key:userId` modulo 10000, so the same user always gets the same answer
-//! for the same flag, and raising the rollout percentage only adds users
-//! (nobody already in the rollout drops out). Variants use a separate
-//! `key:variant:userId` hash so assignment is independent of the rollout.
+//! `key:userId` followed by the MurmurHash3 fmix32 finalizer, modulo 10000,
+//! so the same user always gets the same answer for the same flag, and
+//! raising the rollout percentage only adds users (nobody already in the
+//! rollout drops out). Variants use a separate `key:variant:userId` hash so
+//! assignment is independent of the rollout.
+//!
+//! BREAKING (behavior): earlier versions used plain FNV-1a, whose lowest bit
+//! is the parity of the input bytes, so 50/50 experiments with similar keys
+//! put the same users in the same half. The finalizer makes experiments
+//! independent but changes every bucket and variant assignment; re-baseline
+//! running rollouts and experiments when upgrading.
 
 use std::fmt;
 
@@ -55,8 +62,16 @@ pub struct Evaluation {
     pub variant: Option<String>,
 }
 
-fn fnv1a32(s: &str) -> u32 {
-    s.bytes().fold(0x811c_9dc5u32, |h, b| (h ^ u32::from(b)).wrapping_mul(0x0100_0193))
+/// FNV-1a 32 over the UTF-8 bytes, then the MurmurHash3 fmix32 finalizer so
+/// the low bits used by `% n` are well mixed.
+fn bucket_hash(s: &str) -> u32 {
+    let mut h = s.bytes().fold(0x811c_9dc5u32, |h, b| (h ^ u32::from(b)).wrapping_mul(0x0100_0193));
+    h ^= h >> 16;
+    h = h.wrapping_mul(0x85eb_ca6b);
+    h ^= h >> 13;
+    h = h.wrapping_mul(0xc2b2_ae35);
+    h ^= h >> 16;
+    h
 }
 
 fn err<T>(m: &str) -> Result<T, FlagError> {
@@ -80,12 +95,12 @@ pub fn evaluate_flag(flag: &Flag, user_id: &str) -> Result<Evaluation, FlagError
         }
         total += v.weight as u64;
     }
-    let bucket = fnv1a32(&format!("{k}:{user_id}")) % 10000;
+    let bucket = bucket_hash(&format!("{k}:{user_id}")) % 10000;
     let variant = || {
         if total == 0 {
             return None;
         }
-        let mut x = u64::from(fnv1a32(&format!("{k}:variant:{user_id}"))) % total;
+        let mut x = u64::from(bucket_hash(&format!("{k}:variant:{user_id}"))) % total;
         for v in &flag.variants {
             if x < v.weight as u64 {
                 return Some(v.name.to_string());
@@ -126,23 +141,23 @@ mod tests {
             ..Flag::new("pricing-test")
         };
         for (f, user, on, reason, bucket, variant) in [
-            (&checkout, "user-1", false, "excluded", 4063, None),
-            (&checkout, "user-2", true, "rollout", 1682, None),
-            (&checkout, "user-3", false, "excluded", 9301, None),
-            (&checkout, "user-42", false, "excluded", 9926, None),
-            (&checkout, "alice@example.com", false, "excluded", 2919, None),
-            (&lists, "user-1", false, "deny", 4063, None),
-            (&lists, "user-2", true, "allow", 1682, None),
-            (&beta, "vip", false, "disabled", 3546, None),
-            (&pct("banner", 0.0), "user-1", false, "excluded", 6646, None),
-            (&pct("banner", 100.0), "user-1", true, "rollout", 6646, None),
-            (&pct("banner", 12.34), "user-9", false, "excluded", 7598, None),
-            (&pricing, "u1", true, "rollout", 4196, Some("monthly-first")),
-            (&pricing, "u2", true, "rollout", 7053, Some("control")),
-            (&pricing, "u3", true, "rollout", 9434, Some("annual-first")),
-            (&pricing, "u4", true, "rollout", 1339, Some("annual-first")),
-            (&pricing, "u5", true, "rollout", 3720, Some("annual-first")),
-            (&pricing, "ünïcode", true, "rollout", 9874, Some("control")),
+            (&checkout, "user-1", true, "rollout", 849, None),
+            (&checkout, "user-2", false, "excluded", 5308, None),
+            (&checkout, "user-3", false, "excluded", 5247, None),
+            (&checkout, "user-42", false, "excluded", 9209, None),
+            (&checkout, "alice@example.com", false, "excluded", 9060, None),
+            (&lists, "user-1", false, "deny", 849, None),
+            (&lists, "user-2", true, "allow", 5308, None),
+            (&beta, "vip", false, "disabled", 8844, None),
+            (&pct("banner", 0.0), "user-1", false, "excluded", 6875, None),
+            (&pct("banner", 100.0), "user-1", true, "rollout", 6875, None),
+            (&pct("banner", 12.34), "user-9", false, "excluded", 8197, None),
+            (&pricing, "u1", true, "rollout", 6435, Some("control")),
+            (&pricing, "u2", true, "rollout", 401, Some("annual-first")),
+            (&pricing, "u3", true, "rollout", 9955, Some("monthly-first")),
+            (&pricing, "u4", true, "rollout", 8249, Some("annual-first")),
+            (&pricing, "u5", true, "rollout", 6254, Some("control")),
+            (&pricing, "ünïcode", true, "rollout", 7068, Some("control")),
         ] {
             let want = Evaluation { on, reason, bucket, variant: variant.map(String::from) };
             assert_eq!(evaluate_flag(f, user), Ok(want), "{} {user}", f.key);
@@ -160,5 +175,50 @@ mod tests {
         ] {
             assert!(evaluate_flag(&f, "u").is_err(), "{f:?}");
         }
+    }
+
+    /// Chi-square statistic of the 2x2 contingency table of two 0/1 assignments.
+    fn chi_square_2x2(t: [[f64; 2]; 2]) -> f64 {
+        let n = t[0][0] + t[0][1] + t[1][0] + t[1][1];
+        let mut chi = 0.0;
+        for i in 0..2 {
+            for j in 0..2 {
+                let e = (t[i][0] + t[i][1]) * (t[0][j] + t[1][j]) / n;
+                chi += (t[i][j] - e).powi(2) / e;
+            }
+        }
+        chi
+    }
+
+    // Plain FNV-1a's low bit is the parity of the input bytes, so two 50/50 experiments with similar
+    // keys put every subject in the same half of both. The fmix32 finalizer must keep them independent.
+    #[test]
+    fn experiments_are_independent() {
+        let ab = || vec![Variant { name: "a", weight: 1 }, Variant { name: "b", weight: 1 }];
+        for (k1, k2) in [("checkout-a", "checkout-b"), ("exp1", "exp2")] {
+            let (mut parity, mut arms) = ([[0.0; 2]; 2], [[0.0; 2]; 2]);
+            let (v1, v2) = (Flag { variants: ab(), ..Flag::new(k1) }, Flag { variants: ab(), ..Flag::new(k2) });
+            for i in 0..10000 {
+                let u = format!("u{i}");
+                let b1 = evaluate_flag(&Flag::new(k1), &u).unwrap().bucket % 2;
+                let b2 = evaluate_flag(&Flag::new(k2), &u).unwrap().bucket % 2;
+                parity[b1 as usize][b2 as usize] += 1.0;
+                let a1 = evaluate_flag(&v1, &u).unwrap().variant.as_deref() == Some("b");
+                let a2 = evaluate_flag(&v2, &u).unwrap().variant.as_deref() == Some("b");
+                arms[usize::from(a1)][usize::from(a2)] += 1.0;
+            }
+            let (cp, ca) = (chi_square_2x2(parity), chi_square_2x2(arms));
+            assert!(cp < 10.83, "bucket parity {k1}/{k2} chi-square {cp:.2}");
+            assert!(ca < 10.83, "50/50 variants {k1}/{k2} chi-square {ca:.2}");
+        }
+    }
+
+    #[test]
+    fn buckets_are_uniform() {
+        let mut counts = [0i32; 100];
+        for i in 0..10000 {
+            counts[(evaluate_flag(&Flag::new("checkout-a"), &format!("u{i}")).unwrap().bucket % 100) as usize] += 1;
+        }
+        assert!(counts.iter().all(|n| (n - 100).abs() <= 40), "{counts:?}");
     }
 }

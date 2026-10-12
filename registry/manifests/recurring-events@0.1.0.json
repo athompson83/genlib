@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "id": "recurring-events",
+  "version": "0.1.0",
+  "title": "Recurring calendar events (RRULE)",
+  "description": "RFC 5545 recurring events for server apps: RRULE parsing and validation (BYDAY ordinals, BYSETPOS, WKST), expansion in the event's IANA zone keeping wall-clock time across DST, EXDATE/RDATE and RECURRENCE-ID overrides, window queries that skip to the window, this/following/all series edits, .ics export, a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "recurring events",
+    "rrule",
+    "recurrence",
+    "calendar",
+    "repeating events",
+    "icalendar",
+    "ics export",
+    "rfc 5545",
+    "exdate",
+    "recurrence-id",
+    "time zones",
+    "dst",
+    "scheduling",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/recurring-events"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, Intl.DateTimeFormat with IANA time-zone data (full ICU), crypto.randomUUID, TextEncoder/TextDecoder and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core; http.ts is optional and mounts with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "recurring-events/core.ts",
+      "path": "modules/recurring-events/files/core.ts",
+      "sha256": "0986ae7b5449edc88b859b043fc54f7a1854080e027e5548bebef0a2f2f66b71",
+      "bytes": 39482
+    },
+    {
+      "source": "files/rrule.ts",
+      "target": "recurring-events/rrule.ts",
+      "path": "modules/recurring-events/files/rrule.ts",
+      "sha256": "9fa1ea4218b324ff0ef26e33ee991ecef57867a3b97927b8d13f634ae001e98f",
+      "bytes": 15668
+    },
+    {
+      "source": "files/timezone.ts",
+      "target": "recurring-events/timezone.ts",
+      "path": "modules/recurring-events/files/timezone.ts",
+      "sha256": "cf7f3fe4134c8d2d8af7a7b90019dd1e51fd6dbb5cfd594531f990773d8955ea",
+      "bytes": 5442
+    },
+    {
+      "source": "files/ics.ts",
+      "target": "recurring-events/ics.ts",
+      "path": "modules/recurring-events/files/ics.ts",
+      "sha256": "9cd4ed06848b4e9958b4a227427a18a842cd5e9a8219c93aa15fca75472dbd67",
+      "bytes": 8181
+    },
+    {
+      "source": "files/errors.ts",
+      "target": "recurring-events/errors.ts",
+      "path": "modules/recurring-events/files/errors.ts",
+      "sha256": "904d7ed2d654e67391e9cb0aabca1458782d733f1a554c0ecb15b6621b3b9024",
+      "bytes": 587
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "recurring-events/memory-store.ts",
+      "path": "modules/recurring-events/files/memory-store.ts",
+      "sha256": "345ef1e96657eb1825b7c6346f57e80a560500c31887f0fff221242f133abda2",
+      "bytes": 3008
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "recurring-events/sql-store.ts",
+      "path": "modules/recurring-events/files/sql-store.ts",
+      "sha256": "ce52a3a873c15aacb783b03e8a1be6761f04cfaf80d4771ee23bcfd5cf5d7e66",
+      "bytes": 7835
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "recurring-events/schema.sql",
+      "path": "modules/recurring-events/files/schema.sql",
+      "sha256": "d49377d2661e2f3b5878b9a189c7f3a68ca5f34706b547a2847f63efd4308917",
+      "bytes": 1692
+    },
+    {
+      "source": "files/http.ts",
+      "target": "recurring-events/http.ts",
+      "path": "modules/recurring-events/files/http.ts",
+      "sha256": "7f66a94b4ed870998751dc1a86ef7c98cb64f14e96e7754801ba4952b3e95e9b",
+      "bytes": 14416
+    }
+  ],
+  "profiles": {
+    "core": [
+      "files/core.ts",
+      "files/rrule.ts",
+      "files/timezone.ts",
+      "files/ics.ts",
+      "files/errors.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
+  "exports": [
+    {
+      "name": "createRecurringEvents",
+      "from": "recurring-events/core.ts"
+    },
+    {
+      "name": "previewOccurrences",
+      "from": "recurring-events/core.ts"
+    },
+    {
+      "name": "parseRRule",
+      "from": "recurring-events/core.ts"
+    },
+    {
+      "name": "formatRRule",
+      "from": "recurring-events/core.ts"
+    },
+    {
+      "name": "RecurringEventsError",
+      "from": "recurring-events/core.ts"
+    },
+    {
+      "name": "seriesToIcs",
+      "from": "recurring-events/ics.ts"
+    },
+    {
+      "name": "MemoryRecurringEventStore",
+      "from": "recurring-events/memory-store.ts"
+    },
+    {
+      "name": "createSqlRecurringEventStore",
+      "from": "recurring-events/sql-store.ts"
+    },
+    {
+      "name": "createRecurringEventsHandler",
+      "from": "recurring-events/http.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlRecurringEventStore with an executor that has query(text, params) and transaction(work); elsewhere implement RecurringEventStore with a version-checked atomic update.",
+    "Store event starts as local wall time plus an IANA zone (America/New_York), never as UTC instants; pass window bounds as epoch milliseconds.",
+    "Mount createRecurringEventsHandler under one prefix with exact allowedOrigins and an authorize(request, {operation, calendarId, seriesId}) hook backed by your session and calendar sharing rules; override routes and statusFor to match your API.",
+    "Set maxOccurrences, maxSeriesPerQuery and maxOverridesPerSeries to your UI's needs; pass uidDomain in icsOptions so exported UIDs are globally unique."
+  ],
+  "capabilities": [
+    "rrule-parse-validate",
+    "rrule-expansion",
+    "timezone-wall-clock-recurrence",
+    "exdate-rdate-exceptions",
+    "recurrence-id-overrides",
+    "occurrence-window-query",
+    "series-split-edits",
+    "ics-export"
+  ],
+  "limitations": [
+    "FREQ=SECONDLY/MINUTELY/HOURLY, BYHOUR/BYMINUTE/BYSECOND, BYYEARDAY, BYWEEKNO, RSCALE and SKIP are refused, not ignored; all-day (DATE-valued) events are not modeled.",
+    "A start must be the rule's first occurrence; RDATEs may not precede it. COUNT is capped at 10,000 and counts from the series start, so COUNT rules cannot skip ahead in window queries.",
+    "One expansion scans at most 100,000 periods and stops at year 9999; a rule with occurrences beyond that is cut off silently.",
+    ".ics export only; there is no .ics import. VTIMEZONE observances are sampled weekly through Intl from the start year through the series' range end (ten years after the export for an endless series), listing the start year plus at most the newest 100 years, so transitions less than a week apart are not represented.",
+    "Time-zone results depend on the runtime's ICU tz data; the SQL store is tested on PGlite (one connection), not on every hosted Postgres or under real multi-connection contention.",
+    "Authorization, calendar sharing, invitations/attendees, reminders and notifications are application responsibilities."
+  ],
+  "decisions": [
+    "routes: POST /series 201, GET|PATCH|DELETE /series/:id, GET /occurrences, /series/:id/occurrences, /series/:id/ics",
+    "a time skipped by DST shifts forward by the gap; a repeated time uses its first instance (RFC 5545 3.3.5)",
+    "cancelled occurrences export as EXDATE; moved/changed ones as VEVENTs with RECURRENCE-ID",
+    "following edits set UNTIL 1 s before the split; timing edits shift exceptions by the start delta, drop non-matches"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/recurring-events.test.mjs",
+      "tests/recurring-events-sql.test.mjs",
+      "tests/recurring-events-http.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/recurring-events.test.mjs tests/recurring-events-sql.test.mjs tests/recurring-events-http.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "RFC 5545 section 3.8.5.3 examples expand correctly for DAILY, WEEKLY, MONTHLY and YEARLY with INTERVAL, COUNT, UNTIL, BYDAY ordinals, BYMONTHDAY, BYMONTH, BYSETPOS and WKST",
+      "malformed rules fail with invalid-rule and unsupported parts with unsupported-rule; a start that is not the rule's first occurrence is refused",
+      "expansion is bounded by limit, COUNT cap, window and maxOccurrences, with a truncated flag",
+      "occurrences keep local wall-clock time across spring-forward and fall-back in New York and Sydney; gap and overlap times follow RFC 5545",
+      "EXDATE removes and RDATE adds occurrences; single occurrences are moved, changed, cancelled and restored by RECURRENCE-ID",
+      "window queries return overlapping occurrences across a calendar's series in start order and jump straight to windows decades away",
+      "window queries and range bounds convert only occurrences near the window or range end to instants, and windowed results equal full expansion across DST zones",
+      "'this and following' splits a series (UNTIL on the original, remaining COUNT on the new one) without changing past occurrences",
+      "'all' edits shift EXDATEs and overrides with the start and drop ones that no longer match; delete this, following or all",
+      ".ics export emits VTIMEZONE, DTSTART;TZID, DURATION, RRULE with UTC UNTIL, EXDATE, RDATE and RECURRENCE-ID VEVENTs, escaped and folded with CRLF",
+      "optimistic versions: exactly one of several concurrent edits wins (memory store and PGlite)",
+      "schema.sql applies; the SQL store round-trips series and overrides, filters by range bounds and splits atomically",
+      "HTTP adapter: default and overridden routes, prefix and statusFor; 403 for other calendars on create/list and 404 for hidden series; Origin check, bounded JSON, 405, 413, 415"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: RRULE engine, time-zone expansion, exceptions and overrides, window queries, series edits, .ics export, in-memory and PostgreSQL stores, and Fetch adapter.",
+        "Unreleased fixes: COUNT series no longer convert every earlier occurrence to an instant on create or window queries; VTIMEZONE covers the start year through the range end (ten years after export when endless) and starts at local midnight."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/recurring-events/module.json",
+    "sha256": "9a5c30588d87708d8daeefe80b33bf4590cd2df2c83faadb0d4024466548aa38"
+  },
+  "contractFile": {
+    "path": "modules/recurring-events/CONTRACT.md",
+    "sha256": "1787f3366d307d2c1a0cd9f49807d5deaf430f8a9fe43f1a0b2f5dd633f16f2d",
+    "bytes": 11231
+  }
+}

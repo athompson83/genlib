@@ -82,9 +82,10 @@ def geohash_decode(geohash: str) -> GeohashCell:
 def bounding_box(lat: float, lon: float, radius_meters: float) -> BoundingBox:
     """Box containing every point within radius_meters, clamped to valid coordinates.
 
-    The longitude half-width is widened by 1/cos(lat) (solved exactly on the sphere) and
-    becomes the full range when the circle reaches a pole. Boxes crossing the
-    antimeridian are clamped to [-180, 180] rather than split.
+    The longitude half-width is the circle's widest longitude extent, asin(sin(r) / cos(lat))
+    for angular radius r, and becomes the full range when the circle reaches a pole
+    (sin(r) >= cos(lat)) or when the box would cross the antimeridian, so points on
+    the far side of +-180 are never excluded.
     """
     _check(lat, lon)
     if isinstance(radius_meters, bool) or not isinstance(radius_meters, (int, float)) \
@@ -93,10 +94,13 @@ def bounding_box(lat: float, lon: float, radius_meters: float) -> BoundingBox:
     angular = radius_meters / EARTH_RADIUS_M
     d_lat = math.degrees(angular)
     min_lat, max_lat = lat - d_lat, lat + d_lat
-    ratio = math.sin(angular / 2) / math.cos(math.radians(lat)) if abs(lat) < 90 else 2.0
+    ratio = math.sin(angular) / math.cos(math.radians(lat)) if abs(lat) < 90 else 2.0
     if min_lat <= -90 or max_lat >= 90 or ratio >= 1:
         min_lon, max_lon = -180.0, 180.0
     else:
-        d_lon = math.degrees(2 * math.asin(ratio))
-        min_lon, max_lon = max(-180.0, lon - d_lon), min(180.0, lon + d_lon)
+        d_lon = math.degrees(math.asin(ratio))
+        if lon - d_lon < -180 or lon + d_lon > 180:
+            min_lon, max_lon = -180.0, 180.0
+        else:
+            min_lon, max_lon = lon - d_lon, lon + d_lon
     return BoundingBox(max(-90.0, min_lat), min_lon, min(90.0, max_lat), max_lon)

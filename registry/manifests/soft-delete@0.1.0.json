@@ -80,6 +80,21 @@
       "bytes": 2336
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createSoftDelete",
@@ -195,7 +210,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/soft-delete/module.json",
-    "sha256": "e40c43d22c56e29369a22ba98cd6f4bf5fa228a53aa7662cb9803e398f816dbd"
+    "sha256": "21544213be0427edc51cde7ffee72add8d5bd1c1245511b8f56be4698a2e2e71"
   },
   "contractFile": {
     "path": "modules/soft-delete/CONTRACT.md",

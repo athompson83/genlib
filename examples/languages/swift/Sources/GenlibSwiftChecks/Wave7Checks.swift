@@ -68,23 +68,23 @@ private let hashStrings: [(String, UInt32, UInt32, String, UInt32, UInt32)] = [
 private let jumpVectors: [(UInt64, Int, Int)] = [(0, 1, 0), (1, 10, 6), (256, 1024, 520), (3735928559, 100, 87), (18446744073709551615, 1000, 313), (12345678901234567, 7, 5), (42, 2147483647, 1603940301)]
 
 private let flagCases: [(FeatureFlag, String, FlagEvaluation)] = [
-    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-1", FlagEvaluation(on: false, reason: "excluded", bucket: 4063, variant: nil)),
-    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-2", FlagEvaluation(on: true, reason: "rollout", bucket: 1682, variant: nil)),
-    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-3", FlagEvaluation(on: false, reason: "excluded", bucket: 9301, variant: nil)),
-    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-42", FlagEvaluation(on: false, reason: "excluded", bucket: 9926, variant: nil)),
-    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "alice@example.com", FlagEvaluation(on: false, reason: "excluded", bucket: 2919, variant: nil)),
-    (FeatureFlag(key: "new-checkout", allow: ["user-2"], deny: ["user-1"], rolloutPercent: 25), "user-1", FlagEvaluation(on: false, reason: "deny", bucket: 4063, variant: nil)),
-    (FeatureFlag(key: "new-checkout", allow: ["user-2"], deny: ["user-1"], rolloutPercent: 25), "user-2", FlagEvaluation(on: true, reason: "allow", bucket: 1682, variant: nil)),
-    (FeatureFlag(key: "beta", enabled: false, allow: ["vip"]), "vip", FlagEvaluation(on: false, reason: "disabled", bucket: 3546, variant: nil)),
-    (FeatureFlag(key: "banner", rolloutPercent: 0), "user-1", FlagEvaluation(on: false, reason: "excluded", bucket: 6646, variant: nil)),
-    (FeatureFlag(key: "banner", rolloutPercent: 100), "user-1", FlagEvaluation(on: true, reason: "rollout", bucket: 6646, variant: nil)),
-    (FeatureFlag(key: "banner", rolloutPercent: 12.34), "user-9", FlagEvaluation(on: false, reason: "excluded", bucket: 7598, variant: nil)),
-    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u1", FlagEvaluation(on: true, reason: "rollout", bucket: 4196, variant: "monthly-first")),
-    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u2", FlagEvaluation(on: true, reason: "rollout", bucket: 7053, variant: "control")),
-    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u3", FlagEvaluation(on: true, reason: "rollout", bucket: 9434, variant: "annual-first")),
-    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u4", FlagEvaluation(on: true, reason: "rollout", bucket: 1339, variant: "annual-first")),
-    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u5", FlagEvaluation(on: true, reason: "rollout", bucket: 3720, variant: "annual-first")),
-    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "ünïcode", FlagEvaluation(on: true, reason: "rollout", bucket: 9874, variant: "control")),
+    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-1", FlagEvaluation(on: true, reason: "rollout", bucket: 849, variant: nil)),
+    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-2", FlagEvaluation(on: false, reason: "excluded", bucket: 5308, variant: nil)),
+    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-3", FlagEvaluation(on: false, reason: "excluded", bucket: 5247, variant: nil)),
+    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "user-42", FlagEvaluation(on: false, reason: "excluded", bucket: 9209, variant: nil)),
+    (FeatureFlag(key: "new-checkout", rolloutPercent: 25), "alice@example.com", FlagEvaluation(on: false, reason: "excluded", bucket: 9060, variant: nil)),
+    (FeatureFlag(key: "new-checkout", allow: ["user-2"], deny: ["user-1"], rolloutPercent: 25), "user-1", FlagEvaluation(on: false, reason: "deny", bucket: 849, variant: nil)),
+    (FeatureFlag(key: "new-checkout", allow: ["user-2"], deny: ["user-1"], rolloutPercent: 25), "user-2", FlagEvaluation(on: true, reason: "allow", bucket: 5308, variant: nil)),
+    (FeatureFlag(key: "beta", enabled: false, allow: ["vip"]), "vip", FlagEvaluation(on: false, reason: "disabled", bucket: 8844, variant: nil)),
+    (FeatureFlag(key: "banner", rolloutPercent: 0), "user-1", FlagEvaluation(on: false, reason: "excluded", bucket: 6875, variant: nil)),
+    (FeatureFlag(key: "banner", rolloutPercent: 100), "user-1", FlagEvaluation(on: true, reason: "rollout", bucket: 6875, variant: nil)),
+    (FeatureFlag(key: "banner", rolloutPercent: 12.34), "user-9", FlagEvaluation(on: false, reason: "excluded", bucket: 8197, variant: nil)),
+    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u1", FlagEvaluation(on: true, reason: "rollout", bucket: 6435, variant: "control")),
+    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u2", FlagEvaluation(on: true, reason: "rollout", bucket: 401, variant: "annual-first")),
+    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u3", FlagEvaluation(on: true, reason: "rollout", bucket: 9955, variant: "monthly-first")),
+    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u4", FlagEvaluation(on: true, reason: "rollout", bucket: 8249, variant: "annual-first")),
+    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "u5", FlagEvaluation(on: true, reason: "rollout", bucket: 6254, variant: "control")),
+    (FeatureFlag(key: "pricing-test", variants: [FlagVariant("control", weight: 50), FlagVariant("annual-first", weight: 30), FlagVariant("monthly-first", weight: 20)]), "ünïcode", FlagEvaluation(on: true, reason: "rollout", bucket: 7068, variant: "control")),
 ]
 private let flagInvalid: [FeatureFlag] = [
     FeatureFlag(key: "bad key"),
@@ -271,6 +271,43 @@ func runFeatureFlagsChecks(_ c: inout Checks) {
         if low?.on == true && high?.on != true { monotonic = false }
     }
     c.check("evaluateFlag rollout is monotonic", monotonic)
+    // Plain FNV-1a's low bit is the parity of the input bytes, so two 50/50 experiments with similar keys put every
+    // subject in the same half of both. The fmix32 finalizer must keep them independent (chi-square < 10.83, p > 0.001).
+    let ab = [FlagVariant("a", weight: 1), FlagVariant("b", weight: 1)]
+    for (k1, k2) in [("checkout-a", "checkout-b"), ("exp1", "exp2")] {
+        var parity: [[Double]] = [[0, 0], [0, 0]]
+        var arms: [[Double]] = [[0, 0], [0, 0]]
+        for i in 0..<10000 {
+            let u = "u\(i)"
+            guard let b1 = try? FeatureFlags.evaluateFlag(FeatureFlag(key: k1), userId: u),
+                  let b2 = try? FeatureFlags.evaluateFlag(FeatureFlag(key: k2), userId: u),
+                  let v1 = try? FeatureFlags.evaluateFlag(FeatureFlag(key: k1, variants: ab), userId: u),
+                  let v2 = try? FeatureFlags.evaluateFlag(FeatureFlag(key: k2, variants: ab), userId: u) else { continue }
+            parity[b1.bucket % 2][b2.bucket % 2] += 1
+            arms[v1.variant == "b" ? 1 : 0][v2.variant == "b" ? 1 : 0] += 1
+        }
+        let cp = flagChiSquare2x2(parity), ca = flagChiSquare2x2(arms)
+        c.check("evaluateFlag bucket parity \(k1)/\(k2) independent (chi-square \(cp))", cp < 10.83)
+        c.check("evaluateFlag 50/50 variants \(k1)/\(k2) independent (chi-square \(ca))", ca < 10.83)
+    }
+    var counts = [Int](repeating: 0, count: 100)
+    for i in 0..<10000 {
+        if let r = try? FeatureFlags.evaluateFlag(FeatureFlag(key: "checkout-a"), userId: "u\(i)") { counts[r.bucket % 100] += 1 }
+    }
+    c.check("evaluateFlag 100 buckets each get 100 +/- 40 of 10000 subjects", counts.allSatisfy { abs($0 - 100) <= 40 })
+}
+
+/// Chi-square statistic of the 2x2 contingency table of two 0/1 assignments.
+private func flagChiSquare2x2(_ t: [[Double]]) -> Double {
+    let n = t[0][0] + t[0][1] + t[1][0] + t[1][1]
+    var chi = 0.0
+    for i in 0..<2 {
+        for j in 0..<2 {
+            let e = (t[i][0] + t[i][1]) * (t[0][j] + t[1][j]) / n
+            chi += (t[i][j] - e) * (t[i][j] - e) / e
+        }
+    }
+    return chi
 }
 
 func runHumanUnitsChecks(_ c: inout Checks) {

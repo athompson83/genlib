@@ -41,7 +41,8 @@ export async function preflight(file: FileLike, policyInput: UploadPolicyInput |
   if (file.size === 0) return fail("empty");
   if (file.size > policy.maxBytes) return fail("too-large");
   if (typeof file.name !== "string" || file.name.trim() === "") return fail("bad-name");
-  const filename = sanitizeFilename(file.name, policy.maxFilenameBytes);
+  const filename = sanitizeFilename(file.name, { maxBytes: policy.maxFilenameBytes, filenameControls: policy.filenameControls, invalidFilenames: policy.invalidFilenames });
+  if (filename === null) return fail("bad-name");
   const claimed = typeForExtension(filename, policy);
   if (!claimed) return fail("type-not-allowed");
   if (!declaredTypeAgrees(file.type, claimed, policy)) return fail("type-mismatch");

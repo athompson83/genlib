@@ -60,11 +60,25 @@ Optional maintenance evidence travels with the module, and `genlib inspect <id>`
 
 The registry build rejects malformed evidence, a changelog that does not start at the current version, and a non-id replacement. Evidence describes this repository's tests, not the consuming application.
 
+## Install profiles
+
+`profiles` (optional) names groups of the module's own `files` sources, so an app copies only what it wires:
+
+```json
+"profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] }
+```
+
+Names match `[a-z][a-z0-9-]*`, a module has at most 8 profiles, every listed source must be in `files`, and together the profiles must cover every file; the registry build rejects anything else. Feature modules with a core/store/HTTP split use `core` (the core file plus what it imports), `memory`, `sql` (store and `schema.sql`) and `http`, plus one profile per remaining file (`transports`, `client`).
+
+`genlib plan|add <id> --profile core,memory` installs the union of the named profiles plus every module file those files import (relative imports are followed, so a profile cannot miss a dependency), and refuses with `UNRESOLVED_IMPORT` if an import resolves to neither a module file nor a dependency module's file. Without `--profile` every file installs, as before. Module `dependencies` always install fully. The chosen profiles are recorded in the lock; adding, updating, verifying and removing follow it ([lifecycle.md](lifecycle.md#after-installing-receipts-updates-and-rollback)). `genlib quick` prints `# profiles:` and suggests `--profile core,memory,http` (those present) on its add command.
+
+`plan` and `add` print `wiring`: the first ```` ```ts ```` block under `## Integration points` in `CONTRACT.md`, with import specifiers of module files rewritten to the installed path relative to the app root (`./src/genlib/<id>/core.js`, or `.ts` with `--ts-imports`). Imports of files the selection did not install are omitted with the statements built on them, and a `// not installed: <names> (add --profile <name>)` line names what to add; installed files the example does not import get an `// also: import { ... }` line from `exports`. The snippet is cut at 40 lines. Keep that block a complete, minimal wiring example with imports written as `./genlib/<id>/<file>.js`.
+
 ## Database files
 
 `decisions` (optional, 1 to 4 strings of at most 120 characters) lists the behavior the module fixes that a task may contradict: routes and prefixes, status codes, storage and token handling, default limits. `genlib quick` prints them on its `# fixed:` line so an agent can decide to reuse, wire only the core, or write the feature in one call. State facts from the module's own code; never describe intent.
 
-A feature package that needs storage may ship a `schema.sql` (PostgreSQL) and a SQL store next to its store interface, as `org-invitations`, `comments`, `rbac`, `password-reset`, `short-links`, `site-search`, `email-outbox`, `web-push`, `chat`, `soft-delete`, `api-keys`, `account-deletion`, `tenant-isolation`, `audit-log`, `email-signup`, `two-factor`, `file-uploads`, `webhook-delivery` and `scheduled-tasks` do. Also credit the module in the matching feature contracts ([coverage.md](coverage.md)). List both in `files`; the installer copies them like any other file and never runs migrations. Test the SQL against a real engine (the repository uses PGlite, a WASM build of PostgreSQL, as a devDependency), record it in `verification.environment` (`{"postgres": "PGlite 0.5.8"}`), and include concurrency cases for every state change that must happen once. Keep the SQL store's executor shape (`query(text, params)` and an optional `transaction(fn)`) so apps can pass `pg`, `postgres.js`, Drizzle or Neon clients through a small adapter.
+A feature package that needs storage may ship a `schema.sql` (PostgreSQL) and a SQL store next to its store interface, as `org-invitations`, `comments`, `rbac`, `password-reset`, `short-links`, `site-search`, `email-outbox`, `web-push`, `chat`, `soft-delete`, `api-keys`, `account-deletion`, `tenant-isolation`, `audit-log`, `email-signup`, `two-factor`, `file-uploads`, `webhook-delivery`, `scheduled-tasks`, `csv-download`, `url-slugs`, `keyset-pagination`, `nearby-search`, `feature-rollout` and `recurring-events` do. Also credit the module in the matching feature contracts ([coverage.md](coverage.md)). List both in `files`; the installer copies them like any other file and never runs migrations. Test the SQL against a real engine (the repository uses PGlite, a WASM build of PostgreSQL, as a devDependency), record it in `verification.environment` (`{"postgres": "PGlite 0.5.8"}`), and include concurrency cases for every state change that must happen once. Keep the SQL store's executor shape (`query(text, params)` and an optional `transaction(fn)`) so apps can pass `pg`, `postgres.js`, Drizzle or Neon clients through a small adapter.
 
 ## After installation
 

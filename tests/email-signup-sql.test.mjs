@@ -101,7 +101,9 @@ test('resend-limits on PostgreSQL: cooldown, window cap, concurrent resends boun
 test('verification-email on PostgreSQL: failed delivery revokes the stored token and is reported server-side', async () => {
   const keys = [];
   const { db, signup } = await setup({ sendAttempts: 2, sendEmail: async message => { keys.push(message.idempotencyKey); throw new Error('down'); } });
-  assert.deepEqual(await signup.signup('ann@example.com', GOOD), { ok: true, serverError: 'delivery-failed' });
+  const failed = await signup.signup('ann@example.com', GOOD);
+  assert.equal(failed.serverError, 'delivery-failed');
+  assert.equal(typeof failed.accountId, 'string');
   assert.equal(keys.length, 2);
   assert.equal(keys[0], keys[1], 'retries reuse the idempotency key');
   const row = (await db.query('SELECT revoked_at FROM email_verification_tokens')).rows[0];
@@ -138,4 +140,19 @@ test('resend-limits on PostgreSQL: interleaved concurrent resends leave at least
   assert.equal(pending, 1, 'exactly one link survives');
   const outcomes = await Promise.allSettled(sent.slice(1).map(message => signup.confirm(tokenOf(message))));
   assert.ok(outcomes.some(outcome => outcome.status === 'fulfilled'), 'at least one resent link confirms');
+});
+
+test('resend-limits on PostgreSQL: the per-window cap is rolling', async () => {
+  const { signup, sent, advance } = await setup({ resendCooldownMs: MINUTE, maxSendsPerWindow: 5, sendWindowMs: 60 * MINUTE });
+  await signup.signup('ann@example.com', GOOD);
+  advance(56 * MINUTE);
+  for (let i = 0; i < 4; i++) { assert.deepEqual(await signup.resend('ann@example.com'), { ok: true }); advance(MINUTE); }
+  assert.deepEqual(await signup.resend('ann@example.com'), { ok: true }, 'the signup email left the rolling hour');
+  advance(MINUTE);
+  assert.equal((await signup.resend('ann@example.com')).serverError, 'rate-limited', 'five sends in the last hour');
+  const burst = await Promise.all([1, 2, 3].map(() => (advance(0), signup.resend('ann@example.com'))));
+  assert.ok(burst.every(r => r.serverError === 'rate-limited'));
+  advance(55 * MINUTE);
+  assert.deepEqual(await signup.resend('ann@example.com'), { ok: true });
+  assert.equal(sent.length, 7);
 });

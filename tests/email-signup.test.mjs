@@ -215,7 +215,7 @@ test("verification-email: one idempotency key per token, retried with the same k
   let failures = 2;
   const attempts = [];
   const flaky = setup({ options: { sendEmail: async (message) => { attempts.push(message); if (failures-- > 0) throw new Error("timeout"); } } });
-  assert.deepEqual(await flaky.signup.signup("ann@example.com", GOOD), { ok: true });
+  assert.deepEqual(await flaky.signup.signup("ann@example.com", GOOD), { ok: true, accountId: "id1" });
   assert.equal(attempts.length, 3);
   assert.ok(attempts.every((message) => message.idempotencyKey === attempts[0].idempotencyKey && message.link === attempts[0].link));
   assert.match(attempts[0].idempotencyKey, /^email-verification:id\d+$/);
@@ -233,7 +233,7 @@ test("verification-email: one idempotency key per token, retried with the same k
 
   // Every attempt fails: reported server-side, link revoked, the account can resend later.
   const down = setup({ options: { sendAttempts: 2, sendEmail: async (message) => { attempts.push(message); throw new Error("down"); } } });
-  assert.deepEqual(await down.signup.signup("cat@example.com", GOOD), { ok: true, serverError: "delivery-failed" });
+  assert.deepEqual(await down.signup.signup("cat@example.com", GOOD), { ok: true, accountId: "id1", serverError: "delivery-failed" });
   const lost = down.tokenOf(attempts.at(-1));
   await assert.rejects(down.signup.confirm(lost), code("invalid-token"), "a copy the provider sent anyway is inert");
   assert.ok(down.store.dump().tokens.every((token) => token.revokedAt !== undefined));
@@ -245,7 +245,7 @@ test("signup is enumeration-safe: an existing email gets the same result, no new
   const { signup, store, sent, existing } = setup();
   const fresh = await signup.signup("ann@example.com", GOOD);
   const again = await signup.signup("Ann@Example.com", "another long passphrase");
-  assert.deepEqual(fresh, { ok: true });
+  assert.deepEqual(fresh, { ok: true, accountId: "id1" }, "accountId is server-only, like serverError; the HTTP layer answers {ok: true}");
   assert.equal(again.ok, true);
   assert.equal(again.serverError, "existing-account", "server-only detail");
   assert.equal(store.dump().accounts.length, 1);
@@ -370,4 +370,78 @@ test("HTTP adapter: 202 identical bodies, 400 problems, 200 confirm, origin, 429
   const limited = await post("confirm", { token: tokenOf(sent[0]) });
   assert.equal(limited.status, 429);
   assert.equal(limited.headers.get("cache-control"), "no-store");
+});
+
+// ---- Options and fixes from fitting the module to an independent app spec (0.2.0) ----
+
+test("resend-limits: the per-window cap is a rolling window, not a fixed one", async () => {
+  const { signup, sent, advance } = setup({ options: { resendCooldownMs: MINUTE, maxSendsPerWindow: 5, sendWindowMs: 60 * MINUTE } });
+  await signup.signup("ann@example.com", GOOD);
+  advance(56 * MINUTE);
+  for (let i = 0; i < 4; i++) { assert.deepEqual(await signup.resend("ann@example.com"), { ok: true }); advance(MINUTE); }
+  // t0+60: the signup email leaves the rolling hour, so one more send fits.
+  assert.deepEqual(await signup.resend("ann@example.com"), { ok: true });
+  advance(MINUTE);
+  // t0+61: the sends at 56..60 minutes are all inside the last hour. A fixed window that restarted at t0+60 would allow this.
+  assert.deepEqual(await signup.resend("ann@example.com"), { ok: true, serverError: "rate-limited" });
+  await assert.rejects(signup.resendForAccount("id1"), (error) => code("rate-limited")(error) && error.retryAfterMs === 55 * MINUTE);
+  assert.equal(sent.length, 6);
+  advance(55 * MINUTE);
+  assert.deepEqual(await signup.resend("ann@example.com"), { ok: true });
+});
+
+test("retryDelaysMs sets the waits between delivery attempts", async () => {
+  const attempts = [];
+  const failing = (n) => async (message) => { attempts.push(message); if (attempts.length <= n) throw new Error("timeout"); };
+  const quick = setup({ options: { retryDelaysMs: [10, 20], sendEmail: failing(2) } });
+  assert.equal((await quick.signup.signup("ann@example.com", GOOD)).serverError, undefined);
+  assert.deepEqual(quick.sleeps, [10, 20]);
+  attempts.length = 0;
+  const repeat = setup({ options: { retryDelaysMs: [5], sendAttempts: 4, sendEmail: failing(3) } });
+  await repeat.signup.signup("bob@example.com", GOOD);
+  assert.deepEqual(repeat.sleeps, [5, 5, 5], "the last delay repeats");
+  attempts.length = 0;
+  const none = setup({ options: { retryDelaysMs: [0], sendEmail: failing(1) } });
+  await none.signup.signup("cat@example.com", GOOD);
+  assert.deepEqual(none.sleeps, [], "a zero delay does not sleep");
+  const base = { store: new MemoryEmailSignupStore(), sendEmail: async () => {}, baseUrl: "https://app.example.com/verify" };
+  assert.throws(() => createEmailSignup({ ...base, retryDelaysMs: [] }), RangeError);
+  assert.throws(() => createEmailSignup({ ...base, retryDelaysMs: [-1] }), RangeError);
+  assert.throws(() => createEmailSignup({ ...base, retryDelaysMs: [120_001] }), RangeError);
+});
+
+test("signup returns the new account's id server-side; onVerified receives the account email", async () => {
+  const verified = [];
+  const { signup, sent, tokenOf, existing } = setup({ options: { onVerified: async (id, account) => { verified.push([id, account.email]); } } });
+  assert.deepEqual(await signup.signup("ann@example.com", GOOD), { ok: true, accountId: "id1" });
+  const again = await signup.signup("ANN@example.com", GOOD);
+  assert.equal(again.accountId, undefined, "a registered email does not reveal its account id");
+  assert.equal(existing.length, 1);
+  await signup.confirm(tokenOf(sent[0]));
+  assert.deepEqual(verified, [["id1", "ann@example.com"]]);
+});
+
+test("verifyPassword checks a signup account's password and costs one hash for unknown emails", async () => {
+  const calls = [];
+  const hasher = { hash: async (p) => `fake$${p}`, verify: async (p, h) => { calls.push(h); return h === `fake$${p}`; } };
+  const { signup } = setup({ options: { hasher } });
+  await signup.signup("ann@example.com", GOOD);
+  assert.equal(await signup.verifyPassword(" ANN@example.com", GOOD), "id1");
+  assert.equal(await signup.verifyPassword("ann@example.com", GOOD + "!"), null);
+  calls.length = 0;
+  assert.equal(await signup.verifyPassword("nobody@example.com", GOOD), null);
+  assert.equal(calls.length, 1, "an unknown email still runs one verify, against a dummy hash");
+  assert.equal(await signup.verifyPassword("not an email", GOOD), null);
+  assert.equal(await signup.verifyPassword("ann@example.com", 42), null);
+  assert.equal(await signup.verifyPassword("ann@example.com", "x".repeat(5000)), null);
+});
+
+test("the built-in blocklist covers common 8 to 14 character passwords, for apps that lower minLength to 8", () => {
+  const policy = createPasswordPolicy({ minLength: 8 });
+  for (const weak of ["password", "Password1", "passw0rd", "12345678", "123456789", "1234567890", "11111111", "qwerty123", "QwertyUIOP",
+    "iloveyou", "abc12345", "letmein1", "sunshine", "football", "baseball", "princess", "welcome1", "trustno1", "superman", "qwertyui", "1qaz2wsx"]) {
+    assert.ok(policy(weak, {}).includes("common-password"), weak);
+  }
+  assert.deepEqual(policy("eightch8", {}), []);
+  assert.deepEqual(policy("lowercaselongphrase", {}), []);
 });

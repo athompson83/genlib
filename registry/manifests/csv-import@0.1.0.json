@@ -63,6 +63,17 @@
       "bytes": 7067
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createImporter",
@@ -169,7 +180,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/csv-import/module.json",
-    "sha256": "e741a9dcf2fe5b9c65938a84ac87dc38a1823e6ad8e9e67e20946794108500fb"
+    "sha256": "d5e6982f2a4f4fd4c3e41d503bfd1d4b2d1ee9afc7bb81255f263de2ca46ce28"
   },
   "contractFile": {
     "path": "modules/csv-import/CONTRACT.md",

@@ -24,5 +24,8 @@ CREATE TABLE IF NOT EXISTS two_factor_recovery_codes (
 CREATE TABLE IF NOT EXISTS two_factor_attempts (
   user_id       text PRIMARY KEY,
   window_start  bigint NOT NULL,
-  count         integer NOT NULL
+  count         integer NOT NULL,
+  -- Lockout mode (lockoutMs): locked until this instant. Upgrading from 0.1.0:
+  -- ALTER TABLE two_factor_attempts ADD COLUMN IF NOT EXISTS locked_until bigint;
+  locked_until  bigint
 );

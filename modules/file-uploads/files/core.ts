@@ -4,10 +4,12 @@
 // the interfaces below. This module includes NO antivirus engine: without a scanner every upload stays quarantined
 // and is never served.
 //
-// Upload order: authorize -> declared Content-Length against the limit -> extension and declared type against the
-// allowlist -> reserve quota atomically -> read the stream counting bytes (cancel at the limit) -> sniff the bytes
-// -> store under a random key -> insert metadata as quarantined -> settle the quota to the real size. Any failure
-// after the reservation releases it, and any early rejection cancels the request stream unread.
+// Upload order: authorize -> declared Content-Length against the limit -> file name -> extension and declared type
+// against the allowlist -> reserve quota atomically (the declared length up front, otherwise as bytes arrive) -> read
+// the stream counting bytes (cancel at the limit) -> sniff the bytes -> store under a random key -> insert metadata as
+// quarantined -> settle the quota to the real size. Any failure after a reservation releases it, and any early
+// rejection cancels the request stream unread. Scans claim a file first, so overlapping scan workers never scan one
+// file twice.
 import { checkType, normalizePolicy, sanitizeFilename, sniffType, typeForExtension, declaredTypeAgrees, UPLOAD_TYPES } from "./policy.js";
 import type { UploadPolicy, UploadPolicyInput, UploadTypeId } from "./policy.js";
 
@@ -27,12 +29,17 @@ export interface UploadRecord {
   readonly status: UploadStatus;
   readonly createdAt: number;
   readonly scannedAt?: number;
+  /** Set while one scan worker holds the file (see claimScan); expires so a crashed worker cannot block it. */
+  readonly scanClaimedUntil?: number;
 }
 
 export interface UploadMetadataStore {
   insert(record: UploadRecord): Promise<void>;
   get(id: string): Promise<UploadRecord | null>;
-  /** Changes the status only when it is currently `from`; returns the updated record or null. One conditional statement. */
+  /**
+   * Changes the status only when it is currently `from` (clearing any scan claim); returns the updated record or null.
+   * One conditional statement.
+   */
   setStatus(id: string, from: UploadStatus, to: UploadStatus, at: number): Promise<UploadRecord | null>;
   /** Deletes the record and returns it as it was, or null when absent. Exactly one concurrent caller gets the record. */
   delete(id: string): Promise<UploadRecord | null>;
@@ -44,6 +51,16 @@ export interface UploadMetadataStore {
   /** Subtracts `bytes` from the tenant's usage (never below zero). */
   release(tenantId: string, bytes: number): Promise<void>;
   usage(tenantId: string): Promise<number>;
+  /**
+   * Claims a quarantined file for one scan worker until `until`: sets scanClaimedUntil only when the file is quarantined
+   * and unclaimed or its claim expired at `now`. Returns the claimed record or null. One conditional statement, so
+   * overlapping workers never scan one file at the same time.
+   */
+  claimScan(id: string, now: number, until: number): Promise<UploadRecord | null>;
+  /** Drops the claim if it is still `until` (after a failed scan, so the next pass retries the file). */
+  releaseScanClaim(id: string, until: number): Promise<void>;
+  /** Up to `limit` quarantined files without a live claim at `now`, oldest first. */
+  listQuarantined(now: number, limit: number): Promise<UploadRecord[]>;
 }
 
 export interface BlobStore {
@@ -73,11 +90,29 @@ export interface FileUploadsOptions<User> {
   readonly now?: () => number;
   /** Random identifier source for record ids and storage keys. Default crypto.randomUUID. */
   readonly newId?: () => string;
+  /**
+   * Whether the client's declared Content-Type must agree with the extension and the bytes. Default true. With false
+   * it is ignored entirely and the type comes from the bytes and the extension alone (the browser preflight still
+   * checks it).
+   */
+  readonly checkDeclaredType?: boolean;
+  /** Error for a body longer than its declared Content-Length: "bad-request" (default) or "too-large". */
+  readonly lengthMismatch?: "bad-request" | "too-large";
+  /** How long a scan claim lasts before another worker may take the file over. Default 15 minutes; 1 s to 24 h. */
+  readonly scanLeaseMs?: number;
+}
+
+/** What one scanPending pass did. `skipped` files were claimed or decided by another worker meanwhile. */
+export interface ScanSummary {
+  readonly clean: number;
+  readonly infected: number;
+  readonly failed: number;
+  readonly skipped: number;
 }
 
 export type FileUploadErrorCode =
   | "forbidden" | "not-found" | "too-large" | "quota-exceeded" | "unsupported-type" | "type-mismatch"
-  | "bad-request" | "quarantined" | "infected" | "scan-failed";
+  | "bad-request" | "invalid-name" | "quarantined" | "infected" | "scan-failed";
 
 export class FileUploadError extends Error {
   readonly code: FileUploadErrorCode;
@@ -120,6 +155,13 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
   const policy: UploadPolicy = normalizePolicy(options.policy);
   const now = options.now ?? Date.now;
   const newId = options.newId ?? (() => crypto.randomUUID());
+  const checkDeclared = options.checkDeclaredType ?? true;
+  // Without the declared-type check, generic and missing declared types are always acceptable.
+  const typePolicy: UploadPolicy = checkDeclared ? policy : { ...policy, allowGenericDeclaredType: true };
+  const lengthMismatch = options.lengthMismatch ?? "bad-request";
+  if (lengthMismatch !== "bad-request" && lengthMismatch !== "too-large") throw new RangeError('lengthMismatch must be "bad-request" or "too-large"');
+  const scanLeaseMs = options.scanLeaseMs ?? 15 * 60_000;
+  if (!Number.isInteger(scanLeaseMs) || scanLeaseMs < 1000 || scanLeaseMs > 24 * 3_600_000) throw new RangeError("scanLeaseMs must be 1 second to 24 hours");
   const { metadata, blobs } = options;
 
   async function quotaFor(tenantId: string): Promise<number> {
@@ -132,10 +174,21 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
     return (await options.authorize(user, tenantId, action)) === true;
   }
 
-  /** Reads at most `limit` bytes; cancels the stream and throws too-large as soon as one more byte arrives. */
-  async function readLimited(body: ReadableStream<Uint8Array> | Uint8Array, limit: number, declared: number | null): Promise<Uint8Array> {
+  /** The error for `size` bytes read past `limit`: a body longer than its declared length, or over maxBytes. */
+  function overLimit(size: number, declared: number | null): FileUploadError {
+    // Over the declared length is a lying client (lengthMismatch, default 400); over the policy limit is too large (413).
+    const mismatch = declared !== null && size > declared && declared < policy.maxBytes;
+    return new FileUploadError(mismatch ? lengthMismatch : "too-large", "Body too large");
+  }
+
+  /**
+   * Reads at most `limit` bytes; cancels the stream and throws as soon as one more byte arrives. `grow(total)` runs
+   * before each chunk is accepted (quota reservation for bodies without Content-Length) and may throw to stop reading.
+   */
+  async function readLimited(body: ReadableStream<Uint8Array> | Uint8Array, limit: number, declared: number | null, grow: (total: number) => Promise<void>): Promise<Uint8Array> {
     if (body instanceof Uint8Array) {
-      if (body.byteLength > limit) throw new FileUploadError(declared !== null && body.byteLength > declared ? "bad-request" : "too-large", "Body too large");
+      if (body.byteLength > limit) throw overLimit(body.byteLength, declared);
+      await grow(body.byteLength);
       return body.slice();
     }
     const reader = body.getReader();
@@ -147,10 +200,8 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
         if (done) break;
         if (!(value instanceof Uint8Array)) throw new FileUploadError("bad-request", "Body chunks must be bytes");
         size += value.byteLength;
-        if (size > limit) {
-          // Over the declared length is a lying client (400); over the policy limit is too large (413).
-          throw new FileUploadError(declared !== null && size > declared && declared < policy.maxBytes ? "bad-request" : "too-large", "Body too large");
-        }
+        if (size > limit) throw overLimit(size, declared);
+        await grow(size);
         chunks.push(value);
       }
     } catch (error) {
@@ -176,23 +227,41 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
       const declared = input.contentLength ?? null;
       if (declared !== null && (!Number.isSafeInteger(declared) || declared < 0)) throw new FileUploadError("bad-request", "Invalid Content-Length");
       if (declared !== null && declared > policy.maxBytes) throw new FileUploadError("too-large", "File too large");
+      const rejectNames = policy.invalidFilenames === "reject";
+      const badName = () => new FileUploadError(rejectNames ? "invalid-name" : "bad-request", "Invalid file name");
+      if (typeof input.filename !== "string" || input.filename.trim() === "" || input.filename.length > 1024) throw badName();
+      const filename = sanitizeFilename(input.filename, { maxBytes: policy.maxFilenameBytes, filenameControls: policy.filenameControls, invalidFilenames: policy.invalidFilenames });
+      if (filename === null) throw badName();
       if (declared === 0 || body === null) throw new FileUploadError("bad-request", "Empty file");
-      if (typeof input.filename !== "string" || input.filename.trim() === "" || input.filename.length > 1024) throw new FileUploadError("bad-request", "Invalid file name");
-      const filename = sanitizeFilename(input.filename, policy.maxFilenameBytes);
+      const declaredType = checkDeclared ? input.declaredType : null;
       const claimed = typeForExtension(filename, policy);
       if (!claimed) throw new FileUploadError("unsupported-type", "File type not accepted");
-      if (!declaredTypeAgrees(input.declaredType, claimed, policy)) throw new FileUploadError("type-mismatch", "Declared type does not match the extension");
+      if (!declaredTypeAgrees(declaredType, claimed, typePolicy)) throw new FileUploadError("type-mismatch", "Declared type does not match the extension");
 
-      const want = declared ?? policy.maxBytes;
-      if (!(await metadata.reserve(input.tenantId, want, await quotaFor(input.tenantId)))) throw new FileUploadError("quota-exceeded", "Storage quota exceeded");
-      reserved = want;
+      const limit = await quotaFor(input.tenantId);
+      const refuse = () => new FileUploadError("quota-exceeded", "Storage quota exceeded");
+      if (declared !== null) {
+        if (!(await metadata.reserve(input.tenantId, declared, limit))) throw refuse();
+        reserved = declared;
+      }
+      // Without a declared length, reserve as bytes arrive: the rest of maxBytes at once while it fits (so concurrent
+      // uploads cannot starve each other), else exactly what each chunk needs (so a file that fits what remains of the
+      // quota is still accepted). The surplus is released when the upload settles.
+      const grow = async (total: number): Promise<void> => {
+        if (total <= reserved) return;
+        const needed = total - reserved;
+        const headroom = policy.maxBytes - reserved;
+        if (headroom > needed && (await metadata.reserve(input.tenantId, headroom, limit))) { reserved += headroom; return; }
+        if (!(await metadata.reserve(input.tenantId, needed, limit))) throw refuse();
+        reserved += needed;
+      };
 
       consumed = true;
-      const bytes = await readLimited(body, want, declared);
+      const bytes = await readLimited(body, declared ?? policy.maxBytes, declared, grow);
       if (bytes.byteLength === 0) throw new FileUploadError("bad-request", "Empty file");
       if (declared !== null && bytes.byteLength !== declared) throw new FileUploadError("bad-request", "Body length does not match Content-Length");
 
-      const verdict = checkType(sniffType(bytes), filename, input.declaredType, policy);
+      const verdict = checkType(sniffType(bytes), filename, declaredType, typePolicy);
       if (!verdict.ok) throw new FileUploadError(verdict.reason === "type-mismatch" ? "type-mismatch" : "unsupported-type", "File contents not accepted");
       const type: UploadTypeId = verdict.type;
 
@@ -264,24 +333,66 @@ export function createFileUploads<User>(options: FileUploadsOptions<User>) {
     return updated;
   }
 
-  /** Runs the injected scanner on a quarantined file. A failed or unrecognized scan leaves it quarantined. */
-  async function scan(id: string): Promise<UploadRecord | null> {
-    if (!options.scanner) throw new FileUploadError("scan-failed", "No scanner configured; files stay quarantined");
-    const record = await metadata.get(id);
-    if (!record || record.status !== "quarantined") return record;
-    const bytes = await blobs.get(record.storageKey);
-    if (!bytes) throw new FileUploadError("scan-failed", "Stored bytes are missing");
-    let verdict: unknown;
+  /** Claims and scans one file. `record` is null when another worker holds it, it is decided or it is gone. */
+  async function scanClaimed(id: string): Promise<{ record: UploadRecord | null; scanned: boolean }> {
+    const scanner = options.scanner;
+    if (!scanner) throw new FileUploadError("scan-failed", "No scanner configured; files stay quarantined");
+    const at = now();
+    const until = at + scanLeaseMs;
+    const claimed = await metadata.claimScan(id, at, until);
+    if (!claimed) return { record: null, scanned: false };
+    let verdict: ScanVerdict;
     try {
-      verdict = await options.scanner(bytes, record);
-    } catch {
-      throw new FileUploadError("scan-failed", "Scanner failed; the file stays quarantined");
+      const bytes = await blobs.get(claimed.storageKey);
+      if (!bytes) throw new FileUploadError("scan-failed", "Stored bytes are missing");
+      let result: unknown;
+      try {
+        result = await scanner(bytes, claimed);
+      } catch {
+        throw new FileUploadError("scan-failed", "Scanner failed; the file stays quarantined");
+      }
+      if (result !== "clean" && result !== "infected") throw new FileUploadError("scan-failed", "Scanner returned no verdict; the file stays quarantined");
+      verdict = result;
+    } catch (error) {
+      // Let the next pass retry the file instead of waiting for the claim to expire.
+      await metadata.releaseScanClaim(id, until).catch(() => undefined);
+      throw error;
     }
-    if (verdict !== "clean" && verdict !== "infected") throw new FileUploadError("scan-failed", "Scanner returned no verdict; the file stays quarantined");
-    return recordScanResult(id, verdict);
+    return { record: await recordScanResult(id, verdict), scanned: true };
   }
 
-  return { upload, download, remove, scan, recordScanResult, usage: (tenantId: string) => metadata.usage(tenantId), policy };
+  /**
+   * Runs the injected scanner on a quarantined file. A failed or unrecognized scan leaves it quarantined. When another
+   * worker holds the file's scan claim, or it is already decided, returns its current record without scanning.
+   */
+  async function scan(id: string): Promise<UploadRecord | null> {
+    const { record, scanned } = await scanClaimed(id);
+    return scanned ? record : metadata.get(id);
+  }
+
+  /**
+   * Scans up to `limit` quarantined files (oldest first) for a background job. Overlapping passes never scan one file
+   * twice; a failed scan leaves the file quarantined for the next pass.
+   */
+  async function scanPending(input: { limit?: number } = {}): Promise<ScanSummary> {
+    const limit = input.limit ?? 100;
+    if (!Number.isInteger(limit) || limit < 1 || limit > 10_000) throw new RangeError("limit must be 1 to 10,000");
+    const summary = { clean: 0, infected: 0, failed: 0, skipped: 0 };
+    for (const pending of await metadata.listQuarantined(now(), limit)) {
+      try {
+        const { record, scanned } = await scanClaimed(pending.id);
+        if (scanned && record?.status === "clean") summary.clean++;
+        else if (scanned && record?.status === "infected") summary.infected++;
+        else summary.skipped++;
+      } catch (error) {
+        if (!(error instanceof FileUploadError && error.code === "scan-failed")) throw error;
+        summary.failed++;
+      }
+    }
+    return summary;
+  }
+
+  return { upload, download, remove, scan, scanPending, recordScanResult, usage: (tenantId: string) => metadata.usage(tenantId), policy };
 }
 
 export type FileUploads<User> = ReturnType<typeof createFileUploads<User>>;

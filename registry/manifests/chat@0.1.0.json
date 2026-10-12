@@ -77,6 +77,21 @@
       "bytes": 1965
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createChat",
@@ -177,7 +192,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/chat/module.json",
-    "sha256": "56d8e7f1ee1561b307afc3947a6f7943e278971338ccda563ebc3fa441182b54"
+    "sha256": "b17264ff9c564f57634d75b72c2fcf22076a658e457b619a9dc2c34128db5285"
   },
   "contractFile": {
     "path": "modules/chat/CONTRACT.md",

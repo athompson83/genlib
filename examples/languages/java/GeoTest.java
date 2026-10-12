@@ -53,6 +53,42 @@ public final class GeoTest {
         check(polar.maxLat() == 90 && polar.minLon() == -180 && polar.maxLon() == 180, "polar box clamps and spans all longitudes");
         throwsIae(() -> Geo.boundingBox(0, 0, -1), "negative radius");
 
+        // Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+        Geo.Box wide = Geo.boundingBox(60, 0, 0.1 * Geo.EARTH_RADIUS_M);
+        double half = Math.toRadians(wide.maxLon());
+        double want = Math.asin(Math.sin(0.1) / Math.cos(Math.toRadians(60)));
+        check(Math.abs(half - want) <= 1e-6 * want && Math.abs(half - 0.20101) < 1e-5, "lat 60 r 0.1 half-width " + half + " want " + want);
+        check(Math.abs(wide.minLon() + wide.maxLon()) < 1e-12, "lat 60 box symmetric");
+        boolean allInside = true;
+        for (double cLat : new double[] {0, 45, 60, 75, -70}) {
+            for (double radius : new double[] {1_000, 100_000, 1_000_000}) {
+                Geo.Box box = Geo.boundingBox(cLat, 0, radius);
+                double d = radius / Geo.EARTH_RADIUS_M;
+                double p1 = Math.toRadians(cLat);
+                for (int i = 0; i < 360; i++) {
+                    double t = Math.toRadians(i);
+                    double p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(t));
+                    double l2 = Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+                    double pLat = Math.toDegrees(p2), pLon = Math.toDegrees(l2);
+                    if (pLat < box.minLat() - 1e-9 || pLat > box.maxLat() + 1e-9 || pLon < box.minLon() - 1e-9 || pLon > box.maxLon() + 1e-9) {
+                        if (allInside) System.err.println("outside: center " + cLat + ", radius " + radius + ", bearing " + i + ": " + pLat + "," + pLon + " " + box);
+                        allInside = false;
+                    }
+                }
+            }
+        }
+        check(allInside, "circle points at 360 bearings lie inside the box");
+        for (double[] c : new double[][] {{179.9, 90}, {-179.9, 270}}) {
+            Geo.Box box = Geo.boundingBox(10, c[0], 50_000);
+            check(box.minLon() == -180 && box.maxLon() == 180, "antimeridian center lon " + c[0] + " spans all longitudes " + box);
+            double d = 50_000 / Geo.EARTH_RADIUS_M, p1 = Math.toRadians(10), t = Math.toRadians(c[1]);
+            double p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(t));
+            double l2 = Math.toRadians(c[0]) + Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+            double pLat = Math.toDegrees(p2), pLon = ((Math.toDegrees(l2) + 540) % 360) - 180;
+            check(Math.abs(pLon) > 179.5 && pLat >= box.minLat() && pLat <= box.maxLat() && pLon >= box.minLon() && pLon <= box.maxLon(),
+                "antimeridian far-side point " + pLat + "," + pLon + " inside " + box);
+        }
+
         System.out.println("GeoTest: " + passed + " passed, " + failed + " failed");
         if (failed > 0) System.exit(1);
     }

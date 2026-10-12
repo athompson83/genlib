@@ -28,6 +28,7 @@
     { "source": "files/memory-store.ts", "target": "notification-inbox/memory-store.ts" },
     { "source": "files/http.ts", "target": "notification-inbox/http.ts" }
   ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "http": ["files/http.ts"] },
   "exports": [
     { "name": "createInbox", "from": "notification-inbox/core.ts" },
     { "name": "InboxError", "from": "notification-inbox/core.ts" },

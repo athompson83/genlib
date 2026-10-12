@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "url-slugs",
+  "version": "0.1.0",
+  "title": "URL slugs",
+  "description": "Title-to-slug generation for server apps: Latin diacritic transliteration and optional Unicode scripts, word-boundary length cap, concurrency-safe unique slugs per tenant scope with numeric suffixes, reserved route words, rename history with 301 redirects that never chain or loop, a PostgreSQL store and a Fetch resolve adapter.",
+  "kind": "feature",
+  "tags": ["slug", "slugify", "url slug", "permalink", "friendly url", "seo url", "unique slug", "redirect", "301", "rename", "transliterate", "server"],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/url-slugs"
+  },
+  "compatibility": {
+    "frameworks": ["any"],
+    "languages": ["typescript"],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, String.prototype.normalize, Unicode property escapes and the Fetch Request/Response APIs (http.ts only): Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core usable without http.ts; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    { "source": "files/core.ts", "target": "url-slugs/core.ts" },
+    { "source": "files/memory-store.ts", "target": "url-slugs/memory-store.ts" },
+    { "source": "files/http.ts", "target": "url-slugs/http.ts" },
+    { "source": "files/sql-store.ts", "target": "url-slugs/sql-store.ts" },
+    { "source": "files/schema.sql", "target": "url-slugs/schema.sql" }
+  ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
+  "exports": [
+    { "name": "createUrlSlugs", "from": "url-slugs/core.ts" },
+    { "name": "slugify", "from": "url-slugs/core.ts" },
+    { "name": "isCanonicalSlug", "from": "url-slugs/core.ts" },
+    { "name": "slugScope", "from": "url-slugs/core.ts" },
+    { "name": "SlugError", "from": "url-slugs/core.ts" },
+    { "name": "DEFAULT_RESERVED_SLUGS", "from": "url-slugs/core.ts" },
+    { "name": "MemorySlugStore", "from": "url-slugs/memory-store.ts" },
+    { "name": "createSqlSlugStore", "from": "url-slugs/sql-store.ts" },
+    { "name": "createSlugResolveHandler", "from": "url-slugs/http.ts" }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlSlugStore (table may be schema-qualified) with a query executor that also offers transaction() (needed for rename); elsewhere implement SlugStore with a unique (scope, slug) key and a unique current slug per (scope, entity).",
+    "Build each scope with slugScope(tenantId, collection) from trusted server context, never from the URL or request body.",
+    "Pass reserved: [...DEFAULT_RESERVED_SLUGS, ...yourRouteNames] so no slug can shadow a route; set maxLength, separator, unicode and fallback to match your URLs.",
+    "Call create when the entity is created, rename when its title or slug changes and remove when it is deleted; store the returned slug on your entity if you need it in listings.",
+    "Mount createSlugResolveHandler with routes, prefix and a scopeFor(request, params) that reads the tenant from the session or verified host, or call slugs.resolve from your page handler and issue the redirect yourself."
+  ],
+  "capabilities": [
+    "slugify-with-transliteration",
+    "word-boundary-truncation",
+    "concurrent-unique-slugs",
+    "reserved-slug-words",
+    "rename-redirect-history",
+    "tenant-scoped-slugs"
+  ],
+  "limitations": [
+    "Transliterates Latin diacritics (the shared U+00C0-U+017F table plus NFKD decomposition); other scripts are dropped unless unicode is set, so non-Latin titles get the fallback slug in ASCII mode.",
+    "Old slugs stay owned by their entity until remove(), so a title can never take a slug another entity once used; there is no expiry or release of single old slugs.",
+    "Redirects are cached by browsers for redirectMaxAgeSeconds (default 3600) rather than forever, so a reclaimed old slug cannot cause a cached redirect loop longer than that.",
+    "The in-memory store is for tests and prototypes only; the SQL store is tested on PostgreSQL semantics through PGlite, which runs as a single connection, not under real multi-connection contention.",
+    "Does not rewrite links inside your content, generate sitemaps or check slugs for offensive words; production database correctness and consuming-application acceptance remain project responsibilities."
+  ],
+  "decisions": [
+    "derived slugs suffix past taken/reserved (post-2); exact:true refuses non-canonical, reserved or taken input",
+    "default route GET|HEAD {prefix}/:slug -> 200 {entityId, slug}, 301 Location to current slug, else 404",
+    "old slugs redirect straight to the current slug and remain owned by their entity; renaming back reclaims one",
+    "default maxLength 80 code points, separator -, fallback item; & becomes and, apostrophes are dropped"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": ["tests/url-slugs.test.mjs", "tests/url-slugs-sql.test.mjs"],
+    "command": "npm run build && node --test tests/url-slugs.test.mjs tests/url-slugs-sql.test.mjs",
+    "environment": { "node": "22", "typescript": "7.0.2", "postgres": "PGlite 0.5.8" },
+    "behaviors": [
+      "slugify lowercases, transliterates Latin diacritics, joins apostrophes, maps & to and and collapses punctuation to one separator",
+      "unicode mode keeps letters, digits and combining marks of other scripts while still transliterating Latin",
+      "slugify is idempotent for every BMP code point and a sample above in both modes, and every created slug resolves as current",
+      "slugs are cut at a word boundary within maxLength, and a single overlong word is hard-cut",
+      "input with no usable characters yields the configured fallback",
+      "a taken slug gets the first free numeric suffix, trimmed so the suffixed slug still fits maxLength",
+      "ten concurrent creates of one title get ten distinct slugs (memory store and PGlite unique key with retry)",
+      "reserved words and route names are refused as exact slugs and skipped when derived; the list is configurable",
+      "exact slugs must already be canonical; non-canonical input is refused with invalid-slug, never rewritten",
+      "rename keeps history; old slugs resolve to a redirect straight to the current slug, renaming back reclaims an old slug and no sequence produces a loop",
+      "old slugs cannot be taken by another entity; concurrent renames leave exactly one current slug",
+      "slugs are scoped per tenant and collection",
+      "SQL store quotes validated table names, so keyword and schema-qualified names work",
+      "HTTP adapter: 200 current, 301 with Location (query kept, finite private cache), 404 unknown or other tenant, 403 without scope, 405, 400 malformed encoding; routes, prefix, statusFor, redirectStatus and locationFor overrides"
+    ]
+  },
+  "changelog": [
+    { "version": "0.1.0", "changes": ["First release: core, in-memory store, PostgreSQL schema and store, and Fetch resolve adapter."] }
+  ],
+  "contract": "CONTRACT.md"
+}

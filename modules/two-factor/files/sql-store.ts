@@ -111,17 +111,30 @@ export function createSqlTwoFactorStore(db: SqlExecutor, options: SqlTwoFactorSt
       );
       return Number(rows[0]?.n) === 1;
     },
-    async registerAttempt(userId, now, windowMs): Promise<AttemptWindow> {
+    async registerAttempt(userId, now, windowMs, lockout): Promise<AttemptWindow> {
+      // One statement. SET expressions read the old row: a new count starts when the window passed or a lock ended;
+      // an active lock is kept (never extended); the attempt that reaches the limit starts a lock in lockout mode.
+      const reset = `((${A}.locked_until IS NOT NULL AND ${A}.locked_until <= $2::bigint)
+        OR (${A}.locked_until IS NULL AND ${A}.window_start <= $2::bigint - $3::bigint))`;
+      const count = `(CASE WHEN ${reset} THEN 1 ELSE ${A}.count + 1 END)`;
       const { rows } = await db.query(
-        `INSERT INTO ${A} (user_id, window_start, count) VALUES ($1, $2::bigint, 1)
+        `INSERT INTO ${A} (user_id, window_start, count, locked_until)
+           VALUES ($1, $2::bigint, 1, CASE WHEN $5::bigint IS NOT NULL AND 1 >= $4::integer THEN $2::bigint + $5::bigint END)
          ON CONFLICT (user_id) DO UPDATE SET
-           count = CASE WHEN ${A}.window_start <= $2::bigint - $3::bigint THEN 1 ELSE ${A}.count + 1 END,
-           window_start = CASE WHEN ${A}.window_start <= $2::bigint - $3::bigint THEN $2::bigint ELSE ${A}.window_start END
-         RETURNING count, window_start`,
-        [userId, now, windowMs],
+           count = ${count},
+           window_start = CASE WHEN ${reset} THEN $2::bigint ELSE ${A}.window_start END,
+           locked_until = CASE
+             WHEN NOT ${reset} AND ${A}.locked_until IS NOT NULL THEN ${A}.locked_until
+             WHEN $5::bigint IS NOT NULL AND ${count} >= $4::integer THEN $2::bigint + $5::bigint
+             ELSE NULL END
+         RETURNING count, window_start, locked_until`,
+        [userId, now, windowMs, lockout?.maxAttempts ?? null, lockout?.lockoutMs ?? null],
       );
       const row = rows[0] ?? {};
-      return { count: Number(row.count), windowStart: Number(row.window_start) };
+      return {
+        count: Number(row.count), windowStart: Number(row.window_start),
+        ...(row.locked_until == null ? {} : { lockedUntil: Number(row.locked_until) }),
+      };
     },
     async clearAttempts(userId) {
       await db.query(`DELETE FROM ${A} WHERE user_id = $1`, [userId]);

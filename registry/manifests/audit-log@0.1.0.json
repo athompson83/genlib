@@ -81,6 +81,21 @@
       "bytes": 5211
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createAuditLog",
@@ -209,7 +224,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/audit-log/module.json",
-    "sha256": "42c306842434816b2e3b5dc04801ada3a8a4bae75d0705cc9673ffd69dff6456"
+    "sha256": "c87dd2f88f895b3a72c9cc85d61a2485491a119f84d1c75929c4e8613ac8acb6"
   },
   "contractFile": {
     "path": "modules/audit-log/CONTRACT.md",

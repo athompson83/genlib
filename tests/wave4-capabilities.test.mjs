@@ -222,6 +222,40 @@ test('geo: haversine, geohash and bounding box vectors', async () => {
   assert.equal(edge.minLon, -180);
   assert.equal(edge.maxLon, 180);
   assert.throws(() => boundingBox(0, 0, -1), RangeError);
+  // Regression: the longitude half-width is the circle's widest extent, asin(sin(r) / cos(lat)),
+  // not the due-east offset 2 * asin(sin(r / 2) / cos(lat)).
+  const R = 6371008.8;
+  const wide = boundingBox(60, 0, 0.1 * R);
+  const halfWidth = (wide.maxLon * Math.PI) / 180;
+  assert.ok(Math.abs(halfWidth - Math.asin(Math.sin(0.1) / Math.cos(Math.PI / 3))) <= 1e-6 * halfWidth, String(halfWidth));
+  assert.ok(Math.abs(halfWidth - 0.20101) < 1e-5 && Math.abs(wide.minLon + wide.maxLon) < 1e-12);
+  const toRad = (d) => (d * Math.PI) / 180;
+  const toDeg = (r) => (r * 180) / Math.PI;
+  for (const cLat of [0, 45, 60, 75, -70]) {
+    for (const radius of [1_000, 100_000, 1_000_000]) {
+      const b = boundingBox(cLat, 0, radius);
+      const d = radius / R;
+      const p1 = toRad(cLat);
+      for (let i = 0; i < 360; i++) {
+        const t = toRad(i);
+        const p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(t));
+        const l2 = Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+        const [pLat, pLon] = [toDeg(p2), toDeg(l2)];
+        const inside = pLat >= b.minLat - 1e-9 && pLat <= b.maxLat + 1e-9 && pLon >= b.minLon - 1e-9 && pLon <= b.maxLon + 1e-9;
+        assert.ok(inside, `center ${cLat}, radius ${radius}, bearing ${i}: ${pLat},${pLon} outside ${JSON.stringify(b)}`);
+      }
+    }
+  }
+  for (const [cLon, bearing] of [[179.9, 90], [-179.9, 270]]) {
+    const b = boundingBox(10, cLon, 50_000);
+    assert.equal(b.minLon, -180);
+    assert.equal(b.maxLon, 180);
+    const [d, p1, t] = [50_000 / R, toRad(10), toRad(bearing)];
+    const p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(t));
+    const l2 = toRad(cLon) + Math.atan2(Math.sin(t) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+    const [pLat, pLon] = [toDeg(p2), ((toDeg(l2) + 540) % 360) - 180];
+    assert.ok(Math.abs(pLon) > 179.5 && pLat >= b.minLat && pLat <= b.maxLat && pLon >= b.minLon && pLon <= b.maxLon, `${pLat},${pLon}`);
+  }
 });
 
 test('webhook-signature: Stripe-style header vector and verification failures', async () => {

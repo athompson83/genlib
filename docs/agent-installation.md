@@ -21,7 +21,7 @@ Example project profile:
 
 The compatibility result is a **conservative candidate/review-required assessment**, not proof of build compatibility or an AI-generated confidence probability. The installer copies a single reviewed source example into `genlib/<file>` (or `--into`), refuses untracked or edited existing files and symlinked paths, records the copy in `.genlib/lock.json`, and prints the source SHA-256. It does not run hooks, install dependencies, change package manifests, deploy, or automatically resolve imports.
 
-Versioned modules still use the original Genlib plan/add/verify workflow. Structural UI examples remain excluded from the source copier until accessible production implementations and tests exist.
+Versioned modules still use the original Genlib plan/add/verify workflow. A module with install profiles takes `plan|add <id> --profile core,memory` to copy only those file groups plus the module files they import, and both commands print `wiring`, the contract's integration example with import paths rewritten to the installed location ([module-format.md](module-format.md#install-profiles)). Structural UI examples remain excluded from the source copier until accessible production implementations and tests exist.
 
 The repository index, AST dependency graph, and Mermaid diagrams are regenerated for each commit by GitHub Actions. Consumers must match artifact SHA to their checkout before use.
 

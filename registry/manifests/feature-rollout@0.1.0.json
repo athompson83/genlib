@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "id": "feature-rollout",
+  "version": "0.1.0",
+  "title": "Feature flags with gradual rollout and A/B assignment",
+  "description": "Server-side feature flags and experiments: sticky hashed buckets, percentage rollout that only grows, kill switch, user and tenant targeting with fixed precedence, runtime config from a store with a TTL cache and change notification, audited admin changes, weighted variants with sticky assignments, once-per-unit exposure logging, anonymous-to-user stitching, a two-proportion z-test, a PostgreSQL store and a Fetch adapter.",
+  "kind": "feature",
+  "tags": [
+    "feature flags",
+    "feature toggle",
+    "gradual rollout",
+    "percentage rollout",
+    "kill switch",
+    "a/b test",
+    "experiment",
+    "variants",
+    "exposure logging",
+    "canary",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/feature-rollout"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build, TextEncoder/TextDecoder, structuredClone, crypto.randomUUID (or an injected newId) and the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework-neutral core usable without http.ts; mount the HTTP adapter with your framework's catch-all route.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "feature-rollout/core.ts",
+      "path": "modules/feature-rollout/files/core.ts",
+      "sha256": "d7a32f957cb71c57fedbb473a4d0e243aade17eab85b8d1509cbc03acc76bc1e",
+      "bytes": 37976
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "feature-rollout/memory-store.ts",
+      "path": "modules/feature-rollout/files/memory-store.ts",
+      "sha256": "65baf2022471c9af70fb3576661010666e1c21aa64d63169f48527a5acf46d35",
+      "bytes": 5396
+    },
+    {
+      "source": "files/http.ts",
+      "target": "feature-rollout/http.ts",
+      "path": "modules/feature-rollout/files/http.ts",
+      "sha256": "db6a20e040e05daac3af385445a7ba54054cac4b69e181b83d42d9160110b195",
+      "bytes": 12552
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "feature-rollout/sql-store.ts",
+      "path": "modules/feature-rollout/files/sql-store.ts",
+      "sha256": "139746a0eca22cc11ab7edd1b9ab9bdb952ab00767674b4a0efcb39ad101694d",
+      "bytes": 7916
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "feature-rollout/schema.sql",
+      "path": "modules/feature-rollout/files/schema.sql",
+      "sha256": "8c24c56a6711b1ab7dbdc45761094a8471905bf075a53f659282fb8f4e5880b9",
+      "bytes": 4007
+    }
+  ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
+  "exports": [
+    {
+      "name": "createFeatureFlags",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "evaluateFlag",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "validateFlagInput",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "twoProportionZTest",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "bucketOf",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "stableHash",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "fnv1a32",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "FeatureFlagError",
+      "from": "feature-rollout/core.ts"
+    },
+    {
+      "name": "MemoryFeatureFlagStore",
+      "from": "feature-rollout/memory-store.ts"
+    },
+    {
+      "name": "createFeatureFlagHandler",
+      "from": "feature-rollout/http.ts"
+    },
+    {
+      "name": "DEFAULT_ROUTES",
+      "from": "feature-rollout/http.ts"
+    },
+    {
+      "name": "DEFAULT_STATUS",
+      "from": "feature-rollout/http.ts"
+    },
+    {
+      "name": "createSqlFeatureFlagStore",
+      "from": "feature-rollout/sql-store.ts"
+    }
+  ],
+  "configuration": [
+    "On PostgreSQL, apply schema.sql and use createSqlFeatureFlagStore with your query executor; grant the app role only SELECT and INSERT on feature_flag_audit. On other databases implement FeatureFlagStore with a version-conditional flag write that appends its audit row atomically and insert-if-absent assignments, exposures and conversions.",
+    "Pass authorize(actor, action, flagKey) to allow admin operations (read, create, update, delete, audit); without it every admin call is refused.",
+    "Keep cacheTtlMs short (default 5,000 ms) and call refresh() from your pub/sub (for example Postgres LISTEN/NOTIFY) to apply changes sooner; subscribe() reports changed keys.",
+    "Evaluate on the server with the session's userId, tenantId and an anonymous-id cookie; call stitch(anonymousId, userId) at sign-in and expose() only where the variant is actually rendered. Forward onExposure to analytics.",
+    "Mount createFeatureFlagHandler with authenticate(request), a trusted subject(request), and optional routes, statusFor, prefix and allowedOrigins (for cookie-authenticated admin UIs)."
+  ],
+  "capabilities": [
+    "feature-flag-evaluation",
+    "percentage-rollout",
+    "tenant-targeting",
+    "audited-flag-changes",
+    "ab-test-assignment",
+    "exposure-logging",
+    "experiment-analysis"
+  ],
+  "limitations": [
+    "Buckets are FNV-1a 32 + fmix32 of \"key:id\" mod 10,000, the same hash as the feature-flags capability's TypeScript recipe (variants match only with an empty salt); its pre-fmix32 plain-FNV-1a versions differ.",
+    "Rollout order is fixed by the hash: the first 10% of a flag is always the same subjects, and lowering the percentage drops plain-flag subjects again.",
+    "Sticky assignments exist only after expose(); subjects evaluated but never exposed are recomputed from current weights. A new salt or a delete-and-create starts a new run: old assignment, exposure and conversion rows stay in the store but are ignored.",
+    "The z-test is a pooled normal approximation without sequential-testing or multiple-comparison correction; checking results repeatedly inflates false positives.",
+    "Change propagation between servers is bounded by cacheTtlMs unless the app calls refresh(); the in-memory store is per process and only for tests and prototypes.",
+    "The HTTP adapter has no rate limiting; evaluate with expose writes rows for the caller's own subject. Put the routes behind your gateway's limiter.",
+    "The SQL store is tested on PostgreSQL semantics through PGlite, which runs as a single connection, not on every hosted Postgres or under real multi-connection contention. Consuming-application acceptance remains a project responsibility."
+  ],
+  "decisions": [
+    "precedence: kill switch > user deny > user allow > tenant deny > tenant allow > stored experiment assignment > rollout",
+    "routes: GET|POST /flags, GET|PATCH|DELETE /flags/:key, GET /flags/:key/audit, POST /evaluate; 409 conflict/exists",
+    "an exposed experiment subject keeps its variant (even at weight 0 or lower traffic); a removed variant reassigns visibly",
+    "exposures and conversions count once per unit; analysis attributes to the variant first shown (intention to treat)"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/feature-rollout.test.mjs",
+      "tests/feature-rollout-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/feature-rollout.test.mjs tests/feature-rollout-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "the same flag and subject always give the same bucket, result and variant, on every instance",
+      "raising rolloutPercent only adds subjects; tenant bucketing moves whole tenants together",
+      "kill switch, user and tenant allow/deny lists follow a fixed precedence and every result reports reason, bucket and version",
+      "invalid keys, percentages, variant weights, duplicate variants and unknown fields are rejected with listed problems",
+      "flag changes reach other instances after the cache TTL without a deploy, subscribers get the changed keys, and a failing store serves the last good config",
+      "admin changes need authorize; each writes an append-only audit entry with actor, time, before and after, and concurrent writers at one version get one winner",
+      "weighted variants follow their weights, zero-weight variants are never newly assigned, and experiments are independent",
+      "exposures are recorded once per unit under concurrency; anonymous assignments survive sign-in on every device",
+      "exposed subjects keep their variants when weights, traffic or the variant list change; removed variants reassign visibly",
+      "analysis reports per-variant exposures, conversions, rates and a two-proportion z-test matching reference values",
+      "HTTP adapter: admin CRUD and audit, evaluate with expose, 401/403/404/405/409/400 statuses, trusted subject only, and overridable routes, statusFor and prefix",
+      "schema.sql applies, the audit table rejects UPDATE and DELETE, and the SQL store passes the core behaviors on PostgreSQL"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core, in-memory store, PostgreSQL schema and store, and Fetch adapter.",
+        "Unreleased fix: each flag run (creation or salt change) has a runId; assignment, exposure and conversion rows are keyed by run_id so reruns start fresh and analysis ignores old runs. schema.sql changed; see its upgrade note."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/feature-rollout/module.json",
+    "sha256": "69580b3fe4e8c611a1b08f128f348ebd3c15b10c1fcab8e29a63c2bbfffe63fd"
+  },
+  "contractFile": {
+    "path": "modules/feature-rollout/CONTRACT.md",
+    "sha256": "eb62a601e21a31f047ac243180863bc2e86319635b732ea93492fced1f27a821",
+    "bytes": 11452
+  }
+}

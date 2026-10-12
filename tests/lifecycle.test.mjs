@@ -7,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { loadCatalog, REPOSITORY_ROOT } from '../lib/catalog.mjs';
-import { installModule } from '../lib/install.mjs';
+import { installModule, verifyInstallation } from '../lib/install.mjs';
 import { checkAdoption, removeModule, updateModule } from '../lib/lifecycle.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -149,4 +149,44 @@ test('receipts and update results match their schemas', async t => {
   const update = await updateModule(context, target, 'entitlements');
   for (const key of schema('update').required) assert.ok(key in update, key);
   assert.ok(update.files.every(file => schema('update').properties.files.items.properties.action.enum.includes(file.action)));
+});
+
+test('profiles: a core-only org-invitations install compiles, http arrives later, and verify, update and remove follow the lock', async t => {
+  const { execFileSync } = await import('node:child_process');
+  const context = await loadCatalog(REPOSITORY_ROOT);
+  const target = await app(t);
+  const dir = 'src/genlib/org-invitations';
+  const core = await installModule(context, 'org-invitations', { target, profiles: ['core'] });
+  assert.deepEqual(core.profiles, ['core']);
+  assert.deepEqual(core.files.map(file => file.path).filter(file => file.startsWith(dir)), [`${dir}/core.ts`]);
+  assert.match(core.wiring, /import \{ createInvitations \} from "\.\/src\/genlib\/org-invitations\/core\.js";/);
+  assert.doesNotMatch(core.wiring, /createInvitationHandler\(/);
+  assert.deepEqual((await lockOf(target)).modules['org-invitations'].profiles, ['core']);
+  // The core-only copy type-checks on its own.
+  await fs.writeFile(path.join(target, 'tsconfig.json'), JSON.stringify({ compilerOptions: { target: 'ES2022', module: 'NodeNext', moduleResolution: 'NodeNext', lib: ['ES2022', 'DOM'], strict: true, noEmit: true, skipLibCheck: true }, include: ['src/**/*.ts'] }));
+  execFileSync(process.execPath, [path.join(REPOSITORY_ROOT, 'node_modules/typescript/bin/tsc'), '--noEmit', '-p', target], { encoding: 'utf8' });
+
+  const coreStat = await fs.stat(path.join(target, dir, 'core.ts'));
+  const http = await installModule(context, 'org-invitations', { target, profiles: ['http'] });
+  assert.equal(http.status, 'installed');
+  assert.deepEqual(http.profiles, ['core', 'http'], 'recorded profiles are kept and the new one added');
+  assert.equal(http.files.find(file => file.path === `${dir}/core.ts`).action, 'unchanged');
+  assert.equal(http.files.find(file => file.path === `${dir}/http.ts`).action, 'create');
+  assert.equal((await fs.stat(path.join(target, dir, 'core.ts'))).mtimeMs, coreStat.mtimeMs, 'existing files are not touched');
+  assert.match(http.wiring, /createInvitationHandler \} from "\.\/src\/genlib\/org-invitations\/http\.js"/);
+  await assert.rejects(fs.access(path.join(target, dir, 'sql-store.ts')));
+
+  const verified = await verifyInstallation(target);
+  assert.equal(verified.status, 'unchanged');
+  assert.ok(!verified.files.some(file => /memory-store|sql-store|schema\.sql/.test(file.path)), 'verify checks installed files only');
+  const update = await updateModule(context, target, 'org-invitations');
+  assert.deepEqual(update.files.map(file => file.path).sort(), [`${dir}/core.ts`, `${dir}/http.ts`]);
+  assert.ok(update.files.every(file => file.action === 'unchanged'));
+  await updateModule(context, target, 'org-invitations', { write: true });
+  assert.deepEqual((await lockOf(target)).modules['org-invitations'].profiles, ['core', 'http'], 'update keeps the recorded profiles');
+  await assert.rejects(fs.access(path.join(target, dir, 'memory-store.ts')), 'update does not install unselected profiles');
+
+  const removed = await removeModule(context, target, 'org-invitations');
+  assert.deepEqual(removed.files.filter(file => file.action === 'delete').map(file => file.path).sort(), ['.genlib/NOTICE', '.genlib/licenses/Apache-2.0.txt', `${dir}/core.ts`, `${dir}/http.ts`]);
+  await assert.rejects(fs.access(path.join(target, dir)));
 });

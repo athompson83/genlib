@@ -56,3 +56,13 @@ test('signatures are compacted to names and parameter names; required option fie
   assert.equal(compactSignature('export type X = string'), null);
   assert.deepEqual(requiredHooks([{ signature: 'export interface InvitationOptions { readonly store: InvitationStore; readonly authorize: (actor: Actor, action: string) => Promise<boolean>; readonly ttlMs?: number; }' }]), ['store', 'authorize']);
 });
+
+test('a module with install profiles lists them and suggests a minimal --profile on its add command', () => {
+  const pick = json('organization', 'invitations');
+  assert.deepEqual(pick.profiles, ['core', 'memory', 'sql', 'http']);
+  assert.equal(pick.profile, 'core,memory,http');
+  assert.ok(pick.next.some(command => / add org-invitations --profile core,memory,http --target /.test(command)));
+  const text = quick('organization', 'invitations');
+  assert.match(text, /^# profiles: core, memory, sql, http$/m);
+  assert.match(text, /add org-invitations --profile core,memory,http --target/);
+});

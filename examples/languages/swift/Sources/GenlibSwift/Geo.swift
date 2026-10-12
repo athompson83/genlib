@@ -86,20 +86,24 @@ public enum Geo {
                            latError: (latRange.1 - latRange.0) / 2, lonError: (lonRange.1 - lonRange.0) / 2)
     }
 
-    /// Box around a point: latitude +-radius/R, longitude widened by 1/cos(lat) (solved exactly on the sphere), clamped
-    /// to valid ranges. Near a pole the longitude range becomes [-180, 180]. Use as a prefilter, then haversine.
+    /// Box around a point: latitude +-radius/R, longitude half-width equal to the circle's widest longitude extent,
+    /// asin(sin(r)/cos(lat)) for angular radius r, latitude clamped to valid ranges. Near a pole (or when
+    /// sin(r) >= cos(lat)) and when the box would cross the antimeridian, the longitude range becomes [-180, 180] so
+    /// far-side points are never excluded. Use as a prefilter, then haversine.
     public static func boundingBox(_ lat: Double, _ lon: Double, radiusMeters: Double) throws -> GeoBoundingBox {
         try check(lat, lon)
         guard radiusMeters.isFinite, radiusMeters >= 0 else { throw GeoError.invalidArgument("radiusMeters must be a non-negative finite number") }
         let angular = radiusMeters / earthRadiusMeters
         let dlat = degrees(angular)
         let minLat = lat - dlat, maxLat = lat + dlat
-        let s = sin(angular / 2) / cos(radians(lat))
+        let s = sin(angular) / cos(radians(lat))
         var minLon = -180.0, maxLon = 180.0
         if minLat > -90, maxLat < 90, s.isFinite, s < 1 {
-            let dlon = degrees(2 * asin(s))
-            minLon = max(-180, lon - dlon)
-            maxLon = min(180, lon + dlon)
+            let dlon = degrees(asin(s))
+            if lon - dlon >= -180, lon + dlon <= 180 {
+                minLon = lon - dlon
+                maxLon = lon + dlon
+            }
         }
         return GeoBoundingBox(minLat: max(-90, minLat), minLon: minLon, maxLat: min(90, maxLat), maxLon: maxLon)
     }

@@ -30,6 +30,14 @@ export interface AttemptWindow {
   /** Attempts in the current window, including the one just registered. */
   readonly count: number;
   readonly windowStart: number;
+  /** Lockout mode only: the account is locked until this instant (set by the attempt that reached the limit). */
+  readonly lockedUntil?: number;
+}
+
+/** Passed to registerAttempt when lockoutMs is configured (consecutive-failure lockout). */
+export interface AttemptLockout {
+  readonly maxAttempts: number;
+  readonly lockoutMs: number;
 }
 
 export interface TwoFactorStore {
@@ -57,9 +65,11 @@ export interface TwoFactorStore {
   remove(userId: string): Promise<boolean>;
   /**
    * Atomically counts one verification attempt in a fixed window: starts a new window (count 1) when the current
-   * one began at or before `now - windowMs`, otherwise increments.
+   * one began at or before `now - windowMs`, otherwise increments. With `lockout`, a lock that has ended also starts
+   * a new count; while a lock is active the count still increments but lockedUntil is kept (never extended); and the
+   * attempt that brings the count to lockout.maxAttempts sets lockedUntil = now + lockout.lockoutMs. One statement.
    */
-  registerAttempt(userId: string, now: number, windowMs: number): Promise<AttemptWindow>;
+  registerAttempt(userId: string, now: number, windowMs: number, lockout?: AttemptLockout): Promise<AttemptWindow>;
   clearAttempts(userId: string): Promise<void>;
 }
 
@@ -80,8 +90,16 @@ export interface TwoFactorOptions {
   readonly pendingTtlMs?: number;
   /** Failed-or-not attempts allowed per account per window. Default 5. */
   readonly maxAttempts?: number;
-  /** Attempt window. Default 15 minutes. */
+  /** Attempt window. Default 15 minutes. Not used with lockoutMs. */
   readonly attemptWindowMs?: number;
+  /**
+   * Switches to consecutive-failure lockout: after maxAttempts attempts without a success the account is locked for
+   * lockoutMs from the attempt that reached the limit; attempts while locked are refused without extending it; the
+   * count resets on a success or when the lock ends, and does not roll off with time. 1 minute to 24 hours.
+   */
+  readonly lockoutMs?: number;
+  /** Ignore spaces in authenticator codes ("123 456"). Default true; false accepts exactly six ASCII digits only. */
+  readonly allowCodeSpaces?: boolean;
   /** Re-authentication must be this recent to disable 2FA or regenerate codes. Default 10 minutes. */
   readonly stepUpMaxAgeMs?: number;
   /** Number of recovery codes. Default 10; 4 to 20. */
@@ -232,6 +250,10 @@ export function createTwoFactor(options: TwoFactorOptions) {
   if (!Number.isInteger(maxAttempts) || maxAttempts < 1 || maxAttempts > 100) throw new RangeError("maxAttempts must be 1 to 100");
   const windowMs = options.attemptWindowMs ?? 15 * MINUTE;
   if (!Number.isInteger(windowMs) || windowMs < MINUTE) throw new RangeError("attemptWindowMs must be at least 1 minute");
+  const lockoutMs = options.lockoutMs;
+  if (lockoutMs !== undefined && (!Number.isInteger(lockoutMs) || lockoutMs < MINUTE || lockoutMs > 24 * 60 * MINUTE)) throw new RangeError("lockoutMs must be 1 minute to 24 hours");
+  const lockout: AttemptLockout | undefined = lockoutMs === undefined ? undefined : { maxAttempts, lockoutMs };
+  const allowCodeSpaces = options.allowCodeSpaces ?? true;
   const stepUpMax = options.stepUpMaxAgeMs ?? 10 * MINUTE;
   if (!Number.isInteger(stepUpMax) || stepUpMax < MINUTE || stepUpMax > 60 * MINUTE) throw new RangeError("stepUpMaxAgeMs must be 1 to 60 minutes");
   const codeCount = options.recoveryCodeCount ?? 10;
@@ -286,9 +308,13 @@ export function createTwoFactor(options: TwoFactorOptions) {
   /** Counts this attempt first, so concurrent guesses can never exceed the limit. */
   async function spendAttempt(userId: string): Promise<void> {
     const at = now();
-    const window = await store.registerAttempt(userId, at, windowMs);
+    // In lockout mode the count never rolls off with time; only a success or the end of a lock resets it.
+    const window = lockout
+      ? await store.registerAttempt(userId, at, Number.MAX_SAFE_INTEGER, lockout)
+      : await store.registerAttempt(userId, at, windowMs);
     if (window.count > maxAttempts) {
-      throw new TwoFactorError("rate-limited", "Too many attempts; try again later", Math.max(1, window.windowStart + windowMs - at));
+      const until = lockout ? (window.lockedUntil ?? at + lockout.lockoutMs) : window.windowStart + windowMs;
+      throw new TwoFactorError("rate-limited", "Too many attempts; try again later", Math.max(1, until - at));
     }
   }
 
@@ -298,7 +324,7 @@ export function createTwoFactor(options: TwoFactorOptions) {
    */
   async function matchStep(secret: Uint8Array, code: unknown, at: number): Promise<number | null> {
     if (typeof code !== "string" || code.length > 16) return null;
-    const clean = code.replace(/\s/g, "");
+    const clean = allowCodeSpaces ? code.replace(/\s/g, "") : code;
     if (!/^[0-9]{6}$/.test(clean)) return null;
     const current = Math.floor(at / PERIOD_MS);
     let matched: number | null = null;

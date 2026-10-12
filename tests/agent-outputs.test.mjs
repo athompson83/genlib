@@ -80,3 +80,14 @@ test('find --target reports the installed version of a resource package and the 
     assert.equal(findInSources(sources, 'zod schema validation', { target, type: 'resource', limit: 5 }).results.find(result => result.id === 'zod').installed, undefined);
   } finally { rmSync(target, { recursive: true, force: true }); }
 });
+
+test('a profiled install plan with wiring matches schemas/plan.schema.json', async () => {
+  const target = mkdtempSync(path.join(tmpdir(), 'genlib-schema-'));
+  try {
+    writeFileSync(path.join(target, 'package.json'), JSON.stringify({ name: 'app', devDependencies: { typescript: '5.9.0' } }));
+    const plan = await planInstall(await loadCatalog(REPOSITORY_ROOT), 'org-invitations', { target, profiles: ['core', 'memory'] });
+    assert.deepEqual(validate(plan, schema('plan')), []);
+    assert.equal(typeof plan.wiring, 'string');
+    assert.deepEqual(plan.profiles, ['core', 'memory']);
+  } finally { rmSync(target, { recursive: true, force: true }); }
+});

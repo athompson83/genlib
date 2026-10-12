@@ -37,6 +37,62 @@
   ],
   "implementations": [
     {
+      "ref": "module:feature-rollout",
+      "status": "fixture-verified",
+      "fulfills": [
+        "deterministic-assignment",
+        "weighted-variants",
+        "experiment-independence",
+        "exposure-logging",
+        "anonymous-to-user",
+        "stable-on-change",
+        "analysis"
+      ],
+      "evidence": [
+        {
+          "requirement": "deterministic-assignment",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "deterministic assignment: a subject gets the same variant on every visit and on every instance sharing its id"
+        },
+        {
+          "requirement": "weighted-variants",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "weighted variants: weights are honored and a zero-weight variant is never assigned"
+        },
+        {
+          "requirement": "experiment-independence",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "experiment independence: assignments in two experiments are uncorrelated because hashing is salted by key"
+        },
+        {
+          "requirement": "exposure-logging",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "exposure logging: recorded once per subject per experiment, idempotent across repeats and concurrency"
+        },
+        {
+          "requirement": "exposure-logging",
+          "test": "tests/feature-rollout-sql.test.mjs",
+          "name": "SQL store: exposures once per unit under concurrency, stitching, stable assignments and analysis"
+        },
+        {
+          "requirement": "anonymous-to-user",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "anonymous to user: a visitor keeps the anonymous assignment after signing in, on every device"
+        },
+        {
+          "requirement": "stable-on-change",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "stable on change: changing weights, traffic or the variant list does not silently reassign exposed subjects"
+        },
+        {
+          "requirement": "analysis",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "analysis: per-variant exposures, conversions and rates with a two-proportion z-test against control"
+        }
+      ],
+      "notes": "Assignments become sticky at expose(); a removed variant reassigns visibly. PGlite tests run on one connection."
+    },
+    {
       "ref": "recipe:feature-flag-percentage-rollout",
       "status": "fixture-verified",
       "fulfills": [

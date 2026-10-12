@@ -297,7 +297,7 @@ The two tiers follow one rule: Genlib never reimplements a security protocol or 
 - `crc32`, `fnv1a32`, `fnv1a64`, `murmur3_32` and `jumpHash` (Lamping and Veach) for checksums, sharding and stable bucketing. They are not cryptographic: use HMAC or a password hash for anything an attacker can influence.
 
 **feature-flags**
-- `evaluateFlag(flag, userId)` applies disabled, deny, allow and a sticky percentage rollout (FNV-1a bucket of `key:userId` out of 10,000), then picks a weighted variant. The same user always gets the same answer, raising the percentage only adds users, and the result carries the reason and bucket for logs and experiment analysis.
+- `evaluateFlag(flag, userId)` applies disabled, deny, allow and a sticky percentage rollout (FNV-1a plus the MurmurHash3 fmix32 finalizer, bucket of `key:userId` out of 10,000), then picks a weighted variant. The same user always gets the same answer, raising the percentage only adds users, and the result carries the reason and bucket for logs and experiment analysis. Breaking behavior change: earlier versions bucketed with plain FNV-1a, whose lowest bit is the parity of the input bytes, so 50/50 experiments with similar keys were perfectly correlated; the finalizer makes them independent but reassigns every bucket and variant, so re-baseline running rollouts and experiments when upgrading.
 
 **human-units**
 - `formatBytes` (SI kB or IEC KiB, integer rounding, 64-bit safe), `parseBytes`, `formatDuration` ("1h 2m") and `relativeTime` ("3 minutes ago", "in 2 days"; English only, localize with Intl or ICU for other languages).

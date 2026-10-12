@@ -30,6 +30,7 @@
     { "source": "files/sql-store.ts", "target": "site-search/sql-store.ts" },
     { "source": "files/schema.sql", "target": "site-search/schema.sql" }
   ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
   "exports": [
     { "name": "createSearch", "from": "site-search/core.ts" },
     { "name": "SearchError", "from": "site-search/core.ts" },

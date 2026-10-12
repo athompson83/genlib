@@ -91,6 +91,23 @@
       "bytes": 7800
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts",
+      "files/signing.ts",
+      "files/ssrf.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createWebhookDelivery",
@@ -218,7 +235,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/webhook-delivery/module.json",
-    "sha256": "60bb37d39fb268dfb634e6792d572166cc7eaba52348889b250460f0af0b3a3d"
+    "sha256": "516eaaccfec8838f1269089005bd0ada4526d2cff359539afa5e5da1f57addbd"
   },
   "contractFile": {
     "path": "modules/webhook-delivery/CONTRACT.md",

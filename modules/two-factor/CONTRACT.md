@@ -1,4 +1,4 @@
-# Two-factor authentication with an authenticator app (TOTP) · 0.1.0
+# Two-factor authentication with an authenticator app (TOTP) · 0.2.0
 
 ## What installs
 
@@ -24,6 +24,7 @@ Use it to add a second sign-in factor from an authenticator app (Google Authenti
 | `recoveryPepper` | At least 32 random bytes (or an HMAC CryptoKey), stored outside the database. |
 | `issuer` | Your product name, shown in the authenticator app. No colon. |
 | `authenticatedAt` | When the user last proved their password. `disable` and `regenerateRecoveryCodes` need it. |
+| `maxAttempts`, `attemptWindowMs`, `lockoutMs`, `allowCodeSpaces` | Optional. Defaults: 5 attempts per 15-minute window, no lockout mode, spaces in codes ignored. |
 | HTTP `authenticate(request)` | `{ userId, stage, accountName?, authenticatedAt? }` from your session. `stage` is `"signed-in"` or `"second-factor-pending"`. |
 | HTTP `onVerified(event, request)` | Upgrades the second-factor-pending session. Return headers such as `set-cookie`. |
 | HTTP `rateLimit(key)`, `clientIp(request)` | Your limiter (see the `rate-limit` module) and the trusted client address. |
@@ -52,9 +53,10 @@ export const handler = createTwoFactorHandler({
 
 - **Provisioning.** `beginEnrollment(userId, {accountName})` creates a secret of 20 random bytes (160 bits; configurable to 64) and returns it in base32 with `otpauth://totp/Issuer:account?secret=…&issuer=…&algorithm=SHA1&digits=6&period=30`, where the issuer and label are percent-encoded. This is the only time the secret leaves the server. An `accountName` that is empty, over 200 characters or contains `:` fails with `bad-request` (HTTP 400). The HTTP adapter defaults the label to the user id with `:` replaced by `-`. Calling it again while pending replaces the pending secret. Once 2FA is active it is refused with `already-enabled`.
 - **Confirmation.** `confirmEnrollment(userId, code)` enables 2FA only for a valid code for the current pending secret. The pending secret expires after 15 minutes (1 to 60 configurable). The code's time step is recorded, so it cannot then be replayed at sign-in. It returns 10 recovery codes, shown once.
-- **Verification.** Codes follow RFC 6238 (HMAC-SHA-1, 6 digits, 30 seconds). The window is the current step and one step either side. All three candidates are computed and compared in constant time. Spaces are ignored; anything other than six ASCII digits fails.
+- **Verification.** Codes follow RFC 6238 (HMAC-SHA-1, 6 digits, 30 seconds). The window is the current step and one step either side. All three candidates are computed and compared in constant time. Spaces are ignored (unless `allowCodeSpaces: false`); anything else other than six ASCII digits fails.
 - **Replay protection.** The highest accepted step is stored. A code for that step or an earlier one is refused. The store advances it with one conditional update, so exactly one of several concurrent verifies of a code wins.
 - **Attempt limits.** Every confirm, verify and recovery-code attempt is counted before it is checked, in a fixed per-account window (5 per 15 minutes by default), so concurrent guesses cannot exceed the limit. Over the limit, even a correct code gets `rate-limited` with `retryAfterMs`. A success clears the count.
+- **Lockout mode.** With `lockoutMs`, the count does not roll off with time: the attempt that reaches `maxAttempts` locks the account for `lockoutMs` from that attempt. Attempts while locked are refused without being checked and without extending the lock. A success or the end of the lock resets the count. The store keeps `locked_until` and updates it in the same statement that counts the attempt.
 - **Secrets at rest.** Secrets are encrypted with AES-256-GCM, a random 12-byte IV and additional data bound to the user id, and stored with their key id. Old key ids keep decrypting. `reencryptSecret(userId)` moves a row to the current key. A missing key or tampered row fails with `secret-unreadable`. `status` never includes the secret.
 - **Recovery codes.** Each code has 50 random bits, written as `XXXXX-XXXXX` in base32. Only `HMAC-SHA-256(pepper, normalized code)` is stored. A code works once, even under concurrency. Input is case-, space- and dash-insensitive. `regenerateRecoveryCodes` replaces every code.
 - **Step-up.** `disable` and `regenerateRecoveryCodes` require `authenticatedAt` within the last 10 minutes (1 to 60 configurable), and not in the future. Otherwise they throw `reauthentication-required` and change nothing. `disable` deletes the secret and recovery codes.
@@ -92,7 +94,8 @@ Every response carries `cache-control: no-store` and `referrer-policy: no-referr
 - confirm-before-enable, pending expiry and replacement
 - the ±1 step window and malformed codes
 - step replay, including the confirming step, and four concurrent verifies with one winner (memory and PGlite)
-- the shared, concurrency-safe attempt limit and its reset
+- the shared, concurrency-safe attempt limit and its reset, and lockout mode (memory and PGlite)
+- `allowCodeSpaces: false`
 - ciphertext-only storage, user-bound AAD, key rotation and `reencryptSecret`
 - HMAC-only recovery codes, single use under concurrency and regeneration
 - step-up refusals
@@ -105,7 +108,8 @@ In the receiving app, run the same cases against your real store, plus two concu
 - **Every code is rejected:** check the server clock (NTP). The window only tolerates 30 seconds of drift either way. Then check that the app scanned the latest QR code; a restarted enrollment replaces the secret.
 - **`secret-unreadable` after a deploy:** the key id stored on the row is missing from `encryption.keys`. Restore the old key, then run `reencryptSecret` for every user before removing it.
 - **Two verifies of one code both succeed:** your `advanceStep` is not one conditional statement. Use `UPDATE … WHERE user_id = $1 AND status = 'active' AND (last_used_step IS NULL OR last_used_step < $2) RETURNING`.
-- **Users locked out:** the per-account limit counts every attempt. Tune `maxAttempts` and `attemptWindowMs`, and put IP limits in the `rateLimit` hook.
+- **Users locked out:** the per-account limit counts every attempt. Tune `maxAttempts` and `attemptWindowMs` (or `lockoutMs`), and put IP limits in the `rateLimit` hook.
+- **Upgrading from 0.1.0:** run `ALTER TABLE two_factor_attempts ADD COLUMN IF NOT EXISTS locked_until bigint;` before using the SQL store.
 
 ## Limits
 

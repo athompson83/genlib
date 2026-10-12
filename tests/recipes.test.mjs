@@ -692,6 +692,8 @@ test('feature flags bucket deterministically and roll out monotonically', async 
   assert.equal(f.fnv1a32(''), 0x811c9dc5);
   assert.equal(f.fnv1a32('a'), 0xe40c292c);
   assert.equal(f.fnv1a32('foobar'), 0xbf9cf968);
+  assert.equal(f.fmix32(0), 0);
+  assert.equal(f.fmix32(1), 0x514e28b7); // MurmurHash3 x86_32 of '' with seed 1
   const users = Array.from({ length: 10000 }, (_, i) => `user-${i}`);
   const flag = (percentage, extra = {}) => ({ key: 'new-checkout', enabled: true, percentage, ...extra });
   const at10 = users.filter((u) => f.isEnabled(flag(10), u));
@@ -715,7 +717,38 @@ test('feature flags bucket deterministically and roll out monotonically', async 
   assert.ok(Math.abs(counts.control - 5000) < 250, JSON.stringify(counts));
   assert.equal(f.chooseVariant('exp', 'user-9', variants), f.chooseVariant('exp', 'user-9', variants));
   assert.throws(() => f.chooseVariant('exp', 'u', [{ name: 'a', weight: 0 }]), RangeError);
+  // Experiment independence: assignments in two experiments whose keys differ in a few characters must
+  // not be correlated. Plain FNV-1a fails this (its low bit is the input's byte parity); fmix32 fixes it.
+  const subjects = Array.from({ length: 10000 }, (_, i) => `u${i}`);
+  const ab = [{ name: 'a', weight: 1 }, { name: 'b', weight: 1 }];
+  for (const [k1, k2] of [['checkout-a', 'checkout-b'], ['exp1', 'exp2']]) {
+    const buckets = chiSquare2x2(subjects, (u) => f.bucketOf(k1, u) % 2, (u) => f.bucketOf(k2, u) % 2);
+    assert.ok(buckets < 10.83, `bucket parity ${k1}/${k2} chi-square ${buckets.toFixed(2)} (p <= 0.001)`);
+    const arms = chiSquare2x2(subjects, (u) => f.chooseVariant(k1, u, ab) === 'a' ? 0 : 1, (u) => f.chooseVariant(k2, u, ab) === 'a' ? 0 : 1);
+    assert.ok(arms < 10.83, `50/50 variants ${k1}/${k2} chi-square ${arms.toFixed(2)} (p <= 0.001)`);
+  }
+  const perBucket = new Array(100).fill(0);
+  for (const u of subjects) perBucket[f.bucketOf('checkout-a', u) % 100]++;
+  assert.ok(perBucket.every((n) => Math.abs(n - 100) <= 40), `uniform buckets: ${Math.min(...perBucket)}..${Math.max(...perBucket)}`);
+  for (const [key, subject, bucket] of ROLLOUT_BUCKETS) assert.equal(f.bucketOf(key, subject), bucket, `${key}/${subject}`);
+  assert.equal(f.bucketOf('checkout-a', 'u1', 'v2'), ROLLOUT_SALTED);
 });
+
+// Chi-square statistic of the 2x2 contingency table of two 0/1 assignments over the same subjects.
+function chiSquare2x2(subjects, x, y) {
+  const t = [[0, 0], [0, 0]];
+  for (const s of subjects) t[x(s)][y(s)]++;
+  const n = subjects.length;
+  let chi = 0;
+  for (const i of [0, 1]) for (const j of [0, 1]) {
+    const expected = ((t[i][0] + t[i][1]) * (t[0][j] + t[1][j])) / n;
+    chi += (t[i][j] - expected) ** 2 / expected;
+  }
+  return chi;
+}
+// bucketOf vectors (FNV-1a + fmix32, empty salt), shared with no other language.
+const ROLLOUT_BUCKETS = [['new-checkout', 'user-1', 1510], ['new-checkout', 'user-2', 2752], ['checkout-a', 'u0', 9138], ['checkout-b', 'u0', 4891], ['exp1', 'u7', 5871], ['exp2', 'u7', 4336], ['banner', 'ünïcode', 1410]];
+const ROLLOUT_SALTED = 5707;
 
 test('idempotency store runs once, replays, and reports conflicts', async () => {
   const { MemoryIdempotencyStore, withIdempotency, IdempotencyConflict } = await load('idempotency-store');

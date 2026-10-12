@@ -16,7 +16,7 @@ export interface SqlEmailSignupStoreOptions {
   readonly tokensTable?: string;
 }
 
-const ACCOUNT_COLUMNS = "id, email, password_hash, created_at, verified_at, last_sent_at, send_window_start, send_window_count";
+const ACCOUNT_COLUMNS = "id, email, password_hash, created_at, verified_at, last_sent_at, recent_sends";
 const TOKEN_COLUMNS = "id, account_id, token_hash, email, created_at, expires_at, used_at, revoked_at";
 const NAME = /^[a-z_][a-z0-9_]{0,62}$/;
 
@@ -26,10 +26,9 @@ const optionalTime = (row: Record<string, unknown>, column: string, key: string)
 function toAccount(row: Record<string, unknown>): SignupAccount {
   return {
     id: String(row.id), email: String(row.email), passwordHash: String(row.password_hash), createdAt: Number(row.created_at),
-    sendWindowCount: Number(row.send_window_count ?? 0),
+    recentSends: Array.isArray(row.recent_sends) ? row.recent_sends.map(Number) : [],
     ...optionalTime(row, "verified_at", "verifiedAt"),
     ...optionalTime(row, "last_sent_at", "lastSentAt"),
-    ...optionalTime(row, "send_window_start", "sendWindowStart"),
   };
 }
 
@@ -51,9 +50,9 @@ export function createSqlEmailSignupStore(db: SqlExecutor, options: SqlEmailSign
   return {
     async createAccount(account) {
       const { rows } = await db.query(
-        `INSERT INTO ${accounts} (${ACCOUNT_COLUMNS}) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT (email) DO NOTHING RETURNING id`,
+        `INSERT INTO ${accounts} (${ACCOUNT_COLUMNS}) VALUES ($1, $2, $3, $4, $5, $6, $7::bigint[]) ON CONFLICT (email) DO NOTHING RETURNING id`,
         [account.id, account.email, account.passwordHash, account.createdAt, account.verifiedAt ?? null,
-          account.lastSentAt ?? null, account.sendWindowStart ?? null, account.sendWindowCount],
+          account.lastSentAt ?? null, [...account.recentSends]],
       );
       return rows.length === 1;
     },
@@ -72,15 +71,14 @@ export function createSqlEmailSignupStore(db: SqlExecutor, options: SqlEmailSign
       return rows.length === 1;
     },
     async reserveSend(accountId, now, limits) {
-      // SET expressions read the old row, so the window test is evaluated once against the same values as WHERE.
-      const open = "(send_window_start IS NOT NULL AND $2::bigint - send_window_start < $4::bigint)";
+      // SET expressions read the old row, so the rolling-window test sees the same sends as WHERE. The new array keeps
+      // only the sends still inside the window, plus this one.
       const { rows } = await db.query(
         `UPDATE ${accounts} SET last_sent_at = $2::bigint,
-           send_window_start = CASE WHEN ${open} THEN send_window_start ELSE $2::bigint END,
-           send_window_count = CASE WHEN ${open} THEN send_window_count + 1 ELSE 1 END
+           recent_sends = array_append(ARRAY(SELECT t FROM unnest(recent_sends) AS t WHERE $2::bigint - t < $4::bigint), $2::bigint)
          WHERE id = $1 AND verified_at IS NULL
            AND (last_sent_at IS NULL OR $2::bigint - last_sent_at >= $3::bigint)
-           AND (NOT ${open} OR send_window_count < $5::integer)
+           AND (SELECT count(*) FROM unnest(recent_sends) AS t WHERE $2::bigint - t < $4::bigint) < $5::integer
          RETURNING id`,
         [accountId, now, limits.cooldownMs, limits.windowMs, limits.maxPerWindow],
       );

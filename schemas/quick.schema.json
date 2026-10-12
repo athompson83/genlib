@@ -141,6 +141,17 @@
       },
       "description": "Where the copy lands in the app"
     },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Install profiles of the module (genlib add <id> --profile a,b)"
+    },
+    "profile": {
+      "type": "string",
+      "description": "Suggested minimal profile selection, already applied to the add command in next"
+    },
     "importFrom": {
       "type": "string",
       "description": "App path of the file that exports the main API"

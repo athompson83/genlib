@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "id": "keyset-pagination",
+  "version": "0.1.0",
+  "title": "Cursor pagination for APIs",
+  "description": "Keyset (seek) pagination for server list endpoints: opaque HMAC-signed cursors with key rotation and expiry, bound to tenant, filters and sort; multi-column ASC/DESC sorts with a unique tie-breaker; parameterized PostgreSQL WHERE/ORDER BY/LIMIT; an in-memory source; limit clamping; next/prev cursors and an RFC 8288 Link header.",
+  "kind": "feature",
+  "tags": [
+    "pagination",
+    "cursor pagination",
+    "keyset pagination",
+    "seek pagination",
+    "infinite scroll",
+    "next page",
+    "link header",
+    "api",
+    "postgresql",
+    "server"
+  ],
+  "license": "Apache-2.0",
+  "source": {
+    "type": "original",
+    "repository": "https://github.com/athompson83/genlib",
+    "path": "modules/keyset-pagination"
+  },
+  "compatibility": {
+    "frameworks": [
+      "any"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platform": "server",
+    "notes": [
+      "Requires a TypeScript build and Web Crypto (crypto.subtle HMAC), TextEncoder/TextDecoder, btoa/atob and, for http.ts, the Fetch Request/Response APIs: Node.js 22+, Bun, Deno, Cloudflare Workers, Next.js route handlers and Hono.",
+      "Framework- and database-neutral core; sql-store.ts targets PostgreSQL through any query(text, params) executor with $1 placeholders.",
+      "No runtime packages, environment reads, timers or network activity at install or import time."
+    ]
+  },
+  "dependencies": [],
+  "files": [
+    {
+      "source": "files/core.ts",
+      "target": "keyset-pagination/core.ts",
+      "path": "modules/keyset-pagination/files/core.ts",
+      "sha256": "24915a15eda9d809a65bbb849236ff455d7771274c19ecc734e83f6e2f020eb4",
+      "bytes": 23138
+    },
+    {
+      "source": "files/memory-store.ts",
+      "target": "keyset-pagination/memory-store.ts",
+      "path": "modules/keyset-pagination/files/memory-store.ts",
+      "sha256": "0b9ff2a93977c07e41ca90f5d7aa36dd104b87808349a466142b25f315c75ef5",
+      "bytes": 2640
+    },
+    {
+      "source": "files/sql-store.ts",
+      "target": "keyset-pagination/sql-store.ts",
+      "path": "modules/keyset-pagination/files/sql-store.ts",
+      "sha256": "069184b8fd87f6d7e7b22867921268f75e5d7700703faf3bbedcde0a17b83a76",
+      "bytes": 9041
+    },
+    {
+      "source": "files/schema.sql",
+      "target": "keyset-pagination/schema.sql",
+      "path": "modules/keyset-pagination/files/schema.sql",
+      "sha256": "224766930d450a71d3320dbe1f7d2134406ec58432abde7e023256871cc98cd1",
+      "bytes": 1153
+    },
+    {
+      "source": "files/http.ts",
+      "target": "keyset-pagination/http.ts",
+      "path": "modules/keyset-pagination/files/http.ts",
+      "sha256": "bc47e4978f62fe4224290f8be1c70d10a03774fbff1ae5c8f1ebb78de542f396",
+      "bytes": 6970
+    }
+  ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
+  "exports": [
+    {
+      "name": "createKeysetPager",
+      "from": "keyset-pagination/core.ts"
+    },
+    {
+      "name": "KeysetError",
+      "from": "keyset-pagination/core.ts"
+    },
+    {
+      "name": "compareKeys",
+      "from": "keyset-pagination/core.ts"
+    },
+    {
+      "name": "compareCodePoints",
+      "from": "keyset-pagination/core.ts"
+    },
+    {
+      "name": "canonicalJson",
+      "from": "keyset-pagination/core.ts"
+    },
+    {
+      "name": "formatLinkHeader",
+      "from": "keyset-pagination/core.ts"
+    },
+    {
+      "name": "createMemoryKeysetSource",
+      "from": "keyset-pagination/memory-store.ts"
+    },
+    {
+      "name": "buildKeysetQuery",
+      "from": "keyset-pagination/sql-store.ts"
+    },
+    {
+      "name": "createSqlKeysetSource",
+      "from": "keyset-pagination/sql-store.ts"
+    },
+    {
+      "name": "createKeysetListHandler",
+      "from": "keyset-pagination/http.ts"
+    }
+  ],
+  "configuration": [
+    "Generate one or more 32-byte random secrets and pass them as keys [{id, secret}] from your secret store; rotate by prepending a new key and drop the old one after the cursor ttl.",
+    "Declare named sorts over NOT NULL columns (type number, string, or timestamp for timestamptz), each ending in a unique tie-breaker (usually the primary key), and create a matching B-tree index per sort (see schema.sql).",
+    "On PostgreSQL use createSqlKeysetSource(db, {table, scopeColumns, filterColumns, toItem}); elsewhere implement KeysetSource.fetch (rows strictly after a key tuple in a given order, limited).",
+    "Derive the scope (tenant, user) from your trusted session or API key in the HTTP scope(request) hook, never from the query string; declare the filters the endpoint accepts.",
+    "Set defaultLimit, maxLimit and ttlMs for your endpoint; pass routes, statusFor, params and publicOrigin to match your API's surface."
+  ],
+  "capabilities": [
+    "cursor-pagination",
+    "keyset-pagination",
+    "signed-cursors",
+    "cursor-scope-binding",
+    "link-header-pagination"
+  ],
+  "limitations": [
+    "Cursor contents (sort values, sort name, expiry) are signed, not encrypted: never sort by a secret value.",
+    "Cursors are capped at 4,096 characters; a page whose boundary sort values exceed it throws a RangeError, so sort by short columns.",
+    "Sort columns must be NOT NULL; timestamp keys need PostgreSQL timestamptz columns (exact to the microsecond) or canonical UTC strings in memory, years 0001-9999.",
+    "The order check compares strings by code point (COLLATE \"C\"); set checkOrder: false when a text sort column uses another collation.",
+    "A backward page that comes back empty (everything before it was deleted) returns no cursors; clients should restart from the first page.",
+    "The SQL source and index use are tested on PostgreSQL semantics through PGlite (single connection); concurrent writes are simulated between pages, not under multi-connection contention.",
+    "Authorization of the rows themselves stays with the application: the scope hook and scopeColumns must reflect what the caller may see."
+  ],
+  "decisions": [
+    "cursor = keyId.base64url(JSON).base64url(HMAC-SHA256); default ttl 24 h; first key signs, every listed key verifies",
+    "errors: malformed-cursor, invalid-signature, expired-cursor, scope-mismatch, invalid-limit, invalid-sort, invalid-filter",
+    "limit: default 20, clamped to maxLimit 100; non-integer or < 1 is invalid-limit (not clamped)",
+    "GET {prefix}{routes.list} -> 200 {items, nextCursor, prevCursor, limit, sort} + Link; all errors 400 by default"
+  ],
+  "verification": {
+    "level": "tested",
+    "testFiles": [
+      "tests/keyset-pagination.test.mjs",
+      "tests/keyset-pagination-sql.test.mjs"
+    ],
+    "command": "npm run build && node --test tests/keyset-pagination.test.mjs tests/keyset-pagination-sql.test.mjs",
+    "environment": {
+      "node": "22",
+      "typescript": "7.0.2",
+      "postgres": "PGlite 0.5.8"
+    },
+    "behaviors": [
+      "cursors are opaque base64url tokens carrying the boundary row's sort keys, never an offset or the raw scope",
+      "walking every page returns each scoped row exactly once in declared order for uniform and mixed ASC/DESC sorts (memory and PGlite)",
+      "prev cursors walk back to identical pages; the first page has no prev and the last has no next",
+      "tampered, malformed, expired and unknown-key cursors fail with distinct error codes",
+      "key rotation: cursors signed by a listed older key verify, new cursors use the first key, removed keys fail",
+      "a cursor reused by another tenant, with other filters, another sort or a changed sort definition fails with scope-mismatch",
+      "limits default, clamp to maxLimit and reject non-integers and values below 1",
+      "sorts must end with a unique tie-breaker; unknown sorts and invalid filters are refused",
+      "inserts and deletes between pages cause no duplicates and no skips (memory source and PGlite)",
+      "generated SQL is parameterized keyset WHERE/ORDER BY/LIMIT without OFFSET, and PostgreSQL plans the seek as an Index Cond",
+      "timestamp keys keep microseconds exact on PGlite: sub-millisecond rows are neither skipped nor misordered",
+      "identifiers are double-quoted, so keyword table and column names work",
+      "strings compare by code point, matching PostgreSQL COLLATE \"C\"",
+      "cursors up to 4,096 characters round-trip; longer boundary values fail clearly at encode",
+      "the SQL source refuses unscoped lists, unmapped scope keys and unknown filters",
+      "a source returning rows out of order or behind the cursor is rejected unless checkOrder is false",
+      "HTTP adapter: parses cursor, limit, sort and declared filters, emits items, cursors and an RFC 8288 Link header keeping filters",
+      "HTTP adapter: 400 error codes, 401 without scope, 404 and 405; routes, statusFor, params, linkHeader and publicOrigin overrides work"
+    ]
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "changes": [
+        "First release: core pager, in-memory source, PostgreSQL builder/source with example schema, and Fetch list adapter.",
+        "Microsecond-exact timestamp keys, code-point string order, quoted identifiers and a 4,096-character cursor limit checked at encode."
+      ]
+    }
+  ],
+  "contract": "CONTRACT.md",
+  "authoredManifest": {
+    "path": "modules/keyset-pagination/module.json",
+    "sha256": "f17bc67e4be43fd0968c4f2d8b30f2560fa4bce12e2441c8b1efa74848896895"
+  },
+  "contractFile": {
+    "path": "modules/keyset-pagination/CONTRACT.md",
+    "sha256": "10166f3a336572f0da1a3b57693ffeedc0ba86a0c66efd28a176f7809f35d1e1",
+    "bytes": 10281
+  }
+}

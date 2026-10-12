@@ -76,6 +76,21 @@
       "bytes": 2015
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createComments",
@@ -173,7 +188,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/comments/module.json",
-    "sha256": "59799d05d0580a3cb9c73f5cbde49be95f645ffbd5ef075c4cbdce093a9a228b"
+    "sha256": "b2c9c03a6d14e8f9b4db6dff370493a70186f3b65cba7fecadbccc1cabdf0ede"
   },
   "contractFile": {
     "path": "modules/comments/CONTRACT.md",

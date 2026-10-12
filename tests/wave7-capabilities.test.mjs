@@ -122,23 +122,23 @@ const JUMP = [
   ["42", 2147483647, 1603940301],
 ];
 const FLAG_CASES = [
-  [{"key": "new-checkout", "rolloutPercent": 25}, "user-1", {"on": false, "reason": "excluded", "bucket": 4063, "variant": null}],
-  [{"key": "new-checkout", "rolloutPercent": 25}, "user-2", {"on": true, "reason": "rollout", "bucket": 1682, "variant": null}],
-  [{"key": "new-checkout", "rolloutPercent": 25}, "user-3", {"on": false, "reason": "excluded", "bucket": 9301, "variant": null}],
-  [{"key": "new-checkout", "rolloutPercent": 25}, "user-42", {"on": false, "reason": "excluded", "bucket": 9926, "variant": null}],
-  [{"key": "new-checkout", "rolloutPercent": 25}, "alice@example.com", {"on": false, "reason": "excluded", "bucket": 2919, "variant": null}],
-  [{"key": "new-checkout", "rolloutPercent": 25, "allow": ["user-2"], "deny": ["user-1"]}, "user-1", {"on": false, "reason": "deny", "bucket": 4063, "variant": null}],
-  [{"key": "new-checkout", "rolloutPercent": 25, "allow": ["user-2"], "deny": ["user-1"]}, "user-2", {"on": true, "reason": "allow", "bucket": 1682, "variant": null}],
-  [{"key": "beta", "enabled": false, "allow": ["vip"]}, "vip", {"on": false, "reason": "disabled", "bucket": 3546, "variant": null}],
-  [{"key": "banner", "rolloutPercent": 0}, "user-1", {"on": false, "reason": "excluded", "bucket": 6646, "variant": null}],
-  [{"key": "banner", "rolloutPercent": 100}, "user-1", {"on": true, "reason": "rollout", "bucket": 6646, "variant": null}],
-  [{"key": "banner", "rolloutPercent": 12.34}, "user-9", {"on": false, "reason": "excluded", "bucket": 7598, "variant": null}],
-  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u1", {"on": true, "reason": "rollout", "bucket": 4196, "variant": "monthly-first"}],
-  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u2", {"on": true, "reason": "rollout", "bucket": 7053, "variant": "control"}],
-  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u3", {"on": true, "reason": "rollout", "bucket": 9434, "variant": "annual-first"}],
-  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u4", {"on": true, "reason": "rollout", "bucket": 1339, "variant": "annual-first"}],
-  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u5", {"on": true, "reason": "rollout", "bucket": 3720, "variant": "annual-first"}],
-  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "ünïcode", {"on": true, "reason": "rollout", "bucket": 9874, "variant": "control"}],
+  [{"key": "new-checkout", "rolloutPercent": 25}, "user-1", {"on": true, "reason": "rollout", "bucket": 849, "variant": null}],
+  [{"key": "new-checkout", "rolloutPercent": 25}, "user-2", {"on": false, "reason": "excluded", "bucket": 5308, "variant": null}],
+  [{"key": "new-checkout", "rolloutPercent": 25}, "user-3", {"on": false, "reason": "excluded", "bucket": 5247, "variant": null}],
+  [{"key": "new-checkout", "rolloutPercent": 25}, "user-42", {"on": false, "reason": "excluded", "bucket": 9209, "variant": null}],
+  [{"key": "new-checkout", "rolloutPercent": 25}, "alice@example.com", {"on": false, "reason": "excluded", "bucket": 9060, "variant": null}],
+  [{"key": "new-checkout", "rolloutPercent": 25, "allow": ["user-2"], "deny": ["user-1"]}, "user-1", {"on": false, "reason": "deny", "bucket": 849, "variant": null}],
+  [{"key": "new-checkout", "rolloutPercent": 25, "allow": ["user-2"], "deny": ["user-1"]}, "user-2", {"on": true, "reason": "allow", "bucket": 5308, "variant": null}],
+  [{"key": "beta", "enabled": false, "allow": ["vip"]}, "vip", {"on": false, "reason": "disabled", "bucket": 8844, "variant": null}],
+  [{"key": "banner", "rolloutPercent": 0}, "user-1", {"on": false, "reason": "excluded", "bucket": 6875, "variant": null}],
+  [{"key": "banner", "rolloutPercent": 100}, "user-1", {"on": true, "reason": "rollout", "bucket": 6875, "variant": null}],
+  [{"key": "banner", "rolloutPercent": 12.34}, "user-9", {"on": false, "reason": "excluded", "bucket": 8197, "variant": null}],
+  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u1", {"on": true, "reason": "rollout", "bucket": 6435, "variant": "control"}],
+  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u2", {"on": true, "reason": "rollout", "bucket": 401, "variant": "annual-first"}],
+  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u3", {"on": true, "reason": "rollout", "bucket": 9955, "variant": "monthly-first"}],
+  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u4", {"on": true, "reason": "rollout", "bucket": 8249, "variant": "annual-first"}],
+  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "u5", {"on": true, "reason": "rollout", "bucket": 6254, "variant": "control"}],
+  [{"key": "pricing-test", "variants": [{"name": "control", "weight": 50}, {"name": "annual-first", "weight": 30}, {"name": "monthly-first", "weight": 20}]}, "ünïcode", {"on": true, "reason": "rollout", "bucket": 7068, "variant": "control"}],
 ];
 const FLAG_INVALID = [
   {"key": "bad key"},
@@ -439,6 +439,36 @@ test('feature flags evaluate deterministically and only add users as the rollout
   for (const u of low) assert.ok(mid.has(u));
   for (const u of mid) assert.ok(high.has(u));
 });
+
+// Regression: plain FNV-1a's low bit is the parity of the input bytes, so two 50/50 experiments whose
+// keys differ in a few characters put every subject in the same half of both. fmix32 decorrelates them.
+test('feature flag buckets are independent across experiments and uniform', async () => {
+  const { evaluateFlag } = await load('feature-flags');
+  const subjects = Array.from({ length: 10000 }, (_v, i) => `u${i}`);
+  const bucket = (key, u) => evaluateFlag({ key }, u).bucket;
+  const variant = (key, u) => evaluateFlag({ key, variants: [{ name: 'a', weight: 1 }, { name: 'b', weight: 1 }] }, u).variant === 'a' ? 0 : 1;
+  for (const [k1, k2] of [['checkout-a', 'checkout-b'], ['exp1', 'exp2']]) {
+    const parity = chiSquare2x2(subjects, (u) => bucket(k1, u) % 2, (u) => bucket(k2, u) % 2);
+    assert.ok(parity < 10.83, `bucket parity ${k1}/${k2} chi-square ${parity.toFixed(2)} (p <= 0.001)`);
+    const arms = chiSquare2x2(subjects, (u) => variant(k1, u), (u) => variant(k2, u));
+    assert.ok(arms < 10.83, `50/50 variants ${k1}/${k2} chi-square ${arms.toFixed(2)} (p <= 0.001)`);
+  }
+  const perBucket = new Array(100).fill(0);
+  for (const u of subjects) perBucket[bucket('checkout-a', u) % 100]++;
+  assert.ok(perBucket.every((n) => Math.abs(n - 100) <= 40), `uniform buckets: ${Math.min(...perBucket)}..${Math.max(...perBucket)}`);
+});
+
+// Chi-square statistic of the 2x2 contingency table of two 0/1 assignments over the same subjects.
+function chiSquare2x2(subjects, x, y) {
+  const t = [[0, 0], [0, 0]];
+  for (const s of subjects) t[x(s)][y(s)]++;
+  let chi = 0;
+  for (const i of [0, 1]) for (const j of [0, 1]) {
+    const expected = ((t[i][0] + t[i][1]) * (t[0][j] + t[1][j])) / subjects.length;
+    chi += (t[i][j] - expected) ** 2 / expected;
+  }
+  return chi;
+}
 
 test('human-readable units format and parse with integer rounding', async () => {
   const m = await load('human-units');

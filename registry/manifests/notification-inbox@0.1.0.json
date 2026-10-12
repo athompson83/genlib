@@ -61,6 +61,17 @@
       "bytes": 5053
     }
   ],
+  "profiles": {
+    "core": [
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "http": [
+      "files/http.ts"
+    ]
+  },
   "exports": [
     {
       "name": "createInbox",
@@ -148,7 +159,7 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/notification-inbox/module.json",
-    "sha256": "5df8f09bfabacba52bc944f7cac5c2bbcfe2f8cf069eefca507de1b5b49a19c8"
+    "sha256": "a993fc3fa2f258eb7d676288fac0e4c4742eeff928ffa17bd2ef1ce2d297c015"
   },
   "contractFile": {
     "path": "modules/notification-inbox/CONTRACT.md",

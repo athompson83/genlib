@@ -41,6 +41,73 @@
   ],
   "implementations": [
     {
+      "ref": "module:feature-rollout",
+      "status": "fixture-verified",
+      "fulfills": [
+        "sticky-bucketing",
+        "monotonic-rollout",
+        "targeting-kill-switch",
+        "config-validation",
+        "explainable",
+        "runtime-config",
+        "tenant-targeting",
+        "audited-changes"
+      ],
+      "evidence": [
+        {
+          "requirement": "sticky-bucketing",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "sticky bucketing: the same flag and user always give the same bucket, result and variant"
+        },
+        {
+          "requirement": "monotonic-rollout",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "monotonic rollout: raising the percentage only adds users and nobody already enabled is dropped"
+        },
+        {
+          "requirement": "targeting-kill-switch",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "targeting precedence: kill switch > user deny > user allow > tenant deny > tenant allow > rollout, with reasons"
+        },
+        {
+          "requirement": "config-validation",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "config validation rejects invalid keys, percentages, variant weights, duplicates and unknown fields"
+        },
+        {
+          "requirement": "explainable",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "explainable: every evaluation reports reason, bucket, version and variant source"
+        },
+        {
+          "requirement": "runtime-config",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "runtime config: changes reach other instances after the TTL without a deploy, and subscribers are notified"
+        },
+        {
+          "requirement": "runtime-config",
+          "test": "tests/feature-rollout-sql.test.mjs",
+          "name": "SQL store: runtime config reaches a second instance after the TTL and notifies subscribers"
+        },
+        {
+          "requirement": "tenant-targeting",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "tenant targeting: bucketBy tenant rolls a whole organization in or out together"
+        },
+        {
+          "requirement": "audited-changes",
+          "test": "tests/feature-rollout.test.mjs",
+          "name": "audited changes: only authorized actors change flags, and each change records who, when, before and after"
+        },
+        {
+          "requirement": "audited-changes",
+          "test": "tests/feature-rollout-sql.test.mjs",
+          "name": "SQL store: audited CRUD with optimistic versions; the audit table is append-only"
+        }
+      ],
+      "notes": "Buckets use FNV-1a with a MurmurHash3 finalizer. PGlite tests run on one connection."
+    },
+    {
       "ref": "capability:feature-flags",
       "status": "fixture-verified",
       "fulfills": [

@@ -30,6 +30,7 @@
     { "source": "files/sql-store.ts", "target": "password-reset/sql-store.ts" },
     { "source": "files/schema.sql", "target": "password-reset/schema.sql" }
   ],
+  "profiles": { "core": ["files/core.ts"], "memory": ["files/memory-store.ts"], "sql": ["files/sql-store.ts", "files/schema.sql"], "http": ["files/http.ts"] },
   "exports": [
     { "name": "createPasswordReset", "from": "password-reset/core.ts" },
     { "name": "PasswordResetError", "from": "password-reset/core.ts" },

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "file-uploads",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "File upload with size and type checks",
   "description": "Server file uploads with a streaming size limit (413 without buffering the rest), magic-byte type detection, an allowlist that must agree with the extension and declared type, sanitized names and random storage keys, a browser preflight, per-tenant authorization and atomic quota, quarantine until an injected scanner marks files clean, and safe attachment serving.",
   "kind": "feature",
@@ -46,52 +46,71 @@
       "source": "files/policy.ts",
       "target": "file-uploads/policy.ts",
       "path": "modules/file-uploads/files/policy.ts",
-      "sha256": "c01e9dba96ccb0e8073efd857952ddf79b1c613c4ea2b5c960fb63178bd50a60",
-      "bytes": 11084
+      "sha256": "911c11a16b0ac148181a1376b93580d21953c6ed2eb976849b7ab6048dba87f4",
+      "bytes": 14831
     },
     {
       "source": "files/client.ts",
       "target": "file-uploads/client.ts",
       "path": "modules/file-uploads/files/client.ts",
-      "sha256": "bccf6046c4bcf56a74984791c3df8472d69b098d56cf4a539e00f288bb6d2c42",
-      "bytes": 3915
+      "sha256": "7dd8856169fcfedda41eeb7b3a343820417dc70efee0d7e9c3b9eb25ddc25da4",
+      "bytes": 4065
     },
     {
       "source": "files/core.ts",
       "target": "file-uploads/core.ts",
       "path": "modules/file-uploads/files/core.ts",
-      "sha256": "1ad6df3aad8f183af49d1360fd32ddfb47e2c6435b3e48bc73590a833bb85bf3",
-      "bytes": 14866
+      "sha256": "5093601a2b8e10be27b52859d75d9e9ea4fa1ae586289abfa509b2f6c3ad9c1f",
+      "bytes": 21045
     },
     {
       "source": "files/memory-store.ts",
       "target": "file-uploads/memory-store.ts",
       "path": "modules/file-uploads/files/memory-store.ts",
-      "sha256": "f9a0e42a2ad15418e130189a5dd21c0b14df5d099485c05d334e89f63632de0b",
-      "bytes": 3049
+      "sha256": "b7986827fbc93d4a6a76926756b341bab230b63247e0ee3b5c1ad8c869ed6408",
+      "bytes": 4161
     },
     {
       "source": "files/http.ts",
       "target": "file-uploads/http.ts",
       "path": "modules/file-uploads/files/http.ts",
-      "sha256": "102c1788aa3ecf8ca6b6d56edd5bc9996378719313de6252f2ff8ace318d4ae5",
-      "bytes": 6705
+      "sha256": "cd0c4cf7cf37006c40bee3b7b31a564d1d6dc1a34087a54fd8c1ec28f58ed5c6",
+      "bytes": 6739
     },
     {
       "source": "files/sql-store.ts",
       "target": "file-uploads/sql-store.ts",
       "path": "modules/file-uploads/files/sql-store.ts",
-      "sha256": "10c75ed1a0f3f0af8f6d8c4c643f903c10580dbab7bc90a1a84bf44104d91456",
-      "bytes": 4368
+      "sha256": "8aae0cdfd45b7c25b57a5c15af0e4db1643c2cd6a5a03a31bcfb890aeb2955af",
+      "bytes": 5562
     },
     {
       "source": "files/schema.sql",
       "target": "file-uploads/schema.sql",
       "path": "modules/file-uploads/files/schema.sql",
-      "sha256": "2a7c2dffc0eaebdc8ff0a669e369382acdf0285b1fdb0a55a2a10437c0d7d3c8",
-      "bytes": 1299
+      "sha256": "948292ebdaec5315ad60fdd391a1dfb0ccda6b4489d0850ed91f9bbb2670b363",
+      "bytes": 1523
     }
   ],
+  "profiles": {
+    "core": [
+      "files/policy.ts",
+      "files/core.ts"
+    ],
+    "memory": [
+      "files/memory-store.ts"
+    ],
+    "sql": [
+      "files/sql-store.ts",
+      "files/schema.sql"
+    ],
+    "http": [
+      "files/http.ts"
+    ],
+    "client": [
+      "files/client.ts"
+    ]
+  },
   "exports": [
     {
       "name": "sniffType",
@@ -155,7 +174,8 @@
     "Implement BlobStore (put/get/delete) over your object storage (S3, R2, GCS, disk) keyed by the random storageKey; MemoryBlobStore is for tests.",
     "On PostgreSQL, apply schema.sql and use createSqlUploadMetadataStore with your query executor; elsewhere implement UploadMetadataStore with a single conditional quota reservation and conditional status change and delete.",
     "Pass authorize(user, tenantId, action) for upload, read and delete, and quotaBytes as a number or per-tenant function.",
-    "Pass scanner(bytes, record) backed by your antivirus (for example a ClamAV daemon or a scanning service) and call scan(id) from a queue worker, or call recordScanResult(id, verdict) from your own pipeline. No antivirus engine is included.",
+    "Pass scanner(bytes, record) backed by your antivirus (for example a ClamAV daemon or a scanning service) and call scanPending() from a background job (or scan(id) from a queue worker), or call recordScanResult(id, verdict) from your own pipeline. No antivirus engine is included.",
+    "Match your spec with options instead of wrapper code: policy.extensions (accepted extensions per type), policy.filenameControls (\"remove\"), policy.invalidFilenames (\"reject\" → invalid-name), checkDeclaredType: false (ignore the client's Content-Type on the server), lengthMismatch (\"too-large\") and scanLeaseMs.",
     "Mount createFileUploadHandler under one prefix with exact allowedOrigins and an authenticate(request) that reads your session; also cap the request body size at your proxy or platform."
   ],
   "capabilities": [
@@ -172,7 +192,7 @@
     "No antivirus or malware engine is included; scanning is an injected hook, and without a scanner (or recordScanResult) every upload stays quarantined and is never served.",
     "Accepted bytes are buffered in memory up to policy.maxBytes before they reach the BlobStore; it does not stream to object storage or support resumable or multipart/form-data uploads.",
     "A single oversized chunk delivered by the runtime is already in memory when it is counted; cap request bodies at the proxy or platform too.",
-    "Without Content-Length the full maxBytes is reserved against the quota while reading, so near-full tenants may be refused uploads that would fit; send Content-Length.",
+    "Without Content-Length the rest of maxBytes is reserved while it fits the quota, else quota is reserved chunk by chunk; near a full quota, several concurrent streamed uploads can each be cut off partway (none exceeds the quota). Send Content-Length to reserve exactly up front.",
     "Type detection covers png, jpeg, gif, webp, pdf, zip and a UTF-8 plain-text heuristic (plus svg/html recognition to refuse them); it does not validate the whole file structure, so re-encode images if you render them.",
     "zip is detected as a container only; docx, xlsx and other zip-based formats are refused rather than identified.",
     "If release or blob deletion fails after a metadata delete, quota or an orphaned blob may need reconciliation by a scheduled job.",
@@ -182,8 +202,8 @@
   "decisions": [
     "routes: POST {prefix}/tenants/{tenantId}/files?filename= (raw bytes, not multipart), GET|DELETE {prefix}/files/{id}",
     "default allowlist png, jpeg, gif, webp, pdf; type sniffed from bytes; mismatch → 415",
-    "new files stay quarantined until scan() is clean; quarantined download → 409, infected → 410",
-    "too-large and quota-exceeded → 413; downloads always use Content-Disposition: attachment"
+    "new files stay quarantined until a claimed scan is clean; quarantined download → 409, infected → 410",
+    "too-large and quota-exceeded → 413; invalid-name → 400; downloads always use Content-Disposition: attachment"
   ],
   "verification": {
     "level": "tested",
@@ -211,10 +231,26 @@
       "a failing or vague scanner leaves files quarantined; without a scanner nothing is served",
       "downloads carry Content-Disposition attachment with an RFC 6266 filename*, nosniff, the stored detected type and CSP default-src 'none'; sandbox",
       "HTTP adapter: 201 upload, 400, 401, 403 origin and tenant, 404, 405, 409 quarantined, 413, 415 and 204 delete",
-      "schema.sql applies and the SQL store keeps conditional status changes and deletes on PostgreSQL"
+      "schema.sql applies and the SQL store keeps conditional status changes and deletes on PostgreSQL",
+      "only < followed by a letter, !, ? or / counts as markup; text such as \"<3\" is plain text",
+      "policy.extensions narrows the extensions a type accepts on the server and in preflight, and an extension may belong to one allowed type",
+      "filenameControls remove deletes control characters; invalidFilenames reject refuses reserved, empty and dot-only names with invalid-name (400) before the type check and in preflight",
+      "checkDeclaredType false ignores the declared Content-Type; lengthMismatch too-large answers a body longer than its Content-Length with too-large",
+      "without Content-Length, quota is reserved as bytes arrive, so an upload that fits the remaining quota is accepted (memory store and PGlite)",
+      "overlapping scanPending passes and concurrent scan(id) calls run the scanner once per file; a failed scan is retried on the next pass; an abandoned claim expires after scanLeaseMs (memory store and PGlite)"
     ]
   },
   "changelog": [
+    {
+      "version": "0.2.0",
+      "changes": [
+        "Breaking: UploadMetadataStore adds claimScan, releaseScanClaim and listQuarantined, and schema.sql adds file_uploads.scan_claimed_until (ALTER TABLE file_uploads ADD COLUMN IF NOT EXISTS scan_claimed_until bigint).",
+        "Fix: overlapping scan workers could scan one file twice; scans now claim the file, and scanPending() scans every quarantined file for a background job.",
+        "Fix: without Content-Length the whole maxBytes was reserved, refusing uploads that fit the remaining quota; quota is now reserved as bytes arrive when maxBytes does not fit.",
+        "Fix: text starting with \"<\" not followed by a letter, !, ? or / (\"<3\") was refused as html.",
+        "New options with the 0.1.0 behavior as default: policy.extensions, policy.filenameControls, policy.invalidFilenames (error code invalid-name), checkDeclaredType, lengthMismatch and scanLeaseMs; sanitizeFilename also takes an options object."
+      ]
+    },
     {
       "version": "0.1.0",
       "changes": [
@@ -225,11 +261,11 @@
   "contract": "CONTRACT.md",
   "authoredManifest": {
     "path": "modules/file-uploads/module.json",
-    "sha256": "33135de50f9fb1fc6542c7f30ce2bba1b2347677744a42257ab9baafc1043f70"
+    "sha256": "81c15f458d3d4ac4e54742e5ad9e7ad681062563d347c76fe7dc806e3e3c9fcd"
   },
   "contractFile": {
     "path": "modules/file-uploads/CONTRACT.md",
-    "sha256": "699fc03899ee19b7f8069d871876c11ba0fcee361e1ae1f9c77c6e1015e077cc",
-    "bytes": 11650
+    "sha256": "17889ad5250c44b3fac668f669f61fce4a496fa598d38398341a068045a88683",
+    "bytes": 14335
   }
 }

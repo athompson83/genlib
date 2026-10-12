@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
+import 'dart:math' as math;
+
 import 'package:genlib_validation_example/cron_next.dart';
 import 'package:genlib_validation_example/geo.dart';
 import 'package:genlib_validation_example/ids.dart';
@@ -185,6 +187,40 @@ void runGeoTests(Checks c) {
   final polar = boundingBox(89.99, 0, 10000);
   c.check('bbox near pole spans all longitudes', polar.maxLat == 90 && polar.minLon == -180 && polar.maxLon == 180);
   c.throws<RangeError>('bbox negative radius', () => boundingBox(0, 0, -1));
+  // Regression: the half-width is asin(sin(r)/cos(lat)), not 2*asin(sin(r/2)/cos(lat)).
+  final wide = boundingBox(60, 0, 0.1 * earthRadiusMeters);
+  final half = wide.maxLon * math.pi / 180;
+  final want = math.asin(math.sin(0.1) / math.cos(math.pi / 3));
+  c.check('bbox lat 60 r 0.1 half-width $half want $want', (half - want).abs() <= 1e-6 * want && (half - 0.20101).abs() < 1e-5);
+  c.check('bbox lat 60 symmetric', (wide.minLon + wide.maxLon).abs() < 1e-12);
+  String? outside;
+  for (final cLat in const [0.0, 45.0, 60.0, 75.0, -70.0]) {
+    for (final radius in const [1000.0, 100000.0, 1000000.0]) {
+      final b = boundingBox(cLat, 0, radius);
+      final d = radius / earthRadiusMeters;
+      final p1 = cLat * math.pi / 180;
+      for (var i = 0; i < 360 && outside == null; i++) {
+        final t = i * math.pi / 180;
+        final p2 = math.asin(math.sin(p1) * math.cos(d) + math.cos(p1) * math.sin(d) * math.cos(t));
+        final l2 = math.atan2(math.sin(t) * math.sin(d) * math.cos(p1), math.cos(d) - math.sin(p1) * math.sin(p2));
+        final pLat = p2 * 180 / math.pi, pLon = l2 * 180 / math.pi;
+        if (pLat < b.minLat - 1e-9 || pLat > b.maxLat + 1e-9 || pLon < b.minLon - 1e-9 || pLon > b.maxLon + 1e-9) {
+          outside = 'center $cLat, radius $radius, bearing $i: $pLat,$pLon outside [${b.minLat}, ${b.minLon}, ${b.maxLat}, ${b.maxLon}]';
+        }
+      }
+    }
+  }
+  c.check('bbox contains circle points at 360 bearings ${outside ?? ''}', outside == null);
+  for (final (cLon, bearing) in const [(179.9, 90.0), (-179.9, 270.0)]) {
+    final b = boundingBox(10, cLon, 50000);
+    c.check('bbox antimeridian center lon $cLon spans all longitudes [${b.minLon}, ${b.maxLon}]', b.minLon == -180 && b.maxLon == 180);
+    final d = 50000 / earthRadiusMeters, p1 = 10 * math.pi / 180, t = bearing * math.pi / 180;
+    final p2 = math.asin(math.sin(p1) * math.cos(d) + math.cos(p1) * math.sin(d) * math.cos(t));
+    final l2 = cLon * math.pi / 180 + math.atan2(math.sin(t) * math.sin(d) * math.cos(p1), math.cos(d) - math.sin(p1) * math.sin(p2));
+    final pLat = p2 * 180 / math.pi, pLon = (l2 * 180 / math.pi + 540) % 360 - 180;
+    c.check('bbox antimeridian far-side point $pLat,$pLon inside',
+        pLon.abs() > 179.5 && pLat >= b.minLat && pLat <= b.maxLat && pLon >= b.minLon && pLon <= b.maxLon);
+  }
 }
 
 void runWebhookSignatureTests(Checks c) {
