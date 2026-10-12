@@ -68,14 +68,14 @@ node "$GENLIB_ROOT/bin/genlib.mjs" connect --target "$APP_ROOT" --agent all --re
 | `codex` | printed: `codex mcp add genlib -- node …/bin/genlib-mcp.mjs` (Codex reads MCP servers from the user's config, which Genlib does not edit) | `AGENTS.md` |
 
 - The entry runs this checkout's dependency-free `bin/genlib-mcp.mjs` with `--tools quick,outline`; `--all-tools` registers every tool (rerunning with or without it updates an entry Genlib wrote). Other servers and settings in each file are kept.
-- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from benchmark rounds 4 and 5, when not to: skip it for a small, fully specified app feature with no exact standard or security/concurrency rule; otherwise make one `genlib_quick` call, decide from its `covers` line, and call `genlib_outline` only once copying.
+- The guidance sits between `<!-- GENLIB_START -->` and `<!-- GENLIB_END -->`; text outside the markers is never changed. It says when to use Genlib and, from benchmark rounds 4 and 5, when not to: skip it for a small, fully specified app feature with no exact standard or security/concurrency rule; otherwise make one `genlib_quick` call, decide from its `# reuse`, `# fixed` and `# size` lines, and call `genlib_outline` only once copying.
 - Nothing is written without `--write`. An existing `genlib` entry that differs, a JSONC config, invalid JSON or unbalanced markers are reported as conflicts and stop the whole run.
 - `.genlib/connections.json` records what was written. `--remove` deletes only entries that still match it and files Genlib created; an edited entry is a conflict.
 - No tool approvals are added: allowing tools without prompts stays a decision for the app's owner.
 
 ## Navigation graph (Graphify-style)
 
-`registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities, modules, integration packs, feature contracts and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`; `fulfills` links run from code to a feature contract, weighted by the number of requirements its tests verify (the same evidence `genlib coverage` and `quick`'s `covers` line use).
+`registry/graph.json` (`genlib.graph/v1`) has nodes for the root, source types, resource guides, categories, languages, capabilities, modules, integration packs, feature contracts and documentation files. Its counted links include `contains`, `serves`, `grouped-by`, `has-category`, `in-language`, `includes`, `implemented-in`, `documented-by` and `section-of`; `fulfills` links run from code to a feature contract, weighted by the number of requirements its tests verify (the same evidence `genlib coverage` and `quick`'s `# reuse` line use).
 
 The nodes/links shape loads directly in d3, Obsidian graph plugins and Graphify-style viewers. Follow a node's `query` into `genlib find`, or its `file` into a guide. Entry-level detail stays in the search index, so the graph stays small: a few hundred nodes.
 
